@@ -38,6 +38,11 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   wall-time comparisons on the recorded macOS/x86_64 Apple-clang machine. Both
   methods returned the same exponent vector in every case, and both outputs were
   independently certified. Artifact: `results/benchmarks/full_xplusy_suite_1e12/`.
+- Sorted-matrix/range-pruning diagnostic, same six five-prime subsets,
+  N=10^12: the range-pruned block counter beat the linear saddleback X+Y count
+  in only 2/6 cases, with mean block/linear internal time ratio 1.2542. This is
+  a negative/mixed result, not a headline improvement. Artifact:
+  `results/benchmarks/sorted_matrix_workbench_1e12/`.
 - 6 primes, P=(2,3,5,7,11,13), N=10^12: exps [55,126,27,54,2,52], fast solver about 0.55-0.61s; independent auditor certified count_le=N.
 - Higher-k exploratory: sums-only MITM handled k=8,10,12 at N=10^12 within seconds in the container, but proof-grade certification beyond k=6 is not yet implemented.
 

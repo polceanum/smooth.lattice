@@ -1,0 +1,1018 @@
+{
+  "aggregate": {
+    "all_completed": true,
+    "cases": 6,
+    "comparable_cases": 6,
+    "completed_cases": 6,
+    "max_block_over_linear": 1.572433133675588,
+    "mean_block_over_linear": 1.2542418501101371,
+    "min_block_over_linear": 0.979012040381897,
+    "range_pruning_wins": 2
+  },
+  "build_runs": [
+    {
+      "command": [
+        "g++",
+        "-O3",
+        "-std=c++17",
+        "benchmarks/smooth_xplusy_fj_loh_workbench.cpp",
+        "-o",
+        "bin/smooth_xplusy_fj_loh_workbench"
+      ],
+      "elapsed_seconds": 4.224426263011992,
+      "max_rss_kb": 103192,
+      "metrics": {},
+      "name": "build_sorted_matrix_workbench",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "",
+      "time_raw": "        4.21 real         3.86 user         0.34 sys\n           105668608  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               45301  page reclaims\n                 457  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   2  voluntary context switches\n                2223  involuntary context switches\n           116433681  instructions retired\n           219434089  cycles elapsed\n             1589248  peak memory footprint\n"
+    }
+  ],
+  "cases": [
+    {
+      "N": 1000000000000,
+      "primes": "2,3,5,7,11",
+      "rows": [
+        {
+          "A": 588728,
+          "B": 18967092,
+          "N": 1000000000000,
+          "P": [
+            2,
+            3,
+            5,
+            7,
+            11
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 1.088591,
+          "build": 0.361067,
+          "k": 5,
+          "leaf": 512,
+          "linear_total": 0.621935,
+          "row_type": "block_rank"
+        },
+        {
+          "A": 588728,
+          "B": 18967092,
+          "N": 1000000000000,
+          "P": [
+            2,
+            3,
+            5,
+            7,
+            11
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 0.97239,
+          "build": 0.361067,
+          "k": 5,
+          "leaf": 2048,
+          "linear_total": 0.621935,
+          "row_type": "block_rank"
+        },
+        {
+          "A": 588728,
+          "B": 18967092,
+          "N": 1000000000000,
+          "P": [
+            2,
+            3,
+            5,
+            7,
+            11
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 1.083269,
+          "build": 0.361067,
+          "k": 5,
+          "leaf": 8192,
+          "linear_total": 0.621935,
+          "row_type": "block_rank"
+        },
+        {
+          "N_probe": 1000000,
+          "P": [
+            2,
+            3,
+            5,
+            7,
+            11
+          ],
+          "cand": 1785136,
+          "k": 5,
+          "pairs": 486,
+          "row_type": "loh_topk_probe",
+          "sec": 0.046326,
+          "skipped": false
+        }
+      ],
+      "run": {
+        "command": [
+          "bin/smooth_xplusy_fj_loh_workbench",
+          "2,3,5,7,11",
+          "1000000000000"
+        ],
+        "elapsed_seconds": 4.701049363997299,
+        "max_rss_kb": 183904,
+        "metrics": {
+          "A": 588728,
+          "B": 18967092,
+          "N": 1000000000000,
+          "N_probe": 1000000,
+          "P": [
+            2,
+            3,
+            5,
+            7,
+            11
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 1.083269,
+          "build": 0.361067,
+          "cand": 1785136,
+          "k": 5,
+          "leaf": 8192,
+          "linear_total": 0.621935,
+          "pairs": 486,
+          "sec": 0.046326,
+          "skipped": false
+        },
+        "name": "sorted_matrix_workbench",
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "block_rank P=(2,3,5,7,11) k=5 N=1000000000000 leaf=512 build=0.361067 A=588728 B=18967092 linear_total=0.621935 block_total=1.088591 block_calls=11 block_log_delta=0.000000\nblock_rank P=(2,3,5,7,11) k=5 N=1000000000000 leaf=2048 build=0.361067 A=588728 B=18967092 linear_total=0.621935 block_total=0.972390 block_calls=11 block_log_delta=0.000000\nblock_rank P=(2,3,5,7,11) k=5 N=1000000000000 leaf=8192 build=0.361067 A=588728 B=18967092 linear_total=0.621935 block_total=1.083269 block_calls=11 block_log_delta=0.000000\nloh_topk_probe P=(2,3,5,7,11) k=5 N_probe=1000000 skipped=false sec=0.046326 cand=1785136 pairs=486 reason=",
+        "time_raw": "        4.69 real         3.77 user         0.14 sys\n           188317696  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               46258  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                4169  involuntary context switches\n         17446413558  instructions retired\n          9899362327  cycles elapsed\n           188051456  peak memory footprint\n"
+      },
+      "summary": {
+        "A": 588728,
+        "B": 18967092,
+        "best_block_total": 0.97239,
+        "best_leaf": 2048,
+        "block_log_delta": 0.0,
+        "block_over_linear": 1.5634913616374702,
+        "block_rows": 3,
+        "linear_total": 0.621935,
+        "loh_N_probe": 1000000,
+        "loh_cand": 1785136,
+        "loh_pairs": 486,
+        "loh_reason": "",
+        "loh_rows": 1,
+        "loh_sec": 0.046326,
+        "loh_skipped": false,
+        "range_pruning_wins": false
+      }
+    },
+    {
+      "N": 1000000000000,
+      "primes": "2,3,5,7,13",
+      "rows": [
+        {
+          "A": 604787,
+          "B": 18465439,
+          "N": 1000000000000,
+          "P": [
+            2,
+            3,
+            5,
+            7,
+            13
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 0.905833,
+          "build": 0.380381,
+          "k": 5,
+          "leaf": 512,
+          "linear_total": 0.59831,
+          "row_type": "block_rank"
+        },
+        {
+          "A": 604787,
+          "B": 18465439,
+          "N": 1000000000000,
+          "P": [
+            2,
+            3,
+            5,
+            7,
+            13
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 0.813226,
+          "build": 0.380381,
+          "k": 5,
+          "leaf": 2048,
+          "linear_total": 0.59831,
+          "row_type": "block_rank"
+        },
+        {
+          "A": 604787,
+          "B": 18465439,
+          "N": 1000000000000,
+          "P": [
+            2,
+            3,
+            5,
+            7,
+            13
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 0.750283,
+          "build": 0.380381,
+          "k": 5,
+          "leaf": 8192,
+          "linear_total": 0.59831,
+          "row_type": "block_rank"
+        },
+        {
+          "N_probe": 1000000,
+          "P": [
+            2,
+            3,
+            5,
+            7,
+            13
+          ],
+          "cand": 1807583,
+          "k": 5,
+          "pairs": 487,
+          "row_type": "loh_topk_probe",
+          "sec": 0.042101,
+          "skipped": false
+        }
+      ],
+      "run": {
+        "command": [
+          "bin/smooth_xplusy_fj_loh_workbench",
+          "2,3,5,7,13",
+          "1000000000000"
+        ],
+        "elapsed_seconds": 3.532872981042601,
+        "max_rss_kb": 180316,
+        "metrics": {
+          "A": 604787,
+          "B": 18465439,
+          "N": 1000000000000,
+          "N_probe": 1000000,
+          "P": [
+            2,
+            3,
+            5,
+            7,
+            13
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 0.750283,
+          "build": 0.380381,
+          "cand": 1807583,
+          "k": 5,
+          "leaf": 8192,
+          "linear_total": 0.59831,
+          "pairs": 487,
+          "sec": 0.042101,
+          "skipped": false
+        },
+        "name": "sorted_matrix_workbench",
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "block_rank P=(2,3,5,7,13) k=5 N=1000000000000 leaf=512 build=0.380381 A=604787 B=18465439 linear_total=0.598310 block_total=0.905833 block_calls=11 block_log_delta=0.000000\nblock_rank P=(2,3,5,7,13) k=5 N=1000000000000 leaf=2048 build=0.380381 A=604787 B=18465439 linear_total=0.598310 block_total=0.813226 block_calls=11 block_log_delta=0.000000\nblock_rank P=(2,3,5,7,13) k=5 N=1000000000000 leaf=8192 build=0.380381 A=604787 B=18465439 linear_total=0.598310 block_total=0.750283 block_calls=11 block_log_delta=0.000000\nloh_topk_probe P=(2,3,5,7,13) k=5 N_probe=1000000 skipped=false sec=0.042101 cand=1807583 pairs=487 reason=",
+        "time_raw": "        3.52 real         3.23 user         0.14 sys\n           184643584  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               45361  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                3048  involuntary context switches\n         11909389926  instructions retired\n          8495399550  cycles elapsed\n           184377344  peak memory footprint\n"
+      },
+      "summary": {
+        "A": 604787,
+        "B": 18465439,
+        "best_block_total": 0.750283,
+        "best_leaf": 8192,
+        "block_log_delta": 0.0,
+        "block_over_linear": 1.2540037773060788,
+        "block_rows": 3,
+        "linear_total": 0.59831,
+        "loh_N_probe": 1000000,
+        "loh_cand": 1807583,
+        "loh_pairs": 487,
+        "loh_reason": "",
+        "loh_rows": 1,
+        "loh_sec": 0.042101,
+        "loh_skipped": false,
+        "range_pruning_wins": false
+      }
+    },
+    {
+      "N": 1000000000000,
+      "primes": "2,3,5,11,13",
+      "rows": [
+        {
+          "A": 657434,
+          "B": 16990294,
+          "N": 1000000000000,
+          "P": [
+            2,
+            3,
+            5,
+            11,
+            13
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 0.917562,
+          "build": 0.367,
+          "k": 5,
+          "leaf": 512,
+          "linear_total": 0.717543,
+          "row_type": "block_rank"
+        },
+        {
+          "A": 657434,
+          "B": 16990294,
+          "N": 1000000000000,
+          "P": [
+            2,
+            3,
+            5,
+            11,
+            13
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 0.813921,
+          "build": 0.367,
+          "k": 5,
+          "leaf": 2048,
+          "linear_total": 0.717543,
+          "row_type": "block_rank"
+        },
+        {
+          "A": 657434,
+          "B": 16990294,
+          "N": 1000000000000,
+          "P": [
+            2,
+            3,
+            5,
+            11,
+            13
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 0.703218,
+          "build": 0.367,
+          "k": 5,
+          "leaf": 8192,
+          "linear_total": 0.717543,
+          "row_type": "block_rank"
+        },
+        {
+          "N_probe": 1000000,
+          "P": [
+            2,
+            3,
+            5,
+            11,
+            13
+          ],
+          "cand": 1787959,
+          "k": 5,
+          "pairs": 488,
+          "row_type": "loh_topk_probe",
+          "sec": 0.050068,
+          "skipped": false
+        }
+      ],
+      "run": {
+        "command": [
+          "bin/smooth_xplusy_fj_loh_workbench",
+          "2,3,5,11,13",
+          "1000000000000"
+        ],
+        "elapsed_seconds": 3.6122729780036025,
+        "max_rss_kb": 169040,
+        "metrics": {
+          "A": 657434,
+          "B": 16990294,
+          "N": 1000000000000,
+          "N_probe": 1000000,
+          "P": [
+            2,
+            3,
+            5,
+            11,
+            13
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 0.703218,
+          "build": 0.367,
+          "cand": 1787959,
+          "k": 5,
+          "leaf": 8192,
+          "linear_total": 0.717543,
+          "pairs": 488,
+          "sec": 0.050068,
+          "skipped": false
+        },
+        "name": "sorted_matrix_workbench",
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "block_rank P=(2,3,5,11,13) k=5 N=1000000000000 leaf=512 build=0.367000 A=657434 B=16990294 linear_total=0.717543 block_total=0.917562 block_calls=11 block_log_delta=0.000000\nblock_rank P=(2,3,5,11,13) k=5 N=1000000000000 leaf=2048 build=0.367000 A=657434 B=16990294 linear_total=0.717543 block_total=0.813921 block_calls=11 block_log_delta=0.000000\nblock_rank P=(2,3,5,11,13) k=5 N=1000000000000 leaf=8192 build=0.367000 A=657434 B=16990294 linear_total=0.717543 block_total=0.703218 block_calls=11 block_log_delta=0.000000\nloh_topk_probe P=(2,3,5,11,13) k=5 N_probe=1000000 skipped=false sec=0.050068 cand=1787959 pairs=488 reason=",
+        "time_raw": "        3.60 real         3.36 user         0.15 sys\n           173096960  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               42542  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                4122  involuntary context switches\n         11393475328  instructions retired\n          8769321080  cycles elapsed\n           172830720  peak memory footprint\n"
+      },
+      "summary": {
+        "A": 657434,
+        "B": 16990294,
+        "best_block_total": 0.703218,
+        "best_leaf": 8192,
+        "block_log_delta": 0.0,
+        "block_over_linear": 0.980036039651979,
+        "block_rows": 3,
+        "linear_total": 0.717543,
+        "loh_N_probe": 1000000,
+        "loh_cand": 1787959,
+        "loh_pairs": 488,
+        "loh_reason": "",
+        "loh_rows": 1,
+        "loh_sec": 0.050068,
+        "loh_skipped": false,
+        "range_pruning_wins": true
+      }
+    },
+    {
+      "N": 1000000000000,
+      "primes": "2,3,7,11,13",
+      "rows": [
+        {
+          "A": 709255,
+          "B": 15749721,
+          "N": 1000000000000,
+          "P": [
+            2,
+            3,
+            7,
+            11,
+            13
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 0.799143,
+          "build": 0.329075,
+          "k": 5,
+          "leaf": 512,
+          "linear_total": 0.598486,
+          "row_type": "block_rank"
+        },
+        {
+          "A": 709255,
+          "B": 15749721,
+          "N": 1000000000000,
+          "P": [
+            2,
+            3,
+            7,
+            11,
+            13
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 0.667594,
+          "build": 0.329075,
+          "k": 5,
+          "leaf": 2048,
+          "linear_total": 0.598486,
+          "row_type": "block_rank"
+        },
+        {
+          "A": 709255,
+          "B": 15749721,
+          "N": 1000000000000,
+          "P": [
+            2,
+            3,
+            7,
+            11,
+            13
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 0.585925,
+          "build": 0.329075,
+          "k": 5,
+          "leaf": 8192,
+          "linear_total": 0.598486,
+          "row_type": "block_rank"
+        },
+        {
+          "N_probe": 1000000,
+          "P": [
+            2,
+            3,
+            7,
+            11,
+            13
+          ],
+          "cand": 1745778,
+          "k": 5,
+          "pairs": 487,
+          "row_type": "loh_topk_probe",
+          "sec": 0.033767,
+          "skipped": false
+        }
+      ],
+      "run": {
+        "command": [
+          "bin/smooth_xplusy_fj_loh_workbench",
+          "2,3,7,11,13",
+          "1000000000000"
+        ],
+        "elapsed_seconds": 3.0525023119989783,
+        "max_rss_kb": 159444,
+        "metrics": {
+          "A": 709255,
+          "B": 15749721,
+          "N": 1000000000000,
+          "N_probe": 1000000,
+          "P": [
+            2,
+            3,
+            7,
+            11,
+            13
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 0.585925,
+          "build": 0.329075,
+          "cand": 1745778,
+          "k": 5,
+          "leaf": 8192,
+          "linear_total": 0.598486,
+          "pairs": 487,
+          "sec": 0.033767,
+          "skipped": false
+        },
+        "name": "sorted_matrix_workbench",
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "block_rank P=(2,3,7,11,13) k=5 N=1000000000000 leaf=512 build=0.329075 A=709255 B=15749721 linear_total=0.598486 block_total=0.799143 block_calls=11 block_log_delta=0.000000\nblock_rank P=(2,3,7,11,13) k=5 N=1000000000000 leaf=2048 build=0.329075 A=709255 B=15749721 linear_total=0.598486 block_total=0.667594 block_calls=11 block_log_delta=0.000000\nblock_rank P=(2,3,7,11,13) k=5 N=1000000000000 leaf=8192 build=0.329075 A=709255 B=15749721 linear_total=0.598486 block_total=0.585925 block_calls=11 block_log_delta=0.000000\nloh_topk_probe P=(2,3,7,11,13) k=5 N_probe=1000000 skipped=false sec=0.033767 cand=1745778 pairs=487 reason=",
+        "time_raw": "        3.04 real         2.85 user         0.12 sys\n           163270656  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               40143  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                2778  involuntary context switches\n         10974709220  instructions retired\n          7512394316  cycles elapsed\n           163004416  peak memory footprint\n"
+      },
+      "summary": {
+        "A": 709255,
+        "B": 15749721,
+        "best_block_total": 0.585925,
+        "best_leaf": 8192,
+        "block_log_delta": 0.0,
+        "block_over_linear": 0.979012040381897,
+        "block_rows": 3,
+        "linear_total": 0.598486,
+        "loh_N_probe": 1000000,
+        "loh_cand": 1745778,
+        "loh_pairs": 487,
+        "loh_reason": "",
+        "loh_rows": 1,
+        "loh_sec": 0.033767,
+        "loh_skipped": false,
+        "range_pruning_wins": true
+      }
+    },
+    {
+      "N": 1000000000000,
+      "primes": "2,5,7,11,13",
+      "rows": [
+        {
+          "A": 564219,
+          "B": 19790323,
+          "N": 1000000000000,
+          "P": [
+            2,
+            5,
+            7,
+            11,
+            13
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 1.207161,
+          "build": 0.365958,
+          "k": 5,
+          "leaf": 512,
+          "linear_total": 0.595853,
+          "row_type": "block_rank"
+        },
+        {
+          "A": 564219,
+          "B": 19790323,
+          "N": 1000000000000,
+          "P": [
+            2,
+            5,
+            7,
+            11,
+            13
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 1.116897,
+          "build": 0.365958,
+          "k": 5,
+          "leaf": 2048,
+          "linear_total": 0.595853,
+          "row_type": "block_rank"
+        },
+        {
+          "A": 564219,
+          "B": 19790323,
+          "N": 1000000000000,
+          "P": [
+            2,
+            5,
+            7,
+            11,
+            13
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 0.936939,
+          "build": 0.365958,
+          "k": 5,
+          "leaf": 8192,
+          "linear_total": 0.595853,
+          "row_type": "block_rank"
+        },
+        {
+          "N_probe": 1000000,
+          "P": [
+            2,
+            5,
+            7,
+            11,
+            13
+          ],
+          "cand": 1796212,
+          "k": 5,
+          "pairs": 487,
+          "row_type": "loh_topk_probe",
+          "sec": 0.053414,
+          "skipped": false
+        }
+      ],
+      "run": {
+        "command": [
+          "bin/smooth_xplusy_fj_loh_workbench",
+          "2,5,7,11,13",
+          "1000000000000"
+        ],
+        "elapsed_seconds": 4.320058003999293,
+        "max_rss_kb": 190268,
+        "metrics": {
+          "A": 564219,
+          "B": 19790323,
+          "N": 1000000000000,
+          "N_probe": 1000000,
+          "P": [
+            2,
+            5,
+            7,
+            11,
+            13
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 0.936939,
+          "build": 0.365958,
+          "cand": 1796212,
+          "k": 5,
+          "leaf": 8192,
+          "linear_total": 0.595853,
+          "pairs": 487,
+          "sec": 0.053414,
+          "skipped": false
+        },
+        "name": "sorted_matrix_workbench",
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "block_rank P=(2,5,7,11,13) k=5 N=1000000000000 leaf=512 build=0.365958 A=564219 B=19790323 linear_total=0.595853 block_total=1.207161 block_calls=11 block_log_delta=0.000000\nblock_rank P=(2,5,7,11,13) k=5 N=1000000000000 leaf=2048 build=0.365958 A=564219 B=19790323 linear_total=0.595853 block_total=1.116897 block_calls=11 block_log_delta=0.000000\nblock_rank P=(2,5,7,11,13) k=5 N=1000000000000 leaf=8192 build=0.365958 A=564219 B=19790323 linear_total=0.595853 block_total=0.936939 block_calls=11 block_log_delta=0.000000\nloh_topk_probe P=(2,5,7,11,13) k=5 N_probe=1000000 skipped=false sec=0.053414 cand=1796212 pairs=487 reason=",
+        "time_raw": "        4.30 real         4.04 user         0.15 sys\n           194834432  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               47849  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                4082  involuntary context switches\n         17532593087  instructions retired\n         10635048242  cycles elapsed\n           194568192  peak memory footprint\n"
+      },
+      "summary": {
+        "A": 564219,
+        "B": 19790323,
+        "best_block_total": 0.936939,
+        "best_leaf": 8192,
+        "block_log_delta": 0.0,
+        "block_over_linear": 1.572433133675588,
+        "block_rows": 3,
+        "linear_total": 0.595853,
+        "loh_N_probe": 1000000,
+        "loh_cand": 1796212,
+        "loh_pairs": 487,
+        "loh_reason": "",
+        "loh_rows": 1,
+        "loh_sec": 0.053414,
+        "loh_skipped": false,
+        "range_pruning_wins": false
+      }
+    },
+    {
+      "N": 1000000000000,
+      "primes": "3,5,7,11,13",
+      "rows": [
+        {
+          "A": 428056,
+          "B": 26068271,
+          "N": 1000000000000,
+          "P": [
+            3,
+            5,
+            7,
+            11,
+            13
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 1.398562,
+          "build": 0.537434,
+          "k": 5,
+          "leaf": 512,
+          "linear_total": 0.94745,
+          "row_type": "block_rank"
+        },
+        {
+          "A": 428056,
+          "B": 26068271,
+          "N": 1000000000000,
+          "P": [
+            3,
+            5,
+            7,
+            11,
+            13
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 1.242809,
+          "build": 0.537434,
+          "k": 5,
+          "leaf": 2048,
+          "linear_total": 0.94745,
+          "row_type": "block_rank"
+        },
+        {
+          "A": 428056,
+          "B": 26068271,
+          "N": 1000000000000,
+          "P": [
+            3,
+            5,
+            7,
+            11,
+            13
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 1.114651,
+          "build": 0.537434,
+          "k": 5,
+          "leaf": 8192,
+          "linear_total": 0.94745,
+          "row_type": "block_rank"
+        },
+        {
+          "N_probe": 1000000,
+          "P": [
+            3,
+            5,
+            7,
+            11,
+            13
+          ],
+          "cand": 1787033,
+          "k": 5,
+          "pairs": 482,
+          "row_type": "loh_topk_probe",
+          "sec": 0.045728,
+          "skipped": false
+        }
+      ],
+      "run": {
+        "command": [
+          "bin/smooth_xplusy_fj_loh_workbench",
+          "3,5,7,11,13",
+          "1000000000000"
+        ],
+        "elapsed_seconds": 5.354843953973614,
+        "max_rss_kb": 238248,
+        "metrics": {
+          "A": 428056,
+          "B": 26068271,
+          "N": 1000000000000,
+          "N_probe": 1000000,
+          "P": [
+            3,
+            5,
+            7,
+            11,
+            13
+          ],
+          "block_calls": 11,
+          "block_log_delta": 0.0,
+          "block_total": 1.114651,
+          "build": 0.537434,
+          "cand": 1787033,
+          "k": 5,
+          "leaf": 8192,
+          "linear_total": 0.94745,
+          "pairs": 482,
+          "sec": 0.045728,
+          "skipped": false
+        },
+        "name": "sorted_matrix_workbench",
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "block_rank P=(3,5,7,11,13) k=5 N=1000000000000 leaf=512 build=0.537434 A=428056 B=26068271 linear_total=0.947450 block_total=1.398562 block_calls=11 block_log_delta=0.000000\nblock_rank P=(3,5,7,11,13) k=5 N=1000000000000 leaf=2048 build=0.537434 A=428056 B=26068271 linear_total=0.947450 block_total=1.242809 block_calls=11 block_log_delta=0.000000\nblock_rank P=(3,5,7,11,13) k=5 N=1000000000000 leaf=8192 build=0.537434 A=428056 B=26068271 linear_total=0.947450 block_total=1.114651 block_calls=11 block_log_delta=0.000000\nloh_topk_probe P=(3,5,7,11,13) k=5 N_probe=1000000 skipped=false sec=0.045728 cand=1787033 pairs=482 reason=",
+        "time_raw": "        5.34 real         4.87 user         0.22 sys\n           243965952  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               59844  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                5648  involuntary context switches\n         18868288389  instructions retired\n         12864062818  cycles elapsed\n           243699712  peak memory footprint\n"
+      },
+      "summary": {
+        "A": 428056,
+        "B": 26068271,
+        "best_block_total": 1.114651,
+        "best_leaf": 8192,
+        "block_log_delta": 0.0,
+        "block_over_linear": 1.1764747480078104,
+        "block_rows": 3,
+        "linear_total": 0.94745,
+        "loh_N_probe": 1000000,
+        "loh_cand": 1787033,
+        "loh_pairs": 482,
+        "loh_reason": "",
+        "loh_rows": 1,
+        "loh_sec": 0.045728,
+        "loh_skipped": false,
+        "range_pruning_wins": false
+      }
+    }
+  ],
+  "config": {
+    "N": 1000000000000,
+    "prime_sets": [
+      "2,3,5,7,11",
+      "2,3,5,7,13",
+      "2,3,5,11,13",
+      "2,3,7,11,13",
+      "2,5,7,11,13",
+      "3,5,7,11,13"
+    ]
+  },
+  "metadata": {
+    "compiler": {
+      "cxx": "g++",
+      "cxxflags": "-O3 -std=c++17",
+      "path": "/usr/bin/g++",
+      "version": "Apple clang version 21.0.0 (clang-2100.0.123.102)\nTarget: x86_64-apple-darwin25.4.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin"
+    },
+    "cpu_model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
+    "git_commit": "674746fc15fd5f1cad31773bee81ba5a13ff13ea",
+    "git_dirty": false,
+    "memory_bytes": 17179869184,
+    "platform": "macOS-26.4.1-x86_64-i386-64bit-Mach-O",
+    "python": "3.13.3",
+    "system": "Darwin",
+    "timestamp_utc": "2026-06-08T23:22:36.225372+00:00"
+  },
+  "schema": "smooth.lattice.sorted_matrix_workbench.v1",
+  "summary_rows": [
+    {
+      "A": 588728,
+      "B": 18967092,
+      "N": 1000000000000,
+      "best_block_total": 0.97239,
+      "best_leaf": 2048,
+      "block_log_delta": 0.0,
+      "block_over_linear": 1.5634913616374702,
+      "linear_total": 0.621935,
+      "loh_N_probe": 1000000,
+      "loh_cand": 1785136,
+      "loh_pairs": 486,
+      "loh_reason": "",
+      "loh_sec": 0.046326,
+      "loh_skipped": false,
+      "max_rss_kb": 183904,
+      "primes": "2,3,5,7,11",
+      "range_pruning_wins": false,
+      "returncode": 0,
+      "wall_seconds": 4.701049363997299
+    },
+    {
+      "A": 604787,
+      "B": 18465439,
+      "N": 1000000000000,
+      "best_block_total": 0.750283,
+      "best_leaf": 8192,
+      "block_log_delta": 0.0,
+      "block_over_linear": 1.2540037773060788,
+      "linear_total": 0.59831,
+      "loh_N_probe": 1000000,
+      "loh_cand": 1807583,
+      "loh_pairs": 487,
+      "loh_reason": "",
+      "loh_sec": 0.042101,
+      "loh_skipped": false,
+      "max_rss_kb": 180316,
+      "primes": "2,3,5,7,13",
+      "range_pruning_wins": false,
+      "returncode": 0,
+      "wall_seconds": 3.532872981042601
+    },
+    {
+      "A": 657434,
+      "B": 16990294,
+      "N": 1000000000000,
+      "best_block_total": 0.703218,
+      "best_leaf": 8192,
+      "block_log_delta": 0.0,
+      "block_over_linear": 0.980036039651979,
+      "linear_total": 0.717543,
+      "loh_N_probe": 1000000,
+      "loh_cand": 1787959,
+      "loh_pairs": 488,
+      "loh_reason": "",
+      "loh_sec": 0.050068,
+      "loh_skipped": false,
+      "max_rss_kb": 169040,
+      "primes": "2,3,5,11,13",
+      "range_pruning_wins": true,
+      "returncode": 0,
+      "wall_seconds": 3.6122729780036025
+    },
+    {
+      "A": 709255,
+      "B": 15749721,
+      "N": 1000000000000,
+      "best_block_total": 0.585925,
+      "best_leaf": 8192,
+      "block_log_delta": 0.0,
+      "block_over_linear": 0.979012040381897,
+      "linear_total": 0.598486,
+      "loh_N_probe": 1000000,
+      "loh_cand": 1745778,
+      "loh_pairs": 487,
+      "loh_reason": "",
+      "loh_sec": 0.033767,
+      "loh_skipped": false,
+      "max_rss_kb": 159444,
+      "primes": "2,3,7,11,13",
+      "range_pruning_wins": true,
+      "returncode": 0,
+      "wall_seconds": 3.0525023119989783
+    },
+    {
+      "A": 564219,
+      "B": 19790323,
+      "N": 1000000000000,
+      "best_block_total": 0.936939,
+      "best_leaf": 8192,
+      "block_log_delta": 0.0,
+      "block_over_linear": 1.572433133675588,
+      "linear_total": 0.595853,
+      "loh_N_probe": 1000000,
+      "loh_cand": 1796212,
+      "loh_pairs": 487,
+      "loh_reason": "",
+      "loh_sec": 0.053414,
+      "loh_skipped": false,
+      "max_rss_kb": 190268,
+      "primes": "2,5,7,11,13",
+      "range_pruning_wins": false,
+      "returncode": 0,
+      "wall_seconds": 4.320058003999293
+    },
+    {
+      "A": 428056,
+      "B": 26068271,
+      "N": 1000000000000,
+      "best_block_total": 1.114651,
+      "best_leaf": 8192,
+      "block_log_delta": 0.0,
+      "block_over_linear": 1.1764747480078104,
+      "linear_total": 0.94745,
+      "loh_N_probe": 1000000,
+      "loh_cand": 1787033,
+      "loh_pairs": 482,
+      "loh_reason": "",
+      "loh_sec": 0.045728,
+      "loh_skipped": false,
+      "max_rss_kb": 238248,
+      "primes": "3,5,7,11,13",
+      "range_pruning_wins": false,
+      "returncode": 0,
+      "wall_seconds": 5.354843953973614
+    }
+  ]
+}

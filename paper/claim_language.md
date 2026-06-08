@@ -109,3 +109,19 @@ rank-certified.
 The recorded suite had 6/6 completed cases, 6/6 matching exponent vectors, 6/6
 independent certifications for both methods, and 6/6 layer wall-time wins. The
 full-X+Y/layer wall-time ratio ranged from 1.4703 to 3.1276, with mean 2.3309.
+
+## Negative Results To Report
+
+The sorted-matrix/range-pruning workbench should be reported as a diagnostic
+negative result:
+
+```text
+On the same six five-prime subsets at N=10^12, our range-pruned
+sorted-matrix block counter did not improve the practical X+Y selector overall:
+it won only 2/6 cases, both narrowly, and its mean internal time was 1.2542
+times the ordinary linear saddleback count.
+```
+
+Do not describe this as a Frederickson-Johnson comparison. The implementation is
+only FJ-style range pruning, and the LOH row is capped at `N_probe=10^6` rather
+than the full target rank.

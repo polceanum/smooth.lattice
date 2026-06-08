@@ -265,3 +265,24 @@ Important caveats:
   random-access unranking comparator for the full target rank.
 - These results should be reported as diagnostic or negative evidence unless a
   future patch implements the full published algorithm being invoked.
+
+Clean workbench artifact:
+
+```text
+results/benchmarks/sorted_matrix_workbench_1e12/
+```
+
+Observed result at commit `674746fc15fd5f1cad31773bee81ba5a13ff13ea` on the
+recorded macOS/x86_64 Apple-clang machine:
+
+- 6/6 cases completed.
+- The range-pruned block counter beat the ordinary linear saddleback count in
+  2/6 cases.
+- Those two wins were narrow: block/linear ratios 0.9800 and 0.9790.
+- The mean block/linear internal time ratio was 1.2542, so the probe was slower
+  on average.
+- The LOH row used `N_probe=10^6`, not the full target rank `N=10^12`.
+
+This is a negative/mixed result. It should be used to document that the current
+sorted-matrix range-pruning probe does not strengthen the X+Y baseline at the
+headline five-prime target scale.

@@ -43,6 +43,7 @@ Current clean artifact:
 results/benchmarks/xplusy_vs_layer5_1e12/
 results/benchmarks/five_prime_suite_1e12/
 results/benchmarks/full_xplusy_suite_1e12/
+results/benchmarks/sorted_matrix_workbench_1e12/
 ```
 
 On the recorded macOS/x86_64 Apple-clang run at commit
@@ -67,6 +68,13 @@ Use `python3 scripts/run_sorted_matrix_workbench.py` to record exploratory
 sorted-matrix/range-pruning and LOH probes. These rows are useful negative or
 diagnostic evidence, but they do not discharge the "full Frederickson-Johnson"
 or "full soft-heap X+Y" comparison obligations.
+
+In the clean six-case `N=10^12` workbench artifact at commit
+`674746fc15fd5f1cad31773bee81ba5a13ff13ea`, the range-pruned block counter
+beat the ordinary linear saddleback count in only 2/6 cases, and only narrowly.
+The mean block/linear internal time ratio was 1.2542, so this probe does not
+improve the practical X+Y comparator. The LOH row is a capped `N_probe=10^6`
+top-k probe, not a full-rank `N=10^12` random-access comparator.
 
 ## Not yet fully implemented
 
