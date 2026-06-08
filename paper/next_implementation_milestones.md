@@ -19,5 +19,15 @@
 - Report wall time, peak RSS, result vector, certification status.
 - Include raw logs and CSV outputs.
 
-## Milestone 5: Paper draft
+## Milestone 5: Comparator obligation closure
+- Decide whether the paper will implement a faithful Frederickson-Johnson or
+  soft-heap `X+Y` comparator. If yes, satisfy the acceptance checklist in
+  `paper/related_work.md`.
+- If no, say so explicitly in the paper: current implemented comparators are DP,
+  heap/frontier where present, adaptive materialized `X+Y`, full materialized
+  `X+Y` unrank, and diagnostic sorted-matrix/LOH workbench probes.
+- Keep the negative sorted-matrix/range-pruning artifact in the benchmark
+  section rather than silently dropping it.
+
+## Milestone 6: Paper draft
 - Submit after theorem statements, certified k<=6/8 benchmarks, and a clear comparison section are complete.

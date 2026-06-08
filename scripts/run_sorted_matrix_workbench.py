@@ -3,8 +3,9 @@
 
 This is deliberately a workbench, not a headline baseline. The range-pruned
 block counter is a practical sorted-matrix probe, not a faithful implementation
-of Frederickson-Johnson selection. The LOH row is an output-style top-k probe
-and is only run at a capped rank.
+of Frederickson-Johnson selection. The Mirzaian-Arjomandi row is a value
+selection probe, not full exponent-vector unranking. The LOH row is an
+output-style top-k probe and is only run at a capped rank.
 """
 from __future__ import annotations
 
@@ -91,9 +92,11 @@ def run_case(single, primes: str, n: int) -> dict[str, Any]:
 
 def summarize_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
     block_rows = [row for row in rows if row.get("row_type") == "block_rank"]
+    ma_rows = [row for row in rows if row.get("row_type") == "ma_select_probe"]
     loh_rows = [row for row in rows if row.get("row_type") == "loh_topk_probe"]
     summary: dict[str, Any] = {
         "block_rows": len(block_rows),
+        "ma_rows": len(ma_rows),
         "loh_rows": len(loh_rows),
     }
     if block_rows:
@@ -110,6 +113,26 @@ def summarize_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
                 "block_log_delta": best_block.get("block_log_delta"),
                 "A": best_block.get("A"),
                 "B": best_block.get("B"),
+            }
+        )
+    if ma_rows:
+        ma = ma_rows[0]
+        ma_sec = ma.get("sec", "")
+        linear_total = summary.get("linear_total")
+        ma_over_linear = ""
+        if ma_sec != "" and linear_total not in {None, "", 0}:
+            ma_over_linear = float(ma_sec) / float(linear_total)
+        summary.update(
+            {
+                "ma_skipped": ma.get("skipped"),
+                "ma_sec": ma_sec,
+                "ma_over_linear": ma_over_linear,
+                "ma_log_delta": ma.get("log_delta"),
+                "ma_n_square": ma.get("n_square"),
+                "ma_padded_a": ma.get("padded_a"),
+                "ma_padded_b": ma.get("padded_b"),
+                "ma_reason": ma.get("reason", ""),
+                "ma_wins_linear": bool(ma_over_linear != "" and ma_over_linear < 1.0),
             }
         )
     if loh_rows:
@@ -144,6 +167,15 @@ def summary_row(case: dict[str, Any]) -> dict[str, Any]:
         "best_leaf": summary.get("best_leaf", ""),
         "range_pruning_wins": summary.get("range_pruning_wins", ""),
         "block_log_delta": summary.get("block_log_delta", ""),
+        "ma_skipped": summary.get("ma_skipped", ""),
+        "ma_sec": summary.get("ma_sec", ""),
+        "ma_over_linear": summary.get("ma_over_linear", ""),
+        "ma_log_delta": summary.get("ma_log_delta", ""),
+        "ma_n_square": summary.get("ma_n_square", ""),
+        "ma_padded_a": summary.get("ma_padded_a", ""),
+        "ma_padded_b": summary.get("ma_padded_b", ""),
+        "ma_wins_linear": summary.get("ma_wins_linear", ""),
+        "ma_reason": summary.get("ma_reason", ""),
         "loh_N_probe": summary.get("loh_N_probe", ""),
         "loh_skipped": summary.get("loh_skipped", ""),
         "loh_sec": summary.get("loh_sec", ""),
@@ -158,15 +190,25 @@ def aggregate(rows: list[dict[str, Any]]) -> dict[str, Any]:
     comparable = [row for row in completed if row["block_over_linear"] != ""]
     wins = [row for row in comparable if row["range_pruning_wins"] is True]
     ratios = [float(row["block_over_linear"]) for row in comparable]
+    ma_comparable = [row for row in completed if row["ma_over_linear"] != "" and row["ma_skipped"] is False]
+    ma_wins = [row for row in ma_comparable if row["ma_wins_linear"] is True]
+    ma_ratios = [float(row["ma_over_linear"]) for row in ma_comparable]
+    ma_correct = [row for row in ma_comparable if float(row["ma_log_delta"]) == 0.0]
     return {
         "cases": len(rows),
         "completed_cases": len(completed),
         "comparable_cases": len(comparable),
         "range_pruning_wins": len(wins),
+        "ma_comparable_cases": len(ma_comparable),
+        "ma_wins": len(ma_wins),
+        "ma_exact_log_matches": len(ma_correct),
         "all_completed": len(completed) == len(rows),
         "min_block_over_linear": min(ratios) if ratios else None,
         "max_block_over_linear": max(ratios) if ratios else None,
         "mean_block_over_linear": sum(ratios) / len(ratios) if ratios else None,
+        "min_ma_over_linear": min(ma_ratios) if ma_ratios else None,
+        "max_ma_over_linear": max(ma_ratios) if ma_ratios else None,
+        "mean_ma_over_linear": sum(ma_ratios) / len(ma_ratios) if ma_ratios else None,
     }
 
 
@@ -191,21 +233,28 @@ def write_outputs(out_dir: Path, report: dict[str, Any]) -> None:
         f"- Completed cases: `{report['aggregate']['completed_cases']}`",
         f"- Range-pruning wins over linear saddleback count: `{report['aggregate']['range_pruning_wins']}`",
         f"- Mean block/linear internal time ratio: `{report['aggregate']['mean_block_over_linear']}`",
+        f"- Mirzaian-Arjomandi probe wins over linear saddleback count: `{report['aggregate']['ma_wins']}`",
+        f"- Mean Mirzaian-Arjomandi/linear internal time ratio: `{report['aggregate']['mean_ma_over_linear']}`",
         "",
         "The `block_rank` rows are sorted-matrix range-pruning probes, not a faithful",
-        "Frederickson-Johnson implementation. The `loh_topk_probe` row uses a capped",
+        "Frederickson-Johnson implementation. The `ma_select_probe` row adapts the",
+        "Mirzaian-Arjomandi square sorted-matrix selector by padding the shorter MITM",
+        "side and selects only a log value. The `loh_topk_probe` row uses a capped",
         "output-style top-k rank (`N_probe`) and is not evidence for random access at",
         "the full rank when `N_probe != N`.",
         "",
-        "| P | linear total s | best block s | block/linear | best leaf | wall s | RSS KB | LOH probe N | LOH s |",
-        "|---|---:|---:|---:|---:|---:|---:|---:|---:|",
+        "| P | linear total s | best block s | block/linear | MA s | MA/linear | MA delta | wall s | RSS KB | LOH probe N | LOH s |",
+        "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for row in rows:
         lines.append(
             f"| `{row['primes']}` | {float(row['linear_total']):.6f} | "
             f"{float(row['best_block_total']):.6f} | "
             f"{float(row['block_over_linear']):.6f} | "
-            f"{row['best_leaf']} | {float(row['wall_seconds']):.6f} | "
+            f"{float(row['ma_sec']):.6f} | "
+            f"{float(row['ma_over_linear']):.6f} | "
+            f"{float(row['ma_log_delta']):.6g} | "
+            f"{float(row['wall_seconds']):.6f} | "
             f"{row['max_rss_kb']} | {row['loh_N_probe']} | {float(row['loh_sec']):.6f} |"
         )
     (out_dir / "report.md").write_text("\n".join(lines) + "\n")

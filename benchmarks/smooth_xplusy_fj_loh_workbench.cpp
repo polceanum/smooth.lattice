@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include <queue>
 #include <set>
 #include <sstream>
@@ -71,8 +72,118 @@ static LOHResult loh_topk_select(const std::vector<double>&A,const std::vector<d
     if(vals.size()<k){ R.skipped=true; R.reason="loh_candidate_underflow"; return R; }
     std::nth_element(vals.begin(), vals.begin()+(k-1), vals.end()); R.selected=vals[k-1]; R.cand=vals.size(); R.layer_pairs=q.size(); auto t1=std::chrono::high_resolution_clock::now(); R.sec=std::chrono::duration<double>(t1-t0).count(); return R; }
 
+static ull ceil_quarter(ull x){ return (x+3)/4; }
+static ull ma_high_rank(ull x, ull n){ return (n&1) ? ceil_quarter(x+2*n+1) : n+1+ceil_quarter(x); }
+
+struct MARanks {
+    long long rank_above_a=0;
+    long long rank_at_or_above_b=0;
+    std::vector<double> middle;
+};
+
+static MARanks ma_ranks_between(const std::vector<double>&X,const std::vector<double>&Y,double a,double b,size_t max_middle){
+    ull n=(ull)X.size()-1;
+    MARanks r;
+    r.rank_at_or_above_b=(long long)(n*n);
+    r.middle.reserve((size_t)std::min<ull>(n+1, max_middle));
+    r.middle.push_back(0.0);
+    long long j=(long long)n;
+    for(ull i=1;i<=n;i++){
+        while(j>0 && X[(size_t)i]+Y[(size_t)j] <= a) --j;
+        r.rank_above_a += j;
+        long long jj=j;
+        while(jj>0 && X[(size_t)i]+Y[(size_t)jj] < b){
+            if(r.middle.size()>=max_middle) throw std::runtime_error("ma_middle_cap_exceeded");
+            r.middle.push_back(X[(size_t)i]+Y[(size_t)jj]);
+            --jj;
+        }
+        r.rank_at_or_above_b -= jj;
+    }
+    return r;
+}
+
+static std::vector<double> ma_half(const std::vector<double>&v){
+    std::vector<double> out;
+    out.reserve(2+(v.size()-1)/2);
+    out.push_back(0.0);
+    for(size_t i=1;i<v.size();i+=2) out.push_back(v[i]);
+    if(v.size()&1) out.push_back(v.back());
+    return out;
+}
+
+struct MAPair { double a=0,b=0; };
+
+static MAPair ma_biselect_desc(const std::vector<double>&X,const std::vector<double>&Y,ull k1,ull k2,size_t max_middle){
+    ull n=(ull)X.size()-1;
+    if(n==0) throw std::runtime_error("empty MA selector input");
+    if(n==1){
+        double v=X[1]+Y[1];
+        return {v,v};
+    }
+    if(n==2){
+        std::vector<double> vals{X[1]+Y[1],X[1]+Y[2],X[2]+Y[1],X[2]+Y[2]};
+        std::nth_element(vals.begin(), vals.end()-(long long)k1, vals.end());
+        double a=vals[(size_t)(4-k1)];
+        std::nth_element(vals.begin(), vals.end()-(long long)k2, vals.end());
+        double b=vals[(size_t)(4-k2)];
+        return {a,b};
+    }
+    ull k1_half=ma_high_rank(k1,n);
+    ull k2_half=ceil_quarter(k2);
+    MAPair coarse=ma_biselect_desc(ma_half(X),ma_half(Y),k1_half,k2_half,max_middle);
+    MARanks ranks=ma_ranks_between(X,Y,coarse.a,coarse.b,max_middle);
+    long long nn=(long long)(n*n);
+    long long r1=(long long)k1 + ranks.rank_at_or_above_b - nn;
+    long long r2=(long long)k2 + ranks.rank_at_or_above_b - nn;
+
+    double a;
+    if(ranks.rank_above_a <= (long long)k1-1) a=coarse.a;
+    else if(r1<=0) a=coarse.b;
+    else {
+        std::nth_element(ranks.middle.begin()+1, ranks.middle.end()-r1, ranks.middle.end());
+        a=*(ranks.middle.end()-r1);
+    }
+
+    double b;
+    if(ranks.rank_above_a <= (long long)k2-1) b=coarse.a;
+    else if(r2<=0) b=coarse.b;
+    else {
+        std::nth_element(ranks.middle.begin()+1, ranks.middle.end()-r2, ranks.middle.end());
+        b=*(ranks.middle.end()-r2);
+    }
+    return {a,b};
+}
+
+struct MAResult{double sec=0, selected=0; size_t n_square=0, padded_a=0, padded_b=0; bool skipped=false; std::string reason;};
+
+static MAResult ma_select_xplusy_value(const std::vector<double>&A,const std::vector<double>&B,ull k,size_t max_n=30000000ULL,size_t max_middle=80000000ULL){
+    MAResult R;
+    auto t0=std::chrono::high_resolution_clock::now();
+    ull real_pairs=(ull)A.size()*(ull)B.size();
+    if(k==0 || k>real_pairs){ R.skipped=true; R.reason="rank_outside_real_product"; return R; }
+    size_t n=std::max(A.size(),B.size());
+    if(n>max_n){ R.skipped=true; R.reason="square_dimension_cap_exceeded"; return R; }
+    const double neg_inf=-std::numeric_limits<double>::infinity();
+    std::vector<double>X,Y;
+    X.reserve(n+1); Y.reserve(n+1);
+    X.push_back(0.0); Y.push_back(0.0);
+    for(double x:A) X.push_back(-x);
+    for(double y:B) Y.push_back(-y);
+    R.padded_a=n-A.size(); R.padded_b=n-B.size();
+    while(X.size()<n+1) X.push_back(neg_inf);
+    while(Y.size()<n+1) Y.push_back(neg_inf);
+    MAPair p=ma_biselect_desc(X,Y,k,k,max_middle);
+    R.selected=-p.a;
+    R.n_square=n;
+    auto t1=std::chrono::high_resolution_clock::now();
+    R.sec=std::chrono::duration<double>(t1-t0).count();
+    return R;
+}
+
 int main(int argc,char**argv){ std::cout.setf(std::ios::fixed); std::cout<<std::setprecision(6); try{
     std::vector<std::pair<int,ull>> cases; if(argc>=3){auto P=parse_csv(argv[1]); ull N=std::stoull(argv[2]); cases.push_back({(int)P.size(),N}); double est=leading_est(P,N); double maxT=std::max(1e-9,est*1.02+1e-8); XYData W(P,maxT); auto lin=adaptive_select(W,N,[&](double t){return pair_count_linear(W.A,W.B,t);}); for(size_t leaf: {512ul,2048ul,8192ul}){ BlockCounter bc(W.A,W.B,leaf); auto t0=std::chrono::high_resolution_clock::now(); auto blk=adaptive_select(W,N,[&](double t){return bc.count(t);}); auto t1=std::chrono::high_resolution_clock::now(); std::cout<<"block_rank P="<<join_primes(P)<<" k="<<P.size()<<" N="<<N<<" leaf="<<leaf<<" build="<<W.build_sec<<" A="<<W.A.size()<<" B="<<W.B.size()<<" linear_total="<<lin.sec<<" block_total="<<blk.sec<<" block_calls="<<blk.calls<<" block_log_delta="<<fabs(blk.selected-lin.selected)<<"\n"; }
+        auto ma=ma_select_xplusy_value(W.A,W.B,N);
+        std::cout<<"ma_select_probe P="<<join_primes(P)<<" k="<<P.size()<<" N="<<N<<" skipped="<<(ma.skipped?"true":"false")<<" sec="<<ma.sec<<" n_square="<<ma.n_square<<" padded_a="<<ma.padded_a<<" padded_b="<<ma.padded_b<<" log="<<std::setprecision(12)<<ma.selected<<std::setprecision(6)<<" log_delta="<<(ma.skipped?0.0:fabs(ma.selected-lin.selected))<<" reason="<<ma.reason<<"\n";
         auto loh=loh_topk_select(W.A,W.B,std::min<ull>(N,1000000ULL),1.35,30000000ULL); std::cout<<"loh_topk_probe P="<<join_primes(P)<<" k="<<P.size()<<" N_probe="<<std::min<ull>(N,1000000ULL)<<" skipped="<<(loh.skipped?"true":"false")<<" sec="<<loh.sec<<" cand="<<loh.cand<<" pairs="<<loh.layer_pairs<<" reason="<<loh.reason<<"\n"; return 0; }
 
     std::vector<int> ks={4,5,6,8,10,12}; std::vector<ull> Ns={1000000ULL,1000000000ULL,1000000000000ULL}; for(int k:ks){ for(ull N:Ns){ if(k>=12 && N>1000000000ULL) continue; auto P=first_primes(k); double est=leading_est(P,N); double maxT=std::max(1e-9,est*1.02+1e-8); XYData W(P,maxT); auto lin=adaptive_select(W,N,[&](double t){return pair_count_linear(W.A,W.B,t);}); std::cout<<"fj_loh_workbench P="<<join_primes(P)<<" k="<<k<<" N="<<N<<" build="<<W.build_sec<<" A="<<W.A.size()<<" B="<<W.B.size()<<" splitA="<<idx_to_primes(W.Aidx,P)<<" splitB="<<idx_to_primes(W.Bidx,P)<<" linear_total="<<lin.sec<<" linear_count="<<lin.count_sec<<" linear_calls="<<lin.calls<<" linear_band="<<lin.band<<" linear_log="<<std::setprecision(12)<<lin.selected<<std::setprecision(6);

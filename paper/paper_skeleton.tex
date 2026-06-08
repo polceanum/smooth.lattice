@@ -20,7 +20,7 @@ We study the fixed-prime smooth-number random-access problem: given a finite set
 Define the problem, distinguish fixed-prime random access from sequential generation and from general $y$-smooth counting.
 
 \section{Background and related work}
-Discuss Hamming/regular numbers, super ugly number DP algorithms, smooth-number counting, $X+Y$ selection, and fixed-dimensional lattice counting.
+Discuss Hamming/regular numbers, super ugly number DP algorithms, smooth-number counting, $X+Y$ selection, and fixed-dimensional lattice counting. The working related-work notes are maintained in \texttt{paper/related\_work.md}; in particular, separate implemented comparators from unimplemented literature baselines such as Frederickson--Johnson sorted-matrix selection, soft-heap $X+Y$ selection, Barvinok-style fixed-dimensional lattice counting, and Bernstein-style smooth-part algorithms.
 
 \section{The log-lattice model}
 \begin{definition}
@@ -64,9 +64,12 @@ Not a general $\Psi(x,y)$ algorithm; not a prime-generation method; fastest high
 
 \bibliographystyle{plain}
 \begin{thebibliography}{9}
-\bibitem{bernstein} D. J. Bernstein, Enumerating and counting smooth integers.
-\bibitem{mirzaian} A. Mirzaian, Selection in X+Y and matrices with sorted rows and columns.
-\bibitem{fj} G. N. Frederickson and D. B. Johnson, Generalized selection and ranking in sorted matrices.
-\bibitem{kaplan} H. Kaplan, L. Kozma, O. Zamir, U. Zwick, Selection from heaps, row-sorted matrices, and X+Y using soft heaps.
+\bibitem{bernstein-smoothparts} D. J. Bernstein, How to find smooth parts of integers, 2004.
+\bibitem{johnson-mizoguchi} D. B. Johnson and T. Mizoguchi, Selecting the Kth Element in $X+Y$ and $X_1+X_2+\cdots+X_m$, SIAM Journal on Computing, 7(2), 1978.
+\bibitem{mirzaian-arjomandi} A. Mirzaian and E. Arjomandi, Selection in $X+Y$ and matrices with sorted rows and columns, Information Processing Letters, 20(1), 1985.
+\bibitem{fj-xplusy} G. N. Frederickson and D. B. Johnson, The Complexity of Selection and Ranking in $X+Y$ and Matrices with Sorted Columns, Journal of Computer and System Sciences, 24(2), 1982.
+\bibitem{fj-sorted-matrices} G. N. Frederickson and D. B. Johnson, Generalized Selection and Ranking: Sorted Matrices, SIAM Journal on Computing, 13(1), 1984.
+\bibitem{kaplan-softheap} H. Kaplan, L. Kozma, O. Zamir, U. Zwick, Selection from Heaps, Row-Sorted Matrices, and $X+Y$ Using Soft Heaps, SOSA 2019.
+\bibitem{barvinok} A. I. Barvinok, A Polynomial Time Algorithm for Counting Integral Points in Polyhedra When the Dimension is Fixed, Mathematics of Operations Research, 19(4), 1994.
 \end{thebibliography}
 \end{document}

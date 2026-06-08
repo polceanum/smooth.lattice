@@ -238,6 +238,8 @@ machine/compiler. It is still not, by itself, a broad "best known" claim.
 The exploratory sorted-matrix workbench probes two adjacent comparator ideas:
 
 - a range-pruned block counter over the sorted Cartesian-sum matrix;
+- a Mirzaian-Arjomandi square sorted-matrix value-selection probe, adapted to
+  rectangular MITM splits by padding the shorter side;
 - an LOH-style output top-k probe at a capped rank.
 
 Use:
@@ -261,6 +263,8 @@ Important caveats:
 
 - The range-pruned block counter is sorted-matrix/FJ-style diagnostic code, not
   a faithful Frederickson-Johnson selection implementation.
+- The Mirzaian-Arjomandi row selects a log value only. It does not reconstruct
+  an exponent vector and does not certify a rank by itself.
 - The LOH row is an output-style top-k probe. When `N_probe != N`, it is not a
   random-access unranking comparator for the full target rank.
 - These results should be reported as diagnostic or negative evidence unless a

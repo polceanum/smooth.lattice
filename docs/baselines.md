@@ -7,7 +7,7 @@ This project targets fixed-prime random access, not general smooth-number counti
 - `benchmarks/dp_pointer_baseline.cpp`: standard DP/pointer method used for Hamming/super-ugly-number generation. It is a strong sequential-generation baseline but has O(Nk) time and O(N) memory if it must return rank N.
 - `benchmarks/smooth_xplusy_baseline.cpp`: practical adaptive Cartesian-sum value-selection baseline.
 - `benchmarks/smooth_xplusy_full_unrank.cpp`: practical materialized Cartesian-sum full-unrank baseline. It stores exponent packs on both MITM sides, narrows to a log-value band, exact-sorts the candidate band by multiprecision integer value, and returns an exponent vector.
-- `benchmarks/smooth_xplusy_fj_loh_workbench.cpp`: exploratory sorted-matrix/range-pruning and LOH-style probes. Use `scripts/run_sorted_matrix_workbench.py` for reproducible artifacts; this is not a faithful Frederickson-Johnson or soft-heap implementation.
+- `benchmarks/smooth_xplusy_fj_loh_workbench.cpp`: exploratory sorted-matrix/range-pruning, Mirzaian-Arjomandi value-selection, and LOH-style probes. Use `scripts/run_sorted_matrix_workbench.py` for reproducible artifacts; this is not a faithful Frederickson-Johnson or soft-heap implementation.
 
 ## Current priority comparison
 
@@ -65,9 +65,9 @@ independently certified. The full-X+Y/layer wall-time ratio ranged from 1.4703
 to 3.1276, with mean 2.3309.
 
 Use `python3 scripts/run_sorted_matrix_workbench.py` to record exploratory
-sorted-matrix/range-pruning and LOH probes. These rows are useful negative or
-diagnostic evidence, but they do not discharge the "full Frederickson-Johnson"
-or "full soft-heap X+Y" comparison obligations.
+sorted-matrix/range-pruning, Mirzaian-Arjomandi value-selection, and LOH probes.
+These rows are useful negative or diagnostic evidence, but they do not discharge
+the "full Frederickson-Johnson" or "full soft-heap X+Y" comparison obligations.
 
 In the clean six-case `N=10^12` workbench artifact at commit
 `674746fc15fd5f1cad31773bee81ba5a13ff13ea`, the range-pruned block counter
