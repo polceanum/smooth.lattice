@@ -1,0 +1,23 @@
+{
+  "exps": [
+    1052,
+    26,
+    33,
+    53,
+    4
+  ],
+  "seconds": 12.310635,
+  "digits": 402,
+  "raw": "SMOOTH RANDOM-ACCESS WITH INTEGER-INTERVAL RANK CERTIFICATION\nIndexing: n is 1-based; n=1 is 1.\nFinal candidate is sorted by exact cpp_int value; candidate rank is audited by integer intervals for log-prime bounds.\nThe current interval constants cover primes 2,3,5,7,11.\n\nQUERY P=[2,3,5,7,11] n=1000000000000 method=meet-in-the-middle exps=[1052,26,33,53,4] approx_exps=[1052,26,33,53,4] exact_changed=false digits=402 log2=1332.4601894936354 band_candidates=10749 count_below_band=999999994641 fast_groupA=709702 fast_groupB=25089359 fast_seconds=12.310635 cert_method=\"integer-interval meet-in-the-middle rank\" certified_count_le=1000000000000 rank_certified=true group_order_certified=true cert_groupA=561180 cert_groupB=17654331 overlapsA=0 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=7.443828 value_preview=128968920794284295537325030382738812...024000000000000000000000000000000000",
+  "method": "interval-audited",
+  "primes": [
+    2,
+    3,
+    5,
+    7,
+    11
+  ],
+  "N": 1000000000000,
+  "rank_certified": true,
+  "certified_count_le": 1000000000000
+}

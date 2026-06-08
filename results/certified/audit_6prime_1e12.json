@@ -1,0 +1,31 @@
+{
+  "method": "fast-unrank-plus-interval-audit-k6",
+  "primes": [
+    2,
+    3,
+    5,
+    7,
+    11,
+    13
+  ],
+  "N": 1000000000000,
+  "exps": [
+    55,
+    126,
+    27,
+    54,
+    2,
+    52
+  ],
+  "fast_method": "sums",
+  "fast_seconds": 0.606541,
+  "digits": 202,
+  "rank_certified": true,
+  "certified_count_le": 1000000000000,
+  "cert_seconds": 4.15961,
+  "groupA": 13669041,
+  "groupB": 1415628,
+  "ambiguous_possible": 2,
+  "audit_raw": "interval_audit_exps P=[2,3,5,7,11,13] exps=[55,126,27,54,2,52] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=13669041 groupB=1415628 overlapsB=0 ambiguous_possible=2 ambiguous_resolved=2 cert_seconds=4.15961",
+  "fast_raw": "sums_only_mitm P=(2,3,5,7,11,13) k=6 N=1000000000000 seconds=0.606541 build=0.132841 count=0.155595 band_phase=0.280445 A=4356057 B=5340079 band=5905 calls=12 gap=5905 exps=[55,126,27,54,2,52] digits=202 splitA=[3,5,11] splitB=[2,7,13]"
+}

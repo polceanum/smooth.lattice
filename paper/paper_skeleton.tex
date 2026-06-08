@@ -1,0 +1,72 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,booktabs,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+
+\title{Random Access to Fixed-Prime Smooth Numbers via Exponent-Stream Self-Similarity}
+\author{Mihai Polceanu and collaborators}
+\date{Draft skeleton}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study the fixed-prime smooth-number random-access problem: given a finite set of primes $P=\{p_1,\ldots,p_k\}$ and a rank $N$, compute the exponent vector of the $N$-th integer of the form $p_1^{e_1}\cdots p_k^{e_k}$. We describe a lattice formulation, an exponent-stream self-similarity principle, and a zero-position interpretation in terms of lower-dimensional faces. These observations yield a fast three-prime ranker based on two-prime floor sums and a layer-compressed meet-in-the-middle method for five primes. We present certified rank checks for selected five- and six-prime instances and compare against the standard dynamic-programming/pointer algorithm for super ugly numbers and practical meet-in-the-middle baselines.
+\end{abstract}
+
+\section{Introduction}
+Define the problem, distinguish fixed-prime random access from sequential generation and from general $y$-smooth counting.
+
+\section{Background and related work}
+Discuss Hamming/regular numbers, super ugly number DP algorithms, smooth-number counting, $X+Y$ selection, and fixed-dimensional lattice counting.
+
+\section{The log-lattice model}
+\begin{definition}
+For a finite prime set $P$, let $S_P$ be the ordered sequence of $P$-smooth integers, with $1$ first.
+\end{definition}
+
+\begin{lemma}[Log-lattice equivalence]
+Ordering $P$-smooth numbers is equivalent to ordering exponent vectors $e\in\mathbb N^k$ by $\sum_i e_i\log p_i$.
+\end{lemma}
+
+\section{Exponent streams and face recursion}
+\begin{definition}
+Let $E_i(n)$ be the exponent of $p_i$ in the $n$-th $P$-smooth number.
+\end{definition}
+
+\begin{theorem}[Exponent-stream self-similarity]
+For each $i$, deleting zeroes from $E_i$ and subtracting $1$ from each remaining term yields $E_i$ again.
+\end{theorem}
+\begin{proof}
+The positive part of the $p_i$ exponent stream corresponds exactly to numbers divisible by $p_i$. Dividing each such number by $p_i$ maps them bijectively and order-preservingly onto $S_P$.
+\end{proof}
+
+\begin{theorem}[Zeroes as ranked faces]
+The zero positions in $E_i$ are the ranks in $S_P$ of the $P\setminus\{p_i\}$-smooth numbers.
+\end{theorem}
+
+\section{Two- and three-prime rank counting}
+State the floor-sum formula for $C_{p,q}(T)$ and the resulting $C_{p,q,r}(T)$ algorithm.
+
+\section{Layer-compressed meet-in-the-middle}
+Give the five-prime decomposition and quotient/residue count identity.
+
+\section{Certification}
+Describe interval-log rank auditing and exact ambiguity resolution.
+
+\section{Benchmarks}
+Include certified tables and comparisons.
+
+\section{Limitations}
+Not a general $\Psi(x,y)$ algorithm; not a prime-generation method; fastest high-$k$ variants require further certification.
+
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+\bibitem{bernstein} D. J. Bernstein, Enumerating and counting smooth integers.
+\bibitem{mirzaian} A. Mirzaian, Selection in X+Y and matrices with sorted rows and columns.
+\bibitem{fj} G. N. Frederickson and D. B. Johnson, Generalized selection and ranking in sorted matrices.
+\bibitem{kaplan} H. Kaplan, L. Kozma, O. Zamir, U. Zwick, Selection from heaps, row-sorted matrices, and X+Y using soft heaps.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,46 @@
+# Standard DP pointer baseline vs smooth-lattice random-access solver
+# DP baseline uses O(Nk) pointer generation; random-access uses specialized fixed-prime rank/unrank.
+RUN dp P=2,3,5,7,11 N=1000000
+dp_pointer P=2,3,5,7,11 k=5 N=1000000 seconds=0.033956 last_log=54.685633 exps=[3,12,11,5,5]
+wall=0.05 rss_kb=19572
+RUN ours_layer P=2,3,5,7,11 N=1000000
+layer_compressed P=(2,3,5,7,11) k=5 N=1000000 seconds=0.003132 build=0.000281 count_phase=0.000216 band_phase=0.001041 exact=0.001352 calls=8 rank_gap=4287 A=410 Base=1054 band=4287 exps=[3,12,11,5,5] digits=24 splitA=[7,11] splitBase=[3,5] outer=2
+wall=0.01 rss_kb=7616
+RUN dp P=2,3,5,7,11 N=10000000
+dp_pointer P=2,3,5,7,11 k=5 N=10000000 seconds=0.335969 last_log=88.898466 exps=[9,26,15,8,6]
+wall=0.42 rss_kb=134848
+RUN ours_layer P=2,3,5,7,11 N=10000000
+layer_compressed P=(2,3,5,7,11) k=5 N=10000000 seconds=0.020976 build=0.000839 count_phase=0.000477 band_phase=0.005184 exact=0.014119 calls=7 rank_gap=31018 A=1003 Base=2604 band=31018 exps=[9,26,15,8,6] digits=39 splitA=[7,11] splitBase=[3,5] outer=2
+wall=0.03 rss_kb=15460
+RUN dp P=2,3,5,7,11 N=100000000
+dp_pointer P=2,3,5,7,11 k=5 N=100000000 seconds=3.139321 last_log=143.135841
+wall=3.76 rss_kb=787720
+RUN ours_layer P=2,3,5,7,11 N=100000000
+layer_compressed P=(2,3,5,7,11) k=5 N=100000000 seconds=0.006835 build=0.001852 count_phase=0.002039 band_phase=0.001419 exact=0.000620 calls=9 rank_gap=1099 A=2479 Base=6473 band=1099 exps=[28,1,60,6,6] digits=63 splitA=[7,11] splitBase=[3,5] outer=2
+wall=0.01 rss_kb=8032
+RUN ours_layer P=2,3,5,7,11 N=1000000000000
+layer_compressed P=(2,3,5,7,11) k=5 N=1000000000000 seconds=0.367290 build=0.086288 count_phase=0.182174 band_phase=0.064392 exact=0.001092 calls=12 rank_gap=829 A=96338 Base=253796 band=829 exps=[1052,26,33,53,4] digits=402 splitA=[7,11] splitBase=[3,5] outer=2
+wall=0.37 rss_kb=28776
+
+RUN dp P=2,3,5,7,11,13 N=1000000
+dp_pointer P=2,3,5,7,11,13 k=6 N=1000000 seconds=0.042997 last_log=41.775868 exps=[9,22,1,0,3,1]
+wall=0.06 rss_kb=19848
+RUN ours_sums P=2,3,5,7,11,13 N=1000000
+sums_only_mitm P=(2,3,5,7,11,13) k=6 N=1000000 seconds=0.002389 build=0.000389 count=0.000083 band_phase=0.001782 A=5008 B=6153 band=11654 calls=8 gap=11654 exps=[9,22,1,0,3,1] digits=19 splitA=[3,5,11] splitB=[2,7,13]
+wall=0.01 rss_kb=8220
+RUN dp P=2,3,5,7,11,13 N=10000000
+dp_pointer P=2,3,5,7,11,13 k=6 N=10000000 seconds=0.422573 last_log=63.658733 exps=[35,3,6,7,0,5]
+wall=0.51 rss_kb=134040
+RUN ours_sums P=2,3,5,7,11,13 N=10000000
+sums_only_mitm P=(2,3,5,7,11,13) k=6 N=10000000 seconds=0.002106 build=0.000718 count=0.000373 band_phase=0.000834 A=15084 B=18524 band=759 calls=10 gap=759 exps=[35,3,6,7,0,5] digits=28 splitA=[3,5,11] splitB=[2,7,13]
+wall=0.01 rss_kb=7808
+RUN dp P=2,3,5,7,11,13 N=100000000
+dp_pointer P=2,3,5,7,11,13 k=6 N=100000000 seconds=4.135621 last_log=95.801123
+wall=4.74 rss_kb=788508
+RUN ours_sums P=2,3,5,7,11,13 N=100000000
+sums_only_mitm P=(2,3,5,7,11,13) k=6 N=100000000 seconds=0.006636 build=0.001624 count=0.001110 band_phase=0.003484 A=46132 B=56607 band=7439 calls=10 gap=7439 exps=[11,21,5,7,1,16] digits=42 splitA=[3,5,11] splitB=[2,7,13]
+wall=0.01 rss_kb=10920
+RUN ours_sums P=2,3,5,7,11,13 N=1000000000000
+sums_only_mitm P=(2,3,5,7,11,13) k=6 N=1000000000000 seconds=0.548492 build=0.110142 count=0.140466 band_phase=0.264933 A=4356057 B=5340079 band=5905 calls=12 gap=5905 exps=[55,126,27,54,2,52] digits=202 splitA=[3,5,11] splitB=[2,7,13]
+wall=0.56 rss_kb=84352
+
