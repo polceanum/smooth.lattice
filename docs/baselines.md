@@ -42,6 +42,7 @@ Current clean artifact:
 ```text
 results/benchmarks/xplusy_vs_layer5_1e12/
 results/benchmarks/five_prime_suite_1e12/
+results/benchmarks/full_xplusy_suite_1e12/
 ```
 
 On the recorded macOS/x86_64 Apple-clang run at commit
@@ -54,6 +55,13 @@ On the broader six-case suite over all five-prime subsets of
 wall-time comparisons against the same adaptive materialized `X+Y` value
 selection baseline, and all six returned exponent vectors were independently
 certified.
+
+On the stricter six-case suite against full materialized `X+Y` unranking,
+recorded at commit `13cba09636b22e139046442b9faa4ea0f5330377`,
+layer-compressed full unrank won all six wall-time comparisons. Both methods
+returned the same exponent vector in every case, and both outputs were
+independently certified. The full-X+Y/layer wall-time ratio ranged from 1.4703
+to 3.1276, with mean 2.3309.
 
 ## Not yet fully implemented
 

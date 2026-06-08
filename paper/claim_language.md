@@ -94,11 +94,9 @@ exponent reconstruction, and report the exact hardware/compiler conditions.
 
 ## Next Stronger Wording To Test
 
-The next paper-quality comparison removes the value-selection caveat by
-comparing against a full materialized `X+Y` unrank baseline. Use this wording
-only if `scripts/run_full_xplusy_suite.py` produces a clean artifact where every
-case completes, both methods return the same exponent vector, and both vectors
-are independently rank-certified:
+The paper-quality comparison against full materialized `X+Y` unranking removes
+the value-selection caveat. The clean artifact
+`results/benchmarks/full_xplusy_suite_1e12/` supports:
 
 ```text
 Across all six five-prime subsets of {2,3,5,7,11,13} at N=10^12,
@@ -107,3 +105,7 @@ X+Y unrank baseline on the recorded machine/compiler. In every case the two
 methods returned the same exponent vector, and both outputs were independently
 rank-certified.
 ```
+
+The recorded suite had 6/6 completed cases, 6/6 matching exponent vectors, 6/6
+independent certifications for both methods, and 6/6 layer wall-time wins. The
+full-X+Y/layer wall-time ratio ranged from 1.4703 to 3.1276, with mean 2.3309.

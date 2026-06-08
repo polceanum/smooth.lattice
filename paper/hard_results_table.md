@@ -33,6 +33,11 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
 
 - 3 primes, P=(2,3,5), N=10^12: exps [1126,16930,40], fast ranker about 0.31-0.43s in recent builds.
 - 5 primes, P=(2,3,5,7,11), N=10^12: exps [1052,26,33,53,4], layer-compressed solver about 0.37-0.73s depending build; certified by independent auditor.
+- Five-prime suite, all six subsets of {2,3,5,7,11,13}, N=10^12:
+  layer-compressed full unranking beat full materialized X+Y unranking in 6/6
+  wall-time comparisons on the recorded macOS/x86_64 Apple-clang machine. Both
+  methods returned the same exponent vector in every case, and both outputs were
+  independently certified. Artifact: `results/benchmarks/full_xplusy_suite_1e12/`.
 - 6 primes, P=(2,3,5,7,11,13), N=10^12: exps [55,126,27,54,2,52], fast solver about 0.55-0.61s; independent auditor certified count_le=N.
 - Higher-k exploratory: sums-only MITM handled k=8,10,12 at N=10^12 within seconds in the container, but proof-grade certification beyond k=6 is not yet implemented.
 

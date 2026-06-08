@@ -213,3 +213,22 @@ X+Y unrank baseline under the recorded hardware/compiler conditions. Both
 methods returned the same exponent vector in every case, and both outputs were
 independently rank-certified.
 ```
+
+Clean suite artifact:
+
+```text
+results/benchmarks/full_xplusy_suite_1e12/
+```
+
+Observed result at commit `13cba09636b22e139046442b9faa4ea0f5330377` on the
+recorded macOS/x86_64 Apple-clang machine:
+
+- 6/6 cases completed.
+- 6/6 cases returned matching exponent vectors.
+- 6/6 layer outputs and 6/6 full-X+Y outputs were independently certified.
+- Layer-compressed full unranking won 6/6 wall-time comparisons.
+- Full-X+Y/layer wall-time ratio ranged from 1.4703 to 3.1276, with mean
+  2.3309.
+
+This supports the safe claim above for this benchmark suite and recorded
+machine/compiler. It is still not, by itself, a broad "best known" claim.
