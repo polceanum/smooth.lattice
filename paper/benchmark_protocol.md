@@ -120,3 +120,27 @@ outperforms our practical adaptive X+Y materialized-MITM baseline under the
 recorded hardware/compiler conditions, and the returned rank is independently
 certified.
 ```
+
+## Certified Five-Prime Suite
+
+The broader paper claim should be tested on all five-prime subsets of
+`{2,3,5,7,11,13}` at `N=10^12`:
+
+```text
+(2,3,5,7,11)
+(2,3,5,7,13)
+(2,3,5,11,13)
+(2,3,7,11,13)
+(2,5,7,11,13)
+(3,5,7,11,13)
+```
+
+Use:
+
+```bash
+python3 scripts/run_five_prime_suite.py
+```
+
+The resulting paper claim must be data-dependent. If layer-compressed wins all
+six certified cases, say all six. If it loses any case, report the exact loss
+and keep the comparison as mixed evidence.

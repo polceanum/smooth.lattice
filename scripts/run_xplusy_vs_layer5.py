@@ -281,7 +281,7 @@ def write_outputs(out_dir: Path, report: dict[str, Any]) -> None:
             }
         )
     with (out_dir / "summary.csv").open("w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()) if rows else ["name"])
+        writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()) if rows else ["name"], lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
