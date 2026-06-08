@@ -9,6 +9,7 @@
 | Layer-compressed vs adaptive X+Y on P=(2,3,5,7,11), N=10^12 | Clean certified benchmark achieved | Artifact: `results/benchmarks/xplusy_vs_layer5_1e12/`; report selection-only X+Y caveat and hardware/compiler conditions |
 | Layer-compressed vs adaptive X+Y on all five-prime subsets of {2,3,5,7,11,13}, N=10^12 | Clean certified suite win: 6/6 certified, 6/6 layer wall-time wins | Artifact: `results/benchmarks/five_prime_suite_1e12/`; report selection-only X+Y caveat and hardware/compiler conditions |
 | Layer-compressed vs full materialized X+Y unrank on all five-prime subsets of {2,3,5,7,11,13}, N=10^12 | Clean certified suite win: 6/6 matching vectors, 6/6 both independently certified, 6/6 layer wall-time wins | Artifact: `results/benchmarks/full_xplusy_suite_1e12/`; report hardware/compiler conditions and avoid broader "best known" wording |
+| Practical sorted-matrix/FJ-style range pruning improves X+Y selection at N=10^12 | Workbench harness implemented; clean artifact pending | Artifact should come from `scripts/run_sorted_matrix_workbench.py`; this is diagnostic, not a faithful Frederickson-Johnson implementation |
 | 6-prime certified benchmark | Achieved for first six primes at N=10^12 | Generalize auditor to arbitrary k/primes |
 | Beats standard Super Ugly Number DP baseline | Achieved, large margins | Present as random-access vs sequential-generation distinction |
 | Best known for fixed-prime random access | Not yet | Compare against full X+Y/FJ/soft-heap/Barvinok implementations or give theoretical argument |

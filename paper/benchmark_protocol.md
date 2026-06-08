@@ -232,3 +232,36 @@ recorded macOS/x86_64 Apple-clang machine:
 
 This supports the safe claim above for this benchmark suite and recorded
 machine/compiler. It is still not, by itself, a broad "best known" claim.
+
+## Sorted-Matrix / LOH Workbench
+
+The exploratory sorted-matrix workbench probes two adjacent comparator ideas:
+
+- a range-pruned block counter over the sorted Cartesian-sum matrix;
+- an LOH-style output top-k probe at a capped rank.
+
+Use:
+
+```bash
+python3 scripts/run_sorted_matrix_workbench.py
+```
+
+Default outputs are written to:
+
+```text
+results/local/sorted_matrix_workbench_<timestamp>/
+```
+
+The default cases are the same six five-prime subsets of
+`{2,3,5,7,11,13}` at `N=10^12`. The report compares the internal time of the
+range-pruned block counter against the ordinary linear saddleback count used by
+the adaptive X+Y selector.
+
+Important caveats:
+
+- The range-pruned block counter is sorted-matrix/FJ-style diagnostic code, not
+  a faithful Frederickson-Johnson selection implementation.
+- The LOH row is an output-style top-k probe. When `N_probe != N`, it is not a
+  random-access unranking comparator for the full target rank.
+- These results should be reported as diagnostic or negative evidence unless a
+  future patch implements the full published algorithm being invoked.
