@@ -91,3 +91,19 @@ All six returned exponent vectors were independently certified.
 
 Attach the caveat that the `X+Y` baseline is value selection only, not full
 exponent reconstruction, and report the exact hardware/compiler conditions.
+
+## Next Stronger Wording To Test
+
+The next paper-quality comparison removes the value-selection caveat by
+comparing against a full materialized `X+Y` unrank baseline. Use this wording
+only if `scripts/run_full_xplusy_suite.py` produces a clean artifact where every
+case completes, both methods return the same exponent vector, and both vectors
+are independently rank-certified:
+
+```text
+Across all six five-prime subsets of {2,3,5,7,11,13} at N=10^12,
+layer-compressed full unranking outperformed our practical full materialized
+X+Y unrank baseline on the recorded machine/compiler. In every case the two
+methods returned the same exponent vector, and both outputs were independently
+rank-certified.
+```

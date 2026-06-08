@@ -167,3 +167,49 @@ conditions, and every returned exponent vector was independently certified.
 
 This is still not a "best known" claim. It is a certified benchmark-suite win
 against one serious practical comparator family.
+
+## Full Materialized X+Y Unrank Suite
+
+The next stricter comparator is `smooth_xplusy_full_unrank`, a materialized
+meet-in-the-middle baseline that returns an exponent vector rather than only
+selecting a target log value. It:
+
+- materializes both split sides with log sums and packed exponent vectors;
+- uses adaptive rank counting to bracket the target rank;
+- enumerates a final candidate band;
+- exact-sorts that band by multiprecision integer value;
+- reports the selected exponent vector.
+
+Use:
+
+```bash
+python3 scripts/run_full_xplusy_suite.py
+```
+
+Default outputs are written to:
+
+```text
+results/local/full_xplusy_suite_<timestamp>/
+```
+
+The harness compares `xplusy_full_unrank` with `layer_compressed` on the same
+six five-prime subsets at `N=10^12`. It audits both returned exponent vectors
+with `smooth_interval_audit_exps_k6` and records whether both methods returned
+the same vector.
+
+This supports a cleaner paper comparison than the value-selection baseline
+because both rows perform the same top-level task:
+
+```text
+unrank(P, N) -> exponent vector.
+```
+
+A safe claim, if the clean suite data supports it, is:
+
+```text
+Across all six five-prime subsets of {2,3,5,7,11,13} at N=10^12,
+layer-compressed full unranking outperformed our practical full materialized
+X+Y unrank baseline under the recorded hardware/compiler conditions. Both
+methods returned the same exponent vector in every case, and both outputs were
+independently rank-certified.
+```

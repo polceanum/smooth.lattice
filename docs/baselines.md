@@ -6,6 +6,7 @@ This project targets fixed-prime random access, not general smooth-number counti
 
 - `benchmarks/dp_pointer_baseline.cpp`: standard DP/pointer method used for Hamming/super-ugly-number generation. It is a strong sequential-generation baseline but has O(Nk) time and O(N) memory if it must return rank N.
 - `benchmarks/smooth_xplusy_baseline.cpp`: practical adaptive Cartesian-sum value-selection baseline.
+- `benchmarks/smooth_xplusy_full_unrank.cpp`: practical materialized Cartesian-sum full-unrank baseline. It stores exponent packs on both MITM sides, narrows to a log-value band, exact-sorts the candidate band by multiprecision integer value, and returns an exponent vector.
 - `benchmarks/smooth_xplusy_fj_loh_workbench.cpp`: exploratory sorted-matrix/range-pruning and LOH-style probes.
 
 ## Current priority comparison
@@ -25,6 +26,16 @@ peak RSS when available, raw stdout/stderr, and interval-audit status.
 The `X+Y` row is selection-only, not full exponent reconstruction. A win by the
 layer-compressed solver is therefore a conservative result; a loss should be
 reported as such.
+
+The stricter follow-up target is the full materialized `X+Y` unrank baseline:
+
+```bash
+python3 scripts/run_full_xplusy_suite.py
+```
+
+This compares two full exponent-vector unrankers across the same six five-prime
+suite. The harness audits both returned vectors independently and requires the
+vectors to match before counting a case as certified comparison evidence.
 
 Current clean artifact:
 
