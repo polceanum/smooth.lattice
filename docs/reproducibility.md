@@ -19,4 +19,11 @@ bash scripts/run_certified_examples.sh
 bash scripts/run_dp_comparison.sh
 ```
 
+Dependency notes:
+
+- The C++ kernels require a C++17 compiler and Boost.Multiprecision headers.
+- On Debian/Ubuntu, install `g++` and `libboost-dev`.
+- On macOS with Homebrew, install `boost`; if the compiler cannot find it automatically, pass the include path through `CXXFLAGS`.
+- `build.sh` runs a small Boost header preflight before compiling the kernels.
+
 For headline claims, keep JSON or text output under `results/local/` and copy final curated results to `results/certified/` or `results/benchmarks/`.

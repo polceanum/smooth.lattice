@@ -31,6 +31,16 @@ def heap_unrank(primes, n):
     raise AssertionError('unreachable')
 
 
+def assert_unrank_matches_heap(primes, n):
+    got = st.unrank(primes, n)
+    exp, val = heap_unrank(primes, n)
+    assert got['exps'] == exp, (primes, n, got, exp)
+    assert st.value(primes, got['exps']) == val
+    assert st.count_le(primes, val) == n, (primes, n, val)
+    assert st.prev_leq(primes, val)['rank'] == n
+    assert st.next_geq(primes, val)['rank'] == n
+
+
 def main():
     subprocess.run([str(ROOT / 'build.sh')], cwd=ROOT, check=True)
 
@@ -48,10 +58,22 @@ def main():
         ([2, 3, 5, 7, 11, 13], 200),
     ]
     for primes, n in cases:
-        got = st.unrank(primes, n)
-        exp, val = heap_unrank(primes, n)
-        assert got['exps'] == exp, (primes, n, got, exp)
-        assert st.value(primes, got['exps']) == val
+        assert_unrank_matches_heap(primes, n)
+
+    fuzz_cases = [
+        ([2], [1, 2, 10, 40]),
+        ([3, 5], [1, 2, 15, 60]),
+        ([2, 3, 5], [1, 10, 64, 127]),
+        ([3, 5, 7], [7, 23, 80]),
+        ([2, 5, 11, 13], [3, 31, 90]),
+        ([2, 3, 5, 7, 11], [2, 37, 125]),
+        ([3, 5, 7, 11, 13], [4, 42, 120]),
+        ([2, 3, 5, 7, 11, 13], [1, 50, 150]),
+        ([2, 3, 5, 7, 11, 13, 17], [1, 20, 75]),
+    ]
+    for primes, ranks in fuzz_cases:
+        for n in ranks:
+            assert_unrank_matches_heap(primes, n)
 
     cert = st.audit([2, 3, 5, 7, 11, 13], 1000, timeout=60)
     assert cert['rank_certified'] is True, json.dumps(cert, indent=2)
