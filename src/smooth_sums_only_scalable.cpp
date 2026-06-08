@@ -1,4 +1,15 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <chrono>
+#include <cmath>
+#include <cstdint>
+#include <iomanip>
+#include <iostream>
+#include <limits>
+#include <memory>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <vector>
 #include <boost/multiprecision/cpp_int.hpp>
 using ull=unsigned long long; using boost::multiprecision::cpp_int; static constexpr double EPS=1e-12;
 static std::vector<int> first_primes(int k){int a[]={2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71}; return std::vector<int>(a,a+k);} 

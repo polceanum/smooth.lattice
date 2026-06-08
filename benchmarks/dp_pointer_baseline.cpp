@@ -1,4 +1,10 @@
-#include <bits/stdc++.h>
+#include <chrono>
+#include <cmath>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
 using namespace std;
 vector<int> parse(string s){ vector<int> p; stringstream ss(s); string it; while(getline(ss,it,',')) if(!it.empty()) p.push_back(stoi(it)); return p; }
 int main(int argc,char**argv){ vector<int>P=parse(argv[1]); unsigned long long N=stoull(argv[2]); int k=P.size(); vector<double> logs(N); logs[0]=0; vector<unsigned int> parent; vector<unsigned char> dim; bool trace = (N<=20000000ULL); if(trace){parent.resize(N);dim.resize(N);} vector<unsigned int> idx(k,0); vector<double> cand(k); for(int i=0;i<k;i++) cand[i]=log((double)P[i]); auto t0=chrono::high_resolution_clock::now(); for(unsigned int t=1;t<N;t++){ int bj=0; double best=cand[0]; for(int j=1;j<k;j++) if(cand[j]<best){best=cand[j]; bj=j;} logs[t]=best; if(trace){ parent[t]=idx[bj]; dim[t]=(unsigned char)bj; }
