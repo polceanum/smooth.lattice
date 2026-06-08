@@ -1,0 +1,1174 @@
+{
+  "aggregate": {
+    "all_certified": true,
+    "all_completed": true,
+    "cases": 6,
+    "certified_cases": 6,
+    "completed_cases": 6,
+    "layer_wall_wins": 6,
+    "layer_wall_wins_all_certified": true,
+    "max_wall_ratio": 1.9124854288986837,
+    "mean_wall_ratio": 1.4962629718211538,
+    "min_wall_ratio": 1.1868132165748972
+  },
+  "build_runs": [
+    {
+      "command": [
+        "./build.sh"
+      ],
+      "elapsed_seconds": 33.25055648799753,
+      "max_rss_kb": 171608,
+      "metrics": {},
+      "name": "build_core",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Built core kernels in ./bin",
+      "time_raw": "       33.23 real        29.62 user         3.01 sys\n           175726592  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              284769  page reclaims\n                3687  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   1  signals received\n                1353  voluntary context switches\n               20164  involuntary context switches\n            26709793  instructions retired\n            48146370  cycles elapsed\n              618496  peak memory footprint\n"
+    },
+    {
+      "command": [
+        "g++",
+        "-O3",
+        "-std=c++17",
+        "benchmarks/smooth_xplusy_baseline.cpp",
+        "-o",
+        "bin/smooth_xplusy_baseline"
+      ],
+      "elapsed_seconds": 5.530712116044015,
+      "max_rss_kb": 151628,
+      "metrics": {},
+      "name": "build_xplusy_baseline",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "",
+      "time_raw": "        5.51 real         4.80 user         0.60 sys\n           155267072  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               55102  page reclaims\n                 701  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   6  voluntary context switches\n                5401  involuntary context switches\n           139377668  instructions retired\n           303625694  cycles elapsed\n             1515520  peak memory footprint\n"
+    }
+  ],
+  "cases": [
+    {
+      "N": 1000000000000,
+      "comparison": {
+        "certified_count_le": 1000000000000,
+        "rank_certified": true,
+        "same_primes": true,
+        "same_rank": true,
+        "xplusy_reported_total_over_layer_reported": 1.5808539197411922,
+        "xplusy_wall_over_layer_wall": 1.5522882908755495
+      },
+      "primes": "2,3,5,7,11",
+      "runs": [
+        {
+          "command": [
+            "bin/smooth_xplusy_baseline",
+            "bench",
+            "2,3,5,7,11",
+            "1000000000000",
+            "0"
+          ],
+          "elapsed_seconds": 2.1224710009992123,
+          "max_rss_kb": 153456,
+          "metrics": {
+            "A": 588728,
+            "B": 18967092,
+            "N": 1000000000000,
+            "P": [
+              2,
+              3,
+              5,
+              7,
+              11
+            ],
+            "adaptive_band": 0.140939,
+            "adaptive_band_n": 1998,
+            "adaptive_calls": 11,
+            "adaptive_count": 0.426498,
+            "adaptive_gap": 1998,
+            "adaptive_log": 923.591023555865,
+            "adaptive_seconds": 0.69101,
+            "build": 0.514995,
+            "heap_reason": "rank_exceeds_heap_pop_limit",
+            "heap_skipped": true,
+            "k": 5,
+            "splitA": [
+              2,
+              3
+            ],
+            "splitB": [
+              5,
+              7,
+              11
+            ]
+          },
+          "name": "xplusy_adaptive",
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "xplusy_workbench P=(2,3,5,7,11) k=5 N=1000000000000 build=0.514995 A=588728 B=18967092 splitA=[2,3] splitB=[5,7,11] adaptive_seconds=0.691010 adaptive_count=0.426498 adaptive_band=0.140939 adaptive_calls=11 adaptive_gap=1998 adaptive_band_n=1998 adaptive_log=923.591023555865 heap_skipped=true heap_reason=rank_exceeds_heap_pop_limit",
+          "time_raw": "        2.11 real         1.05 user         0.16 sys\n           157138944  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               38646  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 976  involuntary context switches\n          4428247509  instructions retired\n          3121169023  cycles elapsed\n           156884992  peak memory footprint\n"
+        },
+        {
+          "command": [
+            "bin/smooth_layer_compressed_general",
+            "nth",
+            "2,3,5,7,11",
+            "1000000000000",
+            "50000"
+          ],
+          "elapsed_seconds": 1.3673175359726883,
+          "max_rss_kb": 23256,
+          "metrics": {
+            "A": 96338,
+            "Base": 253796,
+            "N": 1000000000000,
+            "P": [
+              2,
+              3,
+              5,
+              7,
+              11
+            ],
+            "band": 829,
+            "band_phase": 0.144867,
+            "build": 0.121291,
+            "calls": 12,
+            "count_phase": 0.437946,
+            "digits": 402,
+            "exact": 0.004641,
+            "exps": [
+              1052,
+              26,
+              33,
+              53,
+              4
+            ],
+            "k": 5,
+            "outer": 2,
+            "rank_gap": 829,
+            "seconds": 0.762882,
+            "splitA": [
+              7,
+              11
+            ],
+            "splitBase": [
+              3,
+              5
+            ]
+          },
+          "name": "layer_compressed",
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "layer_compressed P=(2,3,5,7,11) k=5 N=1000000000000 seconds=0.762882 build=0.121291 count_phase=0.437946 band_phase=0.144867 exact=0.004641 calls=12 rank_gap=829 A=96338 Base=253796 band=829 exps=[1052,26,33,53,4] digits=402 splitA=[7,11] splitBase=[3,5] outer=2",
+          "time_raw": "        1.35 real         0.73 user         0.02 sys\n            23814144  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                6095  page reclaims\n                  14  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   2  voluntary context switches\n                 511  involuntary context switches\n           991476768  instructions retired\n          1890838273  cycles elapsed\n            23457792  peak memory footprint\n"
+        },
+        {
+          "command": [
+            "bin/smooth_interval_audit_exps_k6",
+            "2,3,5,7,11",
+            "1052,26,33,53,4",
+            "1000000000000"
+          ],
+          "elapsed_seconds": 6.7790137269767,
+          "max_rss_kb": 997012,
+          "metrics": {
+            "P": [
+              2,
+              3,
+              5,
+              7,
+              11
+            ],
+            "ambiguous_possible": 1,
+            "ambiguous_resolved": 1,
+            "cert_seconds": 6.15017,
+            "certified_count_le": 1000000000000,
+            "expected_N": 1000000000000,
+            "exps": [
+              1052,
+              26,
+              33,
+              53,
+              4
+            ],
+            "groupA": 561180,
+            "groupB": 17654331,
+            "overlapsB": 0,
+            "rank_certified": true
+          },
+          "name": "interval_audit",
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "interval_audit_exps P=[2,3,5,7,11] exps=[1052,26,33,53,4] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=561180 groupB=17654331 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=6.15017",
+          "time_raw": "        6.77 real         4.63 user         0.95 sys\n          1020940288  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              307262  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                6566  involuntary context switches\n          7463558253  instructions retired\n         14053266437  cycles elapsed\n           831946752  peak memory footprint\n"
+        }
+      ],
+      "slug": "P2_3_5_7_11"
+    },
+    {
+      "N": 1000000000000,
+      "comparison": {
+        "certified_count_le": 1000000000000,
+        "rank_certified": true,
+        "same_primes": true,
+        "same_rank": true,
+        "xplusy_reported_total_over_layer_reported": 1.4339013278382178,
+        "xplusy_wall_over_layer_wall": 1.435574369310406
+      },
+      "primes": "2,3,5,7,13",
+      "runs": [
+        {
+          "command": [
+            "bin/smooth_xplusy_baseline",
+            "bench",
+            "2,3,5,7,13",
+            "1000000000000",
+            "0"
+          ],
+          "elapsed_seconds": 1.1091133980080485,
+          "max_rss_kb": 149692,
+          "metrics": {
+            "A": 604787,
+            "B": 18465439,
+            "N": 1000000000000,
+            "P": [
+              2,
+              3,
+              5,
+              7,
+              13
+            ],
+            "adaptive_band": 0.099242,
+            "adaptive_band_n": 2035,
+            "adaptive_calls": 11,
+            "adaptive_count": 0.439067,
+            "adaptive_gap": 2035,
+            "adaptive_log": 936.084531378476,
+            "adaptive_seconds": 0.641112,
+            "build": 0.434661,
+            "heap_reason": "rank_exceeds_heap_pop_limit",
+            "heap_skipped": true,
+            "k": 5,
+            "splitA": [
+              2,
+              3
+            ],
+            "splitB": [
+              5,
+              7,
+              13
+            ]
+          },
+          "name": "xplusy_adaptive",
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "xplusy_workbench P=(2,3,5,7,13) k=5 N=1000000000000 build=0.434661 A=604787 B=18465439 splitA=[2,3] splitB=[5,7,13] adaptive_seconds=0.641112 adaptive_count=0.439067 adaptive_band=0.099242 adaptive_calls=11 adaptive_gap=2035 adaptive_band_n=2035 adaptive_log=936.084531378476 heap_skipped=true heap_reason=rank_exceeds_heap_pop_limit",
+          "time_raw": "        1.09 real         0.96 user         0.11 sys\n           153284608  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               37705  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 550  involuntary context switches\n          4300783214  instructions retired\n          3041369419  cycles elapsed\n           153030656  peak memory footprint\n"
+        },
+        {
+          "command": [
+            "bin/smooth_layer_compressed_general",
+            "nth",
+            "2,3,5,7,13",
+            "1000000000000",
+            "50000"
+          ],
+          "elapsed_seconds": 0.7725920869852416,
+          "max_rss_kb": 23700,
+          "metrics": {
+            "A": 92531,
+            "Base": 260716,
+            "N": 1000000000000,
+            "P": [
+              2,
+              3,
+              5,
+              7,
+              13
+            ],
+            "band": 839,
+            "band_phase": 0.145353,
+            "build": 0.119003,
+            "calls": 12,
+            "count_phase": 0.415532,
+            "digits": 407,
+            "exact": 0.004589,
+            "exps": [
+              205,
+              279,
+              119,
+              131,
+              16
+            ],
+            "k": 5,
+            "outer": 2,
+            "rank_gap": 839,
+            "seconds": 0.750242,
+            "splitA": [
+              7,
+              13
+            ],
+            "splitBase": [
+              3,
+              5
+            ]
+          },
+          "name": "layer_compressed",
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "layer_compressed P=(2,3,5,7,13) k=5 N=1000000000000 seconds=0.750242 build=0.119003 count_phase=0.415532 band_phase=0.145353 exact=0.004589 calls=12 rank_gap=839 A=92531 Base=260716 band=839 exps=[205,279,119,131,16] digits=407 splitA=[7,13] splitBase=[3,5] outer=2",
+          "time_raw": "        0.76 real         0.72 user         0.01 sys\n            24268800  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                6220  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 424  involuntary context switches\n           984793096  instructions retired\n          1796532356  cycles elapsed\n            23920640  peak memory footprint\n"
+        },
+        {
+          "command": [
+            "bin/smooth_interval_audit_exps_k6",
+            "2,3,5,7,13",
+            "205,279,119,131,16",
+            "1000000000000"
+          ],
+          "elapsed_seconds": 5.778686012024991,
+          "max_rss_kb": 997296,
+          "metrics": {
+            "P": [
+              2,
+              3,
+              5,
+              7,
+              13
+            ],
+            "ambiguous_possible": 1,
+            "ambiguous_resolved": 1,
+            "cert_seconds": 5.73763,
+            "certified_count_le": 1000000000000,
+            "expected_N": 1000000000000,
+            "exps": [
+              205,
+              279,
+              119,
+              131,
+              16
+            ],
+            "groupA": 576450,
+            "groupB": 17185772,
+            "overlapsB": 0,
+            "rank_certified": true
+          },
+          "name": "interval_audit",
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "interval_audit_exps P=[2,3,5,7,13] exps=[205,279,119,131,16] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=576450 groupB=17185772 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=5.73763",
+          "time_raw": "        5.76 real         4.63 user         0.99 sys\n          1021231104  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              301162  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                4712  involuntary context switches\n          7162610803  instructions retired\n         13800884660  cycles elapsed\n           832237568  peak memory footprint\n"
+        }
+      ],
+      "slug": "P2_3_5_7_13"
+    },
+    {
+      "N": 1000000000000,
+      "comparison": {
+        "certified_count_le": 1000000000000,
+        "rank_certified": true,
+        "same_primes": true,
+        "same_rank": true,
+        "xplusy_reported_total_over_layer_reported": 1.187220553357754,
+        "xplusy_wall_over_layer_wall": 1.1868132165748972
+      },
+      "primes": "2,3,5,11,13",
+      "runs": [
+        {
+          "command": [
+            "bin/smooth_xplusy_baseline",
+            "bench",
+            "2,3,5,11,13",
+            "1000000000000",
+            "0"
+          ],
+          "elapsed_seconds": 1.0102137140347622,
+          "max_rss_kb": 138540,
+          "metrics": {
+            "A": 657434,
+            "B": 16990294,
+            "N": 1000000000000,
+            "P": [
+              2,
+              3,
+              5,
+              11,
+              13
+            ],
+            "adaptive_band": 0.104692,
+            "adaptive_band_n": 3408,
+            "adaptive_calls": 11,
+            "adaptive_count": 0.38855,
+            "adaptive_gap": 3408,
+            "adaptive_log": 975.958016456398,
+            "adaptive_seconds": 0.574041,
+            "build": 0.398593,
+            "heap_reason": "rank_exceeds_heap_pop_limit",
+            "heap_skipped": true,
+            "k": 5,
+            "splitA": [
+              2,
+              3
+            ],
+            "splitB": [
+              5,
+              11,
+              13
+            ]
+          },
+          "name": "xplusy_adaptive",
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "xplusy_workbench P=(2,3,5,11,13) k=5 N=1000000000000 build=0.398593 A=657434 B=16990294 splitA=[2,3] splitB=[5,11,13] adaptive_seconds=0.574041 adaptive_count=0.388550 adaptive_band=0.104692 adaptive_calls=11 adaptive_gap=3408 adaptive_band_n=3408 adaptive_log=975.958016456398 heap_skipped=true heap_reason=rank_exceeds_heap_pop_limit",
+          "time_raw": "        0.99 real         0.87 user         0.09 sys\n           141864960  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               34916  page reclaims\n                   1  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 640  involuntary context switches\n          3995776716  instructions retired\n          2596649370  cycles elapsed\n           141611008  peak memory footprint\n"
+        },
+        {
+          "command": [
+            "bin/smooth_layer_compressed_general",
+            "nth",
+            "2,3,5,11,13",
+            "1000000000000",
+            "50000"
+          ],
+          "elapsed_seconds": 0.8511985710356385,
+          "max_rss_kb": 31228,
+          "metrics": {
+            "A": 81655,
+            "Base": 283402,
+            "N": 1000000000000,
+            "P": [
+              2,
+              3,
+              5,
+              11,
+              13
+            ],
+            "band": 15776,
+            "band_phase": 0.155707,
+            "build": 0.147519,
+            "calls": 11,
+            "count_phase": 0.360287,
+            "digits": 424,
+            "exact": 0.094892,
+            "exps": [
+              254,
+              220,
+              258,
+              4,
+              52
+            ],
+            "k": 5,
+            "outer": 2,
+            "rank_gap": 15776,
+            "seconds": 0.819253,
+            "splitA": [
+              11,
+              13
+            ],
+            "splitBase": [
+              3,
+              5
+            ]
+          },
+          "name": "layer_compressed",
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "layer_compressed P=(2,3,5,11,13) k=5 N=1000000000000 seconds=0.819253 build=0.147519 count_phase=0.360287 band_phase=0.155707 exact=0.094892 calls=11 rank_gap=15776 A=81655 Base=283402 band=15776 exps=[254,220,258,4,52] digits=424 splitA=[11,13] splitBase=[3,5] outer=2",
+          "time_raw": "        0.84 real         0.79 user         0.03 sys\n            31977472  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                8106  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 458  involuntary context switches\n          1383877126  instructions retired\n          2043699819  cycles elapsed\n            31633408  peak memory footprint\n"
+        },
+        {
+          "command": [
+            "bin/smooth_interval_audit_exps_k6",
+            "2,3,5,11,13",
+            "254,220,258,4,52",
+            "1000000000000"
+          ],
+          "elapsed_seconds": 4.675646523013711,
+          "max_rss_kb": 605264,
+          "metrics": {
+            "P": [
+              2,
+              3,
+              5,
+              11,
+              13
+            ],
+            "ambiguous_possible": 1,
+            "ambiguous_resolved": 1,
+            "cert_seconds": 4.63757,
+            "certified_count_le": 1000000000000,
+            "expected_N": 1000000000000,
+            "exps": [
+              254,
+              220,
+              258,
+              4,
+              52
+            ],
+            "groupA": 626556,
+            "groupB": 15810167,
+            "overlapsB": 0,
+            "rank_certified": true
+          },
+          "name": "interval_audit",
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "interval_audit_exps P=[2,3,5,11,13] exps=[254,220,258,4,52] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=626556 groupB=15810167 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=4.63757",
+          "time_raw": "        4.66 real         3.94 user         0.63 sys\n           619790336  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              195098  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                2810  involuntary context switches\n          6187567747  instructions retired\n         11629490389  cycles elapsed\n           430796800  peak memory footprint\n"
+        }
+      ],
+      "slug": "P2_3_5_11_13"
+    },
+    {
+      "N": 1000000000000,
+      "comparison": {
+        "certified_count_le": 1000000000000,
+        "rank_certified": true,
+        "same_primes": true,
+        "same_rank": true,
+        "xplusy_reported_total_over_layer_reported": 1.4788976049154414,
+        "xplusy_wall_over_layer_wall": 1.474438717350217
+      },
+      "primes": "2,3,7,11,13",
+      "runs": [
+        {
+          "command": [
+            "bin/smooth_xplusy_baseline",
+            "bench",
+            "2,3,7,11,13",
+            "1000000000000",
+            "0"
+          ],
+          "elapsed_seconds": 1.1765890919486992,
+          "max_rss_kb": 129264,
+          "metrics": {
+            "A": 709255,
+            "B": 15749721,
+            "N": 1000000000000,
+            "P": [
+              2,
+              3,
+              7,
+              11,
+              13
+            ],
+            "adaptive_band": 0.151265,
+            "adaptive_band_n": 2029,
+            "adaptive_calls": 11,
+            "adaptive_count": 0.48163,
+            "adaptive_gap": 2029,
+            "adaptive_log": 1013.720195431046,
+            "adaptive_seconds": 0.740203,
+            "build": 0.400206,
+            "heap_reason": "rank_exceeds_heap_pop_limit",
+            "heap_skipped": true,
+            "k": 5,
+            "splitA": [
+              2,
+              3
+            ],
+            "splitB": [
+              7,
+              11,
+              13
+            ]
+          },
+          "name": "xplusy_adaptive",
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "xplusy_workbench P=(2,3,7,11,13) k=5 N=1000000000000 build=0.400206 A=709255 B=15749721 splitA=[2,3] splitB=[7,11,13] adaptive_seconds=0.740203 adaptive_count=0.481630 adaptive_band=0.151265 adaptive_calls=11 adaptive_gap=2029 adaptive_band_n=2029 adaptive_log=1013.720195431046 heap_skipped=true heap_reason=rank_exceeds_heap_pop_limit",
+          "time_raw": "        1.16 real         1.03 user         0.11 sys\n           132366336  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               32599  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 828  involuntary context switches\n          3728508037  instructions retired\n          2741786148  cycles elapsed\n           132112384  peak memory footprint\n"
+        },
+        {
+          "command": [
+            "bin/smooth_layer_compressed_general",
+            "nth",
+            "2,3,7,11,13",
+            "1000000000000",
+            "50000"
+          ],
+          "elapsed_seconds": 0.7979911800357513,
+          "max_rss_kb": 29068,
+          "metrics": {
+            "A": 88081,
+            "Base": 252947,
+            "N": 1000000000000,
+            "P": [
+              2,
+              3,
+              7,
+              11,
+              13
+            ],
+            "band": 15701,
+            "band_phase": 0.133854,
+            "build": 0.126849,
+            "calls": 11,
+            "count_phase": 0.350516,
+            "digits": 441,
+            "exact": 0.095358,
+            "exps": [
+              291,
+              331,
+              90,
+              84,
+              28
+            ],
+            "k": 5,
+            "outer": 2,
+            "rank_gap": 15701,
+            "seconds": 0.771121,
+            "splitA": [
+              11,
+              13
+            ],
+            "splitBase": [
+              3,
+              7
+            ]
+          },
+          "name": "layer_compressed",
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "layer_compressed P=(2,3,7,11,13) k=5 N=1000000000000 seconds=0.771121 build=0.126849 count_phase=0.350516 band_phase=0.133854 exact=0.095358 calls=11 rank_gap=15701 A=88081 Base=252947 band=15701 exps=[291,331,90,84,28] digits=441 splitA=[11,13] splitBase=[3,7] outer=2",
+          "time_raw": "        0.78 real         0.73 user         0.02 sys\n            29765632  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                7562  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 520  involuntary context switches\n          1334771799  instructions retired\n          1973424212  cycles elapsed\n            29413376  peak memory footprint\n"
+        },
+        {
+          "command": [
+            "bin/smooth_interval_audit_exps_k6",
+            "2,3,7,11,13",
+            "291,331,90,84,28",
+            "1000000000000"
+          ],
+          "elapsed_seconds": 4.521733322006185,
+          "max_rss_kb": 606356,
+          "metrics": {
+            "P": [
+              2,
+              3,
+              7,
+              11,
+              13
+            ],
+            "ambiguous_possible": 1,
+            "ambiguous_resolved": 1,
+            "cert_seconds": 4.48081,
+            "certified_count_le": 1000000000000,
+            "expected_N": 1000000000000,
+            "exps": [
+              291,
+              331,
+              90,
+              84,
+              28
+            ],
+            "groupA": 675933,
+            "groupB": 14655535,
+            "overlapsB": 0,
+            "rank_certified": true
+          },
+          "name": "interval_audit",
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "interval_audit_exps P=[2,3,7,11,13] exps=[291,331,90,84,28] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=675933 groupB=14655535 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=4.48081",
+          "time_raw": "        4.50 real         3.85 user         0.57 sys\n           620908544  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              188605  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                2797  involuntary context switches\n          5849102146  instructions retired\n         12688359129  cycles elapsed\n           431915008  peak memory footprint\n"
+        }
+      ],
+      "slug": "P2_3_7_11_13"
+    },
+    {
+      "N": 1000000000000,
+      "comparison": {
+        "certified_count_le": 1000000000000,
+        "rank_certified": true,
+        "same_primes": true,
+        "same_rank": true,
+        "xplusy_reported_total_over_layer_reported": 1.4366905198415045,
+        "xplusy_wall_over_layer_wall": 1.415977807917168
+      },
+      "primes": "2,5,7,11,13",
+      "runs": [
+        {
+          "command": [
+            "bin/smooth_xplusy_baseline",
+            "bench",
+            "2,5,7,11,13",
+            "1000000000000",
+            "0"
+          ],
+          "elapsed_seconds": 1.4618048549746163,
+          "max_rss_kb": 159688,
+          "metrics": {
+            "A": 564219,
+            "B": 19790323,
+            "N": 1000000000000,
+            "P": [
+              2,
+              5,
+              7,
+              11,
+              13
+            ],
+            "adaptive_band": 0.349735,
+            "adaptive_band_n": 3414,
+            "adaptive_calls": 11,
+            "adaptive_count": 0.540401,
+            "adaptive_gap": 3414,
+            "adaptive_log": 1094.257695686333,
+            "adaptive_seconds": 0.992475,
+            "build": 0.440812,
+            "heap_reason": "rank_exceeds_heap_pop_limit",
+            "heap_skipped": true,
+            "k": 5,
+            "splitA": [
+              2,
+              5
+            ],
+            "splitB": [
+              7,
+              11,
+              13
+            ]
+          },
+          "name": "xplusy_adaptive",
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "xplusy_workbench P=(2,5,7,11,13) k=5 N=1000000000000 build=0.440812 A=564219 B=19790323 splitA=[2,5] splitB=[7,11,13] adaptive_seconds=0.992475 adaptive_count=0.540401 adaptive_band=0.349735 adaptive_calls=11 adaptive_gap=3414 adaptive_band_n=3414 adaptive_log=1094.257695686333 heap_skipped=true heap_reason=rank_exceeds_heap_pop_limit",
+          "time_raw": "        1.45 real         1.16 user         0.11 sys\n           163520512  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               40206  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                1395  involuntary context switches\n          4598037511  instructions retired\n          3266293995  cycles elapsed\n           163266560  peak memory footprint\n"
+        },
+        {
+          "command": [
+            "bin/smooth_layer_compressed_general",
+            "nth",
+            "2,5,7,11,13",
+            "1000000000000",
+            "50000"
+          ],
+          "elapsed_seconds": 1.032364241022151,
+          "max_rss_kb": 26244,
+          "metrics": {
+            "A": 102583,
+            "Base": 201203,
+            "N": 1000000000000,
+            "P": [
+              2,
+              5,
+              7,
+              11,
+              13
+            ],
+            "band": 16371,
+            "band_phase": 0.174914,
+            "build": 0.227679,
+            "calls": 11,
+            "count_phase": 0.385081,
+            "digits": 476,
+            "exact": 0.120766,
+            "exps": [
+              106,
+              306,
+              164,
+              53,
+              32
+            ],
+            "k": 5,
+            "outer": 2,
+            "rank_gap": 16371,
+            "seconds": 0.997631,
+            "splitA": [
+              11,
+              13
+            ],
+            "splitBase": [
+              5,
+              7
+            ]
+          },
+          "name": "layer_compressed",
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "layer_compressed P=(2,5,7,11,13) k=5 N=1000000000000 seconds=0.997631 build=0.227679 count_phase=0.385081 band_phase=0.174914 exact=0.120766 calls=11 rank_gap=16371 A=102583 Base=201203 band=16371 exps=[106,306,164,53,32] digits=476 splitA=[11,13] splitBase=[5,7] outer=2",
+          "time_raw": "        1.01 real         0.85 user         0.03 sys\n            26873856  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                6860  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 984  involuntary context switches\n          1352131827  instructions retired\n          2114364111  cycles elapsed\n            26533888  peak memory footprint\n"
+        },
+        {
+          "command": [
+            "bin/smooth_interval_audit_exps_k6",
+            "2,5,7,11,13",
+            "106,306,164,53,32",
+            "1000000000000"
+          ],
+          "elapsed_seconds": 5.830391809984576,
+          "max_rss_kb": 996380,
+          "metrics": {
+            "P": [
+              2,
+              5,
+              7,
+              11,
+              13
+            ],
+            "ambiguous_possible": 1,
+            "ambiguous_resolved": 1,
+            "cert_seconds": 5.77503,
+            "certified_count_le": 1000000000000,
+            "expected_N": 1000000000000,
+            "exps": [
+              106,
+              306,
+              164,
+              53,
+              32
+            ],
+            "groupA": 537803,
+            "groupB": 18419634,
+            "overlapsB": 0,
+            "rank_certified": true
+          },
+          "name": "interval_audit",
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "interval_audit_exps P=[2,5,7,11,13] exps=[106,306,164,53,32] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=537803 groupB=18419634 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=5.77503",
+          "time_raw": "        5.82 real         4.81 user         0.92 sys\n          1020293120  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              308157  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                3436  involuntary context switches\n          7640147800  instructions retired\n         14398112920  cycles elapsed\n           831299584  peak memory footprint\n"
+        }
+      ],
+      "slug": "P2_5_7_11_13"
+    },
+    {
+      "N": 1000000000000,
+      "comparison": {
+        "certified_count_le": 1000000000000,
+        "rank_certified": true,
+        "same_primes": true,
+        "same_rank": true,
+        "xplusy_reported_total_over_layer_reported": 1.9070644353248416,
+        "xplusy_wall_over_layer_wall": 1.9124854288986837
+      },
+      "primes": "3,5,7,11,13",
+      "runs": [
+        {
+          "command": [
+            "bin/smooth_xplusy_baseline",
+            "bench",
+            "3,5,7,11,13",
+            "1000000000000",
+            "0"
+          ],
+          "elapsed_seconds": 1.6470295750186779,
+          "max_rss_kb": 207688,
+          "metrics": {
+            "A": 428056,
+            "B": 26068271,
+            "N": 1000000000000,
+            "P": [
+              3,
+              5,
+              7,
+              11,
+              13
+            ],
+            "adaptive_band": 0.180657,
+            "adaptive_band_n": 3440,
+            "adaptive_calls": 11,
+            "adaptive_count": 0.637608,
+            "adaptive_gap": 3440,
+            "adaptive_log": 1200.081419904893,
+            "adaptive_seconds": 0.981651,
+            "build": 0.592768,
+            "heap_reason": "rank_exceeds_heap_pop_limit",
+            "heap_skipped": true,
+            "k": 5,
+            "splitA": [
+              3,
+              5
+            ],
+            "splitB": [
+              7,
+              11,
+              13
+            ]
+          },
+          "name": "xplusy_adaptive",
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "xplusy_workbench P=(3,5,7,11,13) k=5 N=1000000000000 build=0.592768 A=428056 B=26068271 splitA=[3,5] splitB=[7,11,13] adaptive_seconds=0.981651 adaptive_count=0.637608 adaptive_band=0.180657 adaptive_calls=11 adaptive_gap=3440 adaptive_band_n=3440 adaptive_log=1200.081419904893 heap_skipped=true heap_reason=rank_exceeds_heap_pop_limit",
+          "time_raw": "        1.63 real         1.42 user         0.17 sys\n           212672512  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               52204  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 983  involuntary context switches\n          5956349800  instructions retired\n          4952709645  cycles elapsed\n           212418560  peak memory footprint\n"
+        },
+        {
+          "command": [
+            "bin/smooth_layer_compressed_general",
+            "nth",
+            "3,5,7,11,13",
+            "1000000000000",
+            "50000"
+          ],
+          "elapsed_seconds": 0.8611984960152768,
+          "max_rss_kb": 30840,
+          "metrics": {
+            "A": 123284,
+            "Base": 241835,
+            "N": 1000000000000,
+            "P": [
+              3,
+              5,
+              7,
+              11,
+              13
+            ],
+            "band": 18205,
+            "band_phase": 0.118799,
+            "build": 0.116788,
+            "calls": 11,
+            "count_phase": 0.401768,
+            "digits": 522,
+            "exact": 0.092981,
+            "exps": [
+              273,
+              219,
+              5,
+              219,
+              5
+            ],
+            "k": 5,
+            "outer": 3,
+            "rank_gap": 18205,
+            "seconds": 0.825572,
+            "splitA": [
+              11,
+              13
+            ],
+            "splitBase": [
+              5,
+              7
+            ]
+          },
+          "name": "layer_compressed",
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "layer_compressed P=(3,5,7,11,13) k=5 N=1000000000000 seconds=0.825572 build=0.116788 count_phase=0.401768 band_phase=0.118799 exact=0.092981 calls=11 rank_gap=18205 A=123284 Base=241835 band=18205 exps=[273,219,5,219,5] digits=522 splitA=[11,13] splitBase=[5,7] outer=3",
+          "time_raw": "        0.85 real         0.78 user         0.04 sys\n            31580160  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                8010  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 589  involuntary context switches\n          1609914122  instructions retired\n          2894149876  cycles elapsed\n            31232000  peak memory footprint\n"
+        },
+        {
+          "command": [
+            "bin/smooth_interval_audit_exps_k6",
+            "3,5,7,11,13",
+            "273,219,5,219,5",
+            "1000000000000"
+          ],
+          "elapsed_seconds": 6.945322102983482,
+          "max_rss_kb": 993360,
+          "metrics": {
+            "P": [
+              3,
+              5,
+              7,
+              11,
+              13
+            ],
+            "ambiguous_possible": 1,
+            "ambiguous_resolved": 1,
+            "cert_seconds": 6.89578,
+            "certified_count_le": 1000000000000,
+            "expected_N": 1000000000000,
+            "exps": [
+              273,
+              219,
+              5,
+              219,
+              5
+            ],
+            "groupA": 408180,
+            "groupB": 24276877,
+            "overlapsB": 0,
+            "rank_certified": true
+          },
+          "name": "interval_audit",
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "interval_audit_exps P=[3,5,7,11,13] exps=[273,219,5,219,5] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=408180 groupB=24276877 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=6.89578",
+          "time_raw": "        6.93 real         5.78 user         1.01 sys\n          1017200640  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              341722  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                4217  involuntary context switches\n          9528701587  instructions retired\n         17370685559  cycles elapsed\n           828207104  peak memory footprint\n"
+        }
+      ],
+      "slug": "P3_5_7_11_13"
+    }
+  ],
+  "config": {
+    "N": 1000000000000,
+    "heap_limit": 0,
+    "prime_sets": [
+      "2,3,5,7,11",
+      "2,3,5,7,13",
+      "2,3,5,11,13",
+      "2,3,7,11,13",
+      "2,5,7,11,13",
+      "3,5,7,11,13"
+    ],
+    "skip_audit": false,
+    "target_gap": 50000
+  },
+  "metadata": {
+    "compiler": {
+      "cxx": "g++",
+      "cxxflags": "-O3 -std=c++17",
+      "path": "/usr/bin/g++",
+      "version": "Apple clang version 21.0.0 (clang-2100.0.123.102)\nTarget: x86_64-apple-darwin25.4.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin"
+    },
+    "cpu_model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
+    "git_commit": "87da37090b939d217a5ee2a51e2c08101d5d13ac",
+    "git_dirty": false,
+    "memory_bytes": 17179869184,
+    "platform": "macOS-26.4.1-x86_64-i386-64bit-Mach-O",
+    "python": "3.13.3",
+    "system": "Darwin",
+    "timestamp_utc": "2026-06-08T21:16:09.606220+00:00"
+  },
+  "schema": "smooth.lattice.five_prime_suite.v1",
+  "summary_rows": [
+    {
+      "N": 1000000000000,
+      "audit_max_rss_kb": 997012,
+      "audit_returncode": 0,
+      "audit_wall_seconds": 6.7790137269767,
+      "certified_count_le": 1000000000000,
+      "layer_exps": [
+        1052,
+        26,
+        33,
+        53,
+        4
+      ],
+      "layer_max_rss_kb": 23256,
+      "layer_returncode": 0,
+      "layer_wall_seconds": 1.3673175359726883,
+      "layer_wins_wall": true,
+      "primes": "2,3,5,7,11",
+      "rank_certified": true,
+      "xplusy_max_rss_kb": 153456,
+      "xplusy_reported_total_over_layer_reported": 1.5808539197411922,
+      "xplusy_returncode": 0,
+      "xplusy_wall_over_layer_wall": 1.5522882908755495,
+      "xplusy_wall_seconds": 2.1224710009992123
+    },
+    {
+      "N": 1000000000000,
+      "audit_max_rss_kb": 997296,
+      "audit_returncode": 0,
+      "audit_wall_seconds": 5.778686012024991,
+      "certified_count_le": 1000000000000,
+      "layer_exps": [
+        205,
+        279,
+        119,
+        131,
+        16
+      ],
+      "layer_max_rss_kb": 23700,
+      "layer_returncode": 0,
+      "layer_wall_seconds": 0.7725920869852416,
+      "layer_wins_wall": true,
+      "primes": "2,3,5,7,13",
+      "rank_certified": true,
+      "xplusy_max_rss_kb": 149692,
+      "xplusy_reported_total_over_layer_reported": 1.4339013278382178,
+      "xplusy_returncode": 0,
+      "xplusy_wall_over_layer_wall": 1.435574369310406,
+      "xplusy_wall_seconds": 1.1091133980080485
+    },
+    {
+      "N": 1000000000000,
+      "audit_max_rss_kb": 605264,
+      "audit_returncode": 0,
+      "audit_wall_seconds": 4.675646523013711,
+      "certified_count_le": 1000000000000,
+      "layer_exps": [
+        254,
+        220,
+        258,
+        4,
+        52
+      ],
+      "layer_max_rss_kb": 31228,
+      "layer_returncode": 0,
+      "layer_wall_seconds": 0.8511985710356385,
+      "layer_wins_wall": true,
+      "primes": "2,3,5,11,13",
+      "rank_certified": true,
+      "xplusy_max_rss_kb": 138540,
+      "xplusy_reported_total_over_layer_reported": 1.187220553357754,
+      "xplusy_returncode": 0,
+      "xplusy_wall_over_layer_wall": 1.1868132165748972,
+      "xplusy_wall_seconds": 1.0102137140347622
+    },
+    {
+      "N": 1000000000000,
+      "audit_max_rss_kb": 606356,
+      "audit_returncode": 0,
+      "audit_wall_seconds": 4.521733322006185,
+      "certified_count_le": 1000000000000,
+      "layer_exps": [
+        291,
+        331,
+        90,
+        84,
+        28
+      ],
+      "layer_max_rss_kb": 29068,
+      "layer_returncode": 0,
+      "layer_wall_seconds": 0.7979911800357513,
+      "layer_wins_wall": true,
+      "primes": "2,3,7,11,13",
+      "rank_certified": true,
+      "xplusy_max_rss_kb": 129264,
+      "xplusy_reported_total_over_layer_reported": 1.4788976049154414,
+      "xplusy_returncode": 0,
+      "xplusy_wall_over_layer_wall": 1.474438717350217,
+      "xplusy_wall_seconds": 1.1765890919486992
+    },
+    {
+      "N": 1000000000000,
+      "audit_max_rss_kb": 996380,
+      "audit_returncode": 0,
+      "audit_wall_seconds": 5.830391809984576,
+      "certified_count_le": 1000000000000,
+      "layer_exps": [
+        106,
+        306,
+        164,
+        53,
+        32
+      ],
+      "layer_max_rss_kb": 26244,
+      "layer_returncode": 0,
+      "layer_wall_seconds": 1.032364241022151,
+      "layer_wins_wall": true,
+      "primes": "2,5,7,11,13",
+      "rank_certified": true,
+      "xplusy_max_rss_kb": 159688,
+      "xplusy_reported_total_over_layer_reported": 1.4366905198415045,
+      "xplusy_returncode": 0,
+      "xplusy_wall_over_layer_wall": 1.415977807917168,
+      "xplusy_wall_seconds": 1.4618048549746163
+    },
+    {
+      "N": 1000000000000,
+      "audit_max_rss_kb": 993360,
+      "audit_returncode": 0,
+      "audit_wall_seconds": 6.945322102983482,
+      "certified_count_le": 1000000000000,
+      "layer_exps": [
+        273,
+        219,
+        5,
+        219,
+        5
+      ],
+      "layer_max_rss_kb": 30840,
+      "layer_returncode": 0,
+      "layer_wall_seconds": 0.8611984960152768,
+      "layer_wins_wall": true,
+      "primes": "3,5,7,11,13",
+      "rank_certified": true,
+      "xplusy_max_rss_kb": 207688,
+      "xplusy_reported_total_over_layer_reported": 1.9070644353248416,
+      "xplusy_returncode": 0,
+      "xplusy_wall_over_layer_wall": 1.9124854288986837,
+      "xplusy_wall_seconds": 1.6470295750186779
+    }
+  ]
+}

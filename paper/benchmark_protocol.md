@@ -141,6 +141,29 @@ Use:
 python3 scripts/run_five_prime_suite.py
 ```
 
-The resulting paper claim must be data-dependent. If layer-compressed wins all
-six certified cases, say all six. If it loses any case, report the exact loss
-and keep the comparison as mixed evidence.
+Clean suite artifact:
+
+```text
+results/benchmarks/five_prime_suite_1e12/
+```
+
+Observed result at commit `87da37090b939d217a5ee2a51e2c08101d5d13ac` on the
+recorded macOS/x86_64 Apple-clang machine:
+
+- 6/6 cases completed.
+- 6/6 returned exponent vectors were independently certified.
+- Layer-compressed full unranking won 6/6 wall-time comparisons against
+  adaptive materialized `X+Y` value selection.
+- X+Y/layer wall-time ratio ranged from 1.1868 to 1.9125, with mean 1.4963.
+
+The resulting paper claim is:
+
+```text
+Across all six five-prime subsets of {2,3,5,7,11,13} at N=10^12,
+layer-compressed full unranking outperformed our practical adaptive
+materialized X+Y value-selection baseline under the recorded hardware/compiler
+conditions, and every returned exponent vector was independently certified.
+```
+
+This is still not a "best known" claim. It is a certified benchmark-suite win
+against one serious practical comparator family.

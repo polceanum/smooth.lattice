@@ -80,13 +80,14 @@ on the recorded machine/compiler, and the returned exponent vector was
 independently certified.
 ```
 
-The next broader claim requires a certified suite:
+The certified five-prime suite supports:
 
 ```text
-Across the five-prime subsets of {2,3,5,7,11,13} at N=10^12, [data-dependent
-summary], with every reported exponent vector independently certified.
+Across all six five-prime subsets of {2,3,5,7,11,13} at N=10^12,
+layer-compressed full unranking outperformed the practical adaptive
+materialized X+Y value-selection baseline on the recorded machine/compiler.
+All six returned exponent vectors were independently certified.
 ```
 
-Fill in the bracketed summary only after running the suite. If the method wins
-in every case, say so. If it wins in only some cases, report the exact count and
-the losses.
+Attach the caveat that the `X+Y` baseline is value selection only, not full
+exponent reconstruction, and report the exact hardware/compiler conditions.

@@ -30,12 +30,19 @@ Current clean artifact:
 
 ```text
 results/benchmarks/xplusy_vs_layer5_1e12/
+results/benchmarks/five_prime_suite_1e12/
 ```
 
 On the recorded macOS/x86_64 Apple-clang run at commit
 `161445507617a9435f9baadf4e70a3679d9e8d9a`, layer-compressed full unrank took
 1.194730s wall time versus 2.029418s for adaptive materialized `X+Y` value
 selection, with the returned exponent vector independently certified.
+
+On the broader six-case suite over all five-prime subsets of
+`{2,3,5,7,11,13}` at `N=10^12`, layer-compressed full unrank won all six
+wall-time comparisons against the same adaptive materialized `X+Y` value
+selection baseline, and all six returned exponent vectors were independently
+certified.
 
 ## Not yet fully implemented
 
