@@ -26,6 +26,17 @@ The `X+Y` row is selection-only, not full exponent reconstruction. A win by the
 layer-compressed solver is therefore a conservative result; a loss should be
 reported as such.
 
+Current clean artifact:
+
+```text
+results/benchmarks/xplusy_vs_layer5_1e12/
+```
+
+On the recorded macOS/x86_64 Apple-clang run at commit
+`161445507617a9435f9baadf4e70a3679d9e8d9a`, layer-compressed full unrank took
+1.194730s wall time versus 2.029418s for adaptive materialized `X+Y` value
+selection, with the returned exponent vector independently certified.
+
 ## Not yet fully implemented
 
 - Full Frederickson-Johnson sorted matrix selection.
