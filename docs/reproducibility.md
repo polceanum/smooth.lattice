@@ -17,6 +17,7 @@ Recommended commands:
 python3 tests/test_smoke.py
 bash scripts/run_certified_examples.sh
 bash scripts/run_dp_comparison.sh
+python3 scripts/run_xplusy_vs_layer5.py
 ```
 
 Dependency notes:
@@ -27,3 +28,9 @@ Dependency notes:
 - `build.sh` runs a small Boost header preflight before compiling the kernels.
 
 For headline claims, keep JSON or text output under `results/local/` and copy final curated results to `results/certified/` or `results/benchmarks/`.
+
+The `run_xplusy_vs_layer5.py` harness writes `report.json`, `summary.csv`, and
+`report.md` under `results/local/xplusy_vs_layer5_<timestamp>/`. Its default
+case is `P=(2,3,5,7,11), N=10^12`; it compares adaptive Cartesian-sum value
+selection against the layer-compressed full unrank solver and, unless disabled,
+audits the returned exponent vector with the independent interval auditor.
