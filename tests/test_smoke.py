@@ -101,6 +101,26 @@ def main():
     assert 'layer_count=6' in probe.stdout
     assert 'expected_N=6' in probe.stdout
 
+    band = subprocess.run(
+        [
+            str(ROOT / 'bin' / 'smooth_layer_compressed_general'),
+            'analytic-band',
+            '2,3,5',
+            '6',
+            '10',
+            '1000',
+        ],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=True,
+    )
+    assert 'analytic_band' in band.stdout
+    assert 'target_inside=true' in band.stdout
+    assert 'recovered=true' in band.stdout
+    assert 'exps=[1,1,0]' in band.stdout
+
     print('smoke tests passed')
 
 

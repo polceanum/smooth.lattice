@@ -24,6 +24,7 @@ static std::string join_vec(const std::vector<int>& v){ std::ostringstream os; o
 static std::string join_primes(const std::vector<int>& v){ std::ostringstream os; os<<"("; for(size_t i=0;i<v.size();++i){ if(i) os<<","; os<<v[i]; } os<<")"; return os.str(); }
 static std::string idx_to_primes(const std::vector<int>& idx,const std::vector<int>& P){ std::ostringstream os; os<<"["; for(size_t i=0;i<idx.size();++i){ if(i) os<<","; os<<P[idx[i]]; } os<<"]"; return os.str(); }
 static std::string u128str(u128 x){ if(x==0) return "0"; std::string s; while(x){ int d=(int)(x%10); s.push_back('0'+d); x/=10; } std::reverse(s.begin(),s.end()); return s; }
+static std::string sci(long double x){ std::ostringstream os; os<<std::scientific<<std::setprecision(12)<<(double)x; return os.str(); }
 static cpp_int ipow(int base,int exp){ cpp_int r=1,b=base; while(exp){ if(exp&1) r*=b; exp>>=1; if(exp) b*=b; } return r; }
 static cpp_int value_from_exps(const std::vector<int>& primes,const std::vector<int>& exps){ cpp_int r=1; for(size_t i=0;i<primes.size();++i) if(exps[i]) r*=ipow(primes[i],exps[i]); return r; }
 static long double log_height_from_exps(const std::vector<int>& primes,const std::vector<int>& exps){ if(primes.size()!=exps.size()) throw std::runtime_error("prime/exponent length mismatch"); long double T=0.0L; for(size_t i=0;i<primes.size();++i){ if(exps[i]<0) throw std::runtime_error("negative exponent"); T+=(long double)exps[i]*std::log((long double)primes[i]); } return T; }
@@ -173,6 +174,69 @@ static ProbeResult analytic_probe(std::vector<int> primes,long double T){
     r.seconds=std::chrono::duration<double>(t1-t0).count();
     return r;
 }
+struct AnalyticBandResult{
+    double seconds=0,build=0,count_phase=0,band_phase=0,exact=0;
+    long double T=0,derivative=0,rank_radius=0,half_width=0;
+    double L=0,H=0;
+    u128 below=0,above=0,band_count=0;
+    bool target_inside=false, enumerated=false, recovered=false;
+    std::vector<int> exps;
+    int digits=0;
+    size_t A=0,Base=0,cands=0;
+    std::vector<int>Aidx,Baseidx;
+    int outer=-1;
+};
+static AnalyticBandResult analytic_band(std::vector<int> primes,ull n,long double rank_radius,ull max_candidates){
+    auto t0=std::chrono::high_resolution_clock::now();
+    AnalyticBandResult r;
+    r.rank_radius=rank_radius;
+    r.T=(long double)asymptotic_est(primes,n);
+    r.derivative=analytic_count_derivative(primes,r.T);
+    if(!(r.derivative>0.0L) || !std::isfinite((double)r.derivative)) throw std::runtime_error("bad analytic derivative");
+    r.half_width=std::max(rank_radius/r.derivative,1e-12L*(1.0L+r.T));
+    r.L=(double)std::max(0.0L,r.T-r.half_width);
+    r.H=(double)(r.T+r.half_width);
+    LayerRanker R(primes,std::max(1e-9,r.H+1e-8));
+    auto tc0=std::chrono::high_resolution_clock::now();
+    r.below=R.count_le(r.L);
+    r.above=R.count_le(r.H);
+    auto tc1=std::chrono::high_resolution_clock::now();
+    r.band_count=(r.above>=r.below)?(r.above-r.below):0;
+    r.target_inside=(r.below<(u128)n && r.above>=(u128)n);
+    r.build=R.build_sec;
+    r.count_phase=std::chrono::duration<double>(tc1-tc0).count();
+    r.A=R.A.sums.size();
+    r.Base=R.Base.sums.size();
+    r.Aidx=R.Aidx;
+    r.Baseidx=R.Baseidx;
+    r.outer=R.outer;
+    if(r.target_inside && r.band_count<=(u128)max_candidates){
+        auto tb0=std::chrono::high_resolution_clock::now();
+        auto cands=R.band(r.L,r.H);
+        auto tb1=std::chrono::high_resolution_clock::now();
+        r.enumerated=true;
+        r.cands=cands.size();
+        r.band_phase=std::chrono::duration<double>(tb1-tb0).count();
+        u128 off128=(u128)n-r.below-1;
+        if(off128<=(u128)std::numeric_limits<size_t>::max() && (size_t)off128<cands.size()){
+            auto te0=std::chrono::high_resolution_clock::now();
+            struct EC{Candidate c; cpp_int val;};
+            std::vector<EC> exact;
+            exact.reserve(cands.size());
+            for(auto &c:cands) exact.push_back({c,value_from_exps(primes,c.exps)});
+            std::sort(exact.begin(),exact.end(),[](const EC&a,const EC&b){return a.val<b.val;});
+            auto chosen=exact[(size_t)off128];
+            auto te1=std::chrono::high_resolution_clock::now();
+            r.exps=chosen.c.exps;
+            r.digits=digits10(chosen.val);
+            r.exact=std::chrono::duration<double>(te1-te0).count();
+            r.recovered=true;
+        }
+    }
+    auto t1=std::chrono::high_resolution_clock::now();
+    r.seconds=std::chrono::duration<double>(t1-t0).count();
+    return r;
+}
 static std::vector<int> first_primes(int k){ int base[]={2,3,5,7,11,13,17,19,23,29,31,37,41,43,47}; return std::vector<int>(base,base+k); }
 int main(int argc,char**argv){
     std::cout.setf(std::ios::fixed);
@@ -216,6 +280,17 @@ int main(int argc,char**argv){
                 std::cout<<" expected_N="<<expected<<" residual_expected_minus_analytic="<<(double)re<<" residual_layer_minus_expected="<<(double)rl;
             }
             std::cout<<" A="<<r.A<<" Base="<<r.Base<<" splitA="<<idx_to_primes(r.Aidx,P)<<" splitBase="<<idx_to_primes(r.Baseidx,P)<<" outer="<<P[r.outer]<<"\n";
+            return 0;
+        }
+        if(argc>=2 && std::string(argv[1])=="analytic-band"){
+            auto P=parse_csv(argv[2]);
+            ull n=std::stoull(argv[3]);
+            long double rank_radius=argc>=5?std::stold(argv[4]):1000.0L;
+            ull max_candidates=argc>=6?std::stoull(argv[5]):200000ULL;
+            auto r=analytic_band(P,n,rank_radius,max_candidates);
+            std::cout<<"analytic_band P="<<join_primes(P)<<" k="<<P.size()<<" N="<<n<<" seconds="<<r.seconds<<" build="<<r.build<<" count_phase="<<r.count_phase<<" band_phase="<<r.band_phase<<" exact="<<r.exact<<" T="<<(double)r.T<<" derivative="<<(double)r.derivative<<" rank_radius="<<(double)r.rank_radius<<" half_width="<<sci(r.half_width)<<" L="<<r.L<<" H="<<r.H<<" below="<<u128str(r.below)<<" above="<<u128str(r.above)<<" band_count="<<u128str(r.band_count)<<" target_inside="<<(r.target_inside?"true":"false")<<" enumerated="<<(r.enumerated?"true":"false")<<" recovered="<<(r.recovered?"true":"false")<<" cands="<<r.cands<<" A="<<r.A<<" Base="<<r.Base<<" splitA="<<idx_to_primes(r.Aidx,P)<<" splitBase="<<idx_to_primes(r.Baseidx,P)<<" outer="<<P[r.outer];
+            if(r.recovered) std::cout<<" exps="<<join_vec(r.exps)<<" digits="<<r.digits;
+            std::cout<<"\n";
             return 0;
         }
         for(int k:{5,6,8}){

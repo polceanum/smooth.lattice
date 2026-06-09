@@ -318,6 +318,33 @@ Observed result at commit `f244aeafa0235adbb5f9441d4ff8c01b84e938e4`:
 This supports studying analytic boundary-correction bands, but it also
 reinforces that exact-boundary correctness claims need the interval auditor.
 
+## Analytic Boundary-Correction Band Probe
+
+The next prototype uses the analytic estimate as an actual band center:
+
+```bash
+python3 scripts/run_analytic_band_probe.py
+```
+
+For each target rank, the harness:
+
+1. solves the analytic count equation for `T`;
+2. computes `half_width = rank_radius / analytic_derivative(T)`;
+3. checks the endpoint counts with the current layer counter;
+4. enumerates and exact-sorts the band only if its endpoint count is below the
+   configured candidate cap.
+
+This tests the intended oracle shape:
+
+```text
+analytic count chooses a small correction band;
+exact enumeration recovers the target only inside that band.
+```
+
+The current form is still experimental. Endpoint counts use the floating-log
+layer counter, and recovered vectors still need independent interval auditing
+before supporting correctness claims.
+
 ## Analytic-Bracket Layer Hybrid
 
 The layer-compressed solver now uses a non-MITM analytic seed for large-rank
