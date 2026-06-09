@@ -70,6 +70,13 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   candidates, the k=6 band had 997 candidates, and the k=8 first-eight-primes
   band had 19,853 candidates. Artifact:
   `results/benchmarks/analytic_band_corrected_probe_1e12/`.
+- Certified residual-corrected analytic boundary band probe, same target suite:
+  clean artifact at commit `11687a9ef1b183ff88ce3fea53bca4c281315228`. The
+  audit-aware harness recovered all 8 expected vectors and independently
+  interval-certified all 8 with `certified_count_le=N`. The k=8 first-eight
+  case had a 19,853-candidate corrected band and certified in 18.2 wall seconds
+  on the benchmark machine. Artifact:
+  `results/benchmarks/analytic_band_corrected_certified_probe_1e12/`.
 - Sorted-matrix/range-pruning diagnostic, same six five-prime subsets,
   N=10^12: the range-pruned block counter beat the linear saddleback X+Y count
   in only 2/6 cases, with mean block/linear internal time ratio 1.2765. The

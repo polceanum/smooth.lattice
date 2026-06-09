@@ -417,6 +417,35 @@ k=8. It is still not a proof: endpoint counts use the floating-log layer
 counter, and the recovered vectors must be independently interval-audited before
 supporting correctness claims.
 
+The audit-aware version of the same harness runs
+`bin/smooth_interval_audit_exps` on every recovered vector:
+
+```bash
+python3 scripts/run_analytic_band_corrected_probe.py \
+  --out-dir results/benchmarks/analytic_band_corrected_certified_probe_1e12
+```
+
+Clean certified corrected-band artifact:
+
+```text
+results/benchmarks/analytic_band_corrected_certified_probe_1e12/
+```
+
+Observed result at commit `11687a9ef1b183ff88ce3fea53bca4c281315228`:
+
+- 8/8 targets were inside the corrected analytic band.
+- 8/8 cases were enumerated under the 200,000-candidate cap.
+- 8/8 recovered the expected exponent vector.
+- 8/8 recovered vectors were independently rank-certified by the interval-log
+  auditor with `certified_count_le=N`.
+- The k=8 first-eight-primes case used radius 10,000, had a 19,853-candidate
+  corrected band, and certified in 18.2 wall seconds on the benchmark machine.
+
+This is now certification-grade evidence for this fixed target suite: the
+analytic and floating-log machinery propose and enumerate the candidate, while
+the independent interval auditor supplies the rank certificate. It still does
+not establish a general analytic error bound or a broad best-known claim.
+
 ## Analytic-Bracket Layer Hybrid
 
 The layer-compressed solver now uses a non-MITM analytic seed for large-rank

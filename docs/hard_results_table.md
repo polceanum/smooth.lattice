@@ -63,6 +63,13 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   candidates, the k=6 band had 997 candidates, and the k=8 first-eight-primes
   band had 19,853 candidates. Artifact:
   `results/benchmarks/analytic_band_corrected_probe_1e12/`.
+- Certified residual-corrected analytic boundary band probe, same target suite:
+  clean artifact at commit `11687a9ef1b183ff88ce3fea53bca4c281315228`. The
+  audit-aware harness recovered all 8 expected vectors and independently
+  interval-certified all 8 with `certified_count_le=N`. The k=8 first-eight
+  case had a 19,853-candidate corrected band and certified in 18.2 wall seconds
+  on the benchmark machine. Artifact:
+  `results/benchmarks/analytic_band_corrected_certified_probe_1e12/`.
 - 8 primes, P=(2,3,5,7,11,13,17,19), N=10^12: exps
   [75,28,9,16,3,22,5,1], high-k sums-only solver output independently
   certified with count_le=N by the k<=8 interval auditor. Artifact:
