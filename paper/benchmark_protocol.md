@@ -446,6 +446,58 @@ analytic and floating-log machinery propose and enumerate the candidate, while
 the independent interval auditor supplies the rank certificate. It still does
 not establish a general analytic error bound or a broad best-known claim.
 
+## Corrected-Oracle Random Suite
+
+The next broader suite samples deterministic pseudo-random prime subsets from
+the current audited prime universe `{2,3,5,7,11,13,17,19}` and compares three
+full unrank paths:
+
+1. residual-corrected analytic band plus interval audit;
+2. sums-only MITM;
+3. full materialized X+Y unrank.
+
+The default command is:
+
+```bash
+python3 scripts/run_corrected_oracle_random_suite.py \
+  --out-dir results/benchmarks/corrected_oracle_random_suite_1e9_1e12
+```
+
+The default seed is `20260609`. The default suite uses k=5, k=6, and k=8 cases
+at `N=10^9` and `N=10^12`, taking two pseudo-random subsets per `(k,N)` when
+that many subsets exist. The k=8 row is necessarily the full audited universe.
+
+Pass criteria for a row are deliberately strict:
+
+- the corrected analytic band must recover an exponent vector;
+- the interval auditor must certify that vector with `certified_count_le=N`;
+- sums-only MITM and full materialized X+Y must return the same exponent vector.
+
+Clean random-suite artifact:
+
+```text
+results/benchmarks/corrected_oracle_random_suite_1e9_1e12/
+```
+
+Observed result at commit `e53d69b364d568a49e42784892289a15aeb58742`:
+
+- 10/10 rows completed.
+- 10/10 corrected analytic oracle outputs were independently rank-certified.
+- 10/10 sums-only and full materialized X+Y outputs matched the certified
+  corrected-oracle vector.
+- Corrected oracle used less peak RSS than full materialized X+Y in 10/10 rows,
+  with mean full-X+Y/corrected RSS ratio about 7.90.
+- Wall time was mixed: corrected oracle won 4/10 rows against full materialized
+  X+Y and 3/10 against sums-only MITM. The large k=5, `N=10^12` cases favor the
+  corrected oracle strongly; k=6/k=8 currently favor the simpler MITM baselines
+  in wall time.
+
+This is broader certified evidence that the residual-corrected oracle is a real
+algorithmic path, and it suggests a narrow memory-efficiency claim against full
+materialized X+Y. It is also a negative speed result for the current k=6/k=8
+implementation, so the paper should not present the corrected oracle as a
+general wall-time winner.
+
 ## Analytic-Bracket Layer Hybrid
 
 The layer-compressed solver now uses a non-MITM analytic seed for large-rank

@@ -70,6 +70,14 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   case had a 19,853-candidate corrected band and certified in 18.2 wall seconds
   on the benchmark machine. Artifact:
   `results/benchmarks/analytic_band_corrected_certified_probe_1e12/`.
+- Certified corrected-oracle deterministic random suite: clean artifact at
+  commit `e53d69b364d568a49e42784892289a15aeb58742`. The suite sampled k=5,
+  k=6, and k=8 cases at N=10^9 and N=10^12. All 10 corrected-oracle outputs
+  were independently rank-certified and matched both sums-only MITM and full
+  materialized X+Y unrank. Corrected oracle used less peak RSS than full X+Y in
+  10/10 rows, with mean full-X+Y/corrected RSS ratio about 7.90. Wall-time wins
+  were mixed: 4/10 vs full X+Y and 3/10 vs sums-only. Artifact:
+  `results/benchmarks/corrected_oracle_random_suite_1e9_1e12/`.
 - 8 primes, P=(2,3,5,7,11,13,17,19), N=10^12: exps
   [75,28,9,16,3,22,5,1], high-k sums-only solver output independently
   certified with count_le=N by the k<=8 interval auditor. Artifact:
