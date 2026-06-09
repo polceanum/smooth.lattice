@@ -43,6 +43,16 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   artifact, the mean final layer band fell from 11286.8 to 345.8, and reported
   layer time improved in 5/6 cases. This is an optimization result, not a
   certification result.
+- Analytic lattice-count residual probe, certified k=5/k=6/k=8 target vectors
+  at N=10^12: clean artifact at commit
+  `f244aeafa0235adbb5f9441d4ff8c01b84e938e4`. All 8 probes completed. The six
+  k=5 residuals were within 167 ranks of the certified rank, the k=6 residual
+  was about 453 ranks, and the k=8 first-eight-primes residual was about
+  1.98e6 ranks, or 2e-6 relative. The layer counter matched the certified rank
+  in 6/8 probes and was off by one on two boundary k=5 probes, reinforcing that
+  certified claims must use the interval auditor rather than floating-log layer
+  counts at exact boundaries. Artifact:
+  `results/benchmarks/analytic_count_probe_1e12/`.
 - Sorted-matrix/range-pruning diagnostic, same six five-prime subsets,
   N=10^12: the range-pruned block counter beat the linear saddleback X+Y count
   in only 2/6 cases, with mean block/linear internal time ratio 1.2765. The

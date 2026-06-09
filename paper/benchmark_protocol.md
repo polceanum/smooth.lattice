@@ -299,6 +299,25 @@ the proposed analytic-lattice count oracle. A future oracle would need an error
 envelope and exact boundary correction before it can replace exact counting in a
 published solver.
 
+Clean probe artifact:
+
+```text
+results/benchmarks/analytic_count_probe_1e12/
+```
+
+Observed result at commit `f244aeafa0235adbb5f9441d4ff8c01b84e938e4`:
+
+- 8/8 probes completed.
+- The six k=5 residuals were within 167 ranks at `N=10^12`.
+- The k=6 first-six-primes residual was about 453 ranks.
+- The k=8 first-eight-primes residual was about 1.98e6 ranks, or 2e-6
+  relative.
+- The floating-log layer counter matched the certified rank in 6/8 probes and
+  was off by one on two boundary k=5 probes.
+
+This supports studying analytic boundary-correction bands, but it also
+reinforces that exact-boundary correctness claims need the interval auditor.
+
 ## Analytic-Bracket Layer Hybrid
 
 The layer-compressed solver now uses a non-MITM analytic seed for large-rank

@@ -1,0 +1,887 @@
+{
+  "aggregate": {
+    "cases": 8,
+    "completed_cases": 8,
+    "layer_count_matches_expected": 6,
+    "max_abs_expected_residual": 1979764.706268,
+    "max_abs_relative_residual": 2e-06,
+    "mean_abs_expected_residual": 247583.15563725,
+    "mean_abs_relative_residual": 2.5e-07
+  },
+  "build_runs": [
+    {
+      "command": [
+        "./build.sh"
+      ],
+      "elapsed_seconds": 44.387042389949784,
+      "max_rss_kb": 173460,
+      "metrics": {},
+      "name": "build_core",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Built core kernels in ./bin",
+      "time_raw": "       44.36 real        38.14 user         4.81 sys\n           177623040  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              331449  page reclaims\n               16043  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   1  signals received\n                1778  voluntary context switches\n               51693  involuntary context switches\n            36754450  instructions retired\n           104612347  cycles elapsed\n              716800  peak memory footprint\n"
+    }
+  ],
+  "config": {
+    "cases": [
+      {
+        "N": 1000000000000,
+        "exps": "1052,26,33,53,4",
+        "label": "k5_P2_3_5_7_11",
+        "primes": "2,3,5,7,11"
+      },
+      {
+        "N": 1000000000000,
+        "exps": "205,279,119,131,16",
+        "label": "k5_P2_3_5_7_13",
+        "primes": "2,3,5,7,13"
+      },
+      {
+        "N": 1000000000000,
+        "exps": "254,220,258,4,52",
+        "label": "k5_P2_3_5_11_13",
+        "primes": "2,3,5,11,13"
+      },
+      {
+        "N": 1000000000000,
+        "exps": "291,331,90,84,28",
+        "label": "k5_P2_3_7_11_13",
+        "primes": "2,3,7,11,13"
+      },
+      {
+        "N": 1000000000000,
+        "exps": "106,306,164,53,32",
+        "label": "k5_P2_5_7_11_13",
+        "primes": "2,5,7,11,13"
+      },
+      {
+        "N": 1000000000000,
+        "exps": "273,219,5,219,5",
+        "label": "k5_P3_5_7_11_13",
+        "primes": "3,5,7,11,13"
+      },
+      {
+        "N": 1000000000000,
+        "exps": "55,126,27,54,2,52",
+        "label": "k6_first6",
+        "primes": "2,3,5,7,11,13"
+      },
+      {
+        "N": 1000000000000,
+        "exps": "75,28,9,16,3,22,5,1",
+        "label": "k8_first8",
+        "primes": "2,3,5,7,11,13,17,19"
+      }
+    ]
+  },
+  "metadata": {
+    "compiler": {
+      "cxx": "g++",
+      "cxxflags": "-O3 -std=c++17",
+      "path": "/usr/bin/g++",
+      "version": "Apple clang version 21.0.0 (clang-2100.0.123.102)\nTarget: x86_64-apple-darwin25.4.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin"
+    },
+    "cpu_model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
+    "git_commit": "f244aeafa0235adbb5f9441d4ff8c01b84e938e4",
+    "git_dirty": false,
+    "memory_bytes": 17179869184,
+    "platform": "macOS-26.4.1-x86_64-i386-64bit-Mach-O",
+    "python": "3.13.3",
+    "system": "Darwin",
+    "timestamp_utc": "2026-06-09T14:08:51.981889+00:00"
+  },
+  "runs": [
+    {
+      "command": [
+        "bin/smooth_layer_compressed_general",
+        "count-probe-exps",
+        "2,3,5,7,11",
+        "1052,26,33,53,4",
+        "1000000000000"
+      ],
+      "elapsed_seconds": 1.1449173819855787,
+      "max_rss_kb": 19944,
+      "metrics": {
+        "A": 91837,
+        "Base": 241925,
+        "P": [
+          2,
+          3,
+          5,
+          7,
+          11
+        ],
+        "T": 923.591024,
+        "analytic_count": 1000000000071.0839,
+        "analytic_derivative": 5391076448.621829,
+        "build": 0.117569,
+        "count_phase": 0.06717,
+        "digits": 402,
+        "expected_N": 1000000000000,
+        "exps": [
+          1052,
+          26,
+          33,
+          53,
+          4
+        ],
+        "k": 5,
+        "layer_count": 1000000000000,
+        "outer": 2,
+        "relative_residual": -0.0,
+        "residual_expected_minus_analytic": -71.083878,
+        "residual_layer_minus_analytic": -71.083878,
+        "residual_layer_minus_expected": 0.0,
+        "seconds": 0.184802,
+        "splitA": [
+          7,
+          11
+        ],
+        "splitBase": [
+          3,
+          5
+        ]
+      },
+      "name": "k5_P2_3_5_7_11",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "analytic_count_probe P=(2,3,5,7,11) k=5 exps=[1052,26,33,53,4] digits=402 T=923.591024 seconds=0.184802 build=0.117569 count_phase=0.067170 analytic_count=1000000000071.083862 analytic_derivative=5391076448.621829 layer_count=1000000000000 residual_layer_minus_analytic=-71.083878 relative_residual=-0.000000 expected_N=1000000000000 residual_expected_minus_analytic=-71.083878 residual_layer_minus_expected=0.000000 A=91837 Base=241925 splitA=[7,11] splitBase=[3,5] outer=2",
+      "time_raw": "        1.13 real         0.17 user         0.02 sys\n            20422656  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                5281  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 106  involuntary context switches\n           316225422  instructions retired\n           521796329  cycles elapsed\n            20082688  peak memory footprint\n"
+    },
+    {
+      "command": [
+        "bin/smooth_layer_compressed_general",
+        "count-probe-exps",
+        "2,3,5,7,13",
+        "205,279,119,131,16",
+        "1000000000000"
+      ],
+      "elapsed_seconds": 0.20239368797047064,
+      "max_rss_kb": 20308,
+      "metrics": {
+        "A": 88206,
+        "Base": 248507,
+        "P": [
+          2,
+          3,
+          5,
+          7,
+          13
+        ],
+        "T": 936.084531,
+        "analytic_count": 999999999938.8145,
+        "analytic_derivative": 5318948810.991179,
+        "build": 0.120102,
+        "count_phase": 0.049971,
+        "digits": 407,
+        "expected_N": 1000000000000,
+        "exps": [
+          205,
+          279,
+          119,
+          131,
+          16
+        ],
+        "k": 5,
+        "layer_count": 1000000000000,
+        "outer": 2,
+        "relative_residual": 0.0,
+        "residual_expected_minus_analytic": 61.185536,
+        "residual_layer_minus_analytic": 61.185536,
+        "residual_layer_minus_expected": 0.0,
+        "seconds": 0.170161,
+        "splitA": [
+          7,
+          13
+        ],
+        "splitBase": [
+          3,
+          5
+        ]
+      },
+      "name": "k5_P2_3_5_7_13",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "analytic_count_probe P=(2,3,5,7,13) k=5 exps=[205,279,119,131,16] digits=407 T=936.084531 seconds=0.170161 build=0.120102 count_phase=0.049971 analytic_count=999999999938.814453 analytic_derivative=5318948810.991179 layer_count=1000000000000 residual_layer_minus_analytic=61.185536 relative_residual=0.000000 expected_N=1000000000000 residual_expected_minus_analytic=61.185536 residual_layer_minus_expected=0.000000 A=88206 Base=248507 splitA=[7,13] splitBase=[3,5] outer=2",
+      "time_raw": "        0.19 real         0.16 user         0.01 sys\n            20795392  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                5372  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                  72  involuntary context switches\n           318339834  instructions retired\n           519364786  cycles elapsed\n            20455424  peak memory footprint\n"
+    },
+    {
+      "command": [
+        "bin/smooth_layer_compressed_general",
+        "count-probe-exps",
+        "2,3,5,11,13",
+        "254,220,258,4,52",
+        "1000000000000"
+      ],
+      "elapsed_seconds": 0.25375146500300616,
+      "max_rss_kb": 21584,
+      "metrics": {
+        "A": 77825,
+        "Base": 270095,
+        "P": [
+          2,
+          3,
+          5,
+          11,
+          13
+        ],
+        "T": 975.958016,
+        "analytic_count": 1000000000020.2788,
+        "analytic_derivative": 5101341257.229017,
+        "build": 0.169701,
+        "count_phase": 0.043727,
+        "digits": 424,
+        "expected_N": 1000000000000,
+        "exps": [
+          254,
+          220,
+          258,
+          4,
+          52
+        ],
+        "k": 5,
+        "layer_count": 999999999999,
+        "outer": 2,
+        "relative_residual": -0.0,
+        "residual_expected_minus_analytic": -20.278783,
+        "residual_layer_minus_analytic": -21.278783,
+        "residual_layer_minus_expected": -1.0,
+        "seconds": 0.213511,
+        "splitA": [
+          11,
+          13
+        ],
+        "splitBase": [
+          3,
+          5
+        ]
+      },
+      "name": "k5_P2_3_5_11_13",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "analytic_count_probe P=(2,3,5,11,13) k=5 exps=[254,220,258,4,52] digits=424 T=975.958016 seconds=0.213511 build=0.169701 count_phase=0.043727 analytic_count=1000000000020.278809 analytic_derivative=5101341257.229017 layer_count=999999999999 residual_layer_minus_analytic=-21.278783 relative_residual=-0.000000 expected_N=1000000000000 residual_expected_minus_analytic=-20.278783 residual_layer_minus_expected=-1.000000 A=77825 Base=270095 splitA=[11,13] splitBase=[3,5] outer=2",
+      "time_raw": "        0.23 real         0.19 user         0.02 sys\n            22102016  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                5696  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 142  involuntary context switches\n           343725132  instructions retired\n           562199079  cycles elapsed\n            21749760  peak memory footprint\n"
+    },
+    {
+      "command": [
+        "bin/smooth_layer_compressed_general",
+        "count-probe-exps",
+        "2,3,7,11,13",
+        "291,331,90,84,28",
+        "1000000000000"
+      ],
+      "elapsed_seconds": 0.1977797329891473,
+      "max_rss_kb": 19708,
+      "metrics": {
+        "A": 83950,
+        "Base": 241069,
+        "P": [
+          2,
+          3,
+          7,
+          11,
+          13
+        ],
+        "T": 1013.720195,
+        "analytic_count": 999999999964.8365,
+        "analytic_derivative": 4911279582.834452,
+        "build": 0.134319,
+        "count_phase": 0.03565,
+        "digits": 441,
+        "expected_N": 1000000000000,
+        "exps": [
+          291,
+          331,
+          90,
+          84,
+          28
+        ],
+        "k": 5,
+        "layer_count": 1000000000000,
+        "outer": 2,
+        "relative_residual": 0.0,
+        "residual_expected_minus_analytic": 35.163448,
+        "residual_layer_minus_analytic": 35.163448,
+        "residual_layer_minus_expected": 0.0,
+        "seconds": 0.170038,
+        "splitA": [
+          11,
+          13
+        ],
+        "splitBase": [
+          3,
+          7
+        ]
+      },
+      "name": "k5_P2_3_7_11_13",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "analytic_count_probe P=(2,3,7,11,13) k=5 exps=[291,331,90,84,28] digits=441 T=1013.720195 seconds=0.170038 build=0.134319 count_phase=0.035650 analytic_count=999999999964.836548 analytic_derivative=4911279582.834452 layer_count=1000000000000 residual_layer_minus_analytic=35.163448 relative_residual=0.000000 expected_N=1000000000000 residual_expected_minus_analytic=35.163448 residual_layer_minus_expected=0.000000 A=83950 Base=241069 splitA=[11,13] splitBase=[3,7] outer=2",
+      "time_raw": "        0.18 real         0.16 user         0.01 sys\n            20180992  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                5222  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 142  involuntary context switches\n           310287008  instructions retired\n           501048272  cycles elapsed\n            19841024  peak memory footprint\n"
+    },
+    {
+      "command": [
+        "bin/smooth_layer_compressed_general",
+        "count-probe-exps",
+        "2,5,7,11,13",
+        "106,306,164,53,32",
+        "1000000000000"
+      ],
+      "elapsed_seconds": 0.16095931601012126,
+      "max_rss_kb": 16548,
+      "metrics": {
+        "A": 97784,
+        "Base": 191789,
+        "P": [
+          2,
+          5,
+          7,
+          11,
+          13
+        ],
+        "T": 1094.257696,
+        "analytic_count": 1000000000166.3885,
+        "analytic_derivative": 4550180340.370217,
+        "build": 0.100699,
+        "count_phase": 0.036424,
+        "digits": 476,
+        "expected_N": 1000000000000,
+        "exps": [
+          106,
+          306,
+          164,
+          53,
+          32
+        ],
+        "k": 5,
+        "layer_count": 1000000000000,
+        "outer": 2,
+        "relative_residual": -0.0,
+        "residual_expected_minus_analytic": -166.388496,
+        "residual_layer_minus_analytic": -166.388496,
+        "residual_layer_minus_expected": 0.0,
+        "seconds": 0.137243,
+        "splitA": [
+          11,
+          13
+        ],
+        "splitBase": [
+          5,
+          7
+        ]
+      },
+      "name": "k5_P2_5_7_11_13",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "analytic_count_probe P=(2,5,7,11,13) k=5 exps=[106,306,164,53,32] digits=476 T=1094.257696 seconds=0.137243 build=0.100699 count_phase=0.036424 analytic_count=1000000000166.388550 analytic_derivative=4550180340.370217 layer_count=1000000000000 residual_layer_minus_analytic=-166.388496 relative_residual=-0.000000 expected_N=1000000000000 residual_expected_minus_analytic=-166.388496 residual_layer_minus_expected=0.000000 A=97784 Base=191789 splitA=[11,13] splitBase=[5,7] outer=2",
+      "time_raw": "        0.15 real         0.12 user         0.01 sys\n            16945152  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                4432  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                  86  involuntary context switches\n           262872424  instructions retired\n           406890596  cycles elapsed\n            16605184  peak memory footprint\n"
+    },
+    {
+      "command": [
+        "bin/smooth_layer_compressed_general",
+        "count-probe-exps",
+        "3,5,7,11,13",
+        "273,219,5,219,5",
+        "1000000000000"
+      ],
+      "elapsed_seconds": 0.17208465095609426,
+      "max_rss_kb": 19728,
+      "metrics": {
+        "A": 117565,
+        "Base": 230611,
+        "P": [
+          3,
+          5,
+          7,
+          11,
+          13
+        ],
+        "T": 1200.08142,
+        "analytic_count": 1000000000093.6122,
+        "analytic_derivative": 4149775994.535069,
+        "build": 0.103515,
+        "count_phase": 0.043854,
+        "digits": 522,
+        "expected_N": 1000000000000,
+        "exps": [
+          273,
+          219,
+          5,
+          219,
+          5
+        ],
+        "k": 5,
+        "layer_count": 999999999999,
+        "outer": 3,
+        "relative_residual": -0.0,
+        "residual_expected_minus_analytic": -93.612146,
+        "residual_layer_minus_analytic": -94.612146,
+        "residual_layer_minus_expected": -1.0,
+        "seconds": 0.147425,
+        "splitA": [
+          11,
+          13
+        ],
+        "splitBase": [
+          5,
+          7
+        ]
+      },
+      "name": "k5_P3_5_7_11_13",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "analytic_count_probe P=(3,5,7,11,13) k=5 exps=[273,219,5,219,5] digits=522 T=1200.081420 seconds=0.147425 build=0.103515 count_phase=0.043854 analytic_count=1000000000093.612183 analytic_derivative=4149775994.535069 layer_count=999999999999 residual_layer_minus_analytic=-94.612146 relative_residual=-0.000000 expected_N=1000000000000 residual_expected_minus_analytic=-93.612146 residual_layer_minus_expected=-1.000000 A=117565 Base=230611 splitA=[11,13] splitBase=[5,7] outer=3",
+      "time_raw": "        0.15 real         0.13 user         0.01 sys\n            20201472  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                5227  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                  56  involuntary context switches\n           314766253  instructions retired\n           445793749  cycles elapsed\n            19849216  peak memory footprint\n"
+    },
+    {
+      "command": [
+        "bin/smooth_layer_compressed_general",
+        "count-probe-exps",
+        "2,3,5,7,11,13",
+        "55,126,27,54,2,52",
+        "1000000000000"
+      ],
+      "elapsed_seconds": 1.4301922040176578,
+      "max_rss_kb": 101756,
+      "metrics": {
+        "A": 61042,
+        "Base": 1415628,
+        "P": [
+          2,
+          3,
+          5,
+          7,
+          11,
+          13
+        ],
+        "T": 463.255372,
+        "analytic_count": 999999999547.1735,
+        "analytic_derivative": 12809777586.262388,
+        "build": 1.204753,
+        "count_phase": 0.172729,
+        "digits": 202,
+        "expected_N": 1000000000000,
+        "exps": [
+          55,
+          126,
+          27,
+          54,
+          2,
+          52
+        ],
+        "k": 6,
+        "layer_count": 1000000000000,
+        "outer": 2,
+        "relative_residual": 0.0,
+        "residual_expected_minus_analytic": 452.826543,
+        "residual_layer_minus_analytic": 452.826543,
+        "residual_layer_minus_expected": 0.0,
+        "seconds": 1.377602,
+        "splitA": [
+          3,
+          5
+        ],
+        "splitBase": [
+          7,
+          11,
+          13
+        ]
+      },
+      "name": "k6_first6",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "analytic_count_probe P=(2,3,5,7,11,13) k=6 exps=[55,126,27,54,2,52] digits=202 T=463.255372 seconds=1.377602 build=1.204753 count_phase=0.172729 analytic_count=999999999547.173462 analytic_derivative=12809777586.262388 layer_count=1000000000000 residual_layer_minus_analytic=452.826543 relative_residual=0.000000 expected_N=1000000000000 residual_expected_minus_analytic=452.826543 residual_layer_minus_expected=0.000000 A=61042 Base=1415628 splitA=[3,5] splitBase=[7,11,13] outer=2",
+      "time_raw": "        1.42 real         1.27 user         0.11 sys\n           104198144  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               25735  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                1236  involuntary context switches\n          1825309954  instructions retired\n          3171813103  cycles elapsed\n           103845888  peak memory footprint\n"
+    },
+    {
+      "command": [
+        "bin/smooth_layer_compressed_general",
+        "count-probe-exps",
+        "2,3,5,7,11,13,17,19",
+        "75,28,9,16,3,22,5,1",
+        "1000000000000"
+      ],
+      "elapsed_seconds": 1.5996382519952022,
+      "max_rss_kb": 132224,
+      "metrics": {
+        "A": 457792,
+        "Base": 1717623,
+        "P": [
+          2,
+          3,
+          5,
+          7,
+          11,
+          13,
+          17,
+          19
+        ],
+        "T": 209.099764,
+        "analytic_count": 999998020235.2937,
+        "analytic_derivative": 36858875270.84981,
+        "build": 1.121599,
+        "count_phase": 0.422783,
+        "digits": 91,
+        "expected_N": 1000000000000,
+        "exps": [
+          75,
+          28,
+          9,
+          16,
+          3,
+          22,
+          5,
+          1
+        ],
+        "k": 8,
+        "layer_count": 1000000000000,
+        "outer": 2,
+        "relative_residual": 2e-06,
+        "residual_expected_minus_analytic": 1979764.706268,
+        "residual_layer_minus_analytic": 1979764.706268,
+        "residual_layer_minus_expected": 0.0,
+        "seconds": 1.544812,
+        "splitA": [
+          3,
+          5,
+          7
+        ],
+        "splitBase": [
+          11,
+          13,
+          17,
+          19
+        ]
+      },
+      "name": "k8_first8",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "analytic_count_probe P=(2,3,5,7,11,13,17,19) k=8 exps=[75,28,9,16,3,22,5,1] digits=91 T=209.099764 seconds=1.544812 build=1.121599 count_phase=0.422783 analytic_count=999998020235.293701 analytic_derivative=36858875270.849808 layer_count=1000000000000 residual_layer_minus_analytic=1979764.706268 relative_residual=0.000002 expected_N=1000000000000 residual_expected_minus_analytic=1979764.706268 residual_layer_minus_expected=0.000000 A=457792 Base=1717623 splitA=[3,5,7] splitBase=[11,13,17,19] outer=2",
+      "time_raw": "        1.59 real         1.43 user         0.12 sys\n           135397376  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               33361  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                1141  involuntary context switches\n          2643421849  instructions retired\n          3867581911  cycles elapsed\n           135106560  peak memory footprint\n"
+    }
+  ],
+  "schema": "smooth.lattice.analytic_count_probe.v1",
+  "summary_rows": [
+    {
+      "A": 91837,
+      "Base": 241925,
+      "N": 1000000000000,
+      "T": 923.591024,
+      "analytic_count": 1000000000071.0839,
+      "analytic_derivative": 5391076448.621829,
+      "build_seconds": 0.117569,
+      "count_phase_seconds": 0.06717,
+      "digits": 402,
+      "expected_N": 1000000000000,
+      "exps": [
+        1052,
+        26,
+        33,
+        53,
+        4
+      ],
+      "k": 5,
+      "label": "k5_P2_3_5_7_11",
+      "layer_count": 1000000000000,
+      "outer": 2,
+      "primes": "2,3,5,7,11",
+      "relative_residual": -0.0,
+      "reported_seconds": 0.184802,
+      "residual_expected_minus_analytic": -71.083878,
+      "residual_layer_minus_analytic": -71.083878,
+      "residual_layer_minus_expected": 0.0,
+      "returncode": 0,
+      "splitA": [
+        7,
+        11
+      ],
+      "splitBase": [
+        3,
+        5
+      ],
+      "wall_seconds": 1.1449173819855787
+    },
+    {
+      "A": 88206,
+      "Base": 248507,
+      "N": 1000000000000,
+      "T": 936.084531,
+      "analytic_count": 999999999938.8145,
+      "analytic_derivative": 5318948810.991179,
+      "build_seconds": 0.120102,
+      "count_phase_seconds": 0.049971,
+      "digits": 407,
+      "expected_N": 1000000000000,
+      "exps": [
+        205,
+        279,
+        119,
+        131,
+        16
+      ],
+      "k": 5,
+      "label": "k5_P2_3_5_7_13",
+      "layer_count": 1000000000000,
+      "outer": 2,
+      "primes": "2,3,5,7,13",
+      "relative_residual": 0.0,
+      "reported_seconds": 0.170161,
+      "residual_expected_minus_analytic": 61.185536,
+      "residual_layer_minus_analytic": 61.185536,
+      "residual_layer_minus_expected": 0.0,
+      "returncode": 0,
+      "splitA": [
+        7,
+        13
+      ],
+      "splitBase": [
+        3,
+        5
+      ],
+      "wall_seconds": 0.20239368797047064
+    },
+    {
+      "A": 77825,
+      "Base": 270095,
+      "N": 1000000000000,
+      "T": 975.958016,
+      "analytic_count": 1000000000020.2788,
+      "analytic_derivative": 5101341257.229017,
+      "build_seconds": 0.169701,
+      "count_phase_seconds": 0.043727,
+      "digits": 424,
+      "expected_N": 1000000000000,
+      "exps": [
+        254,
+        220,
+        258,
+        4,
+        52
+      ],
+      "k": 5,
+      "label": "k5_P2_3_5_11_13",
+      "layer_count": 999999999999,
+      "outer": 2,
+      "primes": "2,3,5,11,13",
+      "relative_residual": -0.0,
+      "reported_seconds": 0.213511,
+      "residual_expected_minus_analytic": -20.278783,
+      "residual_layer_minus_analytic": -21.278783,
+      "residual_layer_minus_expected": -1.0,
+      "returncode": 0,
+      "splitA": [
+        11,
+        13
+      ],
+      "splitBase": [
+        3,
+        5
+      ],
+      "wall_seconds": 0.25375146500300616
+    },
+    {
+      "A": 83950,
+      "Base": 241069,
+      "N": 1000000000000,
+      "T": 1013.720195,
+      "analytic_count": 999999999964.8365,
+      "analytic_derivative": 4911279582.834452,
+      "build_seconds": 0.134319,
+      "count_phase_seconds": 0.03565,
+      "digits": 441,
+      "expected_N": 1000000000000,
+      "exps": [
+        291,
+        331,
+        90,
+        84,
+        28
+      ],
+      "k": 5,
+      "label": "k5_P2_3_7_11_13",
+      "layer_count": 1000000000000,
+      "outer": 2,
+      "primes": "2,3,7,11,13",
+      "relative_residual": 0.0,
+      "reported_seconds": 0.170038,
+      "residual_expected_minus_analytic": 35.163448,
+      "residual_layer_minus_analytic": 35.163448,
+      "residual_layer_minus_expected": 0.0,
+      "returncode": 0,
+      "splitA": [
+        11,
+        13
+      ],
+      "splitBase": [
+        3,
+        7
+      ],
+      "wall_seconds": 0.1977797329891473
+    },
+    {
+      "A": 97784,
+      "Base": 191789,
+      "N": 1000000000000,
+      "T": 1094.257696,
+      "analytic_count": 1000000000166.3885,
+      "analytic_derivative": 4550180340.370217,
+      "build_seconds": 0.100699,
+      "count_phase_seconds": 0.036424,
+      "digits": 476,
+      "expected_N": 1000000000000,
+      "exps": [
+        106,
+        306,
+        164,
+        53,
+        32
+      ],
+      "k": 5,
+      "label": "k5_P2_5_7_11_13",
+      "layer_count": 1000000000000,
+      "outer": 2,
+      "primes": "2,5,7,11,13",
+      "relative_residual": -0.0,
+      "reported_seconds": 0.137243,
+      "residual_expected_minus_analytic": -166.388496,
+      "residual_layer_minus_analytic": -166.388496,
+      "residual_layer_minus_expected": 0.0,
+      "returncode": 0,
+      "splitA": [
+        11,
+        13
+      ],
+      "splitBase": [
+        5,
+        7
+      ],
+      "wall_seconds": 0.16095931601012126
+    },
+    {
+      "A": 117565,
+      "Base": 230611,
+      "N": 1000000000000,
+      "T": 1200.08142,
+      "analytic_count": 1000000000093.6122,
+      "analytic_derivative": 4149775994.535069,
+      "build_seconds": 0.103515,
+      "count_phase_seconds": 0.043854,
+      "digits": 522,
+      "expected_N": 1000000000000,
+      "exps": [
+        273,
+        219,
+        5,
+        219,
+        5
+      ],
+      "k": 5,
+      "label": "k5_P3_5_7_11_13",
+      "layer_count": 999999999999,
+      "outer": 3,
+      "primes": "3,5,7,11,13",
+      "relative_residual": -0.0,
+      "reported_seconds": 0.147425,
+      "residual_expected_minus_analytic": -93.612146,
+      "residual_layer_minus_analytic": -94.612146,
+      "residual_layer_minus_expected": -1.0,
+      "returncode": 0,
+      "splitA": [
+        11,
+        13
+      ],
+      "splitBase": [
+        5,
+        7
+      ],
+      "wall_seconds": 0.17208465095609426
+    },
+    {
+      "A": 61042,
+      "Base": 1415628,
+      "N": 1000000000000,
+      "T": 463.255372,
+      "analytic_count": 999999999547.1735,
+      "analytic_derivative": 12809777586.262388,
+      "build_seconds": 1.204753,
+      "count_phase_seconds": 0.172729,
+      "digits": 202,
+      "expected_N": 1000000000000,
+      "exps": [
+        55,
+        126,
+        27,
+        54,
+        2,
+        52
+      ],
+      "k": 6,
+      "label": "k6_first6",
+      "layer_count": 1000000000000,
+      "outer": 2,
+      "primes": "2,3,5,7,11,13",
+      "relative_residual": 0.0,
+      "reported_seconds": 1.377602,
+      "residual_expected_minus_analytic": 452.826543,
+      "residual_layer_minus_analytic": 452.826543,
+      "residual_layer_minus_expected": 0.0,
+      "returncode": 0,
+      "splitA": [
+        3,
+        5
+      ],
+      "splitBase": [
+        7,
+        11,
+        13
+      ],
+      "wall_seconds": 1.4301922040176578
+    },
+    {
+      "A": 457792,
+      "Base": 1717623,
+      "N": 1000000000000,
+      "T": 209.099764,
+      "analytic_count": 999998020235.2937,
+      "analytic_derivative": 36858875270.84981,
+      "build_seconds": 1.121599,
+      "count_phase_seconds": 0.422783,
+      "digits": 91,
+      "expected_N": 1000000000000,
+      "exps": [
+        75,
+        28,
+        9,
+        16,
+        3,
+        22,
+        5,
+        1
+      ],
+      "k": 8,
+      "label": "k8_first8",
+      "layer_count": 1000000000000,
+      "outer": 2,
+      "primes": "2,3,5,7,11,13,17,19",
+      "relative_residual": 2e-06,
+      "reported_seconds": 1.544812,
+      "residual_expected_minus_analytic": 1979764.706268,
+      "residual_layer_minus_analytic": 1979764.706268,
+      "residual_layer_minus_expected": 0.0,
+      "returncode": 0,
+      "splitA": [
+        3,
+        5,
+        7
+      ],
+      "splitBase": [
+        11,
+        13,
+        17,
+        19
+      ],
+      "wall_seconds": 1.5996382519952022
+    }
+  ]
+}
