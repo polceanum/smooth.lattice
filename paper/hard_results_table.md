@@ -53,6 +53,14 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   certified claims must use the interval auditor rather than floating-log layer
   counts at exact boundaries. Artifact:
   `results/benchmarks/analytic_count_probe_1e12/`.
+- Analytic boundary-correction band probe, same certified k=5/k=6/k=8 target
+  ranks at N=10^12: clean artifact at commit
+  `4bd49bec50aab80c87e599438f325f55814e6222`. All 8 targets were inside the
+  analytic band. The six k=5 cases recovered the expected vector from bands of
+  1980-2032 candidates; the k=6 case recovered from a band of 4005 candidates.
+  The k=8 first-eight-primes target was inside the band, but the band contained
+  5,000,120 candidates and was not enumerated under the 200,000-candidate cap.
+  Artifact: `results/benchmarks/analytic_band_probe_1e12/`.
 - Sorted-matrix/range-pruning diagnostic, same six five-prime subsets,
   N=10^12: the range-pruned block counter beat the linear saddleback X+Y count
   in only 2/6 cases, with mean block/linear internal time ratio 1.2765. The

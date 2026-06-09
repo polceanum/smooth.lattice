@@ -1,0 +1,1056 @@
+{
+  "aggregate": {
+    "cases": 8,
+    "completed_cases": 8,
+    "enumerated_cases": 7,
+    "max_band_count": 5000120,
+    "mean_band_count": 627014.625,
+    "recovered_cases": 7,
+    "recovered_expected_cases": 7,
+    "target_inside_cases": 8
+  },
+  "build_runs": [
+    {
+      "command": [
+        "./build.sh"
+      ],
+      "elapsed_seconds": 23.26027393899858,
+      "max_rss_kb": 176908,
+      "metrics": {},
+      "name": "build_core",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Built core kernels in ./bin",
+      "time_raw": "       23.25 real        21.69 user         1.75 sys\n           181153792  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              344195  page reclaims\n                3832  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   1  signals received\n                  80  voluntary context switches\n               12438  involuntary context switches\n            32479643  instructions retired\n            41053747  cycles elapsed\n              626688  peak memory footprint\n"
+    }
+  ],
+  "config": {
+    "cases": [
+      {
+        "N": 1000000000000,
+        "expected_exps": "1052,26,33,53,4",
+        "label": "k5_P2_3_5_7_11",
+        "max_candidates": 200000,
+        "primes": "2,3,5,7,11",
+        "rank_radius": 1000
+      },
+      {
+        "N": 1000000000000,
+        "expected_exps": "205,279,119,131,16",
+        "label": "k5_P2_3_5_7_13",
+        "max_candidates": 200000,
+        "primes": "2,3,5,7,13",
+        "rank_radius": 1000
+      },
+      {
+        "N": 1000000000000,
+        "expected_exps": "254,220,258,4,52",
+        "label": "k5_P2_3_5_11_13",
+        "max_candidates": 200000,
+        "primes": "2,3,5,11,13",
+        "rank_radius": 1000
+      },
+      {
+        "N": 1000000000000,
+        "expected_exps": "291,331,90,84,28",
+        "label": "k5_P2_3_7_11_13",
+        "max_candidates": 200000,
+        "primes": "2,3,7,11,13",
+        "rank_radius": 1000
+      },
+      {
+        "N": 1000000000000,
+        "expected_exps": "106,306,164,53,32",
+        "label": "k5_P2_5_7_11_13",
+        "max_candidates": 200000,
+        "primes": "2,5,7,11,13",
+        "rank_radius": 1000
+      },
+      {
+        "N": 1000000000000,
+        "expected_exps": "273,219,5,219,5",
+        "label": "k5_P3_5_7_11_13",
+        "max_candidates": 200000,
+        "primes": "3,5,7,11,13",
+        "rank_radius": 1000
+      },
+      {
+        "N": 1000000000000,
+        "expected_exps": "55,126,27,54,2,52",
+        "label": "k6_first6",
+        "max_candidates": 200000,
+        "primes": "2,3,5,7,11,13",
+        "rank_radius": 2000
+      },
+      {
+        "N": 1000000000000,
+        "expected_exps": "75,28,9,16,3,22,5,1",
+        "label": "k8_first8",
+        "max_candidates": 200000,
+        "primes": "2,3,5,7,11,13,17,19",
+        "rank_radius": 2500000
+      }
+    ]
+  },
+  "metadata": {
+    "compiler": {
+      "cxx": "g++",
+      "cxxflags": "-O3 -std=c++17",
+      "path": "/usr/bin/g++",
+      "version": "Apple clang version 21.0.0 (clang-2100.0.123.102)\nTarget: x86_64-apple-darwin25.4.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin"
+    },
+    "cpu_model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
+    "git_commit": "4bd49bec50aab80c87e599438f325f55814e6222",
+    "git_dirty": false,
+    "memory_bytes": 17179869184,
+    "platform": "macOS-26.4.1-x86_64-i386-64bit-Mach-O",
+    "python": "3.13.3",
+    "system": "Darwin",
+    "timestamp_utc": "2026-06-09T19:13:32.981117+00:00"
+  },
+  "runs": [
+    {
+      "command": [
+        "bin/smooth_layer_compressed_general",
+        "analytic-band",
+        "2,3,5,7,11",
+        "1000000000000",
+        "1000",
+        "200000"
+      ],
+      "elapsed_seconds": 0.6235779759590514,
+      "max_rss_kb": 22804,
+      "metrics": {
+        "A": 91837,
+        "Base": 241925,
+        "H": 923.591024,
+        "L": 923.591023,
+        "N": 1000000000000,
+        "P": [
+          2,
+          3,
+          5,
+          7,
+          11
+        ],
+        "T": 923.591024,
+        "above": 1000000000934,
+        "band_count": 1989,
+        "band_phase": 0.047433,
+        "below": 999999998945,
+        "build": 0.075647,
+        "cands": 1989,
+        "count_phase": 0.045369,
+        "derivative": 5391076448.315256,
+        "digits": 402,
+        "enumerated": true,
+        "exact": 0.008501,
+        "exps": [
+          1052,
+          26,
+          33,
+          53,
+          4
+        ],
+        "half_width": 1.854917120147e-07,
+        "k": 5,
+        "outer": 2,
+        "rank_radius": 1000.0,
+        "recovered": true,
+        "seconds": 0.177471,
+        "splitA": [
+          7,
+          11
+        ],
+        "splitBase": [
+          3,
+          5
+        ],
+        "target_inside": true
+      },
+      "name": "k5_P2_3_5_7_11",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "analytic_band P=(2,3,5,7,11) k=5 N=1000000000000 seconds=0.177471 build=0.075647 count_phase=0.045369 band_phase=0.047433 exact=0.008501 T=923.591024 derivative=5391076448.315256 rank_radius=1000.000000 half_width=1.854917120147e-07 L=923.591023 H=923.591024 below=999999998945 above=1000000000934 band_count=1989 target_inside=true enumerated=true recovered=true cands=1989 A=91837 Base=241925 splitA=[7,11] splitBase=[3,5] outer=2 exps=[1052,26,33,53,4] digits=402",
+      "time_raw": "        0.61 real         0.17 user         0.01 sys\n            23351296  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                5996  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                  89  involuntary context switches\n           525122234  instructions retired\n           651098808  cycles elapsed\n            22970368  peak memory footprint\n"
+    },
+    {
+      "command": [
+        "bin/smooth_layer_compressed_general",
+        "analytic-band",
+        "2,3,5,7,13",
+        "1000000000000",
+        "1000",
+        "200000"
+      ],
+      "elapsed_seconds": 0.19569104601396248,
+      "max_rss_kb": 23236,
+      "metrics": {
+        "A": 88206,
+        "Base": 248507,
+        "H": 936.084532,
+        "L": 936.084531,
+        "N": 1000000000000,
+        "P": [
+          2,
+          3,
+          5,
+          7,
+          13
+        ],
+        "T": 936.084531,
+        "above": 1000000001045,
+        "band_count": 1980,
+        "band_phase": 0.048994,
+        "below": 999999999065,
+        "build": 0.080123,
+        "cands": 1980,
+        "count_phase": 0.041111,
+        "derivative": 5318948811.251533,
+        "digits": 407,
+        "enumerated": true,
+        "exact": 0.008307,
+        "exps": [
+          205,
+          279,
+          119,
+          131,
+          16
+        ],
+        "half_width": 1.880070734813e-07,
+        "k": 5,
+        "outer": 2,
+        "rank_radius": 1000.0,
+        "recovered": true,
+        "seconds": 0.179086,
+        "splitA": [
+          7,
+          13
+        ],
+        "splitBase": [
+          3,
+          5
+        ],
+        "target_inside": true
+      },
+      "name": "k5_P2_3_5_7_13",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "analytic_band P=(2,3,5,7,13) k=5 N=1000000000000 seconds=0.179086 build=0.080123 count_phase=0.041111 band_phase=0.048994 exact=0.008307 T=936.084531 derivative=5318948811.251533 rank_radius=1000.000000 half_width=1.880070734813e-07 L=936.084531 H=936.084532 below=999999999065 above=1000000001045 band_count=1980 target_inside=true enumerated=true recovered=true cands=1980 A=88206 Base=248507 splitA=[7,13] splitBase=[3,5] outer=2 exps=[205,279,119,131,16] digits=407",
+      "time_raw": "        0.18 real         0.17 user         0.01 sys\n            23793664  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                6104  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                  86  involuntary context switches\n           526227423  instructions retired\n           648778598  cycles elapsed\n            23412736  peak memory footprint\n"
+    },
+    {
+      "command": [
+        "bin/smooth_layer_compressed_general",
+        "analytic-band",
+        "2,3,5,11,13",
+        "1000000000000",
+        "1000",
+        "200000"
+      ],
+      "elapsed_seconds": 0.22286649799207225,
+      "max_rss_kb": 24724,
+      "metrics": {
+        "A": 77825,
+        "Base": 270095,
+        "H": 975.958017,
+        "L": 975.958016,
+        "N": 1000000000000,
+        "P": [
+          2,
+          3,
+          5,
+          11,
+          13
+        ],
+        "T": 975.958016,
+        "above": 1000000000967,
+        "band_count": 2001,
+        "band_phase": 0.05062,
+        "below": 999999998966,
+        "build": 0.088516,
+        "cands": 2001,
+        "count_phase": 0.047393,
+        "derivative": 5101341257.146258,
+        "digits": 424,
+        "enumerated": true,
+        "exact": 0.011735,
+        "exps": [
+          254,
+          220,
+          258,
+          4,
+          52
+        ],
+        "half_width": 1.960268779508e-07,
+        "k": 5,
+        "outer": 2,
+        "rank_radius": 1000.0,
+        "recovered": true,
+        "seconds": 0.199142,
+        "splitA": [
+          11,
+          13
+        ],
+        "splitBase": [
+          3,
+          5
+        ],
+        "target_inside": true
+      },
+      "name": "k5_P2_3_5_11_13",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "analytic_band P=(2,3,5,11,13) k=5 N=1000000000000 seconds=0.199142 build=0.088516 count_phase=0.047393 band_phase=0.050620 exact=0.011735 T=975.958016 derivative=5101341257.146258 rank_radius=1000.000000 half_width=1.960268779508e-07 L=975.958016 H=975.958017 below=999999998966 above=1000000000967 band_count=2001 target_inside=true enumerated=true recovered=true cands=2001 A=77825 Base=270095 splitA=[11,13] splitBase=[3,5] outer=2 exps=[254,220,258,4,52] digits=424",
+      "time_raw": "        0.21 real         0.19 user         0.01 sys\n            25317376  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                6476  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 121  involuntary context switches\n           554616738  instructions retired\n           723060838  cycles elapsed\n            24936448  peak memory footprint\n"
+    },
+    {
+      "command": [
+        "bin/smooth_layer_compressed_general",
+        "analytic-band",
+        "2,3,7,11,13",
+        "1000000000000",
+        "1000",
+        "200000"
+      ],
+      "elapsed_seconds": 0.21026756399078295,
+      "max_rss_kb": 22604,
+      "metrics": {
+        "A": 83950,
+        "Base": 241069,
+        "H": 1013.720196,
+        "L": 1013.720195,
+        "N": 1000000000000,
+        "P": [
+          2,
+          3,
+          7,
+          11,
+          13
+        ],
+        "T": 1013.720195,
+        "above": 1000000001057,
+        "band_count": 2032,
+        "band_phase": 0.046692,
+        "below": 999999999025,
+        "build": 0.095676,
+        "cands": 2032,
+        "count_phase": 0.044632,
+        "derivative": 4911279582.97261,
+        "digits": 441,
+        "enumerated": true,
+        "exact": 0.008149,
+        "exps": [
+          291,
+          331,
+          90,
+          84,
+          28
+        ],
+        "half_width": 2.036129247186e-07,
+        "k": 5,
+        "outer": 2,
+        "rank_radius": 1000.0,
+        "recovered": true,
+        "seconds": 0.195672,
+        "splitA": [
+          11,
+          13
+        ],
+        "splitBase": [
+          3,
+          7
+        ],
+        "target_inside": true
+      },
+      "name": "k5_P2_3_7_11_13",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "analytic_band P=(2,3,7,11,13) k=5 N=1000000000000 seconds=0.195672 build=0.095676 count_phase=0.044632 band_phase=0.046692 exact=0.008149 T=1013.720195 derivative=4911279582.972610 rank_radius=1000.000000 half_width=2.036129247186e-07 L=1013.720195 H=1013.720196 below=999999999025 above=1000000001057 band_count=2032 target_inside=true enumerated=true recovered=true cands=2032 A=83950 Base=241069 splitA=[11,13] splitBase=[3,7] outer=2 exps=[291,331,90,84,28] digits=441",
+      "time_raw": "        0.20 real         0.18 user         0.01 sys\n            23146496  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                5946  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 103  involuntary context switches\n           514609627  instructions retired\n           661774271  cycles elapsed\n            22765568  peak memory footprint\n"
+    },
+    {
+      "command": [
+        "bin/smooth_layer_compressed_general",
+        "analytic-band",
+        "2,5,7,11,13",
+        "1000000000000",
+        "1000",
+        "200000"
+      ],
+      "elapsed_seconds": 0.1761074949754402,
+      "max_rss_kb": 19092,
+      "metrics": {
+        "A": 97784,
+        "Base": 191789,
+        "H": 1094.257696,
+        "L": 1094.257695,
+        "N": 1000000000000,
+        "P": [
+          2,
+          5,
+          7,
+          11,
+          13
+        ],
+        "T": 1094.257696,
+        "above": 1000000000836,
+        "band_count": 1988,
+        "band_phase": 0.045171,
+        "below": 999999998848,
+        "build": 0.062176,
+        "cands": 1988,
+        "count_phase": 0.044066,
+        "derivative": 4550180339.764542,
+        "digits": 476,
+        "enumerated": true,
+        "exact": 0.01032,
+        "exps": [
+          106,
+          306,
+          164,
+          53,
+          32
+        ],
+        "half_width": 2.197715091116e-07,
+        "k": 5,
+        "outer": 2,
+        "rank_radius": 1000.0,
+        "recovered": true,
+        "seconds": 0.162604,
+        "splitA": [
+          11,
+          13
+        ],
+        "splitBase": [
+          5,
+          7
+        ],
+        "target_inside": true
+      },
+      "name": "k5_P2_5_7_11_13",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "analytic_band P=(2,5,7,11,13) k=5 N=1000000000000 seconds=0.162604 build=0.062176 count_phase=0.044066 band_phase=0.045171 exact=0.010320 T=1094.257696 derivative=4550180339.764542 rank_radius=1000.000000 half_width=2.197715091116e-07 L=1094.257695 H=1094.257696 below=999999998848 above=1000000000836 band_count=1988 target_inside=true enumerated=true recovered=true cands=1988 A=97784 Base=191789 splitA=[11,13] splitBase=[5,7] outer=2 exps=[106,306,164,53,32] digits=476",
+      "time_raw": "        0.17 real         0.15 user         0.01 sys\n            19550208  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                5068  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                  61  involuntary context switches\n           470114761  instructions retired\n           600131339  cycles elapsed\n            19156992  peak memory footprint\n"
+    },
+    {
+      "command": [
+        "bin/smooth_layer_compressed_general",
+        "analytic-band",
+        "3,5,7,11,13",
+        "1000000000000",
+        "1000",
+        "200000"
+      ],
+      "elapsed_seconds": 0.19722794101107866,
+      "max_rss_kb": 22664,
+      "metrics": {
+        "A": 117565,
+        "Base": 230611,
+        "H": 1200.08142,
+        "L": 1200.08142,
+        "N": 1000000000000,
+        "P": [
+          3,
+          5,
+          7,
+          11,
+          13
+        ],
+        "T": 1200.08142,
+        "above": 1000000000923,
+        "band_count": 2002,
+        "band_phase": 0.052843,
+        "below": 999999998921,
+        "build": 0.072349,
+        "cands": 2002,
+        "count_phase": 0.04772,
+        "derivative": 4149775994.224293,
+        "digits": 522,
+        "enumerated": true,
+        "exact": 0.010202,
+        "exps": [
+          273,
+          219,
+          5,
+          219,
+          5
+        ],
+        "half_width": 2.40976862701e-07,
+        "k": 5,
+        "outer": 3,
+        "rank_radius": 1000.0,
+        "recovered": true,
+        "seconds": 0.183732,
+        "splitA": [
+          11,
+          13
+        ],
+        "splitBase": [
+          5,
+          7
+        ],
+        "target_inside": true
+      },
+      "name": "k5_P3_5_7_11_13",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "analytic_band P=(3,5,7,11,13) k=5 N=1000000000000 seconds=0.183732 build=0.072349 count_phase=0.047720 band_phase=0.052843 exact=0.010202 T=1200.081420 derivative=4149775994.224293 rank_radius=1000.000000 half_width=2.409768627010e-07 L=1200.081420 H=1200.081420 below=999999998921 above=1000000000923 band_count=2002 target_inside=true enumerated=true recovered=true cands=2002 A=117565 Base=230611 splitA=[11,13] splitBase=[5,7] outer=3 exps=[273,219,5,219,5] digits=522",
+      "time_raw": "        0.19 real         0.17 user         0.00 sys\n            23207936  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                5961  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 124  involuntary context switches\n           560013045  instructions retired\n           679638387  cycles elapsed\n            22835200  peak memory footprint\n"
+    },
+    {
+      "command": [
+        "bin/smooth_layer_compressed_general",
+        "analytic-band",
+        "2,3,5,7,11,13",
+        "1000000000000",
+        "2000",
+        "200000"
+      ],
+      "elapsed_seconds": 0.9661139399977401,
+      "max_rss_kb": 104184,
+      "metrics": {
+        "A": 61042,
+        "Base": 1415628,
+        "H": 463.255372,
+        "L": 463.255372,
+        "N": 1000000000000,
+        "P": [
+          2,
+          3,
+          5,
+          7,
+          11,
+          13
+        ],
+        "T": 463.255372,
+        "above": 1000000002460,
+        "band_count": 4005,
+        "band_phase": 0.175799,
+        "below": 999999998455,
+        "build": 0.58209,
+        "cands": 4005,
+        "count_phase": 0.168581,
+        "derivative": 12809777591.096188,
+        "digits": 202,
+        "enumerated": true,
+        "exact": 0.009956,
+        "exps": [
+          55,
+          126,
+          27,
+          54,
+          2,
+          52
+        ],
+        "half_width": 1.561307357428e-07,
+        "k": 6,
+        "outer": 2,
+        "rank_radius": 2000.0,
+        "recovered": true,
+        "seconds": 0.937627,
+        "splitA": [
+          3,
+          5
+        ],
+        "splitBase": [
+          7,
+          11,
+          13
+        ],
+        "target_inside": true
+      },
+      "name": "k6_first6",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "analytic_band P=(2,3,5,7,11,13) k=6 N=1000000000000 seconds=0.937627 build=0.582090 count_phase=0.168581 band_phase=0.175799 exact=0.009956 T=463.255372 derivative=12809777591.096188 rank_radius=2000.000000 half_width=1.561307357428e-07 L=463.255372 H=463.255372 below=999999998455 above=1000000002460 band_count=4005 target_inside=true enumerated=true recovered=true cands=4005 A=61042 Base=1415628 splitA=[3,5] splitBase=[7,11,13] outer=2 exps=[55,126,27,54,2,52] digits=202",
+      "time_raw": "        0.96 real         0.89 user         0.05 sys\n           106684416  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               26341  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 413  involuntary context switches\n          2359305963  instructions retired\n          2820090366  cycles elapsed\n           106311680  peak memory footprint\n"
+    },
+    {
+      "command": [
+        "bin/smooth_layer_compressed_general",
+        "analytic-band",
+        "2,3,5,7,11,13,17,19",
+        "1000000000000",
+        "2500000",
+        "200000"
+      ],
+      "elapsed_seconds": 1.1580385059933178,
+      "max_rss_kb": 132228,
+      "metrics": {
+        "A": 457793,
+        "Base": 1717627,
+        "H": 209.099885,
+        "L": 209.099749,
+        "N": 1000000000000,
+        "P": [
+          2,
+          3,
+          5,
+          7,
+          11,
+          13,
+          17,
+          19
+        ],
+        "T": 209.099817,
+        "above": 1000004479756,
+        "band_count": 5000120,
+        "band_phase": 0.0,
+        "below": 999999479636,
+        "build": 0.661075,
+        "cands": 0,
+        "count_phase": 0.465165,
+        "derivative": 36858939117.148674,
+        "enumerated": false,
+        "exact": 0.0,
+        "half_width": 6.782615180687e-05,
+        "k": 8,
+        "outer": 2,
+        "rank_radius": 2500000.0,
+        "recovered": false,
+        "seconds": 1.126516,
+        "splitA": [
+          3,
+          5,
+          7
+        ],
+        "splitBase": [
+          11,
+          13,
+          17,
+          19
+        ],
+        "target_inside": true
+      },
+      "name": "k8_first8",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "analytic_band P=(2,3,5,7,11,13,17,19) k=8 N=1000000000000 seconds=1.126516 build=0.661075 count_phase=0.465165 band_phase=0.000000 exact=0.000000 T=209.099817 derivative=36858939117.148674 rank_radius=2500000.000000 half_width=6.782615180687e-05 L=209.099749 H=209.099885 below=999999479636 above=1000004479756 band_count=5000120 target_inside=true enumerated=false recovered=false cands=0 A=457793 Base=1717627 splitA=[3,5,7] splitBase=[11,13,17,19] outer=2",
+      "time_raw": "        1.15 real         1.07 user         0.06 sys\n           135401472  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               33361  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 535  involuntary context switches\n          2972569400  instructions retired\n          3554948496  cycles elapsed\n           135098368  peak memory footprint\n"
+    }
+  ],
+  "schema": "smooth.lattice.analytic_band_probe.v1",
+  "summary_rows": [
+    {
+      "A": 91837,
+      "Base": 241925,
+      "N": 1000000000000,
+      "T": 923.591024,
+      "above": 1000000000934,
+      "band_count": 1989,
+      "band_phase_seconds": 0.047433,
+      "below": 999999998945,
+      "build_seconds": 0.075647,
+      "cands": 1989,
+      "count_phase_seconds": 0.045369,
+      "derivative": 5391076448.315256,
+      "digits": 402,
+      "enumerated": true,
+      "exact_seconds": 0.008501,
+      "expected_exps": [
+        1052,
+        26,
+        33,
+        53,
+        4
+      ],
+      "exps": [
+        1052,
+        26,
+        33,
+        53,
+        4
+      ],
+      "half_width": 1.854917120147e-07,
+      "k": 5,
+      "label": "k5_P2_3_5_7_11",
+      "max_candidates": 200000,
+      "outer": 2,
+      "primes": "2,3,5,7,11",
+      "rank_radius": 1000,
+      "recovered": true,
+      "recovered_expected_exps": true,
+      "reported_seconds": 0.177471,
+      "returncode": 0,
+      "splitA": [
+        7,
+        11
+      ],
+      "splitBase": [
+        3,
+        5
+      ],
+      "target_inside": true,
+      "wall_seconds": 0.6235779759590514
+    },
+    {
+      "A": 88206,
+      "Base": 248507,
+      "N": 1000000000000,
+      "T": 936.084531,
+      "above": 1000000001045,
+      "band_count": 1980,
+      "band_phase_seconds": 0.048994,
+      "below": 999999999065,
+      "build_seconds": 0.080123,
+      "cands": 1980,
+      "count_phase_seconds": 0.041111,
+      "derivative": 5318948811.251533,
+      "digits": 407,
+      "enumerated": true,
+      "exact_seconds": 0.008307,
+      "expected_exps": [
+        205,
+        279,
+        119,
+        131,
+        16
+      ],
+      "exps": [
+        205,
+        279,
+        119,
+        131,
+        16
+      ],
+      "half_width": 1.880070734813e-07,
+      "k": 5,
+      "label": "k5_P2_3_5_7_13",
+      "max_candidates": 200000,
+      "outer": 2,
+      "primes": "2,3,5,7,13",
+      "rank_radius": 1000,
+      "recovered": true,
+      "recovered_expected_exps": true,
+      "reported_seconds": 0.179086,
+      "returncode": 0,
+      "splitA": [
+        7,
+        13
+      ],
+      "splitBase": [
+        3,
+        5
+      ],
+      "target_inside": true,
+      "wall_seconds": 0.19569104601396248
+    },
+    {
+      "A": 77825,
+      "Base": 270095,
+      "N": 1000000000000,
+      "T": 975.958016,
+      "above": 1000000000967,
+      "band_count": 2001,
+      "band_phase_seconds": 0.05062,
+      "below": 999999998966,
+      "build_seconds": 0.088516,
+      "cands": 2001,
+      "count_phase_seconds": 0.047393,
+      "derivative": 5101341257.146258,
+      "digits": 424,
+      "enumerated": true,
+      "exact_seconds": 0.011735,
+      "expected_exps": [
+        254,
+        220,
+        258,
+        4,
+        52
+      ],
+      "exps": [
+        254,
+        220,
+        258,
+        4,
+        52
+      ],
+      "half_width": 1.960268779508e-07,
+      "k": 5,
+      "label": "k5_P2_3_5_11_13",
+      "max_candidates": 200000,
+      "outer": 2,
+      "primes": "2,3,5,11,13",
+      "rank_radius": 1000,
+      "recovered": true,
+      "recovered_expected_exps": true,
+      "reported_seconds": 0.199142,
+      "returncode": 0,
+      "splitA": [
+        11,
+        13
+      ],
+      "splitBase": [
+        3,
+        5
+      ],
+      "target_inside": true,
+      "wall_seconds": 0.22286649799207225
+    },
+    {
+      "A": 83950,
+      "Base": 241069,
+      "N": 1000000000000,
+      "T": 1013.720195,
+      "above": 1000000001057,
+      "band_count": 2032,
+      "band_phase_seconds": 0.046692,
+      "below": 999999999025,
+      "build_seconds": 0.095676,
+      "cands": 2032,
+      "count_phase_seconds": 0.044632,
+      "derivative": 4911279582.97261,
+      "digits": 441,
+      "enumerated": true,
+      "exact_seconds": 0.008149,
+      "expected_exps": [
+        291,
+        331,
+        90,
+        84,
+        28
+      ],
+      "exps": [
+        291,
+        331,
+        90,
+        84,
+        28
+      ],
+      "half_width": 2.036129247186e-07,
+      "k": 5,
+      "label": "k5_P2_3_7_11_13",
+      "max_candidates": 200000,
+      "outer": 2,
+      "primes": "2,3,7,11,13",
+      "rank_radius": 1000,
+      "recovered": true,
+      "recovered_expected_exps": true,
+      "reported_seconds": 0.195672,
+      "returncode": 0,
+      "splitA": [
+        11,
+        13
+      ],
+      "splitBase": [
+        3,
+        7
+      ],
+      "target_inside": true,
+      "wall_seconds": 0.21026756399078295
+    },
+    {
+      "A": 97784,
+      "Base": 191789,
+      "N": 1000000000000,
+      "T": 1094.257696,
+      "above": 1000000000836,
+      "band_count": 1988,
+      "band_phase_seconds": 0.045171,
+      "below": 999999998848,
+      "build_seconds": 0.062176,
+      "cands": 1988,
+      "count_phase_seconds": 0.044066,
+      "derivative": 4550180339.764542,
+      "digits": 476,
+      "enumerated": true,
+      "exact_seconds": 0.01032,
+      "expected_exps": [
+        106,
+        306,
+        164,
+        53,
+        32
+      ],
+      "exps": [
+        106,
+        306,
+        164,
+        53,
+        32
+      ],
+      "half_width": 2.197715091116e-07,
+      "k": 5,
+      "label": "k5_P2_5_7_11_13",
+      "max_candidates": 200000,
+      "outer": 2,
+      "primes": "2,5,7,11,13",
+      "rank_radius": 1000,
+      "recovered": true,
+      "recovered_expected_exps": true,
+      "reported_seconds": 0.162604,
+      "returncode": 0,
+      "splitA": [
+        11,
+        13
+      ],
+      "splitBase": [
+        5,
+        7
+      ],
+      "target_inside": true,
+      "wall_seconds": 0.1761074949754402
+    },
+    {
+      "A": 117565,
+      "Base": 230611,
+      "N": 1000000000000,
+      "T": 1200.08142,
+      "above": 1000000000923,
+      "band_count": 2002,
+      "band_phase_seconds": 0.052843,
+      "below": 999999998921,
+      "build_seconds": 0.072349,
+      "cands": 2002,
+      "count_phase_seconds": 0.04772,
+      "derivative": 4149775994.224293,
+      "digits": 522,
+      "enumerated": true,
+      "exact_seconds": 0.010202,
+      "expected_exps": [
+        273,
+        219,
+        5,
+        219,
+        5
+      ],
+      "exps": [
+        273,
+        219,
+        5,
+        219,
+        5
+      ],
+      "half_width": 2.40976862701e-07,
+      "k": 5,
+      "label": "k5_P3_5_7_11_13",
+      "max_candidates": 200000,
+      "outer": 3,
+      "primes": "3,5,7,11,13",
+      "rank_radius": 1000,
+      "recovered": true,
+      "recovered_expected_exps": true,
+      "reported_seconds": 0.183732,
+      "returncode": 0,
+      "splitA": [
+        11,
+        13
+      ],
+      "splitBase": [
+        5,
+        7
+      ],
+      "target_inside": true,
+      "wall_seconds": 0.19722794101107866
+    },
+    {
+      "A": 61042,
+      "Base": 1415628,
+      "N": 1000000000000,
+      "T": 463.255372,
+      "above": 1000000002460,
+      "band_count": 4005,
+      "band_phase_seconds": 0.175799,
+      "below": 999999998455,
+      "build_seconds": 0.58209,
+      "cands": 4005,
+      "count_phase_seconds": 0.168581,
+      "derivative": 12809777591.096188,
+      "digits": 202,
+      "enumerated": true,
+      "exact_seconds": 0.009956,
+      "expected_exps": [
+        55,
+        126,
+        27,
+        54,
+        2,
+        52
+      ],
+      "exps": [
+        55,
+        126,
+        27,
+        54,
+        2,
+        52
+      ],
+      "half_width": 1.561307357428e-07,
+      "k": 6,
+      "label": "k6_first6",
+      "max_candidates": 200000,
+      "outer": 2,
+      "primes": "2,3,5,7,11,13",
+      "rank_radius": 2000,
+      "recovered": true,
+      "recovered_expected_exps": true,
+      "reported_seconds": 0.937627,
+      "returncode": 0,
+      "splitA": [
+        3,
+        5
+      ],
+      "splitBase": [
+        7,
+        11,
+        13
+      ],
+      "target_inside": true,
+      "wall_seconds": 0.9661139399977401
+    },
+    {
+      "A": 457793,
+      "Base": 1717627,
+      "N": 1000000000000,
+      "T": 209.099817,
+      "above": 1000004479756,
+      "band_count": 5000120,
+      "band_phase_seconds": 0.0,
+      "below": 999999479636,
+      "build_seconds": 0.661075,
+      "cands": 0,
+      "count_phase_seconds": 0.465165,
+      "derivative": 36858939117.148674,
+      "digits": "",
+      "enumerated": false,
+      "exact_seconds": 0.0,
+      "expected_exps": [
+        75,
+        28,
+        9,
+        16,
+        3,
+        22,
+        5,
+        1
+      ],
+      "exps": "",
+      "half_width": 6.782615180687e-05,
+      "k": 8,
+      "label": "k8_first8",
+      "max_candidates": 200000,
+      "outer": 2,
+      "primes": "2,3,5,7,11,13,17,19",
+      "rank_radius": 2500000,
+      "recovered": false,
+      "recovered_expected_exps": false,
+      "reported_seconds": 1.126516,
+      "returncode": 0,
+      "splitA": [
+        3,
+        5,
+        7
+      ],
+      "splitBase": [
+        11,
+        13,
+        17,
+        19
+      ],
+      "target_inside": true,
+      "wall_seconds": 1.1580385059933178
+    }
+  ]
+}

@@ -345,6 +345,30 @@ The current form is still experimental. Endpoint counts use the floating-log
 layer counter, and recovered vectors still need independent interval auditing
 before supporting correctness claims.
 
+Clean band-probe artifact:
+
+```text
+results/benchmarks/analytic_band_probe_1e12/
+```
+
+Observed result at commit `4bd49bec50aab80c87e599438f325f55814e6222`:
+
+- 8/8 targets were inside the analytic band.
+- 7/8 cases were enumerated under the configured cap and recovered the expected
+  exponent vector.
+- The six k=5 cases used radius 1000 and produced bands of 1980-2032
+  candidates.
+- The k=6 first-six-primes case used radius 2000 and produced a band of 4005
+  candidates.
+- The k=8 first-eight-primes case used radius 2.5e6 and contained the target,
+  but the band had 5,000,120 candidates and was not enumerated under the
+  200,000-candidate cap.
+
+This is the first positive evidence for the analytic-oracle architecture at
+k=5/k=6 and the first concrete bottleneck for k=8: the residual model is good
+enough to contain the target, but not yet sharp enough to make high-k boundary
+enumeration cheap.
+
 ## Analytic-Bracket Layer Hybrid
 
 The layer-compressed solver now uses a non-MITM analytic seed for large-rank
