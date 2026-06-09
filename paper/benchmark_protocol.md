@@ -369,6 +369,54 @@ k=5/k=6 and the first concrete bottleneck for k=8: the residual model is good
 enough to contain the target, but not yet sharp enough to make high-k boundary
 enumeration cheap.
 
+## Residual-Corrected Analytic Band Probe
+
+The next probe asks whether one exact count at the analytic center is enough to
+remove most of the residual:
+
+```bash
+python3 scripts/run_analytic_band_corrected_probe.py
+```
+
+For each target rank, the harness:
+
+1. solves the analytic count equation for an initial center `T0`;
+2. computes the exact layer count `C(T0)`;
+3. shifts the center by `(N - C(T0)) / analytic_derivative(T0)`;
+4. checks a smaller rank-radius band around the corrected center;
+5. enumerates and exact-sorts that band if it is under the configured cap.
+
+This tests the more ambitious oracle shape:
+
+```text
+analytic count predicts the center;
+one exact count estimates the residual;
+exact enumeration handles only the corrected boundary band.
+```
+
+Clean corrected-band artifact:
+
+```text
+results/benchmarks/analytic_band_corrected_probe_1e12/
+```
+
+Observed result at commit `f965d9cb677d26aa83b7b35c8412a90f856c8fc2`:
+
+- 8/8 targets were inside the corrected analytic band.
+- 8/8 cases were enumerated under the 200,000-candidate cap and recovered the
+  expected exponent vector.
+- The six k=5 cases used radius 100 and produced bands of 193-204 candidates.
+- The k=6 first-six-primes case used radius 500 and produced a band of 997
+  candidates.
+- The k=8 first-eight-primes case used radius 10,000 and produced a band of
+  19,853 candidates, compared with the previous unenumerated 5,000,120-candidate
+  uncorrected band.
+
+This is stronger evidence for the analytic-oracle architecture, especially at
+k=8. It is still not a proof: endpoint counts use the floating-log layer
+counter, and the recovered vectors must be independently interval-audited before
+supporting correctness claims.
+
 ## Analytic-Bracket Layer Hybrid
 
 The layer-compressed solver now uses a non-MITM analytic seed for large-rank

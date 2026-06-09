@@ -54,6 +54,15 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   The k=8 first-eight-primes target was inside the band, but the band contained
   5,000,120 candidates and was not enumerated under the 200,000-candidate cap.
   Artifact: `results/benchmarks/analytic_band_probe_1e12/`.
+- Residual-corrected analytic boundary band probe, same certified target ranks
+  at N=10^12: clean artifact at commit
+  `f965d9cb677d26aa83b7b35c8412a90f856c8fc2`. One exact count at the analytic
+  center was used to shift the center before enumeration. All 8 targets were
+  inside the corrected band, all 8 were enumerated under the 200,000-candidate
+  cap, and all 8 recovered the expected vector. The six k=5 bands had 193-204
+  candidates, the k=6 band had 997 candidates, and the k=8 first-eight-primes
+  band had 19,853 candidates. Artifact:
+  `results/benchmarks/analytic_band_corrected_probe_1e12/`.
 - 8 primes, P=(2,3,5,7,11,13,17,19), N=10^12: exps
   [75,28,9,16,3,22,5,1], high-k sums-only solver output independently
   certified with count_le=N by the k<=8 interval auditor. Artifact:
