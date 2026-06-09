@@ -1,0 +1,172 @@
+{
+  "config": {
+    "N": 1000000000000,
+    "primes": "2,3,5,7,11,13,17,19"
+  },
+  "metadata": {
+    "compiler": {
+      "cxx": "g++",
+      "cxxflags": "-O3 -std=c++17",
+      "path": "/usr/bin/g++",
+      "version": "Apple clang version 21.0.0 (clang-2100.0.123.102)\nTarget: x86_64-apple-darwin25.4.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin"
+    },
+    "cpu_model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
+    "git_commit": "503a9893a389bd52604bd5624ddb9ce76cda286c",
+    "git_dirty": false,
+    "memory_bytes": 17179869184,
+    "platform": "macOS-26.4.1-x86_64-i386-64bit-Mach-O",
+    "python": "3.13.3",
+    "system": "Darwin",
+    "timestamp_utc": "2026-06-09T08:44:52.980804+00:00"
+  },
+  "runs": [
+    {
+      "command": [
+        "./build.sh"
+      ],
+      "elapsed_seconds": 38.700828977976926,
+      "max_rss_kb": 172528,
+      "metrics": {},
+      "name": "build_core",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Built core kernels in ./bin",
+      "time_raw": "       38.69 real        34.38 user         3.46 sys\n           176668672  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              338378  page reclaims\n                6936  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   1  signals received\n                1570  voluntary context switches\n               27995  involuntary context switches\n            27758258  instructions retired\n            49091299  cycles elapsed\n              618496  peak memory footprint\n"
+    },
+    {
+      "command": [
+        "bin/smooth_sums_only_scalable",
+        "nth",
+        "2,3,5,7,11,13,17,19",
+        "1000000000000"
+      ],
+      "elapsed_seconds": 2.7600413170293905,
+      "max_rss_kb": 152852,
+      "metrics": {
+        "A": 9597634,
+        "B": 9865372,
+        "N": 1000000000000,
+        "P": [
+          2,
+          3,
+          5,
+          7,
+          11,
+          13,
+          17,
+          19
+        ],
+        "band": 1112,
+        "band_phase": 0.625716,
+        "build": 0.635433,
+        "calls": 13,
+        "count": 0.615322,
+        "digits": 91,
+        "exps": [
+          75,
+          28,
+          9,
+          16,
+          3,
+          22,
+          5,
+          1
+        ],
+        "gap": 1112,
+        "k": 8,
+        "seconds": 2.028203,
+        "splitA": [
+          2,
+          7,
+          17,
+          19
+        ],
+        "splitB": [
+          3,
+          5,
+          11,
+          13
+        ]
+      },
+      "name": "sums_only_mitm",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "sums_only_mitm P=(2,3,5,7,11,13,17,19) k=8 N=1000000000000 seconds=2.028203 build=0.635433 count=0.615322 band_phase=0.625716 A=9597634 B=9865372 band=1112 calls=13 gap=1112 exps=[75,28,9,16,3,22,5,1] digits=91 splitA=[2,7,17,19] splitB=[3,5,11,13]",
+      "time_raw": "        2.74 real         1.87 user         0.13 sys\n           156520448  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               38512  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                1517  involuntary context switches\n          9083826652  instructions retired\n          5198080655  cycles elapsed\n           156225536  peak memory footprint\n"
+    },
+    {
+      "command": [
+        "bin/smooth_interval_audit_exps",
+        "2,3,5,7,11,13,17,19",
+        "75,28,9,16,3,22,5,1",
+        "1000000000000"
+      ],
+      "elapsed_seconds": 20.606740419985726,
+      "max_rss_kb": 1573196,
+      "metrics": {
+        "P": [
+          2,
+          3,
+          5,
+          7,
+          11,
+          13,
+          17,
+          19
+        ],
+        "ambiguous_possible": 1,
+        "ambiguous_resolved": 1,
+        "cert_seconds": 19.9808,
+        "certified_count_le": 1000000000000,
+        "expected_N": 1000000000000,
+        "exps": [
+          75,
+          28,
+          9,
+          16,
+          3,
+          22,
+          5,
+          1
+        ],
+        "groupA": 35137278,
+        "groupB": 1717623,
+        "overlapsB": 0,
+        "rank_certified": true
+      },
+      "name": "interval_audit_exps",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "interval_audit_exps P=[2,3,5,7,11,13,17,19] exps=[75,28,9,16,3,22,5,1] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=35137278 groupB=1717623 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=19.9808",
+      "time_raw": "       20.59 real        15.21 user         3.34 sys\n          1610952704  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              755873  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n               22964  involuntary context switches\n         27182170374  instructions retired\n         47427233610  cycles elapsed\n          1623580672  peak memory footprint\n"
+    }
+  ],
+  "schema": "smooth.lattice.k8_certificate.v1",
+  "summary": {
+    "N": 1000000000000,
+    "ambiguous_possible": 1,
+    "ambiguous_resolved": 1,
+    "audit_returncode": 0,
+    "audit_wall_seconds": 20.606740419985726,
+    "cert_reported_seconds": 19.9808,
+    "certified_count_le": 1000000000000,
+    "digits": 91,
+    "exps": [
+      75,
+      28,
+      9,
+      16,
+      3,
+      22,
+      5,
+      1
+    ],
+    "groupA": 35137278,
+    "groupB": 1717623,
+    "primes": "2,3,5,7,11,13,17,19",
+    "rank_certified": true,
+    "solver_reported_seconds": 2.028203,
+    "solver_returncode": 0,
+    "solver_wall_seconds": 2.7600413170293905
+  }
+}
