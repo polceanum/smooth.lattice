@@ -71,10 +71,10 @@ static double asymptotic_est(const std::vector<int>& primes,ull n){
         long double d=asymptotic_count_deriv_at(coeff,k,T);
         if(!(d>0.0L) || !std::isfinite((double)d)) break;
         long double step=f/d;
-        if(std::fabsl(step)>0.25L*T) step=(step>0?0.25L:-0.25L)*T;
+        if(std::fabs(step)>0.25L*T) step=(step>0?0.25L:-0.25L)*T;
         T-=step;
         if(!(T>0.0L) || !std::isfinite((double)T)){ T=leading_est(primes,n); break; }
-        if(std::fabsl(step)<=1e-13L*(1.0L+T)) break;
+        if(std::fabs(step)<=1e-13L*(1.0L+T)) break;
     }
     return (double)T;
 }
