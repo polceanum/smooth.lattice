@@ -121,6 +121,26 @@ def main():
     assert 'recovered=true' in band.stdout
     assert 'exps=[1,1,0]' in band.stdout
 
+    corrected_band = subprocess.run(
+        [
+            str(ROOT / 'bin' / 'smooth_layer_compressed_general'),
+            'analytic-band-corrected',
+            '2,3,5',
+            '6',
+            '10',
+            '1000',
+        ],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=True,
+    )
+    assert 'analytic_band_corrected' in corrected_band.stdout
+    assert 'target_inside=true' in corrected_band.stdout
+    assert 'recovered=true' in corrected_band.stdout
+    assert 'exps=[1,1,0]' in corrected_band.stdout
+
     print('smoke tests passed')
 
 
