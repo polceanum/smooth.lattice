@@ -58,11 +58,13 @@ selection baseline, and all six returned exponent vectors were independently
 certified.
 
 On the stricter six-case suite against full materialized `X+Y` unranking,
-recorded at commit `13cba09636b22e139046442b9faa4ea0f5330377`,
+recorded at commit `5314fd8a56fb7ca760046076e1f7f168fd48386a`,
 layer-compressed full unrank won all six wall-time comparisons. Both methods
 returned the same exponent vector in every case, and both outputs were
-independently certified. The full-X+Y/layer wall-time ratio ranged from 1.4703
-to 3.1276, with mean 2.3309.
+independently certified. The full-X+Y/layer wall-time ratio ranged from 1.9672
+to 2.7248, with mean 2.3273. In this artifact the layer solver used the
+analytic asymptotic bracket in all six cases; this is an optimization seed, not
+a certificate.
 
 Use `python3 scripts/run_sorted_matrix_workbench.py` to record exploratory
 sorted-matrix/range-pruning, Mirzaian-Arjomandi value-selection, and LOH probes.

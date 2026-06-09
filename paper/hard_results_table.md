@@ -38,6 +38,11 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   wall-time comparisons on the recorded macOS/x86_64 Apple-clang machine. Both
   methods returned the same exponent vector in every case, and both outputs were
   independently certified. Artifact: `results/benchmarks/full_xplusy_suite_1e12/`.
+- Analytic-bracket hybrid, same full-X+Y suite: the asymptotic bracket seed was
+  used in all six layer-compressed runs. Compared with the previous full-X+Y
+  artifact, the mean final layer band fell from 11286.8 to 345.8, and reported
+  layer time improved in 5/6 cases. This is an optimization result, not a
+  certification result.
 - Sorted-matrix/range-pruning diagnostic, same six five-prime subsets,
   N=10^12: the range-pruned block counter beat the linear saddleback X+Y count
   in only 2/6 cases, with mean block/linear internal time ratio 1.2765. The

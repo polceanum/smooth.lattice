@@ -110,6 +110,22 @@ The recorded suite had 6/6 completed cases, 6/6 matching exponent vectors, 6/6
 independent certifications for both methods, and 6/6 layer wall-time wins. The
 full-X+Y/layer wall-time ratio ranged from 1.4703 to 3.1276, with mean 2.3309.
 
+## Analytic-Bracket Hybrid Wording
+
+The analytic-bracket optimization supports:
+
+```text
+For the six five-prime N=10^12 full-X+Y comparison suite, the
+layer-compressed solver used an asymptotic analytic count model only to seed the
+initial search bracket. The bracket was then checked and repaired by exact
+layer counts. Relative to the previous clean full-X+Y artifact, the mean final
+selection band decreased from 11286.8 to 345.8 candidates and reported layer
+time improved in 5/6 cases.
+```
+
+Do not call this a proof or certificate. The analytic model is a search
+accelerator; the rank certification remains the independent interval auditor.
+
 ## Negative Results To Report
 
 The sorted-matrix/range-pruning workbench should be reported as a diagnostic

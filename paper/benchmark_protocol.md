@@ -220,15 +220,16 @@ Clean suite artifact:
 results/benchmarks/full_xplusy_suite_1e12/
 ```
 
-Observed result at commit `13cba09636b22e139046442b9faa4ea0f5330377` on the
+Observed result at commit `5314fd8a56fb7ca760046076e1f7f168fd48386a` on the
 recorded macOS/x86_64 Apple-clang machine:
 
 - 6/6 cases completed.
 - 6/6 cases returned matching exponent vectors.
 - 6/6 layer outputs and 6/6 full-X+Y outputs were independently certified.
 - Layer-compressed full unranking won 6/6 wall-time comparisons.
-- Full-X+Y/layer wall-time ratio ranged from 1.4703 to 3.1276, with mean
-  2.3309.
+- Full-X+Y/layer wall-time ratio ranged from 1.9672 to 2.7248, with mean
+  2.3273.
+- The layer solver used the analytic asymptotic bracket in all six cases.
 
 This supports the safe claim above for this benchmark suite and recorded
 machine/compiler. It is still not, by itself, a broad "best known" claim.
@@ -250,6 +251,17 @@ still checks and repairs the bracket with its exact layer-count routine, and the
 final exponent vector must still be independently audited before being called
 certified. Benchmark artifacts record `leading_seed`, `analytic_seed`, and
 `analytic_bracket`.
+
+In the updated clean full-X+Y suite artifact, the analytic-bracket solver:
+
+- used analytic bracketing in 6/6 cases;
+- kept final rank gaps between 334 and 366;
+- reduced the mean final layer band from 11286.8 in the previous full-X+Y
+  artifact to 345.8;
+- improved reported layer time in 5/6 cases, with mean reported layer time
+  changing from 0.8093s to 0.7443s.
+
+These are optimization results, not independent correctness evidence.
 
 ## Sorted-Matrix / LOH Workbench
 
