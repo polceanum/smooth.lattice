@@ -233,6 +233,24 @@ recorded macOS/x86_64 Apple-clang machine:
 This supports the safe claim above for this benchmark suite and recorded
 machine/compiler. It is still not, by itself, a broad "best known" claim.
 
+## Analytic-Bracket Layer Hybrid
+
+The layer-compressed solver now uses a non-MITM analytic seed for large-rank
+initial bracketing. The seed comes from the small-`s` expansion of
+
+```text
+product_i (1 - exp(-s log p_i))^-1 / s,
+```
+
+which is the Laplace transform of the fixed-prime count function. This produces
+an asymptotic estimate for the log height `T` satisfying `count_le(P,T) ~= N`.
+
+The approximation is not used as proof. It only proposes a bracket; the solver
+still checks and repairs the bracket with its exact layer-count routine, and the
+final exponent vector must still be independently audited before being called
+certified. Benchmark artifacts record `leading_seed`, `analytic_seed`, and
+`analytic_bracket`.
+
 ## Sorted-Matrix / LOH Workbench
 
 The exploratory sorted-matrix workbench probes two adjacent comparator ideas:

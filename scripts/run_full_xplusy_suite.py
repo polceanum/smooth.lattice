@@ -154,6 +154,11 @@ def summarize_case(case: dict[str, Any]) -> dict[str, Any]:
         "layer_max_rss_kb": layer.get("max_rss_kb", ""),
         "xplusy_reported_seconds": xplusy.get("metrics", {}).get("seconds", ""),
         "layer_reported_seconds": layer.get("metrics", {}).get("seconds", ""),
+        "layer_calls": layer.get("metrics", {}).get("calls", ""),
+        "layer_rank_gap": layer.get("metrics", {}).get("rank_gap", ""),
+        "layer_leading_seed": layer.get("metrics", {}).get("leading_seed", ""),
+        "layer_analytic_seed": layer.get("metrics", {}).get("analytic_seed", ""),
+        "layer_analytic_bracket": layer.get("metrics", {}).get("analytic_bracket", ""),
         "xplusy_A": xplusy.get("metrics", {}).get("A", ""),
         "xplusy_B": xplusy.get("metrics", {}).get("B", ""),
         "xplusy_band": xplusy.get("metrics", {}).get("band", ""),
@@ -217,9 +222,10 @@ def write_outputs(out_dir: Path, report: dict[str, Any]) -> None:
         "",
         "Both compared rows return full exponent vectors. Each successful case audits both outputs",
         "with the independent interval-rank auditor and checks that the exponent vectors match.",
+        "The `layer_compressed` row records whether the asymptotic analytic bracket was used.",
         "",
-        "| P | layer wall s | full X+Y wall s | ratio | layer RSS KB | X+Y RSS KB | same exps | both certified | exps |",
-        "|---|---:|---:|---:|---:|---:|---|---|---|",
+        "| P | layer wall s | full X+Y wall s | ratio | layer calls | layer gap | analytic | layer RSS KB | X+Y RSS KB | same exps | both certified | exps |",
+        "|---|---:|---:|---:|---:|---:|---|---:|---:|---|---|---|",
     ]
     for row in rows:
         both_certified = row["layer_rank_certified"] and row["xplusy_rank_certified"]
@@ -228,6 +234,7 @@ def write_outputs(out_dir: Path, report: dict[str, Any]) -> None:
             f"| `{row['primes']}` | {float(row['layer_wall_seconds']):.6f} | "
             f"{float(row['xplusy_wall_seconds']):.6f} | "
             f"{float(ratio):.6f} | "
+            f"{row['layer_calls']} | {row['layer_rank_gap']} | {row['layer_analytic_bracket']} | "
             f"{row['layer_max_rss_kb']} | {row['xplusy_max_rss_kb']} | "
             f"{row['same_exps']} | {both_certified} | `{row['layer_exps']}` |"
         )

@@ -37,3 +37,30 @@ The zeroes in the `pi`-exponent stream are exactly the entries not divisible by 
 - higher `k`: use MITM-style sumset selection and delay exponent reconstruction.
 
 The implementation is intentionally conservative: fast kernels are benchmarked, while headline examples can be independently audited using interval-rank counting.
+
+## Analytic bracketing as a non-MITM hybrid
+
+The counting function has a useful asymptotic expansion obtained from the
+Laplace/generating-function identity
+
+```text
+sum_e exp(-s * <e, log P>) = product_i (1 - exp(-s log p_i))^-1.
+```
+
+Expanding
+
+```text
+(s w) / (1 - exp(-s w)) = 1 + s w / 2 + (s w)^2 / 12 - (s w)^4 / 720 + ...
+```
+
+gives a polynomial approximation to
+
+```text
+C_P(T) = #{e in N^k : <e, log P> <= T}.
+```
+
+The layer-compressed solver uses this approximation only to choose an initial
+large-rank search bracket. It does not use the approximation as evidence of
+correctness: the bracket is still checked and repaired by exact layer counts,
+and the returned exponent vector still needs the independent interval auditor
+for certification.
