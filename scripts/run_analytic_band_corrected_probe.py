@@ -47,6 +47,17 @@ def parse_exps(raw: str) -> list[int]:
     return [int(part) for part in raw.split(",") if part]
 
 
+def exps_csv(value: Any) -> str | None:
+    if isinstance(value, list):
+        return ",".join(str(part) for part in value)
+    if isinstance(value, str) and value:
+        stripped = value.strip()
+        if stripped.startswith("[") and stripped.endswith("]"):
+            stripped = stripped[1:-1]
+        return stripped.replace(" ", "")
+    return None
+
+
 def case_from_arg(raw: str) -> tuple[str, str, int, str, int, int]:
     parts = raw.split(":")
     if len(parts) != 6:
@@ -62,8 +73,10 @@ def summarize_case(
     rank_radius: int,
     max_candidates: int,
     run: dict[str, Any],
+    audit: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     metrics = run.get("metrics", {})
+    audit_metrics = (audit or {}).get("metrics", {})
     got_exps = metrics.get("exps", "")
     expected_list = parse_exps(expected_exps)
     center_count = metrics.get("center_count", "")
@@ -101,6 +114,15 @@ def summarize_case(
         "enumerated": bool(metrics.get("enumerated", False)),
         "recovered": bool(metrics.get("recovered", False)),
         "recovered_expected_exps": got_exps == expected_list,
+        "audit_returncode": (audit or {}).get("returncode", ""),
+        "audit_wall_seconds": (audit or {}).get("elapsed_seconds", ""),
+        "rank_certified": bool(audit_metrics.get("rank_certified", False)),
+        "certified_count_le": audit_metrics.get("certified_count_le", ""),
+        "cert_seconds": audit_metrics.get("cert_seconds", ""),
+        "groupA": audit_metrics.get("groupA", ""),
+        "groupB": audit_metrics.get("groupB", ""),
+        "ambiguous_possible": audit_metrics.get("ambiguous_possible", ""),
+        "ambiguous_resolved": audit_metrics.get("ambiguous_resolved", ""),
         "cands": metrics.get("cands", ""),
         "A": metrics.get("A", ""),
         "Base": metrics.get("Base", ""),
@@ -118,6 +140,7 @@ def aggregate(rows: list[dict[str, Any]]) -> dict[str, Any]:
     enumerated = [row for row in completed if row["enumerated"]]
     recovered = [row for row in completed if row["recovered"]]
     expected = [row for row in recovered if row["recovered_expected_exps"]]
+    certified = [row for row in expected if row["rank_certified"] and row["certified_count_le"] == row["N"]]
     band_counts = [int(row["band_count"]) for row in completed if row["band_count"] != ""]
     return {
         "cases": len(rows),
@@ -126,6 +149,7 @@ def aggregate(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "enumerated_cases": len(enumerated),
         "recovered_cases": len(recovered),
         "recovered_expected_cases": len(expected),
+        "rank_certified_cases": len(certified),
         "max_band_count": max(band_counts) if band_counts else None,
         "mean_band_count": sum(band_counts) / len(band_counts) if band_counts else None,
     }
@@ -153,6 +177,7 @@ def write_outputs(out_dir: Path, report: dict[str, Any]) -> None:
         f"- Target inside band: `{agg['target_inside_cases']}`",
         f"- Enumerated cases: `{agg['enumerated_cases']}`",
         f"- Recovered expected vectors: `{agg['recovered_expected_cases']}`",
+        f"- Independently rank-certified vectors: `{agg['rank_certified_cases']}`",
         f"- Max band count: `{agg['max_band_count']}`",
         f"- Mean band count: `{agg['mean_band_count']}`",
         "",
@@ -160,18 +185,20 @@ def write_outputs(out_dir: Path, report: dict[str, Any]) -> None:
         "then performs one exact layer count at that center, shifts the center by",
         "`(N - count(center)) / analytic_derivative(center)`, and checks a smaller",
         "rank-radius band around the corrected center. Endpoint counts and band",
-        "enumeration still use the floating-log layer counter, so this remains an",
-        "experimental oracle probe rather than a correctness certificate.",
+        "enumeration still use the floating-log layer counter. Each recovered vector",
+        "is then passed to the independent interval-log rank auditor; only rows with",
+        "`rank_certified=True` should be used as certified correctness evidence.",
         "",
-        "| label | k | radius | center error | band count | inside | enumerated | recovered | wall s |",
-        "|---|---:|---:|---:|---:|---|---|---|---:|",
+        "| label | k | radius | center error | band count | inside | recovered | certified | wall s | audit s |",
+        "|---|---:|---:|---:|---:|---|---|---|---:|---:|",
     ]
     for row in rows:
+        audit_s = "" if row["audit_wall_seconds"] == "" else f"{float(row['audit_wall_seconds']):.6f}"
         lines.append(
             f"| `{row['label']}` | {row['k']} | {row['rank_radius']} | "
             f"{row['center_rank_error']} | {row['band_count']} | "
-            f"{row['target_inside']} | {row['enumerated']} | "
-            f"{row['recovered_expected_exps']} | {float(row['wall_seconds']):.6f} |"
+            f"{row['target_inside']} | {row['recovered_expected_exps']} | "
+            f"{row['rank_certified']} | {float(row['wall_seconds']):.6f} | {audit_s} |"
         )
     (out_dir / "report.md").write_text("\n".join(lines) + "\n")
 
@@ -182,6 +209,7 @@ def main() -> int:
     parser.add_argument("--out-dir", type=Path)
     parser.add_argument("--cxx", default="g++")
     parser.add_argument("--cxxflags", default="-O3 -std=c++17")
+    parser.add_argument("--skip-audit", action="store_true")
     args = parser.parse_args()
 
     harness = load_harness()
@@ -202,6 +230,7 @@ def main() -> int:
                 }
                 for label, primes, n, exps, radius, max_candidates in cases
             ],
+            "skip_audit": args.skip_audit,
         },
         "build_runs": [],
         "runs": [],
@@ -231,13 +260,23 @@ def main() -> int:
             ],
         )
         report["runs"].append(run)
-        rows.append(summarize_case(label, primes, n, exps, radius, max_candidates, run))
+        audit = None
+        recovered_exps = exps_csv(run.get("metrics", {}).get("exps", ""))
+        if recovered_exps is not None and not args.skip_audit:
+            audit = harness.run_measured(
+                f"{label}_interval_audit",
+                ["bin/smooth_interval_audit_exps", primes, recovered_exps, str(n)],
+            )
+            report["runs"].append(audit)
+        rows.append(summarize_case(label, primes, n, exps, radius, max_candidates, run, audit))
 
     report["summary_rows"] = rows
     report["aggregate"] = aggregate(rows)
     write_outputs(out_dir, report)
     print(out_dir)
-    return 0 if report["aggregate"]["completed_cases"] == report["aggregate"]["cases"] else 1
+    all_completed = report["aggregate"]["completed_cases"] == report["aggregate"]["cases"]
+    all_certified = args.skip_audit or report["aggregate"]["rank_certified_cases"] == report["aggregate"]["cases"]
+    return 0 if all_completed and all_certified else 1
 
 
 if __name__ == "__main__":
