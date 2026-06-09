@@ -54,7 +54,9 @@ static LB64 get_log_bound_1e15(int p) {
         case 7:  return { 1945910149055284LL,  1945910149055342LL};
         case 11: return { 2397895272798331LL,  2397895272798410LL};
         case 13: return { 2564949357461499LL,  2564949357461576LL};
-        default: throw std::runtime_error("this auditor currently supports primes {2,3,5,7,11,13}");
+        case 17: return { 2833213344056100LL,  2833213344056350LL};
+        case 19: return { 2944438979166300LL,  2944438979166700LL};
+        default: throw std::runtime_error("this auditor currently supports primes {2,3,5,7,11,13,17,19}");
     }
 }
 static inline uint64_t pack_set(uint64_t pack, int pos, int exp) {
@@ -91,7 +93,7 @@ struct Auditor {
 
     Auditor(std::vector<int> p, std::vector<int> e) : primes(std::move(p)), exps(std::move(e)), cache(primes) {
         if (primes.size() != exps.size()) throw std::runtime_error("prime/exponent length mismatch");
-        if (primes.empty() || primes.size() > 6) throw std::runtime_error("this auditor supports 1..6 primes");
+        if (primes.empty() || primes.size() > 8) throw std::runtime_error("this auditor supports 1..8 primes");
         for (int q: primes) lbs.push_back(get_log_bound_1e15(q));
         for (size_t i=0;i<primes.size();++i) {
             __int128 a = (__int128)exps[i] * lbs[i].lo;
@@ -138,12 +140,10 @@ struct Auditor {
     ull count_le() {
         const int k = (int)primes.size();
         std::vector<int> Aidx, Bidx;
-        if (k==1) { Aidx={}; Bidx={0}; }
-        else if (k==2) { Aidx={0}; Bidx={1}; }
-        else if (k==3) { Aidx={0}; Bidx={1,2}; }
-        else if (k==4) { Aidx={0,1}; Bidx={2,3}; }
-        else if (k==5) { Aidx={0,1}; Bidx={2,3,4}; }
-        else if (k==6) { Aidx={0,1,2}; Bidx={3,4,5}; }
+        int split = k / 2;
+        for (int i=0; i<split; ++i) Aidx.push_back(i);
+        for (int i=split; i<k; ++i) Bidx.push_back(i);
+        if (Aidx.size() > 4 || Bidx.size() > 4) throw std::runtime_error("auditor split pack supports at most 4 coordinates per side");
         std::vector<Entry> A = gen_group(Aidx, false);
         std::vector<Entry> B = gen_group(Bidx, true);
         groupA = A.size(); groupB = B.size();

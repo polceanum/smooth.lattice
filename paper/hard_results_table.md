@@ -51,11 +51,18 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   ratio 9.0509. This is a negative/mixed result, not a headline improvement.
   Artifact: `results/benchmarks/sorted_matrix_workbench_1e12/`.
 - 6 primes, P=(2,3,5,7,11,13), N=10^12: exps [55,126,27,54,2,52], fast solver about 0.55-0.61s; independent auditor certified count_le=N.
-- Higher-k exploratory: sums-only MITM handled k=8,10,12 at N=10^12 within seconds in the container, but proof-grade certification beyond k=6 is not yet implemented.
+- 8 primes, P=(2,3,5,7,11,13,17,19), N=10^12: exps
+  [75,28,9,16,3,22,5,1], high-k sums-only solver output independently
+  certified with count_le=N by the k<=8 interval auditor. Artifact:
+  `results/benchmarks/k8_certificate_1e12/`.
+- Higher-k exploratory: sums-only MITM handled k=10,12 at N=10^12 within
+  seconds in local checks, but proof-grade certification beyond k=8 is not yet
+  implemented.
 
 ## Claims to avoid for now
 
 - Do not claim general best-known algorithm for smooth numbers.
 - Do not claim replacement for Bernstein-style general y-smooth counting.
 - Do not claim impact on prime generation, factoring, or twin primes.
-- Do not claim proof-grade correctness for fastest high-k variants until arbitrary-prime interval auditing is complete.
+- Do not claim proof-grade correctness for k>8 high-k variants until
+  arbitrary-prime interval auditing is complete.

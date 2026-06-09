@@ -12,7 +12,8 @@
 | Analytic asymptotic bracketing improves layer-compressed unranking | Clean optimization evidence: 6/6 analytic brackets, mean final band 11286.8 -> 345.8, reported layer time improved 5/6 cases | Artifact: `results/benchmarks/full_xplusy_suite_1e12/`; non-proof seed only, correctness still comes from audits |
 | Practical sorted-matrix/FJ-style range pruning improves X+Y selection at N=10^12 | Negative/mixed: 2/6 narrow wins, 4/6 losses, mean block/linear ratio 1.2765 | Artifact: `results/benchmarks/sorted_matrix_workbench_1e12/`; diagnostic only, not a faithful Frederickson-Johnson implementation |
 | Mirzaian-Arjomandi sorted-matrix value selection improves practical X+Y selection at N=10^12 | Negative: 6/6 exact log matches, 0/6 timing wins, mean MA/linear ratio 9.0509 | Artifact: `results/benchmarks/sorted_matrix_workbench_1e12/`; value-selection only, not full unrank |
-| 6-prime certified benchmark | Achieved for first six primes at N=10^12 | Generalize auditor to arbitrary k/primes |
+| 6-prime certified benchmark | Achieved for first six primes at N=10^12 | Generalize auditor to arbitrary prime sets |
+| 8-prime certified sums-only random access | Achieved for first eight primes at N=10^12: high-k sums-only solver output independently rank-certified | Artifact: `results/benchmarks/k8_certificate_1e12/`; still a fixed-instance certificate, not a broad best-known claim |
 | Beats standard Super Ugly Number DP baseline | Achieved, large margins | Present as random-access vs sequential-generation distinction |
 | Best known for fixed-prime random access | Not yet | Compare against full X+Y/FJ/soft-heap/Barvinok implementations or give theoretical argument |
 | Useful in factoring/crypto directly | Not established | Avoid claim |

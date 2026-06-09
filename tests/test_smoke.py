@@ -79,6 +79,10 @@ def main():
     assert cert['rank_certified'] is True, json.dumps(cert, indent=2)
     assert cert['certified_count_le'] == 1000
 
+    cert8 = st.audit([2, 3, 5, 7, 11, 13, 17, 19], 1000, timeout=60)
+    assert cert8['rank_certified'] is True, json.dumps(cert8, indent=2)
+    assert cert8['certified_count_le'] == 1000
+
     print('smoke tests passed')
 
 

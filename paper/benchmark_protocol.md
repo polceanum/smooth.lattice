@@ -234,6 +234,44 @@ recorded macOS/x86_64 Apple-clang machine:
 This supports the safe claim above for this benchmark suite and recorded
 machine/compiler. It is still not, by itself, a broad "best known" claim.
 
+## Certified k=8 Sums-Only Instance
+
+The first paper-grade higher-k target is:
+
+```text
+P = (2,3,5,7,11,13,17,19)
+N = 10^12
+```
+
+Use:
+
+```bash
+python3 scripts/run_k8_certificate.py
+```
+
+Default outputs are written to:
+
+```text
+results/local/k8_certificate_<timestamp>/
+```
+
+The harness runs the exploratory high-k sums-only MITM unranker, then audits the
+returned exponent vector with the independent interval-log rank auditor. The
+auditor uses integer log intervals and exact big-integer resolution of boundary
+ambiguities; it does not reuse the sums-only solver's floating reconstruction
+path.
+
+A safe claim, if the clean artifact supports it, is:
+
+```text
+For P=(2,3,5,7,11,13,17,19) and N=10^12, the high-k sums-only
+solver returned an exponent vector whose rank was independently certified by
+the interval-log auditor.
+```
+
+This is a correctness/certification claim for a fixed higher-dimensional
+instance. It is not a broad performance or best-known claim.
+
 ## Analytic-Bracket Layer Hybrid
 
 The layer-compressed solver now uses a non-MITM analytic seed for large-rank

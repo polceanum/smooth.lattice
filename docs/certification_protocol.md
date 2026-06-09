@@ -30,7 +30,7 @@
    For small N and prime sets, compare against exact DP/pointer generation:
    - all N <= 10,000 for selected prime sets,
    - random N up to 1,000,000,
-   - random prime subsets up to k=6.
+   - random prime subsets up to the currently certified auditor dimension.
 
 7. **No floating tolerance in certified path**
    Any floating tolerance may remain in experimental high-performance solvers, but not in the certified auditor.
@@ -42,3 +42,17 @@
    - CPU/RAM info,
    - raw stdout logs,
    - generated JSON certificates.
+
+## Current auditor scope
+
+The interval auditor currently supports up to eight primes drawn from:
+
+```text
+{2,3,5,7,11,13,17,19}
+```
+
+The k<=8 extension uses the same certified-path structure as the earlier k<=6
+auditor: integer log intervals, a balanced meet-in-the-middle split, and exact
+big-integer resolution for boundary-ambiguous pairs. The old
+`smooth_interval_audit_exps_k6` binary name is still built for compatibility;
+new scripts should call `smooth_interval_audit_exps`.
