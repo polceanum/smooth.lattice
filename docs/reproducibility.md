@@ -18,6 +18,8 @@ python3 tests/test_smoke.py
 bash scripts/run_certified_examples.sh
 bash scripts/run_dp_comparison.sh
 python3 scripts/run_xplusy_vs_layer5.py
+python3 scripts/run_full_xplusy_suite.py
+python3 scripts/run_sorted_matrix_workbench.py
 ```
 
 Dependency notes:
@@ -34,3 +36,8 @@ The `run_xplusy_vs_layer5.py` harness writes `report.json`, `summary.csv`, and
 case is `P=(2,3,5,7,11), N=10^12`; it compares adaptive Cartesian-sum value
 selection against the layer-compressed full unrank solver and, unless disabled,
 audits the returned exponent vector with the independent interval auditor.
+
+The full-X+Y and sorted-matrix workbench harnesses follow the same artifact
+format. The sorted-matrix workbench is diagnostic: its Mirzaian-Arjomandi row is
+value selection only, its LOH row is capped, and neither is a full exponent-vector
+unrank certificate.

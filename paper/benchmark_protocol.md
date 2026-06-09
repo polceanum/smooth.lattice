@@ -276,17 +276,20 @@ Clean workbench artifact:
 results/benchmarks/sorted_matrix_workbench_1e12/
 ```
 
-Observed result at commit `674746fc15fd5f1cad31773bee81ba5a13ff13ea` on the
+Observed result at commit `44175948b9b9bf3010f5fd388e2d926180fe5f45` on the
 recorded macOS/x86_64 Apple-clang machine:
 
 - 6/6 cases completed.
 - The range-pruned block counter beat the ordinary linear saddleback count in
   2/6 cases.
-- Those two wins were narrow: block/linear ratios 0.9800 and 0.9790.
-- The mean block/linear internal time ratio was 1.2542, so the probe was slower
+- Those two wins were narrow: block/linear ratios 0.9634 and 0.9907.
+- The mean block/linear internal time ratio was 1.2765, so the probe was slower
   on average.
+- The Mirzaian-Arjomandi value selector matched the adaptive selected log in
+  6/6 cases, but won 0/6 timing comparisons. Its mean MA/linear internal time
+  ratio was 9.0509.
 - The LOH row used `N_probe=10^6`, not the full target rank `N=10^12`.
 
 This is a negative/mixed result. It should be used to document that the current
-sorted-matrix range-pruning probe does not strengthen the X+Y baseline at the
-headline five-prime target scale.
+sorted-matrix probes do not strengthen the X+Y baseline at the headline
+five-prime target scale.

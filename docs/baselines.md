@@ -70,11 +70,13 @@ These rows are useful negative or diagnostic evidence, but they do not discharge
 the "full Frederickson-Johnson" or "full soft-heap X+Y" comparison obligations.
 
 In the clean six-case `N=10^12` workbench artifact at commit
-`674746fc15fd5f1cad31773bee81ba5a13ff13ea`, the range-pruned block counter
+`44175948b9b9bf3010f5fd388e2d926180fe5f45`, the range-pruned block counter
 beat the ordinary linear saddleback count in only 2/6 cases, and only narrowly.
-The mean block/linear internal time ratio was 1.2542, so this probe does not
-improve the practical X+Y comparator. The LOH row is a capped `N_probe=10^6`
-top-k probe, not a full-rank `N=10^12` random-access comparator.
+The mean block/linear internal time ratio was 1.2765, so this probe does not
+improve the practical X+Y comparator. The Mirzaian-Arjomandi value selector
+matched the adaptive selected log in 6/6 cases but won 0/6 timing comparisons,
+with mean MA/linear internal time ratio 9.0509. The LOH row is a capped
+`N_probe=10^6` top-k probe, not a full-rank `N=10^12` random-access comparator.
 
 ## Not yet fully implemented
 

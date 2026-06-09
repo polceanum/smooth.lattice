@@ -116,12 +116,15 @@ The sorted-matrix/range-pruning workbench should be reported as a diagnostic
 negative result:
 
 ```text
-On the same six five-prime subsets at N=10^12, our range-pruned
-sorted-matrix block counter did not improve the practical X+Y selector overall:
-it won only 2/6 cases, both narrowly, and its mean internal time was 1.2542
-times the ordinary linear saddleback count.
+On the same six five-prime subsets at N=10^12, our sorted-matrix probes did not
+improve the practical X+Y selector overall. The range-pruned block counter won
+only 2/6 cases, both narrowly, with mean block/linear internal time ratio
+1.2765. The Mirzaian-Arjomandi value selector matched the adaptive selected log
+in all six cases but won 0/6 timing comparisons, with mean MA/linear internal
+time ratio 9.0509.
 ```
 
 Do not describe this as a Frederickson-Johnson comparison. The implementation is
-only FJ-style range pruning, and the LOH row is capped at `N_probe=10^6` rather
-than the full target rank.
+only FJ-style range pruning plus a separate Mirzaian-Arjomandi value-selection
+probe, and the LOH row is capped at `N_probe=10^6` rather than the full target
+rank.

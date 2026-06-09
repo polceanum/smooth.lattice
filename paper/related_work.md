@@ -103,6 +103,10 @@ Current implementation status:
   kth-largest selection on negated weights.
 - This row selects a log value only. It does not reconstruct an exponent vector
   or independently certify a returned smooth number.
+- Clean `N=10^12` five-prime suite artifact:
+  `results/benchmarks/sorted_matrix_workbench_1e12/`. The probe matched the
+  adaptive selected log in 6/6 cases but was slower in 6/6 cases, with mean
+  MA/linear internal time ratio 9.0509.
 
 ### Frederickson-Johnson
 
