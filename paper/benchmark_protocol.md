@@ -272,6 +272,33 @@ the interval-log auditor.
 This is a correctness/certification claim for a fixed higher-dimensional
 instance. It is not a broad performance or best-known claim.
 
+## Analytic Count Residual Probe
+
+The next analytic-oracle diagnostic evaluates the asymptotic lattice-count
+approximation at certified target exponent vectors:
+
+```bash
+python3 scripts/run_analytic_count_probe.py
+```
+
+Default outputs are written to:
+
+```text
+results/local/analytic_count_probe_<timestamp>/
+```
+
+The harness records, for each target vector:
+
+- the analytic count estimate from the truncated generating-function expansion;
+- the analytic derivative at the same log height;
+- the current layer counter's count at that log height;
+- the residual against the independently certified rank `N`.
+
+This is deliberately not yet an algorithmic claim. It is a measurement stage for
+the proposed analytic-lattice count oracle. A future oracle would need an error
+envelope and exact boundary correction before it can replace exact counting in a
+published solver.
+
 ## Analytic-Bracket Layer Hybrid
 
 The layer-compressed solver now uses a non-MITM analytic seed for large-rank

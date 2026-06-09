@@ -64,3 +64,8 @@ large-rank search bracket. It does not use the approximation as evidence of
 correctness: the bracket is still checked and repaired by exact layer counts,
 and the returned exponent vector still needs the independent interval auditor
 for certification.
+
+The analytic-count residual workbench evaluates the same expansion at certified
+target exponent vectors and compares it with the certified rank. This is a
+diagnostic step toward an analytic count oracle; it is not yet a theorem or a
+replacement for exact counting.

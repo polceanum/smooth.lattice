@@ -83,6 +83,24 @@ def main():
     assert cert8['rank_certified'] is True, json.dumps(cert8, indent=2)
     assert cert8['certified_count_le'] == 1000
 
+    probe = subprocess.run(
+        [
+            str(ROOT / 'bin' / 'smooth_layer_compressed_general'),
+            'count-probe-exps',
+            '2,3,5',
+            '1,1,0',
+            '6',
+        ],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=True,
+    )
+    assert 'analytic_count_probe' in probe.stdout
+    assert 'layer_count=6' in probe.stdout
+    assert 'expected_N=6' in probe.stdout
+
     print('smoke tests passed')
 
 
