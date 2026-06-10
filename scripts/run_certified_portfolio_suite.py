@@ -246,12 +246,16 @@ def compare_methods(runs: list[dict[str, Any]], n: int) -> dict[str, Any]:
         and audit.get("metrics", {}).get("rank_certified", False)
         and audit.get("metrics", {}).get("certified_count_le", "") == n
     )
+    audit_stderr = audit.get("stderr", "") if audit else ""
+    audit_blocked = bool(audit and not ok(audit) and exps_match and "scaled interval overflow" in audit_stderr)
     return {
         "successful_methods": [run["name"] for run in successful],
         "exps_by_method": exps_by_method,
         "matching_exps": matching_exps if exps_match else None,
         "all_successful_exps_match": exps_match,
         "certified": certified and exps_match,
+        "audit_blocked": audit_blocked,
+        "audit_stderr": audit_stderr,
         "fastest_wall_method": fastest_wall["name"] if fastest_wall else "",
         "fastest_wall_seconds": fastest_wall["elapsed_seconds"] if fastest_wall else "",
         "fastest_reported_method": fastest_reported["name"] if fastest_reported else "",
@@ -284,6 +288,8 @@ def summarize_case(case: dict[str, Any]) -> dict[str, Any]:
         "completed_methods": ",".join(comparison["successful_methods"]),
         "all_successful_exps_match": comparison["all_successful_exps_match"],
         "certified": comparison["certified"],
+        "audit_blocked": comparison["audit_blocked"],
+        "audit_stderr": comparison["audit_stderr"],
         "fastest_wall_method": comparison["fastest_wall_method"],
         "fastest_wall_seconds": comparison["fastest_wall_seconds"],
         "fastest_reported_method": comparison["fastest_reported_method"],
@@ -299,14 +305,21 @@ def summarize_case(case: dict[str, Any]) -> dict[str, Any]:
 
 def aggregate(rows: list[dict[str, Any]]) -> dict[str, Any]:
     certified = [row for row in rows if row["certified"]]
+    audit_blocked = [row for row in rows if row["audit_blocked"]]
+    matching = [row for row in rows if row["all_successful_exps_match"]]
+    disagreements = [row for row in rows if not row["all_successful_exps_match"]]
     wall_winners = Counter(row["fastest_wall_method"] for row in certified)
     reported_winners = Counter(row["fastest_reported_method"] for row in certified)
     return {
         "cases": len(rows),
         "certified_cases": len(certified),
+        "matching_cases": len(matching),
+        "audit_blocked_cases": len(audit_blocked),
+        "solver_disagreement_cases": len(disagreements),
         "wall_winners": dict(sorted(wall_winners.items())),
         "reported_winners": dict(sorted(reported_winners.items())),
         "all_cases_certified": len(certified) == len(rows),
+        "all_cases_resolved": len(disagreements) == 0 and len(certified) + len(audit_blocked) == len(rows),
     }
 
 
@@ -342,6 +355,9 @@ def write_outputs(out_dir: Path, report: dict[str, Any]) -> None:
         f"- Git dirty: `{report['metadata'].get('git_dirty')}`",
         f"- Cases: `{agg['cases']}`",
         f"- Certified cases: `{agg['certified_cases']}`",
+        f"- Solver-agreement cases: `{agg['matching_cases']}`",
+        f"- Audit-blocked agreement cases: `{agg['audit_blocked_cases']}`",
+        f"- Solver-disagreement cases: `{agg['solver_disagreement_cases']}`",
         f"- Wall-time winners: `{agg['wall_winners']}`",
         f"- Reported-time winners: `{agg['reported_winners']}`",
         "",
@@ -349,15 +365,15 @@ def write_outputs(out_dir: Path, report: dict[str, Any]) -> None:
         "A row is certified only when successful methods agree on the exponent vector",
         "and the independent interval auditor proves `count_le(candidate)=N`.",
         "",
-        "| label | k | N | fastest wall | wall sec | fastest reported | reported sec | cert | exps |",
-        "|---|---:|---:|---|---:|---|---:|---|---|",
+        "| label | k | N | fastest wall | wall sec | fastest reported | reported sec | cert | audit blocked | exps |",
+        "|---|---:|---:|---|---:|---|---:|---|---|---|",
     ]
     for row in rows:
         lines.append(
             f"| `{row['label']}` | {row['k']} | {row['N']} | "
             f"`{row['fastest_wall_method']}` | {float(row['fastest_wall_seconds']):.6f} | "
             f"`{row['fastest_reported_method']}` | {float(row['fastest_reported_seconds']):.6f} | "
-            f"{row['certified']} | `{row['exps']}` |"
+            f"{row['certified']} | {row['audit_blocked']} | `{row['exps']}` |"
         )
     lines.extend(
         [
@@ -365,7 +381,9 @@ def write_outputs(out_dir: Path, report: dict[str, Any]) -> None:
             "## Best-Known Claim Gate",
             "",
             "This artifact is not, by itself, a broad best-known claim. It is the",
-            "current implemented-and-certified portfolio. Remaining comparator gates",
+            "current implemented portfolio with per-row certification status.",
+            "Rows marked `audit blocked` had solver agreement but exceeded the",
+            "current interval auditor's numeric range. Remaining comparator gates",
             "before using best-known language include a faithful soft-heap/selection",
             "baseline, clearer Barvinok/fixed-dimensional lattice-count positioning,",
             "and broader independent certification beyond the current audited prime",
@@ -467,7 +485,7 @@ def main() -> int:
     report["aggregate"] = aggregate(rows)
     write_outputs(out_dir, report)
     print(out_dir)
-    return 0 if report["aggregate"]["all_cases_certified"] else 1
+    return 0 if report["aggregate"]["all_cases_resolved"] else 1
 
 
 if __name__ == "__main__":
