@@ -498,6 +498,61 @@ materialized X+Y. It is also a negative speed result for the current k=6/k=8
 implementation, so the paper should not present the corrected oracle as a
 general wall-time winner.
 
+## Residual-Corrected Full X+Y Speed Suite
+
+The corrected-oracle random suite compares the layer-compressed corrected
+oracle against other methods. To isolate the speed contribution of residual
+correction itself, the full materialized X+Y benchmark also has a corrected
+mode:
+
+```bash
+bin/smooth_xplusy_full_unrank analytic-band-corrected \
+  primes_csv N rank_radius max_candidates
+```
+
+This mode uses the same materialized X+Y groups and exponent packing as
+`bin/smooth_xplusy_full_unrank nth`, but replaces the adaptive
+interpolation/bisection count loop with:
+
+1. analytic center `T0`;
+2. one exact full-X+Y count `C(T0)`;
+3. residual shift `(N-C(T0))/analytic_derivative(T0)`;
+4. a small corrected boundary band, exact-sorted to recover the exponent vector.
+
+The reproducible suite is:
+
+```bash
+python3 scripts/run_xplusy_corrected_speed_suite.py \
+  --out-dir results/benchmarks/xplusy_corrected_speed_suite_1e9_1e12
+```
+
+Clean speed artifact:
+
+```text
+results/benchmarks/xplusy_corrected_speed_suite_1e9_1e12/
+```
+
+Observed result at commit `4a581fe2fb495997442c4e233fc01ad172a2d4df`:
+
+- 10/10 rows completed.
+- 10/10 corrected-mode outputs were independently rank-certified and matched
+  the adaptive full-X+Y exponent vector.
+- Corrected mode won 9/10 wall-time comparisons.
+- Corrected mode won 10/10 reported in-process time comparisons.
+- Mean adaptive/corrected wall-time ratio was about 1.33.
+- Mean adaptive/corrected reported-time ratio was about 1.82.
+- Corrected mode used less peak RSS in 10/10 rows, with mean adaptive/corrected
+  RSS ratio about 1.34.
+- The one wall-time loss was a small `k=5, N=10^9` case where process/cache
+  overhead dominated; the corrected mode still won that row on reported
+  in-process time.
+
+This supports a narrow speed claim: residual correction accelerates this
+adaptive full materialized X+Y unrank implementation while preserving
+independent certification of the corrected output. It does not imply a speed
+win over sums-only MITM, layer-compressed MITM, or every known X+Y selection
+algorithm.
+
 ## Analytic-Bracket Layer Hybrid
 
 The layer-compressed solver now uses a non-MITM analytic seed for large-rank

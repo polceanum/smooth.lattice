@@ -78,6 +78,15 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   10/10 rows, with mean full-X+Y/corrected RSS ratio about 7.90. Wall-time wins
   were mixed: 4/10 vs full X+Y and 3/10 vs sums-only. Artifact:
   `results/benchmarks/corrected_oracle_random_suite_1e9_1e12/`.
+- Residual-corrected full materialized X+Y speed suite: clean artifact at
+  commit `4a581fe2fb495997442c4e233fc01ad172a2d4df`. This compares two modes
+  of the same full-X+Y implementation: adaptive unrank versus residual-corrected
+  analytic band. All 10 corrected outputs were independently rank-certified and
+  matched the adaptive full-X+Y vector. Corrected mode won 9/10 wall-time
+  comparisons and 10/10 reported in-process timing comparisons, with mean
+  adaptive/corrected wall-time ratio about 1.33 and mean reported-time ratio
+  about 1.82. Artifact:
+  `results/benchmarks/xplusy_corrected_speed_suite_1e9_1e12/`.
 - 8 primes, P=(2,3,5,7,11,13,17,19), N=10^12: exps
   [75,28,9,16,3,22,5,1], high-k sums-only solver output independently
   certified with count_le=N by the k<=8 interval auditor. Artifact:
