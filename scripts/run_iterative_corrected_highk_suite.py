@@ -20,18 +20,25 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_N = 1_000_000_000_000
 DEFAULT_CASES = [
     {
+        "label": "k8_first8",
+        "primes": "2,3,5,7,11,13,17,19",
+        "rank_radius": 25,
+        "max_candidates": 200_000,
+        "refine_steps": 4,
+    },
+    {
         "label": "k10_first10",
         "primes": "2,3,5,7,11,13,17,19,23,29",
-        "rank_radius": 50,
-        "max_candidates": 100_000,
-        "refine_steps": 2,
+        "rank_radius": 25,
+        "max_candidates": 200_000,
+        "refine_steps": 4,
     },
     {
         "label": "k12_first12",
         "primes": "2,3,5,7,11,13,17,19,23,29,31,37",
         "rank_radius": 25,
         "max_candidates": 200_000,
-        "refine_steps": 3,
+        "refine_steps": 4,
     },
 ]
 
@@ -250,8 +257,8 @@ def write_outputs(out_dir: Path, report: dict[str, Any]) -> None:
         f"- Corrected wall-time wins: `{report['aggregate']['corrected_wall_wins']}`",
         f"- Mean adaptive/corrected wall ratio: `{report['aggregate']['mean_adaptive_wall_over_corrected_wall']}`",
         "",
-        "The corrected row applies multiple exact residual corrections to the",
-        "analytic lattice estimate before opening the final exact-sorted band.",
+        "The corrected row applies a shared iterative policy: four exact residual",
+        "corrections and a rank-radius-25 final exact-sorted band.",
         "Every corrected output is independently interval-rank certified.",
         "",
         "| label | k | radius | refine | adaptive wall s | corrected wall s | ratio | band | cands | audit s | certified | exps |",
