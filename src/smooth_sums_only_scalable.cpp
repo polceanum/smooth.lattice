@@ -47,7 +47,139 @@ struct SumsMITM{std::vector<int>P; std::vector<double>logs; std::vector<int>Aidx
 struct Result{double sec,build,count,band;std::vector<int>exps;int digits;size_t A,B,bandn;int calls;ull gap;std::vector<int>Aidx,Bidx;};
 struct ExactBandCandidate{cpp_int value; std::vector<int> exps;};
 static std::vector<int> exact_select_band(const SumsMITM& R,const std::vector<Candidate>&cands,ull off){if(off>=cands.size())throw std::runtime_error("exact band offset out of range"); std::unordered_map<uint32_t,std::vector<int>> ca,cb; std::vector<ExactBandCandidate> exact; exact.reserve(cands.size()); for(const auto&c:cands){auto ia=ca.find(c.ai); if(ia==ca.end()){auto loc=R.reconstruct_side_index(R.Aidx,R.Apar,R.Adim,c.ai); ia=ca.emplace(c.ai,std::move(loc)).first;} auto ib=cb.find(c.bi); if(ib==cb.end()){auto loc=R.reconstruct_side_index(R.Bidx,R.Bpar,R.Bdim,c.bi); ib=cb.emplace(c.bi,std::move(loc)).first;} std::vector<int>e(R.P.size(),0); for(size_t i=0;i<R.Aidx.size();i++)e[R.Aidx[i]]=ia->second[i]; for(size_t i=0;i<R.Bidx.size();i++)e[R.Bidx[i]]=ib->second[i]; exact.push_back({value_from_exps(R.P,e),std::move(e)});} std::sort(exact.begin(),exact.end(),[](const ExactBandCandidate&x,const ExactBandCandidate&y){return x.value<y.value;}); return exact[(size_t)off].exps;}
-struct CorrectedResult{double sec=0,build=0,count=0,band=0; long double raw_T=0,raw_derivative=0,T=0,derivative=0,correction=0,half_width=0; ull center_count=0,below=0,above=0,band_count=0; bool target_inside=false,enumerated=false,recovered=false; std::vector<int>exps; int digits=0; size_t A=0,B=0,cands=0; std::vector<int>Aidx,Bidx;};
-static CorrectedResult corrected_sums(std::vector<int>P,ull n,long double rank_radius,ull max_candidates){auto t0=std::chrono::high_resolution_clock::now(); CorrectedResult r; r.raw_T=(long double)asymptotic_est(P,n); r.raw_derivative=analytic_count_derivative(P,r.raw_T); if(!(r.raw_derivative>0.0L)||!std::isfinite((double)r.raw_derivative))throw std::runtime_error("bad analytic derivative"); long double raw_half_width=std::max(rank_radius/r.raw_derivative,1e-12L*(1.0L+r.raw_T)); long double initial_slack=std::max(0.01L,10.0L*raw_half_width); auto tb0=std::chrono::high_resolution_clock::now(); std::unique_ptr<SumsMITM>R(new SumsMITM(P,std::max(1e-9,(double)(r.raw_T+initial_slack)))); auto tb1=std::chrono::high_resolution_clock::now(); r.build+=std::chrono::duration<double>(tb1-tb0).count(); auto tc0=std::chrono::high_resolution_clock::now(); r.center_count=R->count_le((double)r.raw_T); auto tc1=std::chrono::high_resolution_clock::now(); r.count+=std::chrono::duration<double>(tc1-tc0).count(); r.correction=-((long double)r.center_count-(long double)n)/r.raw_derivative; r.T=std::max(0.0L,r.raw_T+r.correction); r.derivative=analytic_count_derivative(P,r.T); if(!(r.derivative>0.0L)||!std::isfinite((double)r.derivative))throw std::runtime_error("bad corrected analytic derivative"); r.half_width=std::max(rank_radius/r.derivative,1e-12L*(1.0L+r.T)); double L=(double)std::max(0.0L,r.T-r.half_width), H=(double)(r.T+r.half_width); if(H+1e-8>R->maxT){tb0=std::chrono::high_resolution_clock::now(); R.reset(new SumsMITM(P,std::max(1e-9,H+1e-8))); tb1=std::chrono::high_resolution_clock::now(); r.build+=std::chrono::duration<double>(tb1-tb0).count();} auto tc2=std::chrono::high_resolution_clock::now(); r.below=R->count_le(L); r.above=R->count_le(H); auto tc3=std::chrono::high_resolution_clock::now(); r.count+=std::chrono::duration<double>(tc3-tc2).count(); r.band_count=(r.above>=r.below)?(r.above-r.below):0ULL; r.target_inside=(r.below<n&&r.above>=n); r.A=R->A.size(); r.B=R->B.size(); r.Aidx=R->Aidx; r.Bidx=R->Bidx; if(r.target_inside&&r.band_count<=max_candidates){auto tb2=std::chrono::high_resolution_clock::now(); auto cands=R->band(L,H); r.enumerated=true; r.cands=cands.size(); ull off=n-r.below-1; if(off<cands.size()){r.exps=exact_select_band(*R,cands,off); auto val=value_from_exps(P,r.exps); r.digits=digits10(val); r.recovered=true;} auto tb3=std::chrono::high_resolution_clock::now(); r.band=std::chrono::duration<double>(tb3-tb2).count();} auto t1=std::chrono::high_resolution_clock::now(); r.sec=std::chrono::duration<double>(t1-t0).count(); return r;}
+struct CorrectedResult{double sec=0,build=0,count=0,band=0; long double raw_T=0,raw_derivative=0,T=0,derivative=0,correction=0,half_width=0,final_rank_error=0; ull center_count=0,final_center_count=0,below=0,above=0,band_count=0; int refine_steps=1; bool target_inside=false,enumerated=false,recovered=false; std::vector<int>exps; int digits=0; size_t A=0,B=0,cands=0; std::vector<int>Aidx,Bidx;};
+static CorrectedResult corrected_sums(std::vector<int>P,ull n,long double rank_radius,ull max_candidates,int refine_steps=1){
+    auto t0=std::chrono::high_resolution_clock::now();
+    CorrectedResult r;
+    r.refine_steps=std::max(1,refine_steps);
+    r.raw_T=(long double)asymptotic_est(P,n);
+    r.raw_derivative=analytic_count_derivative(P,r.raw_T);
+    if(!(r.raw_derivative>0.0L)||!std::isfinite((double)r.raw_derivative))throw std::runtime_error("bad analytic derivative");
+    long double raw_half_width=std::max(rank_radius/r.raw_derivative,1e-12L*(1.0L+r.raw_T));
+    long double initial_slack=std::max(0.01L,10.0L*raw_half_width);
+    auto tb0=std::chrono::high_resolution_clock::now();
+    std::unique_ptr<SumsMITM>R(new SumsMITM(P,std::max(1e-9,(double)(r.raw_T+initial_slack))));
+    auto tb1=std::chrono::high_resolution_clock::now();
+    r.build+=std::chrono::duration<double>(tb1-tb0).count();
+    r.T=r.raw_T;
+    r.derivative=r.raw_derivative;
+    for(int step=0; step<r.refine_steps; ++step){
+        if((double)(r.T+initial_slack)>R->maxT){
+            tb0=std::chrono::high_resolution_clock::now();
+            R.reset(new SumsMITM(P,std::max(1e-9,(double)(r.T+initial_slack))));
+            tb1=std::chrono::high_resolution_clock::now();
+            r.build+=std::chrono::duration<double>(tb1-tb0).count();
+        }
+        auto tc0=std::chrono::high_resolution_clock::now();
+        ull cnt=R->count_le((double)r.T);
+        auto tc1=std::chrono::high_resolution_clock::now();
+        r.count+=std::chrono::duration<double>(tc1-tc0).count();
+        long double err=(long double)cnt-(long double)n;
+        if(step==0) r.center_count=cnt;
+        r.final_center_count=cnt;
+        r.final_rank_error=err;
+        r.derivative=analytic_count_derivative(P,r.T);
+        if(!(r.derivative>0.0L)||!std::isfinite((double)r.derivative))throw std::runtime_error("bad corrected analytic derivative");
+        long double delta=-err/r.derivative;
+        r.correction+=delta;
+        r.T=std::max(0.0L,r.T+delta);
+        if(std::fabs(delta)<=1e-14L*(1.0L+r.T)) break;
+    }
+    r.derivative=analytic_count_derivative(P,r.T);
+    if(!(r.derivative>0.0L)||!std::isfinite((double)r.derivative))throw std::runtime_error("bad final analytic derivative");
+    r.half_width=std::max(rank_radius/r.derivative,1e-12L*(1.0L+r.T));
+    double L=(double)std::max(0.0L,r.T-r.half_width), H=(double)(r.T+r.half_width);
+    if(H+1e-8>R->maxT){
+        tb0=std::chrono::high_resolution_clock::now();
+        R.reset(new SumsMITM(P,std::max(1e-9,H+1e-8)));
+        tb1=std::chrono::high_resolution_clock::now();
+        r.build+=std::chrono::duration<double>(tb1-tb0).count();
+    }
+    auto tc2=std::chrono::high_resolution_clock::now();
+    r.below=R->count_le(L);
+    r.above=R->count_le(H);
+    auto tc3=std::chrono::high_resolution_clock::now();
+    r.count+=std::chrono::duration<double>(tc3-tc2).count();
+    r.band_count=(r.above>=r.below)?(r.above-r.below):0ULL;
+    r.target_inside=(r.below<n&&r.above>=n);
+    r.A=R->A.size(); r.B=R->B.size(); r.Aidx=R->Aidx; r.Bidx=R->Bidx;
+    if(r.target_inside&&r.band_count<=max_candidates){
+        auto tb2=std::chrono::high_resolution_clock::now();
+        auto cands=R->band(L,H);
+        r.enumerated=true;
+        r.cands=cands.size();
+        ull off=n-r.below-1;
+        if(off<cands.size()){
+            r.exps=exact_select_band(*R,cands,off);
+            auto val=value_from_exps(P,r.exps);
+            r.digits=digits10(val);
+            r.recovered=true;
+        }
+        auto tb3=std::chrono::high_resolution_clock::now();
+        r.band=std::chrono::duration<double>(tb3-tb2).count();
+    }
+    auto t1=std::chrono::high_resolution_clock::now();
+    r.sec=std::chrono::duration<double>(t1-t0).count();
+    return r;
+}
 static Result nth_sums(std::vector<int>P,ull n,ull target_gap=20000){auto t0=std::chrono::high_resolution_clock::now(); double est=leading_est(P,n),maxT=std::max(1e-9,est*1.02+1e-8); auto tb0=std::chrono::high_resolution_clock::now(); std::unique_ptr<SumsMITM>R(new SumsMITM(P,maxT)); auto tb1=std::chrono::high_resolution_clock::now(); int calls=0; auto count=[&](double T){calls++;return R->count_le(T);}; double lo=std::max(0.0,est*.70),hi=maxT; ull c_hi=count(hi); while(c_hi<n){maxT*=1.25; tb0=std::chrono::high_resolution_clock::now();R.reset(new SumsMITM(P,maxT));tb1=std::chrono::high_resolution_clock::now();hi=maxT;c_hi=count(hi);} ull c_lo=count(lo); while(c_lo>=n){hi=lo;c_hi=c_lo;lo*=.75;c_lo=count(lo);} auto tc0=std::chrono::high_resolution_clock::now(); int stagnant=0; for(int iter=0;iter<48;iter++){ull gap=c_hi-c_lo; if(gap<=target_gap)break; long double frac=((long double)n-c_lo)/((long double)c_hi-c_lo); if(!(frac>0&&frac<1))frac=.5; frac=std::min((long double).985,std::max((long double).015,frac)); double t=lo+(double)frac*(hi-lo); if(t<=lo+1e-14*(1+fabs(lo))||t>=hi-1e-14*(1+fabs(hi))||stagnant>=4){t=(lo+hi)/2;stagnant=0;} ull c=count(t); ull oldgap=gap; if(c>=n){hi=t;c_hi=c;}else{lo=t;c_lo=c;} ull ng=c_hi-c_lo; if(ng>oldgap*95/100)stagnant++;else stagnant=0;} for(int iter=0;iter<50&&c_hi-c_lo>target_gap;iter++){double mid=(lo+hi)/2; ull c=count(mid); if(c>=n){hi=mid;c_hi=c;}else{lo=mid;c_lo=c;}} auto tc1=std::chrono::high_resolution_clock::now(); auto tb2=std::chrono::high_resolution_clock::now(); std::vector<Candidate>cands; ull below=0; long long off=-1; double L=lo,H=hi; for(int attempt=0;attempt<10;attempt++){below=count(L); cands=R->band(L,H); off=(long long)n-(long long)below-1; if(off>=0&&(size_t)off<cands.size())break; double w=H-L;if(w<=0)w=1e-10*(1+fabs(H));L=std::max(-1e-9,L-w);H+=w;} if(!(off>=0&&(size_t)off<cands.size()))throw std::runtime_error("band fail"); auto exps=exact_select_band(*R,cands,(ull)off); auto tb3=std::chrono::high_resolution_clock::now(); auto val=value_from_exps(P,exps); auto t1=std::chrono::high_resolution_clock::now(); return {std::chrono::duration<double>(t1-t0).count(), std::chrono::duration<double>(tb1-tb0).count(), std::chrono::duration<double>(tc1-tc0).count(), std::chrono::duration<double>(tb3-tb2).count(), exps, digits10(val), R->A.size(), R->B.size(), cands.size(), calls, c_hi-c_lo, R->Aidx, R->Bidx};}
-int main(int argc,char**argv){std::cout.setf(std::ios::fixed); std::cout<<std::setprecision(6); try{ if(argc>=2&&std::string(argv[1])=="nth"){auto P=parse_csv(argv[2]); ull n=std::stoull(argv[3]); auto r=nth_sums(P,n); std::cout<<"sums_only_mitm P="<<join_primes(P)<<" k="<<P.size()<<" N="<<n<<" seconds="<<r.sec<<" build="<<r.build<<" count="<<r.count<<" band_phase="<<r.band<<" A="<<r.A<<" B="<<r.B<<" band="<<r.bandn<<" calls="<<r.calls<<" gap="<<r.gap<<" exps="<<join_vec(r.exps)<<" digits="<<r.digits<<" splitA="<<idx_to_primes(r.Aidx,P)<<" splitB="<<idx_to_primes(r.Bidx,P)<<"\n"; return 0;} if(argc>=2&&std::string(argv[1])=="analytic-band-corrected"){auto P=parse_csv(argv[2]); ull n=std::stoull(argv[3]); long double rank_radius=argc>=5?std::stold(argv[4]):1000.0L; ull max_candidates=argc>=6?std::stoull(argv[5]):200000ULL; auto r=corrected_sums(P,n,rank_radius,max_candidates); std::cout<<"sums_corrected_band P="<<join_primes(P)<<" k="<<P.size()<<" N="<<n<<" seconds="<<r.sec<<" build="<<r.build<<" count_phase="<<r.count<<" band_phase="<<r.band<<" raw_T="<<(double)r.raw_T<<" raw_derivative="<<(double)r.raw_derivative<<" center_count="<<r.center_count<<" center_rank_error="<<(double)((long double)r.center_count-(long double)n)<<" correction="<<sci(r.correction)<<" T="<<(double)r.T<<" derivative="<<(double)r.derivative<<" rank_radius="<<(double)rank_radius<<" half_width="<<sci(r.half_width)<<" below="<<r.below<<" above="<<r.above<<" band_count="<<r.band_count<<" target_inside="<<(r.target_inside?"true":"false")<<" enumerated="<<(r.enumerated?"true":"false")<<" recovered="<<(r.recovered?"true":"false")<<" cands="<<r.cands<<" A="<<r.A<<" B="<<r.B<<" splitA="<<idx_to_primes(r.Aidx,P)<<" splitB="<<idx_to_primes(r.Bidx,P); if(r.recovered)std::cout<<" exps="<<join_vec(r.exps)<<" digits="<<r.digits; std::cout<<"\n"; return 0;} for(int k:{6,8,10,12}){auto r=nth_sums(first_primes(k),1000000000000ULL); std::cout<<"sums_only_mitm P="<<join_primes(first_primes(k))<<" k="<<k<<" N=1000000000000 seconds="<<r.sec<<" build="<<r.build<<" count="<<r.count<<" band_phase="<<r.band<<" A="<<r.A<<" B="<<r.B<<" band="<<r.bandn<<" calls="<<r.calls<<" gap="<<r.gap<<" exps="<<join_vec(r.exps)<<" digits="<<r.digits<<" splitA="<<idx_to_primes(r.Aidx,first_primes(k))<<" splitB="<<idx_to_primes(r.Bidx,first_primes(k))<<"\n"; }}catch(std::exception&e){std::cerr<<"error: "<<e.what()<<"\n"; return 1;}}
+int main(int argc,char**argv){
+    std::cout.setf(std::ios::fixed);
+    std::cout<<std::setprecision(6);
+    try{
+        if(argc>=2&&std::string(argv[1])=="nth"){
+            auto P=parse_csv(argv[2]);
+            ull n=std::stoull(argv[3]);
+            auto r=nth_sums(P,n);
+            std::cout<<"sums_only_mitm P="<<join_primes(P)<<" k="<<P.size()<<" N="<<n
+                     <<" seconds="<<r.sec<<" build="<<r.build<<" count="<<r.count
+                     <<" band_phase="<<r.band<<" A="<<r.A<<" B="<<r.B
+                     <<" band="<<r.bandn<<" calls="<<r.calls<<" gap="<<r.gap
+                     <<" exps="<<join_vec(r.exps)<<" digits="<<r.digits
+                     <<" splitA="<<idx_to_primes(r.Aidx,P)<<" splitB="<<idx_to_primes(r.Bidx,P)<<"\n";
+            return 0;
+        }
+        if(argc>=2&&std::string(argv[1])=="analytic-band-corrected"){
+            auto P=parse_csv(argv[2]);
+            ull n=std::stoull(argv[3]);
+            long double rank_radius=argc>=5?std::stold(argv[4]):1000.0L;
+            ull max_candidates=argc>=6?std::stoull(argv[5]):200000ULL;
+            int refine_steps=argc>=7?std::stoi(argv[6]):1;
+            auto r=corrected_sums(P,n,rank_radius,max_candidates,refine_steps);
+            std::cout<<"sums_corrected_band P="<<join_primes(P)<<" k="<<P.size()<<" N="<<n
+                     <<" seconds="<<r.sec<<" build="<<r.build<<" count_phase="<<r.count
+                     <<" band_phase="<<r.band
+                     <<" raw_T="<<(double)r.raw_T<<" raw_derivative="<<(double)r.raw_derivative
+                     <<" center_count="<<r.center_count
+                     <<" center_rank_error="<<(double)((long double)r.center_count-(long double)n)
+                     <<" refine_steps="<<r.refine_steps
+                     <<" final_center_count="<<r.final_center_count
+                     <<" final_rank_error="<<(double)r.final_rank_error
+                     <<" correction="<<sci(r.correction)
+                     <<" T="<<(double)r.T<<" derivative="<<(double)r.derivative
+                     <<" rank_radius="<<(double)rank_radius<<" half_width="<<sci(r.half_width)
+                     <<" below="<<r.below<<" above="<<r.above<<" band_count="<<r.band_count
+                     <<" target_inside="<<(r.target_inside?"true":"false")
+                     <<" enumerated="<<(r.enumerated?"true":"false")
+                     <<" recovered="<<(r.recovered?"true":"false")
+                     <<" cands="<<r.cands<<" A="<<r.A<<" B="<<r.B
+                     <<" splitA="<<idx_to_primes(r.Aidx,P)<<" splitB="<<idx_to_primes(r.Bidx,P);
+            if(r.recovered)std::cout<<" exps="<<join_vec(r.exps)<<" digits="<<r.digits;
+            std::cout<<"\n";
+            return 0;
+        }
+        for(int k:{6,8,10,12}){
+            auto r=nth_sums(first_primes(k),1000000000000ULL);
+            std::cout<<"sums_only_mitm P="<<join_primes(first_primes(k))<<" k="<<k
+                     <<" N=1000000000000 seconds="<<r.sec<<" build="<<r.build
+                     <<" count="<<r.count<<" band_phase="<<r.band<<" A="<<r.A
+                     <<" B="<<r.B<<" band="<<r.bandn<<" calls="<<r.calls
+                     <<" gap="<<r.gap<<" exps="<<join_vec(r.exps)<<" digits="<<r.digits
+                     <<" splitA="<<idx_to_primes(r.Aidx,first_primes(k))
+                     <<" splitB="<<idx_to_primes(r.Bidx,first_primes(k))<<"\n";
+        }
+    }catch(std::exception&e){
+        std::cerr<<"error: "<<e.what()<<"\n";
+        return 1;
+    }
+}
