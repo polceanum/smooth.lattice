@@ -553,6 +553,59 @@ independent certification of the corrected output. It does not imply a speed
 win over sums-only MITM, layer-compressed MITM, or every known X+Y selection
 algorithm.
 
+## Residual-Corrected Sums-Only MITM Speed Suite
+
+The same residual-correction idea is also implemented inside the sums-only
+MITM kernel:
+
+```bash
+bin/smooth_sums_only_scalable analytic-band-corrected \
+  primes_csv N rank_radius max_candidates
+```
+
+This mode uses the same sums-only MITM split and reconstruction machinery as
+`bin/smooth_sums_only_scalable nth`, but replaces the adaptive
+interpolation/bisection search with:
+
+1. analytic center `T0`;
+2. one exact sums-only MITM count `C(T0)`;
+3. residual shift `(N-C(T0))/analytic_derivative(T0)`;
+4. a corrected boundary band, sorted to recover the exponent vector.
+
+The reproducible suite is:
+
+```bash
+python3 scripts/run_sums_corrected_speed_suite.py \
+  --out-dir results/benchmarks/sums_corrected_speed_suite_1e9_1e12
+```
+
+Clean speed artifact:
+
+```text
+results/benchmarks/sums_corrected_speed_suite_1e9_1e12/
+```
+
+Observed result at commit `be4e24a8f4adf0947e568dcc57f4797b0b35ca60`:
+
+- 10/10 rows completed.
+- 10/10 corrected-mode outputs were independently rank-certified and matched
+  the adaptive sums-only MITM exponent vector.
+- Corrected mode won 9/10 wall-time comparisons.
+- Corrected mode won 10/10 reported in-process time comparisons.
+- Corrected mode used less peak RSS in 10/10 rows.
+- Mean adaptive/corrected wall-time ratio was about 1.33.
+- Mean adaptive/corrected reported-time ratio was about 1.61.
+- Mean adaptive/corrected RSS ratio was about 1.14.
+- The one wall-time loss was a small `k=5, N=10^9` row where the corrected
+  process wall time was anomalously larger despite winning reported in-process
+  time.
+
+This supports a narrow speed claim against the prior adaptive sums-only MITM
+path. Together with the full-X+Y corrected suite, it shows that the residual
+correction is not merely helping one data representation. It still does not
+establish a broad best-known theorem or a comparison against every published
+selection method.
+
 ## Analytic-Bracket Layer Hybrid
 
 The layer-compressed solver now uses a non-MITM analytic seed for large-rank

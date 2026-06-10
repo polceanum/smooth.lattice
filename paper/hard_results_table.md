@@ -94,6 +94,15 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   adaptive/corrected wall-time ratio about 1.33 and mean reported-time ratio
   about 1.82. Artifact:
   `results/benchmarks/xplusy_corrected_speed_suite_1e9_1e12/`.
+- Residual-corrected sums-only MITM speed suite: clean artifact at commit
+  `be4e24a8f4adf0947e568dcc57f4797b0b35ca60`. This compares two modes of the
+  same sums-only MITM implementation: adaptive unrank versus residual-corrected
+  analytic band. All 10 corrected outputs were independently rank-certified and
+  matched the adaptive sums-only vector. Corrected mode won 9/10 wall-time
+  comparisons, 10/10 reported in-process timing comparisons, and 10/10 peak-RSS
+  comparisons, with mean adaptive/corrected ratios about 1.33 for wall time,
+  1.61 for reported time, and 1.14 for RSS. Artifact:
+  `results/benchmarks/sums_corrected_speed_suite_1e9_1e12/`.
 - Sorted-matrix/range-pruning diagnostic, same six five-prime subsets,
   N=10^12: the range-pruned block counter beat the linear saddleback X+Y count
   in only 2/6 cases, with mean block/linear internal time ratio 1.2765. The
