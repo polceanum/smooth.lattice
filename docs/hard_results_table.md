@@ -94,8 +94,18 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   matched the adaptive sums-only vector. Corrected mode won 9/10 wall-time
   comparisons, 10/10 reported in-process timing comparisons, and 10/10 peak-RSS
   comparisons, with mean adaptive/corrected ratios about 1.33 for wall time,
-  1.61 for reported time, and 1.14 for RSS. Artifact:
+  1.61 for reported time, and 1.14 for RSS. This artifact predates exact
+  final-band sorting in the sums-only path, so rerun before using it as a
+  current-code headline. Artifact:
   `results/benchmarks/sums_corrected_speed_suite_1e9_1e12/`.
+- Certified implemented portfolio suite: clean artifact at commit
+  `251606b886061eac4944af272728207ceba7b366`. Across k=3,5,6,8 cases at
+  N=10^9 and N=10^12, all 14 rows had solver agreement. 12 rows were
+  independently interval-certified; the two high-rank k=3 rows were blocked by
+  interval-auditor scaled overflow. Among certified rows, wall-time winners
+  were xplusy_corrected in 6 rows, layer_corrected in 4 rows, beatty3 in 1 row,
+  and xplusy_adaptive in 1 row. Artifact:
+  `results/benchmarks/certified_portfolio_suite_1e9_1e12/`.
 - 8 primes, P=(2,3,5,7,11,13,17,19), N=10^12: exps
   [75,28,9,16,3,22,5,1], high-k sums-only solver output independently
   certified with count_le=N by the k<=8 interval auditor. Artifact:

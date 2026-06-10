@@ -606,6 +606,47 @@ correction is not merely helping one data representation. It still does not
 establish a broad best-known theorem or a comparison against every published
 selection method.
 
+## Certified Portfolio Suite
+
+Single-method suites are useful for isolating implementation effects, but they
+do not answer the practical question "which implemented method should be used
+for this case?" The portfolio harness runs all applicable full-unrank methods,
+requires successful methods to agree on the exponent vector, audits that vector
+when possible, and records the fastest wall-time and reported-time methods:
+
+```bash
+python3 scripts/run_certified_portfolio_suite.py \
+  --out-dir results/benchmarks/certified_portfolio_suite_1e9_1e12
+```
+
+Clean portfolio artifact:
+
+```text
+results/benchmarks/certified_portfolio_suite_1e9_1e12/
+```
+
+Observed result at commit `251606b886061eac4944af272728207ceba7b366`:
+
+- 14/14 rows had solver agreement among successful implemented methods.
+- 12/14 rows were independently interval-certified.
+- 2/14 rows were high-rank k=3 cases where all solvers agreed but the current
+  interval auditor failed with `scaled interval overflow`; these are marked
+  audit-blocked rather than certified.
+- Among the 12 certified rows, wall-time winners were:
+  `xplusy_corrected` in 6 rows, `layer_corrected` in 4 rows, `beatty3` in 1 row,
+  and `xplusy_adaptive` in 1 row.
+- Among the 12 certified rows, reported-time winners were:
+  `xplusy_corrected` in 6 rows, `layer_corrected` in 4 rows, `beatty3` in 1 row,
+  and `sums_corrected` in 1 row.
+
+This is the current implemented-method scoreboard. It should be the default
+artifact cited when discussing practical fastest-certified behavior in this
+repository. It still does not justify broad best-known language: the remaining
+gates are a faithful soft-heap/Frederickson-Johnson-style `X+Y` comparison,
+clearer Barvinok/fixed-dimensional lattice-count positioning, and a wider
+independent certification path that does not overflow on high-exponent k=3
+instances.
+
 ## Analytic-Bracket Layer Hybrid
 
 The layer-compressed solver now uses a non-MITM analytic seed for large-rank
