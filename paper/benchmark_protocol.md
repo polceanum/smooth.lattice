@@ -625,19 +625,15 @@ Clean portfolio artifact:
 results/benchmarks/certified_portfolio_suite_1e9_1e12/
 ```
 
-Observed result at commit `251606b886061eac4944af272728207ceba7b366`:
+Observed result at commit `b8357ac6e09c27b781892b9a304d72c184d2abae`:
 
 - 14/14 rows had solver agreement among successful implemented methods.
-- 12/14 rows were independently interval-certified.
-- 2/14 rows were high-rank k=3 cases where all solvers agreed but the current
-  interval auditor failed with `scaled interval overflow`; these are marked
-  audit-blocked rather than certified.
-- Among the 12 certified rows, wall-time winners were:
-  `xplusy_corrected` in 6 rows, `layer_corrected` in 4 rows, `beatty3` in 1 row,
-  and `xplusy_adaptive` in 1 row.
-- Among the 12 certified rows, reported-time winners were:
-  `xplusy_corrected` in 6 rows, `layer_corrected` in 4 rows, `beatty3` in 1 row,
-  and `sums_corrected` in 1 row.
+- 14/14 rows were independently interval-certified.
+- There were no solver-disagreement rows and no audit-blocked rows.
+- Wall-time winners were: `xplusy_corrected` in 5 rows, `layer_corrected` in 4
+  rows, `beatty3` in 3 rows, and `xplusy_adaptive` in 2 rows.
+- Reported-time winners were: `xplusy_corrected` in 6 rows, `layer_corrected` in
+  4 rows, and `beatty3` in 4 rows.
 
 This is the current implemented-method scoreboard. It should be the default
 artifact cited when discussing practical fastest-certified behavior in this
@@ -645,7 +641,7 @@ repository. It still does not justify broad best-known language: the remaining
 gates are a faithful soft-heap/Frederickson-Johnson-style `X+Y` comparison,
 clearer Barvinok/fixed-dimensional lattice-count positioning, and a wider
 independent certification path that does not overflow on high-exponent k=3
-instances.
+instances outside the current k<=8 audited prime universe.
 
 ## Analytic-Bracket Layer Hybrid
 
