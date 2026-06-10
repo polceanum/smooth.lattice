@@ -222,6 +222,8 @@ def write_outputs(out_dir: Path, report: dict[str, Any]) -> None:
         writer.writeheader()
         writer.writerows(rows)
 
+    validation = next((run for run in report.get("build_runs", []) if run.get("name") == "validate_ma_selector"), {})
+    validation_metrics = validation.get("metrics", {})
     lines = [
         "# Sorted-Matrix / LOH X+Y Workbench",
         "",
@@ -235,6 +237,9 @@ def write_outputs(out_dir: Path, report: dict[str, Any]) -> None:
         f"- Mean block/linear internal time ratio: `{report['aggregate']['mean_block_over_linear']}`",
         f"- Mirzaian-Arjomandi probe wins over linear saddleback count: `{report['aggregate']['ma_wins']}`",
         f"- Mean Mirzaian-Arjomandi/linear internal time ratio: `{report['aggregate']['mean_ma_over_linear']}`",
+        f"- Mirzaian-Arjomandi exhaustive validation cases: `{validation_metrics.get('cases', '')}`",
+        f"- Mirzaian-Arjomandi exhaustive validation failures: `{validation_metrics.get('failures', '')}`",
+        f"- Mirzaian-Arjomandi exhaustive validation max delta: `{validation_metrics.get('max_delta', '')}`",
         "",
         "The `block_rank` rows are sorted-matrix range-pruning probes, not a faithful",
         "Frederickson-Johnson implementation. The `ma_select_probe` row adapts the",
@@ -292,6 +297,18 @@ def main() -> int:
         out_dir.mkdir(parents=True, exist_ok=True)
         (out_dir / "report.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
         print(f"build failed; wrote partial report to {out_dir}")
+        return 1
+    validate = single.run_measured(
+        "validate_ma_selector",
+        ["bin/smooth_xplusy_fj_loh_workbench", "validate-ma"],
+    )
+    report["build_runs"].append(validate)
+    if not result_ok(validate):
+        report["summary_rows"] = []
+        report["aggregate"] = {"status": "ma_validation_failed"}
+        out_dir.mkdir(parents=True, exist_ok=True)
+        (out_dir / "report.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+        print(f"MA validation failed; wrote partial report to {out_dir}")
         return 1
 
     for primes in prime_sets:

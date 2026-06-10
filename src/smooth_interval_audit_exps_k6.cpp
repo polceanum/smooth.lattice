@@ -30,6 +30,13 @@ static std::string i128_to_string(i128 x) {
     std::reverse(s.begin(), s.end());
     return s;
 }
+static std::string u128_to_string(u128 x) {
+    if (x == 0) return "0";
+    std::string s;
+    while (x) { s.push_back('0' + (int)(x % 10)); x /= 10; }
+    std::reverse(s.begin(), s.end());
+    return s;
+}
 
 static std::vector<int> parse_csv_ints(const std::string& s) {
     std::vector<int> out;
@@ -81,6 +88,86 @@ struct PowerCache {
         cpp_int r=1; for(size_t i=0;i<exps.size();++i) r *= powers[i][exps[i]]; return r;
     }
 };
+
+struct K3AuditResult {
+    ull count=0;
+    ull outer_terms=0;
+    ull ambiguous_possible=0;
+    ull ambiguous_resolved=0;
+};
+
+static ull floor_div_nonneg(i128 num, i128 den) {
+    if (num < 0) return 0;
+    return (ull)(num / den);
+}
+
+static ull count2_scaled(long long w0, long long w1, i128 threshold) {
+    if (threshold < 0) return 0;
+    i128 loop_w = w0, solve_w = w1;
+    if (loop_w < solve_w) std::swap(loop_w, solve_w);
+    ull m = floor_div_nonneg(threshold, loop_w);
+    ull total = 0;
+    for (ull e=0; e<=m; ++e) {
+        total += floor_div_nonneg(threshold - (i128)e * loop_w, solve_w) + 1ULL;
+    }
+    return total;
+}
+
+static bool exact_leq_k3(PowerCache& cache, const std::vector<int>& exps, const cpp_int& target) {
+    return cache.product(exps) <= target;
+}
+
+static K3AuditResult count_le_k3_interval(const std::vector<int>& primes, const std::vector<int>& exps) {
+    if (primes.size() != 3 || exps.size() != 3) throw std::runtime_error("k3 audit requires exactly three coordinates");
+    std::vector<LB64> lbs;
+    for (int q: primes) lbs.push_back(get_log_bound_1e15(q));
+    i128 Tlo=0, Thi=0;
+    for (size_t i=0; i<3; ++i) {
+        Tlo += (i128)exps[i] * lbs[i].lo;
+        Thi += (i128)exps[i] * lbs[i].hi;
+    }
+    PowerCache cache(primes);
+    cpp_int target = cache.product(exps);
+
+    int outer = 0;
+    for (int i=1; i<3; ++i) if (lbs[i].lo > lbs[outer].lo) outer = i;
+    std::vector<int> inner;
+    for (int i=0; i<3; ++i) if (i != outer) inner.push_back(i);
+    int i0 = inner[0], i1 = inner[1];
+
+    ull max_outer = floor_div_nonneg(Thi, lbs[outer].lo);
+    K3AuditResult result;
+    result.outer_terms = max_outer + 1ULL;
+    for (ull eo=0; eo<=max_outer; ++eo) {
+        i128 definite_thr = Tlo - (i128)eo * lbs[outer].hi;
+        i128 possible_thr = Thi - (i128)eo * lbs[outer].lo;
+        ull definite = count2_scaled(lbs[i0].hi, lbs[i1].hi, definite_thr);
+        ull possible = count2_scaled(lbs[i0].lo, lbs[i1].lo, possible_thr);
+        if (possible < definite) possible = definite;
+        result.count += definite;
+        if (possible == definite) continue;
+        result.ambiguous_possible += possible - definite;
+        if (result.ambiguous_possible > 2000000ULL) throw std::runtime_error("too many ambiguous k3 comparisons");
+        ull max_e0 = floor_div_nonneg(possible_thr, lbs[i0].lo);
+        for (ull e0=0; e0<=max_e0; ++e0) {
+            i128 poss_rem = possible_thr - (i128)e0 * lbs[i0].lo;
+            ull e1_poss = floor_div_nonneg(poss_rem, lbs[i1].lo);
+            i128 def_rem = definite_thr - (i128)e0 * lbs[i0].hi;
+            long long e1_def = def_rem < 0 ? -1 : (long long)floor_div_nonneg(def_rem, lbs[i1].hi);
+            ull start = e1_def < 0 ? 0ULL : (ull)e1_def + 1ULL;
+            if (start > e1_poss) continue;
+            for (ull e1=start; e1<=e1_poss; ++e1) {
+                std::vector<int> candidate(3,0);
+                candidate[outer] = (int)eo;
+                candidate[i0] = (int)e0;
+                candidate[i1] = (int)e1;
+                if (exact_leq_k3(cache, candidate, target)) ++result.count;
+                ++result.ambiguous_resolved;
+            }
+        }
+    }
+    return result;
+}
 
 struct Auditor {
     std::vector<int> primes, exps;
@@ -194,6 +281,26 @@ int main(int argc, char** argv) {
         auto exps = parse_csv_ints(argv[2]);
         ull expected = std::stoull(argv[3]);
         auto start = std::chrono::high_resolution_clock::now();
+        if (primes.size() == 3) {
+            auto cert = count_le_k3_interval(primes, exps);
+            auto end = std::chrono::high_resolution_clock::now();
+            double sec = std::chrono::duration<double>(end-start).count();
+            bool ok = (cert.count == expected);
+            std::cout << "interval_audit_exps P=" << vec_to_string(primes)
+                      << " exps=" << vec_to_string(exps)
+                      << " expected_N=" << expected
+                      << " certified_count_le=" << cert.count
+                      << " rank_certified=" << (ok?"true":"false")
+                      << " method=k3_interval_floor_sum"
+                      << " groupA=" << cert.outer_terms
+                      << " groupB=0"
+                      << " overlapsB=0"
+                      << " ambiguous_possible=" << cert.ambiguous_possible
+                      << " ambiguous_resolved=" << cert.ambiguous_resolved
+                      << " cert_seconds=" << sec
+                      << "\n";
+            return ok ? 0 : 1;
+        }
         Auditor aud(primes, exps);
         ull cnt = aud.count_le();
         auto end = std::chrono::high_resolution_clock::now();

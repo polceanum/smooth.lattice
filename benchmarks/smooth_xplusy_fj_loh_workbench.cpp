@@ -181,6 +181,29 @@ static MAResult ma_select_xplusy_value(const std::vector<double>&A,const std::ve
 }
 
 int main(int argc,char**argv){ std::cout.setf(std::ios::fixed); std::cout<<std::setprecision(6); try{
+    if(argc>=2 && std::string(argv[1])=="validate-ma"){
+        size_t cases=0, failures=0; double max_delta=0.0;
+        for(size_t na: {1ul,2ul,3ul,5ul,8ul,13ul,21ul,32ul}){
+            for(size_t nb: {1ul,2ul,4ul,7ul,16ul,31ul}){
+                std::vector<double>A,B;
+                for(size_t i=0;i<na;i++) A.push_back(0.11*(double)i + 0.013*(double)(i*i%7));
+                for(size_t j=0;j<nb;j++) B.push_back(0.17*(double)j + 0.019*(double)(j*j%11));
+                std::sort(A.begin(),A.end()); std::sort(B.begin(),B.end());
+                std::vector<double> vals; vals.reserve(na*nb);
+                for(double a:A)for(double b:B)vals.push_back(a+b);
+                std::sort(vals.begin(),vals.end());
+                for(ull k=1;k<=(ull)vals.size();k++){
+                    auto ma=ma_select_xplusy_value(A,B,k,1000,1000000);
+                    double delta=ma.skipped?std::numeric_limits<double>::infinity():fabs(ma.selected-vals[(size_t)k-1]);
+                    if(delta>max_delta&&std::isfinite(delta))max_delta=delta;
+                    if(ma.skipped||delta>1e-10)failures++;
+                    cases++;
+                }
+            }
+        }
+        std::cout<<"ma_validate cases="<<cases<<" failures="<<failures<<" max_delta="<<std::setprecision(12)<<max_delta<<std::setprecision(6)<<"\n";
+        return failures==0?0:1;
+    }
     std::vector<std::pair<int,ull>> cases; if(argc>=3){auto P=parse_csv(argv[1]); ull N=std::stoull(argv[2]); cases.push_back({(int)P.size(),N}); double est=leading_est(P,N); double maxT=std::max(1e-9,est*1.02+1e-8); XYData W(P,maxT); auto lin=adaptive_select(W,N,[&](double t){return pair_count_linear(W.A,W.B,t);}); for(size_t leaf: {512ul,2048ul,8192ul}){ BlockCounter bc(W.A,W.B,leaf); auto t0=std::chrono::high_resolution_clock::now(); auto blk=adaptive_select(W,N,[&](double t){return bc.count(t);}); auto t1=std::chrono::high_resolution_clock::now(); std::cout<<"block_rank P="<<join_primes(P)<<" k="<<P.size()<<" N="<<N<<" leaf="<<leaf<<" build="<<W.build_sec<<" A="<<W.A.size()<<" B="<<W.B.size()<<" linear_total="<<lin.sec<<" block_total="<<blk.sec<<" block_calls="<<blk.calls<<" block_log_delta="<<fabs(blk.selected-lin.selected)<<"\n"; }
         auto ma=ma_select_xplusy_value(W.A,W.B,N);
         std::cout<<"ma_select_probe P="<<join_primes(P)<<" k="<<P.size()<<" N="<<N<<" skipped="<<(ma.skipped?"true":"false")<<" sec="<<ma.sec<<" n_square="<<ma.n_square<<" padded_a="<<ma.padded_a<<" padded_b="<<ma.padded_b<<" log="<<std::setprecision(12)<<ma.selected<<std::setprecision(6)<<" log_delta="<<(ma.skipped?0.0:fabs(ma.selected-lin.selected))<<" reason="<<ma.reason<<"\n";
