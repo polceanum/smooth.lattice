@@ -103,10 +103,13 @@ Current implementation status:
   kth-largest selection on negated weights.
 - This row selects a log value only. It does not reconstruct an exponent vector
   or independently certify a returned smooth number.
+- The implementation includes `validate-ma`, an exhaustive small Cartesian-sum
+  validation mode; the clean artifact below records 5185/5185 validation cases
+  passed with maximum delta 0.
 - Clean `N=10^12` five-prime suite artifact:
   `results/benchmarks/sorted_matrix_workbench_1e12/`. The probe matched the
   adaptive selected log in 6/6 cases but was slower in 6/6 cases, with mean
-  MA/linear internal time ratio 9.0509.
+  MA/linear internal time ratio 9.4042.
 
 ### Frederickson-Johnson
 

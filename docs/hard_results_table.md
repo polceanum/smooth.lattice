@@ -105,6 +105,14 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   5 rows, layer_corrected in 4 rows, beatty3 in 3 rows, and xplusy_adaptive in
   2 rows. Artifact:
   `results/benchmarks/certified_portfolio_suite_1e9_1e12/`.
+- Sorted-matrix/range-pruning diagnostic, same six five-prime subsets,
+  N=10^12: the range-pruned block counter beat the linear saddleback X+Y count
+  in only 1/6 cases, with mean block/linear internal time ratio 1.3467. The
+  Mirzaian-Arjomandi value-selection probe passed exhaustive small validation
+  on 5185/5185 cases, matched the adaptive selected log in 6/6 large cases, but
+  won 0/6 timing comparisons, with mean MA/linear internal time ratio 9.4042.
+  This is a validated negative/mixed result, not a headline improvement.
+  Artifact: `results/benchmarks/sorted_matrix_workbench_1e12/`.
 - 8 primes, P=(2,3,5,7,11,13,17,19), N=10^12: exps
   [75,28,9,16,3,22,5,1], high-k sums-only solver output independently
   certified with count_le=N by the k<=8 interval auditor. Artifact:

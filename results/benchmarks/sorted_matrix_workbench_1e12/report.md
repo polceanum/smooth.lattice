@@ -1,15 +1,18 @@
 # Sorted-Matrix / LOH X+Y Workbench
 
-- Timestamp: `2026-06-09T05:27:41.188294+00:00`
-- Git commit: `44175948b9b9bf3010f5fd388e2d926180fe5f45`
+- Timestamp: `2026-06-10T20:16:47.142378+00:00`
+- Git commit: `17a7e40ae790ae9017ab8274204eaaf107add212`
 - Git dirty: `False`
 - N: `1000000000000`
 - Cases: `6`
 - Completed cases: `6`
-- Range-pruning wins over linear saddleback count: `2`
-- Mean block/linear internal time ratio: `1.2765487937018578`
+- Range-pruning wins over linear saddleback count: `1`
+- Mean block/linear internal time ratio: `1.3467233146527213`
 - Mirzaian-Arjomandi probe wins over linear saddleback count: `0`
-- Mean Mirzaian-Arjomandi/linear internal time ratio: `9.050859617138036`
+- Mean Mirzaian-Arjomandi/linear internal time ratio: `9.404243248473163`
+- Mirzaian-Arjomandi exhaustive validation cases: `5185`
+- Mirzaian-Arjomandi exhaustive validation failures: `0`
+- Mirzaian-Arjomandi exhaustive validation max delta: `0.0`
 
 The `block_rank` rows are sorted-matrix range-pruning probes, not a faithful
 Frederickson-Johnson implementation. The `ma_select_probe` row adapts the
@@ -20,9 +23,9 @@ the full rank when `N_probe != N`.
 
 | P | linear total s | best block s | block/linear | MA s | MA/linear | MA delta | wall s | RSS KB | LOH probe N | LOH s |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| `2,3,5,7,11` | 1.062584 | 1.023656 | 0.963365 | 6.819068 | 6.417439 | 0 | 14.393216 | 1475764 | 1000000 | 0.043760 |
-| `2,3,5,7,13` | 0.657743 | 0.810564 | 1.232342 | 5.562616 | 8.457127 | 0 | 9.453442 | 1441480 | 1000000 | 0.033762 |
-| `2,3,5,11,13` | 0.712644 | 0.706035 | 0.990726 | 7.858682 | 11.027500 | 0 | 11.620346 | 1854044 | 1000000 | 0.029931 |
-| `2,3,7,11,13` | 0.583441 | 0.786766 | 1.348493 | 4.107915 | 7.040840 | 0 | 7.733516 | 1348480 | 1000000 | 0.036617 |
-| `2,5,7,11,13` | 0.749615 | 1.038837 | 1.385827 | 6.779213 | 9.043593 | 0 | 11.973836 | 1544148 | 1000000 | 0.038218 |
-| `3,5,7,11,13` | 0.888561 | 1.544799 | 1.738540 | 10.945879 | 12.318658 | 0 | 18.697194 | 2031084 | 1000000 | 0.048415 |
+| `2,3,5,7,11` | 0.660537 | 1.004498 | 1.520729 | 6.534540 | 9.892769 | 0 | 11.495860 | 1475752 | 1000000 | 0.028856 |
+| `2,3,5,7,13` | 0.690694 | 0.629582 | 0.911521 | 4.566296 | 6.611171 | 0 | 7.982556 | 1441576 | 1000000 | 0.027748 |
+| `2,3,5,11,13` | 0.531501 | 0.711579 | 1.338810 | 6.023064 | 11.332178 | 0 | 9.558280 | 1854040 | 1000000 | 0.033946 |
+| `2,3,7,11,13` | 0.457047 | 0.684666 | 1.498021 | 4.437861 | 9.709857 | 0 | 7.802844 | 1348528 | 1000000 | 0.038534 |
+| `2,5,7,11,13` | 0.673154 | 1.062560 | 1.578480 | 6.700831 | 9.954380 | 0 | 11.690500 | 1544220 | 1000000 | 0.032943 |
+| `3,5,7,11,13` | 0.888153 | 1.094896 | 1.232779 | 7.926858 | 8.925104 | 0 | 13.443623 | 2030928 | 1000000 | 0.033831 |
