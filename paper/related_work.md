@@ -117,7 +117,7 @@ Current implementation status:
   `results/benchmarks/ma_full_unrank_suite_1e12/`. The MA full-unrank row
   matched analytic-corrected X+Y in 6/6 cases and all six vectors were
   independently rank-certified, but it won 0/6 wall-time comparisons, with mean
-  MA/corrected wall-time ratio 5.7803.
+  MA/corrected wall-time ratio 5.7000.
 
 ### Frederickson-Johnson
 

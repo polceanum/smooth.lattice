@@ -88,7 +88,7 @@ probe: it selects the X+Y log value, reconstructs exponent vectors, exact-sorts
 the candidate band, and audits matching vectors. In the six-case `N=10^12`
 artifact, the MA full-unrank path matched the analytic-corrected X+Y output and
 was independently certified in 6/6 cases, but won 0/6 wall-time comparisons.
-The mean MA/corrected wall-time ratio was 5.7803, so this comparator is useful
+The mean MA/corrected wall-time ratio was 5.7000, so this comparator is useful
 negative evidence rather than a speed path.
 
 ## Not yet fully implemented

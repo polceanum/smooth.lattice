@@ -781,9 +781,9 @@ Observed result on the recorded macOS/x86_64 Apple-clang machine:
 - 6/6 returned the same exponent vector as analytic-corrected X+Y.
 - 6/6 matching vectors were independently interval-rank certified.
 - The Mirzaian-Arjomandi full-unrank path won 0/6 wall-time comparisons.
-- The MA/corrected wall-time ratio ranged from 4.8947 to 6.7687, with mean
-  5.7803.
-- Peak RSS for the MA path ranged from about 1.56GB to 2.42GB on these rows,
+- The MA/corrected wall-time ratio ranged from 4.4781 to 7.1840, with mean
+  5.7000.
+- Peak RSS for the MA path ranged from about 1.43GB to 2.02GB on these rows,
   versus about 0.36GB to 0.58GB for analytic-corrected X+Y.
 
 This is a rigorous negative result for the implemented MA full-unrank wrapper:
