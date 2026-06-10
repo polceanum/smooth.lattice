@@ -60,6 +60,71 @@ static double leading_est(const std::vector<int>& primes, ull n) {
     int k=(int)primes.size();
     return std::pow((double)n*(double)factorial(k)*prod, 1.0/(double)k);
 }
+static long double factorial_ld(int k) {
+    long double r=1.0L;
+    for(int i=2;i<=k;i++) r*=(long double)i;
+    return r;
+}
+static std::vector<long double> asymptotic_series_coeffs(const std::vector<int>& primes,int order) {
+    std::vector<long double> coeff(order+1,0.0L);
+    coeff[0]=1.0L;
+    for(int p:primes){
+        long double w=std::log((long double)p);
+        std::vector<long double> f(order+1,0.0L);
+        f[0]=1.0L;
+        if(order>=1) f[1]=w/2.0L;
+        if(order>=2) f[2]=w*w/12.0L;
+        if(order>=4) f[4]=-w*w*w*w/720.0L;
+        std::vector<long double> next(order+1,0.0L);
+        for(int i=0;i<=order;i++) for(int j=0;j+i<=order;j++) next[i+j]+=coeff[i]*f[j];
+        coeff.swap(next);
+    }
+    long double prod=1.0L;
+    for(int p:primes) prod*=std::log((long double)p);
+    for(long double& c:coeff) c/=prod;
+    return coeff;
+}
+static long double asymptotic_count_at(const std::vector<long double>& coeff,int k,long double T) {
+    long double total=0.0L;
+    int order=(int)coeff.size()-1;
+    for(int r=0;r<=order && r<=k;r++) total += coeff[r]*std::pow(T,(long double)(k-r))/factorial_ld(k-r);
+    return total;
+}
+static long double asymptotic_count_deriv_at(const std::vector<long double>& coeff,int k,long double T) {
+    long double total=0.0L;
+    int order=(int)coeff.size()-1;
+    for(int r=0;r<=order && r<k;r++) total += coeff[r]*std::pow(T,(long double)(k-r-1))/factorial_ld(k-r-1);
+    return total;
+}
+static double asymptotic_est(const std::vector<int>& primes,ull n) {
+    int k=(int)primes.size();
+    int order=std::min(k,4);
+    auto coeff=asymptotic_series_coeffs(primes,order);
+    long double T=leading_est(primes,n);
+    long double target=(long double)n;
+    for(int iter=0;iter<20;iter++){
+        long double f=asymptotic_count_at(coeff,k,T)-target;
+        long double d=asymptotic_count_deriv_at(coeff,k,T);
+        if(!(d>0.0L) || !std::isfinite((double)d)) break;
+        long double step=f/d;
+        if(std::fabs(step)>0.25L*T) step=(step>0?0.25L:-0.25L)*T;
+        T-=step;
+        if(!(T>0.0L) || !std::isfinite((double)T)){ T=leading_est(primes,n); break; }
+        if(std::fabs(step)<=1e-13L*(1.0L+T)) break;
+    }
+    return (double)T;
+}
+static long double analytic_count_derivative(const std::vector<int>& primes,long double T) {
+    int k=(int)primes.size();
+    int order=std::min(k,4);
+    auto coeff=asymptotic_series_coeffs(primes,order);
+    return asymptotic_count_deriv_at(coeff,k,T);
+}
+static std::string sci(long double x) {
+    std::ostringstream os;
+    os<<std::scientific<<std::setprecision(12)<<(double)x;
+    return os.str();
+}
 static std::string u128str(__uint128_t x) {
     if(x==0) return "0";
     std::string s;
@@ -220,6 +285,81 @@ struct Result {
     std::vector<int> Aidx, Bidx;
 };
 
+struct CorrectedResult {
+    double sec=0, build=0, count=0, band=0, exact=0;
+    long double raw_T=0, raw_derivative=0, T=0, derivative=0, correction=0, half_width=0;
+    ull center_count=0, below=0, above=0, band_count=0;
+    bool target_inside=false, enumerated=false, recovered=false;
+    std::vector<int> exps;
+    int digits=0;
+    size_t A=0, B=0, cands=0;
+    std::vector<int> Aidx, Bidx;
+};
+
+static CorrectedResult corrected_full_xy(std::vector<int>P, ull n, long double rank_radius, ull max_candidates) {
+    auto t0=std::chrono::high_resolution_clock::now();
+    CorrectedResult r;
+    r.raw_T=(long double)asymptotic_est(P,n);
+    r.raw_derivative=analytic_count_derivative(P,r.raw_T);
+    if(!(r.raw_derivative>0.0L) || !std::isfinite((double)r.raw_derivative)) throw std::runtime_error("bad analytic derivative");
+    long double raw_half_width=std::max(rank_radius/r.raw_derivative,1e-12L*(1.0L+r.raw_T));
+    long double initial_slack=std::max(0.01L,10.0L*raw_half_width);
+    std::unique_ptr<FullXYRanker> R(new FullXYRanker(P,std::max(1e-9,(double)(r.raw_T+initial_slack))));
+    r.build+=R->build_sec;
+    auto tc0=std::chrono::high_resolution_clock::now();
+    r.center_count=R->count_le((double)r.raw_T);
+    auto tc1=std::chrono::high_resolution_clock::now();
+    r.count+=std::chrono::duration<double>(tc1-tc0).count();
+    r.correction=-((long double)r.center_count-(long double)n)/r.raw_derivative;
+    r.T=std::max(0.0L,r.raw_T+r.correction);
+    r.derivative=analytic_count_derivative(P,r.T);
+    if(!(r.derivative>0.0L) || !std::isfinite((double)r.derivative)) throw std::runtime_error("bad corrected analytic derivative");
+    r.half_width=std::max(rank_radius/r.derivative,1e-12L*(1.0L+r.T));
+    double L=(double)std::max(0.0L,r.T-r.half_width);
+    double H=(double)(r.T+r.half_width);
+    if(H+1e-8>R->maxT){
+        R.reset(new FullXYRanker(P,std::max(1e-9,H+1e-8)));
+        r.build+=R->build_sec;
+    }
+    auto tc2=std::chrono::high_resolution_clock::now();
+    r.below=R->count_le(L);
+    r.above=R->count_le(H);
+    auto tc3=std::chrono::high_resolution_clock::now();
+    r.count+=std::chrono::duration<double>(tc3-tc2).count();
+    r.band_count=(r.above>=r.below)?(r.above-r.below):0ULL;
+    r.target_inside=(r.below<n && r.above>=n);
+    r.A=R->A.sums.size();
+    r.B=R->B.sums.size();
+    r.Aidx=R->Aidx;
+    r.Bidx=R->Bidx;
+    if(r.target_inside && r.band_count<=max_candidates){
+        auto tb0=std::chrono::high_resolution_clock::now();
+        auto cands=R->band(L,H);
+        auto tb1=std::chrono::high_resolution_clock::now();
+        r.enumerated=true;
+        r.cands=cands.size();
+        r.band=std::chrono::duration<double>(tb1-tb0).count();
+        ull off=n-r.below-1;
+        if(off<cands.size()){
+            auto te0=std::chrono::high_resolution_clock::now();
+            struct EC{ Candidate c; cpp_int val; };
+            std::vector<EC> exact;
+            exact.reserve(cands.size());
+            for(auto& c:cands) exact.push_back({c,value_from_exps(P,c.exps)});
+            std::sort(exact.begin(),exact.end(),[](const EC& a,const EC& b){ return a.val<b.val; });
+            auto chosen=exact[(size_t)off];
+            auto te1=std::chrono::high_resolution_clock::now();
+            r.exps=chosen.c.exps;
+            r.digits=digits10(chosen.val);
+            r.exact=std::chrono::duration<double>(te1-te0).count();
+            r.recovered=true;
+        }
+    }
+    auto t1=std::chrono::high_resolution_clock::now();
+    r.sec=std::chrono::duration<double>(t1-t0).count();
+    return r;
+}
+
 static Result nth_full_xy(std::vector<int>P, ull n, ull target_gap=50000) {
     auto t0=std::chrono::high_resolution_clock::now();
     double est=leading_est(P,n), maxT=std::max(1e-9,est*1.02+1e-8);
@@ -304,7 +444,33 @@ int main(int argc,char**argv) {
                      <<" splitA="<<idx_to_primes(r.Aidx,P)<<" splitB="<<idx_to_primes(r.Bidx,P)<<"\n";
             return 0;
         }
-        std::cerr<<"usage: "<<argv[0]<<" nth primes_csv N [target_gap]\n";
+        if(argc>=2 && std::string(argv[1])=="analytic-band-corrected"){
+            auto P=parse_csv(argv[2]);
+            ull n=std::stoull(argv[3]);
+            long double rank_radius=argc>=5?std::stold(argv[4]):1000.0L;
+            ull max_candidates=argc>=6?std::stoull(argv[5]):200000ULL;
+            auto r=corrected_full_xy(P,n,rank_radius,max_candidates);
+            std::cout<<"xplusy_corrected_band P="<<join_primes(P)<<" k="<<P.size()<<" N="<<n
+                     <<" seconds="<<r.sec<<" build="<<r.build<<" count_phase="<<r.count
+                     <<" band_phase="<<r.band<<" exact="<<r.exact
+                     <<" raw_T="<<(double)r.raw_T<<" raw_derivative="<<(double)r.raw_derivative
+                     <<" center_count="<<r.center_count
+                     <<" center_rank_error="<<(double)((long double)r.center_count-(long double)n)
+                     <<" correction="<<sci(r.correction)
+                     <<" T="<<(double)r.T<<" derivative="<<(double)r.derivative
+                     <<" rank_radius="<<(double)rank_radius<<" half_width="<<sci(r.half_width)
+                     <<" below="<<r.below<<" above="<<r.above<<" band_count="<<r.band_count
+                     <<" target_inside="<<(r.target_inside?"true":"false")
+                     <<" enumerated="<<(r.enumerated?"true":"false")
+                     <<" recovered="<<(r.recovered?"true":"false")
+                     <<" cands="<<r.cands<<" A="<<r.A<<" B="<<r.B
+                     <<" splitA="<<idx_to_primes(r.Aidx,P)<<" splitB="<<idx_to_primes(r.Bidx,P);
+            if(r.recovered) std::cout<<" exps="<<join_vec(r.exps)<<" digits="<<r.digits;
+            std::cout<<"\n";
+            return 0;
+        }
+        std::cerr<<"usage: "<<argv[0]<<" nth primes_csv N [target_gap]\n"
+                 <<"       "<<argv[0]<<" analytic-band-corrected primes_csv N [rank_radius] [max_candidates]\n";
         return 2;
     } catch(const std::exception& e) {
         std::cerr<<"error: "<<e.what()<<"\n";
