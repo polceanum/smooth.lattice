@@ -45,14 +45,14 @@
 
 ## Current auditor scope
 
-The interval auditor currently supports up to eight primes drawn from:
+The interval auditor currently supports up to twelve primes drawn from:
 
 ```text
-{2,3,5,7,11,13,17,19}
+{2,3,5,7,11,13,17,19,23,29,31,37}
 ```
 
-The k<=8 extension uses the same certified-path structure as the earlier k<=6
-auditor: integer log intervals, a balanced meet-in-the-middle split, and exact
-big-integer resolution for boundary-ambiguous pairs. The old
+The k<=12 extension uses the same certified-path structure as the earlier k<=8
+auditor: integer log intervals, an estimated balanced meet-in-the-middle split,
+and exact big-integer resolution for boundary-ambiguous pairs. The old
 `smooth_interval_audit_exps_k6` binary name is still built for compatibility;
 new scripts should call `smooth_interval_audit_exps`.

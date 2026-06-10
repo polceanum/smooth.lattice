@@ -639,9 +639,8 @@ This is the current implemented-method scoreboard. It should be the default
 artifact cited when discussing practical fastest-certified behavior in this
 repository. It still does not justify broad best-known language: the remaining
 gates are a faithful soft-heap/Frederickson-Johnson-style `X+Y` comparison,
-clearer Barvinok/fixed-dimensional lattice-count positioning, and a wider
-independent certification path that does not overflow on high-exponent k=3
-instances outside the current k<=8 audited prime universe.
+clearer Barvinok/fixed-dimensional lattice-count positioning, and arbitrary-prime
+certification beyond the current fixed k<=12 audited prime universe.
 
 ## Analytic-Bracket Layer Hybrid
 
@@ -793,3 +792,57 @@ the current analytic-corrected X+Y implementation at the tested five-prime
 Frederickson-Johnson or soft-heap comparison obligations, because the selected
 published algorithm here is Mirzaian-Arjomandi value selection plus our exact
 band reconstruction.
+
+## Iterative Corrected High-k Sums-Only Suite
+
+The one-step residual correction used in earlier analytic-band experiments can
+still leave a rank bias for higher dimensions. The high-k suite therefore uses
+multiple exact residual corrections:
+
+1. start from the analytic lattice estimate;
+2. count exactly at the current estimate using the sums-only MITM counter;
+3. apply a Newton-style rank residual correction using the analytic derivative;
+4. repeat for the configured number of refinement steps;
+5. open a narrow final band, reconstruct exponent vectors by parent traces, and
+   exact-sort the band by multiprecision integer value;
+6. independently audit the corrected exponent vector.
+
+Use:
+
+```bash
+python3 scripts/run_iterative_corrected_highk_suite.py \
+  --out-dir results/benchmarks/iterative_corrected_highk_suite_1e12
+```
+
+Default outputs are written to:
+
+```text
+results/local/iterative_corrected_highk_<timestamp>/
+```
+
+The clean default artifact compares adaptive sums-only MITM against iterative
+corrected sums-only MITM at `N=10^12` for:
+
+- `k=10`, first ten primes, `rank_radius=50`, `refine_steps=2`;
+- `k=12`, first twelve primes, `rank_radius=25`, `refine_steps=3`.
+
+Clean artifact:
+
+```text
+results/benchmarks/iterative_corrected_highk_suite_1e12/
+```
+
+Observed result at commit `dee2ec6e5ce7ebfe8a644746eb3afe0560bcbd99`:
+
+- 2/2 rows completed.
+- 2/2 corrected rows matched adaptive sums-only exponent vectors.
+- 2/2 corrected rows were independently interval-rank certified.
+- Corrected mode won 2/2 wall-time comparisons.
+- Adaptive/corrected wall-time ratio was 1.9198 for `k=10` and 2.6205 for
+  `k=12`, with mean 2.2702.
+- Final exact bands had 99 candidates for `k=10` and 45 candidates for `k=12`.
+
+This is a current-code speed claim against the implemented adaptive sums-only
+MITM unranker. It is not a broad best-known claim: the comparator set still
+does not include full soft-heap X+Y, full Frederickson-Johnson ranking/selection,
+or a Barvinok-style fixed-dimensional lattice-count implementation.

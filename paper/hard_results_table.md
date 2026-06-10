@@ -133,14 +133,19 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   [75,28,9,16,3,22,5,1], high-k sums-only solver output independently
   certified with count_le=N by the k<=8 interval auditor. Artifact:
   `results/benchmarks/k8_certificate_1e12/`.
-- Higher-k exploratory: sums-only MITM handled k=10,12 at N=10^12 within
-  seconds in local checks, but proof-grade certification beyond k=8 is not yet
-  implemented.
+- Iterative corrected high-k sums-only suite: clean artifact at commit
+  `dee2ec6e5ce7ebfe8a644746eb3afe0560bcbd99`. For the first 10 and first 12
+  primes at N=10^12, iterative residual-corrected sums-only MITM matched
+  adaptive sums-only exponent vectors, both corrected vectors were independently
+  rank-certified by the k<=12 interval auditor, and corrected mode won 2/2
+  wall-time comparisons. Adaptive/corrected wall-time ratios were 1.9198 for
+  k=10 and 2.6205 for k=12; final exact bands had 99 and 45 candidates.
+  Artifact: `results/benchmarks/iterative_corrected_highk_suite_1e12/`.
 
 ## Claims to avoid for now
 
 - Do not claim general best-known algorithm for smooth numbers.
 - Do not claim replacement for Bernstein-style general y-smooth counting.
 - Do not claim impact on prime generation, factoring, or twin primes.
-- Do not claim proof-grade correctness for k>8 high-k variants until
-  arbitrary-prime interval auditing is complete.
+- Do not claim proof-grade correctness outside the supported k<=12 auditor
+  prime universe until arbitrary-prime interval auditing is complete.
