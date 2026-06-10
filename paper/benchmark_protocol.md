@@ -736,3 +736,60 @@ faithful value-selection comparator for the sorted-matrix problem, and it does
 not strengthen the practical X+Y baseline at the headline five-prime target
 scale. It still does not discharge the full Frederickson-Johnson or soft-heap
 comparison obligations for full unranking.
+
+## Mirzaian-Arjomandi Full-Unrank Comparator
+
+The sorted-matrix workbench above tests value selection only. The full-unrank
+comparator wraps the Mirzaian-Arjomandi sorted-matrix selector in the same
+reconstruction discipline used by the materialized X+Y unranker:
+
+1. build both MITM sides with exponent packs;
+2. select the target Cartesian-sum log value with the Mirzaian-Arjomandi
+   square sorted-matrix selector, padding the shorter rectangular side;
+3. open a narrow analytic-width band around that selected value;
+4. enumerate candidate exponent vectors in the band;
+5. exact-sort the candidate band by multiprecision integer value;
+6. independently audit the returned exponent vector.
+
+Use:
+
+```bash
+python3 scripts/run_ma_full_unrank_suite.py \
+  --out-dir results/benchmarks/ma_full_unrank_suite_1e12
+```
+
+Default outputs are written to:
+
+```text
+results/local/ma_full_unrank_suite_<timestamp>/
+```
+
+The default benchmark compares `xplusy_ma_full` against
+`xplusy_corrected` on the six five-prime subsets of `{2,3,5,7,11,13}` at
+`N=10^12`, with `rank_radius=250`, `max_candidates=200000`,
+`ma_max_n=30000000`, and `ma_max_middle=200000000`.
+
+Clean comparator artifact:
+
+```text
+results/benchmarks/ma_full_unrank_suite_1e12/
+```
+
+Observed result on the recorded macOS/x86_64 Apple-clang machine:
+
+- 6/6 cases completed.
+- 6/6 returned the same exponent vector as analytic-corrected X+Y.
+- 6/6 matching vectors were independently interval-rank certified.
+- The Mirzaian-Arjomandi full-unrank path won 0/6 wall-time comparisons.
+- The MA/corrected wall-time ratio ranged from 4.8947 to 6.7687, with mean
+  5.7803.
+- Peak RSS for the MA path ranged from about 1.56GB to 2.42GB on these rows,
+  versus about 0.36GB to 0.58GB for analytic-corrected X+Y.
+
+This is a rigorous negative result for the implemented MA full-unrank wrapper:
+it is a correctness-complete comparator, but it is not a speed improvement over
+the current analytic-corrected X+Y implementation at the tested five-prime
+`N=10^12` target. It also does not discharge the full
+Frederickson-Johnson or soft-heap comparison obligations, because the selected
+published algorithm here is Mirzaian-Arjomandi value selection plus our exact
+band reconstruction.

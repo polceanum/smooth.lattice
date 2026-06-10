@@ -6,7 +6,7 @@ This project targets fixed-prime random access, not general smooth-number counti
 
 - `benchmarks/dp_pointer_baseline.cpp`: standard DP/pointer method used for Hamming/super-ugly-number generation. It is a strong sequential-generation baseline but has O(Nk) time and O(N) memory if it must return rank N.
 - `benchmarks/smooth_xplusy_baseline.cpp`: practical adaptive Cartesian-sum value-selection baseline.
-- `benchmarks/smooth_xplusy_full_unrank.cpp`: practical materialized Cartesian-sum full-unrank baseline. It stores exponent packs on both MITM sides, narrows to a log-value band, exact-sorts the candidate band by multiprecision integer value, and returns an exponent vector.
+- `benchmarks/smooth_xplusy_full_unrank.cpp`: practical materialized Cartesian-sum full-unrank baseline. It stores exponent packs on both MITM sides, narrows to a log-value band, exact-sorts the candidate band by multiprecision integer value, and returns an exponent vector. Its modes include adaptive X+Y, residual-corrected analytic X+Y, and a Mirzaian-Arjomandi sorted-matrix selector wrapped with the same exact reconstruction step.
 - `benchmarks/smooth_xplusy_fj_loh_workbench.cpp`: exploratory sorted-matrix/range-pruning, Mirzaian-Arjomandi value-selection, and LOH-style probes. Use `scripts/run_sorted_matrix_workbench.py` for reproducible artifacts; this is not a faithful Frederickson-Johnson or soft-heap implementation.
 
 ## Current priority comparison
@@ -44,6 +44,7 @@ results/benchmarks/xplusy_vs_layer5_1e12/
 results/benchmarks/five_prime_suite_1e12/
 results/benchmarks/full_xplusy_suite_1e12/
 results/benchmarks/sorted_matrix_workbench_1e12/
+results/benchmarks/ma_full_unrank_suite_1e12/
 ```
 
 On the recorded macOS/x86_64 Apple-clang run at commit
@@ -80,6 +81,15 @@ passed exhaustive small validation on 5185/5185 cases, matched the adaptive
 selected log in 6/6 large cases, but won 0/6 timing comparisons, with mean
 MA/linear internal time ratio 9.4042. The LOH row is a capped
 `N_probe=10^6` top-k probe, not a full-rank `N=10^12` random-access comparator.
+
+Use `python3 scripts/run_ma_full_unrank_suite.py` for the full
+Mirzaian-Arjomandi comparator. This is no longer merely a value-selection
+probe: it selects the X+Y log value, reconstructs exponent vectors, exact-sorts
+the candidate band, and audits matching vectors. In the six-case `N=10^12`
+artifact, the MA full-unrank path matched the analytic-corrected X+Y output and
+was independently certified in 6/6 cases, but won 0/6 wall-time comparisons.
+The mean MA/corrected wall-time ratio was 5.7803, so this comparator is useful
+negative evidence rather than a speed path.
 
 ## Not yet fully implemented
 

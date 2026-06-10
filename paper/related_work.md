@@ -97,12 +97,15 @@ Source to cite:
 Current implementation status:
 
 - Implemented as `ma_select_probe` in
-  `benchmarks/smooth_xplusy_fj_loh_workbench.cpp`.
+  `benchmarks/smooth_xplusy_fj_loh_workbench.cpp`, and as the `ma-full` mode
+  of `benchmarks/smooth_xplusy_full_unrank.cpp`.
 - Rectangular MITM splits are embedded in a square matrix by padding the shorter
   side with negative infinity after transforming kth-smallest log selection into
   kth-largest selection on negated weights.
-- This row selects a log value only. It does not reconstruct an exponent vector
-  or independently certify a returned smooth number.
+- The workbench row selects a log value only. The `ma-full` row selects the log
+  value, reconstructs a narrow exponent band, exact-sorts that band by
+  multiprecision integer value, and returns a full exponent vector for
+  independent certification.
 - The implementation includes `validate-ma`, an exhaustive small Cartesian-sum
   validation mode; the clean artifact below records 5185/5185 validation cases
   passed with maximum delta 0.
@@ -110,6 +113,11 @@ Current implementation status:
   `results/benchmarks/sorted_matrix_workbench_1e12/`. The probe matched the
   adaptive selected log in 6/6 cases but was slower in 6/6 cases, with mean
   MA/linear internal time ratio 9.4042.
+- Clean full-unrank `N=10^12` five-prime suite artifact:
+  `results/benchmarks/ma_full_unrank_suite_1e12/`. The MA full-unrank row
+  matched analytic-corrected X+Y in 6/6 cases and all six vectors were
+  independently rank-certified, but it won 0/6 wall-time comparisons, with mean
+  MA/corrected wall-time ratio 5.7803.
 
 ### Frederickson-Johnson
 

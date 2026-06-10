@@ -208,6 +208,120 @@ static ull pair_count(const std::vector<double>& A,const std::vector<double>& B,
     return total;
 }
 
+static ull ceil_quarter(ull x){ return (x+3)/4; }
+static ull ma_high_rank(ull x, ull n){ return (n&1) ? ceil_quarter(x+2*n+1) : n+1+ceil_quarter(x); }
+
+struct MARanks {
+    long long rank_above_a=0;
+    long long rank_at_or_above_b=0;
+    std::vector<double> middle;
+};
+
+static MARanks ma_ranks_between(const std::vector<double>& X,const std::vector<double>& Y,double a,double b,size_t max_middle) {
+    ull n=(ull)X.size()-1;
+    MARanks r;
+    r.rank_at_or_above_b=(long long)(n*n);
+    r.middle.reserve((size_t)std::min<ull>(n+1,max_middle));
+    r.middle.push_back(0.0);
+    long long j=(long long)n;
+    for(ull i=1;i<=n;i++){
+        while(j>0 && X[(size_t)i]+Y[(size_t)j] <= a) --j;
+        r.rank_above_a += j;
+        long long jj=j;
+        while(jj>0 && X[(size_t)i]+Y[(size_t)jj] < b){
+            if(r.middle.size()>=max_middle) throw std::runtime_error("ma_middle_cap_exceeded");
+            r.middle.push_back(X[(size_t)i]+Y[(size_t)jj]);
+            --jj;
+        }
+        r.rank_at_or_above_b -= jj;
+    }
+    return r;
+}
+
+static std::vector<double> ma_half(const std::vector<double>& v) {
+    std::vector<double> out;
+    out.reserve(2+(v.size()-1)/2);
+    out.push_back(0.0);
+    for(size_t i=1;i<v.size();i+=2) out.push_back(v[i]);
+    if(v.size()&1) out.push_back(v.back());
+    return out;
+}
+
+struct MAPair { double a=0,b=0; };
+
+static MAPair ma_biselect_desc(const std::vector<double>& X,const std::vector<double>& Y,ull k1,ull k2,size_t max_middle) {
+    ull n=(ull)X.size()-1;
+    if(n==0) throw std::runtime_error("empty MA selector input");
+    if(n==1){
+        double v=X[1]+Y[1];
+        return {v,v};
+    }
+    if(n==2){
+        std::vector<double> vals{X[1]+Y[1],X[1]+Y[2],X[2]+Y[1],X[2]+Y[2]};
+        std::nth_element(vals.begin(),vals.end()-(long long)k1,vals.end());
+        double a=vals[(size_t)(4-k1)];
+        std::nth_element(vals.begin(),vals.end()-(long long)k2,vals.end());
+        double b=vals[(size_t)(4-k2)];
+        return {a,b};
+    }
+    ull k1_half=ma_high_rank(k1,n);
+    ull k2_half=ceil_quarter(k2);
+    MAPair coarse=ma_biselect_desc(ma_half(X),ma_half(Y),k1_half,k2_half,max_middle);
+    MARanks ranks=ma_ranks_between(X,Y,coarse.a,coarse.b,max_middle);
+    long long nn=(long long)(n*n);
+    long long r1=(long long)k1 + ranks.rank_at_or_above_b - nn;
+    long long r2=(long long)k2 + ranks.rank_at_or_above_b - nn;
+
+    double a;
+    if(ranks.rank_above_a <= (long long)k1-1) a=coarse.a;
+    else if(r1<=0) a=coarse.b;
+    else {
+        std::nth_element(ranks.middle.begin()+1,ranks.middle.end()-r1,ranks.middle.end());
+        a=*(ranks.middle.end()-r1);
+    }
+
+    double b;
+    if(ranks.rank_above_a <= (long long)k2-1) b=coarse.a;
+    else if(r2<=0) b=coarse.b;
+    else {
+        std::nth_element(ranks.middle.begin()+1,ranks.middle.end()-r2,ranks.middle.end());
+        b=*(ranks.middle.end()-r2);
+    }
+    return {a,b};
+}
+
+struct MAValueResult {
+    double sec=0, selected=0;
+    size_t n_square=0, padded_a=0, padded_b=0;
+    bool skipped=false;
+    std::string reason;
+};
+
+static MAValueResult ma_select_xplusy_value(const std::vector<double>& A,const std::vector<double>& B,ull k,size_t max_n,size_t max_middle) {
+    MAValueResult r;
+    auto t0=std::chrono::high_resolution_clock::now();
+    __uint128_t real_pairs=(__uint128_t)A.size()*(__uint128_t)B.size();
+    if(k==0 || (__uint128_t)k>real_pairs){ r.skipped=true; r.reason="rank_outside_real_product"; return r; }
+    size_t n=std::max(A.size(),B.size());
+    if(n>max_n){ r.skipped=true; r.reason="square_dimension_cap_exceeded"; return r; }
+    const double neg_inf=-std::numeric_limits<double>::infinity();
+    std::vector<double> X,Y;
+    X.reserve(n+1); Y.reserve(n+1);
+    X.push_back(0.0); Y.push_back(0.0);
+    for(double x:A) X.push_back(-x);
+    for(double y:B) Y.push_back(-y);
+    r.padded_a=n-A.size();
+    r.padded_b=n-B.size();
+    while(X.size()<n+1) X.push_back(neg_inf);
+    while(Y.size()<n+1) Y.push_back(neg_inf);
+    MAPair p=ma_biselect_desc(X,Y,k,k,max_middle);
+    r.selected=-p.a;
+    r.n_square=n;
+    auto t1=std::chrono::high_resolution_clock::now();
+    r.sec=std::chrono::duration<double>(t1-t0).count();
+    return r;
+}
+
 struct FullXYRanker {
     std::vector<int> P;
     std::vector<double> logs;
@@ -293,6 +407,19 @@ struct CorrectedResult {
     std::vector<int> exps;
     int digits=0;
     size_t A=0, B=0, cands=0;
+    std::vector<int> Aidx, Bidx;
+};
+
+struct MAFullResult {
+    double sec=0, build=0, ma=0, count=0, band=0, exact=0;
+    double selected_T=0;
+    long double derivative=0, half_width=0;
+    ull below=0, above=0, band_count=0;
+    bool ma_skipped=false, target_inside=false, enumerated=false, recovered=false;
+    std::string ma_reason;
+    size_t A=0, B=0, cands=0, n_square=0, padded_a=0, padded_b=0;
+    std::vector<int> exps;
+    int digits=0, attempts=0;
     std::vector<int> Aidx, Bidx;
 };
 
@@ -428,6 +555,98 @@ static Result nth_full_xy(std::vector<int>P, ull n, ull target_gap=50000) {
     return r;
 }
 
+static MAFullResult ma_full_xy(std::vector<int>P, ull n, long double rank_radius, ull max_candidates, size_t max_n, size_t max_middle) {
+    auto t0=std::chrono::high_resolution_clock::now();
+    double est=asymptotic_est(P,n);
+    double maxT=std::max(1e-9,est*1.02+1e-8);
+    std::unique_ptr<FullXYRanker> R(new FullXYRanker(P,maxT));
+    ull c_hi=R->count_le(maxT);
+    while(c_hi<n){
+        maxT*=1.25;
+        R.reset(new FullXYRanker(P,maxT));
+        c_hi=R->count_le(maxT);
+    }
+
+    MAFullResult r;
+    r.build=R->build_sec;
+    r.A=R->A.sums.size();
+    r.B=R->B.sums.size();
+    r.Aidx=R->Aidx;
+    r.Bidx=R->Bidx;
+
+    auto ma=ma_select_xplusy_value(R->A.sums,R->B.sums,n,max_n,max_middle);
+    r.ma=ma.sec;
+    r.selected_T=ma.selected;
+    r.ma_skipped=ma.skipped;
+    r.ma_reason=ma.reason;
+    r.n_square=ma.n_square;
+    r.padded_a=ma.padded_a;
+    r.padded_b=ma.padded_b;
+    if(ma.skipped){
+        auto t1=std::chrono::high_resolution_clock::now();
+        r.sec=std::chrono::duration<double>(t1-t0).count();
+        return r;
+    }
+
+    r.derivative=analytic_count_derivative(P,(long double)r.selected_T);
+    if(!(r.derivative>0.0L) || !std::isfinite((double)r.derivative)) throw std::runtime_error("bad MA derivative");
+    long double base_width=std::max(rank_radius/r.derivative,1e-12L*(1.0L+(long double)std::fabs(r.selected_T)));
+    long double width=base_width;
+    for(int attempt=0; attempt<16; ++attempt){
+        r.attempts=attempt+1;
+        double L=(double)std::max(0.0L,(long double)r.selected_T-width);
+        double H=(double)((long double)r.selected_T+width);
+        if(H+1e-8>R->maxT){
+            R.reset(new FullXYRanker(P,std::max(1e-9,H+1e-8)));
+            r.build+=R->build_sec;
+            r.A=R->A.sums.size();
+            r.B=R->B.sums.size();
+            r.Aidx=R->Aidx;
+            r.Bidx=R->Bidx;
+        }
+        auto tc0=std::chrono::high_resolution_clock::now();
+        r.below=R->count_le(L);
+        r.above=R->count_le(H);
+        auto tc1=std::chrono::high_resolution_clock::now();
+        r.count+=std::chrono::duration<double>(tc1-tc0).count();
+        r.band_count=(r.above>=r.below)?(r.above-r.below):0ULL;
+        r.target_inside=(r.below<n && r.above>=n);
+        r.half_width=width;
+        if(!r.target_inside){
+            width*=4.0L;
+            continue;
+        }
+        if(r.band_count>max_candidates){
+            break;
+        }
+        auto tb0=std::chrono::high_resolution_clock::now();
+        auto cands=R->band(L,H);
+        auto tb1=std::chrono::high_resolution_clock::now();
+        r.enumerated=true;
+        r.cands=cands.size();
+        r.band+=std::chrono::duration<double>(tb1-tb0).count();
+        ull off=n-r.below-1;
+        if(off<cands.size()){
+            auto te0=std::chrono::high_resolution_clock::now();
+            struct EC{ Candidate c; cpp_int val; };
+            std::vector<EC> exact;
+            exact.reserve(cands.size());
+            for(auto& c:cands) exact.push_back({c,value_from_exps(P,c.exps)});
+            std::sort(exact.begin(),exact.end(),[](const EC& a,const EC& b){ return a.val<b.val; });
+            auto chosen=exact[(size_t)off];
+            auto te1=std::chrono::high_resolution_clock::now();
+            r.exps=chosen.c.exps;
+            r.digits=digits10(chosen.val);
+            r.exact+=std::chrono::duration<double>(te1-te0).count();
+            r.recovered=true;
+        }
+        break;
+    }
+    auto t1=std::chrono::high_resolution_clock::now();
+    r.sec=std::chrono::duration<double>(t1-t0).count();
+    return r;
+}
+
 int main(int argc,char**argv) {
     std::cout.setf(std::ios::fixed); std::cout<<std::setprecision(6);
     try {
@@ -469,8 +688,37 @@ int main(int argc,char**argv) {
             std::cout<<"\n";
             return 0;
         }
+        if(argc>=2 && std::string(argv[1])=="ma-full"){
+            auto P=parse_csv(argv[2]);
+            ull n=std::stoull(argv[3]);
+            long double rank_radius=argc>=5?std::stold(argv[4]):1000.0L;
+            ull max_candidates=argc>=6?std::stoull(argv[5]):200000ULL;
+            size_t max_n=argc>=7?(size_t)std::stoull(argv[6]):30000000ULL;
+            size_t max_middle=argc>=8?(size_t)std::stoull(argv[7]):80000000ULL;
+            auto r=ma_full_xy(P,n,rank_radius,max_candidates,max_n,max_middle);
+            std::cout<<"xplusy_ma_full_unrank P="<<join_primes(P)<<" k="<<P.size()<<" N="<<n
+                     <<" seconds="<<r.sec<<" build="<<r.build<<" ma_phase="<<r.ma
+                     <<" count_phase="<<r.count<<" band_phase="<<r.band<<" exact="<<r.exact
+                     <<" selected_T="<<std::setprecision(12)<<r.selected_T<<std::setprecision(6)
+                     <<" derivative="<<(double)r.derivative
+                     <<" rank_radius="<<(double)rank_radius<<" half_width="<<sci(r.half_width)
+                     <<" below="<<r.below<<" above="<<r.above<<" band_count="<<r.band_count
+                     <<" target_inside="<<(r.target_inside?"true":"false")
+                     <<" enumerated="<<(r.enumerated?"true":"false")
+                     <<" recovered="<<(r.recovered?"true":"false")
+                     <<" ma_skipped="<<(r.ma_skipped?"true":"false")
+                     <<" ma_reason="<<r.ma_reason
+                     <<" attempts="<<r.attempts
+                     <<" cands="<<r.cands<<" A="<<r.A<<" B="<<r.B
+                     <<" n_square="<<r.n_square<<" padded_a="<<r.padded_a<<" padded_b="<<r.padded_b
+                     <<" splitA="<<idx_to_primes(r.Aidx,P)<<" splitB="<<idx_to_primes(r.Bidx,P);
+            if(r.recovered) std::cout<<" exps="<<join_vec(r.exps)<<" digits="<<r.digits;
+            std::cout<<"\n";
+            return r.ma_skipped || !r.recovered ? 1 : 0;
+        }
         std::cerr<<"usage: "<<argv[0]<<" nth primes_csv N [target_gap]\n"
-                 <<"       "<<argv[0]<<" analytic-band-corrected primes_csv N [rank_radius] [max_candidates]\n";
+                 <<"       "<<argv[0]<<" analytic-band-corrected primes_csv N [rank_radius] [max_candidates]\n"
+                 <<"       "<<argv[0]<<" ma-full primes_csv N [rank_radius] [max_candidates] [max_n] [max_middle]\n";
         return 2;
     } catch(const std::exception& e) {
         std::cerr<<"error: "<<e.what()<<"\n";

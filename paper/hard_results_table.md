@@ -120,6 +120,14 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   won 0/6 timing comparisons, with mean MA/linear internal time ratio 9.4042.
   This is a validated negative/mixed result, not a headline improvement.
   Artifact: `results/benchmarks/sorted_matrix_workbench_1e12/`.
+- Mirzaian-Arjomandi full X+Y unrank comparator, same six five-prime subsets,
+  N=10^12: the MA path selected the X+Y log value, reconstructed and exact-sorted
+  a candidate exponent band, matched analytic-corrected X+Y in 6/6 cases, and
+  all six returned vectors were independently rank-certified. It won 0/6
+  wall-time comparisons, with mean MA/corrected wall-time ratio 5.7803 and
+  peak RSS up to about 2.42GB. This is a rigorous negative baseline for the
+  implemented MA full-unrank wrapper. Artifact:
+  `results/benchmarks/ma_full_unrank_suite_1e12/`.
 - 6 primes, P=(2,3,5,7,11,13), N=10^12: exps [55,126,27,54,2,52], fast solver about 0.55-0.61s; independent auditor certified count_le=N.
 - 8 primes, P=(2,3,5,7,11,13,17,19), N=10^12: exps
   [75,28,9,16,3,22,5,1], high-k sums-only solver output independently
