@@ -12,7 +12,7 @@
 ## Milestone 3: General k<=12 auditor
 - Extend split auditor from k<=8 to k<=12 for the supported first-prime universe.
 - Use MITM interval pairs with exact ambiguity resolution.
-- Test first 10 and first 12 primes at N=10^12.
+- Test first 8, first 10, and first 12 primes at N=10^12 under one shared correction policy.
 
 ## Milestone 4: Reproducible benchmark suite
 - Benchmarks: DP pointer, heap frontier, materialized MITM, adaptive X+Y, layer-compressed, sums-only, parent-pointer.

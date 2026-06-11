@@ -118,12 +118,13 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   certified with count_le=N by the k<=8 interval auditor. Artifact:
   `results/benchmarks/k8_certificate_1e12/`.
 - Iterative corrected high-k sums-only suite: clean artifact at commit
-  `dee2ec6e5ce7ebfe8a644746eb3afe0560bcbd99`. For the first 10 and first 12
-  primes at N=10^12, iterative residual-corrected sums-only MITM matched
-  adaptive sums-only exponent vectors, both corrected vectors were independently
-  rank-certified by the k<=12 interval auditor, and corrected mode won 2/2
-  wall-time comparisons. Adaptive/corrected wall-time ratios were 1.9198 for
-  k=10 and 2.6205 for k=12; final exact bands had 99 and 45 candidates.
+  `e0825a6f7ed1cbadaf823897f2b918037a6c7be9`. A shared policy
+  (`rank_radius=25`, `refine_steps=4`) over the first 8, first 10, and first 12
+  primes at N=10^12 matched adaptive sums-only exponent vectors, all three
+  corrected vectors were independently rank-certified by the k<=12 interval
+  auditor, and corrected mode won 3/3 wall-time comparisons.
+  Adaptive/corrected wall-time ratios were 1.8605 for k=8, 1.7140 for k=10,
+  and 2.3339 for k=12; final exact bands had 52, 50, and 38 candidates.
   Artifact: `results/benchmarks/iterative_corrected_highk_suite_1e12/`.
 
 ## Claims to avoid for now

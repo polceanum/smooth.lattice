@@ -821,10 +821,10 @@ results/local/iterative_corrected_highk_<timestamp>/
 ```
 
 The clean default artifact compares adaptive sums-only MITM against iterative
-corrected sums-only MITM at `N=10^12` for:
+corrected sums-only MITM at `N=10^12` using one shared policy:
+`rank_radius=25`, `max_candidates=200000`, and `refine_steps=4`.
 
-- `k=10`, first ten primes, `rank_radius=50`, `refine_steps=2`;
-- `k=12`, first twelve primes, `rank_radius=25`, `refine_steps=3`.
+The default cases are the first eight, first ten, and first twelve primes.
 
 Clean artifact:
 
@@ -832,15 +832,16 @@ Clean artifact:
 results/benchmarks/iterative_corrected_highk_suite_1e12/
 ```
 
-Observed result at commit `dee2ec6e5ce7ebfe8a644746eb3afe0560bcbd99`:
+Observed result at commit `e0825a6f7ed1cbadaf823897f2b918037a6c7be9`:
 
-- 2/2 rows completed.
-- 2/2 corrected rows matched adaptive sums-only exponent vectors.
-- 2/2 corrected rows were independently interval-rank certified.
-- Corrected mode won 2/2 wall-time comparisons.
-- Adaptive/corrected wall-time ratio was 1.9198 for `k=10` and 2.6205 for
-  `k=12`, with mean 2.2702.
-- Final exact bands had 99 candidates for `k=10` and 45 candidates for `k=12`.
+- 3/3 rows completed.
+- 3/3 corrected rows matched adaptive sums-only exponent vectors.
+- 3/3 corrected rows were independently interval-rank certified.
+- Corrected mode won 3/3 wall-time comparisons.
+- Adaptive/corrected wall-time ratios were 1.8605 for `k=8`, 1.7140 for
+  `k=10`, and 2.3339 for `k=12`, with mean 1.9695.
+- Final exact bands had 52 candidates for `k=8`, 50 candidates for `k=10`,
+  and 38 candidates for `k=12`.
 
 This is a current-code speed claim against the implemented adaptive sums-only
 MITM unranker. It is not a broad best-known claim: the comparator set still
