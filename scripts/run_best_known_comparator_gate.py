@@ -307,7 +307,7 @@ def main() -> int:
     args = parser.parse_args()
 
     harness = load_harness()
-    out_dir = args.out_dir
+    out_dir = args.out_dir if args.out_dir.is_absolute() else ROOT / args.out_dir
     out_dir.mkdir(parents=True, exist_ok=True)
 
     ma_dir = out_dir / "ma_full_unrank_first_k_1e12"
