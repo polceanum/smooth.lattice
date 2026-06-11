@@ -123,6 +123,12 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   won 0/6 timing comparisons, with mean MA/linear internal time ratio 9.4042.
   This is a validated negative/mixed result, not a headline improvement.
   Artifact: `results/benchmarks/sorted_matrix_workbench_1e12/`.
+- Mirzaian-Arjomandi first-k full X+Y unrank comparator, first 5, 6, and 8
+  primes at N=10^12: all three MA rows matched analytic-corrected X+Y exponent
+  vectors and were independently rank-certified. MA won 0/3 wall-time
+  comparisons; MA/current wall-time ratios were 3.5898, 4.0593, and 3.7086
+  with mean 3.7859. Artifact:
+  `results/benchmarks/ma_full_unrank_first_k_1e12/`.
 - 8 primes, P=(2,3,5,7,11,13,17,19), N=10^12: exps
   [75,28,9,16,3,22,5,1], high-k sums-only solver output independently
   certified with count_le=N by the k<=8 interval auditor. Artifact:

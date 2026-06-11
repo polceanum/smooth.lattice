@@ -138,6 +138,12 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   peak RSS up to about 2.02GB. This is a rigorous negative baseline for the
   implemented MA full-unrank wrapper. Artifact:
   `results/benchmarks/ma_full_unrank_suite_1e12/`.
+- Mirzaian-Arjomandi first-k full X+Y unrank comparator, first 5, 6, and 8
+  primes at N=10^12: all three MA rows matched analytic-corrected X+Y exponent
+  vectors and were independently rank-certified. MA won 0/3 wall-time
+  comparisons; MA/current wall-time ratios were 3.5898, 4.0593, and 3.7086
+  with mean 3.7859. Artifact:
+  `results/benchmarks/ma_full_unrank_first_k_1e12/`.
 - 6 primes, P=(2,3,5,7,11,13), N=10^12: exps [55,126,27,54,2,52], fast solver about 0.55-0.61s; independent auditor certified count_le=N.
 - 8 primes, P=(2,3,5,7,11,13,17,19), N=10^12: exps
   [75,28,9,16,3,22,5,1], high-k sums-only solver output independently

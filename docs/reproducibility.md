@@ -21,6 +21,7 @@ python3 scripts/run_xplusy_vs_layer5.py
 python3 scripts/run_full_xplusy_suite.py
 python3 scripts/run_sorted_matrix_workbench.py
 python3 scripts/run_heap_frontier_baseline_suite.py
+python3 scripts/run_ma_full_unrank_suite.py
 ```
 
 Dependency notes:

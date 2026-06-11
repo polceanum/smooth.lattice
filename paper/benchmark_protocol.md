@@ -859,6 +859,39 @@ Frederickson-Johnson or soft-heap comparison obligations, because the selected
 published algorithm here is Mirzaian-Arjomandi value selection plus our exact
 band reconstruction.
 
+Clean first-k comparator artifact:
+
+```text
+results/benchmarks/ma_full_unrank_first_k_1e12/
+```
+
+Command:
+
+```bash
+python3 scripts/run_ma_full_unrank_suite.py \
+  --out-dir results/benchmarks/ma_full_unrank_first_k_1e12 \
+  --prime-set 2,3,5,7,11 \
+  --prime-set 2,3,5,7,11,13 \
+  --prime-set 2,3,5,7,11,13,17,19 \
+  --rank-radius 250 \
+  --max-candidates 200000 \
+  --ma-max-n 30000000 \
+  --ma-max-middle 200000000
+```
+
+Observed result at commit `7daf269404c1672a69da6f6d2edb2ff53eb648e3`:
+
+- 3/3 rows completed.
+- 3/3 returned the same exponent vector as analytic-corrected X+Y.
+- 3/3 matching vectors were independently interval-rank certified.
+- The Mirzaian-Arjomandi full-unrank path won 0/3 wall-time comparisons.
+- MA/current wall-time ratios were 3.5898 for k=5, 4.0593 for k=6, and
+  3.7086 for k=8, with mean 3.7859.
+
+This is the current strongest implemented published-selector checkpoint for
+"where are we versus a best-known-style comparator?" It supports a narrow claim
+against this MA sorted-matrix selector wrapper only.
+
 ## Iterative Corrected High-k Sums-Only Suite
 
 The one-step residual correction used in earlier analytic-band experiments can

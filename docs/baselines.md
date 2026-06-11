@@ -46,6 +46,7 @@ results/benchmarks/five_prime_suite_1e12/
 results/benchmarks/full_xplusy_suite_1e12/
 results/benchmarks/sorted_matrix_workbench_1e12/
 results/benchmarks/ma_full_unrank_suite_1e12/
+results/benchmarks/ma_full_unrank_first_k_1e12/
 results/benchmarks/heap_frontier_baseline_suite_1e5_1e6/
 results/benchmarks/heap_frontier_baseline_suite_1e7/
 ```
@@ -93,6 +94,21 @@ artifact, the MA full-unrank path matched the analytic-corrected X+Y output and
 was independently certified in 6/6 cases, but won 0/6 wall-time comparisons.
 The mean MA/corrected wall-time ratio was 5.7000, so this comparator is useful
 negative evidence rather than a speed path.
+
+The clean first-k MA full-unrank artifact extends this published sorted-matrix
+comparator to the first 5, 6, and 8 primes at `N=10^12`:
+
+```text
+results/benchmarks/ma_full_unrank_first_k_1e12/
+```
+
+Observed at commit `7daf269404c1672a69da6f6d2edb2ff53eb648e3`, all 3 rows
+completed, matched analytic-corrected X+Y exponent vectors, and were
+independently interval-certified. MA won 0/3 wall-time comparisons; the mean
+MA/corrected wall-time ratio was 3.7859. This is the current cleanest
+best-known-style comparator checkpoint in the repository, but it is still
+narrowly about Mirzaian-Arjomandi sorted-matrix value selection wrapped into
+full unranking.
 
 Use `python3 scripts/run_heap_frontier_baseline_suite.py` for the full
 heap/frontier comparator. The heap baseline returns exponent vectors, and the

@@ -118,6 +118,11 @@ Current implementation status:
   matched analytic-corrected X+Y in 6/6 cases and all six vectors were
   independently rank-certified, but it won 0/6 wall-time comparisons, with mean
   MA/corrected wall-time ratio 5.7000.
+- Clean first-k `N=10^12` full-unrank artifact:
+  `results/benchmarks/ma_full_unrank_first_k_1e12/`. The first 5-, 6-, and
+  8-prime rows all completed, matched analytic-corrected X+Y, and were
+  independently rank-certified. MA won 0/3 wall-time comparisons, with mean
+  MA/corrected wall-time ratio 3.7859.
 
 ### Frederickson-Johnson
 
