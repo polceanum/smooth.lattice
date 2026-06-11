@@ -47,6 +47,7 @@ results/benchmarks/full_xplusy_suite_1e12/
 results/benchmarks/sorted_matrix_workbench_1e12/
 results/benchmarks/ma_full_unrank_suite_1e12/
 results/benchmarks/ma_full_unrank_first_k_1e12/
+results/benchmarks/best_known_comparator_gate/
 results/benchmarks/heap_frontier_baseline_suite_1e5_1e6/
 results/benchmarks/heap_frontier_baseline_suite_1e7/
 ```
@@ -148,6 +149,14 @@ This supports a narrow claim against a canonical sequential heap/frontier
 generator on the tested fixed-prime ranks. It does not imply a comparison
 against soft-heap `X+Y`, Frederickson-Johnson sorted-matrix selection, or
 Barvinok-style lattice counting.
+
+Use `python3 scripts/run_best_known_comparator_gate.py` to produce the current
+serious-comparator status dashboard. In the clean artifact at commit
+`d3e2f716a92ef6e8270bb5b1bc346205f69f77f1`, the MA full-unrank gate passed, the
+output-sensitive `X+Y` probe executed at N=10^6, full FJ and soft-heap gates
+remained open/not implemented, and the Barvinok/Normaliz external count gate
+exported rational inputs but did not produce a trusted count because smoke
+commands failed.
 
 ## Not yet fully implemented
 

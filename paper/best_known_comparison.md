@@ -64,3 +64,39 @@ open comparator obligations remain:
   explaining why it is not the right practical comparator for these targets;
 - arbitrary-prime independent certification beyond the current k<=12 fixed
   audited universe.
+
+## Comparator Gate Artifact
+
+Artifact:
+
+```text
+results/benchmarks/best_known_comparator_gate/
+```
+
+Observed at commit `d3e2f716a92ef6e8270bb5b1bc346205f69f77f1`:
+
+- Mirzaian-Arjomandi full-unrank gate: passed.
+- Output-sensitive `X+Y`/LOH probe gate at N=10^6: executed.
+- Full Frederickson-Johnson gate: open, not implemented.
+- Soft-heap `X+Y` gate: open, not implemented.
+- Barvinok-style external count gate: tools installed and rational inputs
+  exported, but smoke commands failed; no external count claim is made.
+
+Gate details:
+
+- MA first-k comparison: 3/3 completed and certified, 0/3 MA wall-time wins,
+  mean MA/current wall ratio 3.2708.
+- Output-sensitive probe: 3/3 completed, range-pruning beat linear saddleback
+  in 3/3 rows at N=10^6 with mean block/linear ratio 0.8459; MA value selection
+  won 0/3 with mean MA/linear ratio 2.2590.
+- Barvinok/Normaliz availability: `barvinok_count` and `normaliz` were
+  installed in the `smooth-lattice-count` conda environment. Tiny smoke commands
+  returned nonzero statuses (`barvinok_count` segfaulted on toy ISL sets;
+  Normaliz failed on the toy lattice-point input). The artifact includes
+  rationalized `.ine` inputs for external follow-up.
+
+The gate is a status artifact, not a victory lap. It says exactly where the
+repository stands today: one published sorted-matrix selector comparison is
+cleanly beaten on certified rows; the stronger FJ, soft-heap, and external
+Barvinok-family comparisons still need real implementations or working tool
+runs.

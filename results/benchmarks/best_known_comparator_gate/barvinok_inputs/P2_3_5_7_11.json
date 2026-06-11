@@ -1,0 +1,53 @@
+{
+  "bound_ceil": 9235910235558837171918610956448006529106581,
+  "bound_floor": 9235910235558837171918610956448006529106580,
+  "bound_round": 9235910235558837171918610956448006529106581,
+  "coeff_ceil": [
+    6931471805599453094172321214581765680756,
+    10986122886681096913952452369225257046475,
+    16094379124341003746007593332261876395257,
+    19459101490553133051053527434431797296371,
+    23978952727983705440619435779651292998218
+  ],
+  "coeff_floor": [
+    6931471805599453094172321214581765680755,
+    10986122886681096913952452369225257046474,
+    16094379124341003746007593332261876395256,
+    19459101490553133051053527434431797296370,
+    23978952727983705440619435779651292998217
+  ],
+  "coeff_round": [
+    6931471805599453094172321214581765680755,
+    10986122886681096913952452369225257046475,
+    16094379124341003746007593332261876395256,
+    19459101490553133051053527434431797296371,
+    23978952727983705440619435779651292998217
+  ],
+  "exps": [
+    1052,
+    26,
+    33,
+    53,
+    4
+  ],
+  "files": {
+    "inner_ine": "P2_3_5_7_11_inner_upper_coeffs.ine",
+    "metadata": "P2_3_5_7_11.json",
+    "outer_ine": "P2_3_5_7_11_outer_lower_coeffs.ine",
+    "rounded_ine": "P2_3_5_7_11_rounded.ine"
+  },
+  "interpretation": {
+    "inner_ine": "uses ceil(scale*log p_i) and floor(scale*target); any accepted point is safely inside the real log simplex if the decimal intervals are independently trusted",
+    "outer_ine": "uses floor(scale*log p_i) and ceil(scale*target); contains the real log simplex if the decimal intervals are independently trusted",
+    "rounded_ine": "non-certified rationalized comparator input"
+  },
+  "primes": [
+    2,
+    3,
+    5,
+    7,
+    11
+  ],
+  "scale": "10000000000000000000000000000000000000000",
+  "scale_digits": 40
+}

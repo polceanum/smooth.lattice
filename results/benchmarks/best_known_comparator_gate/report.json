@@ -1,0 +1,1699 @@
+{
+  "barvinok": {
+    "export_dir": "results/benchmarks/best_known_comparator_gate/barvinok_inputs",
+    "exports": [
+      {
+        "exps": [
+          1052,
+          26,
+          33,
+          53,
+          4
+        ],
+        "inner_ine": "P2_3_5_7_11_inner_upper_coeffs.ine",
+        "metadata": "P2_3_5_7_11.json",
+        "outer_ine": "P2_3_5_7_11_outer_lower_coeffs.ine",
+        "primes": "2,3,5,7,11",
+        "rounded_ine": "P2_3_5_7_11_rounded.ine"
+      },
+      {
+        "exps": [
+          55,
+          126,
+          27,
+          54,
+          2,
+          52
+        ],
+        "inner_ine": "P2_3_5_7_11_13_inner_upper_coeffs.ine",
+        "metadata": "P2_3_5_7_11_13.json",
+        "outer_ine": "P2_3_5_7_11_13_outer_lower_coeffs.ine",
+        "primes": "2,3,5,7,11,13",
+        "rounded_ine": "P2_3_5_7_11_13_rounded.ine"
+      },
+      {
+        "exps": [
+          75,
+          28,
+          9,
+          16,
+          3,
+          22,
+          5,
+          1
+        ],
+        "inner_ine": "P2_3_5_7_11_13_17_19_inner_upper_coeffs.ine",
+        "metadata": "P2_3_5_7_11_13_17_19.json",
+        "outer_ine": "P2_3_5_7_11_13_17_19_outer_lower_coeffs.ine",
+        "primes": "2,3,5,7,11,13,17,19",
+        "rounded_ine": "P2_3_5_7_11_13_17_19_rounded.ine"
+      }
+    ],
+    "smoke": {
+      "barvinok_count_1d_isl": {
+        "command": [
+          "/usr/local/Caskroom/miniforge/base/envs/smooth-lattice-count/bin/barvinok_count"
+        ],
+        "returncode": -11,
+        "stderr": "",
+        "stdin": "{ [x] : 0 <= x <= 3 }\n",
+        "stdout": ""
+      },
+      "barvinok_count_2d_isl": {
+        "command": [
+          "/usr/local/Caskroom/miniforge/base/envs/smooth-lattice-count/bin/barvinok_count"
+        ],
+        "returncode": -11,
+        "stderr": "",
+        "stdin": "{ [x,y] : 0 <= x and 0 <= y and x + y <= 3 }\n",
+        "stdout": ""
+      },
+      "normaliz_polytope_number_lattice_points": {
+        "command": [
+          "/usr/local/Caskroom/miniforge/base/envs/smooth-lattice-count/bin/normaliz",
+          "--NumberLatticePoints",
+          "--OutputDir=/Users/mike/Work/smooth.lattice/results/local/normaliz_smoke",
+          "/Users/mike/Work/smooth.lattice/results/local/normaliz_smoke/simplex"
+        ],
+        "returncode": 1,
+        "stderr": "Some error in the normaliz input data detected: Unexpected number 0 when expecting a type!\nBadInputException caught... exiting.",
+        "stdout": ""
+      }
+    },
+    "status": "tool_available_smoke_failed_exports_ready",
+    "tools": {
+      "barvinok_count": "/usr/local/Caskroom/miniforge/base/envs/smooth-lattice-count/bin/barvinok_count",
+      "count": null,
+      "ehrhart": null,
+      "latte-count": null,
+      "normaliz": "/usr/local/Caskroom/miniforge/base/envs/smooth-lattice-count/bin/normaliz"
+    },
+    "versions": {
+      "barvinok_count": {
+        "command": [
+          "/usr/local/Caskroom/miniforge/base/envs/smooth-lattice-count/bin/barvinok_count",
+          "--version"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "isl-0.26-GMP\nbarvinok-0.41.7\n -INCREMENTAL\n -PET -OMEGA -CDDLIB -GLPK -TOPCOM +ZSOLVE -PARKER"
+      },
+      "normaliz": {
+        "command": [
+          "/usr/local/Caskroom/miniforge/base/envs/smooth-lattice-count/bin/normaliz",
+          "--version"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "Normaliz 3.11.0\n------------------------------------------------------------\nwith package(s) Flint e-antic nauty\nCopyright (C) 2007-2025  The Normaliz Team, University of Osnabrueck.\nThis program comes with ABSOLUTELY NO WARRANTY; This is free software,\nand you are welcome to redistribute it under certain conditions;\nSee COPYING for details."
+      }
+    }
+  },
+  "config": {
+    "N": 1000000000000,
+    "first_k_cases": [
+      "2,3,5,7,11",
+      "2,3,5,7,11,13",
+      "2,3,5,7,11,13,17,19"
+    ],
+    "output_N": 1000000,
+    "scale_digits": 40,
+    "strict": false
+  },
+  "frederickson_johnson": {
+    "note": "The repository has MA sorted-matrix selection and range-pruning probes, but not the published Frederickson-Johnson reduction/ranking algorithm.",
+    "status": "open_not_implemented"
+  },
+  "ma_first_k": {
+    "artifact": "results/benchmarks/best_known_comparator_gate/ma_full_unrank_first_k_1e12",
+    "report": {
+      "aggregate": {
+        "all_completed": true,
+        "all_same_exps_certified": true,
+        "cases": 3,
+        "completed_cases": 3,
+        "ma_wall_wins": 0,
+        "max_ma_wall_over_corrected_wall": 3.6007027943964744,
+        "mean_ma_wall_over_corrected_wall": 3.270836895451455,
+        "min_ma_wall_over_corrected_wall": 2.8727135882448085,
+        "same_exps_certified_cases": 3
+      },
+      "build_runs": [
+        {
+          "command": [
+            "g++",
+            "-O3",
+            "-std=c++17",
+            "benchmarks/smooth_xplusy_full_unrank.cpp",
+            "-o",
+            "bin/smooth_xplusy_full_unrank"
+          ],
+          "elapsed_seconds": 14.499390817945823,
+          "max_rss_kb": 173432,
+          "metrics": {},
+          "name": "build_xplusy_full_unrank",
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "",
+          "time_raw": "       14.49 real        11.93 user         1.57 sys\n           177594368  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               53552  page reclaims\n               13005  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                1688  voluntary context switches\n               17243  involuntary context switches\n           149418564  instructions retired\n           200010565  cycles elapsed\n             1560576  peak memory footprint\n"
+        }
+      ],
+      "cases": [
+        {
+          "N": 1000000000000,
+          "comparison": {
+            "certified": true,
+            "ma_reported_over_corrected_reported": 5.715295040605272,
+            "ma_wall_over_corrected_wall": 3.6007027943964744,
+            "same_exps": true
+          },
+          "primes": "2,3,5,7,11",
+          "runs": [
+            {
+              "command": [
+                "bin/smooth_xplusy_full_unrank",
+                "analytic-band-corrected",
+                "2,3,5,7,11",
+                "1000000000000",
+                "250",
+                "200000"
+              ],
+              "elapsed_seconds": 2.4298972180113196,
+              "max_rss_kb": 428056,
+              "metrics": {
+                "A": 561191,
+                "B": 17654903,
+                "N": 1000000000000,
+                "P": [
+                  2,
+                  3,
+                  5,
+                  7,
+                  11
+                ],
+                "T": 923.591024,
+                "above": 1000000000248,
+                "band_count": 495,
+                "band_phase": 0.089315,
+                "below": 999999999753,
+                "build": 1.224421,
+                "cands": 495,
+                "center_count": 999999999932,
+                "center_rank_error": -68.0,
+                "correction": 1.2613436417e-08,
+                "count_phase": 0.187035,
+                "derivative": 5391076448.60853,
+                "digits": 402,
+                "enumerated": true,
+                "exact": 0.002959,
+                "exps": [
+                  1052,
+                  26,
+                  33,
+                  53,
+                  4
+                ],
+                "half_width": 4.637292800115e-08,
+                "k": 5,
+                "rank_radius": 250.0,
+                "raw_T": 923.591024,
+                "raw_derivative": 5391076448.315256,
+                "recovered": true,
+                "seconds": 1.504115,
+                "splitA": [
+                  2,
+                  3
+                ],
+                "splitB": [
+                  5,
+                  7,
+                  11
+                ],
+                "target_inside": true
+              },
+              "name": "xplusy_corrected",
+              "returncode": 0,
+              "stderr": "",
+              "stdout": "xplusy_corrected_band P=(2,3,5,7,11) k=5 N=1000000000000 seconds=1.504115 build=1.224421 count_phase=0.187035 band_phase=0.089315 exact=0.002959 raw_T=923.591024 raw_derivative=5391076448.315256 center_count=999999999932 center_rank_error=-68.000000 correction=1.261343641700e-08 T=923.591024 derivative=5391076448.608530 rank_radius=250.000000 half_width=4.637292800115e-08 below=999999999753 above=1000000000248 band_count=495 target_inside=true enumerated=true recovered=true cands=495 A=561191 B=17654903 splitA=[2,3] splitB=[5,7,11] exps=[1052,26,33,53,4] digits=402",
+              "time_raw": "        2.42 real         1.14 user         0.41 sys\n           438329344  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              107312  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                2643  involuntary context switches\n          5553411517  instructions retired\n          3950021099  cycles elapsed\n           437997568  peak memory footprint\n"
+            },
+            {
+              "command": [
+                "bin/smooth_xplusy_full_unrank",
+                "ma-full",
+                "2,3,5,7,11",
+                "1000000000000",
+                "250",
+                "200000",
+                "30000000",
+                "200000000"
+              ],
+              "elapsed_seconds": 8.749337702989578,
+              "max_rss_kb": 1763784,
+              "metrics": {
+                "A": 583828,
+                "B": 18731384,
+                "N": 1000000000000,
+                "P": [
+                  2,
+                  3,
+                  5,
+                  7,
+                  11
+                ],
+                "above": 1000000000250,
+                "attempts": 1,
+                "band_count": 494,
+                "band_phase": 0.078271,
+                "below": 999999999756,
+                "build": 1.24561,
+                "cands": 494,
+                "count_phase": 0.113959,
+                "derivative": 5391076448.62149,
+                "digits": 402,
+                "enumerated": true,
+                "exact": 0.002536,
+                "exps": [
+                  1052,
+                  26,
+                  33,
+                  53,
+                  4
+                ],
+                "half_width": 4.637292800104e-08,
+                "k": 5,
+                "ma_phase": 7.040366,
+                "ma_skipped": false,
+                "n_square": 18731384,
+                "padded_a": 18147556,
+                "padded_b": 0,
+                "rank_radius": 250.0,
+                "recovered": true,
+                "seconds": 8.596461,
+                "selected_T": 923.591023555869,
+                "splitA": [
+                  2,
+                  3
+                ],
+                "splitB": [
+                  5,
+                  7,
+                  11
+                ],
+                "target_inside": true
+              },
+              "name": "xplusy_ma_full",
+              "returncode": 0,
+              "stderr": "",
+              "stdout": "xplusy_ma_full_unrank P=(2,3,5,7,11) k=5 N=1000000000000 seconds=8.596461 build=1.245610 ma_phase=7.040366 count_phase=0.113959 band_phase=0.078271 exact=0.002536 selected_T=923.591023555869 derivative=5391076448.621490 rank_radius=250.000000 half_width=4.637292800104e-08 below=999999999756 above=1000000000250 band_count=494 target_inside=true enumerated=true recovered=true ma_skipped=false ma_reason= attempts=1 cands=494 A=583828 B=18731384 n_square=18731384 padded_a=18147556 padded_b=0 splitA=[2,3] splitB=[5,7,11] exps=[1052,26,33,53,4] digits=402",
+              "time_raw": "        8.74 real         5.80 user         2.58 sys\n          1806114816  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              799714  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n               10685  involuntary context switches\n         19160915626  instructions retired\n         21318424926  cycles elapsed\n          1522475008  peak memory footprint\n"
+            },
+            {
+              "command": [
+                "bin/smooth_interval_audit_exps",
+                "2,3,5,7,11",
+                "1052,26,33,53,4",
+                "1000000000000"
+              ],
+              "elapsed_seconds": 7.275049117044546,
+              "max_rss_kb": 1329112,
+              "metrics": {
+                "P": [
+                  2,
+                  3,
+                  5,
+                  7,
+                  11
+                ],
+                "ambiguous_possible": 1,
+                "ambiguous_resolved": 1,
+                "cert_seconds": 7.22348,
+                "certified_count_le": 1000000000000,
+                "expected_N": 1000000000000,
+                "exps": [
+                  1052,
+                  26,
+                  33,
+                  53,
+                  4
+                ],
+                "groupA": 561180,
+                "groupB": 17654331,
+                "overlapsB": 0,
+                "rank_certified": true
+              },
+              "name": "interval_audit",
+              "returncode": 0,
+              "stderr": "",
+              "stdout": "interval_audit_exps P=[2,3,5,7,11] exps=[1052,26,33,53,4] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=561180 groupB=17654331 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=7.22348",
+              "time_raw": "        7.26 real         5.67 user         1.36 sys\n          1361010688  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              404945  page reclaims\n                  12  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                7487  involuntary context switches\n          8215407942  instructions retired\n         17848563631  cycles elapsed\n          1109098496  peak memory footprint\n"
+            }
+          ],
+          "slug": "P2_3_5_7_11"
+        },
+        {
+          "N": 1000000000000,
+          "comparison": {
+            "certified": true,
+            "ma_reported_over_corrected_reported": 3.140609385695394,
+            "ma_wall_over_corrected_wall": 2.8727135882448085,
+            "same_exps": true
+          },
+          "primes": "2,3,5,7,11,13",
+          "runs": [
+            {
+              "command": [
+                "bin/smooth_xplusy_full_unrank",
+                "analytic-band-corrected",
+                "2,3,5,7,11,13",
+                "1000000000000",
+                "250",
+                "200000"
+              ],
+              "elapsed_seconds": 1.1104496689513326,
+              "max_rss_kb": 208416,
+              "metrics": {
+                "A": 3973240,
+                "B": 4870829,
+                "N": 1000000000000,
+                "P": [
+                  2,
+                  3,
+                  5,
+                  7,
+                  11,
+                  13
+                ],
+                "T": 463.255372,
+                "above": 1000000000253,
+                "band_count": 503,
+                "band_phase": 0.055931,
+                "below": 999999999750,
+                "build": 0.727546,
+                "cands": 503,
+                "center_count": 1000000000452,
+                "center_rank_error": 452.0,
+                "correction": -3.528554627788e-08,
+                "count_phase": 0.179727,
+                "derivative": 12809777586.271208,
+                "digits": 202,
+                "enumerated": true,
+                "exact": 0.002013,
+                "exps": [
+                  55,
+                  126,
+                  27,
+                  54,
+                  2,
+                  52
+                ],
+                "half_width": 1.951634197521e-08,
+                "k": 6,
+                "rank_radius": 250.0,
+                "raw_T": 463.255372,
+                "raw_derivative": 12809777591.096188,
+                "recovered": true,
+                "seconds": 0.965661,
+                "splitA": [
+                  3,
+                  5,
+                  11
+                ],
+                "splitB": [
+                  2,
+                  7,
+                  13
+                ],
+                "target_inside": true
+              },
+              "name": "xplusy_corrected",
+              "returncode": 0,
+              "stderr": "",
+              "stdout": "xplusy_corrected_band P=(2,3,5,7,11,13) k=6 N=1000000000000 seconds=0.965661 build=0.727546 count_phase=0.179727 band_phase=0.055931 exact=0.002013 raw_T=463.255372 raw_derivative=12809777591.096188 center_count=1000000000452 center_rank_error=452.000000 correction=-3.528554627788e-08 T=463.255372 derivative=12809777586.271208 rank_radius=250.000000 half_width=1.951634197521e-08 below=999999999750 above=1000000000253 band_count=503 target_inside=true enumerated=true recovered=true cands=503 A=3973240 B=4870829 splitA=[3,5,11] splitB=[2,7,13] exps=[55,126,27,54,2,52] digits=202",
+              "time_raw": "        1.09 real         0.70 user         0.25 sys\n           213417984  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               52409  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                1953  involuntary context switches\n          2903529348  instructions retired\n          2421608206  cycles elapsed\n           213065728  peak memory footprint\n"
+            },
+            {
+              "command": [
+                "bin/smooth_xplusy_full_unrank",
+                "ma-full",
+                "2,3,5,7,11,13",
+                "1000000000000",
+                "250",
+                "200000",
+                "30000000",
+                "200000000"
+              ],
+              "elapsed_seconds": 3.1900038530584425,
+              "max_rss_kb": 700160,
+              "metrics": {
+                "A": 4214806,
+                "B": 5166940,
+                "N": 1000000000000,
+                "P": [
+                  2,
+                  3,
+                  5,
+                  7,
+                  11,
+                  13
+                ],
+                "above": 1000000000253,
+                "attempts": 1,
+                "band_count": 503,
+                "band_phase": 0.047347,
+                "below": 999999999750,
+                "build": 0.570308,
+                "cands": 503,
+                "count_phase": 0.073346,
+                "derivative": 12809777586.262283,
+                "digits": 202,
+                "enumerated": true,
+                "exact": 0.00128,
+                "exps": [
+                  55,
+                  126,
+                  27,
+                  54,
+                  2,
+                  52
+                ],
+                "half_width": 1.951634197522e-08,
+                "k": 6,
+                "ma_phase": 2.276573,
+                "ma_skipped": false,
+                "n_square": 5166940,
+                "padded_a": 952134,
+                "padded_b": 0,
+                "rank_radius": 250.0,
+                "recovered": true,
+                "seconds": 3.032764,
+                "selected_T": 463.255372121282,
+                "splitA": [
+                  3,
+                  5,
+                  11
+                ],
+                "splitB": [
+                  2,
+                  7,
+                  13
+                ],
+                "target_inside": true
+              },
+              "name": "xplusy_ma_full",
+              "returncode": 0,
+              "stderr": "",
+              "stdout": "xplusy_ma_full_unrank P=(2,3,5,7,11,13) k=6 N=1000000000000 seconds=3.032764 build=0.570308 ma_phase=2.276573 count_phase=0.073346 band_phase=0.047347 exact=0.001280 selected_T=463.255372121282 derivative=12809777586.262283 rank_radius=250.000000 half_width=1.951634197522e-08 below=999999999750 above=1000000000253 band_count=503 target_inside=true enumerated=true recovered=true ma_skipped=false ma_reason= attempts=1 cands=503 A=4214806 B=5166940 n_square=5166940 padded_a=952134 padded_b=0 splitA=[3,5,11] splitB=[2,7,13] exps=[55,126,27,54,2,52] digits=202",
+              "time_raw": "        3.18 real         2.29 user         0.81 sys\n           716963840  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              176658  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                3705  involuntary context switches\n          6673648689  instructions retired\n          9422551596  cycles elapsed\n           484147200  peak memory footprint\n"
+            },
+            {
+              "command": [
+                "bin/smooth_interval_audit_exps",
+                "2,3,5,7,11,13",
+                "55,126,27,54,2,52",
+                "1000000000000"
+              ],
+              "elapsed_seconds": 5.138595575001091,
+              "max_rss_kb": 539232,
+              "metrics": {
+                "P": [
+                  2,
+                  3,
+                  5,
+                  7,
+                  11,
+                  13
+                ],
+                "ambiguous_possible": 1,
+                "ambiguous_resolved": 1,
+                "cert_seconds": 5.08152,
+                "certified_count_le": 1000000000000,
+                "expected_N": 1000000000000,
+                "exps": [
+                  55,
+                  126,
+                  27,
+                  54,
+                  2,
+                  52
+                ],
+                "groupA": 3972984,
+                "groupB": 4870517,
+                "overlapsB": 0,
+                "rank_certified": true
+              },
+              "name": "interval_audit",
+              "returncode": 0,
+              "stderr": "",
+              "stdout": "interval_audit_exps P=[2,3,5,7,11,13] exps=[55,126,27,54,2,52] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=3972984 groupB=4870517 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=5.08152",
+              "time_raw": "        5.12 real         4.52 user         0.47 sys\n           552173568  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              135100  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                4869  involuntary context switches\n          4903913686  instructions retired\n         11857175521  cycles elapsed\n           412827648  peak memory footprint\n"
+            }
+          ],
+          "slug": "P2_3_5_7_11_13"
+        },
+        {
+          "N": 1000000000000,
+          "comparison": {
+            "certified": true,
+            "ma_reported_over_corrected_reported": 3.419260559307814,
+            "ma_wall_over_corrected_wall": 3.339094303713082,
+            "same_exps": true
+          },
+          "primes": "2,3,5,7,11,13,17,19",
+          "runs": [
+            {
+              "command": [
+                "bin/smooth_xplusy_full_unrank",
+                "analytic-band-corrected",
+                "2,3,5,7,11,13,17,19",
+                "1000000000000",
+                "250",
+                "200000"
+              ],
+              "elapsed_seconds": 1.7137584540760145,
+              "max_rss_kb": 365272,
+              "metrics": {
+                "A": 7666020,
+                "B": 7876912,
+                "N": 1000000000000,
+                "P": [
+                  2,
+                  3,
+                  5,
+                  7,
+                  11,
+                  13,
+                  17,
+                  19
+                ],
+                "T": 209.099764,
+                "above": 1000000000454,
+                "band_count": 471,
+                "band_phase": 0.080024,
+                "below": 999999999983,
+                "build": 1.363622,
+                "cands": 471,
+                "center_count": 1000001979534,
+                "center_rank_error": 1979534.0,
+                "correction": -5.370566943635e-05,
+                "count_phase": 0.189438,
+                "derivative": 36858875278.345245,
+                "digits": 91,
+                "enumerated": true,
+                "exact": 0.000745,
+                "exps": [
+                  75,
+                  28,
+                  9,
+                  16,
+                  3,
+                  22,
+                  5,
+                  1
+                ],
+                "half_width": 6.782626928035e-09,
+                "k": 8,
+                "rank_radius": 250.0,
+                "raw_T": 209.099817,
+                "raw_derivative": 36858939117.148674,
+                "recovered": true,
+                "seconds": 1.634127,
+                "splitA": [
+                  2,
+                  7,
+                  17,
+                  19
+                ],
+                "splitB": [
+                  3,
+                  5,
+                  11,
+                  13
+                ],
+                "target_inside": true
+              },
+              "name": "xplusy_corrected",
+              "returncode": 0,
+              "stderr": "",
+              "stdout": "xplusy_corrected_band P=(2,3,5,7,11,13,17,19) k=8 N=1000000000000 seconds=1.634127 build=1.363622 count_phase=0.189438 band_phase=0.080024 exact=0.000745 raw_T=209.099817 raw_derivative=36858939117.148674 center_count=1000001979534 center_rank_error=1979534.000000 correction=-5.370566943635e-05 T=209.099764 derivative=36858875278.345245 rank_radius=250.000000 half_width=6.782626928035e-09 below=999999999983 above=1000000000454 band_count=471 target_inside=true enumerated=true recovered=true cands=471 A=7666020 B=7876912 splitA=[2,7,17,19] splitB=[3,5,11,13] exps=[75,28,9,16,3,22,5,1] digits=91",
+              "time_raw": "        1.70 real         1.28 user         0.34 sys\n           374038528  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               91615  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                3480  involuntary context switches\n          6478482977  instructions retired\n          3927449326  cycles elapsed\n           373702656  peak memory footprint\n"
+            },
+            {
+              "command": [
+                "bin/smooth_xplusy_full_unrank",
+                "ma-full",
+                "2,3,5,7,11,13,17,19",
+                "1000000000000",
+                "250",
+                "200000",
+                "30000000",
+                "200000000"
+              ],
+              "elapsed_seconds": 5.722401091945358,
+              "max_rss_kb": 1055432,
+              "metrics": {
+                "A": 8283636,
+                "B": 8512638,
+                "N": 1000000000000,
+                "P": [
+                  2,
+                  3,
+                  5,
+                  7,
+                  11,
+                  13,
+                  17,
+                  19
+                ],
+                "above": 1000000000224,
+                "attempts": 1,
+                "band_count": 480,
+                "band_phase": 0.080602,
+                "below": 999999999744,
+                "build": 1.37677,
+                "cands": 480,
+                "count_phase": 0.119332,
+                "derivative": 36858875270.84996,
+                "digits": 91,
+                "enumerated": true,
+                "exact": 0.00062,
+                "exps": [
+                  75,
+                  28,
+                  9,
+                  16,
+                  3,
+                  22,
+                  5,
+                  1
+                ],
+                "half_width": 6.782626929415e-09,
+                "k": 8,
+                "ma_phase": 3.935002,
+                "ma_skipped": false,
+                "n_square": 8512638,
+                "padded_a": 229002,
+                "padded_b": 0,
+                "rank_radius": 250.0,
+                "recovered": true,
+                "seconds": 5.587506,
+                "selected_T": 209.099763603491,
+                "splitA": [
+                  2,
+                  7,
+                  17,
+                  19
+                ],
+                "splitB": [
+                  3,
+                  5,
+                  11,
+                  13
+                ],
+                "target_inside": true
+              },
+              "name": "xplusy_ma_full",
+              "returncode": 0,
+              "stderr": "",
+              "stdout": "xplusy_ma_full_unrank P=(2,3,5,7,11,13,17,19) k=8 N=1000000000000 seconds=5.587506 build=1.376770 ma_phase=3.935002 count_phase=0.119332 band_phase=0.080602 exact=0.000620 selected_T=209.099763603491 derivative=36858875270.849960 rank_radius=250.000000 half_width=6.782626929415e-09 below=999999999744 above=1000000000224 band_count=480 target_inside=true enumerated=true recovered=true ma_skipped=false ma_reason= attempts=1 cands=480 A=8283636 B=8512638 n_square=8512638 padded_a=229002 padded_b=0 splitA=[2,7,17,19] splitB=[3,5,11,13] exps=[75,28,9,16,3,22,5,1] digits=91",
+              "time_raw": "        5.71 real         4.14 user         1.33 sys\n          1080762368  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              402415  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                5701  involuntary context switches\n         13735167248  instructions retired\n         14097831686  cycles elapsed\n           893165568  peak memory footprint\n"
+            },
+            {
+              "command": [
+                "bin/smooth_interval_audit_exps",
+                "2,3,5,7,11,13,17,19",
+                "75,28,9,16,3,22,5,1",
+                "1000000000000"
+              ],
+              "elapsed_seconds": 8.619520922889933,
+              "max_rss_kb": 748476,
+              "metrics": {
+                "P": [
+                  2,
+                  3,
+                  5,
+                  7,
+                  11,
+                  13,
+                  17,
+                  19
+                ],
+                "ambiguous_possible": 1,
+                "ambiguous_resolved": 1,
+                "cert_seconds": 8.57016,
+                "certified_count_le": 1000000000000,
+                "expected_N": 1000000000000,
+                "exps": [
+                  75,
+                  28,
+                  9,
+                  16,
+                  3,
+                  22,
+                  5,
+                  1
+                ],
+                "groupA": 7664576,
+                "groupB": 7875417,
+                "overlapsB": 0,
+                "rank_certified": true
+              },
+              "name": "interval_audit",
+              "returncode": 0,
+              "stderr": "",
+              "stdout": "interval_audit_exps P=[2,3,5,7,11,13,17,19] exps=[75,28,9,16,3,22,5,1] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=7664576 groupB=7875417 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=8.57016",
+              "time_raw": "        8.60 real         7.55 user         0.77 sys\n           766439424  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              187410  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n               10156  involuntary context switches\n          8780587866  instructions retired\n         20443393295  cycles elapsed\n           514523136  peak memory footprint\n"
+            }
+          ],
+          "slug": "P2_3_5_7_11_13_17_19"
+        }
+      ],
+      "config": {
+        "N": 1000000000000,
+        "ma_max_middle": 200000000,
+        "ma_max_n": 30000000,
+        "max_candidates": 200000,
+        "prime_sets": [
+          "2,3,5,7,11",
+          "2,3,5,7,11,13",
+          "2,3,5,7,11,13,17,19"
+        ],
+        "rank_radius": 250,
+        "skip_audit": false
+      },
+      "metadata": {
+        "compiler": {
+          "cxx": "g++",
+          "cxxflags": "-O3 -std=c++17",
+          "path": "/usr/bin/g++",
+          "version": "Apple clang version 21.0.0 (clang-2100.0.123.102)\nTarget: x86_64-apple-darwin25.4.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin"
+        },
+        "cpu_model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
+        "git_commit": "d3e2f716a92ef6e8270bb5b1bc346205f69f77f1",
+        "git_dirty": false,
+        "memory_bytes": 17179869184,
+        "platform": "macOS-26.4.1-x86_64-i386-64bit-Mach-O",
+        "python": "3.13.3",
+        "system": "Darwin",
+        "timestamp_utc": "2026-06-11T21:55:44.154906+00:00"
+      },
+      "schema": "smooth.lattice.ma_full_unrank_suite.v1",
+      "summary_rows": [
+        {
+          "N": 1000000000000,
+          "audit_returncode": 0,
+          "audit_wall_seconds": 7.275049117044546,
+          "certified": true,
+          "corrected_band_count": 495,
+          "corrected_max_rss_kb": 428056,
+          "corrected_reported_seconds": 1.504115,
+          "corrected_returncode": 0,
+          "corrected_wall_seconds": 2.4298972180113196,
+          "exps": [
+            1052,
+            26,
+            33,
+            53,
+            4
+          ],
+          "ma_A": 583828,
+          "ma_B": 18731384,
+          "ma_band_count": 494,
+          "ma_max_rss_kb": 1763784,
+          "ma_n_square": 18731384,
+          "ma_padded_a": 18147556,
+          "ma_padded_b": 0,
+          "ma_phase_seconds": 7.040366,
+          "ma_recovered": true,
+          "ma_reported_over_corrected_reported": 5.715295040605272,
+          "ma_reported_seconds": 8.596461,
+          "ma_returncode": 0,
+          "ma_skipped": false,
+          "ma_wall_over_corrected_wall": 3.6007027943964744,
+          "ma_wall_seconds": 8.749337702989578,
+          "primes": "2,3,5,7,11",
+          "same_exps": true
+        },
+        {
+          "N": 1000000000000,
+          "audit_returncode": 0,
+          "audit_wall_seconds": 5.138595575001091,
+          "certified": true,
+          "corrected_band_count": 503,
+          "corrected_max_rss_kb": 208416,
+          "corrected_reported_seconds": 0.965661,
+          "corrected_returncode": 0,
+          "corrected_wall_seconds": 1.1104496689513326,
+          "exps": [
+            55,
+            126,
+            27,
+            54,
+            2,
+            52
+          ],
+          "ma_A": 4214806,
+          "ma_B": 5166940,
+          "ma_band_count": 503,
+          "ma_max_rss_kb": 700160,
+          "ma_n_square": 5166940,
+          "ma_padded_a": 952134,
+          "ma_padded_b": 0,
+          "ma_phase_seconds": 2.276573,
+          "ma_recovered": true,
+          "ma_reported_over_corrected_reported": 3.140609385695394,
+          "ma_reported_seconds": 3.032764,
+          "ma_returncode": 0,
+          "ma_skipped": false,
+          "ma_wall_over_corrected_wall": 2.8727135882448085,
+          "ma_wall_seconds": 3.1900038530584425,
+          "primes": "2,3,5,7,11,13",
+          "same_exps": true
+        },
+        {
+          "N": 1000000000000,
+          "audit_returncode": 0,
+          "audit_wall_seconds": 8.619520922889933,
+          "certified": true,
+          "corrected_band_count": 471,
+          "corrected_max_rss_kb": 365272,
+          "corrected_reported_seconds": 1.634127,
+          "corrected_returncode": 0,
+          "corrected_wall_seconds": 1.7137584540760145,
+          "exps": [
+            75,
+            28,
+            9,
+            16,
+            3,
+            22,
+            5,
+            1
+          ],
+          "ma_A": 8283636,
+          "ma_B": 8512638,
+          "ma_band_count": 480,
+          "ma_max_rss_kb": 1055432,
+          "ma_n_square": 8512638,
+          "ma_padded_a": 229002,
+          "ma_padded_b": 0,
+          "ma_phase_seconds": 3.935002,
+          "ma_recovered": true,
+          "ma_reported_over_corrected_reported": 3.419260559307814,
+          "ma_reported_seconds": 5.587506,
+          "ma_returncode": 0,
+          "ma_skipped": false,
+          "ma_wall_over_corrected_wall": 3.339094303713082,
+          "ma_wall_seconds": 5.722401091945358,
+          "primes": "2,3,5,7,11,13,17,19",
+          "same_exps": true
+        }
+      ]
+    },
+    "run": {
+      "command": [
+        "python3",
+        "scripts/run_ma_full_unrank_suite.py",
+        "--out-dir",
+        "/Users/mike/Work/smooth.lattice/results/benchmarks/best_known_comparator_gate/ma_full_unrank_first_k_1e12",
+        "--rank-radius",
+        "250",
+        "--max-candidates",
+        "200000",
+        "--ma-max-n",
+        "30000000",
+        "--ma-max-middle",
+        "200000000",
+        "--prime-set",
+        "2,3,5,7,11",
+        "--prime-set",
+        "2,3,5,7,11,13",
+        "--prime-set",
+        "2,3,5,7,11,13,17,19"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "wrote /Users/mike/Work/smooth.lattice/results/benchmarks/best_known_comparator_gate/ma_full_unrank_first_k_1e12"
+    },
+    "status": "passed"
+  },
+  "metadata": {
+    "compiler": {
+      "cxx": "g++",
+      "cxxflags": "-O3 -std=c++17",
+      "path": "/usr/bin/g++",
+      "version": "Apple clang version 21.0.0 (clang-2100.0.123.102)\nTarget: x86_64-apple-darwin25.4.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin"
+    },
+    "cpu_model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
+    "git_commit": "d3e2f716a92ef6e8270bb5b1bc346205f69f77f1",
+    "git_dirty": false,
+    "memory_bytes": 17179869184,
+    "platform": "macOS-26.4.1-x86_64-i386-64bit-Mach-O",
+    "python": "3.13.3",
+    "system": "Darwin",
+    "timestamp_utc": "2026-06-11T21:54:45.240021+00:00"
+  },
+  "output_sensitive": {
+    "artifact": "results/benchmarks/best_known_comparator_gate/output_sensitive_xplusy_1e6",
+    "report": {
+      "aggregate": {
+        "all_completed": true,
+        "cases": 3,
+        "comparable_cases": 3,
+        "completed_cases": 3,
+        "ma_comparable_cases": 3,
+        "ma_exact_log_matches": 3,
+        "ma_wins": 0,
+        "max_block_over_linear": 0.8977820636451302,
+        "max_ma_over_linear": 2.6991321118611378,
+        "mean_block_over_linear": 0.8458775068607555,
+        "mean_ma_over_linear": 2.2590266549340225,
+        "min_block_over_linear": 0.7608695652173912,
+        "min_ma_over_linear": 1.4367588932806323,
+        "range_pruning_wins": 3
+      },
+      "build_runs": [
+        {
+          "command": [
+            "g++",
+            "-O3",
+            "-std=c++17",
+            "benchmarks/smooth_xplusy_fj_loh_workbench.cpp",
+            "-o",
+            "bin/smooth_xplusy_fj_loh_workbench"
+          ],
+          "elapsed_seconds": 6.233032703981735,
+          "max_rss_kb": 105324,
+          "metrics": {},
+          "name": "build_sorted_matrix_workbench",
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "",
+          "time_raw": "        6.22 real         5.48 user         0.49 sys\n           107851776  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               46294  page reclaims\n                 574  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   8  voluntary context switches\n                8579  involuntary context switches\n           111417525  instructions retired\n           176464132  cycles elapsed\n             1536000  peak memory footprint\n"
+        },
+        {
+          "command": [
+            "bin/smooth_xplusy_fj_loh_workbench",
+            "validate-ma"
+          ],
+          "elapsed_seconds": 0.6988118849694729,
+          "max_rss_kb": 908,
+          "metrics": {
+            "cases": 5185,
+            "failures": 0,
+            "max_delta": 0.0
+          },
+          "name": "validate_ma_selector",
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "ma_validate cases=5185 failures=0 max_delta=0.000000000000",
+          "time_raw": "        0.69 real         0.03 user         0.00 sys\n              929792  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                 518  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 133  involuntary context switches\n           191027469  instructions retired\n           111613735  cycles elapsed\n              671744  peak memory footprint\n"
+        }
+      ],
+      "cases": [
+        {
+          "N": 1000000,
+          "primes": "2,3,5,7,11",
+          "rows": [
+            {
+              "A": 2410,
+              "B": 5457,
+              "N": 1000000,
+              "P": [
+                2,
+                3,
+                5,
+                7,
+                11
+              ],
+              "block_calls": 6,
+              "block_log_delta": 0.0,
+              "block_total": 0.000491,
+              "build": 0.000191,
+              "k": 5,
+              "leaf": 512,
+              "linear_total": 0.000471,
+              "row_type": "block_rank"
+            },
+            {
+              "A": 2410,
+              "B": 5457,
+              "N": 1000000,
+              "P": [
+                2,
+                3,
+                5,
+                7,
+                11
+              ],
+              "block_calls": 6,
+              "block_log_delta": 0.0,
+              "block_total": 0.000428,
+              "build": 0.000191,
+              "k": 5,
+              "leaf": 2048,
+              "linear_total": 0.000471,
+              "row_type": "block_rank"
+            },
+            {
+              "A": 2410,
+              "B": 5457,
+              "N": 1000000,
+              "P": [
+                2,
+                3,
+                5,
+                7,
+                11
+              ],
+              "block_calls": 6,
+              "block_log_delta": 0.0,
+              "block_total": 0.000414,
+              "build": 0.000191,
+              "k": 5,
+              "leaf": 8192,
+              "linear_total": 0.000471,
+              "row_type": "block_rank"
+            },
+            {
+              "N": 1000000,
+              "P": [
+                2,
+                3,
+                5,
+                7,
+                11
+              ],
+              "k": 5,
+              "log": 54.685633151741,
+              "log_delta": 0.0,
+              "n_square": 5457,
+              "padded_a": 3047,
+              "padded_b": 0,
+              "row_type": "ma_select_probe",
+              "sec": 0.001244,
+              "skipped": false
+            },
+            {
+              "N_probe": 1000000,
+              "P": [
+                2,
+                3,
+                5,
+                7,
+                11
+              ],
+              "cand": 1783849,
+              "k": 5,
+              "pairs": 486,
+              "row_type": "loh_topk_probe",
+              "sec": 0.047909,
+              "skipped": false
+            }
+          ],
+          "run": {
+            "command": [
+              "bin/smooth_xplusy_fj_loh_workbench",
+              "2,3,5,7,11",
+              "1000000"
+            ],
+            "elapsed_seconds": 0.07272632408421487,
+            "max_rss_kb": 31452,
+            "metrics": {
+              "A": 2410,
+              "B": 5457,
+              "N": 1000000,
+              "N_probe": 1000000,
+              "P": [
+                2,
+                3,
+                5,
+                7,
+                11
+              ],
+              "block_calls": 6,
+              "block_log_delta": 0.0,
+              "block_total": 0.000414,
+              "build": 0.000191,
+              "cand": 1783849,
+              "k": 5,
+              "leaf": 8192,
+              "linear_total": 0.000471,
+              "log": 54.685633151741,
+              "log_delta": 0.0,
+              "n_square": 5457,
+              "padded_a": 3047,
+              "padded_b": 0,
+              "pairs": 486,
+              "sec": 0.047909,
+              "skipped": false
+            },
+            "name": "sorted_matrix_workbench",
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "block_rank P=(2,3,5,7,11) k=5 N=1000000 leaf=512 build=0.000191 A=2410 B=5457 linear_total=0.000471 block_total=0.000491 block_calls=6 block_log_delta=0.000000\nblock_rank P=(2,3,5,7,11) k=5 N=1000000 leaf=2048 build=0.000191 A=2410 B=5457 linear_total=0.000471 block_total=0.000428 block_calls=6 block_log_delta=0.000000\nblock_rank P=(2,3,5,7,11) k=5 N=1000000 leaf=8192 build=0.000191 A=2410 B=5457 linear_total=0.000471 block_total=0.000414 block_calls=6 block_log_delta=0.000000\nma_select_probe P=(2,3,5,7,11) k=5 N=1000000 skipped=false sec=0.001244 n_square=5457 padded_a=3047 padded_b=0 log=54.685633151741 log_delta=0.000000 reason=\nloh_topk_probe P=(2,3,5,7,11) k=5 N_probe=1000000 skipped=false sec=0.047909 cand=1783849 pairs=486 reason=",
+            "time_raw": "        0.06 real         0.03 user         0.02 sys\n            32206848  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                8145  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                  79  involuntary context switches\n           121277394  instructions retired\n           153849702  cycles elapsed\n            26046464  peak memory footprint\n"
+          },
+          "summary": {
+            "A": 2410,
+            "B": 5457,
+            "best_block_total": 0.000414,
+            "best_leaf": 8192,
+            "block_log_delta": 0.0,
+            "block_over_linear": 0.8789808917197451,
+            "block_rows": 3,
+            "linear_total": 0.000471,
+            "loh_N_probe": 1000000,
+            "loh_cand": 1783849,
+            "loh_pairs": 486,
+            "loh_reason": "",
+            "loh_rows": 1,
+            "loh_sec": 0.047909,
+            "loh_skipped": false,
+            "ma_log_delta": 0.0,
+            "ma_n_square": 5457,
+            "ma_over_linear": 2.6411889596602975,
+            "ma_padded_a": 3047,
+            "ma_padded_b": 0,
+            "ma_reason": "",
+            "ma_rows": 1,
+            "ma_sec": 0.001244,
+            "ma_skipped": false,
+            "ma_wins_linear": false,
+            "range_pruning_wins": true
+          }
+        },
+        {
+          "N": 1000000,
+          "primes": "2,3,5,7,11,13",
+          "rows": [
+            {
+              "A": 5008,
+              "B": 6153,
+              "N": 1000000,
+              "P": [
+                2,
+                3,
+                5,
+                7,
+                11,
+                13
+              ],
+              "block_calls": 7,
+              "block_log_delta": 0.0,
+              "block_total": 0.001039,
+              "build": 0.000302,
+              "k": 6,
+              "leaf": 512,
+              "linear_total": 0.001012,
+              "row_type": "block_rank"
+            },
+            {
+              "A": 5008,
+              "B": 6153,
+              "N": 1000000,
+              "P": [
+                2,
+                3,
+                5,
+                7,
+                11,
+                13
+              ],
+              "block_calls": 7,
+              "block_log_delta": 0.0,
+              "block_total": 0.000781,
+              "build": 0.000302,
+              "k": 6,
+              "leaf": 2048,
+              "linear_total": 0.001012,
+              "row_type": "block_rank"
+            },
+            {
+              "A": 5008,
+              "B": 6153,
+              "N": 1000000,
+              "P": [
+                2,
+                3,
+                5,
+                7,
+                11,
+                13
+              ],
+              "block_calls": 7,
+              "block_log_delta": 0.0,
+              "block_total": 0.00077,
+              "build": 0.000302,
+              "k": 6,
+              "leaf": 8192,
+              "linear_total": 0.001012,
+              "row_type": "block_rank"
+            },
+            {
+              "N": 1000000,
+              "P": [
+                2,
+                3,
+                5,
+                7,
+                11,
+                13
+              ],
+              "k": 6,
+              "log": 41.775868064029,
+              "log_delta": 0.0,
+              "n_square": 6153,
+              "padded_a": 1145,
+              "padded_b": 0,
+              "row_type": "ma_select_probe",
+              "sec": 0.001454,
+              "skipped": false
+            },
+            {
+              "N_probe": 1000000,
+              "P": [
+                2,
+                3,
+                5,
+                7,
+                11,
+                13
+              ],
+              "cand": 1810744,
+              "k": 6,
+              "pairs": 500,
+              "row_type": "loh_topk_probe",
+              "sec": 0.038262,
+              "skipped": false
+            }
+          ],
+          "run": {
+            "command": [
+              "bin/smooth_xplusy_fj_loh_workbench",
+              "2,3,5,7,11,13",
+              "1000000"
+            ],
+            "elapsed_seconds": 0.0685968609759584,
+            "max_rss_kb": 31728,
+            "metrics": {
+              "A": 5008,
+              "B": 6153,
+              "N": 1000000,
+              "N_probe": 1000000,
+              "P": [
+                2,
+                3,
+                5,
+                7,
+                11,
+                13
+              ],
+              "block_calls": 7,
+              "block_log_delta": 0.0,
+              "block_total": 0.00077,
+              "build": 0.000302,
+              "cand": 1810744,
+              "k": 6,
+              "leaf": 8192,
+              "linear_total": 0.001012,
+              "log": 41.775868064029,
+              "log_delta": 0.0,
+              "n_square": 6153,
+              "padded_a": 1145,
+              "padded_b": 0,
+              "pairs": 500,
+              "sec": 0.038262,
+              "skipped": false
+            },
+            "name": "sorted_matrix_workbench",
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "block_rank P=(2,3,5,7,11,13) k=6 N=1000000 leaf=512 build=0.000302 A=5008 B=6153 linear_total=0.001012 block_total=0.001039 block_calls=7 block_log_delta=0.000000\nblock_rank P=(2,3,5,7,11,13) k=6 N=1000000 leaf=2048 build=0.000302 A=5008 B=6153 linear_total=0.001012 block_total=0.000781 block_calls=7 block_log_delta=0.000000\nblock_rank P=(2,3,5,7,11,13) k=6 N=1000000 leaf=8192 build=0.000302 A=5008 B=6153 linear_total=0.001012 block_total=0.000770 block_calls=7 block_log_delta=0.000000\nma_select_probe P=(2,3,5,7,11,13) k=6 N=1000000 skipped=false sec=0.001454 n_square=6153 padded_a=1145 padded_b=0 log=41.775868064029 log_delta=0.000000 reason=\nloh_topk_probe P=(2,3,5,7,11,13) k=6 N_probe=1000000 skipped=false sec=0.038262 cand=1810744 pairs=500 reason=",
+            "time_raw": "        0.05 real         0.02 user         0.02 sys\n            32489472  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                8214  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                  22  involuntary context switches\n           113349191  instructions retired\n           131236129  cycles elapsed\n            26116096  peak memory footprint\n"
+          },
+          "summary": {
+            "A": 5008,
+            "B": 6153,
+            "best_block_total": 0.00077,
+            "best_leaf": 8192,
+            "block_log_delta": 0.0,
+            "block_over_linear": 0.7608695652173912,
+            "block_rows": 3,
+            "linear_total": 0.001012,
+            "loh_N_probe": 1000000,
+            "loh_cand": 1810744,
+            "loh_pairs": 500,
+            "loh_reason": "",
+            "loh_rows": 1,
+            "loh_sec": 0.038262,
+            "loh_skipped": false,
+            "ma_log_delta": 0.0,
+            "ma_n_square": 6153,
+            "ma_over_linear": 1.4367588932806323,
+            "ma_padded_a": 1145,
+            "ma_padded_b": 0,
+            "ma_reason": "",
+            "ma_rows": 1,
+            "ma_sec": 0.001454,
+            "ma_skipped": false,
+            "ma_wins_linear": false,
+            "range_pruning_wins": true
+          }
+        },
+        {
+          "N": 1000000,
+          "primes": "2,3,5,7,11,13,17,19",
+          "rows": [
+            {
+              "A": 9420,
+              "B": 16459,
+              "N": 1000000,
+              "P": [
+                2,
+                3,
+                5,
+                7,
+                11,
+                13,
+                17,
+                19
+              ],
+              "block_calls": 10,
+              "block_log_delta": 0.0,
+              "block_total": 0.001014,
+              "build": 0.000854,
+              "k": 8,
+              "leaf": 512,
+              "linear_total": 0.001037,
+              "row_type": "block_rank"
+            },
+            {
+              "A": 9420,
+              "B": 16459,
+              "N": 1000000,
+              "P": [
+                2,
+                3,
+                5,
+                7,
+                11,
+                13,
+                17,
+                19
+              ],
+              "block_calls": 10,
+              "block_log_delta": 0.0,
+              "block_total": 0.000954,
+              "build": 0.000854,
+              "k": 8,
+              "leaf": 2048,
+              "linear_total": 0.001037,
+              "row_type": "block_rank"
+            },
+            {
+              "A": 9420,
+              "B": 16459,
+              "N": 1000000,
+              "P": [
+                2,
+                3,
+                5,
+                7,
+                11,
+                13,
+                17,
+                19
+              ],
+              "block_calls": 10,
+              "block_log_delta": 0.0,
+              "block_total": 0.000931,
+              "build": 0.000854,
+              "k": 8,
+              "leaf": 8192,
+              "linear_total": 0.001037,
+              "row_type": "block_rank"
+            },
+            {
+              "N": 1000000,
+              "P": [
+                2,
+                3,
+                5,
+                7,
+                11,
+                13,
+                17,
+                19
+              ],
+              "k": 8,
+              "log": 30.842164999432,
+              "log_delta": 0.0,
+              "n_square": 16459,
+              "padded_a": 7039,
+              "padded_b": 0,
+              "row_type": "ma_select_probe",
+              "sec": 0.002799,
+              "skipped": false
+            },
+            {
+              "N_probe": 1000000,
+              "P": [
+                2,
+                3,
+                5,
+                7,
+                11,
+                13,
+                17,
+                19
+              ],
+              "cand": 1781200,
+              "k": 8,
+              "pairs": 512,
+              "row_type": "loh_topk_probe",
+              "sec": 0.040184,
+              "skipped": false
+            }
+          ],
+          "run": {
+            "command": [
+              "bin/smooth_xplusy_fj_loh_workbench",
+              "2,3,5,7,11,13,17,19",
+              "1000000"
+            ],
+            "elapsed_seconds": 0.06669122097082436,
+            "max_rss_kb": 31896,
+            "metrics": {
+              "A": 9420,
+              "B": 16459,
+              "N": 1000000,
+              "N_probe": 1000000,
+              "P": [
+                2,
+                3,
+                5,
+                7,
+                11,
+                13,
+                17,
+                19
+              ],
+              "block_calls": 10,
+              "block_log_delta": 0.0,
+              "block_total": 0.000931,
+              "build": 0.000854,
+              "cand": 1781200,
+              "k": 8,
+              "leaf": 8192,
+              "linear_total": 0.001037,
+              "log": 30.842164999432,
+              "log_delta": 0.0,
+              "n_square": 16459,
+              "padded_a": 7039,
+              "padded_b": 0,
+              "pairs": 512,
+              "sec": 0.040184,
+              "skipped": false
+            },
+            "name": "sorted_matrix_workbench",
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "block_rank P=(2,3,5,7,11,13,17,19) k=8 N=1000000 leaf=512 build=0.000854 A=9420 B=16459 linear_total=0.001037 block_total=0.001014 block_calls=10 block_log_delta=0.000000\nblock_rank P=(2,3,5,7,11,13,17,19) k=8 N=1000000 leaf=2048 build=0.000854 A=9420 B=16459 linear_total=0.001037 block_total=0.000954 block_calls=10 block_log_delta=0.000000\nblock_rank P=(2,3,5,7,11,13,17,19) k=8 N=1000000 leaf=8192 build=0.000854 A=9420 B=16459 linear_total=0.001037 block_total=0.000931 block_calls=10 block_log_delta=0.000000\nma_select_probe P=(2,3,5,7,11,13,17,19) k=8 N=1000000 skipped=false sec=0.002799 n_square=16459 padded_a=7039 padded_b=0 log=30.842164999432 log_delta=0.000000 reason=\nloh_topk_probe P=(2,3,5,7,11,13,17,19) k=8 N_probe=1000000 skipped=false sec=0.040184 cand=1781200 pairs=512 reason=",
+            "time_raw": "        0.06 real         0.03 user         0.02 sys\n            32661504  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                8257  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                  18  involuntary context switches\n           138956141  instructions retired\n           152186744  cycles elapsed\n            26529792  peak memory footprint\n"
+          },
+          "summary": {
+            "A": 9420,
+            "B": 16459,
+            "best_block_total": 0.000931,
+            "best_leaf": 8192,
+            "block_log_delta": 0.0,
+            "block_over_linear": 0.8977820636451302,
+            "block_rows": 3,
+            "linear_total": 0.001037,
+            "loh_N_probe": 1000000,
+            "loh_cand": 1781200,
+            "loh_pairs": 512,
+            "loh_reason": "",
+            "loh_rows": 1,
+            "loh_sec": 0.040184,
+            "loh_skipped": false,
+            "ma_log_delta": 0.0,
+            "ma_n_square": 16459,
+            "ma_over_linear": 2.6991321118611378,
+            "ma_padded_a": 7039,
+            "ma_padded_b": 0,
+            "ma_reason": "",
+            "ma_rows": 1,
+            "ma_sec": 0.002799,
+            "ma_skipped": false,
+            "ma_wins_linear": false,
+            "range_pruning_wins": true
+          }
+        }
+      ],
+      "config": {
+        "N": 1000000,
+        "prime_sets": [
+          "2,3,5,7,11",
+          "2,3,5,7,11,13",
+          "2,3,5,7,11,13,17,19"
+        ]
+      },
+      "metadata": {
+        "compiler": {
+          "cxx": "g++",
+          "cxxflags": "-O3 -std=c++17",
+          "path": "/usr/bin/g++",
+          "version": "Apple clang version 21.0.0 (clang-2100.0.123.102)\nTarget: x86_64-apple-darwin25.4.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin"
+        },
+        "cpu_model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
+        "git_commit": "d3e2f716a92ef6e8270bb5b1bc346205f69f77f1",
+        "git_dirty": true,
+        "memory_bytes": 17179869184,
+        "platform": "macOS-26.4.1-x86_64-i386-64bit-Mach-O",
+        "python": "3.13.3",
+        "system": "Darwin",
+        "timestamp_utc": "2026-06-11T21:55:44.543104+00:00"
+      },
+      "schema": "smooth.lattice.sorted_matrix_workbench.v1",
+      "summary_rows": [
+        {
+          "A": 2410,
+          "B": 5457,
+          "N": 1000000,
+          "best_block_total": 0.000414,
+          "best_leaf": 8192,
+          "block_log_delta": 0.0,
+          "block_over_linear": 0.8789808917197451,
+          "linear_total": 0.000471,
+          "loh_N_probe": 1000000,
+          "loh_cand": 1783849,
+          "loh_pairs": 486,
+          "loh_reason": "",
+          "loh_sec": 0.047909,
+          "loh_skipped": false,
+          "ma_log_delta": 0.0,
+          "ma_n_square": 5457,
+          "ma_over_linear": 2.6411889596602975,
+          "ma_padded_a": 3047,
+          "ma_padded_b": 0,
+          "ma_reason": "",
+          "ma_sec": 0.001244,
+          "ma_skipped": false,
+          "ma_wins_linear": false,
+          "max_rss_kb": 31452,
+          "primes": "2,3,5,7,11",
+          "range_pruning_wins": true,
+          "returncode": 0,
+          "wall_seconds": 0.07272632408421487
+        },
+        {
+          "A": 5008,
+          "B": 6153,
+          "N": 1000000,
+          "best_block_total": 0.00077,
+          "best_leaf": 8192,
+          "block_log_delta": 0.0,
+          "block_over_linear": 0.7608695652173912,
+          "linear_total": 0.001012,
+          "loh_N_probe": 1000000,
+          "loh_cand": 1810744,
+          "loh_pairs": 500,
+          "loh_reason": "",
+          "loh_sec": 0.038262,
+          "loh_skipped": false,
+          "ma_log_delta": 0.0,
+          "ma_n_square": 6153,
+          "ma_over_linear": 1.4367588932806323,
+          "ma_padded_a": 1145,
+          "ma_padded_b": 0,
+          "ma_reason": "",
+          "ma_sec": 0.001454,
+          "ma_skipped": false,
+          "ma_wins_linear": false,
+          "max_rss_kb": 31728,
+          "primes": "2,3,5,7,11,13",
+          "range_pruning_wins": true,
+          "returncode": 0,
+          "wall_seconds": 0.0685968609759584
+        },
+        {
+          "A": 9420,
+          "B": 16459,
+          "N": 1000000,
+          "best_block_total": 0.000931,
+          "best_leaf": 8192,
+          "block_log_delta": 0.0,
+          "block_over_linear": 0.8977820636451302,
+          "linear_total": 0.001037,
+          "loh_N_probe": 1000000,
+          "loh_cand": 1781200,
+          "loh_pairs": 512,
+          "loh_reason": "",
+          "loh_sec": 0.040184,
+          "loh_skipped": false,
+          "ma_log_delta": 0.0,
+          "ma_n_square": 16459,
+          "ma_over_linear": 2.6991321118611378,
+          "ma_padded_a": 7039,
+          "ma_padded_b": 0,
+          "ma_reason": "",
+          "ma_sec": 0.002799,
+          "ma_skipped": false,
+          "ma_wins_linear": false,
+          "max_rss_kb": 31896,
+          "primes": "2,3,5,7,11,13,17,19",
+          "range_pruning_wins": true,
+          "returncode": 0,
+          "wall_seconds": 0.06669122097082436
+        }
+      ]
+    },
+    "run": {
+      "command": [
+        "python3",
+        "scripts/run_sorted_matrix_workbench.py",
+        "--out-dir",
+        "/Users/mike/Work/smooth.lattice/results/benchmarks/best_known_comparator_gate/output_sensitive_xplusy_1e6",
+        "--N",
+        "1000000",
+        "--prime-set",
+        "2,3,5,7,11",
+        "--prime-set",
+        "2,3,5,7,11,13",
+        "--prime-set",
+        "2,3,5,7,11,13,17,19"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "/Users/mike/Work/smooth.lattice/results/benchmarks/best_known_comparator_gate/output_sensitive_xplusy_1e6"
+    },
+    "status": "executed"
+  },
+  "schema": "smooth.lattice.best_known_comparator_gate.v1",
+  "soft_heap": {
+    "note": "The repository has exact LOH/output-style probes but not a Chazelle/Kaplan-style soft heap implementation with corruption semantics.",
+    "status": "open_not_implemented"
+  }
+}

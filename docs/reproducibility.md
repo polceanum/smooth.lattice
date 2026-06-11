@@ -22,6 +22,7 @@ python3 scripts/run_full_xplusy_suite.py
 python3 scripts/run_sorted_matrix_workbench.py
 python3 scripts/run_heap_frontier_baseline_suite.py
 python3 scripts/run_ma_full_unrank_suite.py
+python3 scripts/run_best_known_comparator_gate.py
 ```
 
 Dependency notes:
@@ -47,3 +48,14 @@ unrank certificate.
 The heap-frontier harness also writes `report.json`, `summary.csv`, and
 `report.md`. It compares a canonical full-vector frontier generator against the
 DP pointer baseline and current solver, then interval-audits matching rows.
+
+For Barvinok-style external comparisons, the optional local setup used for the
+comparator-gate artifact was:
+
+```bash
+conda create -n smooth-lattice-count -c conda-forge barvinok normaliz -y
+```
+
+The gate records tool versions, smoke-command outputs, and rationalized `.ine`
+inputs. A failed external-tool smoke should be reported as blocked evidence, not
+as a mathematical result.
