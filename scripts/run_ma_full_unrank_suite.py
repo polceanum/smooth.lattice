@@ -274,6 +274,19 @@ def write_outputs(out_dir: Path, report: dict[str, Any]) -> None:
             f"{row['ma_max_rss_kb']} | {row['ma_n_square']} | {row['ma_band_count']} | "
             f"{row['certified']} | `{row['exps']}` |"
         )
+    lines.extend(
+        [
+            "",
+            "## Claim Status",
+            "",
+            "This is a published sorted-matrix/X+Y selector comparison wrapped into",
+            "full exponent-vector unranking and independent rank auditing. It is a",
+            "narrow best-known-style comparator for the sorted-matrix value-selection",
+            "subproblem, not a claim against soft-heap top-k/output algorithms, full",
+            "Frederickson-Johnson ranking/selection, or Barvinok-style lattice",
+            "counting.",
+        ]
+    )
     (out_dir / "report.md").write_text("\n".join(lines) + "\n")
 
 
@@ -328,7 +341,7 @@ def main() -> int:
     }
     write_outputs(out_dir, report)
     print(f"wrote {out_dir}")
-    return 0
+    return 0 if report["aggregate"]["all_same_exps_certified"] else 1
 
 
 if __name__ == "__main__":
