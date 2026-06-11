@@ -307,6 +307,7 @@ def main() -> int:
     args = parser.parse_args()
 
     harness = load_harness()
+    metadata = harness.machine_metadata("g++", "-O3 -std=c++17")
     out_dir = args.out_dir if args.out_dir.is_absolute() else ROOT / args.out_dir
     out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -363,7 +364,7 @@ def main() -> int:
 
     report = {
         "schema": "smooth.lattice.best_known_comparator_gate.v1",
-        "metadata": harness.machine_metadata("g++", "-O3 -std=c++17"),
+        "metadata": metadata,
         "config": {
             "N": args.N,
             "output_N": args.output_N,
