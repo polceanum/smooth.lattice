@@ -174,6 +174,8 @@ Source to cite:
 Current implementation status:
 
 - Not implemented.
+- The current heap/frontier baseline is ordinary exact frontier generation, not
+  the soft-heap selection primitive from this paper.
 - The current LOH probe is an output-style top-k diagnostic capped at
   `N_probe=10^6`; it is not a full-rank `N=10^12` random-access comparator.
 
@@ -211,15 +213,15 @@ Current implementation status:
 - Direct application requires rational interval treatment of logarithms or a
   proof that rationalized bounds preserve the target rank decision.
 - The independent interval auditor is currently the repository's proof-oriented
-  substitute for headline examples, limited to `k <= 6` and primes in
-  `{2,3,5,7,11,13}`.
+  substitute for headline examples, limited to `k <= 12` and primes in
+  `{2,3,5,7,11,13,17,19,23,29,31,37}`.
 
 ## Implemented Baseline Set For Current Claims
 
 Current paper claims may compare against:
 
 - DP pointer sequential generation;
-- heap/frontier generation where present;
+- canonical heap/frontier generation;
 - adaptive materialized `X+Y` value selection;
 - Mirzaian-Arjomandi sorted-matrix value selection;
 - full materialized `X+Y` unranking;

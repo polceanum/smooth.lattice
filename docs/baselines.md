@@ -5,6 +5,7 @@ This project targets fixed-prime random access, not general smooth-number counti
 ## Included baselines
 
 - `benchmarks/dp_pointer_baseline.cpp`: standard DP/pointer method used for Hamming/super-ugly-number generation. It is a strong sequential-generation baseline but has O(Nk) time and O(N) memory if it must return rank N.
+- `benchmarks/heap_frontier_baseline.cpp`: canonical duplicate-free heap/frontier generation. It returns the full exponent vector by expanding children in nondecreasing prime-index order, so each exponent vector has one frontier path. It is a serious sequential-generation comparator, not a random-access method.
 - `benchmarks/smooth_xplusy_baseline.cpp`: practical adaptive Cartesian-sum value-selection baseline.
 - `benchmarks/smooth_xplusy_full_unrank.cpp`: practical materialized Cartesian-sum full-unrank baseline. It stores exponent packs on both MITM sides, narrows to a log-value band, exact-sorts the candidate band by multiprecision integer value, and returns an exponent vector. Its modes include adaptive X+Y, residual-corrected analytic X+Y, and a Mirzaian-Arjomandi sorted-matrix selector wrapped with the same exact reconstruction step.
 - `benchmarks/smooth_xplusy_fj_loh_workbench.cpp`: exploratory sorted-matrix/range-pruning, Mirzaian-Arjomandi value-selection, and LOH-style probes. Use `scripts/run_sorted_matrix_workbench.py` for reproducible artifacts; this is not a faithful Frederickson-Johnson or soft-heap implementation.
@@ -45,6 +46,8 @@ results/benchmarks/five_prime_suite_1e12/
 results/benchmarks/full_xplusy_suite_1e12/
 results/benchmarks/sorted_matrix_workbench_1e12/
 results/benchmarks/ma_full_unrank_suite_1e12/
+results/benchmarks/heap_frontier_baseline_suite_1e5_1e6/
+results/benchmarks/heap_frontier_baseline_suite_1e7/
 ```
 
 On the recorded macOS/x86_64 Apple-clang run at commit
@@ -90,6 +93,45 @@ artifact, the MA full-unrank path matched the analytic-corrected X+Y output and
 was independently certified in 6/6 cases, but won 0/6 wall-time comparisons.
 The mean MA/corrected wall-time ratio was 5.7000, so this comparator is useful
 negative evidence rather than a speed path.
+
+Use `python3 scripts/run_heap_frontier_baseline_suite.py` for the full
+heap/frontier comparator. The heap baseline returns exponent vectors, and the
+harness checks agreement with the DP pointer baseline where enabled and with the
+current solver, then independently interval-audits the agreed vector.
+
+Clean default artifact:
+
+```text
+results/benchmarks/heap_frontier_baseline_suite_1e5_1e6/
+```
+
+Observed result at commit `b26e3cdf865b15754d8b189dafe4e7cc36e19f80`:
+
+- 8/8 rows over k=3,5,6,8 and N=10^5,10^6 were solver-agreement rows.
+- 8/8 rows were independently interval-certified.
+- Wall-time winners were current_beatty3 in 2 rows, current_sums_adaptive in 5
+  rows, and dp_pointer in 1 row.
+- Mean heap/current wall-time ratio was 4.5654; mean heap/DP wall-time ratio was
+  1.9641.
+
+Clean stress artifact:
+
+```text
+results/benchmarks/heap_frontier_baseline_suite_1e7/
+```
+
+Observed result at commit `6526d68a0adcd45b0041a1dcfe8da1c6a9fe1f56`:
+
+- 4/4 rows over k=3,5,6,8 at N=10^7 were solver-agreement rows.
+- 4/4 rows were independently interval-certified.
+- Current solvers won all 4 wall-time comparisons.
+- Mean heap/current wall-time ratio was 76.5315; mean heap/DP wall-time ratio
+  was 2.9536.
+
+This supports a narrow claim against a canonical sequential heap/frontier
+generator on the tested fixed-prime ranks. It does not imply a comparison
+against soft-heap `X+Y`, Frederickson-Johnson sorted-matrix selection, or
+Barvinok-style lattice counting.
 
 ## Not yet fully implemented
 

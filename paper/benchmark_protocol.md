@@ -642,6 +642,72 @@ gates are a faithful soft-heap/Frederickson-Johnson-style `X+Y` comparison,
 clearer Barvinok/fixed-dimensional lattice-count positioning, and arbitrary-prime
 certification beyond the current fixed k<=12 audited prime universe.
 
+## Heap Frontier Baseline Suite
+
+The heap/frontier baseline is a canonical sequential generator. It stores a
+trace parent for each generated exponent vector and expands children only in
+nondecreasing prime-index order; this gives each exponent vector one path while
+preserving value-order extraction by a log-keyed priority queue. It returns a
+full exponent vector, not just a selected value.
+
+Default small-to-medium suite:
+
+```bash
+python3 scripts/run_heap_frontier_baseline_suite.py \
+  --out-dir results/benchmarks/heap_frontier_baseline_suite_1e5_1e6
+```
+
+Stress suite:
+
+```bash
+python3 scripts/run_heap_frontier_baseline_suite.py \
+  --out-dir results/benchmarks/heap_frontier_baseline_suite_1e7 \
+  --dp-max-n 10000000 \
+  --case k3_N1e7:2,3,5:10000000 \
+  --case k5_N1e7:2,3,5,7,11:10000000 \
+  --case k6_N1e7:2,3,5,7,11,13:10000000 \
+  --case k8_N1e7:2,3,5,7,11,13,17,19:10000000
+```
+
+The harness compares heap/frontier generation with the DP pointer baseline when
+enabled and with the current solver (`beatty3` for k=3, `sums_adaptive`
+otherwise). A row is certified only when successful methods agree on the
+exponent vector and the independent interval auditor proves
+`count_le(candidate)=N`.
+
+Clean default artifact:
+
+```text
+results/benchmarks/heap_frontier_baseline_suite_1e5_1e6/
+```
+
+Observed result at commit `b26e3cdf865b15754d8b189dafe4e7cc36e19f80`:
+
+- 8/8 rows over k=3,5,6,8 and N=10^5,10^6 had solver agreement.
+- 8/8 rows were independently interval-certified.
+- Wall-time winners were current_beatty3 in 2 rows, current_sums_adaptive in 5
+  rows, and dp_pointer in 1 row.
+- Mean heap/current wall-time ratio was 4.5654.
+- Mean heap/DP wall-time ratio was 1.9641.
+
+Clean stress artifact:
+
+```text
+results/benchmarks/heap_frontier_baseline_suite_1e7/
+```
+
+Observed result at commit `6526d68a0adcd45b0041a1dcfe8da1c6a9fe1f56`:
+
+- 4/4 rows over k=3,5,6,8 at N=10^7 had solver agreement.
+- 4/4 rows were independently interval-certified.
+- Current solvers won all 4 wall-time comparisons.
+- Mean heap/current wall-time ratio was 76.5315.
+- Mean heap/DP wall-time ratio was 2.9536.
+
+This is a legitimate sequential-frontier comparison. It is not evidence against
+soft-heap `X+Y`, Frederickson-Johnson sorted-matrix selection, or
+Barvinok-style fixed-dimensional lattice counting.
+
 ## Analytic-Bracket Layer Hybrid
 
 The layer-compressed solver now uses a non-MITM analytic seed for large-rank

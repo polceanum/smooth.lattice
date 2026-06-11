@@ -20,6 +20,7 @@ bash scripts/run_dp_comparison.sh
 python3 scripts/run_xplusy_vs_layer5.py
 python3 scripts/run_full_xplusy_suite.py
 python3 scripts/run_sorted_matrix_workbench.py
+python3 scripts/run_heap_frontier_baseline_suite.py
 ```
 
 Dependency notes:
@@ -41,3 +42,7 @@ The full-X+Y and sorted-matrix workbench harnesses follow the same artifact
 format. The sorted-matrix workbench is diagnostic: its Mirzaian-Arjomandi row is
 value selection only, its LOH row is capped, and neither is a full exponent-vector
 unrank certificate.
+
+The heap-frontier harness also writes `report.json`, `summary.csv`, and
+`report.md`. It compares a canonical full-vector frontier generator against the
+DP pointer baseline and current solver, then interval-audits matching rows.

@@ -8,6 +8,25 @@ Audited commit: `22512d6599b776cad90236def34d7b0efb88942d`
 
 Worktree status at audit time: dirty. `tests/test_smoke.py` contains an uncommitted small-N fuzz-test patch.
 
+## Post-Audit Updates
+
+This file records the original Phase 1 audit context. Subsequent hardening has
+changed several items that were listed as gaps:
+
+- the interval auditor now supports `k <= 12` for primes in
+  `{2,3,5,7,11,13,17,19,23,29,31,37}`;
+- `scripts/run_certified_portfolio_suite.py` records a certified portfolio over
+  implemented unrankers;
+- `benchmarks/heap_frontier_baseline.cpp` and
+  `scripts/run_heap_frontier_baseline_suite.py` add a canonical full-vector
+  heap/frontier comparator with clean certified artifacts;
+- CI and local smoke tests were repaired after the initial Boost dependency
+  failure.
+
+For current paper claims, prefer `paper/claims_matrix.md`,
+`paper/benchmark_protocol.md`, and `paper/hard_results_table.md` over the
+historical limitations below.
+
 ## Scope
 
 This audit followed the requested reading order:

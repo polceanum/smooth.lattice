@@ -105,6 +105,16 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   5 rows, layer_corrected in 4 rows, beatty3 in 3 rows, and xplusy_adaptive in
   2 rows. Artifact:
   `results/benchmarks/certified_portfolio_suite_1e9_1e12/`.
+- Heap/frontier baseline suites: clean default artifact at commit
+  `b26e3cdf865b15754d8b189dafe4e7cc36e19f80` and clean stress artifact at
+  commit `6526d68a0adcd45b0041a1dcfe8da1c6a9fe1f56`. The default k=3,5,6,8
+  suite at N=10^5 and N=10^6 had 8/8 solver-agreement and certified rows, with
+  mean heap/current wall-time ratio 4.5654 and mean heap/DP ratio 1.9641. The
+  N=10^7 stress suite had 4/4 solver-agreement and certified rows; current
+  solvers won all 4 rows, with mean heap/current wall-time ratio 76.5315 and
+  mean heap/DP ratio 2.9536. Artifacts:
+  `results/benchmarks/heap_frontier_baseline_suite_1e5_1e6/` and
+  `results/benchmarks/heap_frontier_baseline_suite_1e7/`.
 - Sorted-matrix/range-pruning diagnostic, same six five-prime subsets,
   N=10^12: the range-pruned block counter beat the linear saddleback X+Y count
   in only 1/6 cases, with mean block/linear internal time ratio 1.3467. The
