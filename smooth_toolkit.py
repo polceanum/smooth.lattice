@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Fixed-prime smooth-number rank/unrank toolkit with k<=8 interval auditing.
+"""Fixed-prime smooth-number rank/unrank toolkit with k<=12 interval auditing.
 
 Main operations:
   unrank(P,N): exponent vector for the 1-based N-th P-smooth number
   value(P,exps): exact integer value
-  audit(P,N): fast unrank + independent interval-rank certificate for P subset {2,3,5,7,11,13,17,19}, k<=8
+  audit(P,N): fast unrank + independent interval-rank certificate for P subset {2,3,5,7,11,13,17,19,23,29,31,37}, k<=12
 
 The fast high-k kernels use floating log search and exact final-band sorting. The audit step
 certifies a returned exponent vector by proving count_le(value) == N using integer log intervals
@@ -27,7 +27,7 @@ GROUPA_RE = re.compile(r"groupA=([0-9]+)")
 GROUPB_RE = re.compile(r"groupB=([0-9]+)")
 AMB_RE = re.compile(r"ambiguous_possible=([0-9]+)")
 
-SUPPORTED_AUDIT_PRIMES = {2,3,5,7,11,13,17,19}
+SUPPORTED_AUDIT_PRIMES = {2,3,5,7,11,13,17,19,23,29,31,37}
 
 def parse_primes(x: str | Iterable[int]) -> List[int]:
     if isinstance(x, str): ps = [int(t) for t in x.replace(';', ',').split(',') if t.strip()]
@@ -102,14 +102,14 @@ def unrank(primes: Iterable[int], n: int, method: str='auto', timeout: Optional[
 
 def audit(primes: Iterable[int], n: int, timeout: Optional[int]=None) -> Dict[str,Any]:
     ps=parse_primes(primes)
-    if len(ps)>8 or any(p not in SUPPORTED_AUDIT_PRIMES for p in ps):
-        raise ValueError('audit supports k<=8 and primes drawn from {2,3,5,7,11,13,17,19}')
+    if len(ps)>12 or any(p not in SUPPORTED_AUDIT_PRIMES for p in ps):
+        raise ValueError('audit supports k<=12 and primes drawn from {2,3,5,7,11,13,17,19,23,29,31,37}')
     fast=unrank(ps,n,timeout=timeout)
     out=run_cmd([str(BIN/'smooth_interval_audit_exps'), csv(ps), csv(fast['exps']), str(n)], timeout)
     cert=CERT_RE.search(out); cnt=COUNT_RE.search(out); csec=CERT_SECONDS_RE.search(out)
     ga=GROUPA_RE.search(out); gb=GROUPB_RE.search(out); amb=AMB_RE.search(out)
     return {
-        'method':'fast-unrank-plus-interval-audit-k8',
+        'method':'fast-unrank-plus-interval-audit-k12',
         'primes':ps,'N':n,'exps':fast['exps'],'fast_method':fast['method'],
         'fast_seconds':fast.get('seconds'),'digits':fast.get('digits'),
         'rank_certified': cert.group(1)=='true' if cert else False,
