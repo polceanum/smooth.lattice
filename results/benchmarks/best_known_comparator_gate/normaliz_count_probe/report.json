@@ -1,0 +1,177 @@
+{
+  "aggregate": {
+    "target_cases": 3,
+    "target_errors": 0,
+    "target_ok": 0,
+    "target_timeouts": 3,
+    "toy_cases": 2,
+    "toy_passed": 2
+  },
+  "config": {
+    "ma_report": "results/benchmarks/best_known_comparator_gate/ma_full_unrank_first_k_1e12/report.json",
+    "max_cases": 3,
+    "modes": [
+      "rounded"
+    ],
+    "scale_digits": [
+      1
+    ],
+    "timeout_seconds": 5.0
+  },
+  "metadata": {
+    "git_commit": "ed10e2d9677350cb7dfb919c2156b5065a7c2605",
+    "git_dirty": true
+  },
+  "schema": "smooth.lattice.normaliz_count_probe.v1",
+  "target_counts": [
+    {
+      "N": 1000000000000,
+      "bound": 9236,
+      "coeffs": [
+        7,
+        11,
+        16,
+        19,
+        24
+      ],
+      "delta_from_certified_N": null,
+      "exitcode": -15,
+      "exps": [
+        1052,
+        26,
+        33,
+        53,
+        4
+      ],
+      "k": 5,
+      "mode": "rounded",
+      "primes": "2,3,5,7,11",
+      "row_index": 0,
+      "scale_digits": 1,
+      "seconds": 5.00409760302864,
+      "status": "timeout",
+      "timeout_seconds": 5.0,
+      "vertex_file": "vertices/P2_3_5_7_11_d1_rounded.json"
+    },
+    {
+      "N": 1000000000000,
+      "bound": 4633,
+      "coeffs": [
+        7,
+        11,
+        16,
+        19,
+        24,
+        26
+      ],
+      "delta_from_certified_N": null,
+      "exitcode": -15,
+      "exps": [
+        55,
+        126,
+        27,
+        54,
+        2,
+        52
+      ],
+      "k": 6,
+      "mode": "rounded",
+      "primes": "2,3,5,7,11,13",
+      "row_index": 1,
+      "scale_digits": 1,
+      "seconds": 5.003577207913622,
+      "status": "timeout",
+      "timeout_seconds": 5.0,
+      "vertex_file": "vertices/P2_3_5_7_11_13_d1_rounded.json"
+    },
+    {
+      "N": 1000000000000,
+      "bound": 2091,
+      "coeffs": [
+        7,
+        11,
+        16,
+        19,
+        24,
+        26,
+        28,
+        29
+      ],
+      "delta_from_certified_N": null,
+      "exitcode": -15,
+      "exps": [
+        75,
+        28,
+        9,
+        16,
+        3,
+        22,
+        5,
+        1
+      ],
+      "k": 8,
+      "mode": "rounded",
+      "primes": "2,3,5,7,11,13,17,19",
+      "row_index": 2,
+      "scale_digits": 1,
+      "seconds": 5.004742380930111,
+      "status": "timeout",
+      "timeout_seconds": 5.0,
+      "vertex_file": "vertices/P2_3_5_7_11_13_17_19_d1_rounded.json"
+    }
+  ],
+  "toy_counts": [
+    {
+      "count": 10,
+      "exitcode": 0,
+      "expected_count": 10,
+      "name": "integer_2simplex_x_plus_y_le_3",
+      "passed": true,
+      "seconds": 0.06903307500761002,
+      "status": "ok",
+      "vertices": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          3,
+          0,
+          1
+        ],
+        [
+          0,
+          3,
+          1
+        ]
+      ]
+    },
+    {
+      "count": 3,
+      "exitcode": 0,
+      "expected_count": 3,
+      "name": "rational_2simplex_x_plus_y_le_3_over_2",
+      "passed": true,
+      "seconds": 0.031799143995158374,
+      "status": "ok",
+      "vertices": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          3,
+          0,
+          2
+        ],
+        [
+          0,
+          3,
+          2
+        ]
+      ]
+    }
+  ]
+}

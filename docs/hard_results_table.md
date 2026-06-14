@@ -129,12 +129,11 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   comparisons; MA/current wall-time ratios were 3.5898, 4.0593, and 3.7086
   with mean 3.7859. Artifact:
   `results/benchmarks/ma_full_unrank_first_k_1e12/`.
-- Serious-comparator gate: clean artifact at commit
-  `d3e2f716a92ef6e8270bb5b1bc346205f69f77f1`. The MA full-unrank gate passed,
-  the output-sensitive X+Y probe executed at N=10^6, full FJ and soft-heap gates
-  remained open/not implemented, and Barvinok/Normaliz tools were installed but
-  failed toy smoke commands. Artifact:
-  `results/benchmarks/best_known_comparator_gate/`.
+- Serious-comparator gate: the MA full-unrank gate passed, the output-sensitive
+  X+Y probe executed at N=10^6, full FJ and soft-heap gates remained open/not
+  implemented, and PyNormaliz passed 2/2 known toy simplex counts but timed out
+  on 3/3 certified-target rationalized simplexes at the 5-second per-count cap.
+  Artifact: `results/benchmarks/best_known_comparator_gate/`.
 - 8 primes, P=(2,3,5,7,11,13,17,19), N=10^12: exps
   [75,28,9,16,3,22,5,1], high-k sums-only solver output independently
   certified with count_le=N by the k<=8 interval auditor. Artifact:

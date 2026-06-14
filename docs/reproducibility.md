@@ -53,9 +53,11 @@ For Barvinok-style external comparisons, the optional local setup used for the
 comparator-gate artifact was:
 
 ```bash
-conda create -n smooth-lattice-count -c conda-forge barvinok normaliz -y
+conda create -n smooth-lattice-count -c conda-forge barvinok normaliz pynormaliz -y
 ```
 
-The gate records tool versions, smoke-command outputs, and rationalized `.ine`
-inputs. A failed external-tool smoke should be reported as blocked evidence, not
-as a mathematical result.
+The gate records tool versions, smoke-command outputs, rationalized `.ine`
+inputs, and a bounded PyNormaliz count probe. The PyNormaliz probe must pass
+known toy simplexes before any target result is reported. Certified-target
+Normaliz counts use rationalized log simplexes and are comparator measurements,
+not correctness certificates for the original irrational-log rank problem.

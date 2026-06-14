@@ -899,7 +899,10 @@ baseline obligations:
 
 ```bash
 python3 scripts/run_best_known_comparator_gate.py \
-  --out-dir results/benchmarks/best_known_comparator_gate
+  --out-dir results/benchmarks/best_known_comparator_gate \
+  --normaliz-scale-digits 1 \
+  --normaliz-timeout-seconds 5 \
+  --normaliz-max-cases 3
 ```
 
 Clean artifact:
@@ -908,25 +911,27 @@ Clean artifact:
 results/benchmarks/best_known_comparator_gate/
 ```
 
-Observed result at commit `d3e2f716a92ef6e8270bb5b1bc346205f69f77f1`:
+Observed result in the gate artifact:
 
 - Mirzaian-Arjomandi full-unrank gate passed.
 - Output-sensitive `X+Y`/LOH probe gate executed at N=10^6.
 - Full Frederickson-Johnson gate remained open/not implemented.
 - Soft-heap `X+Y` gate remained open/not implemented.
-- Barvinok-style external count gate found installed tools and exported
-  rational simplex inputs, but external smoke commands failed, so no external
-  count claim is made.
+- Barvinok-style external count gate found installed tools, exported rational
+  simplex inputs, passed PyNormaliz toy simplex counts, and timed out on all
+  certified-target rationalized simplexes under the configured cap.
 
 Numerical summary:
 
 - MA first-k comparison: 3/3 completed and certified, 0/3 MA wall-time wins,
-  mean MA/current wall ratio 3.2708.
+  mean MA/current wall ratio 3.5279.
 - Output-sensitive probe: 3/3 completed, range-pruning won 3/3 against linear
-  saddleback count at N=10^6 with mean block/linear ratio 0.8459; MA value
-  selection won 0/3 with mean MA/linear ratio 2.2590.
-- Barvinok/Normaliz smoke statuses: `barvinok_count` returned -11 on toy 1D and
-  2D ISL inputs; `normaliz --NumberLatticePoints` returned 1 on the toy input.
+  saddleback count at N=10^6 with mean block/linear ratio 0.8501; MA value
+  selection won 0/3 with mean MA/linear ratio 2.0203.
+- Barvinok/Normaliz statuses: `barvinok_count` returned -11 on toy 1D and 2D
+  ISL inputs. PyNormaliz passed 2/2 known rational-vertex toy simplex counts,
+  but timed out on 3/3 certified-target rationalized simplexes at the 5-second
+  per-count cap.
 
 The gate is intentionally not a broad best-known claim. It is the current
 auditable checklist for what has been compared, what has failed, and what still

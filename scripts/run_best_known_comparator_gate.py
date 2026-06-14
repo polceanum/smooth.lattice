@@ -31,6 +31,7 @@ DEFAULT_N = 1_000_000_000_000
 DEFAULT_OUTPUT_N = 1_000_000
 BARVINOK_TOOLS = ("barvinok_count", "count", "latte-count", "normaliz", "ehrhart")
 COUNT_ENV_BIN = Path("/usr/local/Caskroom/miniforge/base/envs/smooth-lattice-count/bin")
+NORMALIZ_PROBE_SCRIPT = ROOT / "scripts" / "run_normaliz_count_probe.py"
 
 
 def load_harness():
@@ -223,6 +224,42 @@ def external_count_smoke(tools: dict[str, str | None]) -> dict[str, Any]:
     return smokes
 
 
+def run_pynormaliz_probe(
+    ma_report: Path,
+    out_dir: Path,
+    scale_digits: list[int],
+    timeout_seconds: float,
+    max_cases: int | None,
+) -> tuple[dict[str, Any], dict[str, Any] | None]:
+    python = COUNT_ENV_BIN / "python"
+    if not python.exists():
+        return (
+            {
+                "command": [str(python), str(NORMALIZ_PROBE_SCRIPT)],
+                "returncode": None,
+                "stdout": "",
+                "stderr": "PyNormaliz environment python not found",
+            },
+            None,
+        )
+    cmd = [
+        str(python),
+        str(NORMALIZ_PROBE_SCRIPT.relative_to(ROOT)),
+        "--ma-report",
+        str(ma_report.relative_to(ROOT)),
+        "--out-dir",
+        str(out_dir.relative_to(ROOT)),
+        "--timeout-seconds",
+        str(timeout_seconds),
+        "--scale-digits",
+        *[str(digit) for digit in scale_digits],
+    ]
+    if max_cases is not None:
+        cmd.extend(["--max-cases", str(max_cases)])
+    run = run_command(cmd)
+    return run, load_json(out_dir / "report.json")
+
+
 def load_json(path: Path) -> dict[str, Any] | None:
     if not path.exists():
         return None
@@ -240,6 +277,8 @@ def write_report(out_dir: Path, report: dict[str, Any]) -> None:
     tools = barv["tools"]
     available_tools = {name: path for name, path in tools.items() if path}
     smoke = barv.get("smoke", {})
+    normaliz_probe = barv.get("normaliz_probe_report") or {}
+    normaliz_agg = normaliz_probe.get("aggregate", {})
     lines = [
         "# Best-Known Comparator Gate",
         "",
@@ -281,18 +320,24 @@ def write_report(out_dir: Path, report: dict[str, Any]) -> None:
         f"- Export directory: `{report['barvinok']['export_dir']}`",
         f"- Exported cases: `{len(report['barvinok']['exports'])}`",
         f"- External count smoke statuses: `{ {name: run.get('returncode') for name, run in smoke.items()} }`",
+        f"- PyNormaliz probe artifact: `{barv.get('normaliz_probe_artifact')}`",
+        f"- PyNormaliz toy cases passed: `{normaliz_agg.get('toy_passed')}/{normaliz_agg.get('toy_cases')}`",
+        f"- PyNormaliz target counts completed: `{normaliz_agg.get('target_ok')}/{normaliz_agg.get('target_cases')}`",
+        f"- PyNormaliz target timeouts: `{normaliz_agg.get('target_timeouts')}`",
         "",
-        "The exported `.ine` files are rational simplex inputs for external",
-        "Barvinok/LattE/Normaliz-style tools. The gate records tool availability and",
-        "tiny smoke commands separately; a failed smoke is treated as a blocked",
-        "external-tool comparison, not as mathematical evidence.",
+        "The exported `.ine` files and PyNormaliz rational-vertex inputs are",
+        "external Barvinok/LattE/Normaliz-style comparator inputs. The target",
+        "PyNormaliz counts use rationalized log simplexes; they are performance",
+        "comparisons, not correctness certificates for the original irrational-log",
+        "rank problem.",
         "",
         "## Bottom Line",
         "",
         "The repository currently has a clean, certified comparison against a",
         "published Mirzaian-Arjomandi sorted-matrix selector wrapper. Full",
-        "Frederickson-Johnson, an actual soft-heap implementation, and an external",
-        "Barvinok-family count run remain open obligations.",
+        "Frederickson-Johnson and an actual soft-heap implementation remain open",
+        "obligations. The external Normaliz path now has executable toy-count",
+        "validation and bounded certified-target attempts.",
     ]
     (out_dir / "report.md").write_text("\n".join(lines) + "\n")
 
@@ -303,6 +348,9 @@ def main() -> int:
     parser.add_argument("--N", type=int, default=DEFAULT_N)
     parser.add_argument("--output-N", type=int, default=DEFAULT_OUTPUT_N)
     parser.add_argument("--scale-digits", type=int, default=40)
+    parser.add_argument("--normaliz-scale-digits", type=int, nargs="+", default=[1])
+    parser.add_argument("--normaliz-timeout-seconds", type=float, default=5.0)
+    parser.add_argument("--normaliz-max-cases", type=int, default=len(FIRST_K_CASES))
     parser.add_argument("--strict", action="store_true")
     args = parser.parse_args()
 
@@ -354,8 +402,30 @@ def main() -> int:
     exports = []
     if ma_report is not None:
         exports = barvinok_inputs_from_ma_report(ma_dir / "report.json", barvinok_dir, args.scale_digits)
+    normaliz_probe_dir = out_dir / "normaliz_count_probe"
+    normaliz_probe_run: dict[str, Any] | None = None
+    normaliz_probe_report: dict[str, Any] | None = None
+    if ma_report is not None:
+        normaliz_probe_run, normaliz_probe_report = run_pynormaliz_probe(
+            ma_dir / "report.json",
+            normaliz_probe_dir,
+            args.normaliz_scale_digits,
+            args.normaliz_timeout_seconds,
+            args.normaliz_max_cases,
+        )
+    normaliz_agg = (normaliz_probe_report or {}).get("aggregate", {})
+    normaliz_toy_passed = (
+        normaliz_agg.get("toy_cases") is not None
+        and normaliz_agg.get("toy_passed") == normaliz_agg.get("toy_cases")
+    )
+    normaliz_target_ok = int(normaliz_agg.get("target_ok") or 0)
+    normaliz_target_timeouts = int(normaliz_agg.get("target_timeouts") or 0)
     smoke_ok = any(run.get("returncode") == 0 for run in smoke.values())
-    if smoke_ok:
+    if normaliz_toy_passed and normaliz_target_ok:
+        barvinok_status = "pynormaliz_toy_passed_target_counts_completed"
+    elif normaliz_toy_passed and normaliz_target_timeouts:
+        barvinok_status = "pynormaliz_toy_passed_target_counts_timed_out"
+    elif smoke_ok:
         barvinok_status = "tool_available_smoke_passed_exports_ready"
     elif any(tools.values()):
         barvinok_status = "tool_available_smoke_failed_exports_ready"
@@ -370,6 +440,9 @@ def main() -> int:
             "output_N": args.output_N,
             "first_k_cases": FIRST_K_CASES,
             "scale_digits": args.scale_digits,
+            "normaliz_scale_digits": args.normaliz_scale_digits,
+            "normaliz_timeout_seconds": args.normaliz_timeout_seconds,
+            "normaliz_max_cases": args.normaliz_max_cases,
             "strict": args.strict,
         },
         "ma_first_k": {
@@ -399,6 +472,9 @@ def main() -> int:
             "smoke": smoke,
             "export_dir": str(barvinok_dir.relative_to(ROOT)),
             "exports": exports,
+            "normaliz_probe_artifact": str(normaliz_probe_dir.relative_to(ROOT)),
+            "normaliz_probe_run": normaliz_probe_run,
+            "normaliz_probe_report": normaliz_probe_report,
         },
     }
     write_report(out_dir, report)
