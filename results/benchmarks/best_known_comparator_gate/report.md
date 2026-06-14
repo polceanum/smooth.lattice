@@ -1,8 +1,8 @@
 # Best-Known Comparator Gate
 
-- Timestamp: `2026-06-14T22:26:50.057560+00:00`
-- Git commit: `ed10e2d9677350cb7dfb919c2156b5065a7c2605`
-- Git dirty: `True`
+- Timestamp: `2026-06-14T22:34:05.412709+00:00`
+- Git commit: `26366bf06aa59d88f29d3d3264578eda7992b045`
+- Git dirty: `False`
 
 ## Gate Summary
 
@@ -18,15 +18,15 @@
 - Cases: `3`
 - Certified same-exponent cases: `3`
 - MA wall-time wins: `0`
-- Mean MA/current wall ratio: `3.5279214370995486`
+- Mean MA/current wall ratio: `3.5771829880074257`
 
 ## Output-Sensitive X+Y Probe
 
 - Artifact: `results/benchmarks/best_known_comparator_gate/output_sensitive_xplusy_1e6`
 - Cases: `3`
 - Completed cases: `3`
-- Mean block/linear ratio: `0.8500797477344003`
-- Mean MA/linear ratio: `2.020283917554494`
+- Mean block/linear ratio: `0.8690779105459225`
+- Mean MA/linear ratio: `1.8715664428483259`
 
 This is an output-sized probe at a feasible rank. It does not establish a
 full-rank random-access comparison when `N_probe` is much smaller than the

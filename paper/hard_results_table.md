@@ -145,10 +145,10 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   with mean 3.7859. Artifact:
   `results/benchmarks/ma_full_unrank_first_k_1e12/`.
 - Serious-comparator gate: the MA full-unrank gate passed with 3/3 certified
-  rows and 0/3 MA wall-time wins, mean MA/current ratio 3.5279. The
+  rows and 0/3 MA wall-time wins, mean MA/current ratio 3.5772. The
   output-sensitive X+Y probe at N=10^6 completed 3/3 rows, with range-pruning
   winning 3/3 against linear saddleback count and mean block/linear ratio
-  0.8501. Full FJ and soft-heap gates remained open/not implemented.
+  0.8691. Full FJ and soft-heap gates remained open/not implemented.
   PyNormaliz passed 2/2 known toy simplex counts, but 3/3 certified-target
   rationalized simplexes timed out at a 5-second per-count cap. Artifact:
   `results/benchmarks/best_known_comparator_gate/`.

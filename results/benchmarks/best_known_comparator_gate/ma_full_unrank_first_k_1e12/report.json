@@ -5,9 +5,9 @@
     "cases": 3,
     "completed_cases": 3,
     "ma_wall_wins": 0,
-    "max_ma_wall_over_corrected_wall": 3.8659842950322525,
-    "mean_ma_wall_over_corrected_wall": 3.5279214370995486,
-    "min_ma_wall_over_corrected_wall": 3.2271530273794977,
+    "max_ma_wall_over_corrected_wall": 3.9478421054953525,
+    "mean_ma_wall_over_corrected_wall": 3.5771829880074257,
+    "min_ma_wall_over_corrected_wall": 3.1817956850510214,
     "same_exps_certified_cases": 3
   },
   "build_runs": [
@@ -20,14 +20,14 @@
         "-o",
         "bin/smooth_xplusy_full_unrank"
       ],
-      "elapsed_seconds": 11.425712409080006,
-      "max_rss_kb": 173948,
+      "elapsed_seconds": 10.702458999003284,
+      "max_rss_kb": 173408,
       "metrics": {},
       "name": "build_xplusy_full_unrank",
       "returncode": 0,
       "stderr": "",
       "stdout": "",
-      "time_raw": "       11.41 real         9.26 user         1.43 sys\n           178122752  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               54407  page reclaims\n               12985  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                2441  voluntary context switches\n               10605  involuntary context switches\n           158105348  instructions retired\n           169664682  cycles elapsed\n             1589248  peak memory footprint\n"
+      "time_raw": "       10.69 real        10.12 user         0.55 sys\n           177569792  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               66693  page reclaims\n                 850  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                  22  voluntary context switches\n                8965  involuntary context switches\n           121185932  instructions retired\n           117653790  cycles elapsed\n             1515520  peak memory footprint\n"
     }
   ],
   "cases": [
@@ -35,8 +35,8 @@
       "N": 1000000000000,
       "comparison": {
         "certified": true,
-        "ma_reported_over_corrected_reported": 6.442191851803873,
-        "ma_wall_over_corrected_wall": 3.8659842950322525,
+        "ma_reported_over_corrected_reported": 6.88168605778641,
+        "ma_wall_over_corrected_wall": 3.9478421054953525,
         "same_exps": true
       },
       "primes": "2,3,5,7,11",
@@ -50,8 +50,8 @@
             "250",
             "200000"
           ],
-          "elapsed_seconds": 1.6037798909237608,
-          "max_rss_kb": 427948,
+          "elapsed_seconds": 1.9592744809342548,
+          "max_rss_kb": 428088,
           "metrics": {
             "A": 561191,
             "B": 17654903,
@@ -66,18 +66,18 @@
             "T": 923.591024,
             "above": 1000000000248,
             "band_count": 495,
-            "band_phase": 0.046751,
+            "band_phase": 0.057018,
             "below": 999999999753,
-            "build": 0.80154,
+            "build": 0.9376,
             "cands": 495,
             "center_count": 999999999932,
             "center_rank_error": -68.0,
             "correction": 1.2613436417e-08,
-            "count_phase": 0.090427,
+            "count_phase": 0.109581,
             "derivative": 5391076448.60853,
             "digits": 402,
             "enumerated": true,
-            "exact": 0.002758,
+            "exact": 0.004118,
             "exps": [
               1052,
               26,
@@ -91,7 +91,7 @@
             "raw_T": 923.591024,
             "raw_derivative": 5391076448.315256,
             "recovered": true,
-            "seconds": 0.941779,
+            "seconds": 1.108669,
             "splitA": [
               2,
               3
@@ -106,8 +106,8 @@
           "name": "xplusy_corrected",
           "returncode": 0,
           "stderr": "",
-          "stdout": "xplusy_corrected_band P=(2,3,5,7,11) k=5 N=1000000000000 seconds=0.941779 build=0.801540 count_phase=0.090427 band_phase=0.046751 exact=0.002758 raw_T=923.591024 raw_derivative=5391076448.315256 center_count=999999999932 center_rank_error=-68.000000 correction=1.261343641700e-08 T=923.591024 derivative=5391076448.608530 rank_radius=250.000000 half_width=4.637292800115e-08 below=999999999753 above=1000000000248 band_count=495 target_inside=true enumerated=true recovered=true cands=495 A=561191 B=17654903 splitA=[2,3] splitB=[5,7,11] exps=[1052,26,33,53,4] digits=402",
-          "time_raw": "        1.59 real         0.76 user         0.22 sys\n           438218752  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              107290  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 378  involuntary context switches\n          5534102207  instructions retired\n          2373626829  cycles elapsed\n           437886976  peak memory footprint\n"
+          "stdout": "xplusy_corrected_band P=(2,3,5,7,11) k=5 N=1000000000000 seconds=1.108669 build=0.937600 count_phase=0.109581 band_phase=0.057018 exact=0.004118 raw_T=923.591024 raw_derivative=5391076448.315256 center_count=999999999932 center_rank_error=-68.000000 correction=1.261343641700e-08 T=923.591024 derivative=5391076448.608530 rank_radius=250.000000 half_width=4.637292800115e-08 below=999999999753 above=1000000000248 band_count=495 target_inside=true enumerated=true recovered=true cands=495 A=561191 B=17654903 splitA=[2,3] splitB=[5,7,11] exps=[1052,26,33,53,4] digits=402",
+          "time_raw": "        1.94 real         0.88 user         0.27 sys\n           438362112  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              107319  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                1550  involuntary context switches\n          5543706130  instructions retired\n          2543921406  cycles elapsed\n           438030336  peak memory footprint\n"
         },
         {
           "command": [
@@ -120,8 +120,8 @@
             "30000000",
             "200000000"
           ],
-          "elapsed_seconds": 6.200187870999798,
-          "max_rss_kb": 1763780,
+          "elapsed_seconds": 7.734906292054802,
+          "max_rss_kb": 1327020,
           "metrics": {
             "A": 583828,
             "B": 18731384,
@@ -136,15 +136,15 @@
             "above": 1000000000250,
             "attempts": 1,
             "band_count": 494,
-            "band_phase": 0.065334,
+            "band_phase": 0.064404,
             "below": 999999999756,
-            "build": 0.971313,
+            "build": 0.948913,
             "cands": 494,
-            "count_phase": 0.08274,
+            "count_phase": 0.121049,
             "derivative": 5391076448.62149,
             "digits": 402,
             "enumerated": true,
-            "exact": 0.003981,
+            "exact": 0.002857,
             "exps": [
               1052,
               26,
@@ -154,14 +154,14 @@
             ],
             "half_width": 4.637292800104e-08,
             "k": 5,
-            "ma_phase": 4.860684,
+            "ma_phase": 6.42686,
             "ma_skipped": false,
             "n_square": 18731384,
             "padded_a": 18147556,
             "padded_b": 0,
             "rank_radius": 250.0,
             "recovered": true,
-            "seconds": 6.067121,
+            "seconds": 7.629512,
             "selected_T": 923.591023555869,
             "splitA": [
               2,
@@ -177,8 +177,8 @@
           "name": "xplusy_ma_full",
           "returncode": 0,
           "stderr": "",
-          "stdout": "xplusy_ma_full_unrank P=(2,3,5,7,11) k=5 N=1000000000000 seconds=6.067121 build=0.971313 ma_phase=4.860684 count_phase=0.082740 band_phase=0.065334 exact=0.003981 selected_T=923.591023555869 derivative=5391076448.621490 rank_radius=250.000000 half_width=4.637292800104e-08 below=999999999756 above=1000000000250 band_count=494 target_inside=true enumerated=true recovered=true ma_skipped=false ma_reason= attempts=1 cands=494 A=583828 B=18731384 n_square=18731384 padded_a=18147556 padded_b=0 splitA=[2,3] splitB=[5,7,11] exps=[1052,26,33,53,4] digits=402",
-          "time_raw": "        6.19 real         4.26 user         1.84 sys\n          1806110720  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              799718  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                6037  involuntary context switches\n         19185226444  instructions retired\n         14458384762  cycles elapsed\n          1522470912  peak memory footprint\n"
+          "stdout": "xplusy_ma_full_unrank P=(2,3,5,7,11) k=5 N=1000000000000 seconds=7.629512 build=0.948913 ma_phase=6.426860 count_phase=0.121049 band_phase=0.064404 exact=0.002857 selected_T=923.591023555869 derivative=5391076448.621490 rank_radius=250.000000 half_width=4.637292800104e-08 below=999999999756 above=1000000000250 band_count=494 target_inside=true enumerated=true recovered=true ma_skipped=false ma_reason= attempts=1 cands=494 A=583828 B=18731384 n_square=18731384 padded_a=18147556 padded_b=0 splitA=[2,3] splitB=[5,7,11] exps=[1052,26,33,53,4] digits=402",
+          "time_raw": "        7.72 real         4.35 user         2.05 sys\n          1358868480  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              807696  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n               13898  involuntary context switches\n         19476166569  instructions retired\n         14677596182  cycles elapsed\n          1522450432  peak memory footprint\n"
         },
         {
           "command": [
@@ -187,8 +187,8 @@
             "1052,26,33,53,4",
             "1000000000000"
           ],
-          "elapsed_seconds": 5.472311606979929,
-          "max_rss_kb": 1329124,
+          "elapsed_seconds": 6.204112539999187,
+          "max_rss_kb": 1329104,
           "metrics": {
             "P": [
               2,
@@ -199,7 +199,7 @@
             ],
             "ambiguous_possible": 1,
             "ambiguous_resolved": 1,
-            "cert_seconds": 5.4081,
+            "cert_seconds": 6.14909,
             "certified_count_le": 1000000000000,
             "expected_N": 1000000000000,
             "exps": [
@@ -217,8 +217,8 @@
           "name": "interval_audit",
           "returncode": 0,
           "stderr": "",
-          "stdout": "interval_audit_exps P=[2,3,5,7,11] exps=[1052,26,33,53,4] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=561180 groupB=17654331 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=5.4081",
-          "time_raw": "        5.45 real         4.45 user         0.93 sys\n          1361022976  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              404947  page reclaims\n                  13  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                4607  involuntary context switches\n          8199487707  instructions retired\n         12303872031  cycles elapsed\n          1109110784  peak memory footprint\n"
+          "stdout": "interval_audit_exps P=[2,3,5,7,11] exps=[1052,26,33,53,4] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=561180 groupB=17654331 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=6.14909",
+          "time_raw": "        6.19 real         4.83 user         1.07 sys\n          1361002496  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              404947  page reclaims\n                  12  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n               10406  involuntary context switches\n          8197596183  instructions retired\n         13487536231  cycles elapsed\n          1109090304  peak memory footprint\n"
         }
       ],
       "slug": "P2_3_5_7_11"
@@ -227,8 +227,8 @@
       "N": 1000000000000,
       "comparison": {
         "certified": true,
-        "ma_reported_over_corrected_reported": 3.7504295721096197,
-        "ma_wall_over_corrected_wall": 3.490626988886896,
+        "ma_reported_over_corrected_reported": 3.470341416151914,
+        "ma_wall_over_corrected_wall": 3.1817956850510214,
         "same_exps": true
       },
       "primes": "2,3,5,7,11,13",
@@ -242,8 +242,8 @@
             "250",
             "200000"
           ],
-          "elapsed_seconds": 0.6151014149654657,
-          "max_rss_kb": 208340,
+          "elapsed_seconds": 0.7356120529584587,
+          "max_rss_kb": 208388,
           "metrics": {
             "A": 3973240,
             "B": 4870829,
@@ -259,18 +259,18 @@
             "T": 463.255372,
             "above": 1000000000253,
             "band_count": 503,
-            "band_phase": 0.043006,
+            "band_phase": 0.048499,
             "below": 999999999750,
-            "build": 0.404208,
+            "build": 0.477746,
             "cands": 503,
             "center_count": 1000000000452,
             "center_rank_error": 452.0,
             "correction": -3.528554627788e-08,
-            "count_phase": 0.097956,
+            "count_phase": 0.117825,
             "derivative": 12809777586.271208,
             "digits": 202,
             "enumerated": true,
-            "exact": 0.001593,
+            "exact": 0.001622,
             "exps": [
               55,
               126,
@@ -285,7 +285,7 @@
             "raw_T": 463.255372,
             "raw_derivative": 12809777591.096188,
             "recovered": true,
-            "seconds": 0.547056,
+            "seconds": 0.646103,
             "splitA": [
               3,
               5,
@@ -301,8 +301,8 @@
           "name": "xplusy_corrected",
           "returncode": 0,
           "stderr": "",
-          "stdout": "xplusy_corrected_band P=(2,3,5,7,11,13) k=6 N=1000000000000 seconds=0.547056 build=0.404208 count_phase=0.097956 band_phase=0.043006 exact=0.001593 raw_T=463.255372 raw_derivative=12809777591.096188 center_count=1000000000452 center_rank_error=452.000000 correction=-3.528554627788e-08 T=463.255372 derivative=12809777586.271208 rank_radius=250.000000 half_width=1.951634197521e-08 below=999999999750 above=1000000000253 band_count=503 target_inside=true enumerated=true recovered=true cands=503 A=3973240 B=4870829 splitA=[3,5,11] splitB=[2,7,13] exps=[55,126,27,54,2,52] digits=202",
-          "time_raw": "        0.60 real         0.46 user         0.13 sys\n           213340160  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               52382  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 384  involuntary context switches\n          2887515142  instructions retired\n          1319275126  cycles elapsed\n           212992000  peak memory footprint\n"
+          "stdout": "xplusy_corrected_band P=(2,3,5,7,11,13) k=6 N=1000000000000 seconds=0.646103 build=0.477746 count_phase=0.117825 band_phase=0.048499 exact=0.001622 raw_T=463.255372 raw_derivative=12809777591.096188 center_count=1000000000452 center_rank_error=452.000000 correction=-3.528554627788e-08 T=463.255372 derivative=12809777586.271208 rank_radius=250.000000 half_width=1.951634197521e-08 below=999999999750 above=1000000000253 band_count=503 target_inside=true enumerated=true recovered=true cands=503 A=3973240 B=4870829 splitA=[3,5,11] splitB=[2,7,13] exps=[55,126,27,54,2,52] digits=202",
+          "time_raw": "        0.72 real         0.54 user         0.16 sys\n           213389312  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               52394  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 628  involuntary context switches\n          2889567655  instructions retired\n          1564381098  cycles elapsed\n           213024768  peak memory footprint\n"
         },
         {
           "command": [
@@ -315,8 +315,8 @@
             "30000000",
             "200000000"
           ],
-          "elapsed_seconds": 2.1470895999809727,
-          "max_rss_kb": 700096,
+          "elapsed_seconds": 2.3405672559747472,
+          "max_rss_kb": 700104,
           "metrics": {
             "A": 4214806,
             "B": 5166940,
@@ -332,15 +332,15 @@
             "above": 1000000000253,
             "attempts": 1,
             "band_count": 503,
-            "band_phase": 0.043292,
+            "band_phase": 0.045166,
             "below": 999999999750,
-            "build": 0.427249,
+            "build": 0.539972,
             "cands": 503,
-            "count_phase": 0.060609,
+            "count_phase": 0.067333,
             "derivative": 12809777586.262283,
             "digits": 202,
             "enumerated": true,
-            "exact": 0.001576,
+            "exact": 0.001603,
             "exps": [
               55,
               126,
@@ -351,14 +351,14 @@
             ],
             "half_width": 1.951634197522e-08,
             "k": 6,
-            "ma_phase": 1.476059,
+            "ma_phase": 1.540633,
             "ma_skipped": false,
             "n_square": 5166940,
             "padded_a": 952134,
             "padded_b": 0,
             "rank_radius": 250.0,
             "recovered": true,
-            "seconds": 2.051695,
+            "seconds": 2.242198,
             "selected_T": 463.255372121282,
             "splitA": [
               3,
@@ -375,8 +375,8 @@
           "name": "xplusy_ma_full",
           "returncode": 0,
           "stderr": "",
-          "stdout": "xplusy_ma_full_unrank P=(2,3,5,7,11,13) k=6 N=1000000000000 seconds=2.051695 build=0.427249 ma_phase=1.476059 count_phase=0.060609 band_phase=0.043292 exact=0.001576 selected_T=463.255372121282 derivative=12809777586.262283 rank_radius=250.000000 half_width=1.951634197522e-08 below=999999999750 above=1000000000253 band_count=503 target_inside=true enumerated=true recovered=true ma_skipped=false ma_reason= attempts=1 cands=503 A=4214806 B=5166940 n_square=5166940 padded_a=952134 padded_b=0 splitA=[3,5,11] splitB=[2,7,13] exps=[55,126,27,54,2,52] digits=202",
-          "time_raw": "        2.13 real         1.67 user         0.44 sys\n           716898304  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              176647  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                1105  involuntary context switches\n          6662065863  instructions retired\n          4752029737  cycles elapsed\n           484081664  peak memory footprint\n"
+          "stdout": "xplusy_ma_full_unrank P=(2,3,5,7,11,13) k=6 N=1000000000000 seconds=2.242198 build=0.539972 ma_phase=1.540633 count_phase=0.067333 band_phase=0.045166 exact=0.001603 selected_T=463.255372121282 derivative=12809777586.262283 rank_radius=250.000000 half_width=1.951634197522e-08 below=999999999750 above=1000000000253 band_count=503 target_inside=true enumerated=true recovered=true ma_skipped=false ma_reason= attempts=1 cands=503 A=4214806 B=5166940 n_square=5166940 padded_a=952134 padded_b=0 splitA=[3,5,11] splitB=[2,7,13] exps=[55,126,27,54,2,52] digits=202",
+          "time_raw": "        2.33 real         1.81 user         0.49 sys\n           716906496  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              176656  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                1874  involuntary context switches\n          6663344299  instructions retired\n          5181732331  cycles elapsed\n           484089856  peak memory footprint\n"
         },
         {
           "command": [
@@ -385,8 +385,8 @@
             "55,126,27,54,2,52",
             "1000000000000"
           ],
-          "elapsed_seconds": 3.933411870035343,
-          "max_rss_kb": 539232,
+          "elapsed_seconds": 3.7826911559095606,
+          "max_rss_kb": 539220,
           "metrics": {
             "P": [
               2,
@@ -398,7 +398,7 @@
             ],
             "ambiguous_possible": 1,
             "ambiguous_resolved": 1,
-            "cert_seconds": 3.87122,
+            "cert_seconds": 3.73159,
             "certified_count_le": 1000000000000,
             "expected_N": 1000000000000,
             "exps": [
@@ -417,8 +417,8 @@
           "name": "interval_audit",
           "returncode": 0,
           "stderr": "",
-          "stdout": "interval_audit_exps P=[2,3,5,7,11,13] exps=[55,126,27,54,2,52] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=3972984 groupB=4870517 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=3.87122",
-          "time_raw": "        3.92 real         3.51 user         0.37 sys\n           552173568  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              135099  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                3009  involuntary context switches\n          4890085888  instructions retired\n          8813451816  cycles elapsed\n           412827648  peak memory footprint\n"
+          "stdout": "interval_audit_exps P=[2,3,5,7,11,13] exps=[55,126,27,54,2,52] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=3972984 groupB=4870517 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=3.73159",
+          "time_raw": "        3.77 real         3.41 user         0.33 sys\n           552161280  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              135090  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                2127  involuntary context switches\n          4884566095  instructions retired\n          8526345230  cycles elapsed\n           412827648  peak memory footprint\n"
         }
       ],
       "slug": "P2_3_5_7_11_13"
@@ -427,8 +427,8 @@
       "N": 1000000000000,
       "comparison": {
         "certified": true,
-        "ma_reported_over_corrected_reported": 3.312254250471594,
-        "ma_wall_over_corrected_wall": 3.2271530273794977,
+        "ma_reported_over_corrected_reported": 3.6791619135509723,
+        "ma_wall_over_corrected_wall": 3.601911173475904,
         "same_exps": true
       },
       "primes": "2,3,5,7,11,13,17,19",
@@ -442,8 +442,8 @@
             "250",
             "200000"
           ],
-          "elapsed_seconds": 1.37150907702744,
-          "max_rss_kb": 365228,
+          "elapsed_seconds": 1.2308662050636485,
+          "max_rss_kb": 365220,
           "metrics": {
             "A": 7666020,
             "B": 7876912,
@@ -461,18 +461,18 @@
             "T": 209.099764,
             "above": 1000000000454,
             "band_count": 471,
-            "band_phase": 0.062284,
+            "band_phase": 0.064567,
             "below": 999999999983,
-            "build": 1.101535,
+            "build": 0.962234,
             "cands": 471,
             "center_count": 1000001979534,
             "center_rank_error": 1979534.0,
             "correction": -5.370566943635e-05,
-            "count_phase": 0.141458,
+            "count_phase": 0.142494,
             "derivative": 36858875278.345245,
             "digits": 91,
             "enumerated": true,
-            "exact": 0.000647,
+            "exact": 0.000648,
             "exps": [
               75,
               28,
@@ -489,7 +489,7 @@
             "raw_T": 209.099817,
             "raw_derivative": 36858939117.148674,
             "recovered": true,
-            "seconds": 1.306208,
+            "seconds": 1.170285,
             "splitA": [
               2,
               7,
@@ -507,8 +507,8 @@
           "name": "xplusy_corrected",
           "returncode": 0,
           "stderr": "",
-          "stdout": "xplusy_corrected_band P=(2,3,5,7,11,13,17,19) k=8 N=1000000000000 seconds=1.306208 build=1.101535 count_phase=0.141458 band_phase=0.062284 exact=0.000647 raw_T=209.099817 raw_derivative=36858939117.148674 center_count=1000001979534 center_rank_error=1979534.000000 correction=-5.370566943635e-05 T=209.099764 derivative=36858875278.345245 rank_radius=250.000000 half_width=6.782626928035e-09 below=999999999983 above=1000000000454 band_count=471 target_inside=true enumerated=true recovered=true cands=471 A=7666020 B=7876912 splitA=[2,7,17,19] splitB=[3,5,11,13] exps=[75,28,9,16,3,22,5,1] digits=91",
-          "time_raw": "        1.36 real         1.11 user         0.22 sys\n           373993472  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               91606  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                1163  involuntary context switches\n          6468721540  instructions retired\n          3079220425  cycles elapsed\n           373657600  peak memory footprint\n"
+          "stdout": "xplusy_corrected_band P=(2,3,5,7,11,13,17,19) k=8 N=1000000000000 seconds=1.170285 build=0.962234 count_phase=0.142494 band_phase=0.064567 exact=0.000648 raw_T=209.099817 raw_derivative=36858939117.148674 center_count=1000001979534 center_rank_error=1979534.000000 correction=-5.370566943635e-05 T=209.099764 derivative=36858875278.345245 rank_radius=250.000000 half_width=6.782626928035e-09 below=999999999983 above=1000000000454 band_count=471 target_inside=true enumerated=true recovered=true cands=471 A=7666020 B=7876912 splitA=[2,7,17,19] splitB=[3,5,11,13] exps=[75,28,9,16,3,22,5,1] digits=91",
+          "time_raw": "        1.22 real         1.00 user         0.20 sys\n           373985280  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               91607  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 932  involuntary context switches\n          6455782684  instructions retired\n          2772114294  cycles elapsed\n           373649408  peak memory footprint\n"
         },
         {
           "command": [
@@ -521,8 +521,8 @@
             "30000000",
             "200000000"
           ],
-          "elapsed_seconds": 4.426069670007564,
-          "max_rss_kb": 1055476,
+          "elapsed_seconds": 4.433470737072639,
+          "max_rss_kb": 1055420,
           "metrics": {
             "A": 8283636,
             "B": 8512638,
@@ -540,15 +540,15 @@
             "above": 1000000000224,
             "attempts": 1,
             "band_count": 480,
-            "band_phase": 0.067698,
+            "band_phase": 0.071825,
             "below": 999999999744,
-            "build": 1.191139,
+            "build": 1.140966,
             "cands": 480,
-            "count_phase": 0.087933,
+            "count_phase": 0.093471,
             "derivative": 36858875270.84996,
             "digits": 91,
             "enumerated": true,
-            "exact": 0.000678,
+            "exact": 0.000731,
             "exps": [
               75,
               28,
@@ -561,14 +561,14 @@
             ],
             "half_width": 6.782626929415e-09,
             "k": 8,
-            "ma_phase": 2.910884,
+            "ma_phase": 2.931443,
             "ma_skipped": false,
             "n_square": 8512638,
             "padded_a": 229002,
             "padded_b": 0,
             "rank_radius": 250.0,
             "recovered": true,
-            "seconds": 4.326493,
+            "seconds": 4.305668,
             "selected_T": 209.099763603491,
             "splitA": [
               2,
@@ -587,8 +587,8 @@
           "name": "xplusy_ma_full",
           "returncode": 0,
           "stderr": "",
-          "stdout": "xplusy_ma_full_unrank P=(2,3,5,7,11,13,17,19) k=8 N=1000000000000 seconds=4.326493 build=1.191139 ma_phase=2.910884 count_phase=0.087933 band_phase=0.067698 exact=0.000678 selected_T=209.099763603491 derivative=36858875270.849960 rank_radius=250.000000 half_width=6.782626929415e-09 below=999999999744 above=1000000000224 band_count=480 target_inside=true enumerated=true recovered=true ma_skipped=false ma_reason= attempts=1 cands=480 A=8283636 B=8512638 n_square=8512638 padded_a=229002 padded_b=0 splitA=[2,7,17,19] splitB=[3,5,11,13] exps=[75,28,9,16,3,22,5,1] digits=91",
-          "time_raw": "        4.41 real         3.37 user         0.98 sys\n          1080807424  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              402421  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                3667  involuntary context switches\n         13741112381  instructions retired\n          9931790389  cycles elapsed\n           893210624  peak memory footprint\n"
+          "stdout": "xplusy_ma_full_unrank P=(2,3,5,7,11,13,17,19) k=8 N=1000000000000 seconds=4.305668 build=1.140966 ma_phase=2.931443 count_phase=0.093471 band_phase=0.071825 exact=0.000731 selected_T=209.099763603491 derivative=36858875270.849960 rank_radius=250.000000 half_width=6.782626929415e-09 below=999999999744 above=1000000000224 band_count=480 target_inside=true enumerated=true recovered=true ma_skipped=false ma_reason= attempts=1 cands=480 A=8283636 B=8512638 n_square=8512638 padded_a=229002 padded_b=0 splitA=[2,7,17,19] splitB=[3,5,11,13] exps=[75,28,9,16,3,22,5,1] digits=91",
+          "time_raw": "        4.42 real         3.37 user         1.00 sys\n          1080750080  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              402403  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                3321  involuntary context switches\n         13727940876  instructions retired\n          9951661479  cycles elapsed\n           893153280  peak memory footprint\n"
         },
         {
           "command": [
@@ -597,7 +597,7 @@
             "75,28,9,16,3,22,5,1",
             "1000000000000"
           ],
-          "elapsed_seconds": 5.8301972260233015,
+          "elapsed_seconds": 6.215905654011294,
           "max_rss_kb": 748488,
           "metrics": {
             "P": [
@@ -612,7 +612,7 @@
             ],
             "ambiguous_possible": 1,
             "ambiguous_resolved": 1,
-            "cert_seconds": 5.78354,
+            "cert_seconds": 6.17118,
             "certified_count_le": 1000000000000,
             "expected_N": 1000000000000,
             "exps": [
@@ -633,8 +633,8 @@
           "name": "interval_audit",
           "returncode": 0,
           "stderr": "",
-          "stdout": "interval_audit_exps P=[2,3,5,7,11,13,17,19] exps=[75,28,9,16,3,22,5,1] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=7664576 groupB=7875417 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=5.78354",
-          "time_raw": "        5.82 real         5.30 user         0.47 sys\n           766451712  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              187415  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                4106  involuntary context switches\n          8745609889  instructions retired\n         13185621003  cycles elapsed\n           514535424  peak memory footprint\n"
+          "stdout": "interval_audit_exps P=[2,3,5,7,11,13,17,19] exps=[75,28,9,16,3,22,5,1] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=7664576 groupB=7875417 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=6.17118",
+          "time_raw": "        6.20 real         5.65 user         0.49 sys\n           766451712  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              187407  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                4932  involuntary context switches\n          8750876220  instructions retired\n         14048037248  cycles elapsed\n           514535424  peak memory footprint\n"
         }
       ],
       "slug": "P2_3_5_7_11_13_17_19"
@@ -661,26 +661,26 @@
       "version": "Apple clang version 21.0.0 (clang-2100.0.123.102)\nTarget: x86_64-apple-darwin25.4.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin"
     },
     "cpu_model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
-    "git_commit": "ed10e2d9677350cb7dfb919c2156b5065a7c2605",
-    "git_dirty": true,
+    "git_commit": "26366bf06aa59d88f29d3d3264578eda7992b045",
+    "git_dirty": false,
     "memory_bytes": 17179869184,
     "platform": "macOS-26.4.1-x86_64-i386-64bit-Mach-O",
     "python": "3.13.3",
     "system": "Darwin",
-    "timestamp_utc": "2026-06-14T22:27:33.492120+00:00"
+    "timestamp_utc": "2026-06-14T22:34:51.125855+00:00"
   },
   "schema": "smooth.lattice.ma_full_unrank_suite.v1",
   "summary_rows": [
     {
       "N": 1000000000000,
       "audit_returncode": 0,
-      "audit_wall_seconds": 5.472311606979929,
+      "audit_wall_seconds": 6.204112539999187,
       "certified": true,
       "corrected_band_count": 495,
-      "corrected_max_rss_kb": 427948,
-      "corrected_reported_seconds": 0.941779,
+      "corrected_max_rss_kb": 428088,
+      "corrected_reported_seconds": 1.108669,
       "corrected_returncode": 0,
-      "corrected_wall_seconds": 1.6037798909237608,
+      "corrected_wall_seconds": 1.9592744809342548,
       "exps": [
         1052,
         26,
@@ -691,31 +691,31 @@
       "ma_A": 583828,
       "ma_B": 18731384,
       "ma_band_count": 494,
-      "ma_max_rss_kb": 1763780,
+      "ma_max_rss_kb": 1327020,
       "ma_n_square": 18731384,
       "ma_padded_a": 18147556,
       "ma_padded_b": 0,
-      "ma_phase_seconds": 4.860684,
+      "ma_phase_seconds": 6.42686,
       "ma_recovered": true,
-      "ma_reported_over_corrected_reported": 6.442191851803873,
-      "ma_reported_seconds": 6.067121,
+      "ma_reported_over_corrected_reported": 6.88168605778641,
+      "ma_reported_seconds": 7.629512,
       "ma_returncode": 0,
       "ma_skipped": false,
-      "ma_wall_over_corrected_wall": 3.8659842950322525,
-      "ma_wall_seconds": 6.200187870999798,
+      "ma_wall_over_corrected_wall": 3.9478421054953525,
+      "ma_wall_seconds": 7.734906292054802,
       "primes": "2,3,5,7,11",
       "same_exps": true
     },
     {
       "N": 1000000000000,
       "audit_returncode": 0,
-      "audit_wall_seconds": 3.933411870035343,
+      "audit_wall_seconds": 3.7826911559095606,
       "certified": true,
       "corrected_band_count": 503,
-      "corrected_max_rss_kb": 208340,
-      "corrected_reported_seconds": 0.547056,
+      "corrected_max_rss_kb": 208388,
+      "corrected_reported_seconds": 0.646103,
       "corrected_returncode": 0,
-      "corrected_wall_seconds": 0.6151014149654657,
+      "corrected_wall_seconds": 0.7356120529584587,
       "exps": [
         55,
         126,
@@ -727,31 +727,31 @@
       "ma_A": 4214806,
       "ma_B": 5166940,
       "ma_band_count": 503,
-      "ma_max_rss_kb": 700096,
+      "ma_max_rss_kb": 700104,
       "ma_n_square": 5166940,
       "ma_padded_a": 952134,
       "ma_padded_b": 0,
-      "ma_phase_seconds": 1.476059,
+      "ma_phase_seconds": 1.540633,
       "ma_recovered": true,
-      "ma_reported_over_corrected_reported": 3.7504295721096197,
-      "ma_reported_seconds": 2.051695,
+      "ma_reported_over_corrected_reported": 3.470341416151914,
+      "ma_reported_seconds": 2.242198,
       "ma_returncode": 0,
       "ma_skipped": false,
-      "ma_wall_over_corrected_wall": 3.490626988886896,
-      "ma_wall_seconds": 2.1470895999809727,
+      "ma_wall_over_corrected_wall": 3.1817956850510214,
+      "ma_wall_seconds": 2.3405672559747472,
       "primes": "2,3,5,7,11,13",
       "same_exps": true
     },
     {
       "N": 1000000000000,
       "audit_returncode": 0,
-      "audit_wall_seconds": 5.8301972260233015,
+      "audit_wall_seconds": 6.215905654011294,
       "certified": true,
       "corrected_band_count": 471,
-      "corrected_max_rss_kb": 365228,
-      "corrected_reported_seconds": 1.306208,
+      "corrected_max_rss_kb": 365220,
+      "corrected_reported_seconds": 1.170285,
       "corrected_returncode": 0,
-      "corrected_wall_seconds": 1.37150907702744,
+      "corrected_wall_seconds": 1.2308662050636485,
       "exps": [
         75,
         28,
@@ -765,18 +765,18 @@
       "ma_A": 8283636,
       "ma_B": 8512638,
       "ma_band_count": 480,
-      "ma_max_rss_kb": 1055476,
+      "ma_max_rss_kb": 1055420,
       "ma_n_square": 8512638,
       "ma_padded_a": 229002,
       "ma_padded_b": 0,
-      "ma_phase_seconds": 2.910884,
+      "ma_phase_seconds": 2.931443,
       "ma_recovered": true,
-      "ma_reported_over_corrected_reported": 3.312254250471594,
-      "ma_reported_seconds": 4.326493,
+      "ma_reported_over_corrected_reported": 3.6791619135509723,
+      "ma_reported_seconds": 4.305668,
       "ma_returncode": 0,
       "ma_skipped": false,
-      "ma_wall_over_corrected_wall": 3.2271530273794977,
-      "ma_wall_seconds": 4.426069670007564,
+      "ma_wall_over_corrected_wall": 3.601911173475904,
+      "ma_wall_seconds": 4.433470737072639,
       "primes": "2,3,5,7,11,13,17,19",
       "same_exps": true
     }

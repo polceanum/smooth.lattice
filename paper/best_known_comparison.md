@@ -86,10 +86,10 @@ Observed at commit `d3e2f716a92ef6e8270bb5b1bc346205f69f77f1`:
 Gate details:
 
 - MA first-k comparison: 3/3 completed and certified, 0/3 MA wall-time wins,
-  mean MA/current wall ratio 3.5279.
+  mean MA/current wall ratio 3.5772.
 - Output-sensitive probe: 3/3 completed, range-pruning beat linear saddleback
-  in 3/3 rows at N=10^6 with mean block/linear ratio 0.8501; MA value selection
-  won 0/3 with mean MA/linear ratio 2.0203.
+  in 3/3 rows at N=10^6 with mean block/linear ratio 0.8691; MA value selection
+  won 0/3 with mean MA/linear ratio 1.8716.
 - Barvinok/Normaliz availability: `barvinok_count`, `normaliz`, and
   `PyNormaliz` were installed in the `smooth-lattice-count` conda environment.
   `barvinok_count` still segfaulted on toy ISL sets, but the PyNormaliz
