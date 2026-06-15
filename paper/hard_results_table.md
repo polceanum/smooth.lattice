@@ -147,7 +147,7 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
 - Kaplan/Frederickson-Johnson-style Mat-Select2 heap-primitive comparator,
   first 5, 6, and 8 primes at N=10^12: exhaustive small validation passed
   3233/3233 cases. The first k=5 row matched the selected log exactly but won
-  0/1 timing comparisons, with Mat-Select2/current linear ratio 13.0590. The
+  0/1 timing comparisons, with Mat-Select2/current linear ratio 12.7823. The
   first k=6 and k=8 rows were skipped by active-row cap. Artifact:
   `results/benchmarks/sorted_matrix_matselect2_heap_firstk_1e12/`.
 - Serious-comparator gate: the MA full-unrank gate passed with 3/3 certified

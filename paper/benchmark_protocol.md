@@ -824,7 +824,7 @@ Observed result:
 - Mat-Select2 heap-primitive exhaustive validation passed 3233/3233 cases.
 - The first k=5 target matched the selected log exactly.
 - It won 0/1 comparable timing rows; Mat-Select2/current linear ratio was
-  13.0590.
+  12.7823.
 - The first k=6 and k=8 rows were skipped by the active-row cap.
 
 This is negative evidence for the exact-heap Mat-Select2 bridge. It also gives

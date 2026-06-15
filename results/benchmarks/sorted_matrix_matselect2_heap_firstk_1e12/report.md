@@ -1,17 +1,17 @@
 # Sorted-Matrix / LOH X+Y Workbench
 
-- Timestamp: `2026-06-15T22:10:49.409709+00:00`
-- Git commit: `992256f6ea695dbbe0f495bcbac2f37b279574b6`
-- Git dirty: `True`
+- Timestamp: `2026-06-15T22:17:12.893215+00:00`
+- Git commit: `a58e6f286e9eabc895ce36010fc1c4063dd506bf`
+- Git dirty: `False`
 - N: `1000000000000`
 - Cases: `3`
 - Completed cases: `3`
 - Range-pruning wins over linear saddleback count: `0`
-- Mean block/linear internal time ratio: `1.290216118017839`
+- Mean block/linear internal time ratio: `1.3127183898439034`
 - Mirzaian-Arjomandi probe wins over linear saddleback count: `0`
-- Mean Mirzaian-Arjomandi/linear internal time ratio: `5.887569848479676`
+- Mean Mirzaian-Arjomandi/linear internal time ratio: `5.828476470644191`
 - Mat-Select2 heap-primitive wins over linear saddleback count: `0`
-- Mean Mat-Select2 heap-primitive/linear internal time ratio: `13.0590293637715`
+- Mean Mat-Select2 heap-primitive/linear internal time ratio: `12.782335609420839`
 - Mirzaian-Arjomandi exhaustive validation cases: `5185`
 - Mirzaian-Arjomandi exhaustive validation failures: `0`
 - Mirzaian-Arjomandi exhaustive validation max delta: `0.0`
@@ -31,6 +31,6 @@ the full rank when `N_probe != N`.
 
 | P | linear total s | best block s | block/linear | MA s | MA/linear | Mat2 s | Mat2/linear | Mat2 delta | wall s | RSS KB | LOH probe N | LOH s |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| `2,3,5,7,11` | 0.619573 | 0.944710 | 1.524776 | 5.934710 | 9.578710 | 8.091022 | 13.059029 | 0 | 18.613790 | 1475720 | 1000000 | 0.018353 |
-| `2,3,5,7,11,13` | 0.467507 | 0.541168 | 1.157561 | 1.488711 | 3.184361 | 0.000000 |  | 0 | 4.205567 | 511380 | 1000000 | 0.029940 |
-| `2,3,5,7,11,13,17,19` | 0.797101 | 0.947204 | 1.188311 | 3.905507 | 4.899639 | 0.000000 |  | 0 | 8.651832 | 1224820 | 1000000 | 0.032929 |
+| `2,3,5,7,11` | 0.628564 | 0.941070 | 1.497175 | 5.956272 | 9.475999 | 8.034516 | 12.782336 | 0 | 18.522556 | 1475740 | 1000000 | 0.020230 |
+| `2,3,5,7,11,13` | 0.480929 | 0.587816 | 1.222251 | 1.448888 | 3.012686 | 0.000000 |  | 0 | 4.207385 | 511392 | 1000000 | 0.028840 |
+| `2,3,5,7,11,13,17,19` | 0.782624 | 0.953807 | 1.218730 | 3.910572 | 4.996744 | 0.000000 |  | 0 | 8.625675 | 1224760 | 1000000 | 0.028789 |

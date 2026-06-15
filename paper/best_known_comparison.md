@@ -84,7 +84,7 @@ Observed at commit `d3e2f716a92ef6e8270bb5b1bc346205f69f77f1`:
   bounded gate; no external-count speed claim is made.
 - Kaplan/Frederickson-Johnson-style Mat-Select2 heap-primitive: implemented as
   an exact row-sorted selector probe. It passed exhaustive small validation, but
-  on the first k=5, N=10^12 row it was 13.0590x slower than the current linear
+  on the first k=5, N=10^12 row it was 12.7823x slower than the current linear
   saddleback selector; k=6 and k=8 were skipped by active-row cap.
 
 Gate details:
@@ -103,7 +103,7 @@ Gate details:
 - Mat-Select2 heap-primitive artifact:
   `results/benchmarks/sorted_matrix_matselect2_heap_firstk_1e12/`. Validation
   passed 3233/3233 small cases; the single comparable first-k target was exact
-  but slower by a factor of 13.0590.
+  but slower by a factor of 12.7823.
 
 The gate is a status artifact, not a victory lap. It says exactly where the
 repository stands today: one published sorted-matrix selector comparison is

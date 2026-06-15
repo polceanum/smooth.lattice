@@ -120,7 +120,7 @@ results/benchmarks/sorted_matrix_matselect2_heap_firstk_1e12/
 ```
 
 It passed 3233/3233 exhaustive small validation cases. On the first
-k=5, N=10^12 target it matched the selected log exactly but was 13.0590x slower
+k=5, N=10^12 target it matched the selected log exactly but was 12.7823x slower
 than the current linear saddleback selector. The first k=6 and k=8 rows were
 skipped by the active-row cap. This is useful negative evidence for the
 exponential-block selector with an exact binary heap primitive, but it is still
