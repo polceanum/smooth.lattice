@@ -953,10 +953,12 @@ Observed result in the gate artifact:
 Numerical summary:
 
 - MA first-k comparison: 3/3 completed and certified, 0/3 MA wall-time wins,
-  mean MA/current wall ratio 3.5772.
-- Output-sensitive probe: 3/3 completed, range-pruning won 3/3 against linear
-  saddleback count at N=10^6 with mean block/linear ratio 0.8691; MA value
-  selection won 0/3 with mean MA/linear ratio 1.8716.
+  mean MA/current wall ratio 3.6760.
+- Output-sensitive probe: 3/3 completed, range-pruning won 2/3 against linear
+  saddleback count at N=10^6 with mean block/linear ratio 0.8435; MA value
+  selection won 0/3 with mean MA/linear ratio 1.7874. Mat-Select2 heap-primitive
+  matched the selected log in 3/3 rows, won 0/3 timing comparisons, and had mean
+  Mat-Select2/linear ratio 10.2313.
 - Barvinok/Normaliz statuses: `barvinok_count` returned -11 on toy 1D and 2D
   ISL inputs. PyNormaliz passed 2/2 known rational-vertex toy simplex counts,
   but timed out on 3/3 certified-target rationalized simplexes at the 5-second

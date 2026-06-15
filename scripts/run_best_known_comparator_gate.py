@@ -339,10 +339,11 @@ def write_report(out_dir: Path, report: dict[str, Any]) -> None:
         "## Bottom Line",
         "",
         "The repository currently has a clean, certified comparison against a",
-        "published Mirzaian-Arjomandi sorted-matrix selector wrapper. Full",
-        "Frederickson-Johnson and an actual soft-heap implementation remain open",
-        "obligations. The external Normaliz path now has executable toy-count",
-        "validation and bounded certified-target attempts.",
+        "published Mirzaian-Arjomandi sorted-matrix selector wrapper. The",
+        "Mat-Select2 heap-primitive bridge is implemented and negative on the",
+        "current probe. A true soft-heap implementation remains an open obligation.",
+        "The external Normaliz path has executable toy-count validation and bounded",
+        "certified-target attempts.",
     ]
     (out_dir / "report.md").write_text("\n".join(lines) + "\n")
 

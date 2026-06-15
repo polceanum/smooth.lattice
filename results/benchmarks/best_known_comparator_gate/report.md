@@ -1,7 +1,7 @@
 # Best-Known Comparator Gate
 
-- Timestamp: `2026-06-14T22:34:05.412709+00:00`
-- Git commit: `26366bf06aa59d88f29d3d3264578eda7992b045`
+- Timestamp: `2026-06-15T22:18:48.267944+00:00`
+- Git commit: `43e2c5e3a3ab3be2b50cb81826b005241df82f51`
 - Git dirty: `False`
 
 ## Gate Summary
@@ -18,19 +18,24 @@
 - Cases: `3`
 - Certified same-exponent cases: `3`
 - MA wall-time wins: `0`
-- Mean MA/current wall ratio: `3.5771829880074257`
+- Mean MA/current wall ratio: `3.676013427632196`
 
 ## Output-Sensitive X+Y Probe
 
 - Artifact: `results/benchmarks/best_known_comparator_gate/output_sensitive_xplusy_1e6`
 - Cases: `3`
 - Completed cases: `3`
-- Mean block/linear ratio: `0.8690779105459225`
-- Mean MA/linear ratio: `1.8715664428483259`
+- Mean block/linear ratio: `0.8435155867637523`
+- Mean MA/linear ratio: `1.7874088092643674`
+- Mat-Select2 heap-primitive comparable cases: `3`
+- Mat-Select2 heap-primitive wins: `0`
+- Mean Mat-Select2 heap-primitive/linear ratio: `10.231261425814914`
 
 This is an output-sized probe at a feasible rank. It does not establish a
 full-rank random-access comparison when `N_probe` is much smaller than the
-paper target rank.
+paper target rank. The Mat-Select2 heap-primitive row follows the
+Kaplan/Frederickson-Johnson exponential-block selector with an exact binary
+heap primitive; it is not a soft-heap time-bound implementation.
 
 ## Barvinok-Style Lattice Counting
 
