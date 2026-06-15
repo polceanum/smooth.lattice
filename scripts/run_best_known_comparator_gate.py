@@ -32,6 +32,8 @@ DEFAULT_OUTPUT_N = 1_000_000
 BARVINOK_TOOLS = ("barvinok_count", "count", "latte-count", "normaliz", "ehrhart")
 COUNT_ENV_BIN = Path("/usr/local/Caskroom/miniforge/base/envs/smooth-lattice-count/bin")
 NORMALIZ_PROBE_SCRIPT = ROOT / "scripts" / "run_normaliz_count_probe.py"
+SOFT_HEAP_SOURCE = ROOT / "benchmarks" / "soft_sequence_heap_probe.cpp"
+SOFT_HEAP_BINARY = ROOT / "bin" / "soft_sequence_heap_probe"
 
 
 def load_harness():
@@ -57,6 +59,74 @@ def run_command(command: list[str]) -> dict[str, Any]:
         "returncode": proc.returncode,
         "stdout": proc.stdout.strip(),
         "stderr": proc.stderr.strip(),
+    }
+
+
+def parse_key_values(line: str) -> dict[str, Any]:
+    out: dict[str, Any] = {}
+    for part in line.split():
+        if "=" not in part:
+            continue
+        key, value = part.split("=", 1)
+        if value in {"true", "false"}:
+            out[key] = value == "true"
+            continue
+        try:
+            if "." in value or "e" in value.lower():
+                out[key] = float(value)
+            else:
+                out[key] = int(value)
+            continue
+        except ValueError:
+            out[key] = value
+    return out
+
+
+def run_soft_heap_probe(cxx: str, cxxflags: str) -> dict[str, Any]:
+    build_cmd = [cxx, *cxxflags.split(), str(SOFT_HEAP_SOURCE.relative_to(ROOT)), "-o", str(SOFT_HEAP_BINARY.relative_to(ROOT))]
+    build = run_command(build_cmd)
+    validate: dict[str, Any] | None = None
+    bench: dict[str, Any] | None = None
+    validation_rows: list[dict[str, Any]] = []
+    bench_row: dict[str, Any] = {}
+    if build["returncode"] == 0:
+        validate = run_command([str(SOFT_HEAP_BINARY.relative_to(ROOT)), "validate", "2048", "0.25"])
+        validation_rows = [
+            parse_key_values(line)
+            for line in validate["stdout"].splitlines()
+            if line.startswith("soft_sequence_heap_validate ")
+        ]
+        bench = run_command([str(SOFT_HEAP_BINARY.relative_to(ROOT)), "bench", "20000", "0.25"])
+        for line in bench["stdout"].splitlines():
+            if line.startswith("soft_sequence_heap_bench "):
+                bench_row = parse_key_values(line)
+                break
+
+    validation_ok = (
+        build["returncode"] == 0
+        and validate is not None
+        and validate["returncode"] == 0
+        and len(validation_rows) == 3
+    )
+    bench_ok = bench is not None and bench["returncode"] == 0 and bool(bench_row)
+    status = "semantic_probe_validated_not_selector_integrated" if validation_ok else "semantic_probe_failed"
+    if validation_ok and bench_ok:
+        soft_sec = float(bench_row.get("soft_sec", 0.0))
+        binary_sec = float(bench_row.get("binary_heap_sec", 0.0))
+        if binary_sec > 0:
+            bench_row["soft_over_binary_heap"] = soft_sec / binary_sec
+    return {
+        "status": status,
+        "note": (
+            "A vector-backed soft-sequence-heap prototype validates corruption "
+            "semantics, but it is not yet wired into Mat-Select/Soft-Select and "
+            "does not establish the Kaplan/FJ soft-heap time bound."
+        ),
+        "build": build,
+        "validation": validate,
+        "validation_rows": validation_rows,
+        "bench": bench,
+        "bench_row": bench_row,
     }
 
 
@@ -272,6 +342,7 @@ def write_report(out_dir: Path, report: dict[str, Any]) -> None:
     ma = report["ma_first_k"]["report"]
     loh = report["output_sensitive"]["report"]
     barv = report["barvinok"]
+    soft = report["soft_heap"]
     ma_agg = (ma or {}).get("aggregate", {})
     loh_agg = (loh or {}).get("aggregate", {})
     tools = barv["tools"]
@@ -319,6 +390,18 @@ def write_report(out_dir: Path, report: dict[str, Any]) -> None:
         "Kaplan/Frederickson-Johnson exponential-block selector with an exact binary",
         "heap primitive; it is not a soft-heap time-bound implementation.",
         "",
+        "## Soft-Heap Probe",
+        "",
+        f"- Status: `{soft.get('status')}`",
+        f"- Validation rows: `{len(soft.get('validation_rows') or [])}`",
+        f"- Timing row: `{soft.get('bench_row')}`",
+        "",
+        "The soft-heap row is a data-structure semantics probe. It checks the",
+        "corruption-set/witness-set invariants and simultaneous corruption bound for",
+        "a soft sequence heap, then records a small timing comparison against a",
+        "binary heap. It is not yet the row-sorted or `X+Y` selector from the",
+        "Kaplan/Frederickson-Johnson paper.",
+        "",
         "## Barvinok-Style Lattice Counting",
         "",
         f"- Available local tools: `{available_tools}`",
@@ -341,7 +424,8 @@ def write_report(out_dir: Path, report: dict[str, Any]) -> None:
         "The repository currently has a clean, certified comparison against a",
         "published Mirzaian-Arjomandi sorted-matrix selector wrapper. The",
         "Mat-Select2 heap-primitive bridge is implemented and negative on the",
-        "current probe. A true soft-heap implementation remains an open obligation.",
+        "current probe. A soft-sequence-heap semantic prototype now exists, but",
+        "a fast selector-integrated soft heap remains an open obligation.",
         "The external Normaliz path has executable toy-count validation and bounded",
         "certified-target attempts.",
     ]
@@ -400,6 +484,8 @@ def main() -> int:
     loh_run = run_command(loh_cmd)
     loh_report = load_json(loh_dir / "report.json")
     loh_status = "executed" if loh_run["returncode"] == 0 and loh_report else "failed"
+
+    soft_heap_probe = run_soft_heap_probe("g++", "-O3 -std=c++17")
 
     tools = tool_availability()
     versions = tool_versions(tools)
@@ -468,8 +554,7 @@ def main() -> int:
             "note": "The repository has MA sorted-matrix selection and range-pruning probes, but not the published Frederickson-Johnson reduction/ranking algorithm.",
         },
         "soft_heap": {
-            "status": "open_not_implemented",
-            "note": "The repository has exact LOH/output-style probes but not a Chazelle/Kaplan-style soft heap implementation with corruption semantics.",
+            **soft_heap_probe,
         },
         "barvinok": {
             "status": barvinok_status,

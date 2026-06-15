@@ -9,6 +9,7 @@ This project targets fixed-prime random access, not general smooth-number counti
 - `benchmarks/smooth_xplusy_baseline.cpp`: practical adaptive Cartesian-sum value-selection baseline.
 - `benchmarks/smooth_xplusy_full_unrank.cpp`: practical materialized Cartesian-sum full-unrank baseline. It stores exponent packs on both MITM sides, narrows to a log-value band, exact-sorts the candidate band by multiprecision integer value, and returns an exponent vector. Its modes include adaptive X+Y, residual-corrected analytic X+Y, and a Mirzaian-Arjomandi sorted-matrix selector wrapped with the same exact reconstruction step.
 - `benchmarks/smooth_xplusy_fj_loh_workbench.cpp`: exploratory sorted-matrix/range-pruning, Mirzaian-Arjomandi value-selection, Kaplan/Frederickson-Johnson-style Mat-Select2 heap-primitive, and LOH-style probes. Use `scripts/run_sorted_matrix_workbench.py` for reproducible artifacts; this is not a full soft-heap implementation.
+- `benchmarks/soft_sequence_heap_probe.cpp`: auditable soft-sequence-heap semantics probe. It validates corruption-set/witness-set invariants and the simultaneous corruption bound, but it is vector-backed, slow, and not yet wired into the row-sorted or `X+Y` selectors.
 
 ## Current priority comparison
 
@@ -77,6 +78,16 @@ sorted-matrix/range-pruning, Mirzaian-Arjomandi value-selection,
 Mat-Select2 heap-primitive, and LOH probes. These rows are useful negative or
 diagnostic evidence, but they do not discharge the "full soft-heap X+Y"
 comparison obligation.
+
+Use `g++ -O3 -std=c++17 benchmarks/soft_sequence_heap_probe.cpp -o
+bin/soft_sequence_heap_probe` and then `bin/soft_sequence_heap_probe validate
+2048 0.25` for the current soft-heap semantics probe. The probe is a first real
+data-structure step toward the Kaplan/Frederickson-Johnson obligation: it checks
+sequence ranks/order, corruption-set and witness-set ownership, order
+relationships, the simultaneous corruption bound, and nondecreasing extracted
+current keys. A timing row at `n=20000, epsilon=0.25` is deliberately reported
+against a binary heap; it is negative for speed and should not be used as a
+published soft-heap comparator.
 
 In the clean six-case `N=10^12` workbench artifact at commit
 `17a7e40ae790ae9017ab8274204eaaf107add212`, the range-pruned block counter

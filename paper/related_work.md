@@ -186,17 +186,23 @@ Source to cite:
 
 Current implementation status:
 
-- Not implemented as a true soft heap.
+- A soft-sequence-heap semantics prototype exists in
+  `benchmarks/soft_sequence_heap_probe.cpp`.
 - The current heap/frontier baseline is ordinary exact frontier generation, not
   the soft-heap selection primitive from this paper.
 - The Mat-Select2 heap-primitive probe uses an exact binary heap where the
   asymptotic paper algorithm relies on a soft-heap primitive.
 - The current LOH probe is an output-style top-k diagnostic capped at
   `N_probe=10^6`; it is not a full-rank `N=10^12` random-access comparator.
+- The soft-sequence-heap probe validates corruption-set/witness-set invariants
+  and the simultaneous corruption bound, but it is vector-backed, slow, and not
+  integrated into Mat-Select, Soft-Select, or full `X+Y` unranking.
 
 Acceptance criteria before claiming a soft-heap comparison:
 
-- Implement or vendor a soft heap with documented error/corruption semantics.
+- Replace the vector-backed soft-sequence prototype with an implementation whose
+  insertion/extraction costs are close enough to the Kaplan/FJ requirement to be
+  a fair timing comparator.
 - Reproduce the paper's selection primitive on ordinary arrays/lists.
 - Adapt it to the `X+Y` split used by the smooth-number MITM baseline.
 - Record whether it returns only a selected value, the set of `k` smallest
