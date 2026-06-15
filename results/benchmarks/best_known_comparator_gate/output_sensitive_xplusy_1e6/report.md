@@ -1,17 +1,17 @@
 # Sorted-Matrix / LOH X+Y Workbench
 
-- Timestamp: `2026-06-15T22:42:09.470152+00:00`
-- Git commit: `2263264ccb755499cf7b7c9b9a74fc3a334975c5`
+- Timestamp: `2026-06-15T22:51:44.528191+00:00`
+- Git commit: `aaef2d09004798d1719614567c71f6f325f0cfe6`
 - Git dirty: `True`
 - N: `1000000`
 - Cases: `3`
 - Completed cases: `3`
-- Range-pruning wins over linear saddleback count: `3`
-- Mean block/linear internal time ratio: `0.8825121289281279`
+- Range-pruning wins over linear saddleback count: `2`
+- Mean block/linear internal time ratio: `0.9531453682122057`
 - Mirzaian-Arjomandi probe wins over linear saddleback count: `0`
-- Mean Mirzaian-Arjomandi/linear internal time ratio: `2.174870800317018`
+- Mean Mirzaian-Arjomandi/linear internal time ratio: `2.848539503864853`
 - Mat-Select2 heap-primitive wins over linear saddleback count: `0`
-- Mean Mat-Select2 heap-primitive/linear internal time ratio: `9.620167656669393`
+- Mean Mat-Select2 heap-primitive/linear internal time ratio: `9.701120596922914`
 - Mirzaian-Arjomandi exhaustive validation cases: `5185`
 - Mirzaian-Arjomandi exhaustive validation failures: `0`
 - Mirzaian-Arjomandi exhaustive validation max delta: `0.0`
@@ -31,6 +31,6 @@ the full rank when `N_probe != N`.
 
 | P | linear total s | best block s | block/linear | MA s | MA/linear | Mat2 s | Mat2/linear | Mat2 delta | wall s | RSS KB | LOH probe N | LOH s |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| `2,3,5,7,11` | 0.000497 | 0.000449 | 0.903421 | 0.000800 | 1.609658 | 0.003803 | 7.651911 | 0 | 0.071455 | 31504 | 1000000 | 0.042071 |
-| `2,3,5,7,11,13` | 0.000796 | 0.000780 | 0.979899 | 0.002333 | 2.930905 | 0.008184 | 10.281407 | 0 | 0.071392 | 31860 | 1000000 | 0.035434 |
-| `2,3,5,7,11,13,17,19` | 0.001442 | 0.001102 | 0.764216 | 0.002861 | 1.984050 | 0.015757 | 10.927184 | 0 | 0.084232 | 31908 | 1000000 | 0.037855 |
+| `2,3,5,7,11` | 0.000461 | 0.000480 | 1.041215 | 0.001341 | 2.908894 | 0.004066 | 8.819957 | 0 | 0.070372 | 31504 | 1000000 | 0.043054 |
+| `2,3,5,7,11,13` | 0.000826 | 0.000775 | 0.938257 | 0.001454 | 1.760291 | 0.007367 | 8.918886 | 0 | 0.069434 | 31780 | 1000000 | 0.037839 |
+| `2,3,5,7,11,13,17,19` | 0.001133 | 0.000997 | 0.879965 | 0.004392 | 3.876434 | 0.012876 | 11.364519 | 0 | 0.081690 | 31960 | 1000000 | 0.038988 |

@@ -151,14 +151,14 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   first k=6 and k=8 rows were skipped by active-row cap. Artifact:
   `results/benchmarks/sorted_matrix_matselect2_heap_firstk_1e12/`.
 - Serious-comparator gate: the MA full-unrank gate passed with 3/3 certified
-  rows and 0/3 MA wall-time wins, mean MA/current ratio 3.8757. The
+  rows and 0/3 MA wall-time wins, mean MA/current ratio 3.6952. The
   output-sensitive X+Y probe at N=10^6 completed 3/3 rows, with range-pruning
   winning 2/3 against linear saddleback count and mean block/linear ratio
-  0.8825. Mat-Select2 heap-primitive matched the selected log in 3/3 rows, won
-  0/3 timing comparisons, and had mean Mat-Select2/linear ratio 9.6202. Full FJ
+  0.9531. Mat-Select2 heap-primitive matched the selected log in 3/3 rows, won
+  0/3 timing comparisons, and had mean Mat-Select2/linear ratio 9.7011. Full FJ
   remained open/not implemented. The soft-heap gate advanced to a
   soft-sequence-heap semantic probe with 3/3 validation rows, but the timing row
-  was 304.6520x slower than a binary heap and is not selector-integrated.
+  was 8.9402x slower than a binary heap and is not selector-integrated.
   PyNormaliz passed 2/2 known toy simplex counts, but 3/3 certified-target
   rationalized simplexes timed out at a 5-second per-count cap. Artifact:
   `results/benchmarks/best_known_comparator_gate/`.

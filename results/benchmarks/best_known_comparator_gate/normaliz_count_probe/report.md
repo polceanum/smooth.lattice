@@ -13,6 +13,6 @@ rank. Correctness certification still comes from the interval auditor.
 
 | P | d | mode | status | seconds | count | delta from certified N |
 |---|---:|---|---|---:|---:|---:|
-| `2,3,5,7,11` | 1 | rounded | timeout | 5.005237 |  | None |
-| `2,3,5,7,11,13` | 1 | rounded | timeout | 5.006366 |  | None |
-| `2,3,5,7,11,13,17,19` | 1 | rounded | timeout | 5.006284 |  | None |
+| `2,3,5,7,11` | 1 | rounded | timeout | 5.003939 |  | None |
+| `2,3,5,7,11,13` | 1 | rounded | timeout | 5.003955 |  | None |
+| `2,3,5,7,11,13,17,19` | 1 | rounded | timeout | 5.005166 |  | None |

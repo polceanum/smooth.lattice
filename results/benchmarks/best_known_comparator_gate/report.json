@@ -71,7 +71,7 @@
         "timeout_seconds": 5.0
       },
       "metadata": {
-        "git_commit": "2263264ccb755499cf7b7c9b9a74fc3a334975c5",
+        "git_commit": "aaef2d09004798d1719614567c71f6f325f0cfe6",
         "git_dirty": true
       },
       "schema": "smooth.lattice.normaliz_count_probe.v1",
@@ -100,7 +100,7 @@
           "primes": "2,3,5,7,11",
           "row_index": 0,
           "scale_digits": 1,
-          "seconds": 5.005236570999841,
+          "seconds": 5.003938837000533,
           "status": "timeout",
           "timeout_seconds": 5.0,
           "vertex_file": "vertices/P2_3_5_7_11_d1_rounded.json"
@@ -131,7 +131,7 @@
           "primes": "2,3,5,7,11,13",
           "row_index": 1,
           "scale_digits": 1,
-          "seconds": 5.006365682000251,
+          "seconds": 5.003954976999921,
           "status": "timeout",
           "timeout_seconds": 5.0,
           "vertex_file": "vertices/P2_3_5_7_11_13_d1_rounded.json"
@@ -166,7 +166,7 @@
           "primes": "2,3,5,7,11,13,17,19",
           "row_index": 2,
           "scale_digits": 1,
-          "seconds": 5.00628371700077,
+          "seconds": 5.005165509000108,
           "status": "timeout",
           "timeout_seconds": 5.0,
           "vertex_file": "vertices/P2_3_5_7_11_13_17_19_d1_rounded.json"
@@ -179,7 +179,7 @@
           "expected_count": 10,
           "name": "integer_2simplex_x_plus_y_le_3",
           "passed": true,
-          "seconds": 0.08306047600035527,
+          "seconds": 0.08271545800016611,
           "status": "ok",
           "vertices": [
             [
@@ -205,7 +205,7 @@
           "expected_count": 3,
           "name": "rational_2simplex_x_plus_y_le_3_over_2",
           "passed": true,
-          "seconds": 0.028632900000047812,
+          "seconds": 0.030356092999682005,
           "status": "ok",
           "vertices": [
             [
@@ -335,9 +335,9 @@
         "cases": 3,
         "completed_cases": 3,
         "ma_wall_wins": 0,
-        "max_ma_wall_over_corrected_wall": 4.149746196757162,
-        "mean_ma_wall_over_corrected_wall": 3.875677907449077,
-        "min_ma_wall_over_corrected_wall": 3.5392191404093465,
+        "max_ma_wall_over_corrected_wall": 3.803327378203627,
+        "mean_ma_wall_over_corrected_wall": 3.6952038158297444,
+        "min_ma_wall_over_corrected_wall": 3.517494582269923,
         "same_exps_certified_cases": 3
       },
       "build_runs": [
@@ -350,14 +350,14 @@
             "-o",
             "bin/smooth_xplusy_full_unrank"
           ],
-          "elapsed_seconds": 10.370817895999608,
-          "max_rss_kb": 171932,
+          "elapsed_seconds": 10.272519086000102,
+          "max_rss_kb": 173364,
           "metrics": {},
           "name": "build_xplusy_full_unrank",
           "returncode": 0,
           "stderr": "",
           "stdout": "",
-          "time_raw": "       10.36 real         9.55 user         0.56 sys\n           176058368  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               66378  page reclaims\n                 468  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                 261  voluntary context switches\n                2774  involuntary context switches\n           148480791  instructions retired\n           185214265  cycles elapsed\n             1523712  peak memory footprint\n"
+          "time_raw": "       10.26 real         9.56 user         0.51 sys\n           177524736  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               66914  page reclaims\n                 462  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   2  voluntary context switches\n                2641  involuntary context switches\n           147328395  instructions retired\n           161199400  cycles elapsed\n             1511424  peak memory footprint\n"
         }
       ],
       "cases": [
@@ -365,8 +365,8 @@
           "N": 1000000000000,
           "comparison": {
             "certified": true,
-            "ma_reported_over_corrected_reported": 6.340611829193478,
-            "ma_wall_over_corrected_wall": 4.149746196757162,
+            "ma_reported_over_corrected_reported": 6.184333165023818,
+            "ma_wall_over_corrected_wall": 3.764789487015683,
             "same_exps": true
           },
           "primes": "2,3,5,7,11",
@@ -380,8 +380,8 @@
                 "250",
                 "200000"
               ],
-              "elapsed_seconds": 1.763063969000541,
-              "max_rss_kb": 427968,
+              "elapsed_seconds": 1.9133994789999633,
+              "max_rss_kb": 427984,
               "metrics": {
                 "A": 561191,
                 "B": 17654903,
@@ -396,18 +396,18 @@
                 "T": 923.591024,
                 "above": 1000000000248,
                 "band_count": 495,
-                "band_phase": 0.061035,
+                "band_phase": 0.062766,
                 "below": 999999999753,
-                "build": 0.93162,
+                "build": 0.949613,
                 "cands": 495,
                 "center_count": 999999999932,
                 "center_rank_error": -68.0,
                 "correction": 1.2613436417e-08,
-                "count_phase": 0.133206,
+                "count_phase": 0.123463,
                 "derivative": 5391076448.60853,
                 "digits": 402,
                 "enumerated": true,
-                "exact": 0.003077,
+                "exact": 0.002629,
                 "exps": [
                   1052,
                   26,
@@ -421,7 +421,7 @@
                 "raw_T": 923.591024,
                 "raw_derivative": 5391076448.315256,
                 "recovered": true,
-                "seconds": 1.129629,
+                "seconds": 1.138775,
                 "splitA": [
                   2,
                   3
@@ -436,8 +436,8 @@
               "name": "xplusy_corrected",
               "returncode": 0,
               "stderr": "",
-              "stdout": "xplusy_corrected_band P=(2,3,5,7,11) k=5 N=1000000000000 seconds=1.129629 build=0.931620 count_phase=0.133206 band_phase=0.061035 exact=0.003077 raw_T=923.591024 raw_derivative=5391076448.315256 center_count=999999999932 center_rank_error=-68.000000 correction=1.261343641700e-08 T=923.591024 derivative=5391076448.608530 rank_radius=250.000000 half_width=4.637292800115e-08 below=999999999753 above=1000000000248 band_count=495 target_inside=true enumerated=true recovered=true cands=495 A=561191 B=17654903 splitA=[2,3] splitB=[5,7,11] exps=[1052,26,33,53,4] digits=402",
-              "time_raw": "        1.75 real         0.87 user         0.31 sys\n           438239232  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              107295  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 338  involuntary context switches\n          5520740349  instructions retired\n          3134464182  cycles elapsed\n           437903360  peak memory footprint\n"
+              "stdout": "xplusy_corrected_band P=(2,3,5,7,11) k=5 N=1000000000000 seconds=1.138775 build=0.949613 count_phase=0.123463 band_phase=0.062766 exact=0.002629 raw_T=923.591024 raw_derivative=5391076448.315256 center_count=999999999932 center_rank_error=-68.000000 correction=1.261343641700e-08 T=923.591024 derivative=5391076448.608530 rank_radius=250.000000 half_width=4.637292800115e-08 below=999999999753 above=1000000000248 band_count=495 target_inside=true enumerated=true recovered=true cands=495 A=561191 B=17654903 splitA=[2,3] splitB=[5,7,11] exps=[1052,26,33,53,4] digits=402",
+              "time_raw": "        1.90 real         0.87 user         0.31 sys\n           438255616  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              107295  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 297  involuntary context switches\n          5517385578  instructions retired\n          3136612084  cycles elapsed\n           437919744  peak memory footprint\n"
             },
             {
               "command": [
@@ -450,8 +450,8 @@
                 "30000000",
                 "200000000"
               ],
-              "elapsed_seconds": 7.316267999999582,
-              "max_rss_kb": 1763800,
+              "elapsed_seconds": 7.203546243000346,
+              "max_rss_kb": 1763764,
               "metrics": {
                 "A": 583828,
                 "B": 18731384,
@@ -466,15 +466,15 @@
                 "above": 1000000000250,
                 "attempts": 1,
                 "band_count": 494,
-                "band_phase": 0.070509,
+                "band_phase": 0.062213,
                 "below": 999999999756,
-                "build": 0.995288,
+                "build": 0.983064,
                 "cands": 494,
-                "count_phase": 0.082564,
+                "count_phase": 0.095901,
                 "derivative": 5391076448.62149,
                 "digits": 402,
                 "enumerated": true,
-                "exact": 0.00457,
+                "exact": 0.002441,
                 "exps": [
                   1052,
                   26,
@@ -484,14 +484,14 @@
                 ],
                 "half_width": 4.637292800104e-08,
                 "k": 5,
-                "ma_phase": 5.923002,
+                "ma_phase": 5.806278,
                 "ma_skipped": false,
                 "n_square": 18731384,
                 "padded_a": 18147556,
                 "padded_b": 0,
                 "rank_radius": 250.0,
                 "recovered": true,
-                "seconds": 7.162539,
+                "seconds": 7.042564,
                 "selected_T": 923.591023555869,
                 "splitA": [
                   2,
@@ -507,8 +507,8 @@
               "name": "xplusy_ma_full",
               "returncode": 0,
               "stderr": "",
-              "stdout": "xplusy_ma_full_unrank P=(2,3,5,7,11) k=5 N=1000000000000 seconds=7.162539 build=0.995288 ma_phase=5.923002 count_phase=0.082564 band_phase=0.070509 exact=0.004570 selected_T=923.591023555869 derivative=5391076448.621490 rank_radius=250.000000 half_width=4.637292800104e-08 below=999999999756 above=1000000000250 band_count=494 target_inside=true enumerated=true recovered=true ma_skipped=false ma_reason= attempts=1 cands=494 A=583828 B=18731384 n_square=18731384 padded_a=18147556 padded_b=0 splitA=[2,3] splitB=[5,7,11] exps=[1052,26,33,53,4] digits=402",
-              "time_raw": "        7.30 real         4.80 user         2.30 sys\n          1806131200  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              799718  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                2710  involuntary context switches\n         19106333387  instructions retired\n         17706033889  cycles elapsed\n          1522487296  peak memory footprint\n"
+              "stdout": "xplusy_ma_full_unrank P=(2,3,5,7,11) k=5 N=1000000000000 seconds=7.042564 build=0.983064 ma_phase=5.806278 count_phase=0.095901 band_phase=0.062213 exact=0.002441 selected_T=923.591023555869 derivative=5391076448.621490 rank_radius=250.000000 half_width=4.637292800104e-08 below=999999999756 above=1000000000250 band_count=494 target_inside=true enumerated=true recovered=true ma_skipped=false ma_reason= attempts=1 cands=494 A=583828 B=18731384 n_square=18731384 padded_a=18147556 padded_b=0 splitA=[2,3] splitB=[5,7,11] exps=[1052,26,33,53,4] digits=402",
+              "time_raw": "        7.19 real         4.81 user         2.28 sys\n          1806094336  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              799712  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                1978  involuntary context switches\n         19104020922  instructions retired\n         17490136117  cycles elapsed\n          1522450432  peak memory footprint\n"
             },
             {
               "command": [
@@ -517,8 +517,8 @@
                 "1052,26,33,53,4",
                 "1000000000000"
               ],
-              "elapsed_seconds": 6.152497035000124,
-              "max_rss_kb": 1329124,
+              "elapsed_seconds": 6.261377912000171,
+              "max_rss_kb": 1329120,
               "metrics": {
                 "P": [
                   2,
@@ -529,7 +529,7 @@
                 ],
                 "ambiguous_possible": 1,
                 "ambiguous_resolved": 1,
-                "cert_seconds": 6.09144,
+                "cert_seconds": 6.1964,
                 "certified_count_le": 1000000000000,
                 "expected_N": 1000000000000,
                 "exps": [
@@ -547,8 +547,8 @@
               "name": "interval_audit",
               "returncode": 0,
               "stderr": "",
-              "stdout": "interval_audit_exps P=[2,3,5,7,11] exps=[1052,26,33,53,4] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=561180 groupB=17654331 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=6.09144",
-              "time_raw": "        6.13 real         4.88 user         1.13 sys\n          1361022976  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              404950  page reclaims\n                  13  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                1343  involuntary context switches\n          8152875229  instructions retired\n         14963404566  cycles elapsed\n          1109106688  peak memory footprint\n"
+              "stdout": "interval_audit_exps P=[2,3,5,7,11] exps=[1052,26,33,53,4] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=561180 groupB=17654331 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=6.1964",
+              "time_raw": "        6.24 real         4.97 user         1.15 sys\n          1361018880  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              404946  page reclaims\n                  13  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                1411  involuntary context switches\n          8152435070  instructions retired\n         15061334514  cycles elapsed\n          1109102592  peak memory footprint\n"
             }
           ],
           "slug": "P2_3_5_7_11"
@@ -557,8 +557,8 @@
           "N": 1000000000000,
           "comparison": {
             "certified": true,
-            "ma_reported_over_corrected_reported": 4.254959003691076,
-            "ma_wall_over_corrected_wall": 3.938068385180722,
+            "ma_reported_over_corrected_reported": 4.171377724086624,
+            "ma_wall_over_corrected_wall": 3.803327378203627,
             "same_exps": true
           },
           "primes": "2,3,5,7,11,13",
@@ -572,8 +572,8 @@
                 "250",
                 "200000"
               ],
-              "elapsed_seconds": 0.6457347529994877,
-              "max_rss_kb": 208292,
+              "elapsed_seconds": 0.6760462629999893,
+              "max_rss_kb": 208336,
               "metrics": {
                 "A": 3973240,
                 "B": 4870829,
@@ -589,18 +589,18 @@
                 "T": 463.255372,
                 "above": 1000000000253,
                 "band_count": 503,
-                "band_phase": 0.040535,
+                "band_phase": 0.046297,
                 "below": 999999999750,
-                "build": 0.41688,
+                "build": 0.427267,
                 "cands": 503,
                 "center_count": 1000000000452,
                 "center_rank_error": 452.0,
                 "correction": -3.528554627788e-08,
-                "count_phase": 0.107423,
+                "count_phase": 0.110937,
                 "derivative": 12809777586.271208,
                 "digits": 202,
                 "enumerated": true,
-                "exact": 0.002388,
+                "exact": 0.001314,
                 "exps": [
                   55,
                   126,
@@ -615,7 +615,7 @@
                 "raw_T": 463.255372,
                 "raw_derivative": 12809777591.096188,
                 "recovered": true,
-                "seconds": 0.567856,
+                "seconds": 0.586068,
                 "splitA": [
                   3,
                   5,
@@ -631,8 +631,8 @@
               "name": "xplusy_corrected",
               "returncode": 0,
               "stderr": "",
-              "stdout": "xplusy_corrected_band P=(2,3,5,7,11,13) k=6 N=1000000000000 seconds=0.567856 build=0.416880 count_phase=0.107423 band_phase=0.040535 exact=0.002388 raw_T=463.255372 raw_derivative=12809777591.096188 center_count=1000000000452 center_rank_error=452.000000 correction=-3.528554627788e-08 T=463.255372 derivative=12809777586.271208 rank_radius=250.000000 half_width=1.951634197521e-08 below=999999999750 above=1000000000253 band_count=503 target_inside=true enumerated=true recovered=true cands=503 A=3973240 B=4870829 splitA=[3,5,11] splitB=[2,7,13] exps=[55,126,27,54,2,52] digits=202",
-              "time_raw": "        0.63 real         0.45 user         0.16 sys\n           213291008  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               52367  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 216  involuntary context switches\n          2886505492  instructions retired\n          1612091047  cycles elapsed\n           212938752  peak memory footprint\n"
+              "stdout": "xplusy_corrected_band P=(2,3,5,7,11,13) k=6 N=1000000000000 seconds=0.586068 build=0.427267 count_phase=0.110937 band_phase=0.046297 exact=0.001314 raw_T=463.255372 raw_derivative=12809777591.096188 center_count=1000000000452 center_rank_error=452.000000 correction=-3.528554627788e-08 T=463.255372 derivative=12809777586.271208 rank_radius=250.000000 half_width=1.951634197521e-08 below=999999999750 above=1000000000253 band_count=503 target_inside=true enumerated=true recovered=true cands=503 A=3973240 B=4870829 splitA=[3,5,11] splitB=[2,7,13] exps=[55,126,27,54,2,52] digits=202",
+              "time_raw": "        0.66 real         0.47 user         0.17 sys\n           213336064  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               52378  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 255  involuntary context switches\n          2885617272  instructions retired\n          1669332777  cycles elapsed\n           212975616  peak memory footprint\n"
             },
             {
               "command": [
@@ -645,8 +645,8 @@
                 "30000000",
                 "200000000"
               ],
-              "elapsed_seconds": 2.542947615999765,
-              "max_rss_kb": 700112,
+              "elapsed_seconds": 2.5712252610001087,
+              "max_rss_kb": 700100,
               "metrics": {
                 "A": 4214806,
                 "B": 5166940,
@@ -662,15 +662,15 @@
                 "above": 1000000000253,
                 "attempts": 1,
                 "band_count": 503,
-                "band_phase": 0.043897,
+                "band_phase": 0.044978,
                 "below": 999999999750,
-                "build": 0.466241,
+                "build": 0.489344,
                 "cands": 503,
-                "count_phase": 0.065552,
+                "count_phase": 0.065467,
                 "derivative": 12809777586.262283,
                 "digits": 202,
                 "enumerated": true,
-                "exact": 0.001256,
+                "exact": 0.001245,
                 "exps": [
                   55,
                   126,
@@ -681,14 +681,14 @@
                 ],
                 "half_width": 1.951634197522e-08,
                 "k": 6,
-                "ma_phase": 1.793908,
+                "ma_phase": 1.796478,
                 "ma_skipped": false,
                 "n_square": 5166940,
                 "padded_a": 952134,
                 "padded_b": 0,
                 "rank_radius": 250.0,
                 "recovered": true,
-                "seconds": 2.416204,
+                "seconds": 2.444711,
                 "selected_T": 463.255372121282,
                 "splitA": [
                   3,
@@ -705,8 +705,8 @@
               "name": "xplusy_ma_full",
               "returncode": 0,
               "stderr": "",
-              "stdout": "xplusy_ma_full_unrank P=(2,3,5,7,11,13) k=6 N=1000000000000 seconds=2.416204 build=0.466241 ma_phase=1.793908 count_phase=0.065552 band_phase=0.043897 exact=0.001256 selected_T=463.255372121282 derivative=12809777586.262283 rank_radius=250.000000 half_width=1.951634197522e-08 below=999999999750 above=1000000000253 band_count=503 target_inside=true enumerated=true recovered=true ma_skipped=false ma_reason= attempts=1 cands=503 A=4214806 B=5166940 n_square=5166940 padded_a=952134 padded_b=0 splitA=[3,5,11] splitB=[2,7,13] exps=[55,126,27,54,2,52] digits=202",
-              "time_raw": "        2.53 real         1.87 user         0.61 sys\n           716914688  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              176644  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 892  involuntary context switches\n          6658024880  instructions retired\n          6207011321  cycles elapsed\n           484093952  peak memory footprint\n"
+              "stdout": "xplusy_ma_full_unrank P=(2,3,5,7,11,13) k=6 N=1000000000000 seconds=2.444711 build=0.489344 ma_phase=1.796478 count_phase=0.065467 band_phase=0.044978 exact=0.001245 selected_T=463.255372121282 derivative=12809777586.262283 rank_radius=250.000000 half_width=1.951634197522e-08 below=999999999750 above=1000000000253 band_count=503 target_inside=true enumerated=true recovered=true ma_skipped=false ma_reason= attempts=1 cands=503 A=4214806 B=5166940 n_square=5166940 padded_a=952134 padded_b=0 splitA=[3,5,11] splitB=[2,7,13] exps=[55,126,27,54,2,52] digits=202",
+              "time_raw": "        2.56 real         1.91 user         0.60 sys\n           716902400  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              176641  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 780  involuntary context switches\n          6655250257  instructions retired\n          6195233165  cycles elapsed\n           484081664  peak memory footprint\n"
             },
             {
               "command": [
@@ -715,8 +715,8 @@
                 "55,126,27,54,2,52",
                 "1000000000000"
               ],
-              "elapsed_seconds": 4.560659458999908,
-              "max_rss_kb": 539252,
+              "elapsed_seconds": 4.515304192000258,
+              "max_rss_kb": 539220,
               "metrics": {
                 "P": [
                   2,
@@ -728,7 +728,7 @@
                 ],
                 "ambiguous_possible": 1,
                 "ambiguous_resolved": 1,
-                "cert_seconds": 4.49593,
+                "cert_seconds": 4.45164,
                 "certified_count_le": 1000000000000,
                 "expected_N": 1000000000000,
                 "exps": [
@@ -747,8 +747,8 @@
               "name": "interval_audit",
               "returncode": 0,
               "stderr": "",
-              "stdout": "interval_audit_exps P=[2,3,5,7,11,13] exps=[55,126,27,54,2,52] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=3972984 groupB=4870517 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=4.49593",
-              "time_raw": "        4.55 real         4.04 user         0.42 sys\n           552194048  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              135095  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                1328  involuntary context switches\n          4877658320  instructions retired\n         10791691615  cycles elapsed\n           412856320  peak memory footprint\n"
+              "stdout": "interval_audit_exps P=[2,3,5,7,11,13] exps=[55,126,27,54,2,52] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=3972984 groupB=4870517 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=4.45164",
+              "time_raw": "        4.50 real         4.00 user         0.43 sys\n           552161280  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              135096  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                1076  involuntary context switches\n          4876591558  instructions retired\n         10662282635  cycles elapsed\n           412823552  peak memory footprint\n"
             }
           ],
           "slug": "P2_3_5_7_11_13"
@@ -757,8 +757,8 @@
           "N": 1000000000000,
           "comparison": {
             "certified": true,
-            "ma_reported_over_corrected_reported": 3.635871058690559,
-            "ma_wall_over_corrected_wall": 3.5392191404093465,
+            "ma_reported_over_corrected_reported": 3.614828887019296,
+            "ma_wall_over_corrected_wall": 3.517494582269923,
             "same_exps": true
           },
           "primes": "2,3,5,7,11,13,17,19",
@@ -772,8 +772,8 @@
                 "250",
                 "200000"
               ],
-              "elapsed_seconds": 1.3594132850003007,
-              "max_rss_kb": 365208,
+              "elapsed_seconds": 1.362105201000304,
+              "max_rss_kb": 365204,
               "metrics": {
                 "A": 7666020,
                 "B": 7876912,
@@ -791,18 +791,18 @@
                 "T": 209.099764,
                 "above": 1000000000454,
                 "band_count": 471,
-                "band_phase": 0.073976,
+                "band_phase": 0.066741,
                 "below": 999999999983,
-                "build": 1.043974,
+                "build": 1.068614,
                 "cands": 471,
                 "center_count": 1000001979534,
                 "center_rank_error": 1979534.0,
                 "correction": -5.370566943635e-05,
-                "count_phase": 0.169435,
+                "count_phase": 0.153471,
                 "derivative": 36858875278.345245,
                 "digits": 91,
                 "enumerated": true,
-                "exact": 0.00055,
+                "exact": 0.000568,
                 "exps": [
                   75,
                   28,
@@ -819,7 +819,7 @@
                 "raw_T": 209.099817,
                 "raw_derivative": 36858939117.148674,
                 "recovered": true,
-                "seconds": 1.288214,
+                "seconds": 1.289645,
                 "splitA": [
                   2,
                   7,
@@ -837,8 +837,8 @@
               "name": "xplusy_corrected",
               "returncode": 0,
               "stderr": "",
-              "stdout": "xplusy_corrected_band P=(2,3,5,7,11,13,17,19) k=8 N=1000000000000 seconds=1.288214 build=1.043974 count_phase=0.169435 band_phase=0.073976 exact=0.000550 raw_T=209.099817 raw_derivative=36858939117.148674 center_count=1000001979534 center_rank_error=1979534.000000 correction=-5.370566943635e-05 T=209.099764 derivative=36858875278.345245 rank_radius=250.000000 half_width=6.782626928035e-09 below=999999999983 above=1000000000454 band_count=471 target_inside=true enumerated=true recovered=true cands=471 A=7666020 B=7876912 splitA=[2,7,17,19] splitB=[3,5,11,13] exps=[75,28,9,16,3,22,5,1] digits=91",
-              "time_raw": "        1.35 real         1.06 user         0.25 sys\n           373972992  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               91602  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 336  involuntary context switches\n          6443506620  instructions retired\n          3502892023  cycles elapsed\n           373633024  peak memory footprint\n"
+              "stdout": "xplusy_corrected_band P=(2,3,5,7,11,13,17,19) k=8 N=1000000000000 seconds=1.289645 build=1.068614 count_phase=0.153471 band_phase=0.066741 exact=0.000568 raw_T=209.099817 raw_derivative=36858939117.148674 center_count=1000001979534 center_rank_error=1979534.000000 correction=-5.370566943635e-05 T=209.099764 derivative=36858875278.345245 rank_radius=250.000000 half_width=6.782626928035e-09 below=999999999983 above=1000000000454 band_count=471 target_inside=true enumerated=true recovered=true cands=471 A=7666020 B=7876912 splitA=[2,7,17,19] splitB=[3,5,11,13] exps=[75,28,9,16,3,22,5,1] digits=91",
+              "time_raw": "        1.35 real         1.06 user         0.26 sys\n           373968896  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               91609  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                 330  involuntary context switches\n          6443312143  instructions retired\n          3510003143  cycles elapsed\n           373628928  peak memory footprint\n"
             },
             {
               "command": [
@@ -851,8 +851,8 @@
                 "30000000",
                 "200000000"
               ],
-              "elapsed_seconds": 4.81126151799981,
-              "max_rss_kb": 1055444,
+              "elapsed_seconds": 4.791197665000254,
+              "max_rss_kb": 1055424,
               "metrics": {
                 "A": 8283636,
                 "B": 8512638,
@@ -870,15 +870,15 @@
                 "above": 1000000000224,
                 "attempts": 1,
                 "band_count": 480,
-                "band_phase": 0.072133,
+                "band_phase": 0.071201,
                 "below": 999999999744,
-                "build": 1.138744,
+                "build": 1.122801,
                 "cands": 480,
-                "count_phase": 0.104924,
+                "count_phase": 0.108188,
                 "derivative": 36858875270.84996,
                 "digits": 91,
                 "enumerated": true,
-                "exact": 0.00058,
+                "exact": 0.00054,
                 "exps": [
                   75,
                   28,
@@ -891,14 +891,14 @@
                 ],
                 "half_width": 6.782626929415e-09,
                 "k": 8,
-                "ma_phase": 3.293795,
+                "ma_phase": 3.286213,
                 "ma_skipped": false,
                 "n_square": 8512638,
                 "padded_a": 229002,
                 "padded_b": 0,
                 "rank_radius": 250.0,
                 "recovered": true,
-                "seconds": 4.68378,
+                "seconds": 4.661846,
                 "selected_T": 209.099763603491,
                 "splitA": [
                   2,
@@ -917,8 +917,8 @@
               "name": "xplusy_ma_full",
               "returncode": 0,
               "stderr": "",
-              "stdout": "xplusy_ma_full_unrank P=(2,3,5,7,11,13,17,19) k=8 N=1000000000000 seconds=4.683780 build=1.138744 ma_phase=3.293795 count_phase=0.104924 band_phase=0.072133 exact=0.000580 selected_T=209.099763603491 derivative=36858875270.849960 rank_radius=250.000000 half_width=6.782626929415e-09 below=999999999744 above=1000000000224 band_count=480 target_inside=true enumerated=true recovered=true ma_skipped=false ma_reason= attempts=1 cands=480 A=8283636 B=8512638 n_square=8512638 padded_a=229002 padded_b=0 splitA=[2,7,17,19] splitB=[3,5,11,13] exps=[75,28,9,16,3,22,5,1] digits=91",
-              "time_raw": "        4.80 real         3.52 user         1.18 sys\n          1080774656  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              402397  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                1381  involuntary context switches\n         13666889476  instructions retired\n         11917008969  cycles elapsed\n           893173760  peak memory footprint\n"
+              "stdout": "xplusy_ma_full_unrank P=(2,3,5,7,11,13,17,19) k=8 N=1000000000000 seconds=4.661846 build=1.122801 ma_phase=3.286213 count_phase=0.108188 band_phase=0.071201 exact=0.000540 selected_T=209.099763603491 derivative=36858875270.849960 rank_radius=250.000000 half_width=6.782626929415e-09 below=999999999744 above=1000000000224 band_count=480 target_inside=true enumerated=true recovered=true ma_skipped=false ma_reason= attempts=1 cands=480 A=8283636 B=8512638 n_square=8512638 padded_a=229002 padded_b=0 splitA=[2,7,17,19] splitB=[3,5,11,13] exps=[75,28,9,16,3,22,5,1] digits=91",
+              "time_raw": "        4.78 real         3.52 user         1.19 sys\n          1080754176  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              402405  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                1146  involuntary context switches\n         13673257224  instructions retired\n         11887030388  cycles elapsed\n           893153280  peak memory footprint\n"
             },
             {
               "command": [
@@ -927,8 +927,8 @@
                 "75,28,9,16,3,22,5,1",
                 "1000000000000"
               ],
-              "elapsed_seconds": 6.794097402999796,
-              "max_rss_kb": 748496,
+              "elapsed_seconds": 6.806280505999894,
+              "max_rss_kb": 748476,
               "metrics": {
                 "P": [
                   2,
@@ -942,7 +942,7 @@
                 ],
                 "ambiguous_possible": 1,
                 "ambiguous_resolved": 1,
-                "cert_seconds": 6.7469,
+                "cert_seconds": 6.75514,
                 "certified_count_le": 1000000000000,
                 "expected_N": 1000000000000,
                 "exps": [
@@ -963,8 +963,8 @@
               "name": "interval_audit",
               "returncode": 0,
               "stderr": "",
-              "stdout": "interval_audit_exps P=[2,3,5,7,11,13,17,19] exps=[75,28,9,16,3,22,5,1] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=7664576 groupB=7875417 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=6.7469",
-              "time_raw": "        6.78 real         6.10 user         0.56 sys\n           766459904  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              187414  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                1291  involuntary context switches\n          8721429781  instructions retired\n         16321799329  cycles elapsed\n           514539520  peak memory footprint\n"
+              "stdout": "interval_audit_exps P=[2,3,5,7,11,13,17,19] exps=[75,28,9,16,3,22,5,1] expected_N=1000000000000 certified_count_le=1000000000000 rank_certified=true groupA=7664576 groupB=7875417 overlapsB=0 ambiguous_possible=1 ambiguous_resolved=1 cert_seconds=6.75514",
+              "time_raw": "        6.79 real         6.10 user         0.56 sys\n           766439424  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n              187404  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                1458  involuntary context switches\n          8719795492  instructions retired\n         16250149018  cycles elapsed\n           514519040  peak memory footprint\n"
             }
           ],
           "slug": "P2_3_5_7_11_13_17_19"
@@ -991,26 +991,26 @@
           "version": "Apple clang version 21.0.0 (clang-2100.0.123.102)\nTarget: x86_64-apple-darwin25.5.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin"
         },
         "cpu_model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
-        "git_commit": "2263264ccb755499cf7b7c9b9a74fc3a334975c5",
+        "git_commit": "aaef2d09004798d1719614567c71f6f325f0cfe6",
         "git_dirty": false,
         "memory_bytes": 17179869184,
         "platform": "macOS-26.5.1-x86_64-i386-64bit-Mach-O",
         "python": "3.13.3",
         "system": "Darwin",
-        "timestamp_utc": "2026-06-15T22:42:09.014888+00:00"
+        "timestamp_utc": "2026-06-15T22:51:44.068759+00:00"
       },
       "schema": "smooth.lattice.ma_full_unrank_suite.v1",
       "summary_rows": [
         {
           "N": 1000000000000,
           "audit_returncode": 0,
-          "audit_wall_seconds": 6.152497035000124,
+          "audit_wall_seconds": 6.261377912000171,
           "certified": true,
           "corrected_band_count": 495,
-          "corrected_max_rss_kb": 427968,
-          "corrected_reported_seconds": 1.129629,
+          "corrected_max_rss_kb": 427984,
+          "corrected_reported_seconds": 1.138775,
           "corrected_returncode": 0,
-          "corrected_wall_seconds": 1.763063969000541,
+          "corrected_wall_seconds": 1.9133994789999633,
           "exps": [
             1052,
             26,
@@ -1021,31 +1021,31 @@
           "ma_A": 583828,
           "ma_B": 18731384,
           "ma_band_count": 494,
-          "ma_max_rss_kb": 1763800,
+          "ma_max_rss_kb": 1763764,
           "ma_n_square": 18731384,
           "ma_padded_a": 18147556,
           "ma_padded_b": 0,
-          "ma_phase_seconds": 5.923002,
+          "ma_phase_seconds": 5.806278,
           "ma_recovered": true,
-          "ma_reported_over_corrected_reported": 6.340611829193478,
-          "ma_reported_seconds": 7.162539,
+          "ma_reported_over_corrected_reported": 6.184333165023818,
+          "ma_reported_seconds": 7.042564,
           "ma_returncode": 0,
           "ma_skipped": false,
-          "ma_wall_over_corrected_wall": 4.149746196757162,
-          "ma_wall_seconds": 7.316267999999582,
+          "ma_wall_over_corrected_wall": 3.764789487015683,
+          "ma_wall_seconds": 7.203546243000346,
           "primes": "2,3,5,7,11",
           "same_exps": true
         },
         {
           "N": 1000000000000,
           "audit_returncode": 0,
-          "audit_wall_seconds": 4.560659458999908,
+          "audit_wall_seconds": 4.515304192000258,
           "certified": true,
           "corrected_band_count": 503,
-          "corrected_max_rss_kb": 208292,
-          "corrected_reported_seconds": 0.567856,
+          "corrected_max_rss_kb": 208336,
+          "corrected_reported_seconds": 0.586068,
           "corrected_returncode": 0,
-          "corrected_wall_seconds": 0.6457347529994877,
+          "corrected_wall_seconds": 0.6760462629999893,
           "exps": [
             55,
             126,
@@ -1057,31 +1057,31 @@
           "ma_A": 4214806,
           "ma_B": 5166940,
           "ma_band_count": 503,
-          "ma_max_rss_kb": 700112,
+          "ma_max_rss_kb": 700100,
           "ma_n_square": 5166940,
           "ma_padded_a": 952134,
           "ma_padded_b": 0,
-          "ma_phase_seconds": 1.793908,
+          "ma_phase_seconds": 1.796478,
           "ma_recovered": true,
-          "ma_reported_over_corrected_reported": 4.254959003691076,
-          "ma_reported_seconds": 2.416204,
+          "ma_reported_over_corrected_reported": 4.171377724086624,
+          "ma_reported_seconds": 2.444711,
           "ma_returncode": 0,
           "ma_skipped": false,
-          "ma_wall_over_corrected_wall": 3.938068385180722,
-          "ma_wall_seconds": 2.542947615999765,
+          "ma_wall_over_corrected_wall": 3.803327378203627,
+          "ma_wall_seconds": 2.5712252610001087,
           "primes": "2,3,5,7,11,13",
           "same_exps": true
         },
         {
           "N": 1000000000000,
           "audit_returncode": 0,
-          "audit_wall_seconds": 6.794097402999796,
+          "audit_wall_seconds": 6.806280505999894,
           "certified": true,
           "corrected_band_count": 471,
-          "corrected_max_rss_kb": 365208,
-          "corrected_reported_seconds": 1.288214,
+          "corrected_max_rss_kb": 365204,
+          "corrected_reported_seconds": 1.289645,
           "corrected_returncode": 0,
-          "corrected_wall_seconds": 1.3594132850003007,
+          "corrected_wall_seconds": 1.362105201000304,
           "exps": [
             75,
             28,
@@ -1095,18 +1095,18 @@
           "ma_A": 8283636,
           "ma_B": 8512638,
           "ma_band_count": 480,
-          "ma_max_rss_kb": 1055444,
+          "ma_max_rss_kb": 1055424,
           "ma_n_square": 8512638,
           "ma_padded_a": 229002,
           "ma_padded_b": 0,
-          "ma_phase_seconds": 3.293795,
+          "ma_phase_seconds": 3.286213,
           "ma_recovered": true,
-          "ma_reported_over_corrected_reported": 3.635871058690559,
-          "ma_reported_seconds": 4.68378,
+          "ma_reported_over_corrected_reported": 3.614828887019296,
+          "ma_reported_seconds": 4.661846,
           "ma_returncode": 0,
           "ma_skipped": false,
-          "ma_wall_over_corrected_wall": 3.5392191404093465,
-          "ma_wall_seconds": 4.81126151799981,
+          "ma_wall_over_corrected_wall": 3.517494582269923,
+          "ma_wall_seconds": 4.791197665000254,
           "primes": "2,3,5,7,11,13,17,19",
           "same_exps": true
         }
@@ -1147,13 +1147,13 @@
       "version": "Apple clang version 21.0.0 (clang-2100.0.123.102)\nTarget: x86_64-apple-darwin25.5.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin"
     },
     "cpu_model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
-    "git_commit": "2263264ccb755499cf7b7c9b9a74fc3a334975c5",
+    "git_commit": "aaef2d09004798d1719614567c71f6f325f0cfe6",
     "git_dirty": false,
     "memory_bytes": 17179869184,
     "platform": "macOS-26.5.1-x86_64-i386-64bit-Mach-O",
     "python": "3.13.3",
     "system": "Darwin",
-    "timestamp_utc": "2026-06-15T22:41:22.271624+00:00"
+    "timestamp_utc": "2026-06-15T22:50:57.277149+00:00"
   },
   "output_sensitive": {
     "artifact": "results/benchmarks/best_known_comparator_gate/output_sensitive_xplusy_1e6",
@@ -1169,16 +1169,16 @@
         "matselect2_comparable_cases": 3,
         "matselect2_exact_log_matches": 3,
         "matselect2_wins": 0,
-        "max_block_over_linear": 0.9798994974874371,
-        "max_ma_over_linear": 2.930904522613065,
-        "max_matselect2_over_linear": 10.927184466019419,
-        "mean_block_over_linear": 0.8825121289281279,
-        "mean_ma_over_linear": 2.174870800317018,
-        "mean_matselect2_over_linear": 9.620167656669393,
-        "min_block_over_linear": 0.7642163661581137,
-        "min_ma_over_linear": 1.6096579476861166,
-        "min_matselect2_over_linear": 7.651911468812877,
-        "range_pruning_wins": 3
+        "max_block_over_linear": 1.0412147505422995,
+        "max_ma_over_linear": 3.876434245366285,
+        "max_matselect2_over_linear": 11.364518976169464,
+        "mean_block_over_linear": 0.9531453682122057,
+        "mean_ma_over_linear": 2.848539503864853,
+        "mean_matselect2_over_linear": 9.701120596922914,
+        "min_block_over_linear": 0.8799646954986762,
+        "min_ma_over_linear": 1.7602905569007263,
+        "min_matselect2_over_linear": 8.819956616052062,
+        "range_pruning_wins": 2
       },
       "build_runs": [
         {
@@ -1190,22 +1190,22 @@
             "-o",
             "bin/smooth_xplusy_fj_loh_workbench"
           ],
-          "elapsed_seconds": 5.746988206000424,
-          "max_rss_kb": 110004,
+          "elapsed_seconds": 5.709900711000046,
+          "max_rss_kb": 109752,
           "metrics": {},
           "name": "build_sorted_matrix_workbench",
           "returncode": 0,
           "stderr": "",
           "stdout": "",
-          "time_raw": "        5.73 real         5.07 user         0.45 sys\n           112644096  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               48416  page reclaims\n                 720  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                 758  voluntary context switches\n                1787  involuntary context switches\n           151367982  instructions retired\n           193635119  cycles elapsed\n             1605632  peak memory footprint\n"
+          "time_raw": "        5.70 real         5.04 user         0.45 sys\n           112386048  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n               48567  page reclaims\n                 720  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                 758  voluntary context switches\n                1815  involuntary context switches\n           149278263  instructions retired\n           183695800  cycles elapsed\n             1474560  peak memory footprint\n"
         },
         {
           "command": [
             "bin/smooth_xplusy_fj_loh_workbench",
             "validate-ma"
           ],
-          "elapsed_seconds": 0.5556042449998131,
-          "max_rss_kb": 648,
+          "elapsed_seconds": 0.681175204000283,
+          "max_rss_kb": 696,
           "metrics": {
             "cases": 5185,
             "failures": 0,
@@ -1215,15 +1215,15 @@
           "returncode": 0,
           "stderr": "",
           "stdout": "ma_validate cases=5185 failures=0 max_delta=0.000000000000",
-          "time_raw": "        0.54 real         0.03 user         0.00 sys\n              663552  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                 442  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                   9  involuntary context switches\n           185322386  instructions retired\n            95416091  cycles elapsed\n              397312  peak memory footprint\n"
+          "time_raw": "        0.67 real         0.03 user         0.00 sys\n              712704  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                 454  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                  11  involuntary context switches\n           188595692  instructions retired\n            98719998  cycles elapsed\n              442368  peak memory footprint\n"
         },
         {
           "command": [
             "bin/smooth_xplusy_fj_loh_workbench",
             "validate-matselect2"
           ],
-          "elapsed_seconds": 0.041280949000793044,
-          "max_rss_kb": 664,
+          "elapsed_seconds": 0.03963194600055431,
+          "max_rss_kb": 668,
           "metrics": {
             "cases": 3233,
             "failures": 0,
@@ -1233,7 +1233,7 @@
           "returncode": 0,
           "stderr": "",
           "stdout": "matselect2_validate cases=3233 failures=0 max_delta=0.000000000000",
-          "time_raw": "        0.03 real         0.02 user         0.00 sys\n              679936  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                 446  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                   9  involuntary context switches\n           158883846  instructions retired\n            76841237  cycles elapsed\n              401408  peak memory footprint\n"
+          "time_raw": "        0.03 real         0.02 user         0.00 sys\n              684032  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                 447  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                   9  involuntary context switches\n           157266563  instructions retired\n            77686709  cycles elapsed\n              405504  peak memory footprint\n"
         }
       ],
       "cases": [
@@ -1254,11 +1254,11 @@
               ],
               "block_calls": 6,
               "block_log_delta": 0.0,
-              "block_total": 0.00052,
-              "build": 0.000192,
+              "block_total": 0.00048,
+              "build": 0.000181,
               "k": 5,
               "leaf": 512,
-              "linear_total": 0.000497,
+              "linear_total": 0.000461,
               "row_type": "block_rank"
             },
             {
@@ -1274,11 +1274,11 @@
               ],
               "block_calls": 6,
               "block_log_delta": 0.0,
-              "block_total": 0.000463,
-              "build": 0.000192,
+              "block_total": 0.000486,
+              "build": 0.000181,
               "k": 5,
               "leaf": 2048,
-              "linear_total": 0.000497,
+              "linear_total": 0.000461,
               "row_type": "block_rank"
             },
             {
@@ -1294,11 +1294,11 @@
               ],
               "block_calls": 6,
               "block_log_delta": 0.0,
-              "block_total": 0.000449,
-              "build": 0.000192,
+              "block_total": 0.000522,
+              "build": 0.000181,
               "k": 5,
               "leaf": 8192,
-              "linear_total": 0.000497,
+              "linear_total": 0.000461,
               "row_type": "block_rank"
             },
             {
@@ -1317,7 +1317,7 @@
               "padded_a": 3047,
               "padded_b": 0,
               "row_type": "ma_select_probe",
-              "sec": 0.0008,
+              "sec": 0.001341,
               "skipped": false
             },
             {
@@ -1338,7 +1338,7 @@
               "removed": 995330,
               "rep_pops": 21690,
               "row_type": "matselect2_heap_probe",
-              "sec": 0.003803,
+              "sec": 0.004066,
               "skipped": false
             },
             {
@@ -1354,7 +1354,7 @@
               "k": 5,
               "pairs": 486,
               "row_type": "loh_topk_probe",
-              "sec": 0.042071,
+              "sec": 0.043054,
               "skipped": false
             }
           ],
@@ -1364,7 +1364,7 @@
               "2,3,5,7,11",
               "1000000"
             ],
-            "elapsed_seconds": 0.07145518600009382,
+            "elapsed_seconds": 0.07037161300013395,
             "max_rss_kb": 31504,
             "metrics": {
               "A": 2410,
@@ -1381,13 +1381,13 @@
               "base_pops": 4670,
               "block_calls": 6,
               "block_log_delta": 0.0,
-              "block_total": 0.000449,
-              "build": 0.000192,
+              "block_total": 0.000522,
+              "build": 0.000181,
               "cand": 1783849,
               "iterations": 9,
               "k": 5,
               "leaf": 8192,
-              "linear_total": 0.000497,
+              "linear_total": 0.000461,
               "log": 54.685633151741,
               "log_delta": 0.0,
               "max_active_rows": 2410,
@@ -1397,54 +1397,54 @@
               "pairs": 486,
               "removed": 995330,
               "rep_pops": 21690,
-              "sec": 0.042071,
+              "sec": 0.043054,
               "skipped": false
             },
             "name": "sorted_matrix_workbench",
             "returncode": 0,
             "stderr": "",
-            "stdout": "block_rank P=(2,3,5,7,11) k=5 N=1000000 leaf=512 build=0.000192 A=2410 B=5457 linear_total=0.000497 block_total=0.000520 block_calls=6 block_log_delta=0.000000\nblock_rank P=(2,3,5,7,11) k=5 N=1000000 leaf=2048 build=0.000192 A=2410 B=5457 linear_total=0.000497 block_total=0.000463 block_calls=6 block_log_delta=0.000000\nblock_rank P=(2,3,5,7,11) k=5 N=1000000 leaf=8192 build=0.000192 A=2410 B=5457 linear_total=0.000497 block_total=0.000449 block_calls=6 block_log_delta=0.000000\nma_select_probe P=(2,3,5,7,11) k=5 N=1000000 skipped=false sec=0.000800 n_square=5457 padded_a=3047 padded_b=0 log=54.685633151741 log_delta=0.000000 reason=\nmatselect2_heap_probe P=(2,3,5,7,11) k=5 N=1000000 skipped=false sec=0.003803 iterations=9 rep_pops=21690 base_pops=4670 removed=995330 max_active_rows=2410 log=54.685633151741 log_delta=0.000000 reason=\nloh_topk_probe P=(2,3,5,7,11) k=5 N_probe=1000000 skipped=false sec=0.042071 cand=1783849 pairs=486 reason=",
-            "time_raw": "        0.06 real         0.03 user         0.02 sys\n            32260096  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                8157  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                  36  involuntary context switches\n           133408451  instructions retired\n           141543298  cycles elapsed\n            26083328  peak memory footprint\n"
+            "stdout": "block_rank P=(2,3,5,7,11) k=5 N=1000000 leaf=512 build=0.000181 A=2410 B=5457 linear_total=0.000461 block_total=0.000480 block_calls=6 block_log_delta=0.000000\nblock_rank P=(2,3,5,7,11) k=5 N=1000000 leaf=2048 build=0.000181 A=2410 B=5457 linear_total=0.000461 block_total=0.000486 block_calls=6 block_log_delta=0.000000\nblock_rank P=(2,3,5,7,11) k=5 N=1000000 leaf=8192 build=0.000181 A=2410 B=5457 linear_total=0.000461 block_total=0.000522 block_calls=6 block_log_delta=0.000000\nma_select_probe P=(2,3,5,7,11) k=5 N=1000000 skipped=false sec=0.001341 n_square=5457 padded_a=3047 padded_b=0 log=54.685633151741 log_delta=0.000000 reason=\nmatselect2_heap_probe P=(2,3,5,7,11) k=5 N=1000000 skipped=false sec=0.004066 iterations=9 rep_pops=21690 base_pops=4670 removed=995330 max_active_rows=2410 log=54.685633151741 log_delta=0.000000 reason=\nloh_topk_probe P=(2,3,5,7,11) k=5 N_probe=1000000 skipped=false sec=0.043054 cand=1783849 pairs=486 reason=",
+            "time_raw": "        0.06 real         0.03 user         0.02 sys\n            32260096  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                8162  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                  16  involuntary context switches\n           132805332  instructions retired\n           150284524  cycles elapsed\n            26083328  peak memory footprint\n"
           },
           "summary": {
             "A": 2410,
             "B": 5457,
-            "best_block_total": 0.000449,
-            "best_leaf": 8192,
+            "best_block_total": 0.00048,
+            "best_leaf": 512,
             "block_log_delta": 0.0,
-            "block_over_linear": 0.9034205231388329,
+            "block_over_linear": 1.0412147505422995,
             "block_rows": 3,
-            "linear_total": 0.000497,
+            "linear_total": 0.000461,
             "loh_N_probe": 1000000,
             "loh_cand": 1783849,
             "loh_pairs": 486,
             "loh_reason": "",
             "loh_rows": 1,
-            "loh_sec": 0.042071,
+            "loh_sec": 0.043054,
             "loh_skipped": false,
             "ma_log_delta": 0.0,
             "ma_n_square": 5457,
-            "ma_over_linear": 1.6096579476861166,
+            "ma_over_linear": 2.9088937093275486,
             "ma_padded_a": 3047,
             "ma_padded_b": 0,
             "ma_reason": "",
             "ma_rows": 1,
-            "ma_sec": 0.0008,
+            "ma_sec": 0.001341,
             "ma_skipped": false,
             "ma_wins_linear": false,
             "matselect2_base_pops": 4670,
             "matselect2_iterations": 9,
             "matselect2_log_delta": 0.0,
             "matselect2_max_active_rows": 2410,
-            "matselect2_over_linear": 7.651911468812877,
+            "matselect2_over_linear": 8.819956616052062,
             "matselect2_reason": "",
             "matselect2_removed": 995330,
             "matselect2_rep_pops": 21690,
             "matselect2_rows": 1,
-            "matselect2_sec": 0.003803,
+            "matselect2_sec": 0.004066,
             "matselect2_skipped": false,
             "matselect2_wins_linear": false,
-            "range_pruning_wins": true
+            "range_pruning_wins": false
           }
         },
         {
@@ -1465,11 +1465,11 @@
               ],
               "block_calls": 7,
               "block_log_delta": 0.0,
-              "block_total": 0.00078,
-              "build": 0.000292,
+              "block_total": 0.000827,
+              "build": 0.000366,
               "k": 6,
               "leaf": 512,
-              "linear_total": 0.000796,
+              "linear_total": 0.000826,
               "row_type": "block_rank"
             },
             {
@@ -1486,11 +1486,11 @@
               ],
               "block_calls": 7,
               "block_log_delta": 0.0,
-              "block_total": 0.000904,
-              "build": 0.000292,
+              "block_total": 0.000775,
+              "build": 0.000366,
               "k": 6,
               "leaf": 2048,
-              "linear_total": 0.000796,
+              "linear_total": 0.000826,
               "row_type": "block_rank"
             },
             {
@@ -1507,11 +1507,11 @@
               ],
               "block_calls": 7,
               "block_log_delta": 0.0,
-              "block_total": 0.001066,
-              "build": 0.000292,
+              "block_total": 0.000891,
+              "build": 0.000366,
               "k": 6,
               "leaf": 8192,
-              "linear_total": 0.000796,
+              "linear_total": 0.000826,
               "row_type": "block_rank"
             },
             {
@@ -1531,7 +1531,7 @@
               "padded_a": 1145,
               "padded_b": 0,
               "row_type": "ma_select_probe",
-              "sec": 0.002333,
+              "sec": 0.001454,
               "skipped": false
             },
             {
@@ -1553,7 +1553,7 @@
               "removed": 991584,
               "rep_pops": 40064,
               "row_type": "matselect2_heap_probe",
-              "sec": 0.008184,
+              "sec": 0.007367,
               "skipped": false
             },
             {
@@ -1570,7 +1570,7 @@
               "k": 6,
               "pairs": 500,
               "row_type": "loh_topk_probe",
-              "sec": 0.035434,
+              "sec": 0.037839,
               "skipped": false
             }
           ],
@@ -1580,8 +1580,8 @@
               "2,3,5,7,11,13",
               "1000000"
             ],
-            "elapsed_seconds": 0.07139170399932482,
-            "max_rss_kb": 31860,
+            "elapsed_seconds": 0.06943376000072021,
+            "max_rss_kb": 31780,
             "metrics": {
               "A": 5008,
               "B": 6153,
@@ -1598,13 +1598,13 @@
               "base_pops": 8416,
               "block_calls": 7,
               "block_log_delta": 0.0,
-              "block_total": 0.001066,
-              "build": 0.000292,
+              "block_total": 0.000891,
+              "build": 0.000366,
               "cand": 1810744,
               "iterations": 8,
               "k": 6,
               "leaf": 8192,
-              "linear_total": 0.000796,
+              "linear_total": 0.000826,
               "log": 41.775868064029,
               "log_delta": 0.0,
               "max_active_rows": 5008,
@@ -1614,51 +1614,51 @@
               "pairs": 500,
               "removed": 991584,
               "rep_pops": 40064,
-              "sec": 0.035434,
+              "sec": 0.037839,
               "skipped": false
             },
             "name": "sorted_matrix_workbench",
             "returncode": 0,
             "stderr": "",
-            "stdout": "block_rank P=(2,3,5,7,11,13) k=6 N=1000000 leaf=512 build=0.000292 A=5008 B=6153 linear_total=0.000796 block_total=0.000780 block_calls=7 block_log_delta=0.000000\nblock_rank P=(2,3,5,7,11,13) k=6 N=1000000 leaf=2048 build=0.000292 A=5008 B=6153 linear_total=0.000796 block_total=0.000904 block_calls=7 block_log_delta=0.000000\nblock_rank P=(2,3,5,7,11,13) k=6 N=1000000 leaf=8192 build=0.000292 A=5008 B=6153 linear_total=0.000796 block_total=0.001066 block_calls=7 block_log_delta=0.000000\nma_select_probe P=(2,3,5,7,11,13) k=6 N=1000000 skipped=false sec=0.002333 n_square=6153 padded_a=1145 padded_b=0 log=41.775868064029 log_delta=0.000000 reason=\nmatselect2_heap_probe P=(2,3,5,7,11,13) k=6 N=1000000 skipped=false sec=0.008184 iterations=8 rep_pops=40064 base_pops=8416 removed=991584 max_active_rows=5008 log=41.775868064029 log_delta=0.000000 reason=\nloh_topk_probe P=(2,3,5,7,11,13) k=6 N_probe=1000000 skipped=false sec=0.035434 cand=1810744 pairs=500 reason=",
-            "time_raw": "        0.06 real         0.03 user         0.02 sys\n            32624640  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                8246  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                  20  involuntary context switches\n           136805200  instructions retired\n           152820525  cycles elapsed\n            26234880  peak memory footprint\n"
+            "stdout": "block_rank P=(2,3,5,7,11,13) k=6 N=1000000 leaf=512 build=0.000366 A=5008 B=6153 linear_total=0.000826 block_total=0.000827 block_calls=7 block_log_delta=0.000000\nblock_rank P=(2,3,5,7,11,13) k=6 N=1000000 leaf=2048 build=0.000366 A=5008 B=6153 linear_total=0.000826 block_total=0.000775 block_calls=7 block_log_delta=0.000000\nblock_rank P=(2,3,5,7,11,13) k=6 N=1000000 leaf=8192 build=0.000366 A=5008 B=6153 linear_total=0.000826 block_total=0.000891 block_calls=7 block_log_delta=0.000000\nma_select_probe P=(2,3,5,7,11,13) k=6 N=1000000 skipped=false sec=0.001454 n_square=6153 padded_a=1145 padded_b=0 log=41.775868064029 log_delta=0.000000 reason=\nmatselect2_heap_probe P=(2,3,5,7,11,13) k=6 N=1000000 skipped=false sec=0.007367 iterations=8 rep_pops=40064 base_pops=8416 removed=991584 max_active_rows=5008 log=41.775868064029 log_delta=0.000000 reason=\nloh_topk_probe P=(2,3,5,7,11,13) k=6 N_probe=1000000 skipped=false sec=0.037839 cand=1810744 pairs=500 reason=",
+            "time_raw": "        0.06 real         0.03 user         0.02 sys\n            32542720  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                8226  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                  20  involuntary context switches\n           136815161  instructions retired\n           150555692  cycles elapsed\n            26152960  peak memory footprint\n"
           },
           "summary": {
             "A": 5008,
             "B": 6153,
-            "best_block_total": 0.00078,
-            "best_leaf": 512,
+            "best_block_total": 0.000775,
+            "best_leaf": 2048,
             "block_log_delta": 0.0,
-            "block_over_linear": 0.9798994974874371,
+            "block_over_linear": 0.9382566585956416,
             "block_rows": 3,
-            "linear_total": 0.000796,
+            "linear_total": 0.000826,
             "loh_N_probe": 1000000,
             "loh_cand": 1810744,
             "loh_pairs": 500,
             "loh_reason": "",
             "loh_rows": 1,
-            "loh_sec": 0.035434,
+            "loh_sec": 0.037839,
             "loh_skipped": false,
             "ma_log_delta": 0.0,
             "ma_n_square": 6153,
-            "ma_over_linear": 2.930904522613065,
+            "ma_over_linear": 1.7602905569007263,
             "ma_padded_a": 1145,
             "ma_padded_b": 0,
             "ma_reason": "",
             "ma_rows": 1,
-            "ma_sec": 0.002333,
+            "ma_sec": 0.001454,
             "ma_skipped": false,
             "ma_wins_linear": false,
             "matselect2_base_pops": 8416,
             "matselect2_iterations": 8,
             "matselect2_log_delta": 0.0,
             "matselect2_max_active_rows": 5008,
-            "matselect2_over_linear": 10.28140703517588,
+            "matselect2_over_linear": 8.918886198547215,
             "matselect2_reason": "",
             "matselect2_removed": 991584,
             "matselect2_rep_pops": 40064,
             "matselect2_rows": 1,
-            "matselect2_sec": 0.008184,
+            "matselect2_sec": 0.007367,
             "matselect2_skipped": false,
             "matselect2_wins_linear": false,
             "range_pruning_wins": true
@@ -1684,11 +1684,11 @@
               ],
               "block_calls": 10,
               "block_log_delta": 0.0,
-              "block_total": 0.001721,
-              "build": 0.000987,
+              "block_total": 0.00116,
+              "build": 0.001014,
               "k": 8,
               "leaf": 512,
-              "linear_total": 0.001442,
+              "linear_total": 0.001133,
               "row_type": "block_rank"
             },
             {
@@ -1707,11 +1707,11 @@
               ],
               "block_calls": 10,
               "block_log_delta": 0.0,
-              "block_total": 0.001118,
-              "build": 0.000987,
+              "block_total": 0.001046,
+              "build": 0.001014,
               "k": 8,
               "leaf": 2048,
-              "linear_total": 0.001442,
+              "linear_total": 0.001133,
               "row_type": "block_rank"
             },
             {
@@ -1730,11 +1730,11 @@
               ],
               "block_calls": 10,
               "block_log_delta": 0.0,
-              "block_total": 0.001102,
-              "build": 0.000987,
+              "block_total": 0.000997,
+              "build": 0.001014,
               "k": 8,
               "leaf": 8192,
-              "linear_total": 0.001442,
+              "linear_total": 0.001133,
               "row_type": "block_rank"
             },
             {
@@ -1756,7 +1756,7 @@
               "padded_a": 7039,
               "padded_b": 0,
               "row_type": "ma_select_probe",
-              "sec": 0.002861,
+              "sec": 0.004392,
               "skipped": false
             },
             {
@@ -1780,7 +1780,7 @@
               "removed": 989100,
               "rep_pops": 65940,
               "row_type": "matselect2_heap_probe",
-              "sec": 0.015757,
+              "sec": 0.012876,
               "skipped": false
             },
             {
@@ -1799,7 +1799,7 @@
               "k": 8,
               "pairs": 512,
               "row_type": "loh_topk_probe",
-              "sec": 0.037855,
+              "sec": 0.038988,
               "skipped": false
             }
           ],
@@ -1809,8 +1809,8 @@
               "2,3,5,7,11,13,17,19",
               "1000000"
             ],
-            "elapsed_seconds": 0.08423178599969106,
-            "max_rss_kb": 31908,
+            "elapsed_seconds": 0.08169006700063619,
+            "max_rss_kb": 31960,
             "metrics": {
               "A": 9420,
               "B": 16459,
@@ -1829,13 +1829,13 @@
               "base_pops": 10900,
               "block_calls": 10,
               "block_log_delta": 0.0,
-              "block_total": 0.001102,
-              "build": 0.000987,
+              "block_total": 0.000997,
+              "build": 0.001014,
               "cand": 1781200,
               "iterations": 7,
               "k": 8,
               "leaf": 8192,
-              "linear_total": 0.001442,
+              "linear_total": 0.001133,
               "log": 30.842164999432,
               "log_delta": 0.0,
               "max_active_rows": 9420,
@@ -1845,51 +1845,51 @@
               "pairs": 512,
               "removed": 989100,
               "rep_pops": 65940,
-              "sec": 0.037855,
+              "sec": 0.038988,
               "skipped": false
             },
             "name": "sorted_matrix_workbench",
             "returncode": 0,
             "stderr": "",
-            "stdout": "block_rank P=(2,3,5,7,11,13,17,19) k=8 N=1000000 leaf=512 build=0.000987 A=9420 B=16459 linear_total=0.001442 block_total=0.001721 block_calls=10 block_log_delta=0.000000\nblock_rank P=(2,3,5,7,11,13,17,19) k=8 N=1000000 leaf=2048 build=0.000987 A=9420 B=16459 linear_total=0.001442 block_total=0.001118 block_calls=10 block_log_delta=0.000000\nblock_rank P=(2,3,5,7,11,13,17,19) k=8 N=1000000 leaf=8192 build=0.000987 A=9420 B=16459 linear_total=0.001442 block_total=0.001102 block_calls=10 block_log_delta=0.000000\nma_select_probe P=(2,3,5,7,11,13,17,19) k=8 N=1000000 skipped=false sec=0.002861 n_square=16459 padded_a=7039 padded_b=0 log=30.842164999432 log_delta=0.000000 reason=\nmatselect2_heap_probe P=(2,3,5,7,11,13,17,19) k=8 N=1000000 skipped=false sec=0.015757 iterations=7 rep_pops=65940 base_pops=10900 removed=989100 max_active_rows=9420 log=30.842164999432 log_delta=0.000000 reason=\nloh_topk_probe P=(2,3,5,7,11,13,17,19) k=8 N_probe=1000000 skipped=false sec=0.037855 cand=1781200 pairs=512 reason=",
-            "time_raw": "        0.07 real         0.05 user         0.02 sys\n            32673792  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                8261  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                  26  involuntary context switches\n           179521662  instructions retired\n           180708554  cycles elapsed\n            26529792  peak memory footprint\n"
+            "stdout": "block_rank P=(2,3,5,7,11,13,17,19) k=8 N=1000000 leaf=512 build=0.001014 A=9420 B=16459 linear_total=0.001133 block_total=0.001160 block_calls=10 block_log_delta=0.000000\nblock_rank P=(2,3,5,7,11,13,17,19) k=8 N=1000000 leaf=2048 build=0.001014 A=9420 B=16459 linear_total=0.001133 block_total=0.001046 block_calls=10 block_log_delta=0.000000\nblock_rank P=(2,3,5,7,11,13,17,19) k=8 N=1000000 leaf=8192 build=0.001014 A=9420 B=16459 linear_total=0.001133 block_total=0.000997 block_calls=10 block_log_delta=0.000000\nma_select_probe P=(2,3,5,7,11,13,17,19) k=8 N=1000000 skipped=false sec=0.004392 n_square=16459 padded_a=7039 padded_b=0 log=30.842164999432 log_delta=0.000000 reason=\nmatselect2_heap_probe P=(2,3,5,7,11,13,17,19) k=8 N=1000000 skipped=false sec=0.012876 iterations=7 rep_pops=65940 base_pops=10900 removed=989100 max_active_rows=9420 log=30.842164999432 log_delta=0.000000 reason=\nloh_topk_probe P=(2,3,5,7,11,13,17,19) k=8 N_probe=1000000 skipped=false sec=0.038988 cand=1781200 pairs=512 reason=",
+            "time_raw": "        0.07 real         0.04 user         0.02 sys\n            32727040  maximum resident set size\n                   0  average shared memory size\n                   0  average unshared data size\n                   0  average unshared stack size\n                8273  page reclaims\n                   0  page faults\n                   0  swaps\n                   0  block input operations\n                   0  block output operations\n                   0  messages sent\n                   0  messages received\n                   0  signals received\n                   0  voluntary context switches\n                  32  involuntary context switches\n           180258583  instructions retired\n           180915062  cycles elapsed\n            26583040  peak memory footprint\n"
           },
           "summary": {
             "A": 9420,
             "B": 16459,
-            "best_block_total": 0.001102,
+            "best_block_total": 0.000997,
             "best_leaf": 8192,
             "block_log_delta": 0.0,
-            "block_over_linear": 0.7642163661581137,
+            "block_over_linear": 0.8799646954986762,
             "block_rows": 3,
-            "linear_total": 0.001442,
+            "linear_total": 0.001133,
             "loh_N_probe": 1000000,
             "loh_cand": 1781200,
             "loh_pairs": 512,
             "loh_reason": "",
             "loh_rows": 1,
-            "loh_sec": 0.037855,
+            "loh_sec": 0.038988,
             "loh_skipped": false,
             "ma_log_delta": 0.0,
             "ma_n_square": 16459,
-            "ma_over_linear": 1.9840499306518724,
+            "ma_over_linear": 3.876434245366285,
             "ma_padded_a": 7039,
             "ma_padded_b": 0,
             "ma_reason": "",
             "ma_rows": 1,
-            "ma_sec": 0.002861,
+            "ma_sec": 0.004392,
             "ma_skipped": false,
             "ma_wins_linear": false,
             "matselect2_base_pops": 10900,
             "matselect2_iterations": 7,
             "matselect2_log_delta": 0.0,
             "matselect2_max_active_rows": 9420,
-            "matselect2_over_linear": 10.927184466019419,
+            "matselect2_over_linear": 11.364518976169464,
             "matselect2_reason": "",
             "matselect2_removed": 989100,
             "matselect2_rep_pops": 65940,
             "matselect2_rows": 1,
-            "matselect2_sec": 0.015757,
+            "matselect2_sec": 0.012876,
             "matselect2_skipped": false,
             "matselect2_wins_linear": false,
             "range_pruning_wins": true
@@ -1912,13 +1912,13 @@
           "version": "Apple clang version 21.0.0 (clang-2100.0.123.102)\nTarget: x86_64-apple-darwin25.5.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin"
         },
         "cpu_model": "Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz",
-        "git_commit": "2263264ccb755499cf7b7c9b9a74fc3a334975c5",
+        "git_commit": "aaef2d09004798d1719614567c71f6f325f0cfe6",
         "git_dirty": true,
         "memory_bytes": 17179869184,
         "platform": "macOS-26.5.1-x86_64-i386-64bit-Mach-O",
         "python": "3.13.3",
         "system": "Darwin",
-        "timestamp_utc": "2026-06-15T22:42:09.470152+00:00"
+        "timestamp_utc": "2026-06-15T22:51:44.528191+00:00"
       },
       "schema": "smooth.lattice.sorted_matrix_workbench.v1",
       "summary_rows": [
@@ -1926,124 +1926,124 @@
           "A": 2410,
           "B": 5457,
           "N": 1000000,
-          "best_block_total": 0.000449,
-          "best_leaf": 8192,
+          "best_block_total": 0.00048,
+          "best_leaf": 512,
           "block_log_delta": 0.0,
-          "block_over_linear": 0.9034205231388329,
-          "linear_total": 0.000497,
+          "block_over_linear": 1.0412147505422995,
+          "linear_total": 0.000461,
           "loh_N_probe": 1000000,
           "loh_cand": 1783849,
           "loh_pairs": 486,
           "loh_reason": "",
-          "loh_sec": 0.042071,
+          "loh_sec": 0.043054,
           "loh_skipped": false,
           "ma_log_delta": 0.0,
           "ma_n_square": 5457,
-          "ma_over_linear": 1.6096579476861166,
+          "ma_over_linear": 2.9088937093275486,
           "ma_padded_a": 3047,
           "ma_padded_b": 0,
           "ma_reason": "",
-          "ma_sec": 0.0008,
+          "ma_sec": 0.001341,
           "ma_skipped": false,
           "ma_wins_linear": false,
           "matselect2_base_pops": 4670,
           "matselect2_iterations": 9,
           "matselect2_log_delta": 0.0,
           "matselect2_max_active_rows": 2410,
-          "matselect2_over_linear": 7.651911468812877,
+          "matselect2_over_linear": 8.819956616052062,
           "matselect2_reason": "",
           "matselect2_removed": 995330,
           "matselect2_rep_pops": 21690,
-          "matselect2_sec": 0.003803,
+          "matselect2_sec": 0.004066,
           "matselect2_skipped": false,
           "matselect2_wins_linear": false,
           "max_rss_kb": 31504,
           "primes": "2,3,5,7,11",
-          "range_pruning_wins": true,
+          "range_pruning_wins": false,
           "returncode": 0,
-          "wall_seconds": 0.07145518600009382
+          "wall_seconds": 0.07037161300013395
         },
         {
           "A": 5008,
           "B": 6153,
           "N": 1000000,
-          "best_block_total": 0.00078,
-          "best_leaf": 512,
+          "best_block_total": 0.000775,
+          "best_leaf": 2048,
           "block_log_delta": 0.0,
-          "block_over_linear": 0.9798994974874371,
-          "linear_total": 0.000796,
+          "block_over_linear": 0.9382566585956416,
+          "linear_total": 0.000826,
           "loh_N_probe": 1000000,
           "loh_cand": 1810744,
           "loh_pairs": 500,
           "loh_reason": "",
-          "loh_sec": 0.035434,
+          "loh_sec": 0.037839,
           "loh_skipped": false,
           "ma_log_delta": 0.0,
           "ma_n_square": 6153,
-          "ma_over_linear": 2.930904522613065,
+          "ma_over_linear": 1.7602905569007263,
           "ma_padded_a": 1145,
           "ma_padded_b": 0,
           "ma_reason": "",
-          "ma_sec": 0.002333,
+          "ma_sec": 0.001454,
           "ma_skipped": false,
           "ma_wins_linear": false,
           "matselect2_base_pops": 8416,
           "matselect2_iterations": 8,
           "matselect2_log_delta": 0.0,
           "matselect2_max_active_rows": 5008,
-          "matselect2_over_linear": 10.28140703517588,
+          "matselect2_over_linear": 8.918886198547215,
           "matselect2_reason": "",
           "matselect2_removed": 991584,
           "matselect2_rep_pops": 40064,
-          "matselect2_sec": 0.008184,
+          "matselect2_sec": 0.007367,
           "matselect2_skipped": false,
           "matselect2_wins_linear": false,
-          "max_rss_kb": 31860,
+          "max_rss_kb": 31780,
           "primes": "2,3,5,7,11,13",
           "range_pruning_wins": true,
           "returncode": 0,
-          "wall_seconds": 0.07139170399932482
+          "wall_seconds": 0.06943376000072021
         },
         {
           "A": 9420,
           "B": 16459,
           "N": 1000000,
-          "best_block_total": 0.001102,
+          "best_block_total": 0.000997,
           "best_leaf": 8192,
           "block_log_delta": 0.0,
-          "block_over_linear": 0.7642163661581137,
-          "linear_total": 0.001442,
+          "block_over_linear": 0.8799646954986762,
+          "linear_total": 0.001133,
           "loh_N_probe": 1000000,
           "loh_cand": 1781200,
           "loh_pairs": 512,
           "loh_reason": "",
-          "loh_sec": 0.037855,
+          "loh_sec": 0.038988,
           "loh_skipped": false,
           "ma_log_delta": 0.0,
           "ma_n_square": 16459,
-          "ma_over_linear": 1.9840499306518724,
+          "ma_over_linear": 3.876434245366285,
           "ma_padded_a": 7039,
           "ma_padded_b": 0,
           "ma_reason": "",
-          "ma_sec": 0.002861,
+          "ma_sec": 0.004392,
           "ma_skipped": false,
           "ma_wins_linear": false,
           "matselect2_base_pops": 10900,
           "matselect2_iterations": 7,
           "matselect2_log_delta": 0.0,
           "matselect2_max_active_rows": 9420,
-          "matselect2_over_linear": 10.927184466019419,
+          "matselect2_over_linear": 11.364518976169464,
           "matselect2_reason": "",
           "matselect2_removed": 989100,
           "matselect2_rep_pops": 65940,
-          "matselect2_sec": 0.015757,
+          "matselect2_sec": 0.012876,
           "matselect2_skipped": false,
           "matselect2_wins_linear": false,
-          "max_rss_kb": 31908,
+          "max_rss_kb": 31960,
           "primes": "2,3,5,7,11,13,17,19",
           "range_pruning_wins": true,
           "returncode": 0,
-          "wall_seconds": 0.08423178599969106
+          "wall_seconds": 0.08169006700063619
         }
       ]
     },
@@ -2079,15 +2079,15 @@
       ],
       "returncode": 0,
       "stderr": "",
-      "stdout": "soft_sequence_heap_bench n=20000 epsilon=0.250000 soft_sec=0.790572 binary_heap_sec=0.002595 corrupt_returns=19348"
+      "stdout": "soft_sequence_heap_bench n=20000 epsilon=0.250000 soft_sec=0.024353 binary_heap_sec=0.002724 corrupt_returns=19348"
     },
     "bench_row": {
-      "binary_heap_sec": 0.002595,
+      "binary_heap_sec": 0.002724,
       "corrupt_returns": 19348,
       "epsilon": 0.25,
       "n": 20000,
-      "soft_over_binary_heap": 304.6520231213873,
-      "soft_sec": 0.790572
+      "soft_over_binary_heap": 8.940161527165932,
+      "soft_sec": 0.024353
     },
     "build": {
       "command": [

@@ -1,7 +1,7 @@
 # Best-Known Comparator Gate
 
-- Timestamp: `2026-06-15T22:41:22.271624+00:00`
-- Git commit: `2263264ccb755499cf7b7c9b9a74fc3a334975c5`
+- Timestamp: `2026-06-15T22:50:57.277149+00:00`
+- Git commit: `aaef2d09004798d1719614567c71f6f325f0cfe6`
 - Git dirty: `False`
 
 ## Gate Summary
@@ -18,18 +18,18 @@
 - Cases: `3`
 - Certified same-exponent cases: `3`
 - MA wall-time wins: `0`
-- Mean MA/current wall ratio: `3.875677907449077`
+- Mean MA/current wall ratio: `3.6952038158297444`
 
 ## Output-Sensitive X+Y Probe
 
 - Artifact: `results/benchmarks/best_known_comparator_gate/output_sensitive_xplusy_1e6`
 - Cases: `3`
 - Completed cases: `3`
-- Mean block/linear ratio: `0.8825121289281279`
-- Mean MA/linear ratio: `2.174870800317018`
+- Mean block/linear ratio: `0.9531453682122057`
+- Mean MA/linear ratio: `2.848539503864853`
 - Mat-Select2 heap-primitive comparable cases: `3`
 - Mat-Select2 heap-primitive wins: `0`
-- Mean Mat-Select2 heap-primitive/linear ratio: `9.620167656669393`
+- Mean Mat-Select2 heap-primitive/linear ratio: `9.701120596922914`
 
 This is an output-sized probe at a feasible rank. It does not establish a
 full-rank random-access comparison when `N_probe` is much smaller than the
@@ -41,7 +41,7 @@ heap primitive; it is not a soft-heap time-bound implementation.
 
 - Status: `semantic_probe_validated_not_selector_integrated`
 - Validation rows: `3`
-- Timing row: `{'n': 20000, 'epsilon': 0.25, 'soft_sec': 0.790572, 'binary_heap_sec': 0.002595, 'corrupt_returns': 19348, 'soft_over_binary_heap': 304.6520231213873}`
+- Timing row: `{'n': 20000, 'epsilon': 0.25, 'soft_sec': 0.024353, 'binary_heap_sec': 0.002724, 'corrupt_returns': 19348, 'soft_over_binary_heap': 8.940161527165932}`
 
 The soft-heap row is a data-structure semantics probe. It checks the
 corruption-set/witness-set invariants and simultaneous corruption bound for
