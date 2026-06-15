@@ -60,6 +60,99 @@ template<typename CountFn>
 AdaptiveSel adaptive_select(const XYData&W, ull n, CountFn&& count_le, ull target_gap=20000){auto t0=std::chrono::high_resolution_clock::now(); double est=leading_est(W.P,n); double lo=std::max(0.0,est*0.70), hi=W.maxT; int calls=0; auto cfn=[&](double t){calls++; return count_le(t);}; ull c_hi=cfn(hi); if(c_hi<n) throw std::runtime_error("maxT too low"); ull c_lo=cfn(lo); while(c_lo>=n){hi=lo;c_hi=c_lo;lo*=.75;c_lo=cfn(lo);} auto tc0=std::chrono::high_resolution_clock::now(); int stagnant=0; for(int iter=0;iter<48;iter++){ull gap=c_hi-c_lo; if(gap<=target_gap)break; long double frac=((long double)n-c_lo)/((long double)c_hi-c_lo); if(!(frac>0&&frac<1))frac=.5; frac=std::min((long double).985,std::max((long double).015,frac)); double t=lo+(double)frac*(hi-lo); if(t<=lo+1e-14*(1+fabs(lo))||t>=hi-1e-14*(1+fabs(hi))||stagnant>=4){t=(lo+hi)/2;stagnant=0;} ull c=cfn(t); ull oldgap=gap; if(c>=n){hi=t;c_hi=c;}else{lo=t;c_lo=c;} ull ng=c_hi-c_lo; if(ng>oldgap*95/100)stagnant++;else stagnant=0;} for(int iter=0;iter<50&&c_hi-c_lo>target_gap;iter++){double mid=(lo+hi)/2; ull c=cfn(mid); if(c>=n){hi=mid;c_hi=c;}else{lo=mid;c_lo=c;}} auto tc1=std::chrono::high_resolution_clock::now(); auto tb0=std::chrono::high_resolution_clock::now(); std::vector<double> vals; vals.reserve((size_t)std::min<ull>(c_hi-c_lo+100,10000000ULL)); long long jhi=(long long)W.B.size()-1, jlo=(long long)W.B.size()-1; for(size_t i=0;i<W.A.size();i++){double a=W.A[i]; if(a>hi+EPS)break; while(jhi>=0 && a+W.B[(size_t)jhi]>hi+EPS)--jhi; if(jhi<0)break; while(jlo>=0 && a+W.B[(size_t)jlo]>lo+EPS)--jlo; long long start=jlo+1, end=jhi; for(long long j=start;j<=end;j++){double s=a+W.B[(size_t)j]; if(s>lo-EPS && s<=hi+EPS) vals.push_back(s);} }
     std::sort(vals.begin(), vals.end()); ull below=pair_count_linear(W.A,W.B,lo); long long off=(long long)n-(long long)below-1; double selected= (off>=0 && (size_t)off<vals.size())? vals[(size_t)off] : hi; auto tb1=std::chrono::high_resolution_clock::now(); auto t1=std::chrono::high_resolution_clock::now(); return {std::chrono::duration<double>(t1-t0).count(), std::chrono::duration<double>(tc1-tc0).count(), std::chrono::duration<double>(tb1-tb0).count(), selected, calls, c_hi-c_lo, (ull)vals.size()};}
 
+struct MatSelect2Result{double sec=0, selected=0; ull rep_pops=0, base_pops=0, removed=0; int iterations=0; size_t max_active_rows=0; bool skipped=false; std::string reason;};
+
+static ull capped_remaining(const std::vector<size_t>&offsets,size_t row_len,ull cap){
+    ull total=0;
+    for(size_t off: offsets){
+        if(off>=row_len) continue;
+        ull rem=(ull)(row_len-off);
+        if(total>cap-rem) return cap;
+        total+=rem;
+    }
+    return total;
+}
+
+static std::vector<size_t> active_rows(const std::vector<size_t>&offsets,size_t row_len){
+    std::vector<size_t> rows;
+    rows.reserve(offsets.size());
+    for(size_t i=0;i<offsets.size();i++) if(offsets[i]<row_len) rows.push_back(i);
+    return rows;
+}
+
+static bool matselect1_reps_heap(const std::vector<double>&A,const std::vector<double>&B,const std::vector<size_t>&offsets,const std::vector<size_t>&rows,ull block_size,std::vector<ull>&blocks,ull&rep_pops){
+    struct Node{double val; size_t row; ull block; bool operator>(const Node&o)const{return val>o.val || (val==o.val && (row>o.row || (row==o.row && block>o.block)));}};
+    std::priority_queue<Node,std::vector<Node>,std::greater<Node>> pq;
+    for(size_t row: rows){
+        ull pos=(ull)offsets[row]+block_size-1;
+        if(pos<B.size()) pq.push({A[row]+B[(size_t)pos],row,1});
+    }
+    blocks.assign(A.size(),0);
+    for(size_t t=0;t<rows.size();t++){
+        if(pq.empty()) return false;
+        Node x=pq.top(); pq.pop();
+        rep_pops++;
+        blocks[x.row]++;
+        ull next_block=x.block+1;
+        ull pos=(ull)offsets[x.row]+block_size*next_block-1;
+        if(pos<B.size()) pq.push({A[x.row]+B[(size_t)pos],x.row,next_block});
+    }
+    return true;
+}
+
+static bool matselect1_base_heap(const std::vector<double>&A,const std::vector<double>&B,const std::vector<size_t>&offsets,const std::vector<size_t>&rows,ull k,double&selected,ull&base_pops){
+    struct Node{double val; size_t row,pos; bool operator>(const Node&o)const{return val>o.val || (val==o.val && (row>o.row || (row==o.row && pos>o.pos)));}};
+    std::priority_queue<Node,std::vector<Node>,std::greater<Node>> pq;
+    for(size_t row: rows) if(offsets[row]<B.size()) pq.push({A[row]+B[offsets[row]],row,offsets[row]});
+    for(ull pop=1; pop<=k; pop++){
+        if(pq.empty()) return false;
+        Node x=pq.top(); pq.pop();
+        base_pops++;
+        selected=x.val;
+        size_t next=x.pos+1;
+        if(next<B.size()) pq.push({A[x.row]+B[next],x.row,next});
+    }
+    return true;
+}
+
+static MatSelect2Result matselect2_heap_value(const std::vector<double>&A,const std::vector<double>&B,ull k,size_t max_rows=1000000ULL,ull max_rep_pops=30000000ULL,ull max_base_pops=5000000ULL){
+    MatSelect2Result R; auto t0=std::chrono::high_resolution_clock::now();
+    if(k==0 || A.empty() || B.empty()){R.skipped=true;R.reason="empty_or_zero_rank";return R;}
+    std::vector<size_t> offsets(A.size(),0);
+    if(capped_remaining(offsets,B.size(),k)<k){R.skipped=true;R.reason="rank_outside_product";return R;}
+    while(true){
+        auto rows=active_rows(offsets,B.size());
+        R.max_active_rows=std::max(R.max_active_rows,rows.size());
+        if(rows.empty()){R.skipped=true;R.reason="active_rows_empty";return R;}
+        if(rows.size()>max_rows){R.skipped=true;R.reason="active_row_cap_exceeded";return R;}
+        ull m=(ull)rows.size();
+        if(k<=2*m){
+            if(R.base_pops+k>max_base_pops){R.skipped=true;R.reason="base_pop_cap_exceeded";return R;}
+            bool ok=matselect1_base_heap(A,B,offsets,rows,k,R.selected,R.base_pops);
+            if(!ok){R.skipped=true;R.reason="base_heap_underflow";return R;}
+            auto t1=std::chrono::high_resolution_clock::now();
+            R.sec=std::chrono::duration<double>(t1-t0).count();
+            return R;
+        }
+        ull b=k/(2*m);
+        if(b==0){R.skipped=true;R.reason="zero_block_size";return R;}
+        if(R.rep_pops+m>max_rep_pops){R.skipped=true;R.reason="representative_pop_cap_exceeded";return R;}
+        std::vector<ull> blocks;
+        bool ok=matselect1_reps_heap(A,B,offsets,rows,b,blocks,R.rep_pops);
+        if(!ok){R.skipped=true;R.reason="representative_heap_underflow";return R;}
+        for(size_t row: rows){
+            if(blocks[row]==0) continue;
+            ull shift=b*blocks[row];
+            if(shift>(ull)B.size()) offsets[row]=B.size();
+            else offsets[row]=std::min(B.size(),offsets[row]+(size_t)shift);
+            R.removed+=shift;
+        }
+        k-=b*m;
+        R.iterations++;
+        if(capped_remaining(offsets,B.size(),k)<k){R.skipped=true;R.reason="post_shift_rank_outside_remaining";return R;}
+    }
+}
+
 struct LOHLayer{size_t s,e; double mn,mx;};
 static std::vector<LOHLayer> make_layers_sorted(const std::vector<double>&X, double alpha=1.35){ std::vector<LOHLayer>L; size_t n=X.size(), pos=0; double sz=1.0; while(pos<n){ size_t len=std::max<size_t>(1,(size_t)std::floor(sz)); if(L.size() && len <= L.back().e-L.back().s) len=(L.back().e-L.back().s)+1; size_t e=std::min(n,pos+len); L.push_back({pos,e,X[pos],X[e-1]}); pos=e; sz*=alpha; } return L; }
 struct LOHResult{double sec=0; double selected=0; size_t cand=0; size_t layer_pairs=0; bool skipped=false; std::string reason;};
@@ -204,9 +297,34 @@ int main(int argc,char**argv){ std::cout.setf(std::ios::fixed); std::cout<<std::
         std::cout<<"ma_validate cases="<<cases<<" failures="<<failures<<" max_delta="<<std::setprecision(12)<<max_delta<<std::setprecision(6)<<"\n";
         return failures==0?0:1;
     }
+    if(argc>=2 && std::string(argv[1])=="validate-matselect2"){
+        size_t cases=0, failures=0; double max_delta=0.0;
+        for(size_t na: {1ul,2ul,3ul,5ul,8ul,13ul,21ul}){
+            for(size_t nb: {1ul,2ul,4ul,7ul,16ul,31ul}){
+                std::vector<double>A,B;
+                for(size_t i=0;i<na;i++) A.push_back(0.11*(double)i + 0.013*(double)(i*i%7));
+                for(size_t j=0;j<nb;j++) B.push_back(0.17*(double)j + 0.019*(double)(j*j%11));
+                std::sort(A.begin(),A.end()); std::sort(B.begin(),B.end());
+                std::vector<double> vals; vals.reserve(na*nb);
+                for(double a:A)for(double b:B)vals.push_back(a+b);
+                std::sort(vals.begin(),vals.end());
+                for(ull k=1;k<=(ull)vals.size();k++){
+                    auto ms=matselect2_heap_value(A,B,k,10000,1000000,1000000);
+                    double delta=ms.skipped?std::numeric_limits<double>::infinity():fabs(ms.selected-vals[(size_t)k-1]);
+                    if(delta>max_delta&&std::isfinite(delta))max_delta=delta;
+                    if(ms.skipped||delta>1e-10)failures++;
+                    cases++;
+                }
+            }
+        }
+        std::cout<<"matselect2_validate cases="<<cases<<" failures="<<failures<<" max_delta="<<std::setprecision(12)<<max_delta<<std::setprecision(6)<<"\n";
+        return failures==0?0:1;
+    }
     std::vector<std::pair<int,ull>> cases; if(argc>=3){auto P=parse_csv(argv[1]); ull N=std::stoull(argv[2]); cases.push_back({(int)P.size(),N}); double est=leading_est(P,N); double maxT=std::max(1e-9,est*1.02+1e-8); XYData W(P,maxT); auto lin=adaptive_select(W,N,[&](double t){return pair_count_linear(W.A,W.B,t);}); for(size_t leaf: {512ul,2048ul,8192ul}){ BlockCounter bc(W.A,W.B,leaf); auto t0=std::chrono::high_resolution_clock::now(); auto blk=adaptive_select(W,N,[&](double t){return bc.count(t);}); auto t1=std::chrono::high_resolution_clock::now(); std::cout<<"block_rank P="<<join_primes(P)<<" k="<<P.size()<<" N="<<N<<" leaf="<<leaf<<" build="<<W.build_sec<<" A="<<W.A.size()<<" B="<<W.B.size()<<" linear_total="<<lin.sec<<" block_total="<<blk.sec<<" block_calls="<<blk.calls<<" block_log_delta="<<fabs(blk.selected-lin.selected)<<"\n"; }
         auto ma=ma_select_xplusy_value(W.A,W.B,N);
         std::cout<<"ma_select_probe P="<<join_primes(P)<<" k="<<P.size()<<" N="<<N<<" skipped="<<(ma.skipped?"true":"false")<<" sec="<<ma.sec<<" n_square="<<ma.n_square<<" padded_a="<<ma.padded_a<<" padded_b="<<ma.padded_b<<" log="<<std::setprecision(12)<<ma.selected<<std::setprecision(6)<<" log_delta="<<(ma.skipped?0.0:fabs(ma.selected-lin.selected))<<" reason="<<ma.reason<<"\n";
+        auto ms=matselect2_heap_value(W.A,W.B,N);
+        std::cout<<"matselect2_heap_probe P="<<join_primes(P)<<" k="<<P.size()<<" N="<<N<<" skipped="<<(ms.skipped?"true":"false")<<" sec="<<ms.sec<<" iterations="<<ms.iterations<<" rep_pops="<<ms.rep_pops<<" base_pops="<<ms.base_pops<<" removed="<<ms.removed<<" max_active_rows="<<ms.max_active_rows<<" log="<<std::setprecision(12)<<ms.selected<<std::setprecision(6)<<" log_delta="<<(ms.skipped?0.0:fabs(ms.selected-lin.selected))<<" reason="<<ms.reason<<"\n";
         auto loh=loh_topk_select(W.A,W.B,std::min<ull>(N,1000000ULL),1.35,30000000ULL); std::cout<<"loh_topk_probe P="<<join_primes(P)<<" k="<<P.size()<<" N_probe="<<std::min<ull>(N,1000000ULL)<<" skipped="<<(loh.skipped?"true":"false")<<" sec="<<loh.sec<<" cand="<<loh.cand<<" pairs="<<loh.layer_pairs<<" reason="<<loh.reason<<"\n"; return 0; }
 
     std::vector<int> ks={4,5,6,8,10,12}; std::vector<ull> Ns={1000000ULL,1000000000ULL,1000000000000ULL}; for(int k:ks){ for(ull N:Ns){ if(k>=12 && N>1000000000ULL) continue; auto P=first_primes(k); double est=leading_est(P,N); double maxT=std::max(1e-9,est*1.02+1e-8); XYData W(P,maxT); auto lin=adaptive_select(W,N,[&](double t){return pair_count_linear(W.A,W.B,t);}); std::cout<<"fj_loh_workbench P="<<join_primes(P)<<" k="<<k<<" N="<<N<<" build="<<W.build_sec<<" A="<<W.A.size()<<" B="<<W.B.size()<<" splitA="<<idx_to_primes(W.Aidx,P)<<" splitB="<<idx_to_primes(W.Bidx,P)<<" linear_total="<<lin.sec<<" linear_count="<<lin.count_sec<<" linear_calls="<<lin.calls<<" linear_band="<<lin.band<<" linear_log="<<std::setprecision(12)<<lin.selected<<std::setprecision(6);

@@ -4,8 +4,11 @@
 This is deliberately a workbench, not a headline baseline. The range-pruned
 block counter is a practical sorted-matrix probe, not a faithful implementation
 of Frederickson-Johnson selection. The Mirzaian-Arjomandi row is a value
-selection probe, not full exponent-vector unranking. The LOH row is an
-output-style top-k probe and is only run at a capped rank.
+selection probe, not full exponent-vector unranking. The `matselect2_heap` row
+implements the Kaplan/Frederickson-Johnson-style exponential-block row-sorted
+selector using an exact binary heap for the Mat-Select1 primitive; it is not a
+soft-heap time-bound implementation. The LOH row is an output-style top-k probe
+and is only run at a capped rank.
 """
 from __future__ import annotations
 
@@ -93,10 +96,12 @@ def run_case(single, primes: str, n: int) -> dict[str, Any]:
 def summarize_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
     block_rows = [row for row in rows if row.get("row_type") == "block_rank"]
     ma_rows = [row for row in rows if row.get("row_type") == "ma_select_probe"]
+    mat_rows = [row for row in rows if row.get("row_type") == "matselect2_heap_probe"]
     loh_rows = [row for row in rows if row.get("row_type") == "loh_topk_probe"]
     summary: dict[str, Any] = {
         "block_rows": len(block_rows),
         "ma_rows": len(ma_rows),
+        "matselect2_rows": len(mat_rows),
         "loh_rows": len(loh_rows),
     }
     if block_rows:
@@ -133,6 +138,28 @@ def summarize_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
                 "ma_padded_b": ma.get("padded_b"),
                 "ma_reason": ma.get("reason", ""),
                 "ma_wins_linear": bool(ma_over_linear != "" and ma_over_linear < 1.0),
+            }
+        )
+    if mat_rows:
+        mat = mat_rows[0]
+        mat_sec = mat.get("sec", "")
+        linear_total = summary.get("linear_total")
+        mat_over_linear = ""
+        if mat_sec != "" and linear_total not in {None, "", 0} and mat.get("skipped") is False:
+            mat_over_linear = float(mat_sec) / float(linear_total)
+        summary.update(
+            {
+                "matselect2_skipped": mat.get("skipped"),
+                "matselect2_sec": mat_sec,
+                "matselect2_over_linear": mat_over_linear,
+                "matselect2_log_delta": mat.get("log_delta"),
+                "matselect2_iterations": mat.get("iterations"),
+                "matselect2_rep_pops": mat.get("rep_pops"),
+                "matselect2_base_pops": mat.get("base_pops"),
+                "matselect2_removed": mat.get("removed"),
+                "matselect2_max_active_rows": mat.get("max_active_rows"),
+                "matselect2_reason": mat.get("reason", ""),
+                "matselect2_wins_linear": bool(mat_over_linear != "" and mat_over_linear < 1.0),
             }
         )
     if loh_rows:
@@ -176,6 +203,17 @@ def summary_row(case: dict[str, Any]) -> dict[str, Any]:
         "ma_padded_b": summary.get("ma_padded_b", ""),
         "ma_wins_linear": summary.get("ma_wins_linear", ""),
         "ma_reason": summary.get("ma_reason", ""),
+        "matselect2_skipped": summary.get("matselect2_skipped", ""),
+        "matselect2_sec": summary.get("matselect2_sec", ""),
+        "matselect2_over_linear": summary.get("matselect2_over_linear", ""),
+        "matselect2_log_delta": summary.get("matselect2_log_delta", ""),
+        "matselect2_iterations": summary.get("matselect2_iterations", ""),
+        "matselect2_rep_pops": summary.get("matselect2_rep_pops", ""),
+        "matselect2_base_pops": summary.get("matselect2_base_pops", ""),
+        "matselect2_removed": summary.get("matselect2_removed", ""),
+        "matselect2_max_active_rows": summary.get("matselect2_max_active_rows", ""),
+        "matselect2_wins_linear": summary.get("matselect2_wins_linear", ""),
+        "matselect2_reason": summary.get("matselect2_reason", ""),
         "loh_N_probe": summary.get("loh_N_probe", ""),
         "loh_skipped": summary.get("loh_skipped", ""),
         "loh_sec": summary.get("loh_sec", ""),
@@ -194,6 +232,10 @@ def aggregate(rows: list[dict[str, Any]]) -> dict[str, Any]:
     ma_wins = [row for row in ma_comparable if row["ma_wins_linear"] is True]
     ma_ratios = [float(row["ma_over_linear"]) for row in ma_comparable]
     ma_correct = [row for row in ma_comparable if float(row["ma_log_delta"]) == 0.0]
+    mat_comparable = [row for row in completed if row["matselect2_over_linear"] != "" and row["matselect2_skipped"] is False]
+    mat_wins = [row for row in mat_comparable if row["matselect2_wins_linear"] is True]
+    mat_ratios = [float(row["matselect2_over_linear"]) for row in mat_comparable]
+    mat_correct = [row for row in mat_comparable if float(row["matselect2_log_delta"]) == 0.0]
     return {
         "cases": len(rows),
         "completed_cases": len(completed),
@@ -202,6 +244,9 @@ def aggregate(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "ma_comparable_cases": len(ma_comparable),
         "ma_wins": len(ma_wins),
         "ma_exact_log_matches": len(ma_correct),
+        "matselect2_comparable_cases": len(mat_comparable),
+        "matselect2_wins": len(mat_wins),
+        "matselect2_exact_log_matches": len(mat_correct),
         "all_completed": len(completed) == len(rows),
         "min_block_over_linear": min(ratios) if ratios else None,
         "max_block_over_linear": max(ratios) if ratios else None,
@@ -209,6 +254,9 @@ def aggregate(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "min_ma_over_linear": min(ma_ratios) if ma_ratios else None,
         "max_ma_over_linear": max(ma_ratios) if ma_ratios else None,
         "mean_ma_over_linear": sum(ma_ratios) / len(ma_ratios) if ma_ratios else None,
+        "min_matselect2_over_linear": min(mat_ratios) if mat_ratios else None,
+        "max_matselect2_over_linear": max(mat_ratios) if mat_ratios else None,
+        "mean_matselect2_over_linear": sum(mat_ratios) / len(mat_ratios) if mat_ratios else None,
     }
 
 
@@ -224,6 +272,8 @@ def write_outputs(out_dir: Path, report: dict[str, Any]) -> None:
 
     validation = next((run for run in report.get("build_runs", []) if run.get("name") == "validate_ma_selector"), {})
     validation_metrics = validation.get("metrics", {})
+    mat_validation = next((run for run in report.get("build_runs", []) if run.get("name") == "validate_matselect2_heap"), {})
+    mat_validation_metrics = mat_validation.get("metrics", {})
     lines = [
         "# Sorted-Matrix / LOH X+Y Workbench",
         "",
@@ -237,28 +287,42 @@ def write_outputs(out_dir: Path, report: dict[str, Any]) -> None:
         f"- Mean block/linear internal time ratio: `{report['aggregate']['mean_block_over_linear']}`",
         f"- Mirzaian-Arjomandi probe wins over linear saddleback count: `{report['aggregate']['ma_wins']}`",
         f"- Mean Mirzaian-Arjomandi/linear internal time ratio: `{report['aggregate']['mean_ma_over_linear']}`",
+        f"- Mat-Select2 heap-primitive wins over linear saddleback count: `{report['aggregate']['matselect2_wins']}`",
+        f"- Mean Mat-Select2 heap-primitive/linear internal time ratio: `{report['aggregate']['mean_matselect2_over_linear']}`",
         f"- Mirzaian-Arjomandi exhaustive validation cases: `{validation_metrics.get('cases', '')}`",
         f"- Mirzaian-Arjomandi exhaustive validation failures: `{validation_metrics.get('failures', '')}`",
         f"- Mirzaian-Arjomandi exhaustive validation max delta: `{validation_metrics.get('max_delta', '')}`",
+        f"- Mat-Select2 heap-primitive exhaustive validation cases: `{mat_validation_metrics.get('cases', '')}`",
+        f"- Mat-Select2 heap-primitive exhaustive validation failures: `{mat_validation_metrics.get('failures', '')}`",
+        f"- Mat-Select2 heap-primitive exhaustive validation max delta: `{mat_validation_metrics.get('max_delta', '')}`",
         "",
         "The `block_rank` rows are sorted-matrix range-pruning probes, not a faithful",
         "Frederickson-Johnson implementation. The `ma_select_probe` row adapts the",
         "Mirzaian-Arjomandi square sorted-matrix selector by padding the shorter MITM",
-        "side and selects only a log value. The `loh_topk_probe` row uses a capped",
+        "side and selects only a log value. The `matselect2_heap_probe` row implements",
+        "the exponential-block selector from the Kaplan/Frederickson-Johnson line of",
+        "algorithms with an exact binary heap for the primitive that is soft-heap based",
+        "in the asymptotic paper algorithm. The `loh_topk_probe` row uses a capped",
         "output-style top-k rank (`N_probe`) and is not evidence for random access at",
         "the full rank when `N_probe != N`.",
         "",
-        "| P | linear total s | best block s | block/linear | MA s | MA/linear | MA delta | wall s | RSS KB | LOH probe N | LOH s |",
-        "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
+        "| P | linear total s | best block s | block/linear | MA s | MA/linear | Mat2 s | Mat2/linear | Mat2 delta | wall s | RSS KB | LOH probe N | LOH s |",
+        "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for row in rows:
+        mat_sec = row["matselect2_sec"]
+        mat_ratio = row["matselect2_over_linear"]
+        mat_delta = row["matselect2_log_delta"]
+        mat_sec_text = f"{float(mat_sec):.6f}" if mat_sec != "" else ""
+        mat_ratio_text = f"{float(mat_ratio):.6f}" if mat_ratio != "" else ""
+        mat_delta_text = f"{float(mat_delta):.6g}" if mat_delta != "" else ""
         lines.append(
             f"| `{row['primes']}` | {float(row['linear_total']):.6f} | "
             f"{float(row['best_block_total']):.6f} | "
             f"{float(row['block_over_linear']):.6f} | "
             f"{float(row['ma_sec']):.6f} | "
             f"{float(row['ma_over_linear']):.6f} | "
-            f"{float(row['ma_log_delta']):.6g} | "
+            f"{mat_sec_text} | {mat_ratio_text} | {mat_delta_text} | "
             f"{float(row['wall_seconds']):.6f} | "
             f"{row['max_rss_kb']} | {row['loh_N_probe']} | {float(row['loh_sec']):.6f} |"
         )
@@ -309,6 +373,18 @@ def main() -> int:
         out_dir.mkdir(parents=True, exist_ok=True)
         (out_dir / "report.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
         print(f"MA validation failed; wrote partial report to {out_dir}")
+        return 1
+    validate_mat = single.run_measured(
+        "validate_matselect2_heap",
+        ["bin/smooth_xplusy_fj_loh_workbench", "validate-matselect2"],
+    )
+    report["build_runs"].append(validate_mat)
+    if not result_ok(validate_mat):
+        report["summary_rows"] = []
+        report["aggregate"] = {"status": "matselect2_validation_failed"}
+        out_dir.mkdir(parents=True, exist_ok=True)
+        (out_dir / "report.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+        print(f"Mat-Select2 validation failed; wrote partial report to {out_dir}")
         return 1
 
     for primes in prime_sets:

@@ -744,6 +744,8 @@ The exploratory sorted-matrix workbench probes two adjacent comparator ideas:
 - a range-pruned block counter over the sorted Cartesian-sum matrix;
 - a Mirzaian-Arjomandi square sorted-matrix value-selection probe, adapted to
   rectangular MITM splits by padding the shorter side;
+- a Kaplan/Frederickson-Johnson-style Mat-Select2 exponential-block row-sorted
+  selector using an exact binary heap for the Mat-Select1 primitive;
 - an LOH-style output top-k probe at a capped rank.
 
 Use:
@@ -769,6 +771,10 @@ Important caveats:
   a faithful Frederickson-Johnson selection implementation.
 - The Mirzaian-Arjomandi row selects a log value only. It does not reconstruct
   an exponent vector and does not certify a rank by itself.
+- The Mat-Select2 row implements the exponential-block row-sorted selector, but
+  the primitive that is soft-heap based in the asymptotic paper algorithm is
+  implemented here with an exact binary heap. It is therefore a serious
+  algorithmic bridge, not a full soft-heap time-bound comparison.
 - The LOH row is an output-style top-k probe. When `N_probe != N`, it is not a
   random-access unranking comparator for the full target rank.
 - These results should be reported as diagnostic or negative evidence unless a
@@ -801,6 +807,29 @@ faithful value-selection comparator for the sorted-matrix problem, and it does
 not strengthen the practical X+Y baseline at the headline five-prime target
 scale. It still does not discharge the full Frederickson-Johnson or soft-heap
 comparison obligations for full unranking.
+
+Mat-Select2 heap-primitive first-k artifact:
+
+```bash
+python3 scripts/run_sorted_matrix_workbench.py \
+  --out-dir results/benchmarks/sorted_matrix_matselect2_heap_firstk_1e12 \
+  --N 1000000000000 \
+  --prime-set 2,3,5,7,11 \
+  --prime-set 2,3,5,7,11,13 \
+  --prime-set 2,3,5,7,11,13,17,19
+```
+
+Observed result:
+
+- Mat-Select2 heap-primitive exhaustive validation passed 3233/3233 cases.
+- The first k=5 target matched the selected log exactly.
+- It won 0/1 comparable timing rows; Mat-Select2/current linear ratio was
+  13.0590.
+- The first k=6 and k=8 rows were skipped by the active-row cap.
+
+This is negative evidence for the exact-heap Mat-Select2 bridge. It also gives
+the next implementation target a precise shape: replace the exact heap primitive
+with a real soft heap before making any soft-heap claim.
 
 ## Mirzaian-Arjomandi Full-Unrank Comparator
 

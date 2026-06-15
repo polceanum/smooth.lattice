@@ -8,7 +8,7 @@ This project targets fixed-prime random access, not general smooth-number counti
 - `benchmarks/heap_frontier_baseline.cpp`: canonical duplicate-free heap/frontier generation. It returns the full exponent vector by expanding children in nondecreasing prime-index order, so each exponent vector has one frontier path. It is a serious sequential-generation comparator, not a random-access method.
 - `benchmarks/smooth_xplusy_baseline.cpp`: practical adaptive Cartesian-sum value-selection baseline.
 - `benchmarks/smooth_xplusy_full_unrank.cpp`: practical materialized Cartesian-sum full-unrank baseline. It stores exponent packs on both MITM sides, narrows to a log-value band, exact-sorts the candidate band by multiprecision integer value, and returns an exponent vector. Its modes include adaptive X+Y, residual-corrected analytic X+Y, and a Mirzaian-Arjomandi sorted-matrix selector wrapped with the same exact reconstruction step.
-- `benchmarks/smooth_xplusy_fj_loh_workbench.cpp`: exploratory sorted-matrix/range-pruning, Mirzaian-Arjomandi value-selection, and LOH-style probes. Use `scripts/run_sorted_matrix_workbench.py` for reproducible artifacts; this is not a faithful Frederickson-Johnson or soft-heap implementation.
+- `benchmarks/smooth_xplusy_fj_loh_workbench.cpp`: exploratory sorted-matrix/range-pruning, Mirzaian-Arjomandi value-selection, Kaplan/Frederickson-Johnson-style Mat-Select2 heap-primitive, and LOH-style probes. Use `scripts/run_sorted_matrix_workbench.py` for reproducible artifacts; this is not a full soft-heap implementation.
 
 ## Current priority comparison
 
@@ -73,9 +73,10 @@ analytic asymptotic bracket in all six cases; this is an optimization seed, not
 a certificate.
 
 Use `python3 scripts/run_sorted_matrix_workbench.py` to record exploratory
-sorted-matrix/range-pruning, Mirzaian-Arjomandi value-selection, and LOH probes.
-These rows are useful negative or diagnostic evidence, but they do not discharge
-the "full Frederickson-Johnson" or "full soft-heap X+Y" comparison obligations.
+sorted-matrix/range-pruning, Mirzaian-Arjomandi value-selection,
+Mat-Select2 heap-primitive, and LOH probes. These rows are useful negative or
+diagnostic evidence, but they do not discharge the "full soft-heap X+Y"
+comparison obligation.
 
 In the clean six-case `N=10^12` workbench artifact at commit
 `17a7e40ae790ae9017ab8274204eaaf107add212`, the range-pruned block counter
@@ -110,6 +111,20 @@ MA/corrected wall-time ratio was 3.7859. This is the current cleanest
 best-known-style comparator checkpoint in the repository, but it is still
 narrowly about Mirzaian-Arjomandi sorted-matrix value selection wrapped into
 full unranking.
+
+The Mat-Select2 heap-primitive artifact adds a direct
+Kaplan/Frederickson-Johnson-style exponential-block row-sorted selector probe:
+
+```text
+results/benchmarks/sorted_matrix_matselect2_heap_firstk_1e12/
+```
+
+It passed 3233/3233 exhaustive small validation cases. On the first
+k=5, N=10^12 target it matched the selected log exactly but was 13.0590x slower
+than the current linear saddleback selector. The first k=6 and k=8 rows were
+skipped by the active-row cap. This is useful negative evidence for the
+exponential-block selector with an exact binary heap primitive, but it is still
+not a full soft-heap time-bound implementation.
 
 Use `python3 scripts/run_heap_frontier_baseline_suite.py` for the full
 heap/frontier comparator. The heap baseline returns exponent vectors, and the
@@ -160,7 +175,7 @@ cap.
 
 ## Not yet fully implemented
 
-- Full Frederickson-Johnson sorted matrix selection.
+- Full soft-heap time-bound sorted matrix / X+Y selection.
 - Full soft-heap X+Y selection implementations.
 - Competitive target-scale Barvinok/Normaliz-style fixed-dimensional
   lattice-point counting.

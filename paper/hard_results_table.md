@@ -144,6 +144,12 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   comparisons; MA/current wall-time ratios were 3.5898, 4.0593, and 3.7086
   with mean 3.7859. Artifact:
   `results/benchmarks/ma_full_unrank_first_k_1e12/`.
+- Kaplan/Frederickson-Johnson-style Mat-Select2 heap-primitive comparator,
+  first 5, 6, and 8 primes at N=10^12: exhaustive small validation passed
+  3233/3233 cases. The first k=5 row matched the selected log exactly but won
+  0/1 timing comparisons, with Mat-Select2/current linear ratio 13.0590. The
+  first k=6 and k=8 rows were skipped by active-row cap. Artifact:
+  `results/benchmarks/sorted_matrix_matselect2_heap_firstk_1e12/`.
 - Serious-comparator gate: the MA full-unrank gate passed with 3/3 certified
   rows and 0/3 MA wall-time wins, mean MA/current ratio 3.5772. The
   output-sensitive X+Y probe at N=10^6 completed 3/3 rows, with range-pruning

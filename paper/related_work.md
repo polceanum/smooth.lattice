@@ -143,14 +143,22 @@ Sources to cite:
 
 Current implementation status:
 
-- Not implemented faithfully.
+- Partially implemented as a practical bridge.
 - `benchmarks/smooth_xplusy_fj_loh_workbench.cpp` contains a range-pruned
   sorted-matrix counting probe. It is FJ-style diagnostic code, not the published
   FJ algorithm.
+- The same workbench now contains a Mat-Select2 exponential-block row-sorted
+  selector using an exact binary heap for its Mat-Select1 primitive. It passed
+  exhaustive small validation, but the first-k artifact is negative and this is
+  not the soft-heap primitive used for the asymptotic bound.
 - The clean workbench result at
   `results/benchmarks/sorted_matrix_workbench_1e12/` is negative/mixed: the
   range-pruned block counter won only 2/6 cases, narrowly, and was slower on
   average.
+- The Mat-Select2 heap-primitive artifact
+  `results/benchmarks/sorted_matrix_matselect2_heap_firstk_1e12/` had 0/1
+  timing wins on comparable first-k rows and skipped larger rows by active-row
+  cap.
 
 Acceptance criteria before claiming an FJ comparison:
 
@@ -178,9 +186,11 @@ Source to cite:
 
 Current implementation status:
 
-- Not implemented.
+- Not implemented as a true soft heap.
 - The current heap/frontier baseline is ordinary exact frontier generation, not
   the soft-heap selection primitive from this paper.
+- The Mat-Select2 heap-primitive probe uses an exact binary heap where the
+  asymptotic paper algorithm relies on a soft-heap primitive.
 - The current LOH probe is an output-style top-k diagnostic capped at
   `N_probe=10^6`; it is not a full-rank `N=10^12` random-access comparator.
 

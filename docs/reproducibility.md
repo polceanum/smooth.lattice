@@ -42,8 +42,9 @@ audits the returned exponent vector with the independent interval auditor.
 
 The full-X+Y and sorted-matrix workbench harnesses follow the same artifact
 format. The sorted-matrix workbench is diagnostic: its Mirzaian-Arjomandi row is
-value selection only, its LOH row is capped, and neither is a full exponent-vector
-unrank certificate.
+value selection only, its Mat-Select2 row uses an exact binary heap primitive
+instead of the paper soft-heap primitive, its LOH row is capped, and none of
+these rows is a full exponent-vector unrank certificate.
 
 The heap-frontier harness also writes `report.json`, `summary.csv`, and
 `report.md`. It compares a canonical full-vector frontier generator against the

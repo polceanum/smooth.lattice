@@ -20,14 +20,16 @@
 - Include raw logs and CSV outputs.
 
 ## Milestone 5: Comparator obligation closure
-- Decide whether the paper will implement a faithful Frederickson-Johnson or
-  soft-heap `X+Y` comparator. If yes, satisfy the acceptance checklist in
-  `paper/related_work.md`.
+- Replace the current Mat-Select2 exact-heap primitive with a true soft-heap
+  primitive if the paper will claim a soft-heap `X+Y` comparison. Satisfy the
+  acceptance checklist in `paper/related_work.md` before making that claim.
 - If no, say so explicitly in the paper: current implemented comparators are DP,
   heap/frontier where present, adaptive materialized `X+Y`, full materialized
-  `X+Y` unrank, and diagnostic sorted-matrix/LOH workbench probes.
-- Keep the negative sorted-matrix/range-pruning artifact in the benchmark
-  section rather than silently dropping it.
+  `X+Y` unrank, diagnostic sorted-matrix/LOH probes, and the negative
+  Mat-Select2 exact-heap bridge.
+- Keep the negative sorted-matrix/range-pruning, Mat-Select2 heap-primitive, and
+  Normaliz artifacts in the benchmark section rather than silently dropping
+  them.
 
 ## Milestone 6: Paper draft
 - Submit after theorem statements, certified k<=12 benchmarks, and a clear comparison section are complete.

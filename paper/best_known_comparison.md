@@ -82,6 +82,10 @@ Observed at commit `d3e2f716a92ef6e8270bb5b1bc346205f69f77f1`:
 - Barvinok-style external count gate: PyNormaliz toy lattice-count validation
   passed, but the certified-target rationalized simplexes timed out under the
   bounded gate; no external-count speed claim is made.
+- Kaplan/Frederickson-Johnson-style Mat-Select2 heap-primitive: implemented as
+  an exact row-sorted selector probe. It passed exhaustive small validation, but
+  on the first k=5, N=10^12 row it was 13.0590x slower than the current linear
+  saddleback selector; k=6 and k=8 were skipped by active-row cap.
 
 Gate details:
 
@@ -96,9 +100,14 @@ Gate details:
   rational-vertex path passed 2/2 known toy simplex counts. The three
   certified-target rationalized simplexes at one decimal digit all timed out at
   the gate's 5-second per-count cap.
+- Mat-Select2 heap-primitive artifact:
+  `results/benchmarks/sorted_matrix_matselect2_heap_firstk_1e12/`. Validation
+  passed 3233/3233 small cases; the single comparable first-k target was exact
+  but slower by a factor of 13.0590.
 
 The gate is a status artifact, not a victory lap. It says exactly where the
 repository stands today: one published sorted-matrix selector comparison is
-cleanly beaten on certified rows; full FJ and soft-heap comparisons still need
-real implementations, while the off-the-shelf Normaliz path is presently a
-documented timeout rather than a competitive count oracle.
+cleanly beaten on certified rows; the Mat-Select2 heap-primitive path is now a
+documented negative comparator; full soft-heap comparisons still need real
+implementation, while the off-the-shelf Normaliz path is presently a documented
+timeout rather than a competitive count oracle.
