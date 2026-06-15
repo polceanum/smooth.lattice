@@ -136,11 +136,12 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   first k=6 and k=8 rows were skipped by active-row cap. Artifact:
   `results/benchmarks/sorted_matrix_matselect2_heap_firstk_1e12/`.
 - Serious-comparator gate: the MA full-unrank gate passed, the output-sensitive
-  X+Y probe executed at N=10^6, full FJ and soft-heap gates remained open/not
-  implemented, Mat-Select2 heap-primitive matched the selected log in 3/3 probe
-  rows but won 0/3 timing comparisons, and PyNormaliz passed 2/2 known toy
-  simplex counts but timed out on 3/3 certified-target rationalized simplexes at
-  the 5-second per-count cap. Artifact:
+  X+Y probe executed at N=10^6, full FJ remained open/not implemented, the
+  soft-heap gate advanced to a validated but slow soft-sequence-heap semantics
+  probe, Mat-Select2 heap-primitive matched the selected log in 3/3 probe rows
+  but won 0/3 timing comparisons, and PyNormaliz passed 2/2 known toy simplex
+  counts but timed out on 3/3 certified-target rationalized simplexes at the
+  5-second per-count cap. Artifact:
   `results/benchmarks/best_known_comparator_gate/`.
 - 8 primes, P=(2,3,5,7,11,13,17,19), N=10^12: exps
   [75,28,9,16,3,22,5,1], high-k sums-only solver output independently

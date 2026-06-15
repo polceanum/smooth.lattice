@@ -179,10 +179,11 @@ Barvinok-style lattice counting.
 Use `python3 scripts/run_best_known_comparator_gate.py` to produce the current
 serious-comparator status dashboard. In the current artifact, the MA
 full-unrank gate passed, the output-sensitive `X+Y` probe executed at N=10^6,
-full FJ and soft-heap gates remained open/not implemented, and the
-Barvinok/Normaliz external count path passed PyNormaliz toy simplex validation
-but timed out on certified-target rationalized simplexes under the configured
-cap.
+full FJ remained open/not implemented, and the soft-heap gate advanced to a
+validated soft-sequence-heap semantics probe that is still slow and not
+selector-integrated. The Barvinok/Normaliz external count path passed
+PyNormaliz toy simplex validation but timed out on certified-target
+rationalized simplexes under the configured cap.
 
 ## Not yet fully implemented
 

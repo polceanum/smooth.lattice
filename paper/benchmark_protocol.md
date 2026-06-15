@@ -945,7 +945,8 @@ Observed result in the gate artifact:
 - Mirzaian-Arjomandi full-unrank gate passed.
 - Output-sensitive `X+Y`/LOH probe gate executed at N=10^6.
 - Full Frederickson-Johnson gate remained open/not implemented.
-- Soft-heap `X+Y` gate remained open/not implemented.
+- Soft-heap `X+Y` gate advanced to
+  `semantic_probe_validated_not_selector_integrated`.
 - Barvinok-style external count gate found installed tools, exported rational
   simplex inputs, passed PyNormaliz toy simplex counts, and timed out on all
   certified-target rationalized simplexes under the configured cap.
@@ -953,12 +954,15 @@ Observed result in the gate artifact:
 Numerical summary:
 
 - MA first-k comparison: 3/3 completed and certified, 0/3 MA wall-time wins,
-  mean MA/current wall ratio 3.8332.
+  mean MA/current wall ratio 3.8757.
 - Output-sensitive probe: 3/3 completed, range-pruning won 2/3 against linear
-  saddleback count at N=10^6 with mean block/linear ratio 0.9567; MA value
-  selection won 0/3 with mean MA/linear ratio 2.0078. Mat-Select2 heap-primitive
+  saddleback count at N=10^6 with mean block/linear ratio 0.8825; MA value
+  selection won 0/3 with mean MA/linear ratio 2.1749. Mat-Select2 heap-primitive
   matched the selected log in 3/3 rows, won 0/3 timing comparisons, and had mean
-  Mat-Select2/linear ratio 10.1674.
+  Mat-Select2/linear ratio 9.6202.
+- Soft-sequence-heap probe: 3/3 validation rows passed at
+  `n=2048, epsilon=0.25`. The timing probe at `n=20000` was negative for speed:
+  the vector-backed soft-sequence heap was 304.6520x slower than a binary heap.
 - Barvinok/Normaliz statuses: `barvinok_count` returned -11 on toy 1D and 2D
   ISL inputs. PyNormaliz passed 2/2 known rational-vertex toy simplex counts,
   but timed out on 3/3 certified-target rationalized simplexes at the 5-second

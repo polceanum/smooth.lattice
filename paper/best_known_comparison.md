@@ -78,7 +78,8 @@ Observed at commit `d3e2f716a92ef6e8270bb5b1bc346205f69f77f1`:
 - Mirzaian-Arjomandi full-unrank gate: passed.
 - Output-sensitive `X+Y`/LOH probe gate at N=10^6: executed.
 - Full Frederickson-Johnson gate: open, not implemented.
-- Soft-heap `X+Y` gate: open, not implemented.
+- Soft-heap `X+Y` gate: semantic soft-sequence-heap probe validated, not
+  selector-integrated.
 - Barvinok-style external count gate: PyNormaliz toy lattice-count validation
   passed, but the certified-target rationalized simplexes timed out under the
   bounded gate; no external-count speed claim is made.
@@ -90,12 +91,15 @@ Observed at commit `d3e2f716a92ef6e8270bb5b1bc346205f69f77f1`:
 Gate details:
 
 - MA first-k comparison: 3/3 completed and certified, 0/3 MA wall-time wins,
-  mean MA/current wall ratio 3.8332.
+  mean MA/current wall ratio 3.8757.
 - Output-sensitive probe: 3/3 completed, range-pruning beat linear saddleback
-  in 2/3 rows at N=10^6 with mean block/linear ratio 0.9567; MA value selection
-  won 0/3 with mean MA/linear ratio 2.0078. Mat-Select2 heap-primitive matched
+  in 2/3 rows at N=10^6 with mean block/linear ratio 0.8825; MA value selection
+  won 0/3 with mean MA/linear ratio 2.1749. Mat-Select2 heap-primitive matched
   the selected log in 3/3 rows, won 0/3 timing comparisons, and had mean
-  Mat-Select2/linear ratio 10.1674.
+  Mat-Select2/linear ratio 9.6202.
+- Soft-sequence-heap probe: 3/3 validation rows passed at
+  `n=2048, epsilon=0.25`; the timing probe at `n=20000` was 304.6520x slower
+  than a binary heap, so it is not a speed comparator.
 - Barvinok/Normaliz availability: `barvinok_count`, `normaliz`, and
   `PyNormaliz` were installed in the `smooth-lattice-count` conda environment.
   `barvinok_count` still segfaulted on toy ISL sets, but the PyNormaliz
@@ -109,7 +113,8 @@ Gate details:
 
 The gate is a status artifact, not a victory lap. It says exactly where the
 repository stands today: one published sorted-matrix selector comparison is
-cleanly beaten on certified rows; the Mat-Select2 heap-primitive path is now a
-documented negative comparator; full soft-heap comparisons still need real
-implementation, while the off-the-shelf Normaliz path is presently a documented
+cleanly beaten on certified rows; the Mat-Select2 heap-primitive path is a
+documented negative comparator; soft-heap work has moved from absent to a
+validated semantics probe, but still needs a fast selector-integrated
+implementation; the off-the-shelf Normaliz path is presently a documented
 timeout rather than a competitive count oracle.
