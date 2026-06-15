@@ -1,7 +1,7 @@
 # Best-Known Comparator Gate
 
-- Timestamp: `2026-06-15T22:18:48.267944+00:00`
-- Git commit: `43e2c5e3a3ab3be2b50cb81826b005241df82f51`
+- Timestamp: `2026-06-15T22:22:47.786221+00:00`
+- Git commit: `3c852e9b88e955b6e4e8de6d55b9c90a2476c703`
 - Git dirty: `False`
 
 ## Gate Summary
@@ -18,18 +18,18 @@
 - Cases: `3`
 - Certified same-exponent cases: `3`
 - MA wall-time wins: `0`
-- Mean MA/current wall ratio: `3.676013427632196`
+- Mean MA/current wall ratio: `3.8331755528502947`
 
 ## Output-Sensitive X+Y Probe
 
 - Artifact: `results/benchmarks/best_known_comparator_gate/output_sensitive_xplusy_1e6`
 - Cases: `3`
 - Completed cases: `3`
-- Mean block/linear ratio: `0.8435155867637523`
-- Mean MA/linear ratio: `1.7874088092643674`
+- Mean block/linear ratio: `0.9566811987145698`
+- Mean MA/linear ratio: `2.007773448900695`
 - Mat-Select2 heap-primitive comparable cases: `3`
 - Mat-Select2 heap-primitive wins: `0`
-- Mean Mat-Select2 heap-primitive/linear ratio: `10.231261425814914`
+- Mean Mat-Select2 heap-primitive/linear ratio: `10.167390045375946`
 
 This is an output-sized probe at a feasible rank. It does not establish a
 full-rank random-access comparison when `N_probe` is much smaller than the
@@ -57,7 +57,8 @@ rank problem.
 ## Bottom Line
 
 The repository currently has a clean, certified comparison against a
-published Mirzaian-Arjomandi sorted-matrix selector wrapper. Full
-Frederickson-Johnson and an actual soft-heap implementation remain open
-obligations. The external Normaliz path now has executable toy-count
-validation and bounded certified-target attempts.
+published Mirzaian-Arjomandi sorted-matrix selector wrapper. The
+Mat-Select2 heap-primitive bridge is implemented and negative on the
+current probe. A true soft-heap implementation remains an open obligation.
+The external Normaliz path has executable toy-count validation and bounded
+certified-target attempts.
