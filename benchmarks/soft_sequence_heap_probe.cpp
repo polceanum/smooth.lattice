@@ -39,6 +39,7 @@ public:
         items_.push_back(Item{key, value});
         sequences_.insert(sequences_.begin(), Sequence{0, {idx}, 0});
         inserted_++;
+        live_++;
 
         while (sequences_.size() >= 2 && sequences_[0].rank == sequences_[1].rank) {
             Sequence merged = merge_sequences(sequences_[0], sequences_[1]);
@@ -48,7 +49,7 @@ public:
     }
 
     bool empty() const {
-        return live_count() == 0;
+        return live_ == 0;
     }
 
     std::size_t inserted_count() const {
@@ -56,11 +57,7 @@ public:
     }
 
     std::size_t live_count() const {
-        std::size_t n = 0;
-        for (const auto& item : items_) {
-            if (item.live) n++;
-        }
-        return n;
+        return live_;
     }
 
     std::size_t corrupt_count() const {
@@ -91,6 +88,7 @@ public:
                     throw std::runtime_error("invalid corrupted-set head during extract");
                 }
                 ix.live = false;
+                live_--;
                 ix.c_owner = -1;
                 return Extracted{ix.value, ix.key, h.key, true, {}};
             }
@@ -108,6 +106,7 @@ public:
             h.wset.clear();
 
             h.live = false;
+            live_--;
             seq.head++;
             if (seq.head >= seq.items.size()) {
                 sequences_.erase(sequences_.begin() + si);
@@ -131,6 +130,7 @@ public:
         std::vector<int> in_sequence(items_.size(), 0);
         std::vector<int> in_cset(items_.size(), 0);
         std::vector<int> in_wset(items_.size(), 0);
+        std::size_t actual_live = 0;
 
         for (const auto& seq : sequences_) {
             if (seq.head >= seq.items.size()) return fail("empty sequence retained");
@@ -174,11 +174,14 @@ public:
                 if (in_sequence[i] || in_cset[i] || in_wset[i]) return fail("dead item is still referenced");
                 continue;
             }
+            actual_live++;
             if (in_sequence[i] + in_cset[i] != 1) return fail("live item is not in exactly one primary place");
             if (in_wset[i] > 1) return fail("item has multiple witnesses");
             if (item.w_owner >= 0 && in_wset[i] != 1) return fail("w_owner without W membership");
             if (item.w_owner < 0 && in_wset[i] != 0) return fail("W membership without w_owner");
         }
+
+        if (actual_live != live_) return fail("cached live count mismatch");
 
         if (corrupt_count() > corrupt_bound()) {
             std::ostringstream os;
@@ -284,6 +287,7 @@ private:
     double epsilon_;
     int r0_;
     std::size_t inserted_ = 0;
+    std::size_t live_ = 0;
     std::vector<Item> items_;
     std::vector<Sequence> sequences_;
 };
