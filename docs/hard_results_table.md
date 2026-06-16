@@ -135,6 +135,12 @@ Given a fixed ordered prime set P = {p1,...,pk} and a rank N, return the exponen
   0/1 timing comparisons, with Mat-Select2/current linear ratio 12.7823. The
   first k=6 and k=8 rows were skipped by active-row cap. Artifact:
   `results/benchmarks/sorted_matrix_matselect2_heap_firstk_1e12/`.
+- Selector-integrated soft Mat-Select2 comparator, first 5, 6, and 8 primes at
+  N=10^12: exhaustive small validation passed 3233/3233 cases. The first k=5
+  row matched the selected log exactly but won 0/1 timing comparisons, with
+  soft/current linear ratio 66.9168. The first k=6 and k=8 rows were skipped by
+  active-row cap. Artifact:
+  `results/benchmarks/sorted_matrix_matselect2_soft_firstk_1e12/`.
 - Serious-comparator gate: the MA full-unrank gate passed, the output-sensitive
   X+Y probe executed at N=10^6, full FJ remained open/not implemented, the
   soft-heap gate advanced to a validated but slow soft-sequence-heap semantics

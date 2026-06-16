@@ -144,6 +144,20 @@ skipped by the active-row cap. This is useful negative evidence for the
 exponential-block selector with an exact binary heap primitive, but it is still
 not a full soft-heap time-bound implementation.
 
+The selector-integrated soft Mat-Select2 artifact adds the corresponding
+soft-sequence-heap row-list primitive:
+
+```text
+results/benchmarks/sorted_matrix_matselect2_soft_firstk_1e12/
+```
+
+It passed 3233/3233 exhaustive small validation cases. On the first
+k=5, N=10^12 target it matched the selected log exactly but was 66.9168x slower
+than the current linear saddleback selector and 4.8617x slower than the exact
+heap Mat-Select2 bridge on the same row. The first k=6 and k=8 soft rows were
+skipped by the same active-row cap. This closes the "not selector-integrated"
+gap, but the result is negative for speed.
+
 Use `python3 scripts/run_heap_frontier_baseline_suite.py` for the full
 heap/frontier comparator. The heap baseline returns exponent vectors, and the
 harness checks agreement with the DP pointer baseline where enabled and with the
