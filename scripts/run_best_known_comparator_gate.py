@@ -383,6 +383,9 @@ def write_report(out_dir: Path, report: dict[str, Any]) -> None:
         f"- Mat-Select2 heap-primitive comparable cases: `{loh_agg.get('matselect2_comparable_cases')}`",
         f"- Mat-Select2 heap-primitive wins: `{loh_agg.get('matselect2_wins')}`",
         f"- Mean Mat-Select2 heap-primitive/linear ratio: `{loh_agg.get('mean_matselect2_over_linear')}`",
+        f"- Mat-Select2 soft-selector comparable cases: `{loh_agg.get('matselect2_soft_comparable_cases')}`",
+        f"- Mat-Select2 soft-selector wins: `{loh_agg.get('matselect2_soft_wins')}`",
+        f"- Mean Mat-Select2 soft-selector/linear ratio: `{loh_agg.get('mean_matselect2_soft_over_linear')}`",
         "",
         "This is an output-sized probe at a feasible rank. It does not establish a",
         "full-rank random-access comparison when `N_probe` is much smaller than the",
@@ -399,8 +402,8 @@ def write_report(out_dir: Path, report: dict[str, Any]) -> None:
         "The soft-heap row is a data-structure semantics probe. It checks the",
         "corruption-set/witness-set invariants and simultaneous corruption bound for",
         "a soft sequence heap, then records a small timing comparison against a",
-        "binary heap. It is not yet the row-sorted or `X+Y` selector from the",
-        "Kaplan/Frederickson-Johnson paper.",
+        "binary heap. The output-sensitive section records the selector-integrated",
+        "Mat-Select2 soft-selector probe when available.",
         "",
         "## Barvinok-Style Lattice Counting",
         "",
@@ -424,8 +427,8 @@ def write_report(out_dir: Path, report: dict[str, Any]) -> None:
         "The repository currently has a clean, certified comparison against a",
         "published Mirzaian-Arjomandi sorted-matrix selector wrapper. The",
         "Mat-Select2 heap-primitive bridge is implemented and negative on the",
-        "current probe. A soft-sequence-heap semantic prototype now exists, but",
-        "a fast selector-integrated soft heap remains an open obligation.",
+        "current probe. A selector-integrated soft-sequence-heap bridge now exists,",
+        "but the current timing evidence is negative for speed.",
         "The external Normaliz path has executable toy-count validation and bounded",
         "certified-target attempts.",
     ]
@@ -486,6 +489,15 @@ def main() -> int:
     loh_status = "executed" if loh_run["returncode"] == 0 and loh_report else "failed"
 
     soft_heap_probe = run_soft_heap_probe("g++", "-O3 -std=c++17")
+    loh_agg = (loh_report or {}).get("aggregate", {})
+    soft_comparable = int(loh_agg.get("matselect2_soft_comparable_cases") or 0)
+    soft_exact = int(loh_agg.get("matselect2_soft_exact_log_matches") or 0)
+    soft_wins = int(loh_agg.get("matselect2_soft_wins") or 0)
+    soft_selector_status = soft_heap_probe["status"]
+    if soft_comparable and soft_exact == soft_comparable:
+        soft_selector_status = "selector_probe_validated_no_speed_win"
+        if soft_wins:
+            soft_selector_status = "selector_probe_validated_with_speed_win"
 
     tools = tool_availability()
     versions = tool_versions(tools)
@@ -555,6 +567,13 @@ def main() -> int:
         },
         "soft_heap": {
             **soft_heap_probe,
+            "status": soft_selector_status,
+            "selector_probe": {
+                "matselect2_soft_comparable_cases": soft_comparable,
+                "matselect2_soft_exact_log_matches": soft_exact,
+                "matselect2_soft_wins": soft_wins,
+                "mean_matselect2_soft_over_linear": loh_agg.get("mean_matselect2_soft_over_linear"),
+            },
         },
         "barvinok": {
             "status": barvinok_status,

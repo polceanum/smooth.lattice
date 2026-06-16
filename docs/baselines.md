@@ -8,7 +8,7 @@ This project targets fixed-prime random access, not general smooth-number counti
 - `benchmarks/heap_frontier_baseline.cpp`: canonical duplicate-free heap/frontier generation. It returns the full exponent vector by expanding children in nondecreasing prime-index order, so each exponent vector has one frontier path. It is a serious sequential-generation comparator, not a random-access method.
 - `benchmarks/smooth_xplusy_baseline.cpp`: practical adaptive Cartesian-sum value-selection baseline.
 - `benchmarks/smooth_xplusy_full_unrank.cpp`: practical materialized Cartesian-sum full-unrank baseline. It stores exponent packs on both MITM sides, narrows to a log-value band, exact-sorts the candidate band by multiprecision integer value, and returns an exponent vector. Its modes include adaptive X+Y, residual-corrected analytic X+Y, and a Mirzaian-Arjomandi sorted-matrix selector wrapped with the same exact reconstruction step.
-- `benchmarks/smooth_xplusy_fj_loh_workbench.cpp`: exploratory sorted-matrix/range-pruning, Mirzaian-Arjomandi value-selection, Kaplan/Frederickson-Johnson-style Mat-Select2 heap-primitive, and LOH-style probes. Use `scripts/run_sorted_matrix_workbench.py` for reproducible artifacts; this is not a full soft-heap implementation.
+- `benchmarks/smooth_xplusy_fj_loh_workbench.cpp`: exploratory sorted-matrix/range-pruning, Mirzaian-Arjomandi value-selection, Kaplan/Frederickson-Johnson-style Mat-Select2 heap-primitive, selector-integrated Mat-Select2 soft-sequence probe, and LOH-style probes. Use `scripts/run_sorted_matrix_workbench.py` for reproducible artifacts; the soft row is a practical probe, not a proof of the published soft-heap time bound.
 - `benchmarks/soft_sequence_heap_probe.cpp`: auditable soft-sequence-heap semantics probe. It validates corruption-set/witness-set invariants and the simultaneous corruption bound, but it is vector-backed, slow, and not yet wired into the row-sorted or `X+Y` selectors.
 
 ## Current priority comparison
@@ -78,6 +78,13 @@ sorted-matrix/range-pruning, Mirzaian-Arjomandi value-selection,
 Mat-Select2 heap-primitive, and LOH probes. These rows are useful negative or
 diagnostic evidence, but they do not discharge the "full soft-heap X+Y"
 comparison obligation.
+
+The workbench also includes `matselect2_soft_probe`, which replaces the
+row-list primitive in the exponential-block Mat-Select2 bridge with the
+validated soft-sequence-heap Soft-Select loop. It is selector-integrated and
+validated exhaustively on small Cartesian sums, but the current timing evidence
+is negative and it should not be described as a best-known soft-heap
+implementation.
 
 Use `g++ -O3 -std=c++17 benchmarks/soft_sequence_heap_probe.cpp -o
 bin/soft_sequence_heap_probe` and then `bin/soft_sequence_heap_probe validate

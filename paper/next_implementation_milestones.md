@@ -20,16 +20,17 @@
 - Include raw logs and CSV outputs.
 
 ## Milestone 5: Comparator obligation closure
-- The repository now has a soft-sequence-heap semantics probe, but not a
-  selector-integrated fast soft heap. Replace the current Mat-Select2 exact-heap
-  primitive with a soft-heap primitive only after the data structure satisfies
-  both corruption-semantics validation and practical timing sanity checks.
-  Satisfy the acceptance checklist in `paper/related_work.md` before making any
-  soft-heap `X+Y` claim.
+- The repository now has a soft-sequence-heap semantics probe and a
+  selector-integrated Mat-Select2 soft-selector bridge, but not a fast soft-heap
+  comparator. Keep the soft row as negative/diagnostic evidence until it
+  satisfies both corruption-semantics validation and practical timing sanity
+  checks. Satisfy the acceptance checklist in `paper/related_work.md` before
+  making any soft-heap `X+Y` claim.
 - If no, say so explicitly in the paper: current implemented comparators are DP,
   heap/frontier where present, adaptive materialized `X+Y`, full materialized
   `X+Y` unrank, diagnostic sorted-matrix/LOH probes, and the negative
-  Mat-Select2 exact-heap bridge, plus the non-speed soft-heap semantics probe.
+  Mat-Select2 exact-heap bridge, plus the current selector-integrated but
+  non-winning soft-heap probe.
 - Keep the negative sorted-matrix/range-pruning, Mat-Select2 heap-primitive, and
   Normaliz artifacts in the benchmark section rather than silently dropping
   them.

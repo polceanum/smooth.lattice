@@ -62,6 +62,152 @@ AdaptiveSel adaptive_select(const XYData&W, ull n, CountFn&& count_le, ull targe
 
 struct MatSelect2Result{double sec=0, selected=0; ull rep_pops=0, base_pops=0, removed=0; int iterations=0; size_t max_active_rows=0; bool skipped=false; std::string reason;};
 
+class SoftSequenceQueue {
+public:
+    struct Extracted{uint64_t value=0; double real_key=0, current_key=0; bool corrupt=false; std::vector<uint64_t> newly_corrupt;};
+    explicit SoftSequenceQueue(double epsilon):epsilon_(epsilon),r0_((int)std::ceil(std::log2(1.0/epsilon))){
+        if(!(epsilon>0.0 && epsilon<=0.5)) throw std::invalid_argument("soft heap epsilon outside (0,0.5]");
+    }
+    void insert(double key,uint64_t value){
+        int idx=(int)items_.size();
+        items_.push_back(Item{key,value});
+        seqs_.insert(seqs_.begin(),Seq{0,{idx},0});
+        inserted_++; live_++;
+        while(seqs_.size()>=2 && seqs_[0].rank==seqs_[1].rank){
+            Seq merged=merge(seqs_[0],seqs_[1]);
+            seqs_.erase(seqs_.begin(),seqs_.begin()+2);
+            seqs_.insert(seqs_.begin(),std::move(merged));
+        }
+    }
+    bool empty()const{return live_==0;}
+    size_t inserted_count()const{return inserted_;}
+    size_t live_count()const{return live_;}
+    Extracted extract_min(){
+        int si=min_seq();
+        if(si<0) throw std::runtime_error("soft extract from empty queue");
+        Seq& seq=seqs_[(size_t)si];
+        int head=seq.items[seq.head];
+        Item& h=items_[(size_t)head];
+        if(!h.cset.empty()){
+            int x=h.cset.back();
+            h.cset.pop_back();
+            Item& ix=items_[(size_t)x];
+            if(!ix.live || ix.c_owner!=head || ix.w_owner>=0) throw std::runtime_error("invalid soft corruption owner");
+            ix.live=false; live_--; ix.c_owner=-1;
+            return Extracted{ix.value,ix.key,h.key,true,{}};
+        }
+        std::vector<uint64_t> newly;
+        newly.reserve(h.wset.size());
+        for(int x:h.wset){
+            Item& ix=items_[(size_t)x];
+            if(!ix.live || ix.w_owner!=head || ix.c_owner<0) throw std::runtime_error("invalid soft witness owner");
+            ix.w_owner=-1;
+            newly.push_back(ix.value);
+        }
+        h.wset.clear();
+        h.live=false; live_--;
+        seq.head++;
+        if(seq.head>=seq.items.size()) seqs_.erase(seqs_.begin()+si);
+        return Extracted{h.value,h.key,h.key,false,std::move(newly)};
+    }
+private:
+    struct Item{double key=0; uint64_t value=0; bool live=true; int c_owner=-1,w_owner=-1; std::vector<int> cset,wset;};
+    struct Seq{int rank=0; std::vector<int> items; size_t head=0;};
+    int min_seq()const{
+        int best=-1; double best_key=std::numeric_limits<double>::infinity();
+        for(size_t i=0;i<seqs_.size();i++){
+            const Seq&s=seqs_[i];
+            if(s.head>=s.items.size()) continue;
+            double key=items_[(size_t)s.items[s.head]].key;
+            if(key<best_key){best_key=key;best=(int)i;}
+        }
+        return best;
+    }
+    void add_c(int owner,int x){items_[(size_t)owner].cset.push_back(x); items_[(size_t)x].c_owner=owner;}
+    void add_w(int owner,int x){items_[(size_t)owner].wset.push_back(x); items_[(size_t)x].w_owner=owner;}
+    void prune(int pred,int x,int succ){
+        add_c(succ,x);
+        std::vector<int> old_c; old_c.swap(items_[(size_t)x].cset);
+        for(int y:old_c) add_c(succ,y);
+        add_w(pred,x);
+        std::vector<int> old_w; old_w.swap(items_[(size_t)x].wset);
+        for(int y:old_w) add_w(pred,y);
+    }
+    std::vector<int> reduce(const std::vector<int>&in){
+        std::vector<int> out; out.reserve((in.size()+1)/2+1);
+        for(size_t i=0;i<in.size();i++){
+            bool do_prune=(i%2==1) && (i+1<in.size());
+            if(do_prune) prune(in[i-1],in[i],in[i+1]);
+            else out.push_back(in[i]);
+        }
+        return out;
+    }
+    Seq merge(const Seq&a,const Seq&b){
+        std::vector<int> merged; merged.reserve((a.items.size()-a.head)+(b.items.size()-b.head));
+        size_t i=a.head,j=b.head;
+        while(i<a.items.size() || j<b.items.size()){
+            if(j>=b.items.size() || (i<a.items.size() && items_[(size_t)a.items[i]].key<=items_[(size_t)b.items[j]].key)) merged.push_back(a.items[i++]);
+            else merged.push_back(b.items[j++]);
+        }
+        int rank=a.rank+1;
+        if(rank>r0_ && ((rank-r0_)%2==0)) merged=reduce(merged);
+        return Seq{rank,std::move(merged),0};
+    }
+    double epsilon_; int r0_; size_t inserted_=0,live_=0; std::vector<Item>items_; std::vector<Seq>seqs_;
+};
+
+struct SoftRowSelectResult{double sec=0, selected=0; ull extracts=0, inserted=0, candidates=0, corrupt_returns=0, newly_corrupt=0; bool skipped=false; std::string reason;};
+
+static uint64_t pack_row_pos(size_t row,size_t pos){
+    if(row>std::numeric_limits<uint32_t>::max() || pos>std::numeric_limits<uint32_t>::max()) throw std::runtime_error("row_or_pos_exceeds_32bit_pack");
+    return ((uint64_t)row<<32) | (uint64_t)pos;
+}
+static size_t unpack_row(uint64_t v){return (size_t)(v>>32);}
+static size_t unpack_pos(uint64_t v){return (size_t)(v & 0xffffffffULL);}
+
+static SoftRowSelectResult soft_select_row_lists_value(const std::vector<double>&A,const std::vector<double>&B,const std::vector<size_t>&starts,const std::vector<size_t>&rows,ull k,size_t stride,double epsilon=0.25,ull max_inserted=30000000ULL){
+    SoftRowSelectResult R; auto t0=std::chrono::high_resolution_clock::now();
+    if(k==0 || rows.empty() || stride==0){R.skipped=true;R.reason="empty_or_zero_rank";return R;}
+    SoftSequenceQueue q(epsilon);
+    std::vector<double> candidates;
+    candidates.reserve((size_t)std::min<ull>(max_inserted, std::max<ull>(k + rows.size(), 16)));
+    auto add=[&](size_t row,size_t pos)->bool{
+        if(pos>=B.size()) return true;
+        if(R.inserted>=max_inserted){R.skipped=true;R.reason="soft_insert_cap_exceeded";return false;}
+        uint64_t payload=pack_row_pos(row,pos);
+        double key=A[row]+B[pos];
+        q.insert(key,payload);
+        candidates.push_back(key);
+        R.inserted++;
+        return true;
+    };
+    for(size_t row: rows){
+        if(starts[row]<B.size() && !add(row,starts[row])) return R;
+    }
+    if(candidates.empty()){R.skipped=true;R.reason="no_row_roots";return R;}
+    for(ull iter=0; iter<k && !q.empty(); iter++){
+        auto e=q.extract_min();
+        R.extracts++;
+        if(e.corrupt) R.corrupt_returns++;
+        std::vector<uint64_t> expand=std::move(e.newly_corrupt);
+        R.newly_corrupt += (ull)expand.size();
+        if(!e.corrupt) expand.push_back(e.value);
+        for(uint64_t payload: expand){
+            size_t row=unpack_row(payload), pos=unpack_pos(payload);
+            size_t next=pos+stride;
+            if(next<pos){R.skipped=true;R.reason="position_overflow";return R;}
+            if(!add(row,next)) return R;
+        }
+    }
+    if(candidates.size()<k){R.skipped=true;R.reason="soft_candidate_underflow";return R;}
+    std::nth_element(candidates.begin(),candidates.begin()+(long long)k-1,candidates.end());
+    R.selected=candidates[(size_t)k-1];
+    R.candidates=(ull)candidates.size();
+    auto t1=std::chrono::high_resolution_clock::now();
+    R.sec=std::chrono::duration<double>(t1-t0).count();
+    return R;
+}
+
 static ull capped_remaining(const std::vector<size_t>&offsets,size_t row_len,ull cap){
     ull total=0;
     for(size_t off: offsets){
@@ -113,6 +259,94 @@ static bool matselect1_base_heap(const std::vector<double>&A,const std::vector<d
         if(next<B.size()) pq.push({A[x.row]+B[next],x.row,next});
     }
     return true;
+}
+
+struct MatSelect2SoftResult{double sec=0, selected=0; ull extracts=0, inserted=0, candidates=0, corrupt_returns=0, newly_corrupt=0, removed=0; int iterations=0; size_t max_active_rows=0; bool skipped=false; std::string reason;};
+
+static bool matselect1_reps_soft(const std::vector<double>&A,const std::vector<double>&B,const std::vector<size_t>&offsets,const std::vector<size_t>&rows,ull block_size,std::vector<ull>&blocks,MatSelect2SoftResult&R,ull max_inserted){
+    std::vector<size_t> starts(offsets.size(),B.size());
+    for(size_t row: rows){
+        ull start=(ull)offsets[row]+block_size-1;
+        if(start<B.size()) starts[row]=(size_t)start;
+    }
+    auto s=soft_select_row_lists_value(A,B,starts,rows,(ull)rows.size(),(size_t)block_size,0.25,max_inserted);
+    R.extracts+=s.extracts; R.inserted+=s.inserted; R.candidates+=s.candidates; R.corrupt_returns+=s.corrupt_returns; R.newly_corrupt+=s.newly_corrupt;
+    if(s.skipped){R.skipped=true;R.reason=s.reason;return false;}
+    double pivot=s.selected;
+    blocks.assign(A.size(),0);
+    std::vector<ull> leq(rows.size(),0);
+    ull total_less=0,total_leq=0;
+    for(size_t ri=0;ri<rows.size();ri++){
+        size_t row=rows[ri];
+        size_t start=starts[row];
+        if(start>=B.size()){leq[ri]=0;continue;}
+        ull max_blocks=1+(ull)(B.size()-1-start)/block_size;
+        ull lo=0,hi=max_blocks;
+        while(lo<hi){
+            ull mid=(lo+hi)/2;
+            double v=A[row]+B[start+(size_t)(mid*block_size)];
+            if(v<pivot-EPS) lo=mid+1; else hi=mid;
+        }
+        ull less=lo;
+        lo=0; hi=max_blocks;
+        while(lo<hi){
+            ull mid=(lo+hi)/2;
+            double v=A[row]+B[start+(size_t)(mid*block_size)];
+            if(v<=pivot+EPS) lo=mid+1; else hi=mid;
+        }
+        blocks[row]=less;
+        leq[ri]=lo;
+        total_less+=less;
+        total_leq+=lo;
+    }
+    ull target=(ull)rows.size();
+    if(total_less>target || total_leq<target){R.skipped=true;R.reason="soft_rep_threshold_rank_mismatch";return false;}
+    ull need=target-total_less;
+    for(size_t ri=0;ri<rows.size() && need>0;ri++){
+        size_t row=rows[ri];
+        ull add=std::min<ull>(need, leq[ri]-blocks[row]);
+        blocks[row]+=add;
+        need-=add;
+    }
+    return need==0;
+}
+
+static MatSelect2SoftResult matselect2_soft_value(const std::vector<double>&A,const std::vector<double>&B,ull k,size_t max_rows=1000000ULL,ull max_inserted=30000000ULL){
+    MatSelect2SoftResult R; auto t0=std::chrono::high_resolution_clock::now();
+    if(k==0 || A.empty() || B.empty()){R.skipped=true;R.reason="empty_or_zero_rank";return R;}
+    std::vector<size_t> offsets(A.size(),0);
+    if(capped_remaining(offsets,B.size(),k)<k){R.skipped=true;R.reason="rank_outside_product";return R;}
+    while(true){
+        auto rows=active_rows(offsets,B.size());
+        R.max_active_rows=std::max(R.max_active_rows,rows.size());
+        if(rows.empty()){R.skipped=true;R.reason="active_rows_empty";return R;}
+        if(rows.size()>max_rows){R.skipped=true;R.reason="active_row_cap_exceeded";return R;}
+        ull m=(ull)rows.size();
+        if(k<=2*m){
+            auto s=soft_select_row_lists_value(A,B,offsets,rows,k,1,0.25,max_inserted);
+            R.extracts+=s.extracts; R.inserted+=s.inserted; R.candidates+=s.candidates; R.corrupt_returns+=s.corrupt_returns; R.newly_corrupt+=s.newly_corrupt;
+            if(s.skipped){R.skipped=true;R.reason=s.reason;return R;}
+            R.selected=s.selected;
+            auto t1=std::chrono::high_resolution_clock::now();
+            R.sec=std::chrono::duration<double>(t1-t0).count();
+            return R;
+        }
+        ull b=k/(2*m);
+        if(b==0){R.skipped=true;R.reason="zero_block_size";return R;}
+        std::vector<ull> blocks;
+        bool ok=matselect1_reps_soft(A,B,offsets,rows,b,blocks,R,max_inserted);
+        if(!ok){if(!R.skipped){R.skipped=true;R.reason="soft_representative_select_failed";}return R;}
+        for(size_t row: rows){
+            if(blocks[row]==0) continue;
+            ull shift=b*blocks[row];
+            if(shift>(ull)B.size()) offsets[row]=B.size();
+            else offsets[row]=std::min(B.size(),offsets[row]+(size_t)shift);
+            R.removed+=shift;
+        }
+        k-=b*m;
+        R.iterations++;
+        if(capped_remaining(offsets,B.size(),k)<k){R.skipped=true;R.reason="post_shift_rank_outside_remaining";return R;}
+    }
 }
 
 static MatSelect2Result matselect2_heap_value(const std::vector<double>&A,const std::vector<double>&B,ull k,size_t max_rows=1000000ULL,ull max_rep_pops=30000000ULL,ull max_base_pops=5000000ULL){
@@ -320,11 +554,36 @@ int main(int argc,char**argv){ std::cout.setf(std::ios::fixed); std::cout<<std::
         std::cout<<"matselect2_validate cases="<<cases<<" failures="<<failures<<" max_delta="<<std::setprecision(12)<<max_delta<<std::setprecision(6)<<"\n";
         return failures==0?0:1;
     }
+    if(argc>=2 && std::string(argv[1])=="validate-matselect2-soft"){
+        size_t cases=0, failures=0; double max_delta=0.0;
+        for(size_t na: {1ul,2ul,3ul,5ul,8ul,13ul,21ul}){
+            for(size_t nb: {1ul,2ul,4ul,7ul,16ul,31ul}){
+                std::vector<double>A,B;
+                for(size_t i=0;i<na;i++) A.push_back(0.11*(double)i + 0.013*(double)(i*i%7));
+                for(size_t j=0;j<nb;j++) B.push_back(0.17*(double)j + 0.019*(double)(j*j%11));
+                std::sort(A.begin(),A.end()); std::sort(B.begin(),B.end());
+                std::vector<double> vals; vals.reserve(na*nb);
+                for(double a:A)for(double b:B)vals.push_back(a+b);
+                std::sort(vals.begin(),vals.end());
+                for(ull k=1;k<=(ull)vals.size();k++){
+                    auto ms=matselect2_soft_value(A,B,k,10000,1000000);
+                    double delta=ms.skipped?std::numeric_limits<double>::infinity():fabs(ms.selected-vals[(size_t)k-1]);
+                    if(delta>max_delta&&std::isfinite(delta))max_delta=delta;
+                    if(ms.skipped||delta>1e-10)failures++;
+                    cases++;
+                }
+            }
+        }
+        std::cout<<"matselect2_soft_validate cases="<<cases<<" failures="<<failures<<" max_delta="<<std::setprecision(12)<<max_delta<<std::setprecision(6)<<"\n";
+        return failures==0?0:1;
+    }
     std::vector<std::pair<int,ull>> cases; if(argc>=3){auto P=parse_csv(argv[1]); ull N=std::stoull(argv[2]); cases.push_back({(int)P.size(),N}); double est=leading_est(P,N); double maxT=std::max(1e-9,est*1.02+1e-8); XYData W(P,maxT); auto lin=adaptive_select(W,N,[&](double t){return pair_count_linear(W.A,W.B,t);}); for(size_t leaf: {512ul,2048ul,8192ul}){ BlockCounter bc(W.A,W.B,leaf); auto t0=std::chrono::high_resolution_clock::now(); auto blk=adaptive_select(W,N,[&](double t){return bc.count(t);}); auto t1=std::chrono::high_resolution_clock::now(); std::cout<<"block_rank P="<<join_primes(P)<<" k="<<P.size()<<" N="<<N<<" leaf="<<leaf<<" build="<<W.build_sec<<" A="<<W.A.size()<<" B="<<W.B.size()<<" linear_total="<<lin.sec<<" block_total="<<blk.sec<<" block_calls="<<blk.calls<<" block_log_delta="<<fabs(blk.selected-lin.selected)<<"\n"; }
         auto ma=ma_select_xplusy_value(W.A,W.B,N);
         std::cout<<"ma_select_probe P="<<join_primes(P)<<" k="<<P.size()<<" N="<<N<<" skipped="<<(ma.skipped?"true":"false")<<" sec="<<ma.sec<<" n_square="<<ma.n_square<<" padded_a="<<ma.padded_a<<" padded_b="<<ma.padded_b<<" log="<<std::setprecision(12)<<ma.selected<<std::setprecision(6)<<" log_delta="<<(ma.skipped?0.0:fabs(ma.selected-lin.selected))<<" reason="<<ma.reason<<"\n";
         auto ms=matselect2_heap_value(W.A,W.B,N);
         std::cout<<"matselect2_heap_probe P="<<join_primes(P)<<" k="<<P.size()<<" N="<<N<<" skipped="<<(ms.skipped?"true":"false")<<" sec="<<ms.sec<<" iterations="<<ms.iterations<<" rep_pops="<<ms.rep_pops<<" base_pops="<<ms.base_pops<<" removed="<<ms.removed<<" max_active_rows="<<ms.max_active_rows<<" log="<<std::setprecision(12)<<ms.selected<<std::setprecision(6)<<" log_delta="<<(ms.skipped?0.0:fabs(ms.selected-lin.selected))<<" reason="<<ms.reason<<"\n";
+        auto mss=matselect2_soft_value(W.A,W.B,N);
+        std::cout<<"matselect2_soft_probe P="<<join_primes(P)<<" k="<<P.size()<<" N="<<N<<" skipped="<<(mss.skipped?"true":"false")<<" sec="<<mss.sec<<" iterations="<<mss.iterations<<" extracts="<<mss.extracts<<" inserted="<<mss.inserted<<" candidates="<<mss.candidates<<" corrupt_returns="<<mss.corrupt_returns<<" newly_corrupt="<<mss.newly_corrupt<<" removed="<<mss.removed<<" max_active_rows="<<mss.max_active_rows<<" log="<<std::setprecision(12)<<mss.selected<<std::setprecision(6)<<" log_delta="<<(mss.skipped?0.0:fabs(mss.selected-lin.selected))<<" reason="<<mss.reason<<"\n";
         auto loh=loh_topk_select(W.A,W.B,std::min<ull>(N,1000000ULL),1.35,30000000ULL); std::cout<<"loh_topk_probe P="<<join_primes(P)<<" k="<<P.size()<<" N_probe="<<std::min<ull>(N,1000000ULL)<<" skipped="<<(loh.skipped?"true":"false")<<" sec="<<loh.sec<<" cand="<<loh.cand<<" pairs="<<loh.layer_pairs<<" reason="<<loh.reason<<"\n"; return 0; }
 
     std::vector<int> ks={4,5,6,8,10,12}; std::vector<ull> Ns={1000000ULL,1000000000ULL,1000000000000ULL}; for(int k:ks){ for(ull N:Ns){ if(k>=12 && N>1000000000ULL) continue; auto P=first_primes(k); double est=leading_est(P,N); double maxT=std::max(1e-9,est*1.02+1e-8); XYData W(P,maxT); auto lin=adaptive_select(W,N,[&](double t){return pair_count_linear(W.A,W.B,t);}); std::cout<<"fj_loh_workbench P="<<join_primes(P)<<" k="<<k<<" N="<<N<<" build="<<W.build_sec<<" A="<<W.A.size()<<" B="<<W.B.size()<<" splitA="<<idx_to_primes(W.Aidx,P)<<" splitB="<<idx_to_primes(W.Bidx,P)<<" linear_total="<<lin.sec<<" linear_count="<<lin.count_sec<<" linear_calls="<<lin.calls<<" linear_band="<<lin.band<<" linear_log="<<std::setprecision(12)<<lin.selected<<std::setprecision(6);
