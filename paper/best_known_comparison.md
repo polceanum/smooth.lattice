@@ -91,14 +91,16 @@ Observed at commit `d3e2f716a92ef6e8270bb5b1bc346205f69f77f1`:
 Gate details:
 
 - MA first-k comparison: 3/3 completed and certified, 0/3 MA wall-time wins,
-  mean MA/current wall ratio 3.6952.
+  mean MA/current wall ratio 3.7953.
 - Output-sensitive probe: 3/3 completed, range-pruning beat linear saddleback
-  in 2/3 rows at N=10^6 with mean block/linear ratio 0.9531; MA value selection
-  won 0/3 with mean MA/linear ratio 2.8485. Mat-Select2 heap-primitive matched
+  in 2/3 rows at N=10^6 with mean block/linear ratio 0.7815; MA value selection
+  won 0/3 with mean MA/linear ratio 1.4496. Mat-Select2 heap-primitive matched
   the selected log in 3/3 rows, won 0/3 timing comparisons, and had mean
-  Mat-Select2/linear ratio 9.7011.
+  Mat-Select2/linear ratio 10.3626. Mat-Select2 soft-selector matched the
+  selected log in 3/3 rows, won 0/3 timing comparisons, and had mean
+  soft-selector/linear ratio 109.8413.
 - Soft-sequence-heap probe: 3/3 validation rows passed at
-  `n=2048, epsilon=0.25`; the timing probe at `n=20000` was 8.9402x slower
+  `n=2048, epsilon=0.25`; the timing probe at `n=20000` was 9.5270x slower
   than a binary heap, so it is not a speed comparator.
 - Barvinok/Normaliz availability: `barvinok_count`, `normaliz`, and
   `PyNormaliz` were installed in the `smooth-lattice-count` conda environment.
