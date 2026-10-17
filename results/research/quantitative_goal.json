@@ -48,7 +48,7 @@
       "task": "Audit the strongest current bounds and reconstruct the existing proofs.",
       "deliverable": "A source-by-source theorem comparison, including Wagner (2002), the thesis discussion, later surveys, cited work by Remond and subsequent corner-cut/pyramidal-partition literature.",
       "stop_or_redirect": "If the proposed improvement is already known, select a different substantive target without presenting the old bound as an open problem.",
-      "status": "in_progress"
+      "status": "direct_source_and_fixed_cardinality_comparisons_completed_consolidated_priority_assessment_pending"
     },
     {
       "id": "M2",
@@ -67,7 +67,7 @@
       "id": "M4",
       "task": "Write and audit the paper around the actual advance.",
       "deliverable": "A complete manuscript, exact priority comparison, reproducible evidence and a candid explanation of usefulness and limitations.",
-      "status": "pointwise_draft_written_priority_and_submission_review_incomplete"
+      "status": "pointwise_draft_with_average_completion_consequence_and_precise_prior_art_boundary_final_review_incomplete"
     }
   ],
   "preserved_side_results": {
@@ -88,7 +88,7 @@
     ],
     "mechanism": "Uniform primitive-window sieve; divide primitive planes by their bounded integer heights to count normal directions; realize each lexicographic prefix by positive weights; use two nonnegative lattice patches at levels h-1 and h+1 to prove prescribed-size injectivity; separate aspect tuples by observable axis extents.",
     "proof_status": "The full pointwise argument passed a fresh internal adversarial review with no unresolved logical step identified. The audit includes ties, witnessing-height multiplicities, affine-coset reductions, two-patch integer rigidity, rank-to-height estimates and cross-aspect duplication. This is not an independent human referee report.",
-    "priority_status": "Unresolved. Focus the remaining primary comparison on fixed-cardinality grid k-set and threshold-function counts and on the prescribed-size injectivity mechanism; total-function counts and teaching-set sizes do not by themselves settle this question.",
+    "priority_status": "The direct total-grid and digital-plane recognition comparisons are completed for the recorded statements; known finite reductions and boundary-point methods are attributed. Consolidated priority and final contribution review remain unresolved.",
     "three_dimensional_limit": "The full Candidate 23 pointwise proof for C_3(n)=Theta(n^2(log n)^2) has passed a fresh internal logical audit; novelty and publication significance remain unresolved.",
     "evidence": "results/research/corner_cut_growth_checks.json",
     "known_matrix_background": {
@@ -119,17 +119,18 @@
         "Lexicographic prefix realized by positive integer weights",
         "Two integer patches proving same-dimension fixed-size injectivity",
         "Volume bounds and disjoint aspect extents at prescribed size",
-        "Matching pointwise count and established polytope and prime-base interpretations"
+        "Matching pointwise count and established polytope and prime-base interpretations",
+        "Logarithmic average-completion corollary and exact finite-grid cardinality comparison"
       ],
       "compilation": "latest_source_compiled_successfully_with_desktop_editor_and_latexmk",
       "author_metadata": "Left blank; no authorship or affiliation invented.",
       "pdf": "output/pdf/corner_cut_growth.pdf",
-      "pdf_pages": 9,
-      "tex_sha256": "5ec8f7b5384e03230018b416af929b069f2ebd5da2bdaa9fc6892645dd3660c6",
-      "pdf_sha256": "9609a75a74ce2b1e216e7e927610ebfbc1a2ed16c53cf663d7e04a9466ae4d5e",
-      "visual_review": "All nine latest pages inspected after the internal proof audit edits; no clipping, overlap or unresolved references.",
-      "latex_log_check": "No errors, overfull boxes or undefined references in the final pass.",
-      "pdf_structure_check": "Nine pages, blank author metadata, no extracted characters outside page boundaries.",
+      "pdf_pages": 10,
+      "tex_sha256": "8d7e231076bb265605452831d276e8291f76617bd298b15aecf66c52851be280",
+      "pdf_sha256": "60bffcf51bce7dca6a1ea807523f782cb10781f46c2d5c9a888e4a0a3e5fba79",
+      "visual_review": "All ten latest pages inspected after the finite-grid and average-completion edits; no clipping, overlap or unresolved references.",
+      "latex_log_check": "No errors, overfull or underfull boxes, or undefined references in the final pass.",
+      "pdf_structure_check": "Ten pages, blank author metadata, no unresolved references or extracted characters outside page boundaries.",
       "pdf_build_command": "latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=results/local/corner-cut-latex paper/corner_cut_growth/main.tex"
     },
     "prime_base_realization": {
@@ -177,6 +178,23 @@
         "complete_boundary_levels": 50
       },
       "limitations": "This internal review can miss an error. Finite checks are falsification evidence, not the uniform proof. Overall priority and submission review remain incomplete."
+    },
+    "fixed_cardinality_literature_comparison": {
+      "record": "docs/interleaving_research.md, Fixed-cardinality comparison and the average-completion consequence",
+      "exact_reduction": "C_d(n) equals the number of n-sets of {0,...,n}^d containing the origin. Positivity and exclusion of the infinite complement follow from the n+1 axis points. This is a standard finite-ground-set reduction, not a novelty claim.",
+      "total_count_boundary": "The rectangular-grid threshold count of Haukkanen--Merikoski sums every included cardinality. In dimension two its value on {0,...,n}^2 is Theta(n^4), whereas C_2(n)=Theta(n log n). Its total-count lower estimate does not supply a lower estimate for this selected origin class.",
+      "recognition_boundary": "Coeurjolly et al. use two leaning polygons to describe feasible plane parameters. Boundary-point recognition is established background; the claimed advance is the prescribed-size bounded-normal injection and its multiscale counting consequence.",
+      "status": "completed_for_the_specified_primary_statements_not_a_global_priority_certificate"
+    },
+    "average_completion_consequence": {
+      "statement": "For every fixed d>=2, the mean number of n-point d-dimensional completions over all nonempty (d-1)-dimensional corner cuts of size at most n is Theta_d(log n).",
+      "identity": "mean F_n(T)=C_d(n)/A_{d-1}(n), with A_1(n)=n.",
+      "proof": "The restriction fibres partition all n-point cuts. Divide the matching count in dimension d by its summed counterpart in dimension d-1; for d=2 use A_1(n)=n.",
+      "source_for_question": "https://doi.org/10.3929/ethz-a-004708408",
+      "source_location": "Section 3.5, Weakness of the lower bound",
+      "manuscript_location": "Corollary labelled cor:fibres",
+      "attribution": "Restriction, lifting, the fibre identity and the suggestion of logarithmic mean multiplicity are Wagner's. The corollary is a consequence of the matching count, not an independent novelty claim.",
+      "limit": "This is not a bound for every individual slice: a slice of size n has exactly one n-point completion."
     }
   }
 }

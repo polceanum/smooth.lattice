@@ -42,6 +42,8 @@ level. Summing over disjoint aspect ranges supplies the logarithmic
 factor. This gives a matching lower bound in every fixed dimension,
 including the three-dimensional order \(n^2(\log n)^2\).
 The cumulative count is consequently of order \(n^d(\log n)^{d-1}\).
+The mean number of completions of a coordinate slice is of order
+\(\log n\), as suggested in Wagner's discussion of the lower bound.
 \end{abstract}
 
 \section{The counting problem and its scope}
@@ -440,6 +442,39 @@ Multiplying the counts yields \eqref{eq:explicit}.
 \end{proof}
 
 \section{Consequences and limitations}\label{sec:consequences}
+The theorem also determines the average completion multiplicity raised
+in Wagner's discussion \cite[Section 3.5]{W03}. Write
+\(\mathcal C_{d-1}(\leq n)\) for all nonempty corner cuts of size at
+most \(n\) in dimension \(d-1\). For each such cut \(T\), let
+\[
+ F_n(T)=\card{\{D:\card D=n,\ D\text{ a corner cut in }
+ \Nzero^d,\ D\cap\{x_d=0\}=T\times\{0\}\}}.
+\]
+\begin{corollary}[Average completion multiplicity]\label{cor:fibres}
+For every fixed \(d\geq2\),
+\[
+ \frac{1}{\card{\mathcal C_{d-1}(\leq n)}}
+ \sum_{T\in\mathcal C_{d-1}(\leq n)}F_n(T)
+ =\Theta_d(\log n).
+\]
+\end{corollary}
+\begin{proof}
+Restriction to \(x_d=0\) sends every nonempty corner cut to a nonempty
+corner cut. Its fibres partition the \(n\)-point cuts, so the displayed
+mean equals \(C_d(n)/A_{d-1}(n)\).
+For \(d\geq3\), Theorem~\ref{thm:main} and its cumulative consequence
+give the numerator and denominator orders
+\(n^{d-1}(\log n)^{d-1}\) and
+\(n^{d-1}(\log n)^{d-2}\), respectively.
+For \(d=2\), there is one one-dimensional cut of each positive size,
+so \(A_1(n)=n\), giving the same conclusion.
+\end{proof}
+The restriction, fibre identity and lifting argument are established
+background \cite[Lemma 3.5 and Section 3.5]{W03}; the corollary records
+the consequence of the new matching count. It is a mean over all slices,
+not a lower bound for each slice. For example, \(\card T=n\) forces
+\(F_n(T)=1\).
+
 There is an established geometric interpretation.
 For a cut \(D\), put \(\alpha_D=\sum_{x\in D}x\).
 For fixed size \(n\), these vectors are distinct and each is a vertex
@@ -534,12 +569,43 @@ determinant cutoffs are established methods; our claimed contribution
 is their use in the multiscale corner-cut count. The additional fixed-size
 step is the two-patch comparison in Lemma~\ref{lem:inject}.
 
-Finite-grid threshold encodings and planar counts are related
-background \cite{GPZ,ZZ}. Their parameters are the ambient grid and,
-in the latter case, intersections of two halfplanes. The argument here
-additionally controls the number of included points, restricts the
-positive intercepts, and sums disjoint aspect ranges.
-A difference in definitions alone is not evidence of novelty.
+Here is a precise link with finite-grid threshold functions.
+Put \(G_n=\{0,\ldots,n\}^d\). An \(n\)-point corner cut is exactly
+an \(n\)-set of \(G_n\) containing the origin, where an \(n\)-set is
+a subset strictly separable from its complement in \(G_n\).
+The forward implication follows from the coordinate bound in Section 1.
+For the converse, write a separator as \(w\cdot x<t\), with \(t>0\)
+since the origin is included. If \(w_i\leq0\), all \(n+1\) points
+\(0,e_i,\ldots,ne_i\) are included, a contradiction. Thus \(w_i>0\).
+Also \(ne_i\) is excluded for every \(i\), so \(nw_i>t\);
+every nonnegative lattice point outside \(G_n\) has score greater
+than \(t\). This proves the converse. Wagner
+\cite[Section 3.2]{W03} uses a smaller finite ground set for enumeration;
+the finite-set reduction itself is not new.
+
+The counting parameter matters even after this identification.
+Haukkanen and Merikoski \cite[Equations (1) and (9)]{HM} count all
+threshold dichotomies of an \(m\)-by-\(r\) grid, obtaining
+\[
+ t(m,r)=\frac6{\pi^2}(mr)^2+O(mr^2)\qquad(2\leq m\leq r).
+\]
+This total sums over every possible included cardinality. In particular,
+\(t(n+1,n+1)=\Theta(n^4)\), while already
+\(C_2(n)=\Theta(n\log n)\). A lower estimate for the total does not
+give a lower estimate for the selected \(n\)-point class at the origin.
+Lemma~\ref{lem:inject} supplies the prescribed-size control in our
+construction; the known total-grid count is not being presented as
+a new result.
+
+Constraining a normal by points on parallel boundary levels also has
+precedents in digital-plane recognition. Coeurjolly et al.
+\cite[Proposition 6 and Theorems 8 and 11]{CSD}
+describe feasible plane parameters using upper and lower leaning polygons,
+under projection or connected-slice hypotheses.
+Our argument requires the quantitative conclusion that bounded primitive
+integer normals are distinguished at every sufficiently large prescribed
+cardinality. We do not claim the general principle of boundary-point
+recognition as new.
 
 The Hilbert zonotope refines state polyhedra and supports polynomial-time
 computation of universal Gr\"obner bases in fixed dimension
@@ -568,8 +634,9 @@ improvement over the inspected lower bound in \eqref{eq:baseline}.
 The literature audit has not established an unrestricted claim of
 priority or submission readiness. In particular, the complete 2002
 journal text has not been inspected; the proofs were compared with
-the author's full thesis chapter. The 2007 grid-encoding paper was
-compared at the abstract level only. The detailed audit accompanies
+the author's full thesis chapter. The finite-grid comparison above
+identifies exactly the selected cardinality class and the limitation
+of the total-count theorem. The detailed audit accompanies
 the source at \path{results/research/corner_cut_growth_audit.json}.
 This paragraph must be resolved before the draft is described as
 submission-ready.
@@ -673,23 +740,24 @@ The Hilbert zonotope and a polynomial time algorithm for universal Gr\"obner bas
 \href{https://doi.org/10.1016/S0196-8858(02)00509-2}{doi:10.1016/S0196-8858(02)00509-2};
 \href{https://arxiv.org/abs/math/0207135}{arXiv:math/0207135}.
 
-\bibitem{GPZ}
-S.~Ghilezan, J.~Pantovi\'c and J.~\v{Z}uni\'c,
-Separating points by parallel hyperplanes---characterization problem,
-\emph{IEEE Transactions on Neural Networks} 18 (2007), 1356--1363.
-\href{https://doi.org/10.1109/TNN.2007.891678}{doi:10.1109/TNN.2007.891678}.
-
-\bibitem{ZZ}
-E.~Zamaraeva and J.~\v{Z}uni\'c,
-A characterization of 2-threshold functions via pairs of prime segments,
-\emph{Theoretical Computer Science} 919 (2022), 1--17.
-\href{https://doi.org/10.1016/j.tcs.2022.03.025}{doi:10.1016/j.tcs.2022.03.025};
-\href{https://arxiv.org/abs/2007.03986}{arXiv:2007.03986}.
+\bibitem{HM}
+P.~Haukkanen and J.~K.~Merikoski,
+Asymptotics of the number of threshold functions on a two-dimensional
+rectangular grid,
+\emph{Discrete Applied Mathematics} 161 (2013), 13--18.
+\href{https://doi.org/10.1016/j.dam.2012.08.012}{doi:10.1016/j.dam.2012.08.012};
+\href{https://arxiv.org/abs/1110.3566v2}{arXiv:1110.3566v2}.
 
 \bibitem{BCV}
 M.~Balko, J.~Cibulka and P.~Valtr,
 Covering lattice points by subspaces and counting point-hyperplane incidences,
 \href{https://arxiv.org/abs/1703.04767}{arXiv:1703.04767}.
+
+\bibitem{CSD}
+D.~Coeurjolly, I.~Sivignon, F.~Dupont, F.~Feschet and J.-M.~Chassery,
+On digital plane preimage structure,
+\emph{Discrete Applied Mathematics} 151 (2005), 78--92.
+\href{https://doi.org/10.1016/j.dam.2005.02.022}{doi:10.1016/j.dam.2005.02.022}.
 
 \bibitem{CFLW}
 J.~Chen, Y.~Feng, Y.~Liu and W.~Wu,

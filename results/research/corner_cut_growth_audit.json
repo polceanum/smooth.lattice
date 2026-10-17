@@ -229,11 +229,37 @@
       "inspected": "Indexed authored abstract and first-page introduction of k-set polytopes and order-k Delaunay diagrams (2006).",
       "finding": "Characterizes faces and incidences for finite point sets via k-couples. The inspected contribution does not state a fixed-cardinality count for the nonnegative orthant.",
       "remaining": "Full file was not retrieved; a full-text mathematical comparison is not claimed."
+    },
+    {
+      "source": "https://arxiv.org/pdf/1110.3566v2",
+      "published_doi": "https://doi.org/10.1016/j.dam.2012.08.012",
+      "authors": "Haukkanen and Merikoski",
+      "inspected": "Sections 1-2, equations (1)-(2) and (9), and Section 5; definitions and theorem statements, not a re-audit of the Section 4 error-term calculation.",
+      "finding": "Exact and asymptotic total threshold-function counts on a rectangular grid, summed over every included cardinality. The exact origin-class reduction explains why this total alone does not imply the prescribed-size lower bound.",
+      "remaining": "This comparison covers the stated total-count theorem, not every possible consequence in threshold-function research."
+    },
+    {
+      "source": "https://doi.org/10.13069/jacodesmath.79416",
+      "free_text": "https://distantreader.org/stacks/journals/jacodesmath/jacodesmath-21.pdf",
+      "authors": "Daniel Khoshnoudirad",
+      "correction_doi": "https://doi.org/10.13069/jacodesmath.00924",
+      "correction_text": "https://dergipark.org.tr/en/download/article-file/267848",
+      "inspected": "2015 Definitions 2.8-2.9, Proposition 2.10, Corollary 2.12, stated upper bounds and conclusion; 2016 erratum abstract, definitions, Section 4.4 and Section 5, printed p. 121.",
+      "finding": "Fixed rectangular-domain integer height patterns. The erratum leaves an additional term uncontrolled and withdraws the claimed improvement of the Farey-vertex upper bound. Do not rely on the original improved bound.",
+      "remaining": "No prescribed-cardinality orthant-cut lower theorem is stated in these inspected results. The corrected full proof was not re-audited."
+    },
+    {
+      "source": "https://perso.liris.cnrs.fr/florent.dupont/publications/2005-DAM.pdf",
+      "published_doi": "https://doi.org/10.1016/j.dam.2005.02.022",
+      "authors": "Coeurjolly, Sivignon, Dupont, Feschet and Chassery",
+      "inspected": "Definitions in Sections 2-3 and statements and proofs of Proposition 6 and Theorems 8, 11 and 12 in Sections 3-4; conclusion and references.",
+      "finding": "Two leaning polygons describe a digital-plane parameter polyhedron under stated geometric conditions; Theorem 12 counts faces of one such polyhedron. Boundary-point recognition is known and not claimed as a new principle here.",
+      "remaining": "The stated results do not provide the bounded-primitive-normal injection at every prescribed cardinality or the multiscale corner-cut lower count. No claim that all recognition literature is excluded."
     }
   ],
   "audit_tasks": [
-    "Compare fixed-cardinality grid k-set and threshold-function counts with the uniform prescribed-size injection of Lemma 4. Total-function counts, teaching-set cardinalities and citation-index coverage alone are not substitutes for this comparison.",
-    "Resolve the priority assessment and final manuscript review before describing the paper as submission-ready."
+    "Consolidate the priority assessment around the actual matching-count theorem, using the completed direct corner-cut, total-grid and digital-plane recognition comparisons. Do not claim novelty for finite reduction, boundary-point recognition or the fibre identity.",
+    "Complete the final manuscript and contribution review before calling the paper submission-ready; preserve the explicitly deferred final-version check under the user-authorized assumption."
   ],
   "validation_commands_passed": [
     "./build.sh",
@@ -248,7 +274,7 @@
   "submission_ready": false,
   "prime_distribution_consequence": false,
   "faster_unranking_claim": false,
-  "research_progress": "Re-derived the full prescribed-size proof and recorded an adversarial audit. Clarified the witness-height choice and explicit tie weights. Strengthened the finite checks from one boundary residue to five, yielding 11400 normal-pair/height checks and 7290 patch-corner pairs, with 150 partial and 50 complete boundary-level tests.",
+  "research_progress": "Completed precise finite-grid cardinality comparison, checked the closest digital-plane recognition theorem statements and proofs, found and accounted for the Farey-diagram erratum, and added the logarithmic average-completion corollary answering the suggestion in Wagner's Section 3.5. Main theorem and proof constants unchanged.",
   "remaining_exact_size_problem": "A complete pointwise proof candidate has passed the fresh internal audit; priority and publication significance have not been established.",
   "uniform_sieve_bound": {
     "record": "Candidate 22, equation (22.1)",
@@ -261,9 +287,9 @@
   },
   "completion_audit": {
     "uniform_argument": "The full pointwise argument passed a fresh internal adversarial review with no unresolved logical step identified. The audit includes ties, witnessing-height multiplicities, affine-coset reductions, two-patch integer rigidity, rank-to-height estimates and cross-aspect duplication. This is not an independent human referee report.",
-    "novelty": "Not established. Closest matrix and learning results were compared but the stronger-counting-theorem search is not complete.",
-    "mathematical_usefulness": "If valid and new, matches the inspected corner-cut upper bound and closes its logarithmic gap in every fixed dimension d>=3; the established vertex/model dictionary and the prime-realization lemma give exact counting interpretations.",
-    "manuscript": "The pointwise manuscript now explicitly fixes one witness per normal and uses the closed tie-resolving weight vector. Proof audit passed internally; priority and submission review remain incomplete.",
+    "novelty": "The specified total-grid and recognition comparisons are complete at the recorded scope. They do not directly imply the matching count, and their known methods are explicitly attributed. A consolidated overall priority decision is still pending.",
+    "mathematical_usefulness": "The matching count closes the inspected corner-cut logarithmic gap in every fixed dimension d>=3. It also determines the mean completion multiplicity as Theta_d(log n), addressing Wagner's explicit suggested route, and counts the established polytope/model and varying-prime prefix shapes.",
+    "manuscript": "Added a proved average-completion corollary, an exact finite-grid reduction and a theorem-level total-grid/recognition comparison. Overall priority and final submission review remain incomplete.",
     "decision": "Keep the goal active; finish the strongest-primary-literature comparison and submission review."
   },
   "explicit_cumulative_lower_bound": {
@@ -308,17 +334,18 @@
       "Lexicographic prefix realized by positive integer weights",
       "Two integer patches proving same-dimension fixed-size injectivity",
       "Volume bounds and disjoint aspect extents at prescribed size",
-      "Matching pointwise count and established polytope and prime-base interpretations"
+      "Matching pointwise count and established polytope and prime-base interpretations",
+      "Logarithmic average-completion corollary and exact finite-grid cardinality comparison"
     ],
     "compilation": "latest_source_compiled_successfully_with_desktop_editor_and_latexmk",
     "author_metadata": "Left blank; no authorship or affiliation invented.",
     "pdf": "output/pdf/corner_cut_growth.pdf",
-    "pdf_pages": 9,
-    "tex_sha256": "5ec8f7b5384e03230018b416af929b069f2ebd5da2bdaa9fc6892645dd3660c6",
-    "pdf_sha256": "9609a75a74ce2b1e216e7e927610ebfbc1a2ed16c53cf663d7e04a9466ae4d5e",
-    "visual_review": "All nine latest pages inspected after the internal proof audit edits; no clipping, overlap or unresolved references.",
-    "latex_log_check": "No errors, overfull boxes or undefined references in the final pass.",
-    "pdf_structure_check": "Nine pages, blank author metadata, no extracted characters outside page boundaries.",
+    "pdf_pages": 10,
+    "tex_sha256": "8d7e231076bb265605452831d276e8291f76617bd298b15aecf66c52851be280",
+    "pdf_sha256": "60bffcf51bce7dca6a1ea807523f782cb10781f46c2d5c9a888e4a0a3e5fba79",
+    "visual_review": "All ten latest pages inspected after the finite-grid and average-completion edits; no clipping, overlap or unresolved references.",
+    "latex_log_check": "No errors, overfull or underfull boxes, or undefined references in the final pass.",
+    "pdf_structure_check": "Ten pages, blank author metadata, no unresolved references or extracted characters outside page boundaries.",
     "pdf_build_command": "latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=results/local/corner-cut-latex paper/corner_cut_growth/main.tex"
   },
   "prime_base_realization": {
@@ -380,5 +407,22 @@
       }
     ],
     "interpretation": "The indexes overlap but are incomplete and use different coverage. Mathematical findings are attributed to the inspected primary text or authored abstract, not to citation counts."
+  },
+  "fixed_cardinality_literature_comparison": {
+    "record": "docs/interleaving_research.md, Fixed-cardinality comparison and the average-completion consequence",
+    "exact_reduction": "C_d(n) equals the number of n-sets of {0,...,n}^d containing the origin. Positivity and exclusion of the infinite complement follow from the n+1 axis points. This is a standard finite-ground-set reduction, not a novelty claim.",
+    "total_count_boundary": "The rectangular-grid threshold count of Haukkanen--Merikoski sums every included cardinality. In dimension two its value on {0,...,n}^2 is Theta(n^4), whereas C_2(n)=Theta(n log n). Its total-count lower estimate does not supply a lower estimate for this selected origin class.",
+    "recognition_boundary": "Coeurjolly et al. use two leaning polygons to describe feasible plane parameters. Boundary-point recognition is established background; the claimed advance is the prescribed-size bounded-normal injection and its multiscale counting consequence.",
+    "status": "completed_for_the_specified_primary_statements_not_a_global_priority_certificate"
+  },
+  "average_completion_consequence": {
+    "statement": "For every fixed d>=2, the mean number of n-point d-dimensional completions over all nonempty (d-1)-dimensional corner cuts of size at most n is Theta_d(log n).",
+    "identity": "mean F_n(T)=C_d(n)/A_{d-1}(n), with A_1(n)=n.",
+    "proof": "The restriction fibres partition all n-point cuts. Divide the matching count in dimension d by its summed counterpart in dimension d-1; for d=2 use A_1(n)=n.",
+    "source_for_question": "https://doi.org/10.3929/ethz-a-004708408",
+    "source_location": "Section 3.5, Weakness of the lower bound",
+    "manuscript_location": "Corollary labelled cor:fibres",
+    "attribution": "Restriction, lifting, the fibre identity and the suggestion of logarithmic mean multiplicity are Wagner's. The corollary is a consequence of the matching count, not an independent novelty claim.",
+    "limit": "This is not a bound for every individual slice: a slice of size n has exactly one n-point completion."
   }
 }

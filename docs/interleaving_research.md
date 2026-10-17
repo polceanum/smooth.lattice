@@ -2232,3 +2232,87 @@ and height combinations and 7,290 pairs of patch corners pass in dimensions
 The 200 direct tie-resolution checks include 150 partial boundary levels
 and 50 complete levels. These computations target finite failure modes;
 the uniform proof is the argument above, and priority remains unestablished.
+
+#### Fixed-cardinality comparison and the average-completion consequence
+
+The finite-grid comparison can be made exact, rather than resting on a
+difference in terminology. Put G_n={0,...,n}^d. The n-point corner cuts
+are exactly the n-sets of G_n containing the origin. Here an n-set means
+a subset strictly separable from its finite-grid complement. The forward
+implication follows because an n-point order ideal has coordinates at most
+n-1. Conversely, write a strict separator as w.x<t. Inclusion of the
+origin implies t>0. If w_i<=0, all n+1 axis points 0,e_i,...,n e_i would
+be included. Thus every w_i>0. Each n e_i must be excluded, since its
+inclusion would again include n+1 axis points. Therefore n w_i>t, and
+every nonnegative lattice point outside G_n also has score greater than t.
+This proves the converse. Wagner's thesis Section 3.2 uses a smaller
+hyperbolic-cross ground set; finite reduction is established background.
+
+[Haukkanen--Merikoski, 2013](https://doi.org/10.1016/j.dam.2012.08.012),
+[inspected v2](https://arxiv.org/pdf/1110.3566v2), Section 1, equations
+(1)--(2), and Section 2, equation (9), count all threshold functions on
+an m-by-r rectangle. Their exact primitive-segment formula sums over
+all included cardinalities; their asymptotic is
+t(m,r)=6(mr)^2/pi^2+O(m r^2) for 2<=m<=r. In particular the total on
+G_n in dimension two has order n^4, whereas the selected origin class
+C_2(n) has order n log n. A lower count for the total does not bound
+this particular cardinality class from below. This resolves the direct
+comparison with that theorem, without claiming to exclude every theorem
+in threshold-function research. Sections 1--2 and 5, including the theorem
+statements and their parameter definitions, were inspected; the full
+Section 4 error-term proof was not re-audited.
+
+The related Farey-diagram lead needs an explicit correction in our
+literature record. Khoshnoudirad's
+[2015 article](https://doi.org/10.13069/jacodesmath.79416), Definitions
+2.8--2.9, counts integer height patterns on a fixed rectangular domain,
+not n-point orthant cuts. More significantly, its proposed improved
+upper bound must not be treated as established: the
+[2016 published erratum](https://doi.org/10.13069/jacodesmath.00924),
+[journal PDF](https://dergipark.org.tr/en/download/article-file/267848),
+Sections 4.4--5, printed p. 121, leaves an additional term uncontrolled
+and states that this method does not improve the known Farey-vertex
+upper bound. We inspected the definitions and stated bounds of the
+2015 text, and the abstract, definitions and corrected conclusion of the
+2016 text. Neither corrected statement supplies a prescribed-size
+corner-cut lower bound. We do not use the withdrawn upper estimate.
+The downloaded full text remains local and excluded from the public
+repository.
+
+There is also a direct consequence for the question in
+[Wagner's thesis, Section 3.5](https://doi.org/10.3929/ethz-a-004708408),
+under "Weakness of the lower bound". For every nonempty (d-1)-dimensional
+corner cut T of size at most n, let F_n(T) count its n-point completions
+in dimension d along the coordinate slice x_d=0. Every n-point cut has
+one such nonempty slice, giving the established identity
+
+    sum_{1<=|T|<=n} F_n(T) = C_d(n).
+
+The number of possible slices is A_{d-1}(n), so their mean number of
+completions is C_d(n)/A_{d-1}(n). Candidate 23 therefore gives
+
+    mean F_n(T) = Theta_d(log n)  for every fixed d>=2.
+
+For d>=3 use the matching count in dimensions d and d-1 and sum the
+latter; for d=2 use A_1(n)=n. This is precisely the mean logarithmic
+growth suggested in Wagner's discussion. The restriction, fibre identity
+and lifting viewpoint are not new. This consequence explains what the
+new matching count would settle; it is not a substitute theorem or an
+independent novelty claim. It does not give logarithmically many
+completions for each T: if |T|=n then F_n(T)=1.
+
+The manuscript now includes this corollary and the exact finite-grid
+comparison. Its main theorem and proof constants are unchanged. These
+source-level comparisons are completed for the stated results; the
+overall priority assessment and final submission review remain open.
+
+The closest recognition comparison inspected in this pass is
+[Coeurjolly--Sivignon--Dupont--Feschet--Chassery, 2005](https://doi.org/10.1016/j.dam.2005.02.022),
+[author-hosted published text](https://perso.liris.cnrs.fr/florent.dupont/publications/2005-DAM.pdf).
+Equations (4)--(5), Proposition 6 and Theorems 8 and 11 describe feasible
+parameters of a digital plane using its two leaning polygons. Theorem 12
+bounds the faces of one such parameter polyhedron under additional
+hypotheses. The stated results and their proofs in Sections 3--4 were
+inspected. Boundary-point recognition is established background; the
+remaining contribution to assess is the uniform prescribed-cardinality
+injection and its multiscale count, not that general geometric principle.
