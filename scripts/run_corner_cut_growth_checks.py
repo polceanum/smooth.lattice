@@ -3,7 +3,8 @@
 
 These finite checks do not prove the asymptotic density lemma or establish
 novelty. They check primitive-simplex injectivity, rational parameter bounds,
-and the vertex/region inequality on a small degenerate arrangement.
+and the vertex/region inequality on a small degenerate arrangement. They
+also check the prescribed-size injection using exact affine-lattice patches.
 """
 from __future__ import annotations
 
@@ -418,6 +419,178 @@ def prime_realization_fixtures():
     return result
 
 
+def solve_rational(matrix, rhs):
+    n = len(matrix)
+    a = [[Fraction(x) for x in row] + [Fraction(y)] for row, y in zip(matrix, rhs)]
+    for j in range(n):
+        pivot = next(i for i in range(j, n) if a[i][j])
+        a[j], a[pivot] = a[pivot], a[j]
+        scale = a[j][j]
+        a[j] = [v / scale for v in a[j]]
+        for i in range(n):
+            if i != j:
+                scale = a[i][j]
+                a[i] = [u - scale * v for u, v in zip(a[i], a[j])]
+    return [row[-1] for row in a]
+
+
+def bezout_vector(values):
+    g, coefficients = 0, []
+    for value in values:
+        old_r, r, old_s, s, old_t, t = g, value, 1, 0, 0, 1
+        while r:
+            q = old_r // r
+            old_r, r = r, old_r - q * r
+            old_s, s = s, old_s - q * s
+            old_t, t = t, old_t - q * t
+        g = old_r
+        coefficients = [old_s * c for c in coefficients] + [old_t]
+    require(g == 1 and dot(values, coefficients) == 1, 'Bezout substitution')
+    return coefficients
+
+
+def reduce_lattice_coset(seed, target, matrix):
+    coefficients = solve_rational(matrix[1:], [Fraction(x) - y for x, y in zip(seed[1:], target[1:])])
+    nearest = [int((c + Fraction(1, 2)) // 1) for c in coefficients]
+    residual = [c - k for c, k in zip(coefficients, nearest)]
+    require(all(abs(c) <= Fraction(1, 2) for c in residual), 'centered coefficients')
+    reduced = tuple(x - dot(row, nearest) for x, row in zip(seed, matrix))
+    require(all(Fraction(x) - y == dot(row, residual)
+                for x, y, row in zip(reduced, target, matrix)), 'full coset substitution')
+    return reduced, residual
+
+
+def primitive_normal_family(d, count=24):
+    # Given primitive frames in the stated windows; this finite fixture does
+    # not assert the density lemma at these small side lengths.
+    sides = tuple(100 * d * (i + 1) for i in range(d))
+    rng = Random(20261017 + 100 * d)
+    frames = {}
+    attempts = 0
+    while len(frames) < count:
+        attempts += 1
+        require(attempts < 20000, 'enough distinct fixture normals')
+        points = tuple(tuple((length if axis == j else 0) + rng.randrange(length // (100 * d) + 1)
+                             for j, length in enumerate(sides)) for axis in range(d))
+        matrix, a, index = frame_data(points)
+        if index != 1:
+            continue
+        height = dot(a, points[0])
+        if height < 0:
+            a, height = tuple(-v for v in a), -height
+        require(height == abs(determinant(points)), 'primitive normal height equals determinant')
+        require(all(v > 0 for v in a), 'positive normal')
+        require(Fraction(prod(sides), 2 ** d) <= height <= 2 ** d * prod(sides), 'height range')
+        require(all(Fraction(9, 10) < Fraction(x * length, height) < Fraction(11, 10)
+                    for x, length in zip(a, sides)), 'scaled normal')
+        frames[a] = (points, matrix, height)
+    return sides, frames, attempts
+
+
+def fixed_size_patch_fixture(d):
+    sides, frames, attempts = primitive_normal_family(d, 9 if d == 2 else 24)
+    k = 4 ** (d + 1)
+    ratio = 16 * d * d * (k + 1)
+    pairs = 0
+    witness = None
+    for a, (points, matrix, height) in frames.items():
+        h = ratio * height
+        z, c = reduce_lattice_coset(bezout_vector(a), [Fraction(v, height) for v in points[0]], matrix)
+        require(dot(a, z) == 1, 'unit level increment')
+        target = [Fraction(h - 1, d * v) for v in a]
+        x0, beta = reduce_lattice_coset([(h - 1) * v for v in z], target, matrix)
+        for signs in product((-k, k), repeat=d - 1):
+            low = tuple(x + dot(row, signs) for x, row in zip(x0, matrix))
+            high = tuple(x + 2 * v for x, v in zip(low, z))
+            require(min(*low, *high) >= 0, 'two nonnegative patches')
+            require(dot(a, low) == h - 1 and dot(a, high) == h + 1, 'patch levels')
+        for b in frames:
+            if b == a:
+                continue
+            pairs += 1
+            columns = tuple(zip(*matrix))
+            values = [dot(b, column) for column in columns]
+            require(any(values), 'nonparallel normal')
+            signs = [k if v > 0 else -k if v < 0 else 0 for v in values]
+            low = tuple(x + dot(row, signs) for x, row in zip(x0, matrix))
+            high = tuple(x + 2 * v - dot(row, signs) for x, v, row in zip(x0, z, matrix))
+            require(dot(b, low) > dot(b, high), 'distinct normal cannot separate patches')
+            require(Fraction(dot(b, points[0]), height) < 2 * 4 ** d, 'uniform height-ratio bound')
+            if witness is None:
+                witness = {'a': a, 'b': b, 'height': height, 'boundary_score': h,
+                           'unit_increment': z, 'low_point': low, 'high_point': high,
+                           'a_low': dot(a, low), 'a_high': dot(a, high),
+                           'b_low': dot(b, low), 'b_high': dot(b, high)}
+    return {'dimension': d, 'sides': sides, 'attempts': attempts,
+            'seed': 20261017 + 100 * d,
+            'primitive_normal_count': len(frames), 'ordered_distinct_pairs': pairs,
+            'patch_corner_pairs_checked': len(frames) * 2 ** (d - 1),
+            'patch_half_width': k, 'boundary_height_ratio': ratio, 'witness': witness}
+
+
+def exact_size_constants():
+    result = []
+    for d in range(2, 13):
+        k = 4 ** (d + 1)
+        scale_root = 64 * d * d * (k + 1)
+        scale = scale_root ** d
+        ratio = 16 * d * d * (k + 1)
+        require(Fraction(ratio - 1, 2 * d) > 2 * k * d + 5 * d,
+                'uniform patch nonnegativity margin')
+        require(k - Fraction(1, 2) > 2 * 4 ** d,
+                'uniform integer rigidity margin')
+        require(Fraction(4, 5) * scale_root >= ratio,
+                'prescribed cardinality supplies sufficient height')
+        require(scale <= 4 ** (2 * d * d + 4 * d), 'closed scale logarithm bound')
+        r0 = 4 * d * d * (d + 1)
+        require(r0 >= 2 * d * d + 4 * d + 2, 'closed logarithm conversion threshold')
+        rho = Fraction(1, 8 ** (d - 1) * (100 * d) ** (d * d))
+        constant = rho / (2 ** d * (4 * scale) ** (d - 1)
+                          * (4 * (d + 1)) ** (d - 1) * factorial(d - 1))
+        result.append({'dimension': d, 'patch_half_width': k,
+                       'cardinality_to_box_volume_ratio': scale,
+                       'minimum_n': {'factor': scale, 'power_of_four': r0},
+                       'pointwise_lower_constant': str(constant), 'logarithm_base': 4})
+    return result
+
+
+def integer_weight_prefix(weights, n):
+    zero = (0,) * len(weights)
+    heap, seen, result = [(0, zero)], {zero}, []
+    for _ in range(n):
+        score, x = heapq.heappop(heap)
+        result.append((score, x))
+        for axis, weight in enumerate(weights):
+            y = tuple(v + (i == axis) for i, v in enumerate(x))
+            if y not in seen:
+                seen.add(y)
+                heapq.heappush(heap, (score + weight, y))
+    return result
+
+
+def tie_resolution_fixture():
+    checks, examples = 0, []
+    for normal in ((1, 1), (2, 3), (1, 1, 1), (2, 2, 3), (1, 2, 3, 4)):
+        d = len(normal)
+        for n in range(1, 41):
+            ordered = integer_weight_prefix(normal, n)
+            u = tuple(n ** (d - i - 1) for i in range(d))
+            multiplier = n ** d
+            strict_weights = tuple(multiplier * a + v for a, v in zip(normal, u))
+            strict_prefix = integer_weight_prefix(strict_weights, n + 1)
+            require([x for _, x in strict_prefix[:-1]] == [x for _, x in ordered],
+                    'lexicographic prefix realized by positive integer weights')
+            require(strict_prefix[-2][0] < strict_prefix[-1][0],
+                    'strict score gap at prescribed cardinality')
+            checks += 1
+            if n == 7:
+                examples.append({'normal': normal, 'cardinality': n, 'strict_weights': strict_weights,
+                                 'last_inside': strict_prefix[-2], 'first_outside': strict_prefix[-1]})
+    return {'prefixes_checked': checks, 'cardinalities': [1, 40],
+            'exact_heap_orders_agree': True, 'witnesses': examples}
+
+
+
 def main():
     fixtures = [primitive_fixture(sides) for sides in
                 ((100, 100, 100), (100, 200, 400), (200, 300, 400))]
@@ -433,13 +606,16 @@ def main():
         "explicit_uniform_sieve_bounds": explicit_sieve_bounds(),
         "nonprimitive_projection_control": projection_negative_control(),
         "prime_realization_fixtures": prime_realization_fixtures(),
+        "exact_size_patch_fixtures": [fixed_size_patch_fixture(d) for d in range(2, 7)],
+        "exact_size_constants": exact_size_constants(),
+        "tie_resolution_fixture": tie_resolution_fixture(),
         "source_sha256": {str(path): hashlib.sha256((ROOT / path).read_bytes()).hexdigest()
                           for path in (Path("scripts/run_corner_cut_growth_checks.py"),
                                        Path("scripts/run_pyramidal_poset_checks.py"),
                                        Path("docs/interleaving_research.md"),
                                        Path("paper/corner_cut_growth/main.tex"))},
         "limitations": ["Finite checks do not establish a uniform asymptotic density bound.",
-                        "The cumulative three-dimensional candidate does not establish the exact-size three-dimensional bound.",
+                        "The prescribed-size conclusion depends on the new lattice-patch proof, not the cumulative checks alone.",
                         "No claim of priority or publication readiness is made."],
     }
     target = ROOT / "results/research/corner_cut_growth_checks.json"

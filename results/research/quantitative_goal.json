@@ -3,7 +3,7 @@
   "recorded_on": "2026-10-17",
   "title": "A new quantitative theorem for smooth exponent geometry",
   "objective": "Prove a genuinely new quantitative theorem about the exponent-lattice structure underlying fixed-prime smooth-number prefixes, resolving or strictly improving a published counting or algorithmic bound. Produce a complete proof, a precise comparison with the strongest relevant literature, reproducible supporting evidence and an honest paper explaining the mathematical advance.",
-  "status": "active_quantitative_working_draft_written_priority_and_submission_audit_incomplete",
+  "status": "new_prescribed_size_candidate_written_exact_checks_and_priority_review_in_progress",
   "acceptance_criteria": [
     "State a uniform theorem for an infinite family with an explicit quantitative improvement over the strongest verified published result, or settle a recognized open structural question with a substantive counting or algorithmic consequence.",
     "Give a complete proof; numerical agreement, isolated examples and routine consequences of known theorems do not satisfy the goal.",
@@ -55,19 +55,19 @@
       "task": "Perform one focused feasibility pass on the three-dimensional counting gap.",
       "deliverable": "Either a precise new lemma with a proof mechanism that can improve a bound, or a documented failure explaining the collision, multiplicity or geometric obstruction.",
       "stop_or_redirect": "Do not build an enumeration framework or expand the manuscript without a credible new mechanism. Redirect if the only route repeats known lifting, assumes an unresolved Diophantine estimate or produces isolated examples.",
-      "status": "feasibility_mechanism_found_cumulative_and_higher_dimensional_route"
+      "status": "new_same_dimension_prescribed_size_mechanism_found"
     },
     {
       "id": "M3",
       "task": "Prove the quantitative theorem and check the delicate steps independently.",
       "deliverable": "A uniform proof with explicit quantifiers and error bounds, plus exact computational checks only where they can falsify a claimed combinatorial lemma.",
-      "status": "internal_uniform_proof_audit_passed_priority_not_established"
+      "status": "fresh_adversarial_review_of_prescribed_size_argument_pending"
     },
     {
       "id": "M4",
       "task": "Write and audit the paper around the actual advance.",
       "deliverable": "A complete manuscript, exact priority comparison, reproducible evidence and a candid explanation of usefulness and limitations.",
-      "status": "working_mathematical_draft_written_not_submission_ready"
+      "status": "pointwise_working_draft_written_not_submission_ready"
     }
   ],
   "preserved_side_results": {
@@ -81,15 +81,15 @@
     "honesty": "A worthwhile result and an honest publishable paper are objectives, not promised outcomes. Record failures and redirect rather than weaken the success criteria."
   },
   "working_candidate": {
-    "record": "docs/interleaving_research.md, Candidate 22 (Candidate 21 retained as the dimension-three worked case)",
+    "record": "docs/interleaving_research.md, Candidate 23 (Candidates 21 and 22 preserved as the earlier cumulative route)",
     "statements": [
-      "For every fixed d >= 2, A_d(n) = Theta_d(n^d (log n)^(d-1)), where A_d(n) = sum(j=1..n) C_d(j).",
-      "For every fixed d >= 4, C_d(n) = Omega_d(n^(d-1) (log n)^(d-2))."
+      "For every fixed d >= 2, C_d(n) = Theta_d(n^(d-1) (log n)^(d-1)).",
+      "Consequently A_d(n) = Theta_d(n^d (log n)^(d-1))."
     ],
-    "mechanism": "Dimension induction with an explicit small-prime/large-prime error bound for primitive simplices in polynomially comparable axis boxes; lattice-basis injectivity; restricted-arrangement chamber counting; disjoint aspect ranges; Wagner lifting.",
-    "proof_status": "The general argument has passed an internal adversarial review. Closed choices S_d=4d^2 and n_0(d)=2^(d+8d^2(d+1)), with an explicit positive lower constant kappa_d, remove all implicit large-input thresholds. The proof ledger records the conditioning, finite prime tail, primitive-lattice injection, chamber count and multiscale duplication checks. This is not an independent human review.",
+    "mechanism": "Uniform primitive-window sieve; divide primitive planes by their bounded integer heights to count normal directions; realize each lexicographic prefix by positive weights; use two nonnegative lattice patches at levels h-1 and h+1 to prove prescribed-size injectivity; separate aspect tuples by observable axis extents.",
+    "proof_status": "New complete prescribed-size candidate proof recorded with closed constants. Exact affine-coset and reversed-order checks pass; a fresh adversarial logical review and priority review remain necessary. This is not independent human review.",
     "priority_status": "Unresolved. Compare grid threshold-function counts, primitive-frame counts and subsequent corner-cut literature before claiming an improvement.",
-    "three_dimensional_limit": "The exact-size lower bound at every n in dimension three is not proved. The cumulative theorem, if valid, rules out reducing the pointwise upper logarithmic exponent uniformly, and forces sharp growth at a positive proportion of sizes.",
+    "three_dimensional_limit": "The new Candidate 23 aims at C_3(n)=Theta(n^2(log n)^2) for every sufficiently large n; the fresh proof and priority audit remain incomplete.",
     "evidence": "results/research/corner_cut_growth_checks.json",
     "known_matrix_background": {
       "source": "https://arxiv.org/pdf/1803.08785",
@@ -111,23 +111,23 @@
     },
     "manuscript": {
       "source": "paper/corner_cut_growth/main.tex",
-      "title": "Cumulative growth of corner cuts in fixed dimension",
-      "status": "working_draft_priority_and_submission_review_incomplete",
+      "title": "Sharp growth of corner cuts in fixed dimension",
+      "status": "working_draft_new_prescribed_size_argument_under_review",
       "proof_contents": [
         "Uniform primitive-window bound with closed constants",
-        "Full-lattice injection and chamber-versus-vertex lemma with degeneracies",
-        "Disjoint-aspect construction and explicit cumulative count",
-        "Self-contained attributed lifting proof and exact-size consequence",
-        "Positive-proportion consequence and established polytope application",
-        "Elementary realization of every corner cut over arbitrarily large distinct prime bases, with the exact counting identity"
+        "Full-lattice injection and bounded-height division to count primitive normals",
+        "Lexicographic prefix realized by positive integer weights",
+        "Two integer patches proving same-dimension fixed-size injectivity",
+        "Volume bounds and disjoint aspect extents at prescribed size",
+        "Matching pointwise count and established polytope and prime-base interpretations"
       ],
       "compilation": "latest_source_compiled_successfully_with_desktop_editor_and_latexmk",
       "author_metadata": "Left blank; no authorship or affiliation invented.",
       "pdf": "output/pdf/corner_cut_growth.pdf",
       "pdf_pages": 9,
-      "tex_sha256": "f257cd2a8afafe77d00445469cfc77fa2bbf785b7102629141f6117426605d87",
-      "pdf_sha256": "9b30d10031b896be4a42f54a69a20fa3b4150f195825ec6e2bf7073bd0c42df1",
-      "visual_review": "All nine latest rendered pages inspected; no clipping, overlap or unresolved references.",
+      "tex_sha256": "590c154deeeed06464bee02b6b3645008007332b91a38785b1ca1e6c2fe4f955",
+      "pdf_sha256": "e42533c43b8f7b114970862a2c0a3c69196a5eb72724db1e65654f91f4daabd2",
+      "visual_review": "Latest nine-page pointwise draft rendered and inspected; no clipping, overlap or unresolved references.",
       "latex_log_check": "No errors, overfull boxes or undefined references in the final pass.",
       "pdf_structure_check": "Nine pages, blank author metadata, no extracted characters outside page boundaries.",
       "pdf_build_command": "latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=results/local/corner-cut-latex paper/corner_cut_growth/main.tex"
@@ -140,6 +140,13 @@
       "source_inspected": "Published text pp. 197--198, stating and completing the proof of Bertrand's postulate.",
       "consequence": "For every fixed B, S_{d,B}(n)=C_d(n), where S counts distinct prefix exponent sets over varying ordered tuples of distinct primes greater than B. Hence the cumulative theorem counts exactly the realizable smooth-prefix shapes.",
       "scope": "Elementary supporting proposition, no separate novelty claim. Varying prime tuples are essential; a single fixed tuple has only one prefix per length. No new prime-distribution or unranking claim."
+    },
+    "explicit_pointwise_lower_bound": {
+      "formula": "C_d(n) >= lambda_d n^(d-1) (log_4 n)^(d-1) for every fixed d>=2 and n>=n_star(d).",
+      "parameters": "K_d=4^(d+1), T_d=[64 d^2(K_d+1)]^d, rho_d=8^(-(d-1))(100d)^(-d^2).",
+      "minimum_n": "n_star(d)=T_d 4^[4d^2(d+1)]",
+      "constant": "lambda_d=rho_d/[2^d (4T_d)^(d-1) [4(d+1)]^(d-1) (d-1)!]",
+      "interpretation": "Coarse proof constants; not practical enumeration bounds."
     }
   }
 }

@@ -17,13 +17,13 @@
 \newcommand{\floor}[1]{\lfloor#1\rfloor}
 \newcommand{\ceil}[1]{\lceil#1\rceil}
 \newcommand{\dd}{\delta}
-\title{Cumulative growth of corner cuts\\in fixed dimension}
+\title{Sharp growth of corner cuts\\in fixed dimension}
 \author{}
 \date{17 October 2026}
 \begin{document}
 \maketitle
 \begin{center}
-\small Working mathematical draft. The proof has undergone an internal audit;
+\small Working mathematical draft. The new prescribed-size argument is under review;
 the priority assessment and submission review remain incomplete.
 \end{center}
 
@@ -32,16 +32,16 @@ Let \(C_d(n)\) count the \(n\)-point subsets of the nonnegative integer
 lattice that can be strictly separated from their complements by an affine
 hyperplane. For every fixed \(d\geq2\), we prove
 \[
- \sum_{j=1}^{n}C_d(j)=\Theta_d\!\bigl(n^d(\log n)^{d-1}\bigr).
+ C_d(n)=\Theta_d\!\bigl(n^{d-1}(\log n)^{d-1}\bigr).
 \]
-The upper bound follows from Wagner's estimate. His lifting lemma then
-gives \(C_d(n)=\Omega_d(n^{d-1}(\log n)^{d-2})\) for \(d\geq4\),
-improving the lower logarithmic exponent in that published baseline.
-The construction counts primitive lattice simplices in separated boxes,
-converts their affine spans to vertices of a weight-space arrangement,
-and sums over disjoint aspect ranges. A finite divisibility argument
-provides uniform constants without an interchange of density limits
-and infinite unions. The exact-size three-dimensional gap is not resolved.
+The upper bound is due to Wagner. For the lower bound, a finite
+sieve produces primitive lattice simplices in separated axis boxes.
+Their primitive normal directions are distinguished at a prescribed
+cardinality by two integer patches on opposite sides of a boundary
+level. Summing over disjoint aspect ranges supplies the logarithmic
+factor. This gives a matching lower bound in every fixed dimension,
+including the three-dimensional order \(n^2(\log n)^2\).
+The cumulative count is consequently of order \(n^d(\log n)^{d-1}\).
 \end{abstract}
 
 \section{The counting problem and its scope}
@@ -81,43 +81,41 @@ Thomas \cite{CRST}. For fixed \(d\), Wagner \cite{W02} proved
  \tag{1}\label{eq:baseline}
 \]
 His thesis \cite[Chapter 3]{W03} gives the lower and upper arguments
-and suggests seeking greater completion multiplicity. Our new step is
-a lower bound for bounded cardinality, obtained by counting independent
-aspect ranges. Lifting is used only after this step.
+and suggests seeking greater completion multiplicity. We obtain the
+lower bound in the same dimension: we count primitive normals and show
+that two of them cannot define the same sufficiently large prefix.
+No monotonicity assumption or inference from an average is used.
 
 \begin{theorem}\label{thm:main}
 For each fixed integer \(d\geq2\),
 \[
- A_d(n)=\Theta_d\!\bigl(n^d(\log n)^{d-1}\bigr).
+ C_d(n)=\Theta_d\!\bigl(n^{d-1}(\log n)^{d-1}\bigr).
 \]
-More explicitly, let
+Here is one explicit lower bound. Put
 \[
- R_0(d)=4d^2(d+1),\qquad n_0(d)=2^d4^{R_0(d)}
+ K_d=4^{d+1},\qquad T_d=[64d^2(K_d+1)]^d,\qquad
+ R_0(d)=4d^2(d+1),
+\]
+\[
+ n_*(d)=T_d4^{R_0(d)},\qquad
+ \rho_d=8^{-(d-1)}(100d)^{-d^2},
 \]
 and
 \[
- \kappa_d=
- \frac{1}{
- 8^{d-1}(100d)^{d^2}(d-1)![4(d+1)]^{d-1}2^{d(d+2)}}.
+ \lambda_d=\frac{\rho_d}
+ {2^d(4T_d)^{d-1}[4(d+1)]^{d-1}(d-1)!}.
 \]
-Then, for every integer \(n\geq n_0(d)\),
+For every integer \(n\geq n_*(d)\),
 \[
- A_d(n)\geq\kappa_d n^d(\log_4 n)^{d-1}.
+ C_d(n)\geq\lambda_d n^{d-1}(\log_4 n)^{d-1}.
  \tag{2}\label{eq:explicit}
 \]
 \end{theorem}
-
-\begin{corollary}\label{cor:exact}
-For each fixed \(d\geq4\),
-\[
- C_d(n)=\Omega_d\!\bigl(n^{d-1}(\log n)^{d-2}\bigr).
-\]
-\end{corollary}
-This leaves one logarithmic factor between the lower bound and
-\eqref{eq:baseline}. In dimension three, the corollary recovers only
-the earlier lower order \(n^2\log n\). The cumulative theorem also
-precludes a uniform reduction of the logarithmic exponent in the upper
-bound; its positive-proportion consequence is stated in Section~\ref{sec:consequences}.
+Summing gives \(A_d(n)=\Theta_d(n^d(\log n)^{d-1})\).
+The pointwise conclusion matches \eqref{eq:baseline} and strengthens
+its lower logarithmic exponent when \(d\geq3\).
+This comparison is with the inspected baseline; the priority status
+is discussed at the end of the paper.
 
 \section{Primitive simplices in axis boxes}
 Fix an ambient integer \(d\geq2\) and set \(\dd=1/(100d)\).
@@ -250,189 +248,194 @@ This intersection implies \(E_d\), as required.
 All bounds on large primes were finite before any limit was taken.
 \end{proof}
 
-\section{From simplices to cuts}
-We first recall a useful elementary fact about arrangements, including
-the case of dependent hyperplanes.
-\begin{lemma}\label{lem:chambers}
-For a finite affine-hyperplane arrangement in a nonempty open convex
-domain in \(\R^k\), the number of chambers is at least the number
-of interior vertices.
+\section{Primitive normals at a prescribed size}
+For each primitive frame from Lemma~\ref{lem:primitive}, orient its
+cofactor normal \(a\) positively and put \(H_a=a\cdot p_1\).
+Let \(P\) have rows \(p_i\). Its column-scaled matrix differs from the
+identity by a matrix of maximum row-sum norm at most \(d\dd=1/100\).
+The determinant is positive and every eigenvalue lies within \(1/100\)
+of one. Consequently
+\[
+ H_a=\det P,\qquad 2^{-d}Q\leq H_a\leq2^dQ.
+ \tag{7}\label{eq:heights}
+\]
+The solution of \(p_i\cdot w=1\) satisfies
+\(\lvert L_iw_i-1\rvert\leq d\dd/(1-d\dd)<1/10\).
+Since \(w=a/H_a\), this gives
+\[
+ \frac9{10}<\frac{a_iL_i}{H_a}<\frac{11}{10}.
+ \tag{8}\label{eq:normalbox}
+\]
+
+\begin{lemma}\label{lem:normals}
+Under the hypotheses of Lemma~\ref{lem:primitive}, these frames give
+at least \(2^{-d}\rho_dQ^{d-1}\) distinct primitive positive normals.
 \end{lemma}
 \begin{proof}
-In dimension one, \(v\) distinct interior points give \(v+1\) chambers.
-For the induction step, discard duplicate hyperplanes and insert the
-remaining ones in a fixed order. Inserting \(H\) creates exactly the
-number of chambers of the restricted arrangement in \(H\) intersected
-with the domain. This follows because every old chamber is open and
-convex and is split exactly when it meets \(H\).
-
-Assign each vertex to its last incident hyperplane \(H\).
-The incident normals span \(\R^k\), and the nonzero normal of \(H\)
-extends to a basis among them. Hence the assigned vertex is also an
-interior vertex of the restriction to \(H\).
-The induction hypothesis bounds the number assigned to \(H\) by the
-number of new chambers. Summing gives the result.
+Primitivity gives an integer \(z\) with \(a\cdot z=1\).
+The matrix \([V\ z]\) is unimodular, so the columns of \(V\) form a
+basis of the entire integer kernel of \(a\).
+If two points of the same \(B_i\) lie in the selected affine plane,
+their difference is \(Vc\), with \(c\in\Z^{d-1}\).
+The submatrix in rows \(2,\ldots,d\), after row scaling by the \(L_i\),
+differs from the identity by at most \((d-1)\dd\) in maximum row-sum
+norm. Thus
+\[
+ \norm{c}\leq\frac{\dd}{1-(d-1)\dd}<1,
+\]
+so the two points agree. Each plane determines its selected simplex.
+Each box has at least \(\dd^dQ\) points, so the number of distinct
+planes is at least \(\rho_dQ^d\).
+For any fixed primitive normal, the integer height in
+\eqref{eq:heights} has at most \(2^dQ\) possibilities. Division proves
+the claim.
 \end{proof}
 
-\begin{lemma}\label{lem:local}
-Under the hypotheses of Lemma~\ref{lem:primitive}, at least
+For a positive integer normal \(a\), order lattice points by
+\((a\cdot x,x_1,\ldots,x_d)\), and let \(D_n(a)\) be the first \(n\).
+Let \(h\) be the least integer for which
 \[
- \rho_d Q^d,\qquad
- \rho_d=8^{-(d-1)}(100d)^{-d^2},                 \tag{7}\label{eq:local}
+ F_a(h):=\card{\{x\in\Nzero^d:a\cdot x\leq h\}}\geq n.
 \]
-distinct corner cuts are represented by weights in
+The set \(D_n(a)\) is a corner cut, including when the score-\(h\)
+level is only partly included. Indeed
+\(h\leq(n-1)\min_i a_i\), by considering a minimum-weight axis.
+Every point at score at most \(h\) lies in \(\{0,\ldots,n-1\}^d\).
+For \(n>1\), the integer vector \(u_i=n^{d-i}\) represents lexicographic
+order in that box. Taking \(w=M a+u\), with
+\(M>\max_{a\cdot x\leq h}u\cdot x\), preserves all these levels and
+strictly orders the boundary level. Positivity keeps every higher
+\(a\)-level above them. A threshold between consecutive integer scores
+gives a strict representation. The case \(n=1\) is immediate.
+We will use the weak separation property
 \[
- \Omega_L=\prod_{i=1}^{d}\left(\frac9{10L_i},\frac{11}{10L_i}\right),
+ b\cdot x\leq b\cdot y
+ \quad(x\in D_n(b),\ y\notin D_n(b)).
+ \tag{9}\label{eq:weak}
 \]
-using threshold one. Each has at most \((3/2)^d Q\) points.
-Its maximum \(i\)th coordinate on the \(i\)th axis lies in
-\((4L_i/5,6L_i/5)\).
+
+\begin{lemma}[Fixed-size injectivity]\label{lem:inject}
+Let \(a,b\) be primitive positive normals furnished by the same aspect
+box. Put \(K=4^{d+1}\). If the boundary height \(h\) of \(D_n(a)\)
+satisfies
+\[
+ h/H_a\geq16d^2(K+1),
+ \tag{10}\label{eq:deep}
+\]
+then \(D_n(a)=D_n(b)\) implies \(a=b\).
 \end{lemma}
 \begin{proof}
-Let \(p_i\in B_i\) have primitive difference matrix \(V\).
-Its primitive cofactor normal is \(a\).
-There is an integer vector \(z\) with \(a\cdot z=1\);
-the matrix \([V\ z]\) is unimodular, after choosing the cofactor
-orientation. The columns of \(V\) therefore form a basis of
-\(\{x\in\Z^d:a\cdot x=0\}\).
-
-After row scaling, the submatrix of \(V\) in coordinates \(2,\ldots,d\)
-differs from the identity by at most \((d-1)\dd\) in maximum row-sum
-norm. If two integer points in one \(B_i\) belong to the selected
-affine span, their difference is \(Vc\) for an integer vector \(c\).
-The scaled coordinate difference is at most \(\dd\), so
+Choose the selected frame \(V=[v_1\ \cdots\ v_{d-1}]\) for \(a\).
+Since \(V\) is a basis of its integer kernel, an integer solution
+of \(a\cdot z=1\) can be reduced modulo \(V\) to give
 \[
- \norm{c}\leq\frac{\dd}{1-(d-1)\dd}<1.
+ z=p_1/H_a+Vc,\qquad |c_j|\leq1/2.
+ \tag{11}\label{eq:bezout}
 \]
-Thus \(c=0\). The plane meets each box in exactly its selected point,
-so distinct primitive choices give distinct planes.
-
-The normalized row matrix of all \(d\) points differs from the
-identity by at most \(d\dd\).
-The unique solution of \(p_i\cdot w=1\) satisfies
+Each entry satisfies \(\lvert(v_j)_i\rvert<2L_i\), so
+\(\lvert z_i\rvert\leq(d+1)L_i\leq2dL_i\).
+Let \(y_i=(h-1)/(d a_i)\). Reduce \((h-1)z\) modulo \(V\) about
+\(y\), obtaining an integer \(x_0\) such that
 \[
- |L_iw_i-1|\leq\frac{d\dd}{1-d\dd}<1/10.
+ a\cdot x_0=h-1,\qquad x_0-y=V\beta,\qquad |\beta_j|\leq1/2.
 \]
-In particular it is positive and lies in \(\Omega_L\).
-Each selected plane gives a distinct interior vertex of the arrangement
-\(x\cdot w=1\).
-This arrangement can be taken finite: only nonnegative integer points
-with \(x_i\leq\ceil{10L_i/9}\) for every \(i\) can meet \(\Omega_L\);
-all other points have weight greater than one throughout that domain.
+Both integer patches
+\[
+ \{x_0+Vk:k\in\Z^{d-1},\ |k_j|\leq K\},\qquad
+ \{x_0+2z+Vk:k\in\Z^{d-1},\ |k_j|\leq K\}
+ \tag{12}\label{eq:patches}
+\]
+are nonnegative. To see this coordinatewise, the displacement from
+\(y_i\) is less than \((2Kd+5d)L_i\), while
+\eqref{eq:normalbox} and \eqref{eq:deep} give
+\[
+ y_i/L_i>\frac{h-1}{2dH_a}>2Kd+5d.
+\]
+Their \(a\)-scores are respectively \(h-1\) and \(h+1\).
+Thus the first patch is entirely inside \(D_n(a)\), the second
+entirely outside; the score-\(h\) tie is irrelevant.
 
-Every chamber gives a corner cut. Different chambers give different
-sets, since a fixed collection of strict signs has convex intersection
-with \(\Omega_L\). By Lemma~\ref{lem:chambers}, the number of these cuts
-is at least the number of selected vertices.
-Each \(B_i\) has at least \(\dd^d Q\) points, so
-Lemma~\ref{lem:primitive} proves \eqref{eq:local}.
+Assume the two prefixes agree, and put \(S=\sum_j|b\cdot v_j|\).
+By \eqref{eq:weak}, the maximum \(b\)-score on the first patch cannot
+exceed the minimum on the second. Hence
+\[
+ KS\leq b\cdot z
+ \leq b\cdot p_1/H_a+S/2.
+ \tag{13}\label{eq:patchineq}
+\]
+For two normals in the same aspect family,
+\eqref{eq:heights} gives \(H_b/H_a\leq4^d\), and
+\eqref{eq:normalbox} gives
+\[
+ \frac{b\cdot p_1}{H_a}
+ <4^d\frac{11}{10}(1+d\dd)<2\cdot4^d.
+\]
+It follows that \((K-1/2)S<2\cdot4^d<K-1/2\).
+But \(S\) is an integer, so \(S=0\). Thus \(b\) annihilates every
+column of \(V\) and is parallel to \(a\). Primitivity and positivity
+force \(a=b\).
+\end{proof}
 
-A coordinate of an included point is smaller than \(10L_i/9\).
-There are fewer than \(10L_i/9+1\leq(3/2)L_i\) possible integer values
-when \(L_i\geq3\). This proves the cardinality bound.
-For a chamber weight, the maximum axis coordinate is \(\floor{1/w_i}\);
-the chamber condition excludes equality \(1/w_i\in\Z\).
-It lies strictly between \(4L_i/5\) and \(6L_i/5\) when \(L_i\geq10\).
-Both side conditions follow from the stated threshold.
+\begin{lemma}\label{lem:extents}
+If \(n/Q\geq T_d\) and \(m\geq2^{8d^2}\), then
+\eqref{eq:deep} holds. With \(G=(d!n/Q)^{1/d}\), the maximum
+\(i\)th axis coordinate of \(D_n(a)\) lies strictly between
+\(GL_i/2\) and \(2GL_i\).
+\end{lemma}
+\begin{proof}
+The disjoint half-open unit cubes based at the points counted by
+\(F_a(t)\) contain the positive simplex of height \(t\), and are
+contained in the simplex of height \(t+\sum_i a_i\). Therefore
+\[
+ \frac{t^d}{d!\prod_i a_i}\leq F_a(t)
+ \leq\frac{(t+\sum_i a_i)^d}{d!\prod_i a_i}\qquad(t\geq0).
+\]
+Use \(F_a(h-1)<n\leq F_a(h)\) and \eqref{eq:normalbox} to get
+\[
+ \frac9{10}G-\frac{11d}{10m}
+ <\frac h{H_a}<\frac{11}{10}G+\frac1{H_a}.
+\]
+Since \(m\geq10d\) and \(G\geq64d^2(K_d+1)\), this implies
+\(4G/5<h/H_a<6G/5\), and also \eqref{eq:deep}.
+If \(M_i\) is the axis maximum, all integer axis points below score
+\(h\) are included and none above it are included. Thus
+\(h/a_i-2<M_i\leq h/a_i\).
+Combining these inequalities with \eqref{eq:normalbox} gives
+\(GL_i/2<M_i<2GL_i\).
 \end{proof}
 
 \section{Summing aspect ranges}
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
-The upper bound follows by summing \eqref{eq:baseline}.
-For the lower bound, take \(R\) maximal with
-\[
- Q=4^R\leq n/2^d.
-\]
-Choose any integer tuple with
+The upper bound is \eqref{eq:baseline}. For the lower bound, take
+\(R\) maximal with \(Q=4^R\leq n/T_d\). For every tuple
 \[
  r_1+\cdots+r_d=R,\qquad r_i\geq\ceil{R/(d+1)},
- \quad\text{and put } L_i=4^{r_i}.
 \]
-Then
-\[
- Q^{1/(d+1)}\leq L_i\leq Q^{2/(d+1)}.
-\]
-In particular \(\max L_i\leq(\min L_i)^2\).
-When \(n\geq n_0(d)\), we have \(R\geq R_0(d)\) and
-\(\min L_i\geq2^{8d^2}\), so Lemma~\ref{lem:local} applies.
+put \(L_i=4^{r_i}\). When \(n\geq n_*(d)\), these tuples satisfy
+\(R\geq R_0(d)\), \(\min_iL_i\geq2^{8d^2}\), and
+\(\max_iL_i\leq(\min_iL_i)^2\).
+Lemmas~\ref{lem:normals}--\ref{lem:extents} therefore give
+at least \(2^{-d}\rho_dQ^{d-1}\) different \(n\)-point cuts per tuple.
 
-All the resulting cuts have at most
-\((3/2)^dQ<n\) points. No cut is counted for two distinct scale tuples:
-such tuples differ by a factor of at least four in some \(L_i\),
-whereas the observable maximum axis coordinate belongs to
-\((4L_i/5,6L_i/5)\). These ranges are disjoint.
+The value \(G\) in Lemma~\ref{lem:extents} is common to all tuples.
+Two distinct tuples differ by a factor of at least four in one \(L_i\).
+The open observable ranges \((GL_i/2,2GL_i)\) are disjoint for that
+coordinate, so no cut is counted twice across tuples.
 
-Write \(h=R-d\ceil{R/(d+1)}\).
-There are \(\binom{h+d-1}{d-1}\) tuples.
-For \(R\geq R_0(d)\),
+Put \(r=R-d\ceil{R/(d+1)}\). The number of tuples is
 \[
- h\geq R/(d+1)-d\geq R/[2(d+1)],
+ \binom{r+d-1}{d-1}
+ \geq\frac{R^{d-1}}{[2(d+1)]^{d-1}(d-1)!},
 \]
-and hence
-\[
- \binom{h+d-1}{d-1}
- \geq\frac{R^{d-1}}{[2(d+1)]^{d-1}(d-1)!}.
-\]
-Also \(Q>n/2^{d+2}\) and
-\(R\geq\log_4 n-d/2-1\geq(\log_4 n)/2\).
-Multiply this tuple count by \(\rho_d Q^d\) from
-\eqref{eq:local} to obtain \eqref{eq:explicit}.
-\end{proof}
-
-For clarity, we give the lifting argument that transfers this result to
-a prescribed size in one more dimension. The argument is due to
-Wagner \cite[Lemma 3.5]{W03}.
-\begin{lemma}\label{lem:lifting}
-For \(d\geq1\) and \(n\geq1\),
-\[
- C_{d+1}(n)\geq\sum_{j=1}^{n}C_d(j).
-\]
-\end{lemma}
-\begin{proof}
-Take a \(j\)-point corner cut \(T\) in the plane \(x_{d+1}=0\), and
-choose a strict representation \(w\cdot x<1\).
-Within its open representation set we can choose the coordinates
-of \(w\), together with one, to be linearly independent over \(\mathbb Q\).
-For \(u>0\) consider
-\[
- D_u=\{(x,z)\in\Nzero^{d+1}:w\cdot x+uz<1\}.
-\]
-Its intersection with \(z=0\) is always \(T\).
-For \(u>1\), \(D_u=T\).
-As \(u\) decreases to zero, points enter at the values
-\((1-w\cdot x)/z\), with \(x\in T\), \(z\geq1\).
-These entry values are distinct: equality for two pairs implies a
-rational linear relation among \(1,w_1,\ldots,w_d\), and then forces
-both \(z\) and \(x\) to agree.
-There are only finitely many such values above any fixed positive
-bound, and the cardinality tends to infinity. Thus some open interval
-of \(u\)'s gives cardinality exactly \(n\), with no boundary point.
-Cuts with distinct sections \(T\) are different.
-\end{proof}
-\begin{proof}[Proof of Corollary~\ref{cor:exact}]
-Apply Lemma~\ref{lem:lifting} to \(A_{d-1}(n)\), and then use
-Theorem~\ref{thm:main}.
+since \(r\geq R/(d+1)-d\geq R/[2(d+1)]\).
+Also \(Q>n/(4T_d)\) and \(R\geq(\log_4n)/2\).
+For the latter explicit bound, \(d^2\leq4^{d-1}\) gives
+\(T_d\leq4^{2d^2+4d}\), and
+\(R_0(d)\geq2d^2+4d+2\).
+Multiplying the counts yields \eqref{eq:explicit}.
 \end{proof}
 
 \section{Consequences and limitations}\label{sec:consequences}
-\begin{corollary}
-For every fixed \(d\geq2\), there are \(c_d,\eta_d>0\) such that, for
-every sufficiently large \(N\), at least \(\eta_dN\) integers \(j\leq N\)
-satisfy
-\[
- C_d(j)\geq c_d j^{d-1}(\log j)^{d-1}.
-\]
-\end{corollary}
-\begin{proof}
-Choose \(a,b>0\) with \(A_d(N)\geq aN^d(\log N)^{d-1}\) for large \(N\)
-and \(C_d(j)\leq bj^{d-1}(\log j)^{d-1}\) for large \(j\).
-The finitely many exceptional terms contribute \(O_d(1)\).
-For \(0<c<a/4\), the sum over indices failing the claimed threshold is
-at most \(cN^d(\log N)^{d-1}+O_d(1)\).
-Every other term is at most \(bN^{d-1}(\log N)^{d-1}\).
-At least a fixed positive multiple of \(N\) terms are therefore required.
-\end{proof}
-
 There is an established geometric interpretation.
 For a cut \(D\), put \(\alpha_D=\sum_{x\in D}x\).
 For fixed size \(n\), these vectors are distinct and each is a vertex
@@ -484,7 +487,8 @@ length \(n\) obtained over ordered tuples of distinct primes greater
 than \(B\). Count each set once, however many tuples realize it.
 The proposition and the converse observation in Section 1 give
 \[
- S_{d,B}(n)=C_d(n),\qquad
+ S_{d,B}(n)=C_d(n)=\Theta_d(n^{d-1}(\log n)^{d-1}),
+\]\[
  \sum_{j=1}^n S_{d,B}(j)
    =\Theta_d\!\bigl(n^d(\log n)^{d-1}\bigr).
 \]
@@ -493,12 +497,12 @@ it is not a separate novelty claim. Its role is to specify exactly
 which smooth-number shapes the counting result describes. A single
 fixed prime tuple gives one prefix of each length.
 
-The cumulative result gives sharp-order growth on average and the
-improved exact-size bound in dimensions at least four.
-It supplies no asymptotic leading constant and no pointwise
-\(C_3(n)\gg n^2(\log n)^2\) statement.
-It also gives no new enumeration algorithm, no uniform claim as
-\(d\) grows with \(n\), and no fixed-prime unranking complexity improvement.
+The pointwise count gives a matching asymptotic order in every fixed
+dimension and for the established polytope and model dictionaries.
+It supplies no asymptotic leading constant, no new enumeration algorithm,
+no uniform claim as \(d\) grows with \(n\), and no fixed-prime unranking
+complexity improvement. The prescribed-size step is Lemma~\ref{lem:inject};
+the earlier cumulative construction alone did not give that conclusion.
 
 \section{Prior results and reproducibility}
 The following distinctions delimit the contribution being assessed.
@@ -523,7 +527,8 @@ different lengths, with their shortest length potentially much smaller
 than the largest entry. That theorem is not a direct substitute for
 Lemma~\ref{lem:primitive}. Prime-by-prime rank analysis and finite
 determinant cutoffs are established methods; our claimed contribution
-is their use in the multiscale corner-cut count.
+is their use in the multiscale corner-cut count. The additional fixed-size
+step is the two-patch comparison in Lemma~\ref{lem:inject}.
 
 Finite-grid threshold encodings and planar counts are related
 background \cite{GPZ,ZZ}. Their parameters are the ambient grid and,
@@ -548,6 +553,11 @@ provisionally assumed unchanged from arXiv:2312.16353v1, as authorized
 for the project. The final-version comparison is recorded separately
 for later checking. This assumption does not establish priority.
 
+Kalka and Kuhnt \cite[Section 2.2, p.~6]{KK} explicitly restate
+Wagner's lower and upper orders for corner cuts, while treating a
+numerical statistical fan. That passage does not supply a stronger
+corner-cut counting bound or a proof of our prescribed-size lemma.
+
 \paragraph{Current priority status.}
 The proof establishes the stated inequalities and their strict
 improvement over the inspected lower bound in \eqref{eq:baseline}.
@@ -566,7 +576,11 @@ The standard-library Python checker
 uses independent determinants, modular Gaussian elimination and exact
 rational feasibility. It checks primitive-plane injectivity, the
 conditional residue bound, a nonprimitive-projection negative control,
-and a degenerate arrangement with 18 interior vertices and 48 chambers.
+and a retained degenerate-arrangement fixture with 18 interior vertices
+and 48 chambers. The prescribed-size checks construct integer Bezout
+increments and affine-coset reductions, then verify reversed orders on
+the two patches for 2,280 ordered pairs of distinct normals in dimensions
+two through six. The exact points and scores are saved.
 It exhausts stated small boxes in dimensions two through four and uses
 deterministic samples in dimensions five and six.
 Six prime-realization fixtures, including equal weights and unused
@@ -677,6 +691,11 @@ On the probability of generating a primitive matrix,
 \href{https://doi.org/10.1007/s11424-024-1313-6}{doi:10.1007/s11424-024-1313-6}.
 Inspected version:
 \href{https://arxiv.org/abs/2105.05383v2}{arXiv:2105.05383v2}.
+
+\bibitem{KK}
+A.~Kalka and S.~Kuhnt,
+The numerical statistical fan for noisy experimental designs,
+\href{https://arxiv.org/abs/2005.04051v2}{arXiv:2005.04051v2}.
 
 \bibitem{EG}
 S.~Elizalde and A.~B.~Galv\'an,

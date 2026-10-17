@@ -1,19 +1,13 @@
 {
   "date": "2026-10-17",
-  "status": "uniform_candidate_internally_audited_quantitative_draft_written_priority_incomplete",
-  "mathematical_record": "docs/interleaving_research.md, Candidates 21 and 22",
+  "status": "new_prescribed_size_candidate_written_exact_checks_and_priority_review_in_progress",
+  "mathematical_record": "docs/interleaving_research.md, Candidate 23 (Candidates 21 and 22 preserved as the earlier cumulative route)",
   "proposed_results": [
-    "For every fixed d >= 2, A_d(n) = Theta_d(n^d (log n)^(d-1)), where A_d(n) = sum(j=1..n) C_d(j).",
-    "For every fixed d >= 4, C_d(n) = Omega_d(n^(d-1) (log n)^(d-2))."
+    "For every fixed d >= 2, C_d(n) = Theta_d(n^(d-1) (log n)^(d-1)).",
+    "Consequently A_d(n) = Theta_d(n^d (log n)^(d-1))."
   ],
-  "reason_for_investigation": "If valid and not already established, the second statement increases the lower logarithmic exponent in the inspected corner-cut baseline. The first identifies the sharp three-dimensional upper exponent on average.",
-  "proof_mechanism": [
-    "Uniform dimension induction for primitive simplices in separated axis boxes, with a finite explicit error bound before taking limits.",
-    "Primitive maximal minors give the full parallel integer-lattice basis, making the selected simplex recoverable from its plane.",
-    "Distinct planes give distinct interior arrangement vertices; chamber count dominates interior vertices in a convex parameter domain.",
-    "Geometrically separated axis-extent ranges prevent duplication across Theta_d((log n)^(d-1)) aspect choices.",
-    "The published lifting lemma converts the cumulative result to an exact-size lower bound with logarithmic exponent d-2 for every fixed d >= 4."
-  ],
+  "reason_for_investigation": "The new prescribed-size lemma would match Wagner's inspected upper order in every fixed dimension, including the original dimension-three target. Overall priority and independent proof review are unestablished.",
+  "proof_mechanism": "Uniform primitive-window sieve; divide primitive planes by their bounded integer heights to count normal directions; realize each lexicographic prefix by positive weights; use two nonnegative lattice patches at levels h-1 and h+1 to prove prescribed-size injectivity; separate aspect tuples by observable axis extents.",
   "finite_evidence": {
     "report": "results/research/corner_cut_growth_checks.json",
     "triples_checked": 243512,
@@ -65,7 +59,16 @@
     ],
     "scale_rounding_cases_checked": 352,
     "prime_realization_fixture_count": 6,
-    "prime_realization_check": "Exact trial-division primality, disjoint Bertrand intervals, integer-product separation at the minimal outside boundary, and an independent heap prefix; equal weights, permuted labels, unused coordinates and the singleton are included."
+    "prime_realization_check": "Exact trial-division primality, disjoint Bertrand intervals, integer-product separation at the minimal outside boundary, and an independent heap prefix; equal weights, permuted labels, unused coordinates and the singleton are included.",
+    "exact_size_normal_pairs_checked": 2280,
+    "exact_size_dimensions": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "tie_resolution_prefixes_checked": 200
   },
   "primary_literature_comparison": [
     {
@@ -182,12 +185,26 @@
       "inspected": "Full eleven-page published text, including all definitions, theorems and references.",
       "finding": "Lemma 2.6 gives the known exposed-vertex dictionary. Section 1, p. 324, refers counting to the planar result and Wagner. Theorems 3.2--3.3, 4.9, 5.2 and 5.6 address vertex order, pointedness and adjacency, rather than cumulative growth.",
       "remaining": "This specific comparison is complete; it does not establish priority over every subsequent result."
+    },
+    {
+      "source": "https://arxiv.org/pdf/2005.04051v2",
+      "authors": "Kalka and Kuhnt",
+      "inspected": "Section 2.2, printed p. 6, and surrounding definitions.",
+      "finding": "Explicitly repeats Wagner's lower n^(d-1) log n and upper (n log n)^(d-1) corner-cut orders; its subject is the numerical statistical fan.",
+      "remaining": "Passage-level comparison, not a full-paper priority certification."
+    },
+    {
+      "source": "https://arxiv.org/pdf/1207.2968",
+      "authors": "Maruri-Aguilar and Wynn",
+      "inspected": "Section 6.2, printed pp. 21--22, and cited cardinality references.",
+      "finding": "Known generic-design, corner-cut-model and state-polytope correspondence; cardinality refers to the planar result and Wagner.",
+      "remaining": "The inspected passages do not establish the strongest current bound over all literature."
     }
   ],
   "audit_tasks": [
-    "Complete the focused priority comparison with stronger multidimensional threshold-count and later corner-cut results; separate known ingredients from the multiscale conclusion.",
-    "Complete the priority and submission review of the working quantitative manuscript; do not describe the already written draft as submission-ready.",
-    "Investigate the exact-size dimension-three lower bound without substituting an averaged statement for it."
+    "Freshly audit every step of Candidate 23, especially weak separation with partial ties, the affine-coset reductions, integer rigidity and cross-aspect duplication.",
+    "Complete the precise comparison with later corner-cut and stronger grid-threshold results; keyword-search failure and citation-index coverage do not establish novelty.",
+    "Resolve the priority and submission review before describing the manuscript as submission-ready."
   ],
   "validation_commands_passed": [
     "./build.sh",
@@ -202,8 +219,8 @@
   "submission_ready": false,
   "prime_distribution_consequence": false,
   "faster_unranking_claim": false,
-  "research_progress": "Completed the full published Muller comparison and attributed its exposed-vertex lemma. Added the elementary all-corner-cuts prime realization proof and six exact product/heap checks. The proposed new contribution remains the cumulative counting theorem; overall priority and submission review remain incomplete.",
-  "remaining_exact_size_problem": "No uniform C_3(n) >= c n^2(log n)^2 statement has been proved.",
+  "research_progress": "Found and wrote the new same-dimension fixed-size injection via two affine integer patches. Counted normal directions after dividing by bounded heights, and controlled cross-aspect duplication. Added exact patch, tie-resolution and closed-constant checks; rewrote the quantitative draft around the pointwise target.",
+  "remaining_exact_size_problem": "A complete candidate proof now gives the pointwise target, but its fresh adversarial review and novelty assessment are incomplete.",
   "uniform_sieve_bound": {
     "record": "Candidate 22, equation (22.1)",
     "parameters": "a=100d, b=4d-3; choose S>=d^2+4(d-1) with E_d(S)<=1/8.",
@@ -214,11 +231,11 @@
     "closed_choice": "S=4d^2, min side >= 2^(8d^2); E_d(S)<2^(-10)<1/8 for all d>=2."
   },
   "completion_audit": {
-    "uniform_argument": "The general argument has passed an internal adversarial review. Closed choices S_d=4d^2 and n_0(d)=2^(d+8d^2(d+1)), with an explicit positive lower constant kappa_d, remove all implicit large-input thresholds. The proof ledger records the conditioning, finite prime tail, primitive-lattice injection, chamber count and multiscale duplication checks. This is not an independent human review.",
+    "uniform_argument": "New complete prescribed-size candidate proof recorded with closed constants. Exact affine-coset and reversed-order checks pass; a fresh adversarial logical review and priority review remain necessary. This is not independent human review.",
     "novelty": "Not established. Closest matrix and learning results were compared but the stronger-counting-theorem search is not complete.",
-    "mathematical_usefulness": "Would improve the inspected exact-size lower bound in every fixed dimension d>=4 and determine the cumulative order in every fixed dimension. The known corner-cut-polytope correspondence transfers the count to vertices and generic-design models. The elementary prime-realization bridge identifies all corner-cut shapes with exactly the smooth-prefix shapes available as the ordered prime bases vary, even above an arbitrary lower bound.",
-    "manuscript": "The separate nine-page working draft compiles and passes source, reference and visual checks. Priority and submission review remain incomplete; it is not submission-ready.",
-    "decision": "Continue the focused priority comparison; keep the goal active."
+    "mathematical_usefulness": "If valid and new, matches the inspected corner-cut upper bound and closes its logarithmic gap in every fixed dimension d>=3; the established vertex/model dictionary and the prime-realization lemma give exact counting interpretations.",
+    "manuscript": "The nine-page pointwise candidate draft compiles with the desktop compiler and latexmk, and passes rendering and source checks. The new prescribed-size proof, priority and submission reviews remain incomplete.",
+    "decision": "Keep the goal active; freshly audit the prescribed-size proof and complete the primary-literature comparison."
   },
   "explicit_cumulative_lower_bound": {
     "formula": "A_d(n) >= kappa_d n^d (log_4 n)^(d-1) for d>=2 and n>=n_0(d).",
@@ -242,34 +259,35 @@
       "Explicit cardinality, composition, floor and constant calculations give the claimed uniform lower bound.",
       "Lifting improves the exact-size lower exponent only in d>=4; the d=3 exact-size gap remains."
     ],
-    "limitations": "An internal audit can miss an error; it does not establish priority or publication significance."
+    "limitations": "An internal audit can miss an error; it does not establish priority or publication significance.",
+    "scope": "The previous passed audit covers Candidate 22, not the new prescribed-size Candidate 23."
   },
   "established_application": {
     "object": "Vertices of the size-n corner-cut polytope and corner-cut models of a generic experimental design.",
     "dictionary": "The number of these vertices and models equals C_d(n); the correspondence is established background.",
     "source": "https://doi.org/10.1007/s10463-010-0291-8",
     "location": "Definition 7 and Theorem 2",
-    "limit": "No faster enumeration or unranking algorithm follows."
+    "limit": "No faster enumeration or unranking algorithm follows. The new candidate would give a matching count, rather than only the former lower order."
   },
   "manuscript": {
     "source": "paper/corner_cut_growth/main.tex",
-    "title": "Cumulative growth of corner cuts in fixed dimension",
-    "status": "working_draft_priority_and_submission_review_incomplete",
+    "title": "Sharp growth of corner cuts in fixed dimension",
+    "status": "working_draft_new_prescribed_size_argument_under_review",
     "proof_contents": [
       "Uniform primitive-window bound with closed constants",
-      "Full-lattice injection and chamber-versus-vertex lemma with degeneracies",
-      "Disjoint-aspect construction and explicit cumulative count",
-      "Self-contained attributed lifting proof and exact-size consequence",
-      "Positive-proportion consequence and established polytope application",
-      "Elementary realization of every corner cut over arbitrarily large distinct prime bases, with the exact counting identity"
+      "Full-lattice injection and bounded-height division to count primitive normals",
+      "Lexicographic prefix realized by positive integer weights",
+      "Two integer patches proving same-dimension fixed-size injectivity",
+      "Volume bounds and disjoint aspect extents at prescribed size",
+      "Matching pointwise count and established polytope and prime-base interpretations"
     ],
     "compilation": "latest_source_compiled_successfully_with_desktop_editor_and_latexmk",
     "author_metadata": "Left blank; no authorship or affiliation invented.",
     "pdf": "output/pdf/corner_cut_growth.pdf",
     "pdf_pages": 9,
-    "tex_sha256": "f257cd2a8afafe77d00445469cfc77fa2bbf785b7102629141f6117426605d87",
-    "pdf_sha256": "9b30d10031b896be4a42f54a69a20fa3b4150f195825ec6e2bf7073bd0c42df1",
-    "visual_review": "All nine latest rendered pages inspected; no clipping, overlap or unresolved references.",
+    "tex_sha256": "590c154deeeed06464bee02b6b3645008007332b91a38785b1ca1e6c2fe4f955",
+    "pdf_sha256": "e42533c43b8f7b114970862a2c0a3c69196a5eb72724db1e65654f91f4daabd2",
+    "visual_review": "Latest nine-page pointwise draft rendered and inspected; no clipping, overlap or unresolved references.",
     "latex_log_check": "No errors, overfull boxes or undefined references in the final pass.",
     "pdf_structure_check": "Nine pages, blank author metadata, no extracted characters outside page boundaries.",
     "pdf_build_command": "latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=results/local/corner-cut-latex paper/corner_cut_growth/main.tex"
@@ -282,5 +300,12 @@
     "source_inspected": "Published text pp. 197--198, stating and completing the proof of Bertrand's postulate.",
     "consequence": "For every fixed B, S_{d,B}(n)=C_d(n), where S counts distinct prefix exponent sets over varying ordered tuples of distinct primes greater than B. Hence the cumulative theorem counts exactly the realizable smooth-prefix shapes.",
     "scope": "Elementary supporting proposition, no separate novelty claim. Varying prime tuples are essential; a single fixed tuple has only one prefix per length. No new prime-distribution or unranking claim."
+  },
+  "explicit_pointwise_lower_bound": {
+    "formula": "C_d(n) >= lambda_d n^(d-1) (log_4 n)^(d-1) for every fixed d>=2 and n>=n_star(d).",
+    "parameters": "K_d=4^(d+1), T_d=[64 d^2(K_d+1)]^d, rho_d=8^(-(d-1))(100d)^(-d^2).",
+    "minimum_n": "n_star(d)=T_d 4^[4d^2(d+1)]",
+    "constant": "lambda_d=rho_d/[2^d (4T_d)^(d-1) [4(d+1)]^(d-1) (d-1)!]",
+    "interpretation": "Coarse proof constants; not practical enumeration bounds."
   }
 }

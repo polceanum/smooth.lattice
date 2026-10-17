@@ -49,11 +49,11 @@ local-to-global obstruction, rather than a claim about prime distribution.
 
 The active quantitative goal is recorded in
 `results/research/quantitative_goal.json`. The final section below records a
-multiscale proof candidate for cumulative corner cuts in every fixed dimension,
-with stronger exact-size lower bounds in dimensions four and higher. Candidate
-22 gives a uniform finite sieve bound and the general argument. Its internal
-proof audit now includes closed constants and a step-by-step ledger; priority
-and publication significance remain unresolved. The structural note and its
+multiscale proof candidate for corner cuts in every fixed dimension. Candidate
+22 gives a uniform finite sieve and cumulative bound. Candidate 23 adds a
+same-dimension injectivity argument at a prescribed size, aiming at the matching
+pointwise lower bound. Closed constants and exact lattice-patch witnesses are
+recorded; priority and publication significance remain unresolved. The structural note and its
 elementary consequences do not satisfy this goal.
 
 The first bounded study is complete: for the reconstructed rounded-occurrence
@@ -2020,3 +2020,184 @@ b^{s+1}; actual interval choices make the separator strict. The checker
 verifies primality by trial division, exact integer boundary products,
 and an independently generated heap prefix. These fixtures falsify finite
 mistakes; the proposition's proof gives the general statement.
+
+### Candidate 23: prescribed size through primitive normal directions
+
+**Status: new complete candidate proof, with exact falsification checks;
+priority and submission review are incomplete.** This extends Candidate 22
+in the same dimension, without Wagner lifting. If the argument survives
+further review, it gives, for every fixed d>=2,
+
+    C_d(n)=Theta_d(n^{d-1}(log n)^{d-1}).                 (23.1)
+
+In particular, the proposed dimension-three conclusion is the pointwise
+bound C_3(n)=Theta(n^2(log n)^2), not an average or a subsequence statement.
+It matches Wagner's inspected upper bound. No assertion that this is new
+over all subsequent literature is made yet.
+
+#### 1. Count directions, rather than heights
+
+Use Candidate 22's axis boxes and primitive frames. Orient the primitive
+cofactor normal a positively, and put H_a=a.p_1. If P is the matrix of the
+point rows, then H_a=det(P)>0. After column scaling, P differs from the
+identity by a matrix of maximum row-sum norm at most d delta=1/100.
+Its eigenvalues therefore lie within 1/100 of one; its determinant is
+positive, and the following coarse bounds hold:
+
+    2^{-d} Q <= H_a <= 2^d Q,
+    9/10 < a_i L_i/H_a < 11/10.                         (23.2)
+
+The normal bounds were already proved in Candidate 22. A primitive frame
+V=[p_2-p_1 ... p_d-p_1] is a basis of the entire integer kernel of a.
+Different selected simplices give different planes (a,H_a). At most
+2^d Q positive integer heights accompany one fixed primitive normal.
+Thus the rho_d Q^d planes of Candidate 22 supply at least
+
+    2^{-d} rho_d Q^{d-1} distinct primitive normals,
+    rho_d=8^{-(d-1)}(100d)^{-d^2}.                      (23.3)
+
+#### 2. Define an n-point cut for each integer normal
+
+Order the lattice points first by a.x, then lexicographically, and let
+D_n(a) be the first n points. This is a corner cut. To verify that assertion
+without treating tied points as a strict cut, let h be the least integer
+with F_a(h):=#{x>=0:a.x<=h}>=n. All points at score at most h have each
+coordinate at most n-1: the n points on a minimum-weight axis already
+give h<=(n-1)min_i a_i. The lexicographic tie order on this finite box is
+represented by an integer vector u with digits in base n, reversing the
+coordinate significance as needed. Taking w=M a+u, with M greater than
+max_{a.x<=h} u.x, preserves the a-levels up to h and strictly orders the
+boundary level. Positivity prevents any higher a-level from entering.
+A threshold between successive w-values gives D_n(a). For n=1 the set
+{0} is immediate.
+
+In particular, all points with a.x<h belong to D_n(a), none with a.x>h
+do, and a is a weak separator:
+
+    a.x <= a.y for every x in D_n(a), y outside D_n(a).  (23.4)
+
+#### 3. Two integer patches force injectivity at a fixed size
+
+Set K=4^{d+1}. Suppose a and b arise in the same aspect box, and
+D_n(a)=D_n(b). We prove a=b whenever the boundary height h for a obeys
+
+    h/H_a >= 16d^2(K+1).                               (23.5)
+
+Since a is primitive, choose an integer z with a.z=1. Reduce it modulo
+the kernel basis V so that
+
+    z=p_1/H_a+V c,  |c_j|<=1/2.                        (23.6)
+
+This reduction is possible because z-p_1/H_a lies in the real kernel.
+Each row of V has absolute sum less than 2(d-1)L_i, hence
+|z_i|<=(d+1)L_i<=2dL_i.
+
+Let y_i=(h-1)/(d a_i), so a.y=h-1. Reduce the integer point (h-1)z
+modulo V about y to obtain an integer x_0 with
+
+    a.x_0=h-1,  x_0-y=V beta,  |beta_j|<=1/2.
+
+Consider all integer points in the two patches
+
+    x_0+V k,  x_0+2z+V k,   k_j in {-K,...,K}.          (23.7)
+
+They are nonnegative. Indeed x_0 differs from y in coordinate i by
+less than dL_i, V k has absolute coordinate at most 2KdL_i, and
+2z has absolute coordinate at most 4dL_i. Meanwhile (23.2) and (23.5)
+give
+
+    y_i/L_i > (h-1)/(2dH_a) > 2Kd+5d.
+
+The first patch has a-score h-1 and is entirely inside D_n(a); the
+second has score h+1 and is entirely outside, regardless of how the
+score-h tie was resolved. Put S=sum_j |b.v_j|, where v_j are the
+columns of V. Weak separation by b and the extrema on the two patches
+give
+
+    K S <= b.z <= b.p_1/H_a + S/2.                     (23.8)
+
+For b in the same aspect family, (23.2) yields H_b/H_a<=4^d and
+
+    b.p_1/H_a < 2*4^d,
+
+because sum_i (p_1)_i/L_i<=1+d delta. Hence
+
+    (K-1/2) S < 2*4^d < K-1/2.
+
+But S is a nonnegative integer. Thus S=0, b annihilates every column
+of V, and b is parallel to a. Both normals are primitive and positive,
+so a=b. This is the new fixed-size injectivity step. It never assumes
+that C_d(n) is monotone or converts a cumulative count by averaging.
+
+#### 4. Enough height and observable aspect ranges
+
+Let
+
+    D_d=[64d^2(K+1)]^d,
+    G=(d! n/Q)^{1/d},
+
+and take n/Q>=D_d, m>=2^{8d^2}. Covering lattice points by their
+half-open unit cubes gives the elementary volume bounds, for t>=0,
+
+    t^d/(d! product_i a_i) <= F_a(t)
+        <= (t+sum_i a_i)^d/(d! product_i a_i).          (23.9)
+
+Use F_a(h-1)<n<=F_a(h), together with (23.2), to obtain
+
+    (9/10)G-(11/10)d/m < h/H_a
+        < (11/10)G+1/H_a.
+
+In particular (4/5)G<h/H_a<(6/5)G. The chosen D_d makes the lower
+bound larger than 16d^2(K+1), proving (23.5).
+If M_i is D_n(a)'s maximum axis coordinate, then
+h/a_i-2<M_i<=h/a_i, so
+
+    G L_i/2 < M_i < 2G L_i.                            (23.10)
+
+G is common to every aspect tuple having the same Q. Consequently
+scale tuples differing by a factor of at least four in an L_i produce
+disjoint observable ranges in (23.10), even after padding to size n.
+
+#### 5. Uniform pointwise count
+
+Put R_0=4d^2(d+1) and n_star(d)=D_d 4^{R_0}. For n>=n_star(d),
+take R maximal with Q=4^R<=n/D_d. As in Candidate 22, take all tuples
+sum_i r_i=R with r_i>=ceil(R/(d+1)), and L_i=4^{r_i}. They satisfy
+the primitive-window hypotheses and number at least
+
+    R^{d-1}/([2(d+1)]^{d-1}(d-1)!).
+
+Also Q>n/(4D_d) and R>=(log_4 n)/2. For the latter closed inequality,
+d^2<=4^{d-1} gives D_d<=4^{2d^2+4d}, while
+R_0>=2d^2+4d+2. Combining (23.3), fixed-size injectivity, and
+disjointness (23.10) proves
+
+    C_d(n) >= lambda_d n^{d-1}(log_4 n)^{d-1},
+    lambda_d = rho_d /
+      [2^d (4D_d)^{d-1} [4(d+1)]^{d-1}(d-1)!].         (23.11)
+
+Wagner's upper bound then gives (23.1). All constants depend only on
+d; they are deliberately coarse, not practical enumeration thresholds.
+
+The exact checker constructs Bezout increments, reduces both affine cosets
+with rational Gaussian elimination, and checks nonnegative patch corners
+and reversed b-orders for 2,280 ordered pairs of distinct normals in
+dimensions 2--6. Witnesses contain the actual two lattice points and both
+normal scores. These are checks of the fragile injection step, not a
+computational proof of the uniform count. The source proof also needs a
+fresh independent logical review before the manuscript can be regarded as
+ready; the literature gate remains open.
+
+
+#### Additional primary citation checks
+
+[Kalka--Kuhnt, arXiv:2005.04051v2](https://arxiv.org/pdf/2005.04051),
+Section 2.2, printed p. 6, explicitly repeats Wagner's two orders for the
+number of corner cuts. The paper studies numerical statistical fans;
+that background passage supplies no improved corner-cut lower count.
+[Maruri-Aguilar--Wynn, arXiv:1207.2968](https://arxiv.org/pdf/1207.2968),
+Section 6.2, printed pp. 21--22, describes the known state-polytope and
+corner-cut-model interpretation and refers cardinality to the planar
+paper and Wagner. These are inspected passages, not assertions of a
+complete audit of all results in those papers. A public citation-index
+listing was used only to locate sources, not as proof of novelty.

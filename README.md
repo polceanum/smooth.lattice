@@ -62,18 +62,18 @@ The first milestone is to check the strongest current bounds and reconstruct
 the existing proofs. The gap's current status and the proposed route's
 feasibility remain unverified; neither novelty nor a breakthrough is promised.
 
-A multiscale argument is now recorded for audit in the research note. It
-would give a sharp cumulative count in every fixed dimension and an
-exact-size lower bound of order at least n^(d-1)(log n)^(d-2) for d>=4.
-Its primitive-simplex construction has exact finite checks, closed uniform
-constants and a completed internal proof audit. Priority comparison remains
-unfinished. The bound also counts vertices of corner-cut polytopes and models
-of generic experimental designs through the established correspondence.
-This is a candidate contribution, not a verified new theorem or a completed paper.
+A new candidate proof in the research note would give the matching pointwise
+count C_d(n)=Theta_d(n^(d-1)(log n)^(d-1)) in every fixed dimension d>=2,
+including the original three-dimensional target. It counts primitive normal
+directions and uses two integer lattice patches to prevent collisions at a
+prescribed size. Exact witnesses test the delicate step for 2,280 pairs of
+normals. This goes beyond the earlier cumulative construction, which is
+preserved in the note. The new argument and priority comparison remain under
+review; it is not yet a verified new theorem or a submission-ready paper.
 The [quantitative working draft](paper/corner_cut_growth/main.tex) gives the
-full proof and its attributions separately from the earlier structural note.
-The [eight-page PDF](output/pdf/corner_cut_growth.pdf) compiles and has been
-checked visually; the priority assessment and submission review remain incomplete.
+complete candidate proof, explicit constants and its attributions separately
+from the earlier structural note. The [PDF](output/pdf/corner_cut_growth.pdf)
+compiles; the proof, priority and submission reviews remain incomplete.
 
 The existing structural results are preserved as a separate note about the
 geometry and containment intervals of pyramidal partitions. Applying Edelman's
