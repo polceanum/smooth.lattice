@@ -1,18 +1,18 @@
 {
   "date": "2026-10-17",
   "status": "candidate_argument_and_finite_checks_recorded_proof_and_priority_audits_incomplete",
-  "mathematical_record": "docs/interleaving_research.md, Candidate 21",
+  "mathematical_record": "docs/interleaving_research.md, Candidates 21 and 22",
   "proposed_results": [
-    "For A_3(n) = sum_{j=1}^n C_3(j), A_3(n) = Theta(n^3 (log n)^2).",
-    "For every fixed d >= 4, C_d(n) = Omega_d(n^(d-1) (log n)^2)."
+    "For every fixed d >= 2, A_d(n) = Theta_d(n^d (log n)^(d-1)), where A_d(n) = sum(j=1..n) C_d(j).",
+    "For every fixed d >= 4, C_d(n) = Omega_d(n^(d-1) (log n)^(d-2))."
   ],
   "reason_for_investigation": "If valid and not already established, the second statement increases the lower logarithmic exponent in the inspected corner-cut baseline. The first identifies the sharp three-dimensional upper exponent on average.",
   "proof_mechanism": [
-    "An elementary small-prime/large-prime sieve gives uniformly positive density of primitive triangles in three boxes near distinct coordinate-axis intercepts.",
-    "A primitive cross product gives a basis of the parallel integer lattice and makes the selected triangle recoverable from its plane.",
-    "Distinct planes give distinct interior arrangement vertices; the number of chambers in a convex parameter domain dominates its number of interior vertices.",
-    "Geometrically separated axis-extent ranges prevent duplication across Theta((log n)^2) aspect choices.",
-    "The published lifting lemma transfers the cumulative bound to a uniform exact-size bound in dimension four and then higher dimensions."
+    "Uniform dimension induction for primitive simplices in separated axis boxes, with a finite explicit error bound before taking limits.",
+    "Primitive maximal minors give the full parallel integer-lattice basis, making the selected simplex recoverable from its plane.",
+    "Distinct planes give distinct interior arrangement vertices; chamber count dominates interior vertices in a convex parameter domain.",
+    "Geometrically separated axis-extent ranges prevent duplication across Theta_d((log n)^(d-1)) aspect choices.",
+    "The published lifting lemma converts the cumulative result to an exact-size lower bound with logarithmic exponent d-2 for every fixed d >= 4."
   ],
   "finite_evidence": {
     "report": "results/research/corner_cut_growth_checks.json",
@@ -23,7 +23,33 @@
     "arrangement_sign_patterns": 256,
     "arrangement_vertices": 18,
     "arrangement_chambers": 48,
-    "limitations": "Finite evidence does not prove the density asymptotics, the full argument or novelty."
+    "limitations": "Finite evidence does not prove the density asymptotics, the full argument or novelty.",
+    "general_fixture_report": "results/research/corner_cut_growth_checks.json, general_fixtures",
+    "general_tuples_checked": 80896,
+    "general_primitive_simplices": 36119,
+    "general_exhaustive_dimensions": [
+      2,
+      3,
+      4
+    ],
+    "general_sampled_dimensions": [
+      5,
+      6
+    ],
+    "explicit_sieve_bound_dimensions": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "negative_control": "Without a primitive projected frame, changing the last coordinate can leave every tested value bad modulo 2; the one-residue bound fails."
   },
   "primary_literature_comparison": [
     {
@@ -52,10 +78,50 @@
       "inspected": "Section 8.2 and references.",
       "finding": "Cites the growth work and discusses other pyramidal questions; no improved higher-dimensional growth theorem in this section.",
       "working_assumption": "Use the authorized provisional equivalence of relevant 2025 journal results; the final-version comparison remains deferred."
+    },
+    {
+      "source": "https://doi.org/10.1016/j.laa.2010.11.015",
+      "free_text": "https://user.math.uzh.ch/maze/Articles/Natural_Density_Unimodular_Matices_arXiv.pdf",
+      "inspected": "Proposition 1, the minor criterion, and the infinite-union step in its proof.",
+      "finding": "The unrestricted primitive-matrix density formula is established background; use the later corrected proof."
+    },
+    {
+      "source": "https://doi.org/10.1137/18M1177093",
+      "free_text": "https://arxiv.org/pdf/1803.08785",
+      "inspected": "Introduction, Propositions 3-4, Theorem 13, Corollary 17, and the local-to-global framework.",
+      "finding": "Repairs the earlier density proof. Centered-cube density alone does not assert the moving anisotropic-window estimate used here.",
+      "remaining": "Compare stronger uniform variants; no novelty claim for matrix density or the lattice criterion."
+    },
+    {
+      "source": "https://arxiv.org/html/2007.03986v3",
+      "inspected": "Introduction and the description of the primitive-segment representations and counting applications.",
+      "finding": "Planar grid thresholds and intersections of two halfplanes; different counting parameters from bounded-cardinality corner cuts in general dimension.",
+      "remaining": "Follow the higher-dimensional threshold and teaching-set references before asserting priority."
+    },
+    {
+      "source": "https://igi-web.tugraz.at/PDF/56.pdf",
+      "doi": "https://doi.org/10.1007/BF00993976",
+      "inspected": "Maass-Turan (1994), domain definitions and Section 4, especially Theorem 3 and its remarks.",
+      "finding": "Bounds equivalence-query learning complexity of halfspaces on finite grids. Its fixed-dimension logarithmic query bound is not a sharp count by cardinality of the included corner cut.",
+      "remaining": "Related threshold-count theorems and integer-polyhedron results still require comparison."
+    },
+    {
+      "source": "https://arxiv.org/html/1502.04340v2",
+      "doi": "https://doi.org/10.1016/j.ic.2016.10.001",
+      "inspected": "Abstract, definitions and theorem inventory.",
+      "finding": "Teaching sets, essential points and intersections of k halfspaces on finite cubes; the inspected results do not state a bounded-cardinality corner-cut growth theorem.",
+      "remaining": "This difference in the stated problem is not proof that no stronger corollary or later result applies."
+    },
+    {
+      "source": "https://doi.org/10.1109/TNN.2004.824419",
+      "abstract_record": "https://pubmed.ncbi.nlm.nih.gov/15384519/",
+      "inspected": "Authored abstract only.",
+      "finding": "Encoding and upper bounds for threshold functions on binary inputs.",
+      "remaining": "Full-text inspection would be needed for any more detailed comparison."
     }
   ],
   "audit_tasks": [
-    "Adversarially check the uniform sieve errors, integer-lattice basis argument, restricted-arrangement chamber bound and cross-scale injectivity.",
+    "Finish an adversarial review of Candidate 22, including the uniform threshold, primitive projected rank at every prime, the full-lattice injection, and the restricted-arrangement vertex assignment.",
     "Compare against multidimensional grid threshold-function and primitive-frame counts; determine whether the cumulative theorem is known or immediate from an existing stronger result.",
     "Inspect later corner-cut literature and the independent Remond bounds before asserting a current improvement.",
     "Investigate the remaining exact-size dimension-three lower bound without substituting an averaged statement for it."
@@ -71,5 +137,22 @@
   "novelty_established": false,
   "submission_ready": false,
   "prime_distribution_consequence": false,
-  "faster_unranking_claim": false
+  "faster_unranking_claim": false,
+  "research_progress": "The previous goal turn recorded and published Candidate 21. This turn gives an all-dimensional extension, a finite uniform error bound, a necessary-hypothesis counterexample, and a corrected primary-literature comparison.",
+  "remaining_exact_size_problem": "No uniform C_3(n) >= c n^2(log n)^2 statement has been proved.",
+  "uniform_sieve_bound": {
+    "record": "Candidate 22, equation (22.1)",
+    "parameters": "a=100d, b=4d-3; choose S>=d^2+4(d-1) with E_d(S)<=1/8.",
+    "threshold": "min side >= 2^(2S), max side <= (min side)^2.",
+    "conclusion": "At least fraction 8^(-(d-1)) of the selected ordered simplices are primitive.",
+    "finite_tail_control": "Every large bad prime divides one fixed nonzero determinant, which has at most 4d-3 such prime divisors at the selected cutoff.",
+    "asymptotic_density_interchange_used": false
+  },
+  "completion_audit": {
+    "uniform_argument": "Written for every fixed d with explicit bounds; final adversarial review pending.",
+    "novelty": "Not established. Closest matrix and learning results were compared but the stronger-counting-theorem search is not complete.",
+    "mathematical_usefulness": "Would sharpen the inspected exact-size lower bounds in all fixed dimensions d>=4 and determine the averaged order in all fixed dimensions.",
+    "manuscript": "Not yet prepared for this quantitative result. Existing structural manuscript is separate.",
+    "decision": "Continue proof and priority audit; keep the goal active."
+  }
 }

@@ -49,9 +49,10 @@ local-to-global obstruction, rather than a claim about prime distribution.
 
 The active quantitative goal is recorded in
 `results/research/quantitative_goal.json`. The final section below records a
-new multiscale proof candidate for cumulative three-dimensional corner cuts
-and an exact-size consequence in dimension four. Its proof requires a second
-audit and its priority remains unresolved. The structural note and its
+multiscale proof candidate for cumulative corner cuts in every fixed dimension,
+with stronger exact-size lower bounds in dimensions four and higher. Candidate
+22 gives a uniform finite sieve bound and the general argument; priority and
+publication significance remain unresolved. The structural note and its
 elementary consequences do not satisfy this goal.
 
 The first bounded study is complete: for the reconstructed rounded-occurrence
@@ -1579,3 +1580,227 @@ Exact witnesses, commands and source hashes are saved in
 `results/research/corner_cut_growth_checks.json`. The next action is an
 adversarial proof audit and a broader comparison with primary literature,
 not a publication claim.
+
+### Candidate 22: uniform growth in every fixed dimension
+
+Candidate 21 extends to every fixed d>=2. The proposed conclusions are
+
+    A_d(n) = Theta_d(n^d (log n)^{d-1}),
+    C_d(n) = Omega_d(n^{d-1} (log n)^{d-2}) for d>=4.
+
+The exact-size consequence follows from Wagner's lifting lemma applied to
+A_{d-1}, not from assuming a pointwise lower bound in dimension three. It
+leaves one logarithmic factor between the inspected exact-size upper and
+lower bounds in every dimension d>=3. The argument below gives all
+quantifiers and a finite large-prime bound; novelty is a separate question.
+
+#### Supporting lemma: primitive simplices in polynomially comparable boxes
+
+Fix d>=2, put delta=1/(100d), and let L_1,...,L_d be positive integers with
+
+    m=min_i L_i,  max_i L_i <= m^2.
+
+For each i let B_i be the integer points of the box whose jth coordinate
+interval is [L_j,L_j+floor(delta L_j)] if j=i, and
+[0,floor(delta L_j)] otherwise. At least a fraction 8^{-(d-1)} of the
+ordered choices p_i in B_i have primitive difference matrix
+
+    V = [p_2-p_1 ... p_d-p_1],
+
+meaning that the gcd of its (d-1)-rowed maximal minors is 1, provided
+m>=2^{2S_d}. Here S_d is any integer satisfying
+
+    S_d >= d^2+4(d-1),
+    E_d(S_d) <= 1/8,
+
+where, with a=100d and b=4d-3,
+
+    E_d(s) = 2a(s+1)/2^{2s} + a^2/2^{3s}
+             + b(1/2^s + a/2^{2s}).                    (22.1)
+
+Such S_d exists because E_d(s) tends to zero and is decreasing for s>=1.
+All the bounds in its definition are rational, so the threshold is explicit
+and can be checked without numerical logarithms.
+
+**Proof.** Use induction on the number r of boxes, 1<=r<=d, keeping the
+same delta throughout. For r=1 the difference matrix has no columns and
+its single maximal minor is the empty determinant 1. At each subsequent
+step condition on any primitive projected configuration of the first
+r-1 points in the first r-1 coordinates. Write U for its
+(r-1)-by-(r-2) difference matrix and a_0 for its cofactor normal; a_0 is
+primitive. Coordinates not in this projection remain independent and
+uniform on their original intervals.
+
+Let u be the projected difference from the first point to the new point
+p_r, and D=det[U u]. This determinant is nonzero for every allowed choice.
+Indeed, the normalized row matrix of the first r-1 projected points is
+within (r-1)delta of the identity in maximum row-sum norm. Its cutting
+normal is positive and within (r-1)delta/(1-(r-1)delta) of the vector of
+ones. The normalized new point has every coordinate at most delta,
+and lies strictly on the origin side of their affine span. Also,
+
+    |D| <= (r-1)! 2^{r-1} (max_i L_i)^{r-1}
+         <= 2^{d^2} m^{2(d-1)}.                       (22.2)
+
+For any prime l, U has rank r-2 modulo l. The congruence D=0 modulo l
+is a nontrivial linear equation in the independent projected coordinates
+of p_r, since a_0 is primitive. If ell is the shortest coordinate-interval
+length, its probability is at most 1/l+1/ell. Conditional on D=0, u lies
+in the column span of U modulo l. There is a unique vector lambda with
+u=U lambda. If z is the last row of the old columns and u_r is the last
+entry of the new column, the full matrix fails to have rank r-1 modulo l
+exactly when
+
+    u_r = z lambda (mod l).                            (22.3)
+
+Conditional on everything except the last coordinate of p_r, this selects
+one residue class. Thus its conditional probability is at most 1/l+1/ell_r.
+Every interval length is larger than delta m.
+
+Put s=floor((log_2 m)/2) and P=2^s, so
+2^{2s}<=m<2^{2s+2}. The union bound for primes l<=P is at most
+
+    sum_{l prime, l<=P} (1/l+a/m)^2
+      <= 3/4 + 2a(s+1)/2^{2s} + a^2/2^{3s}.          (22.4)
+
+This uses sum_{j>=2} j^{-2}<3/4 and H_P<=1+log P<=1+s.
+For l>P, first fix all projected coordinates. Every bad prime divides
+the fixed nonzero integer D. From (22.2), the number of its distinct
+prime divisors larger than P is at most
+
+    log_2 |D| / s
+      <= 4(d-1)+(d^2+4(d-1))/s <= b.
+
+For each such divisor, (22.3) still bounds the conditional probability
+by 1/P+a/m. The total large-prime contribution is at most
+b(2^{-s}+a 2^{-2s}). This is a finite bound before taking any limit;
+it does not interchange an infinite union with natural density.
+
+Equations (22.1)--(22.4) bound the conditional probability of a
+nonprimitive extension by 3/4+E_d(s)<=7/8 whenever s>=S_d.
+The previous projected sides still satisfy max L_i<=(min L_i)^2,
+so the induction is uniform for all projected configurations. Each of
+the r-1 extensions succeeds with conditional probability at least 1/8.
+This proves the stated fraction. QED.
+
+The primitivity of the projected configuration is essential: without it,
+the top block can lose more than one rank modulo a prime, and varying the
+last coordinate need not repair it. The checker includes an explicit
+four-dimensional negative control with this failure.
+
+#### Geometric injection and the cumulative count
+
+For one primitive choice let a be the cofactor normal of V. There is an
+integer z with a.z=1, so [V z] has determinant 1. Consequently the
+columns of V form a basis of the full parallel integer lattice
+{x in Z^d:a.x=0}; this is the usual primitive-lattice criterion.
+The submatrix of V in coordinates 2,...,d, after coordinate scaling,
+differs from the identity by at most (d-1)delta in maximum row-sum norm.
+Two points of the same B_i on the affine span would have an integer
+coefficient difference of norm at most
+
+    delta/(1-(d-1)delta) < 1.
+
+They therefore coincide. The supporting hyperplane determines the unique
+point in each B_i and hence determines the entire selected simplex.
+
+The normalized row matrix of the d points differs from the identity by
+at most d delta. The unique solution of p_i.w=1 is positive and satisfies
+
+    |L_i w_i-1| <= d delta/(1-d delta) < 1/10.
+
+Thus every selected primitive simplex gives a different interior vertex
+of the arrangement b.w=1 in
+
+    Omega_L = product_i (9/(10L_i),11/(10L_i)).
+
+The number of chambers is at least the number of interior vertices by
+the dimension-induction argument in Candidate 21. It applies with
+arbitrary dependencies: when assigning a vertex to its last incident
+hyperplane, that hyperplane's nonzero normal can be extended to a basis
+using other incident normals, so the vertex remains a vertex of the
+restricted arrangement.
+
+Only points with b_i<=ceil(10L_i/9) can change membership in Omega_L;
+the arrangement is finite. Every chamber gives a different corner cut
+of size at most (3/2)^d Q for sufficiently large minimum side, where
+Q=product_i L_i. Each B_i has at least delta^d Q points, so the lemma
+and injection give at least
+
+    8^{-(d-1)} delta^{d^2} Q^d                         (22.5)
+
+distinct cuts in this parameter box. The constants depend only on d.
+
+Choose R maximal with Q=4^R<=n/2^d. For each tuple of integers
+
+    r_1+...+r_d=R,  r_i>=ceil(R/(d+1)),
+
+set L_i=4^{r_i}. These sides lie between Q^{1/(d+1)} and
+Q^{2/(d+1)}, so their maximum is at most their minimum squared and
+the lemma applies for all sufficiently large n. There are
+
+    binom(R-d ceil(R/(d+1))+d-1,d-1)
+        = Theta_d((log n)^{d-1})
+
+such tuples. All cuts have at most n points. Their maximal coordinate
+on axis i lies between (4/5)L_i and (6/5)L_i for large L_i, so no cut
+is counted in two different scale tuples. Since Q>n/(4*2^d), summing
+(22.5) gives A_d(n)=Omega_d(n^d(log n)^{d-1}). Summing Wagner's
+published upper bound supplies the matching upper bound.
+
+#### Consequences and the boundary of the claim
+
+Wagner's lifting lemma gives the displayed exact-size lower bound in
+dimension d>=4. For d=3 it recovers only the previously known
+Omega(n^2 log n). The exact-size three-dimensional gap is still open
+within this investigation. In every fixed dimension, however, an upper
+bound O(n^{d-1}(log n)^{d-1-epsilon}) for a fixed epsilon>0 would
+contradict the cumulative lower bound.
+
+More precisely, the cumulative result and the pointwise published upper
+bound imply that there are c_d,eta_d>0 such that, for every large N,
+at least eta_d N integers j<=N satisfy
+
+    C_d(j) >= c_d j^{d-1}(log j)^{d-1}.
+
+To see this, write A_d(N)>=a_d N^d(log N)^{d-1} and
+C_d(j)<=b_d j^{d-1}(log j)^{d-1} for large arguments, absorbing the
+finitely many smaller ones into an error. If c_d<a_d/4, the terms
+below this proposed threshold contribute at most
+c_d N^d(log N)^{d-1}. Every remaining term is at most
+b_d N^{d-1}(log N)^{d-1}, forcing a positive fraction of them.
+This remains a statement about many sizes, not every size.
+
+The new exact checks cover dimensions 2--4 exhaustively in stated
+finite boxes and dimensions 5--6 by deterministic samples. Independent
+modular Gaussian elimination checks the determinant criterion and the
+one-residue-class extension condition. The values of S_d and (22.1)
+for d=2,...,12 are checked with rational arithmetic. These checks support
+the argument; the proof above, not sampling, supplies its uniformity.
+
+#### Prior-art audit added for the general proof
+
+Primitive matrix density and the lattice criterion are established
+background. [Maze--Rosenthal--Wagner, 2011](https://doi.org/10.1016/j.laa.2010.11.015)
+give the density product; [Micheli--Weger, 2019](https://doi.org/10.1137/18M1177093),
+[free text](https://arxiv.org/pdf/1803.08785), explain a defect in the earlier
+proof and prove the density result using a controlled sieve. Their
+Propositions 3--4 give the standard minor and modular-rank criteria;
+Corollary 17 gives the rational-integer density. We claim neither a new
+matrix criterion nor a new unrestricted density formula. A density in
+centered expanding cubes alone does not supply the uniform estimate in
+our moving anisotropic boxes; the finite argument above supplies that
+estimate directly. Whether a stronger published counting theorem already
+implies the complete multiscale result remains to be checked.
+
+The [Zamaraeva--Zunic threshold-function paper](https://arxiv.org/html/2007.03986v3)
+uses primitive segments and injectivity in dimension two. Its stated
+counting results concern finite planar grids and intersections of two
+halfplanes, rather than corner cuts of bounded cardinality in arbitrary
+dimension. This establishes a difference in definitions, not novelty of
+our counting conclusion. The broader grid-threshold and lattice-incidence
+literature remains part of the priority audit.
+
+The main research objective is still incomplete: the general counting
+argument needs a final adversarial review, a defensible priority comparison
+and a manuscript whose stated contribution survives that comparison.

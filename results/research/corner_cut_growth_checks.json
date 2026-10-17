@@ -324,10 +324,435 @@
     },
     "scope": "All cells of these eight planes in the open parameter box; not all corner cuts."
   },
+  "general_fixtures": [
+    {
+      "dimension": 2,
+      "sides": [
+        200,
+        400
+      ],
+      "box_width_denominator": 200,
+      "mode": "exhaustive",
+      "seed": null,
+      "tuples_checked": 36,
+      "primitive_simplices": 22,
+      "distinct_primitive_planes": 22,
+      "projected_primitive_frames": 36,
+      "conditional_frames_checked": 36,
+      "congruence_substitutions_checked": 135,
+      "primitive_witness": {
+        "plane": [
+          401,
+          200,
+          80200
+        ],
+        "points": [
+          [
+            200,
+            0
+          ],
+          [
+            0,
+            401
+          ]
+        ]
+      }
+    },
+    {
+      "dimension": 3,
+      "sides": [
+        300,
+        600,
+        900
+      ],
+      "box_width_denominator": 300,
+      "mode": "exhaustive",
+      "seed": null,
+      "tuples_checked": 13824,
+      "primitive_simplices": 7240,
+      "distinct_primitive_planes": 7240,
+      "projected_primitive_frames": 9216,
+      "conditional_frames_checked": 64,
+      "congruence_substitutions_checked": 512,
+      "primitive_witness": {
+        "plane": [
+          539999,
+          269700,
+          179700,
+          161999700
+        ],
+        "points": [
+          [
+            300,
+            0,
+            0
+          ],
+          [
+            0,
+            600,
+            1
+          ],
+          [
+            0,
+            1,
+            900
+          ]
+        ]
+      }
+    },
+    {
+      "dimension": 4,
+      "sides": [
+        400,
+        400,
+        400,
+        400
+      ],
+      "box_width_denominator": 400,
+      "mode": "exhaustive",
+      "seed": null,
+      "tuples_checked": 65536,
+      "primitive_simplices": 28272,
+      "distinct_primitive_planes": 28272,
+      "projected_primitive_frames": 30720,
+      "conditional_frames_checked": 64,
+      "congruence_substitutions_checked": 336,
+      "primitive_witness": {
+        "plane": [
+          64319999,
+          64160000,
+          64159600,
+          63999600,
+          25727999600
+        ],
+        "points": [
+          [
+            400,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            400,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            401,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            401
+          ]
+        ]
+      }
+    },
+    {
+      "dimension": 5,
+      "sides": [
+        500,
+        1000,
+        1500,
+        500,
+        1000
+      ],
+      "box_width_denominator": 500,
+      "mode": "deterministic_sample",
+      "seed": 20261022,
+      "tuples_checked": 1000,
+      "primitive_simplices": 402,
+      "distinct_primitive_planes": 402,
+      "projected_primitive_frames": 432,
+      "conditional_frames_checked": 64,
+      "congruence_substitutions_checked": 294,
+      "primitive_witness": {
+        "plane": [
+          753997248997,
+          374122498498,
+          249747500501,
+          749504241498,
+          374377255503,
+          376998624498500
+        ],
+        "points": [
+          [
+            500,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1001,
+            1,
+            1,
+            2
+          ],
+          [
+            1,
+            0,
+            1502,
+            1,
+            1
+          ],
+          [
+            0,
+            2,
+            0,
+            501,
+            2
+          ],
+          [
+            0,
+            2,
+            3,
+            1,
+            1001
+          ]
+        ]
+      }
+    },
+    {
+      "dimension": 6,
+      "sides": [
+        600,
+        1200,
+        600,
+        1200,
+        600,
+        1200
+      ],
+      "box_width_denominator": 600,
+      "mode": "deterministic_sample",
+      "seed": 20261023,
+      "tuples_checked": 500,
+      "primitive_simplices": 183,
+      "distinct_primitive_planes": 183,
+      "projected_primitive_frames": 206,
+      "conditional_frames_checked": 64,
+      "congruence_substitutions_checked": 282,
+      "primitive_witness": {
+        "plane": [
+          621559864813199,
+          311294886118799,
+          618974349121799,
+          309227331954001,
+          621042769435805,
+          309230775008397,
+          374175423207371999
+        ],
+        "points": [
+          [
+            600,
+            0,
+            0,
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            1200,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            600,
+            2,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            1,
+            1201,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1,
+            1,
+            600,
+            0
+          ],
+          [
+            1,
+            0,
+            1,
+            2,
+            1,
+            1202
+          ]
+        ]
+      }
+    }
+  ],
+  "explicit_uniform_sieve_bounds": [
+    {
+      "dimension": 2,
+      "s": 8,
+      "minimum_side_threshold": 65536,
+      "small_prime_error_upper_bound": "15025/262144",
+      "large_prime_error_upper_bound": "285/8192",
+      "conditional_failure_upper_bound": "220753/262144",
+      "primitive_fraction_lower_bound": "1/8",
+      "scope": "Exact arithmetic in the displayed uniform bound; the written induction supplies the theorem."
+    },
+    {
+      "dimension": 3,
+      "s": 17,
+      "minimum_side_threshold": 17179869184,
+      "small_prime_error_upper_bound": "88479225/140737488355328",
+      "large_prime_error_upper_bound": "295587/4294967296",
+      "conditional_failure_upper_bound": "105562890540537/140737488355328",
+      "primitive_fraction_lower_bound": "1/64",
+      "scope": "Exact arithmetic in the displayed uniform bound; the written induction supplies the theorem."
+    },
+    {
+      "dimension": 4,
+      "s": 28,
+      "minimum_side_threshold": 72057594037927936,
+      "small_prime_error_upper_bound": "24326963825/75557863725914323419136",
+      "large_prime_error_upper_bound": "218104133/4503599627370496",
+      "conditional_failure_upper_bound": "56668401453640219361905/75557863725914323419136",
+      "primitive_fraction_lower_bound": "1/512",
+      "scope": "Exact arithmetic in the displayed uniform bound; the written induction supplies the theorem."
+    },
+    {
+      "dimension": 5,
+      "s": 41,
+      "minimum_side_threshold": 4835703278458516698824704,
+      "small_prime_error_upper_bound": "5772436045839625/664613997892457936451903530140172288",
+      "large_prime_error_upper_bound": "9345848838221/1208925819614629174706176",
+      "conditional_failure_upper_bound": "498460498424481387079230488747982089/664613997892457936451903530140172288",
+      "primitive_fraction_lower_bound": "1/4096",
+      "scope": "Exact arithmetic in the displayed uniform bound; the written induction supplies the theorem."
+    },
+    {
+      "dimension": 6,
+      "s": 56,
+      "minimum_side_threshold": 5192296858534827628530496329220096,
+      "small_prime_error_upper_bound": "77011553628035487225/5846006549323611672814739330865132078623730171904",
+      "large_prime_error_upper_bound": "189151184349562407/649037107316853453566312041152512",
+      "conditional_failure_upper_bound": "4384504911992710458333461204980362562991158203897/5846006549323611672814739330865132078623730171904",
+      "primitive_fraction_lower_bound": "1/32768",
+      "scope": "Exact arithmetic in the displayed uniform bound; the written induction supplies the theorem."
+    },
+    {
+      "dimension": 7,
+      "s": 73,
+      "minimum_side_threshold": 89202980794122492566142873090593446023921664,
+      "small_prime_error_upper_bound": "61154645953161905517393825/52656145834278593348959013841835216159447547700274555627155488768",
+      "large_prime_error_upper_bound": "59029581035870565175575/22300745198530623141535718272648361505980416",
+      "conditional_failure_upper_bound": "39492109375708945011858640038867228514291743837044408234201348001/52656145834278593348959013841835216159447547700274555627155488768",
+      "primitive_fraction_lower_bound": "1/262144",
+      "scope": "Exact arithmetic in the displayed uniform bound; the written induction supplies the theorem."
+    },
+    {
+      "dimension": 8,
+      "s": 92,
+      "minimum_side_threshold": 24519928653854221733733552434404946937899825954937634816,
+      "small_prime_error_upper_bound": "719552647834627284785115955825/118571099379011784113736688648896417641748464297615937576404566024103044751294464",
+      "large_prime_error_upper_bound": "4487532642409503496509326037/766247770432944429179173513575154591809369561091801088",
+      "conditional_failure_upper_bound": "88928324534258838085302517181084355186167237166838781600751168210190646152004209/118571099379011784113736688648896417641748464297615937576404566024103044751294464",
+      "primitive_fraction_lower_bound": "1/2097152",
+      "scope": "Exact arithmetic in the displayed uniform bound; the written induction supplies the theorem."
+    },
+    {
+      "dimension": 9,
+      "s": 113,
+      "minimum_side_threshold": 107839786668602559178668060348078522694548577690162289924414440996864,
+      "small_prime_error_upper_bound": "133182414421418328671807230844495513025/69992023193056381579920071267763883691301421788582797965624659405118495974380029543152421664737722368",
+      "large_prime_error_upper_bound": "85672898165824655870753189432139009/26959946667150639794667015087019630673637144422540572481103610249216",
+      "conditional_failure_upper_bound": "52494017394792286184940053450823135188036070334215404477092962618250745995955384359813983820062967233/69992023193056381579920071267763883691301421788582797965624659405118495974380029543152421664737722368",
+      "primitive_fraction_lower_bound": "1/16777216",
+      "scope": "Exact arithmetic in the displayed uniform bound; the written induction supplies the theorem."
+    },
+    {
+      "dimension": 10,
+      "s": 136,
+      "minimum_side_threshold": 7588550360256754183279148073529370729071901715047420004889892225542594864082845696,
+      "small_prime_error_upper_bound": "372949474145348555955858569745217959755791625/10328999512347634358623676688012047497318823171316894051322637426162590488067364778518581413120551325743612687890989973504",
+      "large_prime_error_upper_bound": "402894322434391140740635535199213562368529/948568795032094272909893509191171341133987714380927500611236528192824358010355712",
+      "conditional_failure_upper_bound": "7746749634260725768967757516009035622993504509164693974504186327101952033503691588332397496979288901262246448229091654921/10328999512347634358623676688012047497318823171316894051322637426162590488067364778518581413120551325743612687890989973504",
+      "primitive_fraction_lower_bound": "1/134217728",
+      "scope": "Exact arithmetic in the displayed uniform bound; the written induction supplies the theorem."
+    },
+    {
+      "dimension": 11,
+      "s": 161,
+      "minimum_side_threshold": 8543948143683640329580086824678208458410818089426611079788166431288878903122562200091848347746304,
+      "small_prime_error_upper_bound": "65109897943091725005974159297510408525671794789656425/1560874275157996115690798614896583152874299071332485575429578479812685869409882810060153051531745985579913465560703311447723987839644142653145088",
+      "large_prime_error_upper_bound": "29960783565283509823175539070683801902946617142283/2135987035920910082395021706169552114602704522356652769947041607822219725780640550022962086936576",
+      "conditional_failure_upper_bound": "1170655706368497086768098961172437364655724303521258048690373188204063374545650016719792510076314293500436965858052668316993010566450582881642345/1560874275157996115690798614896583152874299071332485575429578479812685869409882810060153051531745985579913465560703311447723987839644142653145088",
+      "primitive_fraction_lower_bound": "1/1073741824",
+      "scope": "Exact arithmetic in the displayed uniform bound; the written induction supplies the theorem."
+    },
+    {
+      "dimension": 12,
+      "s": 188,
+      "minimum_side_threshold": 153914086704665934422965000391185991426092731525255651046673021110334850669910978950836977558144201721900890587136,
+      "small_prime_error_upper_bound": "695139977336767186151346211515380245689460065822481947039225/235872651551346334515097161311766805682307576276027526773512893765351510149509303255382920323603672971341773439422740306235661539370299539535089640714543502728087207936",
+      "large_prime_error_upper_bound": "1103396789423439978018009859548222612205492167972193570095/9619630419041620901435312524449124464130795720328478190417063819395928166869436184427311097384012607618805661696",
+      "conditional_failure_upper_bound": "176904488663509750886322870983825104261730682207020645107189880877568191397418793916550352798070617691930175768009783765252978626544964904850071296800421506370420872697/235872651551346334515097161311766805682307576276027526773512893765351510149509303255382920323603672971341773439422740306235661539370299539535089640714543502728087207936",
+      "primitive_fraction_lower_bound": "1/8589934592",
+      "scope": "Exact arithmetic in the displayed uniform bound; the written induction supplies the theorem."
+    }
+  ],
+  "nonprimitive_projection_control": {
+    "points": [
+      [
+        400,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        400,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        400,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        400
+      ]
+    ],
+    "projection_index": 160000,
+    "prime": 2,
+    "last_coordinates": [
+      400,
+      401
+    ],
+    "failures": 2,
+    "one_residue_bound_without_projection_hypothesis_is_false": true
+  },
   "source_sha256": {
-    "scripts/run_corner_cut_growth_checks.py": "40899a58a88deec56fe3067dee6bde550bc49e9a5a3ce0d4f53f3d29d96c09ab",
+    "scripts/run_corner_cut_growth_checks.py": "a9ac1ab41835c0251d4b3481e6c940f9912dc9f574e83969192a3b6342705306",
     "scripts/run_pyramidal_poset_checks.py": "70eb1d26eb7a8664e8c186b33e115fedb1ecc5004880a41b07f76ba000533500",
-    "docs/interleaving_research.md": "c0a5eca38c4dd139a0dd82370df4f5a9250e4620f3cc2866e06a291a6c20f8f2"
+    "docs/interleaving_research.md": "1bdc3f7b9860957ce84b6bf1e310b99d111c2f7e2bef6453de813651da6585f0"
   },
   "limitations": [
     "Finite checks do not establish a uniform asymptotic density bound.",
