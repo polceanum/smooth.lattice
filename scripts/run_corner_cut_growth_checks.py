@@ -491,41 +491,49 @@ def fixed_size_patch_fixture(d):
     sides, frames, attempts = primitive_normal_family(d, 9 if d == 2 else 24)
     k = 4 ** (d + 1)
     ratio = 16 * d * d * (k + 1)
-    pairs = 0
-    witness = None
-    for a, (points, matrix, height) in frames.items():
-        h = ratio * height
+    pairs, corner_pairs = 0, 0
+    witnesses = []
+    for normal_index, (a, (points, matrix, height)) in enumerate(frames.items()):
         z, c = reduce_lattice_coset(bezout_vector(a), [Fraction(v, height) for v in points[0]], matrix)
         require(dot(a, z) == 1, 'unit level increment')
-        target = [Fraction(h - 1, d * v) for v in a]
-        x0, beta = reduce_lattice_coset([(h - 1) * v for v in z], target, matrix)
-        for signs in product((-k, k), repeat=d - 1):
-            low = tuple(x + dot(row, signs) for x, row in zip(x0, matrix))
-            high = tuple(x + 2 * v for x, v in zip(low, z))
-            require(min(*low, *high) >= 0, 'two nonnegative patches')
-            require(dot(a, low) == h - 1 and dot(a, high) == h + 1, 'patch levels')
-        for b in frames:
-            if b == a:
-                continue
-            pairs += 1
-            columns = tuple(zip(*matrix))
-            values = [dot(b, column) for column in columns]
-            require(any(values), 'nonparallel normal')
-            signs = [k if v > 0 else -k if v < 0 else 0 for v in values]
-            low = tuple(x + dot(row, signs) for x, row in zip(x0, matrix))
-            high = tuple(x + 2 * v - dot(row, signs) for x, v, row in zip(x0, z, matrix))
-            require(dot(b, low) > dot(b, high), 'distinct normal cannot separate patches')
-            require(Fraction(dot(b, points[0]), height) < 2 * 4 ** d, 'uniform height-ratio bound')
-            if witness is None:
-                witness = {'a': a, 'b': b, 'height': height, 'boundary_score': h,
-                           'unit_increment': z, 'low_point': low, 'high_point': high,
-                           'a_low': dot(a, low), 'a_high': dot(a, high),
-                           'b_low': dot(b, low), 'b_high': dot(b, high)}
+        offsets = (0, 1, height // 2, height - 1, height + 17)
+        for offset in offsets:
+            h = ratio * height + offset
+            target = [Fraction(h - 1, d * v) for v in a]
+            x0, beta = reduce_lattice_coset([(h - 1) * v for v in z], target, matrix)
+            for signs in product((-k, k), repeat=d - 1):
+                low = tuple(x + dot(row, signs) for x, row in zip(x0, matrix))
+                high = tuple(x + 2 * v for x, v in zip(low, z))
+                require(min(*low, *high) >= 0, 'two nonnegative patches')
+                require(dot(a, low) == h - 1 and dot(a, high) == h + 1, 'patch levels')
+                corner_pairs += 1
+            saved = False
+            for b in frames:
+                if b == a:
+                    continue
+                pairs += 1
+                columns = tuple(zip(*matrix))
+                values = [dot(b, column) for column in columns]
+                require(any(values), 'nonparallel normal')
+                signs = [k if v > 0 else -k if v < 0 else 0 for v in values]
+                low = tuple(x + dot(row, signs) for x, row in zip(x0, matrix))
+                high = tuple(x + 2 * v - dot(row, signs) for x, v, row in zip(x0, z, matrix))
+                require(dot(b, low) > dot(b, high), 'distinct normal cannot separate patches')
+                require(Fraction(dot(b, points[0]), height) < 2 * 4 ** d, 'uniform height-ratio bound')
+                if normal_index == 0 and not saved:
+                    witnesses.append({'a': a, 'b': b, 'height': height, 'boundary_score': h,
+                                      'height_offset': offset, 'boundary_residue': h % height,
+                                      'unit_increment': z, 'low_point': low, 'high_point': high,
+                                      'a_low': dot(a, low), 'a_high': dot(a, high),
+                                      'b_low': dot(b, low), 'b_high': dot(b, high)})
+                    saved = True
     return {'dimension': d, 'sides': sides, 'attempts': attempts,
             'seed': 20261017 + 100 * d,
-            'primitive_normal_count': len(frames), 'ordered_distinct_pairs': pairs,
-            'patch_corner_pairs_checked': len(frames) * 2 ** (d - 1),
-            'patch_half_width': k, 'boundary_height_ratio': ratio, 'witness': witness}
+            'primitive_normal_count': len(frames), 'ordered_normal_pairs_and_heights': pairs,
+            'height_offsets_per_normal': ['0', '1', 'floor(H/2)', 'H-1', 'H+17'],
+            'patch_corner_pairs_checked': corner_pairs,
+            'patch_half_width': k, 'boundary_height_ratio_minimum': ratio,
+            'witnesses': witnesses}
 
 
 def exact_size_constants():
@@ -569,11 +577,16 @@ def integer_weight_prefix(weights, n):
 
 
 def tie_resolution_fixture():
-    checks, examples = 0, []
+    checks, partial, complete, examples = 0, 0, 0, []
     for normal in ((1, 1), (2, 3), (1, 1, 1), (2, 2, 3), (1, 2, 3, 4)):
         d = len(normal)
         for n in range(1, 41):
-            ordered = integer_weight_prefix(normal, n)
+            extended = integer_weight_prefix(normal, n + 1)
+            ordered = extended[:-1]
+            if extended[-1][0] == ordered[-1][0]:
+                partial += 1
+            else:
+                complete += 1
             u = tuple(n ** (d - i - 1) for i in range(d))
             multiplier = n ** d
             strict_weights = tuple(multiplier * a + v for a, v in zip(normal, u))
@@ -586,7 +599,9 @@ def tie_resolution_fixture():
             if n == 7:
                 examples.append({'normal': normal, 'cardinality': n, 'strict_weights': strict_weights,
                                  'last_inside': strict_prefix[-2], 'first_outside': strict_prefix[-1]})
+    require(partial and complete, 'both partial and complete boundary levels exercised')
     return {'prefixes_checked': checks, 'cardinalities': [1, 40],
+            'partial_boundary_levels': partial, 'complete_boundary_levels': complete,
             'exact_heap_orders_agree': True, 'witnesses': examples}
 
 

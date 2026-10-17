@@ -23,7 +23,7 @@
 \begin{document}
 \maketitle
 \begin{center}
-\small Working mathematical draft. The new prescribed-size argument is under review;
+\small Working mathematical draft. The argument has passed an internal proof audit;
 the priority assessment and submission review remain incomplete.
 \end{center}
 
@@ -291,6 +291,10 @@ For any fixed primitive normal, the integer height in
 the claim.
 \end{proof}
 
+When one normal occurs at several heights, fix one witnessing simplex
+for it, and use that simplex to define \(H_a\).
+The prefix below depends only on \(a\), not on this choice of witness.
+
 For a positive integer normal \(a\), order lattice points by
 \((a\cdot x,x_1,\ldots,x_d)\), and let \(D_n(a)\) be the first \(n\).
 Let \(h\) be the least integer for which
@@ -302,8 +306,8 @@ level is only partly included. Indeed
 \(h\leq(n-1)\min_i a_i\), by considering a minimum-weight axis.
 Every point at score at most \(h\) lies in \(\{0,\ldots,n-1\}^d\).
 For \(n>1\), the integer vector \(u_i=n^{d-i}\) represents lexicographic
-order in that box. Taking \(w=M a+u\), with
-\(M>\max_{a\cdot x\leq h}u\cdot x\), preserves all these levels and
+order in that box, and \(u\cdot x\leq n^d-1\) there.
+Taking \(w=n^d a+u\) preserves all these levels and
 strictly orders the boundary level. Positivity keeps every higher
 \(a\)-level above them. A threshold between consecutive integer scores
 gives a strict representation. The case \(n=1\) is immediate.
@@ -580,7 +584,10 @@ and a retained degenerate-arrangement fixture with 18 interior vertices
 and 48 chambers. The prescribed-size checks construct integer Bezout
 increments and affine-coset reductions, then verify reversed orders on
 the two patches for 2,280 ordered pairs of distinct normals in dimensions
-two through six. The exact points and scores are saved.
+two through six, each at five boundary heights with different residues
+relative to the witness height. All 11,400 pair--height checks pass.
+The exact points and scores are saved. The 200 tie-resolution fixtures
+include 150 partial boundary levels and 50 complete ones.
 It exhausts stated small boxes in dimensions two through four and uses
 deterministic samples in dimensions five and six.
 Six prime-realization fixtures, including equal weights and unused

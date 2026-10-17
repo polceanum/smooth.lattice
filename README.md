@@ -59,21 +59,21 @@ consequence before preparing a submission. The first candidate is to close or
 strictly narrow Wagner's published logarithmic gap in the number of
 three-dimensional corner cuts, the shapes underlying smooth exponent prefixes.
 The first milestone is to check the strongest current bounds and reconstruct
-the existing proofs. The gap's current status and the proposed route's
-feasibility remain unverified; neither novelty nor a breakthrough is promised.
+the existing proofs. The strongest-current-bound assessment remains incomplete; neither novelty
+nor a breakthrough is promised.
 
 A new candidate proof in the research note would give the matching pointwise
 count C_d(n)=Theta_d(n^(d-1)(log n)^(d-1)) in every fixed dimension d>=2,
 including the original three-dimensional target. It counts primitive normal
 directions and uses two integer lattice patches to prevent collisions at a
-prescribed size. Exact witnesses test the delicate step for 2,280 pairs of
-normals. This goes beyond the earlier cumulative construction, which is
-preserved in the note. The new argument and priority comparison remain under
-review; it is not yet a verified new theorem or a submission-ready paper.
+prescribed size. Exact witnesses test the delicate step for 2,280 ordered pairs of
+normals at five boundary heights each. The fresh internal proof audit found
+no unresolved logical step. The earlier cumulative construction is preserved
+in the note. The priority comparison remains under review; it is not yet a verified new theorem or a submission-ready paper.
 The [quantitative working draft](paper/corner_cut_growth/main.tex) gives the
 complete candidate proof, explicit constants and its attributions separately
 from the earlier structural note. The [PDF](output/pdf/corner_cut_growth.pdf)
-compiles; the proof, priority and submission reviews remain incomplete.
+compiles; the priority and submission reviews remain incomplete.
 
 The existing structural results are preserved as a separate note about the
 geometry and containment intervals of pyramidal partitions. Applying Edelman's

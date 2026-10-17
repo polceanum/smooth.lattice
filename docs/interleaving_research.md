@@ -2201,3 +2201,34 @@ corner-cut-model interpretation and refers cardinality to the planar
 paper and Wagner. These are inspected passages, not assertions of a
 complete audit of all results in those papers. A public citation-index
 listing was used only to locate sources, not as proof of novelty.
+
+
+#### Fresh internal audit of Candidate 23
+
+The prescribed-size argument was re-derived from the definitions after it
+was written, without assuming that the cumulative result implies it.
+No unresolved logical gap was identified. This is an internal review by
+the research agent, not an independent human referee report.
+
+| Step | Adversarial check | Resolution |
+| --- | --- | --- |
+| Primitive windows | Are unobserved coordinates still uniform after earlier rank events? | All preceding events depend only on old projected coordinates; new coordinates retain their independent distributions. The finite small-prime and large-prime bounds are uniform in each fixed configuration. |
+| Counting planes | Can a primitive plane meet a selected box twice? | Its frame is the full integer kernel basis, and the scaled inverse bound forces the coordinate difference to have an integer coefficient vector of norm less than one. |
+| Counting directions | Does using H_a hide a multiplicity? | Divide the plane count by at most 2^d Q integer heights per primitive normal, then fix one witnessing simplex. D_n(a) depends on the normal alone; its auxiliary height need not be unique. The draft now states this explicitly. |
+| Partial ties | Is a lexicographic prefix always a strict corner cut? | The boundary score is at most (n-1) min_i a_i. Every relevant exponent is a base-n digit vector, so w=n^d a+(n^{d-1},...,1) strictly implements the prefix, including a partial boundary level. |
+| Coset reduction | Can a unit-level integer increment or centered lattice point fail to exist? | Primitivity gives a.z=1. Subtracting integer combinations of V centers any real coefficient vector without changing integrality or its level. The construction works for every integer boundary height. |
+| Patch signs | Can the centered construction produce negative coordinates? | The explicit condition h/H_a>=16d^2(K+1) exceeds the sum of all centered, patch and increment displacements in every coordinate. |
+| Separation | Does a partial tie affect patch inclusion? | Patches have scores h-1 and h+1. All points of the first lie inside the prefix and all points of the second lie outside, for every tie choice at h. |
+| Integer rigidity | Does the second separator require generic or real weights? | Both counted normals are integer and primitive. Equal prefixes imply K S<=b.z<=b.p_1/H_a+S/2, where S=sum |b.v_j| is integer and b.p_1/H_a<2*4^d<K-1/2. Hence S=0 and the normals agree. |
+| Prescribed n | Could a boundary-height estimate only hold for selected ranks? | F_a(h-1)<n<=F_a(h) holds for every rank. Unit-cube volume bounds and n/Q>=T_d give the required height uniformly. No monotonicity of C_d(n) is assumed. |
+| Aspect duplication | Can padding to size n merge different aspect tuples? | All tuples have the same Q and G=(d!n/Q)^{1/d}; the observable axis ranges (G L_i/2,2 G L_i) are disjoint when one L_i changes by a factor of four. |
+| Quantifiers | Do floor operations or the large constants restrict n to powers? | R=floor(log_4(n/T_d)) is valid for every integer n>=n_star. The composition and logarithm bounds were checked algebraically with the displayed closed thresholds. |
+
+The original patch fixtures used h equal to an integer multiple of H_a,
+which samples only one boundary residue. They now use offsets
+0, 1, floor(H_a/2), H_a-1 and H_a+17. All 11,400 ordered-normal-pair
+and height combinations and 7,290 pairs of patch corners pass in dimensions
+2--6. Actual integer points, residues and reversed scores are retained.
+The 200 direct tie-resolution checks include 150 partial boundary levels
+and 50 complete levels. These computations target finite failure modes;
+the uniform proof is the argument above, and priority remains unestablished.

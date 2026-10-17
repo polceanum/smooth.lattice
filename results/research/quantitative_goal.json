@@ -3,7 +3,7 @@
   "recorded_on": "2026-10-17",
   "title": "A new quantitative theorem for smooth exponent geometry",
   "objective": "Prove a genuinely new quantitative theorem about the exponent-lattice structure underlying fixed-prime smooth-number prefixes, resolving or strictly improving a published counting or algorithmic bound. Produce a complete proof, a precise comparison with the strongest relevant literature, reproducible supporting evidence and an honest paper explaining the mathematical advance.",
-  "status": "new_prescribed_size_candidate_written_exact_checks_and_priority_review_in_progress",
+  "status": "pointwise_candidate_internally_audited_priority_and_submission_review_incomplete",
   "acceptance_criteria": [
     "State a uniform theorem for an infinite family with an explicit quantitative improvement over the strongest verified published result, or settle a recognized open structural question with a substantive counting or algorithmic consequence.",
     "Give a complete proof; numerical agreement, isolated examples and routine consequences of known theorems do not satisfy the goal.",
@@ -61,13 +61,13 @@
       "id": "M3",
       "task": "Prove the quantitative theorem and check the delicate steps independently.",
       "deliverable": "A uniform proof with explicit quantifiers and error bounds, plus exact computational checks only where they can falsify a claimed combinatorial lemma.",
-      "status": "fresh_adversarial_review_of_prescribed_size_argument_pending"
+      "status": "full_pointwise_proof_internal_adversarial_audit_passed_priority_not_established"
     },
     {
       "id": "M4",
       "task": "Write and audit the paper around the actual advance.",
       "deliverable": "A complete manuscript, exact priority comparison, reproducible evidence and a candid explanation of usefulness and limitations.",
-      "status": "pointwise_working_draft_written_not_submission_ready"
+      "status": "pointwise_draft_written_priority_and_submission_review_incomplete"
     }
   ],
   "preserved_side_results": {
@@ -87,9 +87,9 @@
       "Consequently A_d(n) = Theta_d(n^d (log n)^(d-1))."
     ],
     "mechanism": "Uniform primitive-window sieve; divide primitive planes by their bounded integer heights to count normal directions; realize each lexicographic prefix by positive weights; use two nonnegative lattice patches at levels h-1 and h+1 to prove prescribed-size injectivity; separate aspect tuples by observable axis extents.",
-    "proof_status": "New complete prescribed-size candidate proof recorded with closed constants. Exact affine-coset and reversed-order checks pass; a fresh adversarial logical review and priority review remain necessary. This is not independent human review.",
-    "priority_status": "Unresolved. Compare grid threshold-function counts, primitive-frame counts and subsequent corner-cut literature before claiming an improvement.",
-    "three_dimensional_limit": "The new Candidate 23 aims at C_3(n)=Theta(n^2(log n)^2) for every sufficiently large n; the fresh proof and priority audit remain incomplete.",
+    "proof_status": "The full pointwise argument passed a fresh internal adversarial review with no unresolved logical step identified. The audit includes ties, witnessing-height multiplicities, affine-coset reductions, two-patch integer rigidity, rank-to-height estimates and cross-aspect duplication. This is not an independent human referee report.",
+    "priority_status": "Unresolved. Focus the remaining primary comparison on fixed-cardinality grid k-set and threshold-function counts and on the prescribed-size injectivity mechanism; total-function counts and teaching-set sizes do not by themselves settle this question.",
+    "three_dimensional_limit": "The full Candidate 23 pointwise proof for C_3(n)=Theta(n^2(log n)^2) has passed a fresh internal logical audit; novelty and publication significance remain unresolved.",
     "evidence": "results/research/corner_cut_growth_checks.json",
     "known_matrix_background": {
       "source": "https://arxiv.org/pdf/1803.08785",
@@ -112,7 +112,7 @@
     "manuscript": {
       "source": "paper/corner_cut_growth/main.tex",
       "title": "Sharp growth of corner cuts in fixed dimension",
-      "status": "working_draft_new_prescribed_size_argument_under_review",
+      "status": "working_draft_pointwise_proof_internally_audited_priority_incomplete",
       "proof_contents": [
         "Uniform primitive-window bound with closed constants",
         "Full-lattice injection and bounded-height division to count primitive normals",
@@ -125,9 +125,9 @@
       "author_metadata": "Left blank; no authorship or affiliation invented.",
       "pdf": "output/pdf/corner_cut_growth.pdf",
       "pdf_pages": 9,
-      "tex_sha256": "590c154deeeed06464bee02b6b3645008007332b91a38785b1ca1e6c2fe4f955",
-      "pdf_sha256": "e42533c43b8f7b114970862a2c0a3c69196a5eb72724db1e65654f91f4daabd2",
-      "visual_review": "Latest nine-page pointwise draft rendered and inspected; no clipping, overlap or unresolved references.",
+      "tex_sha256": "5ec8f7b5384e03230018b416af929b069f2ebd5da2bdaa9fc6892645dd3660c6",
+      "pdf_sha256": "9609a75a74ce2b1e216e7e927610ebfbc1a2ed16c53cf663d7e04a9466ae4d5e",
+      "visual_review": "All nine latest pages inspected after the internal proof audit edits; no clipping, overlap or unresolved references.",
       "latex_log_check": "No errors, overfull boxes or undefined references in the final pass.",
       "pdf_structure_check": "Nine pages, blank author metadata, no extracted characters outside page boundaries.",
       "pdf_build_command": "latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=results/local/corner-cut-latex paper/corner_cut_growth/main.tex"
@@ -147,6 +147,36 @@
       "minimum_n": "n_star(d)=T_d 4^[4d^2(d+1)]",
       "constant": "lambda_d=rho_d/[2^d (4T_d)^(d-1) [4(d+1)]^(d-1) (d-1)!]",
       "interpretation": "Coarse proof constants; not practical enumeration bounds."
+    },
+    "pointwise_proof_audit": {
+      "status": "passed_no_unresolved_logical_step_identified",
+      "scope": "Candidate 23 and the full prescribed-size proof, including its primitive-window input.",
+      "review_type": "Fresh internal logical review by the research agent; not an independent human referee report.",
+      "record": "docs/interleaving_research.md, Fresh internal audit of Candidate 23",
+      "clarifications": [
+        "Fix one witnessing simplex when a normal occurs at several heights; count D_n(a) independently of this auxiliary choice.",
+        "Use the explicit integer weight vector n^d a+(n^(d-1),...,1) to resolve partial boundary ties."
+      ],
+      "checked_steps": [
+        "Uniform conditioned primitive-window sieve and finite determinant tail",
+        "Primitive-plane injection, bounded integer-height division and single-normal counting",
+        "Strict realization of every lexicographic prefix, including partial boundary levels",
+        "Integer unit increment and affine-coset centering for every boundary height",
+        "Coordinatewise nonnegative patches at h-1 and h+1",
+        "Weak separation, reversed patch extrema and integer rigidity",
+        "Uniform rank-to-height volume bounds for every sufficiently large n",
+        "Common-G axis extents and disjoint aspect ranges",
+        "Closed size, composition, logarithm and floor thresholds"
+      ],
+      "finite_checks": {
+        "ordered_normal_pairs": 2280,
+        "boundary_height_choices_per_normal": 5,
+        "ordered_normal_pair_height_combinations": 11400,
+        "patch_corner_pairs": 7290,
+        "partial_boundary_levels": 150,
+        "complete_boundary_levels": 50
+      },
+      "limitations": "This internal review can miss an error. Finite checks are falsification evidence, not the uniform proof. Overall priority and submission review remain incomplete."
     }
   }
 }

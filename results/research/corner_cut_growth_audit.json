@@ -1,6 +1,6 @@
 {
   "date": "2026-10-17",
-  "status": "new_prescribed_size_candidate_written_exact_checks_and_priority_review_in_progress",
+  "status": "pointwise_candidate_internally_audited_priority_and_submission_review_incomplete",
   "mathematical_record": "docs/interleaving_research.md, Candidate 23 (Candidates 21 and 22 preserved as the earlier cumulative route)",
   "proposed_results": [
     "For every fixed d >= 2, C_d(n) = Theta_d(n^(d-1) (log n)^(d-1)).",
@@ -68,7 +68,13 @@
       5,
       6
     ],
-    "tie_resolution_prefixes_checked": 200
+    "tie_resolution_prefixes_checked": 200,
+    "ordered_normal_pairs": 2280,
+    "boundary_height_choices_per_normal": 5,
+    "ordered_normal_pair_height_combinations": 11400,
+    "patch_corner_pairs": 7290,
+    "partial_boundary_levels": 150,
+    "complete_boundary_levels": 50
   },
   "primary_literature_comparison": [
     {
@@ -199,12 +205,35 @@
       "inspected": "Section 6.2, printed pp. 21--22, and cited cardinality references.",
       "finding": "Known generic-design, corner-cut-model and state-polytope correspondence; cardinality refers to the planar result and Wagner.",
       "remaining": "The inspected passages do not establish the strongest current bound over all literature."
+    },
+    {
+      "source": "https://www.sciencedirect.com/science/article/pii/S0196885803000940",
+      "published_doi": "https://doi.org/10.1016/S0196-8858(03)00094-0",
+      "authors": "Jovisa Zunic",
+      "inspected": "Published authored abstract for Cutting corners with spheres in d-dimensions (2004).",
+      "finding": "The stated theorem is an upper bound O(n^(d+1)(log n)^(d-1)) for the larger class of sphere corner cuts. This statement gives no stronger lower bound for linear corner cuts.",
+      "remaining": "Full proof not inspected; no assertion that all techniques or consequences have been excluded."
+    },
+    {
+      "source": "https://qmro.qmul.ac.uk/xmlui/bitstream/handle/123456789/86024/Aguilar%20Betti%20numbers%20of%202012%20Accepted.pdf?sequence=2",
+      "published_doi": "https://doi.org/10.1007/s10472-012-9295-9",
+      "authors": "Maruri-Aguilar, Saenz-de-Cabezon and Wynn",
+      "inspected": "Indexed authored abstract and first-page introduction of the accepted manuscript, plus publication metadata. Direct full-file retrieval returned no PDF.",
+      "finding": "Studies maximal Betti numbers of monomial ideals associated with hierarchical models, including corner-cut models. The inspected statement is a Betti-number result, not a count of size-n corner cuts.",
+      "remaining": "Abstract-level scope comparison only; no full-text proof comparison claimed."
+    },
+    {
+      "source": "https://www.mage.fst.uha.fr/Papers/k-set_polytopes_and_order-k_Delaunay_diagrams.pdf",
+      "published_doi": "https://doi.org/10.1109/ISVD.2006.43",
+      "authors": "Schmitt and Spehner",
+      "inspected": "Indexed authored abstract and first-page introduction of k-set polytopes and order-k Delaunay diagrams (2006).",
+      "finding": "Characterizes faces and incidences for finite point sets via k-couples. The inspected contribution does not state a fixed-cardinality count for the nonnegative orthant.",
+      "remaining": "Full file was not retrieved; a full-text mathematical comparison is not claimed."
     }
   ],
   "audit_tasks": [
-    "Freshly audit every step of Candidate 23, especially weak separation with partial ties, the affine-coset reductions, integer rigidity and cross-aspect duplication.",
-    "Complete the precise comparison with later corner-cut and stronger grid-threshold results; keyword-search failure and citation-index coverage do not establish novelty.",
-    "Resolve the priority and submission review before describing the manuscript as submission-ready."
+    "Compare fixed-cardinality grid k-set and threshold-function counts with the uniform prescribed-size injection of Lemma 4. Total-function counts, teaching-set cardinalities and citation-index coverage alone are not substitutes for this comparison.",
+    "Resolve the priority assessment and final manuscript review before describing the paper as submission-ready."
   ],
   "validation_commands_passed": [
     "./build.sh",
@@ -219,8 +248,8 @@
   "submission_ready": false,
   "prime_distribution_consequence": false,
   "faster_unranking_claim": false,
-  "research_progress": "Found and wrote the new same-dimension fixed-size injection via two affine integer patches. Counted normal directions after dividing by bounded heights, and controlled cross-aspect duplication. Added exact patch, tie-resolution and closed-constant checks; rewrote the quantitative draft around the pointwise target.",
-  "remaining_exact_size_problem": "A complete candidate proof now gives the pointwise target, but its fresh adversarial review and novelty assessment are incomplete.",
+  "research_progress": "Re-derived the full prescribed-size proof and recorded an adversarial audit. Clarified the witness-height choice and explicit tie weights. Strengthened the finite checks from one boundary residue to five, yielding 11400 normal-pair/height checks and 7290 patch-corner pairs, with 150 partial and 50 complete boundary-level tests.",
+  "remaining_exact_size_problem": "A complete pointwise proof candidate has passed the fresh internal audit; priority and publication significance have not been established.",
   "uniform_sieve_bound": {
     "record": "Candidate 22, equation (22.1)",
     "parameters": "a=100d, b=4d-3; choose S>=d^2+4(d-1) with E_d(S)<=1/8.",
@@ -231,11 +260,11 @@
     "closed_choice": "S=4d^2, min side >= 2^(8d^2); E_d(S)<2^(-10)<1/8 for all d>=2."
   },
   "completion_audit": {
-    "uniform_argument": "New complete prescribed-size candidate proof recorded with closed constants. Exact affine-coset and reversed-order checks pass; a fresh adversarial logical review and priority review remain necessary. This is not independent human review.",
+    "uniform_argument": "The full pointwise argument passed a fresh internal adversarial review with no unresolved logical step identified. The audit includes ties, witnessing-height multiplicities, affine-coset reductions, two-patch integer rigidity, rank-to-height estimates and cross-aspect duplication. This is not an independent human referee report.",
     "novelty": "Not established. Closest matrix and learning results were compared but the stronger-counting-theorem search is not complete.",
     "mathematical_usefulness": "If valid and new, matches the inspected corner-cut upper bound and closes its logarithmic gap in every fixed dimension d>=3; the established vertex/model dictionary and the prime-realization lemma give exact counting interpretations.",
-    "manuscript": "The nine-page pointwise candidate draft compiles with the desktop compiler and latexmk, and passes rendering and source checks. The new prescribed-size proof, priority and submission reviews remain incomplete.",
-    "decision": "Keep the goal active; freshly audit the prescribed-size proof and complete the primary-literature comparison."
+    "manuscript": "The pointwise manuscript now explicitly fixes one witness per normal and uses the closed tie-resolving weight vector. Proof audit passed internally; priority and submission review remain incomplete.",
+    "decision": "Keep the goal active; finish the strongest-primary-literature comparison and submission review."
   },
   "explicit_cumulative_lower_bound": {
     "formula": "A_d(n) >= kappa_d n^d (log_4 n)^(d-1) for d>=2 and n>=n_0(d).",
@@ -272,7 +301,7 @@
   "manuscript": {
     "source": "paper/corner_cut_growth/main.tex",
     "title": "Sharp growth of corner cuts in fixed dimension",
-    "status": "working_draft_new_prescribed_size_argument_under_review",
+    "status": "working_draft_pointwise_proof_internally_audited_priority_incomplete",
     "proof_contents": [
       "Uniform primitive-window bound with closed constants",
       "Full-lattice injection and bounded-height division to count primitive normals",
@@ -285,9 +314,9 @@
     "author_metadata": "Left blank; no authorship or affiliation invented.",
     "pdf": "output/pdf/corner_cut_growth.pdf",
     "pdf_pages": 9,
-    "tex_sha256": "590c154deeeed06464bee02b6b3645008007332b91a38785b1ca1e6c2fe4f955",
-    "pdf_sha256": "e42533c43b8f7b114970862a2c0a3c69196a5eb72724db1e65654f91f4daabd2",
-    "visual_review": "Latest nine-page pointwise draft rendered and inspected; no clipping, overlap or unresolved references.",
+    "tex_sha256": "5ec8f7b5384e03230018b416af929b069f2ebd5da2bdaa9fc6892645dd3660c6",
+    "pdf_sha256": "9609a75a74ce2b1e216e7e927610ebfbc1a2ed16c53cf663d7e04a9466ae4d5e",
+    "visual_review": "All nine latest pages inspected after the internal proof audit edits; no clipping, overlap or unresolved references.",
     "latex_log_check": "No errors, overfull boxes or undefined references in the final pass.",
     "pdf_structure_check": "Nine pages, blank author metadata, no extracted characters outside page boundaries.",
     "pdf_build_command": "latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=results/local/corner-cut-latex paper/corner_cut_growth/main.tex"
@@ -307,5 +336,49 @@
     "minimum_n": "n_star(d)=T_d 4^[4d^2(d+1)]",
     "constant": "lambda_d=rho_d/[2^d (4T_d)^(d-1) [4(d+1)]^(d-1) (d-1)!]",
     "interpretation": "Coarse proof constants; not practical enumeration bounds."
+  },
+  "pointwise_proof_audit": {
+    "status": "passed_no_unresolved_logical_step_identified",
+    "scope": "Candidate 23 and the full prescribed-size proof, including its primitive-window input.",
+    "review_type": "Fresh internal logical review by the research agent; not an independent human referee report.",
+    "record": "docs/interleaving_research.md, Fresh internal audit of Candidate 23",
+    "clarifications": [
+      "Fix one witnessing simplex when a normal occurs at several heights; count D_n(a) independently of this auxiliary choice.",
+      "Use the explicit integer weight vector n^d a+(n^(d-1),...,1) to resolve partial boundary ties."
+    ],
+    "checked_steps": [
+      "Uniform conditioned primitive-window sieve and finite determinant tail",
+      "Primitive-plane injection, bounded integer-height division and single-normal counting",
+      "Strict realization of every lexicographic prefix, including partial boundary levels",
+      "Integer unit increment and affine-coset centering for every boundary height",
+      "Coordinatewise nonnegative patches at h-1 and h+1",
+      "Weak separation, reversed patch extrema and integer rigidity",
+      "Uniform rank-to-height volume bounds for every sufficiently large n",
+      "Common-G axis extents and disjoint aspect ranges",
+      "Closed size, composition, logarithm and floor thresholds"
+    ],
+    "finite_checks": {
+      "ordered_normal_pairs": 2280,
+      "boundary_height_choices_per_normal": 5,
+      "ordered_normal_pair_height_combinations": 11400,
+      "patch_corner_pairs": 7290,
+      "partial_boundary_levels": 150,
+      "complete_boundary_levels": 50
+    },
+    "limitations": "This internal review can miss an error. Finite checks are falsification evidence, not the uniform proof. Overall priority and submission review remain incomplete."
+  },
+  "citation_locator_scope": {
+    "purpose": "Locate primary papers, not establish novelty from absence or index coverage.",
+    "sources": [
+      {
+        "url": "https://openalex.org/W1980499588",
+        "returned_records": 18
+      },
+      {
+        "url": "https://www.semanticscholar.org/paper/167be2d8f236206477082fcdbfd430de943e3783",
+        "returned_records": 22
+      }
+    ],
+    "interpretation": "The indexes overlap but are incomplete and use different coverage. Mathematical findings are attributed to the inspected primary text or authored abstract, not to citation counts."
   }
 }
