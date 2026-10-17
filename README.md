@@ -63,9 +63,10 @@ the existing proofs. The gap's current status and the proposed route's
 feasibility remain unverified; neither novelty nor a breakthrough is promised.
 
 A multiscale argument is now recorded for audit in the research note. It
-would give a sharp cumulative three-dimensional count and a stronger
-exact-size lower bound in dimensions four and higher. Its primitive-triangle
-construction has exact finite checks; the uniform proof and priority
+would give a sharp cumulative count in every fixed dimension and an
+exact-size lower bound of order at least n^(d-1)(log n)^(d-2) for d>=4.
+Its primitive-simplex construction has exact finite checks and an explicit
+uniform sieve estimate; the final proof review and priority
 comparison still require review. This is a candidate result, not an
 established new theorem or a completed paper.
 

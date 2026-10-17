@@ -82,15 +82,20 @@
     "honesty": "A worthwhile result and an honest publishable paper are objectives, not promised outcomes. Record failures and redirect rather than weaken the success criteria."
   },
   "working_candidate": {
-    "record": "docs/interleaving_research.md, Candidate 21",
+    "record": "docs/interleaving_research.md, Candidate 22 (Candidate 21 retained as the dimension-three worked case)",
     "statements": [
-      "A_3(n) = Theta(n^3 (log n)^2), where A_3(n) = sum(j=1..n) C_3(j).",
-      "C_d(n) = Omega_d(n^(d-1) (log n)^2) for each fixed d >= 4."
+      "For every fixed d >= 2, A_d(n) = Theta_d(n^d (log n)^(d-1)), where A_d(n) = sum(j=1..n) C_d(j).",
+      "For every fixed d >= 4, C_d(n) = Omega_d(n^(d-1) (log n)^(d-2))."
     ],
-    "mechanism": "Uniform positive density of primitive triangles in three separated boxes, injectivity into arrangement vertices, a chamber lower bound, disjoint aspect ranges, and Wagner lifting.",
-    "proof_status": "A complete candidate argument is recorded; a second proof audit is pending.",
+    "mechanism": "Dimension induction with an explicit small-prime/large-prime error bound for primitive simplices in polynomially comparable axis boxes; lattice-basis injectivity; restricted-arrangement chamber counting; disjoint aspect ranges; Wagner lifting.",
+    "proof_status": "A complete general candidate argument and an explicit uniform sieve bound are written. Finite exact checks support the induction and geometry; final adversarial review and priority assessment remain pending.",
     "priority_status": "Unresolved. Compare grid threshold-function counts, primitive-frame counts and subsequent corner-cut literature before claiming an improvement.",
-    "three_dimensional_limit": "This does not prove the exact-size three-dimensional lower bound for every n. If correct, it rules out uniformly lowering the published upper logarithmic exponent.",
-    "evidence": "results/research/corner_cut_growth_checks.json"
+    "three_dimensional_limit": "The exact-size lower bound at every n in dimension three is not proved. The cumulative theorem, if valid, rules out reducing the pointwise upper logarithmic exponent uniformly, and forces sharp growth at a positive proportion of sizes.",
+    "evidence": "results/research/corner_cut_growth_checks.json",
+    "known_matrix_background": {
+      "source": "https://arxiv.org/pdf/1803.08785",
+      "published_doi": "https://doi.org/10.1137/18M1177093",
+      "boundary": "The standard minor/rank criterion and unrestricted centered-cube density formula are known. The paper repairs an earlier proof; the present finite sieve does not rely on the problematic limit interchange."
+    }
   }
 }
