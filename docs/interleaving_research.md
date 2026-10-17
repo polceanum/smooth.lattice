@@ -1957,3 +1957,66 @@ statement by itself neither controls included cardinality nor sums disjoint
 aspect windows. The full-text comparison is still not complete; it is
 explicitly identified as such in the draft rather than represented as a
 finished priority check.
+
+### Additional attribution and the exact prime-base connection
+
+[Müller, *Corner cuts and their polytopes*, 2003](https://ftp.gwdg.de/pub/misc/EMIS/journals/BAG/vol.44/no.2/b44h2mue.pdf),
+printed pp. 323--333, was inspected in full. Lemma 2.6 explicitly proves
+that the moment vectors of corner cuts are exposed vertices, so the
+polytope dictionary above must also be attributed to that source. Section 1,
+p. 324, directs enumeration to the planar result and Wagner's bounds.
+Theorems 3.2--3.3 give a planar vertex order; Theorems 4.9, 5.2 and 5.6
+concern pointedness and adjacency. None of those statements is a
+bounded-cardinality asymptotic count. This resolves that specific comparison;
+it does not settle all priority questions.
+
+**Supporting proposition (prime realization, no separate novelty claim).**
+Every nonempty finite corner cut D in dimension d is the exponent set of a
+smooth-number prefix for some ordered tuple of distinct primes. The primes
+can all exceed any prescribed B. In particular, there are infinitely many
+realizing tuples.
+
+**Proof.** Write D={x:w.x<1} with strict separation. Set
+
+    g=1-max_{x in D} w.x>0,  H=max_{x in D} sum_i x_i.
+
+Temporarily relabel coordinates so w_1<=...<=w_d. Choose T with
+exp(T w_1)>max(B,2) and d H log(2)/T<g. Bertrand's postulate supplies
+distinct primes in the disjoint intervals
+
+    2^{i-1} exp(T w_i) < p_i < 2^i exp(T w_i).
+
+For real endpoints apply the integer statement to their floors. Equal
+weights cause no problem because adjacent intervals remain disjoint.
+With v_i=log(p_i)/T, we have 0<v_i-w_i<d log(2)/T. Thus every inside
+point has v.x<1, while every outside point has v.x>=w.x>1. This latter
+inequality controls the entire infinite complement, not just a finite box.
+The smooth products below exp(T) therefore have exponent set exactly D.
+Unique factorization makes distinct exponent vectors give distinct values.
+Undo the coordinate relabeling. Since B was arbitrary, infinitely many
+tuples exist. For the classical prime theorem, see
+[Erdős, 1932](https://users.renyi.hu/~p_erdos/1932-01.pdf), pp. 197--198.
+
+Let S_{d,B}(n) count distinct length-n exponent-prefix sets obtained over
+ordered tuples of distinct primes greater than B. Count shapes once, not
+their realizing tuples. The proposition and the elementary converse give
+
+    S_{d,B}(n)=C_d(n),
+    sum_{j=1}^n S_{d,B}(j)=Theta_d(n^d (log n)^{d-1}).
+
+Consequently Candidate 22 counts precisely the finite shapes available to
+the original smooth-number project when the prime bases vary. For one fixed
+prime tuple there is only one prefix per length. This does not give a new
+prime-distribution theorem or improve random-access complexity. The
+realization step is elementary background supporting the quantitative
+contribution, not a substitute for it.
+
+Six exact fixtures in `scripts/run_corner_cut_growth_checks.py` include
+equal weights, permuted labels, unused coordinates and the one-point cut.
+For integer weights a and score bound s, set b=2^{dH}+1 and choose primes
+in (2^{i-1}b^{a_i},2^i b^{a_i}) after sorting weights. Every inside product
+is at most 2^{dH}b^s<b^{s+1}, and every outside product is at least
+b^{s+1}; actual interval choices make the separator strict. The checker
+verifies primality by trial division, exact integer boundary products,
+and an independently generated heap prefix. These fixtures falsify finite
+mistakes; the proposition's proof gives the general statement.

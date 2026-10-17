@@ -63,7 +63,9 @@
       11,
       12
     ],
-    "scale_rounding_cases_checked": 352
+    "scale_rounding_cases_checked": 352,
+    "prime_realization_fixture_count": 6,
+    "prime_realization_check": "Exact trial-division primality, disjoint Bertrand intervals, integer-product separation at the minimal outside boundary, and an independent heap prefix; equal weights, permuted labels, unused coordinates and the singleton are included."
   },
   "primary_literature_comparison": [
     {
@@ -171,11 +173,20 @@
       "inspected": "Authored abstract only.",
       "finding": "Moment encodings for partitions of finite cubes by parallel hyperplanes; the stated bit rate depends on cube side, dimension and number of planes. A fixed-cube encoding alone does not perform the disjoint-aspect bounded-cardinality lower count.",
       "remaining": "Full-text comparison not completed and not represented as completed."
+    },
+    {
+      "source": "https://ftp.gwdg.de/pub/misc/EMIS/journals/BAG/vol.44/no.2/b44h2mue.pdf",
+      "authors": "Irene Muller",
+      "title": "Corner cuts and their polytopes",
+      "publication": "Beitrage zur Algebra und Geometrie 44 (2003), 323--333",
+      "inspected": "Full eleven-page published text, including all definitions, theorems and references.",
+      "finding": "Lemma 2.6 gives the known exposed-vertex dictionary. Section 1, p. 324, refers counting to the planar result and Wagner. Theorems 3.2--3.3, 4.9, 5.2 and 5.6 address vertex order, pointedness and adjacency, rather than cumulative growth.",
+      "remaining": "This specific comparison is complete; it does not establish priority over every subsequent result."
     }
   ],
   "audit_tasks": [
     "Complete the focused priority comparison with stronger multidimensional threshold-count and later corner-cut results; separate known ingredients from the multiscale conclusion.",
-    "Prepare the quantitative manuscript only when the mathematical contribution survives the priority comparison.",
+    "Complete the priority and submission review of the working quantitative manuscript; do not describe the already written draft as submission-ready.",
     "Investigate the exact-size dimension-three lower bound without substituting an averaged statement for it."
   ],
   "validation_commands_passed": [
@@ -191,7 +202,7 @@
   "submission_ready": false,
   "prime_distribution_consequence": false,
   "faster_unranking_claim": false,
-  "research_progress": "Wrote the separate full quantitative draft, reconstructed and attributed the lifting proof, and compared additional primary Hilbert-zonotope and finite primitive-matrix results. The public research history is merged to main; novelty remains unestablished.",
+  "research_progress": "Completed the full published Muller comparison and attributed its exposed-vertex lemma. Added the elementary all-corner-cuts prime realization proof and six exact product/heap checks. The proposed new contribution remains the cumulative counting theorem; overall priority and submission review remain incomplete.",
   "remaining_exact_size_problem": "No uniform C_3(n) >= c n^2(log n)^2 statement has been proved.",
   "uniform_sieve_bound": {
     "record": "Candidate 22, equation (22.1)",
@@ -205,8 +216,8 @@
   "completion_audit": {
     "uniform_argument": "The general argument has passed an internal adversarial review. Closed choices S_d=4d^2 and n_0(d)=2^(d+8d^2(d+1)), with an explicit positive lower constant kappa_d, remove all implicit large-input thresholds. The proof ledger records the conditioning, finite prime tail, primitive-lattice injection, chamber count and multiscale duplication checks. This is not an independent human review.",
     "novelty": "Not established. Closest matrix and learning results were compared but the stronger-counting-theorem search is not complete.",
-    "mathematical_usefulness": "Would improve the inspected exact-size lower bound in every fixed dimension d>=4 and determine the cumulative order in every fixed dimension. The known corner-cut-polytope correspondence transfers the count to vertices and generic-design models.",
-    "manuscript": "The separate eight-page working draft compiles and passes source, reference and visual checks. Priority and submission review remain incomplete; it is not submission-ready.",
+    "mathematical_usefulness": "Would improve the inspected exact-size lower bound in every fixed dimension d>=4 and determine the cumulative order in every fixed dimension. The known corner-cut-polytope correspondence transfers the count to vertices and generic-design models. The elementary prime-realization bridge identifies all corner-cut shapes with exactly the smooth-prefix shapes available as the ordered prime bases vary, even above an arbitrary lower bound.",
+    "manuscript": "The separate nine-page working draft compiles and passes source, reference and visual checks. Priority and submission review remain incomplete; it is not submission-ready.",
     "decision": "Continue the focused priority comparison; keep the goal active."
   },
   "explicit_cumulative_lower_bound": {
@@ -249,17 +260,27 @@
       "Full-lattice injection and chamber-versus-vertex lemma with degeneracies",
       "Disjoint-aspect construction and explicit cumulative count",
       "Self-contained attributed lifting proof and exact-size consequence",
-      "Positive-proportion consequence and established polytope application"
+      "Positive-proportion consequence and established polytope application",
+      "Elementary realization of every corner cut over arbitrarily large distinct prime bases, with the exact counting identity"
     ],
     "compilation": "latest_source_compiled_successfully_with_desktop_editor_and_latexmk",
     "author_metadata": "Left blank; no authorship or affiliation invented.",
     "pdf": "output/pdf/corner_cut_growth.pdf",
-    "pdf_pages": 8,
-    "tex_sha256": "8bc6f44f015126a997e5dd01cbf2f8fa22222cec4f6d77f0d516f4decbdac497",
-    "pdf_sha256": "665edb09e71051ff85d58bb88d0f6dbae24752be989ab878e812a6507bd8239e",
-    "visual_review": "All eight latest rendered pages inspected; no clipping, overlap or unresolved references.",
+    "pdf_pages": 9,
+    "tex_sha256": "f257cd2a8afafe77d00445469cfc77fa2bbf785b7102629141f6117426605d87",
+    "pdf_sha256": "9b30d10031b896be4a42f54a69a20fa3b4150f195825ec6e2bf7073bd0c42df1",
+    "visual_review": "All nine latest rendered pages inspected; no clipping, overlap or unresolved references.",
     "latex_log_check": "No errors, overfull boxes or undefined references in the final pass.",
-    "pdf_structure_check": "Eight pages, blank author metadata, no extracted characters outside page boundaries.",
+    "pdf_structure_check": "Nine pages, blank author metadata, no extracted characters outside page boundaries.",
     "pdf_build_command": "latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=results/local/corner-cut-latex paper/corner_cut_growth/main.tex"
+  },
+  "prime_base_realization": {
+    "statement": "Every nonempty finite corner cut is realizable as a smooth-number exponent prefix over distinct ordered prime bases, all above any prescribed bound B.",
+    "proof_location": "paper/corner_cut_growth/main.tex, Proposition labelled prop:prime; docs/interleaving_research.md, Additional attribution and the exact prime-base connection",
+    "arithmetic_input": "Classical Bertrand postulate; for sorted positive weights choose disjoint intervals (2^(i-1) exp(T w_i), 2^i exp(T w_i)).",
+    "source": "https://users.renyi.hu/~p_erdos/1932-01.pdf",
+    "source_inspected": "Published text pp. 197--198, stating and completing the proof of Bertrand's postulate.",
+    "consequence": "For every fixed B, S_{d,B}(n)=C_d(n), where S counts distinct prefix exponent sets over varying ordered tuples of distinct primes greater than B. Hence the cumulative theorem counts exactly the realizable smooth-prefix shapes.",
+    "scope": "Elementary supporting proposition, no separate novelty claim. Varying prime tuples are essential; a single fixed tuple has only one prefix per length. No new prime-distribution or unranking claim."
   }
 }

@@ -14,7 +14,7 @@
   "first_candidate": {
     "problem": "Determine the asymptotic number of three-dimensional corner cuts of a given cardinality.",
     "definition": "For d >= 2 and n >= 1, C_d(n) counts distinct sets D = {a in Z_{>=0}^d : w dot a < t} of cardinality n, where each w_i > 0 and the separating hyperplane contains no nonnegative lattice point. Count sets, not their internal orderings or their prime realizations.",
-    "connection_to_project": "A prefix of the smooth-number exponent vectors for distinct primes is a corner cut, using w_i = log(p_i) and a threshold between consecutive products. Counting all corner cuts studies the possible geometry of such prefixes. This is a counting problem, not a faster unranking algorithm or a theorem on prime distribution.",
+    "connection_to_project": "An exponent prefix over distinct primes is a corner cut with weights log(p_i). Conversely every finite corner cut can be realized over distinct ordered prime bases above any prescribed lower bound. Thus the corner-cut count is exactly the number of available smooth-prefix shapes as bases vary, not the number of orders, realizing tuples or prefixes of one fixed tuple. This is neither an unranking speedup nor a new prime-distribution estimate.",
     "verified_published_baseline": {
       "author": "Uli Wagner",
       "year": 2002,
@@ -72,7 +72,6 @@
   ],
   "preserved_side_results": {
     "draft": "paper/pyramidal_mobius.tex",
-    "audit": "results/research/pyramidal_paper_audit.json",
     "treatment": "Preserve the Mobius application, slice counterexamples, recurrence and verified computations as a separate note. They do not satisfy this new quantitative goal. Do not inflate elementary corollaries or use the current checks as counts of all n-point corner cuts."
   },
   "policies": {
@@ -119,18 +118,28 @@
         "Full-lattice injection and chamber-versus-vertex lemma with degeneracies",
         "Disjoint-aspect construction and explicit cumulative count",
         "Self-contained attributed lifting proof and exact-size consequence",
-        "Positive-proportion consequence and established polytope application"
+        "Positive-proportion consequence and established polytope application",
+        "Elementary realization of every corner cut over arbitrarily large distinct prime bases, with the exact counting identity"
       ],
       "compilation": "latest_source_compiled_successfully_with_desktop_editor_and_latexmk",
       "author_metadata": "Left blank; no authorship or affiliation invented.",
       "pdf": "output/pdf/corner_cut_growth.pdf",
-      "pdf_pages": 8,
-      "tex_sha256": "8bc6f44f015126a997e5dd01cbf2f8fa22222cec4f6d77f0d516f4decbdac497",
-      "pdf_sha256": "665edb09e71051ff85d58bb88d0f6dbae24752be989ab878e812a6507bd8239e",
-      "visual_review": "All eight latest rendered pages inspected; no clipping, overlap or unresolved references.",
+      "pdf_pages": 9,
+      "tex_sha256": "f257cd2a8afafe77d00445469cfc77fa2bbf785b7102629141f6117426605d87",
+      "pdf_sha256": "9b30d10031b896be4a42f54a69a20fa3b4150f195825ec6e2bf7073bd0c42df1",
+      "visual_review": "All nine latest rendered pages inspected; no clipping, overlap or unresolved references.",
       "latex_log_check": "No errors, overfull boxes or undefined references in the final pass.",
-      "pdf_structure_check": "Eight pages, blank author metadata, no extracted characters outside page boundaries.",
+      "pdf_structure_check": "Nine pages, blank author metadata, no extracted characters outside page boundaries.",
       "pdf_build_command": "latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=results/local/corner-cut-latex paper/corner_cut_growth/main.tex"
+    },
+    "prime_base_realization": {
+      "statement": "Every nonempty finite corner cut is realizable as a smooth-number exponent prefix over distinct ordered prime bases, all above any prescribed bound B.",
+      "proof_location": "paper/corner_cut_growth/main.tex, Proposition labelled prop:prime; docs/interleaving_research.md, Additional attribution and the exact prime-base connection",
+      "arithmetic_input": "Classical Bertrand postulate; for sorted positive weights choose disjoint intervals (2^(i-1) exp(T w_i), 2^i exp(T w_i)).",
+      "source": "https://users.renyi.hu/~p_erdos/1932-01.pdf",
+      "source_inspected": "Published text pp. 197--198, stating and completing the proof of Bertrand's postulate.",
+      "consequence": "For every fixed B, S_{d,B}(n)=C_d(n), where S counts distinct prefix exponent sets over varying ordered tuples of distinct primes greater than B. Hence the cumulative theorem counts exactly the realizable smooth-prefix shapes.",
+      "scope": "Elementary supporting proposition, no separate novelty claim. Varying prime tuples are essential; a single fixed tuple has only one prefix per length. No new prime-distribution or unranking claim."
     }
   }
 }

@@ -8,10 +8,11 @@ and the vertex/region inequality on a small degenerate arrangement.
 from __future__ import annotations
 
 import hashlib
+import heapq
 from fractions import Fraction
 from itertools import combinations, product
 import json
-from math import comb, factorial, gcd, prod
+from math import comb, factorial, gcd, isqrt, prod
 from pathlib import Path
 from random import Random
 import shlex
@@ -353,6 +354,70 @@ def projection_negative_control():
             "one_residue_bound_without_projection_hypothesis_is_false": True}
 
 
+def prime_realization_fixtures():
+    """Check the prime bridge without floating logs or a precision tolerance.
+
+    For D={x: a.x<=s}, put b=2^(d H)+1, where H=max_{x in D}|x|_1.
+    In nondecreasing weight order choose p_i in (2^(i-1)b^a_i, 2^i b^a_i).
+    Then inside products are below b^(s+1) and all outside products above it.
+    Boundary minima and heap generation independently check the assertion.
+    """
+    def first_prime_after(lower):
+        candidate = lower + 1
+        while True:
+            if candidate >= 2 and all(candidate % k for k in range(2, isqrt(candidate) + 1)):
+                return candidate
+            candidate += 1
+
+    result = []
+    for weights, score in (((1, 2), 3), ((2, 1), 3), ((1, 1, 1), 0),
+                           ((2, 2, 2, 2), 2), ((1, 2, 3), 2), ((1, 3, 4), 2)):
+        d = len(weights)
+        cut = {x for x in product(*(range(score // a + 1) for a in weights))
+               if dot(weights, x) <= score}
+        height = max(map(sum, cut))
+        base = 2 ** (d * height) + 1
+        primes = [0] * d
+        intervals = [None] * d
+        for rank, axis in enumerate(sorted(range(d), key=weights.__getitem__)):
+            lower = 2 ** rank * base ** weights[axis]
+            primes[axis] = first_prime_after(lower)
+            intervals[axis] = (lower, 2 * lower)
+            require(primes[axis] < 2 * lower, "Bertrand interval")
+        require(len(set(primes)) == d, "distinct primes even at equal weights")
+        value = lambda x: prod(p ** a for p, a in zip(primes, x))
+        boundary = set()
+        for x in cut:
+            for axis in range(d):
+                y = tuple(a + (i == axis) for i, a in enumerate(x))
+                if y not in cut:
+                    boundary.add(y)
+        last_inside = max(cut, key=value)
+        first_outside = min(boundary, key=value)
+        threshold = base ** (score + 1)
+        require(value(last_inside) < threshold < value(first_outside), "exact product separator")
+        zero = (0,) * d
+        heap, seen, generated = [(1, zero)], {zero}, []
+        for _ in range(len(cut) + 1):
+            number, x = heapq.heappop(heap)
+            generated.append(x)
+            for axis, p in enumerate(primes):
+                y = tuple(a + (i == axis) for i, a in enumerate(x))
+                if y not in seen:
+                    seen.add(y)
+                    heapq.heappush(heap, (number * p, y))
+        require(set(generated[:-1]) == cut and generated[-1] not in cut,
+                "independent exact heap prefix")
+        result.append({"integer_weights": weights, "maximum_included_score": score,
+                       "base": base, "bertrand_intervals": intervals, "primes": primes,
+                       "cut": sorted(cut), "cardinality": len(cut),
+                       "integer_product_threshold": threshold,
+                       "last_inside": {"exponents": last_inside, "value": value(last_inside)},
+                       "first_outside": {"exponents": first_outside, "value": value(first_outside)},
+                       "heap_prefix_matches": True})
+    return result
+
+
 def main():
     fixtures = [primitive_fixture(sides) for sides in
                 ((100, 100, 100), (100, 200, 400), (200, 300, 400))]
@@ -367,6 +432,7 @@ def main():
             ((600, 1200, 600, 1200, 600, 1200), 500))],
         "explicit_uniform_sieve_bounds": explicit_sieve_bounds(),
         "nonprimitive_projection_control": projection_negative_control(),
+        "prime_realization_fixtures": prime_realization_fixtures(),
         "source_sha256": {str(path): hashlib.sha256((ROOT / path).read_bytes()).hexdigest()
                           for path in (Path("scripts/run_corner_cut_growth_checks.py"),
                                        Path("scripts/run_pyramidal_poset_checks.py"),

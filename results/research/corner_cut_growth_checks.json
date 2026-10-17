@@ -848,11 +848,417 @@
     "failures": 2,
     "one_residue_bound_without_projection_hypothesis_is_false": true
   },
+  "prime_realization_fixtures": [
+    {
+      "integer_weights": [
+        1,
+        2
+      ],
+      "maximum_included_score": 3,
+      "base": 65,
+      "bertrand_intervals": [
+        [
+          65,
+          130
+        ],
+        [
+          8450,
+          16900
+        ]
+      ],
+      "primes": [
+        67,
+        8461
+      ],
+      "cut": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "cardinality": 6,
+      "integer_product_threshold": 17850625,
+      "last_inside": {
+        "exponents": [
+          1,
+          1
+        ],
+        "value": 566887
+      },
+      "first_outside": {
+        "exponents": [
+          4,
+          0
+        ],
+        "value": 20151121
+      },
+      "heap_prefix_matches": true
+    },
+    {
+      "integer_weights": [
+        2,
+        1
+      ],
+      "maximum_included_score": 3,
+      "base": 65,
+      "bertrand_intervals": [
+        [
+          8450,
+          16900
+        ],
+        [
+          65,
+          130
+        ]
+      ],
+      "primes": [
+        8461,
+        67
+      ],
+      "cut": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "cardinality": 6,
+      "integer_product_threshold": 17850625,
+      "last_inside": {
+        "exponents": [
+          1,
+          1
+        ],
+        "value": 566887
+      },
+      "first_outside": {
+        "exponents": [
+          0,
+          4
+        ],
+        "value": 20151121
+      },
+      "heap_prefix_matches": true
+    },
+    {
+      "integer_weights": [
+        1,
+        1,
+        1
+      ],
+      "maximum_included_score": 0,
+      "base": 2,
+      "bertrand_intervals": [
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          8,
+          16
+        ]
+      ],
+      "primes": [
+        3,
+        5,
+        11
+      ],
+      "cut": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "cardinality": 1,
+      "integer_product_threshold": 2,
+      "last_inside": {
+        "exponents": [
+          0,
+          0,
+          0
+        ],
+        "value": 1
+      },
+      "first_outside": {
+        "exponents": [
+          1,
+          0,
+          0
+        ],
+        "value": 3
+      },
+      "heap_prefix_matches": true
+    },
+    {
+      "integer_weights": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "maximum_included_score": 2,
+      "base": 17,
+      "bertrand_intervals": [
+        [
+          289,
+          578
+        ],
+        [
+          578,
+          1156
+        ],
+        [
+          1156,
+          2312
+        ],
+        [
+          2312,
+          4624
+        ]
+      ],
+      "primes": [
+        293,
+        587,
+        1163,
+        2333
+      ],
+      "cut": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      "cardinality": 5,
+      "integer_product_threshold": 4913,
+      "last_inside": {
+        "exponents": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "value": 2333
+      },
+      "first_outside": {
+        "exponents": [
+          2,
+          0,
+          0,
+          0
+        ],
+        "value": 85849
+      },
+      "heap_prefix_matches": true
+    },
+    {
+      "integer_weights": [
+        1,
+        2,
+        3
+      ],
+      "maximum_included_score": 2,
+      "base": 65,
+      "bertrand_intervals": [
+        [
+          65,
+          130
+        ],
+        [
+          8450,
+          16900
+        ],
+        [
+          1098500,
+          2197000
+        ]
+      ],
+      "primes": [
+        67,
+        8461,
+        1098509
+      ],
+      "cut": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ]
+      ],
+      "cardinality": 4,
+      "integer_product_threshold": 274625,
+      "last_inside": {
+        "exponents": [
+          0,
+          1,
+          0
+        ],
+        "value": 8461
+      },
+      "first_outside": {
+        "exponents": [
+          3,
+          0,
+          0
+        ],
+        "value": 300763
+      },
+      "heap_prefix_matches": true
+    },
+    {
+      "integer_weights": [
+        1,
+        3,
+        4
+      ],
+      "maximum_included_score": 2,
+      "base": 65,
+      "bertrand_intervals": [
+        [
+          65,
+          130
+        ],
+        [
+          549250,
+          1098500
+        ],
+        [
+          71402500,
+          142805000
+        ]
+      ],
+      "primes": [
+        67,
+        549257,
+        71402519
+      ],
+      "cut": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ]
+      ],
+      "cardinality": 3,
+      "integer_product_threshold": 274625,
+      "last_inside": {
+        "exponents": [
+          2,
+          0,
+          0
+        ],
+        "value": 4489
+      },
+      "first_outside": {
+        "exponents": [
+          3,
+          0,
+          0
+        ],
+        "value": 300763
+      },
+      "heap_prefix_matches": true
+    }
+  ],
   "source_sha256": {
-    "scripts/run_corner_cut_growth_checks.py": "5d47a7bb01961bffff6189f18dbd5b93a23d603ff1e32f90beafae7f945700cc",
+    "scripts/run_corner_cut_growth_checks.py": "79689af0213ad43db35440e73543646974d9fdb27533940107f9be0e3edd7e33",
     "scripts/run_pyramidal_poset_checks.py": "70eb1d26eb7a8664e8c186b33e115fedb1ecc5004880a41b07f76ba000533500",
-    "docs/interleaving_research.md": "b17ee56be3366d86e0bfe9c91fd7a682354c6b6b5994607881196e07316428ed",
-    "paper/corner_cut_growth/main.tex": "8bc6f44f015126a997e5dd01cbf2f8fa22222cec4f6d77f0d516f4decbdac497"
+    "docs/interleaving_research.md": "7b788c8910f9d60ddba44eee03c605de2301afa16404d1582753755e5d1e6c86",
+    "paper/corner_cut_growth/main.tex": "f257cd2a8afafe77d00445469cfc77fa2bbf785b7102629141f6117426605d87"
   },
   "limitations": [
     "Finite checks do not establish a uniform asymptotic density bound.",

@@ -64,7 +64,10 @@ These objects occur as the exponent sets of initial segments of smooth
 numbers. For distinct primes \(p_1,\ldots,p_d\), comparing the products
 \(\prod_i p_i^{x_i}\) is equivalent to comparing
 \(\sum_i x_i\log p_i\). An exponent prefix is consequently a corner cut.
-Our theorem concerns the full geometric class; it does not give a
+Conversely, every corner cut has such a realization, even with all
+primes above any prescribed bound (Proposition~\ref{prop:prime}).
+Thus the full geometric class is exactly the class of exponent-prefix
+sets as the ordered prime bases vary. This does not give a
 prime-distribution estimate or a faster random-access algorithm for a
 fixed prime set.
 
@@ -439,10 +442,56 @@ other \(n\)-point set \(E\): each replacement point has greater
 weight than every removed point. Thus \(\alpha_D\) is uniquely exposed.
 Conversely every vertex of the finite hull is one of its generators.
 The vertex count of the corner-cut polytope is consequently \(C_d(n)\).
-This correspondence is known \cite{OS,BMORW}; our contribution is the
+This correspondence is known \cite{OS,Muller,BMORW}; in particular,
+M\"uller \cite[Lemma 2.6]{Muller} gives the exposed-vertex argument.
+Our contribution is the
 quantitative lower count, not the dictionary.
 For generic experimental designs the same count describes their
 corner-cut models \cite[Definition 7 and Theorem 2]{BMORW}.
+
+\begin{proposition}[Realization by prime bases]\label{prop:prime}
+For every nonempty finite corner cut \(D\subset\Nzero^d\) and every
+\(B>0\), there are distinct primes \(p_1,\ldots,p_d>B\) such that \(D\)
+is the exponent set of the first \(\card{D}\) smooth numbers on these
+ordered bases.
+\end{proposition}
+\begin{proof}
+Write \(D=\{x:w\cdot x<1\}\) strictly, and set
+\[
+ g=1-\max_{x\in D}w\cdot x>0,
+ \qquad H=\max_{x\in D}\sum_i x_i.
+\]
+Relabel the coordinates temporarily so that \(w_1\leq\cdots\leq w_d\).
+Choose \(T>0\) with \(e^{Tw_1}>\max(B,2)\) and
+\(dH\log 2/T<g\).
+Bertrand's postulate \cite{Erdos} supplies a prime in each interval
+\[
+ 2^{i-1}e^{Tw_i}<p_i<2^i e^{Tw_i}.
+\]
+These intervals are disjoint, so the primes are distinct, including
+when some weights agree. Put \(v_i=\log p_i/T\). Then
+\(0<v_i-w_i<d\log 2/T\).
+For \(x\in D\),
+\(v\cdot x<w\cdot x+g\leq1\), whereas for every \(x\notin D\),
+\(v\cdot x\geq w\cdot x>1\).
+Consequently the products for \(x\in D\) are precisely those below
+\(e^T\). Unique factorization makes their order strict. Undoing the
+coordinate relabeling proves the statement.
+\end{proof}
+
+For fixed \(B\), let \(S_{d,B}(n)\) count distinct exponent sets of
+length \(n\) obtained over ordered tuples of distinct primes greater
+than \(B\). Count each set once, however many tuples realize it.
+The proposition and the converse observation in Section 1 give
+\[
+ S_{d,B}(n)=C_d(n),\qquad
+ \sum_{j=1}^n S_{d,B}(j)
+   =\Theta_d\!\bigl(n^d(\log n)^{d-1}\bigr).
+\]
+The realization argument is an elementary use of a classical theorem;
+it is not a separate novelty claim. Its role is to specify exactly
+which smooth-number shapes the counting result describes. A single
+fixed prime tuple gives one prefix of each length.
 
 The cumulative result gives sharp-order growth on average and the
 improved exact-size bound in dimensions at least four.
@@ -453,6 +502,12 @@ It also gives no new enumeration algorithm, no uniform claim as
 
 \section{Prior results and reproducibility}
 The following distinctions delimit the contribution being assessed.
+M\"uller \cite[Sections 2--5]{Muller} studies the same polytopes,
+including their planar vertex order and adjacency. Her enumeration
+discussion \cite[Section 1, p.~324]{Muller} cites the planar result
+and Wagner's bounds; her structural theorems do not supply the
+bounded-cardinality count proved here.
+
 The unrestricted density of rectangular primitive integer matrices is
 known \cite{MRW,MW}. The later paper repairs a defect in the earlier
 density proof. A centered-cube density alone does not assert the
@@ -514,6 +569,9 @@ conditional residue bound, a nonprimitive-projection negative control,
 and a degenerate arrangement with 18 interior vertices and 48 chambers.
 It exhausts stated small boxes in dimensions two through four and uses
 deterministic samples in dimensions five and six.
+Six prime-realization fixtures, including equal weights and unused
+coordinates, are checked by integer products and an independent
+heap generation of the corresponding smooth-number prefixes.
 The explicit constants and 352 scale-rounding cases in dimensions
 two through twelve are checked with rational arithmetic.
 These computations can falsify steps; they do not prove the uniform
@@ -554,6 +612,19 @@ U.~Wagner,
 \emph{On \(k\)-Sets and Their Applications},
 doctoral thesis, ETH Z\"urich (2003), Chapter 3.
 \href{https://doi.org/10.3929/ethz-a-004708408}{doi:10.3929/ethz-a-004708408}.
+
+\bibitem{Muller}
+I.~M\"uller,
+Corner cuts and their polytopes,
+\emph{Beitr\"age zur Algebra und Geometrie} 44 (2003), 323--333.
+\href{https://ftp.gwdg.de/pub/misc/EMIS/journals/BAG/vol.44/no.2/b44h2mue.pdf}{Open journal text}.
+
+\bibitem{Erdos}
+P.~Erd\H{o}s,
+Beweis eines Satzes von Tschebyschef,
+\emph{Acta Litterarum ac Scientiarum Regiae Universitatis Hungaricae
+Francisco-Josephinae, Sectio Scientiarum Mathematicarum} 5 (1932), 194--198.
+\href{https://users.renyi.hu/~p_erdos/1932-01.pdf}{Author archive}.
 
 \bibitem{MRW}
 G.~Maze, J.~Rosenthal and U.~Wagner,
