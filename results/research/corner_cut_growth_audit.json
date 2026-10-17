@@ -1,6 +1,6 @@
 {
   "date": "2026-10-17",
-  "status": "candidate_argument_and_finite_checks_recorded_proof_and_priority_audits_incomplete",
+  "status": "uniform_candidate_passed_internal_proof_audit_priority_and_manuscript_incomplete",
   "mathematical_record": "docs/interleaving_research.md, Candidates 21 and 22",
   "proposed_results": [
     "For every fixed d >= 2, A_d(n) = Theta_d(n^d (log n)^(d-1)), where A_d(n) = sum(j=1..n) C_d(j).",
@@ -49,7 +49,21 @@
       11,
       12
     ],
-    "negative_control": "Without a primitive projected frame, changing the last coordinate can leave every tested value bad modulo 2; the one-residue bound fails."
+    "negative_control": "Without a primitive projected frame, changing the last coordinate can leave every tested value bad modulo 2; the one-residue bound fails.",
+    "closed_constant_dimensions_checked": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "scale_rounding_cases_checked": 352
   },
   "primary_literature_comparison": [
     {
@@ -63,7 +77,7 @@
       "source": "https://doi.org/10.3929/ethz-a-004708408",
       "text_mirror": "https://paperzz.com/doc/7535624/k-sets-and-applications",
       "inspected": "Complete Chapter 3 lower bound, upper bound and remarks through the primary mathematical text reproduced in a mirror; OCR errors checked against surrounding reasoning.",
-      "finding": "Lemma 3.5 gives C_(d+1)(n) >= sum_{j<=n} C_d(j). Theorem 3.15 gives the upper bound by difference-matrix encoding. Average fiber growth is already a suggested route.",
+      "finding": "Lemma 3.5 gives C_(d+1)(n) >= sum_{j<=n} C_d(j). Theorem 3.15 gives the upper bound by difference-matrix encoding. Average fiber growth is already a suggested route. The acknowledgement immediately after equation (3.2) describes the independent Remond bounds as communicated to the author; it does not cite a separate proof there.",
       "remaining": "No claim that the multiscale argument or its consequence is absent from all later work."
     },
     {
@@ -118,13 +132,27 @@
       "inspected": "Authored abstract only.",
       "finding": "Encoding and upper bounds for threshold functions on binary inputs.",
       "remaining": "Full-text inspection would be needed for any more detailed comparison."
+    },
+    {
+      "source": "https://arxiv.org/pdf/1703.04767",
+      "authors": "Balko, Cibulka and Valtr",
+      "inspected": "Definitions and Theorems 3-5, with their surrounding discussion.",
+      "finding": "Coverage of lattice points by subspaces, in terms of successive minima. These statements do not count cuts of bounded included cardinality or state the positive-intercept window estimate.",
+      "remaining": "No claim that every possible consequence of the incidence literature has been excluded."
+    },
+    {
+      "source": "https://doi.org/10.1007/s10463-010-0291-8",
+      "free_text": "https://www.ism.ac.jp/editsec/aism/pdf/062_4_0673.pdf",
+      "authors": "Berstein, Maruri-Aguilar, Onn, Riccomagno and Wynn",
+      "inspected": "Section 2, Definitions 5-7 and Theorem 2.",
+      "finding": "Defines the corner-cut polytope and identifies it with the state polytope for generic experimental designs; the algebraic fan consists of corner-cut models. The candidate count gives a lower bound for their number through this known correspondence.",
+      "remaining": "The dictionary is not a new contribution, and does not supply a faster enumeration algorithm."
     }
   ],
   "audit_tasks": [
-    "Finish an adversarial review of Candidate 22, including the uniform threshold, primitive projected rank at every prime, the full-lattice injection, and the restricted-arrangement vertex assignment.",
-    "Compare against multidimensional grid threshold-function and primitive-frame counts; determine whether the cumulative theorem is known or immediate from an existing stronger result.",
-    "Inspect later corner-cut literature and the independent Remond bounds before asserting a current improvement.",
-    "Investigate the remaining exact-size dimension-three lower bound without substituting an averaged statement for it."
+    "Complete the focused priority comparison with stronger multidimensional threshold-count and later corner-cut results; separate known ingredients from the multiscale conclusion.",
+    "Prepare the quantitative manuscript only when the mathematical contribution survives the priority comparison.",
+    "Investigate the exact-size dimension-three lower bound without substituting an averaged statement for it."
   ],
   "validation_commands_passed": [
     "./build.sh",
@@ -138,7 +166,7 @@
   "submission_ready": false,
   "prime_distribution_consequence": false,
   "faster_unranking_claim": false,
-  "research_progress": "The previous goal turn recorded and published Candidate 21. This turn gives an all-dimensional extension, a finite uniform error bound, a necessary-hypothesis counterexample, and a corrected primary-literature comparison.",
+  "research_progress": "Completed an internal adversarial proof audit, supplied closed constants for every dimension, and checked the established corner-cut-polytope and experimental-design application. Novelty and submission readiness remain unestablished.",
   "remaining_exact_size_problem": "No uniform C_3(n) >= c n^2(log n)^2 statement has been proved.",
   "uniform_sieve_bound": {
     "record": "Candidate 22, equation (22.1)",
@@ -146,13 +174,45 @@
     "threshold": "min side >= 2^(2S), max side <= (min side)^2.",
     "conclusion": "At least fraction 8^(-(d-1)) of the selected ordered simplices are primitive.",
     "finite_tail_control": "Every large bad prime divides one fixed nonzero determinant, which has at most 4d-3 such prime divisors at the selected cutoff.",
-    "asymptotic_density_interchange_used": false
+    "asymptotic_density_interchange_used": false,
+    "closed_choice": "S=4d^2, min side >= 2^(8d^2); E_d(S)<2^(-10)<1/8 for all d>=2."
   },
   "completion_audit": {
-    "uniform_argument": "Written for every fixed d with explicit bounds; final adversarial review pending.",
+    "uniform_argument": "The general argument has passed an internal adversarial review. Closed choices S_d=4d^2 and n_0(d)=2^(d+8d^2(d+1)), with an explicit positive lower constant kappa_d, remove all implicit large-input thresholds. The proof ledger records the conditioning, finite prime tail, primitive-lattice injection, chamber count and multiscale duplication checks. This is not an independent human review.",
     "novelty": "Not established. Closest matrix and learning results were compared but the stronger-counting-theorem search is not complete.",
-    "mathematical_usefulness": "Would sharpen the inspected exact-size lower bounds in all fixed dimensions d>=4 and determine the averaged order in all fixed dimensions.",
+    "mathematical_usefulness": "Would improve the inspected exact-size lower bound in every fixed dimension d>=4 and determine the cumulative order in every fixed dimension. The known corner-cut-polytope correspondence transfers the count to vertices and generic-design models.",
     "manuscript": "Not yet prepared for this quantitative result. Existing structural manuscript is separate.",
-    "decision": "Continue proof and priority audit; keep the goal active."
+    "decision": "Continue the focused priority comparison; keep the goal active."
+  },
+  "explicit_cumulative_lower_bound": {
+    "formula": "A_d(n) >= kappa_d n^d (log_4 n)^(d-1) for d>=2 and n>=n_0(d).",
+    "minimum_n": "n_0(d)=2^(d+8d^2(d+1))",
+    "constant": "kappa_d=1/[8^(d-1) (100d)^(d^2) (d-1)! [4(d+1)]^(d-1) 2^(d(d+2))]",
+    "interpretation": "Coarse proof constants; no practical small-input performance claim."
+  },
+  "internal_proof_audit": {
+    "status": "passed_no_unresolved_logical_step_identified",
+    "review_type": "Internal review by the research agent; no independent human referee review.",
+    "record": "docs/interleaving_research.md, Candidate 22, Internal adversarial proof audit",
+    "checked_steps": [
+      "Conditioning uses the joint projected events and preserves all next-step free coordinates.",
+      "The controlling determinant is nonzero for every allowed projected configuration.",
+      "Primitive projected rank at every prime gives exactly one bad residue for the last coordinate.",
+      "Large bad primes divide one fixed nonzero determinant; no infinite-union density interchange.",
+      "The all-dimensional closed threshold follows from elementary monotone exponential inequalities.",
+      "A primitive frame is the full parallel integer-lattice basis; scaled inverse bounds give injectivity.",
+      "Interior-vertex/chamber inequality holds for arbitrary degeneracies in an open convex domain.",
+      "Observable axis extents prevent duplicate cuts across scale tuples.",
+      "Explicit cardinality, composition, floor and constant calculations give the claimed uniform lower bound.",
+      "Lifting improves the exact-size lower exponent only in d>=4; the d=3 exact-size gap remains."
+    ],
+    "limitations": "An internal audit can miss an error; it does not establish priority or publication significance."
+  },
+  "established_application": {
+    "object": "Vertices of the size-n corner-cut polytope and corner-cut models of a generic experimental design.",
+    "dictionary": "The number of these vertices and models equals C_d(n); the correspondence is established background.",
+    "source": "https://doi.org/10.1007/s10463-010-0291-8",
+    "location": "Definition 7 and Theorem 2",
+    "limit": "No faster enumeration or unranking algorithm follows."
   }
 }

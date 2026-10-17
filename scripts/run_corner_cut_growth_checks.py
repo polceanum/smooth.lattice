@@ -11,7 +11,7 @@ import hashlib
 from fractions import Fraction
 from itertools import combinations, product
 import json
-from math import gcd, prod
+from math import comb, factorial, gcd, prod
 from pathlib import Path
 from random import Random
 import shlex
@@ -293,11 +293,48 @@ def explicit_sieve_bounds():
                 break
             s += 1
         require(s >= d * d + 4 * (d - 1), "large-prime factor-count threshold")
+        closed_s = 4 * d * d
+        closed_error = (Fraction(2 * a * (closed_s + 1), 2 ** (2 * closed_s))
+                        + Fraction(a * a, 2 ** (3 * closed_s))
+                        + b * (Fraction(1, 2 ** closed_s)
+                               + Fraction(a, 2 ** (2 * closed_s))))
+        require(closed_s >= d * d + 4 * (d - 1), "closed threshold factor count")
+        require(closed_error < Fraction(1, 1024), "closed uniform error bound")
+        require(a <= 2 ** (4 * d) and b <= 2 ** (2 * d)
+                and closed_s + 1 <= 2 ** (3 * d), "closed exponential majorants")
+        r0 = 4 * d * d * (d + 1)
+        # These exact inequalities audit the rounding at and after the explicit
+        # threshold. Bound log_4(n) by R+1+d/2 rather than using floating logs.
+        scale_checks = 0
+        for r in range(r0, r0 + 4 * (d + 1)):
+            least = (r + d) // (d + 1)
+            residual = r - d * least
+            scale_count = comb(residual + d - 1, d - 1)
+            require(least >= 4 * d * d, "minimum side satisfies closed sieve threshold")
+            require(r - (d - 1) * least <= 2 * least, "polynomial side comparability")
+            require(residual >= Fraction(r, 2 * (d + 1)), "residual composition bound")
+            logarithm_upper = Fraction(2 * r + 2 + d, 2)
+            require(r >= logarithm_upper / 2, "conversion from R to logarithm")
+            require(scale_count >= logarithm_upper ** (d - 1)
+                    / (factorial(d - 1) * (4 * (d + 1)) ** (d - 1)),
+                    "explicit cumulative lower constant")
+            scale_checks += 1
+        kappa_denominator = (8 ** (d - 1) * (100 * d) ** (d * d)
+                             * factorial(d - 1) * (4 * (d + 1)) ** (d - 1)
+                             * 2 ** (d * (d + 2)))
         result.append({"dimension": d, "s": s, "minimum_side_threshold": 2 ** (2 * s),
                        "small_prime_error_upper_bound": str(small_error),
                        "large_prime_error_upper_bound": str(large_error),
                        "conditional_failure_upper_bound": str(Fraction(3, 4) + small_error + large_error),
                        "primitive_fraction_lower_bound": str(Fraction(1, 8 ** (d - 1))),
+                       "closed_s": closed_s,
+                       "closed_minimum_side_threshold": 2 ** (8 * d * d),
+                       "closed_error_upper_bound": str(closed_error),
+                       "explicit_cumulative_bound": {
+                           "minimum_n_power_of_two_exponent": d + 2 * r0,
+                           "kappa": str(Fraction(1, kappa_denominator)),
+                           "logarithm_base": 4,
+                           "scale_rounding_cases_checked": scale_checks},
                        "scope": "Exact arithmetic in the displayed uniform bound; the written induction supplies the theorem."})
     return result
 
@@ -320,7 +357,7 @@ def main():
     fixtures = [primitive_fixture(sides) for sides in
                 ((100, 100, 100), (100, 200, 400), (200, 300, 400))]
     report = {
-        "status": "finite_falsification_checks_passed_asymptotic_proof_and_priority_require_audit",
+        "status": "finite_falsification_and_constant_checks_passed_priority_unresolved",
         "command": "python3 -B " + shlex.join([str(Path(__file__).relative_to(ROOT)), *sys.argv[1:]]),
         "primitive_fixtures": fixtures,
         "arrangement_fixture": arrangement_fixture(),
