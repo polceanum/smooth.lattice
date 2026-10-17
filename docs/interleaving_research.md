@@ -3098,3 +3098,89 @@ in (25.6). This is a check of failure modes, not verification of (25.2)
 by experiments and not the proof of the uniform theorem. No large-prime
 search framework has been added. The main manuscript has not been
 expanded while the finite-ordering priority comparison remains pending.
+
+#### Candidate 25: fresh internal proof audit and published input
+
+A fresh internal review checked the following obligations in the full
+prime-height argument. This is an audit by the research agent, not an
+independent human referee report. No unresolved logical step was found.
+
+| Obligation | Verification |
+| --- | --- |
+| Scope of the integer certificate | Robbiano's finite comparison argument handles all global monomial-order prefixes; Proposition 17 applies after choosing a generic positive separator. It does not give one scalar representation for the entire infinite order. |
+| Active-face volume bound | The closed score-T simplex is covered by exactly n based unit cubes in its active face. Its volume bounds the intercept product. Inactive axes are excluded from this volume calculation. |
+| LP existence and Cramer bound | The finite strict border and consecutive comparisons become feasible unit-margin inequalities after scaling. Minimizing the positive coordinate sum gives a compact optimal face and a vertex. Column bounds 2B_i and the product estimate give S<=c_d n. |
+| Bound for every restored weight | An active axis point e_i lies in D, so A_i<=S. An inactive weight is S+1. Thus max A_i<=c_d n+1, including unused coordinates. |
+| Axis-collision rigidity | A common axis score <=S would put two distinct lattice points in D with equal integer scores. Therefore lcm(A_i,A_j)>S. Sorting yields A_j^2>n-1 for every j>=2. Ties after S are permitted and irrelevant. |
+| Exact anchor | Choose p_1 in (exp(a m),2exp(a m)) and define T=log(p_1)/m. Then a<T<a+log2 and the anchor error is exactly zero, rather than an uncontrolled error on a frequently repeated small-weight coordinate. |
+| Interval range and distinctness | Every X_j>=exp30, and its logarithm exceeds a sqrt(n-1). The short-interval upper width is strictly smaller than delta. Ordered endpoints are disjoint even when larger integer weights agree; every selected prime is above B. |
+| Internal order and infinite complement | All coordinate errors are nonnegative and their total on an included point is <T. Each included score gap is at least one. Every excluded point has integer score >=S+1, so the argument covers the infinite complement, not just the finite border. |
+| Height bound, arbitrary B and singleton | The residual logarithmic error is <1; a=O_d(log(max(B,2))) gives the uniform upper order. The singleton is handled separately with Bertrand intervals. |
+| Matching lower family | Excluding e_j from the pure-axis n-prefix forces p_j>p_1^(n-1). This applies to both words and underlying sets and gives the same order uniformly in B. |
+
+The arithmetic input also has a directly inspected published form.
+Dusart, [*Explicit estimates of some functions over primes*](https://doi.org/10.1007/s11139-016-9839-4),
+*The Ramanujan Journal* 45 (2018), 227--251, Proposition 5.4, printed
+p. 242, states that for every real x>=89693 there is a prime
+
+    x < p <= x(1+1/(log x)^3).
+
+The statement was read in the indexed text of the
+[published PDF reproduction](https://piyanit.nl/wp-content/uploads/2020/10/art_10.1007_s11139-016-9839-4.pdf),
+including the surrounding Section 5.2 and Corollary 5.5. Direct retrieval
+of the complete PDF timed out, so this is a statement-level comparison,
+not a claim to have read the complete published proof or all analytic
+prerequisites. Publisher metadata and the author's publication list agree
+on the article. For every x>=exp30,
+
+    1/(log x)^3 < 1/[25 (log x)^2].
+
+Consequently the published proposition supplies the exact weaker input
+used in Candidate 25 throughout its construction. The explicit constants
+and the proof of (25.1) remain unchanged. The original 2010 statement and
+its displayed proof stay recorded as an additional inspected source;
+publication dates and numbering are not conflated.
+
+The [author's publication list](https://www.unilim.fr/pages_perso/pierre.dusart/Publications.html)
+also links a [correction revised 26 February 2018](https://www.unilim.fr/pages_perso/pierre.dusart/Recherche/correctif_RJ.pdf).
+Both pages of that correction were read. It corrects two typographical
+errors in Theorem 3.5 and gives PARI/GP code for reproducing Table 1.
+It does not state a replacement for Proposition 5.4 or Corollary 5.5.
+No claim that all analytic dependencies have been independently rederived
+is made; the published interval theorem is an established input.
+
+#### Required primary-text comparison before expanding the paper
+
+The detailed Vasiliev--Pavlov (2009) comparison has remained open across
+three consecutive saved research turns, visible in public commits
+`1047a97`, `b89d9ef` and `d6cd1cf`. The exact source is
+
+> N. N. Vasiliev and D. A. Pavlov, *Enumeration of finite monomial
+> orderings and combinatorics of universal Groebner bases*,
+> Programming and Computer Software 35(2) (2009), 79--89,
+> [doi:10.1134/S0361768809020030](https://doi.org/10.1134/S0361768809020030).
+
+The [RISC bibliography record](https://www3.risc.jku.at/research/theorema/Groebner-Bases-Bibliography/details.php?details_id=3375)
+was inspected directly: it lists this paper and its publisher link but
+provides no attached full text. The public publisher abstract and the
+thesis introduction/conclusion establish that the finite-ordering family
+and signature-prefix correspondence are prior art. They do not supply
+the definitions, theorems and quantitative arguments required to decide
+whether our bounds are already stated or immediate consequences there.
+The earlier Vasiliev paper and the precise Vietri statements have been
+compared separately; they cannot substitute for the missing 2009 text.
+
+A readable copy of this paper, or Pavlov's full thesis treatment of these
+finite orderings, is now the required input for the next priority gate.
+The comparison must check the order classes, whether the domain is an
+initial interval or an arbitrary finite set, the counting parameter,
+any asymptotic estimates and the complexity analysis of its enumeration
+algorithms. It must also check any quantitative prime-realization bounds.
+If those results cover a candidate, credit them and reassess the actual
+remaining contribution without weakening the original acceptance criteria.
+
+The main matching-count manuscript, the ordered-prefix proof and the
+prime-height proof are preserved. The new candidates are not being added
+to the manuscript while this concrete source comparison remains open.
+Source access failure is not evidence of novelty, and further isolated
+examples would not answer the missing comparison.

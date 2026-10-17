@@ -1,6 +1,6 @@
 {
   "date": "2026-10-17",
-  "status": "internal_contribution_assessment_favorable_anonymous_review_manuscript_prepared_goal_incomplete",
+  "status": "proofs_internally_checked_priority_audit_awaiting_primary_text",
   "mathematical_record": "docs/interleaving_research.md, Candidate 23 (Candidates 21 and 22 preserved as the earlier cumulative route)",
   "proposed_results": [
     "For every fixed d >= 2, C_d(n) = Theta_d(n^(d-1) (log n)^(d-1)).",
@@ -290,6 +290,24 @@
       "range_used": "Only x>=exp(30).",
       "attribution": "Established unconditional prime-interval theorem; no new distribution estimate claimed.",
       "finding": "Known short prime intervals are the arithmetic input to the prime-height candidate, not a new estimate here."
+    },
+    {
+      "authors": "Pierre Dusart",
+      "source": "https://doi.org/10.1007/s11139-016-9839-4",
+      "publication": "The Ramanujan Journal 45 (2018), 227--251; published online 27 October 2016.",
+      "location": "Proposition 5.4, Section 5.2, printed p. 242",
+      "full_text_locator": "https://piyanit.nl/wp-content/uploads/2020/10/art_10.1007_s11139-016-9839-4.pdf",
+      "inspected": "Proposition 5.4 and surrounding Section 5.2 with Corollary 5.5 in the indexed published text; publisher metadata and author publication list. Full PDF retrieval timed out; no full published-proof audit claimed.",
+      "statement": "For real x>=89693, a prime satisfies x<p<=x(1+1/(log x)^3).",
+      "range_used": "Only x>=exp(30), where 1/(log x)^3 < 1/[25(log x)^2]. Thus the existing proof and constants are unchanged.",
+      "attribution": "Established unconditional interval theorem, not a new prime-distribution estimate.",
+      "author_correction": {
+        "source": "https://www.unilim.fr/pages_perso/pierre.dusart/Recherche/correctif_RJ.pdf",
+        "revision": "26 February 2018",
+        "scope": "Both pages read. Corrects two typographical errors in Theorem 3.5 and supplies Table 1 PARI/GP reproduction code; states no replacement for Proposition 5.4 or Corollary 5.5.",
+        "limit": "No independent rederivation of all analytic prerequisites claimed."
+      },
+      "finding": "Published Proposition 5.4 implies the weaker prime interval used by Candidate 25 for every x>=exp30; the proof constants remain valid."
     }
   ],
   "audit_tasks": [
@@ -611,7 +629,7 @@
   },
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "evidence": "Completed the earlier Vasiliev primary comparison and the known finite/global bridge; added 90 matrix-order checks and a complete sharp prime-height proof with matching lower bound, using Dusart Proposition 6.8. Priority remains unresolved; the original goal and main theorem remain intact."
+    "evidence": "Completed a fresh prime-height proof audit; verified a published Dusart input and read the author correction; checked the exact RISC record and verified the same missing 2009 comparison across three consecutive saved turns. Further priority work requires the primary text."
   },
   "ordered_prefix_growth_candidate": {
     "record": "docs/interleaving_research.md, Candidate 24: full ordered prefixes have the same growth order",
@@ -725,6 +743,31 @@
     "mechanism": "Use the existing linear integer-score certificate; anchor the smallest weight at a Bertrand prime exactly; realize all other coordinates in disjoint Dusart short intervals with positive errors whose total on an included exponent vector is less than one scaled score gap.",
     "arithmetic_input": {
       "authors": "Pierre Dusart",
+      "source": "https://doi.org/10.1007/s11139-016-9839-4",
+      "publication": "The Ramanujan Journal 45 (2018), 227--251; published online 27 October 2016.",
+      "location": "Proposition 5.4, Section 5.2, printed p. 242",
+      "full_text_locator": "https://piyanit.nl/wp-content/uploads/2020/10/art_10.1007_s11139-016-9839-4.pdf",
+      "inspected": "Proposition 5.4 and surrounding Section 5.2 with Corollary 5.5 in the indexed published text; publisher metadata and author publication list. Full PDF retrieval timed out; no full published-proof audit claimed.",
+      "statement": "For real x>=89693, a prime satisfies x<p<=x(1+1/(log x)^3).",
+      "range_used": "Only x>=exp(30), where 1/(log x)^3 < 1/[25(log x)^2]. Thus the existing proof and constants are unchanged.",
+      "attribution": "Established unconditional interval theorem, not a new prime-distribution estimate.",
+      "author_correction": {
+        "source": "https://www.unilim.fr/pages_perso/pierre.dusart/Recherche/correctif_RJ.pdf",
+        "revision": "26 February 2018",
+        "scope": "Both pages read. Corrects two typographical errors in Theorem 3.5 and supplies Table 1 PARI/GP reproduction code; states no replacement for Proposition 5.4 or Corollary 5.5.",
+        "limit": "No independent rederivation of all analytic prerequisites claimed."
+      }
+    },
+    "proof_status": "Complete argument passed a fresh internal audit with no unresolved logical step identified. Published Dusart Proposition 5.4 supplies the used interval bound. Not independently refereed; priority remains unresolved.",
+    "priority_status": "Unverified. Qualitative realization is Vietri Proposition 6.2; finite-weight representation is Robbiano; generic integer compression and Wagner product bounds are known. Full finite-ordering and quantitative-realization comparisons remain necessary.",
+    "finite_checks": "Axis-collision conditions added to the existing 230 compression fixtures and 90 matrix-order fixtures; scalar heaps verify full order and cutoff. Rational short-interval error budget checked in the non-singleton matrix cases.",
+    "usefulness": "An explicit asymptotically optimal worst-case prime-bit budget for all admissible finite words and shapes; for fixed B, O_d(n) bits suffice and some patterns require Omega(n).",
+    "limits": "No faster fixed-prime unranking, fast realizing-prime search, new prime-gap estimate, leading constant or growing-dimension bound.",
+    "manuscript_extended": false,
+    "novelty_established": false,
+    "goal_complete": false,
+    "original_preprint_arithmetic_input": {
+      "authors": "Pierre Dusart",
       "source": "https://arxiv.org/pdf/1002.0442v1",
       "location": "Proposition 6.8, Section 6.1.3, printed p. 8",
       "inspected": "Statement and full displayed proof; not a full audit of the twenty-page paper or all analytic prerequisites.",
@@ -732,13 +775,38 @@
       "range_used": "Only x>=exp(30).",
       "attribution": "Established unconditional prime-interval theorem; no new distribution estimate claimed."
     },
-    "proof_status": "Complete internal proof, including strict cutoff, infinite complement, equal larger weights, distinct primes, arbitrary B and matching axis lower bound. Not independently refereed.",
-    "priority_status": "Unverified. Qualitative realization is Vietri Proposition 6.2; finite-weight representation is Robbiano; generic integer compression and Wagner product bounds are known. Full finite-ordering and quantitative-realization comparisons remain necessary.",
-    "finite_checks": "Axis-collision conditions added to the existing 230 compression fixtures and 90 matrix-order fixtures; scalar heaps verify full order and cutoff. Rational short-interval error budget checked in the non-singleton matrix cases.",
-    "usefulness": "An explicit asymptotically optimal worst-case prime-bit budget for all admissible finite words and shapes; for fixed B, O_d(n) bits suffice and some patterns require Omega(n).",
-    "limits": "No faster fixed-prime unranking, fast realizing-prime search, new prime-gap estimate, leading constant or growing-dimension bound.",
-    "manuscript_extended": false,
-    "novelty_established": false,
-    "goal_complete": false
+    "internal_proof_audit": {
+      "status": "passed_no_unresolved_logical_step_identified",
+      "review_type": "Fresh internal logical review by the research agent; not an independent human referee report.",
+      "record": "docs/interleaving_research.md, Candidate 25: fresh internal proof audit and published input",
+      "obligations": [
+        "Finite/global monomial-order scope",
+        "Active-face cube and intercept product bounds",
+        "LP vertex existence and Cramer bounds",
+        "Restored inactive coordinates",
+        "Axis-collision rigidity",
+        "Exact anchoring and uniform scale",
+        "Published interval domain and disjointness",
+        "Internal order and infinite complement",
+        "Height bound, arbitrary B and singleton",
+        "Matching word and shape axis lower family"
+      ],
+      "limitation": "Internal review can miss an error; priority and submission readiness remain unresolved."
+    }
+  },
+  "primary_text_dependency": {
+    "condition": "Full Vasiliev--Pavlov (2009) quantitative comparison requires primary text that is not available through the inspected public routes.",
+    "paper": "https://doi.org/10.1134/S0361768809020030",
+    "bibliography_record": "https://www3.risc.jku.at/research/theorema/Groebner-Bases-Bibliography/details.php?details_id=3375",
+    "required_input": "Readable full 2009 paper or the relevant full finite-ordering treatment in Pavlov thesis.",
+    "why_abstract_is_insufficient": "The required comparison concerns exact order classes, initial intervals versus arbitrary finite domains, cardinality and quantitative counting/algorithmic bounds. The abstract and thesis summary do not expose these results.",
+    "consecutive_saved_turns_with_same_gap": [
+      "1047a97",
+      "b89d9ef",
+      "d6cd1cf"
+    ],
+    "independent_work_completed": "Main prescribed-size proof internally audited; ordered-prefix proof saved; prime-height proof freshly audited; relevant earlier Vasiliev and Vietri comparisons recorded; reproducible exact fixtures retained.",
+    "dependent_work": "Final novelty assessment and any manuscript expansion or submission-readiness claim.",
+    "honesty": "Absence of accessible text or search hits is not evidence of originality. Original objective and acceptance criteria remain unchanged."
   }
 }
