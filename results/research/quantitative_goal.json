@@ -3,7 +3,7 @@
   "recorded_on": "2026-10-17",
   "title": "A new quantitative theorem for smooth exponent geometry",
   "objective": "Prove a genuinely new quantitative theorem about the exponent-lattice structure underlying fixed-prime smooth-number prefixes, resolving or strictly improving a published counting or algorithmic bound. Produce a complete proof, a precise comparison with the strongest relevant literature, reproducible supporting evidence and an honest paper explaining the mathematical advance.",
-  "status": "pointwise_candidate_internally_audited_priority_and_submission_review_incomplete",
+  "status": "internal_contribution_assessment_favorable_anonymous_review_manuscript_prepared_goal_incomplete",
   "acceptance_criteria": [
     "State a uniform theorem for an infinite family with an explicit quantitative improvement over the strongest verified published result, or settle a recognized open structural question with a substantive counting or algorithmic consequence.",
     "Give a complete proof; numerical agreement, isolated examples and routine consequences of known theorems do not satisfy the goal.",
@@ -21,14 +21,14 @@
       "general_bounds": "For fixed d >= 2: Omega_d(n^(d-1) log n) <= C_d(n) <= O_d((n log n)^(d-1)).",
       "dimension_two": "C_2(n) = Theta(n log n), attributed in Wagner's abstract to Corteel et al. (1999).",
       "dimension_three": "Omega(n^2 log n) <= C_3(n) <= O(n^2 (log n)^2).",
-      "verification_scope": "The primary institutional abstract was inspected directly. The full proof and later improvements require an audit; these are verified published bounds, not a claim that they remain the strongest bounds in 2026.",
+      "verification_scope": "The primary published abstract was inspected directly, and the lower and upper proofs were reconstructed from the author's full thesis Chapter 3. The later primary comparisons and their precise reading scopes are recorded in results/research/corner_cut_growth_audit.json. These are verified source comparisons, not an unrestricted claim about all current work.",
       "sources": [
         "https://doi.org/10.1016/S0196-8858(02)00014-3",
         "https://research-explorer.ista.ac.at/record/2420"
       ]
     },
     "success_target": "If the gap survives the literature audit, close it or strictly narrow it by a uniform asymptotic bound. A concrete sufficient improvement would be C_3(n) = Omega(n^2 (log n)^(1+delta)) or C_3(n) = O(n^2 (log n)^(2-delta)) for an explicit fixed delta > 0. The ideal outcome is a matching order of growth with a proof mechanism that extends beyond isolated examples.",
-    "current_open_status": "UNVERIFIED. The gap appears in the inspected published baseline. Focused searches have not established its current status.",
+    "current_open_status": "The logarithmic gap is explicit in the verified published baseline and retained in the inspected later sources. The present uniform proof matches that upper bound. Overall priority remains unverified, as recorded in the consolidated contribution assessment.",
     "proposed_proof_route": {
       "definition": "For a two-dimensional corner cut T with 1 <= |T| <= n, let F_n(T) count three-dimensional n-point corner cuts B with B intersect {z=0} = T.",
       "exact_identity": "C_3(n) = sum_{T: 1 <= |T| <= n} F_n(T).",
@@ -48,7 +48,7 @@
       "task": "Audit the strongest current bounds and reconstruct the existing proofs.",
       "deliverable": "A source-by-source theorem comparison, including Wagner (2002), the thesis discussion, later surveys, cited work by Remond and subsequent corner-cut/pyramidal-partition literature.",
       "stop_or_redirect": "If the proposed improvement is already known, select a different substantive target without presenting the old bound as an open problem.",
-      "status": "direct_source_and_fixed_cardinality_comparisons_completed_consolidated_priority_assessment_pending"
+      "status": "source_comparison_and_consolidated_internal_assessment_completed_overall_originality_unverified"
     },
     {
       "id": "M2",
@@ -67,7 +67,7 @@
       "id": "M4",
       "task": "Write and audit the paper around the actual advance.",
       "deliverable": "A complete manuscript, exact priority comparison, reproducible evidence and a candid explanation of usefulness and limitations.",
-      "status": "pointwise_draft_with_average_completion_consequence_and_precise_prior_art_boundary_final_review_incomplete"
+      "status": "anonymous_mathematical_review_manuscript_prepared_final_novelty_and_submission_assessment_incomplete"
     }
   ],
   "preserved_side_results": {
@@ -88,7 +88,7 @@
     ],
     "mechanism": "Uniform primitive-window sieve; divide primitive planes by their bounded integer heights to count normal directions; realize each lexicographic prefix by positive weights; use two nonnegative lattice patches at levels h-1 and h+1 to prove prescribed-size injectivity; separate aspect tuples by observable axis extents.",
     "proof_status": "The full pointwise argument passed a fresh internal adversarial review with no unresolved logical step identified. The audit includes ties, witnessing-height multiplicities, affine-coset reductions, two-patch integer rigidity, rank-to-height estimates and cross-aspect duplication. This is not an independent human referee report.",
-    "priority_status": "The direct total-grid and digital-plane recognition comparisons are completed for the recorded statements; known finite reductions and boundary-point methods are attributed. Consolidated priority and final contribution review remain unresolved.",
+    "priority_status": "Favorable over the inspected primary lineage; overall originality remains unverified. This is not a global priority certificate or an independent referee report.",
     "three_dimensional_limit": "The full Candidate 23 pointwise proof for C_3(n)=Theta(n^2(log n)^2) has passed a fresh internal logical audit; novelty and publication significance remain unresolved.",
     "evidence": "results/research/corner_cut_growth_checks.json",
     "known_matrix_background": {
@@ -112,7 +112,7 @@
     "manuscript": {
       "source": "paper/corner_cut_growth/main.tex",
       "title": "Sharp growth of corner cuts in fixed dimension",
-      "status": "working_draft_pointwise_proof_internally_audited_priority_incomplete",
+      "status": "anonymous_mathematical_review_manuscript_prepared_final_assessment_incomplete",
       "proof_contents": [
         "Uniform primitive-window bound with closed constants",
         "Full-lattice injection and bounded-height division to count primitive normals",
@@ -126,12 +126,15 @@
       "author_metadata": "Left blank; no authorship or affiliation invented.",
       "pdf": "output/pdf/corner_cut_growth.pdf",
       "pdf_pages": 10,
-      "tex_sha256": "8d7e231076bb265605452831d276e8291f76617bd298b15aecf66c52851be280",
-      "pdf_sha256": "60bffcf51bce7dca6a1ea807523f782cb10781f46c2d5c9a888e4a0a3e5fba79",
-      "visual_review": "All ten latest pages inspected after the finite-grid and average-completion edits; no clipping, overlap or unresolved references.",
-      "latex_log_check": "No errors, overfull or underfull boxes, or undefined references in the final pass.",
+      "tex_sha256": "ae31ca6519256855523a9a17bf8c6ab609256ea10f71b6d8468f7b93d0f93d46",
+      "pdf_sha256": "4bdf84f4db488991d706bdb151a00dec4c7e76f65ba81f951d47242125bc162a",
+      "visual_review": "All ten latest pages inspected after the consolidated contribution and source-version edits; no clipping, overlap or unresolved references.",
+      "latex_log_check": "No errors, warnings, overfull or underfull boxes, or undefined references in the final pass.",
       "pdf_structure_check": "Ten pages, blank author metadata, no unresolved references or extracted characters outside page boundaries.",
-      "pdf_build_command": "latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=results/local/corner-cut-latex paper/corner_cut_growth/main.tex"
+      "pdf_build_command": "latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=results/local/corner-cut-latex paper/corner_cut_growth/main.tex",
+      "assistance_disclosure": "OpenAI Codex proposed and developed the quantitative argument, carried out the literature comparison, and produced the checks and draft during an investigation prompted by the project owner. No independent referee assessment or acceptance claimed.",
+      "version_citations": "Inspected Elizalde--Galvan arXiv v1 and the uninspected journal version are cited separately. Wagner's upper theorem is also located as thesis Theorem 3.15.",
+      "review_limit": "Internal mathematical review only; no independent referee assessment or journal acceptance claimed."
     },
     "prime_base_realization": {
       "statement": "Every nonempty finite corner cut is realizable as a smooth-number exponent prefix over distinct ordered prime bases, all above any prescribed bound B.",
@@ -195,6 +198,23 @@
       "manuscript_location": "Corollary labelled cor:fibres",
       "attribution": "Restriction, lifting, the fibre identity and the suggestion of logarithmic mean multiplicity are Wagner's. The corollary is a consequence of the matching count, not an independent novelty claim.",
       "limit": "This is not a bound for every individual slice: a slice of size n has exactly one n-point completion."
+    },
+    "consolidated_contribution_assessment": {
+      "record": "docs/interleaving_research.md, Consolidated contribution assessment",
+      "decision": "Favorable internal assessment: proceed to mathematical review as a focused discrete-geometry paper.",
+      "positive_basis": [
+        "Exact agreement with the corner-cut object in Wagner's primary published abstract and thesis.",
+        "Full uniform lower proof at every prescribed sufficiently large n, matching Wagner's upper order in every fixed dimension d>=2.",
+        "Strict gain of (log n)^(d-2) over the inspected lower bound for d>=3.",
+        "Later direct source passages retain Wagner's bounds or cite his counting work; related total-grid and recognition statements have been compared at their exact parameter scope.",
+        "The resulting logarithmic average completion multiplicity answers the route suggested by Wagner; the known vertex/model and smooth-prefix dictionaries give exact counting consequences."
+      ],
+      "known_ingredients": "Restriction and lifting, the fibre identity, primitive-matrix methods, boundary-point recognition, and the corner-cut/model dictionary are credited to their earlier sources.",
+      "claim_scope": "The contribution being assessed is the uniform matching count. No claim of a new general matrix-density or recognition method, leading constant, growing-dimension bound, prime-distribution theorem or faster fixed-prime unranking algorithm.",
+      "priority_status": "Favorable over the inspected primary lineage; overall originality remains unverified. This is not a global priority certificate or an independent referee report.",
+      "publication_status": "Anonymous mathematical review manuscript prepared. Final novelty and submission assessment remain incomplete; no acceptance or independent human assessment claimed.",
+      "working_assumption": "The Elizalde--Galvan final-version comparison is explicitly deferred under the user-authorized preprint-equivalence assumption. This is not evidence of novelty and is not being used alone to halt work.",
+      "goal_complete": false
     }
   }
 }

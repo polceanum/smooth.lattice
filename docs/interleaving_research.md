@@ -47,14 +47,17 @@ coordinate section is triangular, but a balanced pair of included and
 excluded points obstructs a single global cutting plane. This is a direct
 local-to-global obstruction, rather than a claim about prime distribution.
 
-The active quantitative goal is recorded in
-`results/research/quantitative_goal.json`. The final section below records a
-multiscale proof candidate for corner cuts in every fixed dimension. Candidate
+The quantitative goal is recorded in
+`results/research/quantitative_goal.json`. The final sections below record a
+multiscale proof for corner cuts in every fixed dimension. Candidate
 22 gives a uniform finite sieve and cumulative bound. Candidate 23 adds a
-same-dimension injectivity argument at a prescribed size, aiming at the matching
-pointwise lower bound. Closed constants and exact lattice-patch witnesses are
-recorded; priority and publication significance remain unresolved. The structural note and its
-elementary consequences do not satisfy this goal.
+same-dimension injectivity argument at a prescribed size and gives the matching
+pointwise lower bound. Closed constants, exact lattice-patch witnesses and
+the internal proof audit are recorded. The consolidated assessment at the end
+finds a substantive improvement over the inspected published bounds and
+supports proceeding to mathematical review. Overall priority remains
+unverified; no referee assessment or journal acceptance is claimed. The
+structural note and its elementary consequences do not satisfy this goal.
 
 The first bounded study is complete: for the reconstructed rounded-occurrence
 rule, Propositions 10--13 below give a partition reduction, a prefix-period
@@ -2316,3 +2319,39 @@ hypotheses. The stated results and their proofs in Sections 3--4 were
 inspected. Boundary-point recognition is established background; the
 remaining contribution to assess is the uniform prescribed-cardinality
 injection and its multiscale count, not that general geometric principle.
+
+### Consolidated contribution assessment
+
+**Decision: prepare the matching-count argument for mathematical review as
+a focused discrete-geometry paper.** The case for doing so is the proved
+quantitative improvement over a precisely identified published problem,
+rather than the visual origin of the project or the absence of search hits.
+
+| Requirement | Evidence and conclusion |
+| --- | --- |
+| Same mathematical object | The definition in Wagner's published abstract is exactly the finite orthant cut used here. Counting sets, coordinate labels and prescribed included cardinality agree. |
+| Quantitative advance | Wagner's lower and upper orders are n^(d-1) log n and n^(d-1)(log n)^(d-1). Candidate 23 proves the latter order from below for every sufficiently large n in each fixed d. The gain over that lower bound is (log n)^(d-2); in d=3 it closes one logarithmic factor. |
+| Complete uniform mechanism | The finite sieve controls all primes by a fixed nonzero determinant. The two-patch argument controls collisions at the prescribed cardinality, including partial ties. Observable extents separate aspect ranges. Every threshold and constant is displayed for all d>=2. |
+| Closest later counting sources | Muller's full 2003 structural paper sends counting to Wagner; Kalka--Kuhnt Section 2.2 explicitly repeats his two orders; Elizalde--Galvan v1 Section 8.2 refers to his growth work. The last comparison uses the user-authorized assumption for the 2025 journal version. These are source statements, not a claim that citation indexes are exhaustive. |
+| Known ingredients | Restriction, lifting, the fibre identity, primitive-matrix methods, boundary-point recognition and the corner-cut/model dictionary are attributed to their earlier sources. The claimed advance is the uniform matching count obtained from the construction. |
+| Mathematical consequence | The theorem determines the logarithmic average completion multiplicity suggested by Wagner and the order of the known vertex/model count. The prime-realization proposition gives its exact interpretation as a count of smooth-prefix shapes over varying prime bases. |
+| Size of the claim | This is a substantive specialist counting result if new. It gives no leading constant, growing-dimension estimate, prime-distribution theorem or fixed-prime random-access improvement. Its proof constants are deliberately coarse. |
+| Remaining uncertainty | This comparison supports a favorable research assessment, but it is not an independent priority adjudication or referee report. Overall novelty and submission readiness remain unverified, so the active goal is not complete. |
+
+The Kalka--Kuhnt source was retrieved directly for this assessment. Its
+arXiv-v2 PDF has 24 pages and explicitly prints both Wagner orders on
+p. 6. The title page is dated 27 November 2024; this internal date is
+recorded separately from the arXiv version identifier, rather than used
+to infer a journal publication date. Its Wagner bibliography entry has a
+volume typo; our reference uses the primary Wagner record, volume 29.
+
+The anonymous manuscript at `paper/corner_cut_growth/main.tex` now states
+the actual advance directly, cites Wagner's upper theorem and Remond's
+independent attribution, separates the inspected Elizalde--Galvan preprint
+from the journal citation, and discloses the use of OpenAI Codex in proof
+development, literature comparison, checks and drafting. It does not invent
+an author, affiliation, independent review or acceptance. Earlier draft
+status statements in this chronological notebook are retained as history.
+The final contribution and submission assessment remains an open task;
+the changes here complete the consolidated internal assessment, not that
+external verification.

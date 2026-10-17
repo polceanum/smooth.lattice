@@ -23,8 +23,7 @@
 \begin{document}
 \maketitle
 \begin{center}
-\small Working mathematical draft. The argument has passed an internal proof audit;
-the priority assessment and submission review remain incomplete.
+\small Anonymous manuscript for mathematical review.
 \end{center}
 
 \begin{abstract}
@@ -83,10 +82,14 @@ Thomas \cite{CRST}. For fixed \(d\), Wagner \cite{W02} proved
  \tag{1}\label{eq:baseline}
 \]
 His thesis \cite[Chapter 3]{W03} gives the lower and upper arguments
-and suggests seeking greater completion multiplicity. We obtain the
-lower bound in the same dimension: we count primitive normals and show
-that two of them cannot define the same sufficiently large prefix.
-No monotonicity assumption or inference from an average is used.
+and suggests seeking greater completion multiplicity. Wagner also
+credits R\'emond with independently obtaining the bounds in
+\eqref{eq:baseline}. We prove a matching lower bound, improving the
+lower logarithmic exponent by \(d-2\) when \(d\geq3\).
+We count primitive normals in each of many aspect ranges and prove
+that they give distinct prefixes at every sufficiently large prescribed
+cardinality. The latter step, rather than a lift from a lower dimension,
+is the key to retaining every logarithmic factor.
 
 \begin{theorem}\label{thm:main}
 For each fixed integer \(d\geq2\),
@@ -116,8 +119,7 @@ For every integer \(n\geq n_*(d)\),
 Summing gives \(A_d(n)=\Theta_d(n^d(\log n)^{d-1})\).
 The pointwise conclusion matches \eqref{eq:baseline} and strengthens
 its lower logarithmic exponent when \(d\geq3\).
-This comparison is with the inspected baseline; the priority status
-is discussed at the end of the paper.
+For \(d=2\), it recovers the known planar order.
 
 \section{Primitive simplices in axis boxes}
 Fix an ambient integer \(d\geq2\) and set \(\dd=1/(100d)\).
@@ -412,7 +414,8 @@ Combining these inequalities with \eqref{eq:normalbox} gives
 
 \section{Summing aspect ranges}
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
-The upper bound is \eqref{eq:baseline}. For the lower bound, take
+The upper bound is Wagner's theorem \cite{W02}; see also
+\cite[Theorem 3.15]{W03}. For the lower bound, take
 \(R\) maximal with \(Q=4^R\leq n/T_d\). For every tuple
 \[
  r_1+\cdots+r_d=R,\qquad r_i\geq\ceil{R/(d+1)},
@@ -543,8 +546,11 @@ no uniform claim as \(d\) grows with \(n\), and no fixed-prime unranking
 complexity improvement. The prescribed-size step is Lemma~\ref{lem:inject};
 the earlier cumulative construction alone did not give that conclusion.
 
-\section{Prior results and reproducibility}
-The following distinctions delimit the contribution being assessed.
+\section{Related work and reproducibility}
+The lower bound concerns the same cardinality count as Wagner's
+\eqref{eq:baseline}. The proof uses three ingredients: a uniform finite
+primitive-frame estimate, injectivity at a prescribed size, and disjoint
+aspect ranges. We describe the relevant background for these steps.
 M\"uller \cite[Sections 2--5]{Muller} studies the same polytopes,
 including their planar vertex order and adjacency. Her enumeration
 discussion \cite[Section 1, p.~324]{Muller} cites the planar result
@@ -612,43 +618,35 @@ computation of universal Gr\"obner bases in fixed dimension
 \cite[Proposition 3.2 and Theorem 3.5]{BOT}.
 Its count is an upper bound for a common refinement, not the lower
 bounded-cardinality count proved here.
-Likewise the lattice-subspace covering bounds of
-Balko, Cibulka and Valtr \cite[Theorems 3--5]{BCV} concern another
-counting parameter. Neither result is being recast as a new theorem.
 
-Elizalde and Galv\'an \cite[Section 8.2]{EG} discuss higher-dimensional
-pyramidal partitions and refer to the corner-cut growth literature.
-For this draft, the relevant results in their 2025 journal article are
-provisionally assumed unchanged from arXiv:2312.16353v1, as authorized
-for the project. The final-version comparison is recorded separately
-for later checking. This assumption does not establish priority.
+Elizalde and Galv\'an discuss higher-dimensional pyramidal partitions
+and refer to Wagner's growth bounds \cite[Section 8.2]{EGpre}.
+Our comparison uses the preprint version \cite{EGpre}; the journal
+article is listed separately as \cite{EGjournal}.
 
 Kalka and Kuhnt \cite[Section 2.2, p.~6]{KK} explicitly restate
 Wagner's lower and upper orders for corner cuts, while treating a
 numerical statistical fan. That passage does not supply a stronger
 corner-cut counting bound or a proof of our prescribed-size lemma.
 
-\paragraph{Current priority status.}
-The proof establishes the stated inequalities and their strict
-improvement over the inspected lower bound in \eqref{eq:baseline}.
-The literature audit has not established an unrestricted claim of
-priority or submission readiness. In particular, the complete 2002
-journal text has not been inspected; the proofs were compared with
-the author's full thesis chapter. The finite-grid comparison above
-identifies exactly the selected cardinality class and the limitation
-of the total-count theorem. The detailed audit accompanies
-the source at \path{results/research/corner_cut_growth_audit.json}.
-This paragraph must be resolved before the draft is described as
-submission-ready.
+\paragraph{Scope of the comparison.}
+The count in Theorem~\ref{thm:main} improves the lower bound of
+\cite{W02,W03} and matches their upper bound. The restriction and lifting
+viewpoint, primitive-matrix methods, boundary-point recognition, and
+polytope and model correspondences are attributed above. The improvement
+is the resulting uniform cardinality count. The accompanying research
+audit records precisely which source versions and statements were
+inspected, including the use of the author's thesis proofs for
+\cite{W02} and the deferred journal-version check for \cite{EGjournal}.
+It is available at \path{results/research/corner_cut_growth_audit.json}.
 
 \paragraph{Exact checks.}
 The standard-library Python checker
 \path{scripts/run_corner_cut_growth_checks.py}
 uses independent determinants, modular Gaussian elimination and exact
 rational feasibility. It checks primitive-plane injectivity, the
-conditional residue bound, a nonprimitive-projection negative control,
-and a retained degenerate-arrangement fixture with 18 interior vertices
-and 48 chambers. The prescribed-size checks construct integer Bezout
+conditional residue bound and a nonprimitive-projection negative control.
+The prescribed-size checks construct integer Bezout
 increments and affine-coset reductions, then verify reversed orders on
 the two patches for 2,280 ordered pairs of distinct normals in dimensions
 two through six, each at five boundary heights with different residues
@@ -674,6 +672,15 @@ hashes of its sources in
 \path{results/research/corner_cut_growth_checks.json}.
 The proof above is independent of the computation.
 The other project kernels and public rank/unrank interface are unchanged.
+
+\paragraph{Assistance and review.}
+OpenAI Codex proposed and developed the quantitative argument, carried out
+the literature comparison, and produced the computational checks and
+manuscript draft during an investigation prompted by the project owner.
+The argument has
+undergone internal review; no independent referee assessment or journal
+acceptance is claimed. The proof is included in full so that it can be
+checked independently of the software.
 
 \begin{thebibliography}{99}
 \raggedright
@@ -748,11 +755,6 @@ rectangular grid,
 \href{https://doi.org/10.1016/j.dam.2012.08.012}{doi:10.1016/j.dam.2012.08.012};
 \href{https://arxiv.org/abs/1110.3566v2}{arXiv:1110.3566v2}.
 
-\bibitem{BCV}
-M.~Balko, J.~Cibulka and P.~Valtr,
-Covering lattice points by subspaces and counting point-hyperplane incidences,
-\href{https://arxiv.org/abs/1703.04767}{arXiv:1703.04767}.
-
 \bibitem{CSD}
 D.~Coeurjolly, I.~Sivignon, F.~Dupont, F.~Feschet and J.-M.~Chassery,
 On digital plane preimage structure,
@@ -772,12 +774,15 @@ A.~Kalka and S.~Kuhnt,
 The numerical statistical fan for noisy experimental designs,
 \href{https://arxiv.org/abs/2005.04051v2}{arXiv:2005.04051v2}.
 
-\bibitem{EG}
+\bibitem{EGpre}
+S.~Elizalde and A.~B.~Galv\'an,
+Triangular partitions: enumeration, structure, and generation,
+\href{https://arxiv.org/abs/2312.16353v1}{arXiv:2312.16353v1} (2023).
+
+\bibitem{EGjournal}
 S.~Elizalde and A.~B.~Galv\'an,
 Triangular partitions: enumeration, structure, and generation,
 \emph{Advances in Applied Mathematics} 163 (2025), 102807.
 \href{https://doi.org/10.1016/j.aam.2024.102807}{doi:10.1016/j.aam.2024.102807}.
-Inspected version:
-\href{https://arxiv.org/abs/2312.16353v1}{arXiv:2312.16353v1}.
 \end{thebibliography}
 \end{document}

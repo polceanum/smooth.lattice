@@ -58,9 +58,9 @@ new quantitative theorem, a verified literature gap and a useful mathematical
 consequence before preparing a submission. The first candidate is to close or
 strictly narrow Wagner's published logarithmic gap in the number of
 three-dimensional corner cuts, the shapes underlying smooth exponent prefixes.
-The first milestone is to check the strongest current bounds and reconstruct
-the existing proofs. The strongest-current-bound assessment remains incomplete; neither novelty
-nor a breakthrough is promised.
+The existing proofs and the closest inspected primary results have now been
+compared at the theorem level. The consolidated internal assessment supports
+proceeding to mathematical review; overall priority remains unverified.
 
 A new candidate proof in the research note would give the matching pointwise
 count C_d(n)=Theta_d(n^(d-1)(log n)^(d-1)) in every fixed dimension d>=2,
@@ -69,11 +69,14 @@ directions and uses two integer lattice patches to prevent collisions at a
 prescribed size. Exact witnesses test the delicate step for 2,280 ordered pairs of
 normals at five boundary heights each. The fresh internal proof audit found
 no unresolved logical step. The earlier cumulative construction is preserved
-in the note. The priority comparison remains under review; it is not yet a verified new theorem or a submission-ready paper.
-The [quantitative working draft](paper/corner_cut_growth/main.tex) gives the
-complete candidate proof, explicit constants and its attributions separately
-from the earlier structural note. The [PDF](output/pdf/corner_cut_growth.pdf)
-compiles; the priority and submission reviews remain incomplete.
+in the note. The count also gives order log n for the mean number of
+completions of a coordinate slice, addressing Wagner's suggested route. The
+[anonymous mathematical manuscript](paper/corner_cut_growth/main.tex) gives
+the complete proof, explicit constants, precise source comparisons and an
+AI-assistance disclosure separately from the earlier structural note.
+The [PDF](output/pdf/corner_cut_growth.pdf) compiles. No independent referee
+assessment or journal acceptance is claimed; novelty and submission readiness
+remain under review.
 
 The existing structural results are preserved as a separate note about the
 geometry and containment intervals of pyramidal partitions. Applying Edelman's

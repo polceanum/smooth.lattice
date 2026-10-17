@@ -1,6 +1,6 @@
 {
   "date": "2026-10-17",
-  "status": "pointwise_candidate_internally_audited_priority_and_submission_review_incomplete",
+  "status": "internal_contribution_assessment_favorable_anonymous_review_manuscript_prepared_goal_incomplete",
   "mathematical_record": "docs/interleaving_research.md, Candidate 23 (Candidates 21 and 22 preserved as the earlier cumulative route)",
   "proposed_results": [
     "For every fixed d >= 2, C_d(n) = Theta_d(n^(d-1) (log n)^(d-1)).",
@@ -195,9 +195,11 @@
     {
       "source": "https://arxiv.org/pdf/2005.04051v2",
       "authors": "Kalka and Kuhnt",
-      "inspected": "Section 2.2, printed p. 6, and surrounding definitions.",
+      "inspected": "Directly retrieved 24-page arXiv-v2 PDF; Section 2.2, printed p. 6, exact corner-cut bounds and the corresponding bibliography entry. Passage-level comparison, not a proof audit of the entire statistical-fan paper.",
       "finding": "Explicitly repeats Wagner's lower n^(d-1) log n and upper (n log n)^(d-1) corner-cut orders; its subject is the numerical statistical fan.",
-      "remaining": "Passage-level comparison, not a full-paper priority certification."
+      "remaining": "Passage-level comparison, not a full-paper priority certification.",
+      "artifact_date_note": "The PDF title page prints 27 November 2024. This is recorded as an internal artifact date, not a claim about arXiv version chronology or journal publication.",
+      "bibliographic_correction": "Its Wagner entry has volume 26; the primary Wagner record confirms volume 29, used in our manuscript."
     },
     {
       "source": "https://arxiv.org/pdf/1207.2968",
@@ -258,8 +260,8 @@
     }
   ],
   "audit_tasks": [
-    "Consolidate the priority assessment around the actual matching-count theorem, using the completed direct corner-cut, total-grid and digital-plane recognition comparisons. Do not claim novelty for finite reduction, boundary-point recognition or the fibre identity.",
-    "Complete the final manuscript and contribution review before calling the paper submission-ready; preserve the explicitly deferred final-version check under the user-authorized assumption."
+    "Resolve the overall novelty and final submission-readiness assessment using the recorded favorable contribution case and exact source comparison; do not describe the anonymous review manuscript as independently refereed or accepted.",
+    "Retain the explicitly deferred Elizalde--Galvan journal-version check under the user-authorized assumption; do not infer novelty from source access failures or search absence."
   ],
   "validation_commands_passed": [
     "./build.sh",
@@ -274,7 +276,7 @@
   "submission_ready": false,
   "prime_distribution_consequence": false,
   "faster_unranking_claim": false,
-  "research_progress": "Completed precise finite-grid cardinality comparison, checked the closest digital-plane recognition theorem statements and proofs, found and accounted for the Farey-diagram erratum, and added the logarithmic average-completion corollary answering the suggestion in Wagner's Section 3.5. Main theorem and proof constants unchanged.",
+  "research_progress": "Consolidated the exact published-bound comparison and scientific contribution assessment; retrieved and verified the full Kalka--Kuhnt v2 source passage; revised the anonymous manuscript around its actual logarithmic gain, precise source-version citations, Remond attribution and explicit AI-assistance disclosure. Mathematical statements and proof constants unchanged.",
   "remaining_exact_size_problem": "A complete pointwise proof candidate has passed the fresh internal audit; priority and publication significance have not been established.",
   "uniform_sieve_bound": {
     "record": "Candidate 22, equation (22.1)",
@@ -287,10 +289,10 @@
   },
   "completion_audit": {
     "uniform_argument": "The full pointwise argument passed a fresh internal adversarial review with no unresolved logical step identified. The audit includes ties, witnessing-height multiplicities, affine-coset reductions, two-patch integer rigidity, rank-to-height estimates and cross-aspect duplication. This is not an independent human referee report.",
-    "novelty": "The specified total-grid and recognition comparisons are complete at the recorded scope. They do not directly imply the matching count, and their known methods are explicitly attributed. A consolidated overall priority decision is still pending.",
+    "novelty": "Consolidated internal assessment is favorable: the uniform matching count strictly improves the same-object lower bound in the inspected primary lineage, and known ingredients are explicitly attributed. Overall originality remains unverified; the goal is not complete.",
     "mathematical_usefulness": "The matching count closes the inspected corner-cut logarithmic gap in every fixed dimension d>=3. It also determines the mean completion multiplicity as Theta_d(log n), addressing Wagner's explicit suggested route, and counts the established polytope/model and varying-prime prefix shapes.",
-    "manuscript": "Added a proved average-completion corollary, an exact finite-grid reduction and a theorem-level total-grid/recognition comparison. Overall priority and final submission review remain incomplete.",
-    "decision": "Keep the goal active; finish the strongest-primary-literature comparison and submission review."
+    "manuscript": "Anonymous review manuscript now states the actual logarithmic gain, cites the exact upper theorem, credits Remond, separates the inspected preprint from the journal reference, and discloses AI assistance. Final novelty and submission assessment remain incomplete.",
+    "decision": "Keep the goal active. The consolidated contribution assessment is finished and favorable; overall novelty and submission readiness remain unverified."
   },
   "explicit_cumulative_lower_bound": {
     "formula": "A_d(n) >= kappa_d n^d (log_4 n)^(d-1) for d>=2 and n>=n_0(d).",
@@ -327,7 +329,7 @@
   "manuscript": {
     "source": "paper/corner_cut_growth/main.tex",
     "title": "Sharp growth of corner cuts in fixed dimension",
-    "status": "working_draft_pointwise_proof_internally_audited_priority_incomplete",
+    "status": "anonymous_mathematical_review_manuscript_prepared_final_assessment_incomplete",
     "proof_contents": [
       "Uniform primitive-window bound with closed constants",
       "Full-lattice injection and bounded-height division to count primitive normals",
@@ -341,12 +343,15 @@
     "author_metadata": "Left blank; no authorship or affiliation invented.",
     "pdf": "output/pdf/corner_cut_growth.pdf",
     "pdf_pages": 10,
-    "tex_sha256": "8d7e231076bb265605452831d276e8291f76617bd298b15aecf66c52851be280",
-    "pdf_sha256": "60bffcf51bce7dca6a1ea807523f782cb10781f46c2d5c9a888e4a0a3e5fba79",
-    "visual_review": "All ten latest pages inspected after the finite-grid and average-completion edits; no clipping, overlap or unresolved references.",
-    "latex_log_check": "No errors, overfull or underfull boxes, or undefined references in the final pass.",
+    "tex_sha256": "ae31ca6519256855523a9a17bf8c6ab609256ea10f71b6d8468f7b93d0f93d46",
+    "pdf_sha256": "4bdf84f4db488991d706bdb151a00dec4c7e76f65ba81f951d47242125bc162a",
+    "visual_review": "All ten latest pages inspected after the consolidated contribution and source-version edits; no clipping, overlap or unresolved references.",
+    "latex_log_check": "No errors, warnings, overfull or underfull boxes, or undefined references in the final pass.",
     "pdf_structure_check": "Ten pages, blank author metadata, no unresolved references or extracted characters outside page boundaries.",
-    "pdf_build_command": "latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=results/local/corner-cut-latex paper/corner_cut_growth/main.tex"
+    "pdf_build_command": "latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=results/local/corner-cut-latex paper/corner_cut_growth/main.tex",
+    "assistance_disclosure": "OpenAI Codex proposed and developed the quantitative argument, carried out the literature comparison, and produced the checks and draft during an investigation prompted by the project owner. No independent referee assessment or acceptance claimed.",
+    "version_citations": "Inspected Elizalde--Galvan arXiv v1 and the uninspected journal version are cited separately. Wagner's upper theorem is also located as thesis Theorem 3.15.",
+    "review_limit": "Internal mathematical review only; no independent referee assessment or journal acceptance claimed."
   },
   "prime_base_realization": {
     "statement": "Every nonempty finite corner cut is realizable as a smooth-number exponent prefix over distinct ordered prime bases, all above any prescribed bound B.",
@@ -424,5 +429,30 @@
     "manuscript_location": "Corollary labelled cor:fibres",
     "attribution": "Restriction, lifting, the fibre identity and the suggestion of logarithmic mean multiplicity are Wagner's. The corollary is a consequence of the matching count, not an independent novelty claim.",
     "limit": "This is not a bound for every individual slice: a slice of size n has exactly one n-point completion."
+  },
+  "consolidated_contribution_assessment": {
+    "record": "docs/interleaving_research.md, Consolidated contribution assessment",
+    "decision": "Favorable internal assessment: proceed to mathematical review as a focused discrete-geometry paper.",
+    "positive_basis": [
+      "Exact agreement with the corner-cut object in Wagner's primary published abstract and thesis.",
+      "Full uniform lower proof at every prescribed sufficiently large n, matching Wagner's upper order in every fixed dimension d>=2.",
+      "Strict gain of (log n)^(d-2) over the inspected lower bound for d>=3.",
+      "Later direct source passages retain Wagner's bounds or cite his counting work; related total-grid and recognition statements have been compared at their exact parameter scope.",
+      "The resulting logarithmic average completion multiplicity answers the route suggested by Wagner; the known vertex/model and smooth-prefix dictionaries give exact counting consequences."
+    ],
+    "known_ingredients": "Restriction and lifting, the fibre identity, primitive-matrix methods, boundary-point recognition, and the corner-cut/model dictionary are credited to their earlier sources.",
+    "claim_scope": "The contribution being assessed is the uniform matching count. No claim of a new general matrix-density or recognition method, leading constant, growing-dimension bound, prime-distribution theorem or faster fixed-prime unranking algorithm.",
+    "priority_status": "Favorable over the inspected primary lineage; overall originality remains unverified. This is not a global priority certificate or an independent referee report.",
+    "publication_status": "Anonymous mathematical review manuscript prepared. Final novelty and submission assessment remain incomplete; no acceptance or independent human assessment claimed.",
+    "working_assumption": "The Elizalde--Galvan final-version comparison is explicitly deferred under the user-authorized preprint-equivalence assumption. This is not evidence of novelty and is not being used alone to halt work.",
+    "goal_complete": false
+  },
+  "review_manuscript_checks": {
+    "mathematical_statements": "Main bound, quantifiers, constants, primitive sieve, fixed-size injection and consequences unchanged from the passed internal proof audit.",
+    "bibliography": "Exact upper-theorem location and Remond attribution added; inspected preprint and uninspected journal version cited separately; Kalka--Kuhnt bounds checked in directly retrieved v2 PDF.",
+    "honesty": "Anonymous author field; explicit extent of AI work; no independent review or acceptance claimed; overall novelty and submission flags remain false.",
+    "reproducibility": "All three research reports regenerated for current sources; core build and smoke checks pass; source hashes verified.",
+    "layout": "Native compiler and latexmk succeed; all ten rendered pages inspected; no LaTeX or PDF structure issue.",
+    "limitation": "This completes preparation of an anonymous mathematical review manuscript and its consolidated internal assessment. It does not establish unrestricted priority or final submission readiness."
   }
 }
