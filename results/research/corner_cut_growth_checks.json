@@ -2657,10 +2657,355 @@
       }
     ]
   },
+  "nongeneric_point_ideal_control": {
+    "source": "https://doi.org/10.1006/aama.1999.0645",
+    "attribution": "Onn--Sturmfels, Proposition 5.6; reduction of their equations modulo 29.",
+    "field_prime": 29,
+    "points": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        11,
+        13
+      ],
+      [
+        17,
+        10
+      ]
+    ],
+    "staircases_checked": 15,
+    "evaluation_bases": 12,
+    "weight_intervals_checked": 46,
+    "corner_cuts": 8,
+    "initial_staircases": 10,
+    "all_determinant_and_rank_greedy_checks_agree": true,
+    "determinant_records": [
+      {
+        "partition": [
+          7
+        ],
+        "moment": [
+          21,
+          0
+        ],
+        "residue": 28
+      },
+      {
+        "partition": [
+          6,
+          1
+        ],
+        "moment": [
+          15,
+          1
+        ],
+        "residue": 5
+      },
+      {
+        "partition": [
+          5,
+          2
+        ],
+        "moment": [
+          11,
+          2
+        ],
+        "residue": 13
+      },
+      {
+        "partition": [
+          5,
+          1,
+          1
+        ],
+        "moment": [
+          10,
+          3
+        ],
+        "residue": 18
+      },
+      {
+        "partition": [
+          4,
+          3
+        ],
+        "moment": [
+          9,
+          3
+        ],
+        "residue": 3
+      },
+      {
+        "partition": [
+          4,
+          2,
+          1
+        ],
+        "moment": [
+          7,
+          4
+        ],
+        "residue": 0
+      },
+      {
+        "partition": [
+          4,
+          1,
+          1,
+          1
+        ],
+        "moment": [
+          6,
+          6
+        ],
+        "residue": 0
+      },
+      {
+        "partition": [
+          3,
+          3,
+          1
+        ],
+        "moment": [
+          6,
+          5
+        ],
+        "residue": 23
+      },
+      {
+        "partition": [
+          3,
+          2,
+          2
+        ],
+        "moment": [
+          5,
+          6
+        ],
+        "residue": 8
+      },
+      {
+        "partition": [
+          3,
+          2,
+          1,
+          1
+        ],
+        "moment": [
+          4,
+          7
+        ],
+        "residue": 0
+      },
+      {
+        "partition": [
+          3,
+          1,
+          1,
+          1,
+          1
+        ],
+        "moment": [
+          3,
+          10
+        ],
+        "residue": 12
+      },
+      {
+        "partition": [
+          2,
+          2,
+          2,
+          1
+        ],
+        "moment": [
+          3,
+          9
+        ],
+        "residue": 15
+      },
+      {
+        "partition": [
+          2,
+          2,
+          1,
+          1,
+          1
+        ],
+        "moment": [
+          2,
+          11
+        ],
+        "residue": 15
+      },
+      {
+        "partition": [
+          2,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "moment": [
+          1,
+          15
+        ],
+        "residue": 2
+      },
+      {
+        "partition": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "moment": [
+          0,
+          21
+        ],
+        "residue": 13
+      }
+    ],
+    "generic_fan_refinement_counterexample": {
+      "same_corner_cut": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "first": {
+        "weights": [
+          30,
+          19
+        ],
+        "initial_staircase": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "initial_moment": [
+          3,
+          9
+        ]
+      },
+      "second": {
+        "weights": [
+          42,
+          29
+        ],
+        "initial_staircase": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "initial_moment": [
+          5,
+          6
+        ]
+      }
+    },
+    "scope": "Known finite counterexample and failed proof extension; no new asymptotic bound."
+  },
   "source_sha256": {
-    "scripts/run_corner_cut_growth_checks.py": "5976c6856f295601104a51620d98d18e1a356d0bcfc8568a9eea1e438bd491e9",
+    "scripts/run_corner_cut_growth_checks.py": "fe0b326a3be76e15a8145de8688dda07b4afba482d0c1dba0632fcc8a3463868",
     "scripts/run_pyramidal_poset_checks.py": "70eb1d26eb7a8664e8c186b33e115fedb1ecc5004880a41b07f76ba000533500",
-    "docs/interleaving_research.md": "88667b860168e031e084e3dab6abd762d0f536ea4610207f00aa122fd3069ef4",
+    "docs/interleaving_research.md": "8a2ac7ac77f699ca2833f18eafd0a0334339a3a6f0f7cc75bf9c4d8351422a4e",
     "paper/corner_cut_growth/main.tex": "ae31ca6519256855523a9a17bf8c6ab609256ea10f71b6d8468f7b93d0f93d46"
   },
   "limitations": [

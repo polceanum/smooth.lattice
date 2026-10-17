@@ -216,5 +216,122 @@
       "working_assumption": "The Elizalde--Galvan final-version comparison is explicitly deferred under the user-authorized preprint-equivalence assumption. This is not evidence of novelty and is not being used alone to halt work.",
       "goal_complete": false
     }
+  },
+  "broader_extremal_feasibility": {
+    "record": "docs/interleaving_research.md, Broader extremal problem: a bounded feasibility audit",
+    "status": "bounded_pass_completed_no_new_asymptotic_mechanism_found",
+    "problem": "F(n,d), the maximum number of distinct reduced Groebner bases over n-point configurations in d-space and underlying fields.",
+    "verified_starting_bounds_d3": "Candidate 23 supplies Omega(n^2 (log n)^2); Onn--Sturmfels Corollary 5.4(a) supplies O(n^3). These are not certified as the strongest current unrestricted bounds.",
+    "known_exact_counterexample": "Onn--Sturmfels Proposition 5.6: C_2(7)=8<F(7,2)=10.",
+    "exact_negative_control": {
+      "report": "results/research/corner_cut_growth_checks.json, nongeneric_point_ideal_control",
+      "field_prime": 29,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          11,
+          13
+        ],
+        [
+          17,
+          10
+        ]
+      ],
+      "scope": "Reduction of the published witness equations, not a new mathematical construction.",
+      "all_staircases": 15,
+      "evaluation_bases": 12,
+      "weight_intervals": 46,
+      "generic_corner_cuts": 8,
+      "point_ideal_initial_staircases": 10,
+      "same_generic_cut_weights": [
+        [
+          30,
+          19
+        ],
+        [
+          42,
+          29
+        ]
+      ],
+      "distinct_initial_moments": [
+        [
+          3,
+          9
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "independent_checks": "Integer evaluation determinants modulo 29; direct greedy rank selection modulo 29; exact heap prefix generation.",
+      "conclusion": "The generic corner-cut fan is not a universal refinement, so the present proof does not automatically bound every point ideal."
+    },
+    "primary_comparisons": [
+      {
+        "authors": "Onn and Sturmfels",
+        "source": "https://doi.org/10.1006/aama.1999.0645",
+        "free_text": "https://www.math.ucdavis.edu/~deloera/MISC/LA-BIBLIO/trunk/Onn/Onn4.pdf",
+        "inspected": "Printed pages 43--47 visually, including Corollary 5.4, definition of F, Remark 5.5 and full proof of Proposition 5.6.",
+        "finding": "Defines the broader extremal problem; generic configurations give corner cuts, but exact generic maximality fails already at seven planar points."
+      },
+      {
+        "authors": "Babson, Onn and Thomas",
+        "source": "https://arxiv.org/pdf/math/0207135",
+        "doi": "https://doi.org/10.1016/S0196-8858(02)00509-2",
+        "inspected": "Theorem 2.4 and Corollary 2.5, with proofs; Theorem 4.2 and its greedy algorithm proof. Existing audit covers Proposition 3.2 and Theorem 3.5.",
+        "finding": "The same upper exponent holds for all colength-n ideals. The refinement is Theorem 3.5; the polynomial-time algorithm is Theorem 4.2."
+      },
+      {
+        "authors": "Zhang and Stigler",
+        "source": "https://arxiv.org/pdf/1907.01080v1",
+        "doi": "https://doi.org/10.1007/978-3-030-42687-3_9",
+        "later_text": "https://par.nsf.gov/servlets/purl/10177092",
+        "inspected": "arXiv v1 Section 5, Theorem 4, equations (8)--(13), pp. 15--17, including visual inspection. The later NSF text was available only as an indexed primary Theorem 8 excerpt; its full download failed.",
+        "finding": "Finite-field moment-volume bound, with complement symmetry. For p>n the expression recovers the previous unrestricted exponent, so this statement does not improve the unrestricted worst-case estimate.",
+        "version_caution": "The later excerpt uses a hypercube and asymptotic notation; v1 uses a simplex and displays unit-constant numerical formulas. Only the asymptotic expression is used here."
+      },
+      {
+        "authors": "Dimitrova, He, Robbiano and Stigler",
+        "source": "https://arxiv.org/pdf/1704.03680v2",
+        "doi": "https://doi.org/10.1142/S0219498820500875",
+        "inspected": "Introduction, Definition 4.6, Lemma 4.7, Theorem 4.8 and its proof, Corollary 4.11 and its proof; pp. 14--15 visually checked.",
+        "finding": "Complementary point subsets inside a grid have the same Groebner fan. Grid complements preserve the basis count and cannot amplify a lower-bound construction."
+      },
+      {
+        "authors": "Sabariego and Santos",
+        "source": "https://arxiv.org/html/0705.3631",
+        "doi": "https://doi.org/10.1016/j.disc.2008.02.047",
+        "inspected": "Introduction and Theorems 1.2--1.3, not the full later proof.",
+        "finding": "Known family with 3(q+2) coherent minimum-distance diagrams and N=(q^2+q+2)(q^2+q+1), q not divisible by 3; this particular graded-initial-ideal lower construction grows as N^(1/4).",
+        "caution": "This lower estimate does not bound the number of arbitrary-order initial ideals from above."
+      }
+    ],
+    "decision": "Retain as a substantive research target, but do not promote it into a manuscript claim or replace the original acceptance criteria. A new dependency-sensitive counting argument or an infinite asymptotically larger family is required before expanding the project.",
+    "strongest_current_bound_audit_complete": false,
+    "new_asymptotic_result": false,
+    "goal_complete": false
+  },
+  "previous_goal_turn_classification": {
+    "classification": "progress",
+    "evidence": "Read the original Onn--Sturmfels extremal definition and seven-point counterexample, identifying an existing broader problem and ruling out exact generic maximality. The present turn adds a reproducible negative control and later-source comparisons."
   }
 }

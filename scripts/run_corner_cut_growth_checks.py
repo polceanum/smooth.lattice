@@ -605,6 +605,100 @@ def tie_resolution_fixture():
             'exact_heap_orders_agree': True, 'witnesses': examples}
 
 
+def nongeneric_point_ideal_control():
+    """Reproduce OS Proposition 5.6 mod 29; this is known, not a new result.
+
+    Check every seven-box planar staircase by its evaluation determinant,
+    then independently obtain its minimizing basis by greedy rank selection.
+    This guards against extending the corner-cut bound by fan refinement.
+    """
+    prime, n = 29, 7
+    points = ((0, 0), (1, 1), (2, 2), (3, 4), (5, 7), (11, 13), (17, 10))
+    alpha, beta = points[-1]
+    require((1468 * alpha - 2 * beta ** 2 + 141 * beta - 2937) % prime == 0,
+            'first equation of the Onn--Sturmfels witness')
+    require((4 * beta ** 3 + 2112 * beta ** 2 + 1578145 * beta - 2886359) % prime == 0,
+            'second equation of the Onn--Sturmfels witness')
+
+    def partitions(total, bound):
+        if total == 0:
+            yield ()
+        for part in range(min(total, bound), 0, -1):
+            for tail in partitions(total - part, part):
+                yield (part,) + tail
+
+    shapes = list(partitions(n, n))
+    stairs = [tuple(sorted((x, y) for y, width in enumerate(shape)
+                           for x in range(width))) for shape in shapes]
+    moments = [tuple(sum(point[j] for point in stair) for j in (0, 1))
+               for stair in stairs]
+    universe = sorted(set().union(*map(set, stairs)))
+    evaluations = {monomial: [pow(x, monomial[0], prime) * pow(y, monomial[1], prime)
+                              % prime for x, y in points] for monomial in universe}
+    residues = [determinant([[evaluations[monomial][row] for monomial in stair]
+                             for row in range(n)]) % prime for stair in stairs]
+    basic = [i for i, residue in enumerate(residues) if residue]
+    require(len(stairs) == 15 and len(basic) == 12,
+            'all fifteen partitions checked; twelve are evaluation bases')
+    require({moment for moment, residue in zip(moments, residues) if residue == 0}
+            == {(7, 4), (6, 6), (4, 7)}, 'the three vanishing staircase determinants')
+
+    crossings = sorted({Fraction(b[0] - a[0], a[1] - b[1])
+                        for a, b in combinations(moments, 2)
+                        if (b[0] - a[0]) * (a[1] - b[1]) > 0})
+    samples = ([crossings[0] / 2]
+               + [(a + b) / 2 for a, b in zip(crossings, crossings[1:])]
+               + [crossings[-1] + 1])
+    generic_vertices, ideal_vertices, by_generic = set(), set(), {}
+    split_witness = None
+    for ratio in samples:
+        weights = (ratio.denominator, ratio.numerator)
+
+        def minimizer(indices):
+            scores = {i: dot(weights, moments[i]) for i in indices}
+            minimum = min(scores.values())
+            winners = [i for i in indices if scores[i] == minimum]
+            require(len(winners) == 1, 'sample avoids every moment crossing')
+            return winners[0]
+
+        generic, initial = minimizer(range(len(stairs))), minimizer(basic)
+        prefix = integer_weight_prefix(weights, n + 1)
+        require(tuple(sorted(point for _, point in prefix[:n])) == stairs[generic],
+                'independent heap prefix agrees with generic moment minimizer')
+        require(prefix[n - 1][0] < prefix[n][0], 'generic prefix has a strict boundary')
+        accepted, rows = [], []
+        for monomial in sorted(universe, key=lambda x: (dot(weights, x), x)):
+            candidate = rows + [evaluations[monomial]]
+            if rank_mod(candidate, prime) > len(rows):
+                accepted.append(monomial)
+                rows = candidate
+                if len(rows) == n:
+                    break
+        require(tuple(sorted(accepted)) == stairs[initial],
+                'independent rank greed agrees with determinant moment minimizer')
+        generic_vertices.add(generic)
+        ideal_vertices.add(initial)
+        old = by_generic.get(generic)
+        current = {'weights': weights, 'initial_staircase': stairs[initial],
+                   'initial_moment': moments[initial]}
+        if old is not None and old['initial_moment'] != moments[initial] and split_witness is None:
+            split_witness = {'same_corner_cut': stairs[generic], 'first': old, 'second': current}
+        by_generic[generic] = current
+    require(len(generic_vertices) == 8 and len(ideal_vertices) == 10,
+            'known eight-versus-ten counterexample reproduced')
+    require(split_witness is not None, 'a generic corner-cut cone splits for the point ideal')
+    return {'source': 'https://doi.org/10.1006/aama.1999.0645',
+            'attribution': 'Onn--Sturmfels, Proposition 5.6; reduction of their equations modulo 29.',
+            'field_prime': prime, 'points': points, 'staircases_checked': len(stairs),
+            'evaluation_bases': len(basic), 'weight_intervals_checked': len(samples),
+            'corner_cuts': len(generic_vertices), 'initial_staircases': len(ideal_vertices),
+            'all_determinant_and_rank_greedy_checks_agree': True,
+            'determinant_records': [{'partition': shape, 'moment': moment, 'residue': residue}
+                                    for shape, moment, residue in zip(shapes, moments, residues)],
+            'generic_fan_refinement_counterexample': split_witness,
+            'scope': 'Known finite counterexample and failed proof extension; no new asymptotic bound.'}
+
+
 
 def main():
     fixtures = [primitive_fixture(sides) for sides in
@@ -624,6 +718,7 @@ def main():
         "exact_size_patch_fixtures": [fixed_size_patch_fixture(d) for d in range(2, 7)],
         "exact_size_constants": exact_size_constants(),
         "tie_resolution_fixture": tie_resolution_fixture(),
+        "nongeneric_point_ideal_control": nongeneric_point_ideal_control(),
         "source_sha256": {str(path): hashlib.sha256((ROOT / path).read_bytes()).hexdigest()
                           for path in (Path("scripts/run_corner_cut_growth_checks.py"),
                                        Path("scripts/run_pyramidal_poset_checks.py"),

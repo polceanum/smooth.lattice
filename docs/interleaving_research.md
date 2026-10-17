@@ -2355,3 +2355,131 @@ status statements in this chronological notebook are retained as history.
 The final contribution and submission assessment remains an open task;
 the changes here complete the consolidated internal assessment, not that
 external verification.
+
+### Broader extremal problem: a bounded feasibility audit
+
+The follow-up suggested after the matching-count assessment is the maximum
+number of reduced Groebner bases of an arbitrary n-point configuration.
+This is an existing problem, not a new definition introduced here.
+[Onn--Sturmfels, 1999](https://doi.org/10.1006/aama.1999.0645),
+[author-hosted text](https://www.math.ucdavis.edu/~deloera/MISC/LA-BIBLIO/trunk/Onn/Onn4.pdf),
+printed pp. 43--47, define F(n,d) by maximizing over n-point configurations
+in d-dimensional affine space and over the underlying fields. Corollary
+5.4(a) gives F(n,d)=O_d(n^{2d(d-1)/(d+1)}). Generic configurations give
+C_d(n) bases. Thus Candidate 23 would give the starting range
+
+    Omega(n^2 (log n)^2) <= F(n,3) <= O(n^3).
+
+The lower estimate depends on the candidate proof and the known generic
+dictionary. The upper estimate is a verified published bound, not a claim
+that every subsequent improvement has been excluded. The printed source
+pages, including the full proof of Proposition 5.6, were visually inspected.
+
+The generic case is not an exact extremizer. Onn--Sturmfels Proposition
+5.6 proves C_2(7)=8<F(7,2)=10. Any proposed transfer from the generic
+corner-cut fan to every point ideal must respect this counterexample.
+In particular the generic fan is not a universal common refinement.
+
+#### Exact reproduction of the failed transfer
+
+The existing growth checker now reproduces that known example over F_29.
+Reduce the two equations for their final point modulo 29: alpha=17 and
+beta=10 satisfy both equations. The seven distinct points are
+
+    (0,0), (1,1), (2,2), (3,4), (5,7), (11,13), (17,10).
+
+All fifteen partitions of seven are checked. Their evaluation determinants
+vanish exactly for the three staircase moments (7,4), (6,6), and (4,7),
+as in the published real example. The twelve remaining evaluation bases
+have ten positive-weight minimizing moments; the unrestricted fifteen
+staircases give eight. The calculation checks all 46 intervals between
+positive pairwise moment crossings. At each sampled rational weight it
+independently compares determinant-based minimization, direct monomial
+rank selection, and heap generation of the generic corner cut.
+
+The weights (30,19) and (42,29) give the same strict seven-point corner cut
+
+    {(0,0),(0,1),(0,2),(0,3),(1,0),(1,1),(2,0)},
+
+but give initial staircases with moments (3,9) and (5,6), respectively,
+for this point ideal. Consequently a single generic corner-cut cone can
+split. The full sets, determinant residues and exact weights are saved in
+`results/research/corner_cut_growth_checks.json`, under
+`nongeneric_point_ideal_control`. Reproduce with
+
+```bash
+python3 -B scripts/run_corner_cut_growth_checks.py
+```
+
+This is a reproduction and a negative control for a proposed proof route.
+It is not a new counterexample or an asymptotic improvement. Enumerating
+all fifteen partitions suffices here; no broader search framework is added.
+
+#### Later primary comparisons and their limits
+
+* [Babson--Onn--Thomas, 2003](https://doi.org/10.1016/S0196-8858(02)00509-2),
+  [inspected preprint](https://arxiv.org/pdf/math/0207135), Corollary 2.5,
+  extends the same exponent to every ideal of colength n, including
+  nonradical ideals. Theorem 2.4 identifies initial staircases with state
+  vertices; Theorem 3.5 gives the Hilbert-zonotope refinement; Theorem 4.2
+  gives the polynomial-time algorithm. The latter is distinct from
+  Theorem 3.5. The statements and the state-polyhedron, bound and greedy
+  algorithm arguments were read. This supplies an existing general
+  framework, not an improvement obtained from Candidate 23.
+* [Zhang--Stigler, 2020](https://doi.org/10.1007/978-3-030-42687-3_9),
+  [inspected arXiv v1](https://arxiv.org/pdf/1907.01080v1), Section 5,
+  Theorem 4 and equations (8)--(13), specializes the moment-volume bound
+  to n points in F_p^d. Written with our parameter names, its asymptotic
+  expression is
+
+      O_d((p^2 floor(n/p)+(n mod p)^2)^{d(d-1)/(d+1)}),
+
+  using the complementary point count when n exceeds half the grid.
+  For p>n the displayed expression is exactly the old asymptotic order
+  n^{2d(d-1)/(d+1)}. It therefore does not improve the unrestricted
+  extremal bound. Pages 15--17 of v1 were read and visually checked.
+  We retain big-O constants rather than treating the preprint's displayed
+  unit-constant formula as an exact universal numerical estimate.
+  The [NSF-hosted later text](https://par.nsf.gov/servlets/purl/10177092)
+  has Theorem 8, uses a containing hypercube instead of the v1 simplex,
+  and states the bound asymptotically. Its indexed primary theorem
+  passage was inspected, but full retrieval failed. The two versions
+  are not represented as having received the same reading scope.
+* [Dimitrova--He--Robbiano--Stigler, 2020](https://doi.org/10.1142/S0219498820500875),
+  [inspected v2](https://arxiv.org/pdf/1704.03680v2), Theorem 4.8 and
+  Corollary 4.11, show that complementary point subsets inside a grid
+  have the same Groebner fan. The hypotheses, proof of Theorem 4.8,
+  and the radical-grid specialization were read. Replacing a small
+  configuration by its grid complement can increase the point count,
+  but it preserves the number of bases. It cannot amplify this number
+  to improve an asymptotic lower construction.
+
+The lattice-ideal direction also has established constructions.
+[Sabariego--Santos](https://arxiv.org/html/0705.3631), Theorems 1.2--1.3,
+give arbitrarily many coherent minimum-distance diagrams for certain
+triple-loop networks. Their displayed family has size
+N=k(k-1), k=q^2+q+2, with q not divisible by three, and 3(q+2)
+such diagrams: this particular lower
+construction has order N^{1/4}. These are graded initial ideals of a
+lattice ideal, a restricted family. The introduction and stated
+theorems were inspected, not the full later proof. Neither the lower
+estimate nor its being smaller than our generic count bounds the total
+number of arbitrary-order bases of those ideals. It is not a new
+construction available to claim here.
+
+#### Decision from this pass
+
+The broader extremal problem is a credible high-upside research target.
+This pass does not establish its strongest current bounds or a new proof
+mechanism. Direct generic-fan transfer fails exactly; grid-complement
+amplification is ruled out by a known theorem. The finite-field estimate
+does not itself close the unrestricted gap.
+
+Do not expand the manuscript around a conjectural generalization or turn
+the counterexample into a substitute result. A successful next step must
+either bound the additional initial staircases caused by evaluation
+dependencies, with a uniform improvement on the general upper bound, or
+construct an infinite family whose growth exceeds the generic order.
+In either case, the relevant later-bound audit must be completed before
+claiming novelty. Candidate 23 and its original contribution assessment
+remain intact; the active goal remains incomplete.
