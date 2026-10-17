@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-10-17",
+  "title": "A new quantitative theorem for smooth exponent geometry",
+  "objective": "Prove a genuinely new quantitative theorem about the exponent-lattice structure underlying fixed-prime smooth-number prefixes, resolving or strictly improving a published counting or algorithmic bound. Produce a complete proof, a precise comparison with the strongest relevant literature, reproducible supporting evidence and an honest paper explaining the mathematical advance.",
+  "status": "active_research_current_status_and_feasibility_audit_pending",
+  "acceptance_criteria": [
+    "State a uniform theorem for an infinite family with an explicit quantitative improvement over the strongest verified published result, or settle a recognized open structural question with a substantive counting or algorithmic consequence.",
+    "Give a complete proof; numerical agreement, isolated examples and routine consequences of known theorems do not satisfy the goal.",
+    "Document the closest prior definitions and theorems, their hypotheses and exactly where the new argument improves them. An unsuccessful search is not evidence of novelty.",
+    "Explain the contribution to an existing mathematical problem without claiming a prime-distribution consequence that has not been proved.",
+    "Prepare a reproducible, internally checked manuscript only after the mathematical and priority checks succeed. Submission readiness and publication are not guaranteed."
+  ],
+  "first_candidate": {
+    "problem": "Determine the asymptotic number of three-dimensional corner cuts of a given cardinality.",
+    "definition": "For d >= 2 and n >= 1, C_d(n) counts distinct sets D = {a in Z_{>=0}^d : w dot a < t} of cardinality n, where each w_i > 0 and the separating hyperplane contains no nonnegative lattice point. Count sets, not their internal orderings or their prime realizations.",
+    "connection_to_project": "A prefix of the smooth-number exponent vectors for distinct primes is a corner cut, using w_i = log(p_i) and a threshold between consecutive products. Counting all corner cuts studies the possible geometry of such prefixes. This is a counting problem, not a faster unranking algorithm or a theorem on prime distribution.",
+    "verified_published_baseline": {
+      "author": "Uli Wagner",
+      "year": 2002,
+      "general_bounds": "For fixed d >= 2: Omega_d(n^(d-1) log n) <= C_d(n) <= O_d((n log n)^(d-1)).",
+      "dimension_two": "C_2(n) = Theta(n log n), attributed in Wagner's abstract to Corteel et al. (1999).",
+      "dimension_three": "Omega(n^2 log n) <= C_3(n) <= O(n^2 (log n)^2).",
+      "verification_scope": "The primary institutional abstract was inspected directly. The full proof and later improvements require an audit; these are verified published bounds, not a claim that they remain the strongest bounds in 2026.",
+      "sources": [
+        "https://doi.org/10.1016/S0196-8858(02)00014-3",
+        "https://research-explorer.ista.ac.at/record/2420"
+      ]
+    },
+    "success_target": "If the gap survives the literature audit, close it or strictly narrow it by a uniform asymptotic bound. A concrete sufficient improvement would be C_3(n) = Omega(n^2 (log n)^(1+delta)) or C_3(n) = O(n^2 (log n)^(2-delta)) for an explicit fixed delta > 0. The ideal outcome is a matching order of growth with a proof mechanism that extends beyond isolated examples.",
+    "current_open_status": "UNVERIFIED. The gap appears in the inspected published baseline. Focused searches have not established its current status.",
+    "proposed_proof_route": {
+      "definition": "For a two-dimensional corner cut T with 1 <= |T| <= n, let F_n(T) count three-dimensional n-point corner cuts B with B intersect {z=0} = T.",
+      "exact_identity": "C_3(n) = sum_{T: 1 <= |T| <= n} F_n(T).",
+      "known_route": "The lifting argument gives at least one completion of each T and hence the lower bound obtained by summing C_2(j) for j <= n.",
+      "attribution": "Restriction, lifting and the possibility of gaining a logarithmic factor from average completion multiplicity are already discussed in Wagner's thesis. The fiber viewpoint alone is not a new contribution.",
+      "next_mathematical_test": "Reconstruct that argument and seek a duplicate-controlled construction with logarithmically many completions on average, or identify a new obstruction supporting a sharper upper bound. A claimed family must include an injectivity or multiplicity proof.",
+      "caution": "Do not conjecture logarithmically many completions for every T: if |T| = n then its only completion is T in the z=0 plane.",
+      "thesis_source": "https://ti.inf.ethz.ch/ew/research/phdtheses/wagner03.pdf",
+      "thesis_doi": "https://doi.org/10.3929/ethz-a-004708408",
+      "thesis_access_status": "The complete Chapter 3 lower-bound, upper-bound and remarks arguments were read through a full-text mirror, with allowance for OCR errors. Direct institutional PDF retrieval still timed out.",
+      "thesis_text_mirror": "https://paperzz.com/doc/7535624/k-sets-and-applications"
+    }
+  },
+  "ordered_milestones": [
+    {
+      "id": "M1",
+      "task": "Audit the strongest current bounds and reconstruct the existing proofs.",
+      "deliverable": "A source-by-source theorem comparison, including Wagner (2002), the thesis discussion, later surveys, cited work by Remond and subsequent corner-cut/pyramidal-partition literature.",
+      "stop_or_redirect": "If the proposed improvement is already known, select a different substantive target without presenting the old bound as an open problem.",
+      "status": "in_progress"
+    },
+    {
+      "id": "M2",
+      "task": "Perform one focused feasibility pass on the three-dimensional counting gap.",
+      "deliverable": "Either a precise new lemma with a proof mechanism that can improve a bound, or a documented failure explaining the collision, multiplicity or geometric obstruction.",
+      "stop_or_redirect": "Do not build an enumeration framework or expand the manuscript without a credible new mechanism. Redirect if the only route repeats known lifting, assumes an unresolved Diophantine estimate or produces isolated examples.",
+      "status": "in_progress"
+    },
+    {
+      "id": "M3",
+      "task": "Prove the quantitative theorem and check the delicate steps independently.",
+      "deliverable": "A uniform proof with explicit quantifiers and error bounds, plus exact computational checks only where they can falsify a claimed combinatorial lemma.",
+      "status": "pending"
+    },
+    {
+      "id": "M4",
+      "task": "Write and audit the paper around the actual advance.",
+      "deliverable": "A complete manuscript, exact priority comparison, reproducible evidence and a candid explanation of usefulness and limitations.",
+      "status": "pending"
+    }
+  ],
+  "preserved_side_results": {
+    "draft": "paper/pyramidal_mobius.tex",
+    "audit": "results/research/pyramidal_paper_audit.json",
+    "treatment": "Preserve the Mobius application, slice counterexamples, recurrence and verified computations as a separate note. They do not satisfy this new quantitative goal. Do not inflate elementary corollaries or use the current checks as counts of all n-point corner cuts."
+  },
+  "policies": {
+    "outbound_messages": "Never send emails, author queries, chat messages or messages to other tasks.",
+    "paywalled_article": "Continue under the user's explicitly authorized provisional assumption that the relevant results in the 2025 Elizalde--Galvan article agree with arXiv:2312.16353v1. Preserve the deferred final-version check; the assumption is not evidence of novelty.",
+    "scope": "Retain the fixed-prime smooth-number rank/unrank kernels and public CLI. Prime applications require a separate theorem using arithmetic information.",
+    "honesty": "A worthwhile result and an honest publishable paper are objectives, not promised outcomes. Record failures and redirect rather than weaken the success criteria."
+  },
+  "working_candidate": {
+    "record": "docs/interleaving_research.md, Candidate 21",
+    "statements": [
+      "A_3(n) = Theta(n^3 (log n)^2), where A_3(n) = sum(j=1..n) C_3(j).",
+      "C_d(n) = Omega_d(n^(d-1) (log n)^2) for each fixed d >= 4."
+    ],
+    "mechanism": "Uniform positive density of primitive triangles in three separated boxes, injectivity into arrangement vertices, a chamber lower bound, disjoint aspect ranges, and Wagner lifting.",
+    "proof_status": "A complete candidate argument is recorded; a second proof audit is pending.",
+    "priority_status": "Unresolved. Compare grid threshold-function counts, primitive-frame counts and subsequent corner-cut literature before claiming an improvement.",
+    "three_dimensional_limit": "This does not prove the exact-size three-dimensional lower bound for every n. If correct, it rules out uniformly lowering the published upper logarithmic exponent.",
+    "evidence": "results/research/corner_cut_growth_checks.json"
+  }
+}

@@ -44,6 +44,47 @@ paper/      LaTeX skeleton and paper-planning notes
 results/    selected certified examples and benchmark summaries
 ```
 
+The [mathematical research note](docs/interleaving_research.md) targets general
+structure and certification for fixed-prime rank/unrank. It separates known
+signature-sequence theory, general occurrence-transform laws, a restricted
+cycle classification, and an obstruction to extending finite pairwise patterns.
+It also derives a theoretical generic unranking baseline from published log
+separation and lattice-counting results. New work must add something beyond
+that baseline. Exact research checks and witnesses are saved; novelty and prime
+distribution applications remain unestablished.
+
+The [refined research goal](results/research/quantitative_goal.json) requires a
+new quantitative theorem, a verified literature gap and a useful mathematical
+consequence before preparing a submission. The first candidate is to close or
+strictly narrow Wagner's published logarithmic gap in the number of
+three-dimensional corner cuts, the shapes underlying smooth exponent prefixes.
+The first milestone is to check the strongest current bounds and reconstruct
+the existing proofs. The gap's current status and the proposed route's
+feasibility remain unverified; neither novelty nor a breakthrough is promised.
+
+A multiscale argument is now recorded for audit in the research note. It
+would give a sharp cumulative three-dimensional count and a stronger
+exact-size lower bound in dimensions four and higher. Its primitive-triangle
+construction has exact finite checks; the uniform proof and priority
+comparison still require review. This is a candidate result, not an
+established new theorem or a completed paper.
+
+The existing structural results are preserved as a separate note about the
+geometry and containment intervals of pyramidal partitions. Applying Edelman's
+region-poset theorem gives a cutting-layer formula for their Mobius function
+in every dimension, addressing an observation in an Elizalde--Galvan preprint.
+It also gives a subpartition-counting recurrence over removable exposed faces,
+with at most linearly many contributing faces at each three-dimensional top.
+This is a local structural bound, not a claimed faster overall enumeration method.
+An infinite family also refutes the coordinate-slice recognition conjecture
+in Galvan's 2023 thesis: triangular sections need not fit one cutting plane.
+The [paper draft](paper/pyramidal_mobius.tex), exact checks of 27,100 intervals,
+and 1,280 slice certificates are saved. These do not meet the new quantitative
+goal. The draft is not submission-ready:
+the final published version and
+later literature still need comparison. The preceding integer prefix-compression
+bound is retained as background; no faster rank/unrank method is claimed.
+
 ## Build
 
 Requirements:

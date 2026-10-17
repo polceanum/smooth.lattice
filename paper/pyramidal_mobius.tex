@@ -1,0 +1,567 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=28mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\K}{\mathcal K}
+\newcommand{\A}{\mathcal A}
+\newcommand{\NN}{\mathbb Z_{\geq0}}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\bd}{\partial_{\min}}
+\newcommand{\affdim}{\operatorname{affdim}}
+\newcommand{\codim}{\operatorname{codim}}
+\title{Local separation and M\"obius inversion for pyramidal partitions}
+\author{}
+\date{17 October 2026}
+\begin{document}
+\maketitle
+\begin{center}
+\small\textbf{Research draft: priority audit incomplete; not for submission.}
+\end{center}
+
+\begin{abstract}
+A pyramidal partition is a finite subset of the nonnegative integer lattice
+separated from its complement by a hyperplane. We give an infinite family of
+three-dimensional plane partitions whose coordinate-plane sections are all
+triangular although the full partition is not pyramidal. An equal-sum pair
+obstruction disproves the slice criterion stated in Galv\'an's 2023 thesis.
+We also represent every containment
+interval of these partitions as a lower interval in the region poset of a finite
+central hyperplane arrangement. Applying Edelman's M\"obius-function theorem
+gives an explicit formula in every dimension: a value is nonzero exactly when
+the interval adds one complete lattice layer on a positive cutting hyperplane;
+its sign is determined by the affine dimension of that layer. The criterion
+reduces evaluation to rational linear feasibility and rank, without enumerating
+the interval. As a consequence, the number of pyramidal subpartitions satisfies
+an alternating recurrence over removable exposed faces; in dimension three
+only linearly many terms can contribute at each top partition.
+Exact checks on 27,100 finite intervals support the implementation.
+The arrangement theorem is established prior work; the precise application and
+its priority require the audit stated at the end of this draft.
+\end{abstract}
+
+\section{Two questions about positive lattice cuts}
+
+Fix $k\geq1$. A \emph{corner cut}, or \emph{pyramidal partition}, is a finite set
+\[
+ D(w,t)=\{a\in\NN^k:w\cdot a<t\},\qquad w\in\RR_{>0}^k,
+\]
+where the cutting hyperplane contains no lattice point. We include the empty
+cut and order the resulting set $\K_k$ by inclusion. A weak cutoff gives the
+same collection of finite sets, by a small change of threshold. Translation
+by $(1,\ldots,1)$ identifies this convention with positive-coordinate
+definitions. Corner cuts were studied by Onn and Sturmfels~\cite{OS}.
+
+In dimension two these sets are triangular partitions. Every coordinate-plane
+section of a three-dimensional corner cut is triangular or empty, since fixing
+one coordinate in its defining inequality leaves positive weights on the other
+two. Conjecture~4.1 of Galv\'an's thesis~\cite{GalvanThesis}, p.~51, asks
+whether this necessary condition is sufficient for a plane partition.
+Theorem~\ref{thm:slices} gives a uniform counterexample. Thus separate
+two-dimensional cutting lines need not admit a common three-dimensional plane.
+The obstruction uses elementary convex separation; we do not claim a new
+separation criterion.
+
+Every interval $[A,B]$ is finite, being a collection of subsets of $B$.
+Its incidence M\"obius function is defined by
+\[
+ \mu(A,A)=1,\qquad
+ \mu(A,B)=-\sum_{A\subseteq D\subsetneq B}\mu(A,D)\quad(A\subsetneq B),
+\]
+with $D$ ranging over corner cuts. This is not the arithmetic M\"obius function.
+Section~8.2 of the Elizalde--Galv\'an preprint~\cite{EG} reports experimental
+evidence for values in $\{-1,0,1\}$ in dimension three. The following formula
+addresses that observation in all dimensions by applying an older theorem.
+
+\begin{theorem}\label{thm:main}
+Let $A\subsetneq B$ in $\K_k$ and $U=B\setminus A$. Then $\mu(A,B)\ne0$
+if and only if there exist $w\in\RR_{>0}^k$ and $t\in\RR$ such that
+\begin{equation}\label{eq:layer}
+ \begin{cases}
+ w\cdot a<t & (a\in A),\\
+ w\cdot u=t & (u\in U),\\
+ w\cdot b>t & (b\in\NN^k\setminus B).
+ \end{cases}
+\end{equation}
+When this holds,
+\begin{equation}\label{eq:mu}
+ \mu(A,B)=(-1)^{1+\affdim(U)}.
+\end{equation}
+In particular, all values belong to $\{-1,0,1\}$ for every $k$.
+\end{theorem}
+
+The condition says that $A$ consists of the points strictly below one positive
+cutting hyperplane and $B$ additionally contains its entire lattice layer.
+No lattice assumption on the containment poset is needed.
+
+\section{Triangular sections do not imply a pyramidal partition}
+
+For a finite downset $D\subset\NN^3$, a coordinate-plane section is obtained
+by fixing one coordinate and retaining the other two in their original order.
+
+\begin{theorem}\label{thm:slices}
+For every integer $m\geq1$ there is a downset $D_m\subset\NN^3$ of
+cardinality $4m+5$ such that every coordinate-plane section is a corner cut,
+but $D_m$ is not separated from its complement by any affine hyperplane.
+The same failure of recognition by coordinate two-dimensional sections occurs
+in every dimension $k\geq3$.
+\end{theorem}
+\begin{proof}
+Define $D_m$ by its $z$-height matrix, with columns indexed by $x=0,1$
+and rows by $y=0,1,2$:
+\[
+ H_m=\begin{pmatrix}2m+2&m\\m+1&1\\1&0\end{pmatrix},\qquad
+ D_m=\{(x,y,z):0\leq z<H_m(y,x)\}.
+\]
+All other heights are zero. The heights decrease in each coordinate, so this
+is a downset; their sum is $4m+5$.
+
+Table~\ref{tab:slices} gives positive integer weights $c$ and twice a threshold
+$2t$ for every nonempty section. In each row the section is exactly
+$\{v\in\NN^2:c\cdot v<t\}$. For example, at $x=0$ the inequality
+$(2m+1)y+2z<(8m+5)/2$ allows $2m+2,m+1,1$ values of $z$ at
+$y=0,1,2$, respectively, and no values at larger $y$.
+The other rows follow by the same integer inequalities, or directly from
+the listed heights. Every twice-threshold is odd, so no lattice point
+lies on a cutting line. All omitted sections are empty and use $c=(1,1)$,
+$t=-1/2$.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lll}
+\toprule
+fixed coordinate & remaining weights $c$ & $2t$\\
+\midrule
+$x=0$ & $(2m+1,2)$ & $8m+5$\\
+$x=1$ & $(2m-1,2)$ & $4m-1$\\
+$y=0$ & $(2m+3,2)$ & $8m+5$\\
+$y=1$ & $(m,1)$ & $2m+1$\\
+$y=2$ & $(1,1)$ & $1$\\
+$z=0$ & $(3,2)$ & $11$\\
+$1\leq z<m$ & $(1,1)$ & $3$\\
+$z=m$ & $(2,1)$ & $3$\\
+$m<z\leq2m+1$ & $(1,1)$ & $1$\\
+\bottomrule
+\end{tabular}
+\caption{Exact cutting certificates for the sections of $D_m$.
+Remaining coordinates are in their original order.}\label{tab:slices}
+\end{table}
+
+On the other hand, the points
+\[
+ a=(0,0,2m+1),\quad d=(1,1,0)
+\]
+belong to $D_m$, whereas
+\[
+ b=(1,0,m),\quad c=(0,1,m+1)
+\]
+do not. They satisfy $a+d=b+c$. If a strict affine cutting inequality
+contained $a,d$ and excluded $b,c$, summing it over each pair would give
+contradictory inequalities for the same vector sum. Equivalently their two
+segments meet at $(1/2,1/2,m+1/2)$. Hence even a separator without a
+positivity restriction is impossible.
+
+For $k>3$, take $D_m\times\{0\}^{k-3}$. The same four points rule out
+separation. A coordinate two-dimensional section is empty, a section from the
+three-dimensional example, a finite initial segment on one coordinate axis,
+or a singleton. Each is a two-dimensional corner cut: for an axis segment,
+choose the other weight sufficiently large. This proves the extension.
+\end{proof}
+
+For $m=1$ the example has nine points and height matrix
+$\left(\begin{smallmatrix}4&1\\2&1\\1&0\end{smallmatrix}\right)$.
+We make no minimality claim. The conclusion directly contradicts
+Conjecture~4.1 as stated in the thesis; priority relative to later work
+remains subject to the audit below. It does not say that every proper
+higher-dimensional section of the embedded examples is pyramidal.
+
+\section{A finite arrangement for each interval}
+
+For a finite downset $B\subset\NN^k$, let
+\[
+ E=\bd B=\min(\NN^k\setminus B)
+\]
+denote the minimal excluded border, with respect to coordinatewise order.
+Every point outside $B$ dominates an element of $E$. The border is finite:
+if $B\ne\varnothing$, every border point is $b+e_i$ for some $b\in B$.
+For the empty set, the border consists of the origin.
+
+Consider the following finite central arrangement in $V=\RR^{k+1}$, with
+coordinates $(w,t)$:
+\begin{equation}\label{eq:arrangement}
+ \A_B=\{w_i=0:1\leq i\leq k\}
+ \ \cup\ \{h_a=0:a\in B\cup E\},\qquad h_a(w,t)=w\cdot a-t.
+\end{equation}
+It is essential, since the coordinate normals and any normal $(a,-1)$ span $V$.
+A region is a connected component of the complement of the hyperplanes.
+Its strict sign vector determines it uniquely, since each sign cell is convex.
+
+For a base region $R_0$, let $S(R_0,R)$ be the set of hyperplanes separating
+$R_0$ and $R$. The \emph{region poset} $P(\A_B,R_0)$ orders regions by
+inclusion of these separating sets.
+
+\begin{lemma}\label{lem:interval}
+For $A\subseteq B$ in $\K_k$, the interval $[A,B]$ is isomorphic to a lower
+interval $[R_A,R_B]$ in $P(\A_B,R_A)$.
+\end{lemma}
+
+\begin{proof}
+Strict cutting parameters for $A$ and $B$ define regions $R_A$ and $R_B$.
+All coordinate signs are positive. For a point $a\in B\cup E$, the sign
+of $h_a$ is negative precisely when $a$ belongs to the cut. Hence
+\[
+ S(R_A,R_B)=\{h_u=0:u\in B\setminus A\}.
+\]
+A region $R$ in the indicated lower interval therefore has $w_i>0$, has
+$h_a<0$ for $a\in A$, and has $h_b>0$ for $b\in E$. Let $(w,t)\in R$.
+The set $D(w,t)$ is finite and contains $A$. If $b\notin B$, choose
+$e\in E$ with $e\leq b$. Positivity gives
+$w\cdot b-t\geq w\cdot e-t>0$, so $D(w,t)\subseteq B$.
+These inequalities also show that its cutting hyperplane has no lattice
+point: points of $B$ have specified nonzero signs, and all other points
+have positive signs.
+
+Conversely, every cut $D$ with $A\subseteq D\subseteq B$ gives a strict
+sign vector for \eqref{eq:arrangement}, and thus exactly one region in
+$[R_A,R_B]$. Its separating set consists of the hyperplanes indexed by
+$D\setminus A$. The two maps are inverse and preserve inclusion.
+\end{proof}
+
+\section{Edelman's facial criterion}
+
+We use the following established result, in the notation above.
+Edelman's Theorem~1.11~\cite{Edelman} states that $\mu(R_0,R)$ is zero
+unless $S(R_0,R)$ is exactly the set of arrangement hyperplanes containing
+a nonempty face $F$ of $\overline{R_0}$. In that case its value is
+$(-1)^{\codim F}$. Here a face includes the closed region itself.
+The result applies to the essential arrangement \eqref{eq:arrangement}.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Use Lemma~\ref{lem:interval}, with $U=B\setminus A$.
+If the M\"obius value is nonzero, Edelman's criterion gives a face $F$
+whose containing hyperplanes are exactly $\{h_u=0:u\in U\}$.
+At a point in $\operatorname{relint}F$, every other arrangement sign
+remains the strict sign of $R_A$. In particular $w_i>0$, $h_a<0$ for
+$a\in A$, and $h_b>0$ for $b\in E$. The border argument in the lemma
+extends the last inequality to all points outside $B$, yielding
+\eqref{eq:layer}.
+
+Conversely, suppose $(w,t)$ satisfies \eqref{eq:layer}. It has zeros
+exactly on the arrangement hyperplanes indexed by $U$, and the strict
+$R_A$ signs elsewhere. It lies in $\overline{R_A}$: adding $\epsilon$
+times a point of $R_A$ makes all the zero signs agree with $R_A$, while
+the other signs persist for sufficiently small $\epsilon>0$.
+Consequently it belongs to the relative interior of a face $F$ of
+$\overline{R_A}$ contained in exactly the hyperplanes indexed by $U$.
+Edelman's criterion applies.
+
+The normals of these hyperplanes are $(u,-1)$, $u\in U$. Their rank is
+$1+\affdim(U)$: subtract one fixed row $(u_0,-1)$ from the other rows.
+This rank is $\codim F$, proving \eqref{eq:mu}. The face has dimension
+at least one, since it contains a ray with strictly positive $w$.
+\end{proof}
+
+\begin{corollary}
+Let $B_m=\{a\in\NN^k:\sum_i a_i\leq m\}$ for $m\geq0$. For $m\geq1$,
+\[
+ \mu(B_{m-1},B_m)=(-1)^k.
+\]
+\end{corollary}
+\begin{proof}
+Take $w=(1,\ldots,1)$ and $t=m$. The layer of degree $m$ has affine
+dimension $k-1$, including when $k=1$.
+\end{proof}
+
+For example, in dimension three the interval $[B_1,B_2]$ adds six points
+and has value $-1$, determined by their two-dimensional affine span.
+The exact verifier finds 26 cuts in this interval; it is not a Boolean
+interval on six independently selectable points.
+
+The word ``entire'' in the layer criterion is necessary. In dimension two,
+take $A=B_1$ and $B=A\cup\{(2,0),(1,1)\}$. Both are corner cuts, but
+their difference is only part of the line $x+y=2$: the excluded point
+$(0,2)$ lies on the same line. Equality on the two added points forces
+$w_1=w_2$, violating the strict inequality at $(0,2)$. Thus $\mu(A,B)=0$.
+Indeed the interval is the three-element chain obtained by adding $(2,0)$
+before $(1,1)$. Adding the entire degree-two line instead gives value $+1$.
+
+\begin{proposition}\label{prop:fouratoms}
+There is a three-dimensional interval with four atoms and M\"obius value
+$-1$ whose top is not the join of any two or three atoms. Both endpoints
+are exponent prefixes for the prime set $\{3,5,13\}$.
+\end{proposition}
+\begin{proof}
+Let $A=\{(x,y,z)\in\NN^3:2x+3y+5z<11\}$ and
+$B=\{(x,y,z)\in\NN^3:2x+3y+5z\leq11\}$. The layer $B\setminus A$ is
+\[
+ (0,2,1),\quad(1,3,0),\quad(3,0,1),\quad(4,1,0).
+\]
+These points form a parallelogram, with the sum of its first and fourth
+points equal to the sum of its second and third points. A small perturbation
+of the cutting hyperplane realizes exactly the strictly linearly separable
+subsets of these four points. All subsets occur except the two opposite
+pairs. Indeed adjacent pairs and all singletons and triples are separated
+by lines in the plane of the layer, while opposite pairs have intersecting
+convex hulls. A sufficiently small perturbation preserves every strict
+inequality off the layer, as can be checked on the finite borders.
+
+Thus the interval has 14 elements and four atoms. Every three atoms have
+their three-point subset as a proper upper bound, so the top cannot be
+the join of two or three atoms. The M\"obius recurrence gives $-1$ at
+each singleton, $+1$ at each of the four adjacent pairs, zero at each
+triple, and $-1$ at the top. This agrees with Theorem~\ref{thm:main}.
+
+Finally, $|A|=20$ and $|B|=24$. Exact increasing smooth enumeration for
+$\{3,5,13\}$ gives the values at ranks 20 through 25 as
+\[
+ 243,\ 325,\ 351,\ 375,\ 405,\ 507.
+\]
+The first 20 exponent vectors are $A$, and the next four are the layer
+displayed above. Independently of heap enumeration, direct evaluation on
+the maximal elements of $A$ gives maximum product $243$, and evaluation
+on the minimal excluded border of $B$ gives minimum product $507$.
+The four layer products lie strictly between them. Monotonicity of
+positive prime powers extends these border inequalities to all included
+and excluded vectors. The verifier saves both finite border certificates,
+establishing the claimed realization.
+\end{proof}
+
+This also contradicts the value rule in Conjecture~4.5 of
+Galv\'an's thesis~\cite{GalvanThesis}, p.~60: that rule assigns zero
+when the interval is neither a cover nor has its top generated by two
+or three atoms. The displayed top has value $-1$ and satisfies none of
+those conditions. The thesis also conjectures that the full poset is a
+lattice; its failure was already reported in the later preprint~\cite{EG}.
+We claim no new discovery of that failure.
+
+\section{A recurrence over removable exposed faces}
+
+For $B\in\K_k$, put $I(B)=|\{D\in\K_k:D\subseteq B\}|$, including
+the empty cut, so $I(\varnothing)=1$. For nonempty $B$, let $P=\operatorname{conv}B$.
+Call a nonempty face $F$ of $P$ \emph{admissible} if some $w>0$ satisfies
+\begin{equation}\label{eq:admissible}
+ F=\{x\in P:w\cdot x=t\},\qquad
+ t=\max_{a\in B}w\cdot a<\min_{e\in\bd B}w\cdot e.
+\end{equation}
+Here the whole polytope is permitted as a face. Write $\mathcal F(B)$ for
+these faces and $U_F=B\cap F$ for their lattice layers.
+
+\begin{corollary}\label{cor:recurrence}
+For every nonempty $B\in\K_k$,
+\begin{equation}\label{eq:recurrence}
+ I(B)=1+\sum_{F\in\mathcal F(B)}(-1)^{\dim F}I(B\setminus U_F).
+\end{equation}
+The proper nonzero entries $\mu(A,B)$ correspond bijectively to
+$\mathcal F(B)$. If $n=|B|$, their number is at most
+$\sum_{j=1}^{\min(k,n)}\binom{n}{j}$. For $k=3$ it is at most $6n$;
+if $P$ is three-dimensional with $v$ vertices, the sharper bound is $6v-10$.
+\end{corollary}
+\begin{proof}
+Theorem~\ref{thm:main} identifies a nonzero proper interval with a layer
+$U=B\setminus A$ maximizing a positive linear functional on $B$ and strictly
+below its excluded border. Its convex hull is an admissible exposed face,
+and $U=B\cap\operatorname{conv}U$. Conversely an admissible face satisfies
+the theorem's layer criterion. A threshold just below its score shows that
+$B\setminus U_F$ is a corner cut. The two constructions are inverse.
+
+M\"obius inversion gives
+\[
+ \sum_{A\subseteq B}\mu(A,B)I(A)
+ =\sum_{D\subseteq B}\ \sum_{D\subseteq A\subseteq B}\mu(A,B)=1,
+\]
+where every summation is over corner cuts. Isolating $A=B$ and substituting
+the layer formula gives \eqref{eq:recurrence}.
+
+Every admissible face has affine dimension at most $k-1$, and has an affine
+basis of at most $k$ points of $B$. It is determined by that basis: for any
+face $F$ of a polytope, $P\cap\operatorname{aff}F=F$. Selecting one basis
+per face therefore gives the stated binomial bound. In three dimensions,
+Euler's relation and $e\leq3v-6$ give $v+e+f=2e+2\leq6v-10$ nonempty
+proper faces of a full-dimensional polytope. If $|B|>1$, the whole $P$
+is not admissible: $B$ contains the origin and a nonzero nonnegative vector,
+on which a positive functional has different values. If $P$ has dimension
+two or one, there are at most $2v$ or two nonempty proper faces, respectively.
+For a singleton there is one admissible face. These cases give $6n$ uniformly.
+\end{proof}
+
+This is standard M\"obius inversion applied to the layer formula, not a new
+inversion theorem. It extends the subpartition recurrence of
+Elizalde--Galv\'an~\cite[Lemma~7.1 in the preprint]{EG} beyond dimension two,
+using all admissible faces rather than a bound on the number of removable
+cells. The bound concerns terms at one top partition; it does not bound the
+number of distinct smaller cuts reached recursively or establish a faster
+global enumeration algorithm.
+
+For fixed $k$, all terms can be found from an explicit list of $B$ by
+enumerating affine bases of size at most $k$ among its coordinatewise maximal
+points. For each basis $S$, form $U=B\cap\operatorname{aff}S$, remove
+duplicates, and test the strict layer system below for $(B\setminus U,B)$.
+Every admissible layer occurs, because positivity makes its points
+coordinatewise maximal. Exact affine rank and rational linear programming
+give a polynomial-time procedure in the explicit input for fixed dimension.
+The supplied verifier uses Fourier--Motzkin elimination and makes no such
+claim in variable dimension.
+
+For example, let $B=\{(x,y,z)\in\NN^3:x+y+z\leq2\}$. Its admissible
+faces are the three vertices, three edges and triangular face on $x+y+z=2$.
+The contained-cut counts after deleting these layers are respectively
+$32,18,9$, constant within each face dimension. Thus
+\[
+ I(B)=1+3\cdot32-3\cdot18+9=52.
+\]
+An edge layer here has three lattice points, and the face layer has six;
+removing only the vertices of those faces would give different sets.
+
+\section{Evaluation and reproducible checks}
+
+The formula does not require constructing the containment interval.
+Given explicit point lists for $A\subsetneq B$, fix $u_0\in B\setminus A$.
+Condition \eqref{eq:layer} is equivalent to
+\begin{align*}
+ w_i&>0 &&(1\leq i\leq k),\\
+ (u_0-a)\cdot w&>0 &&(a\in\max A),\\
+ (b-u_0)\cdot w&>0 &&(b\in\bd B),\\
+ (u-u_0)\cdot w&=0 &&(u\in B\setminus A).
+\end{align*}
+Positivity extends the inequalities from the two borders to the full
+sets. Since all strict inequalities are homogeneous and finite in number,
+one may replace their right sides by $1$ after a common positive scaling.
+This gives a rational linear program in $k$ variables. A rational rank
+calculation determines the sign. The border has at most $k|B|$ candidates,
+so both computations have polynomial encoding size in the explicit input.
+This input convention does not describe a large prefix merely by a binary rank.
+
+The dependency-free Python artifact
+\texttt{scripts/run\_pyramidal\_poset\_checks.py} enumerates every downset
+inside each top in Table~\ref{tab:checks}. It recognizes corner cuts by
+exact strict separation and computes every comparable interval value by
+the defining M\"obius recurrence. It compares these values with the
+cutting-layer criterion. Feasibility uses rational Fourier--Motzkin
+elimination, with integer witnesses verified by substitution. Independent
+vertex enumeration cross-checks 233 nonempty downsets in the smaller
+fixtures. This implementation is a small-case verifier; its running time
+is not claimed polynomial in dimension.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrr}
+\toprule
+$k$ & top degree & downsets & corner cuts & intervals\\
+\midrule
+1&6&8&8&36\\
+2&4&132&48&797\\
+3&2&96&52&736\\
+3&3&2498&233&11799\\
+4&2&1338&300&13732\\
+\bottomrule
+\end{tabular}
+\caption{Exhaustive checks inside the tops $B_m$. All 27,100 comparable
+intervals agree with the formula. This is not an enumeration of all cuts
+of a prescribed cardinality.}\label{tab:checks}
+\end{table}
+
+Run from the repository root:
+\begin{quote}\ttfamily\small
+python3 -B scripts/run\_pyramidal\_poset\_checks.py
+\end{quote}
+The saved JSON file \texttt{results/research/pyramidal\_poset.json}
+contains the exact top points, masks of every recognized cut, all interval
+values, representative cutting witnesses, command, Python version and
+source hashes. The checks support the implementation; the uniform result
+is the proof above.
+
+The same command verifies the slice family for $1\leq m\leq32$.
+It checks $1,280$ nonempty coordinate sections, their supplied integer
+certificates against included points and the entire minimal excluded border,
+and independently computed rational cutting witnesses. It also verifies
+global infeasibility and the equal-sum obstruction for every parameter.
+The saved file contains all point sets and certificates. These finite checks
+verify the implementation; Table~\ref{tab:slices} and the balanced pairs
+prove Theorem~\ref{thm:slices} for every $m$.
+
+For every recognized top in the five fixtures, the verifier also enumerates
+candidate removable faces from affine bases, independently of the list of
+subcuts. It compares the recovered terms with the entire nonzero M\"obius
+column, and evaluates \eqref{eq:recurrence} against the direct number of
+contained cuts. Exact face weights, affine bases, coefficients and counts
+are saved with the report. Thus omission of a contributing face, as well
+as an incorrect count or sign, causes a check to fail.
+
+\section{Connection to the originating sequence problem}
+
+For distinct primes $p_1,\ldots,p_k$, write the increasing smooth numbers
+as $p_1^{a_1}\cdots p_k^{a_k}$. Their first $N$ exponent vectors form
+a corner cut for $w_i=\log p_i$, with a threshold between consecutive
+scores. Thus their prefix sets belong to $\K_k$. The theorem concerns
+the containment structure across such weighted exponent cuts, rather than
+only the chain obtained from one fixed prime set.
+
+The argument uses positivity and linear ordering, not a further arithmetic
+property of primes. It proves no improvement in locating primes and no
+new random-access complexity bound for smooth numbers. Its intended use
+is the geometric description and evaluation of intervals of pyramidal
+partitions, an existing combinatorial question.
+
+\section*{Priority and readiness audit}
+
+\begin{quote}
+\small\textbf{Working assumption (17 October 2026).}
+At the user's request, ongoing work assumes that the relevant results in the
+2025 journal article agree with the accessible 2023 v1 preprint. This is a
+provisional assumption, not a verified comparison. The paywall does not halt
+research under this assumption. Before submission, compare the
+\href{https://doi.org/10.1016/j.aam.2024.102807}{published article}
+with \href{https://arxiv.org/abs/2312.16353v1}{arXiv:2312.16353v1},
+especially the M\"obius results in Section~4, Lemma~7.1, the pyramidal
+discussion in Section~8.2, and any added references or acknowledgements.
+\end{quote}
+
+The candidate contributions are the slice counterexample family of
+Theorem~\ref{thm:slices}, Lemma~\ref{lem:interval}, and the explicit
+single-layer interpretation of Edelman's theorem for pyramidal partitions.
+Edelman's region-poset formula is not a new result of this project.
+The motivating observation has been checked in the 2023 preprint;
+the relevant definitions, conjectures and conclusion of Galv\'an's full
+2023 thesis have now been inspected. The constructions refute its stated
+Conjectures~4.1 and~4.5. The full 2025 journal text and subsequent work still
+require comparison before a claim of a previously unrecorded resolution is made.
+General interval homotopy, a new arrangement theorem, and prime-distribution
+consequences are not claimed. Authorship, disclosure of computational and
+AI assistance, and journal requirements must be settled before submission.
+This draft is therefore not yet submission-ready.
+
+\begin{thebibliography}{9}
+\bibitem{Edelman}
+P.~H. Edelman,
+A partial order on the regions of $\RR^n$ dissected by hyperplanes,
+\emph{Trans. Amer. Math. Soc.} \textbf{283} (1984), 617--631.
+\href{https://doi.org/10.1090/S0002-9947-1984-0737888-6}{doi:10.1090/S0002-9947-1984-0737888-6}.
+
+\bibitem{EG}
+S.~Elizalde and A.~B. Galv\'an,
+Triangular partitions: enumeration, structure, and generation,
+\emph{Adv. Appl. Math.} \textbf{163} (2025), 102807.
+\href{https://doi.org/10.1016/j.aam.2024.102807}{doi:10.1016/j.aam.2024.102807}.
+The version inspected here is
+\href{https://arxiv.org/abs/2312.16353v1}{arXiv:2312.16353v1} (2023),
+especially Section~8.2.
+
+\bibitem{OS}
+S.~Onn and B.~Sturmfels,
+Cutting corners,
+\emph{Adv. Appl. Math.} \textbf{23} (1999), 29--48.
+\href{https://doi.org/10.1006/aama.1999.0645}{doi:10.1006/aama.1999.0645}.
+
+\bibitem{GalvanThesis}
+A.~B. Galv\'an P\'erez-Ilzarbe,
+\emph{Properties of triangular partitions and their generalizations},
+bachelor's thesis, Universitat Polit\`ecnica de Catalunya, 2023.
+\href{https://upcommons.upc.edu/entities/publication/99559712-a4e1-46ae-99b3-88546b90b4f3}{UPC repository},
+Conjectures~4.1 and~4.5, pp.~51 and~60.
+\end{thebibliography}
+\end{document}
