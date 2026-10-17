@@ -2,24 +2,25 @@
   "task": "exact finite exponent interleaving exploration",
   "scope": "Finite checks of identities proved in docs/interleaving_research.md; not an audit of fast kernels or evidence of a new prime bound.",
   "command": "python3 scripts/run_interleaving_research.py --ranks 20000",
-  "git_commit": "1047a97a33a1640afdc48507a8d35d505574a3cf",
+  "git_commit": "b89d9ef6490e8d11c20dee7542eac04ff4b92fce",
   "git_status": [
-    " M docs/interleaving_research.md"
+    " M docs/interleaving_research.md",
+    " M scripts/run_interleaving_research.py"
   ],
   "git_status_scope": "Only the two hashed source files; unrelated workspace paths are private.",
   "source_sha256": {
-    "scripts/run_interleaving_research.py": "e9a970352fb84d1d2305567d9052a69f9c24e07cc423fa58fb0c5b76bba6fd70",
-    "docs/interleaving_research.md": "24c712e15e116fde51ebbfe6a9898cbb7d8bbc23c535d0bc3de79b922a5652a5"
+    "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
+    "docs/interleaving_research.md": "48b448716c5d5846b7619a07d29f1d6dfff692500758058f7c1f7617b6628c93"
   },
   "python_version": "3.13.3 (main, Apr  8 2025, 13:54:08) [Clang 16.0.0 (clang-1600.0.26.6)]",
   "research_decision": {
     "feasibility": "restricted classification and universal eventual word periods proved",
     "novelty": "unresolved; different from specific cited moves is not proof of novelty",
     "primary_direction": "general structure and certification of fixed-prime rank/unrank",
-    "active_goal_candidate": "new quantitative corner-cut growth theorem; multiscale cumulative three-dimensional argument and exact-size higher-dimensional consequence recorded for proof and priority audit; structural note retained separately",
+    "active_goal_candidate": "uniform matching corner-cut count in every fixed dimension; ordered-prefix and sharp prime-height candidates retained for proof and priority audit; structural note remains separate",
     "sequence_direction": "general count-map reconstruction, period and transient laws",
     "expansion": "hold specialized cycle catalogues and paper claims; require a new structural or quantitative contribution beyond known general methods",
-    "prime_application": "unproved; the cycle theorem also applies to composite bases"
+    "prime_application": "finite-prefix prime-size realization recorded separately; no distribution or fixed-prime unranking consequence. The cycle theorem also applies to composite bases"
   },
   "models": {
     "primes_2_3": {
@@ -89638,6 +89639,5754 @@
         ]
       }
     ]
+  },
+  "monomial_prefix_realization": {
+    "cases_checked": 90,
+    "dimensions": [
+      2,
+      4
+    ],
+    "effective_dimensions": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "cases": [
+      {
+        "order": "lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "length": 1,
+        "prefix": [
+          [
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          1
+        ],
+        "cutoff_score": 0,
+        "next_integer_score": 1,
+        "axis_collision_levels": [
+          1
+        ]
+      },
+      {
+        "order": "lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "length": 2,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "weights": [
+          2,
+          1
+        ],
+        "cutoff_score": 1,
+        "next_integer_score": 2,
+        "axis_collision_levels": [
+          2
+        ]
+      },
+      {
+        "order": "lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "length": 3,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "weights": [
+          3,
+          1
+        ],
+        "cutoff_score": 2,
+        "next_integer_score": 3,
+        "axis_collision_levels": [
+          3
+        ]
+      },
+      {
+        "order": "lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "length": 5,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "weights": [
+          5,
+          1
+        ],
+        "cutoff_score": 4,
+        "next_integer_score": 5,
+        "axis_collision_levels": [
+          5
+        ]
+      },
+      {
+        "order": "lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "length": 8,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            7
+          ]
+        ],
+        "weights": [
+          8,
+          1
+        ],
+        "cutoff_score": 7,
+        "next_integer_score": 8,
+        "axis_collision_levels": [
+          8
+        ]
+      },
+      {
+        "order": "lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "length": 13,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            9
+          ],
+          [
+            0,
+            10
+          ],
+          [
+            0,
+            11
+          ],
+          [
+            0,
+            12
+          ]
+        ],
+        "weights": [
+          13,
+          1
+        ],
+        "cutoff_score": 12,
+        "next_integer_score": 13,
+        "axis_collision_levels": [
+          13
+        ]
+      },
+      {
+        "order": "reverse_variable_lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "length": 1,
+        "prefix": [
+          [
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          1
+        ],
+        "cutoff_score": 0,
+        "next_integer_score": 1,
+        "axis_collision_levels": [
+          1
+        ]
+      },
+      {
+        "order": "reverse_variable_lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "length": 2,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          2
+        ],
+        "cutoff_score": 1,
+        "next_integer_score": 2,
+        "axis_collision_levels": [
+          2
+        ]
+      },
+      {
+        "order": "reverse_variable_lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "length": 3,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          3
+        ],
+        "cutoff_score": 2,
+        "next_integer_score": 3,
+        "axis_collision_levels": [
+          3
+        ]
+      },
+      {
+        "order": "reverse_variable_lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "length": 5,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          5
+        ],
+        "cutoff_score": 4,
+        "next_integer_score": 5,
+        "axis_collision_levels": [
+          5
+        ]
+      },
+      {
+        "order": "reverse_variable_lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "length": 8,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          8
+        ],
+        "cutoff_score": 7,
+        "next_integer_score": 8,
+        "axis_collision_levels": [
+          8
+        ]
+      },
+      {
+        "order": "reverse_variable_lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "length": 13,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            9,
+            0
+          ],
+          [
+            10,
+            0
+          ],
+          [
+            11,
+            0
+          ],
+          [
+            12,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          13
+        ],
+        "cutoff_score": 12,
+        "next_integer_score": 13,
+        "axis_collision_levels": [
+          13
+        ]
+      },
+      {
+        "order": "graded_lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "length": 1,
+        "prefix": [
+          [
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          1
+        ],
+        "cutoff_score": 0,
+        "next_integer_score": 1,
+        "axis_collision_levels": [
+          1
+        ]
+      },
+      {
+        "order": "graded_lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "length": 2,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "weights": [
+          2,
+          1
+        ],
+        "cutoff_score": 1,
+        "next_integer_score": 2,
+        "axis_collision_levels": [
+          2
+        ]
+      },
+      {
+        "order": "graded_lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "length": 3,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "weights": [
+          3,
+          2
+        ],
+        "cutoff_score": 3,
+        "next_integer_score": 4,
+        "axis_collision_levels": [
+          6
+        ]
+      },
+      {
+        "order": "graded_lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "length": 5,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "weights": [
+          3,
+          2
+        ],
+        "cutoff_score": 5,
+        "next_integer_score": 6,
+        "axis_collision_levels": [
+          6
+        ]
+      },
+      {
+        "order": "graded_lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "length": 8,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "weights": [
+          4,
+          3
+        ],
+        "cutoff_score": 10,
+        "next_integer_score": 11,
+        "axis_collision_levels": [
+          12
+        ]
+      },
+      {
+        "order": "graded_lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "length": 13,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        "weights": [
+          5,
+          4
+        ],
+        "cutoff_score": 18,
+        "next_integer_score": 19,
+        "axis_collision_levels": [
+          20
+        ]
+      },
+      {
+        "order": "graded_reverse_lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            -1
+          ]
+        ],
+        "length": 1,
+        "prefix": [
+          [
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          1
+        ],
+        "cutoff_score": 0,
+        "next_integer_score": 1,
+        "axis_collision_levels": [
+          1
+        ]
+      },
+      {
+        "order": "graded_reverse_lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            -1
+          ]
+        ],
+        "length": 2,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "weights": [
+          2,
+          1
+        ],
+        "cutoff_score": 1,
+        "next_integer_score": 2,
+        "axis_collision_levels": [
+          2
+        ]
+      },
+      {
+        "order": "graded_reverse_lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            -1
+          ]
+        ],
+        "length": 3,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "weights": [
+          3,
+          2
+        ],
+        "cutoff_score": 3,
+        "next_integer_score": 4,
+        "axis_collision_levels": [
+          6
+        ]
+      },
+      {
+        "order": "graded_reverse_lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            -1
+          ]
+        ],
+        "length": 5,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "weights": [
+          3,
+          2
+        ],
+        "cutoff_score": 5,
+        "next_integer_score": 6,
+        "axis_collision_levels": [
+          6
+        ]
+      },
+      {
+        "order": "graded_reverse_lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            -1
+          ]
+        ],
+        "length": 8,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "weights": [
+          4,
+          3
+        ],
+        "cutoff_score": 10,
+        "next_integer_score": 11,
+        "axis_collision_levels": [
+          12
+        ]
+      },
+      {
+        "order": "graded_reverse_lex",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            -1
+          ]
+        ],
+        "length": 13,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        "weights": [
+          5,
+          4
+        ],
+        "cutoff_score": 18,
+        "next_integer_score": 19,
+        "axis_collision_levels": [
+          20
+        ]
+      },
+      {
+        "order": "elimination",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "length": 1,
+        "prefix": [
+          [
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          1
+        ],
+        "cutoff_score": 0,
+        "next_integer_score": 1,
+        "axis_collision_levels": [
+          1
+        ]
+      },
+      {
+        "order": "elimination",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "length": 2,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "weights": [
+          2,
+          1
+        ],
+        "cutoff_score": 1,
+        "next_integer_score": 2,
+        "axis_collision_levels": [
+          2
+        ]
+      },
+      {
+        "order": "elimination",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "length": 3,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "weights": [
+          3,
+          1
+        ],
+        "cutoff_score": 2,
+        "next_integer_score": 3,
+        "axis_collision_levels": [
+          3
+        ]
+      },
+      {
+        "order": "elimination",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "length": 5,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "weights": [
+          5,
+          1
+        ],
+        "cutoff_score": 4,
+        "next_integer_score": 5,
+        "axis_collision_levels": [
+          5
+        ]
+      },
+      {
+        "order": "elimination",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "length": 8,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            7
+          ]
+        ],
+        "weights": [
+          8,
+          1
+        ],
+        "cutoff_score": 7,
+        "next_integer_score": 8,
+        "axis_collision_levels": [
+          8
+        ]
+      },
+      {
+        "order": "elimination",
+        "dimension": 2,
+        "matrix": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "length": 13,
+        "prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            9
+          ],
+          [
+            0,
+            10
+          ],
+          [
+            0,
+            11
+          ],
+          [
+            0,
+            12
+          ]
+        ],
+        "weights": [
+          13,
+          1
+        ],
+        "cutoff_score": 12,
+        "next_integer_score": 13,
+        "axis_collision_levels": [
+          13
+        ]
+      },
+      {
+        "order": "lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "length": 1,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          1,
+          1
+        ],
+        "cutoff_score": 0,
+        "next_integer_score": 1,
+        "axis_collision_levels": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "order": "lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "length": 2,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "weights": [
+          2,
+          2,
+          1
+        ],
+        "cutoff_score": 1,
+        "next_integer_score": 2,
+        "axis_collision_levels": [
+          2,
+          2,
+          2
+        ]
+      },
+      {
+        "order": "lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "length": 3,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ]
+        ],
+        "weights": [
+          3,
+          3,
+          1
+        ],
+        "cutoff_score": 2,
+        "next_integer_score": 3,
+        "axis_collision_levels": [
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "order": "lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "length": 5,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            4
+          ]
+        ],
+        "weights": [
+          5,
+          5,
+          1
+        ],
+        "cutoff_score": 4,
+        "next_integer_score": 5,
+        "axis_collision_levels": [
+          5,
+          5,
+          5
+        ]
+      },
+      {
+        "order": "lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "length": 8,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            7
+          ]
+        ],
+        "weights": [
+          8,
+          8,
+          1
+        ],
+        "cutoff_score": 7,
+        "next_integer_score": 8,
+        "axis_collision_levels": [
+          8,
+          8,
+          8
+        ]
+      },
+      {
+        "order": "lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "length": 13,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            7
+          ],
+          [
+            0,
+            0,
+            8
+          ],
+          [
+            0,
+            0,
+            9
+          ],
+          [
+            0,
+            0,
+            10
+          ],
+          [
+            0,
+            0,
+            11
+          ],
+          [
+            0,
+            0,
+            12
+          ]
+        ],
+        "weights": [
+          13,
+          13,
+          1
+        ],
+        "cutoff_score": 12,
+        "next_integer_score": 13,
+        "axis_collision_levels": [
+          13,
+          13,
+          13
+        ]
+      },
+      {
+        "order": "reverse_variable_lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ],
+        "length": 1,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          1,
+          1
+        ],
+        "cutoff_score": 0,
+        "next_integer_score": 1,
+        "axis_collision_levels": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "order": "reverse_variable_lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ],
+        "length": 2,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          2,
+          2
+        ],
+        "cutoff_score": 1,
+        "next_integer_score": 2,
+        "axis_collision_levels": [
+          2,
+          2,
+          2
+        ]
+      },
+      {
+        "order": "reverse_variable_lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ],
+        "length": 3,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          3,
+          3
+        ],
+        "cutoff_score": 2,
+        "next_integer_score": 3,
+        "axis_collision_levels": [
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "order": "reverse_variable_lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ],
+        "length": 5,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            4,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          5,
+          5
+        ],
+        "cutoff_score": 4,
+        "next_integer_score": 5,
+        "axis_collision_levels": [
+          5,
+          5,
+          5
+        ]
+      },
+      {
+        "order": "reverse_variable_lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ],
+        "length": 8,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            4,
+            0,
+            0
+          ],
+          [
+            5,
+            0,
+            0
+          ],
+          [
+            6,
+            0,
+            0
+          ],
+          [
+            7,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          8,
+          8
+        ],
+        "cutoff_score": 7,
+        "next_integer_score": 8,
+        "axis_collision_levels": [
+          8,
+          8,
+          8
+        ]
+      },
+      {
+        "order": "reverse_variable_lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ],
+        "length": 13,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            4,
+            0,
+            0
+          ],
+          [
+            5,
+            0,
+            0
+          ],
+          [
+            6,
+            0,
+            0
+          ],
+          [
+            7,
+            0,
+            0
+          ],
+          [
+            8,
+            0,
+            0
+          ],
+          [
+            9,
+            0,
+            0
+          ],
+          [
+            10,
+            0,
+            0
+          ],
+          [
+            11,
+            0,
+            0
+          ],
+          [
+            12,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          13,
+          13
+        ],
+        "cutoff_score": 12,
+        "next_integer_score": 13,
+        "axis_collision_levels": [
+          13,
+          13,
+          13
+        ]
+      },
+      {
+        "order": "graded_lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "length": 1,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          1,
+          1
+        ],
+        "cutoff_score": 0,
+        "next_integer_score": 1,
+        "axis_collision_levels": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "order": "graded_lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "length": 2,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "weights": [
+          2,
+          2,
+          1
+        ],
+        "cutoff_score": 1,
+        "next_integer_score": 2,
+        "axis_collision_levels": [
+          2,
+          2,
+          2
+        ]
+      },
+      {
+        "order": "graded_lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "length": 3,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "weights": [
+          4,
+          3,
+          2
+        ],
+        "cutoff_score": 3,
+        "next_integer_score": 4,
+        "axis_collision_levels": [
+          12,
+          4,
+          6
+        ]
+      },
+      {
+        "order": "graded_lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "length": 5,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            2
+          ]
+        ],
+        "weights": [
+          5,
+          4,
+          3
+        ],
+        "cutoff_score": 6,
+        "next_integer_score": 7,
+        "axis_collision_levels": [
+          20,
+          15,
+          12
+        ]
+      },
+      {
+        "order": "graded_lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "length": 8,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ],
+        "weights": [
+          7,
+          5,
+          4
+        ],
+        "cutoff_score": 11,
+        "next_integer_score": 12,
+        "axis_collision_levels": [
+          35,
+          28,
+          20
+        ]
+      },
+      {
+        "order": "graded_lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "length": 13,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            2,
+            1
+          ]
+        ],
+        "weights": [
+          10,
+          8,
+          7
+        ],
+        "cutoff_score": 23,
+        "next_integer_score": 24,
+        "axis_collision_levels": [
+          40,
+          70,
+          56
+        ]
+      },
+      {
+        "order": "graded_reverse_lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            -1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        "length": 1,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          1,
+          1
+        ],
+        "cutoff_score": 0,
+        "next_integer_score": 1,
+        "axis_collision_levels": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "order": "graded_reverse_lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            -1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        "length": 2,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "weights": [
+          2,
+          2,
+          1
+        ],
+        "cutoff_score": 1,
+        "next_integer_score": 2,
+        "axis_collision_levels": [
+          2,
+          2,
+          2
+        ]
+      },
+      {
+        "order": "graded_reverse_lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            -1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        "length": 3,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "weights": [
+          4,
+          3,
+          2
+        ],
+        "cutoff_score": 3,
+        "next_integer_score": 4,
+        "axis_collision_levels": [
+          12,
+          4,
+          6
+        ]
+      },
+      {
+        "order": "graded_reverse_lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            -1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        "length": 5,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            2
+          ]
+        ],
+        "weights": [
+          5,
+          4,
+          3
+        ],
+        "cutoff_score": 6,
+        "next_integer_score": 7,
+        "axis_collision_levels": [
+          20,
+          15,
+          12
+        ]
+      },
+      {
+        "order": "graded_reverse_lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            -1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        "length": 8,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            2,
+            0
+          ]
+        ],
+        "weights": [
+          8,
+          7,
+          5
+        ],
+        "cutoff_score": 14,
+        "next_integer_score": 15,
+        "axis_collision_levels": [
+          56,
+          40,
+          35
+        ]
+      },
+      {
+        "order": "graded_reverse_lex",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            -1
+          ],
+          [
+            0,
+            -1,
+            0
+          ]
+        ],
+        "length": 13,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            0,
+            2
+          ]
+        ],
+        "weights": [
+          10,
+          9,
+          7
+        ],
+        "cutoff_score": 24,
+        "next_integer_score": 25,
+        "axis_collision_levels": [
+          90,
+          70,
+          63
+        ]
+      },
+      {
+        "order": "elimination",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "length": 1,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          1,
+          1
+        ],
+        "cutoff_score": 0,
+        "next_integer_score": 1,
+        "axis_collision_levels": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "order": "elimination",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "length": 2,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "weights": [
+          2,
+          1,
+          2
+        ],
+        "cutoff_score": 1,
+        "next_integer_score": 2,
+        "axis_collision_levels": [
+          2,
+          2,
+          2
+        ]
+      },
+      {
+        "order": "elimination",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "length": 3,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "weights": [
+          4,
+          2,
+          3
+        ],
+        "cutoff_score": 3,
+        "next_integer_score": 4,
+        "axis_collision_levels": [
+          4,
+          12,
+          6
+        ]
+      },
+      {
+        "order": "elimination",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "length": 5,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ]
+        ],
+        "weights": [
+          6,
+          2,
+          3
+        ],
+        "cutoff_score": 5,
+        "next_integer_score": 6,
+        "axis_collision_levels": [
+          6,
+          6,
+          6
+        ]
+      },
+      {
+        "order": "elimination",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "length": 8,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            2,
+            1
+          ]
+        ],
+        "weights": [
+          11,
+          3,
+          4
+        ],
+        "cutoff_score": 10,
+        "next_integer_score": 11,
+        "axis_collision_levels": [
+          33,
+          44,
+          12
+        ]
+      },
+      {
+        "order": "elimination",
+        "dimension": 3,
+        "matrix": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "length": 13,
+        "prefix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            3,
+            1
+          ],
+          [
+            0,
+            2,
+            2
+          ]
+        ],
+        "weights": [
+          19,
+          4,
+          5
+        ],
+        "cutoff_score": 18,
+        "next_integer_score": 19,
+        "axis_collision_levels": [
+          76,
+          95,
+          20
+        ]
+      },
+      {
+        "order": "lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "length": 1,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "cutoff_score": 0,
+        "next_integer_score": 1,
+        "axis_collision_levels": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "order": "lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "length": 2,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "weights": [
+          2,
+          2,
+          2,
+          1
+        ],
+        "cutoff_score": 1,
+        "next_integer_score": 2,
+        "axis_collision_levels": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      {
+        "order": "lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "length": 3,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            2
+          ]
+        ],
+        "weights": [
+          3,
+          3,
+          3,
+          1
+        ],
+        "cutoff_score": 2,
+        "next_integer_score": 3,
+        "axis_collision_levels": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "order": "lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "length": 5,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            0,
+            4
+          ]
+        ],
+        "weights": [
+          5,
+          5,
+          5,
+          1
+        ],
+        "cutoff_score": 4,
+        "next_integer_score": 5,
+        "axis_collision_levels": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      {
+        "order": "lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "length": 8,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            0,
+            7
+          ]
+        ],
+        "weights": [
+          8,
+          8,
+          8,
+          1
+        ],
+        "cutoff_score": 7,
+        "next_integer_score": 8,
+        "axis_collision_levels": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      {
+        "order": "lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "length": 13,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            0,
+            7
+          ],
+          [
+            0,
+            0,
+            0,
+            8
+          ],
+          [
+            0,
+            0,
+            0,
+            9
+          ],
+          [
+            0,
+            0,
+            0,
+            10
+          ],
+          [
+            0,
+            0,
+            0,
+            11
+          ],
+          [
+            0,
+            0,
+            0,
+            12
+          ]
+        ],
+        "weights": [
+          13,
+          13,
+          13,
+          1
+        ],
+        "cutoff_score": 12,
+        "next_integer_score": 13,
+        "axis_collision_levels": [
+          13,
+          13,
+          13,
+          13,
+          13,
+          13
+        ]
+      },
+      {
+        "order": "reverse_variable_lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ]
+        ],
+        "length": 1,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "cutoff_score": 0,
+        "next_integer_score": 1,
+        "axis_collision_levels": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "order": "reverse_variable_lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ]
+        ],
+        "length": 2,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          2,
+          2,
+          2
+        ],
+        "cutoff_score": 1,
+        "next_integer_score": 2,
+        "axis_collision_levels": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      {
+        "order": "reverse_variable_lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ]
+        ],
+        "length": 3,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          3,
+          3,
+          3
+        ],
+        "cutoff_score": 2,
+        "next_integer_score": 3,
+        "axis_collision_levels": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "order": "reverse_variable_lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ]
+        ],
+        "length": 5,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            0,
+            0
+          ],
+          [
+            4,
+            0,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          5,
+          5,
+          5
+        ],
+        "cutoff_score": 4,
+        "next_integer_score": 5,
+        "axis_collision_levels": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      {
+        "order": "reverse_variable_lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ]
+        ],
+        "length": 8,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            0,
+            0
+          ],
+          [
+            4,
+            0,
+            0,
+            0
+          ],
+          [
+            5,
+            0,
+            0,
+            0
+          ],
+          [
+            6,
+            0,
+            0,
+            0
+          ],
+          [
+            7,
+            0,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          8,
+          8,
+          8
+        ],
+        "cutoff_score": 7,
+        "next_integer_score": 8,
+        "axis_collision_levels": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      {
+        "order": "reverse_variable_lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ]
+        ],
+        "length": 13,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            0,
+            0
+          ],
+          [
+            4,
+            0,
+            0,
+            0
+          ],
+          [
+            5,
+            0,
+            0,
+            0
+          ],
+          [
+            6,
+            0,
+            0,
+            0
+          ],
+          [
+            7,
+            0,
+            0,
+            0
+          ],
+          [
+            8,
+            0,
+            0,
+            0
+          ],
+          [
+            9,
+            0,
+            0,
+            0
+          ],
+          [
+            10,
+            0,
+            0,
+            0
+          ],
+          [
+            11,
+            0,
+            0,
+            0
+          ],
+          [
+            12,
+            0,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          13,
+          13,
+          13
+        ],
+        "cutoff_score": 12,
+        "next_integer_score": 13,
+        "axis_collision_levels": [
+          13,
+          13,
+          13,
+          13,
+          13,
+          13
+        ]
+      },
+      {
+        "order": "graded_lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "length": 1,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "cutoff_score": 0,
+        "next_integer_score": 1,
+        "axis_collision_levels": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "order": "graded_lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "length": 2,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "weights": [
+          2,
+          2,
+          2,
+          1
+        ],
+        "cutoff_score": 1,
+        "next_integer_score": 2,
+        "axis_collision_levels": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      {
+        "order": "graded_lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "length": 3,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "weights": [
+          4,
+          4,
+          3,
+          2
+        ],
+        "cutoff_score": 3,
+        "next_integer_score": 4,
+        "axis_collision_levels": [
+          4,
+          12,
+          4,
+          12,
+          4,
+          6
+        ]
+      },
+      {
+        "order": "graded_lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "length": 5,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          7,
+          6,
+          5,
+          4
+        ],
+        "cutoff_score": 7,
+        "next_integer_score": 8,
+        "axis_collision_levels": [
+          42,
+          35,
+          28,
+          30,
+          12,
+          20
+        ]
+      },
+      {
+        "order": "graded_lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "length": 8,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            2,
+            0
+          ]
+        ],
+        "weights": [
+          9,
+          8,
+          6,
+          5
+        ],
+        "cutoff_score": 12,
+        "next_integer_score": 13,
+        "axis_collision_levels": [
+          72,
+          18,
+          45,
+          24,
+          40,
+          30
+        ]
+      },
+      {
+        "order": "graded_lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "length": 13,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            1,
+            0
+          ]
+        ],
+        "weights": [
+          16,
+          12,
+          10,
+          9
+        ],
+        "cutoff_score": 26,
+        "next_integer_score": 27,
+        "axis_collision_levels": [
+          48,
+          80,
+          144,
+          60,
+          36,
+          90
+        ]
+      },
+      {
+        "order": "graded_reverse_lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            -1
+          ],
+          [
+            0,
+            0,
+            -1,
+            0
+          ],
+          [
+            0,
+            -1,
+            0,
+            0
+          ]
+        ],
+        "length": 1,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "cutoff_score": 0,
+        "next_integer_score": 1,
+        "axis_collision_levels": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "order": "graded_reverse_lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            -1
+          ],
+          [
+            0,
+            0,
+            -1,
+            0
+          ],
+          [
+            0,
+            -1,
+            0,
+            0
+          ]
+        ],
+        "length": 2,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "weights": [
+          2,
+          2,
+          2,
+          1
+        ],
+        "cutoff_score": 1,
+        "next_integer_score": 2,
+        "axis_collision_levels": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      {
+        "order": "graded_reverse_lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            -1
+          ],
+          [
+            0,
+            0,
+            -1,
+            0
+          ],
+          [
+            0,
+            -1,
+            0,
+            0
+          ]
+        ],
+        "length": 3,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "weights": [
+          4,
+          4,
+          3,
+          2
+        ],
+        "cutoff_score": 3,
+        "next_integer_score": 4,
+        "axis_collision_levels": [
+          4,
+          12,
+          4,
+          12,
+          4,
+          6
+        ]
+      },
+      {
+        "order": "graded_reverse_lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            -1
+          ],
+          [
+            0,
+            0,
+            -1,
+            0
+          ],
+          [
+            0,
+            -1,
+            0,
+            0
+          ]
+        ],
+        "length": 5,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          7,
+          6,
+          5,
+          4
+        ],
+        "cutoff_score": 7,
+        "next_integer_score": 8,
+        "axis_collision_levels": [
+          42,
+          35,
+          28,
+          30,
+          12,
+          20
+        ]
+      },
+      {
+        "order": "graded_reverse_lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            -1
+          ],
+          [
+            0,
+            0,
+            -1,
+            0
+          ],
+          [
+            0,
+            -1,
+            0,
+            0
+          ]
+        ],
+        "length": 8,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            0,
+            1
+          ]
+        ],
+        "weights": [
+          9,
+          8,
+          7,
+          5
+        ],
+        "cutoff_score": 13,
+        "next_integer_score": 14,
+        "axis_collision_levels": [
+          72,
+          63,
+          45,
+          56,
+          40,
+          35
+        ]
+      },
+      {
+        "order": "graded_reverse_lex",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            -1
+          ],
+          [
+            0,
+            0,
+            -1,
+            0
+          ],
+          [
+            0,
+            -1,
+            0,
+            0
+          ]
+        ],
+        "length": 13,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          20,
+          19,
+          17,
+          13
+        ],
+        "cutoff_score": 38,
+        "next_integer_score": 39,
+        "axis_collision_levels": [
+          380,
+          340,
+          260,
+          323,
+          247,
+          221
+        ]
+      },
+      {
+        "order": "elimination",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "length": 1,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "cutoff_score": 0,
+        "next_integer_score": 1,
+        "axis_collision_levels": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "order": "elimination",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "length": 2,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          2,
+          1,
+          2,
+          2
+        ],
+        "cutoff_score": 1,
+        "next_integer_score": 2,
+        "axis_collision_levels": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      {
+        "order": "elimination",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "length": 3,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "weights": [
+          4,
+          2,
+          3,
+          4
+        ],
+        "cutoff_score": 3,
+        "next_integer_score": 4,
+        "axis_collision_levels": [
+          4,
+          12,
+          4,
+          6,
+          4,
+          12
+        ]
+      },
+      {
+        "order": "elimination",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "length": 5,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            2,
+            0,
+            0
+          ]
+        ],
+        "weights": [
+          7,
+          3,
+          4,
+          5
+        ],
+        "cutoff_score": 6,
+        "next_integer_score": 7,
+        "axis_collision_levels": [
+          21,
+          28,
+          35,
+          12,
+          15,
+          20
+        ]
+      },
+      {
+        "order": "elimination",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "length": 8,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1
+          ]
+        ],
+        "weights": [
+          12,
+          4,
+          5,
+          7
+        ],
+        "cutoff_score": 11,
+        "next_integer_score": 12,
+        "axis_collision_levels": [
+          12,
+          60,
+          84,
+          20,
+          28,
+          35
+        ]
+      },
+      {
+        "order": "elimination",
+        "dimension": 4,
+        "matrix": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "length": 13,
+        "prefix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            3,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            2,
+            0
+          ]
+        ],
+        "weights": [
+          24,
+          7,
+          8,
+          10
+        ],
+        "cutoff_score": 23,
+        "next_integer_score": 24,
+        "axis_collision_levels": [
+          168,
+          24,
+          120,
+          56,
+          70,
+          40
+        ]
+      }
+    ],
+    "attribution": "Finite-weight realization follows from Robbiano's ordered-group classification; the known correspondence is not introduced here.",
+    "scope": "Exact finite falsification checks, not a proof or a novelty assessment."
   },
   "prime_bridge": {
     "families": [

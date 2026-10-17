@@ -2782,3 +2782,319 @@ problem still has the previously documented obstruction and no new
 asymptotic mechanism here. Finish the proof and priority assessment of
 the focused counting contribution before expanding that harder target.
 No prime-distribution or fixed-prime unranking improvement is claimed.
+
+#### Global monomial orders: exact finite-prefix scope
+
+A further primary comparison is now complete for
+[Vasiliev (2003), *Monomial Orderings, Young Diagrams and Groebner Bases*](https://www3.risc.jku.at/research/theorema/Groebner-Bases-Bibliography/gbbib_files/publication_2491.pdf),
+printed pp. 397--401. All four numbered theorems, their proofs and the
+conclusion were read in the published text. The paper establishes the
+Dickson-set and universal-basis framework and a linear-algebra membership
+criterion; it does not state a quantitative count by prefix cardinality.
+Its final remark says that the weakly admissible extension is outside
+that paper's scope. This completes the comparison with that earlier
+paper, not with the later Vasiliev--Pavlov (2009) enumeration paper.
+
+Pavlov's authored thesis introduction and conclusion, reproduced in the
+[public text mirror](https://www.dissercat.com/content/polinomialnye-modeli-osnovannye-na-diagrammakh-yunga),
+explicitly report the correspondence between strictly admissible finite
+orders and signature prefixes, and cite OEIS A163823 and Kimberling.
+Those passages have been inspected. They do not contain the detailed
+quantitative statements needed for the 2009 comparison. The mirror's
+abstract-viewer PDF was also checked and returned Not Found. No inference
+of novelty is drawn from this source-access failure. The author's
+[public thesis announcement](https://shmat-razum.blogspot.com/2013/02/blog-post.html)
+provides another locator for the full thesis; that copy has not been read.
+
+The exact relationship with the global class can nevertheless be proved
+from established primary work. Robbiano's *On the Theory of Graded
+Structures*, [MPI/SFB preprint 85-17](https://archive.mpim-bonn.mpg.de/2939/1/preprint_1985_17.pdf),
+Theorem 2.5 and its proof, printed pp. 23--25, represent an ordered
+rational exponent group by finitely many lexicographically compared
+linear forms. The accompanying term-order remark applies this to
+monomials. The equivalent classification is Theorem 5 of
+[*Term Orderings on the Polynomial Ring*](https://doi.org/10.1007/3-540-15984-3_321).
+The latter theorem was also read in a reproduction of the author's text.
+This representation and the resulting finite-weight equivalence are
+known background, not new claims here.
+
+**Finite-prefix lemma (known-method deduction).** Let x_1,...,x_n be the
+first n exponent vectors of any global monomial order on d variables:
+a total additive order with zero least. There is a positive weight
+vector, rationally independent after a sufficiently small perturbation,
+whose entire ordered n-prefix is exactly this tuple. Conversely every
+positive rationally independent weight vector defines a global monomial
+order. Thus Candidate 24's O_d(n) counts exactly the finite n-prefixes
+of all global monomial orders, with labeled variables.
+
+**Proof.** The underlying set D is a finite coordinate downset. Its
+minimal excluded border E is finite, and every excluded point dominates
+an element of E. Extend the monomial order to the additive rational
+group by cancellation. By Robbiano there are real linear forms
+u_1,...,u_s such that the first nonzero entry of
+
+    (u_1.v,...,u_s.v)
+
+is positive whenever v is positive in this ordered group. Apply this
+to the finite family
+
+    v=e_i,
+    v=x_(j+1)-x_j  (1<=j<n),
+    v=b-x_n       (b in E).
+
+For all sufficiently small epsilon>0, every polynomial
+sum_l epsilon^(l-1) u_l.v is positive: its first nonzero coefficient
+is positive and the family is finite. Consequently
+w=sum_l epsilon^(l-1)u_l has positive coordinates, strictly orders the
+included tuple and puts all E above x_n. Positivity handles the entire
+infinite complement. The strict constraints define an open neighborhood,
+which contains vectors with rationally independent coordinates. Conversely
+positive weights are additive and have only finitely many nonnegative
+lattice points below any fixed score, so rational independence gives a
+well-ordered total monomial order. This proves both directions.
+
+This is a finite-prefix statement. A single real weight vector need not
+represent a given global monomial order at every length simultaneously;
+lexicographic and graded orders are important examples. It also does not
+identify all weakly admissible finite tableaux with this class, or extend
+the bound to arbitrary point ideals whose greedy basis search can reject
+early monomials. The existing seven-point negative control still applies.
+
+The existing Proposition 17 therefore applies to all these prefixes.
+There is no need for a second weight-compression construction: the saved
+LP/Cramer proof already gives positive integers A_i and S=A.x_n with
+
+    n-1 <= S <= c_d n,     c_d=d(d!)^2 2^(d-1).
+
+For an active coordinate e_i belongs to D, so A_i<=S. Inactive
+coordinates were assigned S+1. In particular
+
+    max_i A_i <= c_d n+1.                                      (24.3)
+
+For n=1 use all A_i=1. Both the cutoff bound and its existing exact
+oracle are retained; the generic weight-compression problem is not being
+presented as new.
+
+**Quantitative prime realization (supporting corollary).** For every such
+ordered n-prefix and B>0, it is enough to use distinct prime bases with
+
+    B < p_i < 2^[q(c_d n+1)+d],
+    q=d n+ceil(log_2(max(B,2))).                                (24.4)
+
+In particular, for fixed d and fixed B their binary lengths are O_d(n^2).
+This is a deduction combining Proposition 17 with the established
+finite-realization method; novelty of this quantitative formulation has
+not been established. It is not a new prime-distribution estimate.
+
+**Proof.** Sort the integer weights A_i temporarily. Bertrand gives a
+prime in each disjoint interval
+
+    2^(q A_i+i-1) < p_i < 2^(q A_i+i),        1<=i<=d.
+
+The lower endpoints exceed B. Every included exponent vector x has
+total degree at most n-1, since a coordinate-increasing path to x lies
+in D. Its product is at least 2^(q A.x), and is strictly less than
+2^[q A.x+d(n-1)], except that the zero vector has product exactly one.
+Since q>d(n-1), an integer gap of at least one between successive
+included scores preserves their strict product order. Every excluded
+vector has integer score at least S+1, and hence product at least
+2^[q(S+1)], above all included products. The zero vector is included,
+so there is no excluded zero exception. This proves the whole-prefix
+claim, and (24.3) gives (24.4). Undo the coordinate permutation.
+
+This supplies a finite prime-size budget; it gives neither an efficient
+search for a realizing tuple nor an algorithm for recovering the prefix
+of a supplied prime tuple without enumeration. Its proof uses classical
+arithmetic and previously saved geometry. Its role is an explicit scope
+and size consequence, not a substitute for the sharp counting contribution
+or for the outstanding priority comparison.
+
+**New falsification checks.** `check_monomial_prefix_realization` in the
+existing interleaving script checks 90 prefixes of lengths 1, 2, 3, 5,
+8 and 13 in dimensions two through four. Inputs come from integer matrix
+orders (lexicographic, reversed variable lexicographic, graded lexicographic,
+graded reverse lexicographic and elimination), rather than logarithms of
+prime tuples. The original exact LP oracle constructs scalar certificates;
+an independent scalar-score heap verifies the entire ordered prefix and
+strict cutoff. The singleton and all effective dimensions one through
+four occur. Exact matrices, exponent tuples, integer weights and next
+scores are recorded. These checks test the finite/global and inactive-face
+failure modes. They are not evidence of novelty and are not a replacement
+for either uniform argument.
+
+Reproduce with
+
+```bash
+python3 -B scripts/run_interleaving_research.py --ranks 20000
+```
+
+The main manuscript remains focused on Candidate 23; Candidate 24's
+quantitative priority assessment is still open. The finite monomial-order
+family is established mathematics. The next decisive source is still the
+full 2009 Vasiliev--Pavlov paper, rather than its abstract, bibliography or
+an inference from inaccessible copies.
+
+### Candidate 25: sharp worst-case prime size for finite-prefix realization
+
+**Status: complete new internal quantitative argument; priority unverified.**
+This sharpens the quadratic bit bound (24.4). It uses additional arithmetic
+information, namely a published short-interval prime estimate, and gives a
+concrete prime-size consequence. It is independent of Candidate 23's lower
+count. Neither the use of prime bases nor the finite-weight bridge is new.
+The pending finite-ordering comparison remains necessary before assessing
+this formulation as a publication contribution.
+
+Fix d>=2. For an ordered n-prefix W of a global monomial order, let
+h_B(W) be the least value of log(max_i p_i) over ordered tuples of distinct
+primes p_i>B whose smooth exponent prefix is exactly W. Logarithms in
+this section are natural. Let
+
+    H_d(n,B)=max_W h_B(W).
+
+The finite-prefix lemma shows that this is the same class of words counted
+by O_d(n). For n>=2 and B>0, the proposed sharp order is
+
+    H_d(n,B)=Theta_d(n log(max(B,2))).                           (25.1)
+
+The same worst-case order holds if only the underlying n-point corner-cut
+set is prescribed. Thus every admissible finite pattern is realizable
+with primes having O_d(n) bits when B is fixed, and a linear number of
+bits is necessary for some patterns. The constants may depend on d;
+there is no claim of optimal constants, fast construction or a statement
+about primes in a fixed input tuple.
+
+#### Arithmetic input and exact source scope
+
+Dusart, [*Estimates of Some Functions over Primes without R.H.*,
+arXiv:1002.0442v1](https://arxiv.org/pdf/1002.0442v1), Proposition 6.8,
+printed p. 8, states that for x>396738 there is a prime in
+
+    x < p <= x(1+1/[25 (log x)^2]).                              (25.2)
+
+The statement and its complete displayed proof were read directly in
+Section 6.1.3. This is a passage-level comparison, not a full audit of
+all twenty pages or the earlier analytic estimates used in that proof.
+The construction below uses x>=exp(30), so none of the small-threshold
+computational transitions is needed here. We use this established
+unconditional theorem, not an assumed prime-gap conjecture or a new
+prime-distribution estimate.
+
+#### Proof of the upper bound
+
+For n>=2 take the integer certificate supplied by Proposition 17 and the
+finite-prefix lemma. Write its weights as A_i, its last included score
+as S, and put c_d=d(d!)^2 2^(d-1). Then
+
+    n-1 <= S <= c_d n,       1 <= A_i <= S+1 <= c_d n+1,
+    D = {x in Z_{>=0}^d : A.x <= S},
+
+and all included scores are distinct in the prescribed order. Temporarily
+sort the coordinates so m=A_1<=A_2<=...<=A_d.
+
+**Axis-collision observation.** For every two distinct coordinates i,j,
+
+    lcm(A_i,A_j)>S.                                           (25.3)
+
+Otherwise the two distinct pure-axis points of that common score are both
+in D, contradicting the strict included order. In particular, for j>=2,
+
+    m A_j >= lcm(m,A_j)>S>=n-1,    A_j>=m,
+    A_j^2>=m A_j>n-1.                                         (25.4)
+
+There is at most one coordinate weight at or below sqrt(n-1). This is
+why it is sufficient to anchor a single prime exactly.
+
+Put
+
+    a=max(30,d,log(max(B,2))+1),
+    delta=1/[25 a^2(n-1)].
+
+Bertrand supplies a prime p_1 in (exp(a m),2 exp(a m)). Define
+
+    T=log(p_1)/m,       a<T<a+log(2).
+
+For j=2,...,d put
+
+    X_j=exp(T A_j)(1+delta)^(j-2).
+
+Then X_j>=exp(30). By (25.4),
+
+    1/[25 (log X_j)^2] < 1/[25 a^2(n-1)] = delta.
+
+Apply (25.2) separately to each X_j, obtaining
+
+    X_j < p_j < X_j(1+delta).                                  (25.5)
+
+These intervals are disjoint, including when some A_j agree:
+the next lower endpoint is at least the previous upper endpoint.
+Also X_2>=p_1, so p_1,...,p_d are distinct increasing primes above B.
+Set eta_i=log(p_i)-T A_i. The anchor gives eta_1=0, and (25.5) gives
+
+    0<eta_j<(j-1)log(1+delta)<(d-1)delta   for j>=2,
+
+where the last strict bound may be replaced by <= at j=d without
+changing the following estimates. More simply, eta_j<=(d-1)delta
+for all j. Every included x has |x|_1<=n-1, so
+
+    0 <= eta.x < (d-1)/(25 a^2) < a < T.                        (25.6)
+
+For any successive included x,y, A.y-A.x>=1; hence
+
+    log(p^y)-log(p^x) >= T-eta.x > 0.
+
+Every excluded y has A.y>=S+1 and eta.y>=0, whereas every included
+x has log(p^x)<TS+T. Thus all excluded products exceed every included
+product, controlling the infinite complement as well as internal order.
+Undoing the coordinate permutation realizes W.
+
+Finally, (25.5) and (25.6) imply the explicit bound
+
+    log(max_i p_i) < (a+log 2)(c_d n+1)+1.                      (25.7)
+
+Here the residual (d-1)delta is less than one because a>=d and n>=2.
+Since a=O_d(log(max(B,2))), this proves the uniform upper order in
+(25.1). For n=1 any d distinct primes above B suffice; repeated Bertrand
+intervals give log(max p_i)<=log(max(B,2))+O_d(1).
+
+#### Matching lower bound
+
+Consider the admissible prefix
+
+    W=(0,e_1,2e_1,...,(n-1)e_1).
+
+Any realizing tuple must satisfy p_j>p_1^(n-1) for every j>=2, because
+e_j is excluded. Therefore
+
+    h_B(W) >= (n-1)log(max(B,2)).                               (25.8)
+
+For n>=2 this is at least n log(max(B,2))/2. The same axis example
+works when only the underlying set is prescribed. Equations
+(25.7)--(25.8) prove the claimed sharp worst-case order. The singleton
+has the corresponding order log(max(B,2)).
+
+#### What changes, and what remains open
+
+Vietri's Proposition 6.2 already supplies qualitative prime realization
+for arbitrary finite inequality systems. The argument here bounds the
+worst-case height uniformly in prefix length and proves that its order
+is necessary. The prefix-dependent linear integer-score bound and the
+axis-collision observation allow one prime to be fixed exactly while
+Dusart controls the others. No assertion that Dusart's prime estimate,
+Robbiano's representation, finite prime realization or generic
+weight-compression methods are new is made.
+
+Combining (25.7) with Candidates 23--24 would show that allowing primes
+of only O_d(n) bits already realizes the entire family of n-term words
+and shapes with the asserted sharp counting order. This is a finite
+universality statement under an explicit size budget. It does not
+improve fixed-prime unranking complexity or guarantee a fast enumeration
+of the realizing tuples. The formulation's priority and its significance
+as an addition to the main paper remain to be established.
+
+The exact compression fixtures now check (25.3) for every pair of weights
+in the existing 230 cases, and the 90 matrix-order fixtures independently
+check (25.3), (25.4), scalar prefix agreement and the rational error budget
+in (25.6). This is a check of failure modes, not verification of (25.2)
+by experiments and not the proof of the uniform theorem. No large-prime
+search framework has been added. The main manuscript has not been
+expanded while the finite-ordering priority comparison remains pending.

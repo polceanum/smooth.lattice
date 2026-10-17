@@ -339,7 +339,7 @@
   },
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "evidence": "Completed a precise primary comparison with Vietri Proposition 6.2 and its proof, identified prime realization as known, and supplied the finite-border and homogenization reductions. The main lower-count contribution remains the target; the Vasiliev--Pavlov quantitative comparison is still pending."
+    "evidence": "Completed the earlier Vasiliev primary comparison and the known finite/global bridge; added 90 matrix-order checks and a complete sharp prime-height proof with matching lower bound, using Dusart Proposition 6.8. Priority remains unresolved; the original goal and main theorem remain intact."
   },
   "ordered_prefix_growth_candidate": {
     "record": "docs/interleaving_research.md, Candidate 24: full ordered prefixes have the same growth order",
@@ -350,7 +350,7 @@
     "mechanism": "For effective dimension r, the dyadic side product Q lies between n/4^r and r!n. There are O_r((log(n+1))^(r-1)) aspect tuples. Each chart has O_r(n) comparison directions and O_r(n^(r-1)) chambers.",
     "average_order_multiplicity": "The uniform mean number of admissible internal orders per n-point corner cut is Theta_d(1), using Candidate 23. No pointwise constant bound is asserted.",
     "prime_realization": "Known consequence of Vietri (2002), Proposition 6.2: the finite consecutive-order and minimal excluded-border comparisons are preserved by distinct prime bases above any B.",
-    "prime_claim_limit": "Varying bases are essential; no prime-distribution estimate, bounded-prime-budget theorem or fixed-prime unranking speedup.",
+    "prime_claim_limit": "A finite prime-size budget is recorded as a supporting consequence; no new prime-distribution estimate, efficient realizing-tuple search, or fixed-prime unranking speedup.",
     "known_planar_object": "The signature-prefix count and crossing rule are already recorded in Adams-Watters, OEIS A163823 (2009); no planar novelty claim.",
     "finite_checks": {
       "report": "results/research/corner_cut_growth_checks.json",
@@ -394,11 +394,79 @@
         "finding": "Proposition 6.2 already realizes arbitrary finite strict product-inequality systems with prime bases. Its scaling can be enlarged to put all primes above any B. Both our set and ordered-prefix realization statements are specializations through the finite minimal excluded border.",
         "counting_comparison": "Homogenization a -> (h-|a|_1,a), with weights r_i=r_0+w_i, embeds the total-degree ball into D_h^d. Taking h=n-1 determines every n-prefix. The three-variable fixed-layer count gives only O(n^2) for planar prefixes; the introduction explicitly states no enumeration for k>=3. These specified statements do not give the sharp prescribed-cardinality lower bound.",
         "remaining": "Vasiliev--Pavlov full quantitative comparison remains pending; this completed comparison of specified Vietri statements is not an unrestricted novelty certificate."
+      },
+      {
+        "authors": "Nikolay N. Vasiliev",
+        "year": 2003,
+        "source": "https://www3.risc.jku.at/research/theorema/Groebner-Bases-Bibliography/gbbib_files/publication_2491.pdf",
+        "inspected": "All four numbered theorems, their proofs, remarks and conclusion, printed pp. 397--401.",
+        "finding": "Dickson-set and extended universal-basis framework with linear-algebra membership criterion; no quantitative prefix-cardinality counting theorem. Weakly admissible extension is explicitly outside this paper.",
+        "remaining": "The later Vasiliev--Pavlov (2009) full enumeration statements remain uninspected."
       }
     ],
     "novelty_established": false,
     "manuscript_extended": false,
     "goal_complete": false,
-    "decision": "Preserve the full proof and falsification evidence; compare the newly identified close ordering literature before enlarging the manuscript or claiming a second new theorem. The original acceptance criteria remain unchanged."
+    "decision": "Preserve the full proof and falsification evidence; compare the newly identified close ordering literature before enlarging the manuscript or claiming a second new theorem. The original acceptance criteria remain unchanged.",
+    "global_monomial_order_scope": {
+      "record": "docs/interleaving_research.md, Global monomial orders: exact finite-prefix scope",
+      "statement": "O_d(n) counts exactly the finite n-prefixes of all global monomial orders, with labeled variables; one weight vector need not represent a global order at every length.",
+      "proof": "Apply Robbiano lexicographic linear forms to the finite coordinate, consecutive-order and minimal excluded-border differences. A sufficiently small positive weighted sum preserves their signs; positivity controls the infinite complement.",
+      "attribution": "Known finite-weight consequence of Robbiano ordered-group classification, not a new family or new equivalence.",
+      "primary_source": "https://archive.mpim-bonn.mpg.de/2939/1/preprint_1985_17.pdf",
+      "primary_scope": "Theorem 2.5 with proof and accompanying term-order discussion, printed pp. 23--25; not a full audit of the 66-page preprint.",
+      "equivalent_source": "https://doi.org/10.1007/3-540-15984-3_321",
+      "equivalent_scope": "Theorem 5 read in a reproduction of the authored 1985 text.",
+      "finite_checks": {
+        "report": "results/research/exponent_interleaving.json, monomial_prefix_realization",
+        "prefixes": 90,
+        "ambient_dimensions": [
+          2,
+          4
+        ],
+        "effective_dimensions": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "limit": "No identification with all weakly admissible finite tableaux or arbitrary point-ideal initial bases."
+    },
+    "quantitative_prime_budget": {
+      "statement": "Every counted ordered n-prefix is realizable with distinct primes B<p_i<2^[q(c_d n+1)+d], c_d=d(d!)^2 2^(d-1), q=d n+ceil(log_2(max(B,2))).",
+      "consequence": "For fixed d and B, realizing primes need only O_d(n^2) bits.",
+      "proof": "Combine the already saved Proposition 17 integer scores and linear cutoff with disjoint dyadic Bertrand intervals; total degree <=n-1 preserves every included comparison and strict exclusion.",
+      "status": "Complete supporting deduction from known methods and saved lemma; novelty of the quantitative formulation unverified.",
+      "limit": "No new prime-distribution estimate, efficient prime-tuple search, or fixed-prime unranking improvement.",
+      "sharpened_by": "prime_height_candidate: the quadratic bit estimate is valid but the new complete argument gives the sharp linear worst-case order."
+    }
+  },
+  "prime_height_candidate": {
+    "record": "docs/interleaving_research.md, Candidate 25: sharp worst-case prime size for finite-prefix realization",
+    "definition": "H_d(n,B) is the worst, over ordered length-n prefixes of global monomial orders, of the least log(max p_i) among realizing distinct prime tuples above B.",
+    "statement": "For fixed d>=2, H_d(n,B)=Theta_d(n log(max(B,2))), uniformly for n>=2 and B>0. The same worst-case order holds for underlying corner-cut sets.",
+    "explicit_upper": "Put c_d=d(d!)^2 2^(d-1), a=max(30,d,log(max(B,2))+1). Then log(max p_i)<(a+log 2)(c_d n+1)+1.",
+    "explicit_lower": "The axis prefix 0,e_1,...,(n-1)e_1 forces log(max p_i)>=(n-1)log(max(B,2)).",
+    "key_structural_step": "A strict integer-score prefix with cutoff S satisfies lcm(A_i,A_j)>S. After sorting weights, all but the smallest satisfy A_j^2>n-1.",
+    "mechanism": "Use the existing linear integer-score certificate; anchor the smallest weight at a Bertrand prime exactly; realize all other coordinates in disjoint Dusart short intervals with positive errors whose total on an included exponent vector is less than one scaled score gap.",
+    "arithmetic_input": {
+      "authors": "Pierre Dusart",
+      "source": "https://arxiv.org/pdf/1002.0442v1",
+      "location": "Proposition 6.8, Section 6.1.3, printed p. 8",
+      "inspected": "Statement and full displayed proof; not a full audit of the twenty-page paper or all analytic prerequisites.",
+      "statement": "For x>396738, a prime satisfies x<p<=x(1+1/[25(log x)^2]).",
+      "range_used": "Only x>=exp(30).",
+      "attribution": "Established unconditional prime-interval theorem; no new distribution estimate claimed."
+    },
+    "proof_status": "Complete internal proof, including strict cutoff, infinite complement, equal larger weights, distinct primes, arbitrary B and matching axis lower bound. Not independently refereed.",
+    "priority_status": "Unverified. Qualitative realization is Vietri Proposition 6.2; finite-weight representation is Robbiano; generic integer compression and Wagner product bounds are known. Full finite-ordering and quantitative-realization comparisons remain necessary.",
+    "finite_checks": "Axis-collision conditions added to the existing 230 compression fixtures and 90 matrix-order fixtures; scalar heaps verify full order and cutoff. Rational short-interval error budget checked in the non-singleton matrix cases.",
+    "usefulness": "An explicit asymptotically optimal worst-case prime-bit budget for all admissible finite words and shapes; for fixed B, O_d(n) bits suffice and some patterns require Omega(n).",
+    "limits": "No faster fixed-prime unranking, fast realizing-prime search, new prime-gap estimate, leading constant or growing-dimension bound.",
+    "manuscript_extended": false,
+    "novelty_established": false,
+    "goal_complete": false
   }
 }

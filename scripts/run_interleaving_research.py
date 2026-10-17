@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 from bisect import bisect_right
 from collections import Counter
+from fractions import Fraction
 import hashlib
 import heapq
 from itertools import combinations, product
@@ -870,6 +871,8 @@ def check_prefix_compression():
             require(next_score > score and all(sum(x * a for x, a in zip(point, weights)) > score
                                                for point in witness["border"]),
                     ("all excluded points have larger score", generators, count))
+            require(all(a * b // gcd(a, b) > score for a, b in combinations(weights, 2)),
+                    ("an axis collision cannot occur inside a strict prefix", generators, count))
             active = witness["active_coordinates"]
             size = len(active)
             bounds = [witness["axis_bounds"][i] for i in active]
@@ -908,6 +911,78 @@ def check_prefix_compression():
                            "or a certified replacement for logarithm comparisons",
             "cases_checked": len(cases), "infeasible_order_controls": 1,
             "cases": cases}
+
+
+def check_monomial_prefix_realization():
+    """Check the known finite-weight bridge for matrix-defined orders.
+
+    Matrix heaps provide the inputs; the independent scalar heap checks every
+    resulting LP certificate. This does not establish novelty of the bridge.
+    """
+    cases, effective_dimensions = [], set()
+    for dimension in range(2, 5):
+        units = [tuple(int(i == j) for j in range(dimension))
+                 for i in range(dimension)]
+        matrices = {
+            "lex": units,
+            "reverse_variable_lex": list(reversed(units)),
+            "graded_lex": [(1,) * dimension] + units[:-1],
+            "graded_reverse_lex": [(1,) * dimension]
+                                  + [tuple(-v for v in row) for row in units[:0:-1]],
+            "elimination": [units[0], (0,) + (1,) * (dimension - 1)]
+                           + units[:1:-1],
+        }
+        for name, matrix in matrices.items():
+            require(integer_determinant(matrix) != 0, "matrix order is total")
+            require(all(next(x for x in column if x) > 0 for column in zip(*matrix)),
+                    "each variable is positive in the matrix lexicographic order")
+            zero = (0,) * dimension
+            heap, seen, word = [((0,) * dimension, zero)], {zero}, []
+            for _ in range(13):
+                _, point = heapq.heappop(heap)
+                word.append(point)
+                for i in range(dimension):
+                    child = tuple(x + (j == i) for j, x in enumerate(point))
+                    if child not in seen:
+                        seen.add(child)
+                        key = tuple(sum(a * b for a, b in zip(row, child)) for row in matrix)
+                        heapq.heappush(heap, (key, child))
+            for count in (1, 2, 3, 5, 8, 13):
+                prefix = word[:count]
+                witness = ordered_prefix_integer_weights(prefix)
+                weights, score = witness["weights"], witness["cutoff_score"]
+                scalar, next_score = integer_score_prefix(weights, count)
+                require([point for _, point in scalar] == prefix,
+                        ("matrix prefix and scalar certificate agree", name, dimension, count))
+                require(all(a < b for (a, _), (b, _) in zip(scalar, scalar[1:])),
+                        "all included scalar scores are distinct")
+                require(next_score > score, "strict exclusion of the entire complement")
+                constant = dimension * factorial(dimension) ** 2 * 2 ** (dimension - 1)
+                require(count - 1 <= score <= constant * count,
+                        "the existing linear cutoff bound covers matrix-order prefixes")
+                require(max(weights) <= constant * count + 1,
+                        "positive integer certificate has linearly bounded coordinates")
+                axis_levels = [a * b // gcd(a, b) for a, b in combinations(weights, 2)]
+                require(all(level > score for level in axis_levels),
+                        "every pure-axis collision lies beyond the strict cutoff")
+                require(sorted(weights)[1] ** 2 > count - 1,
+                        "all but the smallest coordinate weight exceed sqrt(n-1)")
+                if count > 1:
+                    anchor_scale = max(30, dimension)
+                    relative_width = Fraction(1, 25 * anchor_scale ** 2 * (count - 1))
+                    require((dimension - 1) * (count - 1) * relative_width < anchor_scale,
+                            "short-prime-interval errors remain below one scaled score gap")
+                effective_dimensions.add(len(witness["active_coordinates"]))
+                cases.append({"order": name, "dimension": dimension, "matrix": matrix,
+                              "length": count, "prefix": prefix, "weights": weights,
+                              "cutoff_score": score, "next_integer_score": next_score,
+                              "axis_collision_levels": axis_levels})
+    require(effective_dimensions == set(range(5)), "singleton and every active face exercised")
+    return {"cases_checked": len(cases), "dimensions": [2, 4],
+            "effective_dimensions": sorted(effective_dimensions), "cases": cases,
+            "attribution": "Finite-weight realization follows from Robbiano's ordered-group "
+                           "classification; the known correspondence is not introduced here.",
+            "scope": "Exact finite falsification checks, not a proof or a novelty assessment."}
 
 
 def main():
@@ -966,13 +1041,15 @@ def main():
             "feasibility": "restricted classification and universal eventual word periods proved",
             "novelty": "unresolved; different from specific cited moves is not proof of novelty",
             "primary_direction": "general structure and certification of fixed-prime rank/unrank",
-            "active_goal_candidate": "new quantitative corner-cut growth theorem; multiscale cumulative "
-                                     "three-dimensional argument and exact-size higher-dimensional consequence "
-                                     "recorded for proof and priority audit; structural note retained separately",
+            "active_goal_candidate": "uniform matching corner-cut count in every fixed dimension; "
+                                     "ordered-prefix and sharp prime-height candidates retained for "
+                                     "proof and priority audit; structural note remains separate",
             "sequence_direction": "general count-map reconstruction, period and transient laws",
             "expansion": "hold specialized cycle catalogues and paper claims; require a new "
                          "structural or quantitative contribution beyond known general methods",
-            "prime_application": "unproved; the cycle theorem also applies to composite bases",
+            "prime_application": "finite-prefix prime-size realization recorded separately; no "
+                                 "distribution or fixed-prime unranking consequence. The cycle "
+                                 "theorem also applies to composite bases",
         },
         "models": models,
         "common_scaling": scaling,
@@ -986,6 +1063,7 @@ def main():
         "word_partition_link": check_word_partition_link(),
         "pairwise_order_obstruction": check_pairwise_order_obstruction(),
         "prefix_compression": check_prefix_compression(),
+        "monomial_prefix_realization": check_monomial_prefix_realization(),
         "prime_bridge": check_prime_bridge(),
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
@@ -1017,6 +1095,7 @@ def main():
             "first_triple_exponent_difference"],
         "prime_bridge_thresholds": result["prime_bridge"]["integer_threshold_checks"],
         "prefix_compression_cases_checked": result["prefix_compression"]["cases_checked"],
+        "monomial_prefix_realizations_checked": result["monomial_prefix_realization"]["cases_checked"],
         "all_checks_passed": True,
         "output": str(args.output.resolve()),
     }, indent=2))
