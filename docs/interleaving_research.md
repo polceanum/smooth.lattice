@@ -2483,3 +2483,217 @@ construct an infinite family whose growth exceeds the generic order.
 In either case, the relevant later-bound audit must be completed before
 claiming novelty. Candidate 23 and its original contribution assessment
 remain intact; the active goal remains incomplete.
+
+### Candidate 24: full ordered prefixes have the same growth order
+
+This is a complete internal upper-bound argument and a consequence of
+Candidate 23. It concerns an established family of finite monomial
+orderings. Its priority comparison, especially with Vasiliev--Pavlov
+(2009), remains incomplete. It is not yet being added as a new claim in
+the manuscript or used to declare the active goal complete.
+
+Let O_d(n) count distinct ordered tuples (x_1,...,x_n) consisting of the
+first n points of Z_{>=0}^d under x -> w.x, as the positive real vector w
+varies with rationally independent coordinates. Count the entire ordered
+exponent tuple, with labeled coordinates. This differs from C_d(n),
+which forgets the internal order. The assumption makes every scalar
+product distinct; a finite prefix strictly realized by positive weights
+can also be perturbed to such a vector, since its comparisons and minimal
+excluded border impose only finitely many strict inequalities.
+
+**Proposition 24.1.** For every fixed d>=2,
+
+    C_d(n) <= O_d(n) = O_d(n^(d-1) (log(n+1))^(d-1)).
+
+Consequently Candidate 23 gives
+
+    O_d(n) = Theta_d(n^(d-1) (log n)^(d-1)).
+
+The upper argument below also reproves the known corner-cut upper order.
+Wagner's upper theorem retains its original attribution. No improvement
+over that upper order is claimed.
+
+**Proof of the upper bound.** The case n=1 has one tuple. For n>1, fix
+one prefix and witnessing w, and put t=w.x_n>0. Its active coordinates
+are J={i:w_i<=t}; write r=|J|>=1. Every point in the prefix has zeroes
+outside J. Restrict to these r coordinates and define
+
+    b_i=t/w_i >= 1,
+    L_i=2^floor(log_2 b_i),
+    Q=product_i L_i=2^R.
+
+There are exactly n lattice points of w.x<=t in this coordinate face.
+The simplex {x>=0:w.x<=t} is covered by the unit cubes based at those
+points: floor(x) has no greater score. It follows that
+
+    product_i b_i / r! <= n.
+
+On the other hand all the n lattice points lie in their coordinate
+bounding box, giving
+
+    n <= product_i(floor(b_i)+1) <= 2^r product_i b_i.
+
+Since L_i<=b_i<2L_i, these inequalities imply the shell bounds
+
+    n < 4^r Q,                 Q <= r! n.                 (24.1)
+
+For fixed r, the integer R therefore takes at most
+2r+ceil(log_2(r!))+2 values, all at most log_2 n+log_2(r!).
+For each R there are binomial(R+r-1,r-1) nonnegative integer tuples
+(log_2 L_1,...,log_2 L_r). Thus the number of possible aspect tuples
+is O_r((log(n+1))^(r-1)), rather than the count of all tuples with
+product merely bounded above. The lower bound in (24.1) is essential
+to this logarithmic exponent.
+
+For a fixed aspect tuple, every point of the prefix lies in
+
+    G_L = product_i {0,...,2L_i-1}.
+
+Every comparison between two points of this box changes only on a
+central hyperplane w.v=0 for a nonzero integer difference vector v with
+|v_i|<=2L_i-1. Up to the sign of v there are at most
+
+    (product_i(4L_i-1)-1)/2 <= 4^r Q <= 4^r r! n          (24.2)
+
+such hyperplanes. Repeated hyperplanes only reduce this count. An
+arrangement of m central hyperplanes in R^r has at most
+
+    2 sum_{j=0}^{r-1} binomial(m-1,j) = O_r(m^(r-1))
+
+chambers. This follows by adding one hyperplane at a time: the number
+of new chambers is at most the chamber count of its restricted central
+arrangement in dimension r-1. The formula follows by induction from
+one hyperplane and dimension one, and is an upper bound even with
+degeneracies.
+
+Within each chamber the total order on G_L is fixed. Whenever a weight
+with this chart witnesses a global n-point prefix, that prefix is the
+first n points of G_L in this total order. Hence one chamber contributes
+at most one ordered prefix for the fixed chart. A chamber need not
+contain a weight realizing this chart, and the same prefix may occur
+in several charts; both issues only overcount in an upper bound.
+Rational independence ensures the witnessing weights lie off every
+comparison hyperplane.
+
+Equations (24.1)--(24.2) therefore give
+O_r(n^(r-1)(log(n+1))^(r-1)) orders for each active coordinate set J.
+There are binomial(d,r) choices of J. Summing over 1<=r<=d proves
+the asserted upper bound. This active-face step handles unused
+coordinates; applying a full-dimensional volume estimate without it
+would be invalid when some b_i<1.
+
+Every corner cut admits a generic positive separator after a sufficiently
+small perturbation, so forgetting order is a surjection from these
+ordered prefixes to the n-point cuts. This proves C_d(n)<=O_d(n).
+Candidate 23 supplies the matching lower order. No numerical check is
+used in either uniform argument.
+
+An ordered prefix determines every initial set of sizes 1,...,n, so this
+also controls the common refinement of the generic corner-cut fans over
+those sizes. It is not a universal refinement for arbitrary point ideals:
+their greedy basis construction may reject early monomials because their
+evaluation vectors are dependent. The counterexample in the preceding
+feasibility audit still applies to that broader problem.
+
+**Consequence 24.2 (average ordering multiplicity).** For an n-point
+corner cut D, let m(D) be the number of different orders in O_d(n)
+whose underlying set is D. Then
+
+    1 <= (sum_{|D|=n} m(D))/C_d(n) = O_d(n)/C_d(n) = O_d(1).
+
+The first inequality holds for every n and the last bound for all
+sufficiently large n in each fixed dimension. This is a uniform mean
+over the finite set of cuts, not a bound on m(D) for every cut and not
+an assertion that O_d(n)=C_d(n). In dimension two at n=3 there are four
+ordered prefixes and three underlying shapes: the shape {0,e_1,e_2}
+has two possible orders. The finite checker retains such witnesses.
+
+**Consequence 24.3 (prime bases).** Every ordered prefix counted by
+O_d(n) can be realized over distinct ordered prime bases above any
+prescribed B. To strengthen the preceding prime-realization proof,
+normalize its witnessing positive weights so that the separating
+threshold is one. In addition to the positive cutoff gap g, let
+
+    epsilon=min_{j<n} w.(x_{j+1}-x_j)>0
+
+when n>1. Choose the Bertrand-interval scale T large enough that every
+included product's normalized logarithmic perturbation is less than
+min(g,epsilon/2). All perturbations are nonnegative coordinatewise,
+so excluded products remain above the threshold and consecutive
+included products remain in the prescribed order. For n=1 only the
+cutoff condition is needed. The disjoint-interval construction already
+ensures the primes are distinct and exceed B. Thus the number of full
+smooth exponent-prefix words over varying labeled prime bases greater
+than B equals O_d(n), not just the unordered count C_d(n). This is an
+elementary use of the same arithmetic input, not a prime-distribution
+theorem or a fixed-prime random-access improvement.
+
+#### Exact falsification checks
+
+`ordered_prefix_chart_checks` in the existing growth checker verifies
+1,080 strict prefixes in ambient dimensions two through six. Every
+effective dimension one through six occurs, including prefixes confined
+to a single axis. All chart containments, integer forms of the volume
+inequalities, dyadic product bounds and comparison-direction estimates
+pass. A further 132 cases test product-shell widths in effective
+dimensions one through twelve. The original uniform lower-bound checks
+remain separate.
+
+Four additional prime-realization fixtures check the entire prescribed
+order by exact integer products and an independent heap, including
+opposite orders on the same shape and an unused coordinate. These are
+reported separately from the original six unordered realization checks.
+
+For dimension two the critical comparison slopes are coprime a/b>0.
+The first change in the prefix occurs at n=(a+1)(b+1)/2: at weights
+(b,a), direct counting gives exactly (a+1)(b+1)/2-1 lattice points
+strictly below the tied points (a,0) and (0,b). Accordingly
+
+    O_2(n)=1+#{(a,b)>=1:gcd(a,b)=1, (a+1)(b+1)<=2n}.
+
+This planar family and the threshold rule were already recorded by
+Franklin T. Adams-Watters in [OEIS A163823](https://oeis.org/A163823)
+(2009). They are not new claims here. The new finite fixture sweeps
+every such slope for lengths 1--60, checks the full heap-generated
+orders and all 261 first-crossing ranks at length 60, and agrees with
+the contributor's first twelve values. It records all sixty computed
+counts, ending in 262. These are checks of finite failure modes, not
+evidence for the uniform theorem's priority.
+
+Reproduce both fixtures with
+
+```bash
+python3 -B scripts/run_corner_cut_growth_checks.py
+```
+
+#### Newly identified close prior art and outstanding comparison
+
+[Vasiliev--Pavlov, 2009](https://doi.org/10.1134/S0361768809020030),
+*Enumeration of finite monomial orderings and combinatorics of universal
+Groebner bases*, explicitly studies finite intervals of monomial orders,
+their enumeration, and several admissibility classes. Its primary
+publisher abstract and reference list were inspected; its full definitions
+and quantitative statements have not been compared. An authored summary
+of Pavlov's 2012 thesis also reports an established correspondence with
+signature prefixes. The finite-ordering family and that correspondence
+must not be presented as introduced by this project. The thesis summary
+was inspected through a text mirror; it is a locator for a full primary
+comparison, not a substitute for one.
+
+[Vietri, 2002](https://doi.org/10.1023/A:1021236722756),
+*Combinatorial aspects of total weight orders over monomials of fixed
+degree*, studies orders on a fixed homogeneous layer and also discusses
+prime-induced orders. Its authored abstract, available through the
+Sapienza institutional record, was inspected. A layer of fixed total
+degree is a different domain from the first n monomials across all
+degrees, but full results must be checked before drawing a stronger
+priority conclusion. In particular the broad connection between primes
+and monomial weight orders is established research.
+
+The next source comparison should decide whether Proposition 24.1's
+quantitative upper bound is already stated or immediate there. If it is,
+credit it and use the matching lower count only for the consequence;
+do not convert a known upper argument into an additional novelty claim.
+The complete dyadic proof is saved now so that the mathematical claim
+can be assessed independently of the source-access question. The main
+manuscript and Candidate 23's novelty gates have not been relaxed.

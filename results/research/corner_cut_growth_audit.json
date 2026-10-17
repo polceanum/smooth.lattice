@@ -261,7 +261,8 @@
   ],
   "audit_tasks": [
     "Resolve the overall novelty and final submission-readiness assessment using the recorded favorable contribution case and exact source comparison; do not describe the anonymous review manuscript as independently refereed or accepted.",
-    "Retain the explicitly deferred Elizalde--Galvan journal-version check under the user-authorized assumption; do not infer novelty from source access failures or search absence."
+    "Retain the explicitly deferred Elizalde--Galvan journal-version check under the user-authorized assumption; do not infer novelty from source access failures or search absence.",
+    "Compare Vasiliev--Pavlov (2009) finite-prefix definitions and quantitative results, and Vietri (2002) fixed-degree and prime-order statements, with Candidate 24; determine whether any stated theorem affects the original corner-cut lower-bound priority claim."
   ],
   "validation_commands_passed": [
     "./build.sh",
@@ -276,7 +277,7 @@
   "submission_ready": false,
   "prime_distribution_consequence": false,
   "faster_unranking_claim": false,
-  "research_progress": "Completed a bounded feasibility audit of the broader extremal Groebner-basis count; independently reproduced the known eight-versus-ten example over F_29 and an explicit generic-cone split; checked the general-ideal, finite-field and grid-complement boundaries. No new asymptotic extension or strongest-current-bound certification is claimed.",
+  "research_progress": "Proved the dyadic-chart upper bound for complete ordered exponent prefixes, including all inactive-face and shell-count cases; combined it with Candidate 23 for matching growth and bounded mean ordering multiplicity; saved exact checks and identified the close finite-ordering and fixed-degree literature. Ordered-prefix novelty remains unverified and the manuscript is not expanded.",
   "remaining_exact_size_problem": "A complete pointwise proof candidate has passed the fresh internal audit; priority and publication significance have not been established.",
   "uniform_sieve_bound": {
     "record": "Candidate 22, equation (22.1)",
@@ -570,6 +571,65 @@
   },
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "evidence": "Read the original Onn--Sturmfels extremal definition and seven-point counterexample, identifying an existing broader problem and ruling out exact generic maximality. The present turn adds a reproducible negative control and later-source comparisons."
+    "evidence": "Previous turn saved and published the bounded extremal feasibility audit, an independently reproduced F_29 obstruction and later-source comparisons. Current turn develops the uniform dyadic ordered-prefix upper proof and identifies concrete close prior art."
+  },
+  "ordered_prefix_growth_candidate": {
+    "record": "docs/interleaving_research.md, Candidate 24: full ordered prefixes have the same growth order",
+    "definition": "O_d(n) counts ordered first-n lattice tuples for positive rationally independent weights, with labeled coordinates.",
+    "uniform_upper": "C_d(n) <= O_d(n) = O_d(n^(d-1)(log(n+1))^(d-1)).",
+    "matching_count": "Candidate 23 gives O_d(n)=Theta_d(n^(d-1)(log n)^(d-1)).",
+    "upper_proof_status": "Complete internal argument, including inactive coordinate faces, lower and upper dyadic product bounds, bounded shell width, central-arrangement chamber bound and per-chart prefix injectivity.",
+    "mechanism": "For effective dimension r, the dyadic side product Q lies between n/4^r and r!n. There are O_r((log(n+1))^(r-1)) aspect tuples. Each chart has O_r(n) comparison directions and O_r(n^(r-1)) chambers.",
+    "average_order_multiplicity": "The uniform mean number of admissible internal orders per n-point corner cut is Theta_d(1), using Candidate 23. No pointwise constant bound is asserted.",
+    "prime_realization": "The same Bertrand-interval construction preserves the finite minimum consecutive-score gap after sufficiently large scaling. Every counted ordered prefix is realizable over distinct labeled primes above any B.",
+    "prime_claim_limit": "Varying bases are essential; no prime-distribution estimate, bounded-prime-budget theorem or fixed-prime unranking speedup.",
+    "known_planar_object": "The signature-prefix count and crossing rule are already recorded in Adams-Watters, OEIS A163823 (2009); no planar novelty claim.",
+    "finite_checks": {
+      "report": "results/research/corner_cut_growth_checks.json",
+      "chart_prefixes": 1080,
+      "effective_dimensions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "product_shell_cases": 132,
+      "shell_dimensions": [
+        1,
+        12
+      ],
+      "planar_lengths": [
+        1,
+        60
+      ],
+      "planar_first_crossing_ranks": 261,
+      "ordered_prefixes_at_length_60": 262,
+      "known_contributor_values_compared": 12,
+      "negative_control": "At length 3 in dimension 2, four ordered prefixes have only three underlying shapes.",
+      "ordered_prime_realization_fixtures": 4
+    },
+    "close_prior_art": [
+      {
+        "authors": "Vasiliev and Pavlov",
+        "source": "https://doi.org/10.1134/S0361768809020030",
+        "inspected": "Primary publisher abstract and references, not full definitions or quantitative statements.",
+        "finding": "Finite intervals of monomial orders, several admissibility classes and their enumeration are established subjects.",
+        "remaining": "Compare the exact finite-prefix class and quantitative statements; check whether the dyadic upper bound is already known or immediate, and whether any result affects the main corner-cut lower-bound priority assessment."
+      },
+      {
+        "authors": "Vietri",
+        "source": "https://doi.org/10.1023/A:1021236722756",
+        "institutional_record": "https://iris.uniroma1.it/handle/11573/137367",
+        "inspected": "Authored abstract through the institutional record; full proof not inspected.",
+        "finding": "Studies weight orders on fixed homogeneous layers and prime-induced orders. The broad prime/monomial-order connection is not new.",
+        "remaining": "Compare full statements rather than infer novelty merely from the fixed-degree versus fixed-prefix distinction."
+      }
+    ],
+    "novelty_established": false,
+    "manuscript_extended": false,
+    "goal_complete": false,
+    "decision": "Preserve the full proof and falsification evidence; compare the newly identified close ordering literature before enlarging the manuscript or claiming a second new theorem. The original acceptance criteria remain unchanged."
   }
 }

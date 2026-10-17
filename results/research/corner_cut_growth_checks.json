@@ -912,7 +912,8 @@
         ],
         "value": 20151121
       },
-      "heap_prefix_matches": true
+      "heap_prefix_matches": true,
+      "prescribed_order_checked": false
     },
     {
       "integer_weights": [
@@ -977,7 +978,8 @@
         ],
         "value": 20151121
       },
-      "heap_prefix_matches": true
+      "heap_prefix_matches": true,
+      "prescribed_order_checked": false
     },
     {
       "integer_weights": [
@@ -1031,7 +1033,8 @@
         ],
         "value": 3
       },
-      "heap_prefix_matches": true
+      "heap_prefix_matches": true,
+      "prescribed_order_checked": false
     },
     {
       "integer_weights": [
@@ -1118,7 +1121,8 @@
         ],
         "value": 85849
       },
-      "heap_prefix_matches": true
+      "heap_prefix_matches": true,
+      "prescribed_order_checked": false
     },
     {
       "integer_weights": [
@@ -1187,7 +1191,8 @@
         ],
         "value": 300763
       },
-      "heap_prefix_matches": true
+      "heap_prefix_matches": true,
+      "prescribed_order_checked": false
     },
     {
       "integer_weights": [
@@ -1251,7 +1256,304 @@
         ],
         "value": 300763
       },
-      "heap_prefix_matches": true
+      "heap_prefix_matches": true,
+      "prescribed_order_checked": false
+    }
+  ],
+  "ordered_prime_realization_fixtures": [
+    {
+      "integer_weights": [
+        2,
+        3
+      ],
+      "maximum_included_score": 3,
+      "base": 5,
+      "bertrand_intervals": [
+        [
+          25,
+          50
+        ],
+        [
+          250,
+          500
+        ]
+      ],
+      "primes": [
+        29,
+        251
+      ],
+      "cut": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "cardinality": 3,
+      "integer_product_threshold": 625,
+      "last_inside": {
+        "exponents": [
+          0,
+          1
+        ],
+        "value": 251
+      },
+      "first_outside": {
+        "exponents": [
+          2,
+          0
+        ],
+        "value": 841
+      },
+      "heap_prefix_matches": true,
+      "prescribed_order_checked": true,
+      "ordered_prefix": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "integer_weights": [
+        3,
+        2
+      ],
+      "maximum_included_score": 3,
+      "base": 5,
+      "bertrand_intervals": [
+        [
+          250,
+          500
+        ],
+        [
+          25,
+          50
+        ]
+      ],
+      "primes": [
+        251,
+        29
+      ],
+      "cut": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "cardinality": 3,
+      "integer_product_threshold": 625,
+      "last_inside": {
+        "exponents": [
+          1,
+          0
+        ],
+        "value": 251
+      },
+      "first_outside": {
+        "exponents": [
+          0,
+          2
+        ],
+        "value": 841
+      },
+      "heap_prefix_matches": true,
+      "prescribed_order_checked": true,
+      "ordered_prefix": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "integer_weights": [
+        3,
+        4
+      ],
+      "maximum_included_score": 6,
+      "base": 17,
+      "bertrand_intervals": [
+        [
+          4913,
+          9826
+        ],
+        [
+          167042,
+          334084
+        ]
+      ],
+      "primes": [
+        4919,
+        167047
+      ],
+      "cut": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "cardinality": 4,
+      "integer_product_threshold": 410338673,
+      "last_inside": {
+        "exponents": [
+          2,
+          0
+        ],
+        "value": 24196561
+      },
+      "first_outside": {
+        "exponents": [
+          1,
+          1
+        ],
+        "value": 821704193
+      },
+      "heap_prefix_matches": true,
+      "prescribed_order_checked": true,
+      "ordered_prefix": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    },
+    {
+      "integer_weights": [
+        2,
+        3,
+        5
+      ],
+      "maximum_included_score": 3,
+      "base": 9,
+      "bertrand_intervals": [
+        [
+          81,
+          162
+        ],
+        [
+          1458,
+          2916
+        ],
+        [
+          236196,
+          472392
+        ]
+      ],
+      "primes": [
+        83,
+        1459,
+        236207
+      ],
+      "cut": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ]
+      ],
+      "cardinality": 3,
+      "integer_product_threshold": 6561,
+      "last_inside": {
+        "exponents": [
+          0,
+          1,
+          0
+        ],
+        "value": 1459
+      },
+      "first_outside": {
+        "exponents": [
+          2,
+          0,
+          0
+        ],
+        "value": 6889
+      },
+      "heap_prefix_matches": true,
+      "prescribed_order_checked": true,
+      "ordered_prefix": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ]
     }
   ],
   "exact_size_patch_fixtures": [
@@ -3002,10 +3304,255 @@
     },
     "scope": "Known finite counterexample and failed proof extension; no new asymptotic bound."
   },
+  "ordered_prefix_chart_checks": {
+    "strict_prefixes_checked": 1080,
+    "ambient_dimensions": [
+      2,
+      6
+    ],
+    "effective_dimensions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "shell_cases_checked": 132,
+    "witnesses": [
+      {
+        "dimension": 2,
+        "length": 17,
+        "weights": [
+          306,
+          28900000001
+        ],
+        "height": 4896,
+        "active_coordinates": [
+          0
+        ],
+        "dyadic_sides": [
+          16
+        ],
+        "chart_product": 16,
+        "comparison_direction_upper_bound": 31
+      },
+      {
+        "dimension": 3,
+        "length": 17,
+        "weights": [
+          5202,
+          491300000017,
+          491300000001
+        ],
+        "height": 83232,
+        "active_coordinates": [
+          0
+        ],
+        "dyadic_sides": [
+          16
+        ],
+        "chart_product": 16,
+        "comparison_direction_upper_bound": 31
+      },
+      {
+        "dimension": 4,
+        "length": 17,
+        "weights": [
+          88434,
+          8352100000289,
+          8352100000017,
+          8352100000001
+        ],
+        "height": 1414944,
+        "active_coordinates": [
+          0
+        ],
+        "dyadic_sides": [
+          16
+        ],
+        "chart_product": 16,
+        "comparison_direction_upper_bound": 31
+      },
+      {
+        "dimension": 5,
+        "length": 17,
+        "weights": [
+          1503378,
+          141985700004913,
+          141985700000289,
+          141985700000017,
+          141985700000001
+        ],
+        "height": 24054048,
+        "active_coordinates": [
+          0
+        ],
+        "dyadic_sides": [
+          16
+        ],
+        "chart_product": 16,
+        "comparison_direction_upper_bound": 31
+      },
+      {
+        "dimension": 6,
+        "length": 17,
+        "weights": [
+          25557426,
+          2413756900083521,
+          2413756900004913,
+          2413756900000289,
+          2413756900000017,
+          2413756900000001
+        ],
+        "height": 408918816,
+        "active_coordinates": [
+          0
+        ],
+        "dyadic_sides": [
+          16
+        ],
+        "chart_product": 16,
+        "comparison_direction_upper_bound": 31
+      }
+    ],
+    "scope": "Finite checks of chart containment and exact volume inequalities; the arrangement count is proved in Candidate 24."
+  },
+  "planar_ordered_prefix_checks": {
+    "attribution": "Planar signature-prefix family recorded by Adams-Watters in OEIS A163823 (2009).",
+    "source": "https://oeis.org/A163823",
+    "lengths": [
+      1,
+      60
+    ],
+    "counts": [
+      1,
+      2,
+      4,
+      6,
+      8,
+      12,
+      14,
+      16,
+      20,
+      24,
+      26,
+      32,
+      34,
+      36,
+      42,
+      46,
+      48,
+      54,
+      56,
+      60,
+      66,
+      70,
+      72,
+      80,
+      84,
+      86,
+      92,
+      98,
+      100,
+      110,
+      112,
+      114,
+      118,
+      122,
+      126,
+      136,
+      138,
+      140,
+      146,
+      154,
+      156,
+      166,
+      168,
+      172,
+      182,
+      186,
+      188,
+      196,
+      200,
+      204,
+      210,
+      216,
+      218,
+      228,
+      234,
+      238,
+      244,
+      248,
+      250,
+      262
+    ],
+    "first_crossing_ranks_checked": 261,
+    "same_shape_different_orders": {
+      "length": 3,
+      "same_shape": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "ordered_realizations": [
+        {
+          "weights": [
+            4,
+            3
+          ],
+          "order": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "weights": [
+            2,
+            3
+          ],
+          "order": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        }
+      ]
+    },
+    "scope": "Known planar object and exact finite checks; no planar novelty claim or proof of the all-dimensional theorem."
+  },
   "source_sha256": {
-    "scripts/run_corner_cut_growth_checks.py": "fe0b326a3be76e15a8145de8688dda07b4afba482d0c1dba0632fcc8a3463868",
+    "scripts/run_corner_cut_growth_checks.py": "7907e9de51d0e1ed6c29d19e3f88d0f5df32d29f68b00892428085a71ca7fff0",
     "scripts/run_pyramidal_poset_checks.py": "70eb1d26eb7a8664e8c186b33e115fedb1ecc5004880a41b07f76ba000533500",
-    "docs/interleaving_research.md": "8a2ac7ac77f699ca2833f18eafd0a0334339a3a6f0f7cc75bf9c4d8351422a4e",
+    "docs/interleaving_research.md": "8eb2b3ac7399627f94d417669dd7b113cb7dc07a5b7caa6c0ec1550a91374320",
     "paper/corner_cut_growth/main.tex": "ae31ca6519256855523a9a17bf8c6ab609256ea10f71b6d8468f7b93d0f93d46"
   },
   "limitations": [

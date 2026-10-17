@@ -355,7 +355,7 @@ def projection_negative_control():
             "one_residue_bound_without_projection_hypothesis_is_false": True}
 
 
-def prime_realization_fixtures():
+def prime_realization_fixtures(specifications=None, ordered=False):
     """Check the prime bridge without floating logs or a precision tolerance.
 
     For D={x: a.x<=s}, put b=2^(d H)+1, where H=max_{x in D}|x|_1.
@@ -370,9 +370,11 @@ def prime_realization_fixtures():
                 return candidate
             candidate += 1
 
+    if specifications is None:
+        specifications = (((1, 2), 3), ((2, 1), 3), ((1, 1, 1), 0),
+                          ((2, 2, 2, 2), 2), ((1, 2, 3), 2), ((1, 3, 4), 2))
     result = []
-    for weights, score in (((1, 2), 3), ((2, 1), 3), ((1, 1, 1), 0),
-                           ((2, 2, 2, 2), 2), ((1, 2, 3), 2), ((1, 3, 4), 2)):
+    for weights, score in specifications:
         d = len(weights)
         cut = {x for x in product(*(range(score // a + 1) for a in weights))
                if dot(weights, x) <= score}
@@ -409,13 +411,20 @@ def prime_realization_fixtures():
                     heapq.heappush(heap, (number * p, y))
         require(set(generated[:-1]) == cut and generated[-1] not in cut,
                 "independent exact heap prefix")
+        if ordered:
+            prescribed = sorted(cut, key=lambda x: dot(weights, x))
+            require(all(dot(weights, a) < dot(weights, b)
+                        for a, b in zip(prescribed, prescribed[1:])), 'strict prescribed order')
+            require(generated[:-1] == prescribed, 'prime products preserve the prescribed order')
         result.append({"integer_weights": weights, "maximum_included_score": score,
                        "base": base, "bertrand_intervals": intervals, "primes": primes,
                        "cut": sorted(cut), "cardinality": len(cut),
                        "integer_product_threshold": threshold,
                        "last_inside": {"exponents": last_inside, "value": value(last_inside)},
                        "first_outside": {"exponents": first_outside, "value": value(first_outside)},
-                       "heap_prefix_matches": True})
+                       "heap_prefix_matches": True,
+                       "prescribed_order_checked": ordered,
+                       **({"ordered_prefix": generated[:-1]} if ordered else {})})
     return result
 
 
@@ -699,6 +708,110 @@ def nongeneric_point_ideal_control():
             'scope': 'Known finite counterexample and failed proof extension; no new asymptotic bound.'}
 
 
+def ordered_prefix_chart_checks():
+    """Falsify dyadic-volume errors, especially on inactive coordinate faces."""
+    rng = Random(24017)
+    cases, active_dimensions, examples = 0, set(), []
+    for d in range(2, 7):
+        bases = [(1,) * d, tuple(4 ** i for i in range(d)),
+                 tuple(4 ** (d - i - 1) for i in range(d))]
+        bases.extend(tuple(1 if i < r else 10 ** 8 for i in range(d))
+                     for r in range(1, d + 1))
+        bases.extend(tuple(rng.randrange(1, 8) * 2 ** rng.randrange(21)
+                           for _ in range(d)) for _ in range(20))
+        for base in bases:
+            for n in (2, 3, 4, 5, 8, 17, 40, 64):
+                weights = tuple(n ** d * a + n ** (d - i - 1)
+                                for i, a in enumerate(base))
+                prefix = integer_weight_prefix(weights, n + 1)
+                require(all(a[0] < b[0] for a, b in zip(prefix[:n], prefix[1:])),
+                        'prefix and cutoff are strict')
+                height = prefix[n - 1][0]
+                active = tuple(i for i, w in enumerate(weights) if w <= height)
+                r = len(active)
+                active_dimensions.add(r)
+                sides = tuple(1 << ((height // weights[i]).bit_length() - 1)
+                              for i in active)
+                q = prod(sides)
+                require(all(point[i] == 0 for _, point in prefix[:n]
+                            for i in range(d) if i not in active), 'inactive coordinates vanish')
+                require(all(point[i] < 2 * length for _, point in prefix[:n]
+                            for i, length in zip(active, sides)), 'all prefix points lie in the chart')
+                weight_product = prod(weights[i] for i in active)
+                require(q * weight_product <= height ** r <= factorial(r) * n * weight_product,
+                        'simplex volume bounds the chart product')
+                require(n < 4 ** r * q and q <= factorial(r) * n,
+                        'chart products occupy a bounded dyadic shell')
+                direction_bound = (prod(4 * length - 1 for length in sides) - 1) // 2
+                require(direction_bound <= 4 ** r * factorial(r) * n,
+                        'only linearly many potential comparison hyperplanes per chart')
+                cases += 1
+                if base == bases[3] and n == 17:
+                    examples.append({'dimension': d, 'length': n, 'weights': weights,
+                                     'height': height, 'active_coordinates': active,
+                                     'dyadic_sides': sides, 'chart_product': q,
+                                     'comparison_direction_upper_bound': direction_bound})
+    require(active_dimensions == set(range(1, 7)), 'all effective dimensions exercised')
+    shell_cases = 0
+    for r in range(1, 13):
+        shell_width_bound = 2 * r + (factorial(r) - 1).bit_length() + 2
+        for n in (2, 3, 5, 8, 17, 64, 255, 256, 257, 1000, 1000000):
+            allowed = [exponent for exponent in range((factorial(r) * n).bit_length())
+                       if n < 4 ** r * 2 ** exponent <= 4 ** r * factorial(r) * n]
+            require(len(allowed) <= shell_width_bound, 'bounded number of product shells')
+            shell_cases += 1
+    return {'strict_prefixes_checked': cases, 'ambient_dimensions': [2, 6],
+            'effective_dimensions': sorted(active_dimensions), 'shell_cases_checked': shell_cases,
+            'witnesses': examples,
+            'scope': 'Finite checks of chart containment and exact volume inequalities; the arrangement count is proved in Candidate 24.'}
+
+
+def planar_ordered_prefix_checks():
+    """Check the established signature-prefix count by exact crossing sweeps."""
+    counts, crossing_cases, split = [], 0, None
+    for n in range(1, 61):
+        crossings = sorted({Fraction(a, b) for a in range(1, 2 * n)
+                            for b in range(1, 2 * n // (a + 1))
+                            if gcd(a, b) == 1 and (a + 1) * (b + 1) <= 2 * n})
+        if crossings:
+            samples = ([crossings[0] / 2]
+                       + [(a + b) / 2 for a, b in zip(crossings, crossings[1:])]
+                       + [crossings[-1] + 1])
+        else:
+            samples = [Fraction(1)]
+        orders, by_shape = set(), {}
+        for ratio in samples:
+            weights = (ratio.denominator, ratio.numerator)
+            prefix = integer_weight_prefix(weights, n + 1)
+            require(all(a[0] < b[0] for a, b in zip(prefix[:n], prefix[1:])),
+                    'crossing sample gives a strict ordered prefix')
+            order = tuple(point for _, point in prefix[:n])
+            orders.add(order)
+            shape = tuple(sorted(order))
+            by_shape.setdefault(shape, []).append({'weights': weights, 'order': order})
+        require(len(orders) == len(crossings) + 1, 'each active crossing changes the prefix')
+        counts.append(len(orders))
+        if n == 3:
+            require(len(orders) == 4 and len(by_shape) == 3, 'orders and sets are different counts')
+            shape, witnesses = next((shape, words) for shape, words in by_shape.items()
+                                    if len(words) > 1)
+            split = {'length': n, 'same_shape': shape, 'ordered_realizations': witnesses}
+        if n == 60:
+            for ratio in crossings:
+                a, b = ratio.numerator, ratio.denominator
+                strict_count = sum(b * x + a * y < a * b
+                                   for x in range(a + 1) for y in range(b + 1))
+                require(strict_count + 1 == (a + 1) * (b + 1) // 2,
+                        'first crossing rank agrees with direct lattice counting')
+                crossing_cases += 1
+    require(counts[:12] == [1, 2, 4, 6, 8, 12, 14, 16, 20, 24, 26, 32],
+            'published contributor values for signature prefixes, OEIS A163823')
+    return {'attribution': 'Planar signature-prefix family recorded by Adams-Watters in OEIS A163823 (2009).',
+            'source': 'https://oeis.org/A163823', 'lengths': [1, 60], 'counts': counts,
+            'first_crossing_ranks_checked': crossing_cases, 'same_shape_different_orders': split,
+            'scope': 'Known planar object and exact finite checks; no planar novelty claim or proof of the all-dimensional theorem.'}
+
+
 
 def main():
     fixtures = [primitive_fixture(sides) for sides in
@@ -715,10 +828,14 @@ def main():
         "explicit_uniform_sieve_bounds": explicit_sieve_bounds(),
         "nonprimitive_projection_control": projection_negative_control(),
         "prime_realization_fixtures": prime_realization_fixtures(),
+        "ordered_prime_realization_fixtures": prime_realization_fixtures(
+            (((2, 3), 3), ((3, 2), 3), ((3, 4), 6), ((2, 3, 5), 3)), ordered=True),
         "exact_size_patch_fixtures": [fixed_size_patch_fixture(d) for d in range(2, 7)],
         "exact_size_constants": exact_size_constants(),
         "tie_resolution_fixture": tie_resolution_fixture(),
         "nongeneric_point_ideal_control": nongeneric_point_ideal_control(),
+        "ordered_prefix_chart_checks": ordered_prefix_chart_checks(),
+        "planar_ordered_prefix_checks": planar_ordered_prefix_checks(),
         "source_sha256": {str(path): hashlib.sha256((ROOT / path).read_bytes()).hexdigest()
                           for path in (Path("scripts/run_corner_cut_growth_checks.py"),
                                        Path("scripts/run_pyramidal_poset_checks.py"),
