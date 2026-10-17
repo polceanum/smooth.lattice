@@ -1,0 +1,618 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=28mm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Nzero}{\Z_{\geq0}}
+\newcommand{\card}[1]{\lvert#1\rvert}
+\newcommand{\norm}[1]{\lVert#1\rVert_\infty}
+\newcommand{\floor}[1]{\lfloor#1\rfloor}
+\newcommand{\ceil}[1]{\lceil#1\rceil}
+\newcommand{\dd}{\delta}
+\title{Cumulative growth of corner cuts\\in fixed dimension}
+\author{}
+\date{17 October 2026}
+\begin{document}
+\maketitle
+\begin{center}
+\small Working mathematical draft. The proof has undergone an internal audit;
+the priority assessment and submission review remain incomplete.
+\end{center}
+
+\begin{abstract}
+Let \(C_d(n)\) count the \(n\)-point subsets of the nonnegative integer
+lattice that can be strictly separated from their complements by an affine
+hyperplane. For every fixed \(d\geq2\), we prove
+\[
+ \sum_{j=1}^{n}C_d(j)=\Theta_d\!\bigl(n^d(\log n)^{d-1}\bigr).
+\]
+The upper bound follows from Wagner's estimate. His lifting lemma then
+gives \(C_d(n)=\Omega_d(n^{d-1}(\log n)^{d-2})\) for \(d\geq4\),
+improving the lower logarithmic exponent in that published baseline.
+The construction counts primitive lattice simplices in separated boxes,
+converts their affine spans to vertices of a weight-space arrangement,
+and sums over disjoint aspect ranges. A finite divisibility argument
+provides uniform constants without an interchange of density limits
+and infinite unions. The exact-size three-dimensional gap is not resolved.
+\end{abstract}
+
+\section{The counting problem and its scope}
+A nonempty finite set \(D\subset\Nzero^d\) is a \emph{corner cut} if
+\[
+ D=\{x\in\Nzero^d:w\cdot x<t\}
+ \quad\text{for some }w\in\R_{>0}^d,\ t>0,
+\]
+with no lattice point on the cutting hyperplane. Write \(C_d(n)\) for the
+number of such sets of cardinality \(n\), and put
+\[
+ A_d(n)=\sum_{j=1}^{n}C_d(j).
+\]
+We count sets, rather than the orders of their elements or the weights
+representing them. Every cut is an order ideal for the coordinate order.
+In particular, every coordinate of an element of an \(n\)-point cut
+is at most \(n-1\), so these counts are finite.
+
+These objects occur as the exponent sets of initial segments of smooth
+numbers. For distinct primes \(p_1,\ldots,p_d\), comparing the products
+\(\prod_i p_i^{x_i}\) is equivalent to comparing
+\(\sum_i x_i\log p_i\). An exponent prefix is consequently a corner cut.
+Our theorem concerns the full geometric class; it does not give a
+prime-distribution estimate or a faster random-access algorithm for a
+fixed prime set.
+
+Corner cuts were introduced in connection with state polyhedra and
+Gr\"obner bases by Onn and Sturmfels \cite{OS}. The planar order
+\(C_2(n)=\Theta(n\log n)\) is due to Corteel, R\'emond, Schaeffer and
+Thomas \cite{CRST}. For fixed \(d\), Wagner \cite{W02} proved
+\[
+ \Omega_d(n^{d-1}\log n)\leq C_d(n)
+ \leq O_d(n^{d-1}(\log n)^{d-1}).
+ \tag{1}\label{eq:baseline}
+\]
+His thesis \cite[Chapter 3]{W03} gives the lower and upper arguments
+and suggests seeking greater completion multiplicity. Our new step is
+a lower bound for bounded cardinality, obtained by counting independent
+aspect ranges. Lifting is used only after this step.
+
+\begin{theorem}\label{thm:main}
+For each fixed integer \(d\geq2\),
+\[
+ A_d(n)=\Theta_d\!\bigl(n^d(\log n)^{d-1}\bigr).
+\]
+More explicitly, let
+\[
+ R_0(d)=4d^2(d+1),\qquad n_0(d)=2^d4^{R_0(d)}
+\]
+and
+\[
+ \kappa_d=
+ \frac{1}{
+ 8^{d-1}(100d)^{d^2}(d-1)![4(d+1)]^{d-1}2^{d(d+2)}}.
+\]
+Then, for every integer \(n\geq n_0(d)\),
+\[
+ A_d(n)\geq\kappa_d n^d(\log_4 n)^{d-1}.
+ \tag{2}\label{eq:explicit}
+\]
+\end{theorem}
+
+\begin{corollary}\label{cor:exact}
+For each fixed \(d\geq4\),
+\[
+ C_d(n)=\Omega_d\!\bigl(n^{d-1}(\log n)^{d-2}\bigr).
+\]
+\end{corollary}
+This leaves one logarithmic factor between the lower bound and
+\eqref{eq:baseline}. In dimension three, the corollary recovers only
+the earlier lower order \(n^2\log n\). The cumulative theorem also
+precludes a uniform reduction of the logarithmic exponent in the upper
+bound; its positive-proportion consequence is stated in Section~\ref{sec:consequences}.
+
+\section{Primitive simplices in axis boxes}
+Fix an ambient integer \(d\geq2\) and set \(\dd=1/(100d)\).
+For integer side lengths \(L_1,\ldots,L_d\), put
+\[
+ m=\min_i L_i,\quad M=\max_i L_i,\quad Q=\prod_{i=1}^{d}L_i.
+\]
+Define \(B_i\subset\Nzero^d\) by taking the \(j\)th coordinate interval to be
+\[
+ [L_j,L_j+\floor{\dd L_j}]\quad(j=i),\qquad
+ [0,\floor{\dd L_j}]\quad(j\ne i).
+\]
+A \(d\)-by-\((d-1)\) integer matrix is called primitive if the greatest
+common divisor of its maximal minors is one.
+
+\begin{lemma}\label{lem:primitive}
+Assume \(M\leq m^2\) and \(m\geq2^{8d^2}\).
+At least a fraction \(8^{-(d-1)}\) of the ordered choices
+\(p_i\in B_i\) have primitive difference matrix
+\[
+ V=[p_2-p_1\ \cdots\ p_d-p_1].
+\]
+\end{lemma}
+The minor criterion and its equivalence with full column rank modulo
+every prime are standard \cite[Propositions 3--4]{MW}.
+The point requiring proof here is uniformity for these moving,
+possibly anisotropic boxes.
+
+\begin{proof}
+Keep the same \(\dd\) throughout a dimension induction.
+Let \(E_r\) be the event that the first \(r\) points, projected onto the
+first \(r\) coordinates, have primitive difference matrix.
+The event \(E_1\) is automatic, with empty minor equal to one.
+At step \(2\leq r\leq d\), fix a primitive configuration of the previous
+\(r-1\) projected points. Its difference matrix \(U\) has size
+\((r-1)\)-by-\((r-2)\). Its vector \(a_0\) of signed maximal minors
+is primitive, and \(U\) has rank \(r-2\) modulo every prime.
+
+Let \(u\) be the first \(r-1\) coordinates of \(p_r-p_1\), and put
+\(D=\det[U\ u]\). This determinant is nonzero for every allowed choice.
+Indeed, the normalized row matrix of the previous \(r-1\) projected
+points differs from the identity by at most \((r-1)\dd\) in maximum
+row-sum norm. The normal of their affine span, normalized to height one,
+has scaled coordinates within
+\((r-1)\dd/(1-(r-1)\dd)\) of one and is positive.
+The new projected point has every scaled coordinate at most \(\dd\);
+it is strictly on the origin side of that affine span.
+Also,
+\[
+ |D|\leq (r-1)!\,2^{r-1}M^{r-1}
+       \leq2^{d^2}m^{2(d-1)}.                    \tag{3}\label{eq:D}
+\]
+
+Every coordinate interval contains more than \(\dd m\) integers.
+For a prime \(\ell\), the equation \(D=0\pmod\ell\) is a nontrivial
+linear equation in the new projected point: at least one coordinate
+of \(a_0\) is nonzero modulo \(\ell\).
+Its probability is at most \(1/\ell+a/m\), where \(a=100d\).
+
+Suppose \(\ell\mid D\). Since \(U\) has full column rank modulo
+\(\ell\), there is a unique vector \(\lambda\) with
+\(u=U\lambda\pmod\ell\). Write \(z\) for the \(r\)th row of the old
+columns and \(u_r\) for the \(r\)th coordinate of the new column.
+The full \(r\)-by-\((r-1)\) matrix loses rank modulo \(\ell\) precisely if
+\[
+ u_r=z\lambda\pmod\ell.                         \tag{4}\label{eq:residue}
+\]
+Conditional on everything except the last coordinate of \(p_r\),
+this is one residue class, of probability at most \(1/\ell+a/m\).
+Thus the probability of failure at any particular prime is at most
+\((1/\ell+a/m)^2\).
+
+Put \(s=\floor{(\log_2 m)/2}\), \(P=2^s\).
+The small-prime union bound gives
+\begin{align}
+ \Pr(\text{failure at a prime }\ell\leq P)
+ &\leq\sum_{\substack{\ell\leq P\\\ell\ {\rm prime}}}
+                 (1/\ell+a/m)^2 \notag\\
+ &\leq\frac34+\frac{2a(s+1)}{2^{2s}}+
+                      \frac{a^2}{2^{3s}}.       \tag{5}\label{eq:small}
+\end{align}
+Here \(\sum_{j=2}^{\infty}j^{-2}<3/4\) follows by comparison with
+\(1/4+\int_2^\infty x^{-2}\,dx\).
+The cross term uses \(H_P\leq1+\log P\leq1+s\), and the constant
+term uses at most \(P\) primes.
+
+For large primes, first fix the new projected coordinates.
+Every bad prime \(\ell>P\) divides the same nonzero integer \(D\).
+By \eqref{eq:D}, their number is at most
+\[
+ \frac{\log_2|D|}{s}
+ \leq4(d-1)+\frac{d^2+4(d-1)}{s}
+ \leq b:=4d-3
+ \quad\text{if }s\geq d^2+4(d-1).
+\]
+For each of these finitely many primes, \eqref{eq:residue} bounds the
+conditional last-coordinate failure probability by \(2^{-s}+a2^{-2s}\).
+Their total contribution is therefore at most \(b(2^{-s}+a2^{-2s})\).
+
+Define
+\[
+ E_d(s)=\frac{2a(s+1)}{2^{2s}}+\frac{a^2}{2^{3s}}
+                  +b(2^{-s}+a2^{-2s}).          \tag{6}\label{eq:error}
+\]
+This decreases for \(s\geq1\).
+For every integer \(d\geq2\), the choice \(S_d=4d^2\) satisfies
+\(S_d\geq d^2+4(d-1)\) and \(E_d(S_d)<2^{-10}<1/8\).
+For an explicit verification valid in every dimension, use
+\(a\leq2^{4d}\), \(b\leq2^{2d}\) and \(4d^2+1\leq2^{3d}\).
+They give
+\[
+ E_d(4d^2)\leq
+ 2^{1+7d-8d^2}+2^{8d-12d^2}
+       +2^{2d-4d^2}+2^{6d-8d^2}<2^{-10}.
+\]
+The four exponents decrease for \(d\geq2\), and at \(d=2\)
+are \(-17,-32,-12,-20\).
+
+Consequently the conditional probability of a nonprimitive extension
+is at most \(3/4+E_d(s)\leq7/8\).
+To justify the conditioning across steps, the events
+\(E_1,\ldots,E_{r-1}\) depend only on previous projected coordinates.
+After these are fixed, the old \(r\)th coordinates and the new point
+retain their product distributions. Thus
+\[
+ \Pr(E_r\mid E_1,\ldots,E_{r-1})\geq1/8.
+\]
+Multiplication proves that \(\Pr(E_1\cap\cdots\cap E_d)\geq8^{-(d-1)}\).
+This intersection implies \(E_d\), as required.
+All bounds on large primes were finite before any limit was taken.
+\end{proof}
+
+\section{From simplices to cuts}
+We first recall a useful elementary fact about arrangements, including
+the case of dependent hyperplanes.
+\begin{lemma}\label{lem:chambers}
+For a finite affine-hyperplane arrangement in a nonempty open convex
+domain in \(\R^k\), the number of chambers is at least the number
+of interior vertices.
+\end{lemma}
+\begin{proof}
+In dimension one, \(v\) distinct interior points give \(v+1\) chambers.
+For the induction step, discard duplicate hyperplanes and insert the
+remaining ones in a fixed order. Inserting \(H\) creates exactly the
+number of chambers of the restricted arrangement in \(H\) intersected
+with the domain. This follows because every old chamber is open and
+convex and is split exactly when it meets \(H\).
+
+Assign each vertex to its last incident hyperplane \(H\).
+The incident normals span \(\R^k\), and the nonzero normal of \(H\)
+extends to a basis among them. Hence the assigned vertex is also an
+interior vertex of the restriction to \(H\).
+The induction hypothesis bounds the number assigned to \(H\) by the
+number of new chambers. Summing gives the result.
+\end{proof}
+
+\begin{lemma}\label{lem:local}
+Under the hypotheses of Lemma~\ref{lem:primitive}, at least
+\[
+ \rho_d Q^d,\qquad
+ \rho_d=8^{-(d-1)}(100d)^{-d^2},                 \tag{7}\label{eq:local}
+\]
+distinct corner cuts are represented by weights in
+\[
+ \Omega_L=\prod_{i=1}^{d}\left(\frac9{10L_i},\frac{11}{10L_i}\right),
+\]
+using threshold one. Each has at most \((3/2)^d Q\) points.
+Its maximum \(i\)th coordinate on the \(i\)th axis lies in
+\((4L_i/5,6L_i/5)\).
+\end{lemma}
+\begin{proof}
+Let \(p_i\in B_i\) have primitive difference matrix \(V\).
+Its primitive cofactor normal is \(a\).
+There is an integer vector \(z\) with \(a\cdot z=1\);
+the matrix \([V\ z]\) is unimodular, after choosing the cofactor
+orientation. The columns of \(V\) therefore form a basis of
+\(\{x\in\Z^d:a\cdot x=0\}\).
+
+After row scaling, the submatrix of \(V\) in coordinates \(2,\ldots,d\)
+differs from the identity by at most \((d-1)\dd\) in maximum row-sum
+norm. If two integer points in one \(B_i\) belong to the selected
+affine span, their difference is \(Vc\) for an integer vector \(c\).
+The scaled coordinate difference is at most \(\dd\), so
+\[
+ \norm{c}\leq\frac{\dd}{1-(d-1)\dd}<1.
+\]
+Thus \(c=0\). The plane meets each box in exactly its selected point,
+so distinct primitive choices give distinct planes.
+
+The normalized row matrix of all \(d\) points differs from the
+identity by at most \(d\dd\).
+The unique solution of \(p_i\cdot w=1\) satisfies
+\[
+ |L_iw_i-1|\leq\frac{d\dd}{1-d\dd}<1/10.
+\]
+In particular it is positive and lies in \(\Omega_L\).
+Each selected plane gives a distinct interior vertex of the arrangement
+\(x\cdot w=1\).
+This arrangement can be taken finite: only nonnegative integer points
+with \(x_i\leq\ceil{10L_i/9}\) for every \(i\) can meet \(\Omega_L\);
+all other points have weight greater than one throughout that domain.
+
+Every chamber gives a corner cut. Different chambers give different
+sets, since a fixed collection of strict signs has convex intersection
+with \(\Omega_L\). By Lemma~\ref{lem:chambers}, the number of these cuts
+is at least the number of selected vertices.
+Each \(B_i\) has at least \(\dd^d Q\) points, so
+Lemma~\ref{lem:primitive} proves \eqref{eq:local}.
+
+A coordinate of an included point is smaller than \(10L_i/9\).
+There are fewer than \(10L_i/9+1\leq(3/2)L_i\) possible integer values
+when \(L_i\geq3\). This proves the cardinality bound.
+For a chamber weight, the maximum axis coordinate is \(\floor{1/w_i}\);
+the chamber condition excludes equality \(1/w_i\in\Z\).
+It lies strictly between \(4L_i/5\) and \(6L_i/5\) when \(L_i\geq10\).
+Both side conditions follow from the stated threshold.
+\end{proof}
+
+\section{Summing aspect ranges}
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+The upper bound follows by summing \eqref{eq:baseline}.
+For the lower bound, take \(R\) maximal with
+\[
+ Q=4^R\leq n/2^d.
+\]
+Choose any integer tuple with
+\[
+ r_1+\cdots+r_d=R,\qquad r_i\geq\ceil{R/(d+1)},
+ \quad\text{and put } L_i=4^{r_i}.
+\]
+Then
+\[
+ Q^{1/(d+1)}\leq L_i\leq Q^{2/(d+1)}.
+\]
+In particular \(\max L_i\leq(\min L_i)^2\).
+When \(n\geq n_0(d)\), we have \(R\geq R_0(d)\) and
+\(\min L_i\geq2^{8d^2}\), so Lemma~\ref{lem:local} applies.
+
+All the resulting cuts have at most
+\((3/2)^dQ<n\) points. No cut is counted for two distinct scale tuples:
+such tuples differ by a factor of at least four in some \(L_i\),
+whereas the observable maximum axis coordinate belongs to
+\((4L_i/5,6L_i/5)\). These ranges are disjoint.
+
+Write \(h=R-d\ceil{R/(d+1)}\).
+There are \(\binom{h+d-1}{d-1}\) tuples.
+For \(R\geq R_0(d)\),
+\[
+ h\geq R/(d+1)-d\geq R/[2(d+1)],
+\]
+and hence
+\[
+ \binom{h+d-1}{d-1}
+ \geq\frac{R^{d-1}}{[2(d+1)]^{d-1}(d-1)!}.
+\]
+Also \(Q>n/2^{d+2}\) and
+\(R\geq\log_4 n-d/2-1\geq(\log_4 n)/2\).
+Multiply this tuple count by \(\rho_d Q^d\) from
+\eqref{eq:local} to obtain \eqref{eq:explicit}.
+\end{proof}
+
+For clarity, we give the lifting argument that transfers this result to
+a prescribed size in one more dimension. The argument is due to
+Wagner \cite[Lemma 3.5]{W03}.
+\begin{lemma}\label{lem:lifting}
+For \(d\geq1\) and \(n\geq1\),
+\[
+ C_{d+1}(n)\geq\sum_{j=1}^{n}C_d(j).
+\]
+\end{lemma}
+\begin{proof}
+Take a \(j\)-point corner cut \(T\) in the plane \(x_{d+1}=0\), and
+choose a strict representation \(w\cdot x<1\).
+Within its open representation set we can choose the coordinates
+of \(w\), together with one, to be linearly independent over \(\mathbb Q\).
+For \(u>0\) consider
+\[
+ D_u=\{(x,z)\in\Nzero^{d+1}:w\cdot x+uz<1\}.
+\]
+Its intersection with \(z=0\) is always \(T\).
+For \(u>1\), \(D_u=T\).
+As \(u\) decreases to zero, points enter at the values
+\((1-w\cdot x)/z\), with \(x\in T\), \(z\geq1\).
+These entry values are distinct: equality for two pairs implies a
+rational linear relation among \(1,w_1,\ldots,w_d\), and then forces
+both \(z\) and \(x\) to agree.
+There are only finitely many such values above any fixed positive
+bound, and the cardinality tends to infinity. Thus some open interval
+of \(u\)'s gives cardinality exactly \(n\), with no boundary point.
+Cuts with distinct sections \(T\) are different.
+\end{proof}
+\begin{proof}[Proof of Corollary~\ref{cor:exact}]
+Apply Lemma~\ref{lem:lifting} to \(A_{d-1}(n)\), and then use
+Theorem~\ref{thm:main}.
+\end{proof}
+
+\section{Consequences and limitations}\label{sec:consequences}
+\begin{corollary}
+For every fixed \(d\geq2\), there are \(c_d,\eta_d>0\) such that, for
+every sufficiently large \(N\), at least \(\eta_dN\) integers \(j\leq N\)
+satisfy
+\[
+ C_d(j)\geq c_d j^{d-1}(\log j)^{d-1}.
+\]
+\end{corollary}
+\begin{proof}
+Choose \(a,b>0\) with \(A_d(N)\geq aN^d(\log N)^{d-1}\) for large \(N\)
+and \(C_d(j)\leq bj^{d-1}(\log j)^{d-1}\) for large \(j\).
+The finitely many exceptional terms contribute \(O_d(1)\).
+For \(0<c<a/4\), the sum over indices failing the claimed threshold is
+at most \(cN^d(\log N)^{d-1}+O_d(1)\).
+Every other term is at most \(bN^{d-1}(\log N)^{d-1}\).
+At least a fixed positive multiple of \(N\) terms are therefore required.
+\end{proof}
+
+There is an established geometric interpretation.
+For a cut \(D\), put \(\alpha_D=\sum_{x\in D}x\).
+For fixed size \(n\), these vectors are distinct and each is a vertex
+of their convex hull. Indeed, weights strictly cutting off \(D\)
+make \(w\cdot\alpha_D\) smaller than \(w\cdot\alpha_E\) for every
+other \(n\)-point set \(E\): each replacement point has greater
+weight than every removed point. Thus \(\alpha_D\) is uniquely exposed.
+Conversely every vertex of the finite hull is one of its generators.
+The vertex count of the corner-cut polytope is consequently \(C_d(n)\).
+This correspondence is known \cite{OS,BMORW}; our contribution is the
+quantitative lower count, not the dictionary.
+For generic experimental designs the same count describes their
+corner-cut models \cite[Definition 7 and Theorem 2]{BMORW}.
+
+The cumulative result gives sharp-order growth on average and the
+improved exact-size bound in dimensions at least four.
+It supplies no asymptotic leading constant and no pointwise
+\(C_3(n)\gg n^2(\log n)^2\) statement.
+It also gives no new enumeration algorithm, no uniform claim as
+\(d\) grows with \(n\), and no fixed-prime unranking complexity improvement.
+
+\section{Prior results and reproducibility}
+The following distinctions delimit the contribution being assessed.
+The unrestricted density of rectangular primitive integer matrices is
+known \cite{MRW,MW}. The later paper repairs a defect in the earlier
+density proof. A centered-cube density alone does not assert the
+uniform estimate for our moving boxes; Lemma~\ref{lem:primitive} gives
+a direct finite proof. We claim no new minor criterion or unrestricted
+density formula.
+
+Chen, Feng, Liu and Wu \cite[Theorem 1]{CFLW} give finite probability
+bounds for appending independent rows to a prescribed primitive matrix.
+Their random entries use a common interval of length at least the
+maximum prescribed entry. Our boxes have translated intervals of
+different lengths, with their shortest length potentially much smaller
+than the largest entry. That theorem is not a direct substitute for
+Lemma~\ref{lem:primitive}. Prime-by-prime rank analysis and finite
+determinant cutoffs are established methods; our claimed contribution
+is their use in the multiscale corner-cut count.
+
+Finite-grid threshold encodings and planar counts are related
+background \cite{GPZ,ZZ}. Their parameters are the ambient grid and,
+in the latter case, intersections of two halfplanes. The argument here
+additionally controls the number of included points, restricts the
+positive intercepts, and sums disjoint aspect ranges.
+A difference in definitions alone is not evidence of novelty.
+
+The Hilbert zonotope refines state polyhedra and supports polynomial-time
+computation of universal Gr\"obner bases in fixed dimension
+\cite[Proposition 3.2 and Theorem 3.5]{BOT}.
+Its count is an upper bound for a common refinement, not the lower
+bounded-cardinality count proved here.
+Likewise the lattice-subspace covering bounds of
+Balko, Cibulka and Valtr \cite[Theorems 3--5]{BCV} concern another
+counting parameter. Neither result is being recast as a new theorem.
+
+Elizalde and Galv\'an \cite[Section 8.2]{EG} discuss higher-dimensional
+pyramidal partitions and refer to the corner-cut growth literature.
+For this draft, the relevant results in their 2025 journal article are
+provisionally assumed unchanged from arXiv:2312.16353v1, as authorized
+for the project. The final-version comparison is recorded separately
+for later checking. This assumption does not establish priority.
+
+\paragraph{Current priority status.}
+The proof establishes the stated inequalities and their strict
+improvement over the inspected lower bound in \eqref{eq:baseline}.
+The literature audit has not established an unrestricted claim of
+priority or submission readiness. In particular, the complete 2002
+journal text has not been inspected; the proofs were compared with
+the author's full thesis chapter. The 2007 grid-encoding paper was
+compared at the abstract level only. The detailed audit accompanies
+the source at \path{results/research/corner_cut_growth_audit.json}.
+This paragraph must be resolved before the draft is described as
+submission-ready.
+
+\paragraph{Exact checks.}
+The standard-library Python checker
+\path{scripts/run_corner_cut_growth_checks.py}
+uses independent determinants, modular Gaussian elimination and exact
+rational feasibility. It checks primitive-plane injectivity, the
+conditional residue bound, a nonprimitive-projection negative control,
+and a degenerate arrangement with 18 interior vertices and 48 chambers.
+It exhausts stated small boxes in dimensions two through four and uses
+deterministic samples in dimensions five and six.
+The explicit constants and 352 scale-rounding cases in dimensions
+two through twelve are checked with rational arithmetic.
+These computations can falsify steps; they do not prove the uniform
+theorem or its novelty.
+
+Run, from the repository root,
+\begin{verbatim}
+python3 -B scripts/run_corner_cut_growth_checks.py
+\end{verbatim}
+The report records fixtures, witnesses, the exact command and SHA-256
+hashes of its sources in
+\path{results/research/corner_cut_growth_checks.json}.
+The proof above is independent of the computation.
+The other project kernels and public rank/unrank interface are unchanged.
+
+\begin{thebibliography}{99}
+\raggedright
+\bibitem{OS}
+S.~Onn and B.~Sturmfels,
+Cutting corners,
+\emph{Advances in Applied Mathematics} 23 (1999), 29--48.
+\href{https://doi.org/10.1006/aama.1999.0645}{doi:10.1006/aama.1999.0645}.
+
+\bibitem{CRST}
+S.~Corteel, G.~R\'emond, G.~Schaeffer and H.~Thomas,
+The number of plane corner cuts,
+\emph{Advances in Applied Mathematics} 23 (1999), 49--53.
+\href{https://doi.org/10.1006/aama.1999.0646}{doi:10.1006/aama.1999.0646}.
+
+\bibitem{W02}
+U.~Wagner,
+On the number of corner cuts,
+\emph{Advances in Applied Mathematics} 29 (2002), 152--161.
+\href{https://doi.org/10.1016/S0196-8858(02)00014-3}{doi:10.1016/S0196-8858(02)00014-3}.
+
+\bibitem{W03}
+U.~Wagner,
+\emph{On \(k\)-Sets and Their Applications},
+doctoral thesis, ETH Z\"urich (2003), Chapter 3.
+\href{https://doi.org/10.3929/ethz-a-004708408}{doi:10.3929/ethz-a-004708408}.
+
+\bibitem{MRW}
+G.~Maze, J.~Rosenthal and U.~Wagner,
+Natural density of rectangular unimodular integer matrices,
+\emph{Linear Algebra and its Applications} 434 (2011), 1319--1324.
+\href{https://doi.org/10.1016/j.laa.2010.11.015}{doi:10.1016/j.laa.2010.11.015}.
+
+\bibitem{MW}
+G.~Micheli and V.~Weger,
+On rectangular unimodular matrices over the algebraic integers,
+\emph{SIAM Journal on Discrete Mathematics} 33 (2019), 425--437.
+\href{https://doi.org/10.1137/18M1177093}{doi:10.1137/18M1177093};
+\href{https://arxiv.org/abs/1803.08785}{arXiv:1803.08785}.
+
+\bibitem{BMORW}
+Y.~Berstein, H.~Maruri-Aguilar, S.~Onn, E.~Riccomagno and H.~Wynn,
+Minimal average degree aberration and the state polytope for experimental designs,
+\emph{Annals of the Institute of Statistical Mathematics} 62 (2010), 673--698.
+\href{https://doi.org/10.1007/s10463-010-0291-8}{doi:10.1007/s10463-010-0291-8}.
+
+\bibitem{BOT}
+E.~Babson, S.~Onn and R.~R.~Thomas,
+The Hilbert zonotope and a polynomial time algorithm for universal Gr\"obner bases,
+\emph{Advances in Applied Mathematics} 30 (2003), 529--544.
+\href{https://doi.org/10.1016/S0196-8858(02)00509-2}{doi:10.1016/S0196-8858(02)00509-2};
+\href{https://arxiv.org/abs/math/0207135}{arXiv:math/0207135}.
+
+\bibitem{GPZ}
+S.~Ghilezan, J.~Pantovi\'c and J.~\v{Z}uni\'c,
+Separating points by parallel hyperplanes---characterization problem,
+\emph{IEEE Transactions on Neural Networks} 18 (2007), 1356--1363.
+\href{https://doi.org/10.1109/TNN.2007.891678}{doi:10.1109/TNN.2007.891678}.
+
+\bibitem{ZZ}
+E.~Zamaraeva and J.~\v{Z}uni\'c,
+A characterization of 2-threshold functions via pairs of prime segments,
+\emph{Theoretical Computer Science} 919 (2022), 1--17.
+\href{https://doi.org/10.1016/j.tcs.2022.03.025}{doi:10.1016/j.tcs.2022.03.025};
+\href{https://arxiv.org/abs/2007.03986}{arXiv:2007.03986}.
+
+\bibitem{BCV}
+M.~Balko, J.~Cibulka and P.~Valtr,
+Covering lattice points by subspaces and counting point-hyperplane incidences,
+\href{https://arxiv.org/abs/1703.04767}{arXiv:1703.04767}.
+
+\bibitem{CFLW}
+J.~Chen, Y.~Feng, Y.~Liu and W.~Wu,
+On the probability of generating a primitive matrix,
+\emph{Journal of Systems Science and Complexity} (2024).
+\href{https://doi.org/10.1007/s11424-024-1313-6}{doi:10.1007/s11424-024-1313-6}.
+Inspected version:
+\href{https://arxiv.org/abs/2105.05383v2}{arXiv:2105.05383v2}.
+
+\bibitem{EG}
+S.~Elizalde and A.~B.~Galv\'an,
+Triangular partitions: enumeration, structure, and generation,
+\emph{Advances in Applied Mathematics} 163 (2025), 102807.
+\href{https://doi.org/10.1016/j.aam.2024.102807}{doi:10.1016/j.aam.2024.102807}.
+Inspected version:
+\href{https://arxiv.org/abs/2312.16353v1}{arXiv:2312.16353v1}.
+\end{thebibliography}
+\end{document}

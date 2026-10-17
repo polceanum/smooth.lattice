@@ -70,6 +70,10 @@ constants and a completed internal proof audit. Priority comparison remains
 unfinished. The bound also counts vertices of corner-cut polytopes and models
 of generic experimental designs through the established correspondence.
 This is a candidate contribution, not a verified new theorem or a completed paper.
+The [quantitative working draft](paper/corner_cut_growth/main.tex) gives the
+full proof and its attributions separately from the earlier structural note.
+The [eight-page PDF](output/pdf/corner_cut_growth.pdf) compiles and has been
+checked visually; the priority assessment and submission review remain incomplete.
 
 The existing structural results are preserved as a separate note about the
 geometry and containment intervals of pyramidal partitions. Applying Edelman's

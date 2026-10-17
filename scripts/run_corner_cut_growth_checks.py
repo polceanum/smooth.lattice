@@ -370,7 +370,8 @@ def main():
         "source_sha256": {str(path): hashlib.sha256((ROOT / path).read_bytes()).hexdigest()
                           for path in (Path("scripts/run_corner_cut_growth_checks.py"),
                                        Path("scripts/run_pyramidal_poset_checks.py"),
-                                       Path("docs/interleaving_research.md"))},
+                                       Path("docs/interleaving_research.md"),
+                                       Path("paper/corner_cut_growth/main.tex"))},
         "limitations": ["Finite checks do not establish a uniform asymptotic density bound.",
                         "The cumulative three-dimensional candidate does not establish the exact-size three-dimensional bound.",
                         "No claim of priority or publication readiness is made."],

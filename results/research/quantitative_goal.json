@@ -3,7 +3,7 @@
   "recorded_on": "2026-10-17",
   "title": "A new quantitative theorem for smooth exponent geometry",
   "objective": "Prove a genuinely new quantitative theorem about the exponent-lattice structure underlying fixed-prime smooth-number prefixes, resolving or strictly improving a published counting or algorithmic bound. Produce a complete proof, a precise comparison with the strongest relevant literature, reproducible supporting evidence and an honest paper explaining the mathematical advance.",
-  "status": "active_uniform_candidate_internally_audited_priority_comparison_pending",
+  "status": "active_quantitative_working_draft_written_priority_and_submission_audit_incomplete",
   "acceptance_criteria": [
     "State a uniform theorem for an infinite family with an explicit quantitative improvement over the strongest verified published result, or settle a recognized open structural question with a substantive counting or algorithmic consequence.",
     "Give a complete proof; numerical agreement, isolated examples and routine consequences of known theorems do not satisfy the goal.",
@@ -67,7 +67,7 @@
       "id": "M4",
       "task": "Write and audit the paper around the actual advance.",
       "deliverable": "A complete manuscript, exact priority comparison, reproducible evidence and a candid explanation of usefulness and limitations.",
-      "status": "pending"
+      "status": "working_mathematical_draft_written_not_submission_ready"
     }
   ],
   "preserved_side_results": {
@@ -109,6 +109,28 @@
       "source": "https://doi.org/10.1007/s10463-010-0291-8",
       "location": "Definition 7 and Theorem 2",
       "limit": "No faster enumeration or unranking algorithm follows."
+    },
+    "manuscript": {
+      "source": "paper/corner_cut_growth/main.tex",
+      "title": "Cumulative growth of corner cuts in fixed dimension",
+      "status": "working_draft_priority_and_submission_review_incomplete",
+      "proof_contents": [
+        "Uniform primitive-window bound with closed constants",
+        "Full-lattice injection and chamber-versus-vertex lemma with degeneracies",
+        "Disjoint-aspect construction and explicit cumulative count",
+        "Self-contained attributed lifting proof and exact-size consequence",
+        "Positive-proportion consequence and established polytope application"
+      ],
+      "compilation": "latest_source_compiled_successfully_with_desktop_editor_and_latexmk",
+      "author_metadata": "Left blank; no authorship or affiliation invented.",
+      "pdf": "output/pdf/corner_cut_growth.pdf",
+      "pdf_pages": 8,
+      "tex_sha256": "8bc6f44f015126a997e5dd01cbf2f8fa22222cec4f6d77f0d516f4decbdac497",
+      "pdf_sha256": "665edb09e71051ff85d58bb88d0f6dbae24752be989ab878e812a6507bd8239e",
+      "visual_review": "All eight latest rendered pages inspected; no clipping, overlap or unresolved references.",
+      "latex_log_check": "No errors, overfull boxes or undefined references in the final pass.",
+      "pdf_structure_check": "Eight pages, blank author metadata, no extracted characters outside page boundaries.",
+      "pdf_build_command": "latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=results/local/corner-cut-latex paper/corner_cut_growth/main.tex"
     }
   }
 }

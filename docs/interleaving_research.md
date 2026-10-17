@@ -1918,3 +1918,42 @@ error. The main research objective is still incomplete: the counting theorem
 needs a defensible priority comparison and a manuscript whose contribution
 survives that comparison. The available sources support comparison with the
 inspected baseline, not a claim that the result is the strongest known in 2026.
+
+### Quantitative manuscript and additional primary comparisons
+
+The separate working manuscript is `paper/corner_cut_growth/main.tex`,
+*Cumulative growth of corner cuts in fixed dimension*. It contains the full
+uniform proof, explicit constants, the arrangement lemma with degeneracies,
+and a self-contained proof of Wagner's lifting step. The structural note in
+`paper/pyramidal_mobius.tex` remains separate. The quantitative manuscript is
+a research draft; its existence does not establish novelty or submission
+readiness, and the priority-status paragraph states the remaining checks.
+
+Two further primary comparisons clarify the boundary of the contribution.
+[Babson--Onn--Thomas](https://arxiv.org/pdf/math/0207135), Proposition 3.2
+and Theorem 3.5, give an upper vertex bound for the Hilbert zonotope and its
+refinement of state polyhedra. Section 5 identifies the generic-point case
+with corner cuts. This is the known universal-refinement and algorithmic
+framework; an upper count of a refinement supplies no lower count of its
+coarser corner-cut fan. We do not claim their framework as new.
+
+[Chen--Feng--Liu--Wu, 2024](https://doi.org/10.1007/s11424-024-1313-6),
+[inspected preprint v2](https://arxiv.org/pdf/2105.05383v2), Theorem 1 and
+Sections 1.3 and 2, give finite lower probability bounds when independent
+rows from one common interval are appended to a prescribed primitive matrix.
+The interval length bounds the prescribed entries. Our free coordinates
+are in translated, unequal intervals whose shortest length can be much
+smaller than the largest entry, so those stated hypotheses do not directly
+give our window estimate. Prime-wise rank analysis and determinant bounds
+are known techniques; the multiscale bounded-cardinality count remains the
+contribution to assess. No new general primitive-matrix density theorem is
+claimed.
+
+The [Ghilezan--Pantovic--Zunic encoding paper](https://doi.org/10.1109/TNN.2007.891678)
+was checked at the authored-abstract level. It studies moment codes for
+partitions of a finite cube by parallel hyperplanes, with bit rate depending
+on the cube side, dimension and number of planes. A fixed-cube encoding
+statement by itself neither controls included cardinality nor sums disjoint
+aspect windows. The full-text comparison is still not complete; it is
+explicitly identified as such in the draft rather than represented as a
+finished priority check.
