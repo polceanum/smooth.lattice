@@ -1,5 +1,24 @@
 # Theory notes
 
+The mathematical research direction is developed in
+[Mathematical research on exponent stream interleaving](interleaving_research.md).
+It identifies known signature and occurrence-duality structure, proves general
+occurrence-transform laws and a pairwise-pattern obstruction, and derives a
+generic fixed-dimension unranking baseline from published results. The bounded
+cycle classification is a worked example. Its prior-art ledger distinguishes
+proved statements from unresolved novelty and prime distribution applications.
+The current paper candidate represents pyramidal-partition intervals by finite
+hyperplane arrangements and applies Edelman's theorem to evaluate their Mobius
+function in every dimension. The proof and exact checks are saved; priority
+against the final published and subsequent literature remains unresolved.
+Its counting consequence is an alternating recurrence over removable exposed
+faces, with at most 6|B| contributing terms in dimension three. The bound
+does not control all cuts reached recursively or improve random-access complexity.
+It also constructs an infinite family whose coordinate-plane sections are
+all triangular but which admit no global cutting plane, refuting the slice
+criterion stated in Galvan's 2023 thesis. The obstruction is an equal sum
+of two included and two excluded points; convex separation itself is known.
+
 ## Fixed-prime smooth numbers as a log-lattice
 
 For a fixed prime set `P = {p1, ..., pk}`, every `P`-smooth number has a unique exponent vector:

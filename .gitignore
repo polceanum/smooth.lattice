@@ -185,6 +185,12 @@ cython_debug/
 /bin/
 /results/local/
 
+# Private correspondence and local research/app records must stay off the public remote.
+.DS_Store
+/results/private/
+/results/research/author_query_draft.*
+/results/research/pyramidal_paper_audit.json
+
 # PyCharm
 #   JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #   be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore

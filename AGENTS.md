@@ -2,6 +2,30 @@
 
 Guidance for Codex or other coding agents working in this repository.
 
+## Standing user instruction: no outbound messages
+
+Never send emails or messages, including author queries, chat messages,
+or messages to other tasks. The user stated this explicitly on 2026-10-17.
+Research and publication work does not authorize contacting anyone.
+Existing correspondence drafts are for local inspection only and must not be sent.
+
+## Public repository privacy
+
+Before committing or pushing, review an explicit file list. Never publish
+correspondence drafts, credentials, local app/task identifiers, private audit
+records, or machine-specific metadata. Keep local records under ignored
+`results/local/` or `results/private/`. Public research reports should use
+repository-relative commands and record only relevant source-file status.
+
+## Research working assumption
+
+As instructed by the user on 2026-10-17, assume for ongoing research that the
+relevant results of Elizalde--Galvan's 2025 paywalled article are unchanged
+from arXiv:2312.16353v1. Do not halt research solely on that access issue.
+This is an unverified working assumption, not evidence of novelty. The exact
+article/preprint links and deferred user check are at the start of
+`docs/interleaving_research.md` and in the paper's priority audit.
+
 ## Project goal
 
 This is a research prototype for fixed-prime smooth-number random access. The main task is:

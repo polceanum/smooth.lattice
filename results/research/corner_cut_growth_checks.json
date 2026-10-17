@@ -1,0 +1,337 @@
+{
+  "status": "finite_falsification_checks_passed_asymptotic_proof_and_priority_require_audit",
+  "command": "python3 -B scripts/run_corner_cut_growth_checks.py",
+  "primitive_fixtures": [
+    {
+      "sides": [
+        100,
+        100,
+        100
+      ],
+      "points_per_axis_box": 8,
+      "ordered_triples_checked": 512,
+      "primitive_triangles": 240,
+      "distinct_primitive_planes": 240,
+      "coprime_x_pairs": 256,
+      "coprime_x_and_primitive": 150,
+      "primitive_injectivity": true,
+      "plane_incidence_samples_checked": 100,
+      "nonprimitive_plane_collisions": 166,
+      "nonprimitive_collision_witness": {
+        "plane": [
+          100,
+          100,
+          99,
+          10000
+        ],
+        "first": [
+          [
+            100,
+            0,
+            0
+          ],
+          [
+            0,
+            100,
+            0
+          ],
+          [
+            0,
+            1,
+            100
+          ]
+        ],
+        "second": [
+          [
+            100,
+            0,
+            0
+          ],
+          [
+            0,
+            100,
+            0
+          ],
+          [
+            1,
+            0,
+            100
+          ]
+        ]
+      },
+      "primitive_witness": {
+        "plane": [
+          10099,
+          10000,
+          9900,
+          1009900
+        ],
+        "points": [
+          [
+            100,
+            0,
+            0
+          ],
+          [
+            0,
+            100,
+            1
+          ],
+          [
+            0,
+            1,
+            101
+          ]
+        ]
+      }
+    },
+    {
+      "sides": [
+        100,
+        200,
+        400
+      ],
+      "points_per_axis_box": 30,
+      "ordered_triples_checked": 27000,
+      "primitive_triangles": 12809,
+      "distinct_primitive_planes": 12809,
+      "coprime_x_pairs": 13500,
+      "coprime_x_and_primitive": 7993,
+      "primitive_injectivity": true,
+      "plane_incidence_samples_checked": 100,
+      "nonprimitive_plane_collisions": 2549,
+      "nonprimitive_collision_witness": {
+        "plane": [
+          400,
+          200,
+          99,
+          40000
+        ],
+        "first": [
+          [
+            100,
+            0,
+            0
+          ],
+          [
+            0,
+            200,
+            0
+          ],
+          [
+            0,
+            2,
+            400
+          ]
+        ],
+        "second": [
+          [
+            100,
+            0,
+            0
+          ],
+          [
+            0,
+            200,
+            0
+          ],
+          [
+            1,
+            0,
+            400
+          ]
+        ]
+      },
+      "primitive_witness": {
+        "plane": [
+          79999,
+          39900,
+          19900,
+          7999900
+        ],
+        "points": [
+          [
+            100,
+            0,
+            0
+          ],
+          [
+            0,
+            200,
+            1
+          ],
+          [
+            0,
+            1,
+            400
+          ]
+        ]
+      }
+    },
+    {
+      "sides": [
+        200,
+        300,
+        400
+      ],
+      "points_per_axis_box": 60,
+      "ordered_triples_checked": 216000,
+      "primitive_triangles": 102237,
+      "distinct_primitive_planes": 102237,
+      "coprime_x_pairs": 112000,
+      "coprime_x_and_primitive": 67215,
+      "primitive_injectivity": true,
+      "plane_incidence_samples_checked": 100,
+      "nonprimitive_plane_collisions": 7941,
+      "nonprimitive_collision_witness": {
+        "plane": [
+          600,
+          400,
+          297,
+          120000
+        ],
+        "first": [
+          [
+            200,
+            0,
+            0
+          ],
+          [
+            0,
+            300,
+            0
+          ],
+          [
+            0,
+            3,
+            400
+          ]
+        ],
+        "second": [
+          [
+            200,
+            0,
+            0
+          ],
+          [
+            0,
+            300,
+            0
+          ],
+          [
+            2,
+            0,
+            400
+          ]
+        ]
+      },
+      "primitive_witness": {
+        "plane": [
+          119999,
+          79800,
+          59800,
+          23999800
+        ],
+        "points": [
+          [
+            200,
+            0,
+            0
+          ],
+          [
+            0,
+            300,
+            1
+          ],
+          [
+            0,
+            1,
+            400
+          ]
+        ]
+      }
+    }
+  ],
+  "arrangement_fixture": {
+    "points": [
+      [
+        100,
+        0,
+        0
+      ],
+      [
+        0,
+        100,
+        0
+      ],
+      [
+        0,
+        0,
+        100
+      ],
+      [
+        100,
+        1,
+        0
+      ],
+      [
+        0,
+        100,
+        1
+      ],
+      [
+        1,
+        0,
+        100
+      ],
+      [
+        101,
+        0,
+        1
+      ],
+      [
+        1,
+        101,
+        0
+      ]
+    ],
+    "sides": [
+      100,
+      100,
+      100
+    ],
+    "all_sign_patterns_checked": 256,
+    "interior_vertices": 18,
+    "nonempty_regions": 48,
+    "regions_at_least_vertices": true,
+    "region_witness": {
+      "signs": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "homogeneous_weights": [
+        "19/2020",
+        "191859/20402000",
+        "3819/404000",
+        "1"
+      ]
+    },
+    "scope": "All cells of these eight planes in the open parameter box; not all corner cuts."
+  },
+  "source_sha256": {
+    "scripts/run_corner_cut_growth_checks.py": "40899a58a88deec56fe3067dee6bde550bc49e9a5a3ce0d4f53f3d29d96c09ab",
+    "scripts/run_pyramidal_poset_checks.py": "70eb1d26eb7a8664e8c186b33e115fedb1ecc5004880a41b07f76ba000533500",
+    "docs/interleaving_research.md": "c0a5eca38c4dd139a0dd82370df4f5a9250e4620f3cc2866e06a291a6c20f8f2"
+  },
+  "limitations": [
+    "Finite checks do not establish a uniform asymptotic density bound.",
+    "The cumulative three-dimensional candidate does not establish the exact-size three-dimensional bound.",
+    "No claim of priority or publication readiness is made."
+  ]
+}
