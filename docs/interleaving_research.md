@@ -51,8 +51,9 @@ The active quantitative goal is recorded in
 `results/research/quantitative_goal.json`. The final section below records a
 multiscale proof candidate for cumulative corner cuts in every fixed dimension,
 with stronger exact-size lower bounds in dimensions four and higher. Candidate
-22 gives a uniform finite sieve bound and the general argument; priority and
-publication significance remain unresolved. The structural note and its
+22 gives a uniform finite sieve bound and the general argument. Its internal
+proof audit now includes closed constants and a step-by-step ledger; priority
+and publication significance remain unresolved. The structural note and its
 elementary consequences do not satisfy this goal.
 
 The first bounded study is complete: for the reconstructed rounded-occurrence
@@ -1577,9 +1578,9 @@ python3 -B scripts/run_corner_cut_growth_checks.py
 ```
 
 Exact witnesses, commands and source hashes are saved in
-`results/research/corner_cut_growth_checks.json`. The next action is an
-adversarial proof audit and a broader comparison with primary literature,
-not a publication claim.
+`results/research/corner_cut_growth_checks.json`. Candidate 22 below extends
+this construction and records the subsequent internal proof audit. A broader
+comparison with primary literature remains necessary before a novelty claim.
 
 ### Candidate 22: uniform growth in every fixed dimension
 
@@ -1621,6 +1622,21 @@ where, with a=100d and b=4d-3,
 Such S_d exists because E_d(s) tends to zero and is decreasing for s>=1.
 All the bounds in its definition are rational, so the threshold is explicit
 and can be checked without numerical logarithms.
+
+There is also a closed choice, valid for every d>=2:
+
+    S_d=4d^2,  m>=2^{8d^2}.                            (22.1a)
+
+Indeed, a<=2^{4d}, b<=2^{2d}, and 4d^2+1<=2^{3d}. Each inequality
+holds at d=2 and is preserved on increasing d by one. Therefore
+
+    E_d(4d^2) <= 2^{1+7d-8d^2} + 2^{8d-12d^2}
+                + 2^{2d-4d^2} + 2^{6d-8d^2}.
+
+The four exponents decrease for integers d>=2. At d=2 their values are
+-17,-32,-12,-20, so the displayed sum is less than 2^{-10}<1/8.
+Also 4d^2>=d^2+4(d-1). The threshold is deliberately coarse; no finite
+search over dimensions is needed for this choice.
 
 **Proof.** Use induction on the number r of boxes, 1<=r<=d, keeping the
 same delta throughout. For r=1 the difference matrix has no columns and
@@ -1681,6 +1697,14 @@ nonprimitive extension by 3/4+E_d(s)<=7/8 whenever s>=S_d.
 The previous projected sides still satisfy max L_i<=(min L_i)^2,
 so the induction is uniform for all projected configurations. Each of
 the r-1 extensions succeeds with conditional probability at least 1/8.
+More explicitly, let E_r be the event that the first r points projected
+onto the first r coordinates form a primitive frame. Conditioning on
+E_1,...,E_{r-1} imposes conditions only on the previous projected coordinates.
+After fixing those coordinates, the rth old coordinates and the new point
+still have their product distributions. Thus
+Pr(E_r | E_1,...,E_{r-1})>=1/8, and
+Pr(E_1 intersect ... intersect E_d)>=8^{-(d-1)}. This event is contained
+in E_d. No independence of the events E_r themselves is assumed.
 This proves the stated fraction. QED.
 
 The primitivity of the projected configuration is essential: without it,
@@ -1714,12 +1738,18 @@ of the arrangement b.w=1 in
 
     Omega_L = product_i (9/(10L_i),11/(10L_i)).
 
-The number of chambers is at least the number of interior vertices by
-the dimension-induction argument in Candidate 21. It applies with
-arbitrary dependencies: when assigning a vertex to its last incident
-hyperplane, that hyperplane's nonzero normal can be extended to a basis
-using other incident normals, so the vertex remains a vertex of the
-restricted arrangement.
+For completeness, any finite affine-hyperplane arrangement in an open
+convex domain has at least as many chambers as interior vertices. Delete
+duplicate hyperplanes and add them in a fixed order. Adding H creates
+exactly as many new chambers as there are chambers of the restricted
+arrangement in H intersected with the domain: each old chamber is convex
+and is split if and only if it meets H. Assign each vertex to its last
+incident hyperplane H. The normals of the incident hyperplanes span the
+ambient space; the nonzero normal of H extends to a basis among them.
+Consequently the assigned vertex is an interior vertex of the restriction
+to H. Induction on dimension bounds the number assigned to H by the
+number of new chambers. In dimension one, k distinct interior points
+give k+1 chambers. Summing proves the assertion, including all degeneracies.
 
 Only points with b_i<=ceil(10L_i/9) can change membership in Omega_L;
 the arrangement is finite. Every chamber gives a different corner cut
@@ -1730,6 +1760,9 @@ and injection give at least
     8^{-(d-1)} delta^{d^2} Q^d                         (22.5)
 
 distinct cuts in this parameter box. The constants depend only on d.
+In the cardinality bound, each coordinate has fewer than 10L_i/9+1
+possible values. This is at most (3/2)L_i for L_i>=3, an explicit
+condition already implied by (22.1a).
 
 Choose R maximal with Q=4^R<=n/2^d. For each tuple of integers
 
@@ -1747,6 +1780,32 @@ on axis i lies between (4/5)L_i and (6/5)L_i for large L_i, so no cut
 is counted in two different scale tuples. Since Q>n/(4*2^d), summing
 (22.5) gives A_d(n)=Omega_d(n^d(log n)^{d-1}). Summing Wagner's
 published upper bound supplies the matching upper bound.
+
+#### A fully explicit lower bound
+
+Set
+
+    R_0(d)=4d^2(d+1),  n_0(d)=2^d 4^{R_0(d)},
+    kappa_d = 8^{-(d-1)} (100d)^{-d^2}
+              / ((d-1)! [4(d+1)]^{d-1} 2^{d(d+2)}).
+
+Then the construction proves the concrete inequality
+
+    A_d(n) >= kappa_d n^d (log_4 n)^{d-1}
+    for every integer d>=2 and n>=n_0(d).              (22.6)
+
+Here is the constant calculation. With R maximal as above, R>=R_0(d),
+so every side is at least 4^{R/(d+1)}>=2^{8d^2}. Write
+h=R-d ceil(R/(d+1)). Since R>=2d(d+1),
+
+    h>=R/(d+1)-d>=R/[2(d+1)].
+
+There are binom(h+d-1,d-1)>=h^{d-1}/(d-1)! scale tuples.
+Moreover R>=log_4 n-d/2-1>=(log_4 n)/2 at this threshold, and
+Q>n/2^{d+2}. Substitute these three inequalities into (22.5) to
+obtain (22.6). No decimal approximations enter this calculation.
+The constants make the quantifiers checkable; their numerical size is
+not a claim of an effective small-input enumeration method.
 
 #### Consequences and the boundary of the claim
 
@@ -1778,6 +1837,27 @@ one-residue-class extension condition. The values of S_d and (22.1)
 for d=2,...,12 are checked with rational arithmetic. These checks support
 the argument; the proof above, not sampling, supplies its uniformity.
 
+There is a direct interpretation in an established application. For a
+cut D let alpha_D=sum_{x in D} x. For fixed size n, different cuts have
+different alpha_D, and each alpha_D is a vertex of their convex hull.
+To prove both assertions, choose positive weights strictly cutting off D.
+Every removed point of D has smaller weight than every replacement
+point outside D. Hence w.alpha_D<w.alpha_E for every other n-point
+set E, in particular every other corner cut. Thus alpha_D is uniquely
+exposed and cannot equal alpha_E. Conversely, every vertex of this finite
+convex hull is one of its generating points. Its vertex count is exactly
+C_d(n).
+
+This is the standard corner-cut-polytope dictionary, not a new theorem.
+[Berstein et al., 2010](https://doi.org/10.1007/s10463-010-0291-8),
+[free journal PDF](https://www.ism.ac.jp/editsec/aism/pdf/062_4_0673.pdf),
+Definition 7 and Theorem 2, identify these polytopes and the algebraic
+fans of generic experimental designs. The candidate bound would therefore
+give Omega_d(n^{d-1}(log n)^{d-2}) vertices and models for fixed d>=4.
+This quantifies an existing enumeration problem. It neither gives a
+faster enumeration algorithm nor changes the meaning of generic design
+used in that source.
+
 #### Prior-art audit added for the general proof
 
 Primitive matrix density and the lattice criterion are established
@@ -1801,6 +1881,40 @@ dimension. This establishes a difference in definitions, not novelty of
 our counting conclusion. The broader grid-threshold and lattice-incidence
 literature remains part of the priority audit.
 
-The main research objective is still incomplete: the general counting
-argument needs a final adversarial review, a defensible priority comparison
-and a manuscript whose stated contribution survives that comparison.
+The independent Remond result is acknowledged as a communication in
+Wagner's thesis, immediately after (3.2); that passage does not cite a
+separate multidimensional proof. Its acknowledged bounds are the same
+baseline. An unavailable independent proof must not be silently treated
+as inspected, but it also need not prevent analysis of the stated bounds.
+
+[Balko--Cibulka--Valtr](https://arxiv.org/pdf/1703.04767), Theorems 3--5,
+study lattice coverage by subspaces, with bounds in terms of successive
+minima. These cover-number estimates do not themselves count cuts by
+included cardinality or assert the moving positive-intercept estimate
+proved here. Their incidence applications are relevant background, not
+an identified prior proof of (22.6).
+
+#### Internal adversarial proof audit, 2026-10-17
+
+This is an internal audit by the research agent, not an independent human
+referee report. The following checks pass for the written argument:
+
+| Step | Audit question | Resolution |
+| --- | --- | --- |
+| Dimension induction | Does conditioning destroy the uniform coordinates needed for the next step? | The events through r-1 depend only on old projected coordinates. Fixing those leaves the new point and old rth coordinates uniform; the joint-event calculation is explicit above. |
+| Controlling determinant | Could the finite large-prime bound use D=0? | Near-identity projected rows give a positive cutting normal; the new projected point is strictly below their affine span. Thus every allowed D is nonzero. |
+| Modular extension | Can failure impose more than one residue on the new last coordinate? | The old projected frame has full column rank modulo every prime. Its unique lambda gives exactly (22.3). The nonprimitive negative control demonstrates why the hypothesis matters. |
+| Sieve tails | Was a limiting density exchanged with an infinite union? | No. Small primes use a finite union. All remaining bad primes divide one fixed nonzero D, with at most b large factors, before the last coordinate is averaged. |
+| Uniformity in d | Is the threshold specified only by computation? | The closed choice S_d=4d^2 follows from four elementary exponential bounds for all d>=2. |
+| Duplicate planes | Do distinct primitive simplices ever produce the same plane? | A primitive frame is the full parallel integer-lattice basis. The scaled inverse bound forces each plane to meet each B_i in only its selected point. |
+| Chambers | Do dependencies or domain boundaries invalidate vertex counting? | All selected vertices are interior. The last-incident-hyperplane assignment and dimension induction work for arbitrary degeneracies in an open convex domain. |
+| Duplicate cuts | Could disjoint parameter boxes still represent the same cut? | Different scale tuples differ by a factor of at least four in one L_i, while each cut's maximum axis coordinate is in (4L_i/5,6L_i/5). Those observable ranges are disjoint. |
+| Cardinality and constants | Are all constructed cuts within the stated n and threshold? | The coordinate bound gives size at most (3/2)^d Q<n; (22.6) records every scale, floor and threshold loss explicitly. |
+| Exact-size inference | Does the argument prove the missing dimension-three pointwise lower bound? | No. Lifting yields the new displayed exact-size bound only for d>=4. The positive-proportion statement is the precise averaged consequence. |
+
+The internal proof pass is complete, with no unresolved logical step
+identified in this argument. That is not a guarantee against an undiscovered
+error. The main research objective is still incomplete: the counting theorem
+needs a defensible priority comparison and a manuscript whose contribution
+survives that comparison. The available sources support comparison with the
+inspected baseline, not a claim that the result is the strongest known in 2026.

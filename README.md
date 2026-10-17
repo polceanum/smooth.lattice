@@ -65,10 +65,11 @@ feasibility remain unverified; neither novelty nor a breakthrough is promised.
 A multiscale argument is now recorded for audit in the research note. It
 would give a sharp cumulative count in every fixed dimension and an
 exact-size lower bound of order at least n^(d-1)(log n)^(d-2) for d>=4.
-Its primitive-simplex construction has exact finite checks and an explicit
-uniform sieve estimate; the final proof review and priority
-comparison still require review. This is a candidate result, not an
-established new theorem or a completed paper.
+Its primitive-simplex construction has exact finite checks, closed uniform
+constants and a completed internal proof audit. Priority comparison remains
+unfinished. The bound also counts vertices of corner-cut polytopes and models
+of generic experimental designs through the established correspondence.
+This is a candidate contribution, not a verified new theorem or a completed paper.
 
 The existing structural results are preserved as a separate note about the
 geometry and containment intervals of pyramidal partitions. Applying Edelman's
