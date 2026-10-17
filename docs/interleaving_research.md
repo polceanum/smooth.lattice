@@ -2697,3 +2697,88 @@ do not convert a known upper argument into an additional novelty claim.
 The complete dyadic proof is saved now so that the mathematical claim
 can be assessed independently of the source-access question. The main
 manuscript and Candidate 23's novelty gates have not been relaxed.
+
+#### Precise Vietri comparison and prime-realization attribution
+
+The complete primary text of [Vietri (2002)](https://doi.org/10.1023/A:1021236722756)
+is publicly readable in the [RISC bibliography copy](https://www3.risc.jku.at/research/theorema/Groebner-Bases-Bibliography/gbbib_files/publication_455.pdf).
+The inspected scope is the definitions and discussion in Sections 1--2,
+the enumeration argument in Section 3, and Proposition 6.2 with its proof
+and Corollary 6.3 in Section 6 (printed pp. 259--260). This is not an
+assertion that every proof in Sections 4--5 and 7 has been audited.
+
+**The prime-realization bridge is established prior art.** Proposition
+6.2 states that any finite family of strict product inequalities with
+nonnegative real exponents, satisfiable by increasing real bases greater
+than one, is satisfiable by increasing prime bases. Its proof uses
+Bertrand's postulate after a sufficiently large power scaling. That
+scaling can be increased arbitrarily, so all primes can exceed a
+prescribed bound B. The extra lower-bound requirement here is therefore
+also covered by that proof, rather than being a new prime theorem.
+
+Here is the exact specialization, including the infinite-complement
+issue. Let D={a_1,...,a_n} be a corner cut with a prescribed strict
+weight order, and let E be the coordinatewise minimal elements of its
+complement. The set E is finite: it is contained in {0,...,n}^d,
+since a minimal excluded point has every immediate predecessor in D.
+Choose a generic positive witnessing weight w, sort its distinct
+coordinates temporarily, and put X_i=exp(w_i)>1. Impose
+
+    X^(a_j) < X^(a_(j+1))       for 1 <= j < n,
+    X^(a_n) < X^b              for every b in E.
+
+Apply Vietri's proposition and undo the coordinate permutation. Every
+excluded point dominates some b in E; since the resulting primes are
+all greater than one, all excluded products exceed the final included
+product. Thus both the unordered realization proposition in the
+manuscript and Consequence 24.3 for entire ordered prefixes follow from
+Vietri's finite-inequality theorem. For n=1 the first family is empty.
+The manuscript now credits Proposition 6.2 explicitly and retains its
+short direct proof. Existing exact fixtures remain checks of our
+implementation, not novelty evidence for this bridge.
+
+**Exact relation to the fixed-degree domain.** Vietri's set D_h^k consists
+of all (k+1)-tuples of nonnegative integers whose sum is h, with weights
+in increasing coordinate order. His beta-linearizations are the
+restrictions of weight orders to that whole homogeneous layer. There is
+an explicit homogenization link to our problem, rather than merely a
+difference in terminology. Map
+
+    a in Z_{>=0}^d, |a|_1 <= h  ->  (h-|a|_1,a) in D_h^d.
+
+Choose r_0>0 and r_i=r_0+w_i, sorting the positive w_i as needed.
+The layer score becomes
+
+    r_0 h + sum_i w_i a_i.
+
+Consequently layer orders contain all weight orders on the entire
+finite total-degree ball. Every point in an n-term prefix has total
+degree at most n-1: a coordinate-increasing path to it contains
+|a|_1+1 earlier-or-equal points. Taking h=n-1 therefore allows the
+full layer order to determine the ordered n-prefix. This is a
+comparison via a much larger domain, not a direct identification of
+h with n or of the two counting functions.
+
+Section 3 enumerates the layer problem in three variables. Its count
+has quadratic order in h; transferring that order by h=n-1 supplies
+only O(n^2) for planar ordered prefixes, rather than the sharper
+O(n log n) of Proposition 24.1. For three-dimensional prefixes the
+homogenization uses four variables; Vietri explicitly states in the
+introduction (printed p. 240) that his approach does not enumerate the
+case k>=3. These inspected statements do not supply Candidate 23's
+prescribed-cardinality lower bound. This is a bounded comparison of
+specified results, not proof of originality over all finite-ordering
+literature. The Vasiliev--Pavlov full quantitative comparison remains
+pending; its publisher abstract is insufficient to close that issue.
+
+**Impact assessment.** Candidate 23 remains the substantive candidate:
+a uniform matching cardinality count in every fixed dimension, with
+consequences for known corner-cut polytopes, generic design models and
+smooth-prefix sets. Candidate 24 is a natural extension to complete
+finite words and would give bounded mean internal-order multiplicity,
+subject to its own priority check. The prime-realization proposition is
+now specifically attributed background. The broader arbitrary-point-ideal
+problem still has the previously documented obstruction and no new
+asymptotic mechanism here. Finish the proof and priority assessment of
+the focused counting contribution before expanding that harder target.
+No prime-distribution or fixed-prime unranking improvement is claimed.

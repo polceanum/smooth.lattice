@@ -122,15 +122,15 @@
         "Matching pointwise count and established polytope and prime-base interpretations",
         "Logarithmic average-completion corollary and exact finite-grid cardinality comparison"
       ],
-      "compilation": "latest_source_compiled_successfully_with_desktop_editor_and_latexmk",
+      "compilation": "latest_source_compiled_successfully_with_latexmk",
       "author_metadata": "Left blank; no authorship or affiliation invented.",
       "pdf": "output/pdf/corner_cut_growth.pdf",
       "pdf_pages": 10,
-      "tex_sha256": "ae31ca6519256855523a9a17bf8c6ab609256ea10f71b6d8468f7b93d0f93d46",
-      "pdf_sha256": "4bdf84f4db488991d706bdb151a00dec4c7e76f65ba81f951d47242125bc162a",
-      "visual_review": "All ten latest pages inspected after the consolidated contribution and source-version edits; no clipping, overlap or unresolved references.",
+      "tex_sha256": "4b6139d61ecb6522290360473e7574291b4f7050cc1c73cae92a93a9c444b79f",
+      "pdf_sha256": "d878f91f939b35ad4725f1e3dddd33dd27a5ea59080a0cb397fb90271eb0f88b",
+      "visual_review": "All ten latest rendered pages inspected after the Vietri attribution; no clipping, overlap or unresolved references.",
       "latex_log_check": "No errors, warnings, overfull or underfull boxes, or undefined references in the final pass.",
-      "pdf_structure_check": "Ten pages, blank author metadata, no unresolved references or extracted characters outside page boundaries.",
+      "pdf_structure_check": "Ten pages, blank author metadata, resolved Vietri citation, no unresolved references in extracted text.",
       "pdf_build_command": "latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=results/local/corner-cut-latex paper/corner_cut_growth/main.tex",
       "assistance_disclosure": "OpenAI Codex proposed and developed the quantitative argument, carried out the literature comparison, and produced the checks and draft during an investigation prompted by the project owner. No independent referee assessment or acceptance claimed.",
       "version_citations": "Inspected Elizalde--Galvan arXiv v1 and the uninspected journal version are cited separately. Wagner's upper theorem is also located as thesis Theorem 3.15.",
@@ -143,7 +143,14 @@
       "source": "https://users.renyi.hu/~p_erdos/1932-01.pdf",
       "source_inspected": "Published text pp. 197--198, stating and completing the proof of Bertrand's postulate.",
       "consequence": "For every fixed B, S_{d,B}(n)=C_d(n), where S counts distinct prefix exponent sets over varying ordered tuples of distinct primes greater than B. Hence the cumulative theorem counts exactly the realizable smooth-prefix shapes.",
-      "scope": "Elementary supporting proposition, no separate novelty claim. Varying prime tuples are essential; a single fixed tuple has only one prefix per length. No new prime-distribution or unranking claim."
+      "scope": "Consequence of Vietri (2002), Proposition 6.2, including the arbitrary lower prime bound via its proof. Varying prime tuples are essential. No separate novelty, prime-distribution or unranking claim.",
+      "prior_art": {
+        "source": "https://doi.org/10.1023/A:1021236722756",
+        "free_text": "https://www3.risc.jku.at/research/theorema/Groebner-Bases-Bibliography/gbbib_files/publication_455.pdf",
+        "location": "Proposition 6.2 and proof, pp. 259--260",
+        "specialization": "Impose comparisons between included points and the finite minimal excluded border; for a prescribed internal order add consecutive comparisons. Enlarge the original scaling to exceed any B.",
+        "status": "Known finite-inequality realization theorem specialized to prefixes, not a new prime theorem."
+      }
     },
     "explicit_pointwise_lower_bound": {
       "formula": "C_d(n) >= lambda_d n^(d-1) (log_4 n)^(d-1) for every fixed d>=2 and n>=n_star(d).",
@@ -332,7 +339,7 @@
   },
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "evidence": "Previous turn saved and published the bounded extremal feasibility audit, an independently reproduced F_29 obstruction and later-source comparisons. Current turn develops the uniform dyadic ordered-prefix upper proof and identifies concrete close prior art."
+    "evidence": "Completed a precise primary comparison with Vietri Proposition 6.2 and its proof, identified prime realization as known, and supplied the finite-border and homogenization reductions. The main lower-count contribution remains the target; the Vasiliev--Pavlov quantitative comparison is still pending."
   },
   "ordered_prefix_growth_candidate": {
     "record": "docs/interleaving_research.md, Candidate 24: full ordered prefixes have the same growth order",
@@ -342,7 +349,7 @@
     "upper_proof_status": "Complete internal argument, including inactive coordinate faces, lower and upper dyadic product bounds, bounded shell width, central-arrangement chamber bound and per-chart prefix injectivity.",
     "mechanism": "For effective dimension r, the dyadic side product Q lies between n/4^r and r!n. There are O_r((log(n+1))^(r-1)) aspect tuples. Each chart has O_r(n) comparison directions and O_r(n^(r-1)) chambers.",
     "average_order_multiplicity": "The uniform mean number of admissible internal orders per n-point corner cut is Theta_d(1), using Candidate 23. No pointwise constant bound is asserted.",
-    "prime_realization": "The same Bertrand-interval construction preserves the finite minimum consecutive-score gap after sufficiently large scaling. Every counted ordered prefix is realizable over distinct labeled primes above any B.",
+    "prime_realization": "Known consequence of Vietri (2002), Proposition 6.2: the finite consecutive-order and minimal excluded-border comparisons are preserved by distinct prime bases above any B.",
     "prime_claim_limit": "Varying bases are essential; no prime-distribution estimate, bounded-prime-budget theorem or fixed-prime unranking speedup.",
     "known_planar_object": "The signature-prefix count and crossing rule are already recorded in Adams-Watters, OEIS A163823 (2009); no planar novelty claim.",
     "finite_checks": {
@@ -380,12 +387,13 @@
         "remaining": "Compare the exact finite-prefix class and quantitative statements; check whether the dyadic upper bound is already known or immediate, and whether any result affects the main corner-cut lower-bound priority assessment."
       },
       {
-        "authors": "Vietri",
+        "authors": "Andrea Vietri",
         "source": "https://doi.org/10.1023/A:1021236722756",
-        "institutional_record": "https://iris.uniroma1.it/handle/11573/137367",
-        "inspected": "Authored abstract through the institutional record; full proof not inspected.",
-        "finding": "Studies weight orders on fixed homogeneous layers and prime-induced orders. The broad prime/monomial-order connection is not new.",
-        "remaining": "Compare full statements rather than infer novelty merely from the fixed-degree versus fixed-prefix distinction."
+        "free_text": "https://www3.risc.jku.at/research/theorema/Groebner-Bases-Bibliography/gbbib_files/publication_455.pdf",
+        "inspected": "Definitions and discussion in Sections 1--2; Section 3 enumeration argument; Section 6 Proposition 6.2 with proof and Corollary 6.3, printed pp. 259--260. Not a full proof audit of Sections 4--5 or 7.",
+        "finding": "Proposition 6.2 already realizes arbitrary finite strict product-inequality systems with prime bases. Its scaling can be enlarged to put all primes above any B. Both our set and ordered-prefix realization statements are specializations through the finite minimal excluded border.",
+        "counting_comparison": "Homogenization a -> (h-|a|_1,a), with weights r_i=r_0+w_i, embeds the total-degree ball into D_h^d. Taking h=n-1 determines every n-prefix. The three-variable fixed-layer count gives only O(n^2) for planar prefixes; the introduction explicitly states no enumeration for k>=3. These specified statements do not give the sharp prescribed-cardinality lower bound.",
+        "remaining": "Vasiliev--Pavlov full quantitative comparison remains pending; this completed comparison of specified Vietri statements is not an unrestricted novelty certificate."
       }
     ],
     "novelty_established": false,
