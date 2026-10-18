@@ -55,8 +55,8 @@ same-dimension injectivity argument at a prescribed size and gives the matching
 pointwise lower bound. Closed constants, exact lattice-patch witnesses and
 the internal proof audit are recorded. The consolidated assessment at the end
 finds a substantive improvement over the inspected published bounds and
-supports proceeding to mathematical review. Overall priority remains
-unverified; no referee assessment or journal acceptance is claimed. The
+supports the main lower-count novelty claim under the documented primary
+comparison. No referee assessment or journal acceptance is claimed. The
 structural note and its elementary consequences do not satisfy this goal.
 
 **2026-10-18 source update:** the user supplied the full Vasiliev--Pavlov
@@ -65,8 +65,8 @@ Its strictly admissible finite orderings are exactly the ordered-prefix
 class in Candidate 24. Its algorithms and tables are prior art; it states
 neither our proposed asymptotic counting orders nor a prime-height bound.
 The detailed comparison and exact table checks are recorded at the end of
-this note. The specific source-access blocker is resolved. Overall
-originality and final submission assessment remain open.
+this note. The specific source-access blocker is resolved. The final
+internal contribution and submission assessment is recorded below.
 
 The current manuscript also includes the complete ordered-prefix count,
 linear integer-score certificate and sharp worst-case prime-height proof.
@@ -74,6 +74,13 @@ Its title is *Corner cuts and monomial prefixes: sharp counts and prime
 realizations*. The main pointwise lower count remains its central result;
 the additional theorems give a quantitative consequence for the established
 finite-ordering class and an explicit arithmetic size guarantee.
+
+**Final internal assessment, 2026-10-18:** the main matching lower count
+supports a defensible submission in discrete geometry or enumerative
+combinatorics under the documented primary-literature comparison and the
+user's final-version assumption. The detailed acceptance audit at the end
+separates this contribution judgment from independent refereeing or journal
+acceptance. The source-access issue is resolved; it is not a remaining gate.
 
 The first bounded study is complete: for the reconstructed rounded-occurrence
 rule, Propositions 10--13 below give a partition reduction, a prefix-period
@@ -3398,3 +3405,79 @@ of statements against the strongest inspected primary work and the
 original acceptance criteria. The full-source comparison and the newly
 integrated proofs make that assessment possible; typesetting alone does
 not establish its outcome.
+
+### Wagner's stronger flag bound and the ordered extension
+
+The final comparison re-read the author's thesis Sections 3.4--3.5,
+especially Lemma 3.11, Corollary 3.12, Theorem 3.15 and the subsequent
+flag argument. The product-bounded difference-matrix encoding controls
+the sets and face flags of the single size-n corner-cut polyhedron.
+We explicitly credit this stronger scope. The main lower-count result
+does not improve that upper order.
+
+Ordered words specify initial sets at all lengths through n. They cannot
+be identified with maximal face flags at their final-cut vertex. One
+exact planar example at n=50 has row lengths
+
+    (10,9,8,7,6,4,3,2,1)
+
+as x increases from 0 to 8. The five weights
+
+    (60,49), (84,71), (112,97), (144,127), (18,17)
+
+give five distinct strict words with precisely this set. Its moment
+vertex is (130,155), whereas a vertex of a full-dimensional planar
+polyhedron has two incident maximal face flags. A direct finite-box
+sort checks all 51 leading scores for each weight, independently of
+the heap used in the crossing sweep. The 50th/51st scores are
+
+    (485,490), (691,704), (933,948), (1211,1228), (157,158).
+
+Thus the naive identification preserving the final vertex is false.
+This does not exclude a different deduction of the same asymptotic
+upper bound from established methods. The manuscript keeps its direct
+dyadic proof and does not treat the flag distinction as an independent
+publishable result. The exact shape, weights, scores and word hashes
+are saved under `planar_ordered_prefix_checks.flag_vertex_control`.
+
+### Final internal contribution and acceptance assessment
+
+The research objective is evaluated on the main prescribed-cardinality
+theorem, with the ordered and arithmetic results as additional quantified
+consequences. The argument is uniform for each fixed dimension and does
+not rely on the isolated checks as proof.
+
+| Original requirement | Evidence and assessment |
+| --- | --- |
+| A substantive quantitative advance arising from smooth-exponent geometry | `thm:main` gives the sharp order C_d(n)=Theta_d(n^(d-1)(log n)^(d-1)) for every fixed d>=2. In d=3 it gains one logarithmic factor over Wagner's lower bound; in general it gains (log n)^(d-2). The upper bound retains its original attribution. |
+| A complete uniform proof, including duplication control | The primitive-window lemma, division by bounded integer height, prescribed-size two-patch injection and disjoint observable aspect ranges are all proved in the manuscript. Closed constants and thresholds specify the quantifiers. Partial boundary ties and inactive dimensions are handled. |
+| Comparison with the strongest relevant primary statements | The author thesis proof and stronger flag scope, full Muller paper, later Kalka--Kuhnt bound statement, Elizalde--Galvan v1, full Vasiliev--Pavlov paper, Vietri's exact realization theorem, primitive-matrix extensions and digital-plane/threshold comparisons are recorded with their reading scopes. The retained same-object bounds in later primary sources are positive comparison evidence; an empty search result is not used to establish novelty. |
+| A defensible novelty claim for the main result | The main lower bound improves the same cardinality problem in the inspected lineage and supplies the missing prescribed-size mechanism. No compared theorem gives that lower order. This supports presenting it as a new result in a submission, with the comparison made explicit. It is a research judgment based on the specified primary audit, not a claim to know every unpublished or unseen work. |
+| A useful consequence for an existing problem | The main theorem determines the mean coordinate-slice completion multiplicity raised in Wagner's discussion. The ordered theorem quantifies the established strict finite-ordering class, and the prime-height theorem gives a sharp size budget that realizes every such pattern. Known polytope/model correspondences are credited, not claimed as new applications. |
+| Arithmetic information for any prime application | The prime-height proof uses the published unconditional Dusart interval, exact anchoring and the collision property of the integer certificate. Its matching axis lower bound makes the worst-case order optimal. No new prime-gap estimate or fixed-prime speedup is claimed. |
+| Reproducible supporting evidence | The three existing research scripts save exact witnesses, commands and source hashes. They check determinants and modular ranks, both affine patches, strict tie handling, exact compression LPs, independent scalar orders, published finite counts and the flag-control counterexample. The saved reports state their finite scope. |
+| An honest complete manuscript | The TeX source contains every new proof and all supporting lemmas, exact prior-art attribution, defined counting parameters, limitations and an explicit AI-assistance disclosure. Its PDF is compiled and rendered for layout review; the publication record contains its exact hashes. |
+| Preserve the original toolkit and separate structural findings | The CLI, C++ kernels, build and smoke sources, and separate Mobius manuscript are unchanged. Existing side results do not substitute for the quantitative objective. |
+| Observe the final-version assumption and communication constraint | Both Elizalde--Galvan versions remain linked, with the final-version check explicitly deferred under the user's assumption. No email, author query, message to another task or journal submission has been sent. |
+| Save only reviewed public artifacts on main | The publication review checks an explicit file list, source hashes, anonymous PDF metadata and private-file exclusions before committing and verifying the main-branch push. Source-paper PDFs, correspondence and local reading records are excluded. |
+
+**Contribution judgment:** the complete prescribed-size count provides
+a substantive answer to an existing discrete-geometric counting problem.
+The general ordered result and the optimal prime-size guarantee make a
+coherent extension of the original exponent-sequence investigation.
+This is sufficient mathematical content for a focused submission; there
+is no need to advertise a new general density theorem, a prime-generation
+method or an unranking improvement.
+
+**Publication judgment:** the manuscript can be put before referees with
+the stated contribution and explicit literature boundary. Journal
+acceptance, independent verification and broader recognition have not
+occurred and are not promised. The anonymity and assistance disclosure
+are intentional. Actual external submission is not authorized by the
+standing prohibition on outbound messages.
+
+The final validation state and the requirement-by-requirement audit are
+recorded in `results/research/quantitative_goal.json` and
+`results/research/corner_cut_growth_audit.json`. Their completion decision
+must be made only after inspecting the current reports, compiled artifact,
+source hashes and reviewed public Git state.

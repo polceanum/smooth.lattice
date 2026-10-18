@@ -576,6 +576,16 @@ In particular, the mean number of admissible internal orders per
 This is an average statement and gives no constant bound for each shape.
 The upper argument also recovers Wagner's set-count upper order;
 its original attribution is unchanged.
+Wagner also bounds all face flags of the fixed-size corner-cut
+polyhedron \cite[Section 3.5]{W03}. These are different from full
+ordered prefixes. For example, one planar cut of size 50 has five strict
+orders, realized by weights \((60,49)\), \((84,71)\), \((112,97)\),
+\((144,127)\) and \((18,17)\). They give the same exposed vertex
+\((130,155)\), which has only two incident maximal face flags.
+Thus identifying each word with a maximal flag at its final-cut vertex
+does not give the ordered bound. The chart proof above handles internal
+orders directly. This example makes no claim to exclude every other
+deduction from Wagner's flag theorem.
 
 \section{An optimal prime-size bound}\label{sec:primeheight}
 Qualitative realization by distinct prime bases follows from Vietri's
@@ -826,6 +836,9 @@ The lower bound concerns the same cardinality count as Wagner's
 \eqref{eq:baseline}. The proof uses three ingredients: a uniform finite
 primitive-frame estimate, injectivity at a prescribed size, and disjoint
 aspect ranges. We describe the relevant background for these steps.
+Wagner's upper result also covers faces and flags of the fixed-size
+corner-cut polyhedron \cite[Section 3.5]{W03}; we claim no improvement
+of that upper order. The main advance is the matching lower count.
 M\"uller \cite[Sections 2--5]{Muller} studies the same polytopes,
 including their planar vertex order and adjacency. Her enumeration
 discussion \cite[Section 1, p.~324]{Muller} cites the planar result
@@ -958,6 +971,9 @@ border extension with exact rational feasibility reproduces the eight
 entries for lengths three through ten in their Table 8. All 1,023
 accepted certificates are checked independently by an additive heap;
 the non-initial finite ordering in their Remark 1 is rejected.
+Five strict orders of one 50-point planar cut are also checked by a
+finite-box sort independent of the prefix heap, illustrating the
+distinction from fixed-vertex maximal face flags.
 The separate prefix checker tests 230 integer-score certificates and
 90 matrix-order prefixes with exact rational vertex enumeration and an
 independent scalar heap. These include unused coordinates, all active

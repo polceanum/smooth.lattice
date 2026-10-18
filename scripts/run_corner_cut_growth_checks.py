@@ -771,7 +771,7 @@ def ordered_prefix_chart_checks():
 
 def planar_ordered_prefix_checks():
     """Check the established signature-prefix count by exact crossing sweeps."""
-    counts, crossing_cases, split = [], 0, None
+    counts, crossing_cases, split, flag_control = [], 0, None, None
     for n in range(1, 61):
         crossings = sorted({Fraction(a, b) for a in range(1, 2 * n)
                             for b in range(1, 2 * n // (a + 1))
@@ -807,11 +807,37 @@ def planar_ordered_prefix_checks():
                 require(strict_count + 1 == (a + 1) * (b + 1) // 2,
                         'first crossing rank agrees with direct lattice counting')
                 crossing_cases += 1
+        if n == 50:
+            shape, witnesses = max(by_shape.items(), key=lambda item: len(item[1]))
+            records = []
+            for witness in witnesses:
+                weights = witness['weights']
+                # Independent finite-box sort, rather than another heap oracle.
+                direct = sorted((weights[0] * x + weights[1] * y, (x, y))
+                                for x in range(n + 1) for y in range(n + 1))[:n + 1]
+                require(tuple(point for _, point in direct[:n]) == witness['order'],
+                        'flag control: direct sort reproduces the full word')
+                require(all(a[0] < b[0] for a, b in zip(direct, direct[1:])),
+                        'flag control: strict internal scores and cutoff')
+                records.append({'weights': weights, 'last_score': direct[n - 1][0],
+                                'next_score': direct[n][0],
+                                'word_sha256': hashlib.sha256(json.dumps(
+                                    witness['order'], separators=(',', ':')).encode()).hexdigest()})
+            require(len({w['order'] for w in witnesses}) == 5,
+                    'five distinct orders have the same fifty-point cut')
+            moment = tuple(sum(point[i] for point in shape) for i in range(2))
+            require(moment == (130, 155), 'exact exposed-vertex control')
+            flag_control = {'length': n, 'shape': shape, 'moment': moment,
+                            'ordered_realizations': records,
+                            'maximal_flags_at_one_planar_vertex': 2,
+                            'conclusion': 'These five words cannot inject into maximal face flags while preserving their final corner-cut vertex.',
+                            'scope': 'A counterexample to direct identification, not a proof excluding every deduction from Wagner flag bounds or a separate novelty claim.'}
     require(counts[:12] == [1, 2, 4, 6, 8, 12, 14, 16, 20, 24, 26, 32],
             'published contributor values for signature prefixes, OEIS A163823')
     return {'attribution': 'Planar signature-prefix family recorded by Adams-Watters in OEIS A163823 (2009).',
             'source': 'https://oeis.org/A163823', 'lengths': [1, 60], 'counts': counts,
             'first_crossing_ranks_checked': crossing_cases, 'same_shape_different_orders': split,
+            'flag_vertex_control': flag_control,
             'scope': 'Known planar object and exact finite checks; no planar novelty claim or proof of the all-dimensional theorem.'}
 
 

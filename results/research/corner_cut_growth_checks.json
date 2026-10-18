@@ -3547,6 +3547,265 @@
         }
       ]
     },
+    "flag_vertex_control": {
+      "length": 50,
+      "shape": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          0,
+          9
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          8,
+          0
+        ]
+      ],
+      "moment": [
+        130,
+        155
+      ],
+      "ordered_realizations": [
+        {
+          "weights": [
+            60,
+            49
+          ],
+          "last_score": 485,
+          "next_score": 490,
+          "word_sha256": "35918c4ea5618483ef949e81915553b77ea2dae8655ee0574ab7f4f90eb10225"
+        },
+        {
+          "weights": [
+            84,
+            71
+          ],
+          "last_score": 691,
+          "next_score": 704,
+          "word_sha256": "33bebc36415c431e73fe3963c82705d6bb3da0b6b16fc36541b6b78be33ac2d9"
+        },
+        {
+          "weights": [
+            112,
+            97
+          ],
+          "last_score": 933,
+          "next_score": 948,
+          "word_sha256": "49401e08197a5e331540cfa761b57b27cfbcb2cea67fcfffdef6d622de7adf2f"
+        },
+        {
+          "weights": [
+            144,
+            127
+          ],
+          "last_score": 1211,
+          "next_score": 1228,
+          "word_sha256": "9bb4db50de78effb0ac55f06cfd3ae7e7565baaee2ffe9b408b377237f0e1f57"
+        },
+        {
+          "weights": [
+            18,
+            17
+          ],
+          "last_score": 157,
+          "next_score": 158,
+          "word_sha256": "5ff7fa62e03e2faebc91108575526e361676e8dc169ea24d6d36c538a77a0fad"
+        }
+      ],
+      "maximal_flags_at_one_planar_vertex": 2,
+      "conclusion": "These five words cannot inject into maximal face flags while preserving their final corner-cut vertex.",
+      "scope": "A counterexample to direct identification, not a proof excluding every deduction from Wagner flag bounds or a separate novelty claim."
+    },
     "scope": "Known planar object and exact finite checks; no planar novelty claim or proof of the all-dimensional theorem."
   },
   "vasiliev_pavlov_table_checks": {
@@ -4105,11 +4364,11 @@
     "scope": "All 24 planar table entries and eight spatial entries; no claim to reproduce the remaining spatial table or validate every published algorithm."
   },
   "source_sha256": {
-    "scripts/run_corner_cut_growth_checks.py": "afef846e5842a44d730fff55b8ff7f6f60f523f8e28990b6462f39a4accdaf89",
+    "scripts/run_corner_cut_growth_checks.py": "ae6874a6a82261d791c3f1c17f427692649999b2c3a0699d922a21fb2939884b",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
     "scripts/run_pyramidal_poset_checks.py": "70eb1d26eb7a8664e8c186b33e115fedb1ecc5004880a41b07f76ba000533500",
-    "docs/interleaving_research.md": "fbdc9216e5b5fea931374a735363efd12bc1d8a9a5a6acc5e2c4c4092dead1c6",
-    "paper/corner_cut_growth/main.tex": "52a5654e8e3de8f28fb7c5dbef6d753f68a95825411cea7cbc4a3a18b45bd817"
+    "docs/interleaving_research.md": "23f5df4ebb3d7a526dd3972f9da74cc0afcb330825555007fb0fa53562ba3ea5",
+    "paper/corner_cut_growth/main.tex": "eb0b8a277e55df556c7b0730a03e59514daad7c9dfc17c685ba2db29452dd73b"
   },
   "limitations": [
     "Finite checks do not establish a uniform asymptotic density bound.",

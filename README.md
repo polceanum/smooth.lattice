@@ -40,7 +40,7 @@ Documentation and paper material:
 
 ```text
 docs/       claim matrix, certification protocol, hard result table
-paper/      LaTeX skeleton and paper-planning notes
+paper/      quantitative manuscript and separate research notes
 results/    selected certified examples and benchmark summaries
 ```
 
@@ -58,12 +58,14 @@ new quantitative theorem, a verified literature gap and a useful mathematical
 consequence before preparing a submission. The first candidate is to close or
 strictly narrow Wagner's published logarithmic gap in the number of
 three-dimensional corner cuts, the shapes underlying smooth exponent prefixes.
-The existing proofs and the closest inspected primary results have now been
-compared at the theorem level. The consolidated internal assessment supports
-proceeding to mathematical review; overall priority remains unverified.
+The existing proofs and closest primary results have been compared at the
+theorem level, including the full Vasiliev--Pavlov finite-ordering paper and
+Wagner's stronger face-flag bound. The final internal assessment supports a
+focused submission under the documented literature comparison and the user's
+explicit final-version assumption.
 
-A new candidate proof in the research note would give the matching pointwise
-count C_d(n)=Theta_d(n^(d-1)(log n)^(d-1)) in every fixed dimension d>=2,
+The quantitative manuscript proves the matching pointwise count
+C_d(n)=Theta_d(n^(d-1)(log n)^(d-1)) in every fixed dimension d>=2,
 including the original three-dimensional target. It counts primitive normal
 directions and uses two integer lattice patches to prevent collisions at a
 prescribed size. Exact witnesses test the delicate step for 2,280 ordered pairs of
@@ -72,11 +74,19 @@ no unresolved logical step. The earlier cumulative construction is preserved
 in the note. The count also gives order log n for the mean number of
 completions of a coordinate slice, addressing Wagner's suggested route. The
 [anonymous mathematical manuscript](paper/corner_cut_growth/main.tex) gives
-the complete proof, explicit constants, precise source comparisons and an
-AI-assistance disclosure separately from the earlier structural note.
-The [PDF](output/pdf/corner_cut_growth.pdf) compiles. No independent referee
-assessment or journal acceptance is claimed; novelty and submission readiness
-remain under review.
+the complete proof, explicit constants, source comparisons and an
+AI-assistance disclosure separately from the earlier structural note. It also
+proves the same growth order for complete ordered prefixes and a sharp
+worst-case prime-size bound: for fixed dimension and lower prime bound,
+O(n)-bit primes realize every admissible n-term pattern, and some patterns
+require Omega(n) bits. Known finite-ordering, representation and qualitative
+prime-realization results are credited explicitly. This supplies no fixed-prime
+unranking speedup or new prime-gap estimate.
+The [PDF](output/pdf/corner_cut_growth.pdf) is compiled and visually checked.
+The [acceptance audit](results/research/corner_cut_growth_audit.json) records
+the mathematical contribution and the reading scope of each comparison.
+The novelty position is a documented research assessment; no independent
+referee assessment or journal acceptance is claimed.
 
 The existing structural results are preserved as a separate note about the
 geometry and containment intervals of pyramidal partitions. Applying Edelman's
