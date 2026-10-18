@@ -9214,3 +9214,112 @@ not merely another family obstruction. The strongest-current-priority
 gate, independently assessed proof and publication artifact remain
 unfinished, so the goal stays active. Existing manuscripts and kernels
 remain unchanged; no outbound correspondence or submission is authorized.
+### Twenty-fourth pass: manuscript, classical averaging and consequence checks
+
+The preceding turn is substantive progress: commit `b846187` saves the
+uniform all-fields bound (LS1), its geometric proof and exact certificates.
+This pass prepares a separate complete working manuscript and makes the
+attribution and remaining priority question more precise. It does not
+replace the unrestricted objective with manuscript preparation alone.
+
+#### Classical projection identities and the finite-field comparison
+
+[Grunbaum, Grassmann angles of convex polytopes (1968)](https://faculty.washington.edu/moishe/branko/BG64%20Grassmann%20angles.pdf)
+provides the classical framework behind (LS8). Section 2 defines the
+rotation-invariant Grassmannian measure. Equation (2.5), with its proof,
+reduces intersection probabilities to the span of a cone; Section 3's
+equation (3.1) and averaging argument express projected-face counts as
+sums of local probabilities. These relevant definitions and proofs were
+inspected, together with the adjacent cone-polarity and averaging results.
+Our direct wall-count proof is retained for precision, with explicit
+credit to this existing principle. It is not a new Grassmann-angle or
+Crofton identity.
+
+The precise later Stigler--Zhang comparison can be made without silently
+equating its 2019 preprint with the 2020 chapter. The indexed primary
+[later deposit, Theorem 8](https://par.nsf.gov/servlets/purl/10177092)
+bounds the number for m points in d-dimensional prime-field space using,
+in its first range, the factor
+
+    (p^2*floor(m/p)+(m mod p)^2)^(d(d-1)/(d+1)).
+
+For p>m this is exactly m^(2d(d-1)/(d+1)), recovering the earlier exponent.
+The relevant theorem and displayed proof were inspected through indexed
+primary pages 15--16; complete PDF retrieval remains unconfirmed. This
+supports the named quantitative comparison, not an assumption about every
+statement in the chapter. Its fixed-field or high-density bounds can be
+stronger in their own parameter regimes. Likewise the Euler-zonotope
+bound can be stronger for a fixed integer coordinate range. Neither
+comparison is presented as blanket dominance by (LS1) or (LS10).
+
+#### Complete working manuscript
+
+A separate anonymous working manuscript is saved in the ignored project
+`results/local/lattice_shadow_paper/`, with `main.tex` and the standalone
+11-page PDF at `output/pdf/main.pdf` within that project. It contains the
+following complete arguments:
+
+1. The integer facet incidence budget, with a triangulation argument.
+2. The determinant lower bound for spherical normal-cone area, including
+   nonsimple vertices, and the stereographic Euclidean-isoperimetry step.
+3. The classical normal-fan averaging identity, derived explicitly.
+4. The Dey--Eppstein planar matroid bound, with a separate perturbation
+   argument for tied bases and projected vertices.
+5. Cube regularization and the coordinate-projection surface-area bound,
+   covering lower-dimensional basis polytopes.
+6. The general integer-weight matroid estimate and the all-colength
+   application, including an elementary hyperbolic-cross cardinality proof.
+7. The universal Groebner-basis cardinality consequence, with an explicit
+   proof of the established minimal-generator packing estimate.
+
+The paper states exactly which inputs are existing results, includes a
+version-aware priority appendix and an AI-assistance disclosure, and
+avoids claims of sharp growth, a new enumeration algorithm, prime
+distribution or an ML performance consequence. It is a complete working
+paper for internal human review. Independent human refereeing and external
+submission have not occurred; neither is introduced as an extra condition
+on the user's research goal. The unresolved gate is the defensible novelty
+assessment for the unrestricted quantitative result.
+
+The editor compiler and terminal LaTeX compiler both confirm compilation.
+All 11 pages were rendered for layout inspection, with the proof and
+certificate pages additionally inspected at full size. The final build has
+no unresolved references or overflowing boxes, and the PDF author metadata
+is empty. The goal manifest records exact source/PDF hashes; the paper and
+its private reading/QA records are not included in the public commit.
+
+#### Independent certificates for the algebraic consequence
+
+The new `staircase_generator_controls` checks 325 staircases: sizes one
+through seven in dimensions two and three, and sizes one through five
+in dimension four. It finds their 1462 minimal outside generators in two
+independent ways: a one-step minimal border and the first missing point
+on coordinate fibers, followed by removal of dominated caps. It verifies
+the antichain property, the injective small-coordinate projection and
+the disjoint inside chains used in the proof of (LS11). Each fixture
+saves its staircase, generators and exact rational packing bound.
+The estimate is established mathematics, and finite agreement is not
+the uniform proof or a new generator theorem.
+
+Run the existing complete research command:
+
+```bash
+python3 -B scripts/run_structural_complexity_checks.py
+```
+
+The public report retains all earlier controls and adds the separate
+`staircase_generator_control` block. The historical completed manuscript,
+original kernels, CLI and ML assessment remain intact.
+
+#### Publication judgment at this point
+
+The all-colength power improvement is mathematically substantial enough
+to justify the completed working draft: its scope is every field and
+every colength-n ideal in each fixed d>=3. This is a contribution
+assessment, not a prediction of journal acceptance or broad impact.
+The precise comparison with the proof-checked Babson--Onn--Thomas bound
+is established. The remaining priority audit must determine whether an
+equivalent mixed lattice/angle estimate or an existing unrestricted
+counting result already implies the claimed advance. Failure to find a
+keyword match is not evidence that it is new. The goal remains active
+with this question explicit; the draft alone does not complete it.

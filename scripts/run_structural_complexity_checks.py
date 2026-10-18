@@ -5019,6 +5019,66 @@ def lattice_shadow_controls():
             "token_exchanges": sum(len(f["token_exchanges"]) for f in matroids)}
 
 
+def staircase_generator_controls():
+    """Independent border/fiber checks for the known generator-count lemma."""
+    fixtures = []
+
+    def minimal_border(state, dimension):
+        border = {tuple(x + (axis == j) for j, x in enumerate(a))
+                  for a in state for axis in range(dimension)} - state
+        return {u for u in border if all(tuple(x - (axis == j) for j, x in enumerate(u)) in state
+                                         for axis in range(dimension) if u[axis])}
+
+    for dimension, maximum_size in ((2, 7), (3, 7), (4, 5)):
+        states = {frozenset({(0,) * dimension})}
+        for n in range(1, maximum_size + 1):
+            following = set()
+            for state in sorted(states, key=lambda a: sorted(a)):
+                generators = minimal_border(state, dimension)
+                # Independent oracle: take the first missing point on each
+                # coordinate fiber, then remove dominated caps.
+                caps = set()
+                for axis in range(dimension):
+                    fibers = {}
+                    for a in state:
+                        base = a[:axis] + a[axis + 1:]
+                        fibers[base] = max(fibers.get(base, -1), a[axis])
+                    for base, highest in fibers.items():
+                        caps.add(base[:axis] + (highest + 1,) + base[axis:])
+                independent = {u for u in caps if not any(v != u and all(x <= y for x, y in zip(v, u))
+                                                         for v in caps)}
+                require(generators == independent, "minimal border and independent fiber-cap oracle agree")
+                require(all(not all(x <= y for x, y in zip(u, v))
+                            for u, v in permutations(generators, 2)), "minimal outside exponents form an antichain")
+                h = next(x for x in range(1, n + 1) if x ** dimension >= n)
+                small = {u for u in generators if max(u) < h}
+                require(len({u[:-1] for u in small}) == len(small) <= h ** (dimension - 1),
+                        "small antichain has an injective coordinate projection")
+                chain_counts = []
+                for axis in range(dimension):
+                    large = [u for u in generators if u[axis] >= h]
+                    chains = [tuple(tuple(x - t * (axis == j) for j, x in enumerate(u))
+                                    for t in range(1, h + 1)) for u in large]
+                    union = {p for chain in chains for p in chain}
+                    require(len(union) == h * len(large) and union <= state,
+                            "large minimal generators give disjoint inside chains")
+                    chain_counts.append(len(large))
+                bound = h ** (dimension - 1) + dimension * Fraction(n, h)
+                require(len(generators) <= len(small) + sum(chain_counts) <= bound,
+                        "exact chain-packing generator bound")
+                fixtures.append({"dimension": dimension, "n": n, "staircase": sorted(state),
+                                 "minimal_outside": sorted(generators), "h": h,
+                                 "small_generators": len(small), "large_chain_counts": chain_counts,
+                                 "rational_generator_upper_bound": str(bound)})
+                if n < maximum_size:
+                    following.update(state | {u} for u in generators)
+            states = following
+    return {"scope": "Finite supporting certificates for the established minimal-generator estimate used in the universal-basis corollary. No new generator theorem or uniform proof by enumeration is claimed.",
+            "method": "Enumerate small staircases; compare one-step minimal borders against independent coordinate-fiber caps, and certify the disjoint-chain packing bound exactly.",
+            "fixtures": fixtures, "staircases_checked": len(fixtures),
+            "minimal_generators_checked": sum(len(f["minimal_outside"]) for f in fixtures)}
+
+
 def attention_rank_sanity_control():
     """An exact Vandermonde witness, not an attention-compression algorithm."""
     parameters = (1, 2, 3, 4)
@@ -5095,6 +5155,7 @@ def main():
     algebraic_attention = algebraic_attention_hotpath_controls()
     attention_mixing = algebraic_attention_mixing_controls()
     lattice_shadows = lattice_shadow_controls()
+    staircase_generators = staircase_generator_controls()
     exchange_cycles = exchange_cycle_coherence_controls()
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
@@ -5197,6 +5258,7 @@ def main():
         "algebraic_attention_hotpath_control": algebraic_attention,
         "algebraic_attention_mixing_control": attention_mixing,
         "lattice_shadow_control": lattice_shadows,
+        "staircase_generator_control": staircase_generators,
         "exchange_cycle_coherence_control": exchange_cycles,
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
@@ -5321,6 +5383,8 @@ def main():
                     "lattice_shadow_parametric_samples": lattice_shadows["parametric_samples"],
                     "lattice_shadow_token_exchanges": lattice_shadows["token_exchanges"],
                     "lattice_shadow_exponent_controls": len(lattice_shadows["exponent_controls"]),
+                    "staircase_generator_staircases_checked": staircase_generators["staircases_checked"],
+                    "staircase_generator_minimal_generators_checked": staircase_generators["minimal_generators_checked"],
                     "exchange_cycle_rank_two_contractions": sum(x["invertible_new_pairs"] for x in exchange_cycles["rank_two_contractions"]),
                     "exchange_cycle_patch_checks": sum(x["weight_checks"] for x in exchange_cycles["patch_controls"]),
                     "exchange_cycle_rational_controls": len(exchange_cycles["rational_cycle_controls"]),

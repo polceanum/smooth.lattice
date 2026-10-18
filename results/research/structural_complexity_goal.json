@@ -2,7 +2,7 @@
   "schema_version": 1,
   "recorded_on": "2026-10-18",
   "title": "Universal algebraic complexity beyond generic corner cuts",
-  "status": "active_exchange_closure_obstruction_proved_unrestricted_rank_dependency_mechanism_open",
+  "status": "active_uniform_bound_manuscript_prepared_priority_audit_open",
   "objective": "Prove a new structural theorem determining or substantially narrowing the worst-case asymptotic number of monomial initial ideals of finite polynomial algebras, starting with three variables and seeking a mechanism valid in every fixed dimension. Establish the strongest relevant primary baseline first. Success requires a complete uniform proof of sharp growth or a substantial asymptotic advance over that baseline for all colength-n ideals or all n-point configurations, a rigorous further algebraic, geometric or enumeration consequence, reproducible exact certificates and an honestly scoped manuscript. Examples, reformulations, already known corollaries and a plan alone do not complete this goal.",
   "plan": "docs/interleaving_research.md#higher-impact-research-plan-universal-algebraic-complexity",
   "relationship_to_previous_goal": "A new research objective. The completed corner-cut counting manuscript and its acceptance records remain separate and unchanged in mathematical content.",
@@ -29,7 +29,7 @@
   "milestones": [
     {
       "id": "primary_baseline",
-      "status": "BOT_unrestricted_comparison_and_Dey_Eppstein_inputs_proof_checked_focused_priority_audit_open",
+      "status": "matched_BOT_baseline_and_later_field_parameter_comparisons_checked_Grassmann_identity_attributed_novelty_gate_open",
       "deliverable": "A theorem-level primary-source comparison identifying the best relevant unrestricted and restricted bounds, exact hypotheses, input models and still viable targets."
     },
     {
@@ -54,7 +54,7 @@
     },
     {
       "id": "proof_priority_artifact",
-      "status": "complete_research_note_proof_and_exact_certificates_manuscript_deferred_until_priority_gate",
+      "status": "complete_working_manuscript_compiled_and_rendered_exact_certificates_extended_priority_gate_open",
       "deliverable": "Complete proof, precise prior-art assessment, independently checked exact certificates and a separate honest manuscript suitable for the user's later review."
     }
   ],
@@ -124,7 +124,7 @@
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Commit afdccf3 saved and verified the ML mixing/state-rank assessment. It did not advance the unrestricted theorem; this continuation returns to that objective."
+    "reason": "Commit b846187 saved the complete uniform all-fields upper-bound derivation, its further algebraic consequence and exact lattice/shadow/matroid certificates. This narrowed the unrestricted exponent relative to the proof-checked BOT baseline; priority and manuscript requirements remained open."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -2907,6 +2907,97 @@
       "docs/interleaving_research.md": "60dd84866f2ac0e824a73ea6fccb941c0f484d7b985a7975db98d04fbe54de7b"
     },
     "historical_report_blocks_preserved": 39,
+    "historical_summary_counts_preserved": true
+  },
+  "twenty_fourth_results": {
+    "record": "docs/interleaving_research.md, Twenty-fourth pass: manuscript, classical averaging and consequence checks",
+    "checks": "results/research/structural_complexity_checks.json, staircase_generator_control",
+    "uniform_bound_from_previous_pass_retained": true,
+    "new_priority_comparison": {
+      "authors": "Grunbaum",
+      "source": "https://faculty.washington.edu/moishe/branko/BG64%20Grassmann%20angles.pdf",
+      "title": "Grassmann angles of convex polytopes",
+      "year": 1968,
+      "scope_read": "Section2 definitions, equation(2.5) and complete invariant-measure proof, adjacent cone polarity and averaging arguments; Section3 projected-face identity(3.1), averaging lemma and related proofs.",
+      "finding": "The projection/normal-fan averaging principle is classical and is explicitly credited in the manuscript. No new Grassmann-angle or Crofton identity is claimed."
+    },
+    "later_field_comparison": {
+      "source": "https://par.nsf.gov/servlets/purl/10177092",
+      "published_chapter": "https://doi.org/10.1007/978-3-030-42687-3_9",
+      "named_result": "Later Theorem8, indexed primary pages15--16; complete PDF retrieval unconfirmed, no assumed identity with the preprint.",
+      "calculation": "For p>m, (p^2*floor(m/p)+(m mod p)^2)^(d(d-1)/(d+1)) equals m^(2d(d-1)/(d+1)).",
+      "limits": "Its fixed-field/high-density regime and the fixed-coordinate Euler-zonotope regime can have stronger specialized bounds; no blanket dominance claim."
+    },
+    "manuscript": {
+      "tex": {
+        "path": "results/local/lattice_shadow_paper/main.tex",
+        "sha256": "eb885ffbd66efd49547f20b071f34332256c2eaec915ab7781f823ef26baf8a9"
+      },
+      "pdf": {
+        "path": "results/local/lattice_shadow_paper/output/pdf/main.pdf",
+        "sha256": "ea36fd10fc329afec97dd97b9a00a8bcf399e0f7da07e4b0c77a169b048ec60a",
+        "bytes": 346935,
+        "pages": 11
+      },
+      "compile": {
+        "desktop_editor": "success",
+        "latexmk": "success",
+        "unresolved_references": false,
+        "overfull_boxes": false
+      },
+      "visual_review": {
+        "all_pages_rendered": true,
+        "contact_sheet_checked": true,
+        "proof_and_certificate_pages_checked_at_full_size": [
+          3,
+          4,
+          7,
+          9
+        ],
+        "layout_defects_found": false
+      },
+      "scope": "Complete working manuscript for internal human review. Novelty and strongest-current priority not certified; no independent human referee assessment or submission."
+    },
+    "separate_manuscript_prepared": true,
+    "mathematical_scope": "Every field and every colength-n ideal for fixed d>=3, with nonsimple and lower-dimensional geometry, nongeneric ties and the universal-basis consequence handled explicitly.",
+    "novelty_scope": "Complete working manuscript for internal review. The elementary projection identities and parametric matroid bounds are credited prior art. Originality of the unrestricted quantitative advance remains to be established by a focused equivalence/priority audit.",
+    "independent_exact_consequence_checks": {
+      "staircases": 325,
+      "minimal_outside_generators": 1462,
+      "dimensions_and_size_caps": [
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "oracles": [
+        "one-step minimal border",
+        "coordinate-fiber caps with dominance removal"
+      ],
+      "packing_checks": "Antichain, injective small-coordinate projection and disjoint inside chains; exact rational bound per fixture. The underlying estimate is established and has a separate uniform proof."
+    },
+    "strongest_current_bound_verified": false,
+    "novelty_established": false,
+    "independent_human_referee_assessment": false,
+    "external_submission_sent": false,
+    "public_manuscript_upload_authorized_in_this_pass": false,
+    "private_manuscript_uploaded": false,
+    "full_checker_verified": true,
+    "goal_complete": false,
+    "next_gate": "Resolve whether known mixed lattice/angle estimates or a later unrestricted counting result already imply the proposed advance. The positive matched-source comparison and completed manuscript do not by themselves certify novelty. Human refereeing and journal acceptance are not newly imposed completion prerequisites.",
+    "source_sha256": {
+      "scripts/run_structural_complexity_checks.py": "18722cd5738ed1155e443701dd52cf6fb915b8563e187013230cc63dddc742c5",
+      "docs/interleaving_research.md": "d7c47bcbb947ddd25d5fd05fbae57e4aa7a3d4e1b471d3b74da75304ea3c91ce"
+    },
+    "historical_report_blocks_preserved": 40,
     "historical_summary_counts_preserved": true
   }
 }
