@@ -2,7 +2,7 @@
   "schema_version": 1,
   "recorded_on": "2026-10-18",
   "title": "Universal algebraic complexity beyond generic corner cuts",
-  "status": "active_grading_bound_and_flat_transfer_obstruction_proved_trivial_homogeneity_regime_open",
+  "status": "active_minimum_product_classification_and_rank_information_loss_proved_general_mixed_flags_open",
   "objective": "Prove a new structural theorem determining or substantially narrowing the worst-case asymptotic number of monomial initial ideals of finite polynomial algebras, starting with three variables and seeking a mechanism valid in every fixed dimension. Establish the strongest relevant primary baseline first. Success requires a complete uniform proof of sharp growth or a substantial asymptotic advance over that baseline for all colength-n ideals or all n-point configurations, a rigorous further algebraic, geometric or enumeration consequence, reproducible exact certificates and an honestly scoped manuscript. Examples, reformulations, already known corollaries and a plan alone do not complete this goal.",
   "plan": "docs/interleaving_research.md#higher-impact-research-plan-universal-algebraic-complexity",
   "relationship_to_previous_goal": "A new research objective. The completed corner-cut counting manuscript and its acceptance records remain separate and unchanged in mathematical content.",
@@ -29,12 +29,12 @@
   "milestones": [
     {
       "id": "primary_baseline",
-      "status": "additional_primary_comparisons_resolved_broader_priority_queue_still_open",
+      "status": "code_product_and_affine_invariance_primary_comparisons_checked_broader_priority_audit_open",
       "deliverable": "A theorem-level primary-source comparison identifying the best relevant unrestricted and restricted bounds, exact hypotheses, input models and still viable targets."
     },
     {
       "id": "dependency_mechanism",
-      "status": "grading_dimension_bound_and_flat_transfer_obstruction_proved_trivial_homogeneity_step_open",
+      "status": "minimum_product_cyclic_class_classified_all_fields_including_nonreduced_higher_mixed_flags_open",
       "deliverable": "A precise lemma about multiplication-compatible residue dependencies or state-polyhedron geometry, with its proof attempt and adversarial controls."
     },
     {
@@ -122,8 +122,8 @@
   "independent_referee_assessment": false,
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
-    "classification": "progress",
-    "reason": "Inspected the later finite-field deposit Theorem 8 and its complete displayed proof through indexed pages 15--16. Proved exact coordinate-moment ranges and a parameter-sensitive bound for every finite-colength ideal over every field. This supplies a necessary large-elimination-degree condition for near-cubic lower families, not a new unrestricted exponent. The intervening ML answer changed no research artifacts."
+    "classification": "no_progress",
+    "reason": "The intervening ML application answer inspected and explained existing results but changed no theorem-goal artifacts or unrestricted bounds. This turn revalidated the clean worktree and pursued the next safe dependency test."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -155,8 +155,9 @@
       "source": "https://rendiconti.dmi.units.it/volumi/37/05.pdf",
       "authors": "Maruri-Aguilar",
       "year": 2005,
-      "inspected": "Theorem 5.1 and indexed proof/discussion passages in Sections 5--6; not the full paper.",
-      "finding": "An existing direct planar universal-order construction removes the older logarithmic overhead. Do not claim this consequence anew."
+      "inspected": "Complete published PDF: Definitions 4.1--4.5, Theorem 5.1 with its full proof, and relevant discussion and three-dimensional example in Sections 5--6, beyond earlier indexed excerpts.",
+      "finding": "The primitive-square planar normal fan gives a common O(n^2) order list for all colength-n inputs, not a sharper per-ideal bound than O(n^(4/3)). The ray description does not extend to three variables; no bit-complexity claim is inferred from the screening operation count.",
+      "primary_full_text": "https://www.openstarts.units.it/server/api/core/bitstreams/3b2fda0e-53d1-417e-9966-a4327b97ffaa/content"
     },
     {
       "source": "https://optimization-online.org/wp-content/uploads/2015/12/5266.pdf",
@@ -400,12 +401,25 @@
       "authors": "Fukuda, Jensen and Thomas",
       "inspected": "Proposition 2.6 with its proof, the homogeneity-space discussion in Section 6, and the operation-count discussion in Section 5. The served PDF labels itself v1 while its embedded date is later; no publisher-version identity is assumed.",
       "finding": "The homogeneity space and support comparisons are established machinery. Section 5 does not bound flip cost; reverse-search operation accounting alone gives no new colength-only complexity guarantee."
+    },
+    {
+      "source": "https://arxiv.org/html/1501.06419v2",
+      "authors": "Mirandola and Zemor",
+      "publication_locator": "https://doi.org/10.1109/TIT.2015.2450207",
+      "inspected": "Definitions and Lemmas 2.7--2.10; Lemma 3.6 with proof; Theorem 3.3 with its complete infinite-field and base-extension proof. Theorem 4.2 statement inspected, not its full proof.",
+      "finding": "Code-product Kneser and critical MDS-pair inverse theory are established. Split point-algebra products fit Theorem 3.3; no unproved extension to arbitrary nonreduced algebras or new fan-count bound is inferred."
+    },
+    {
+      "source": "https://arxiv.org/html/1811.01114v2",
+      "authors": "Dimitrova, He, Stigler and Zhang",
+      "inspected": "Introduction general bound; Theorem 3.12 and its proof; Corollaries 3.13--3.14. Not a full-paper proof audit.",
+      "finding": "Separate affine coordinate changes preserve point initial ideals and their counts. The uniqueness results are sufficient conditions and do not give a stronger unrestricted extremal bound."
     }
   ],
   "next_actions": [
-    "The remaining unrestricted upper problem has large coordinate degrees and trivial homogeneity space. Exact gradings give the known-tool HG2 bound, but coefficient closeness to a graded ideal cannot transfer it, even with flatness, fixed abstract algebra and every elimination degree n.",
-    "A lower family exceeding the generic order must have trivial homogeneity and escape the prior coordinate/endpoint caps. Do not enlarge the HG3 perturbation checks: that entire family has only the generic C_d(n) fan away from its finite determinant-zero parameters near zero.",
-    "Continue the remaining primary-source comparison. The point-grid moment translation is explicit published prior art from 2013. Do not use the original Hashemi--Kapur conversion algorithm without a checked correction; distinguish optimization results from extremal initial-ideal counts. Preserve the completed manuscript and do not start a replacement before the asymptotic and consequence gates pass."
+    "Keep the unrestricted target with large coordinate degrees and trivial homogeneity. The minimum-bilinear-rank cyclic class is now classified by pole groups and has only O_d(n^(d-1)) initials; do not enlarge it as a stronger lower search.",
+    "A general dependency-sensitive upper lemma must retain compatible mixed monomial flags beyond box ranks and stabilizer dimensions. These complete scalar profiles agree in infinite full-coordinate-degree, trivial-homogeneity families whose counts range from d to binom(n+d-2,d-1). This does not rule out a uniform upper bound derived from such profiles, but prevents recovering or transferring a fan within a bounded factor from them alone.",
+    "Continue the primary baseline audit and compare any inverse-growth extension against established code-product critical-pair results. The code Kneser theorem applies to split point algebras; arbitrary nonreduced scope needs its own proof. The complete planar universal-order-list result does not improve the per-ideal extremal bound. Preserve the completed manuscript and require an unrestricted asymptotic advance and further consequence before a replacement manuscript."
   ],
   "forward_citation_discovery": {
     "method": "Read-only OpenAlex forward-citation queries for the two founding papers, followed by primary-source inspection of potentially relevant records.",
@@ -445,8 +459,8 @@
       {
         "source": "https://arxiv.org/abs/1811.01114v2",
         "title": "Geometric characterization of data sets with unique reduced Groebner bases",
-        "scope": "Primary abstract only; exact theorem comparison pending.",
-        "finding": "The abstract studies sufficient geometric conditions for uniqueness, not a stated unrestricted worst-case asymptotic bound."
+        "scope": "Introduction general bound; Theorem 3.12 and its proof; Corollaries 3.13--3.14. Not a full-paper proof audit.",
+        "finding": "Separate affine coordinate changes preserve point initial ideals and their counts. The uniqueness results are sufficient conditions and do not give a stronger unrestricted extremal bound."
       }
     ],
     "remaining_priority_queue": [
@@ -575,11 +589,17 @@
           "coordinate_moment_existing_quotient_checks": 432,
           "finite_field_bound_comparisons": 192,
           "graded_staircase_rank_checks": 531,
-          "small_perturbation_staircase_checks": 177
+          "small_perturbation_staircase_checks": 177,
+          "minimum_product_rank_fixtures": 85,
+          "minimum_product_staircase_checks": 3009,
+          "minimum_product_fan_witness_checks": 760,
+          "minimum_product_box_rank_checks": 2295,
+          "minimum_product_stabilizer_checks": 120,
+          "minimum_product_inverse_rectangle_checks": 81
         }
       }
     ],
-    "scope": "Build, smoke tests and the final-source research checker passed. The new divisible-grid controls cover five complete finite fans, 166 regime/maximum cells, 160 independent Gaussian selections on all bases of the two smallest fixtures, actual cyclic commuting quotient matrices over Z, unbounded parent initial type, and twelve explicit local crossing sectors. Every preexisting certificate object and summary count is retained. The uniform O(n) theorem is restricted to the specified family and closes its amplification route; no unrestricted asymptotic advance, complete strongest-priority audit or new manuscript is claimed."
+    "scope": "Final-source build, smoke tests and full exact checker passed. All historical certificate objects and summary counts are retained. The new minimum-product block checks 85 reduced/nonreduced quotients over five fields, 3009 staircase determinants and independent ranks, 760 full-ground fan witnesses, 2295 box ranks, 120 prefix stabilizers and 81 inverse-rectangle controls. The uniform inverse proof requires an unsaturated box and is independently scoped to cyclic coordinates. It does not improve the unrestricted asymptotic bound, complete the broader strongest-priority audit or justify a new manuscript."
   },
   "second_feasibility_results": {
     "record": "docs/interleaving_research.md, Second feasibility pass: interacting relations and a conditional count",
@@ -2107,5 +2127,88 @@
     "strongest_current_bound_verified": false,
     "goal_qualifying_unrestricted_advance": false,
     "decision": "Work on multiplication-compatible mixed dependencies with trivial homogeneity. The exact grading estimate cannot be extended merely by perturbation continuity. The original full theorem, relevant further consequence, complete priority audit and new manuscript remain unachieved."
+  },
+  "eighteenth_feasibility_results": {
+    "record": "docs/interleaving_research.md, Eighteenth feasibility pass: minimum product ranks and the information they lose",
+    "additive_rank_lemma": {
+      "scope": "Every field and every finite quotient whose coordinate elimination degrees all equal n, including nonreduced quotients.",
+      "statement": "Every anchored monomial box has rank at least min(n,1+sum_i(a_i-1)).",
+      "proof": "A proper subspace containing 1 cannot be invariant under a coordinate which alone generates the algebra; each multiplication step increases dimension."
+    },
+    "minimum_bilinear_classification": {
+      "hypotheses": "n>=3, each coordinate alone generates the length-n algebra, and span(1,x_1,x_i,x_1*x_i) has dimension three for every i>=2.",
+      "conclusion": "A=K[t]/(f), deg(f)=n, and all coordinates are nonconstant fractional-linear functions of t with unit denominators. No radicality, splitting or characteristic-zero assumption.",
+      "proof": "A degenerate bilinear relation would be a zero product of two affine factors whose multiplication ranks are at least n-1, impossible for n>=3. Coprimality and Bezout make the denominator a unit.",
+      "exact_count": "If pole-group sizes are m_j, g(I)=[z^(n-1)] product_j(1+m_j*z/(1-z)). All standard bases are unions of pure chains using at most one coordinate per group; every allocation has an explicit positive rational cutoff witness.",
+      "three_variable_counts": [
+        "3",
+        "2*n-1",
+        "binom(n+1,2)"
+      ],
+      "growth_limit": "At most O_d(n^(d-1)), below the established generic logarithmic order. No stronger unrestricted lower family or certified novelty.",
+      "alternate_hypothesis": "One anchored box with every side at least two has minimum additive rank 1+sum_i(a_i-1) strictly below n. This alone forces all the minimum bilinear ranks.",
+      "inverse_proof": "Minimal growth forces a two-by-b rectangle to have b+1 rank. Its b-1 relations P(y)+x*Q(y)=0 have pairwise eliminants of degree at most 2*b-2<n, hence are polynomially proportional. Truncated relation dimension forces primitive degree one and includes multiplier 1; degree zero is excluded by multiplication-rank bounds. The argument extends to all coordinate pairs inside one unsaturated box.",
+      "integer_rank_gap": "A cyclic presentation outside the fractional-linear class has rank at least min(n,2+sum_i(a_i-1)) for every box with all sides at least two. This extra unit is not a fan-count exponent improvement."
+    },
+    "rank_information_loss": {
+      "uniform_box_rank": "Every box has rank min(n,1+sum_i(a_i-1)), independently of the pole groups.",
+      "stabilizers": "Every proper box span has scalar stabilizer; a full box has stabilizer dimension n. This is proved inside every such univariate quotient, not assumed from split-code theory.",
+      "counterfamilies": "Over Q, use f=t^n or product_(k=1)^n(t-k) with coordinate choices among t,t+1,t+2,1/(1+t),1/(1+2*t). Identical complete box profiles and stabilizer dimensions permit the three different counts.",
+      "hard_regime": "All coordinates have elimination degree n. Minimal monomial relations force trivial homogeneity space in the displayed infinite families.",
+      "scope_limit": "Prevents determining or transferring the count within a bounded factor from these profiles alone. It does not rule out an upper bound using them; mixed flags distinguish the pole groups.",
+      "saturation_counter": "In K[t]/(t^5), x=t,y=t+t^2 are cyclic over every field. The 3-by-3 rectangle has rank five equal to its saturated additive bound, but the bilinear rank is four. Unsaturation in the inverse statement is necessary."
+    },
+    "primary_comparisons": [
+      {
+        "source": "https://arxiv.org/html/1501.06419v2",
+        "authors": "Mirandola and Zemor",
+        "publication_locator": "https://doi.org/10.1109/TIT.2015.2450207",
+        "inspected": "Definitions and Lemmas 2.7--2.10; Lemma 3.6 with proof; Theorem 3.3 with its complete infinite-field and base-extension proof. Theorem 4.2 statement inspected, not its full proof.",
+        "finding": "Code-product Kneser and critical MDS-pair inverse theory are established. Split point-algebra products fit Theorem 3.3; no unproved extension to arbitrary nonreduced algebras or new fan-count bound is inferred."
+      },
+      {
+        "source": "https://arxiv.org/html/1811.01114v2",
+        "authors": "Dimitrova, He, Stigler and Zhang",
+        "inspected": "Introduction general bound; Theorem 3.12 and its proof; Corollaries 3.13--3.14. Not a full-paper proof audit.",
+        "finding": "Separate affine coordinate changes preserve point initial ideals and their counts. The uniqueness results are sufficient conditions and do not give a stronger unrestricted extremal bound."
+      }
+    ],
+    "finite_controls": {
+      "status": "Final-source build, smoke tests and complete research checker passed.",
+      "fixtures": 85,
+      "fields": [
+        "Q",
+        "F_2",
+        "F_3",
+        "F_11",
+        "F_17"
+      ],
+      "n": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "staircase_rank_and_determinant_checks": 3009,
+      "full_ground_fan_witness_checks": 760,
+      "box_rank_checks": 2295,
+      "polynomial_prefix_stabilizer_checks": 120,
+      "characteristic_scope": "Three distinct poles omitted from the characteristic-two fixture because 1/(1+2*t) is constant. Split samples checked over Q,F_17; nilpotent quotients checked over Q,F_2,F_3,F_11.",
+      "inverse_rectangle_checks": 81,
+      "inverse_negative_fixtures": 9,
+      "commands": [
+        "./build.sh",
+        "python3 tests/test_smoke.py",
+        "python3 -B scripts/run_structural_complexity_checks.py"
+      ],
+      "source_sha256": {
+        "scripts/run_structural_complexity_checks.py": "748d6747047b773ac1ffc997f6068270840b4caf71a847d976ca6e4f18016c27",
+        "docs/interleaving_research.md": "5ffe4ec5491bd5ef9c1876156a6ab837f38899b7b85a634a6e2270eaa0631eac"
+      }
+    },
+    "strongest_current_bound_verified": false,
+    "goal_qualifying_unrestricted_advance": false,
+    "decision": "Retain the full objective. The minimum-growth endpoint is solved but cannot improve the unrestricted lower order. A broad upper argument must keep compatible mixed flags beyond scalar box profiles and compare higher inverse-growth statements against primary code-product literature. No new manuscript or goal completion."
   }
 }

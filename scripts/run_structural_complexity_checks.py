@@ -3388,6 +3388,180 @@ def grading_and_perturbation_controls(monogenic, point_fixture):
             "priority": "Consequences of established multigrading, lattice-polytope and open-minor arguments, not a new unrestricted asymptotic theorem or certified novelty."}
 
 
+def minimum_product_rank_controls():
+    """Minimum bilinear rank, pole groups and the loss of fan data in box ranks."""
+    fixtures, stabilizers = [], []
+
+    def rank(rows, characteristic):
+        columns = {(i,): row for i, row in enumerate(rows)}
+        return len(greedy(columns, columns, (1,), characteristic))
+
+    def reduce_scalar(value, characteristic):
+        value = Fraction(value)
+        return (value.numerator * pow(value.denominator, -1, characteristic) % characteristic
+                if characteristic else value)
+
+    for n in range(3, 8):
+        ground, states = set(hyperbolic_cross(n, 3)), finite_staircases(n, 3)
+        extended = ground | set(product(range(3), repeat=3))
+        for algebra in ("nilpotent", "split_points"):
+            modulus = [0] * n + [1]
+            if algebra == "split_points":
+                modulus = [1]
+                for t in range(1, n + 1):
+                    following = [0] * (len(modulus) + 1)
+                    for i, value in enumerate(modulus):
+                        following[i] -= t * value
+                        following[i + 1] += value
+                    modulus = following
+            characteristics = (0, 2, 3, 11) if algebra == "nilpotent" else (0, 17)
+            for characteristic in characteristics:
+                # Independently compute the stabilizer of each proper polynomial prefix.
+                prefix_checks = []
+                for k in range(1, n):
+                    powers = [univariate_power_mod((0, 1), i, modulus) for i in range(2 * k - 1)]
+                    equations = [tuple(powers[i + j][q] for i in range(k))
+                                 for j in range(k) for q in range(k, n)]
+                    dimension = k - rank(equations, characteristic)
+                    require(dimension == 1, "every proper polynomial prefix has scalar stabilizer")
+                    prefix_checks.append({"prefix_dimension": k, "stabilizer_dimension": dimension})
+                stabilizers.append({"n": n, "algebra": algebra, "characteristic": characteristic,
+                                    "monic_modulus_low_to_high": modulus, "prefix_checks": prefix_checks})
+                profiles = []
+                for groups in ((0, 0, 0), (0, 0, 1), (0, 1, 2)):
+                    if characteristic == 2 and groups == (0, 1, 2):
+                        continue  # 1/(1+2*t) is constant in this characteristic.
+                    if algebra == "nilpotent":
+                        t_image = tuple(int(j == 1) for j in range(n))
+                        shifted = [tuple(int(j == 1) + c * int(j == 0) for j in range(n))
+                                   for c in (1, 2)]
+                        inverse = [tuple((-c) ** j for j in range(n)) for c in (1, 2)]
+                        images = ([t_image, *shifted] if groups == (0, 0, 0) else
+                                  [t_image, shifted[0], inverse[0]] if groups == (0, 0, 1) else
+                                  [t_image, *inverse])
+                        columns = cyclic_univariate_model(modulus, images, extended)
+                        presentation = {"coordinate_images_low_to_high": images}
+                    else:
+                        points = [(t, t + 1, t + 2) if groups == (0, 0, 0) else
+                                  (t, t + 1, Fraction(1, 1 + t)) if groups == (0, 0, 1) else
+                                  (t, Fraction(1, 1 + t), Fraction(1, 1 + 2 * t))
+                                  for t in range(1, n + 1)]
+                        columns = {a: tuple(point[0] ** a[0] * point[1] ** a[1] * point[2] ** a[2]
+                                            for point in points)
+                                   for a in extended}
+                        presentation = {"rational_point_coordinates": [[str(x) for x in p] for p in points]}
+                    columns = {a: tuple(reduce_scalar(x, characteristic) for x in values)
+                               for a, values in columns.items()}
+                    unit = columns[(0, 0, 0)]
+                    axes = [tuple(int(i == j) for j in range(3)) for i in range(3)]
+                    require(all(rank([columns[tuple(k * x for x in axis)] for k in range(n)], characteristic) == n
+                                for axis in axes), "each coordinate generates the entire length-n algebra")
+                    relations = ([(-1, -1, 1, 0), (-2, -1, 1, 0)] if groups == (0, 0, 0) else
+                                 [(-1, -1, 1, 0), (-1, 0, 1, 1)] if groups == (0, 0, 1) else
+                                 [(-1, 0, 1, 1), (-1, 0, 1, 2)])
+                    grading_normals = []
+                    for i, coefficients in enumerate(relations, 1):
+                        pair = tuple(a + b for a, b in zip(axes[0], axes[i]))
+                        monomials = [(0, 0, 0), axes[0], axes[i], pair]
+                        rows = [unit, columns[axes[0]], columns[axes[i]], columns[pair]]
+                        require(rank(rows, characteristic) == 3, "minimum bilinear product rank")
+                        require(all(reduce_scalar(sum(c * row[j] for c, row in zip(coefficients, rows)),
+                                                  characteristic) == 0 for j in range(n)),
+                                "displayed bilinear relation holds in the actual quotient")
+                        a, b, c, d = coefficients
+                        require(reduce_scalar(a * d - b * c, characteristic) != 0,
+                                "the fractional-linear coefficient matrix is nonsingular")
+                        support = [a for a, c in zip(monomials, coefficients) if reduce_scalar(c, characteristic)]
+                        require(rank([columns[a] for a in support], characteristic) == len(support) - 1 and
+                                all(rank([columns[a] for a in support if a != omitted], characteristic) ==
+                                    len(support) - 1 for omitted in support),
+                                "each displayed support is a minimal monomial relation")
+                        grading_normals.extend(tuple(a[j] - support[0][j] for j in range(3)) for a in support[1:])
+                    require(rank(grading_normals, 0) == 3,
+                            "minimal relations force every integer grading to be trivial")
+                    affine_ranks = [rank([unit, columns[axes[i]], columns[axes[j]]], characteristic)
+                                    for i, j in combinations(range(3), 2)]
+                    require(affine_ranks == [2 if groups[i] == groups[j] else 3
+                                            for i, j in combinations(range(3), 2)],
+                            "three-monomial flags detect the pole groups")
+                    records, coherent = [], 0
+                    for state in states:
+                        lengths = [sum(a[i] > 0 for a in state) for i in range(3)]
+                        active_groups = [groups[i] for i in range(3) if lengths[i]]
+                        predicted = (all(sum(x > 0 for x in a) <= 1 for a in state) and
+                                     len(active_groups) == len(set(active_groups)))
+                        minor = reduce_scalar(determinant([columns[a] for a in sorted(state)]), characteristic)
+                        actual_rank = rank([columns[a] for a in sorted(state)], characteristic)
+                        require(bool(minor) == (actual_rank == n) == predicted,
+                                "independent determinants, Gaussian ranks and pole-group criterion agree")
+                        record = {"staircase": sorted(state), "basis_determinant": str(minor),
+                                  "rank": actual_rank}
+                        if predicted:
+                            rational_weights = [Fraction(2, 2 * k + 1) if k else Fraction(4) for k in lengths]
+                            threshold = lcm(*(w.denominator for w in rational_weights))
+                            weight = tuple(int(w * threshold) for w in rational_weights)
+                            require(max(dot(weight, a) for a in state) < threshold and
+                                    all((lengths[i] + 1) * weight[i] > threshold for i in range(3)),
+                                    "strict rational cutoff separates the prescribed pure chains")
+                            require(greedy(ground, columns, weight, characteristic) == state,
+                                    "full hyperbolic-cross Gaussian selection checks each claimed initial ideal")
+                            record.update({"positive_integer_weights": weight, "cutoff": threshold})
+                            coherent += 1
+                        records.append(record)
+                    expected = 3 if groups == (0, 0, 0) else 2 * n - 1 if groups == (0, 0, 1) else comb(n + 1, 2)
+                    require(coherent == expected, "complete three-variable pole-group count")
+                    boxes = []
+                    for sides in product(range(1, 4), repeat=3):
+                        members = set(product(*(range(a) for a in sides)))
+                        actual = rank([columns[a] for a in sorted(members)], characteristic)
+                        require(actual == min(n, 1 + sum(a - 1 for a in sides)),
+                                "all tested boxes attain the same minimum additive rank")
+                        boxes.append({"side_lengths": sides, "rank": actual})
+                    profiles.append(boxes)
+                    fixtures.append({"n": n, "algebra": algebra, "characteristic": characteristic,
+                                     "pole_group_labels": groups, "coordinate_elimination_degrees": [n] * 3,
+                                     "homogeneity_dimension": 0,
+                                     **presentation, "bilinear_relation_coefficients_A_B_C_D": relations,
+                                     "pair_affine_flag_ranks": affine_ranks,
+                                     "all_staircase_certificates": records, "initial_ideal_count": coherent,
+                                     "box_rank_checks": boxes})
+                require(all(profile == profiles[0] for profile in profiles),
+                        "identical rectangular rank profiles coexist with different full fans")
+    inverse_controls = []
+    for n in (5, 7, 9):
+        ground = set(hyperbolic_cross(n, 2)) | set(product(range(4), repeat=2))
+        images = [tuple(int(j == 1) for j in range(n)),
+                  tuple(int(j in (1, 2)) for j in range(n))]
+        columns = cyclic_univariate_model((0,) * n + (1,), images, ground)
+        for characteristic in (0, 2, 3):
+            require(all(rank([columns[tuple(k * int(i == j) for j in range(2))]
+                              for k in range(n)], characteristic) == n for i in range(2)),
+                    "both coordinates of the inverse-rank negative control are cyclic")
+            bilinear = rank([columns[a] for a in product(range(2), repeat=2)], characteristic)
+            require(bilinear == 4, "the perturbation is not fractional-linear")
+            boxes = []
+            for sides in product(range(2, 5), repeat=2):
+                actual = rank([columns[a] for a in product(*(range(s) for s in sides))], characteristic)
+                require(actual >= min(n, sum(sides)),
+                        "a non-fractional-linear cyclic pair has the inverse-rank extra unit")
+                boxes.append({"side_lengths": sides, "rank": actual,
+                              "additive_lower_bound": min(n, sum(sides) - 1)})
+                if n == 5 and sides == (3, 3):
+                    require(actual == sum(sides) - 1 == n,
+                            "saturated minimum rank does not imply a bilinear relation")
+            inverse_controls.append({"n": n, "characteristic": characteristic,
+                                     "monic_modulus_low_to_high": [0] * n + [1],
+                                     "coordinate_images_low_to_high": images,
+                                     "bilinear_rank": bilinear, "box_rank_checks": boxes})
+    return {"scope": "Uniform proof covers every field, n>=3, all cyclic-coordinate algebras satisfying the minimum bilinear ranks, including nonreduced quotients. One unsaturated minimum-growth box with every side at least two forces this class. Bounded fixtures test reduced and nilpotent presentations.",
+            "uniform_count": "If the d fractional-linear coordinates have pole-group sizes m_j, then g(I)=[z^(n-1)] product_j(1+m_j*z/(1-z)).",
+            "uniform_box_rank": "Every anchored monomial box of side lengths a_i has rank min(n,1+sum_i(a_i-1)); every proper box span has scalar stabilizer in the algebra.",
+            "information_loss": "The same complete box-rank profile and stabilizer dimensions allow g=d or g=binom(n+d-2,d-1). Three-monomial flags retain pole information lost by box ranks.",
+            "priority": "Uses elementary cyclic multiplication, fractional-linear algebra and partial fractions. The coding Kneser theorem and critical-pair theory are prior art. No unrestricted asymptotic improvement or publication novelty is asserted.",
+            "fixtures": fixtures, "polynomial_prefix_stabilizer_controls": stabilizers,
+            "unsaturated_inverse_negative_controls": inverse_controls}
+
+
 def attention_rank_sanity_control():
     """An exact Vandermonde witness, not an attention-compression algorithm."""
     parameters = (1, 2, 3, 4)
@@ -3457,6 +3631,7 @@ def main():
     grid_deletion = nonuniform_grid_deletion_controls()
     coordinate_moments = coordinate_moment_range_controls(residual_duality, truncated_partition)
     grading_controls = grading_and_perturbation_controls(monogenic, truncated_partition)
+    minimum_products = minimum_product_rank_controls()
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
         "schema_version": 1, "command": "python3 -B scripts/run_structural_complexity_checks.py",
@@ -3551,6 +3726,7 @@ def main():
         "nonuniform_grid_deletion_control": grid_deletion,
         "coordinate_moment_range_control": coordinate_moments,
         "grading_and_perturbation_control": grading_controls,
+        "minimum_product_rank_control": minimum_products,
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
                     "independent_greedy_checks": sum(f["greedy_checks"] for f in fixtures),
@@ -3637,7 +3813,13 @@ def main():
                     "coordinate_moment_existing_quotient_checks": coordinate_moments["existing_quotient_coordinate_checks"],
                     "finite_field_bound_comparisons": sum(len(f["comparisons"]) for f in coordinate_moments["finite_field_theorem_comparisons"]),
                     "graded_staircase_rank_checks": sum(f["all_staircases_checked"] for f in grading_controls["graded_fixtures"]),
-                    "small_perturbation_staircase_checks": sum(len(f["nonzero_scaled_basis_determinants"]) for f in grading_controls["perturbation_fixtures"])},
+                    "small_perturbation_staircase_checks": sum(len(f["nonzero_scaled_basis_determinants"]) for f in grading_controls["perturbation_fixtures"]),
+                    "minimum_product_rank_fixtures": len(minimum_products["fixtures"]),
+                    "minimum_product_staircase_checks": sum(len(f["all_staircase_certificates"]) for f in minimum_products["fixtures"]),
+                    "minimum_product_fan_witness_checks": sum(f["initial_ideal_count"] for f in minimum_products["fixtures"]),
+                    "minimum_product_box_rank_checks": sum(len(f["box_rank_checks"]) for f in minimum_products["fixtures"]),
+                    "minimum_product_stabilizer_checks": sum(len(f["prefix_checks"]) for f in minimum_products["polynomial_prefix_stabilizer_controls"]),
+                    "minimum_product_inverse_rectangle_checks": sum(len(f["box_rank_checks"]) for f in minimum_products["unsaturated_inverse_negative_controls"])},
         "goal_qualifying_advance": False,
     }
     target = ROOT / "results/research/structural_complexity_checks.json"

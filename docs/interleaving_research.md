@@ -7498,3 +7498,278 @@ with trivial homogeneity, rather than enlarging these perturbation
 fixtures. The baseline audit, qualifying unrestricted advance, further
 consequence and new manuscript are still incomplete. The goal remains
 active; none of the known-tool consequences is substituted for success.
+
+### Eighteenth feasibility pass: minimum product ranks and the information they lose
+
+The intervening ML assessment did not change the theorem goal or advance
+its unrestricted bounds. This pass tests a dependency mechanism in the
+remaining full-coordinate-degree regime. Multiplication ranks are a
+natural input to an upper argument, but a complete rectangular rank
+profile loses information about the initial-ideal fan. The minimum-rank
+case can nevertheless be classified uniformly, including nonreduced
+algebras. This is a diagnostic endpoint, not the requested unrestricted
+asymptotic advance or a novelty claim.
+
+#### Primary comparison: code products and universal order lists
+
+[Mirandola--Zemor, v2](https://arxiv.org/html/1501.06419v2#S3)
+Theorem 3.3 proves the code-product Kneser inequality over every field,
+using coordinatewise multiplication in K^n. Definitions and Lemmas
+2.7--2.10, Lemma 3.6 and its proof, and the complete Theorem 3.3 proof
+were inspected. Stabilizers give direct-sum decompositions of these
+function spaces. Theorem 4.2 characterizes minimum-growth MDS pairs
+under additional dimension hypotheses; its statement, rather than
+its complete proof, was inspected. Thus code products and their inverse
+problems are established tools. They do not directly count initial
+ideals. A split point algebra is K^n, whereas an arbitrary nonreduced
+quotient is not this algebra. The argument below proves its nonreduced
+scope independently.
+
+[Dimitrova--He--Stigler--Zhang, v2](https://arxiv.org/html/1811.01114v2#S3)
+Theorem 3.12 and its proof explicitly give invariance of point initial
+ideals under separate affine changes of coordinates. Corollaries
+3.13--3.14 address equal counts and a sufficient condition for uniqueness.
+These passages and the introduction's existing general bound were
+inspected beyond the earlier abstract-only comparison. They supply no
+stronger unrestricted extremal estimate. The affine invariance used
+below is therefore also explicit prior art in the point setting.
+
+[Maruri-Aguilar (2005)](https://rendiconti.dmi.units.it/volumi/37/05.pdf)
+Definitions 4.1--4.5, Theorem 5.1 and its full proof, and the relevant
+discussion and three-dimensional example in Sections 5--6 were now
+read in the complete published PDF, beyond the earlier indexed excerpts.
+The positive planar Hilbert-zonotope fan has primitive rays in the
+integer square [0,n-1]^2. This yields a common O(n^2) order list for
+all length-n planar inputs, not an O(n^2) improvement to the smaller
+O(n^(4/3)) bound for one planar ideal. Its stated operation count does
+not by itself establish bit complexity. The paper explicitly prevents
+extending that ray description to three variables. The broader
+strongest-current-bound audit remains incomplete.
+
+#### A general additive rank lower bound
+
+Let A=K[x_1,...,x_d]/I have dimension n and suppose each coordinate
+alone generates A: [K[x_i]:K]=n. For positive integers a_i let C(a)
+be the span of the monomials with 0<=u_i<a_i. Then
+
+    dim C(a) >= min(n,1+sum_i(a_i-1)).                     (MR1)
+
+Indeed, if a subspace U contains 1 and U+x_i U=U, it contains every
+power of x_i, hence is A. Otherwise its dimension increases by at
+least one. Starting from K*1 and successively applying U -> U+x_i U
+a_i-1 times for each coordinate produces exactly C(a). This proves
+(MR1) over every field and without radicality. The line presentation
+x_i=t+c_i in K[t]/(f), deg(f)=n, attains equality for every box.
+Thus full elimination degrees do not imply volume-proportional box
+rank. No stronger bound follows merely by replacing the elementary
+argument with Kneser's additive inequality.
+
+#### Minimum bilinear rank forces fractional-linear coordinates
+
+Suppose n>=3, all coordinates generate A, and
+
+    dim span_K(1,x_1,x_i,x_1*x_i)=3,  i=2,...,d.           (MR2)
+
+Then A=K[t]/(f), t=x_1, deg(f)=n, and every coordinate is a
+nonconstant fractional-linear function of t whose denominator is a
+unit modulo f. Here f may have repeated factors or be irreducible.
+
+To prove this, write a nonzero bilinear relation as
+
+    A_i+B_i*t+C_i*x_i+D_i*t*x_i=0.
+
+Its two-by-two coefficient determinant A_i*D_i-B_i*C_i is nonzero.
+If it were zero, the polynomial would factor into two nonzero affine
+linear factors, one in t and the other in x_i. Multiplication by a
+nonzero affine function of a cyclic coordinate has rank at least n-1:
+in its univariate presentation, the gcd with its degree-n minimal
+polynomial has degree at most one. Sylvester's rank inequality would
+then give product rank at least n-2>0, contradicting that relation.
+This also covers a constant factor, whose multiplication rank is n.
+
+Put D(t)=C_i+D_i*t and N(t)=-A_i-B_i*t. These are coprime affine
+polynomials. A Bezout relation alpha*D+beta*N=1, together with
+N=D*x_i in A, makes D invertible. Consequently
+
+    x_i=(-A_i-B_i*t)/(C_i+D_i*t) in A.                    (MR3)
+
+The bilinear rank cannot be below three: either 1,t,x_i are already
+independent, or x_i=a+b*t with b nonzero and t*x_i introduces t^2,
+independent of 1,t since n>=3. Conversely (MR3) gives rank three.
+The rational-function representation is unique: the numerator of the
+difference of two representations has degree at most two<n, so it
+cannot be a nonzero multiple of f. This makes its pole intrinsic.
+
+Group the coordinates by their single simple pole on P^1(K), including
+the pole at infinity of t. Let the group sizes be m_1,...,m_r. Two
+coordinates have the same pole exactly when they are affine functions
+of each other. This is also equivalent to
+dim span(1,x_i,x_j)=2. The equivalence holds modulo f by the same
+degree-two argument. These three-monomial flags retain information
+that the four-monomial box rank in (MR2) omits.
+
+The same conclusion follows from one larger minimum-growth box. Suppose
+all a_i>=2 and
+
+    dim C(a)=1+sum_i(a_i-1)<n.                            (MR2a)
+
+Then (MR2) holds. Here is an inverse proof that does not use MDS or
+reducedness. First take two coordinates x,y and sides a>=b>=2 with
+rank a+b-1<n. Growing the x-prefix one power at a time increases rank
+by at least one by (MR1). Equality at the final step forces the
+two-by-b rectangle to have rank b+1. The relation space
+
+    V={(P,Q):deg P,deg Q<b, P(y)+x*Q(y)=0}
+
+has dimension b-1. For any two relations, eliminating x gives
+P_1*Q_2-P_2*Q_1 evaluated at y equal to zero. Its degree is at most
+2b-2<n, since n>=a+b>=2b and y has minimal polynomial degree n.
+It is therefore the zero polynomial. Fix one relation and divide its
+two polynomials by their gcd to get a primitive pair (P_0,Q_0).
+Every relation is h*(P_0,Q_0) for a polynomial h. Put
+m=max(deg P_0,deg Q_0). The multiplier space has dimension at most
+b-m, so dim V=b-1 forces m<=1.
+
+The case m=0 is impossible. For a nonzero h of degree at most b-1,
+multiplication by h(y) has rank at least n-b+1. Multiplication by a
+nonzero affine function P_0+x*Q_0 has rank at least n-1, so their
+product has positive rank at least n-b. If Q_0=0, the second factor
+is a nonzero constant and gives the same contradiction. Thus m=1.
+The multiplier space now has dimension at most b-1, exactly dim V,
+so all multipliers of degree at most b-2 occur, including 1. Hence
+P_0(y)+x*Q_0(y)=0 itself is a bilinear relation, proving (MR2).
+
+For a d-dimensional box in (MR2a), adding the other coordinate powers
+to any two-coordinate subbox increases rank by at least one per step.
+Equality of the full box forces equality in every such rectangle.
+The two-coordinate proof therefore applies to each pair with x_1.
+Consequently a non-fractional-linear cyclic presentation satisfies
+
+    dim C(a)>=min(n,2+sum_i(a_i-1)) whenever all a_i>=2.   (MR2b)
+
+This extra unit is an inverse boundary, not an asymptotic fan bound.
+The strict inequality in (MR2a) is essential. In K[t]/(t^5), set
+x=t and y=t+t^2. Both coordinates generate the algebra over every
+field. The three-by-three rectangle has rank five, attaining its
+additive lower bound after saturation, while span(1,x,y,xy) has
+rank four. Thus a saturated minimum is not a certificate for (MR3).
+
+#### Exact fan count for this entire class
+
+Independent affine changes and nonzero scalings of coordinates preserve
+every initial ideal under a global order: each monomial expands into
+itself plus divisors. Normalize a representative at a finite pole
+lambda to u=1/(t-lambda), and the infinity representative to t.
+All finite-pole denominators are units modulo f.
+
+Within one pole group, every variable except the cheapest one is a
+leading term of an affine relation. Between different groups, every
+mixed product is also a leading term. For distinct finite poles,
+
+    u_i*u_j=(u_i-u_j)/(lambda_i-lambda_j),
+
+and t*u_i=1+lambda_i*u_i. The product dominates all the terms on
+the right in every global monomial order. Therefore any standard
+staircase consists of 1 and pure coordinate chains, with at most one
+active coordinate in each pole group.
+
+Every such staircase of size n is independent. If its chain lengths
+are ell_j, multiply a putative relation by the common denominator
+product_(finite j)(t-lambda_j)^ell_j. The resulting polynomial has
+degree at most sum_j ell_j=n-1. It vanishes modulo f, so is zero as
+a polynomial. Uniqueness of partial fractions then makes every
+coefficient zero. This proof includes all nonreduced cases.
+
+Every allocation is coherent as well. Give its selected coordinate in
+group j weight 2/(2*ell_j+1), and all other coordinates weight four.
+The prescribed pure powers have cost below one, and the first omitted
+pure power on each axis has cost above one. Mixed monomials reduce to
+cheaper pure powers. Since the n prescribed residues are independent,
+they form the initial staircase. Multiplying the weights by a common
+denominator provides exact positive integer witnesses. Thus
+
+    g(I)=[z^(n-1)] product_(j=1)^r (1+m_j*z/(1-z)).        (MR4)
+
+An inactive group contributes one choice, not m_j choices. In three
+variables the pole multiplicities (3), (2,1), (1,1,1) give respectively
+
+    3,  2*n-1,  binom(n+1,2).                             (MR5)
+
+For d distinct poles, (MR4) is binom(n+d-2,d-1). Its growth is below
+the established generic n^(d-1)*(log n)^(d-1) order. This is an exact
+restricted classification, not an improved unrestricted lower bound.
+
+#### The complete box profile and all its stabilizers still lose the fan
+
+In fact every presentation in (MR3) attains equality in (MR1) for
+every anchored box, irrespective of its pole grouping. At pole j its
+largest possible order is L_j=sum_(i in group j)(a_i-1). Partial
+fractions show that the box spans precisely all rational functions
+with these pole bounds. Multiplication by the common denominator
+identifies this space with polynomials of degree at most
+L=sum_i(a_i-1). The denominator is a unit modulo f, so
+
+    dim C(a)=min(n,L+1).                                  (MR6)
+
+If C(a) is proper, its stabilizer in A consists of scalars. Unit scaling
+does not change a stabilizer in a commutative algebra, so reduce to
+U=span(1,t,...,t^L), L<n-1. Any stabilizer element lies in U because
+1 is in U. If its polynomial degree s were positive, multiplication
+by t^(L-s+1), an element of U, would have degree L+1<n and could
+not reduce back into U. Thus s=0. A full box span instead has
+stabilizer A, of dimension n.
+
+Over Q, choose f=t^n or f=product_(k=1)^n(t-k), and coordinates from
+t,t+1,t+2,1/(1+t),1/(1+2*t) as appropriate. These give infinite
+families with identical complete box ranks and stabilizer dimensions,
+but fan counts ranging from three to binom(n+1,2). They also have
+trivial homogeneity space: the displayed affine or inverse relations
+are minimal monomial relations, so homogeneity would force all their
+terms to have equal degree, and those equalities force every variable
+degree to zero. This reasoning uses minimal supports, not an inference
+from an arbitrary generating set. Hence the examples lie in the
+full-coordinate-degree, trivial-homogeneity regime left by (CM7)
+and (HG2).
+
+This does not rule out an upper bound expressed through box ranks.
+It rules out recovering a fan, or transferring a count within a bounded
+factor, from those ranks and stabilizer dimensions alone. The minimum
+case has the additional fractional-linear classification (MR3)--(MR4).
+A useful general inverse argument must retain mixed monomial flags
+and their multiplication compatibility when higher products have
+larger rank. The critical-pair literature must be compared before
+claiming any new inverse theorem.
+
+#### Exact controls and decision
+
+For n=3,...,7 the checker constructs 85 genuine quotients: reduced
+point evaluations over Q and F_17, and nilpotent companion presentations
+over Q,F_2,F_3,F_11. The third distinct-pole coordinate is deliberately
+excluded in characteristic two, where 1/(1+2*t) is constant. No
+characteristic-zero rank is silently transferred to a finite field.
+
+It checks all 3,009 staircase decisions by determinants and independent
+Gaussian ranks, and all 760 claimed initial ideals by full-ground
+Gaussian selection at strict integer weights. It also verifies cyclicity
+of every coordinate, the bilinear relations, their nonsingular coefficient
+matrices, minimal-support grading constraints, 2,295 box ranks and 120
+polynomial-prefix stabilizers. The report saves exact coordinates or
+coordinate polynomials, determinants, weights and the complete staircase
+decisions. These are finite controls for the uniform proof above.
+Nine additional cyclic nilpotent controls over Q,F_2,F_3 check 81
+rectangles for x=t,y=t+t^2 at lengths 5,7,9, including the saturated
+three-by-three counterexample. They verify (MR2b) against actual
+residue matrices; they do not substitute for the elimination proof.
+
+Do not expand this minimum-rank family as a lower-bound search: (MR4)
+already closes it below the generic order. Do not build a larger search
+around box-rank or stabilizer dimensions alone. The next general upper
+lemma must control compatible mixed flags beyond the minimum-growth
+case; a lower family must escape this classification and the earlier
+caps. The unrestricted asymptotic gap, complete priority audit, further
+consequence and separate new manuscript remain open. Keep the original
+goal active. Reproduce the controls with
+
+```bash
+python3 -B scripts/run_structural_complexity_checks.py
+```
