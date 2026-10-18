@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Exact, bounded controls for the general initial-ideal research goal.
 
-This checks proof-route obstructions and a conditional rank lemma, not a new
-unrestricted bound.
+This checks proof-route obstructions, a conditional rank lemma and the
+binomial/parallel-class reduction, not a new unrestricted bound.
 Uses only Python's standard library. Run from the repository root:
     python3 -B scripts/run_structural_complexity_checks.py
 """
@@ -505,6 +505,219 @@ def cartesian_rank_delay_controls():
     return results
 
 
+def hyperbolic_cross(n, d):
+    """All possible members of an n-element monomial staircase."""
+    return [a for a in product(range(n), repeat=d)
+            if _box_volume(a) <= n]
+
+
+def _box_volume(a):
+    value = 1
+    for coordinate in a:
+        value *= coordinate + 1
+    return value
+
+
+def binomial_controls():
+    """Compare class minima with cyclic matrices and independent elimination."""
+    fixtures = []
+    for n, powers in ((4, (1, 2, 3)), (5, (1, 2, 3)),
+                      (6, (1, 2, 4)), (7, (1, 2, 4)), (9, (1, 3, 5))):
+        ground = hyperbolic_cross(n, 3)
+        for cyclic in (False, True):
+            classes = {j: [] for j in range(n)}
+            loops = []
+            for a in ground:
+                degree = dot(a, powers)
+                if not cyclic and degree >= n:
+                    loops.append(a)
+                else:
+                    classes[degree % n].append(a)
+            require(all(classes.values()), "all n residue classes occur in V_n")
+            normals = sorted({primitive(tuple(x - y for x, y in zip(a, b)))
+                              for group in classes.values() for a, b in combinations(group, 2)
+                              if min(x - y for x, y in zip(a, b)) < 0 <
+                              max(x - y for x, y in zip(a, b))})
+            weights = positive_chambers(normals)
+            expected = []
+            witnesses = {}
+            for weight in weights:
+                selected = frozenset(min(group, key=lambda a: (dot(weight, a), a))
+                                     for group in classes.values())
+                require(len(selected) == n, "one representative per residue class")
+                require(all(tuple(x - (i == j) for j, x in enumerate(a)) in selected
+                            for a in selected for i in range(3) if a[i]),
+                        "class minima form a monomial staircase")
+                moment = tuple(sum(a[i] for a in selected) for i in range(3))
+                if selected not in witnesses:
+                    witnesses[selected] = {"positive_integer_weights": weight,
+                                           "standard_monomials": sorted(selected),
+                                           "moment_sum": moment}
+                expected.append(selected)
+            require(len({tuple(w["moment_sum"]) for w in witnesses.values()}) == len(witnesses),
+                    "different coherent staircases have different moment vertices")
+            checks = 0
+            field_results = []
+            for characteristic in (0, 2, 3, 29):
+                scalars = ((1, 1, 1) if characteristic == 2 else
+                           (1, 2, 1) if characteristic == 3 else (1, 2, 3))
+                matrices = []
+                for power, scalar in zip(powers, scalars):
+                    matrices.append([tuple(scalar * (j == ((k + power) % n))
+                                           * (cyclic or k + power < n)
+                                           for j in range(n)) for k in range(n)])
+                for i, j in combinations(range(3), 2):
+                    for k in range(n):
+                        require(matvec(matrices[i], matrices[j][k]) ==
+                                matvec(matrices[j], matrices[i][k]),
+                                "actual binomial quotient multiplication commutes")
+                unit = (1,) + (0,) * (n - 1)
+                axis = []
+                vector = unit
+                for _ in range(n):
+                    axis.append(vector)
+                    vector = matvec(matrices[0], vector)
+                require(axis == [tuple(i == j for i in range(n)) for j in range(n)],
+                        "x powers make the representation cyclic of dimension n")
+                columns = {}
+                for a in sorted(ground, key=lambda a: (sum(a), a)):
+                    if not any(a):
+                        columns[a] = unit
+                    else:
+                        i = next(i for i, value in enumerate(a) if value)
+                        parent = tuple(x - (i == j) for j, x in enumerate(a))
+                        columns[a] = matvec(matrices[i], columns[parent])
+                    degree, scalar = dot(a, powers), 1
+                    for coefficient, exponent in zip(scalars, a):
+                        scalar *= coefficient ** exponent
+                    formula = tuple(scalar * (j == degree % n) * (cyclic or degree < n)
+                                    for j in range(n))
+                    require(columns[a] == formula,
+                            "recursive matrix evaluation agrees with class formula")
+                for weight, selected in zip(weights, expected):
+                    require(greedy(ground, columns, weight, characteristic) == selected,
+                            "independent Gaussian greedy agrees with class minima")
+                    checks += 1
+                field_results.append({"characteristic": characteristic, "variable_scalars": scalars,
+                                      "initial_ideal_count": len(witnesses)})
+            fixtures.append({
+                "n": n, "powers": powers,
+                "model": "K[t]/(t^n-1)" if cyclic else "K[t]/(t^n)",
+                "kernel_description": "(x^n-epsilon, y-c_y*x^a, z-c_z*x^b), epsilon=1 for cyclic and 0 for nilpotent; (1,a,b)=powers; scalars are recorded per field.",
+                "ground_monomials": ground, "ground_size": len(ground),
+                "parallel_classes": classes, "zero_residue_monomials": loops,
+                "comparison_hyperplanes": normals, "exact_arrangement_chambers": len(weights),
+                "initial_ideal_count": len(witnesses), "gaussian_checks": checks,
+                "multiplication_matrices_commute": True, "cyclicity_checked": True,
+                "relations_have_surviving_nonconstant_multiples": True,
+                "field_results": field_results, "witnesses": list(witnesses.values()),
+            })
+    return fixtures
+
+
+def nonpartition_point_control():
+    """A radical point quotient where independent class selection fails."""
+    characteristic = 101
+    points = [(t, t ** 2, t ** 3) for t in range(1, 5)]
+    monomials = [(0, 0, 0), (1, 0, 0), (0, 1, 0), (0, 0, 1), (0, 2, 0)]
+    columns = {a: tuple(pow(t, a[0] + 2 * a[1] + 3 * a[2], characteristic)
+                        for t in range(1, 5)) for a in monomials}
+    coefficients = (-24, 50, -35, 10, -1)
+    require(all(sum(c * columns[a][j] for c, a in zip(coefficients, monomials))
+                % characteristic == 0 for j in range(4)), "explicit five-term circuit")
+    for omitted in monomials:
+        selected = [a for a in monomials if a != omitted]
+        require(determinant([columns[a] for a in selected]).denominator == 1,
+                "integer determinant")
+        require(int(determinant([columns[a] for a in selected])) % characteristic != 0,
+                "each four-element subset is independent")
+    require(all(_box_volume(a) <= 4 for a in monomials), "circuit lies inside V_4^3")
+    return {"n": 4, "points": points, "characteristic": characteristic,
+            "monomials": monomials, "circuit_coefficients": coefficients,
+            "every_four_columns_independent": True,
+            "conclusion": "Five distinct nonzero residue lines have rank four. Selecting one representative from each line does not give a basis. The binomial proof does not apply to all point ideals.",
+            "scope": "This refutes only the proposed automatic partition-matroid extension, not every possible Minkowski decomposition."}
+
+
+def truncated_partition_point_control():
+    """A realizable nonbinomial control; count all 86 seven-box staircases."""
+    n, d, powers = 7, 3, (1, 6, 9)
+    states = {frozenset({(0,) * d})}
+    for _ in range(1, n):
+        following = set()
+        for state in states:
+            border = {tuple(x + (i == j) for j, x in enumerate(a))
+                      for a in state for i in range(d)} - state
+            for a in border:
+                if all(tuple(x - (i == j) for j, x in enumerate(a)) in state
+                       for i in range(d) if a[i]):
+                    following.add(state | {a})
+        states = following
+    require(len(states) == 86, "all three-dimensional seven-box staircases")
+    ground = hyperbolic_cross(n, d)
+
+    def feasible(state, degree):
+        representatives = {degree[a]: a for a in state}
+        if len(representatives) != n:
+            return None
+        maximal = [a for a in state
+                   if not any(tuple(x + (i == j) for j, x in enumerate(a)) in state
+                              for i in range(d))]
+        normals = set()
+        for b in ground:
+            if b in state:
+                continue
+            targets = ([representatives[degree[b]]] if degree[b] in representatives
+                       else maximal)
+            for a in targets:
+                normal = tuple(x - y for x, y in zip(b, a))
+                if max(normal) <= 0:
+                    return None
+                if min(normal) >= 0:
+                    continue
+                factor = gcd(*normal)
+                normals.add(tuple(x // factor for x in normal))
+        polygon = [tuple(Fraction(i == j) for i in range(d)) for j in range(d)]
+        for normal in sorted(normals):
+            polygon = clip(polygon, normal, 1)
+            if not polygon:
+                return None
+        centroid = tuple(sum(p[i] for p in polygon) / len(polygon) for i in range(d))
+        require(min(centroid) > 0 and all(dot(centroid, normal) > 0 for normal in normals),
+                "strict feasibility of all selected-class and excluded-class comparisons")
+        denominator = lcm(*(x.denominator for x in centroid))
+        weight = tuple(int(x * denominator) for x in centroid)
+        factor = gcd(*weight)
+        return tuple(x // factor for x in weight)
+
+    degree = {a: dot(a, powers) for a in ground}
+    points = [(t, t ** 6, t ** 9) for t in range(1, n + 1)]
+    columns = {a: tuple(t ** degree[a] for t in range(1, n + 1)) for a in ground}
+    generic, witnesses = {}, []
+    for state in sorted(states, key=lambda state: tuple(sorted(state))):
+        weight = feasible(state, {a: a for a in ground})
+        if weight is not None:
+            generic[state] = weight
+        weight = feasible(state, degree)
+        if weight is None:
+            continue
+        require(greedy(ground, columns, weight, 0) == state,
+                "independent rational evaluation agrees with truncated-class inequalities")
+        witnesses.append({"positive_integer_weights": weight,
+                          "standard_monomials": sorted(state),
+                          "is_a_generic_corner_cut": state in generic})
+    require(len(generic) == 36 and len(witnesses) == 37,
+            "exact bounded control: 37 point initials versus 36 generic corner cuts")
+    return {"n": n, "dimension": d, "field": "Q", "positive_sample_parameters": list(range(1, n + 1)),
+            "powers": powers, "points": points, "staircases_checked": len(states),
+            "generic_corner_cuts": len(generic), "point_initial_ideals": len(witnesses),
+            "independent_rational_gaussian_checks": len(witnesses),
+            "non_generic_corner_cut_staircases": sum(not w["is_a_generic_corner_cut"] for w in witnesses),
+            "witnesses": witnesses,
+            "rank_rule": "Over positive real samples, columns of distinct t-degrees form a generalized Vandermonde matrix; rank equals min(n, number of distinct degrees). This is a truncation of the degree-class partition matroid.",
+            "scope": "A finite realizable test of a proposed lower-family mechanism, not an asymptotic advance or a novelty claim."}
+
+
 def main():
     fixtures = []
     for weights, cutoff in [((1, 1, 1), 2), ((1, 1, 1), 3),
@@ -525,6 +738,8 @@ def main():
                                      29, "diagonal configuration: spanning parameter need not be one"),
     ]
     cartesian = cartesian_rank_delay_controls()
+    binomial = binomial_controls()
+    truncated_partition = truncated_partition_point_control()
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
         "schema_version": 1, "command": "python3 -B scripts/run_structural_complexity_checks.py",
@@ -551,6 +766,13 @@ def main():
             "uniform_conclusion": "Translated Cartesian axis staircases give radical point ideals with g(I)=1, no zero monomial evaluations, and minimum geometric rank-completion length Omega_d(n^d). A linear rank-delay bound cannot be imposed on all point ideals.",
             "fixtures": cartesian,
         },
+        "binomial_parallel_class_control": {
+            "uniform_conclusion": "For every colength-n binomial ideal in fixed dimension d>=2, g(I)=O_d(n^(d-1)(log(n+1))^((d-1)^2)), by the known normal-form reduction, hyperbolic cross and Minkowski-sum vertex bound.",
+            "priority": "Recorded as a consequence of existing tools, not an established novel theorem or an unrestricted advance.",
+            "fixtures": binomial,
+            "nonpartition_point_control": nonpartition_point_control(),
+        },
+        "truncated_partition_point_control": truncated_partition,
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
                     "independent_greedy_checks": sum(f["greedy_checks"] for f in fixtures),
@@ -559,7 +781,13 @@ def main():
                     "overlapping_full_matrix_checks": sum(f["full_cyclic_matrix_greedy_checks"] for f in overlapping),
                     "rectangular_boxes_checked": sum(f["finite_boxes_checked"] for f in rectangular),
                     "rectangular_prefix_checks": sum(len(f["prefix_checks"]) for f in rectangular),
-                    "cartesian_rank_delay_fixtures": len(cartesian)},
+                    "cartesian_rank_delay_fixtures": len(cartesian),
+                    "binomial_fixtures": len(binomial),
+                    "binomial_gaussian_checks": sum(f["gaussian_checks"] for f in binomial),
+                    "binomial_exact_chambers": sum(f["exact_arrangement_chambers"] for f in binomial),
+                    "nonpartition_point_circuits": 1,
+                    "truncated_partition_staircases_checked": truncated_partition["staircases_checked"],
+                    "truncated_partition_rational_checks": truncated_partition["independent_rational_gaussian_checks"]},
         "goal_qualifying_advance": False,
     }
     target = ROOT / "results/research/structural_complexity_checks.json"

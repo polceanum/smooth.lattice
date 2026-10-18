@@ -34,12 +34,12 @@
     },
     {
       "id": "dependency_mechanism",
-      "status": "conditional_rectangular_spanning_count_proved_unrestricted_variation_bound_pending",
+      "status": "conditional_rank_and_binomial_minkowski_reductions_proved_multiterm_circuit_bound_pending",
       "deliverable": "A precise lemma about multiplication-compatible residue dependencies or state-polyhedron geometry, with its proof attempt and adversarial controls."
     },
     {
       "id": "infinite_lower_family",
-      "status": "all_socle_relation_spaces_proved_too_sparse_surviving_multiples_required",
+      "status": "socle_amplification_ruled_out_binomial_surviving_multiples_controlled_multiterm_family_pending",
       "deliverable": "A symbolic realizable family and count proof, or a documented obstruction to the tested construction; finite examples alone are insufficient."
     },
     {
@@ -123,7 +123,7 @@
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Proved the full-volume obstruction and disjoint socle upper bound, independently checked exact quotient models, inspected additional primary sources, and pushed the reviewed findings in e9e3fd7. The unrestricted theorem remained open."
+    "reason": "Proved the conditional rectangular-spanning count and its universal-order-list consequence, extended the socle obstruction to arbitrary relation spaces, and gave radical Cartesian counterexamples to uniform rank delay. Reviewed results were pushed in 1fa1db3; the unrestricted theorem remained open."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -171,12 +171,54 @@
       "version": "2023 preprint",
       "inspected": "Section 2 parametric-matroid background and its references, not the full interdiction proof.",
       "finding": "Recalls the one-parameter O(M r^(1/3)) breakpoint bound; does not supply a two-parameter quotient-algebra bound."
+    },
+    {
+      "source": "https://arxiv.org/pdf/alg-geom/9401001",
+      "authors": "Eisenbud and Sturmfels",
+      "inspected": "Proposition 1.1, its proof, Corollary 1.2 and surrounding normal-form statements; not a full paper audit.",
+      "finding": "The established normal form of a monomial modulo a binomial ideal is zero or a term. This supplies the parallel-class reduction, not a new algebraic correspondence."
+    },
+    {
+      "source": "https://arxiv.org/pdf/1002.0155",
+      "authors": "Weibel",
+      "inspected": "Theorem 1, Corollary 2, Section 2 orientation discussion and Section 5 vertex-count argument; not the full geometric witness proof.",
+      "finding": "The published fixed-dimensional bound O_d(M^(d-1)) for a Minkowski sum with M input vertices supplies the geometric step. Lower-dimensional summands are handled by a stated perturbation argument in our note."
+    },
+    {
+      "source": "https://arxiv.org/pdf/1608.08004",
+      "authors": "Boffi and Logar",
+      "inspected": "Introduction and Section 5, Propositions 5.1--5.3 and adjacent proofs; not a full paper audit.",
+      "finding": "Known explicit planar full-rank lattice-ideal classification and a distinction between general border bases and Groebner bases; do not claim this planar classification anew."
+    },
+    {
+      "source": "https://arxiv.org/pdf/0712.2892",
+      "authors": "Morita",
+      "inspected": "Introduction, Theorem 4.2 and Corollary 4.3 with their proofs; not a full paper audit.",
+      "finding": "Known normalization/Groebner-fan correspondence for abelian group orbit Hilbert schemes. No new G-Hilbert-scheme result is claimed."
+    },
+    {
+      "source": "https://doi.org/10.1007/s10898-025-01512-6",
+      "authors": "Nemesch, Ruzika, Thielen and Wittmann",
+      "inspected": "Parameter definitions and Section 4.4.1; not a full survey audit.",
+      "finding": "Clarifies one- versus multiple-parameter matroid results; the inspected multi-parameter graphic bound does not improve the current unrestricted lattice bound."
+    },
+    {
+      "source": "https://ics.uci.edu/~eppstein/pubs/Epp-DCG-98.pdf",
+      "authors": "Eppstein",
+      "inspected": "Theorem 7, Corollary 2 and conclusions; not a full proof audit.",
+      "finding": "One-parameter lower constructions do not supply a quotient-algebra realization with controlled colength."
+    },
+    {
+      "source": "https://www.tau.ac.il/~hassin/matroids_89.pdf",
+      "authors": "Hassin and Tamir",
+      "inspected": "Primary metadata and abstract only.",
+      "finding": "A pair of objective data for planar convex optimization is not automatically two independent normalized weight parameters. No result is imported from the unread proof."
     }
   ],
   "next_actions": [
-    "Develop a mechanism controlling additional initial-staircase variation when relations have surviving multiples; a socle-only lower construction is now ruled out in every fixed dimension.",
-    "Test rank-profile or boundary decompositions that distinguish a large forced staircase from genuine fan variation; a universal linear rank-delay argument is explicitly false.",
-    "Complete the unrestricted primary-bound and conditional-result priority comparisons before making a novelty claim or preparing the target manuscript."
+    "Develop a dependency-sensitive count that handles overlapping multi-term circuits while retaining commuting multiplication and a cyclic vector; the binomial parallel-class argument alone cannot cover all point ideals.",
+    "Establish a symbolic asymptotic count or a uniform obstruction for the realizable truncated-degree-class point family, rather than enlarging finite enumeration. A lower family must exceed n^2 log^2 n in three variables to advance the goal.",
+    "Finish the remaining theorem-level priority checks for any actual unrestricted advance before preparing its manuscript. Keep binomial and conditional results scoped as comparison tools rather than changing the goal."
   ],
   "forward_citation_discovery": {
     "method": "Read-only OpenAlex forward-citation queries for the two founding papers, followed by primary-source inspection of potentially relevant records.",
@@ -267,11 +309,17 @@
           "overlapping_full_matrix_checks": 239,
           "rectangular_boxes_checked": 517,
           "rectangular_prefix_checks": 9,
-          "cartesian_rank_delay_fixtures": 9
+          "cartesian_rank_delay_fixtures": 9,
+          "binomial_fixtures": 10,
+          "binomial_gaussian_checks": 2380,
+          "binomial_exact_chambers": 595,
+          "nonpartition_point_circuits": 1,
+          "truncated_partition_staircases_checked": 86,
+          "truncated_partition_rational_checks": 37
         }
       }
     ],
-    "scope": "The expanded exact controls verify overlapping-socle quotient models, the conditional rectangular rank lemma, field-sensitive fans and Cartesian rank-delay witnesses. They do not prove the unrestricted target theorem."
+    "scope": "Exact checks cover the conditional rank lemma, socle obstructions, cyclic binomial quotients in four characteristics, a nonpartition point circuit, and all seven-box staircases of a truncated-class point model. These support restricted reductions and a finite mechanism test; the unrestricted target remains unproved."
   },
   "second_feasibility_results": {
     "record": "docs/interleaving_research.md, Second feasibility pass: interacting relations and a conditional count",
@@ -298,5 +346,45 @@
     ],
     "goal_qualifying_unrestricted_advance": false,
     "completion_decision": "Keep the full goal active. These supporting results identify the remaining mechanism and do not satisfy the all-ideal or all-point-configuration acceptance criterion."
+  },
+  "third_feasibility_results": {
+    "record": "docs/interleaving_research.md, Third feasibility pass: binomial quotients and the boundary of the method",
+    "binomial_count": {
+      "hypotheses": "Any colength-n binomial ideal over any field in fixed dimension d>=2; monomial generators and nonradical quotients allowed.",
+      "conclusion": "g(I)=O_d(n^(d-1)(log(n+1))^((d-1)^2)); in three variables O(n^2 log^4(n+1)).",
+      "proof": "Known binomial normal forms give a partition residue matroid on the known hyperbolic cross V_n. Its moment polytope is the Minkowski sum of the n class hulls. Apply the published O_d(M^(d-1)) vertex bound with M<=|V_n|=O_d(n log^(d-1)n).",
+      "priority": "Recorded as a consequence of existing tools; no novelty established.",
+      "scope": "Not an unrestricted improvement, not a sharpness assertion, and not a new enumeration-runtime theorem.",
+      "surviving_relation_multiples_covered": true
+    },
+    "failure_of_automatic_point_extension": {
+      "points": "(t,t^2,t^3), t=1,2,3,4 over F_101",
+      "circuit": "-24+50*x-35*y+10*z-y^2=0; all five monomials lie in V_4^3, every four are independent.",
+      "conclusion": "Five distinct nonzero residue lines have rank four; selecting class representatives independently fails already for a small radical point ideal.",
+      "limitation": "Refutes the automatic partition-matroid extension, not all possible Minkowski decompositions."
+    },
+    "finite_controls": {
+      "binomial_quotients": 10,
+      "exact_positive_arrangement_chambers": 595,
+      "independent_gaussian_checks": 2380,
+      "fields": [
+        "Q",
+        "F_2",
+        "F_3",
+        "F_29"
+      ],
+      "models": "K[t]/(t^n) and K[t]/(t^n-1), n=4,5,6,7,9, using actual commuting cyclic multiplication matrices.",
+      "nonpartition_point_circuits": 1
+    },
+    "goal_qualifying_unrestricted_advance": false,
+    "decision": "Retain this positive comparison with surviving multiples, but do not start a separate binomial framework or paper. Continue toward a uniform mechanism for overlapping multi-term circuits under commuting multiplication.",
+    "truncated_partition_point_model": {
+      "family": "Distinct positive samples (t_j^A_1,...,t_j^A_d), with A_1=1 and integer positive exponents.",
+      "uniform_rank_rule": "The monomial residue rank is min(n, number of distinct A-degrees); proof by the positive-root bound for sparse polynomials, via Rolle induction.",
+      "structure": "Rank-n truncation of the degree-class partition matroid; genuine circuits of n+1 distinct classes.",
+      "finite_control": "For n=7, A=(1,6,9), t_j=j over Q, 37 initial staircases versus 36 generic corner cuts; all 86 staircases checked, with independent rational Gaussian checks of every positive witness.",
+      "priority": "A finite test of a mechanism, not a new asymptotic theorem or a claim of novelty.",
+      "next_gate": "Prove a symbolic count or a uniform obstruction for this family before enlarging enumeration."
+    }
   }
 }
