@@ -2,7 +2,7 @@
   "schema_version": 1,
   "recorded_on": "2026-10-18",
   "title": "Universal algebraic complexity beyond generic corner cuts",
-  "status": "active_monogenic_and_collision_reductions_graded_jordan_rank_formula_and_diagonal_support_proved",
+  "status": "active_fixed_algebra_unequal_weight_transfer_refuted_recent_restricted_bound_compared",
   "objective": "Prove a new structural theorem determining or substantially narrowing the worst-case asymptotic number of monomial initial ideals of finite polynomial algebras, starting with three variables and seeking a mechanism valid in every fixed dimension. Establish the strongest relevant primary baseline first. Success requires a complete uniform proof of sharp growth or a substantial asymptotic advance over that baseline for all colength-n ideals or all n-point configurations, a rigorous further algebraic, geometric or enumeration consequence, reproducible exact certificates and an honestly scoped manuscript. Examples, reformulations, already known corollaries and a plan alone do not complete this goal.",
   "plan": "docs/interleaving_research.md#higher-impact-research-plan-universal-algebraic-complexity",
   "relationship_to_previous_goal": "A new research objective. The completed corner-cut counting manuscript and its acceptance records remain separate and unchanged in mathematical content.",
@@ -34,7 +34,7 @@
     },
     {
       "id": "dependency_mechanism",
-      "status": "graded_jordan_prefix_ranks_and_full_exponential_graph_diagonal_support_proved_unequal_weights_pending",
+      "status": "diagonal_jordan_formula_proved_full_fan_determination_refuted_coordinate_flags_required",
       "deliverable": "A precise lemma about multiplication-compatible residue dependencies or state-polyhedron geometry, with its proof attempt and adversarial controls."
     },
     {
@@ -122,8 +122,8 @@
   "independent_referee_assessment": false,
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
-    "classification": "no_progress",
-    "reason": "The immediately preceding goal turn inspected the existing plan and restated the active objective, without changing an authoritative artifact or obtaining evidence that changed the next action. The last substantive research commit was 08625d5."
+    "classification": "progress",
+    "reason": "Commit d58e0c2 saved complete uniform collision, monogenic-embedding, graded-Jordan rank and diagonal full-algebra support proofs, with exact certificates and attribution. The unrestricted asymptotic goal remained open."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -283,6 +283,24 @@
       "authors": "Iarrobino, Macias Marques and McDaniel",
       "inspected": "Lemma 2.2 with proof and Definition 2.28 of Jordan degree type.",
       "finding": "Homogeneous nilpotent strings and their start-degree data are established invariants. Applying them to exponential degree filtrations gives the recorded elementary rank and diagonal support consequences; their novelty is not established."
+    },
+    {
+      "source": "https://arxiv.org/abs/2506.24028v1",
+      "authors": "Jonsson Kling, Lundqvist, Mohammadi and Orth",
+      "inspected": "Characteristic-zero setup; Theorem 1.1; Proposition 4.9 and proof; Theorem 4.11 and proof; Corollary 4.14 and proof; Proposition 4.15 and adjacent argument. Not the full lattice-path classification proof.",
+      "finding": "An all-order d! bound is already established for pure powers plus a power of the sum. It is restricted by the explicit homogeneous generating forms and does not settle unrestricted colength growth."
+    },
+    {
+      "source": "https://arxiv.org/abs/2101.09384v1",
+      "authors": "Zhang, Hu, Liang, Dimitrova and Stigler",
+      "inspected": "Setup, Section 3.2 including the count and adjacent arguments at Corollary 3.17, and Section 4 database construction.",
+      "finding": "The counting parameter is the number of data-set equivalence classes under linear shifts, not the number of initial ideals of a single ideal."
+    },
+    {
+      "source": "https://doi.org/10.1007/978-3-030-42687-3_9",
+      "authors": "Stigler and Zhang",
+      "inspected": "Official publisher abstract, reference list and appendix preview only. Full NSF deposit retrieval by web and direct timed download failed.",
+      "finding": "The published chapter uses different theorem numbering and has an expanded bibliography compared with arXiv:1907.01080v1. Full theorem comparison remains pending; no identity assumption is imported."
     }
   ],
   "next_actions": [
@@ -1244,6 +1262,111 @@
   },
   "this_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Saved complete uniform proofs of positive-collision fan invariance, the monogenic embedding criterion, the graded-Jordan exponential prefix rank formula and its diagonal full-algebra state-support consequence. Exact certificates refute support-matching prefix normality and calculate a uniform proportional defect. The unrestricted counting target remains unmet."
+    "reason": "Established exact fixed-algebra countercertificates to a Jordan-only full-fan transfer, including independently checkable incoherence certificates, and compared a recent all-order factorial bound with the target. The full unrestricted theorem and strongest-primary audit remain incomplete."
+  },
+  "eleventh_feasibility_results": {
+    "record": "docs/interleaving_research.md, Eleventh feasibility pass: coordinate flags survive the Jordan reduction",
+    "fixed_algebra_countercontrol": {
+      "field": "Q",
+      "algebra": "Q[y,z]/(y^2,z^3)",
+      "length": 6,
+      "L": "y+z",
+      "fixed_tag": "F=2*(exp(L)-1)=2*y+2*z+2*y*z+z^2+y*z^2",
+      "coordinate_presentations": "(x,u,v)=(F,y+lambda*z,z), lambda=0,1,2. All use the same graded algebra, operator and tag element.",
+      "kernels": "((u-lambda*v)^2,v^3,x-F_lambda), with F_lambda=2*u+2*(1-lambda)*v+2*u*v+(1-2*lambda)*v^2+u*v^2.",
+      "hilbert_function": [
+        1,
+        2,
+        2,
+        1
+      ],
+      "jordan_strings_start_length": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "independent_staircase_counts": [
+        16,
+        21,
+        32
+      ],
+      "exact_initial_ideal_counts": [
+        11,
+        9,
+        15
+      ],
+      "unequal_weights": [
+        2,
+        1,
+        3
+      ],
+      "unequal_minimum_costs": [
+        13,
+        12,
+        11
+      ],
+      "diagonal_cost_controls": [
+        {
+          "weights": [
+            1,
+            2,
+            2
+          ],
+          "costs": [
+            10,
+            10,
+            10
+          ]
+        },
+        {
+          "weights": [
+            2,
+            1,
+            1
+          ],
+          "costs": [
+            8,
+            8,
+            8
+          ]
+        }
+      ],
+      "proof_scope": "All 48 six-box staircases in each presentation are classified using exact border normal forms. Strict positive witnesses certify coherent cases. Every independent incoherent case has an exact nonnegative zero dependence among comparison and positivity normals. Dependent cases have zero determinants. Same-variable-order pairs of distinct initial ideals are saved.",
+      "implication": "Fixed graded algebra and Jordan degree type do not determine full fan counts without the generating coordinates. This refutes exact transfer and does not rule out upper bounds involving Jordan data and coordinate flags.",
+      "asymptotic_claim": false
+    },
+    "primary_lineage_comparison": {
+      "recent_all_order_theorem": "Jonsson Kling--Lundqvist--Mohammadi--Orth arXiv:2506.24028v1, Theorem 4.11 and Corollary 4.14: characteristic-zero pure powers plus one power of their sum have at most d! reduced Groebner bases. Ambient dimension d, not colength, is the factorial parameter.",
+      "relevance": "Closes that homogeneous amplification family; it does not apply to the inhomogeneous exponential graphs and does not improve unrestricted G_d(n).",
+      "later_point_model_paper": "Zhang et al. arXiv:2101.09384v1, Corollary 3.17 counts equivalence classes of data sets under linear shifts, not initial ideals of one ideal.",
+      "published_chapter_check": "The official 2020 Stigler--Zhang preview identifies bounds as Theorems 1 and 8 and adds Babson--Onn--Thomas to its bibliography. Its full version was not retrieved; the inspected 2019 preprint numbers the modified result Theorem 4. They are not silently treated as identical.",
+      "primary_access_attempt": "The web reader failed and a direct 30-second public NSF deposit request timed out. This is a document-access limit, not a blocker to all goal work.",
+      "strongest_current_bound_verified": false
+    },
+    "finite_controls": {
+      "unequal_jordan_staircases_checked": 144,
+      "unequal_jordan_coherent_basis_checks": 35,
+      "unequal_jordan_infeasibility_certificates": 34,
+      "status": "passed",
+      "field": "Q",
+      "quotient_presentations": 3,
+      "scope": "All six-box staircases in every presentation, with strict border witnesses or exact positive-dependence infeasibility certificates, independent Gaussian basis selection, commuting cyclic matrices, displayed graph relations and an explicit Jordan basis.",
+      "commands": [
+        "./build.sh",
+        "python3 tests/test_smoke.py",
+        "python3 -B scripts/run_structural_complexity_checks.py"
+      ],
+      "source_sha256": {
+        "scripts/run_structural_complexity_checks.py": "e26ca8f36fa0d83596a90cb54c0cc3bbcb72d4e581245e95598bbaf4016a5560",
+        "docs/interleaving_research.md": "3215d1a9a60602967ca28d5b2f20ff660955224e543eefed354d032dab308da4"
+      }
+    },
+    "goal_qualifying_unrestricted_advance": false,
+    "decision": "Keep the proved diagonal formula. A full-dimensional extension must retain the within-degree monomial coordinate flags or use an independent upper method. Stop finite parameter enlargement without a new discriminating hypothesis. Preserve the unrestricted asymptotic objective and primary-priority gate; no manuscript is started for these countercontrols."
   }
 }

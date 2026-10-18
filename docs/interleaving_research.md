@@ -3759,6 +3759,7 @@ Run
 python3 -B scripts/run_structural_complexity_checks.py
 ```
 
+
 The script checks 30 volume fixtures and 18 socle-quotient fixtures. For each
 quotient it constructs multiplication matrices, checks every commutator on
 a basis, and verifies cyclic monomial evaluation on D and its border. Exact
@@ -6036,3 +6037,167 @@ Reproduce these controls, together with the prior checks, using
 ```bash
 python3 -B scripts/run_structural_complexity_checks.py
 ```
+
+### Eleventh feasibility pass: coordinate flags survive the Jordan reduction
+
+The preceding goal turn made progress in commit d58e0c2: it saved the
+collision and monogenic reductions and proved the graded-Jordan rank and
+diagonal state-support formulas. This pass tests the precise missing
+unequal-weight transfer, rather than assuming it from those formulas.
+
+#### The same graded algebra, operator and tag have different full fans
+
+Work over Q and fix, once and for all,
+
+    B=Q[y,z]/(y^2,z^3),  L=y+z,
+    F=2*(exp(L)-1)=2y+2z+2yz+z^2+yz^2 in B.
+
+The algebra has length six, Hilbert function (1,2,2,1), and homogeneous
+Jordan strings for multiplication by L with (start,length) pairs
+(0,4),(1,2). For lambda=0,1,2, choose generating coordinates
+
+    (x,u,v) |-> (F,y+lambda*z,z).                           (CF1)
+
+These are three coordinate presentations of the same fixed B, with
+the same L, F and Jordan data. They are actual cyclic finite algebras:
+y=u-lambda*v and z=v recover the original generators. Explicitly the
+kernel of (CF1) is
+
+    I_lambda=((u-lambda*v)^2,v^3,x-F_lambda(u,v)),
+    F_lambda=2u+2(1-lambda)v+2uv+(1-2lambda)v^2+uv^2.        (CF2)
+
+The exact full counts are
+
+| lambda | independent six-element staircases | monomial initial ideals |
+| --- | --- | --- |
+| 0 | 16 | 11 |
+| 1 | 21 | 9 |
+| 2 | 32 | 15 |
+
+Thus even the fixed graded algebra together with its fixed operator
+and tag element does not determine the full fan without the generating
+coordinates. In particular, graded Jordan degree type alone does not
+determine the full fan count. This refutes exact determination and a
+fan-preserving transfer; it does not rule out bounds in terms of Jordan
+data with additional coordinate information.
+
+The distinction is already visible in support functions, without relying
+on the full counts. At weights (w_x,w_u,w_v)=(2,1,3), the three minimum
+basis costs are 13,12,11 respectively. At diagonal weights (1,2,2) they
+are all 10, and at (2,1,1) all eight, as required by (JD5). In fact the
+entire diagonal support function agrees, since the change of generators
+in u,v preserves each total-degree span. The affine rescaling from
+exp(L) to F preserves monomial initial ideals and the same support costs.
+
+For lambda=0 and 2, the ranks of cost sublevel spaces at thresholds
+0,1,2,3,4 under (2,1,3) are respectively
+
+    1,2,3,5,6   and   1,2,4,6,6.
+
+The corresponding minimum basis costs are the sums of the six rank
+birth times: 0+1+2+3+3+4=13 and 0+1+2+2+3+3=11. These are direct
+residue-matrix checks. No extrapolation in lambda or length is made.
+
+Every count in the table exceeds six. The saved witnesses explicitly
+exhibit distinct initial ideals inside one strict ordering of the three
+variable weights. Thus the full fan cannot be replaced by the six
+variable permutations in these inhomogeneous examples.
+
+#### Certificates cover both coherence and its failure
+
+The bounded checker enumerates all 48 three-variable staircases of
+cardinality six in each of the three presentations. It constructs the
+commuting quotient matrices, verifies cyclicity and (CF2), and compares
+independent determinant and inverse calculations for each candidate
+basis D. For each independent D, let r_b be the unique residue normal
+form of a border monomial b in the basis D. Then D is coherent exactly
+when a positive weight satisfies
+
+    w.(b-a)>0 whenever the coefficient of a in r_b is nonzero. (CF3)
+
+Necessity follows from the standard-monomial normal form. For sufficiency,
+the polynomials b-r_b lie in the kernel and have their border terms as
+leading terms. Those terms generate the complement ideal of D, of
+colength six. Since the kernel also has colength six, its initial ideal
+must equal that complement. General global monomial orders are covered
+by the previously proved finite-comparison positive-weight lemma; no
+global scalar representation of an arbitrary order is assumed.
+
+Feasible candidates have saved strict positive integer weight witnesses,
+with variable-weight ties broken inside the strict region. Full-ground
+Gaussian selection independently recovers their bases. Each independent
+but incoherent candidate has a saved nonzero nonnegative dependence
+among the normals in (CF3) and the three positivity normals e_i. Its
+weighted sum is exactly zero. Were all inequalities strict, pairing
+with w would give a strictly positive sum, a contradiction. Thus the
+34 infeasibility certificates do not depend solely on polygon clipping.
+Dependent candidates have exact zero determinants. All 144 candidates
+are accounted for, including all 35 coherent bases.
+
+#### A recent all-order theorem with different hypotheses
+
+[Jonsson Kling--Lundqvist--Mohammadi--Orth, arXiv:2506.24028v1](https://arxiv.org/abs/2506.24028v1)
+studies, in characteristic zero,
+
+    (x_1^(m_1),...,x_d^(m_d),(x_1+...+x_d)^k), m_i>=2.
+
+Theorem 4.11 makes the reduced basis depend only on the variable ordering;
+Corollary 4.14 gives at most d! bases. The inspected scope is the setup,
+Theorem 1.1, Proposition 4.9 and its proof, Theorem 4.11 and its proof,
+Corollary 4.14 and its proof, and Proposition 4.15 with its adjacent
+argument. The full lattice-path classification proof was not re-audited.
+
+Here d denotes ambient dimension, not colength. This is a strong
+restricted theorem and closes pure-power-plus-one-linear-form-power
+constructions as an amplification route in fixed dimension. It does
+not apply to (CF2), whose graph relation is inhomogeneous, or improve
+the unrestricted G_d(n) bound. The existing result must be credited
+if a related homogeneous family is used.
+
+#### Later-source audit and the unresolved publication check
+
+[Zhang--Hu--Liang--Dimitrova--Stigler, arXiv:2101.09384v1](https://arxiv.org/abs/2101.09384v1)
+was inspected through its setup, Section 3.2 including the Corollary 3.17
+count and adjacent arguments, and Section 4's database construction.
+Its upper bound counts equivalence classes of finite-field data sets
+under linear shifts. It does not count initial ideals of one ideal and
+therefore does not replace the unrestricted colength bound.
+
+The [2020 published Stigler--Zhang chapter](https://doi.org/10.1007/978-3-030-42687-3_9)
+still needs its full theorem comparison. The publisher's primary
+preview confirms the finite-field scope and identifies its bounds as
+Theorems 1 and 8, whereas the inspected
+[2019 preprint](https://arxiv.org/abs/1907.01080v1) numbers its modified
+bound Theorem 4. The full NSF deposit could not be retrieved by either
+the web reader or a direct timed download. The preview's references
+include Babson--Onn--Thomas, an addition to the preprint's reference
+list. Consequently the journal/chapter version has not been treated
+as proof-checked or silently identified with the preprint. No purchase,
+correspondence or request to an author was made.
+
+The known finite-field cap does not by itself change a maximum over
+all fields: field size may exceed colength, and characteristic zero
+is included. The working unrestricted theorem remains the
+proof-checked Babson--Onn--Thomas Corollary 2.5. The planar universal
+order construction in Maruri-Aguilar Theorem 5.1 was rechecked: its
+O(n^2) operation count is distinct from both the generic planar
+corner-cut count and the number of initial ideals of one ideal.
+
+This is an expanded, bounded primary comparison, not a certification
+that no stronger theorem exists elsewhere. Unsuccessful searches and
+the inaccessible full chapter do not establish novelty. The strongest
+current-bound gate remains incomplete and is recorded accordingly.
+
+#### Research decision
+
+Retain the diagonal formulas with their proved scope. A full-dimensional
+extension needs the monomial coordinate flags within each graded piece,
+or an independent upper argument; the bare Jordan degree type cannot
+determine the answer. Do not enlarge the finite lambda or length search
+to guess asymptotics. The next lower proof mechanism must track those
+flags while still accounting for all tag powers. The recent d! theorem
+rules out falling back to its homogeneous family as a new lower result.
+
+The unrestricted asymptotic goal, the further-consequence requirement,
+the primary-priority audit and the manuscript gate remain unchanged.
+No qualifying asymptotic advance or new-paper novelty claim is made.

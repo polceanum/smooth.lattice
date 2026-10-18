@@ -2181,6 +2181,203 @@ def jordan_filtered_convolution_controls():
             "scope": "This controls total-degree filtrations and the full exponential-graph algebra on diagonal weights. It does not count its full positive Groebner fan or improve the unrestricted asymptotic bounds."}
 
 
+def strict_linear_infeasibility_certificate(normals):
+    """Small positive dependence certifying that all dot products cannot be positive."""
+    vectors = sorted(set(normals) | {(1, 0, 0), (0, 1, 0), (0, 0, 1)})
+    for size in (2, 3, 4):
+        for selected in combinations(vectors, size):
+            if size == 2:
+                if cross(*selected) != (0, 0, 0) or dot(*selected) >= 0:
+                    continue
+                j = next(j for j in range(3) if selected[0][j])
+                coefficients = (abs(selected[1][j]), abs(selected[0][j]))
+            elif size == 3:
+                rows = list(zip(*selected))
+                coefficients = next((cross(a, b) for a, b in combinations(rows, 2)
+                                     if cross(a, b) != (0, 0, 0)), (0, 0, 0))
+            else:
+                coefficients = tuple((-1) ** j * dot(other[0], cross(other[1], other[2]))
+                                     for j in range(4)
+                                     for other in [selected[:j] + selected[j + 1:]])
+            if max(coefficients) <= 0:
+                coefficients = tuple(-x for x in coefficients)
+            if min(coefficients) < 0 or not any(coefficients):
+                continue
+            if any(sum(value * normal[j] for value, normal in zip(coefficients, selected))
+                   for j in range(3)):
+                continue
+            factor = gcd(*coefficients)
+            coefficients = tuple(x // factor for x in coefficients)
+            return {"normals": selected, "nonnegative_coefficients": coefficients}
+    raise AssertionError("missing strict-linear-system infeasibility certificate")
+
+
+def unequal_weight_jordan_countercontrols():
+    """Same fixed graded algebra and L; complete fans for three coordinate embeddings."""
+    domain = list(product(range(2), range(3)))
+    n, ground, states = len(domain), hyperbolic_cross(len(domain), 3), finite_staircases(len(domain), 3)
+    coordinates = {a: i for i, a in enumerate(domain)}
+    unit = tuple(int(a == (0, 0)) for a in domain)
+    shift = [tuple(tuple(int(row == tuple(value + (axis == j) for j, value in enumerate(a)))
+                         for row in domain) for a in domain) for axis in range(2)]
+    # The tag image is 2*(exp(y+z)-1), modulo y^2,z^3.
+    polynomial = {a: 2 // (factorial(a[0]) * factorial(a[1])) for a in domain if any(a)}
+    x_matrix = []
+    for a in domain:
+        column = [0] * n
+        for b, coefficient in polynomial.items():
+            row = tuple(v + w for v, w in zip(a, b))
+            if row in coordinates:
+                column[coordinates[row]] += coefficient
+        x_matrix.append(tuple(column))
+    l_matrix = tuple(tuple(y + z for y, z in zip(a, b)) for a, b in zip(*shift))
+    second_generator = tuple(2 * y - z for y, z in zip(matvec(shift[0], unit), matvec(shift[1], unit)))
+    jordan_basis = []
+    for generator, length in ((unit, 4), (second_generator, 2)):
+        column = generator
+        for _ in range(length):
+            jordan_basis.append(column)
+            column = matvec(l_matrix, column)
+        require(column == (0,) * n, "the claimed homogeneous Jordan strings terminate")
+    require(determinant(jordan_basis) != 0, "the two displayed homogeneous strings form a basis")
+
+    def inverse_columns(columns):
+        matrix = [[Fraction(columns[j][i]) for j in range(n)] +
+                  [Fraction(i == j) for j in range(n)] for i in range(n)]
+        for j in range(n):
+            pivot = next((i for i in range(j, n) if matrix[i][j]), None)
+            if pivot is None:
+                return None
+            matrix[j], matrix[pivot] = matrix[pivot], matrix[j]
+            value = matrix[j][j]
+            matrix[j] = [x / value for x in matrix[j]]
+            for i in range(n):
+                if i != j:
+                    value = matrix[i][j]
+                    matrix[i] = [x - value * y for x, y in zip(matrix[i], matrix[j])]
+        return [row[n:] for row in matrix]
+
+    results = []
+    for parameter, expected in ((0, 11), (1, 9), (2, 15)):
+        u_matrix = tuple(tuple(x + parameter * y for x, y in zip(a, b))
+                         for a, b in zip(*shift))
+        matrices = (tuple(x_matrix), u_matrix, shift[1])
+        for i, j in combinations(range(3), 2):
+            for a in range(n):
+                require(matvec(matrices[i], matrices[j][a]) ==
+                        matvec(matrices[j], matrices[i][a]), "fixed-algebra coordinate matrices commute")
+        for index, a in enumerate(domain):
+            recovered = unit
+            for axis, exponent in enumerate(a):
+                for _ in range(exponent):
+                    recovered = matvec(shift[axis], recovered)
+            require(recovered == tuple(int(i == index) for i in range(n)), "the reference quotient is cyclic")
+            v2 = matvec(matrices[2], matrices[2][index])
+            uv = matvec(matrices[1], matrices[2][index])
+            uv2 = matvec(matrices[1], v2)
+            formula = tuple(2 * u + 2 * (1 - parameter) * v + 2 * uv_value +
+                            (1 - 2 * parameter) * v2_value + uv2_value
+                            for u, v, uv_value, v2_value, uv2_value in
+                            zip(matrices[1][index], matrices[2][index], uv, v2, uv2))
+            require(formula == matrices[0][index], "displayed exponential graph relation holds on every column")
+            require(matvec(shift[0], shift[0][index]) == (0,) * n and
+                    matvec(matrices[2], v2) == (0,) * n, "displayed pure-power relations hold")
+        columns = {(0, 0, 0): unit}
+
+        def residue(a):
+            if a not in columns:
+                i = next(i for i, value in enumerate(a) if value)
+                previous = tuple(value - (i == j) for j, value in enumerate(a))
+                columns[a] = matvec(matrices[i], residue(previous))
+            return columns[a]
+
+        records, coherent, independent = [], [], 0
+        for state in states:
+            ordered = sorted(state)
+            inverse = inverse_columns([residue(a) for a in ordered])
+            minor = determinant([residue(a) for a in ordered])
+            require((inverse is None) == (minor == 0), "independent inverse and determinant basis checks agree")
+            record = {"staircase": ordered, "basis_determinant": str(minor)}
+            if inverse is None:
+                record["status"] = "dependent"
+                records.append(record)
+                continue
+            independent += 1
+            border = {tuple(value + (i == j) for j, value in enumerate(a))
+                      for a in state for i in range(3)} - state
+            normals = set()
+            for b in sorted(border):
+                vector = residue(b)
+                coefficients = [dot(row, vector) for row in inverse]
+                require(tuple(sum(coefficients[j] * residue(ordered[j])[i] for j in range(n))
+                              for i in range(n)) == vector, "exact border normal form reconstructs the residue")
+                for a, coefficient in zip(ordered, coefficients):
+                    if coefficient:
+                        normal = tuple(x - y for x, y in zip(b, a))
+                        require(max(normal) > 0, "a border point cannot divide an included staircase point")
+                        if min(normal) < 0:
+                            factor = gcd(*normal)
+                            normals.add(tuple(x // factor for x in normal))
+            polygon = [tuple(Fraction(i == j) for i in range(3)) for j in range(3)]
+            for normal in sorted(normals):
+                polygon = clip(polygon, normal, 1)
+                if not polygon:
+                    break
+            record["strict_border_comparison_normals"] = sorted(normals)
+            if not polygon:
+                record["status"] = "independent_but_incoherent"
+                record["infeasibility_certificate"] = strict_linear_infeasibility_certificate(normals)
+            else:
+                weight = tuple(sum(p[i] for p in polygon) / len(polygon) for i in range(3))
+                denominator = lcm(*(x.denominator for x in weight))
+                weight = tuple(int(x * denominator) for x in weight)
+                # Break variable-weight ties without crossing any strict border constraint.
+                delta = (1, 2, 3)
+                scale = 4 + max((abs(dot(delta, normal)) for normal in normals), default=0)
+                weight = tuple(scale * x + y for x, y in zip(weight, delta))
+                factor = gcd(*weight)
+                weight = tuple(x // factor for x in weight)
+                require(min(weight) > 0 and len(set(weight)) == 3 and
+                        all(dot(weight, normal) > 0 for normal in normals), "strict border and variable-order witness")
+                require(greedy(ground, {a: residue(a) for a in ground}, weight, 0) == state,
+                        "full-ground Gaussian selection independently checks the coherent staircase")
+                record.update({"status": "coherent", "positive_integer_weights": weight,
+                               "variable_order_high_to_low": sorted(range(3), key=lambda i: -weight[i])})
+                coherent.append(record)
+            records.append(record)
+        require(len(states) == 48 and len(coherent) == expected, "exhaustive six-box staircase fan counts")
+        costs = []
+        for weight in ((1, 2, 2), (2, 1, 1), (2, 1, 3)):
+            selected = greedy(ground, {a: residue(a) for a in ground}, weight, 0)
+            cost = sum(dot(a, weight) for a in selected)
+            expected_cost = (10 if weight == (1, 2, 2) else 8 if weight == (2, 1, 1)
+                             else {0: 13, 1: 12, 2: 11}[parameter])
+            require(len(selected) == n and cost == expected_cost, "diagonal equality and unequal-weight cost separation")
+            ranks = []
+            for threshold in range(5):
+                prefix = [a for a in ground if dot(a, weight) <= threshold]
+                ranks.append(len(greedy(prefix, {a: residue(a) for a in prefix}, weight, 0)))
+            costs.append({"positive_weights": weight, "minimum_basis_cost": cost,
+                          "standard_monomials": sorted(selected), "ranks_at_cost_thresholds_zero_through_four": ranks})
+        groups = {}
+        for record in coherent:
+            groups.setdefault(tuple(record["variable_order_high_to_low"]), []).append(record)
+        pair = next(group[:2] for group in groups.values() if len(group) >= 2)
+        results.append({"lambda": parameter, "coordinate_images": "(x,u,v)=(2*(exp(y+z)-1),y+lambda*z,z)",
+                        "multiplication_matrices_by_columns": matrices, "reference_basis_y_z": domain,
+                        "exact_initial_ideal_count": len(coherent), "independent_staircase_count": independent,
+                        "all_staircase_certificates": records, "cost_controls": costs,
+                        "same_strict_variable_order_distinct_initials": [
+                            {key: record[key] for key in ("staircase", "positive_integer_weights", "variable_order_high_to_low")}
+                            for record in pair]})
+    return {"field": "Q", "fixed_algebra": "Q[y,z]/(y^2,z^3)", "fixed_L": "y+z",
+            "Hilbert_function": [1, 2, 2, 1], "graded_Jordan_strings_start_and_length": [[0, 4], [1, 2]],
+            "graded_Jordan_basis_columns": jordan_basis,
+            "embeddings": results,
+            "conclusion": "Even the same graded algebra and the same L and tag element have different full fans under different degree-one generating coordinates. Graded Jordan data determine the proved diagonal support function but not unequal-weight costs or the full fan count.",
+            "scope": "Exact falsification certificates for a transfer lemma, not an asymptotic lower bound or a novelty claim."}
+
+
 def main():
     fixtures = []
     for weights, cutoff in [((1, 1, 1), 2), ((1, 1, 1), 3),
@@ -2223,6 +2420,7 @@ def main():
     monogenic = monogenic_embedding_controls()
     sparse_prefix = sparse_prefix_interpolation_control()
     jordan_prefix = jordan_filtered_convolution_controls()
+    unequal_jordan = unequal_weight_jordan_countercontrols()
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
         "schema_version": 1, "command": "python3 -B scripts/run_structural_complexity_checks.py",
@@ -2308,6 +2506,7 @@ def main():
         },
         "sparse_prefix_interpolation_control": sparse_prefix,
         "jordan_filtered_convolution_control": jordan_prefix,
+        "unequal_weight_jordan_countercontrol": unequal_jordan,
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
                     "independent_greedy_checks": sum(f["greedy_checks"] for f in fixtures),
@@ -2363,7 +2562,10 @@ def main():
                     "jordan_graded_map_rank_checks": sum(f["graded_multiplication_map_ranks_checked"] for f in jordan_prefix["fixtures"]),
                     "jordan_three_node_string_rank_checks": jordan_prefix["three_node_string_rank_checks"],
                     "jordan_filtered_prefix_rank_checks": sum(len(f["prefix_rank_checks"]) for f in jordan_prefix["fixtures"]),
-                    "jordan_full_tag_power_diagonal_cost_checks": sum(len(f.get("full_tag_power_diagonal_cost_controls", [])) for f in jordan_prefix["fixtures"])},
+                    "jordan_full_tag_power_diagonal_cost_checks": sum(len(f.get("full_tag_power_diagonal_cost_controls", [])) for f in jordan_prefix["fixtures"]),
+                    "unequal_jordan_staircases_checked": sum(len(f["all_staircase_certificates"]) for f in unequal_jordan["embeddings"]),
+                    "unequal_jordan_coherent_basis_checks": sum(f["exact_initial_ideal_count"] for f in unequal_jordan["embeddings"]),
+                    "unequal_jordan_infeasibility_certificates": sum(sum(c["status"] == "independent_but_incoherent" for c in f["all_staircase_certificates"]) for f in unequal_jordan["embeddings"])},
         "goal_qualifying_advance": False,
     }
     target = ROOT / "results/research/structural_complexity_checks.json"
