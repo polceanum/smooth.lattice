@@ -6405,3 +6405,268 @@ unchanged. Reproduce these controls together with the previous checks:
 ```bash
 python3 -B scripts/run_structural_complexity_checks.py
 ```
+
+### Thirteenth feasibility pass: deletion defect and the dual relation matroid
+
+The preceding goal turn made progress in commit 4790dbb: it proved
+(BE1)--(BE3) and saved exhaustive certificates. This pass proves a
+defect-dependent extension for uniform truncations, states the exact
+reduction for general quotients, and checks an obstruction to confusing
+the two. The original unrestricted objective is unchanged.
+
+#### The general reduction requires a matroid, not just a number of omissions
+
+Let J be binomial of colength q, J contained in I, and dim_K(I/J)=r,
+where 0<=r<q. Fix the parent monomial basis b_1,...,b_q and the
+parallel classes S_j on V_q^d as in the previous pass. Put n=q-r.
+Choose an r-by-q matrix H whose rows are a basis of I/J in this
+reference basis. For positive generic w put
+
+    m_j(w)=argmin_{a in S_j} w.a,   gamma_j(w)=w.m_j(w).
+
+Then the child minimum basis cost is exactly
+
+    sum_j gamma_j(w)
+      - max_{T subset {1,...,q}, |T|=r, det(H_T)!=0}
+          sum_{j in T} gamma_j(w).                        (DR1)
+
+For r=0 the empty determinant is one. Here H_T is the square submatrix
+on the omitted class labels. To prove the complementary basis criterion,
+write R for the row space of H in K^q. The retained reference vectors
+on B={1,...,q}\T form a basis of K^q/R precisely when
+R intersects K^B trivially. Since dim R=|T|=r, this is equivalent to
+the coordinate projection R->K^T being an isomorphism, or det(H_T)!=0.
+Minimizing within each retained class now proves (DR1).
+
+Thus the omitted classes form a maximum-weight basis of the matroid
+represented by H, the dual of the projected reference-column matroid.
+This is standard linear matroid duality, not a new correspondence.
+Taking the r largest gamma_j is valid when every r-subset is a basis
+of H. A quotient of a binomial algebra need not have this property.
+
+#### A uniform bound when the relation matroid is uniform
+
+Consider q nonempty classes S_j of points in R^d, with M input points
+in total. Keep the n=q-r cheapest distinct classes, using their cheapest
+representatives. For all 0<=r<q, the number of bases obtainable by
+generic positive weights is bounded by
+
+    O(M*(r+1)*alpha(M))       for d=2,
+    O(M^2*(r+1)*alpha(M))     for d=3.                     (DR2)
+
+The constants are independent of r. This extends the one-omission
+envelope argument using an elementary sampling estimate. It is a
+consequence of existing geometric tools; its novelty has not been
+established. It is not asserted for a nonuniform relation matroid.
+
+Here is the proof with the dependence on r explicit. Normalize weights
+to the simplex. In d=3, triangulate the individual affine patches of
+the concave functions gamma_j. As in (BE2), their total number t and
+the number of their boundary support lines L are O(M), with t>=q.
+For r=0, the arrangement of L already suffices and has O(M^2) cells.
+Assume r>=1 and put p=1/(r+1).
+
+Inside a cell of the arrangement of L, each class cost is affine.
+An edge separating two different sets of r largest costs exchanges
+classes tied at the cutoff. In general position an interior vertex
+of this map is a triple equality. Two disjoint tied pairs at different
+heights cannot both straddle the same cutoff. Consequently every such
+vertex is an intersection of three active triangle interiors, with
+at most r other triangles strictly above it.
+
+Independently retain each triangle with probability p. A specified
+such triple intersection becomes an upper-envelope vertex whenever
+its three defining triangles are retained and all triangles strictly
+above it are absent. This has probability at least
+
+    p^3*(1-p)^r >= p^3/4.
+
+If S is the number of sampled triangles, then
+
+    E[S^2] <= (pt)^2+pt <= 2*(pt)^2,
+
+since t>=r+1. The established triangle-envelope bound gives expected
+upper-envelope complexity O(E[S^2]*alpha(t)). By summing the exposure
+probabilities, the number of relevant interior triple vertices is
+therefore O(t^2*(r+1)*alpha(t)). This argument counts events at the
+cutoff, rather than the entire arrangement of pair-comparison lines.
+
+It remains to count the overlay with L. Restrict the actual functions
+gamma_j to a line in L. Each is the minimum of |S_j| affine functions
+of one variable, so their restrictions have O(M) segments in total.
+At a cutoff crossing two active segments are equal and at most r
+segments are strictly above. Sampling segments with probability p
+exposes that crossing on the upper envelope with probability at least
+p^2/4. The expected segment-envelope complexity is O(p*M*alpha(M)).
+Thus there are O(M*(r+1)*alpha(M)) cutoff crossings on that line.
+Individual segment endpoints add O(M) events.
+
+Summing over O(M) lines, and adding their O(M^2) pair intersections,
+gives O(M^2*(r+1)*alpha(M)) overlay vertices. Between these vertices
+the cutoff edges are straight. Every component meets an endpoint or
+vertex, or is a polygonal cycle with vertices. Generic vertex degrees
+are bounded, so Euler's formula bounds the refined map's cells by
+the same order. Each cell fixes every m_j and the omitted set, proving
+the spatial part of (DR2). The segment argument alone proves its
+planar part, after adding the O(M) class breakpoints.
+
+Degeneracies can be removed by perturbing the original input points
+within their class labels. First choose finitely many strict weight
+witnesses for the different bases and avoid every within-class and
+between-class tie at those witnesses. Small perturbations preserve
+these comparisons. Each perturbed class is still represented by a
+convex polytope with O(|S_j|) normal-map complexity in dimension three.
+The generic bound therefore also bounds the original strict bases.
+The proof uses the segment and triangle bounds credited in the previous
+pass; it does not claim a new general envelope or sampling theorem.
+
+#### Arithmetic specialization and a necessary defect for amplification
+
+For the prime cyclic point sets of (BE6), the reference-column matroid
+is uniform after identifying equal residue classes. Thus (DR2) applies
+to every n-subset of a fixed prime orbit of size q, with r=q-n.
+It also applies to consecutive parameter indices 0,...,n-1 for every
+orbit size q, by ordinary Vandermonde. With M=|V_q^3| this gives
+
+    g(I) = O(q^2*(r+1)*(1+log q)^4
+               *alpha(q*(1+log q)^2)).                    (DR3)
+
+If q=O(n), obtaining g(I)>=c*n^(2+epsilon) from this uniform class
+requires, for each fixed epsilon>0,
+
+    r+1 = Omega(n^epsilon /
+            ((1+log n)^4*alpha(n*(1+log n)^2))).           (DR4)
+
+In particular any polylogarithmic deletion defect still rules out an
+n^(2+epsilon) lower family. This does not exclude logarithmic gains,
+prove that the bound is sharp, or bound arbitrary point configurations.
+
+The bounded controls use q=7, A=(1,2,3), n=4,5. There are respectively
+10 and 14 full positive coherent bases. All 37 candidate staircases
+are classified, including positive-dependence certificates for each
+independent incoherent candidate. Every coherent basis has a strict
+integer weight and Gaussian checks on two different parameter subsets.
+
+There is also an exact simultaneous certificate for the required
+complex Fourier ranks. The prime ell=1000000009 and root z=440359144
+satisfy Phi_7(z)=0 modulo ell. The products of all square Fourier minors
+of sizes four and five are respectively 173122278 and 176714908 modulo
+ell, both nonzero; 1225+441=1666 minors are checked. A complex-zero
+determinant in Z[zeta_7] would reduce to zero under zeta_7->z, so these
+products certify their nonvanishing over C as well. No inference from
+complex nonvanishing to every finite characteristic is made.
+
+#### A composite two-relation counterexample
+
+Take the six-root orbit with t=1 and t=-1 removed, with coordinates
+(x,y,z)=(t,t^2,t^3). The exact quotient over Q has modulus
+
+    (t^6-1)/(t^2-1)=t^4+t^2+1.
+
+In the parent reference classes 0,...,5, its relation matrix is
+
+    H = [[1,0,1,0,1,0], [0,1,0,1,0,1]].
+
+At positive weights (10,1,3), the parent class minima, in cost order,
+have (class,cost) pairs
+
+    (0,0),(2,1),(4,2),(3,3),(5,4),(1,5).
+
+The unconstrained rule omits classes 1 and 5 and leaves the staircase
+{1,y,y^2,z}. This is dependent because 1+y+y^2=0 in the child.
+The correct dual basis omits classes 1 and 4 instead, leaving
+{1,y,z,yz}, of cost eight. Independent quotient matrices and all 15
+complementary minor decisions verify (DR1). This is a realizable
+negative control, not an arbitrary matroid counterexample.
+
+Consequently the next general dependency argument must retain the
+dual relation matroid and its multiplication compatibility. Uniform
+truncation cannot silently replace it, even at defect two.
+
+#### A later parametric-matroid comparison
+
+[Hausbrandt--Ruzika, arXiv:2503.08178v2](https://arxiv.org/pdf/2503.08178v2)
+gives O(m^(2p)) optimal-value regions for m ground elements and p
+parameters in Corollary 3.4. Its setup, the proof of Theorem 3.2 and
+Corollary 3.4, and Theorem 3.6 with its proof were inspected. With two
+weight parameters and m=|V_n^3| this gives O(m^4); it does not improve
+the proof-checked unrestricted O(n^3) colength bound. Its general
+matroid algorithm also does not turn arbitrary matroid examples into
+commuting quotient algebras. No algorithmic novelty is claimed here.
+
+The full published finite-field chapter remains unread after a fresh
+repository and browser retrieval attempt failed. Its indexed text is
+not a full proof check. The strongest-current-priority audit therefore
+remains incomplete, rather than being certified by unsuccessful searches.
+
+#### Application assessment: machine learning and transformers
+
+The user asked whether the project's rank and factorization calculations
+could apply to machine learning. There is a credible connection through
+structured polynomial and exponential features. The established results
+here concern matrix ranks and coordinate-ring factorizations; they are
+not a new general theorem about CP rank, tensor-train rank, or compression
+of arbitrary learned Transformer weights.
+
+For example exp(y+z)=exp(y)*exp(z) has separable coefficients on a
+rectangular truncation. But multiplication by exp(L) on any finite
+nilpotent algebra is invertible, with inverse multiplication by exp(-L).
+Its matrix rank is the full algebra dimension. Separable coefficients,
+low tensor separation rank, and low matrix rank are different statements.
+Sparse projection and prefix selection also need their own rank argument,
+as (HP1)--(JD3) demonstrate.
+
+The closest established application framework is
+[Altschuler--Parrilo, arXiv:2106.02755v1, Section 3.1](https://arxiv.org/pdf/2106.02755v1).
+Proposition 3.6 already expresses a polynomial kernel's rank after
+restriction to an algebraic variety as rank(Phi*C*Phi^T); Corollary 3.8
+gives optimal polynomial factorizations. The setup, Lemmas 3.5 and 3.7,
+their proofs, Proposition 3.6 and proof, Corollary 3.8, and the
+Proposition 3.2 proof were inspected. This prevents claiming the basic
+coordinate-ring/kernel compression bridge as our discovery.
+
+For attention, a feature factorization of the unnormalized kernel
+A=Phi(Q)*Psi(K)^T permits computing A*V as Phi(Q)*(Psi(K)^T*V), with
+the row denominator evaluated separately. This is established efficient
+attention methodology. [TaylorShift, arXiv:2403.02920v1, Section 3.2](https://arxiv.org/html/2403.02920v1#S3.SS2)
+explicitly uses tensor-product polynomial features; Sections 3.1--3.3
+were inspected, including the distinction between its polynomial
+kernel and exact exponential softmax. Our special Jordan-prefix rank
+formula alone does not apply to arbitrary learned Q and K. Nonreduced
+jet algebras likewise need a derivative-feature interpretation before
+they can be used as ordinary data-evaluation models.
+
+A classical Vandermonde example gives a useful limit. For N>=2 let scalar
+queries be i=0,...,N-1 and scalar keys log(t_j), with distinct positive t_j.
+The logit matrix has rank one, but its entrywise exponential is
+A_ij=t_j^i, of determinant product_{j<k}(t_k-t_j) != 0. Row-softmax
+normalization preserves its full rank N. The checker saves N=4,
+t_j=1,2,3,4: det(A)=12 and det(row_softmax)=1/10000. This is not
+a new softmax theorem and does not prohibit approximate low-rank methods.
+
+A useful extension would need an explicit input model, a stable
+approximate feature factorization, a bound on the resulting normalized
+attention error, and a computation cost that includes finding the
+representation. Any novelty comparison must include the existing
+kernel-on-variety and polynomial-attention work. No ML performance,
+new tensor-rank theorem, or change to the active mathematical objective
+is asserted. This is an application lead, not a Transformer breakthrough.
+
+#### Research decision
+
+Retain (DR1)--(DR4) with their distinct hypotheses. Stop fixed-defect
+periodic searches for an exponent improvement; the uniform theorem
+now covers a growing defect quantitatively. Before enlarging that
+search, a symbolic family must explain how additive cyclic residue
+classes realize many cutoff events. Arbitrary independently chosen
+geometric patches do not supply that algebraic realization. For general
+quotients the next lemma must instead control the dual matroid in
+(DR1); the explicit defect-two example is a required negative control.
+
+The unrestricted asymptotic theorem, further-consequence requirement,
+complete priority audit and new manuscript remain unachieved. The goal
+stays active. Reproduce the expanded exact checks with
+
+```bash
+python3 -B scripts/run_structural_complexity_checks.py
+```

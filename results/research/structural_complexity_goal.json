@@ -2,7 +2,7 @@
   "schema_version": 1,
   "recorded_on": "2026-10-18",
   "title": "Universal algebraic complexity beyond generic corner cuts",
-  "status": "active_codimension_one_binomial_quotient_bound_proved_periodic_deletion_gate_narrowed",
+  "status": "active_uniform_truncation_defect_bound_proved_general_dual_relation_gate_open",
   "objective": "Prove a new structural theorem determining or substantially narrowing the worst-case asymptotic number of monomial initial ideals of finite polynomial algebras, starting with three variables and seeking a mechanism valid in every fixed dimension. Establish the strongest relevant primary baseline first. Success requires a complete uniform proof of sharp growth or a substantial asymptotic advance over that baseline for all colength-n ideals or all n-point configurations, a rigorous further algebraic, geometric or enumeration consequence, reproducible exact certificates and an honestly scoped manuscript. Examples, reformulations, already known corollaries and a plan alone do not complete this goal.",
   "plan": "docs/interleaving_research.md#higher-impact-research-plan-universal-algebraic-complexity",
   "relationship_to_previous_goal": "A new research objective. The completed corner-cut counting manuscript and its acceptance records remain separate and unchanged in mathematical content.",
@@ -34,12 +34,12 @@
     },
     {
       "id": "dependency_mechanism",
-      "status": "codimension_one_binomial_extension_envelope_bound_proved_unrestricted_dependency_mechanism_open",
+      "status": "dual_relation_reduction_and_uniform_truncation_defect_bound_proved_general_compatible_matroid_gate_open",
       "deliverable": "A precise lemma about multiplication-compatible residue dependencies or state-polyhedron geometry, with its proof attempt and adversarial controls."
     },
     {
       "id": "infinite_lower_family",
-      "status": "positive_collision_and_codimension_one_periodic_exponent_amplification_closed_growing_defect_gate_pending",
+      "status": "uniform_polylogarithmic_deletion_exponent_amplification_closed_additive_realization_mechanism_pending",
       "deliverable": "A symbolic realizable family and count proof, or a documented obstruction to the tested construction; finite examples alone are insufficient."
     },
     {
@@ -123,7 +123,7 @@
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Established exact fixed-algebra countercertificates to a Jordan-only full-fan transfer, including independently checkable incoherence certificates, and compared a recent all-order factorial bound with the target. The full unrestricted theorem and strongest-primary audit remain incomplete."
+    "reason": "Proved a uniform envelope bound for every one-dimensional quotient of a finite binomial algebra in dimensions two and three, with complete exact parent/child fan controls. It rules out exponent amplification by deleting one orbit point. No qualifying unrestricted advance has been achieved."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -321,6 +321,25 @@
       "authors": "Sabariego and Santos",
       "inspected": "Setup and Theorem 3.5--3.6 statements, including the graded-order scope; not a full proof audit of the later Hilbert-basis or extremal constructions.",
       "finding": "The periodic lattice-ideal interpretation is established. Their minimum-distance diagrams use graded orders; their diagram counts do not replace our all-global-order counts."
+    },
+    {
+      "source": "https://arxiv.org/pdf/2503.08178v2",
+      "authors": "Hausbrandt and Ruzika",
+      "inspected": "Setup, Theorem 3.2 and proof, Corollary 3.4 and its argument, Theorem 3.6 and proof.",
+      "finding": "The O(m^(2p)) region bound becomes O(m^4) for two parameters and does not improve the checked O(n^3) bound with m=|V_n^3|. General matroid algorithms do not supply quotient-algebra realizability."
+    },
+    {
+      "source": "https://arxiv.org/pdf/2106.02755v1",
+      "publication_locator": "https://doi.org/10.1137/21M1425050",
+      "authors": "Altschuler and Parrilo",
+      "inspected": "Preprint setup and Section 3.1: Lemmas 3.5 and 3.7 with proofs, Proposition 3.6 with proof, Corollary 3.8, and Proposition 3.2 proof. The published version was identified, not compared line by line.",
+      "finding": "Coordinate-ring reduction, exact polynomial-kernel rank and optimal polynomial feature factorizations are established prior art. No general ML compression or Transformer novelty follows from our rank formulas."
+    },
+    {
+      "source": "https://arxiv.org/html/2403.02920v1",
+      "authors": "Nauen, Palacio and Dengel",
+      "inspected": "Sections 3.1--3.3, including the tensor-product feature identity, reassociation and normalization.",
+      "finding": "Polynomial attention already uses tensor-product feature factorizations. Any ML application needs new approximation, conditioning and complete cost guarantees beyond this existing framework."
     }
   ],
   "next_actions": [
@@ -1282,7 +1301,7 @@
   },
   "this_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Proved a uniform envelope bound for every one-dimensional quotient of a finite binomial algebra in dimensions two and three, with complete exact parent/child fan controls. It rules out exponent amplification by deleting one orbit point. No qualifying unrestricted advance has been achieved."
+    "reason": "Proved an r-dependent envelope bound for uniform truncations, derived the exact dual-relation reduction for arbitrary binomial quotients, and certified a realizable defect-two failure of the unconstrained omission rule. Added primary ML comparisons and a full-rank softmax witness in response to the user. No unrestricted asymptotic advance is claimed."
   },
   "eleventh_feasibility_results": {
     "record": "docs/interleaving_research.md, Eleventh feasibility pass: coordinate flags survive the Jordan reduction",
@@ -1445,5 +1464,76 @@
     "known_prime_input": "Chebotarev nonvanishing Fourier minors imply identical modular class-rank functions and fans for all equally sized subsets of a fixed prime orbit. Ordinary Vandermonde suffices for consecutive parameters for any orbit size; one-point deletion also works for every size.",
     "goal_qualifying_unrestricted_advance": false,
     "decision": "Do not enlarge one-point-deletion examples to infer n^(2+epsilon) growth: the uniform theorem forbids it. A periodic lower construction must analyze growing deletion defect or prove a logarithmic improvement. The next concrete lemma is a defect-sensitive bound for the sum of the r largest class-minimum costs; this remains unproved here. Keep the unrestricted upper route, strongest-current-primary audit and manuscript gate active."
+  },
+  "thirteenth_feasibility_results": {
+    "record": "docs/interleaving_research.md, Thirteenth feasibility pass: deletion defect and the dual relation matroid",
+    "general_reduction": {
+      "scope": "Any colength-q binomial parent J contained in I with relation space I/J of dimension r, over every field.",
+      "formula": "Minimum child basis cost = sum of all parent class-minimum costs minus the maximum weight of an r-column basis of the relation-row matrix H.",
+      "proof": "The retained reference classes are a quotient basis iff coordinate projection of row(H) onto the omitted labels is an isomorphism. This is standard matroid duality, with a direct proof saved.",
+      "limit": "The omitted classes are the r largest costs only when the dual matroid is uniform, or when another separate argument establishes that rule on the actual weights."
+    },
+    "uniform_defect_bound": {
+      "scope": "Rank n=q-r uniform truncations of q nonempty parallel classes on M input points, in dimensions two and three; all 0<=r<q.",
+      "bounds": "O(M*(r+1)*alpha(M)) in dimension two and O(M^2*(r+1)*alpha(M)) in dimension three, with constants independent of r.",
+      "proof": "Within parent affine-patch cells, only triple intersections can be interior cutoff vertices. Independent sampling at p=1/(r+1) exposes them with probability at least p^3/4. Existing envelope bounds and binomial second moments give O(M^2*(r+1)*alpha(M)). Segment sampling bounds all parent-line crossings, and Euler counts the refined cells. Strict witnesses survive a generic point perturbation.",
+      "point_specialization": "Any n-subset of a prime cyclic orbit over C, or consecutive parameters for any orbit size. The hyperbolic cross gives O(q^2*(r+1)*(1+log q)^4*alpha(q*(1+log q)^2)).",
+      "necessary_defect": "For q=O(n), a lower family of order n^(2+epsilon) requires r+1=Omega(n^epsilon/((1+log n)^4*alpha(n*(1+log n)^2))). Polylogarithmic deletion cannot supply that exponent.",
+      "priority": "Derived from established envelope bounds and elementary sampling, not certified novel; not an unrestricted advance."
+    },
+    "finite_controls": {
+      "status": "passed",
+      "prime_uniform_fixtures": [
+        [
+          7,
+          4,
+          10
+        ],
+        [
+          7,
+          5,
+          14
+        ]
+      ],
+      "reduction_prime": 1000000009,
+      "primitive_seventh_root": 440359144,
+      "nonzero_fourier_minor_products_by_size": {
+        "4": 173122278,
+        "5": 176714908
+      },
+      "fourier_minors_checked": 1666,
+      "staircase_rank_checks": 37,
+      "coherent_bases": 24,
+      "independent_gaussian_checks": 48,
+      "composite_counter": "Q[t]/(t^6-1) -> Q[t]/(t^4+t^2+1), powers (1,2,3), weights (10,1,3). The two-largest omission leaves the dependent staircase {1,y,y^2,z}; dual optimization yields {1,y,z,yz}.",
+      "complementary_basis_checks": 15,
+      "commands": [
+        "./build.sh",
+        "python3 tests/test_smoke.py",
+        "python3 -B scripts/run_structural_complexity_checks.py"
+      ],
+      "source_sha256": {
+        "scripts/run_structural_complexity_checks.py": "855fa746eff55709ed22f581ab659b41038dc898233784c64815f1e00a3bd84f",
+        "docs/interleaving_research.md": "873bb2a705305d8d362c69dbd16b02f3b24c06f8f0b39aeed2b94acb386f551a"
+      },
+      "new_summary_counts": {
+        "uniform_deletion_fourier_minors_checked": 1666,
+        "uniform_deletion_staircase_rank_checks": 37,
+        "uniform_deletion_coherent_basis_checks": 24,
+        "uniform_deletion_gaussian_checks": 48,
+        "nonuniform_complementary_basis_checks": 15,
+        "attention_full_rank_softmax_witnesses": 1
+      }
+    },
+    "application_assessment": {
+      "user_question": "Do the tensor rank or factorization results apply to machine learning and transformers?",
+      "finding": "Potential structured-feature and kernel applications exist, but the established project statements are matrix-rank and special factorization results. No general CP/TT tensor-rank theorem or Transformer speedup has been proved.",
+      "prior_art": "Altschuler--Parrilo already give coordinate-ring polynomial-kernel rank and optimal factorizations; TaylorShift already uses tensor-product polynomial attention features.",
+      "exact_limit": "For N>=2, rank-one logits S_ij=i*log(t_j) yield full-rank Vandermonde softmax attention for distinct positive t_j. The exact four-token witness has kernel determinant 12 and normalized determinant 1/10000. Full exact rank does not preclude approximate compression.",
+      "next_qualification": "An explicit input model, stable approximate features, normalized-attention error and complete computation cost are necessary. This lead does not replace the active mathematical objective."
+    },
+    "strongest_current_bound_verified": false,
+    "goal_qualifying_unrestricted_advance": false,
+    "decision": "Keep uniform truncations separate from arbitrary quotient matroids. Require a symbolic additive-residue realization mechanism before enlarging periodic searches; the general upper lemma must retain the multiplication-compatible dual matroid. Main theorem, further consequence, strongest-priority audit and honest new manuscript remain pending."
   }
 }

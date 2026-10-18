@@ -11,7 +11,7 @@ from fractions import Fraction
 from heapq import heappop, heappush
 from hashlib import sha256
 from itertools import combinations, permutations, product
-from math import comb, factorial, gcd, lcm
+from math import comb, factorial, gcd, isqrt, lcm
 from pathlib import Path
 from random import Random
 import json
@@ -2514,6 +2514,188 @@ def codimension_one_binomial_quotient_controls():
             "fixtures": fixtures}
 
 
+def uniform_deletion_and_dual_relation_controls():
+    """Prime Fourier certificates and a nonuniform two-relation countercontrol."""
+    characteristic, root, q, powers = 1000000009, 440359144, 7, (1, 2, 3)
+    require(all(characteristic % divisor for divisor in range(2, isqrt(characteristic) + 1)),
+            "the reduction modulus is prime")
+    require(pow(root, q, characteristic) == 1 and
+            all(pow(root, i, characteristic) != 1 for i in range(1, q)) and
+            sum(pow(root, i, characteristic) for i in range(q)) % characteristic == 0,
+            "a primitive seventh root defines a reduction of the cyclotomic integer ring")
+
+    def modular_determinant(matrix):
+        a = [[value % characteristic for value in row] for row in matrix]
+        result = 1
+        for j in range(len(a)):
+            pivot = next((i for i in range(j, len(a)) if a[i][j]), None)
+            if pivot is None:
+                return 0
+            if pivot != j:
+                a[j], a[pivot] = a[pivot], a[j]
+                result = -result
+            value = a[j][j]
+            result = result * value % characteristic
+            inverse = pow(value, characteristic - 2, characteristic)
+            for i in range(j + 1, len(a)):
+                scale = a[i][j] * inverse % characteristic
+                for k in range(j, len(a)):
+                    a[i][k] = (a[i][k] - scale * a[j][k]) % characteristic
+        return result % characteristic
+
+    ground = hyperbolic_cross(q, 3)
+    classes = {j: [a for a in ground if dot(a, powers) % q == j] for j in range(q)}
+    fixtures = []
+    for n, expected, second_rows in ((4, 10, (0, 2, 4, 6)), (5, 14, (0, 2, 3, 5, 6))):
+        minor_product, minor_count = 1, 0
+        choices = list(combinations(range(q), n))
+        for rows in choices:
+            for columns in choices:
+                value = modular_determinant([[pow(root, i * j, characteristic) for j in columns] for i in rows])
+                require(value != 0, "every relevant Fourier minor is nonzero in the certified reduction")
+                minor_product = minor_product * value % characteristic
+                minor_count += 1
+        require(minor_count == comb(q, n) ** 2 and minor_product != 0, "compact simultaneous minor certificate")
+        row_sets = (tuple(range(n)), second_rows)
+        evaluations = [{a: tuple(pow(root, row * dot(a, powers), characteristic) for row in rows)
+                        for a in ground} for rows in row_sets]
+        records = []
+        for state in finite_staircases(n, 3):
+            ordered = sorted(state)
+            representatives = {dot(a, powers) % q: a for a in ordered}
+            independent = len(representatives) == n
+            minors = [modular_determinant([columns[a] for a in ordered]) for columns in evaluations]
+            require(all((value != 0) == independent for value in minors), "staircase ranks agree in both point sets")
+            record = {"staircase": ordered, "basis_determinants_mod_prime": minors}
+            if not independent:
+                record["status"] = "dependent"
+                records.append(record)
+                continue
+            normals = set()
+            for b in ground:
+                if b in state:
+                    continue
+                label = dot(b, powers) % q
+                targets = [representatives[label]] if label in representatives else state
+                for a in targets:
+                    normal = tuple(x - y for x, y in zip(b, a))
+                    if min(normal) < 0:
+                        divisor = gcd(*normal)
+                        normals.add(tuple(x // divisor for x in normal))
+            polygon = [tuple(Fraction(i == j) for i in range(3)) for j in range(3)]
+            for normal in sorted(normals):
+                polygon = clip(polygon, normal, 1)
+                if not polygon:
+                    break
+            record["strict_truncated_class_comparison_normals"] = sorted(normals)
+            if not polygon:
+                certificate = strict_linear_infeasibility_certificate(normals)
+                require(all(value >= 0 for value in certificate["nonnegative_coefficients"]) and
+                        any(certificate["nonnegative_coefficients"]) and
+                        tuple(sum(value * normal[i] for value, normal in
+                                  zip(certificate["nonnegative_coefficients"], certificate["normals"]))
+                              for i in range(3)) == (0, 0, 0), "independent positive-dependence verification")
+                record.update({"status": "independent_but_incoherent", "infeasibility_certificate": certificate})
+            else:
+                weight = tuple(sum(p[i] for p in polygon) / len(polygon) for i in range(3))
+                denominator = lcm(*(value.denominator for value in weight))
+                weight = tuple(int(value * denominator) for value in weight)
+                delta = (1, q + 1, (q + 1) ** 2)
+                scale = 1 + max(dot(delta, a) for a in ground)
+                weight = tuple(scale * value + step for value, step in zip(weight, delta))
+                divisor = gcd(*weight)
+                weight = tuple(value // divisor for value in weight)
+                require(min(weight) > 0 and all(dot(weight, normal) > 0 for normal in normals) and
+                        len({dot(weight, a) for a in ground}) == len(ground), "fully separated strict witness")
+                minima = {j: min(group, key=lambda a: dot(weight, a)) for j, group in classes.items()}
+                removed = sorted(range(q), key=lambda j: -dot(weight, minima[j]))[:q - n]
+                formula = frozenset(a for j, a in minima.items() if j not in removed)
+                require(formula == state, "uniform dual rule omits precisely the largest r class minima")
+                for columns in evaluations:
+                    require(greedy(ground, columns, weight, characteristic) == state,
+                            "independent Gaussian selection agrees in consecutive and nonconsecutive point sets")
+                record.update({"status": "coherent", "positive_integer_weights": weight,
+                               "parent_class_minima": minima, "omitted_classes": removed,
+                               "minimum_child_cost": sum(dot(weight, a) for a in state)})
+            records.append(record)
+        require(sum(record["status"] == "coherent" for record in records) == expected,
+                "complete bounded fan counts for deletion defects two and three")
+        fixtures.append({"orbit_size": q, "n": n, "deletion_defect": q - n,
+                         "coordinate_powers": powers, "parameter_index_subsets": row_sets,
+                         "all_row_and_column_minors_checked": minor_count,
+                         "product_of_all_minors_mod_prime": minor_product,
+                         "initial_ideal_count": expected, "all_staircase_certificates": records})
+
+    # This quotient has two circuits, so its omitted classes need not be the two most expensive.
+    full_ground = hyperbolic_cross(6, 3)
+    parent_modulus, child_modulus = [-1, 0, 0, 0, 0, 0, 1], [1, 0, 1, 0, 1]
+    models = []
+    for modulus in (parent_modulus, child_modulus):
+        t = (0, 1) + (0,) * (len(modulus) - 3)
+        images = [univariate_power_mod(t, exponent, modulus) for exponent in powers]
+        models.append(cyclic_univariate_model(modulus, images, full_ground))
+    parent, child = models
+    relation_rows = [tuple(int(i % 2 == parity) for i in range(6)) for parity in range(2)]
+    for row in relation_rows:
+        require(tuple(sum(row[j] * child[(j, 0, 0)][i] for j in range(6)) for i in range(4)) == (0,) * 4,
+                "the two displayed relations vanish in the actual quotient")
+    dual_checks = []
+    for omitted in combinations(range(6), 2):
+        kept = [j for j in range(6) if j not in omitted]
+        actual = determinant([child[(j, 0, 0)] for j in kept])
+        dual = determinant([[row[j] for j in omitted] for row in relation_rows])
+        require((actual != 0) == (dual != 0), "complementary basis criterion for the dual relation matrix")
+        dual_checks.append({"omitted_classes": omitted, "kept_classes": kept,
+                            "child_basis_determinant": str(actual), "dual_basis_determinant": str(dual)})
+    weight = (10, 1, 3)
+    parent_basis, child_basis = [greedy(full_ground, model, weight, 0) for model in models]
+    minima = {dot(a, powers) % 6: a for a in parent_basis}
+    costs = {j: dot(weight, a) for j, a in minima.items()}
+    admissible = [set(record["omitted_classes"]) for record in dual_checks if record["dual_basis_determinant"] != "0"]
+    optimal = max(admissible, key=lambda omitted: sum(costs[j] for j in omitted))
+    wrong = set(sorted(costs, key=lambda j: -costs[j])[:2])
+    correct_basis = frozenset(a for j, a in minima.items() if j not in optimal)
+    wrong_basis = frozenset(a for j, a in minima.items() if j not in wrong)
+    require(optimal == {1, 4} and wrong == {1, 5} and correct_basis == child_basis != wrong_basis,
+            "the dual matroid constraint changes the omission")
+    require(determinant([child[a] for a in sorted(wrong_basis)]) == 0 and
+            determinant([child[a] for a in sorted(child_basis)]) != 0,
+            "the unconstrained two-largest rule produces an actually dependent staircase")
+    counter = {"field": "Q", "parent_modulus": parent_modulus, "child_modulus": child_modulus,
+               "kernel_description": "The six-root orbit with t=1 and t=-1 removed; (x,y,z)=(t,t^2,t^3).",
+               "relation_rows_in_reference_classes": relation_rows, "complementary_basis_checks": dual_checks,
+               "positive_weights": weight, "parent_class_minima": minima, "parent_class_costs": costs,
+               "correct_omitted_classes": sorted(optimal), "incorrect_unconstrained_omitted_classes": sorted(wrong),
+               "actual_child_standard_monomials": sorted(child_basis), "incorrect_dependent_staircase": sorted(wrong_basis),
+               "dependent_circuit": {"classes": [0, 2, 4], "coefficients": [1, 1, 1]},
+               "conclusion": "A general quotient of a binomial algebra requires dual-matroid basis optimization. The uniform truncation rule and level bound cannot be asserted for it without a separate hypothesis."}
+    return {"uniform_geometric_bound": "For q nonempty parallel classes on M points and rank n=q-r uniform truncation, the number of positive coherent bases is O(M*(r+1)*alpha(M)) in dimension two and O(M^2*(r+1)*alpha(M)) in dimension three.",
+            "algebraic_specialization": "Prime cyclic orbit subsets over C, and consecutive samples for any cyclic orbit size. With M<=q*(1+log(q))^2, the spatial bound is O(q^2*(r+1)*(1+log(q))^4*alpha(q*(1+log(q))^2)).",
+            "reduction_prime": characteristic, "primitive_seventh_root_mod_prime": root,
+            "cyclotomic_certificate_scope": "A nonzero product of the indicated Fourier minors after reduction certifies their simultaneous nonvanishing over C. No implication from complex nonvanishing to all finite characteristics is used.",
+            "uniform_fixtures": fixtures, "nonuniform_two_relation_countercontrol": counter,
+            "priority": "Uses established envelope bounds, elementary random-sampling estimates and standard matroid duality. Novelty and an unrestricted asymptotic advance are not established."}
+
+
+def attention_rank_sanity_control():
+    """An exact Vandermonde witness, not an attention-compression algorithm."""
+    parameters = (1, 2, 3, 4)
+    kernel = [[t ** i for t in parameters] for i in range(len(parameters))]
+    row_sums = list(map(sum, kernel))
+    attention = [[Fraction(value, scale) for value in row] for row, scale in zip(kernel, row_sums)]
+    product_formula = 1
+    for a, b in combinations(parameters, 2):
+        product_formula *= b - a
+    require(determinant(kernel) == product_formula == 12, "ordinary Vandermonde determinant")
+    require(determinant(attention) == Fraction(1, 10000), "positive row normalization preserves full rank")
+    return {"query_scalars": list(range(4)), "key_scalars_symbolically": ["log(" + str(t) + ")" for t in parameters],
+            "logit_formula": "S_ij=i*log(t_j), a rank-one outer product; d=1, with i=0,1,2,3.",
+            "exponentiated_kernel_matrix": kernel, "row_sums": row_sums,
+            "row_softmax_attention_matrix": [[str(value) for value in row] for row in attention],
+            "kernel_determinant": str(determinant(kernel)), "attention_determinant": str(determinant(attention)),
+            "scope": "For all sequence lengths, distinct positive t_j give a full-rank Vandermonde attention matrix despite rank-at-most-one logits (rank one when N>=2). This classical observation does not rule out accurate approximate low-rank computation or establish novelty."}
+
+
 def main():
     fixtures = []
     for weights, cutoff in [((1, 1, 1), 2), ((1, 1, 1), 3),
@@ -2558,6 +2740,7 @@ def main():
     jordan_prefix = jordan_filtered_convolution_controls()
     unequal_jordan = unequal_weight_jordan_countercontrols()
     codimension_one = codimension_one_binomial_quotient_controls()
+    uniform_deletion = uniform_deletion_and_dual_relation_controls()
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
         "schema_version": 1, "command": "python3 -B scripts/run_structural_complexity_checks.py",
@@ -2645,6 +2828,8 @@ def main():
         "jordan_filtered_convolution_control": jordan_prefix,
         "unequal_weight_jordan_countercontrol": unequal_jordan,
         "codimension_one_binomial_quotient_control": codimension_one,
+        "uniform_deletion_and_dual_relation_control": uniform_deletion,
+        "attention_exact_rank_sanity_control": attention_rank_sanity_control(),
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
                     "independent_greedy_checks": sum(f["greedy_checks"] for f in fixtures),
@@ -2707,7 +2892,13 @@ def main():
                     "codimension_one_binomial_quotient_fixtures": len(codimension_one["fixtures"]),
                     "codimension_one_staircase_rank_checks": sum(f["monomial_rank_and_staircase_checks"] for f in codimension_one["fixtures"]),
                     "codimension_one_coherent_basis_checks": sum(g["initial_ideal_count"] for f in codimension_one["fixtures"] for g in f["fans"]),
-                    "codimension_one_infeasibility_certificates": sum(sum(c["status"] == "independent_but_incoherent" for c in g["all_staircase_certificates"]) for f in codimension_one["fixtures"] for g in f["fans"])},
+                    "codimension_one_infeasibility_certificates": sum(sum(c["status"] == "independent_but_incoherent" for c in g["all_staircase_certificates"]) for f in codimension_one["fixtures"] for g in f["fans"]),
+                    "uniform_deletion_fourier_minors_checked": sum(f["all_row_and_column_minors_checked"] for f in uniform_deletion["uniform_fixtures"]),
+                    "uniform_deletion_staircase_rank_checks": sum(len(f["all_staircase_certificates"]) for f in uniform_deletion["uniform_fixtures"]),
+                    "uniform_deletion_coherent_basis_checks": sum(f["initial_ideal_count"] for f in uniform_deletion["uniform_fixtures"]),
+                    "uniform_deletion_gaussian_checks": 2 * sum(f["initial_ideal_count"] for f in uniform_deletion["uniform_fixtures"]),
+                    "nonuniform_complementary_basis_checks": len(uniform_deletion["nonuniform_two_relation_countercontrol"]["complementary_basis_checks"]),
+                    "attention_full_rank_softmax_witnesses": 1},
         "goal_qualifying_advance": False,
     }
     target = ROOT / "results/research/structural_complexity_checks.json"
