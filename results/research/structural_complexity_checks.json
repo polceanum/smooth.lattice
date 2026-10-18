@@ -3,8 +3,8 @@
   "command": "python3 -B scripts/run_structural_complexity_checks.py",
   "scope": "Bounded exact checks of route obstructions and a conditional counting lemma; no unrestricted asymptotic advance or novelty assertion.",
   "source_sha256": {
-    "scripts/run_structural_complexity_checks.py": "dbd5fac973e0c70bc4b7817f9411e0cf427b5ddbfca6832dbc5f8a7b777a3dce",
-    "docs/interleaving_research.md": "b8cd62c1716067ae0b78ca9967cb9964cc83c3212238c6fdf14f1823043dff50"
+    "scripts/run_structural_complexity_checks.py": "aa7429c5a3dfaf9db4ffdc5f88725760d8248af84ae603431fb914e722c7ee86",
+    "docs/interleaving_research.md": "b4bffd1b940789eb2b2da4b4c23f23ec9ece4d38afe30ba5abee81da75773270"
   },
   "volume_obstruction": {
     "scope": "Exact determinant controls for an infinite symbolic construction; the uniform proof is in the research note.",
@@ -152678,6 +152678,2657 @@
       }
     ]
   },
+  "positive_curve_collision_control": {
+    "uniform_conclusion": "Positive monomial-curve divisors of the same length and exponent tuple have identical monomial residue matroids and identical positive Groebner fans, including all collisions with multiplicity. Collision within this class cannot amplify the fan.",
+    "priority": "A consequence of classical sparse positive-root bounds and confluent generalized Vandermonde theory; no new interpolation theorem is claimed.",
+    "checks": {
+      "n": 7,
+      "powers": [
+        1,
+        6,
+        9
+      ],
+      "field": "Q",
+      "profiles": [
+        {
+          "positive_nodes_and_multiplicities": [
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              7,
+              1
+            ]
+          ],
+          "monic_modulus_low_to_high": [
+            -5040,
+            13068,
+            -13132,
+            6769,
+            -1960,
+            322,
+            -28,
+            1
+          ],
+          "staircase_rank_checks": 86,
+          "ranks_in_lexicographic_staircase_order": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            6,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            6,
+            7,
+            7,
+            7,
+            7,
+            6,
+            6,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "companion_and_jet_column_checks": 28,
+          "fan_witnesses_checked_in_both_representations": 37,
+          "exact_initial_ideal_count_by_uniform_proof": 37
+        },
+        {
+          "positive_nodes_and_multiplicities": [
+            [
+              1,
+              7
+            ]
+          ],
+          "monic_modulus_low_to_high": [
+            -1,
+            7,
+            -21,
+            35,
+            -35,
+            21,
+            -7,
+            1
+          ],
+          "staircase_rank_checks": 86,
+          "ranks_in_lexicographic_staircase_order": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            6,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            6,
+            7,
+            7,
+            7,
+            7,
+            6,
+            6,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "companion_and_jet_column_checks": 28,
+          "fan_witnesses_checked_in_both_representations": 37,
+          "exact_initial_ideal_count_by_uniform_proof": 37
+        },
+        {
+          "positive_nodes_and_multiplicities": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "monic_modulus_low_to_high": [
+            -16,
+            80,
+            -168,
+            192,
+            -129,
+            51,
+            -11,
+            1
+          ],
+          "staircase_rank_checks": 86,
+          "ranks_in_lexicographic_staircase_order": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            6,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            6,
+            7,
+            7,
+            7,
+            7,
+            6,
+            6,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "companion_and_jet_column_checks": 28,
+          "fan_witnesses_checked_in_both_representations": 37,
+          "exact_initial_ideal_count_by_uniform_proof": 37
+        },
+        {
+          "positive_nodes_and_multiplicities": [
+            [
+              1,
+              1
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              5,
+              4
+            ]
+          ],
+          "monic_modulus_low_to_high": [
+            -5625,
+            13875,
+            -13225,
+            6555,
+            -1859,
+            305,
+            -27,
+            1
+          ],
+          "staircase_rank_checks": 86,
+          "ranks_in_lexicographic_staircase_order": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            6,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            6,
+            7,
+            7,
+            7,
+            7,
+            6,
+            6,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "companion_and_jet_column_checks": 28,
+          "fan_witnesses_checked_in_both_representations": 37,
+          "exact_initial_ideal_count_by_uniform_proof": 37
+        }
+      ],
+      "scope": "Finite checks use all seven-box staircases and all 37 saved coherent bases. Equality for every positive divisor of degree n is proved in the note, not inferred from these four profiles."
+    }
+  },
+  "monogenic_embedding_control": {
+    "uniform_conclusion": "Over characteristic zero, a finite algebra admits an embedding with the labeled generic corner-cut fan if and only if it is monogenic. For every monogenic algebra a nonempty Zariski open set of coordinate tuples has this fan. The fixed abstract curvilinear algebra K[u]/(u^n) has both one-initial-ideal and C_d(n)-initial-ideal embeddings.",
+    "scope": "Generic embeddings are not asserted to maximize the fan count; the existing seven-point countercontrol rules that out. This does not improve G_d or F_d and does not complete the goal.",
+    "checks": {
+      "field_scope": "Uniform statements are over characteristic zero; the characteristic-two failure is deliberate.",
+      "fixed_algebra_fixtures": [
+        {
+          "n": 3,
+          "dimension": 2,
+          "powers": [
+            1,
+            3
+          ],
+          "monic_modulus_low_to_high": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "working_shift": 1,
+          "rejected_shift_certificates": [],
+          "ground_size": 5,
+          "all_rank_n_minors_checked": 10,
+          "smallest_absolute_minor": "1"
+        },
+        {
+          "n": 3,
+          "dimension": 3,
+          "powers": [
+            1,
+            3,
+            9
+          ],
+          "monic_modulus_low_to_high": [
+            -1,
+            1,
+            -1,
+            1
+          ],
+          "working_shift": 2,
+          "rejected_shift_certificates": [
+            {
+              "shift": 1,
+              "zero_minor_monomials": [
+                [
+                  0,
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  0,
+                  0
+                ]
+              ]
+            }
+          ],
+          "ground_size": 7,
+          "all_rank_n_minors_checked": 35,
+          "smallest_absolute_minor": "1"
+        },
+        {
+          "n": 4,
+          "dimension": 2,
+          "powers": [
+            1,
+            4
+          ],
+          "monic_modulus_low_to_high": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "working_shift": 1,
+          "rejected_shift_certificates": [],
+          "ground_size": 8,
+          "all_rank_n_minors_checked": 70,
+          "smallest_absolute_minor": "1"
+        },
+        {
+          "n": 4,
+          "dimension": 3,
+          "powers": [
+            1,
+            4,
+            16
+          ],
+          "monic_modulus_low_to_high": [
+            1,
+            0,
+            2,
+            0,
+            1
+          ],
+          "working_shift": 2,
+          "rejected_shift_certificates": [
+            {
+              "shift": 1,
+              "zero_minor_monomials": [
+                [
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  0,
+                  3
+                ]
+              ]
+            }
+          ],
+          "ground_size": 13,
+          "all_rank_n_minors_checked": 715,
+          "smallest_absolute_minor": "1"
+        }
+      ],
+      "centered_curvilinear_fixtures": [
+        {
+          "n": 2,
+          "dimension": 2,
+          "powers": [
+            1,
+            2
+          ],
+          "all_staircase_determinants_checked": 2
+        },
+        {
+          "n": 3,
+          "dimension": 2,
+          "powers": [
+            1,
+            3
+          ],
+          "all_staircase_determinants_checked": 3
+        },
+        {
+          "n": 4,
+          "dimension": 2,
+          "powers": [
+            1,
+            4
+          ],
+          "all_staircase_determinants_checked": 5
+        },
+        {
+          "n": 5,
+          "dimension": 2,
+          "powers": [
+            1,
+            5
+          ],
+          "all_staircase_determinants_checked": 7
+        },
+        {
+          "n": 6,
+          "dimension": 2,
+          "powers": [
+            1,
+            6
+          ],
+          "all_staircase_determinants_checked": 11
+        },
+        {
+          "n": 7,
+          "dimension": 2,
+          "powers": [
+            1,
+            7
+          ],
+          "all_staircase_determinants_checked": 15
+        },
+        {
+          "n": 2,
+          "dimension": 3,
+          "powers": [
+            1,
+            2,
+            4
+          ],
+          "all_staircase_determinants_checked": 3
+        },
+        {
+          "n": 3,
+          "dimension": 3,
+          "powers": [
+            1,
+            3,
+            9
+          ],
+          "all_staircase_determinants_checked": 6
+        },
+        {
+          "n": 4,
+          "dimension": 3,
+          "powers": [
+            1,
+            4,
+            16
+          ],
+          "all_staircase_determinants_checked": 13
+        },
+        {
+          "n": 5,
+          "dimension": 3,
+          "powers": [
+            1,
+            5,
+            25
+          ],
+          "all_staircase_determinants_checked": 24
+        },
+        {
+          "n": 6,
+          "dimension": 3,
+          "powers": [
+            1,
+            6,
+            36
+          ],
+          "all_staircase_determinants_checked": 48
+        },
+        {
+          "n": 7,
+          "dimension": 3,
+          "powers": [
+            1,
+            7,
+            49
+          ],
+          "all_staircase_determinants_checked": 86
+        },
+        {
+          "n": 2,
+          "dimension": 4,
+          "powers": [
+            1,
+            2,
+            4,
+            8
+          ],
+          "all_staircase_determinants_checked": 4
+        },
+        {
+          "n": 3,
+          "dimension": 4,
+          "powers": [
+            1,
+            3,
+            9,
+            27
+          ],
+          "all_staircase_determinants_checked": 10
+        },
+        {
+          "n": 4,
+          "dimension": 4,
+          "powers": [
+            1,
+            4,
+            16,
+            64
+          ],
+          "all_staircase_determinants_checked": 26
+        },
+        {
+          "n": 5,
+          "dimension": 4,
+          "powers": [
+            1,
+            5,
+            25,
+            125
+          ],
+          "all_staircase_determinants_checked": 59
+        }
+      ],
+      "leading_coefficient_controls": [
+        {
+          "monic_modulus_low_to_high": [
+            -1,
+            1,
+            -1,
+            1
+          ],
+          "degrees": [
+            0,
+            2,
+            5
+          ],
+          "polynomial_degree": 4,
+          "leading_coefficient": "15",
+          "determinants_at_consecutive_shifts_starting_zero": [
+            "-1",
+            "44",
+            "439",
+            "1844",
+            "5279",
+            "12124"
+          ]
+        },
+        {
+          "monic_modulus_low_to_high": [
+            1,
+            0,
+            2,
+            0,
+            1
+          ],
+          "degrees": [
+            0,
+            1,
+            3,
+            6
+          ],
+          "polynomial_degree": 4,
+          "leading_coefficient": "45",
+          "determinants_at_consecutive_shifts_starting_zero": [
+            "-3",
+            "36",
+            "693",
+            "3588",
+            "11421",
+            "27972"
+          ]
+        }
+      ],
+      "centered_nonuniform_matroid_control": {
+        "n": 4,
+        "powers": [
+          1,
+          4,
+          16
+        ],
+        "dependent_monomials": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            0
+          ]
+        ]
+      },
+      "small_characteristic_control": {
+        "characteristic": 2,
+        "failed_y_axis_rank": 1
+      },
+      "scope": "Classical Vandermonde and open-minor consequences, not a new unrestricted counting theorem or an established novelty claim."
+    }
+  },
+  "sparse_prefix_interpolation_control": {
+    "field": "Q",
+    "fixtures": [
+      {
+        "k": 2,
+        "R": 5,
+        "quotient_length": 16,
+        "monomial_ideal": [
+          [
+            5,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            0,
+            5
+          ]
+        ],
+        "positive_tag_y_z_weights": [
+          17,
+          18,
+          20
+        ],
+        "identity_prefix_size": 10,
+        "convolution_prefix_size": 6,
+        "convolution_scale": 576,
+        "dual_polynomial_coefficients": [
+          {
+            "monomial": [
+              0,
+              4
+            ],
+            "coefficient": -1
+          },
+          {
+            "monomial": [
+              1,
+              3
+            ],
+            "coefficient": 2
+          },
+          {
+            "monomial": [
+              3,
+              1
+            ],
+            "coefficient": -2
+          },
+          {
+            "monomial": [
+              4,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "exact_prefix_null_vector": [
+          0,
+          0,
+          0,
+          0,
+          -24,
+          0,
+          0,
+          0,
+          12,
+          0,
+          0,
+          0,
+          0,
+          -12,
+          24,
+          0
+        ],
+        "rank_upper_bound_by_nonzero_null_vector": 15,
+        "residual_rows": [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        "residual_columns": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "residual_matrix": [
+          [
+            24,
+            0,
+            96,
+            0,
+            0,
+            288
+          ],
+          [
+            96,
+            96,
+            288,
+            0,
+            288,
+            576
+          ],
+          [
+            24,
+            24,
+            96,
+            0,
+            96,
+            288
+          ],
+          [
+            96,
+            288,
+            96,
+            576,
+            288,
+            0
+          ],
+          [
+            24,
+            96,
+            0,
+            288,
+            0,
+            0
+          ],
+          [
+            24,
+            96,
+            24,
+            288,
+            96,
+            0
+          ]
+        ],
+        "perfect_support_matching": [
+          0,
+          1,
+          5,
+          2,
+          3,
+          4
+        ],
+        "exact_residual_rank": 5,
+        "exact_full_prefix_rank": 15,
+        "nonzero_minor": {
+          "rows": [
+            0,
+            1,
+            2,
+            3,
+            5
+          ],
+          "columns": [
+            0,
+            2,
+            1,
+            4,
+            3
+          ],
+          "determinant": "2293235712"
+        }
+      },
+      {
+        "k": 4,
+        "R": 10,
+        "quotient_length": 64,
+        "monomial_ideal": [
+          [
+            10,
+            0
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            0,
+            10
+          ]
+        ],
+        "positive_tag_y_z_weights": [
+          33,
+          34,
+          36
+        ],
+        "identity_prefix_size": 36,
+        "convolution_prefix_size": 28,
+        "convolution_scale": 131681894400,
+        "dual_polynomial_coefficients": [
+          {
+            "monomial": [
+              0,
+              8
+            ],
+            "coefficient": -1
+          },
+          {
+            "monomial": [
+              1,
+              7
+            ],
+            "coefficient": 6
+          },
+          {
+            "monomial": [
+              2,
+              6
+            ],
+            "coefficient": -14
+          },
+          {
+            "monomial": [
+              3,
+              5
+            ],
+            "coefficient": 14
+          },
+          {
+            "monomial": [
+              5,
+              3
+            ],
+            "coefficient": -14
+          },
+          {
+            "monomial": [
+              6,
+              2
+            ],
+            "coefficient": 14
+          },
+          {
+            "monomial": [
+              7,
+              1
+            ],
+            "coefficient": -6
+          },
+          {
+            "monomial": [
+              8,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "exact_prefix_null_vector": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -40320,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          30240,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -20160,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          10080,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -10080,
+          0,
+          0,
+          20160,
+          0,
+          0,
+          -30240,
+          0,
+          0,
+          40320,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "rank_upper_bound_by_nonzero_null_vector": 63
+      },
+      {
+        "k": 6,
+        "R": 15,
+        "quotient_length": 144,
+        "monomial_ideal": [
+          [
+            15,
+            0
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            0,
+            15
+          ]
+        ],
+        "positive_tag_y_z_weights": [
+          49,
+          50,
+          52
+        ],
+        "identity_prefix_size": 78,
+        "convolution_prefix_size": 66,
+        "convolution_scale": 7600054456551997440000,
+        "dual_polynomial_coefficients": [
+          {
+            "monomial": [
+              0,
+              12
+            ],
+            "coefficient": -1
+          },
+          {
+            "monomial": [
+              1,
+              11
+            ],
+            "coefficient": 10
+          },
+          {
+            "monomial": [
+              2,
+              10
+            ],
+            "coefficient": -44
+          },
+          {
+            "monomial": [
+              3,
+              9
+            ],
+            "coefficient": 110
+          },
+          {
+            "monomial": [
+              4,
+              8
+            ],
+            "coefficient": -165
+          },
+          {
+            "monomial": [
+              5,
+              7
+            ],
+            "coefficient": 132
+          },
+          {
+            "monomial": [
+              7,
+              5
+            ],
+            "coefficient": -132
+          },
+          {
+            "monomial": [
+              8,
+              4
+            ],
+            "coefficient": 165
+          },
+          {
+            "monomial": [
+              9,
+              3
+            ],
+            "coefficient": -110
+          },
+          {
+            "monomial": [
+              10,
+              2
+            ],
+            "coefficient": 44
+          },
+          {
+            "monomial": [
+              11,
+              1
+            ],
+            "coefficient": -10
+          },
+          {
+            "monomial": [
+              12,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "exact_prefix_null_vector": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -479001600,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          399168000,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -319334400,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          239500800,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -159667200,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          79833600,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -79833600,
+          0,
+          0,
+          0,
+          0,
+          159667200,
+          0,
+          0,
+          0,
+          0,
+          -239500800,
+          0,
+          0,
+          0,
+          0,
+          319334400,
+          0,
+          0,
+          0,
+          0,
+          -399168000,
+          0,
+          0,
+          0,
+          0,
+          479001600,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "rank_upper_bound_by_nonzero_null_vector": 143
+      }
+    ],
+    "scope": "Two-generator module columns inside the actual monomial quotient K[y,z]/(y^R,y^k*z^k,z^R). The full monomial configuration of a three-variable ideal has extra powers of the tag variable and is not counted here.",
+    "conclusion": "Perfect support matching does not imply normal geometric-prefix rank. This subcheck certifies a nonzero null vector for every fixture and exact rank at k=2. The subsequent graded-Jordan argument determines the uniform exact defect k^2/4."
+  },
+  "jordan_filtered_convolution_control": {
+    "field": "Q",
+    "fixtures": [
+      {
+        "k": 2,
+        "L": "y+z",
+        "quotient_length": 16,
+        "graded_Jordan_strings_start_and_length": [
+          [
+            0,
+            6
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        "graded_multiplication_map_ranks_checked": 21,
+        "prefix_rank_checks": [
+          {
+            "identity_degree_cut": 0,
+            "convolution_degree_cut": 0,
+            "rank": 0
+          },
+          {
+            "identity_degree_cut": 0,
+            "convolution_degree_cut": 1,
+            "rank": 1
+          },
+          {
+            "identity_degree_cut": 0,
+            "convolution_degree_cut": 2,
+            "rank": 3
+          },
+          {
+            "identity_degree_cut": 0,
+            "convolution_degree_cut": 3,
+            "rank": 6
+          },
+          {
+            "identity_degree_cut": 0,
+            "convolution_degree_cut": 4,
+            "rank": 10
+          },
+          {
+            "identity_degree_cut": 0,
+            "convolution_degree_cut": 5,
+            "rank": 14
+          },
+          {
+            "identity_degree_cut": 0,
+            "convolution_degree_cut": 6,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 0,
+            "convolution_degree_cut": 7,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 1,
+            "convolution_degree_cut": 0,
+            "rank": 1
+          },
+          {
+            "identity_degree_cut": 1,
+            "convolution_degree_cut": 1,
+            "rank": 2
+          },
+          {
+            "identity_degree_cut": 1,
+            "convolution_degree_cut": 2,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 1,
+            "convolution_degree_cut": 3,
+            "rank": 7
+          },
+          {
+            "identity_degree_cut": 1,
+            "convolution_degree_cut": 4,
+            "rank": 11
+          },
+          {
+            "identity_degree_cut": 1,
+            "convolution_degree_cut": 5,
+            "rank": 15
+          },
+          {
+            "identity_degree_cut": 1,
+            "convolution_degree_cut": 6,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 1,
+            "convolution_degree_cut": 7,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 2,
+            "convolution_degree_cut": 0,
+            "rank": 3
+          },
+          {
+            "identity_degree_cut": 2,
+            "convolution_degree_cut": 1,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 2,
+            "convolution_degree_cut": 2,
+            "rank": 6
+          },
+          {
+            "identity_degree_cut": 2,
+            "convolution_degree_cut": 3,
+            "rank": 9
+          },
+          {
+            "identity_degree_cut": 2,
+            "convolution_degree_cut": 4,
+            "rank": 13
+          },
+          {
+            "identity_degree_cut": 2,
+            "convolution_degree_cut": 5,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 2,
+            "convolution_degree_cut": 6,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 2,
+            "convolution_degree_cut": 7,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 3,
+            "convolution_degree_cut": 0,
+            "rank": 6
+          },
+          {
+            "identity_degree_cut": 3,
+            "convolution_degree_cut": 1,
+            "rank": 7
+          },
+          {
+            "identity_degree_cut": 3,
+            "convolution_degree_cut": 2,
+            "rank": 9
+          },
+          {
+            "identity_degree_cut": 3,
+            "convolution_degree_cut": 3,
+            "rank": 12
+          },
+          {
+            "identity_degree_cut": 3,
+            "convolution_degree_cut": 4,
+            "rank": 15
+          },
+          {
+            "identity_degree_cut": 3,
+            "convolution_degree_cut": 5,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 3,
+            "convolution_degree_cut": 6,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 3,
+            "convolution_degree_cut": 7,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 4,
+            "convolution_degree_cut": 0,
+            "rank": 10
+          },
+          {
+            "identity_degree_cut": 4,
+            "convolution_degree_cut": 1,
+            "rank": 11
+          },
+          {
+            "identity_degree_cut": 4,
+            "convolution_degree_cut": 2,
+            "rank": 13
+          },
+          {
+            "identity_degree_cut": 4,
+            "convolution_degree_cut": 3,
+            "rank": 15
+          },
+          {
+            "identity_degree_cut": 4,
+            "convolution_degree_cut": 4,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 4,
+            "convolution_degree_cut": 5,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 4,
+            "convolution_degree_cut": 6,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 4,
+            "convolution_degree_cut": 7,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 5,
+            "convolution_degree_cut": 0,
+            "rank": 14
+          },
+          {
+            "identity_degree_cut": 5,
+            "convolution_degree_cut": 1,
+            "rank": 15
+          },
+          {
+            "identity_degree_cut": 5,
+            "convolution_degree_cut": 2,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 5,
+            "convolution_degree_cut": 3,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 5,
+            "convolution_degree_cut": 4,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 5,
+            "convolution_degree_cut": 5,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 5,
+            "convolution_degree_cut": 6,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 5,
+            "convolution_degree_cut": 7,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 6,
+            "convolution_degree_cut": 0,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 6,
+            "convolution_degree_cut": 1,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 6,
+            "convolution_degree_cut": 2,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 6,
+            "convolution_degree_cut": 3,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 6,
+            "convolution_degree_cut": 4,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 6,
+            "convolution_degree_cut": 5,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 6,
+            "convolution_degree_cut": 6,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 6,
+            "convolution_degree_cut": 7,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 7,
+            "convolution_degree_cut": 0,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 7,
+            "convolution_degree_cut": 1,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 7,
+            "convolution_degree_cut": 2,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 7,
+            "convolution_degree_cut": 3,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 7,
+            "convolution_degree_cut": 4,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 7,
+            "convolution_degree_cut": 5,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 7,
+            "convolution_degree_cut": 6,
+            "rank": 16
+          },
+          {
+            "identity_degree_cut": 7,
+            "convolution_degree_cut": 7,
+            "rank": 16
+          }
+        ],
+        "full_tag_power_diagonal_cost_controls": [
+          {
+            "positive_weights": [
+              1,
+              2,
+              2
+            ],
+            "minimum_basis_cost": 57,
+            "standard_monomials": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                2
+              ],
+              [
+                1,
+                0,
+                3
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                1
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "positive_weights": [
+              2,
+              1,
+              1
+            ],
+            "minimum_basis_cost": 40,
+            "standard_monomials": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                0,
+                1,
+                3
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                3,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "positive_weights": [
+              3,
+              2,
+              2
+            ],
+            "minimum_basis_cost": 75,
+            "standard_monomials": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                2
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "positive_weights": [
+              5,
+              1,
+              1
+            ],
+            "minimum_basis_cost": 46,
+            "standard_monomials": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                0,
+                1,
+                3
+              ],
+              [
+                0,
+                1,
+                4
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                3,
+                1
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                4,
+                1
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "k": 4,
+        "L": "y+z",
+        "quotient_length": 64,
+        "graded_Jordan_strings_start_and_length": [
+          [
+            0,
+            13
+          ],
+          [
+            1,
+            12
+          ],
+          [
+            2,
+            10
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            7,
+            3
+          ]
+        ],
+        "graded_multiplication_map_ranks_checked": 91,
+        "prefix_rank_checks": [
+          {
+            "identity_degree_cut": 8,
+            "convolution_degree_cut": 7,
+            "rank": 60
+          },
+          {
+            "identity_degree_cut": 1,
+            "convolution_degree_cut": 2,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 8,
+            "convolution_degree_cut": 8,
+            "rank": 63
+          },
+          {
+            "identity_degree_cut": 10,
+            "convolution_degree_cut": 9,
+            "rank": 64
+          },
+          {
+            "identity_degree_cut": 0,
+            "convolution_degree_cut": 13,
+            "rank": 64
+          }
+        ]
+      },
+      {
+        "k": 6,
+        "L": "y+z",
+        "quotient_length": 144,
+        "graded_Jordan_strings_start_and_length": [
+          [
+            0,
+            20
+          ],
+          [
+            1,
+            19
+          ],
+          [
+            2,
+            17
+          ],
+          [
+            3,
+            16
+          ],
+          [
+            4,
+            14
+          ],
+          [
+            5,
+            13
+          ],
+          [
+            6,
+            11
+          ],
+          [
+            7,
+            10
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            10,
+            5
+          ],
+          [
+            11,
+            4
+          ]
+        ],
+        "graded_multiplication_map_ranks_checked": 210,
+        "prefix_rank_checks": [
+          {
+            "identity_degree_cut": 12,
+            "convolution_degree_cut": 11,
+            "rank": 135
+          },
+          {
+            "identity_degree_cut": 1,
+            "convolution_degree_cut": 2,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 12,
+            "convolution_degree_cut": 12,
+            "rank": 140
+          },
+          {
+            "identity_degree_cut": 15,
+            "convolution_degree_cut": 14,
+            "rank": 144
+          },
+          {
+            "identity_degree_cut": 0,
+            "convolution_degree_cut": 20,
+            "rank": 144
+          }
+        ]
+      },
+      {
+        "k": null,
+        "L": "y",
+        "quotient_length": 4,
+        "graded_Jordan_strings_start_and_length": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "graded_multiplication_map_ranks_checked": 6,
+        "prefix_rank_checks": [
+          {
+            "identity_degree_cut": 0,
+            "convolution_degree_cut": 0,
+            "rank": 0
+          },
+          {
+            "identity_degree_cut": 0,
+            "convolution_degree_cut": 1,
+            "rank": 1
+          },
+          {
+            "identity_degree_cut": 0,
+            "convolution_degree_cut": 2,
+            "rank": 3
+          },
+          {
+            "identity_degree_cut": 0,
+            "convolution_degree_cut": 3,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 0,
+            "convolution_degree_cut": 4,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 1,
+            "convolution_degree_cut": 0,
+            "rank": 1
+          },
+          {
+            "identity_degree_cut": 1,
+            "convolution_degree_cut": 1,
+            "rank": 2
+          },
+          {
+            "identity_degree_cut": 1,
+            "convolution_degree_cut": 2,
+            "rank": 3
+          },
+          {
+            "identity_degree_cut": 1,
+            "convolution_degree_cut": 3,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 1,
+            "convolution_degree_cut": 4,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 2,
+            "convolution_degree_cut": 0,
+            "rank": 3
+          },
+          {
+            "identity_degree_cut": 2,
+            "convolution_degree_cut": 1,
+            "rank": 3
+          },
+          {
+            "identity_degree_cut": 2,
+            "convolution_degree_cut": 2,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 2,
+            "convolution_degree_cut": 3,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 2,
+            "convolution_degree_cut": 4,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 3,
+            "convolution_degree_cut": 0,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 3,
+            "convolution_degree_cut": 1,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 3,
+            "convolution_degree_cut": 2,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 3,
+            "convolution_degree_cut": 3,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 3,
+            "convolution_degree_cut": 4,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 4,
+            "convolution_degree_cut": 0,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 4,
+            "convolution_degree_cut": 1,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 4,
+            "convolution_degree_cut": 2,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 4,
+            "convolution_degree_cut": 3,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 4,
+            "convolution_degree_cut": 4,
+            "rank": 4
+          }
+        ]
+      },
+      {
+        "k": null,
+        "L": "y+z",
+        "quotient_length": 4,
+        "graded_Jordan_strings_start_and_length": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "graded_multiplication_map_ranks_checked": 6,
+        "prefix_rank_checks": [
+          {
+            "identity_degree_cut": 0,
+            "convolution_degree_cut": 0,
+            "rank": 0
+          },
+          {
+            "identity_degree_cut": 0,
+            "convolution_degree_cut": 1,
+            "rank": 1
+          },
+          {
+            "identity_degree_cut": 0,
+            "convolution_degree_cut": 2,
+            "rank": 3
+          },
+          {
+            "identity_degree_cut": 0,
+            "convolution_degree_cut": 3,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 0,
+            "convolution_degree_cut": 4,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 1,
+            "convolution_degree_cut": 0,
+            "rank": 1
+          },
+          {
+            "identity_degree_cut": 1,
+            "convolution_degree_cut": 1,
+            "rank": 2
+          },
+          {
+            "identity_degree_cut": 1,
+            "convolution_degree_cut": 2,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 1,
+            "convolution_degree_cut": 3,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 1,
+            "convolution_degree_cut": 4,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 2,
+            "convolution_degree_cut": 0,
+            "rank": 3
+          },
+          {
+            "identity_degree_cut": 2,
+            "convolution_degree_cut": 1,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 2,
+            "convolution_degree_cut": 2,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 2,
+            "convolution_degree_cut": 3,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 2,
+            "convolution_degree_cut": 4,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 3,
+            "convolution_degree_cut": 0,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 3,
+            "convolution_degree_cut": 1,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 3,
+            "convolution_degree_cut": 2,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 3,
+            "convolution_degree_cut": 3,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 3,
+            "convolution_degree_cut": 4,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 4,
+            "convolution_degree_cut": 0,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 4,
+            "convolution_degree_cut": 1,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 4,
+            "convolution_degree_cut": 2,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 4,
+            "convolution_degree_cut": 3,
+            "rank": 4
+          },
+          {
+            "identity_degree_cut": 4,
+            "convolution_degree_cut": 4,
+            "rank": 4
+          }
+        ]
+      }
+    ],
+    "three_node_string_rank_checks": 224,
+    "duplicate_node_rank_failure_checked": true,
+    "uniform_rank_formula": "For distinct scalar nodes tau_i and total-degree cuts a_i, rank of sum_i exp(tau_i*L)*B_{<a_i} is sum_strings min(length,sum_i clamp(a_i-start,0,length)).",
+    "sparse_family_exact_defect": "For every even k>=2 the selected 4k^2-column prefix has rank 4k^2-k^2/4. This follows from the known two-variable strong Lefschetz theorem and the rank formula.",
+    "scope": "This controls total-degree filtrations and the full exponential-graph algebra on diagonal weights. It does not count its full positive Groebner fan or improve the unrestricted asymptotic bounds."
+  },
   "summary": {
     "volume_fixtures": 30,
     "socle_fixtures": 18,
@@ -152723,7 +155374,19 @@
     "factorial_boundary_full_matrix_checks": 87,
     "independent_boundary_arm_fixtures": 4,
     "independent_boundary_arm_row_and_greedy_checks": 864,
-    "independent_boundary_arm_full_matrix_checks": 236
+    "independent_boundary_arm_full_matrix_checks": 236,
+    "positive_collision_profiles": 4,
+    "positive_collision_staircase_rank_checks": 344,
+    "positive_collision_fan_witness_checks": 296,
+    "monogenic_fixed_algebra_fixtures": 4,
+    "monogenic_all_minors_checked": 830,
+    "centered_curvilinear_staircase_checks": 322,
+    "sparse_prefix_exact_matching_rank_controls": 1,
+    "sparse_prefix_uniform_dual_certificates": 3,
+    "jordan_graded_map_rank_checks": 334,
+    "jordan_three_node_string_rank_checks": 224,
+    "jordan_filtered_prefix_rank_checks": 124,
+    "jordan_full_tag_power_diagonal_cost_checks": 4
   },
   "goal_qualifying_advance": false
 }

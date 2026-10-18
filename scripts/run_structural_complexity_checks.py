@@ -1781,6 +1781,406 @@ def independent_boundary_arms_fixture(t, one_arm_counts):
             "full_matrix_checks": full_checks, "exhaustive_positive_fan_covered": True, "fields": fields}
 
 
+def finite_staircases(n, d):
+    """All cardinality-n monomial downsets, with no weight-feasibility filter."""
+    states = {frozenset({(0,) * d})}
+    for _ in range(1, n):
+        following = set()
+        for state in states:
+            border = {tuple(x + (i == j) for j, x in enumerate(a))
+                      for a in state for i in range(d)} - state
+            for a in border:
+                if all(tuple(x - (i == j) for j, x in enumerate(a)) in state
+                       for i in range(d) if a[i]):
+                    following.add(state | {a})
+        states = following
+    return sorted(states, key=lambda state: tuple(sorted(state)))
+
+
+def univariate_product_mod(left, right, modulus):
+    """Integer normal forms, independent of confluent evaluation formulas."""
+    n = len(modulus) - 1
+    require(modulus[-1] == 1, "monic univariate modulus")
+    values = [0] * (len(left) + len(right) - 1)
+    for i, x in enumerate(left):
+        for j, y in enumerate(right):
+            values[i + j] += x * y
+    values.extend([0] * max(0, n - len(values)))
+    for i in range(len(values) - 1, n - 1, -1):
+        coefficient = values[i]
+        for j in range(n):
+            values[i - n + j] -= coefficient * modulus[j]
+    return tuple(values[:n])
+
+
+def univariate_power_mod(base, exponent, modulus):
+    n = len(modulus) - 1
+    result = (1,) + (0,) * (n - 1)
+    while exponent:
+        if exponent & 1:
+            result = univariate_product_mod(result, base, modulus)
+        base = univariate_product_mod(base, base, modulus)
+        exponent //= 2
+    return result
+
+
+def cyclic_univariate_model(modulus, images, ground):
+    """Construct actual commuting multiplication matrices and residue columns."""
+    n, d = len(modulus) - 1, len(images)
+    unit = (1,) + (0,) * (n - 1)
+    coordinates = [tuple(int(i == j) for i in range(n)) for j in range(n)]
+    matrices = [tuple(univariate_product_mod(image, b, modulus) for b in coordinates)
+                for image in images]
+    for i, j in combinations(range(d), 2):
+        for b in coordinates:
+            require(matvec(matrices[i], matvec(matrices[j], b)) ==
+                    matvec(matrices[j], matvec(matrices[i], b)),
+                    "univariate quotient multiplication matrices commute")
+    columns = {}
+    for a in sorted(ground, key=lambda a: (sum(a), a)):
+        if not any(a):
+            columns[a] = unit
+        else:
+            i = next(i for i, value in enumerate(a) if value)
+            previous = tuple(value - (i == j) for j, value in enumerate(a))
+            columns[a] = matvec(matrices[i], columns[previous])
+    axis = [tuple(i if j == 0 else 0 for j in range(d)) for i in range(n)]
+    require(determinant([columns[a] for a in axis]) != 0,
+            "first coordinate generates the claimed length-n cyclic quotient")
+    return columns
+
+
+def monomial_curve_collision_controls(point_fixture):
+    """Confluent evaluation, companion normal forms and all saved fan witnesses."""
+    n, d, powers = point_fixture["n"], point_fixture["dimension"], point_fixture["powers"]
+    ground, states = hyperbolic_cross(n, d), finite_staircases(n, d)
+    profiles = [tuple((t, 1) for t in range(1, n + 1)), ((1, n),),
+                ((1, 3), (2, 4)), ((1, 1), (3, 2), (5, 4))]
+    results = []
+    for profile in profiles:
+        modulus = [1]
+        for node, multiplicity in profile:
+            for _ in range(multiplicity):
+                following = [0] * (len(modulus) + 1)
+                for i, value in enumerate(modulus):
+                    following[i] -= node * value
+                    following[i + 1] += value
+                modulus = following
+        images = [univariate_power_mod((0, 1), exponent, modulus) for exponent in powers]
+        columns = cyclic_univariate_model(modulus, images, ground)
+        jets = {}
+        for a in ground:
+            degree = dot(a, powers)
+            jets[a] = tuple(comb(degree, j) * node ** (degree - j) if degree >= j else 0
+                            for node, multiplicity in profile for j in range(multiplicity))
+            normal_form_jets = tuple(sum(value * comb(i, j) * node ** (i - j)
+                                        for i, value in enumerate(columns[a]) if i >= j)
+                                     for node, multiplicity in profile for j in range(multiplicity))
+            require(normal_form_jets == jets[a], "direct Hermite jets equal companion normal forms")
+        ranks = []
+        for state in states:
+            rank = len(greedy(state, columns, (1, 2, 3), 0))
+            require(rank == min(n, len({dot(a, powers) for a in state})),
+                    "every staircase rank obeys the confluent degree-class formula")
+            ranks.append(rank)
+        for witness in point_fixture["witnesses"]:
+            weight = witness["positive_integer_weights"]
+            expected = {tuple(a) for a in witness["standard_monomials"]}
+            require(greedy(ground, columns, weight, 0) == expected and
+                    greedy(ground, jets, weight, 0) == expected,
+                    "all saved initial ideals survive every checked collision profile")
+        results.append({"positive_nodes_and_multiplicities": profile,
+                        "monic_modulus_low_to_high": modulus,
+                        "staircase_rank_checks": len(states),
+                        "ranks_in_lexicographic_staircase_order": ranks,
+                        "companion_and_jet_column_checks": len(ground),
+                        "fan_witnesses_checked_in_both_representations": len(point_fixture["witnesses"]),
+                        "exact_initial_ideal_count_by_uniform_proof": point_fixture["point_initial_ideals"]})
+    return {"n": n, "powers": powers, "field": "Q", "profiles": results,
+            "scope": "Finite checks use all seven-box staircases and all 37 saved coherent bases. Equality for every positive divisor of degree n is proved in the note, not inferred from these four profiles."}
+
+
+def monogenic_embedding_controls():
+    """Mixed-radix embeddings of fixed monogenic algebras, including nonsplit ones."""
+    fixtures = []
+    for n, d, modulus in [(3, 2, [0, 0, 0, 1]), (3, 3, [-1, 1, -1, 1]),
+                           (4, 2, [0, 0, 0, 0, 1]), (4, 3, [1, 0, 2, 0, 1])]:
+        ground, powers = sorted(hyperbolic_cross(n, d)), tuple(n ** i for i in range(d))
+        degrees = {a: dot(a, powers) for a in ground}
+        require(len(set(degrees.values())) == len(ground), "mixed-radix degree injection on hyperbolic cross")
+        rejected, shift = [], 1
+        while True:
+            columns = {a: univariate_power_mod((shift, 1), degrees[a], modulus) for a in ground}
+            first_zero, smallest, checked = None, None, 0
+            for subset in combinations(ground, n):
+                value = determinant([columns[a] for a in subset])
+                checked += 1
+                if not value:
+                    first_zero = subset
+                    break
+                smallest = abs(value) if smallest is None else min(smallest, abs(value))
+            if first_zero is None:
+                break
+            rejected.append({"shift": shift, "zero_minor_monomials": first_zero})
+            shift += 1
+            require(shift <= 12, "bounded fixture search; not a bound in the uniform theorem")
+        images = [univariate_power_mod((shift, 1), exponent, modulus) for exponent in powers]
+        actual = cyclic_univariate_model(modulus, images, ground)
+        require(actual == columns, "commuting cyclic model equals direct shifted-power formula")
+        fixtures.append({"n": n, "dimension": d, "powers": powers,
+                         "monic_modulus_low_to_high": modulus, "working_shift": shift,
+                         "rejected_shift_certificates": rejected, "ground_size": len(ground),
+                         "all_rank_n_minors_checked": checked,
+                         "smallest_absolute_minor": str(smallest)})
+    centered = []
+    for d, maximum in [(2, 7), (3, 7), (4, 5)]:
+        for n in range(2, maximum + 1):
+            modulus = [0] * n + [1]
+            powers, ground = tuple(n ** i for i in range(d)), hyperbolic_cross(n, d)
+            images = []
+            for exponent in powers:
+                values = list(univariate_power_mod((1, 1), exponent, modulus))
+                values[0] -= 1
+                images.append(tuple(values))
+            columns = cyclic_univariate_model(modulus, images, ground)
+            states = finite_staircases(n, d)
+            for state in states:
+                ordered = sorted(state)
+                plain = [tuple(comb(dot(a, powers), j) for j in range(n)) for a in ordered]
+                value = determinant(plain)
+                degree_list = [dot(a, powers) for a in ordered]
+                formula = Fraction(1, 1)
+                for i, j in combinations(range(n), 2):
+                    formula *= degree_list[j] - degree_list[i]
+                formula /= product_factorials(n)
+                require(value == formula != 0, "exact confluent Vandermonde determinant at one")
+                require(determinant([columns[a] for a in ordered]) == value,
+                        "centering preserves every downset basis determinant")
+            centered.append({"n": n, "dimension": d, "powers": powers,
+                             "all_staircase_determinants_checked": len(states)})
+    # The uncentered finite-ground matroid is uniform; the centered one need not be.
+    n, d, powers = 4, 3, (1, 4, 16)
+    modulus = [0] * n + [1]
+    images = [tuple([0] + [comb(exponent, j) for j in range(1, n)]) for exponent in powers]
+    columns = cyclic_univariate_model(modulus, images, hyperbolic_cross(n, d))
+    dependent = ((1, 0, 0), (0, 1, 0), (0, 0, 1), (2, 0, 0))
+    require(determinant([columns[a] for a in dependent]) == 0,
+            "translation preserves staircase bases, not the whole monomial matroid")
+    small_field_basis = ((0, 0, 0), (0, 1, 0), (0, 2, 0), (0, 3, 0))
+    require(len(greedy(small_field_basis, columns, (1, 2, 3), 2)) == 1,
+            "characteristic two destroys the y-axis basis for these mixed-radix powers")
+    leading = []
+    for modulus, degrees in [([-1, 1, -1, 1], (0, 2, 5)), ([1, 0, 2, 0, 1], (0, 1, 3, 6))]:
+        n = len(modulus) - 1
+        degree = sum(degrees) - n * (n - 1) // 2
+        values = [determinant([univariate_power_mod((shift, 1), exponent, modulus)
+                               for exponent in degrees]) for shift in range(degree + 2)]
+        differences = values
+        for _ in range(degree):
+            differences = [b - a for a, b in zip(differences, differences[1:])]
+        formula = Fraction(1, product_factorials(n))
+        for i, j in combinations(range(n), 2):
+            formula *= degrees[j] - degrees[i]
+        require(differences == [formula * factorial(degree)] * 2,
+                "exact forward differences verify determinant leading coefficient")
+        leading.append({"monic_modulus_low_to_high": modulus, "degrees": degrees,
+                        "polynomial_degree": degree, "leading_coefficient": str(formula),
+                        "determinants_at_consecutive_shifts_starting_zero": [str(x) for x in values]})
+    return {"field_scope": "Uniform statements are over characteristic zero; the characteristic-two failure is deliberate.",
+            "fixed_algebra_fixtures": fixtures, "centered_curvilinear_fixtures": centered,
+            "leading_coefficient_controls": leading,
+            "centered_nonuniform_matroid_control": {"n": 4, "powers": powers, "dependent_monomials": dependent},
+            "small_characteristic_control": {"characteristic": 2, "failed_y_axis_rank": 1},
+            "scope": "Classical Vandermonde and open-minor consequences, not a new unrestricted counting theorem or an established novelty claim."}
+
+
+def product_factorials(n):
+    result = 1
+    for j in range(n):
+        result *= factorial(j)
+    return result
+
+
+def sparse_prefix_interpolation_control():
+    """Actual quotient-module prefixes with a symbolic Hermite rank defect."""
+    fixtures = []
+    for k in (2, 4, 6):
+        r = 5 * k // 2
+        domain = sorted((i, j) for i in range(r) for j in range(r) if i < k or j < k)
+        n, scale = len(domain), factorial(r - 1) ** 2
+        weight = (8 * k + 1, 8 * k + 2, 8 * k + 4)
+        inputs = [(tag,) + a for tag in (0, 1) for a in domain]
+        prefix = sorted(inputs, key=lambda a: (dot(a, weight), a))[:n]
+        identity = [a[1:] for a in prefix if a[0] == 0]
+        convol = [a[1:] for a in prefix if a[0] == 1]
+        require(set(identity) == {a for a in domain if sum(a) < 2 * k} and
+                set(convol) == {a for a in domain if sum(a) < 2 * k - 1},
+                "strict geometric prefix has the stated two total-degree cuts")
+        require(n == 4 * k * k and len(identity) == k * (2 * k + 1) and
+                len(convol) == k * (2 * k - 1), "uniform sparse-prefix cardinalities")
+        outside = set(inputs) - set(prefix)
+        require(max(dot(a, weight) for a in prefix) < min(dot(a, weight) for a in outside),
+                "no tie crosses the selected prefix boundary")
+        polynomial = {}
+        for i in range(2 * k):
+            coefficient = comb(2 * k - 1, i) * (-1) ** (2 * k - 1 - i)
+            for a in ((i + 1, 2 * k - 1 - i), (i, 2 * k - i)):
+                polynomial[a] = polynomial.get(a, 0) + coefficient
+        polynomial = {a: value for a, value in polynomial.items() if value}
+        require(set(polynomial) <= set(domain) and (k, k) not in polynomial,
+                "(y-z)^(2k-1)*(y+z) has allowed sparse-staircase support")
+        dual = tuple(polynomial.get(a, 0) * factorial(a[0]) * factorial(a[1]) for a in domain)
+        require(any(dual) and all(polynomial.get(a, 0) == 0 for a in identity),
+                "nonzero dual polynomial annihilates the identity prefix")
+        columns = {}
+        for a in identity:
+            columns[(0,) + a] = tuple(int(a == row) for row in domain)
+        for a in convol:
+            columns[(1,) + a] = tuple(
+                scale // (factorial(row[0] - a[0]) * factorial(row[1] - a[1]))
+                if all(x >= y for x, y in zip(row, a)) else 0 for row in domain)
+        require(all(dot(dual, columns[a]) == 0 for a in prefix),
+                "factorial-scaled dual gives an exact nonzero left null vector")
+        record = {"k": k, "R": r, "quotient_length": n,
+                  "monomial_ideal": [[r, 0], [k, k], [0, r]],
+                  "positive_tag_y_z_weights": weight,
+                  "identity_prefix_size": len(identity), "convolution_prefix_size": len(convol),
+                  "convolution_scale": scale,
+                  "dual_polynomial_coefficients": [{"monomial": a, "coefficient": v} for a, v in sorted(polynomial.items())],
+                  "exact_prefix_null_vector": dual,
+                  "rank_upper_bound_by_nonzero_null_vector": n - 1}
+        if k == 2:
+            rows = [a for a in domain if a not in identity]
+            matrix = [[columns[(1,) + a][domain.index(row)] for a in convol] for row in rows]
+            residual = {(1,) + a: tuple(matrix[i][j] for i in range(len(rows)))
+                        for j, a in enumerate(convol)}
+            selected = sorted(greedy(residual, residual, weight, 0))
+            require(len(selected) == 5 and len(greedy(prefix, columns, weight, 0)) == 15,
+                    "six-by-six residual has rank five and full prefix has rank fifteen")
+            matching = next(perm for perm in permutations(range(6))
+                            if all(matrix[i][perm[i]] for i in range(6)))
+            chosen = [convol.index(a[1:]) for a in selected]
+            minor_rows = next(rr for rr in combinations(range(6), 5)
+                              if determinant([[matrix[i][j] for j in chosen] for i in rr]))
+            minor = determinant([[matrix[i][j] for j in chosen] for i in minor_rows])
+            record.update({"residual_rows": rows, "residual_columns": convol,
+                           "residual_matrix": matrix, "perfect_support_matching": matching,
+                           "exact_residual_rank": 5, "exact_full_prefix_rank": 15,
+                           "nonzero_minor": {"rows": minor_rows, "columns": chosen, "determinant": str(minor)}})
+        fixtures.append(record)
+    return {"field": "Q", "fixtures": fixtures,
+            "scope": "Two-generator module columns inside the actual monomial quotient K[y,z]/(y^R,y^k*z^k,z^R). The full monomial configuration of a three-variable ideal has extra powers of the tag variable and is not counted here.",
+            "conclusion": "Perfect support matching does not imply normal geometric-prefix rank. This subcheck certifies a nonzero null vector for every fixture and exact rank at k=2. The subsequent graded-Jordan argument determines the uniform exact defect k^2/4."}
+
+
+def jordan_filtered_convolution_controls():
+    """Recover graded strings from actual multiplication ranks, then check prefixes."""
+    multi_checks = 0
+    for length in range(1, 5):
+        nodes = (0, 1, -2)
+        for cuts in product(range(length + 1), repeat=3):
+            keys = [(i, j) for i in range(3) for j in range(cuts[i])]
+            columns = {(i, j): tuple(Fraction(nodes[i] ** (h - j), factorial(h - j)) if h >= j else 0
+                                     for h in range(length)) for i, j in keys}
+            require(len(greedy(keys, columns, (1, 1), 0)) == min(length, sum(cuts)),
+                    "three distinct exponential nodes obey the string prefix formula")
+            multi_checks += 1
+    repeated = {(0, 0): (1, 0), (1, 0): (1, 0)}
+    require(len(greedy(repeated, repeated, (1, 1), 0)) == 1,
+            "duplicate nodes invalidate the distinct-node rank formula")
+    fixtures = []
+    cases = [(k, None) for k in (2, 4, 6)] + [(None, two_variables) for two_variables in (False, True)]
+    for k, two_variables in cases:
+        if k is not None:
+            r = 5 * k // 2
+            domain = sorted((i, j) for i in range(r) for j in range(r) if i < k or j < k)
+            scale, two_variables = factorial(r - 1) ** 2, True
+        else:
+            domain, scale = list(product(range(2), repeat=2)), 1
+        top = max(map(sum, domain))
+
+        def power_entry(row, column):
+            if any(x < y for x, y in zip(row, column)):
+                return 0
+            degree = sum(row) - sum(column)
+            return comb(degree, row[0] - column[0]) if two_variables else int(row[1] == column[1])
+
+        ranks = {}
+        for a in range(top + 1):
+            source = [p for p in domain if sum(p) == a]
+            for b in range(a, top + 1):
+                target = [p for p in domain if sum(p) == b]
+                columns = {p: tuple(power_entry(row, p) for row in target) for p in source}
+                ranks[a, b] = len(greedy(source, columns, (1, 1), 0))
+        strings = []
+        for start in range(top + 1):
+            for end in range(start, top + 1):
+                number = (ranks.get((start, end), 0) - ranks.get((start - 1, end), 0)
+                          - ranks.get((start, end + 1), 0) + ranks.get((start - 1, end + 1), 0))
+                require(number >= 0, "graded interval multiplicities from exact map ranks")
+                strings.extend([(start, end - start + 1)] * number)
+        require(sum(length for _, length in strings) == len(domain), "graded Jordan strings cover the quotient")
+        if k is not None:
+            expected = [(i - 1, r + k + 1 - (i + 1) // 2 - i) for i in range(1, 2 * k + 1)]
+            require(strings == expected, "known two-variable strong Lefschetz strings have the stated endpoints")
+            cuts = (list(product(range(top + 3), repeat=2)) if k == 2 else
+                    [(2 * k, 2 * k - 1), (1, 2), (2 * k, 2 * k), (r, r - 1), (0, top + 1)])
+        else:
+            cuts = list(product(range(top + 3), repeat=2))
+
+        def exp_entry(row, column, node=1):
+            if any(x < y for x, y in zip(row, column)) or (not two_variables and row[1] != column[1]):
+                return 0
+            return scale * node ** (sum(row) - sum(column)) // (
+                factorial(row[0] - column[0]) * factorial(row[1] - column[1]))
+
+        prefix_checks = []
+        for a, b in cuts:
+            identity = [p for p in domain if sum(p) < a]
+            source = [p for p in domain if sum(p) < b]
+            target = [p for p in domain if sum(p) >= a]
+            columns = {p: tuple(exp_entry(row, p) for row in target) for p in source}
+            actual = len(identity) + len(greedy(source, columns, (1, 1), 0))
+            predicted = sum(min(length, min(length, max(0, a - start)) +
+                                min(length, max(0, b - start))) for start, length in strings)
+            require(actual == predicted, "graded Jordan formula agrees with direct convolution rank")
+            prefix_checks.append({"identity_degree_cut": a, "convolution_degree_cut": b, "rank": actual})
+            if k is not None and (a, b) == (2 * k, 2 * k - 1):
+                require(actual == 4 * k * k - k * k // 4, "uniform exact sparse-prefix rank defect")
+        record = {"k": k, "L": "y+z" if two_variables else "y", "quotient_length": len(domain),
+                  "graded_Jordan_strings_start_and_length": strings,
+                  "graded_multiplication_map_ranks_checked": len(ranks), "prefix_rank_checks": prefix_checks}
+        if k == 2:
+            longest = max(length for _, length in strings)
+            inputs = [(i,) + p for i in range(longest) for p in domain]
+            columns = {a: (tuple(int(row == a[1:]) for row in domain) if not a[0] else
+                           tuple(scale ** (a[0] - 1) * exp_entry(row, a[1:], a[0]) for row in domain))
+                       for a in inputs}
+            x_matrix = tuple(columns[(1,) + p] for p in domain)
+            for a in inputs:
+                if a[0]:
+                    require(matvec(x_matrix, columns[(a[0] - 1,) + a[1:]]) == columns[a],
+                            "all tag powers are actual powers of multiplication by the exponential")
+            costs = []
+            for weight in ((1, 2, 2), (2, 1, 1), (3, 2, 2), (5, 1, 1)):
+                selected = greedy(inputs, columns, weight, 0)
+                require(len(selected) == len(domain), "full tag-power model has the claimed quotient rank")
+                actual = sum(dot(a, weight) for a in selected)
+                predicted = sum(start * length * weight[1] +
+                                sum(score for score, _ in integer_prefix((weight[0], weight[1]), length))
+                                for start, length in strings)
+                require(actual == predicted, "full diagonal state support function is the Jordan sum of planar corner-cut costs")
+                costs.append({"positive_weights": weight, "minimum_basis_cost": actual,
+                              "standard_monomials": sorted(selected)})
+            record["full_tag_power_diagonal_cost_controls"] = costs
+        fixtures.append(record)
+    return {"field": "Q", "fixtures": fixtures, "three_node_string_rank_checks": multi_checks,
+            "duplicate_node_rank_failure_checked": True,
+            "uniform_rank_formula": "For distinct scalar nodes tau_i and total-degree cuts a_i, rank of sum_i exp(tau_i*L)*B_{<a_i} is sum_strings min(length,sum_i clamp(a_i-start,0,length)).",
+            "sparse_family_exact_defect": "For every even k>=2 the selected 4k^2-column prefix has rank 4k^2-k^2/4. This follows from the known two-variable strong Lefschetz theorem and the rank formula.",
+            "scope": "This controls total-degree filtrations and the full exponential-graph algebra on diagonal weights. It does not count its full positive Groebner fan or improve the unrestricted asymptotic bounds."}
+
+
 def main():
     fixtures = []
     for weights, cutoff in [((1, 1, 1), 2), ((1, 1, 1), 3),
@@ -1819,6 +2219,10 @@ def main():
     arm_counts = {f["L"]: {v["characteristic"]: v["exact_initial_ideal_count"] for v in f["fields"]}
                   for f in factorial_boundary}
     independent_arms = [independent_boundary_arms_fixture(t, arm_counts[t]) for t in (2, 3, 4, 5)]
+    collisions = monomial_curve_collision_controls(truncated_partition)
+    monogenic = monogenic_embedding_controls()
+    sparse_prefix = sparse_prefix_interpolation_control()
+    jordan_prefix = jordan_filtered_convolution_controls()
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
         "schema_version": 1, "command": "python3 -B scripts/run_structural_complexity_checks.py",
@@ -1892,6 +2296,18 @@ def main():
             "scope": "A proved boundary mechanism and sharp restricted quadratic control below the existing generic lower order. Classical Toeplitz/Padé ingredients; novelty and an unrestricted advance are not established.",
             "one_arm_fixtures": factorial_boundary, "independent_arm_fixtures": independent_arms,
         },
+        "positive_curve_collision_control": {
+            "uniform_conclusion": "Positive monomial-curve divisors of the same length and exponent tuple have identical monomial residue matroids and identical positive Groebner fans, including all collisions with multiplicity. Collision within this class cannot amplify the fan.",
+            "priority": "A consequence of classical sparse positive-root bounds and confluent generalized Vandermonde theory; no new interpolation theorem is claimed.",
+            "checks": collisions,
+        },
+        "monogenic_embedding_control": {
+            "uniform_conclusion": "Over characteristic zero, a finite algebra admits an embedding with the labeled generic corner-cut fan if and only if it is monogenic. For every monogenic algebra a nonempty Zariski open set of coordinate tuples has this fan. The fixed abstract curvilinear algebra K[u]/(u^n) has both one-initial-ideal and C_d(n)-initial-ideal embeddings.",
+            "scope": "Generic embeddings are not asserted to maximize the fan count; the existing seven-point countercontrol rules that out. This does not improve G_d or F_d and does not complete the goal.",
+            "checks": monogenic,
+        },
+        "sparse_prefix_interpolation_control": sparse_prefix,
+        "jordan_filtered_convolution_control": jordan_prefix,
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
                     "independent_greedy_checks": sum(f["greedy_checks"] for f in fixtures),
@@ -1935,7 +2351,19 @@ def main():
                     "factorial_boundary_full_matrix_checks": sum(f["full_matrix_checks"] for f in factorial_boundary),
                     "independent_boundary_arm_fixtures": len(independent_arms),
                     "independent_boundary_arm_row_and_greedy_checks": sum(f["row_and_greedy_checks"] for f in independent_arms),
-                    "independent_boundary_arm_full_matrix_checks": sum(f["full_matrix_checks"] for f in independent_arms)},
+                    "independent_boundary_arm_full_matrix_checks": sum(f["full_matrix_checks"] for f in independent_arms),
+                    "positive_collision_profiles": len(collisions["profiles"]),
+                    "positive_collision_staircase_rank_checks": sum(f["staircase_rank_checks"] for f in collisions["profiles"]),
+                    "positive_collision_fan_witness_checks": sum(2 * f["fan_witnesses_checked_in_both_representations"] for f in collisions["profiles"]),
+                    "monogenic_fixed_algebra_fixtures": len(monogenic["fixed_algebra_fixtures"]),
+                    "monogenic_all_minors_checked": sum(f["all_rank_n_minors_checked"] for f in monogenic["fixed_algebra_fixtures"]),
+                    "centered_curvilinear_staircase_checks": sum(f["all_staircase_determinants_checked"] for f in monogenic["centered_curvilinear_fixtures"]),
+                    "sparse_prefix_exact_matching_rank_controls": 1,
+                    "sparse_prefix_uniform_dual_certificates": len(sparse_prefix["fixtures"]),
+                    "jordan_graded_map_rank_checks": sum(f["graded_multiplication_map_ranks_checked"] for f in jordan_prefix["fixtures"]),
+                    "jordan_three_node_string_rank_checks": jordan_prefix["three_node_string_rank_checks"],
+                    "jordan_filtered_prefix_rank_checks": sum(len(f["prefix_rank_checks"]) for f in jordan_prefix["fixtures"]),
+                    "jordan_full_tag_power_diagonal_cost_checks": sum(len(f.get("full_tag_power_diagonal_cost_controls", [])) for f in jordan_prefix["fixtures"])},
         "goal_qualifying_advance": False,
     }
     target = ROOT / "results/research/structural_complexity_checks.json"

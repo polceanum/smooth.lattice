@@ -2,7 +2,7 @@
   "schema_version": 1,
   "recorded_on": "2026-10-18",
   "title": "Universal algebraic complexity beyond generic corner cuts",
-  "status": "active_boundary_amplification_and_quadratic_sharpness_proved_coupled_case_pending",
+  "status": "active_monogenic_and_collision_reductions_graded_jordan_rank_formula_and_diagonal_support_proved",
   "objective": "Prove a new structural theorem determining or substantially narrowing the worst-case asymptotic number of monomial initial ideals of finite polynomial algebras, starting with three variables and seeking a mechanism valid in every fixed dimension. Establish the strongest relevant primary baseline first. Success requires a complete uniform proof of sharp growth or a substantial asymptotic advance over that baseline for all colength-n ideals or all n-point configurations, a rigorous further algebraic, geometric or enumeration consequence, reproducible exact certificates and an honestly scoped manuscript. Examples, reformulations, already known corollaries and a plan alone do not complete this goal.",
   "plan": "docs/interleaving_research.md#higher-impact-research-plan-universal-algebraic-complexity",
   "relationship_to_previous_goal": "A new research objective. The completed corner-cut counting manuscript and its acceptance records remain separate and unchanged in mathematical content.",
@@ -34,12 +34,12 @@
     },
     {
       "id": "dependency_mechanism",
-      "status": "one_variable_boundary_amplification_proved_coupled_bivariate_case_pending",
+      "status": "graded_jordan_prefix_ranks_and_full_exponential_graph_diagonal_support_proved_unequal_weights_pending",
       "deliverable": "A precise lemma about multiplication-compatible residue dependencies or state-polyhedron geometry, with its proof attempt and adversarial controls."
     },
     {
       "id": "infinite_lower_family",
-      "status": "sharp_quadratic_independent_boundary_family_below_generic_coupled_family_pending",
+      "status": "positive_collision_amplification_ruled_out_coupled_rank_gate_requires_hermite_conditions",
       "deliverable": "A symbolic realizable family and count proof, or a documented obstruction to the tested construction; finite examples alone are insufficient."
     },
     {
@@ -49,7 +49,7 @@
     },
     {
       "id": "further_consequence",
-      "status": "sharp_universal_order_list_cardinality_proved_for_conditional_class_only",
+      "status": "full_exponential_graph_diagonal_state_support_proved_for_conditional_class_only",
       "deliverable": "A proved algebraic, geometric or enumeration consequence beyond restating the count; any speed claim needs a full algorithmic complexity argument."
     },
     {
@@ -122,8 +122,8 @@
   "independent_referee_assessment": false,
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
-    "classification": "progress",
-    "reason": "Commit 6f44807 proved the thick-hook thickness threshold, a Koszul support-matching counterexample, and an exact untruncated rank/basis-polytope formula. It isolated quotient boundary reduction as the next proof target; the unrestricted goal remained open."
+    "classification": "no_progress",
+    "reason": "The immediately preceding goal turn inspected the existing plan and restated the active objective, without changing an authoritative artifact or obtaining evidence that changed the next action. The last substantive research commit was 08625d5."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -253,6 +253,36 @@
       "version": "2020 v2",
       "inspected": "Setup and Schreyer orders; Theorem 4.3, Lemma 5.2 and proofs; Algorithm 4 correctness and Proposition 5.5 complexity argument.",
       "finding": "Finite-quotient syzygies and the Hermite-Pade boundary formulation are established. Computing a basis for a prescribed order does not count all orders; no new Pade algorithm is claimed."
+    },
+    {
+      "source": "https://arxiv.org/abs/2312.15680",
+      "authors": "Gonzalez-Serrano and Maximenko",
+      "inspected": "Definition 4.1, Theorem 1.1, Propositions 5.1 and 5.4 with their proofs and the first theorem proof in Section 5. Published introduction at DOI 10.1080/03081087.2025.2464639 also inspected for attribution.",
+      "finding": "The confluent generalized Vandermonde determinant identity is established; positive collision rank is a consequence, not a new interpolation theorem."
+    },
+    {
+      "source": "https://arxiv.org/abs/0912.1502",
+      "authors": "Braun and Pokutta",
+      "inspected": "Example 2.6 and adjacent generic-ideal explanation, plus the introduction scope.",
+      "finding": "Independence of all monomial sets of the right size for generic reduced points is established. No claim that the known generic fan is introduced here."
+    },
+    {
+      "source": "https://arxiv.org/abs/1004.1044",
+      "authors": "Kreuzer and Robbiano",
+      "inspected": "Theorem 2.7 and proof; Proposition 4.1 and Theorem 4.2 with adjacent proof.",
+      "finding": "Open border-basis charts and the shape-lemma parametrization at radical points are established. The fixed-monogenic-algebra consequence is elementary; its exact formulation is not established as novel."
+    },
+    {
+      "source": "https://arxiv.org/abs/math/0208201",
+      "authors": "Harima, Migliore, Nagel and Watanabe",
+      "inspected": "Proposition 4.4 and its full proof, with the characteristic-zero assumptions in Section 4.",
+      "finding": "Every standard graded Artinian algebra in two variables has the strong Lefschetz property. Diagonal rescaling gives y+z for the monomial quotient. This published theorem is an explicit input to the uniform sparse-prefix defect, not a new result here."
+    },
+    {
+      "source": "https://arxiv.org/abs/1802.07383v6",
+      "authors": "Iarrobino, Macias Marques and McDaniel",
+      "inspected": "Lemma 2.2 with proof and Definition 2.28 of Jordan degree type.",
+      "finding": "Homogeneous nilpotent strings and their start-degree data are established invariants. Applying them to exponential degree filtrations gives the recorded elementary rank and diagonal support consequences; their novelty is not established."
     }
   ],
   "next_actions": [
@@ -1133,5 +1163,87 @@
     },
     "goal_qualifying_unrestricted_advance": false,
     "decision": "Stop expanding independent one-variable boundary examples. The concrete lower gate is a symbolic geometric-prefix rank/count mechanism for genuinely coupled bivariate boundary relations with growing thickness. Existing one-order Pade algorithms supply no all-order count. Continue the unrestricted upper route and primary-priority audit; the original objective and acceptance criteria stay active."
+  },
+  "tenth_feasibility_results": {
+    "record": "docs/interleaving_research.md, Tenth feasibility pass: collisions preserve a fan, and sparse prefixes have Hermite defects",
+    "positive_collisions": {
+      "scope": "Characteristic-zero positive real nodes, fixed positive exponent tuple with A_1=1, and any multiplicity profile of total length n.",
+      "rank_formula": "min(n,number of distinct A-degrees), for every finite monomial set.",
+      "proof": "Sparse positive-root bound counting multiplicity, or classical confluent generalized Vandermonde theory.",
+      "consequence": "All such divisors have the same monomial initial ideal for every global monomial order and the same labeled positive Groebner fan. The free family q_epsilon=product_j(t-1-j*epsilon) preserves this fan while n distinct points collide to one curvilinear point.",
+      "decision": "Do not expand collision profiles as a fan-amplification search."
+    },
+    "monogenic_embeddings": {
+      "scope": "Every finite-dimensional commutative unital algebra over a field of characteristic zero, in each fixed positive ambient dimension.",
+      "criterion": "An algebra admits an embedding with the labeled generic corner-cut fan if and only if it is monogenic. Every monogenic algebra has a nonempty Zariski open set of coordinate tuples with that fan.",
+      "construction": "For B=K[t]/(q), use x_i=(t+c)^(n^(i-1)) modulo q, outside finitely many excluded shifts c.",
+      "uniform_proof": "For n distinct degrees lambda_j, the determinant of the remainders has degree sum(lambda_j)-n(n-1)/2 in c and nonzero leading coefficient product_{i<j}(lambda_j-lambda_i)/product_{r=0}^{n-1}r!. Mixed-radix degrees inject on the hyperbolic cross. The axis staircase proves the converse.",
+      "curvilinear_consequence": "The fixed abstract algebra K[u]/(u^n) has both one-initial-ideal and C_d(n)-initial-ideal embeddings, the latter explicitly x_i=(1+u)^(n^(i-1))-1.",
+      "limits": "Generic embeddings need not maximize the count. Intrinsic embedding dimension one and maximal multiplicity do not force a count smaller than generic. No small-characteristic extension is claimed.",
+      "priority": "An elementary consequence of classical Vandermonde and open-minor arguments. The exact fixed-algebra formulation has not been established as novel."
+    },
+    "sparse_geometric_prefix_defect": {
+      "quotient": "B_k=Q[y,z]/(y^R,y^k*z^k,z^R), even k>=2, R=5k/2, length 4k^2.",
+      "two_generator_families": "Identity and factorial-scaled exp(y+z) convolution, each with multiplier domain D_k.",
+      "positive_weights": "(tag,y,z)=(8k+1,8k+2,8k+4). The first 4k^2 inputs split at identity total degree <2k and convolution total degree <2k-1, with a strict cutoff gap.",
+      "uniform_rank_defect": "P_k=(y-z)^(2k-1)*(y+z) has sparse-staircase support, origin order 2k and order 2k-1 at (1,1). The functional ell_(i,j)=i!*j!*[y^i*z^j]P_k is a nonzero left null vector, so rank<=4k^2-1.",
+      "exact_k2_control": "Residual six-by-six matrix has a perfect support matching and exact rank five. Full sixteen-column prefix has rank fifteen. A saved five-by-five minor has determinant 2293235712.",
+      "limits": "Only two tagged generator families enter this prefix calculation. A perfect support matching is asserted only for the checked k=2 residual. Full tag powers on diagonal weights are treated by the separate support formula; the full positive fan remains uncounted.",
+      "uniform_exact_rank": "4*k^2-k^2/4, for every even k>=2, by the graded Jordan rank formula and the established two-variable strong Lefschetz theorem."
+    },
+    "finite_controls": {
+      "positive_collision_profiles": 4,
+      "positive_collision_staircase_rank_checks": 344,
+      "positive_collision_fan_witness_checks": 296,
+      "monogenic_fixed_algebra_fixtures": 4,
+      "monogenic_all_minors_checked": 830,
+      "centered_curvilinear_staircase_checks": 322,
+      "sparse_prefix_exact_matching_rank_controls": 1,
+      "sparse_prefix_uniform_dual_certificates": 3,
+      "jordan_graded_map_rank_checks": 334,
+      "jordan_three_node_string_rank_checks": 224,
+      "jordan_filtered_prefix_rank_checks": 124,
+      "jordan_full_tag_power_diagonal_cost_checks": 4,
+      "status": "passed",
+      "fields": "New uniform statements and exact controls are over Q or characteristic zero; a deliberate characteristic-two failure is retained. Earlier characteristic-specific controls are unchanged.",
+      "sparse_exact_ranks": [
+        [
+          16,
+          15
+        ],
+        [
+          64,
+          60
+        ],
+        [
+          144,
+          135
+        ]
+      ],
+      "commands": [
+        "./build.sh",
+        "python3 tests/test_smoke.py",
+        "python3 -B scripts/run_structural_complexity_checks.py"
+      ],
+      "source_sha256": {
+        "scripts/run_structural_complexity_checks.py": "aa7429c5a3dfaf9db4ffdc5f88725760d8248af84ae603431fb914e722c7ee86",
+        "docs/interleaving_research.md": "b4bffd1b940789eb2b2da4b4c23f23ec9ece4d38afe30ba5abee81da75773270"
+      }
+    },
+    "goal_qualifying_unrestricted_advance": false,
+    "decision": "Positive collisions cannot amplify the fan, and locality alone cannot remove generic growth. Total-degree exponential ranks and the diagonal state support of the full graph algebra are now calculated from established Jordan degree type. The remaining concrete lower gate is unequal-coordinate geometric prefixes and a full-dimensional count above the generic order. The unrestricted upper route and strongest-primary audit remain active. No new manuscript is started.",
+    "graded_jordan_rank_formula": {
+      "scope": "Every graded Artinian algebra over characteristic zero, any homogeneous degree-one L, distinct scalar nodes tau_i and integer total-degree cuts a_i.",
+      "formula": "dim(sum_i exp(tau_i*L)*B_<a_i)=sum_strings min(length,sum_i clamp(a_i-start,0,length)).",
+      "proof": "The established homogeneous Jordan decomposition splits each degree filtration into string prefixes. On each string their concatenation is an ordinary confluent Vandermonde matrix; Hermite uniqueness gives its exact rank.",
+      "input_attribution": "Iarrobino--Macias Marques--McDaniel Lemma 2.2 and Definition 2.28; classical confluent Vandermonde interpolation. Novelty of the combined consequence has not been established.",
+      "sparse_family_consequence": "Harima--Migliore--Nagel--Watanabe Proposition 4.4 makes y+z strong Lefschetz on the two-variable monomial quotient. Its Hilbert function gives strings start=i-1,length=R+k+1-ceil(i/2)-i. The exact prefix defect sums to k^2/4.",
+      "full_algebra_consequence": "For the actual algebra (M,x-exp(L)), positive diagonal weights (alpha,beta,...,beta) have minimum basis cost sum_strings(beta*start*length+c_length(alpha,beta)), where c_m sums the first m positive planar lattice scores. This treats all tag powers, not just two generator families.",
+      "limits": "Equal weights on the old variables are essential to the within-grade basis changes. This is not a full-fan count or a faster enumeration algorithm."
+    }
+  },
+  "this_goal_turn_classification": {
+    "classification": "progress",
+    "reason": "Saved complete uniform proofs of positive-collision fan invariance, the monogenic embedding criterion, the graded-Jordan exponential prefix rank formula and its diagonal full-algebra state-support consequence. Exact certificates refute support-matching prefix normality and calculate a uniform proportional defect. The unrestricted counting target remains unmet."
   }
 }

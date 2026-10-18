@@ -5628,3 +5628,411 @@ Babson--Onn--Thomas exponent. Its status as the strongest current bound
 has not been certified. The remaining literature-priority audit, a
 qualifying unrestricted asymptotic advance and the target manuscript
 remain unfinished. Keep the original goal active.
+
+### Tenth feasibility pass: collisions preserve a fan, and sparse prefixes have Hermite defects
+
+The immediately preceding goal turn restated the plan without changing an
+artifact or establishing a new mathematical fact. It is classified as no
+progress. The last substantive commit, 08625d5, proved boundary amplification
+and the sharp quadratic count for independent arms. This pass gives two
+structural constraints on further constructions, with uniform proofs and
+independent exact controls. Neither is the qualifying unrestricted asymptotic
+advance, and neither is being promoted to a separate paper claim.
+
+#### Positive collisions preserve the whole monomial residue matroid
+
+Fix A=(A_1,...,A_d) in positive integers with A_1=1. Over R, let
+
+    q(t)=product_j (t-s_j)^(m_j),  s_j>0 distinct,
+    sum_j m_j=n,
+    I_(A,q)=(x_i-x_1^(A_i) for i>=2, q(x_1)).              (PC1)
+
+The quotient is R[t]/(q), of dimension n, including when roots have
+multiplicity. A monomial x^a maps to t^(A.a). Its normalized Hermite
+evaluation column has entries
+
+    binomial(A.a,r) s_j^(A.a-r),  0<=r<m_j,                 (PC2)
+
+with entries zero when r>A.a. For every finite monomial set E,
+
+    rank(E mod I_(A,q))=min(n, #{A.a:a in E}).              (PC3)
+
+Here is a proof that includes multiplicities. A nonzero real polynomial
+with r nonzero monomial terms has at most r-1 positive roots counted with
+multiplicity. Divide by its lowest power of t, which changes no positive
+zero. The derivative has r-1 terms. Rolle's theorem, including the
+multiplicity lost at each root and the intervening roots, proves the
+assertion by induction on r. Consequently a nonzero combination of at
+most n distinct powers cannot vanish to total order n at the positive
+nodes. Any at most n distinct degree columns are independent. Equal
+degrees give equal columns, proving (PC3). Rank is unchanged by passing
+between polynomial remainders and the Hermite coordinates (PC2).
+
+In particular, all ideals (PC1) with fixed A,n have the same monomial
+residue matroid, hence the same coherent standard basis for every generic
+positive weight and the same monomial initial ideal for every global
+monomial order. Their labeled positive Groebner fans coincide as cone
+decompositions. This does not identify the coefficients in their reduced
+Groebner bases or their nonmonomial weight initial ideals.
+
+There is an explicit flat collision. Set
+
+    q_epsilon(t)=product_{j=1}^n (t-1-j*epsilon).
+
+The corresponding algebra is free of rank n over R[epsilon], since
+q_epsilon is monic and x_1 maps to t. For epsilon>0 its fiber consists
+of n distinct positive curve samples; at epsilon=0 it is the single
+curvilinear point R[t]/((t-1)^n). All fibers for epsilon>=0 have exactly
+the same positive fan by (PC3). Thus increasing multiplicity by this
+collision cannot amplify the number of initial ideals. This is a
+specific fan-preserving family, not a transfer theorem from arbitrary
+point configurations to arbitrary local algebras.
+
+The interpolation ingredient has established prior art. In
+[Gonzalez-Serrano--Maximenko, arXiv:2312.15680](https://arxiv.org/abs/2312.15680),
+Definition 4.1 and Theorem 1.1 give the generalized confluent Vandermonde
+matrix and its Schur-polynomial determinant quotient. The inspected
+proof includes Proposition 5.1, Proposition 5.4 and the first proof of
+Theorem 1.1 in Section 5. The positive-node nonsingularity needed here
+is a consequence of that classical determinant structure. No new
+confluent Vandermonde or Chebyshev-system theorem is claimed. The
+[published article](https://doi.org/10.1080/03081087.2025.2464639) explicitly
+acknowledges an equivalent earlier formula; the preprint comparison is
+sufficient to rule out claiming the determinant identity anew.
+
+The checker takes A=(1,6,9), n=7, and four positive divisors: seven
+simple nodes, one node of multiplicity seven, and two mixed multiplicity
+profiles. It builds commuting cyclic quotient matrices independently
+from the monic polynomial q, compares direct jets with polynomial
+remainders, checks all 86 seven-element staircases, and checks every
+one of the existing 37 coherent-basis witnesses in both representations.
+The complete count stays 37, including at the single local point; the
+generic count at this length is 36. The all-divisor equality follows
+from (PC3), not from checking four cases.
+
+#### Which abstract algebras admit the generic corner-cut fan?
+
+Let K have characteristic zero, let B be an n-dimensional commutative
+unital K-algebra, and fix d>=1. The following existence statements are
+equivalent:
+
+1. B is monogenic, meaning B=K[t]/(q) for a monic polynomial q of degree n.
+2. There is a generating d-tuple in B for which every n-element monomial
+   staircase is a basis.
+3. There is a generating d-tuple whose kernel has the labeled generic
+   corner-cut fan: under each global monomial order its standard basis
+   is the first n monomials of that order.
+
+In addition, when B is monogenic, a nonempty Zariski open subset of B^d
+has properties 2 and 3. This is a generic-embedding statement, not a
+claim that every embedding has this fan or that this fan is maximal.
+
+For n>=2 set A_i=n^(i-1). On the finite hyperbolic cross V_n^d, every
+coordinate is at most n-1, so a -> A.a is injective. For a scalar c in K
+take the coordinate images
+
+    x_i |-> (t+c)^(A_i) mod q.                             (ME1)
+
+The first coordinate is t+c and generates B. To prove simultaneous
+independence, choose any distinct degrees lambda_1<...<lambda_n from
+this finite ground set. Write the remainder of (t+c)^lambda_j modulo
+q in the basis 1,t,...,t^(n-1). Its coefficient in row r is
+
+    binomial(lambda_j,r)c^(lambda_j-r)
+       + terms of strictly smaller c-degree,  0<=r<n.      (ME2)
+
+Indeed, the univariate binomial terms of degree below n do not reduce.
+Terms t^k with k>=n have c-degree lambda_j-k, strictly below
+lambda_j-r; their remainder coefficients are independent of c. A
+negative apparent degree in (ME2) denotes a zero leading term.
+
+The determinant therefore has exact c-degree
+
+    E=sum_j lambda_j-n(n-1)/2,
+
+and leading coefficient
+
+    product_{i<j}(lambda_j-lambda_i)
+       / product_{r=0}^{n-1} r! != 0.                      (ME3)
+
+This is the falling-factorial Vandermonde formula. Finitely many
+nonzero determinant polynomials exclude finitely many values of c.
+Since K is infinite, one choice of c makes every n-subset of V_n^d
+independent. Every n-element staircase lies in this cross. Also the
+first n monomials of any global order form a staircase; their
+independence forces them to be the greedy standard basis. This proves
+1 implies 2 and 3.
+
+For either converse, the axis staircase
+{1,x_1,...,x_1^(n-1)} must be a basis. In statement 3 it occurs for
+an elimination order in which every power of x_1 precedes each other
+variable. Hence x_1 alone
+generates B, proving monogenicity. The case n=1 is immediate. Finally,
+each finite-ground determinant is a polynomial in the coordinates of
+a tuple in B^d. Their simultaneous nonvanishing defines the asserted
+nonempty open subset. The axis determinant also ensures that all its
+tuples generate B.
+
+This recovers a broad generic fan within every fixed monogenic algebra,
+including nonsplit algebras and algebras with repeated roots. It follows
+that even the abstract algebra K[u]/(u^n), with intrinsic embedding
+dimension one, has both a one-initial-ideal embedding
+
+    x_1 |-> u, x_i |-> 0 for i>=2,
+
+and an embedding with C_d(n) initial ideals. An explicit instance of
+the latter, supported at the origin, is
+
+    x_i |-> (1+u)^(n^(i-1))-1 mod u^n.                    (ME4)
+
+Before subtracting one, (ME3) is exact at c=1 when q=t^n. Subtracting
+one changes the columns of any staircase by a unit triangular divisor
+transformation and preserves its determinant. Equivalently use the
+previously proved translation invariance of all monomial initial
+ideals. This preserves staircase bases; it does not preserve the
+whole finite monomial matroid. In (ME4) four monomials with positive
+degree can all lie in the codimension-one maximal ideal and therefore
+be dependent when n=4. The checker includes this distinction.
+
+The argument uses established Vandermonde and open-minor machinery.
+[Braun--Pokutta, Example 2.6](https://arxiv.org/abs/0912.1502) already
+records independence of all monomial sets of the right size for
+algebraically generic reduced points.
+[Kreuzer--Robbiano, Theorem 2.7 and proof](https://arxiv.org/abs/1004.1044)
+express common border-basis charts by nonvanishing change-of-basis
+determinants; Proposition 4.1 and Theorem 4.2 describe the classical
+shape representation and open parameter neighborhoods at radical
+points. Those statements and their adjacent proofs were inspected.
+They are not asserted to provide this particular fixed-algebra
+formulation verbatim. The elementary consequence above is saved as a
+structural constraint, without an established novelty claim.
+
+Exact controls check every maximal minor on four small hyperbolic
+crosses, including q=(t-1)(t^2+1) and q=(t^2+1)^2. In both nonsplit
+examples c=1 has a saved zero minor whereas c=2 succeeds: a single
+arbitrary shift must not be treated as generic. They also check every
+staircase determinant of (ME4) for d=2,3 and 2<=n<=7, and d=4,
+2<=n<=5, plus exact forward differences for (ME3). A characteristic-two
+failure at n=4 is deliberate. The uniform embedding statement here is
+over characteristic zero; no extension to small characteristic is made.
+
+#### A sparse coupled boundary block has a genuine geometric-prefix defect
+
+The one-variable prefix determinant from the ninth pass cannot simply
+be extended by assuming that every sparse two-variable geometric prefix
+has full support-matching rank. Here is an infinite symbolic obstruction.
+Let k>=2 be even, R=5k/2, and put
+
+    B_k=Q[y,z]/(y^R,y^k*z^k,z^R),
+    D_k={(i,j):0<=i,j<R, i<k or j<k},  |D_k|=4k^2.
+
+Consider two tagged families in this actual cyclic quotient module:
+the identity columns y^i*z^j and the convolution columns
+A*y^i*z^j, for (i,j) in D_k, where A is the image of
+
+    ((R-1)!)^2 exp(y+z)
+
+truncated to D_k. All coefficients are integers. Assign input scores
+tag*w_x+i*w_y+j*w_z with the positive integer weights
+
+    (w_x,w_y,w_z)=(8k+1,8k+2,8k+4).
+
+The first 4k^2 inputs consist exactly of the identity columns of total
+degree <2k and the convolution columns of total degree <2k-1. Their
+sizes are k(2k+1) and k(2k-1). The largest selected score is
+16k^2-4, and the smallest unselected score is 16k^2+4k-1, so there is
+a strict cutoff gap.
+
+Define the nonzero polynomial
+
+    P_k(y,z)=(y-z)^(2k-1)*(y+z).                            (HP1)
+
+It is antisymmetric of total degree 2k, so its central coefficient
+y^k*z^k is zero. All its other monomials belong to D_k. At the origin
+it vanishes to order 2k, and at (1,1) to order 2k-1. If p_(i,j)
+are its coefficients, the nonzero row functional
+
+    ell_(i,j)=i!*j!*p_(i,j)                                (HP2)
+
+annihilates every selected identity column. Its pairing with the
+convolution column indexed by (a,b) is exactly
+
+    ((R-1)!)^2 * (partial_y^a partial_z^b P_k)(1,1),
+
+which is zero for a+b<2k-1. Thus these genuine geometric prefixes have
+rank at most 4k^2-1 for every even k, without a genericity assumption.
+This is a two-point Hermite interpolation defect, not a new theorem
+about general fat-point postulation.
+
+For k=2, after contracting the ten identity columns, the remaining
+six-by-six matrix has a perfect support matching but rank exactly five.
+The report gives the full matrix, matching, exact left null vector and
+a nonzero five-by-five minor. The checker also verifies the uniform
+null vectors at k=4,6. The next argument determines the exact defect
+uniformly; a perfect matching is only asserted for the checked k=2 case.
+
+These are two tagged generator families in B_k. A three-variable ideal
+realizing the tag as multiplication has additional powers of that
+variable, which have not been counted here. Consequently this is not
+an initial-ideal count or an asymptotically stronger construction.
+It does rule out the proposed automatic support-matching proof for
+the coupled geometric-prefix gate.
+
+#### Graded Jordan strings determine all exponential prefix ranks
+
+There is a reusable calculation behind this defect. Let B be a graded
+Artinian algebra over a characteristic-zero field, L in B_1, and
+
+    B = direct_sum_j span(u_j,L*u_j,...,L^(ell_j-1)*u_j),
+    deg(u_j)=nu_j,  L^(ell_j)*u_j=0,
+
+be a homogeneous Jordan decomposition. These are the established
+Jordan degree type data, not a new invariant. Write B_<a for the sum
+of the graded components of degree less than a. For pairwise distinct
+scalars tau_1,...,tau_s and integer cutoffs a_1,...,a_s, put
+
+    c_(i,j)=min(ell_j,max(0,a_i-nu_j)).
+
+Then the uniform rank formula is
+
+    dim sum_i exp(tau_i*L)*B_<a_i
+       = sum_j min(ell_j,sum_i c_(i,j)).                   (JD1)
+
+All exponentials truncate because L is nilpotent. To prove (JD1),
+decompose every prefix along the homogeneous strings. Exponentiation
+preserves each string. On a string of length ell the input columns
+are t^r*exp(tau_i*t), 0<=r<c_i, modulo t^ell. Their coefficient in
+row h is tau_i^(h-r)/(h-r)! for h>=r. If q=sum_i c_i<=ell, the first
+q rows, after scaling row h by h!, form the ordinary confluent
+Vandermonde matrix on the distinct nodes tau_i. This is nonsingular:
+its transpose is the Hermite evaluation map on polynomials of degree
+less than q, whose kernel is divisible by a polynomial of degree q.
+For q>ell shorten the column prefixes to total size ell. Thus each
+string contributes exactly min(ell,q), proving (JD1).
+
+Apply this to B_k above and L=y+z. The known two-variable strong
+Lefschetz theorem says all powers of a general linear form have
+maximal rank between graded pieces. Since the defining ideal is
+monomial, diagonal coordinate rescaling transfers this property to
+y+z: the nonempty open set of good linear forms meets the set where
+both coefficients are nonzero. The relevant primary statement and
+proof are [Harima--Migliore--Nagel--Watanabe, Proposition 4.4](https://arxiv.org/abs/math/0208201),
+including its reduction from Borel-fixed ideals via generic initial
+ideals. The theorem is credited as an input, not a new Lefschetz result.
+
+The Hilbert function of B_k is
+
+    h_d=d+1                         for 0<=d<2k,
+    h_d=2k                          for 2k<=d<R,
+    h_d=2(R+k-1-d)                 for R<=d<=R+k-2,
+
+and zero afterward. Maximal rank for every power implies that any two
+sets of Jordan strings active in two degrees are nested: their
+intersection has the smaller cardinality. Thus the homogeneous strings
+have starts and lengths, indexed by 1<=i<=2k,
+
+    nu_i=i-1,
+    ell_i=R+k+1-ceil(i/2)-i.                              (JD2)
+
+Equivalently the end degree is R+k-1-ceil(i/2). A string starts at each
+of the increasing Hilbert-function steps and the newest strings end
+first. This derives (JD2) directly from the displayed Hilbert function
+and the cited maximal-rank theorem.
+
+Use (JD1) with nodes 0,1 and cuts 2k,2k-1. The sum of the two prefix
+lengths in string i is 4k-2i+1. Its missing dimension is
+
+    max(0,ell_i-(4k-2i+1))=max(0,floor(i/2)-k/2).
+
+Summing over i gives the exact uniform conclusion
+
+    selected-prefix rank = 4k^2-k^2/4.                     (JD3)
+
+The defect is one sixteenth of the quotient length, rather than a
+bounded accidental singular minor. Exact Gaussian ranks at k=2,4,6
+are respectively 15,60,135 at lengths 16,64,144.
+
+The homogeneous-string decomposition used in (JD1) is proved in
+[Iarrobino--Macias Marques--McDaniel, Lemma 2.2](https://arxiv.org/abs/1802.07383v6).
+The inspected scope includes its proof and Definition 2.28 of Jordan
+degree type. This pass applies that established decomposition and
+classical confluent Vandermonde interpolation; novelty of the combined
+formula has not been established.
+
+#### A consequence for all tag powers on diagonal weights
+
+The same argument handles every power of an actual tag variable, not
+only two selected generator families, on a specified weight slice.
+Suppose B=K[y_1,...,y_r]/M with M homogeneous and of finite colength,
+and define the actual finite algebra
+
+    K[x,y_1,...,y_r]/(M,x-exp(L)) = B.                     (JD4)
+
+Give x weight alpha>0 and all y variables weight beta>0. Within any
+fixed x-power and total y-degree, replace a monomial spanning set by
+the homogeneous Jordan basis. These are changes inside equal-cost
+groups, so all ranks of cost sublevel spaces, and hence the minimum
+basis cost, are preserved. The new configuration is a direct sum over
+strings of t^j*exp(i*t), with costs alpha*i+beta*(nu+j).
+For each string its first ell pairs (i,j) in N^2 form a downset, and
+each fixed i gives a prefix in j. The distinct-node proof of (JD1)
+therefore shows these first ell columns are independent. No cheaper
+basis exists.
+
+If c_m(alpha,beta) is the sum of the first m scores alpha*i+beta*j
+in N^2, the exact restricted state support function is consequently
+
+    min_basis_cost(alpha,beta,...,beta)
+       = sum_strings [beta*nu*ell+c_ell(alpha,beta)].       (JD5)
+
+This is a geometric consequence for the full quotient (JD4) in every
+ambient dimension. It uses every x-power; x-exp(L) is a polynomial
+relation because the exponential truncates. Scaling exp(L) by a
+nonzero scalar only rescales columns and gives the same formula.
+Equivalently the projected state support on this slice is the sum of
+the known planar corner-cut support functions with a fixed translation.
+No complexity estimate for computing Jordan data or for an enumeration
+algorithm is asserted.
+
+Importantly this is the diagonal slice of the weight space. Unequal
+weights on the y variables break the equal-cost Jordan basis changes.
+A face under a diagonal weight can contain many distinct full state
+vertices. Thus (JD5) does not bound the whole Groebner fan, and cannot
+be used as the unrestricted counting theorem.
+
+The exact controls recover string intervals from all graded
+multiplication-map ranks, independently of the Hilbert-function formula.
+They check all total-degree cut pairs for k=2, selected pairs for k=4,6,
+and both L=y and L=y+z on K[y,z]/(y^2,z^2). The last two cases have
+the same Hilbert function but different Jordan data and different ranks
+at cuts (1,2), so Hilbert data alone are not silently substituted for
+the strings. Finally they construct all tag-power columns for k=2,
+check their recursive multiplication, and compare actual minimum
+coherent-basis costs with (JD5) at four diagonal positive weights.
+
+#### Decision and remaining objective
+
+Do not expand positive collision profiles to hunt for amplification:
+(PC3) proves the whole fan is invariant. Do not use locality, maximal
+multiplicity or intrinsic embedding dimension one to assert a bound
+smaller than the generic corner-cut order: (ME4) forbids that shortcut.
+For coupled boundary blocks, use actual Hermite rank conditions,
+respecting (HP1), rather than independent support entries. An eventual
+construction must still supply all monomial residues of an actual
+quotient and a count proof exceeding the generic asymptotic lower order.
+The concrete next distinction is between the solved total-degree
+filtrations (JD1)--(JD5) and unequal-coordinate geometric prefixes.
+Any use of Jordan data for the latter needs a separate argument; simply
+applying the diagonal formula would miss the full-dimensional fan.
+
+The complete strongest-primary-bound audit remains unfinished. The
+working unrestricted upper remains the proof-checked Babson--Onn--Thomas
+bound. None of this pass improves the exponent for G_3 or all-point F_3.
+The unrestricted proof routes, further-consequence requirement and
+honest-manuscript gate remain active. No new manuscript is started.
+
+Reproduce these controls, together with the prior checks, using
+
+```bash
+python3 -B scripts/run_structural_complexity_checks.py
+```
