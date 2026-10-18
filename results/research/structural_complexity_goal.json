@@ -2,7 +2,7 @@
   "schema_version": 1,
   "recorded_on": "2026-10-18",
   "title": "Universal algebraic complexity beyond generic corner cuts",
-  "status": "active_moment_geometry_relaxation_sharp_common_algebra_compatibility_open",
+  "status": "active_exchange_closure_obstruction_proved_unrestricted_rank_dependency_mechanism_open",
   "objective": "Prove a new structural theorem determining or substantially narrowing the worst-case asymptotic number of monomial initial ideals of finite polynomial algebras, starting with three variables and seeking a mechanism valid in every fixed dimension. Establish the strongest relevant primary baseline first. Success requires a complete uniform proof of sharp growth or a substantial asymptotic advance over that baseline for all colength-n ideals or all n-point configurations, a rigorous further algebraic, geometric or enumeration consequence, reproducible exact certificates and an honestly scoped manuscript. Examples, reformulations, already known corollaries and a plan alone do not complete this goal.",
   "plan": "docs/interleaving_research.md#higher-impact-research-plan-universal-algebraic-complexity",
   "relationship_to_previous_goal": "A new research objective. The completed corner-cut counting manuscript and its acceptance records remain separate and unchanged in mathematical content.",
@@ -124,7 +124,7 @@
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Commit 13f37ec proved the characteristic-free quadratic-pole bound and saved the architecture prior-art assessment. The family remains below the established generic order; no unrestricted exponent advance was obtained."
+    "reason": "Commit 45e9061 proved sharpness of the individual-staircase moment relaxation, saved ordered-prefix countercontrols, and implemented the constrained ML reference. It did not improve the unrestricted initial-ideal asymptotic."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -462,14 +462,28 @@
       "authors": "Babson, Onn and Thomas",
       "inspected": "Proposition 2.2 and its complete proof rechecked for sorted-prefix comparison.",
       "finding": "An initial basis dominates any competing basic set position by position in the monomial order. Its cost-prefix count therefore dominates every competing independent prefix for a positive weight. The encoded geometric witnesses can fail this stronger necessary condition."
+    },
+    {
+      "source": "https://arxiv.org/pdf/math/0207135",
+      "authors": "Babson, Onn and Thomas",
+      "inspected": "Proposition 2.2, Proposition 3.4 and Theorem 3.5, including their displayed proofs, rechecked.",
+      "finding": "Basis exchange and the projected matroid description of the state polyhedron are established. The new saved cycle certificate is a self-contained application of this framework and does not certify novelty or a sharper unrestricted count."
+    },
+    {
+      "source": "https://academicweb.nd.edu/~jmiglior/Hilb.pdf",
+      "authors": "Migliore",
+      "title": "The geometry of Hilbert functions",
+      "inspected": "Characteristic-zero setup and Theorems 5.3--5.4 at the statement level. The original Bigatti--Geramita--Migliore and Ahn--Migliore carrier proofs not audited.",
+      "finding": "The statements impose reduced projective point and maximal-growth/reduction-number hypotheses. They do not provide an inspected reduction for arbitrary finite quotients; no carrier theorem is invoked in the exchange proof."
     }
   ],
   "next_actions": [
-    "Retain the sharpness obstruction for arbitrary families of individual staircases. A geometry-only volume or moment argument cannot lower the old exponent; the common-algebra constraint is essential.",
-    "Seek a quantitative ordered-prefix rank or basis-exchange restriction that also uses commuting multiplication matrices. Arbitrary matroids and independently constructed downsets are not interchangeable with quotient basis families.",
-    "For a lower route, construct one common finite algebra and prove independence and coherence at the proposed weights. Screen candidates with the exact sorted-prefix necessary condition before larger enumeration.",
-    "Complete the strongest-current primary extremal-baseline audit; preserve the protected completed manuscript and require the original unrestricted asymptotic advance plus a further consequence before preparing a new manuscript.",
-    "For the user\u2019s ML direction, benchmark the collected multivariate polynomial kernel against both the same uncollected kernel and existing learned attention at matched budgets. Exact feature counts do not establish a new architecture theorem, trainability, or GPU throughput."
+    "Seek a uniform quantitative link between coherent basis counts and the dependent alternatives required to avoid exchange-cycle domination. The common commuting multiplication representation must supply more than an abstract geometric family.",
+    "For proposed lower constructions, verify common residue ranks and the basis-exchange completions, not only listed staircase moments. The radius-two-ball arm template is now excluded uniformly; do not enlarge it as though the saved weight failures were isolated.",
+    "Audit the primary one-parameter parametric-matroid bound and test whether bounded lattice coordinates allow a valid conversion from section complexity to global counts. General real shadow bounds do not supply that conversion; do not claim a smaller unrestricted exponent without it.",
+    "Retain both upper and lower routes at their full original scope. No new G_d/F_d bound or manuscript follows from a coherence obstruction alone.",
+    "Complete the bounded primary extremal-baseline comparison, distinguishing inspected theorems and proofs from inaccessible full chapters and unsuccessful searches. Preserve the protected completed manuscript.",
+    "Preserve the user\u2019s ML architecture assessment and its matched-budget experimental gates; this mathematical continuation does not claim an ML advance."
   ],
   "forward_citation_discovery": {
     "method": "Read-only OpenAlex forward-citation queries for the two founding papers, followed by primary-source inspection of potentially relevant records.",
@@ -665,14 +679,18 @@
           "algebraic_attention_pair_checks": 125,
           "algebraic_attention_kernel_derivative_checks": 1050,
           "algebraic_attention_output_checks": 150,
-          "algebraic_attention_normalized_derivative_checks": 540
+          "algebraic_attention_normalized_derivative_checks": 540,
+          "exchange_cycle_rank_two_contractions": 15750,
+          "exchange_cycle_patch_checks": 324,
+          "exchange_cycle_rational_controls": 6,
+          "exchange_cycle_expanded_templates": 10
         }
       }
     ],
-    "scope": "Final-source build, smoke tests and complete exact checker passed. All 35 historical report blocks and all historical summary counts are unchanged. New controls verify the staircase moment-cube construction and weight-specific prefix obstructions, plus exact multivariate polynomial-attention kernels, outputs and derivatives. The unrestricted mathematics goal, strongest-current baseline audit and ML quality/hardware comparisons remain open.",
+    "scope": "Final-source build, smoke tests and the complete exact checker passed. Every historical report block and summary count is unchanged. New controls cover 15750 normalized rank-two contractions, 324 exact patch weight comparisons, six rational cycle controls and ten expanded whole-staircase templates. No unrestricted fan-count improvement or novelty certification is asserted.",
     "source_sha256": {
-      "scripts/run_structural_complexity_checks.py": "635e3d44058552a028902e4608505261d54b712717bc0ca8d4fd63d70bcd7241",
-      "docs/interleaving_research.md": "8a92fddded4888a7572fca8b42d2e1ed5029fac1292c71d61d9ed122cf5005a4"
+      "scripts/run_structural_complexity_checks.py": "57565df9488c85ba09fc97870ac94d5776e82d406a8181a117f12398f876ccb9",
+      "docs/interleaving_research.md": "8bcf331512ff7bbfa552776b8f53aca15adfef84848cc20d9a0793f0bfb3b3af"
     }
   },
   "second_feasibility_results": {
@@ -885,7 +903,8 @@
   "remaining_primary_access_notes": [
     {
       "source": "https://par.nsf.gov/servlets/purl/10177092",
-      "status": "Relevant Theorem 8 statement and full displayed proof inspected through indexed pages 15--16. This resolves the named deposit-bound comparison despite failed direct PDF retrieval. The complete chapter and line-by-line publisher-PDF comparison remain unread; broader priority audit remains incomplete."
+      "status": "The relevant indexed Theorem 8 statement and displayed proof remain inspected, with the unrestricted exponent recovered for p>n. The publisher chapter is explicitly located at DOI 10.1007/978-3-030-42687-3_9, pp. 139-158 (2020). Direct public-deposit retrieval again failed, including a 45-second bounded download attempt. The complete chapter and publisher/preprint comparison remain unread; this access gap does not block independent proof work or establish novelty.",
+      "publication_locator": "https://link.springer.com/chapter/10.1007/978-3-030-42687-3_9"
     }
   ],
   "sixth_feasibility_results": {
@@ -1499,7 +1518,7 @@
   },
   "this_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Proved sharpness of the individual-staircase moment relaxation at the old general upper exponent, with exact-cardinality encodings in every fixed dimension. Saved ordered-prefix countercontrols identifying a stronger necessary algebraic condition. Implemented and exactly verified a constrained multivariate polynomial-attention reference. These are scoped progress, not a qualifying unrestricted initial-ideal advance or a new ML theorem."
+    "reason": "Derived a common-basis exchange-cycle obstruction with an explicit rational convex-domination certificate, and uniformly excluded every member of the radius-two-ball staircase template from initiality when the listed sets are common quotient bases. This closes the previous weight-specific gap, but supplies no new unrestricted fan-count bound or novelty certification."
   },
   "eleventh_feasibility_results": {
     "record": "docs/interleaving_research.md, Eleventh feasibility pass: coordinate flags survive the Jordan reduction",
@@ -2657,5 +2676,69 @@
     "goal_qualifying_unrestricted_advance": false,
     "novelty_established": false,
     "decision": "Park geometry-only exponent improvements even with all individual staircase moments retained. Future progress must quantify ordered-prefix rank compatibility and the commuting multiplication representation of one common quotient. No unrestricted theorem or new manuscript is certified."
+  },
+  "twenty_second_feasibility_results": {
+    "record": "docs/interleaving_research.md, Twenty-second feasibility pass: basis exchange completes the missing moments",
+    "general_scope": "Every field and finite quotient; more generally any common linear basis representation on the monomial ground set. The two-for-two competing bases must belong to the same representation.",
+    "exchange_lemma": "Contract the n-2 common entries. A new monomial u-alpha*e_i+beta*e_j replaces at least one of u,u+h*e_i, forcing an actual basis with moment change at most -alpha*e_i+beta*e_j.",
+    "cycle_consequence": "If product(alpha)>product(beta) on a directed coordinate cycle, positive rational convex coefficients combine forced actual bases to a moment strictly below the candidate on every cycle coordinate. Thus it cannot be initial at any positive weight or under any global monomial order.",
+    "certificate": "Set L_i=alpha_i/beta_i, choose rational t>1 with t^(ell-1)<product L_i, set q_0=1 and q_i=t*q_(i-1)/L_i, and normalize coefficients q_i/beta_i. All coordinate drops are strictly negative before any extra old-entry removal.",
+    "patch_interval": "A balanced row patch (z,-2z,z) to (z+1,-2z-2,z+1) with baseline slope M forces M-3z-2<=w_j/w_i<=M+3z+2 for prefix dominance against that competing basis.",
+    "uniform_template_result": "For every R>=2 and delta>=0, if all 33 radius-two-ball-indexed staircases of length n=1014R+703+delta in the previous construction are common quotient bases, none is initial. The three axial candidates fail their inward-neighbor ratios; the central candidate has a forced average moment at least (4R-2)/3 lower in every coordinate.",
+    "scope_limits": [
+      "The common quotient may have initial bases outside the listed family.",
+      "Common-basis realization itself is not ruled out; generic points can make all listed downsets bases.",
+      "No failure of all larger-ball encodings or all moment cubes is inferred.",
+      "The mechanism uses established basis exchange and state-polyhedron theory, not a newly claimed matroid theorem or a new unrestricted asymptotic bound."
+    ],
+    "checks": {
+      "status": "passed",
+      "commands": [
+        "./build.sh",
+        "python3 tests/test_smoke.py",
+        "python3 -B scripts/run_structural_complexity_checks.py"
+      ],
+      "all_exit_codes": 0,
+      "source_sha256": {
+        "scripts/run_structural_complexity_checks.py": "57565df9488c85ba09fc97870ac94d5776e82d406a8181a117f12398f876ccb9",
+        "docs/interleaving_research.md": "8bcf331512ff7bbfa552776b8f53aca15adfef84848cc20d9a0793f0bfb3b3af"
+      },
+      "new_summary_counts": {
+        "exchange_cycle_rank_two_contractions": 15750,
+        "exchange_cycle_patch_checks": 324,
+        "exchange_cycle_rational_controls": 6,
+        "exchange_cycle_expanded_templates": 10
+      },
+      "historical_report_blocks_preserved": 37,
+      "historical_summary_counts_preserved": true
+    },
+    "goal_qualifying_unrestricted_advance": false,
+    "strongest_current_bound_verified": false,
+    "novelty_established": false,
+    "decision": "Retain the exchange-closure certificate and stop treating this small-ball moment template as a lower construction. The next gate must quantify forced dependence of competing bases using their common multiplication representation. Adding the screen to larger independent-staircase searches is not that mechanism.",
+    "deferred_shadow_comparison": {
+      "one_parameter_lead": {
+        "source": "https://doi.org/10.1007/PL00009354",
+        "authors": "Dey",
+        "title": "Improved bounds for planar k-sets and related problems",
+        "scope_read": "Primary paper abstract and partial displayed proof via its author-uploaded copy; the full matroid specialization proof remains unaudited.",
+        "status": "Do not apply the one-parameter matroid bound as an audited new section theorem yet, or infer a two-parameter count from it."
+      },
+      "global_conversion_obstruction": {
+        "source": "https://drops.dagstuhl.de/opus/volltexte/2021/14283/pdf/LIPIcs-CCC-2021-9.pdf",
+        "authors": "Hrubes and Yehudayoff",
+        "title": "Shadows of Newton Polytopes",
+        "scope_read": "Introduction and the stated optimal Moser shadow order; original Moser construction proofs not audited.",
+        "finding": "For general real three-dimensional polytopes, a maximum shadow can be only Theta(log V/log log V). A polynomial global vertex bound does not follow from a line or planar-shadow count alone. No bounded-lattice-coordinate analogue is claimed."
+      },
+      "random_shadow_boundary": {
+        "source": "https://arxiv.org/html/2406.06936v1",
+        "authors": "Black and Criado",
+        "title": "Random Shadows of Fixed Polytopes",
+        "scope_read": "Theorem 1.1 statement and Section 2 setup, Lemmas 2.1--2.2 with displayed proofs. Later determinant proofs not audited.",
+        "finding": "Their geometric shadow estimates use minimum and maximum edge lengths, plus visibility. They do not justify substituting the total edge length into the lower bound. No new G_d bound follows from these inspected statements."
+      },
+      "next_gate": "Audit the one-parameter theorem, then prove or refute an additional lattice-sensitive conversion to global coherent-basis counts. The conversion is presently missing; this is a proof lead rather than a result."
+    }
   }
 }

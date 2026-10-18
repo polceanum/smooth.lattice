@@ -4359,6 +4359,159 @@ def staircase_moment_cube_controls():
             "prefix_dominance_countercontrols": prefix_counters}
 
 
+def exchange_cycle_coherence_controls():
+    """Basis-exchange closure, not a new unrestricted initial-ideal bound."""
+    contractions, patches, cycles, templates = [], [], [], []
+    for prime in (2, 3, 5, 7, 11):
+        masks = {"first_only": 0, "second_only": 0, "both": 0}
+        for a, b in product(product(range(prime), repeat=2), repeat=2):
+            if not (a[0] * b[1] - a[1] * b[0]) % prime:
+                continue
+            # Contract the common n-2 basis entries and use the old pair as coordinates.
+            valid = (a[0] != 0, a[1] != 0)
+            require(any(valid), "the first new entry permits at least one old-entry exchange")
+            masks["both" if all(valid) else "first_only" if valid[0] else "second_only"] += 1
+        require(sum(masks.values()) == (prime ** 2 - 1) * (prime ** 2 - prime),
+                "all invertible rank-two contractions were examined")
+        contractions.append({"characteristic": prime, "invertible_new_pairs": sum(masks.values()),
+                             "permitted_removed_entry_masks": masks})
+
+    for radius in range(1, 9):
+        slope, intercept = 4 * radius + 1, 50 * radius + 25
+        for z in range(radius):
+            states = []
+            for value in (z, z + 1):
+                variation = [0] * 13
+                variation[10:13] = [value, -2 * value, value]
+                rows = [intercept - slope * j + variation[j] for j in range(13)]
+                require(all(x > y for x, y in zip(rows, rows[1:])), "both patch profiles remain strict partitions")
+                states.append({(x, y) for y, length in enumerate(rows) for x in range(length)})
+            old, new = sorted(states[0] - states[1]), sorted(states[1] - states[0])
+            middle = intercept - 11 * slope - 2 * z
+            require(old == [(middle - 2, 11), (middle - 1, 11)] and
+                    new == [(intercept - 12 * slope + z, 12), (intercept - 10 * slope + z, 10)],
+                    "direct downset subtraction gives the two-for-two patch exchange")
+            lower, upper = slope - 3 * z - 2, slope + 3 * z + 2
+            tested = 0
+            for ratio in sorted({Fraction(1, 2), Fraction(lower) - Fraction(1, 2), Fraction(lower),
+                                 Fraction(lower) + Fraction(1, 2), Fraction(slope),
+                                 Fraction(upper) - Fraction(1, 2), Fraction(upper),
+                                 Fraction(upper) + Fraction(1, 2), Fraction(2 * upper)}):
+                require(ratio > 0, "all tested weights are positive")
+                costs_old = sorted(Fraction(a) + ratio * b for a, b in old)
+                costs_new = sorted(Fraction(a) + ratio * b for a, b in new)
+                # Common monomials cancel from every cumulative cost count.
+                thresholds = sorted(set(costs_old + costs_new))
+                dominance = all(sum(x <= t for x in costs_old) >= sum(x <= t for x in costs_new)
+                                for t in thresholds)
+                require(dominance == all(x <= y for x, y in zip(costs_old, costs_new)) ==
+                        (lower <= ratio <= upper), "exact prefix dominance is precisely the claimed ratio interval")
+                tested += 1
+            patches.append({"R": radius, "old_patch_parameter": z, "removed": [",".join(map(str, a)) for a in old],
+                            "added": [",".join(map(str, a)) for a in new],
+                            "necessary_weight_ratio_interval": [lower, upper], "weight_checks": tested})
+
+    for data in (((2, 3), (2, 1)), ((1, 2), (3, 2), (2, 1)),
+                 ((1, 3), (2, 1), (2, 1), (2, 1)), ((7, 1),) * 3,
+                 ((1, 2), (2, 1)), ((1, 3), (2, 1))):
+        d = len(data)
+        gains = [Fraction(a, b) for a, b in data]
+        gain_product = Fraction(1)
+        for value in gains:
+            gain_product *= value
+        if gain_product <= 1:
+            weight = [Fraction(1)]
+            for value in gains[:-1]:
+                weight.append(weight[-1] * value)
+            require(all(weight[(i + 1) % d] >= gains[i] * weight[i] for i in range(d)),
+                    "the nonexpanding-cycle control satisfies all weak ratio inequalities")
+            cycles.append({"integer_edge_offsets": data, "gain_product": str(gain_product),
+                           "weak_ratio_weights": [str(x) for x in weight],
+                           "scope": "Feasible weak ratios only; no initial-basis existence is asserted."})
+            continue
+        step = Fraction(2)
+        while step ** (d - 1) >= gain_product:
+            step = 1 + (step - 1) / 2
+        scaled = [Fraction(1)]
+        for value in gains[1:]:
+            scaled.append(scaled[-1] * step / value)
+        coefficients = [value / data[i][1] for i, value in enumerate(scaled)]
+        total = sum(coefficients)
+        coefficients = [x / total for x in coefficients]
+        worst = tuple(coefficients[(i - 1) % d] * data[(i - 1) % d][1] - coefficients[i] * data[i][0]
+                      for i in range(d))
+        require(min(coefficients) > 0 and sum(coefficients) == 1 and max(worst) < 0,
+                "positive rational convex coefficients give strict coordinatewise moment domination")
+        for removals in product((0, 1), repeat=d):
+            actual = tuple(worst[i] - coefficients[i] * removals[i] for i in range(d))
+            require(all(a <= b < 0 for a, b in zip(actual, worst)),
+                    "every possible forced old-entry removal preserves the domination certificate")
+        cycles.append({"integer_edge_offsets": data, "gain_product": str(gain_product),
+                       "convex_coefficients": [str(x) for x in coefficients],
+                       "coordinate_drop_upper_bounds": [str(x) for x in worst],
+                       "removal_choices_checked": 2 ** d})
+
+    def state(radius, values, padding):
+        result = set()
+        for axis, value in enumerate(values):
+            variation = [0] * 13
+            if value >= 1:
+                variation[10:13] = [1, -2, 1]
+            if value == 2:
+                variation[7:10] = [1, -2, 1]
+            require(value in (0, 1, 2), "only the needed canonical four-square profiles are reconstructed")
+            for row in range(13):
+                length = 50 * radius + 25 - (4 * radius + 1) * row + variation[row]
+                for column in range(length):
+                    point = [0] * 3
+                    point[axis], point[(axis + 1) % 3] = column, row
+                    result.add(tuple(point))
+        result.update((x, 0, 0) for x in range(50 * radius + 25, 50 * radius + 25 + padding))
+        require(all(tuple(x - (i == j) for j, x in enumerate(a)) in result
+                    for a in result for i in range(3) if a[i]), "each reconstructed template is a downset")
+        require(len(result) == 1014 * radius + 703 + padding, "the padded template has its exact length")
+        return result
+
+    for radius in range(2, 7):
+        for padding in (0, 7):
+            witnesses = []
+            lower = 4 * radius - 1
+            for kind in ("central", "axis"):
+                for axis in range(3):
+                    values = [1, 1, 1] if kind == "central" else [0 if i == axis else 2 for i in range(3)]
+                    changed = list(values)
+                    changed[axis] += 1
+                    original, alternative = state(radius, values, padding), state(radius, changed, padding)
+                    removed, added = sorted(original - alternative), sorted(alternative - original)
+                    require(len(removed) == len(added) == 2, "the whole-arm unions retain exactly the local exchange")
+                    u = min(removed, key=lambda a: a[axis])
+                    v = max(removed, key=lambda a: a[axis])
+                    early = max(added, key=lambda a: a[(axis + 1) % 3])
+                    require(tuple(v[i] - u[i] for i in range(3)) == tuple(i == axis for i in range(3)) and
+                            tuple(early[i] - u[i] for i in range(3)) ==
+                            tuple(-lower * (i == axis) + (i == (axis + 1) % 3) for i in range(3)),
+                            "the forced-exchange moment offset is exactly -L*e_i+e_next")
+                    require(all(sum(a[i] for a in alternative) - sum(a[i] for a in original) == 3 * (i == axis)
+                                for i in range(3)), "the competing two-for-two basis has the higher original moment")
+                    witnesses.append({"kind": kind, "axis": axis, "cube_coordinates": values,
+                                      "competing_cube_coordinates": changed,
+                                      "removed": [",".join(map(str, a)) for a in removed],
+                                      "added": [",".join(map(str, a)) for a in added]})
+            for bits in product((0, 1), repeat=3):
+                drop = tuple(Fraction(1 - lower - bits[i], 3) for i in range(3))
+                require(all(x <= -Fraction(lower - 1, 3) for x in drop),
+                        "all possible three forced bases have a uniformly dominated average moment")
+            templates.append({"R": radius, "padding": padding, "n": 1014 * radius + 703 + padding,
+                              "gain": lower, "central_uniform_coordinate_drop": str(Fraction(lower - 1, 3)),
+                              "conditional_basis_exchange_witnesses": witnesses})
+    return {"general_lemma": "For a common basis D and two-for-two competing bases, contract the common n-2 entries. A new monomial u-alpha*e_i+beta*e_j replaces at least one of u,u+h*e_i. A directed coordinate cycle with product(alpha)>product(beta) therefore forces a convex combination of actual bases whose moment is strictly below mu(D) on every cycle coordinate. D cannot be initial under any global monomial order.",
+            "scope": "A self-contained use of established basis exchange and state-polyhedron theory. It is a coherence obstruction, not a characterization, unrestricted fan count, or certified novel theorem.",
+            "uniform_template_consequence": "For every R>=2 and any padding delta>=0, if all 33 radius-two-ball-indexed staircases from the prior moment construction are bases of one quotient, none is initial for that quotient. The three axial candidates fail their inward-neighbor ratio condition; the central candidate has a forced average moment at least (4R-2)/3 lower in each coordinate.",
+            "limits": "This closes this small-ball encoding at all weights and all lengths in the family. It does not exclude other encodings, large-ball families, or improve G_d/F_d. The supplied templates are conditional basis comparisons, not a claim of global quotient realization from independent contraction matrices.",
+            "rank_two_contractions": contractions, "patch_controls": patches,
+            "rational_cycle_controls": cycles, "expanded_template_controls": templates}
+
+
 def algebraic_attention_hotpath_controls():
     """Exact constrained polynomial attention, using an established feature principle."""
     fixtures, pair_checks, derivative_checks, output_checks, output_derivatives = [], 0, 0, 0, 0
@@ -4588,6 +4741,7 @@ def main():
     quadratic_poles = quadratic_pole_flag_controls()
     moment_cubes = staircase_moment_cube_controls()
     algebraic_attention = algebraic_attention_hotpath_controls()
+    exchange_cycles = exchange_cycle_coherence_controls()
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
         "schema_version": 1, "command": "python3 -B scripts/run_structural_complexity_checks.py",
@@ -4687,6 +4841,7 @@ def main():
         "quadratic_pole_flag_control": quadratic_poles,
         "staircase_moment_cube_control": moment_cubes,
         "algebraic_attention_hotpath_control": algebraic_attention,
+        "exchange_cycle_coherence_control": exchange_cycles,
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
                     "independent_greedy_checks": sum(f["greedy_checks"] for f in fixtures),
@@ -4799,7 +4954,11 @@ def main():
                     "algebraic_attention_pair_checks": algebraic_attention["pair_kernel_checks"],
                     "algebraic_attention_kernel_derivative_checks": algebraic_attention["kernel_derivative_checks"],
                     "algebraic_attention_output_checks": algebraic_attention["normalized_output_checks"],
-                    "algebraic_attention_normalized_derivative_checks": algebraic_attention["normalized_derivative_checks"]},
+                    "algebraic_attention_normalized_derivative_checks": algebraic_attention["normalized_derivative_checks"],
+                    "exchange_cycle_rank_two_contractions": sum(x["invertible_new_pairs"] for x in exchange_cycles["rank_two_contractions"]),
+                    "exchange_cycle_patch_checks": sum(x["weight_checks"] for x in exchange_cycles["patch_controls"]),
+                    "exchange_cycle_rational_controls": len(exchange_cycles["rational_cycle_controls"]),
+                    "exchange_cycle_expanded_templates": len(exchange_cycles["expanded_template_controls"])},
         "goal_qualifying_advance": False,
     }
     target = ROOT / "results/research/structural_complexity_checks.json"

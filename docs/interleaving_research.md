@@ -8620,3 +8620,207 @@ instead demonstrate a useful accuracy/memory/throughput tradeoff with a
 proper controlled comparison. The current exact factorization alone does
 not establish either result. This ML application work preserves the active
 unrestricted mathematics goal rather than silently substituting for it.
+
+### Twenty-second feasibility pass: basis exchange completes the missing moments
+
+The previous turn made progress in commit 45e9061: it established the sharp
+staircase-moment relaxation and saved weight-specific prefix failures. That
+result did not improve the unrestricted bound. This pass replaces those
+individual failures by an all-weight obstruction for the radius-two-ball
+template, valid uniformly as its row lengths grow. The mechanism is a
+general basis-exchange certificate. It uses established matroid theory and
+does not constitute the asymptotic advance required by the goal.
+
+#### A rank-two exchange and a coordinate-cycle certificate
+
+Let D be a monomial basis of any finite quotient, over any field. Suppose
+u,u+h*e_i are in D, h>0, and a,b are not in D, with
+
+    E=(D minus {u,u+h*e_i}) union {a,b}
+
+also a basis. Contract the span of the n-2 common monomials. The images
+of the old pair and of the new pair are both bases of a two-dimensional
+space. In particular a has a nonzero image, so at least one of
+
+    D minus {u} union {a},
+    D minus {u+h*e_i} union {a}                           (BC1)
+
+is a basis. If a-u=-alpha*e_i+beta*e_j with alpha,beta>0, the moment
+change of that forced basis is at most
+
+    -alpha*e_i+beta*e_j                                  (BC2)
+
+coordinatewise; removing the second old monomial subtracts h*e_i too.
+Consequently, initiality of D at a positive weight requires
+
+    beta*w_j>=alpha*w_i.                                (BC3)
+
+The argument is independent of all multiplication coefficients. It uses
+the linear matroid of one common quotient, not unrelated rank-two spaces.
+
+Suppose such exchanges are available around a directed cycle of distinct
+coordinate indices i=0,...,ell-1, with j=i+1 modulo ell. If
+
+    product_i alpha_i > product_i beta_i,                (BC4)
+
+then the necessary inequalities (BC3) are inconsistent. More strongly,
+there is a positive rational convex combination of the forced actual
+bases whose moment is strictly below mu(D) on every cycle coordinate
+and equal to it on the others. This proves noninitiality without choosing
+a weight. Here is an explicit certificate, avoiding logarithms. Put
+L_i=alpha_i/beta_i and choose a rational t>1 with
+
+    t^(ell-1)<product_i L_i.
+
+Set q_0=1 and q_i=t*q_(i-1)/L_i for i=1,...,ell-1. Take convex
+coefficients lambda_i proportional to q_i/beta_i. The upper bound on
+coordinate i of the combined moment change, before normalization, is
+
+    q_(i-1)-L_i*q_i=(1-t)*q_(i-1)<0, i>=1,
+    q_(ell-1)-L_0*q_0<0, i=0.                           (BC5)
+
+Extra old-entry removals in (BC1) only decrease the corresponding
+coordinate further. Each term is a genuine basis if the hypotheses
+hold, so this convex combination belongs to the common basis polytope.
+It has lower value than mu(D) under every strictly positive weight.
+Every initial staircase has a realizing open positive weight cone; D
+therefore cannot be initial under any global monomial order.
+
+This is an explicit use of established basis exchange and state-polyhedron
+theory. [Babson--Onn--Thomas](https://arxiv.org/pdf/math/0207135) already
+uses basis exchange in Proposition 3.4 and represents the basis polytope
+as a projected matroid polytope in Theorem 3.5. Those displayed proofs,
+together with Proposition 2.2, were rechecked. No novelty is claimed for
+basis exchange, gain inequalities, or the general polyhedral framework.
+The certificate is a sufficient obstruction, not a characterization of
+initiality or an upper bound on the number of initial ideals.
+
+#### The exact interval forced by a balanced row patch
+
+Consider three consecutive rows r,r+1,r+2 of an affine baseline of
+slope M. A patch (z,-2z,z) changes to (z+1,-2z-2,z+1). Write L for
+the unperturbed length of the first row, so their old lengths are
+
+    L+z, L-M-2z, L-2M+z.
+
+The two old monomials removed in the exchange have exponents
+
+    u=(L-M-2z-2,r+1), u+e_i,
+
+while the added exponents are
+
+    a=(L-2M+z,r+2), b=(L+z,r).
+
+Here i is the long direction and j the row direction. Thus
+
+    a-u=-(M-3z-2)*e_i+e_j,
+    b-u=(M+3z+2)*e_i-e_j.                               (BC6)
+
+Common monomials cancel from every cumulative cost comparison. The
+two old costs are w.u and w.u+w_i. For their sorted list to dominate
+the two added costs, its smaller cost must be at most both added
+costs. This is exactly
+
+    M-3z-2 <= w_j/w_i <= M+3z+2.                        (BC7)
+
+The larger old cost imposes no additional condition: the two added
+costs, relative to w.u and divided by w_i, sum to 6z+4, so their
+maximum is at least 3z+2>=2>1. This proves the equivalence in (BC7)
+for prefix dominance against this one competing basis. It does not
+make that condition sufficient against other bases. In particular,
+competing bases with a larger moment can still force a smaller
+one-for-one basis through (BC1); moment comparisons among the listed
+candidates alone miss that completion.
+
+#### Uniform exclusion of the radius-two-ball template
+
+Return to the thirteen-row construction, with any R>=2, M=4R+1 and
+any padding delta>=0. Only the profiles A_0,A_1,A_2 are needed here.
+The canonical four-square witnesses give A_1 a unit patch on rows
+10,11,12, and A_2 adds a second unit patch on rows 7,8,9. Each of
+A_0 to A_1 and A_1 to A_2 is therefore the z=0 exchange above.
+
+Index all 33 points p in the integer ball ||p||_2<=2 by s=p+(2,2,2),
+and use the earlier canonical profile for each s-coordinate. Suppose
+all these staircases are bases of one common quotient. For positive
+weights, the only possible strict moment minimizers in this family are
+
+    s=(0,2,2),(2,0,2),(2,2,0), and (1,1,1).              (BC8)
+
+Indeed a lattice point of the radius-two ball either has one coordinate
+of absolute value two and the others zero, or has all coordinates of
+absolute value at most one. Under a positive minimizing normal, the
+latter are dominated by p=(-1,-1,-1). Strictness excludes ties and
+nonvertices. An initial member must be one of (BC8), by the established
+strict total-moment condition for a realizing generic weight.
+
+For the first axial candidate, compare s=(0,2,2) with its inward neighbor
+(1,2,2), also in the ball family. The exchange requires
+w_2>=(M-2)*w_1. But strict axial moment minimality requires
+w_1>w_2+w_3. Since M-2=4R-1>=7, these are incompatible. The other
+two axial candidates fail cyclically.
+
+For s=(1,1,1), all three competing bases obtained by increasing one
+s-coordinate to two belong to the family. Their exchanges have
+alpha=M-2 and beta=1. One actual basis is forced for each axis, with
+moment change -((M-2)+epsilon_i)*e_i+e_(i+1), where epsilon_i is zero
+or one. Averaging the three gives a point of the actual basis polytope
+at least
+
+    (M-3)/3=(4R-2)/3                                    (BC9)
+
+below mu(D) in every coordinate. This rules out the central candidate
+under every positive weight. Hence none of the 33 listed staircases
+can be initial if they are all common quotient bases. The conclusion
+holds uniformly for n=1014R+703+delta, not just at one saved weight.
+It neither excludes other encodings nor proves failure of the larger
+balls used in the asymptotic relaxation result.
+
+The quotient can have other initial bases outside the listed family.
+There is also no assertion that common-basis realization itself fails:
+generic point evaluation can make all these downsets bases. What fails
+is their proposed simultaneous role as initial bases. The exchange
+completion produces missing basic sets with smaller moments, explaining
+the gap left by independently exposed staircase moments.
+
+#### Verification, literature scope and the remaining main problem
+
+The checker expands the two planar partitions and subtracts them before
+testing (BC7), including the interval endpoints and both sides. It checks
+every invertible rank-two new pair over F_2,F_3,F_5,F_7,F_11 after
+normalizing the old pair to a basis. Rational unequal-gain cycles check
+(BC5) and every possible forced old-entry removal. Product-one and
+product-less-than-one controls retain feasible weak weight ratios, without
+claiming initiality. Finally the exact arm unions and padding are rebuilt
+for R=2,...,6 and delta=0,7; all six required whole-staircase exchanges
+and the uniform average drop are independently checked. Contraction
+matrices are local implication controls, not a purported construction of
+one algebra from independently chosen matrices.
+
+The published finite-field chapter is now explicitly located at
+[Stigler--Zhang, 2020, pp. 139--158](https://link.springer.com/chapter/10.1007/978-3-030-42687-3_9).
+The publisher page and the existing indexed Theorem 8 comparison do not
+replace the full chapter: the public deposit again failed direct retrieval.
+No full publisher/preprint identity or exhaustive baseline audit is claimed.
+[Migliore's primary survey](https://academicweb.nd.edu/~jmiglior/Hilb.pdf),
+Theorems 5.3--5.4, was also inspected at the statement level: it works in
+characteristic zero with reduced projective point schemes. Its maximal-growth
+and reduction-number hypotheses must not be imposed on arbitrary finite
+algebras. The original proofs of those carrier theorems have not
+been audited here and no curve-carrier reduction is used.
+
+This pass supplies a general exchange-closure screen and closes the small
+ball template as a lower-bound construction. It supplies no new bound for
+G_d or F_d. The next unrestricted mechanism must quantify which proposed
+exchange alternatives have to be dependent, and use their common
+multiplication representation to control all coherent bases. Merely
+adding the cycle test to larger independent-staircase searches would not
+satisfy that gate. The original asymptotic theorem, further consequence,
+strongest-current baseline audit and separate manuscript remain open.
+The goal remains active. Reproduce the exact controls with
+
+```bash
+./build.sh
+python3 tests/test_smoke.py
+python3 -B scripts/run_structural_complexity_checks.py
+```

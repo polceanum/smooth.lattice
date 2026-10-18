@@ -3,8 +3,8 @@
   "command": "python3 -B scripts/run_structural_complexity_checks.py",
   "scope": "Bounded exact checks of route obstructions and a conditional counting lemma; no unrestricted asymptotic advance or novelty assertion.",
   "source_sha256": {
-    "scripts/run_structural_complexity_checks.py": "635e3d44058552a028902e4608505261d54b712717bc0ca8d4fd63d70bcd7241",
-    "docs/interleaving_research.md": "8a92fddded4888a7572fca8b42d2e1ed5029fac1292c71d61d9ed122cf5005a4"
+    "scripts/run_structural_complexity_checks.py": "57565df9488c85ba09fc97870ac94d5776e82d406a8181a117f12398f876ccb9",
+    "docs/interleaving_research.md": "8bcf331512ff7bbfa552776b8f53aca15adfef84848cc20d9a0793f0bfb3b3af"
   },
   "volume_obstruction": {
     "scope": "Exact determinant controls for an infinite symbolic construction; the uniform proof is in the research note.",
@@ -462051,6 +462051,2235 @@
       }
     ]
   },
+  "exchange_cycle_coherence_control": {
+    "general_lemma": "For a common basis D and two-for-two competing bases, contract the common n-2 entries. A new monomial u-alpha*e_i+beta*e_j replaces at least one of u,u+h*e_i. A directed coordinate cycle with product(alpha)>product(beta) therefore forces a convex combination of actual bases whose moment is strictly below mu(D) on every cycle coordinate. D cannot be initial under any global monomial order.",
+    "scope": "A self-contained use of established basis exchange and state-polyhedron theory. It is a coherence obstruction, not a characterization, unrestricted fan count, or certified novel theorem.",
+    "uniform_template_consequence": "For every R>=2 and any padding delta>=0, if all 33 radius-two-ball-indexed staircases from the prior moment construction are bases of one quotient, none is initial for that quotient. The three axial candidates fail their inward-neighbor ratio condition; the central candidate has a forced average moment at least (4R-2)/3 lower in each coordinate.",
+    "limits": "This closes this small-ball encoding at all weights and all lengths in the family. It does not exclude other encodings, large-ball families, or improve G_d/F_d. The supplied templates are conditional basis comparisons, not a claim of global quotient realization from independent contraction matrices.",
+    "rank_two_contractions": [
+      {
+        "characteristic": 2,
+        "invertible_new_pairs": 6,
+        "permitted_removed_entry_masks": {
+          "first_only": 2,
+          "second_only": 2,
+          "both": 2
+        }
+      },
+      {
+        "characteristic": 3,
+        "invertible_new_pairs": 48,
+        "permitted_removed_entry_masks": {
+          "first_only": 12,
+          "second_only": 12,
+          "both": 24
+        }
+      },
+      {
+        "characteristic": 5,
+        "invertible_new_pairs": 480,
+        "permitted_removed_entry_masks": {
+          "first_only": 80,
+          "second_only": 80,
+          "both": 320
+        }
+      },
+      {
+        "characteristic": 7,
+        "invertible_new_pairs": 2016,
+        "permitted_removed_entry_masks": {
+          "first_only": 252,
+          "second_only": 252,
+          "both": 1512
+        }
+      },
+      {
+        "characteristic": 11,
+        "invertible_new_pairs": 13200,
+        "permitted_removed_entry_masks": {
+          "first_only": 1100,
+          "second_only": 1100,
+          "both": 11000
+        }
+      }
+    ],
+    "patch_controls": [
+      {
+        "R": 1,
+        "old_patch_parameter": 0,
+        "removed": [
+          "18,11",
+          "19,11"
+        ],
+        "added": [
+          "15,12",
+          "25,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          3,
+          7
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 2,
+        "old_patch_parameter": 0,
+        "removed": [
+          "24,11",
+          "25,11"
+        ],
+        "added": [
+          "17,12",
+          "35,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          7,
+          11
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 2,
+        "old_patch_parameter": 1,
+        "removed": [
+          "22,11",
+          "23,11"
+        ],
+        "added": [
+          "18,12",
+          "36,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          4,
+          14
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 3,
+        "old_patch_parameter": 0,
+        "removed": [
+          "30,11",
+          "31,11"
+        ],
+        "added": [
+          "19,12",
+          "45,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          11,
+          15
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 3,
+        "old_patch_parameter": 1,
+        "removed": [
+          "28,11",
+          "29,11"
+        ],
+        "added": [
+          "20,12",
+          "46,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          8,
+          18
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 3,
+        "old_patch_parameter": 2,
+        "removed": [
+          "26,11",
+          "27,11"
+        ],
+        "added": [
+          "21,12",
+          "47,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          5,
+          21
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 4,
+        "old_patch_parameter": 0,
+        "removed": [
+          "36,11",
+          "37,11"
+        ],
+        "added": [
+          "21,12",
+          "55,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          15,
+          19
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 4,
+        "old_patch_parameter": 1,
+        "removed": [
+          "34,11",
+          "35,11"
+        ],
+        "added": [
+          "22,12",
+          "56,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          12,
+          22
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 4,
+        "old_patch_parameter": 2,
+        "removed": [
+          "32,11",
+          "33,11"
+        ],
+        "added": [
+          "23,12",
+          "57,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          9,
+          25
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 4,
+        "old_patch_parameter": 3,
+        "removed": [
+          "30,11",
+          "31,11"
+        ],
+        "added": [
+          "24,12",
+          "58,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          6,
+          28
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 5,
+        "old_patch_parameter": 0,
+        "removed": [
+          "42,11",
+          "43,11"
+        ],
+        "added": [
+          "23,12",
+          "65,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          19,
+          23
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 5,
+        "old_patch_parameter": 1,
+        "removed": [
+          "40,11",
+          "41,11"
+        ],
+        "added": [
+          "24,12",
+          "66,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          16,
+          26
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 5,
+        "old_patch_parameter": 2,
+        "removed": [
+          "38,11",
+          "39,11"
+        ],
+        "added": [
+          "25,12",
+          "67,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          13,
+          29
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 5,
+        "old_patch_parameter": 3,
+        "removed": [
+          "36,11",
+          "37,11"
+        ],
+        "added": [
+          "26,12",
+          "68,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          10,
+          32
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 5,
+        "old_patch_parameter": 4,
+        "removed": [
+          "34,11",
+          "35,11"
+        ],
+        "added": [
+          "27,12",
+          "69,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          7,
+          35
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 6,
+        "old_patch_parameter": 0,
+        "removed": [
+          "48,11",
+          "49,11"
+        ],
+        "added": [
+          "25,12",
+          "75,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          23,
+          27
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 6,
+        "old_patch_parameter": 1,
+        "removed": [
+          "46,11",
+          "47,11"
+        ],
+        "added": [
+          "26,12",
+          "76,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          20,
+          30
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 6,
+        "old_patch_parameter": 2,
+        "removed": [
+          "44,11",
+          "45,11"
+        ],
+        "added": [
+          "27,12",
+          "77,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          17,
+          33
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 6,
+        "old_patch_parameter": 3,
+        "removed": [
+          "42,11",
+          "43,11"
+        ],
+        "added": [
+          "28,12",
+          "78,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          14,
+          36
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 6,
+        "old_patch_parameter": 4,
+        "removed": [
+          "40,11",
+          "41,11"
+        ],
+        "added": [
+          "29,12",
+          "79,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          11,
+          39
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 6,
+        "old_patch_parameter": 5,
+        "removed": [
+          "38,11",
+          "39,11"
+        ],
+        "added": [
+          "30,12",
+          "80,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          8,
+          42
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 7,
+        "old_patch_parameter": 0,
+        "removed": [
+          "54,11",
+          "55,11"
+        ],
+        "added": [
+          "27,12",
+          "85,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          27,
+          31
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 7,
+        "old_patch_parameter": 1,
+        "removed": [
+          "52,11",
+          "53,11"
+        ],
+        "added": [
+          "28,12",
+          "86,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          24,
+          34
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 7,
+        "old_patch_parameter": 2,
+        "removed": [
+          "50,11",
+          "51,11"
+        ],
+        "added": [
+          "29,12",
+          "87,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          21,
+          37
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 7,
+        "old_patch_parameter": 3,
+        "removed": [
+          "48,11",
+          "49,11"
+        ],
+        "added": [
+          "30,12",
+          "88,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          18,
+          40
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 7,
+        "old_patch_parameter": 4,
+        "removed": [
+          "46,11",
+          "47,11"
+        ],
+        "added": [
+          "31,12",
+          "89,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          15,
+          43
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 7,
+        "old_patch_parameter": 5,
+        "removed": [
+          "44,11",
+          "45,11"
+        ],
+        "added": [
+          "32,12",
+          "90,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          12,
+          46
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 7,
+        "old_patch_parameter": 6,
+        "removed": [
+          "42,11",
+          "43,11"
+        ],
+        "added": [
+          "33,12",
+          "91,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          9,
+          49
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 8,
+        "old_patch_parameter": 0,
+        "removed": [
+          "60,11",
+          "61,11"
+        ],
+        "added": [
+          "29,12",
+          "95,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          31,
+          35
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 8,
+        "old_patch_parameter": 1,
+        "removed": [
+          "58,11",
+          "59,11"
+        ],
+        "added": [
+          "30,12",
+          "96,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          28,
+          38
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 8,
+        "old_patch_parameter": 2,
+        "removed": [
+          "56,11",
+          "57,11"
+        ],
+        "added": [
+          "31,12",
+          "97,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          25,
+          41
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 8,
+        "old_patch_parameter": 3,
+        "removed": [
+          "54,11",
+          "55,11"
+        ],
+        "added": [
+          "32,12",
+          "98,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          22,
+          44
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 8,
+        "old_patch_parameter": 4,
+        "removed": [
+          "52,11",
+          "53,11"
+        ],
+        "added": [
+          "33,12",
+          "99,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          19,
+          47
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 8,
+        "old_patch_parameter": 5,
+        "removed": [
+          "50,11",
+          "51,11"
+        ],
+        "added": [
+          "34,12",
+          "100,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          16,
+          50
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 8,
+        "old_patch_parameter": 6,
+        "removed": [
+          "48,11",
+          "49,11"
+        ],
+        "added": [
+          "35,12",
+          "101,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          13,
+          53
+        ],
+        "weight_checks": 9
+      },
+      {
+        "R": 8,
+        "old_patch_parameter": 7,
+        "removed": [
+          "46,11",
+          "47,11"
+        ],
+        "added": [
+          "36,12",
+          "102,10"
+        ],
+        "necessary_weight_ratio_interval": [
+          10,
+          56
+        ],
+        "weight_checks": 9
+      }
+    ],
+    "rational_cycle_controls": [
+      {
+        "integer_edge_offsets": [
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "gain_product": "4/3",
+        "convex_coefficients": [
+          "8/23",
+          "15/23"
+        ],
+        "coordinate_drop_upper_bounds": [
+          "-1/23",
+          "-6/23"
+        ],
+        "removal_choices_checked": 4
+      },
+      {
+        "integer_edge_offsets": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "gain_product": "3/2",
+        "convex_coefficients": [
+          "32/83",
+          "24/83",
+          "27/83"
+        ],
+        "coordinate_drop_upper_bounds": [
+          "-5/83",
+          "-8/83",
+          "-6/83"
+        ],
+        "removal_choices_checked": 8
+      },
+      {
+        "integer_edge_offsets": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "gain_product": "8/3",
+        "convex_coefficients": [
+          "512/2447",
+          "960/2447",
+          "600/2447",
+          "375/2447"
+        ],
+        "coordinate_drop_upper_bounds": [
+          "-137/2447",
+          "-384/2447",
+          "-240/2447",
+          "-150/2447"
+        ],
+        "removal_choices_checked": 16
+      },
+      {
+        "integer_edge_offsets": [
+          [
+            7,
+            1
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            7,
+            1
+          ]
+        ],
+        "gain_product": "343",
+        "convex_coefficients": [
+          "49/67",
+          "14/67",
+          "4/67"
+        ],
+        "coordinate_drop_upper_bounds": [
+          "-339/67",
+          "-49/67",
+          "-14/67"
+        ],
+        "removal_choices_checked": 8
+      },
+      {
+        "integer_edge_offsets": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "gain_product": "1",
+        "weak_ratio_weights": [
+          "1",
+          "1/2"
+        ],
+        "scope": "Feasible weak ratios only; no initial-basis existence is asserted."
+      },
+      {
+        "integer_edge_offsets": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "gain_product": "2/3",
+        "weak_ratio_weights": [
+          "1",
+          "1/3"
+        ],
+        "scope": "Feasible weak ratios only; no initial-basis existence is asserted."
+      }
+    ],
+    "expanded_template_controls": [
+      {
+        "R": 2,
+        "padding": 0,
+        "n": 2731,
+        "gain": 7,
+        "central_uniform_coordinate_drop": "2",
+        "conditional_basis_exchange_witnesses": [
+          {
+            "kind": "central",
+            "axis": 0,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              2,
+              1,
+              1
+            ],
+            "removed": [
+              "51,8,0",
+              "52,8,0"
+            ],
+            "added": [
+              "44,9,0",
+              "62,7,0"
+            ]
+          },
+          {
+            "kind": "central",
+            "axis": 1,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              1,
+              2,
+              1
+            ],
+            "removed": [
+              "0,51,8",
+              "0,52,8"
+            ],
+            "added": [
+              "0,44,9",
+              "0,62,7"
+            ]
+          },
+          {
+            "kind": "central",
+            "axis": 2,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              1,
+              1,
+              2
+            ],
+            "removed": [
+              "8,0,51",
+              "8,0,52"
+            ],
+            "added": [
+              "7,0,62",
+              "9,0,44"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 0,
+            "cube_coordinates": [
+              0,
+              2,
+              2
+            ],
+            "competing_cube_coordinates": [
+              1,
+              2,
+              2
+            ],
+            "removed": [
+              "24,11,0",
+              "25,11,0"
+            ],
+            "added": [
+              "17,12,0",
+              "35,10,0"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 1,
+            "cube_coordinates": [
+              2,
+              0,
+              2
+            ],
+            "competing_cube_coordinates": [
+              2,
+              1,
+              2
+            ],
+            "removed": [
+              "0,24,11",
+              "0,25,11"
+            ],
+            "added": [
+              "0,17,12",
+              "0,35,10"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 2,
+            "cube_coordinates": [
+              2,
+              2,
+              0
+            ],
+            "competing_cube_coordinates": [
+              2,
+              2,
+              1
+            ],
+            "removed": [
+              "11,0,24",
+              "11,0,25"
+            ],
+            "added": [
+              "10,0,35",
+              "12,0,17"
+            ]
+          }
+        ]
+      },
+      {
+        "R": 2,
+        "padding": 7,
+        "n": 2738,
+        "gain": 7,
+        "central_uniform_coordinate_drop": "2",
+        "conditional_basis_exchange_witnesses": [
+          {
+            "kind": "central",
+            "axis": 0,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              2,
+              1,
+              1
+            ],
+            "removed": [
+              "51,8,0",
+              "52,8,0"
+            ],
+            "added": [
+              "44,9,0",
+              "62,7,0"
+            ]
+          },
+          {
+            "kind": "central",
+            "axis": 1,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              1,
+              2,
+              1
+            ],
+            "removed": [
+              "0,51,8",
+              "0,52,8"
+            ],
+            "added": [
+              "0,44,9",
+              "0,62,7"
+            ]
+          },
+          {
+            "kind": "central",
+            "axis": 2,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              1,
+              1,
+              2
+            ],
+            "removed": [
+              "8,0,51",
+              "8,0,52"
+            ],
+            "added": [
+              "7,0,62",
+              "9,0,44"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 0,
+            "cube_coordinates": [
+              0,
+              2,
+              2
+            ],
+            "competing_cube_coordinates": [
+              1,
+              2,
+              2
+            ],
+            "removed": [
+              "24,11,0",
+              "25,11,0"
+            ],
+            "added": [
+              "17,12,0",
+              "35,10,0"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 1,
+            "cube_coordinates": [
+              2,
+              0,
+              2
+            ],
+            "competing_cube_coordinates": [
+              2,
+              1,
+              2
+            ],
+            "removed": [
+              "0,24,11",
+              "0,25,11"
+            ],
+            "added": [
+              "0,17,12",
+              "0,35,10"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 2,
+            "cube_coordinates": [
+              2,
+              2,
+              0
+            ],
+            "competing_cube_coordinates": [
+              2,
+              2,
+              1
+            ],
+            "removed": [
+              "11,0,24",
+              "11,0,25"
+            ],
+            "added": [
+              "10,0,35",
+              "12,0,17"
+            ]
+          }
+        ]
+      },
+      {
+        "R": 3,
+        "padding": 0,
+        "n": 3745,
+        "gain": 11,
+        "central_uniform_coordinate_drop": "10/3",
+        "conditional_basis_exchange_witnesses": [
+          {
+            "kind": "central",
+            "axis": 0,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              2,
+              1,
+              1
+            ],
+            "removed": [
+              "69,8,0",
+              "70,8,0"
+            ],
+            "added": [
+              "58,9,0",
+              "84,7,0"
+            ]
+          },
+          {
+            "kind": "central",
+            "axis": 1,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              1,
+              2,
+              1
+            ],
+            "removed": [
+              "0,69,8",
+              "0,70,8"
+            ],
+            "added": [
+              "0,58,9",
+              "0,84,7"
+            ]
+          },
+          {
+            "kind": "central",
+            "axis": 2,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              1,
+              1,
+              2
+            ],
+            "removed": [
+              "8,0,69",
+              "8,0,70"
+            ],
+            "added": [
+              "7,0,84",
+              "9,0,58"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 0,
+            "cube_coordinates": [
+              0,
+              2,
+              2
+            ],
+            "competing_cube_coordinates": [
+              1,
+              2,
+              2
+            ],
+            "removed": [
+              "30,11,0",
+              "31,11,0"
+            ],
+            "added": [
+              "19,12,0",
+              "45,10,0"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 1,
+            "cube_coordinates": [
+              2,
+              0,
+              2
+            ],
+            "competing_cube_coordinates": [
+              2,
+              1,
+              2
+            ],
+            "removed": [
+              "0,30,11",
+              "0,31,11"
+            ],
+            "added": [
+              "0,19,12",
+              "0,45,10"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 2,
+            "cube_coordinates": [
+              2,
+              2,
+              0
+            ],
+            "competing_cube_coordinates": [
+              2,
+              2,
+              1
+            ],
+            "removed": [
+              "11,0,30",
+              "11,0,31"
+            ],
+            "added": [
+              "10,0,45",
+              "12,0,19"
+            ]
+          }
+        ]
+      },
+      {
+        "R": 3,
+        "padding": 7,
+        "n": 3752,
+        "gain": 11,
+        "central_uniform_coordinate_drop": "10/3",
+        "conditional_basis_exchange_witnesses": [
+          {
+            "kind": "central",
+            "axis": 0,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              2,
+              1,
+              1
+            ],
+            "removed": [
+              "69,8,0",
+              "70,8,0"
+            ],
+            "added": [
+              "58,9,0",
+              "84,7,0"
+            ]
+          },
+          {
+            "kind": "central",
+            "axis": 1,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              1,
+              2,
+              1
+            ],
+            "removed": [
+              "0,69,8",
+              "0,70,8"
+            ],
+            "added": [
+              "0,58,9",
+              "0,84,7"
+            ]
+          },
+          {
+            "kind": "central",
+            "axis": 2,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              1,
+              1,
+              2
+            ],
+            "removed": [
+              "8,0,69",
+              "8,0,70"
+            ],
+            "added": [
+              "7,0,84",
+              "9,0,58"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 0,
+            "cube_coordinates": [
+              0,
+              2,
+              2
+            ],
+            "competing_cube_coordinates": [
+              1,
+              2,
+              2
+            ],
+            "removed": [
+              "30,11,0",
+              "31,11,0"
+            ],
+            "added": [
+              "19,12,0",
+              "45,10,0"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 1,
+            "cube_coordinates": [
+              2,
+              0,
+              2
+            ],
+            "competing_cube_coordinates": [
+              2,
+              1,
+              2
+            ],
+            "removed": [
+              "0,30,11",
+              "0,31,11"
+            ],
+            "added": [
+              "0,19,12",
+              "0,45,10"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 2,
+            "cube_coordinates": [
+              2,
+              2,
+              0
+            ],
+            "competing_cube_coordinates": [
+              2,
+              2,
+              1
+            ],
+            "removed": [
+              "11,0,30",
+              "11,0,31"
+            ],
+            "added": [
+              "10,0,45",
+              "12,0,19"
+            ]
+          }
+        ]
+      },
+      {
+        "R": 4,
+        "padding": 0,
+        "n": 4759,
+        "gain": 15,
+        "central_uniform_coordinate_drop": "14/3",
+        "conditional_basis_exchange_witnesses": [
+          {
+            "kind": "central",
+            "axis": 0,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              2,
+              1,
+              1
+            ],
+            "removed": [
+              "87,8,0",
+              "88,8,0"
+            ],
+            "added": [
+              "72,9,0",
+              "106,7,0"
+            ]
+          },
+          {
+            "kind": "central",
+            "axis": 1,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              1,
+              2,
+              1
+            ],
+            "removed": [
+              "0,87,8",
+              "0,88,8"
+            ],
+            "added": [
+              "0,72,9",
+              "0,106,7"
+            ]
+          },
+          {
+            "kind": "central",
+            "axis": 2,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              1,
+              1,
+              2
+            ],
+            "removed": [
+              "8,0,87",
+              "8,0,88"
+            ],
+            "added": [
+              "7,0,106",
+              "9,0,72"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 0,
+            "cube_coordinates": [
+              0,
+              2,
+              2
+            ],
+            "competing_cube_coordinates": [
+              1,
+              2,
+              2
+            ],
+            "removed": [
+              "36,11,0",
+              "37,11,0"
+            ],
+            "added": [
+              "21,12,0",
+              "55,10,0"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 1,
+            "cube_coordinates": [
+              2,
+              0,
+              2
+            ],
+            "competing_cube_coordinates": [
+              2,
+              1,
+              2
+            ],
+            "removed": [
+              "0,36,11",
+              "0,37,11"
+            ],
+            "added": [
+              "0,21,12",
+              "0,55,10"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 2,
+            "cube_coordinates": [
+              2,
+              2,
+              0
+            ],
+            "competing_cube_coordinates": [
+              2,
+              2,
+              1
+            ],
+            "removed": [
+              "11,0,36",
+              "11,0,37"
+            ],
+            "added": [
+              "10,0,55",
+              "12,0,21"
+            ]
+          }
+        ]
+      },
+      {
+        "R": 4,
+        "padding": 7,
+        "n": 4766,
+        "gain": 15,
+        "central_uniform_coordinate_drop": "14/3",
+        "conditional_basis_exchange_witnesses": [
+          {
+            "kind": "central",
+            "axis": 0,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              2,
+              1,
+              1
+            ],
+            "removed": [
+              "87,8,0",
+              "88,8,0"
+            ],
+            "added": [
+              "72,9,0",
+              "106,7,0"
+            ]
+          },
+          {
+            "kind": "central",
+            "axis": 1,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              1,
+              2,
+              1
+            ],
+            "removed": [
+              "0,87,8",
+              "0,88,8"
+            ],
+            "added": [
+              "0,72,9",
+              "0,106,7"
+            ]
+          },
+          {
+            "kind": "central",
+            "axis": 2,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              1,
+              1,
+              2
+            ],
+            "removed": [
+              "8,0,87",
+              "8,0,88"
+            ],
+            "added": [
+              "7,0,106",
+              "9,0,72"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 0,
+            "cube_coordinates": [
+              0,
+              2,
+              2
+            ],
+            "competing_cube_coordinates": [
+              1,
+              2,
+              2
+            ],
+            "removed": [
+              "36,11,0",
+              "37,11,0"
+            ],
+            "added": [
+              "21,12,0",
+              "55,10,0"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 1,
+            "cube_coordinates": [
+              2,
+              0,
+              2
+            ],
+            "competing_cube_coordinates": [
+              2,
+              1,
+              2
+            ],
+            "removed": [
+              "0,36,11",
+              "0,37,11"
+            ],
+            "added": [
+              "0,21,12",
+              "0,55,10"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 2,
+            "cube_coordinates": [
+              2,
+              2,
+              0
+            ],
+            "competing_cube_coordinates": [
+              2,
+              2,
+              1
+            ],
+            "removed": [
+              "11,0,36",
+              "11,0,37"
+            ],
+            "added": [
+              "10,0,55",
+              "12,0,21"
+            ]
+          }
+        ]
+      },
+      {
+        "R": 5,
+        "padding": 0,
+        "n": 5773,
+        "gain": 19,
+        "central_uniform_coordinate_drop": "6",
+        "conditional_basis_exchange_witnesses": [
+          {
+            "kind": "central",
+            "axis": 0,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              2,
+              1,
+              1
+            ],
+            "removed": [
+              "105,8,0",
+              "106,8,0"
+            ],
+            "added": [
+              "86,9,0",
+              "128,7,0"
+            ]
+          },
+          {
+            "kind": "central",
+            "axis": 1,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              1,
+              2,
+              1
+            ],
+            "removed": [
+              "0,105,8",
+              "0,106,8"
+            ],
+            "added": [
+              "0,86,9",
+              "0,128,7"
+            ]
+          },
+          {
+            "kind": "central",
+            "axis": 2,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              1,
+              1,
+              2
+            ],
+            "removed": [
+              "8,0,105",
+              "8,0,106"
+            ],
+            "added": [
+              "7,0,128",
+              "9,0,86"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 0,
+            "cube_coordinates": [
+              0,
+              2,
+              2
+            ],
+            "competing_cube_coordinates": [
+              1,
+              2,
+              2
+            ],
+            "removed": [
+              "42,11,0",
+              "43,11,0"
+            ],
+            "added": [
+              "23,12,0",
+              "65,10,0"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 1,
+            "cube_coordinates": [
+              2,
+              0,
+              2
+            ],
+            "competing_cube_coordinates": [
+              2,
+              1,
+              2
+            ],
+            "removed": [
+              "0,42,11",
+              "0,43,11"
+            ],
+            "added": [
+              "0,23,12",
+              "0,65,10"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 2,
+            "cube_coordinates": [
+              2,
+              2,
+              0
+            ],
+            "competing_cube_coordinates": [
+              2,
+              2,
+              1
+            ],
+            "removed": [
+              "11,0,42",
+              "11,0,43"
+            ],
+            "added": [
+              "10,0,65",
+              "12,0,23"
+            ]
+          }
+        ]
+      },
+      {
+        "R": 5,
+        "padding": 7,
+        "n": 5780,
+        "gain": 19,
+        "central_uniform_coordinate_drop": "6",
+        "conditional_basis_exchange_witnesses": [
+          {
+            "kind": "central",
+            "axis": 0,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              2,
+              1,
+              1
+            ],
+            "removed": [
+              "105,8,0",
+              "106,8,0"
+            ],
+            "added": [
+              "86,9,0",
+              "128,7,0"
+            ]
+          },
+          {
+            "kind": "central",
+            "axis": 1,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              1,
+              2,
+              1
+            ],
+            "removed": [
+              "0,105,8",
+              "0,106,8"
+            ],
+            "added": [
+              "0,86,9",
+              "0,128,7"
+            ]
+          },
+          {
+            "kind": "central",
+            "axis": 2,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              1,
+              1,
+              2
+            ],
+            "removed": [
+              "8,0,105",
+              "8,0,106"
+            ],
+            "added": [
+              "7,0,128",
+              "9,0,86"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 0,
+            "cube_coordinates": [
+              0,
+              2,
+              2
+            ],
+            "competing_cube_coordinates": [
+              1,
+              2,
+              2
+            ],
+            "removed": [
+              "42,11,0",
+              "43,11,0"
+            ],
+            "added": [
+              "23,12,0",
+              "65,10,0"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 1,
+            "cube_coordinates": [
+              2,
+              0,
+              2
+            ],
+            "competing_cube_coordinates": [
+              2,
+              1,
+              2
+            ],
+            "removed": [
+              "0,42,11",
+              "0,43,11"
+            ],
+            "added": [
+              "0,23,12",
+              "0,65,10"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 2,
+            "cube_coordinates": [
+              2,
+              2,
+              0
+            ],
+            "competing_cube_coordinates": [
+              2,
+              2,
+              1
+            ],
+            "removed": [
+              "11,0,42",
+              "11,0,43"
+            ],
+            "added": [
+              "10,0,65",
+              "12,0,23"
+            ]
+          }
+        ]
+      },
+      {
+        "R": 6,
+        "padding": 0,
+        "n": 6787,
+        "gain": 23,
+        "central_uniform_coordinate_drop": "22/3",
+        "conditional_basis_exchange_witnesses": [
+          {
+            "kind": "central",
+            "axis": 0,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              2,
+              1,
+              1
+            ],
+            "removed": [
+              "123,8,0",
+              "124,8,0"
+            ],
+            "added": [
+              "100,9,0",
+              "150,7,0"
+            ]
+          },
+          {
+            "kind": "central",
+            "axis": 1,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              1,
+              2,
+              1
+            ],
+            "removed": [
+              "0,123,8",
+              "0,124,8"
+            ],
+            "added": [
+              "0,100,9",
+              "0,150,7"
+            ]
+          },
+          {
+            "kind": "central",
+            "axis": 2,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              1,
+              1,
+              2
+            ],
+            "removed": [
+              "8,0,123",
+              "8,0,124"
+            ],
+            "added": [
+              "7,0,150",
+              "9,0,100"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 0,
+            "cube_coordinates": [
+              0,
+              2,
+              2
+            ],
+            "competing_cube_coordinates": [
+              1,
+              2,
+              2
+            ],
+            "removed": [
+              "48,11,0",
+              "49,11,0"
+            ],
+            "added": [
+              "25,12,0",
+              "75,10,0"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 1,
+            "cube_coordinates": [
+              2,
+              0,
+              2
+            ],
+            "competing_cube_coordinates": [
+              2,
+              1,
+              2
+            ],
+            "removed": [
+              "0,48,11",
+              "0,49,11"
+            ],
+            "added": [
+              "0,25,12",
+              "0,75,10"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 2,
+            "cube_coordinates": [
+              2,
+              2,
+              0
+            ],
+            "competing_cube_coordinates": [
+              2,
+              2,
+              1
+            ],
+            "removed": [
+              "11,0,48",
+              "11,0,49"
+            ],
+            "added": [
+              "10,0,75",
+              "12,0,25"
+            ]
+          }
+        ]
+      },
+      {
+        "R": 6,
+        "padding": 7,
+        "n": 6794,
+        "gain": 23,
+        "central_uniform_coordinate_drop": "22/3",
+        "conditional_basis_exchange_witnesses": [
+          {
+            "kind": "central",
+            "axis": 0,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              2,
+              1,
+              1
+            ],
+            "removed": [
+              "123,8,0",
+              "124,8,0"
+            ],
+            "added": [
+              "100,9,0",
+              "150,7,0"
+            ]
+          },
+          {
+            "kind": "central",
+            "axis": 1,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              1,
+              2,
+              1
+            ],
+            "removed": [
+              "0,123,8",
+              "0,124,8"
+            ],
+            "added": [
+              "0,100,9",
+              "0,150,7"
+            ]
+          },
+          {
+            "kind": "central",
+            "axis": 2,
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "competing_cube_coordinates": [
+              1,
+              1,
+              2
+            ],
+            "removed": [
+              "8,0,123",
+              "8,0,124"
+            ],
+            "added": [
+              "7,0,150",
+              "9,0,100"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 0,
+            "cube_coordinates": [
+              0,
+              2,
+              2
+            ],
+            "competing_cube_coordinates": [
+              1,
+              2,
+              2
+            ],
+            "removed": [
+              "48,11,0",
+              "49,11,0"
+            ],
+            "added": [
+              "25,12,0",
+              "75,10,0"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 1,
+            "cube_coordinates": [
+              2,
+              0,
+              2
+            ],
+            "competing_cube_coordinates": [
+              2,
+              1,
+              2
+            ],
+            "removed": [
+              "0,48,11",
+              "0,49,11"
+            ],
+            "added": [
+              "0,25,12",
+              "0,75,10"
+            ]
+          },
+          {
+            "kind": "axis",
+            "axis": 2,
+            "cube_coordinates": [
+              2,
+              2,
+              0
+            ],
+            "competing_cube_coordinates": [
+              2,
+              2,
+              1
+            ],
+            "removed": [
+              "11,0,48",
+              "11,0,49"
+            ],
+            "added": [
+              "10,0,75",
+              "12,0,25"
+            ]
+          }
+        ]
+      }
+    ]
+  },
   "summary": {
     "volume_fixtures": 30,
     "socle_fixtures": 18,
@@ -462165,7 +464394,11 @@
     "algebraic_attention_pair_checks": 125,
     "algebraic_attention_kernel_derivative_checks": 1050,
     "algebraic_attention_output_checks": 150,
-    "algebraic_attention_normalized_derivative_checks": 540
+    "algebraic_attention_normalized_derivative_checks": 540,
+    "exchange_cycle_rank_two_contractions": 15750,
+    "exchange_cycle_patch_checks": 324,
+    "exchange_cycle_rational_controls": 6,
+    "exchange_cycle_expanded_templates": 10
   },
   "goal_qualifying_advance": false
 }
