@@ -8941,3 +8941,276 @@ with a smaller recurrent state. A new mathematical or ML contribution
 still requires a retained interaction/recall guarantee or a useful measured
 quality--cost tradeoff against the strongest relevant method. The active
 unrestricted initial-ideal theorem goal is preserved.
+### Twenty-third pass: a uniform bound from lattice facets and planar shadows
+
+The preceding turn committed the ML application checks in `afdccf3`. That
+was progress on the application assessment, not an advance on G_d(n).
+The present pass gives a uniform proof of a smaller upper bound than the
+proof-checked Babson--Onn--Thomas bound. Priority remains a separate gate:
+this derivation is not yet a certification of the strongest current bound
+or a completed publication manuscript.
+
+For every fixed integer d>=3 define
+
+    D_d = d^2-d-1,
+    E_d = (d-1)*(6d(d-2)+4)/(3D_d),
+    L_d = (d-1)^2/D_d.
+
+The resulting all-fields, all-ideals bound is
+
+    F_d(n) <= G_d(n) = O_d(n^E_d * log(n+1)^L_d).             (LS1)
+
+In particular,
+
+    G_3(n) = O(n^(44/15) * log(n+1)^(4/5)),
+    G_4(n) = O(n^(52/11) * log(n+1)^(9/11)).
+
+The power gain over 2d(d-1)/(d+1) is exactly
+
+    2(d-1)(d-2)/(3(d+1)(d^2-d-1)) > 0.                       (LS2)
+
+This covers nonradical ideals and every characteristic. The logarithm
+does not remove the strict asymptotic power gain. No sharp growth claim,
+prime-distribution consequence or improved running-time claim is made.
+
+#### A geometric lemma with an explicit proof mechanism
+
+Let P be a full-dimensional lattice polytope in R^d, d>=3. Write V for its
+number of vertices, S for its Euclidean boundary (d-1)-measure, and s(P)
+for the expected number of vertices of its orthogonal projection onto a
+uniform random two-dimensional linear subspace. Put
+
+    a = d(d-2)/(d-1).
+
+Then, with constants depending only on d,
+
+    V <= C_d*(s(P)*H^a + S/H), for every H>=1,               (LS3)
+    V <= C_d*S^(a/(a+1))*s(P)^(1/(a+1)).                    (LS4)
+
+The maximum shadow size may replace the expectation. In dimension three
+(LS4) reads V <= C*S^(3/5)*s(P)^(2/5), equivalently
+s(P) >= c*V^(5/2)/S^(3/2). The proof uses integer facet normals and the
+boundaries of vertex normal cones. It does not use an assumed relation
+between total primal edge length and expected shadow size.
+
+**Facet incidence budget.** Every facet F has a primitive integer outward
+normal z_F. Triangulate F using all its k_F vertices. Such a triangulation
+has at least k_F-d+1 top-dimensional simplices: its dual adjacency graph is
+connected, the first simplex has d vertices, and each subsequent simplex
+along a spanning tree can introduce at most one new vertex. For an integer
+(d-1)-simplex in that hyperplane, the vector of signed maximal minors of
+its edge matrix is a nonzero integer multiple of z_F. Its volume is
+therefore at least ||z_F||/(d-1)!. Since k_F>=d, this gives
+
+    k_F <= d!*area(F)/||z_F||.                               (LS5)
+
+Call a vertex bad when it belongs to a facet with ||z_F||>H. By (LS5) the
+number of bad vertices is at most d!*S/H. All remaining vertices are good.
+
+**Size of a good normal cone.** At any vertex, the incident facet normals
+span R^d and generate its full-dimensional pointed normal cone. At a good
+vertex choose d independent incident normals z_1,...,z_d, all of length
+at most H. Their determinant is a nonzero integer. For u_i=z_i/||z_i||,
+
+    |det(u_1,...,u_d)| >= H^(-d).
+
+The simplex conv(0,u_1,...,u_d) lies in the normal cone intersected with
+the unit ball. Radial integration shows that the spherical (d-1)-area A
+of the cone section satisfies
+
+    A >= 1/((d-1)!*H^d).                                    (LS6)
+
+This argument does not assume that the vertex is simple.
+
+**Boundary from area.** A pointed cone section is contained in an open
+hemisphere. Stereographically project that hemisphere from its opposite
+pole to the unit ball in R^(d-1). In these coordinates the spherical metric
+has conformal factor 2/(1+|x|^2), between one and two. If E is the image,
+then A <= 2^(d-1)*vol(E), while the spherical boundary measure p is at
+least the Euclidean perimeter of E. The classical Euclidean isoperimetric
+inequality, applied to this piecewise smooth domain, consequently gives
+
+    p >= c_d*A^((d-2)/(d-1)) >= c'_d*H^(-a).                (LS7)
+
+Thus no spherical isoperimetric or integral-geometric extension is being
+silently assumed. Euclidean isoperimetry is a classical input, not a new
+claim of this project.
+
+**Boundary from shadows.** For an edge e of P let A_e be the spherical
+(d-2)-measure of its normal cone. Its cone is a wall shared by precisely
+the two normal cones of its endpoints. Lower-dimensional intersections
+have zero relevant measure, so
+
+    sum_(vertices v) p_v = 2*sum_(edges e) A_e.
+
+Let E_2 be a uniform random two-plane and let H_e be the (d-1)-dimensional
+linear span of the edge normal cone. Almost surely E_2 intersects H_e in
+a line. By rotational invariance within H_e that line is uniform among
+unoriented lines. Since the normal cone is pointed, its section and its
+negative are disjoint up to measure zero. The probability that the line
+meets the cone is exactly 2*A_e/area(S^(d-2)).
+
+For almost every E_2, its great circle avoids every normal cone of
+codimension at least two. Its crossings of the walls correspond exactly
+to edges of the shadow polygon, hence also to vertices of that polygon.
+Each wall contributes at most one crossing because its cone is pointed.
+Linearity of expectation now proves
+
+    sum_v p_v = area(S^(d-2))*s(P).                          (LS8)
+
+Together (LS7)--(LS8) bound the good vertices by C_d*s(P)*H^a; adding the
+bad vertices proves (LS3).
+
+For completeness the additive form can be removed. Each vertex belongs
+to at least d facets, and ||z_F||>=1; summing (LS5) gives
+S>=V/(d-1)!. Choose H=2d!*S/V, which is at least one. At most V/2 vertices
+are bad. Inserting this choice in the good-vertex bound yields
+V^(a+1)<=C_d*s(P)*S^a and proves (LS4).
+
+#### Matroid shadows and the universal monomial ground set
+
+An established theorem of Dey, combined with Eppstein's token-chain
+reduction, bounds the number of successive optimal bases for an m-element
+rank-r matroid with affine one-parameter element costs by O(m*r^(1/3)),
+after generic perturbation. The inspected proof sources are
+[Dey's six-page conference manuscript, Section 4.1, Theorem 4.1 and its proof](https://www.researchgate.net/profile/Tamal-Dey-2/publication/3728283_Improved_bounds_on_planar_k-sets_and_k-levels/links/0912f50aa92321dfc8000000/Improved-bounds-on-planar-k-sets-and-k-levels.pdf)
+and [Eppstein's author-hosted manuscript, Section 4, Theorem 4 and its proof](https://ics.uci.edu/~eppstein/pubs/Epp-DCG-98.pdf).
+Dey bounds r edge-nonoverlapping convex polygons on m+r lines by
+O((m+r)*r^(1/3)+(m+r)^(2/3)*r^(2/3)); since r<=m this is O(m*r^(1/3)).
+Eppstein traces r tokens through the optimal bases, obtaining convex
+chains with one decreasing-slope exchange per change. Both relevant
+proofs were inspected. The conference version is not asserted to be
+identical to Dey's longer 1998 journal version.
+
+Consequently any planar linear projection of a rank-r matroid basis
+polytope, including a projection already mapped into R^d, has at most
+O(m*r^(1/3)) vertices. Indeed directions (1,t) and (-1,t), t in R, cover
+the two open half-planes of objective directions up to positive scaling.
+Every polygon vertex is strictly exposed in one of them. Ties among
+different bases with the same projected point cause no problem: choose
+one strict exposing parameter for each of the finitely many distinct
+points. At these parameters there is a positive gap to every basis
+outside the exposed group. A sufficiently small generic perturbation of
+all element cost lines preserves those groups. The resulting sequence
+therefore has at least as many distinct bases as the original projected
+polygon has vertices on that half-plane. This justifies using the
+generic theorem without counting exponentially many tied bases.
+
+For a colength-n ideal I over any field use the established ground set
+
+    V_n^d = {u in N_0^d : product_i(u_i+1)<=n},
+    m = |V_n^d| = O_d(n*log(n+1)^(d-1)).
+
+The residues of these monomials represent a rank-n matroid. Every initial
+staircase is contained in V_n^d because it contains all divisors of each
+of its monomials. The set spans the quotient since it contains at least
+one such staircase. Define B(I) as the convex hull of the sums of exponent
+vectors over all matroid bases in this ground set. The established
+state-polyhedron correspondence injects the initial staircases into the
+vertices of B(I). These are the basis polytope and correspondence of
+[Babson--Onn--Thomas, Theorem 2.4 and Section 3](https://arxiv.org/pdf/math/0207135),
+not new definitions or correspondences claimed here.
+
+Each exponent coordinate is at most n-1, so B(I) is a lattice polytope in
+[0,n(n-1)]^d. It need not be full dimensional. Put Q=B(I)+[0,1]^d.
+The normal fan of this Minkowski sum refines that of B(I), so Q has at
+least as many vertices. More explicitly, an objective uniquely exposing
+a vertex of B(I), chosen also generic for the cube, exposes its sum with
+a cube vertex; uniqueness of an exposed Minkowski decomposition makes
+this assignment injective. Each planar projection of the cube is a
+zonogon with at most 2d vertices. Adding it introduces at most 2d new
+polygon edge directions, including when the projected B(I) is a segment
+or a point. Therefore
+
+    s(Q) <= O_d(m*n^(1/3))+2d
+          = O_d(n^(4/3)*log(n+1)^(d-1)).                    (LS9)
+
+Q is contained in a cube of side R=n(n-1)+1. Its surface area is at most
+2d*R^(d-1). An elementary proof sums the areas of its facets multiplied
+by the absolute coordinate components of their unit normals: each
+coordinate projection is covered twice, and the sum of the absolute
+components is at least one. Each projected area is at most R^(d-1).
+Thus S(Q)=O_d(n^(2(d-1))). Substitution in (LS4) proves (LS1). The
+arithmetic simplification of the exponent and logarithm gives (LS2).
+All constants are independent of the field and the presentation of I.
+
+The same argument provides a reusable bound for any rank-r matroid on
+m elements assigned integer vectors in [0,p]^d. If B is the convex hull
+of their basis sums, then
+
+    f_0(B) <= O_d((rp+1)^(d(d-1)(d-2)/D_d)
+                     *(m*r^(1/3)+1)^((d-1)/D_d)).          (LS10)
+
+This is a cardinality bound; it does not by itself provide a faster
+enumeration algorithm or independence oracle.
+
+#### Further algebraic consequence
+
+Every n-element staircase has O_d(n^((d-1)/d)) minimal outside monomials.
+Here is a direct proof of the estimate used in the earlier literature.
+Set h=ceil(n^(1/d)). Minimal outside exponents form an antichain. Those
+in [0,h-1]^d number at most h^(d-1), by projecting along one coordinate.
+For each coordinate i, a minimal outside exponent u with u_i>=h gives
+the h inside points u-e_i,...,u-h*e_i. These chains are disjoint for
+different u at fixed i, again by the antichain property. There are at
+most n/h such u per coordinate. Hence the total is at most
+h^(d-1)+dn/h=O_d(n^((d-1)/d)).
+
+Each reduced Groebner basis has one polynomial per minimal outside
+monomial. Taking the union over initial ideals and using (LS1) gives
+
+    |U(I)| <= O_d(n^(E_d+(d-1)/d)*log(n+1)^L_d).            (LS11)
+
+For d=3 this is O(n^(18/5)*log(n+1)^(4/5)), improving the proof-checked
+historical exponent 11/3. The multiplication argument is the known
+argument of Babson--Onn--Thomas Corollary 2.5(2); the changed quantitative
+input is (LS1). This counts distinct elements of the universal basis,
+not their total coefficient encoding or computation time.
+
+#### Certificates, primary comparisons and remaining publication gate
+
+The dependency-free checker now records eight integer polytope fixtures,
+including nonsimple vertices, a unimodularly skewed cube, rational and
+finite-field point-quotient basis polytopes, and a lower-dimensional basis
+polytope regularized by the cube. It saves 63 facet triangulation
+certificates, 68 independent incident-normal determinants and 64 exact
+planar projections. Projected convex hulls and intersections with the
+primal edge normal cones are calculated independently and agree edge by
+edge. Three point-matroid fixtures supply 66 rational parameter samples
+and ten single-exchange token transitions, independently checked against
+all bases. Exact exponent arithmetic covers dimensions 3--32; the proof,
+not this finite range, establishes the identities for every d>=3.
+No sampled integral is used as a proof of (LS8) or of isoperimetry.
+
+The directly matched historical comparison is
+[Babson--Onn--Thomas Corollary 2.5 and its complete proof](https://arxiv.org/pdf/math/0207135).
+Its second assertion gives the historical universal-basis exponent just
+compared. The more recent
+[multi-parametric matroid preprint, Corollary 3.4 and Theorem 3.6](https://arxiv.org/html/2503.08178v1#S3)
+was checked through the definitions, arrangement argument and complete
+Theorem 3.6 proof. For p parameters it gives O(m^(2p)) regions and an
+algorithm with that factor; p=2 does not imply (LS1). Its input has
+arbitrary cost coefficients, whereas the additional lattice/surface
+budget is essential here.
+
+[Black--Criado's inspected manuscript, Theorem 1.1 and Corollary 1.4](https://arxiv.org/html/2406.06936v1)
+bounds expected shadows from diameter and edge lengths, giving an upper
+bound O_d(R) for a polytope in [0,R]^d. It does not supply (LS4), which
+bounds vertices using surface area and a shadow upper bound. The served
+HTML is labeled arXiv v1 but bears an August 2026 date; no unverified
+identity with other versions is assumed. The inspected principal
+statements of [Small Shadows of Lattice Polytopes](https://arxiv.org/pdf/2204.09129)
+concern selected short pivot paths and monotone diameter, not a bound on
+all vertices from a maximum shadow. The earlier Moser construction
+explains why a shadow bound without a lattice-size budget is insufficient.
+These comparisons have the reading scopes stated here; a search failure
+is not evidence that (LS4) or (LS1) is new.
+
+The next publication task is a focused priority audit of (LS4), (LS10)
+and the resulting unrestricted initial-ideal exponent, followed by a
+separate manuscript if that audit supports novelty. This is now an
+actual uniform upper-bound proof and further algebraic consequence,
+not merely another family obstruction. The strongest-current-priority
+gate, independently assessed proof and publication artifact remain
+unfinished, so the goal stays active. Existing manuscripts and kernels
+remain unchanged; no outbound correspondence or submission is authorized.

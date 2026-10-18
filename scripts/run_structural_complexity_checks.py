@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Exact, bounded controls for the general initial-ideal research goal.
 
-This checks proof-route obstructions, a conditional rank lemma and the
-binomial/parallel-class reduction, not a new unrestricted bound.
+This checks proof-route obstructions, conditional lemmas and finite
+certificates supporting the lattice-shadow proof in the research note.
+Finite checks do not prove its uniform bound or establish priority.
 Uses only Python's standard library. Run from the repository root:
     python3 -B scripts/run_structural_complexity_checks.py
 """
@@ -4780,6 +4781,244 @@ def algebraic_attention_mixing_controls():
             "normalized_output_checks": sum(x["normalized_output_checks"] for x in fixtures)}
 
 
+def lattice_shadow_controls():
+    """Exact local geometry, shadow sections and exponent-balance certificates."""
+    def subtract(x, y):
+        return tuple(a - b for a, b in zip(x, y))
+
+    def cross(x, y):
+        return (x[1] * y[2] - x[2] * y[1], x[2] * y[0] - x[0] * y[2],
+                x[0] * y[1] - x[1] * y[0])
+
+    def hull2(points):
+        points = sorted(set(points))
+        if len(points) < 3:
+            return points
+
+        def turn(a, b, c):
+            return (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0])
+
+        halves = []
+        for order in (points, list(reversed(points))):
+            half = []
+            for p in order:
+                while len(half) >= 2 and turn(half[-2], half[-1], p) <= 0:
+                    half.pop()
+                half.append(p)
+            halves.append(half[:-1])
+        return halves[0] + halves[1]
+
+    rng = Random(20261018)
+
+    def polytope(name, supplied):
+        points = sorted(set(supplied))
+        require(any(determinant([subtract(p, points[0]) for p in triple])
+                    for triple in combinations(points[1:], 3)), "the geometry fixture is full dimensional")
+        planes = {}
+        for a, b, c in combinations(points, 3):
+            normal = cross(subtract(b, a), subtract(c, a))
+            if not any(normal):
+                continue
+            factor = gcd(*normal)
+            normal = tuple(x // factor for x in normal)
+            level = dot(normal, a)
+            sides = [dot(normal, p) - level for p in points]
+            if max(sides) > 0 and min(sides) < 0:
+                continue
+            if max(sides) > 0:
+                normal, level = tuple(-x for x in normal), -level
+            planes[normal + (level,)] = [p for p in points if dot(normal, p) == level]
+        facets, edges, vertices = [], set(), set()
+        for plane, face_points in sorted(planes.items()):
+            normal, level = plane[:3], plane[3]
+            drop = max(range(3), key=lambda i: abs(normal[i]))
+            axes = [i for i in range(3) if i != drop]
+            projected = {tuple(p[i] for i in axes): p for p in face_points}
+            polygon = [projected[p] for p in hull2(projected)]
+            require(len(polygon) >= 3, "supporting plane is a facet")
+            vertices.update(polygon)
+            for a, b in zip(polygon, polygon[1:] + polygon[:1]):
+                edges.add(tuple(sorted((a, b))))
+            multiples = []
+            for j in range(1, len(polygon) - 1):
+                area_vector = cross(subtract(polygon[j], polygon[0]), subtract(polygon[j + 1], polygon[0]))
+                pivot = next(i for i, x in enumerate(normal) if x)
+                multiple = Fraction(area_vector[pivot], normal[pivot])
+                require(multiple.denominator == 1 and multiple != 0, "integer simplex covolume multiple")
+                require(area_vector == tuple(multiple * x for x in normal), "simplex area vector is normal")
+                multiples.append(abs(int(multiple)))
+            normalized_area = Fraction(sum(multiples), 2)
+            require(len(multiples) == len(polygon) - 2, "facet fan triangulation uses every vertex")
+            require(len(polygon) <= 6 * normalized_area, "facet incidence is paid by lattice area")
+            facets.append({"normal": normal, "level": level, "vertices": polygon,
+                           "simplex_normal_multiples": multiples,
+                           "area_divided_by_normal_length": str(normalized_area)})
+        vertices = sorted(vertices)
+        require(len(vertices) - len(edges) + len(facets) == 2, "independent Euler control")
+        cone_certificates = []
+        for v in vertices:
+            incident = [f["normal"] for f in facets if v in f["vertices"]]
+            chosen = next((triple for triple in combinations(incident, 3) if determinant(triple)), None)
+            require(chosen is not None, "incident primitive normals span at every vertex")
+            det = abs(determinant(chosen))
+            require(det.denominator == 1 and det >= 1, "the normal determinant supplies an integer lower bound")
+            cone_certificates.append({"vertex": v, "incident_normals": incident,
+                                      "independent_normals": chosen, "absolute_determinant": str(det),
+                                      "normal_squared_lengths": [dot(z, z) for z in chosen]})
+        thresholds = []
+        for h in (1, 2, 3, 4, 8, 16):
+            long_facets = [f for f in facets if dot(f["normal"], f["normal"]) > h * h]
+            bad = {v for f in long_facets for v in f["vertices"]}
+            incidences = sum(len(f["vertices"]) for f in long_facets)
+            require(len(bad) <= incidences, "long-normal vertices are bounded by facet incidences")
+            for v in set(vertices) - bad:
+                require(all(dot(z, z) <= h * h for z in next(c for c in cone_certificates if c["vertex"] == v)["incident_normals"]),
+                        "good vertices have only short facet normals")
+            thresholds.append({"H": h, "bad_vertices": len(bad), "long_facet_incidences": incidences,
+                               "good_vertices": len(vertices) - len(bad)})
+        sections = []
+        for _ in range(300):
+            a, b = [tuple(rng.randrange(-17, 18) for _ in range(3)) for _ in range(2)]
+            if not any(cross(a, b)):
+                continue
+            image = {(dot(a, p), dot(b, p)): p for p in vertices}
+            if len(image) != len(vertices):
+                continue
+            shadow = hull2(image)
+            crossing_edges = []
+            nongeneric = False
+            for x, y in sorted(edges):
+                direction = subtract(y, x)
+                ad, bd = dot(a, direction), dot(b, direction)
+                if not ad and not bd:
+                    nongeneric = True
+                    break
+                w = tuple(bd * aa - ad * bb for aa, bb in zip(a, b))
+                for sign in (1, -1):
+                    cost = tuple(sign * z for z in w)
+                    maximum = max(dot(cost, p) for p in vertices)
+                    exposed = [p for p in vertices if dot(cost, p) == maximum]
+                    if x in exposed and y in exposed:
+                        if len(exposed) != 2:
+                            nongeneric = True
+                            break
+                        crossing_edges.append({"edge": (x, y), "weight": cost})
+                if nongeneric:
+                    break
+            if nongeneric:
+                continue
+            require(len(crossing_edges) == len(shadow), "normal-cone crossings equal projected polygon vertices")
+            exposed_pairs = {tuple(sorted(entry["edge"])) for entry in crossing_edges}
+            require(exposed_pairs == {tuple(sorted((image[x], image[y])))
+                                      for x, y in zip(shadow, shadow[1:] + shadow[:1])},
+                    "independent primal hull and normal-cone section agree edge by edge")
+            sections.append({"projection_rows": (a, b), "shadow_vertices": shadow,
+                             "normal_cone_crossings": crossing_edges})
+            if len(sections) == 8:
+                break
+        require(len(sections) == 8, "eight generic exact projection certificates")
+        return {"name": name, "vertices": vertices, "facets": facets, "edges": sorted(edges),
+                "vertex_normal_certificates": cone_certificates,
+                "threshold_controls": thresholds, "shadow_section_controls": sections}
+
+    cube = list(product((0, 1), repeat=3))
+    fixtures = [polytope("unit cube", cube),
+                polytope("integer simplex", [(0, 0, 0), (3, 0, 0), (0, 4, 0), (0, 0, 5)]),
+                polytope("nonsimple octahedron", [tuple(sign * (i == j) for i in range(3))
+                                                for j in range(3) for sign in (-1, 1)]),
+                polytope("square pyramid", [(0, 0, 0), (3, 0, 0), (0, 3, 0), (3, 3, 0), (1, 1, 4)]),
+                polytope("unimodular skew cube", [(x + 5 * y + 12 * z, y + 3 * z, z) for x, y, z in cube])]
+    matroids = []
+    for label, powers, characteristic in (("generic rational point quotient", (1, 3, 9), 0),
+                                           ("finite-field point quotient", (1, 3, 9), 5),
+                                           ("diagonal rational point quotient", (1, 1, 1), 0)):
+        ground = hyperbolic_cross(3, 3)
+        columns = {a: tuple(pow(t, dot(a, powers), characteristic) if characteristic
+                            else t ** dot(a, powers) for t in (1, 2, 3)) for a in ground}
+        bases = [tuple(ground.index(a) for a in subset) for subset in combinations(ground, 3)
+                 if (int(determinant([columns[a] for a in subset])) % characteristic if characteristic
+                     else determinant([columns[a] for a in subset]))]
+        require(bases, "the point quotient has rank three")
+        moments = sorted({tuple(sum(ground[j][i] for j in base) for i in range(3)) for base in bases})
+        if powers == (1, 1, 1):
+            require(all(sum(p) == 3 for p in moments), "the diagonal basis polytope is lower dimensional")
+            triangle = [(3, 0, 0), (0, 3, 0), (0, 0, 3)]
+            require(set(triangle) <= set(moments), "axis bases expose the whole triangle")
+            regularized = [tuple(x + y for x, y in zip(p, c)) for p in triangle for c in cube]
+            geometry = polytope("lower-dimensional basis polytope plus unit cube", regularized)
+            require(len(geometry["vertices"]) >= len(triangle), "cube regularization preserves vertex count")
+        else:
+            geometry = polytope(label + " basis polytope", moments)
+        fixtures.append(geometry)
+        for _ in range(100):
+            intercepts = [rng.randrange(-1000, 1001) for _ in ground]
+            slopes = rng.sample(range(-1000, 1001), len(ground))
+            crossings = [Fraction(intercepts[j] - intercepts[i], slopes[i] - slopes[j])
+                         for i, j in combinations(range(len(ground)), 2)]
+            if len(set(crossings)) == len(crossings):
+                break
+        require(len(set(crossings)) == len(crossings), "generic parametric element costs")
+        crossings = sorted(crossings)
+        samples = [crossings[0] - 1] + [(x + y) / 2 for x, y in zip(crossings, crossings[1:])] + [crossings[-1] + 1]
+        sequence, changes, owners = [], [], {}
+        for interval, t in enumerate(samples):
+            costs = [x + t * y for x, y in zip(intercepts, slopes)]
+            selected = set()
+            for j in sorted(range(len(ground)), key=lambda j: costs[j]):
+                if any(selected | {j} <= set(base) for base in bases):
+                    selected.add(j)
+            minima = min(sum(costs[j] for j in base) for base in bases)
+            require(sum(costs[j] for j in selected) == minima and len(selected) == 3,
+                    "greedy and independent exhaustive minimum-basis enumeration agree")
+            require(sum(sum(costs[j] for j in base) == minima for base in bases) == 1,
+                    "generic cost samples have a unique minimum basis")
+            if not sequence:
+                owners = {j: token for token, j in enumerate(sorted(selected))}
+            elif selected != set(sequence[-1]["basis"]):
+                previous = set(sequence[-1]["basis"])
+                removed, added = previous - selected, selected - previous
+                require(len(removed) == len(added) == 1, "every generic transition is a single basis exchange")
+                x, y = next(iter(removed)), next(iter(added))
+                crossing = crossings[interval - 1]
+                require(intercepts[x] + crossing * slopes[x] == intercepts[y] + crossing * slopes[y],
+                        "the exchanged element lines meet at the transition")
+                require(slopes[y] < slopes[x], "each token follows a convex chain with decreasing slope")
+                token = owners.pop(x)
+                owners[y] = token
+                changes.append({"at": str(crossing), "removed": x, "added": y, "token": token,
+                                "old_slope": slopes[x], "new_slope": slopes[y]})
+            require(set(owners) == selected and len(set(owners.values())) == 3,
+                    "token chains occupy different element lines on every open interval")
+            sequence.append({"sample": str(t), "basis": sorted(selected), "minimum_cost": str(minima)})
+        matroids.append({"name": label, "characteristic": characteristic, "rank": 3, "ground": ground,
+                         "columns": [[str(x) for x in columns[a]] for a in ground], "bases": bases,
+                         "basis_moments": moments, "intercepts": intercepts, "slopes": slopes,
+                         "parametric_samples": sequence, "token_exchanges": changes})
+    exponents = []
+    for d in range(3, 33):
+        denominator = d * d - d - 1
+        a = Fraction(d * (d - 2), d - 1)
+        surface_power, shadow_power = a / (a + 1), 1 / (a + 1)
+        exponent = 2 * (d - 1) * surface_power + Fraction(4, 3) * shadow_power
+        log_power = (d - 1) * shadow_power
+        old = Fraction(2 * d * (d - 1), d + 1)
+        gain = Fraction(2 * (d - 1) * (d - 2), 3 * (d + 1) * denominator)
+        require(exponent == Fraction((d - 1) * (6 * d * (d - 2) + 4), 3 * denominator), "exact exponent balance")
+        require(old - exponent == gain > 0, "strict fixed-power gain over the historical exponent")
+        require(log_power == Fraction((d - 1) ** 2, denominator), "exact logarithmic exponent")
+        exponents.append({"dimension": d, "normal_cutoff_exponent": str((2 * (d - 1) - Fraction(4, 3)) / (a + 1)),
+                          "bound_exponent": str(exponent), "log_exponent": str(log_power),
+                          "historical_exponent": str(old), "power_gain": str(gain),
+                          "universal_basis_exponent": str(exponent + Fraction(d - 1, d))})
+    return {"scope": "Exact finite supporting certificates for the uniform proof in the note; they do not numerically integrate random shadows, prove isoperimetry, establish novelty or replace the dimension-uniform argument.",
+            "polytope_fixtures": fixtures, "point_matroid_fixtures": matroids, "exponent_controls": exponents,
+            "facet_certificates": sum(len(f["facets"]) for f in fixtures),
+            "vertex_normal_certificates": sum(len(f["vertex_normal_certificates"]) for f in fixtures),
+            "shadow_sections": sum(len(f["shadow_section_controls"]) for f in fixtures),
+            "parametric_samples": sum(len(f["parametric_samples"]) for f in matroids),
+            "token_exchanges": sum(len(f["token_exchanges"]) for f in matroids)}
+
+
 def attention_rank_sanity_control():
     """An exact Vandermonde witness, not an attention-compression algorithm."""
     parameters = (1, 2, 3, 4)
@@ -4855,6 +5094,7 @@ def main():
     moment_cubes = staircase_moment_cube_controls()
     algebraic_attention = algebraic_attention_hotpath_controls()
     attention_mixing = algebraic_attention_mixing_controls()
+    lattice_shadows = lattice_shadow_controls()
     exchange_cycles = exchange_cycle_coherence_controls()
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
@@ -4956,6 +5196,7 @@ def main():
         "staircase_moment_cube_control": moment_cubes,
         "algebraic_attention_hotpath_control": algebraic_attention,
         "algebraic_attention_mixing_control": attention_mixing,
+        "lattice_shadow_control": lattice_shadows,
         "exchange_cycle_coherence_control": exchange_cycles,
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
@@ -5074,6 +5315,12 @@ def main():
                     "mixed_attention_query_key_derivative_checks": attention_mixing["query_key_derivative_checks"],
                     "mixed_attention_normalized_output_checks": attention_mixing["normalized_output_checks"],
                     "attention_accumulated_state_rank_witnesses": len(attention_mixing["state_rank_witnesses"]),
+                    "lattice_shadow_facet_certificates": lattice_shadows["facet_certificates"],
+                    "lattice_shadow_vertex_normal_certificates": lattice_shadows["vertex_normal_certificates"],
+                    "lattice_shadow_exact_sections": lattice_shadows["shadow_sections"],
+                    "lattice_shadow_parametric_samples": lattice_shadows["parametric_samples"],
+                    "lattice_shadow_token_exchanges": lattice_shadows["token_exchanges"],
+                    "lattice_shadow_exponent_controls": len(lattice_shadows["exponent_controls"]),
                     "exchange_cycle_rank_two_contractions": sum(x["invertible_new_pairs"] for x in exchange_cycles["rank_two_contractions"]),
                     "exchange_cycle_patch_checks": sum(x["weight_checks"] for x in exchange_cycles["patch_controls"]),
                     "exchange_cycle_rational_controls": len(exchange_cycles["rational_cycle_controls"]),

@@ -29,12 +29,12 @@
   "milestones": [
     {
       "id": "primary_baseline",
-      "status": "later_squarefree_algebra_count_scope_compared_broader_extremal_audit_open",
+      "status": "BOT_unrestricted_comparison_and_Dey_Eppstein_inputs_proof_checked_focused_priority_audit_open",
       "deliverable": "A theorem-level primary-source comparison identifying the best relevant unrestricted and restricted bounds, exact hypotheses, input models and still viable targets."
     },
     {
       "id": "dependency_mechanism",
-      "status": "least_admissible_flag_count_proved_for_all_quadratic_pole_quotients_all_fields_higher_degree_and_general_fast_growth_open",
+      "status": "lattice_facet_surface_and_normal_cone_shadow_bridge_proved_in_every_fixed_dimension",
       "deliverable": "A precise lemma about multiplication-compatible residue dependencies or state-polyhedron geometry, with its proof attempt and adversarial controls."
     },
     {
@@ -44,17 +44,17 @@
     },
     {
       "id": "uniform_asymptotic_theorem",
-      "status": "proof_attempts_active_no_qualifying_unrestricted_advance",
+      "status": "uniform_all_fields_upper_bound_Ed_Ld_proved_improves_BOT_pending_current_priority_gate",
       "deliverable": "Sharp growth or a substantial advance over the strongest checked asymptotic bound for G_3 or all-point F_3, with explicit scope and a route to general fixed dimension where justified."
     },
     {
       "id": "further_consequence",
-      "status": "full_exponential_graph_diagonal_state_support_proved_for_conditional_class_only",
+      "status": "universal_groebner_basis_cardinality_and_general_integer_weight_matroid_bounds_proved_pending_priority",
       "deliverable": "A proved algebraic, geometric or enumeration consequence beyond restating the count; any speed claim needs a full algorithmic complexity argument."
     },
     {
       "id": "proof_priority_artifact",
-      "status": "not_started",
+      "status": "complete_research_note_proof_and_exact_certificates_manuscript_deferred_until_priority_gate",
       "deliverable": "Complete proof, precise prior-art assessment, independently checked exact certificates and a separate honest manuscript suitable for the user's later review."
     }
   ],
@@ -124,7 +124,7 @@
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Commit 45e9061 proved sharpness of the individual-staircase moment relaxation, saved ordered-prefix countercontrols, and implemented the constrained ML reference. It did not improve the unrestricted initial-ideal asymptotic."
+    "reason": "Commit afdccf3 saved and verified the ML mixing/state-rank assessment. It did not advance the unrestricted theorem; this continuation returns to that objective."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -2781,5 +2781,132 @@
       },
       "next_gate": "Audit the one-parameter theorem, then prove or refute an additional lattice-sensitive conversion to global coherent-basis counts. The conversion is presently missing; this is a proof lead rather than a result."
     }
+  },
+  "twenty_third_results": {
+    "record": "docs/interleaving_research.md, Twenty-third pass: a uniform bound from lattice facets and planar shadows",
+    "checks": "results/research/structural_complexity_checks.json, lattice_shadow_control",
+    "uniform_upper_bound_proved": true,
+    "scope": "All fields and all colength-n ideals, including nonradical ideals, for each fixed d>=3. No quotient realizability assumption, simplicity, characteristic-zero restriction or generic configuration hypothesis.",
+    "geometric_theorem": "For a full-dimensional lattice polytope P in R^d with V vertices, surface area S and expected uniform planar shadow size s, V<=C_d*S^(a/(a+1))*s^(1/(a+1)), a=d(d-2)/(d-1).",
+    "proof_mechanism": [
+      "Primitive integer facet normals pay for incidences through triangulated facet lattice area.",
+      "Discard vertices incident to normals longer than H, at most d!*S/H.",
+      "The normalized determinant of d short independent normals gives spherical cone area at least 1/((d-1)!*H^d).",
+      "Stereographic projection and classical Euclidean isoperimetry give normal-cone boundary at least c_d*H^(-d(d-2)/(d-1)).",
+      "Rotational invariance of a random two-plane intersection with each edge-normal hyperplane exactly converts total normal-cone boundary to expected shadow vertices.",
+      "Dey convex-chain complexity plus Eppstein token reduction bounds each shadow of a rank-n residue-matroid basis polytope by O(m*n^(1/3)).",
+      "The BOT ground set has m=O_d(n*log(n+1)^(d-1)); cube regularization handles lower-dimensional polytopes and surface area is O_d(n^(2(d-1)))."
+    ],
+    "denominator": "D_d=d^2-d-1",
+    "bound": "G_d(n)=O_d(n^E_d*log(n+1)^L_d), E_d=(d-1)*(6d(d-2)+4)/(3D_d), L_d=(d-1)^2/D_d.",
+    "three_variables": "G_3(n)=O(n^(44/15)*log(n+1)^(4/5)).",
+    "power_gain_over_BOT": "2(d-1)(d-2)/(3(d+1)(d^2-d-1))>0 for every d>=3.",
+    "further_algebraic_consequence": "The union of all reduced Groebner bases has O_d(n^(E_d+(d-1)/d)*log(n+1)^L_d) elements; in d=3 this is O(n^(18/5)*log(n+1)^(4/5)) versus the inspected historical exponent11/3. The generator-count multiplication argument is established prior art.",
+    "general_matroid_consequence": "For rank r on m elements with integer vector weights in [0,p]^d, the basis-sum polytope has O_d((rp+1)^(d(d-1)(d-2)/D_d)*(m*r^(1/3)+1)^((d-1)/D_d)) vertices.",
+    "primary_input_audit": [
+      {
+        "authors": "Dey",
+        "source": "https://www.researchgate.net/profile/Tamal-Dey-2/publication/3728283_Improved_bounds_on_planar_k-sets_and_k-levels/links/0912f50aa92321dfc8000000/Improved-bounds-on-planar-k-sets-and-k-levels.pdf",
+        "title": "Improved Bounds on Planar k-sets and k-levels",
+        "version": "Six-page conference manuscript; not silently identified with the ten-page journal version DOI10.1007/PL00009354.",
+        "scope_read": "Section3 chain/crossing lemmas and complete Theorem3.3 proof; Section4.1 complete convex-polygon proof and Theorem4.1, including the adjacent explicit matroid specialization.",
+        "used": "O(m*r^(1/3)) one-parameter optimal-basis complexity after Eppstein reduction."
+      },
+      {
+        "authors": "Eppstein",
+        "source": "https://ics.uci.edu/~eppstein/pubs/Epp-DCG-98.pdf",
+        "scope_read": "Section4 Theorem4 complete token-chain proof; Theorem5 and Corollary1; lower construction Theorem7 read but not used as quotient realizability.",
+        "used": "Reduce a generic rank-r matroid sequence to r edge-nonoverlapping convex chains/polygons on m+r lines."
+      },
+      {
+        "authors": "Babson, Onn and Thomas",
+        "source": "https://arxiv.org/pdf/math/0207135",
+        "scope_read": "Theorem2.4 and state-polyhedron proof, universal ground set and projected residue matroid; Corollary2.5 complete proof rechecked in this pass.",
+        "used": "Matched all-colength baseline and known universal-basis cardinality multiplication argument."
+      },
+      {
+        "source": "https://arxiv.org/html/2503.08178v1",
+        "title": "Multi-parametric matroids - Applications to interdiction and weight set decomposition",
+        "scope_read": "Definitions and arrangement construction, Theorem3.2 complete proof, Corollary3.4, and Theorem3.6 complete proof.",
+        "comparison": "For p parameters O(m^(2p)) regions; p=2 does not imply the improved colength exponent. No full interdiction audit."
+      },
+      {
+        "source": "https://arxiv.org/html/2406.06936v1",
+        "authors": "Black and Criado",
+        "scope_read": "Theorem1.1 and Corollary1.4 statements, Section2 Lemmas2.1--2.2 with proofs.",
+        "comparison": "Diameter/edge-length expected-shadow upper/lower bounds differ from the lattice surface-area versus vertex-count bridge. The served v1 HTML bears an August2026 date; no unverified version identity assumed."
+      },
+      {
+        "source": "https://arxiv.org/pdf/2204.09129",
+        "title": "Small Shadows of Lattice Polytopes",
+        "scope_read": "Principal introductory theorem statements and problem definitions; no full pivot-rule proof audit.",
+        "comparison": "Selected short shadow paths and monotone diameter, not control of all vertices from maximum shadow."
+      },
+      {
+        "authors": "Deza, Manoussakis and Onn",
+        "source": "https://optimization-online.org/wp-content/uploads/2015/12/5266.pdf",
+        "title": "Euler Polytopes and Convex Matroid Optimization",
+        "version": "December2015 preprint; no unverified identity with the published version asserted.",
+        "scope_read": "Complete Section3.1 including Proposition3.1 normal-fan refinement proof, Proposition3.2 uniform-matroid realization proof and Theorem3.3.",
+        "comparison": "O_d(p^(d(d-1))) vertices via O_d(p^d) primitive generators; independent of rank/ground-set size, hence useful and sometimes stronger than LS10 for fixed p. With p=n it does not imply LS1. No blanket improvement over the Euler bound is claimed."
+      }
+    ],
+    "isolated_exact_checks": {
+      "polytope_fixtures": 8,
+      "facet_certificates": 63,
+      "vertex_normal_determinants": 68,
+      "exact_shadow_sections": 64,
+      "point_matroid_fixtures": 3,
+      "rational_parametric_samples": 66,
+      "single_token_exchanges": 10,
+      "exponent_dimensions": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ]
+    },
+    "verification_scope": "Exact finite facets, determinants, projected hulls versus edge normal cones, enumerated bases versus greedy, token slope monotonicity and rational exponent controls. No numerical integration is used to prove a uniform geometric inequality.",
+    "improves_inspected_unrestricted_baseline": true,
+    "strongest_current_bound_verified": false,
+    "novelty_established": false,
+    "separate_manuscript_prepared": false,
+    "independent_referee_assessment": false,
+    "new_algorithmic_speedup_claimed": false,
+    "full_checker_verified": true,
+    "next_publication_gate": "Audit priority and equivalent lattice-shadow/projection statements, then prepare a separate honest manuscript if supported. This is a complete uniform bound derivation and further consequence, but the strongest-current-priority and artifact gates are not complete.",
+    "goal_complete": false,
+    "source_sha256": {
+      "scripts/run_structural_complexity_checks.py": "ec35cd1d958895fbe8ca63a5c0cc847abbd79b298a9108cd517d2629b0c0fe20",
+      "docs/interleaving_research.md": "60dd84866f2ac0e824a73ea6fccb941c0f484d7b985a7975db98d04fbe54de7b"
+    },
+    "historical_report_blocks_preserved": 39,
+    "historical_summary_counts_preserved": true
   }
 }
