@@ -10894,3 +10894,263 @@ mixture queries, deterministic versus probabilistic error, and the costs
 of encoding/routing. We should seek a useful improvement to that complete
 tradeoff while avoiding both an OMv-hard unrestricted promise and a
 repackaging of ordinary lookup or sampling.
+
+### Associative-memory goal: address geometry and signed writes
+
+The previous goal turn made progress: it established supporting bounds,
+defined the binding workload and supplied exact certificates. It did not
+establish the new architectural advantage required by the active goal.
+This iteration tests whether a useful encoder can meet those bounds.
+The objective and acceptance criteria remain unchanged. No additional
+neural training is justified by the results below.
+
+#### A positive-address restriction on the local-correction route
+
+Let F have n nonnegative rows f_i in R^m, each of Euclidean norm one.
+Write G=F*F^T, s_i=||f_i||_1^2 and
+R=max_i sum_{j != i} G_ij. Here s_i measures effective width in this
+particular memory basis; it is **not** intrinsic input dimension.
+Then
+
+    (sum_i sqrt(s_i))^2 <= m*n*(1+R).
+
+Indeed, Cauchy--Schwarz applied to the m coordinates of sum_i f_i gives
+
+    (sum_i ||f_i||_1)^2 <= m*||sum_i f_i||_2^2
+                         = m*1^T*G*1 <= m*n*(1+R).
+
+Positivity is used in replacing the sum of row norms by the norm of the
+sum. If every s_i >= s, this implies m >= n*s/(1+R).
+For alpha>0, the exact infinity-norm contraction constant is
+
+    ||I-alpha*G||_infinity = |1-alpha| + alpha*R.
+
+Some alpha gives a strict contraction if and only if R<1. Consequently
+the first iteration's guarantee, at m approximately n cells, requires
+effective positive address width below approximately two. Broad equal
+positive weights on k cells require m > n*k/2 under this particular
+guarantee. Tiny nonzero tails can still encode many input coordinates;
+this is not a dimension or general memory impossibility theorem.
+
+There is also a spectral variant. If lambda_max(G)<=K, the same proof
+gives m >= (sum_i sqrt(s_i))^2/(n*K). In particular a positive-definite
+G with condition number at most K has lambda_max(G)<=K, since its
+eigenvalues average one. Thus replacing infinity-norm contraction by
+bounded spectral conditioning does not automatically remove the issue.
+
+The bound is sharp. For a cyclic permutation matrix P on n>=3 cells,
+F=c*I+s*P with c,s>=0 and c^2+s^2=1 has effective width
+(c+s)^2=1+2*c*s and off-diagonal Gram row sum R=2*c*s.
+Signed Hadamard features give the opposite control: m=n, G=I and
+effective width n. They are a dense change of basis of private cells,
+with dense writes; their existence proves no architectural advantage.
+
+These are elementary frame inequalities. Their use here is to reject
+an unjustified positive-encoder assumption, not to claim a paper.
+Strictly positive softmax addresses also have a complete overlap graph;
+the earlier sparse graph repair guarantee needs genuine sparsity or a
+separately bounded truncation error.
+
+#### A capacity bound for normalized additive squared-kernel recall
+
+Let u_1,...,u_n be unit vectors in R^p or C^p. Put P_i=u_i*u_i^*,
+G_ij=Tr(P_i*P_j)=|u_i^*u_j|^2 and R_i=sum_{j != i}G_ij.
+Consider exactly the canonical additive memory with *latest* scalar
+values v_j in [-1,1], queried at stored key i as
+
+    y_i = sum_j G_ij*v_j / sum_j G_ij.
+
+This grants correct replacement of old contributions, so it does not
+confuse stale duplicates with interference. Maintaining that canonical
+state may require a latest-value/key cache, which must still be charged.
+
+For each i the largest possible |y_i-v_i| over these values is exactly
+2*R_i/(1+R_i), attained by v_i=1 and all other v_j=-1. On the other hand
+
+    sum_ij G_ij = ||sum_i P_i||_F^2 >= n^2/p,
+
+by Cauchy--Schwarz on the p eigenvalues, whose sum is n. Therefore
+
+    max_{i,v} |y_i-v_i| >= 2*max(0, 1-p/n).
+
+A uniform error guarantee <=epsilon<2 requires
+n <= p/(1-epsilon/2), despite a quadratic feature state of order p^2.
+This is a Welch/frame consequence for this additive normalized reader.
+It does not bound delta corrections, dual writes, nonlinear reads,
+stochastic or distributional recall, or all architectures at equal memory.
+For a degree-2r dot-product kernel the same argument applies to normalized
+symmetric r-th tensor powers in dimension D=binomial(p+r-1,r), replacing
+p by D. A larger exact factorization rank alone is not a uniform
+arbitrary-value retention guarantee.
+
+The directly relevant published baseline is
+[KATA, arXiv:2607.17419v1](https://arxiv.org/html/2607.17419v1).
+Its PSD features, MUB dictionary, idealized retrieval statement and delta
+recurrences were inspected (Theorems 5/7, Sections C.5/C.7 and D.1/D.3).
+Theorem 7 uses isotropic independent values and idealized distractor
+correlations; it is not the uniform adversarial-value guarantee above.
+Equation 28 corrects the current key using that key's PSD feature; it
+does not assert preservation of all earlier keys. These distinctions
+are consistent with the paper's scope, not counterexamples to its stated
+theorems. We have not reproduced its experiments or audited every proof
+and implementation detail. Its larger feature state must be counted in
+any comparison. Neither polynomial lifting nor MUB addressing is new.
+
+#### Exact signed dual writes, and why they do not yet pass our goal
+
+Suppose r mutually unbiased orthonormal bases in R^p or C^p are available:
+their rank-one projectors satisfy
+
+    Tr(P_ai*P_bj) = delta_ij  if a=b, and 1/p otherwise.
+
+Choose one reference projector P_a0 in each basis and retain the other
+p-1 projectors as query addresses. For each retained address use the
+signed write matrix W_ai=P_ai-P_a0. Directly from these overlaps,
+
+    Tr(P_bj*W_ai) = delta_ab*delta_ij
+
+for every retained query. Thus n=r*(p-1) independently replaceable
+values can be kept in S=sum_ai v_ai*W_ai with exact reads Tr(P_ai*S).
+The update
+
+    S <- S + (v_new-Tr(P_ai*S))*W_ai
+
+replaces one value and preserves every other retained read. It uses no
+latest-value cache in exact arithmetic. Each W has trace zero and
+matrix rank two. The state is generally indefinite: this changes the
+write/normalization architecture, rather than preserving a convex
+attention average. The ordinary unit-strength delta direction P_ai
+instead changes a cross-basis read by the correction divided by p.
+
+A complete complex MUB set has r=p+1 at prime-power p, yielding p^2-1
+independent labels, the dimension of traceless Hermitian matrices.
+These are full p-coordinate quadratic queries, including cross-coordinate
+terms. The classical MUB decomposition already explains this construction.
+[Filippov--Man'ko, Section 3, equations 6--10](https://arxiv.org/html/1008.2675v1)
+explicitly uses omitted reference projectors, the centered Gram matrix
+delta_ab*(delta_ij-1/p), and tomographic inversion. Those definitions,
+the displayed reconstruction and its proof were inspected. Our rank-two
+dual identity is an elementary consequence, not a defensible novelty claim.
+
+The arithmetic and access accounting are restrictive. A generic dense
+matrix read/write takes O(p^2*d_v) scalar operations for value width d_v;
+rank-two writes do **not** touch only two memory cells. A Hermitian state
+uses p^2-1 real coefficients per value after omitting its trace; real
+symmetric states use p*(p+1)/2-1. An explicit codebook can cost O(r*p^2)
+real coordinates, and explicit dual matrices O(n*p^2). An implicit known
+construction can save that metadata only after counting its evaluation,
+index decoding and precision costs. Addressing arbitrary continuous new
+keys is not supplied by this fixed-codebook result. A dynamic dictionary
+already solves discrete-address recall, so that is not a sufficient
+separation; any claimed benefit must include the richer query semantics.
+
+The general identity above is algebraic. Our exact finite-precision
+controls use real MUBs at p=2 and p=4, with dyadic projectors. If D*W_ai
+is integral and |v_ai|<=R are integers, store T=D*S as integers. Then
+|T_jk|<=n*D*R, and exact current reads followed by integral replacement
+maintain this bound for any overwrite horizon. This is O(log(n*D*R))
+bits per state entry, plus signs/indices and read-arithmetic costs.
+It is not a claim that arbitrary prime-power complex formulas can be
+used at fixed precision without a further error and number-field audit.
+
+Noise is a material limitation even in exact arithmetic. Give every
+nonreference key of one basis value +1 and all retained keys of other
+bases value zero. Then S=I-p*P_a0. For a stored unit vector u orthogonal
+to the reference vector w, a nearby unit query
+q=sqrt(1-t^2)*u+t*w reads
+
+    q^*S*q = 1-p*t^2.
+
+Thus this construction's worst-case constant-error neighborhood can
+shrink as p^(-1/2). Exact retention at codewords is not automatically
+robust semantic retrieval. No robustness advantage over existing memory
+methods follows from this construction.
+
+#### Bounded continuous reads impose another capacity gate
+
+There is a broader supporting bound even for signed writes. Suppose
+each assignment v in {-1,+1}^n has some Hermitian state S_v, with
+|u_i^*S_v*u_i-v_i|<=epsilon<1 at the fixed unit keys. Suppose also
+|q^*S_v*q|<=B for every unit query q and every assignment. Then
+
+    n <= p*B^2/(1-epsilon)^2.
+
+The second condition is equivalent to ||S_v||_op<=B, so
+||S_v||_F<=sqrt(p)*B. For independent signs sigma_i let
+X=sum_i sigma_i*P_i. The matched-value guarantee gives
+Tr(S_sigma*X)>=(1-epsilon)*n for every assignment, while
+
+    E Tr(S_sigma*X) <= sqrt(p)*B*E||X||_F
+                   <= sqrt(p)*B*sqrt(E||X||_F^2)
+                    = B*sqrt(p*n).
+
+The last equality uses independence and ||P_i||_F=1. Rearranging proves
+the bound. This does not assume a linear update or encoder for values.
+It does assume a single quadratic reader with bounded outputs everywhere.
+Clipping, nonlinear or routed reads escape that reader model and must be
+examined separately. In particular, n of order p^2 requires worst-case
+output range B at least of order sqrt(p) at constant matched error.
+The signed construction's large outputs are not just an omitted
+normalizer one can replace by a constant without checking retention.
+
+This is a classical Hilbert-space margin/shattering argument.
+[Gyurik--van Vreumingen--Dunjko, Proposition 5 and Appendix A.3](https://arxiv.org/html/2105.05566v3)
+already bounds fat-shattering by observable Frobenius norm squared divided
+by margin squared. Those statements and the displayed reduction/proof
+were inspected. Taking norm bound sqrt(p)*B and margin 1-epsilon gives
+the same order; the constant-one proof above does not supply substantive
+novelty. This is a known-corollary gate, not our paper's main theorem.
+
+#### Literature decisions and reproducible checks
+
+Other tempting shortcuts already have substantial prior art:
+
+- [SANTA/S2ANTA](https://arxiv.org/html/2605.01910v2) analyzes sampling
+  and equal-mass stratification, including unbiasedness and covariance
+  domination (Appendix A). Those arguments were inspected. Value-fetch
+  savings do not eliminate score formation or sampling setup costs.
+- [Three Tokens Force Exponential Feature Rank](https://arxiv.org/html/2608.11427v1)
+  already gives a short-context lower bound for a nonnegative kernel
+  head. Its task, reader model, rank argument and stated limitations
+  were inspected; its entire proof chain was not independently verified.
+  Signed readers and recurrence are outside that rank theorem. A generic
+  positivity/rank separation alone is not an available novelty claim.
+- [Learnable Low-Rank Polynomial Sketch](https://arxiv.org/html/2610.14219v1)
+  already studies learned tensor factorizations. Theorem 3.1 and its
+  truncated-SVD proof were inspected. That fixed-data existence statement
+  is not a uniform dynamic-key retention theorem; experiments and the
+  remaining proof chain were not audited here.
+- [ZeroS](https://arxiv.org/html/2602.05230v1) already studies signed,
+  zero-sum attention and stability. Proposition 3.5 and its displayed
+  Appendix A.1.5 proof were inspected: its Lipschitz guarantee assumes
+  bounded logits, residual-weight scaling and a decaying output factor.
+  That stability statement alone does not assert exact latest-value
+  retention. A signed reader proposal must compare both guarantees;
+  removing a positive background is not itself new.
+
+Commands:
+
+```bash
+python3 -B scripts/run_retention_geometry_checks.py
+python3 scripts/run_retention_tradeoff_checks.py
+python3 scripts/run_feature_dimension_checks.py
+./build.sh
+python3 tests/test_smoke.py
+python3 -B scripts/run_structural_complexity_checks.py
+```
+
+The new report is `results/research/retention_geometry_checks.json`.
+It checks positive-width equality cases, signed-basis escapes, additive
+PSD worst-value witnesses and dyadic dual-write streams against direct
+reconstruction of all latest values. Exact arithmetic supports the
+displayed proofs; small dimensions do not establish novelty or an ML win.
+
+The decision is to park a naive positive local-correction encoder and
+standalone MUB dual-writing as proposed contributions. Retain their
+proofs and controls. Continue toward a genuine **robustness/access/retention
+tradeoff** for a richer reader: specify the allowed routing or nonlinearity,
+prove a useful uniform guarantee, count its whole state and precision,
+and compare against dictionaries, sampling, kernel regression and signed
+attention on the identical workload. No new publishable advantage has
+yet passed that gate. The goal stays active; its success criteria do not
+weaken to accommodate these supporting results.

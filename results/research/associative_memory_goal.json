@@ -13,12 +13,12 @@
     {
       "stage": 2,
       "task": "Audit primary theorems for sparse inverse/local correction and dynamic graphical inference; classify what is already a known corollary.",
-      "status": "in_progress"
+      "status": "primary_audit_excludes_several_elementary_geometry_and_signed_reader_candidates; full_tradeoff_comparison_continues"
     },
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "binding_workload_defined_new_construction_or_separation_pending"
+      "status": "positive_local_encoder_and_standalone_mub_duals_parked; richer_reader_with_robustness_access_guarantee_pending"
     },
     {
       "stage": 4,
@@ -169,5 +169,78 @@
       "dynamic_key_edits": 108
     },
     "historical_certificate_blocks_preserved": 46
+  },
+  "second_iteration": {
+    "previous_turn_classification": "progress: supporting proofs, model, exact certificates and new active objective were preserved; goal not achieved",
+    "record": "docs/interleaving_research.md, Associative-memory goal: address geometry and signed writes",
+    "certificate_script": "scripts/run_retention_geometry_checks.py",
+    "certificate_report": "results/research/retention_geometry_checks.json",
+    "proved_supporting_results": [
+      "Nonnegative unit feature rows satisfy (sum row_l1)^2 <= m*n*(1+R). Infinity-norm Gram contraction requires R<1, limiting effective positive address breadth at near-linear state width. Breadth is basis-dependent, not intrinsic input dimension.",
+      "Canonical normalized additive rank-one PSD recall has worst-label error at least 2*max(0,1-p/n), regardless of a quadratic feature state. This does not lower-bound delta, nonlinear or distributional recall.",
+      "MUB projector differences are exact rank-two dual writes for r*(p-1) fixed codeword associations. This is a known dual-frame/tomography consequence, has dense accesses and needs a precision/codebook audit beyond the dyadic controls.",
+      "The omitted-reference dual construction has a worst-case noise witness with read 1-p*t^2, so exact codeword retention alone does not provide a dimension-independent robust neighborhood.",
+      "Any quadratic reader with output bounded by B on every unit query and matched error epsilon<1 for every sign assignment satisfies n <= p*B^2/(1-epsilon)^2, even with nonlinear value encoding. This is a classical norm/margin consequence, not new publishable novelty."
+    ],
+    "primary_sources": [
+      {
+        "url": "https://arxiv.org/html/2607.17419v1",
+        "scope": "KATA Theorems 5/7, C.5/C.7 and D.1/D.3 inspected. Distributional idealized retrieval, MUB dictionaries and same-key delta correction differ from uniform all-key retention. No experiment reproduction or full implementation audit."
+      },
+      {
+        "url": "https://arxiv.org/html/1008.2675v1",
+        "scope": "MUB tomography Section 3, omitted-reference expansion, centered Gram entries and displayed reconstruction/proof inspected. Exact rank-two dual identity is an elementary consequence."
+      },
+      {
+        "url": "https://arxiv.org/html/2105.05566v3",
+        "scope": "Proposition 5 and Appendix A.3 norm/margin shattering bounds and displayed reduction/proof inspected. Covers the same order as our bounded-quadratic-reader gate; sharpening a constant does not qualify as the goal."
+      },
+      {
+        "url": "https://arxiv.org/html/2605.01910v2",
+        "scope": "Sampling/stratification definitions, Appendix A unbiasedness and covariance comparison arguments inspected. Score formation/setup costs remain; no universal systematic-sampling variance guarantee adopted."
+      },
+      {
+        "url": "https://arxiv.org/html/2608.11427v1",
+        "scope": "Three-token Min-IP task, model, main rank statements/argument and limitations inspected; full proof chain not independently verified. Does not exclude signed readers, multiple heads or recurrence."
+      },
+      {
+        "url": "https://arxiv.org/html/2610.14219v1",
+        "scope": "Theorem 3.1 fixed-data truncated-SVD representation and Appendix A.1 proof inspected. No uniform future-update retention guarantee or experiments adopted."
+      },
+      {
+        "url": "https://arxiv.org/html/2602.05230v1",
+        "scope": "ZeroS Proposition 3.5 and Appendix A.1.5 displayed Lipschitz proof inspected. Bounded logits, residual scaling and output decay must not be silently replaced by exact latest-value retention."
+      }
+    ],
+    "decision": "Park naive positive local-correction encoders and standalone MUB dual-writing as claimed contributions. Preserve their useful obstructions and controls. Seek a new robustness/access/retention tradeoff for an explicitly routed or nonlinear high-dimensional reader, compared on the same workload.",
+    "next_actions": [
+      "Specify the richer reader and its allowed routing/nonlinearity, query perturbation norm, bounded-value semantics and active-key changes before proposing another experiment.",
+      "Seek a uniform robust retention guarantee with full read/write, index, codebook, precision and preprocessing costs; compare with the strongest applicable dictionary, sampling, kernel-regression and signed-attention baseline.",
+      "Investigate whether the dynamic local-repair theorem can support such a workload after charging routing/separation and truncation; reject a known inverse-filter or dual-frame corollary as the main contribution.",
+      "If a construction passes the prior-art and accounting gates, prove its tradeoff and an applicable obstruction before any new neural training; otherwise preserve the failure and iterate."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "certificate_summary": {
+      "positive_breadth_equality_cases": 9,
+      "signed_change_of_basis_controls": 2,
+      "additive_psd_capacity_cases": 8,
+      "dual_frame_cases": 2,
+      "exact_dual_write_overwrites": 256,
+      "rademacher_assignments_checked": 516
+    },
+    "verification_commands": [
+      "python3 -B scripts/run_retention_geometry_checks.py",
+      "python3 -B scripts/run_retention_tradeoff_checks.py",
+      "python3 -B scripts/run_feature_dimension_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py",
+      "python3 -B scripts/run_structural_complexity_checks.py"
+    ],
+    "preservation": "Core kernels, both manuscripts, learned-recall artifacts, previous goal and all historical certificate bodies unchanged; only research-note provenance hashes refreshed in existing reports."
   }
 }

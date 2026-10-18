@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "command": "python3 -B scripts/run_retention_geometry_checks.py",
+  "arithmetic": "fractions.Fraction; bounded exact integer states in overwrite controls",
+  "scope": "Supporting geometry obstructions and known dual-frame controls, not a new theorem beyond prior art or evidence of ML advantage.",
+  "positive_address_breadth": [
+    {
+      "keys_and_cells": 3,
+      "parameter": "1/8",
+      "effective_address_width": "6241/4225",
+      "off_diagonal_row_sum": "2016/4225",
+      "breadth_bound_attained": true
+    },
+    {
+      "keys_and_cells": 3,
+      "parameter": "1/4",
+      "effective_address_width": "529/289",
+      "off_diagonal_row_sum": "240/289",
+      "breadth_bound_attained": true
+    },
+    {
+      "keys_and_cells": 3,
+      "parameter": "1/2",
+      "effective_address_width": "49/25",
+      "off_diagonal_row_sum": "24/25",
+      "breadth_bound_attained": true
+    },
+    {
+      "keys_and_cells": 5,
+      "parameter": "1/8",
+      "effective_address_width": "6241/4225",
+      "off_diagonal_row_sum": "2016/4225",
+      "breadth_bound_attained": true
+    },
+    {
+      "keys_and_cells": 5,
+      "parameter": "1/4",
+      "effective_address_width": "529/289",
+      "off_diagonal_row_sum": "240/289",
+      "breadth_bound_attained": true
+    },
+    {
+      "keys_and_cells": 5,
+      "parameter": "1/2",
+      "effective_address_width": "49/25",
+      "off_diagonal_row_sum": "24/25",
+      "breadth_bound_attained": true
+    },
+    {
+      "keys_and_cells": 9,
+      "parameter": "1/8",
+      "effective_address_width": "6241/4225",
+      "off_diagonal_row_sum": "2016/4225",
+      "breadth_bound_attained": true
+    },
+    {
+      "keys_and_cells": 9,
+      "parameter": "1/4",
+      "effective_address_width": "529/289",
+      "off_diagonal_row_sum": "240/289",
+      "breadth_bound_attained": true
+    },
+    {
+      "keys_and_cells": 9,
+      "parameter": "1/2",
+      "effective_address_width": "49/25",
+      "off_diagonal_row_sum": "24/25",
+      "breadth_bound_attained": true
+    }
+  ],
+  "signed_basis_escape": [
+    {
+      "keys_and_cells": 4,
+      "effective_address_width": "4",
+      "gram_is_identity": true,
+      "dense_signed_change_of_basis_not_advantage": true
+    },
+    {
+      "keys_and_cells": 16,
+      "effective_address_width": "16",
+      "gram_is_identity": true,
+      "dense_signed_change_of_basis_not_advantage": true
+    }
+  ],
+  "normalized_additive_psd_capacity": [
+    {
+      "key_dimension": 2,
+      "keys": 3,
+      "worst_label_error": "47/36",
+      "uniform_lower_bound": "2/3",
+      "scope": "canonical additive normalized rank-one PSD memory only"
+    },
+    {
+      "key_dimension": 2,
+      "keys": 4,
+      "worst_label_error": "2408/1629",
+      "uniform_lower_bound": "1",
+      "scope": "canonical additive normalized rank-one PSD memory only"
+    },
+    {
+      "key_dimension": 3,
+      "keys": 4,
+      "worst_label_error": "15335/10534",
+      "uniform_lower_bound": "1/2",
+      "scope": "canonical additive normalized rank-one PSD memory only"
+    },
+    {
+      "key_dimension": 3,
+      "keys": 6,
+      "worst_label_error": "149984101/91549910",
+      "uniform_lower_bound": "1",
+      "scope": "canonical additive normalized rank-one PSD memory only"
+    },
+    {
+      "key_dimension": 3,
+      "keys": 9,
+      "worst_label_error": "679893630628/385878317567",
+      "uniform_lower_bound": "4/3",
+      "scope": "canonical additive normalized rank-one PSD memory only"
+    },
+    {
+      "key_dimension": 4,
+      "keys": 5,
+      "worst_label_error": "8519779545022/5498978804211",
+      "uniform_lower_bound": "2/5",
+      "scope": "canonical additive normalized rank-one PSD memory only"
+    },
+    {
+      "key_dimension": 4,
+      "keys": 8,
+      "worst_label_error": "15954898482416088069488/9242958580142805690869",
+      "uniform_lower_bound": "1",
+      "scope": "canonical additive normalized rank-one PSD memory only"
+    },
+    {
+      "key_dimension": 4,
+      "keys": 16,
+      "worst_label_error": "16733868338321467527558883132605280837546085287082589017097/8959548849605313761183398118281680027991676405398265705107",
+      "uniform_lower_bound": "3/2",
+      "scope": "canonical additive normalized rank-one PSD memory only"
+    }
+  ],
+  "signed_quadratic_dual_writes": [
+    {
+      "real_key_dimension": 2,
+      "bases": 2,
+      "associations": 2,
+      "packed_traceless_state_cells_per_value": 2,
+      "write_matrix_rank": 2,
+      "exact_stream_overwrites": 128,
+      "rademacher_assignments_checked": 4,
+      "integer_state_scale": 2,
+      "value_cap": 7,
+      "maximum_integer_entry_observed": "14",
+      "integer_entry_bound": 28,
+      "ordinary_delta_cross_read_change_for_unit_correction": "1/2",
+      "reference_mixture_read": "-7/25",
+      "fixed_codebook_and_algebraic_queries_only": true,
+      "known_dual_frame_control_not_novel_architecture": true
+    },
+    {
+      "real_key_dimension": 4,
+      "bases": 3,
+      "associations": 9,
+      "packed_traceless_state_cells_per_value": 9,
+      "write_matrix_rank": 2,
+      "exact_stream_overwrites": 128,
+      "rademacher_assignments_checked": 512,
+      "integer_state_scale": 4,
+      "value_cap": 7,
+      "maximum_integer_entry_observed": "48",
+      "integer_entry_bound": 252,
+      "ordinary_delta_cross_read_change_for_unit_correction": "1/4",
+      "reference_mixture_read": "-39/25",
+      "fixed_codebook_and_algebraic_queries_only": true,
+      "known_dual_frame_control_not_novel_architecture": true
+    }
+  ],
+  "summary": {
+    "positive_breadth_equality_cases": 9,
+    "signed_change_of_basis_controls": 2,
+    "additive_psd_capacity_cases": 8,
+    "dual_frame_cases": 2,
+    "exact_dual_write_overwrites": 256,
+    "rademacher_assignments_checked": 516
+  },
+  "uniform_proof_location": "docs/interleaving_research.md, Associative-memory goal: address geometry and signed writes",
+  "new_publishable_advantage_established": false,
+  "source_sha256": {
+    "scripts/run_retention_geometry_checks.py": "fb011af0b463adc373a64d2632092909c1c1b31cf5b1bae1e75020164a862bcf",
+    "scripts/run_retention_tradeoff_checks.py": "31d91fa3363df1bb34549ddbbea683c0c170123d78c16e86c47a99acc513287a",
+    "docs/interleaving_research.md": "dd0d5e5427ca0f34963742498e93a17694a41bae710f5c8cf066a74c20d8a090"
+  }
+}
