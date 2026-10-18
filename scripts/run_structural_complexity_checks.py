@@ -5009,6 +5009,127 @@ def algebraic_attention_mixing_controls():
             "normalized_output_checks": sum(x["normalized_output_checks"] for x in fixtures)}
 
 
+def lattice_shadow_sharpness_controls():
+    """Finite certificates for the uniform primitive-zonotope sharpness proof.
+
+    Region counts and integer support objectives are independent finite oracles.
+    Neither these small cases nor the density samples prove the asymptotics.
+    """
+    from functools import cmp_to_key
+
+    def ray_order(x, y):
+        hx = 0 if x[1] > 0 or (x[1] == 0 and x[0] > 0) else 1
+        hy = 0 if y[1] > 0 or (y[1] == 0 and y[0] > 0) else 1
+        if hx != hy:
+            return -1 if hx < hy else 1
+        turn = x[0] * y[1] - x[1] * y[0]
+        return -1 if turn > 0 else 1 if turn < 0 else 0
+
+    zonotopes = []
+    for bound in (1, 2, 3):
+        generators = [g for g in product(range(-bound, bound + 1), repeat=3)
+                      if any(g) and gcd(*g) == 1 and next(x for x in g if x) > 0]
+        flats = {primitive(cross(g, h)) for g, h in combinations(generators, 2)}
+        degrees = {u: sum(dot(u, g) == 0 for g in generators) for u in flats}
+        # Great-circle Euler count: F=2+sum_points(valency/2-1).
+        expected = 2 + 2 * sum(k - 1 for k in degrees.values())
+        vertices = {}
+        total = tuple(sum(g[i] for g in generators) for i in range(3))
+        for u in sorted(flats):
+            axes = ((1, 0, 0), (0, 1, 0), (0, 0, 1))
+            a = next(cross(u, e) for e in axes if any(cross(u, e)))
+            b = cross(u, a)
+            rays = set()
+            for g in generators:
+                if dot(u, g) == 0:
+                    x, y = -dot(b, g), dot(a, g)
+                    factor = gcd(x, y)
+                    ray = (x // factor, y // factor)
+                    rays.update((ray, tuple(-t for t in ray)))
+            rays = sorted(rays, key=cmp_to_key(ray_order))
+            for first, second in zip(rays, rays[1:] + rays[:1]):
+                x, y = first[0] + second[0], first[1] + second[1]
+                perturbation = tuple(x * aa + y * bb for aa, bb in zip(a, b))
+                scale = 1 + max(abs(dot(perturbation, g)) for g in generators)
+                objective = tuple(scale * uu + vv for uu, vv in zip(u, perturbation))
+                signs = [dot(objective, g) for g in generators]
+                require(all(signs), "integer objective is strictly inside a zonotope normal cone")
+                vertex = tuple(sum(g[i] for g, sign in zip(generators, signs) if sign > 0)
+                               for i in range(3))
+                vertices[vertex] = objective
+                vertices[tuple(t - v for t, v in zip(total, vertex))] = tuple(-x for x in objective)
+        require(len(vertices) == expected, "support-vertex enumeration equals the great-circle Euler count")
+        samples = []
+        for vertex, objective in list(sorted(vertices.items()))[:3]:
+            require(dot(objective, vertex) == sum(max(0, dot(objective, g)) for g in generators),
+                    "saved support objective exposes its integer vertex")
+            samples.append({"vertex": vertex, "strict_objective": objective})
+        degree_histogram = {str(k): sum(v == k for v in degrees.values()) for k in sorted(set(degrees.values()))}
+        zonotopes.append({"coordinate_bound": bound, "generators": generators,
+                          "line_flats": len(flats), "flat_generator_multiplicities": degree_histogram,
+                          "vertices_by_euler": expected, "vertices_by_support_objectives": len(vertices),
+                          "generic_planar_shadow_vertices": 2 * len(generators),
+                          "vertex_set_sha256": sha256(json.dumps(sorted(vertices), separators=(",", ":")).encode()).hexdigest(),
+                          "strict_support_samples": samples})
+
+    primitive_boxes = []
+    for d in (3, 4):
+        h = 100 * d
+        columns = [list(product(*[(h, h + 1) if i == j else (0, 1) for i in range(d)]))
+                   for j in range(d - 1)]
+        counts, normals, samples = 0, {}, []
+        for chosen in product(*columns):
+            matrix = [[chosen[j][i] for j in range(d - 1)] for i in range(d)]
+            cofactors = tuple((-1) ** i * int(determinant([row for j, row in enumerate(matrix) if j != i]))
+                              for i in range(d))
+            if gcd(*cofactors) != 1:
+                continue
+            require(all(gcd(*column) == 1 for column in chosen), "saturated columns are individually primitive")
+            normal = primitive(cofactors)
+            require(all(dot(normal, column) == 0 for column in chosen), "primitive normal annihilates its axis-box tuple")
+            normals[normal] = normals.get(normal, 0) + 1
+            counts += 1
+            if len(samples) < 3:
+                samples.append({"columns": chosen, "signed_maximal_minors": cofactors})
+        require(counts > 0, "finite primitive axis-box witness exists")
+        require(max(normals.values()) <= 5 ** ((d - 1) ** 2), "finite flat multiplicities respect the proved uniform cap")
+        primitive_boxes.append({"dimension": d, "axis_scale": h,
+                                "tuples_examined": prod(len(box) for box in columns),
+                                "primitive_tuples": counts, "distinct_spans": len(normals),
+                                "max_span_multiplicity": max(normals.values()), "samples": samples,
+                                "scope": "Small density controls, below the sufficient asymptotic threshold; no finite threshold inference."})
+
+    inverse_certificates = []
+    exponents = []
+    for d in range(3, 33):
+        D = d * d - d - 1
+        alpha, beta = Fraction(d * (d - 2), D), Fraction(d - 1, D)
+        vertex_power, surface_power, shadow_power = d * (d - 1), d * d - 1, d
+        require(alpha * surface_power + beta * shadow_power == vertex_power,
+                "primitive zonotopes saturate the geometric exponent balance in fixed dimension")
+        exponents.append({"dimension": d, "surface_power": surface_power, "shadow_power": shadow_power,
+                          "vertex_power": vertex_power, "surface_exponent": str(alpha),
+                          "shadow_exponent": str(beta)})
+        if d <= 6:
+            h = 100 * d
+            matrix = [[h if i == j else 1 if i == j + 1 else 0
+                       for j in range(d - 1)] for i in range(d)]
+            left_inverse = [[0 if j <= i else (-h) ** (j - i - 1) for j in range(d)]
+                            for i in range(d - 1)]
+            require(all(sum(left_inverse[i][k] * matrix[k][j] for k in range(d)) == int(i == j)
+                        for i in range(d - 1) for j in range(d - 1)), "integer left-inverse saturation certificate")
+            inverse_certificates.append({"dimension": d, "axis_scale": h,
+                                         "matrix": matrix, "integer_left_inverse": left_inverse})
+    return {"scope": "Primitive zonotopes are an established family. The note supplies a uniform proof that their growth saturates the proposed lattice surface/shadow inequality; these finite controls do not establish novelty, the asymptotics or quotient realizability.",
+            "uniform_growth": "For fixed d>=3 and primitive generators up to sign in [-p,p]^d: f0=Theta_d(p^(d*(d-1))), S=Theta_d(p^(d*d-1)), and mean shadow=Theta_d(p^d).",
+            "limitation": "Neither geometric exponent can be reduced with the other held fixed in a uniform pure-power bound. This does not prove sharpness of G_d or of the looser Dey-based matroid specialization.",
+            "three_dimensional_zonotopes": zonotopes,
+            "axis_box_controls": primitive_boxes, "integer_left_inverse_certificates": inverse_certificates,
+            "exponent_balance_controls": exponents,
+            "support_vertices_checked": sum(z["vertices_by_support_objectives"] for z in zonotopes),
+            "primitive_box_tuples_checked": sum(z["tuples_examined"] for z in primitive_boxes)}
+
+
 def lattice_shadow_controls():
     """Exact local geometry, shadow sections and exponent-balance certificates."""
     def subtract(x, y):
@@ -5385,6 +5506,7 @@ def main():
     power_delta = algebraic_power_delta_controls()
     channel_gates = algebraic_channel_gate_controls()
     lattice_shadows = lattice_shadow_controls()
+    shadow_sharpness = lattice_shadow_sharpness_controls()
     staircase_generators = staircase_generator_controls()
     exchange_cycles = exchange_cycle_coherence_controls()
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
@@ -5490,6 +5612,7 @@ def main():
         "algebraic_power_delta_control": power_delta,
         "algebraic_channel_gate_control": channel_gates,
         "lattice_shadow_control": lattice_shadows,
+        "lattice_shadow_sharpness_control": shadow_sharpness,
         "staircase_generator_control": staircase_generators,
         "exchange_cycle_coherence_control": exchange_cycles,
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
@@ -5619,6 +5742,8 @@ def main():
                     "lattice_shadow_parametric_samples": lattice_shadows["parametric_samples"],
                     "lattice_shadow_token_exchanges": lattice_shadows["token_exchanges"],
                     "lattice_shadow_exponent_controls": len(lattice_shadows["exponent_controls"]),
+                    "lattice_shadow_sharpness_support_vertices": shadow_sharpness["support_vertices_checked"],
+                    "lattice_shadow_sharpness_box_tuples": shadow_sharpness["primitive_box_tuples_checked"],
                     "staircase_generator_staircases_checked": staircase_generators["staircases_checked"],
                     "staircase_generator_minimal_generators_checked": staircase_generators["minimal_generators_checked"],
                     "exchange_cycle_rank_two_contractions": sum(x["invertible_new_pairs"] for x in exchange_cycles["rank_two_contractions"]),

@@ -3,8 +3,8 @@
   "command": "python3 -B scripts/run_structural_complexity_checks.py",
   "scope": "Bounded exact checks of route obstructions and a conditional counting lemma; no unrestricted asymptotic advance or novelty assertion.",
   "source_sha256": {
-    "scripts/run_structural_complexity_checks.py": "2829de6be0d16cad2c2a2b60e11b9b49be46a2fd18f73210e4c8a7c24f9aae6c",
-    "docs/interleaving_research.md": "5b421ed5a19a4e31d26fa2a19c16a8d3e426e1ffe35b47d0f4d5c121ad552945"
+    "scripts/run_structural_complexity_checks.py": "b60c4cd89e27804438590d9e5368f9969397aac0b55922c0b3e09973ecfd4aff",
+    "docs/interleaving_research.md": "59710aa1cc40ba9e5b025aef9b1d33b3792f5020ea627f8f7ad7e7685e5ebc83"
   },
   "volume_obstruction": {
     "scope": "Exact determinant controls for an infinite symbolic construction; the uniform proof is in the research note.",
@@ -482837,6 +482837,1859 @@
     "parametric_samples": 66,
     "token_exchanges": 10
   },
+  "lattice_shadow_sharpness_control": {
+    "scope": "Primitive zonotopes are an established family. The note supplies a uniform proof that their growth saturates the proposed lattice surface/shadow inequality; these finite controls do not establish novelty, the asymptotics or quotient realizability.",
+    "uniform_growth": "For fixed d>=3 and primitive generators up to sign in [-p,p]^d: f0=Theta_d(p^(d*(d-1))), S=Theta_d(p^(d*d-1)), and mean shadow=Theta_d(p^d).",
+    "limitation": "Neither geometric exponent can be reduced with the other held fixed in a uniform pure-power bound. This does not prove sharpness of G_d or of the looser Dey-based matroid specialization.",
+    "three_dimensional_zonotopes": [
+      {
+        "coordinate_bound": 1,
+        "generators": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            -1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1,
+            0
+          ],
+          [
+            1,
+            -1,
+            1
+          ],
+          [
+            1,
+            0,
+            -1
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            -1
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "line_flats": 25,
+        "flat_generator_multiplicities": {
+          "2": 12,
+          "3": 4,
+          "4": 9
+        },
+        "vertices_by_euler": 96,
+        "vertices_by_support_objectives": 96,
+        "generic_planar_shadow_vertices": 26,
+        "vertex_set_sha256": "95f86dbdaff30ba96d8fb6778d3d88b5e365e4a613e95a940d53b7c2d3e5e47f",
+        "strict_support_samples": [
+          {
+            "vertex": [
+              0,
+              0,
+              0
+            ],
+            "strict_objective": [
+              -16,
+              -6,
+              -4
+            ]
+          },
+          {
+            "vertex": [
+              0,
+              0,
+              1
+            ],
+            "strict_objective": [
+              -16,
+              -6,
+              4
+            ]
+          },
+          {
+            "vertex": [
+              0,
+              1,
+              -1
+            ],
+            "strict_objective": [
+              -16,
+              -4,
+              -6
+            ]
+          }
+        ]
+      },
+      {
+        "coordinate_bound": 2,
+        "generators": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            -2
+          ],
+          [
+            0,
+            1,
+            -1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            2,
+            -1
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            1,
+            -2,
+            -2
+          ],
+          [
+            1,
+            -2,
+            -1
+          ],
+          [
+            1,
+            -2,
+            0
+          ],
+          [
+            1,
+            -2,
+            1
+          ],
+          [
+            1,
+            -2,
+            2
+          ],
+          [
+            1,
+            -1,
+            -2
+          ],
+          [
+            1,
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1,
+            0
+          ],
+          [
+            1,
+            -1,
+            1
+          ],
+          [
+            1,
+            -1,
+            2
+          ],
+          [
+            1,
+            0,
+            -2
+          ],
+          [
+            1,
+            0,
+            -1
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            1,
+            1,
+            -2
+          ],
+          [
+            1,
+            1,
+            -1
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            -2
+          ],
+          [
+            1,
+            2,
+            -1
+          ],
+          [
+            1,
+            2,
+            0
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            2,
+            -2,
+            -1
+          ],
+          [
+            2,
+            -2,
+            1
+          ],
+          [
+            2,
+            -1,
+            -2
+          ],
+          [
+            2,
+            -1,
+            -1
+          ],
+          [
+            2,
+            -1,
+            0
+          ],
+          [
+            2,
+            -1,
+            1
+          ],
+          [
+            2,
+            -1,
+            2
+          ],
+          [
+            2,
+            0,
+            -1
+          ],
+          [
+            2,
+            0,
+            1
+          ],
+          [
+            2,
+            1,
+            -2
+          ],
+          [
+            2,
+            1,
+            -1
+          ],
+          [
+            2,
+            1,
+            0
+          ],
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            2
+          ],
+          [
+            2,
+            2,
+            -1
+          ],
+          [
+            2,
+            2,
+            1
+          ]
+        ],
+        "line_flats": 349,
+        "flat_generator_multiplicities": {
+          "2": 204,
+          "3": 96,
+          "4": 12,
+          "5": 12,
+          "6": 16,
+          "8": 9
+        },
+        "vertices_by_euler": 1248,
+        "vertices_by_support_objectives": 1248,
+        "generic_planar_shadow_vertices": 98,
+        "vertex_set_sha256": "5ee157ad7b7086821f35c1ced19e7bc7d6477fd6d158b361d6554ef2552f24e3",
+        "strict_support_samples": [
+          {
+            "vertex": [
+              0,
+              0,
+              0
+            ],
+            "strict_objective": [
+              -1579,
+              -581,
+              -188
+            ]
+          },
+          {
+            "vertex": [
+              0,
+              0,
+              1
+            ],
+            "strict_objective": [
+              -1579,
+              -581,
+              188
+            ]
+          },
+          {
+            "vertex": [
+              0,
+              1,
+              -2
+            ],
+            "strict_objective": [
+              -1803,
+              -519,
+              -362
+            ]
+          }
+        ]
+      },
+      {
+        "coordinate_bound": 3,
+        "generators": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            -3
+          ],
+          [
+            0,
+            1,
+            -2
+          ],
+          [
+            0,
+            1,
+            -1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            0,
+            2,
+            -3
+          ],
+          [
+            0,
+            2,
+            -1
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            0,
+            3,
+            -2
+          ],
+          [
+            0,
+            3,
+            -1
+          ],
+          [
+            0,
+            3,
+            1
+          ],
+          [
+            0,
+            3,
+            2
+          ],
+          [
+            1,
+            -3,
+            -3
+          ],
+          [
+            1,
+            -3,
+            -2
+          ],
+          [
+            1,
+            -3,
+            -1
+          ],
+          [
+            1,
+            -3,
+            0
+          ],
+          [
+            1,
+            -3,
+            1
+          ],
+          [
+            1,
+            -3,
+            2
+          ],
+          [
+            1,
+            -3,
+            3
+          ],
+          [
+            1,
+            -2,
+            -3
+          ],
+          [
+            1,
+            -2,
+            -2
+          ],
+          [
+            1,
+            -2,
+            -1
+          ],
+          [
+            1,
+            -2,
+            0
+          ],
+          [
+            1,
+            -2,
+            1
+          ],
+          [
+            1,
+            -2,
+            2
+          ],
+          [
+            1,
+            -2,
+            3
+          ],
+          [
+            1,
+            -1,
+            -3
+          ],
+          [
+            1,
+            -1,
+            -2
+          ],
+          [
+            1,
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1,
+            0
+          ],
+          [
+            1,
+            -1,
+            1
+          ],
+          [
+            1,
+            -1,
+            2
+          ],
+          [
+            1,
+            -1,
+            3
+          ],
+          [
+            1,
+            0,
+            -3
+          ],
+          [
+            1,
+            0,
+            -2
+          ],
+          [
+            1,
+            0,
+            -1
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            1,
+            0,
+            3
+          ],
+          [
+            1,
+            1,
+            -3
+          ],
+          [
+            1,
+            1,
+            -2
+          ],
+          [
+            1,
+            1,
+            -1
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            3
+          ],
+          [
+            1,
+            2,
+            -3
+          ],
+          [
+            1,
+            2,
+            -2
+          ],
+          [
+            1,
+            2,
+            -1
+          ],
+          [
+            1,
+            2,
+            0
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            3,
+            -3
+          ],
+          [
+            1,
+            3,
+            -2
+          ],
+          [
+            1,
+            3,
+            -1
+          ],
+          [
+            1,
+            3,
+            0
+          ],
+          [
+            1,
+            3,
+            1
+          ],
+          [
+            1,
+            3,
+            2
+          ],
+          [
+            1,
+            3,
+            3
+          ],
+          [
+            2,
+            -3,
+            -3
+          ],
+          [
+            2,
+            -3,
+            -2
+          ],
+          [
+            2,
+            -3,
+            -1
+          ],
+          [
+            2,
+            -3,
+            0
+          ],
+          [
+            2,
+            -3,
+            1
+          ],
+          [
+            2,
+            -3,
+            2
+          ],
+          [
+            2,
+            -3,
+            3
+          ],
+          [
+            2,
+            -2,
+            -3
+          ],
+          [
+            2,
+            -2,
+            -1
+          ],
+          [
+            2,
+            -2,
+            1
+          ],
+          [
+            2,
+            -2,
+            3
+          ],
+          [
+            2,
+            -1,
+            -3
+          ],
+          [
+            2,
+            -1,
+            -2
+          ],
+          [
+            2,
+            -1,
+            -1
+          ],
+          [
+            2,
+            -1,
+            0
+          ],
+          [
+            2,
+            -1,
+            1
+          ],
+          [
+            2,
+            -1,
+            2
+          ],
+          [
+            2,
+            -1,
+            3
+          ],
+          [
+            2,
+            0,
+            -3
+          ],
+          [
+            2,
+            0,
+            -1
+          ],
+          [
+            2,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            3
+          ],
+          [
+            2,
+            1,
+            -3
+          ],
+          [
+            2,
+            1,
+            -2
+          ],
+          [
+            2,
+            1,
+            -1
+          ],
+          [
+            2,
+            1,
+            0
+          ],
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            3
+          ],
+          [
+            2,
+            2,
+            -3
+          ],
+          [
+            2,
+            2,
+            -1
+          ],
+          [
+            2,
+            2,
+            1
+          ],
+          [
+            2,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            -3
+          ],
+          [
+            2,
+            3,
+            -2
+          ],
+          [
+            2,
+            3,
+            -1
+          ],
+          [
+            2,
+            3,
+            0
+          ],
+          [
+            2,
+            3,
+            1
+          ],
+          [
+            2,
+            3,
+            2
+          ],
+          [
+            2,
+            3,
+            3
+          ],
+          [
+            3,
+            -3,
+            -2
+          ],
+          [
+            3,
+            -3,
+            -1
+          ],
+          [
+            3,
+            -3,
+            1
+          ],
+          [
+            3,
+            -3,
+            2
+          ],
+          [
+            3,
+            -2,
+            -3
+          ],
+          [
+            3,
+            -2,
+            -2
+          ],
+          [
+            3,
+            -2,
+            -1
+          ],
+          [
+            3,
+            -2,
+            0
+          ],
+          [
+            3,
+            -2,
+            1
+          ],
+          [
+            3,
+            -2,
+            2
+          ],
+          [
+            3,
+            -2,
+            3
+          ],
+          [
+            3,
+            -1,
+            -3
+          ],
+          [
+            3,
+            -1,
+            -2
+          ],
+          [
+            3,
+            -1,
+            -1
+          ],
+          [
+            3,
+            -1,
+            0
+          ],
+          [
+            3,
+            -1,
+            1
+          ],
+          [
+            3,
+            -1,
+            2
+          ],
+          [
+            3,
+            -1,
+            3
+          ],
+          [
+            3,
+            0,
+            -2
+          ],
+          [
+            3,
+            0,
+            -1
+          ],
+          [
+            3,
+            0,
+            1
+          ],
+          [
+            3,
+            0,
+            2
+          ],
+          [
+            3,
+            1,
+            -3
+          ],
+          [
+            3,
+            1,
+            -2
+          ],
+          [
+            3,
+            1,
+            -1
+          ],
+          [
+            3,
+            1,
+            0
+          ],
+          [
+            3,
+            1,
+            1
+          ],
+          [
+            3,
+            1,
+            2
+          ],
+          [
+            3,
+            1,
+            3
+          ],
+          [
+            3,
+            2,
+            -3
+          ],
+          [
+            3,
+            2,
+            -2
+          ],
+          [
+            3,
+            2,
+            -1
+          ],
+          [
+            3,
+            2,
+            0
+          ],
+          [
+            3,
+            2,
+            1
+          ],
+          [
+            3,
+            2,
+            2
+          ],
+          [
+            3,
+            2,
+            3
+          ],
+          [
+            3,
+            3,
+            -2
+          ],
+          [
+            3,
+            3,
+            -1
+          ],
+          [
+            3,
+            3,
+            1
+          ],
+          [
+            3,
+            3,
+            2
+          ]
+        ],
+        "line_flats": 3217,
+        "flat_generator_multiplicities": {
+          "2": 1980,
+          "3": 804,
+          "4": 216,
+          "5": 84,
+          "6": 48,
+          "7": 24,
+          "8": 48,
+          "12": 4,
+          "16": 9
+        },
+        "vertices_by_euler": 10944,
+        "vertices_by_support_objectives": 10944,
+        "generic_planar_shadow_vertices": 290,
+        "vertex_set_sha256": "4060d445e7f541d8bdc07c2c80671c4fb375ac9128ee0732925a7e740b3c38f9",
+        "strict_support_samples": [
+          {
+            "vertex": [
+              0,
+              0,
+              0
+            ],
+            "strict_objective": [
+              -13288,
+              -3476,
+              -902
+            ]
+          },
+          {
+            "vertex": [
+              0,
+              0,
+              1
+            ],
+            "strict_objective": [
+              -13288,
+              -3476,
+              902
+            ]
+          },
+          {
+            "vertex": [
+              0,
+              1,
+              -3
+            ],
+            "strict_objective": [
+              -15556,
+              -3658,
+              -1476
+            ]
+          }
+        ]
+      }
+    ],
+    "axis_box_controls": [
+      {
+        "dimension": 3,
+        "axis_scale": 300,
+        "tuples_examined": 64,
+        "primitive_tuples": 26,
+        "distinct_spans": 26,
+        "max_span_multiplicity": 1,
+        "samples": [
+          {
+            "columns": [
+              [
+                300,
+                0,
+                1
+              ],
+              [
+                0,
+                301,
+                1
+              ]
+            ],
+            "signed_maximal_minors": [
+              -301,
+              -300,
+              90300
+            ]
+          },
+          {
+            "columns": [
+              [
+                300,
+                0,
+                1
+              ],
+              [
+                1,
+                300,
+                0
+              ]
+            ],
+            "signed_maximal_minors": [
+              -300,
+              1,
+              90000
+            ]
+          },
+          {
+            "columns": [
+              [
+                300,
+                0,
+                1
+              ],
+              [
+                1,
+                300,
+                1
+              ]
+            ],
+            "signed_maximal_minors": [
+              -300,
+              -299,
+              90000
+            ]
+          }
+        ],
+        "scope": "Small density controls, below the sufficient asymptotic threshold; no finite threshold inference."
+      },
+      {
+        "dimension": 4,
+        "axis_scale": 400,
+        "tuples_examined": 4096,
+        "primitive_tuples": 1560,
+        "distinct_spans": 1560,
+        "max_span_multiplicity": 1,
+        "samples": [
+          {
+            "columns": [
+              [
+                400,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                400,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                400,
+                1
+              ]
+            ],
+            "signed_maximal_minors": [
+              159999,
+              -400,
+              160000,
+              -63999600
+            ]
+          },
+          {
+            "columns": [
+              [
+                400,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                400,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                401,
+                1
+              ]
+            ],
+            "signed_maximal_minors": [
+              160399,
+              -400,
+              160000,
+              -64159600
+            ]
+          },
+          {
+            "columns": [
+              [
+                400,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                400,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                400,
+                0
+              ]
+            ],
+            "signed_maximal_minors": [
+              160000,
+              1,
+              -400,
+              -64000000
+            ]
+          }
+        ],
+        "scope": "Small density controls, below the sufficient asymptotic threshold; no finite threshold inference."
+      }
+    ],
+    "integer_left_inverse_certificates": [
+      {
+        "dimension": 3,
+        "axis_scale": 300,
+        "matrix": [
+          [
+            300,
+            0
+          ],
+          [
+            1,
+            300
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "integer_left_inverse": [
+          [
+            0,
+            1,
+            -300
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "dimension": 4,
+        "axis_scale": 400,
+        "matrix": [
+          [
+            400,
+            0,
+            0
+          ],
+          [
+            1,
+            400,
+            0
+          ],
+          [
+            0,
+            1,
+            400
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "integer_left_inverse": [
+          [
+            0,
+            1,
+            -400,
+            160000
+          ],
+          [
+            0,
+            0,
+            1,
+            -400
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "dimension": 5,
+        "axis_scale": 500,
+        "matrix": [
+          [
+            500,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            500,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            500,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            500
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "integer_left_inverse": [
+          [
+            0,
+            1,
+            -500,
+            250000,
+            -125000000
+          ],
+          [
+            0,
+            0,
+            1,
+            -500,
+            250000
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            -500
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "dimension": 6,
+        "axis_scale": 600,
+        "matrix": [
+          [
+            600,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            600,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            600,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            600,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            600
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "integer_left_inverse": [
+          [
+            0,
+            1,
+            -600,
+            360000,
+            -216000000,
+            129600000000
+          ],
+          [
+            0,
+            0,
+            1,
+            -600,
+            360000,
+            -216000000
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            -600,
+            360000
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            -600
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      }
+    ],
+    "exponent_balance_controls": [
+      {
+        "dimension": 3,
+        "surface_power": 8,
+        "shadow_power": 3,
+        "vertex_power": 6,
+        "surface_exponent": "3/5",
+        "shadow_exponent": "2/5"
+      },
+      {
+        "dimension": 4,
+        "surface_power": 15,
+        "shadow_power": 4,
+        "vertex_power": 12,
+        "surface_exponent": "8/11",
+        "shadow_exponent": "3/11"
+      },
+      {
+        "dimension": 5,
+        "surface_power": 24,
+        "shadow_power": 5,
+        "vertex_power": 20,
+        "surface_exponent": "15/19",
+        "shadow_exponent": "4/19"
+      },
+      {
+        "dimension": 6,
+        "surface_power": 35,
+        "shadow_power": 6,
+        "vertex_power": 30,
+        "surface_exponent": "24/29",
+        "shadow_exponent": "5/29"
+      },
+      {
+        "dimension": 7,
+        "surface_power": 48,
+        "shadow_power": 7,
+        "vertex_power": 42,
+        "surface_exponent": "35/41",
+        "shadow_exponent": "6/41"
+      },
+      {
+        "dimension": 8,
+        "surface_power": 63,
+        "shadow_power": 8,
+        "vertex_power": 56,
+        "surface_exponent": "48/55",
+        "shadow_exponent": "7/55"
+      },
+      {
+        "dimension": 9,
+        "surface_power": 80,
+        "shadow_power": 9,
+        "vertex_power": 72,
+        "surface_exponent": "63/71",
+        "shadow_exponent": "8/71"
+      },
+      {
+        "dimension": 10,
+        "surface_power": 99,
+        "shadow_power": 10,
+        "vertex_power": 90,
+        "surface_exponent": "80/89",
+        "shadow_exponent": "9/89"
+      },
+      {
+        "dimension": 11,
+        "surface_power": 120,
+        "shadow_power": 11,
+        "vertex_power": 110,
+        "surface_exponent": "99/109",
+        "shadow_exponent": "10/109"
+      },
+      {
+        "dimension": 12,
+        "surface_power": 143,
+        "shadow_power": 12,
+        "vertex_power": 132,
+        "surface_exponent": "120/131",
+        "shadow_exponent": "11/131"
+      },
+      {
+        "dimension": 13,
+        "surface_power": 168,
+        "shadow_power": 13,
+        "vertex_power": 156,
+        "surface_exponent": "143/155",
+        "shadow_exponent": "12/155"
+      },
+      {
+        "dimension": 14,
+        "surface_power": 195,
+        "shadow_power": 14,
+        "vertex_power": 182,
+        "surface_exponent": "168/181",
+        "shadow_exponent": "13/181"
+      },
+      {
+        "dimension": 15,
+        "surface_power": 224,
+        "shadow_power": 15,
+        "vertex_power": 210,
+        "surface_exponent": "195/209",
+        "shadow_exponent": "14/209"
+      },
+      {
+        "dimension": 16,
+        "surface_power": 255,
+        "shadow_power": 16,
+        "vertex_power": 240,
+        "surface_exponent": "224/239",
+        "shadow_exponent": "15/239"
+      },
+      {
+        "dimension": 17,
+        "surface_power": 288,
+        "shadow_power": 17,
+        "vertex_power": 272,
+        "surface_exponent": "255/271",
+        "shadow_exponent": "16/271"
+      },
+      {
+        "dimension": 18,
+        "surface_power": 323,
+        "shadow_power": 18,
+        "vertex_power": 306,
+        "surface_exponent": "288/305",
+        "shadow_exponent": "17/305"
+      },
+      {
+        "dimension": 19,
+        "surface_power": 360,
+        "shadow_power": 19,
+        "vertex_power": 342,
+        "surface_exponent": "323/341",
+        "shadow_exponent": "18/341"
+      },
+      {
+        "dimension": 20,
+        "surface_power": 399,
+        "shadow_power": 20,
+        "vertex_power": 380,
+        "surface_exponent": "360/379",
+        "shadow_exponent": "19/379"
+      },
+      {
+        "dimension": 21,
+        "surface_power": 440,
+        "shadow_power": 21,
+        "vertex_power": 420,
+        "surface_exponent": "399/419",
+        "shadow_exponent": "20/419"
+      },
+      {
+        "dimension": 22,
+        "surface_power": 483,
+        "shadow_power": 22,
+        "vertex_power": 462,
+        "surface_exponent": "440/461",
+        "shadow_exponent": "21/461"
+      },
+      {
+        "dimension": 23,
+        "surface_power": 528,
+        "shadow_power": 23,
+        "vertex_power": 506,
+        "surface_exponent": "483/505",
+        "shadow_exponent": "22/505"
+      },
+      {
+        "dimension": 24,
+        "surface_power": 575,
+        "shadow_power": 24,
+        "vertex_power": 552,
+        "surface_exponent": "528/551",
+        "shadow_exponent": "23/551"
+      },
+      {
+        "dimension": 25,
+        "surface_power": 624,
+        "shadow_power": 25,
+        "vertex_power": 600,
+        "surface_exponent": "575/599",
+        "shadow_exponent": "24/599"
+      },
+      {
+        "dimension": 26,
+        "surface_power": 675,
+        "shadow_power": 26,
+        "vertex_power": 650,
+        "surface_exponent": "624/649",
+        "shadow_exponent": "25/649"
+      },
+      {
+        "dimension": 27,
+        "surface_power": 728,
+        "shadow_power": 27,
+        "vertex_power": 702,
+        "surface_exponent": "675/701",
+        "shadow_exponent": "26/701"
+      },
+      {
+        "dimension": 28,
+        "surface_power": 783,
+        "shadow_power": 28,
+        "vertex_power": 756,
+        "surface_exponent": "728/755",
+        "shadow_exponent": "27/755"
+      },
+      {
+        "dimension": 29,
+        "surface_power": 840,
+        "shadow_power": 29,
+        "vertex_power": 812,
+        "surface_exponent": "783/811",
+        "shadow_exponent": "28/811"
+      },
+      {
+        "dimension": 30,
+        "surface_power": 899,
+        "shadow_power": 30,
+        "vertex_power": 870,
+        "surface_exponent": "840/869",
+        "shadow_exponent": "29/869"
+      },
+      {
+        "dimension": 31,
+        "surface_power": 960,
+        "shadow_power": 31,
+        "vertex_power": 930,
+        "surface_exponent": "899/929",
+        "shadow_exponent": "30/929"
+      },
+      {
+        "dimension": 32,
+        "surface_power": 1023,
+        "shadow_power": 32,
+        "vertex_power": 992,
+        "surface_exponent": "960/991",
+        "shadow_exponent": "31/991"
+      }
+    ],
+    "support_vertices_checked": 12288,
+    "primitive_box_tuples_checked": 4160
+  },
   "staircase_generator_control": {
     "scope": "Finite supporting certificates for the established minimal-generator estimate used in the universal-basis corollary. No new generator theorem or uniform proof by enumeration is claimed.",
     "method": "Enumerate small staircases; compare one-step minimal borders against independent coordinate-fiber caps, and certify the disjoint-chain packing bound exactly.",
@@ -507199,6 +509052,8 @@
     "lattice_shadow_parametric_samples": 66,
     "lattice_shadow_token_exchanges": 10,
     "lattice_shadow_exponent_controls": 30,
+    "lattice_shadow_sharpness_support_vertices": 12288,
+    "lattice_shadow_sharpness_box_tuples": 4160,
     "staircase_generator_staircases_checked": 325,
     "staircase_generator_minimal_generators_checked": 1462,
     "exchange_cycle_rank_two_contractions": 15750,

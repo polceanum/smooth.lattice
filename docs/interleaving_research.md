@@ -9720,3 +9720,166 @@ Only a useful quality/memory/latency frontier justifies a custom fused
 kernel or wider architecture program. No trained-model or GPU result was
 produced in this pass. This application assessment preserves the active
 unrestricted mathematical goal and its open priority audit.
+
+### Twenty-sixth pass: sharpness of the lattice-shadow mechanism
+
+The preceding mathematical pass made progress by comparing the proposed
+bound with eight named primary sources and extending the manuscript;
+`217265a` saved that audit alongside user-directed ML checks. It did not
+change (LS1) or close its priority gate. This pass proves that the two
+powers in the geometric bridge (LS4) are independently optimal. It keeps
+the original all-colength objective and its unresolved literature gate.
+
+#### A matching family in every fixed dimension
+
+Let G_d(p) contain one representative of each primitive integer direction
+in [-p,p]^d, chosen by making its first nonzero coordinate positive. Set
+
+    Z_d(p) = sum_(g in G_d(p)) [0,g].
+
+These are established primitive zonotopes, already defined and used for
+integer-weight matroid projections by
+[Deza--Manoussakis--Onn, Section 3.1](https://optimization-online.org/wp-content/uploads/2015/12/5266.pdf).
+Neither the family nor its pair-matroid realization is claimed new. The
+fixed-coordinate, growing-dimension statements compared in pass 25 do
+not supply the following fixed-dimension argument; no novelty for the
+zonotope vertex asymptotic itself is inferred from that distinction.
+
+For every fixed d>=3, as the integer p tends to infinity, we prove
+
+    f_0(Z_d(p)) = Theta_d(p^(d(d-1))),
+    S(Z_d(p))   = Theta_d(p^(d^2-1)),
+    s(Z_d(p))   = Theta_d(p^d).                              (SH1)
+
+Here S and s have exactly the meanings used in (LS3)--(LS8). With
+alpha=d(d-2)/(d^2-d-1) and beta=(d-1)/(d^2-d-1),
+
+    alpha*(d^2-1)+beta*d = d(d-1).                          (SH2)
+
+Thus (SH1) saturates (LS4) up to constants. Decreasing either alpha or
+beta by a fixed positive amount, while holding the other fixed, makes
+the proposed upper bound grow strictly slower than this family's vertex
+count. This is a sharpness theorem for the geometric bridge, not a
+matching lower bound for G_d(n) or for its Dey-based specialization.
+
+#### Primitive tuples without an unproved density assumption
+
+Put delta=1/(100d). Let C_j(h), j=1,...,d-1, be the integer box near
+h*e_j with diagonal interval [h,h+floor(delta*h)] and all other intervals
+[0,floor(delta*h)]. For all sufficiently large h, at least a fraction
+8^(-(d-1)) of ordered column tuples Q=[q_1 ... q_(d-1)] have gcd one of
+the maximal minors. In particular there are Omega_d(h^(d(d-1))) such
+tuples. The following finite-prime argument establishes the density for
+these moving boxes; a global natural-density statement alone would not.
+
+At stage r assume the previous r-1 columns, in their first r rows, form
+a primitive r-by-(r-1) matrix U. The empty first stage is allowed. Its
+cofactor normal is primitive. For the new first-r-coordinate column u,
+D=det[U u] is nonzero: the first-r square matrix divided by h differs
+from I in maximum row-sum norm by at most r*delta<1. The coarse bound
+abs(D)<=2^(d^2)*h^(2(d-1)) holds uniformly.
+
+For each prime ell, D=0 modulo ell is a nontrivial equation in fresh
+coordinates, of probability at most 1/ell+a/h, a=100d. Conditional on
+this equation, u=U*lambda modulo ell has a unique lambda because U has
+full column rank. Failure of the full next-row matrix is one congruence
+on the fresh last entry, again with conditional probability at most
+1/ell+a/h. Thus failure at a specified prime has probability at most
+(1/ell+a/h)^2.
+
+Let t=floor(log_2(h)/2). The union over primes ell<=2^t is bounded by
+
+    3/4 + 2a(t+1)*2^(-2t) + a^2*2^(-3t).
+
+This uses sum_(j>=2) j^(-2)<3/4 and H_(2^t)<=1+t. For larger primes,
+first condition on U,u. Each bad prime divides the same nonzero D.
+Once t>=d^2+4(d-1), at most b=4d-3 such primes occur. The last-entry
+congruence bounds their total probability by
+
+    b*(2^(-t)+a*2^(-2t)).
+
+All error terms tend to zero for fixed d. Hence each conditional stage
+succeeds with probability at least 1/8 for every sufficiently large h.
+Earlier stage events use only earlier projected coordinates, so the new
+row and column retain their independent interval distributions. Multiplying
+over the d-1 stages proves the claim. This does not exchange an infinite
+prime sum with a limit.
+
+Gcd one of the maximal minors also gives an integer left inverse LQ=I:
+combine the adjugate identities of the maximal row submatrices by integer
+Bezout coefficients. Thus Q*R^(d-1) intersect Z^d equals Q*Z^(d-1), and
+each column is individually primitive.
+
+#### From saturated spans to vertices, surface and shadows
+
+A hyperplane W spanned by a good tuple contains at most 5^(d-1) integer
+points in [-2h,2h]^d. Indeed write such a point as Q*c; saturation makes
+c integral. The top square block divided by h is within (d-1)*delta<1/100
+of I, so its inverse has infinity norm at most 1/(1-(d-1)*delta). Hence
+norm_inf(c)<=2/(1-(d-1)*delta)<3, giving at most five choices per entry.
+At most 5^((d-1)^2) ordered tuples therefore span the same W. There are
+Omega_d(h^(d(d-1))) distinct W.
+
+Take p>=2h. The central arrangement of g-perpendicular hyperplanes,
+g in G_d(p), has a different line flat W-perpendicular for each W just
+counted. A generic affine hyperplane avoiding zero meets these lines in
+distinct vertices of its restricted arrangement. Any affine arrangement
+has at least as many regions as vertices: deletion--restriction adds
+exactly the restricted region count, and all new vertices are vertices
+of the restriction; induction on dimension and hyperplane count proves
+the assertion. Restricted regions inject into central chambers by
+convexity. Central chambers correspond bijectively to zonotope vertices
+by strictly maximizing each segment endpoint. This gives the lower count
+in (SH1), taking h=floor(p/2). The standard deletion--restriction upper
+bound is O_d(|G_d(p)|^(d-1))=O_d(p^(d(d-1))).
+
+The tuple count yields Omega_d(h^d) distinct primitive first columns,
+because each has only O_d(h^(d(d-2))) completions. Permuting coordinates
+gives the same count near every positive coordinate axis. Consequently
+|G_d(p)|=Theta_d(p^d). For any unit objective w, choose i with
+abs(w_i)>=1/sqrt(d). Each generator near h*e_i has
+abs(w.g)>=h*(1/sqrt(d)-delta*sqrt(d))>=h/(2sqrt(d)). The centered
+zonotope's support function, one half of sum_g abs(w.g), is therefore
+at least c_d*p^(d+1) in every direction. It contains a ball of that
+radius and lies in a cube of side C_d*p^(d+1). Coordinate projection
+bounds give both surface estimates in (SH1): surface area is at most
+the cube bound and at least twice any projected ball area.
+
+For almost every planar projection all projected generators are nonzero
+and pairwise nonparallel. Each forbidden condition has measure zero,
+as witnessed for a pair by the plane they span. The projected zonogon
+has exactly 2*|G_d(p)| vertices. This proves the final part of (SH1).
+All arguments hold in every fixed dimension, not only tested dimensions.
+
+Finally, write g=g^+-g^- with both parts in {0,...,p}^d. The known
+partition-matroid construction chooses one element of weight g^+ or g^-
+for every generator. Its basis-sum polytope is a translate of Z_d(p).
+Assigning the same unit vector to the two members of a pair and distinct
+unit vectors to different pairs represents it over every field. Thus
+representability alone cannot remove this sharpness obstruction. A
+residue matroid of a polynomial quotient is a further constraint; no
+such realization is asserted for this family.
+
+#### Reproducible controls and effect on the main goal
+
+The new `lattice_shadow_sharpness_control` in the existing checker uses
+three-dimensional primitive zonotopes at p=1,2,3. Their 13,49,145 generators
+give 96,1248,10944 vertices. An independent great-circle Euler count agrees
+with vertices built from strict integer support objectives, checking 12288
+vertices in total. Generic shadows have 26,98,290 vertices. The report
+saves generator lists, flat multiplicities, vertex-set hashes and exact
+support witnesses. It also checks 4160 small axis-box tuples in dimensions
+three and four (26 and 1560 primitive cases), four integer left inverses,
+and rational exponent balances in dimensions 3--32. These finite cases
+support implementation correctness, not the uniform density or asymptotic
+proof. The small boxes are below the sufficient asymptotic range.
+
+Run `python3 -B scripts/run_structural_complexity_checks.py` as before.
+The separate working manuscript now includes the complete sharpness
+argument and certificate scope. The original smooth-number kernels and
+completed corner-cut manuscript are unchanged. The unrestricted bound
+(LS1), its universal-basis consequence and the unresolved priority flags
+remain intact. A stronger unrestricted estimate must exploit information
+beyond these two geometric budgets or the existing shadow estimate; this
+result does not rule out such an advance. Complete the focused primary
+comparison before claiming the resulting paper is new or publishable.
