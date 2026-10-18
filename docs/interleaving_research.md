@@ -4880,3 +4880,286 @@ bound. The unrestricted upper-bound and primary-priority work remain
 necessary alternatives. Keep the full goal active: no qualifying
 unrestricted asymptotic advance, further consequence or new target
 manuscript has been obtained.
+
+### Seventh feasibility pass: interface rank, rather than corner count
+
+The previous turn made mathematical progress: commit e611ebf proved the
+uniform hook obstruction and saved independently checked quotient models.
+This pass tests the proposed escape through a growing number of corners.
+A rank-sensitive version of the deletion argument rules out a sparse
+family with arbitrarily many corners as well. The unrestricted target
+remains unchanged and unproved.
+
+#### A linear-matroid interface lemma
+
+Partition the columns of a finite vector configuration into E_1,...,E_p.
+Write V_i=span(E_i), and set
+
+    W_i = V_i intersect sum_{j!=i} V_j,
+    q = sum_i dim(W_i).
+
+Suppose their joint internal element-order arrangement under linear
+costs has R open regions. Count the unique minimum bases realized at
+weights with distinct element costs, as holds for generic weights on
+the monomial columns here. Their number is at most
+
+    2^q R.                                                   (IR1)
+
+The intersections are with the sum of *all* other spaces. Pairwise
+intersection dimensions alone would not suffice: three distinct lines
+in a plane give a counterexample to that replacement.
+
+Proof. Fix an internal-order region. Let B_i be its fixed greedy basis
+of E_i. A column outside B_i is dependent on cheaper columns in its own
+block and therefore can never be selected by global greedy selection.
+This follows because, after every prefix of a greedy scan, the selected
+columns span all columns scanned so far, including the rejected ones.
+
+Scan B_i in its fixed order and project its prefixes to V_i/W_i.
+Mark a column private when it increases the projected rank. Every marked
+column is forced into the global greedy basis: dependence on previously
+scanned global columns would, modulo the span of the other blocks,
+contradict that projected rank increase. There are exactly
+dim(V_i)-dim(W_i) such private columns. The remaining dim(W_i) local
+basis columns are the only optional columns from block i. Thus all
+variation occurs among at most q fixed columns in this internal region,
+and there are at most 2^q possible subsets. This proves (IR1).
+
+This proof uses only linear algebra and the existing matroid greedy
+criterion. It does not establish priority for the lemma. Unlike (BC1),
+it permits an unbounded number of columns in the coupling, provided
+the interaction spaces have bounded dimension.
+
+There is also a constructive consequence. In each internal region,
+compute the fixed local bases, private columns and optional columns
+using rank calculations. Refine the region only by pair comparisons
+between the optional columns. There are at most binom(q,2) additional
+hyperplanes; in three variables the normalized region is a convex
+polygon, so at most
+
+    1+binom(q,2)(binom(q,2)+1)/2
+
+open cells are needed. On every such cell the global greedy result is
+fixed: all private columns are forced and only the optional-column
+order can change the basis after contracting that fixed set. Choosing
+one positive rational weight per cell gives a per-instance order list
+of size O((q+1)^4 R) recovering all initial ideals. This is a statement
+about the stated representation and exact rank/cell operations, not a
+new general bit-complexity bound. No coefficient-independent order list
+for the entire class is inferred.
+
+#### A sparse staircase with arbitrarily many corners
+
+For k>=2 and r,s>=2k+1, take
+
+    M=(y^r, y^k z, y^(k-1) z^2, ..., y z^k, z^s) in S=K[y,z].
+
+Its diagram D consists of the two long pure-power arms and all mixed
+monomials of total degree at most k. It has
+
+    m=|D|=r+s-1+k(k-1)/2,
+
+and k+2 minimal generators. Write B=S/M and define
+
+    A_Y=span{y^i:k<=i<r},  A_Z=span{z^j:k<=j<s},
+    W=Soc(B)=span{y^(r-1),z^(s-1),y^i z^(k-i):1<=i<k}.
+
+Label the generators g_0=y^r, g_i=y^(k+1-i)z^i for 1<=i<=k,
+and g_(k+1)=z^s. Every S-linear map phi:M -> B has exactly the tails
+
+    f_0,f_1 in A_Y+W,
+    f_i in W for 2<=i<=k-1,
+    f_k,f_(k+1) in A_Z+W.                                    (SC1)
+
+These tail choices are independent. Their total dimension is
+2r+2s+(k-2)(k+1)=2m, including the overlaps of A_Y or A_Z with W
+when taking the displayed spans.
+
+Here is a direct classification proof. The adjacent syzygies are
+
+    z f_0=y^(r-k)f_1,
+    z f_i=y f_(i+1) for 1<=i<k,
+    z^(s-k)f_k=y f_(k+1).                                   (SC2)
+
+As before, they generate all syzygies. Since r-k>=k+1, the right
+side of the first equation has only pure y terms, whereas the left
+side has a positive z exponent. Both must vanish separately. Thus
+f_0 lies in Ann_B(z)=A_Y+W, and f_1 has no pure y term of degree
+less than k, including the constant. The last equation similarly
+gives f_(k+1) in A_Z+W and excludes pure z terms of degree less
+than k from f_k.
+
+For a homogeneous component of degree h<k, the middle equations are
+equations in the ordinary polynomial ring: B contains every monomial
+of degree at most k. They imply
+
+    (f_i)_h = y^(k-i) z^(i-1) H,
+    deg(H)=h-(k-1).
+
+This is zero for h<k-1. For h=k-1 the first endpoint restriction
+forces the scalar H to be zero. In degree at least k, the only
+nonsocle monomials in B are pure arm powers. The middle equations
+force all nonsocle z powers out of f_1,...,f_(k-1) and all nonsocle
+y powers out of f_2,...,f_k. This proves (SC1). Conversely, every
+tail in (SC1) makes both sides of each equation in (SC2) zero, so
+all those choices are valid over every field.
+
+For every such phi, the ideal
+
+    I_phi=(x^2, g_0-x f_0, ..., g_(k+1)-x f_(k+1))             (SC3)
+
+has length n=2m and free basis D over K[x]/(x^2), by the elementary
+flatness proof in the sixth pass. The reference J=(x^2,xM,M^2) is
+contained in I_phi. Again its plain D columns are independent fixed
+summands, and all variable relations have residues in xB.
+
+#### Three blocks with bounded interface dimension
+
+Remove the variable coloops x times (D minus (A_Y union A_Z union W)),
+where the spans stand for their monomial bases, and remove zero columns.
+Partition the remaining columns into the following blocks; zero columns
+can also remain in the displayed blocks without affecting the proof:
+
+    E_Y = {xy^i:k<=i<r-1}
+          union {y^i:r+1<=i<2r}
+          union {y^i z:k+1<=i<r+k},
+
+    E_Z = {xz^j:k<=j<s-1}
+          union {z^j:s+1<=j<2s}
+          union {y z^j:k+1<=j<s+k},
+
+    E_C = {g_0,...,g_(k+1)} union x Soc(B).
+
+Every unassigned variable column is zero. Indeed, every positive
+multiple of an intermediate f_i is zero, and the only possibly
+nonzero positive multiples of f_0,f_1 are their pure y multiples;
+the other endpoint tails behave symmetrically. This also proves that
+the displayed arm columns have residues in xA_Y and xA_Z respectively.
+
+The two arm residue spaces are disjoint. The core residue space has
+y-arm components contained in
+
+    span{xy^(r-1), x(f_0)_Y, x(f_1)_Y},
+
+of dimension at most three, and z-arm components in the analogous
+three-dimensional space from f_k,f_(k+1). All its other components
+lie in the mixed socle. Hence the interface dimensions in (IR1) are
+at most 3,3,6 for E_Y,E_Z,E_C respectively. In particular q<=12,
+independently of k, r, s, coefficients and characteristic.
+
+It remains to bound internal orders, not just component basis fans.
+Each arm block consists of three parallel exponent progressions, so
+at most 6r or 6s distinct internal comparison hyperplanes suffice.
+In the core, the k mixed generators lie on the line y+z=k+1 and
+the k-1 mixed socle identity columns lie on the parallel line
+x=1,y+z=k. Comparisons within these progressions contribute one
+hyperplane, and between them at most 2k-2. The four remaining core
+columns are y^r,z^s,xy^(r-1),xz^(s-1); comparing them with the
+progressions and with each other adds at most 8k+2. Thus the joint
+arrangement has at most
+
+    H=10(r+s+k+1)=O(m)
+
+hyperplanes, and at most R<=1+H(H+1)/2 positive normalized regions.
+Applying (IR1) proves uniformly
+
+    g(I_phi) <= 2^12 [1+H(H+1)/2] = O(n^2).                  (SC4)
+
+The constructive consequence supplies O(n^2) positive rational orders
+for each specified quotient, with a constant independent of the number
+of corners. These are restricted consequences of the proved interface
+lemma, not the requested unrestricted advance or an established
+novelty claim.
+
+For example, r=s=k^3 gives length of order k^3 and an unavoidable
+staircase bounding box of volume of order k^6, since the fixed plain
+D already contains both long arms and x is a variable coloop. Thus
+the uniform conclusion is not just the dense-box obstruction: the
+number of corners grows while the box-to-length ratio is unbounded.
+
+#### Exact controls and next decision
+
+The checker uses k=2,3,4 with r=s=2k+1, giving m=10,16,23 and
+4,5,6 minimal generators, and the asymmetric control (k,r,s)=(3,11,13)
+with m=26. It verifies the full adjacent-syzygy matrix
+has tangent dimension 2m over Q,F_2,F_3,F_29; the displayed free
+tail coordinates satisfy all equations. Explicit integer tails have
+coefficient (i+2)(a_y+1)^2+(a_z+2)^3 at each allowed monomial a
+of f_i. Independent relation rows, commuting multiplication matrices,
+cyclicity including the reference border, and full-algebra greedy
+selection check the quotient model. Selected positive integer weights
+also check every private/optional column assertion in (IR1), and recover
+the same global basis after contracting the forced set and scanning
+only the optional columns. A separate three-line configuration verifies
+the failure of the pairwise-intersection replacement over all four fields.
+
+These are bounded exact weight controls, not exhaustive fan counts.
+The report saves the actual tails, relation matrices, blocks, fields,
+weights and private/optional witnesses. The symbolic proof supplies
+the uniform assertion; no asymptotic count is fitted to the samples.
+
+The later Stigler--Zhang chapter remains accessible as a primary NSF
+record and an indexed Theorem 8, but its full PDF request again failed.
+Its theorem has not been promoted to a full proof audit. The publisher's
+[chapter record](https://doi.org/10.1007/978-3-030-42687-3_9) confirms
+the finite-field scope. This does not settle the strongest-current-bound
+audit, and failed retrieval is not evidence of novelty.
+
+Increasing the corner count alone is therefore not enough: (SC4)
+covers an unbounded-corner sparse class. A lower construction through
+this route must have unbounded interaction dimension or substantially
+more internal comparison hyperplanes, in addition to two surviving
+coordinate actions. The next feasibility test should target that
+specific missing property, rather than enumerating larger instances
+of (SC3). The unrestricted upper problem and its priority audit remain
+active alternatives. The full goal remains incomplete.
+
+#### A concrete next test: thick hooks, with a substitution control
+
+There is an explicit compatible family whose natural arm interface
+can grow. For a,b>=1, R>=2a+1, S>=2b+1, take
+
+    M=(y^R,y^a z^b,z^S),
+    m=Rb+Sa-ab,  B=K[y,z]/M.
+
+The two adjacent syzygies separate into disjoint arm supports, giving
+the full tail classification
+
+    f_0 in Ann_B(z^b),
+    f_1 in (y^a,z^b)B,
+    f_2 in Ann_B(y^a).                                     (TH1)
+
+Indeed z^b f_0=y^(R-a)f_1 has disjoint z>=b and y>=R-a>=a
+supports, so both vanish; the other endpoint behaves symmetrically.
+The two annihilators constraining f_1 are both the complement of the
+bottom a-by-b rectangle. The three dimensions are Rb, m-ab, Sa,
+whose sum is 2m. Every choice in (TH1) is valid and gives the flat
+length-2m quotient (x^2,y^R-xf_0,y^a z^b-xf_1,z^S-xf_2).
+
+For example f_0=y^a+z^(S-b), f_1=0, f_2=z^b is compatible.
+In a natural arm/core partition placing the top z-arm identity columns
+in the core, those columns span an a*b dimensional subspace also
+spanned by pure multiples of the z^S relation: for 0<=i<a,0<=j<b,
+
+    phi(y^i z^(2S-2b+j))=y^i z^(S-b+j).
+
+These monomials belong to the reference diagram of M^2. Thus this
+partition's interaction dimension is unbounded when a*b grows. This
+does not prove a large fan or preclude a different useful partition.
+
+In fact a necessary negative control rules out a tempting inflation.
+If an ideal I in K[x,Y,Z] is merely extended by Y=y^a,Z=z^b,
+its quotient length is multiplied by a*b but its number of initial
+ideals is unchanged. The larger ring is free with basis y^i z^j,
+0<=i<a,0<=j<b. Its monomial residue relations split into these
+classes. Each class has the same greedy problem at weights
+(w_x,a*w_y,b*w_z), with a fixed additive cost offset. Consequently
+the initial ideal is the corresponding free extension of the old
+initial ideal, and positive weight scaling is bijective. This proves
+the equality of fan counts without a novelty claim.
+
+The displayed interface witness is itself such an inflation when
+a divides R and b divides S, so it must not be presented as a lower
+amplification. The meaningful next test is the full (TH1) family with
+tails mixing the residue classes, together with a symbolic count or
+a new uniform obstruction. Growing interface rank alone is insufficient.

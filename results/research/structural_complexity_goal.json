@@ -2,7 +2,7 @@
   "schema_version": 1,
   "recorded_on": "2026-10-18",
   "title": "Universal algebraic complexity beyond generic corner cuts",
-  "status": "active_sparse_first_order_gate_resolved_unrestricted_advance_pending",
+  "status": "active_growing_corner_interface_gate_resolved_unrestricted_advance_pending",
   "objective": "Prove a new structural theorem determining or substantially narrowing the worst-case asymptotic number of monomial initial ideals of finite polynomial algebras, starting with three variables and seeking a mechanism valid in every fixed dimension. Establish the strongest relevant primary baseline first. Success requires a complete uniform proof of sharp growth or a substantial asymptotic advance over that baseline for all colength-n ideals or all n-point configurations, a rigorous further algebraic, geometric or enumeration consequence, reproducible exact certificates and an honestly scoped manuscript. Examples, reformulations, already known corollaries and a plan alone do not complete this goal.",
   "plan": "docs/interleaving_research.md#higher-impact-research-plan-universal-algebraic-complexity",
   "relationship_to_previous_goal": "A new research objective. The completed corner-cut counting manuscript and its acceptance records remain separate and unchanged in mathematical content.",
@@ -34,12 +34,12 @@
     },
     {
       "id": "dependency_mechanism",
-      "status": "annihilator_budgets_and_bounded_connector_lemma_proved_general_extension_pending",
+      "status": "interface_rank_and_annihilator_lemmas_proved_unrestricted_dependency_mechanism_pending",
       "deliverable": "A precise lemma about multiplication-compatible residue dependencies or state-polyhedron geometry, with its proof attempt and adversarial controls."
     },
     {
       "id": "infinite_lower_family",
-      "status": "sparse_hook_first_order_class_ruled_out_growing_corner_gate_next",
+      "status": "sparse_growing_corner_class_ruled_out_unbounded_interaction_gate_next",
       "deliverable": "A symbolic realizable family and count proof, or a documented obstruction to the tested construction; finite examples alone are insufficient."
     },
     {
@@ -123,7 +123,7 @@
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Proved relative-annihilator moment budgets, a matching quadratic family with a surviving multiplication action, and a gluing counterexample; reviewed findings were saved in f7103a6. The unrestricted theorem remained open."
+    "reason": "Commit e611ebf proved the full hook-deformation obstruction using bounded connectors and saved exact quotient checks; this eliminated the sparse hook route. The unrestricted goal stayed open."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -353,11 +353,16 @@
           "relative_socle_lower_certificates": 116,
           "hook_deformation_fixtures": 3,
           "hook_deformation_row_and_greedy_checks": 3260,
-          "hook_deformation_full_matrix_checks": 104
+          "hook_deformation_full_matrix_checks": 104,
+          "sparse_corner_fixtures": 4,
+          "sparse_corner_row_and_greedy_checks": 240,
+          "sparse_corner_full_matrix_checks": 240,
+          "sparse_corner_interface_flag_checks": 720,
+          "sparse_corner_optional_recovery_checks": 240
         }
       }
     ],
-    "scope": "Exact controls include the previous relative-socle modules and three flat hook-deformation fixtures, with 3,260 new relation-row/greedy comparisons and 104 full commuting cyclic multiplication-matrix states over four characteristics. The uniform proofs establish the stated restricted obstructions. The unrestricted goal, novelty assessment and target manuscript remain incomplete."
+    "scope": "Build and smoke tests passed. The current exact controls add four sparse growing-corner quotients over four characteristics, 240 relation-row/greedy comparisons, 240 full-matrix checks, 720 block-interface flag checks and 240 recoveries using only optional columns after contraction. Tangent dimensions and a three-line negative control are checked. Selected weights are not represented as exhaustive fan enumeration. The unrestricted theorem, strongest-bound priority audit and target manuscript remain incomplete."
   },
   "second_feasibility_results": {
     "record": "docs/interleaving_research.md, Second feasibility pass: interacting relations and a conditional count",
@@ -569,7 +574,7 @@
   "remaining_primary_access_notes": [
     {
       "source": "https://par.nsf.gov/servlets/purl/10177092",
-      "status": "The public primary text is indexed, but a direct full-text request did not complete. The later finite-field chapter is not represented as proof-audited; this is not a blocker for independent research."
+      "status": "The primary NSF bibliographic record and indexed Theorem 8 are readable; direct PDF web retrieval fails and an independent public PDF request timed out. The publisher chapter metadata confirms the finite-field scope. The later theorem is still not represented as proof-audited; this does not halt independent research."
     }
   ],
   "sixth_feasibility_results": {
@@ -640,5 +645,240 @@
     },
     "goal_qualifying_unrestricted_advance": false,
     "decision": "Stop enlarging hooks or changing their coefficients. In the first-order route, test plane monomial ideals with a growing number of corners: first derive their syzygy-compatible connecting columns and test whether a deletion/direct-sum bound still rules them out. Require a symbolic compatible family before expanding enumeration. Continue the unrestricted upper argument and priority audit; the original goal and acceptance criteria remain active."
+  },
+  "seventh_feasibility_results": {
+    "record": "docs/interleaving_research.md, Seventh feasibility pass: interface rank, rather than corner count",
+    "linear_matroid_interface_lemma": {
+      "hypotheses": "Partition a finite vector configuration into blocks E_i with V_i=span(E_i). Put W_i=V_i intersect sum_{j!=i}V_j, q=sum_i dim(W_i), and let R count joint internal element-order regions under linear costs.",
+      "count_bound": "At most 2^q*R distinct minimum bases under generic weights.",
+      "proof": "In a fixed internal-order region every global greedy basis lies in the union of local greedy bases. Within block i, the columns increasing rank in V_i/W_i are forced globally, and exactly dim(W_i) local basis columns remain optional.",
+      "important_hypothesis": "Intersections use the sum of all other spaces, not merely pairwise intersections. Three distinct lines in a plane disprove the pairwise replacement.",
+      "constructive_consequence": "In three variables, per region refine only comparisons between at most q optional columns. At most 1+binom(q,2)*(binom(q,2)+1)/2 cells are needed, giving a per-instance list of O((q+1)^4*R) positive rational weights that recovers every basis.",
+      "algorithmic_scope": "Uses the specified vector representation, exact rank calculations and rational cell operations. No new general bit-complexity bound or coefficient-independent class-wide list is claimed.",
+      "priority": "Elementary linear algebra and the established matroid greedy criterion; no novelty established."
+    },
+    "sparse_growing_corner_first_order_family": {
+      "field": "Every field K",
+      "plane_ideal": "M=(y^r,y^k*z,y^(k-1)*z^2,...,y*z^k,z^s), k>=2 and r,s>=2k+1.",
+      "base_colength": "m=r+s-1+k*(k-1)/2, with k+2 minimal generators.",
+      "tail_classification": "Writing A_Y=span(y^i:k<=i<r), A_Z=span(z^j:k<=j<s), W=Soc(K[y,z]/M), all module maps phi:M->K[y,z]/M have independently chosen f0,f1 in A_Y+W; f_i in W for 2<=i<k; f_k,f_(k+1) in A_Z+W. The full parameter dimension is 2m.",
+      "classification_proof": "Adjacent plane monomial syzygies first force separated endpoint annihilation. The interior recurrence in degrees below k gives f_i=y^(k-i)*z^(i-1)*H, eliminated by the endpoint condition. Higher nonsocle components lie only on the two arms.",
+      "ideal": "I_phi=(x^2,g_i-x*f_i for all minimal generators g_i of M).",
+      "length": "Exactly n=2m, free over K[x]/(x^2), by the prior direct flatness argument.",
+      "blocks": "After removing fixed columns and loops, two arm blocks have residue spaces in x*A_Y and x*A_Z. The core contains the k+2 generator columns and x*Soc(B).",
+      "interfaces": "The interface dimensions are at most 3,3,6: only top-arm identity columns and two endpoint tail projections from each arm enter the core. Total q<=12 independent of k,r,s and characteristic.",
+      "internal_arrangement": "At most H=10*(r+s+k+1)=O(m) internal comparison hyperplanes; arm columns form three progressions each and the central columns form two short parallel progressions plus four endpoints.",
+      "count_bound": "g(I_phi)<=2^12*(1+H*(H+1)/2)=O(n^2), uniformly over all compatible coefficients and fields.",
+      "further_consequence": "For each specified quotient, O(n^2) positive rational weights recover all its initial ideals using the proved optional-column refinement.",
+      "sparse_unbounded_corner_subfamily": "For r=s=k^3, length has order k^3, the unavoidable staircase bounding box has volume of order k^6, and the number of corners tends to infinity. The result therefore goes beyond the earlier dense-box obstruction.",
+      "scope": "A restricted obstruction below the existing generic n^2(log n)^2 lower order. It is not the qualifying unrestricted advance or a publication novelty claim."
+    },
+    "finite_controls": {
+      "parameters": [
+        [
+          2,
+          5,
+          5
+        ],
+        [
+          3,
+          7,
+          7
+        ],
+        [
+          4,
+          9,
+          9
+        ],
+        [
+          3,
+          11,
+          13
+        ]
+      ],
+      "fields": [
+        "Q",
+        "F_2",
+        "F_3",
+        "F_29"
+      ],
+      "verification_scope": "Full tangent-space ranks and displayed free coordinates, actual commuting cyclic quotient matrices, reference-border residues, independent relation-row selection, private and optional column flags, and selected exact positive weights. This is not an exhaustive fan enumeration.",
+      "pairwise_intersection_negative_control": "Three distinct lines in a plane have all pairwise intersections zero and three minimum bases with one internal-order region; intersections with the sum of the other lines each have dimension one. Verified over all four fields.",
+      "optional_recovery": "At every selected weight, put the forced private columns first and scan only the optional columns; the result equals the full greedy basis after removing known coloops.",
+      "sparse_corner_fixtures": 4,
+      "sparse_corner_row_and_greedy_checks": 240,
+      "sparse_corner_full_matrix_checks": 240,
+      "sparse_corner_interface_flag_checks": 720,
+      "sparse_corner_optional_recovery_checks": 240,
+      "interface_dimensions_by_fixture_and_field": [
+        {
+          "k": 2,
+          "r": 5,
+          "s": 5,
+          "dimensions": [
+            {
+              "characteristic": 0,
+              "dimensions": [
+                3,
+                3,
+                6
+              ]
+            },
+            {
+              "characteristic": 2,
+              "dimensions": [
+                2,
+                3,
+                5
+              ]
+            },
+            {
+              "characteristic": 3,
+              "dimensions": [
+                3,
+                3,
+                6
+              ]
+            },
+            {
+              "characteristic": 29,
+              "dimensions": [
+                3,
+                3,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "k": 3,
+          "r": 7,
+          "s": 7,
+          "dimensions": [
+            {
+              "characteristic": 0,
+              "dimensions": [
+                3,
+                3,
+                6
+              ]
+            },
+            {
+              "characteristic": 2,
+              "dimensions": [
+                2,
+                3,
+                5
+              ]
+            },
+            {
+              "characteristic": 3,
+              "dimensions": [
+                3,
+                3,
+                6
+              ]
+            },
+            {
+              "characteristic": 29,
+              "dimensions": [
+                3,
+                3,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "k": 4,
+          "r": 9,
+          "s": 9,
+          "dimensions": [
+            {
+              "characteristic": 0,
+              "dimensions": [
+                3,
+                3,
+                6
+              ]
+            },
+            {
+              "characteristic": 2,
+              "dimensions": [
+                2,
+                3,
+                5
+              ]
+            },
+            {
+              "characteristic": 3,
+              "dimensions": [
+                3,
+                3,
+                6
+              ]
+            },
+            {
+              "characteristic": 29,
+              "dimensions": [
+                3,
+                3,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "k": 3,
+          "r": 11,
+          "s": 13,
+          "dimensions": [
+            {
+              "characteristic": 0,
+              "dimensions": [
+                3,
+                3,
+                6
+              ]
+            },
+            {
+              "characteristic": 2,
+              "dimensions": [
+                2,
+                3,
+                5
+              ]
+            },
+            {
+              "characteristic": 3,
+              "dimensions": [
+                3,
+                3,
+                6
+              ]
+            },
+            {
+              "characteristic": 29,
+              "dimensions": [
+                3,
+                3,
+                6
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "goal_qualifying_unrestricted_advance": false,
+    "decision": "Stop enlarging the growing-corner family (SC3). The interface lemma narrows the lower route to unbounded interaction or superlinear internal comparison complexity. The thick-hook family (TH1) has been classified symbolically and its natural interface can grow, but pure power-substitution inflation preserves the fan count. Next test tails mixing those residue classes before further enumeration. Continue the unrestricted upper mechanism and primary-bound audit; the original full goal remains active.",
+    "next_symbolic_candidate": {
+      "plane_ideal": "M=(y^R,y^a*z^b,z^S), a,b>=1, R>=2a+1,S>=2b+1, m=R*b+S*a-a*b.",
+      "all_compatible_tails": "f0 in Ann_B(z^b), f1 in (y^a,z^b)*B, f2 in Ann_B(y^a); dimensions R*b, m-a*b, S*a sum to 2m.",
+      "flat_quotient": "(x^2,y^R-x*f0,y^a*z^b-x*f1,z^S-x*f2) has length 2m over every field.",
+      "natural_interface_witness": "For f0=y^a+z^(S-b), f1=0, f2=z^b, the a*b top z-arm identity columns also occur as images of positive multiples of z^S. An arm/core partition including them in the core has interface rank at least a*b.",
+      "negative_control": "Free extension under Y=y^a,Z=z^b multiplies quotient length by a*b while preserving the initial-ideal count, by the residue-class decomposition and positive weight rescaling. The displayed witness is such an inflation when a divides R and b divides S.",
+      "next_gate": "Use the full compatible tail class mixing power-substitution residue classes, and derive a symbolic count or obstruction. Unbounded rank in one natural partition is insufficient to claim a large fan or an unavoidable interface.",
+      "goal_qualifying_advance": false
+    }
   }
 }

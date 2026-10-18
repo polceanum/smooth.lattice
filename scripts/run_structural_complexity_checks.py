@@ -1148,6 +1148,188 @@ def hook_deformation_fixture(r, s):
             "cyclicity_checked": True, "fields": fields}
 
 
+def sparse_corner_deformation_fixture(k, r, s):
+    """Bounded controls for the growing-corner class, not a fan enumeration."""
+    require(k >= 2 and min(r, s) >= 2 * k + 1, "separated long arms")
+    generators = [(r, 0)] + [(k + 1 - i, i) for i in range(1, k + 1)] + [(0, s)]
+    divisible = lambda a, g: all(x >= y for x, y in zip(a, g))
+    base = {a for a in product(range(r), range(s))
+            if not any(divisible(a, g) for g in generators)}
+    m = len(base)
+    require(m == r + s - 1 + k * (k - 1) // 2, "sparse corner colength")
+    square = {tuple(x + y for x, y in zip(a, b)) for a in generators for b in generators}
+    outer = {a for a in product(range(2 * r), range(2 * s))
+             if not any(divisible(a, g) for g in square)}
+    socle = {(r - 1, 0), (0, s - 1)} | {(i, k - i) for i in range(1, k)}
+    y_arm = {(i, 0) for i in range(k, r)}
+    z_arm = {(0, j) for j in range(k, s)}
+    allowed = [y_arm | socle, y_arm | socle] + [socle] * (k - 2) + [z_arm | socle, z_arm | socle]
+    require(sum(map(len, allowed)) == 2 * m, "explicit first-order parameter count")
+    tails = [{a: (i + 2) * (a[0] + 1) ** 2 + (a[1] + 2) ** 3 for a in points}
+             for i, points in enumerate(allowed)]
+    base_order = sorted(base)
+    unknowns = [(i, a) for i in range(k + 2) for a in base_order]
+    equations = []
+    for i, (a, b) in enumerate(zip(generators, generators[1:])):
+        shifts = [(0, b[1] - a[1]), (a[0] - b[0], 0)]
+        for target in base_order:
+            equations.append([sum(sign for j, shift, sign in ((i, shifts[0], 1), (i + 1, shifts[1], -1))
+                                  if index == j and tuple(x + y for x, y in zip(point, shift)) == target)
+                              for index, point in unknowns])
+    free_indices = {j for j, (i, a) in enumerate(unknowns) if a in allowed[i]}
+    require(all(not row[j] for row in equations for j in free_indices),
+            "every displayed free tail satisfies all adjacent syzygies")
+
+    def multiply(poly, monomial):
+        return {tuple(x + y for x, y in zip(a, monomial)): c for a, c in poly.items()
+                if tuple(x + y for x, y in zip(a, monomial)) in base and c}
+
+    def phi(a):
+        images = [multiply(f, tuple(x - y for x, y in zip(a, g)))
+                  for g, f in zip(generators, tails) if divisible(a, g)]
+        require(images and all(v == images[0] for v in images), "sparse generator-independent module map")
+        return images[0]
+
+    fixed = {(0, *a) for a in base}
+    basis = sorted(fixed | {(1, *a) for a in base})
+    indices = {a: i for i, a in enumerate(basis)}
+    domain = {(0, *a) for a in outer} | {(1, *a) for a in base}
+    support = sorted(domain - fixed)
+
+    def residue(point):
+        power, a = point[0], point[1:]
+        vector = [0] * (2 * m)
+        if power < 2 and a in base:
+            vector[indices[(power, *a)]] = 1
+        elif power == 0 and a in outer:
+            for b, c in phi(a).items():
+                vector[indices[(1, *b)]] = c
+        return tuple(vector)
+
+    matrices = [tuple(residue(tuple(x + (i == j) for j, x in enumerate(a)))
+                      for a in basis) for i in range(3)]
+    for i, j in combinations(range(3), 2):
+        for a in range(2 * m):
+            require(matvec(matrices[i], matrices[j][a]) == matvec(matrices[j], matrices[i][a]),
+                    "sparse first-order multiplication matrices commute")
+    border = {tuple(x + (i == j) for j, x in enumerate(a)) for a in domain for i in range(3)} - domain
+    columns = {}
+    for a in sorted(domain | border):
+        vector = residue((0, 0, 0))
+        for matrix, exponent in zip(matrices, a):
+            for _ in range(exponent):
+                vector = matvec(matrix, vector)
+        require(vector == residue(a), "sparse first-order cyclicity including border")
+        columns[a] = vector
+    variable_columns = {a: tuple(columns[a][indices[(1, *b)]] for b in base_order) for a in support}
+    rows = []
+    for a in sorted(outer - base):
+        row = [0] * len(support)
+        row[support.index((0, *a))] = 1
+        for b, c in phi(a).items():
+            row[support.index((1, *b))] -= c
+        rows.append(row)
+    left = ({(1, *a) for a in y_arm - socle} |
+            {(0, i, 0) for i in range(r + 1, 2 * r)} |
+            {(0, i, 1) for i in range(k + 1, r + k)})
+    right = ({(1, *a) for a in z_arm - socle} |
+             {(0, 0, j) for j in range(s + 1, 2 * s)} |
+             {(0, 1, j) for j in range(k + 1, s + k)})
+    core = {(0, *a) for a in generators} | {(1, *a) for a in socle}
+    coloops = {(1, *a) for a in base - y_arm - z_arm - socle}
+    blocks = [left, right, core]
+    ground = set().union(*blocks)
+    require(sum(map(len, blocks)) == len(ground) and ground <= set(support), "three disjoint ground blocks")
+    loops = set(support) - ground - coloops
+    require(all(not any(variable_columns[a]) for a in loops), "all unassigned columns are loops")
+    for points, allowed_residues in ((left, y_arm), (right, z_arm)):
+        require(all(not c or b in allowed_residues for a in points
+                    for b, c in zip(base_order, variable_columns[a])), "private arm residue support")
+    normals = set()
+    for block in blocks:
+        normals.update(primitive(tuple(x - y for x, y in zip(a, b))) for a, b in combinations(sorted(block), 2)
+                       if min(x - y for x, y in zip(a, b)) < 0 < max(x - y for x, y in zip(a, b)))
+    require(len(normals) <= 10 * (r + s + k + 1), "linear internal order arrangement size")
+    weights = [(1, 2, 3), (3, 2, 1), (2, 3, 1), (1, 3, 2), (7, 2, 3), (11, 3, 2),
+               (2, 5, 7), (31, 7, 11), (5, 13, 17), (17, 5, 13), (23, 19, 7), (41, 11, 19)]
+    # Preserve every strict small-weight comparison and break its ties by a
+    # large-base integer encoding of the bounded reference exponents.
+    scale = 4 * max(r, s) + 1
+    weights = [tuple(scale ** 3 * x + scale ** i for i, x in enumerate(w)) for w in weights]
+    weights += [(1, scale, scale ** 2), (scale ** 2, 1, scale), (scale, scale ** 2, 1)]
+    require(len(set(weights)) >= 3 and all(len({dot(w, a) for a in support}) == len(support) for w in weights),
+            "strict finite positive weight controls")
+
+    def ordered_selection(points, vectors, characteristic):
+        labeled = {(i, 0, 0): vectors[a] for i, a in enumerate(points)}
+        return {points[a[0]] for a in greedy(set(labeled), labeled, (1, 1, 1), characteristic)}
+
+    fields = []
+    for characteristic in (0, 2, 3, 29):
+        equation_columns = {(j, 0, 0): tuple(row[j] for row in equations) for j in range(len(unknowns))}
+        tangent_dimension = len(unknowns) - len(greedy(set(equation_columns), equation_columns, (1, 1, 1), characteristic))
+        require(tangent_dimension == 2 * m, "displayed tails exhaust the tangent space in each fixture")
+        rank = lambda points: len(greedy(set(points), variable_columns, (1, 1, 1), characteristic))
+        rank_all = rank(ground)
+        interfaces = [rank(block) + rank(ground - block) - rank_all for block in blocks]
+        require(all(a <= b for a, b in zip(interfaces, (3, 3, 6))), "bounded interface dimensions")
+        witnesses = []
+        for weight in weights:
+            selected = greedy(set(support), variable_columns, weight, characteristic)
+            require(selected == set(support) - leading_row_pivots(rows, support, weight, characteristic),
+                    "sparse relation rows agree with greedy residues")
+            require(greedy(domain | border, columns, weight, characteristic) == fixed | selected,
+                    "sparse full algebra selection agrees with module")
+            forced, eligible = set(), set()
+            for block, interface in zip(blocks, interfaces):
+                order = sorted(block, key=lambda a: dot(weight, a))
+                local = greedy(block, variable_columns, weight, characteristic)
+                private = ordered_selection(sorted(ground - block) + order, variable_columns, characteristic) & block
+                require(private <= local and len(local - private) == interface,
+                        "only interface-rank many local basis elements can be optional")
+                forced.update(private)
+                eligible.update(local)
+            require(forced <= selected - coloops <= eligible and coloops <= selected,
+                    "global basis lies between forced private columns and local greedy bases")
+            require(len(eligible - forced) == sum(interfaces) <= 12, "at most twelve optional columns")
+            reduced = ordered_selection(sorted(forced) + sorted(eligible - forced, key=lambda a: dot(weight, a)),
+                                        variable_columns, characteristic)
+            require(reduced == selected - coloops,
+                    "contracting forced columns and ordering only optional columns recovers the basis")
+            witnesses.append({"positive_integer_weights": weight, "selected_variable_monomials": sorted(selected),
+                              "forced_private_columns": sorted(forced), "optional_columns": sorted(eligible - forced)})
+        fields.append({"characteristic": characteristic, "tangent_dimension": tangent_dimension,
+                       "interface_dimensions": interfaces, "witnesses": witnesses})
+    return {"k": k, "r": r, "s": s, "base_colength": m, "quotient_length": 2 * m,
+            "plane_generators": generators, "number_of_corners": len(generators),
+            "tails": [[{"monomial": a, "coefficient": c} for a, c in sorted(f.items())] for f in tails],
+            "reference_domain": sorted(domain), "relation_support": support, "relation_matrix": rows,
+            "blocks": [sorted(b) for b in blocks], "coloop_columns": sorted(coloops), "loop_columns": sorted(loops),
+            "internal_hyperplanes": sorted(normals), "weight_controls_per_field": len(weights),
+            "row_and_greedy_checks": 4 * len(weights), "full_matrix_checks": 4 * len(weights),
+            "interface_flag_checks": 12 * len(weights), "optional_recovery_checks": 4 * len(weights),
+            "multiplication_matrices_commute": True,
+            "cyclicity_checked": True, "exhaustive_fan_enumeration": False, "fields": fields}
+
+
+def interface_pairwise_countercontrol():
+    points = [(1, 0, 0), (0, 1, 0), (0, 0, 1)]
+    columns = dict(zip(points, ((1, 0), (0, 1), (1, 1))))
+    fields = []
+    for characteristic in (0, 2, 3, 29):
+        rank = lambda subset: len(greedy(set(subset), columns, (1, 2, 3), characteristic))
+        require(rank(points) == 2 and all(rank(pair) == 2 for pair in combinations(points, 2)),
+                "three distinct lines have zero pairwise intersection but global dependencies")
+        witnesses = [{"weight": w, "basis": sorted(greedy(set(points), columns, w, characteristic))}
+                     for w in ((1, 2, 3), (1, 3, 2), (3, 1, 2))]
+        require(len({tuple(map(tuple, x["basis"])) for x in witnesses}) == 3,
+                "the false pairwise-interface count would predict one basis instead of three")
+        fields.append({"characteristic": characteristic, "witnesses": witnesses})
+    return {"columns": [{"monomial": a, "residue": columns[a]} for a in points],
+            "sum_pairwise_intersection_dimensions": 0, "sum_intersections_with_all_other_blocks": 3,
+            "joint_internal_order_regions": 1, "fields": fields}
+
+
 def main():
     fixtures = []
     for weights, cutoff in [((1, 1, 1), 2), ((1, 1, 1), 3),
@@ -1176,6 +1358,8 @@ def main():
     relative_socle = [relative_socle_fixture(length) for length in (2, 3, 4, 5)]
     relative_lower = relative_socle_lower_controls()
     hook = [hook_deformation_fixture(r, s) for r, s in ((2, 2), (2, 3), (3, 3))]
+    sparse = [sparse_corner_deformation_fixture(k, r, s)
+              for k, r, s in ((2, 5, 5), (3, 7, 7), (4, 9, 9), (3, 11, 13))]
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
         "schema_version": 1, "command": "python3 -B scripts/run_structural_complexity_checks.py",
@@ -1231,6 +1415,12 @@ def main():
             "scope": "A proved obstruction for this sparse first-order family, not an unrestricted advance or established novelty claim.",
             "fixtures": hook,
         },
+        "sparse_growing_corner_deformation_control": {
+            "uniform_conclusion": "Every flat first-order deformation of the sparse plane ideal (y^r,y^k*z,y^(k-1)*z^2,...,y*z^k,z^s), k>=2 and r,s>=2k+1, has O(n^2) initial ideals at quotient length n=2*(r+s-1+k*(k-1)/2). Three residue blocks have total interface dimension at most twelve and a linear number of internal comparison hyperplanes.",
+            "scope": "A uniform growing-corner obstruction, not an unrestricted advance or established novelty claim. These fixtures check exact selected weights and do not enumerate the full fan.",
+            "fixtures": sparse,
+            "pairwise_intersection_negative_control": interface_pairwise_countercontrol(),
+        },
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
                     "independent_greedy_checks": sum(f["greedy_checks"] for f in fixtures),
@@ -1257,7 +1447,12 @@ def main():
                     "relative_socle_lower_certificates": sum(f["certificates_checked"] for f in relative_lower),
                     "hook_deformation_fixtures": len(hook),
                     "hook_deformation_row_and_greedy_checks": sum(f["row_and_greedy_checks"] for f in hook),
-                    "hook_deformation_full_matrix_checks": sum(f["full_matrix_checks"] for f in hook)},
+                    "hook_deformation_full_matrix_checks": sum(f["full_matrix_checks"] for f in hook),
+                    "sparse_corner_fixtures": len(sparse),
+                    "sparse_corner_row_and_greedy_checks": sum(f["row_and_greedy_checks"] for f in sparse),
+                    "sparse_corner_full_matrix_checks": sum(f["full_matrix_checks"] for f in sparse),
+                    "sparse_corner_interface_flag_checks": sum(f["interface_flag_checks"] for f in sparse),
+                    "sparse_corner_optional_recovery_checks": sum(f["optional_recovery_checks"] for f in sparse)},
         "goal_qualifying_advance": False,
     }
     target = ROOT / "results/research/structural_complexity_checks.json"
