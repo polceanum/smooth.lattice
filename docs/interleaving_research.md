@@ -4657,3 +4657,226 @@ access issue does not halt independent work and is not evidence that
 the unrestricted bound is new. Keep the full goal active; the
 qualifying unrestricted advance, further consequence and target
 manuscript are still missing.
+
+### Sixth feasibility pass: bounded connectors also limit sparse plane deformations
+
+The next test uses genuine first-order deformations, rather than choosing
+unrelated relation rows. Both surviving multiplication actions can be
+nonzero. Nevertheless, the entire hook family below has only O(n^2)
+initial ideals. This is another restricted obstruction, not the
+unrestricted advance required by the goal.
+
+#### A counting lemma that keeps the connecting information
+
+Let a finite matroid have ground set
+
+    E = E_1 disjoint-union ... disjoint-union E_p disjoint-union C,
+    |C|=k,
+
+and suppose deleting C leaves the direct sum of the restrictions to
+the E_i. Element costs are linear functions of the weight parameters.
+Suppose the joint arrangement of comparisons *within* the E_i has R
+open regions. Then the number of distinct minimum bases realized by
+generic weights is at most
+
+    R product_{j=1}^k(p+j) = R (p+k)!/p!.       (BC1)
+
+This uses the full internal element orders, rather than just the
+component minimum-basis fans. The gluing counterexample in the fifth
+pass therefore does not contradict it.
+
+Proof. Fix an internal-order region. The minimum basis after deleting
+C is fixed, by the greedy algorithm in each summand. Insert the k
+elements of C in a fixed sequence. Given the previous minimum basis B
+and a new element c, the usual matroid insertion rule either appends c
+if the rank increases, or removes a maximum-cost member of the unique
+circuit in B union {c}. Removing c itself means retaining B.
+
+For completeness, this rule follows from the greedy prefix-rank
+criterion. At any cost threshold, the members of a minimum basis below
+the threshold span all old elements below that threshold. If c is in
+the span of B, it enters this span exactly when all old members of its
+fundamental circuit have entered. Thus replacing the most expensive
+old circuit member by c gives precisely the required rank increase
+between their two costs when c is cheaper; otherwise B stays optimal.
+If c is outside the old span it must be appended.
+
+At insertion j, condition on a particular previous basis. The most
+expensive circuit member from each E_i is fixed by that block's
+internal order. Together with the previous j-1 inserted elements and
+c, there are at most p+j possible elements to remove. The rank-increase
+case has a single outcome. Induct on j and sum over the R regions.
+Generic perturbations avoid ties; every uniquely exposed basis is
+represented in an open region. This is an elementary consequence of
+the existing greedy/circuit rule, with no novelty claim for that rule.
+
+#### The full hook deformation class and its exact length
+
+Take S=K[y,z], arbitrary field K, and
+
+    M=(y^r,yz,z^s),  r,s>=2,
+    D={1,y,...,y^(r-1),z,...,z^(s-1)},
+    B=S/M,  m=|D|=r+s-1.
+
+An S-linear map phi:M -> B is determined by the three tails
+f_0=phi(y^r), f_1=phi(yz), f_2=phi(z^s). Its compatibility conditions
+are exactly
+
+    z f_0 = y^(r-1) f_1,    z^(s-1) f_1 = y f_2  in B.       (HD1)
+
+Indeed, the two adjacent least-common-multiple syzygies generate the
+syzygy module of these three plane monomial generators: the remaining
+pair syzygy is their telescoped combination. Comparing the independent
+y and z chains in B shows that (HD1) is equivalent to
+
+    f_0 in span{y,...,y^(r-1),z^(s-1)},
+    f_1 in (y,z)B,
+    f_2 in span{y^(r-1),z,...,z^(s-1)}.          (HD2)
+
+These are 2m freely chosen scalar parameters, over every field. Define
+the actual three-variable ideal
+
+    I_phi=(x^2, y^r-x f_0, yz-x f_1, z^s-x f_2).             (HD3)
+
+It has basis D disjoint-union xD and length n=2m. Here is a direct
+proof, so flatness is not inferred from an unchecked finite deformation.
+Multiplying the three relations by x gives xM contained in I_phi.
+Then M^2 is contained in I_phi too: for u,v in M, replace u by
+x phi(u), and its product with v is zero modulo xM. Consequently D
+and xD span the quotient.
+
+For independence, suppose a+xb is in I_phi with a,b in span(D).
+Reducing modulo x gives a in M, hence a=0. Write a representation using
+coefficients A_i+xB_i modulo x^2 and denote the three generators of M
+by g_i. The constant coefficient gives sum A_i g_i=0. The x
+coefficient, reduced modulo M, then gives
+
+    b = -sum A_i f_i = -phi(sum A_i g_i) = 0 in B.
+
+Thus b=0 as well. The quotient is free of rank m over K[x]/(x^2).
+In this note, 'first-order deformation' means this algebra over the
+dual numbers; it does not mean substituting an ordinary nonnilpotent
+parameter into an arbitrary perturbation.
+
+If a constant 1 is added to f_1 while the other tails are held fixed,
+both compatibilities fail. The resulting relations force
+x y^(r-1)=x z^(s-1)=0, so the claimed free basis would be false.
+The checker includes this negative control.
+
+#### The three connecting columns
+
+The monomial reference ideal
+
+    J=(x^2,xM,M^2)
+
+is contained in I_phi. Let D_0 be the standard diagram of M^2;
+|D_0|=3m+1. Its reference domain is D_0 disjoint-union xD.
+All relations between its residue columns are supported on
+
+    T=(D_0 minus D) disjoint-union xD.
+
+The plain D columns are independent fixed summands. The variable
+residues in T all lie in xB, with relation rows a-x phi(a) for
+a in D_0 minus D. These rows are closed under multiplication by both
+y and z and killed by x in the reference quotient.
+
+The column x*1 is a coloop, since none of the tails has a constant
+term. Remove it, and reserve the three connecting columns
+
+    C={y^r,yz,z^s}.
+
+The other columns split into
+
+    E_Y = {xy^i:1<=i<r}
+          union {y^i:r+1<=i<2r}
+          union {y^i z:2<=i<=r},
+
+    E_Z = {xz^j:1<=j<s}
+          union {z^j:s+1<=j<2s}
+          union {y z^j:2<=j<=s}.
+
+By (HD2), E_Y has residues only in span{xy,...,xy^(r-1)},
+and E_Z only in span{xz,...,xz^(s-1)}. Their identity columns span
+these disjoint spaces, in every characteristic, regardless of which
+tail coefficients vanish. Deleting C therefore leaves a direct sum.
+There are p=2 blocks and k=3 connectors in (BC1).
+
+Each block consists of three exponent progressions of length r-1 or
+s-1, with respective offsets w_x, 0 and w_z (or w_y for E_Z).
+Within E_Y, only comparisons between progressions can change. Each
+of its three pairs has at most 2r-3 distinct comparison hyperplanes;
+the same count with s holds for E_Z. In particular, their joint
+internal arrangement has at most H=6(r+s) hyperplanes. Normalizing
+w_x+w_y+w_z=1 gives an open triangle, so it has at most
+
+    R <= 1+H(H+1)/2
+
+regions. Every global monomial initial ideal is represented by
+positive weights on the finite reference comparisons, as in the
+earlier state-polytope reduction. Applying (BC1), and restoring the
+fixed columns, proves uniformly
+
+    g(I_phi) <= 60[1+H(H+1)/2] = O(n^2),  n=2(r+s-1).        (HD4)
+
+No genericity of coefficients or characteristic-zero assumption is
+needed for this upper bound. Although balanced hooks have reference
+bounding boxes of volume of order n^2, escaping the earlier box-volume
+obstruction, their bounded number of connecting columns still prevents
+an asymptotic improvement over the generic n^2 log^2 n lower order.
+
+#### Reproduction and relation to existing deformation theory
+
+The exact checker uses the explicit integer tails
+
+    f_0=sum_{i=1}^{r-1}(i+1)y^i+(r+3)z^(s-1),
+    f_1=sum_{i=1}^{r-1}(i+2)^2 y^i
+        +sum_{j=1}^{s-1}(j+3)^3 z^j,
+    f_2=(s+5)y^(r-1)+sum_{j=1}^{s-1}(j+5)^2 z^j.
+
+It checks all positive comparison chambers for (r,s)=(2,2),(2,3),(3,3)
+over Q, F_2, F_3 and F_29. Descending relation-row reduction is
+compared with ascending Gaussian residue selection. Full commuting
+multiplication matrices and cyclicity on the reference domain and its
+border independently check that the rows come from the claimed
+quotient. Full-algebra selection is checked for every realized state;
+the checker also verifies the two block subspaces, the internal
+arrangement count and the bound of 60 states per internal-order region.
+These finite checks support (HD4); the proof above supplies its uniform
+scope. The (3,3) fixture has both surviving actions nonzero over Q.
+
+First-order and formal deformations of plane monomial ideals are
+established mathematics. [Oszer, 2025](https://doi.org/10.1093/qmath/haaf032)
+provides explicit Hilbert--Burch families: the inspection covered
+Definition 3.1, Theorems 5.4--5.5 and their proofs, and Examples 6.1--6.2.
+The formal parametrization does not justify arbitrary finite
+perturbations; the examples explain this limitation. We use only the
+dual-number family proved directly above. No new deformation theory or
+published priority for (HD4) is asserted; the full paper was not audited.
+
+The comparison with [Eppstein, 1998](https://ics.uci.edu/~eppstein/pubs/Epp-DCG-98.pdf)
+was extended to Section 4, Theorems 4--5 and 7, Corollaries 1--2 and
+their construction arguments. Those large one-parameter examples use
+transversal matroids built from convex chains of line arrangements.
+They do not themselves realize a commutative quotient algebra with
+the required exponent weights and controlled colength. A realization
+and its size cost remain necessary before importing that lower bound.
+
+#### Decision and next gate
+
+Stop enlarging hook parameters or changing their coefficients in an
+attempt to beat the generic lower order: (HD4) rules out the entire
+family. Also reject the initially considered dense three-plateau
+module: its reference box has volume proportional to its quotient
+length, so the previously proved moment-box estimate already gives
+O(n^2), without needing another enumeration.
+
+Within the first-order approach, the next meaningful test is a plane
+monomial ideal whose number of corners grows with its colength. First
+determine how its syzygies limit the possible connecting residue
+columns, and whether a deletion/direct-sum argument still limits the
+count. Construct a symbolic compatible family before increasing any
+enumeration. This is a feasibility direction, not an asserted lower
+bound. The unrestricted upper-bound and primary-priority work remain
+necessary alternatives. Keep the full goal active: no qualifying
+unrestricted asymptotic advance, further consequence or new target
+manuscript has been obtained.

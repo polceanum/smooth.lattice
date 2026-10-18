@@ -2,7 +2,7 @@
   "schema_version": 1,
   "recorded_on": "2026-10-18",
   "title": "Universal algebraic complexity beyond generic corner cuts",
-  "status": "active_two_annihilator_gate_resolved_unrestricted_dependency_bound_pending",
+  "status": "active_sparse_first_order_gate_resolved_unrestricted_advance_pending",
   "objective": "Prove a new structural theorem determining or substantially narrowing the worst-case asymptotic number of monomial initial ideals of finite polynomial algebras, starting with three variables and seeking a mechanism valid in every fixed dimension. Establish the strongest relevant primary baseline first. Success requires a complete uniform proof of sharp growth or a substantial asymptotic advance over that baseline for all colength-n ideals or all n-point configurations, a rigorous further algebraic, geometric or enumeration consequence, reproducible exact certificates and an honestly scoped manuscript. Examples, reformulations, already known corollaries and a plan alone do not complete this goal.",
   "plan": "docs/interleaving_research.md#higher-impact-research-plan-universal-algebraic-complexity",
   "relationship_to_previous_goal": "A new research objective. The completed corner-cut counting manuscript and its acceptance records remain separate and unchanged in mathematical content.",
@@ -34,12 +34,12 @@
     },
     {
       "id": "dependency_mechanism",
-      "status": "relative_annihilator_moment_budgets_proved_general_extension_bound_pending",
+      "status": "annihilator_budgets_and_bounded_connector_lemma_proved_general_extension_pending",
       "deliverable": "A precise lemma about multiplication-compatible residue dependencies or state-polyhedron geometry, with its proof attempt and adversarial controls."
     },
     {
       "id": "infinite_lower_family",
-      "status": "one_surviving_coordinate_sharply_below_generic_two_surviving_actions_targeted",
+      "status": "sparse_hook_first_order_class_ruled_out_growing_corner_gate_next",
       "deliverable": "A symbolic realizable family and count proof, or a documented obstruction to the tested construction; finite examples alone are insufficient."
     },
     {
@@ -123,7 +123,7 @@
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Proved the fixed-curve upper bound and matching rational-normal-curve family, a conditional moment-layer route, and an exact distinction between class regions and bases; reviewed findings were saved in af20074. The unrestricted theorem remained open."
+    "reason": "Proved relative-annihilator moment budgets, a matching quadratic family with a surviving multiplication action, and a gluing counterexample; reviewed findings were saved in f7103a6. The unrestricted theorem remained open."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -205,8 +205,8 @@
     {
       "source": "https://ics.uci.edu/~eppstein/pubs/Epp-DCG-98.pdf",
       "authors": "Eppstein",
-      "inspected": "Theorem 7, Corollary 2 and conclusions; not a full proof audit.",
-      "finding": "One-parameter lower constructions do not supply a quotient-algebra realization with controlled colength."
+      "inspected": "Section 4, Theorems 4--5 and 7, Corollaries 1--2 and their construction arguments; not a full-paper audit.",
+      "finding": "The inspected one-parameter lower construction uses transversal matroids from convex chains in line arrangements. It supplies neither commuting quotient multiplications nor the required integer exponent weights with controlled colength."
     },
     {
       "source": "https://www.tau.ac.il/~hassin/matroids_89.pdf",
@@ -232,6 +232,13 @@
       "authors": "Conca, De Negri and Rossi",
       "inspected": "Abstract and introduction only.",
       "finding": "Studies Cohen--Macaulay initial ideals of the homogeneous projective rational normal curve and contracted ideals. No novelty for the finite affine quotient count is inferred from the parameter difference; a full comparison would be needed if that restricted result were pursued as a contribution."
+    },
+    {
+      "source": "https://doi.org/10.1093/qmath/haaf032",
+      "authors": "Oszer",
+      "year": 2025,
+      "inspected": "Definition 3.1, Theorems 5.4--5.5 and their proofs, and Examples 6.1--6.2; not a full-paper audit.",
+      "finding": "Plane monomial first-order and formal Hilbert--Burch deformations are established. The examples show why the formal parametrization cannot be treated as an arbitrary finite perturbation of constant colength. The hook dual-number family here has a separate elementary flatness proof; no new deformation theory is claimed."
     }
   ],
   "next_actions": [
@@ -343,11 +350,14 @@
           "relative_socle_fixtures": 4,
           "relative_socle_row_and_greedy_checks": 896,
           "relative_socle_full_matrix_checks": 112,
-          "relative_socle_lower_certificates": 116
+          "relative_socle_lower_certificates": 116,
+          "hook_deformation_fixtures": 3,
+          "hook_deformation_row_and_greedy_checks": 3260,
+          "hook_deformation_full_matrix_checks": 104
         }
       }
     ],
-    "scope": "Exact controls include four coupled relative-socle modules with actual commuting cyclic multiplication matrices, 896 relation-row/greedy checks in four characteristics, 112 full-matrix states and 116 symbolic allocation witnesses. The uniform proofs establish the stated restricted bounds. The unrestricted goal, novelty assessment and target manuscript remain incomplete."
+    "scope": "Exact controls include the previous relative-socle modules and three flat hook-deformation fixtures, with 3,260 new relation-row/greedy comparisons and 104 full commuting cyclic multiplication-matrix states over four characteristics. The uniform proofs establish the stated restricted obstructions. The unrestricted goal, novelty assessment and target manuscript remain incomplete."
   },
   "second_feasibility_results": {
     "record": "docs/interleaving_research.md, Second feasibility pass: interacting relations and a conditional count",
@@ -561,5 +571,74 @@
       "source": "https://par.nsf.gov/servlets/purl/10177092",
       "status": "The public primary text is indexed, but a direct full-text request did not complete. The later finite-field chapter is not represented as proof-audited; this is not a blocker for independent research."
     }
-  ]
+  ],
+  "sixth_feasibility_results": {
+    "record": "docs/interleaving_research.md, Sixth feasibility pass: bounded connectors also limit sparse plane deformations",
+    "bounded_connector_lemma": {
+      "hypotheses": "Deleting k elements from a matroid leaves p direct-sum blocks; the joint internal element-order arrangement of those blocks has R open regions.",
+      "bound": "At most R*(p+k)!/p! distinct minimum bases under generic linear costs.",
+      "proof": "Insert the connecting elements in fixed order. On each previous-basis branch, the maximum member of a fundamental circuit from each block is fixed by its internal order; at step j there are at most p+j possible removals.",
+      "distinction": "Uses complete internal orders, not only component minimum-basis fans. The previous failed gluing shortcut remains false.",
+      "priority": "An elementary consequence of the standard matroid greedy and circuit-update rule; no novelty established."
+    },
+    "hook_first_order_family": {
+      "field": "Every field K",
+      "plane_ideal": "M=(y^r,y*z,z^s), r,s>=2, B=K[y,z]/M, m=r+s-1.",
+      "compatibility": "An S-linear phi:M->B satisfies z*f0=y^(r-1)*f1 and z^(s-1)*f1=y*f2. Equivalently f0 is in span(y,...,y^(r-1),z^(s-1)), f1 in (y,z)B, f2 in span(y^(r-1),z,...,z^(s-1)).",
+      "ideal": "I_phi=(x^2,y^r-x*f0,y*z-x*f1,z^s-x*f2).",
+      "length": "Exactly n=2m, with free K[x]/(x^2) basis given by the hook diagram D; proved directly using the syzygies.",
+      "reference": "J=(x^2,x*M,M^2) is contained in I_phi. Reference domain has 4m+1 elements; the variable support has 3m+1.",
+      "count": "The variable residue matroid consists of a coloop and two blocks joined by three columns y^r,y*z,z^s. There are at most 6(r+s) internal order hyperplanes. The bounded-connector lemma gives g(I_phi)<=60*(1+H*(H+1)/2)=O(n^2).",
+      "scope": "Uniform over all compatible tail coefficients and all characteristics. Both surviving multiplication actions may be nonzero. This is below the existing generic n^2(log n)^2 lower order, and gives no unrestricted improvement.",
+      "negative_control": "Adding a constant to f1 violates both adjacent syzygies and forces x*y^(r-1)=x*z^(s-1)=0; it cannot retain the asserted free basis."
+    },
+    "dense_candidate_obstruction": "The initially proposed equal three-plateau/two-action module fits in a reference box of volume proportional to quotient length. The existing moment-box estimate already bounds it by O(n^2), so it was rejected before enumeration.",
+    "finite_controls": {
+      "parameters": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "fields": [
+        "Q",
+        "F_2",
+        "F_3",
+        "F_29"
+      ],
+      "scope": "All full positive comparison chambers are checked against independent Gaussian and relation-row selection. Commuting multiplication matrices, cyclicity, block support, internal region counts and an incompatible constant-tail control check actual quotient realizability. The full report records exact counts and witnesses.",
+      "row_and_greedy_comparisons": 3260,
+      "full_cyclic_matrix_states": 104,
+      "field_counts_by_r_s": {
+        "2,2": [
+          5,
+          5,
+          5,
+          5
+        ],
+        "2,3": [
+          11,
+          5,
+          10,
+          11
+        ],
+        "3,3": [
+          16,
+          6,
+          9,
+          16
+        ]
+      }
+    },
+    "goal_qualifying_unrestricted_advance": false,
+    "decision": "Stop enlarging hooks or changing their coefficients. In the first-order route, test plane monomial ideals with a growing number of corners: first derive their syzygy-compatible connecting columns and test whether a deletion/direct-sum bound still rules them out. Require a symbolic compatible family before expanding enumeration. Continue the unrestricted upper argument and priority audit; the original goal and acceptance criteria remain active."
+  }
 }

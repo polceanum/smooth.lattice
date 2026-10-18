@@ -1015,6 +1015,139 @@ def relative_socle_lower_controls():
     return fixtures
 
 
+def hook_deformation_fixture(r, s):
+    """A flat first-order deformation with both surviving module actions."""
+    base = {(i, 0) for i in range(r)} | {(0, j) for j in range(s)}
+    generators = [(r, 0), (1, 1), (0, s)]
+    square = {tuple(a + b for a, b in zip(p, q))
+              for p in generators for q in generators}
+    outer_domain = {a for a in product(range(2 * r), range(2 * s))
+                    if not any(all(x >= y for x, y in zip(a, g)) for g in square)}
+    m = len(base)
+    require(m == r + s - 1 and len(outer_domain) == 3 * m + 1, "hook reference lengths")
+    domain = {(0, *a) for a in outer_domain} | {(1, *a) for a in base}
+    fixed = {(0, *a) for a in base}
+    support = sorted(domain - fixed)
+    basis = sorted(fixed | {(1, *a) for a in base})
+    indices = {a: i for i, a in enumerate(basis)}
+    base_order = sorted(base)
+    f0 = {(i, 0): i + 1 for i in range(1, r)} | {(0, s - 1): r + 3}
+    f1 = {(i, 0): (i + 2) ** 2 for i in range(1, r)} | {
+        (0, j): (j + 3) ** 3 for j in range(1, s)}
+    f2 = {(r - 1, 0): s + 5} | {(0, j): (j + 5) ** 2 for j in range(1, s)}
+    tails = [f0, f1, f2]
+
+    def multiply(poly, monomial):
+        return {tuple(a + b for a, b in zip(point, monomial)): value
+                for point, value in poly.items()
+                if tuple(a + b for a, b in zip(point, monomial)) in base and value}
+
+    require(multiply(f0, (0, 1)) == multiply(f1, (r - 1, 0)), "first adjacent monomial syzygy")
+    require(multiply(f1, (0, s - 1)) == multiply(f2, (1, 0)), "second adjacent monomial syzygy")
+    invalid = dict(f1)
+    invalid[(0, 0)] = 1
+    require(multiply(f0, (0, 1)) != multiply(invalid, (r - 1, 0)) and
+            multiply(invalid, (0, s - 1)) != multiply(f2, (1, 0)),
+            "an arbitrary constant tail violates both module compatibilities")
+
+    def phi(point):
+        candidates = [multiply(tail, tuple(a - b for a, b in zip(point, g)))
+                      for g, tail in zip(generators, tails)
+                      if all(a >= b for a, b in zip(point, g))]
+        require(candidates and all(p == candidates[0] for p in candidates),
+                "generator-independent module map")
+        return candidates[0]
+
+    def residue(point):
+        power, a = point[0], point[1:]
+        vector = [0] * (2 * m)
+        if power < 2 and a in base:
+            vector[indices[(power, *a)]] = 1
+        elif not power and a in outer_domain:
+            for b, value in phi(a).items():
+                vector[indices[(1, *b)]] = value
+        return tuple(vector)
+
+    matrices = [tuple(residue(tuple(x + (i == j) for j, x in enumerate(a)))
+                      for a in basis) for i in range(3)]
+    for i, j in combinations(range(3), 2):
+        for k in range(2 * m):
+            require(matvec(matrices[i], matrices[j][k]) ==
+                    matvec(matrices[j], matrices[i][k]), "first-order multiplication actions commute")
+    border = {tuple(x + (i == j) for j, x in enumerate(a))
+              for a in domain for i in range(3)} - domain
+    columns = {}
+    for a in sorted(domain | border):
+        vector = residue((0, 0, 0))
+        for matrix, exponent in zip(matrices, a):
+            for _ in range(exponent):
+                vector = matvec(matrix, vector)
+        require(vector == residue(a), "first-order quotient is cyclic on reference and border")
+        columns[a] = vector
+    socle_columns = {a: tuple(columns[a][indices[(1, *b)]] for b in base_order) for a in support}
+    rows = []
+    for point in sorted(outer_domain - base):
+        row = [0] * len(support)
+        row[support.index((0, *point))] = 1
+        for b, value in phi(point).items():
+            row[support.index((1, *b))] -= value
+        rows.append(row)
+    connectors = {(0, r, 0), (0, 0, s), (0, 1, 1)}
+    constant = (1, 0, 0)
+    left = ({(1, i, 0) for i in range(1, r)} |
+            {(0, i, 0) for i in range(r + 1, 2 * r)} |
+            {(0, i, 1) for i in range(2, r + 1)})
+    right = ({(1, 0, j) for j in range(1, s)} |
+             {(0, 0, j) for j in range(s + 1, 2 * s)} |
+             {(0, 1, j) for j in range(2, s + 1)})
+    require(set(support) == left | right | connectors | {constant}, "two blocks and three connectors")
+    for points, allowed in ((left, {(i, 0) for i in range(1, r)}),
+                            (right, {(0, j) for j in range(1, s)})):
+        require(all(not value or b in allowed for a in points
+                    for b, value in zip(base_order, socle_columns[a])), "block residue subspaces are disjoint")
+    normals = lambda points: {primitive(tuple(x - y for x, y in zip(a, b)))
+                              for a, b in combinations(sorted(points), 2)
+                              if min(x - y for x, y in zip(a, b)) < 0 < max(x - y for x, y in zip(a, b))}
+    internal = sorted(normals(left) | normals(right))
+    require(len(internal) <= 6 * (r + s), "linear number of internal order hyperplanes")
+    weights = positive_chambers(sorted(normals(support)))
+    internal_regions = len(positive_chambers(internal))
+    fields, matrix_checks = [], 0
+    for characteristic in (0, 2, 3, 29):
+        states, by_order = {}, {}
+        for weight in weights:
+            excluded = leading_row_pivots(rows, support, weight, characteristic)
+            selected = greedy(set(support), socle_columns, weight, characteristic)
+            require(selected == set(support) - excluded and len(selected) == m,
+                    "first-order relation rows agree with Gaussian residue selection")
+            require(constant in selected, "the x constant column is a coloop")
+            key = (tuple(sorted(left, key=lambda a: dot(weight, a))),
+                   tuple(sorted(right, key=lambda a: dot(weight, a))))
+            by_order.setdefault(key, set()).add(tuple(sorted(selected)))
+            states.setdefault(tuple(sorted(selected)), weight)
+        require(len(by_order) == internal_regions and all(len(v) <= 60 for v in by_order.values()),
+                "bounded-connector counting lemma covers every full chamber")
+        for selected, weight in states.items():
+            require(greedy(domain | border, columns, weight, characteristic) == fixed | set(selected),
+                    "full first-order algebra basis agrees with the module reduction")
+            matrix_checks += 1
+        fields.append({"characteristic": characteristic, "initial_ideal_count": len(states),
+                       "maximum_states_per_internal_order_region": max(map(len, by_order.values())),
+                       "witnesses": [{"selected_variable_monomials": a, "positive_integer_weights": w}
+                                     for a, w in sorted(states.items())]})
+    return {"r": r, "s": s, "base_colength": m, "quotient_length": 2 * m,
+            "plane_generators": generators,
+            "tails": [[{"monomial": a, "coefficient": c} for a, c in sorted(f.items())] for f in tails],
+            "reference_domain": sorted(domain), "relation_support": support,
+            "relation_matrix": rows, "left_block": sorted(left), "right_block": sorted(right),
+            "connectors": sorted(connectors), "internal_hyperplanes": internal,
+            "internal_order_regions": internal_regions, "full_comparison_chambers": len(weights),
+            "row_and_greedy_checks": 4 * len(weights), "full_matrix_checks": matrix_checks,
+            "both_surviving_actions_nonzero_over_Q": bool(multiply(f1, (1, 0))) and bool(multiply(f1, (0, 1))),
+            "invalid_constant_tail_rejected": True, "multiplication_matrices_commute": True,
+            "cyclicity_checked": True, "fields": fields}
+
+
 def main():
     fixtures = []
     for weights, cutoff in [((1, 1, 1), 2), ((1, 1, 1), 3),
@@ -1042,6 +1175,7 @@ def main():
     normal_curve = normal_curve_lower_controls()
     relative_socle = [relative_socle_fixture(length) for length in (2, 3, 4, 5)]
     relative_lower = relative_socle_lower_controls()
+    hook = [hook_deformation_fixture(r, s) for r, s in ((2, 2), (2, 3), (3, 3))]
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
         "schema_version": 1, "command": "python3 -B scripts/run_structural_complexity_checks.py",
@@ -1092,6 +1226,11 @@ def main():
             "scope": "A restricted mechanism with genuinely surviving z multiples; it cannot beat the existing unrestricted generic lower order. No novelty or unrestricted improvement is asserted.",
             "fixtures": relative_socle, "symbolic_lower_certificates": relative_lower,
         },
+        "hook_first_order_deformation_control": {
+            "uniform_conclusion": "Every flat first-order deformation of (y^r,y*z,z^s), r,s>=2, has O((r+s)^2) initial ideals as a length-2(r+s-1) algebra in three variables. Three connecting columns suffice after deleting a coloop and two blocks with O(r+s) internal comparison hyperplanes.",
+            "scope": "A proved obstruction for this sparse first-order family, not an unrestricted advance or established novelty claim.",
+            "fixtures": hook,
+        },
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
                     "independent_greedy_checks": sum(f["greedy_checks"] for f in fixtures),
@@ -1115,7 +1254,10 @@ def main():
                     "relative_socle_fixtures": len(relative_socle),
                     "relative_socle_row_and_greedy_checks": sum(f["row_and_greedy_checks"] for f in relative_socle),
                     "relative_socle_full_matrix_checks": sum(f["full_matrix_checks"] for f in relative_socle),
-                    "relative_socle_lower_certificates": sum(f["certificates_checked"] for f in relative_lower)},
+                    "relative_socle_lower_certificates": sum(f["certificates_checked"] for f in relative_lower),
+                    "hook_deformation_fixtures": len(hook),
+                    "hook_deformation_row_and_greedy_checks": sum(f["row_and_greedy_checks"] for f in hook),
+                    "hook_deformation_full_matrix_checks": sum(f["full_matrix_checks"] for f in hook)},
         "goal_qualifying_advance": False,
     }
     target = ROOT / "results/research/structural_complexity_checks.json"
