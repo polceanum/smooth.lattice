@@ -5440,3 +5440,191 @@ and the formula correctly accounts for this difference. The next
 symbolic target is the truncated version of these blocks, where
 boundary annihilation supplies additional relations. The larger
 theorem goal and its original acceptance criteria remain active.
+
+### Ninth feasibility pass: boundary amplification is real, but independent arms remain quadratic
+
+The preceding turn made progress in commit 6f44807: it proved the
+thick-hook thickness bound and solved the untruncated two-polynomial
+rank and basis-polytope problem. This pass supplies an exact boundary
+counterfamily and an infinite quadratic hook family. Both have complete
+count proofs. They isolate a real mechanism, but their growth does not
+improve the unrestricted generic lower order or complete the goal.
+
+#### A factorial Toeplitz determinant
+
+For L>=1 put
+
+    c_L=(L-1)!,
+    A_L(z)=c_L sum_{j=0}^{L-1} z^j/j! in Z[z].
+
+Work over characteristic zero, or a field of characteristic p>L-1.
+For a,b>=0 with a+b<=L, take the identity columns indexed by
+0,...,a-1 and the convolution columns A_L,z A_L,...,z^(b-1)A_L
+in K[z]/(z^L). Modulo the identity columns, restrict to rows
+a,...,a+b-1. Their determinant is
+
+    det [c_L/(a+i-j)!]_{0<=i,j<b}
+       = c_L^b product_{j=0}^{b-1}j! / product_{i=0}^{b-1}(a+i)!,       (FB1)
+
+with a negative-factorial entry interpreted as zero. To prove this,
+multiply row i by (a+i)!/c_L. Column j becomes the falling-factorial
+polynomial (a+i)_j, of degree j with leading coefficient one. Its
+determinant is the Vandermonde determinant at a,...,a+b-1, namely
+product_{j=0}^{b-1}j!. All factors in (FB1) are nonzero in the stated
+characteristics. This also proves independence of every such pair of
+prefixes, not just of the final full basis.
+
+The matrices are diagonal rescalings of the classical lower Pascal
+matrix. The determinant argument is included explicitly; neither a
+new total-positivity theorem nor a generic-minor assumption is claimed.
+
+#### An actual quotient with L+1 initial ideals
+
+Consider
+
+    I_L=(x^2,z^L-x A_L(z)) in K[x,z].                         (FB2)
+
+Its length is 2L over every field, including the smaller characteristics
+excluded from the count assertion. The reference monomial ideal
+(x^2,x z^L,z^(2L)) is contained in I_L. The monomials 1,z,...,z^(L-1)
+are independent fixed columns. The variable columns are
+
+    x z^j -> x z^j,
+    z^(L+j) -> x z^j A_L(z) mod x z^L,  0<=j<L.
+
+Their residue rank is L. The usual direct first-order basis argument,
+or the explicit commuting cyclic matrices in the checker, gives the
+claimed length and validates these normal forms.
+
+For positive weights, each column family is an arithmetic progression.
+The first L columns in their merged order consist of an identity
+prefix and a convolution prefix, hence are independent by (FB1).
+Thus every coherent basis is exactly such a prefix allocation. If b
+convolution columns are selected, the resulting standard staircase is
+
+    {1,z,...,z^(L+b-1)} union {x,xz,...,x z^(L-b-1)},
+
+and its initial ideal is
+
+    (x^2,x z^(L-b),z^(L+b)),  0<=b<=L.                      (FB3)
+
+The redundant generator at either endpoint can be omitted. Every
+allocation occurs: choose (w_x,w_z)=(4b+1,2). The last selected
+score is strictly below the first unselected score. There are no
+additional initial ideals on a comparison boundary, since its finite
+term comparisons can be perturbed to generic positive weights.
+Consequently, uniformly in L,
+
+    g(I_L)=L+1,  length(I_L)=2L.                              (FB4)
+
+The positive coherent state points are explicitly
+
+    (mu_x,mu_z)=(L-b,L(L-1)+b^2),  0<=b<=L.
+
+Their consecutive fan boundaries are w_x=(2b+1)w_z. Boundary
+reduction has created a lower convex lattice chain, rather than just
+another translate of the untruncated Newton polytope.
+
+Indeed, retain the same two tagged multiplier sets but do not reduce
+products modulo z^L. Their rank is 2L-1, and (UC1)--(UC4) give only
+two positively exposed bases, separated by w_x=w_z. For L>=3, weights
+(5,2) and (9,2) lie in the same open untruncated Newton cell, yet select
+different truncated bases. The number of boundary bases is unbounded
+while the tagged Newton polygon has at most three vertices. This
+disproves a fan-preserving extension of (UC3)--(UC4) to this quotient;
+it is not an asymptotic improvement for G_2 or G_3.
+
+#### Two independent boundary arms make the quadratic hook bound sharp
+
+For t>=2, define the three-variable ideal
+
+    H_t=(x^2,yz,
+         y^(t+1)-x y A_t(y),
+         z^(t+1)-x z A_t(z)).                               (FB5)
+
+It is a flat first-order deformation of the hook
+(y^(t+1),yz,z^(t+1)), with length 4t+2. Its variable residue
+configuration splits into a coloop x and two disjoint t-dimensional
+arm spaces. Each arm is the one-variable convolution problem above,
+with a common monomial shift. Any unassigned reference column is zero.
+
+The y arm can choose b convolution columns, 0<=b<=t, and the z arm
+can independently choose c, 0<=c<=t. All choices are simultaneously
+realized by positive integer weights
+
+    w_x=(4b+1)(4c+1),
+    w_y=2(4c+1),  w_z=2(4b+1).
+
+The two ratios are exactly those in the one-arm proof. Conversely,
+independence of the residue spaces means global greedy selection is
+the union of the two local selections and the fixed coloop. Therefore
+
+    g(H_t)=(t+1)^2=Theta(length(H_t)^2),                     (FB6)
+
+over characteristic zero or p>t-1. Its coherent moment grid is
+
+    (2t+1-b-c, t(t+1)+b^2, t(t+1)+c^2).
+
+This proves sharpness of the earlier O(n^2) hook bound along lengths
+4t+2. The interface dimension is zero after removing fixed summands
+and loops. Thus boundary growth and a quadratic count can already
+occur without the genuine interaction required for a stronger lower
+construction. This family remains below n^2(log n)^2.
+
+#### Exact checks and characteristic scope
+
+The checker covers L=1,...,6 for (FB2), and t=2,3,4,5 for (FB5).
+It embeds (FB2) in three variables by adding y to the ideal, preserving
+the initial-ideal count.
+It verifies every determinant (FB1) with a+b<=L, constructs actual
+commuting cyclic quotient matrices, compares relation rows with
+Gaussian residue selection, and checks the full quotient once per
+realized state. The one-arm internal comparison intervals are exactly
+the 2L positive intervals cut by w_x=k w_z, 1<=k<2L. For two arms,
+the product of the corresponding 2t intervals covers the whole
+positive fan because their residue spaces are independent. Cross-arm
+comparisons do not affect the basis. This is an exhaustive fan
+verification for these fixtures, not a numerical sample extrapolation.
+
+The exact counts over Q,F_2,F_3,F_29 respectively are:
+
+| L | one-arm counts |
+| --- | --- |
+| 1 | 2, 2, 2, 2 |
+| 2 | 3, 3, 3, 3 |
+| 3 | 4, 2, 4, 4 |
+| 4 | 5, 3, 2, 5 |
+| 5 | 6, 2, 3, 6 |
+| 6 | 7, 3, 4, 7 |
+
+The two-arm counts are the squares of the separately computed one-arm
+counts at L=t, including the smaller characteristics. The uniform
+formulas (FB4) and (FB6) are only asserted under their stated field
+hypotheses. The integral defining ideals retain their claimed lengths
+in all characteristics; smaller-prime fan changes are saved rather
+than hidden. The checker also saves the same-Newton-cell witnesses,
+integer coefficients, prefix determinants and exact basis witnesses.
+
+#### Existing module theory and the next mathematical gate
+
+[Naldi--Neiger, 2020](https://arxiv.org/abs/2002.06404) already studies
+syzygies in finite-dimensional polynomial quotients, including the
+Hermite--Pade form of this boundary problem. The inspection covered
+the setup, Schreyer orders, Theorem 4.3 and its proof, Lemma 5.2 and
+its proof, and Algorithm 4 with the Proposition 5.5 complexity argument.
+It computes a basis for a prescribed order; that operation count does
+not count all orders. No new Pade engine or algorithm claim is made.
+
+Independent one-variable boundary arms are now understood sharply
+enough to stop enlarging their search. A next lower construction must
+have genuinely coupled two-variable boundary relations, growing
+thickness as required by (TH4), and more growth than the quadratic
+surface above. Its geometric-prefix ranks need a symbolic proof;
+arbitrary support matching and one-order algorithm timings do not
+supply one. The unrestricted upper route remains an alternative.
+
+The working unrestricted upper bound is still the primary-proof-checked
+Babson--Onn--Thomas exponent. Its status as the strongest current bound
+has not been certified. The remaining literature-priority audit, a
+qualifying unrestricted asymptotic advance and the target manuscript
+remain unfinished. Keep the original goal active.

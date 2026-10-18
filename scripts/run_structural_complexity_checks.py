@@ -1610,6 +1610,177 @@ def untruncated_convolution_controls():
             "priority": "An elementary consequence of the classical two-generator syzygy and Newton-product identity; novelty is not established."}
 
 
+def factorial_boundary_fixture(length):
+    """An exact finite-algebra family with an unbounded boundary fan effect."""
+    constant = factorial(length - 1)
+    coefficients = [constant // factorial(j) for j in range(length)]
+    fixed = {(0, 0, j) for j in range(length)}
+    basis = sorted(fixed | {(1, 0, j) for j in range(length)})
+    indices = {p: i for i, p in enumerate(basis)}
+    domain = {(0, 0, j) for j in range(2 * length)} | {(1, 0, j) for j in range(length)}
+    support = sorted(domain - fixed)
+
+    def residue(p):
+        x, y, z = p
+        vector = [0] * (2 * length)
+        if not y and x < 2 and z < length:
+            vector[indices[p]] = 1
+        elif not x and not y and length <= z < 2 * length:
+            for j in range(2 * length - z):
+                vector[indices[(1, 0, j + z - length)]] = coefficients[j]
+        return tuple(vector)
+
+    matrices = [tuple(residue(tuple(x + (i == j) for j, x in enumerate(p))) for p in basis) for i in range(3)]
+    for i, j in combinations(range(3), 2):
+        for h in range(2 * length):
+            require(matvec(matrices[i], matrices[j][h]) == matvec(matrices[j], matrices[i][h]),
+                    "factorial boundary multiplication matrices commute")
+    border = {tuple(x + (i == j) for j, x in enumerate(p)) for p in domain for i in range(3)} - domain
+    columns = {}
+    for p in sorted(domain | border):
+        value = residue((0, 0, 0))
+        for matrix, exponent in zip(matrices, p):
+            for _ in range(exponent):
+                value = matvec(matrix, value)
+        require(value == residue(p), "factorial boundary cyclicity including border")
+        columns[p] = value
+    variable = {p: tuple(columns[p][indices[(1, 0, j)]] for j in range(length)) for p in support}
+    rows = []
+    for j in range(length):
+        row = [0] * (2 * length)
+        row[support.index((0, 0, length + j))] = 1
+        for h in range(length - j):
+            row[support.index((1, 0, h + j))] -= coefficients[h]
+        rows.append(row)
+    untruncated = {}
+    for p in support:
+        if p[0]:
+            untruncated[p] = tuple(int(i == p[2]) for i in range(2 * length - 1))
+        else:
+            shift = p[2] - length
+            untruncated[p] = tuple(coefficients[i - shift] if 0 <= i - shift < length else 0
+                                   for i in range(2 * length - 1))
+    minors = []
+    for a in range(length + 1):
+        for b in range(length - a + 1):
+            matrix = [[Fraction(constant, factorial(a + i - j)) if a + i >= j else 0
+                       for j in range(b)] for i in range(b)]
+            formula = Fraction(constant ** b)
+            for j in range(b):
+                formula *= Fraction(factorial(j), factorial(a + j))
+            require(determinant(matrix) == formula > 0, "factorial Toeplitz prefix determinant")
+            minors.append({"identity_prefix": a, "convolution_prefix": b, "determinant": str(formula)})
+    fields, full_checks = [], 0
+    for characteristic in (0, 2, 3, 29):
+        states, untruncated_states = {}, set()
+        uniform = characteristic == 0 or characteristic > length - 1
+        for k in range(2 * length):
+            weight = (2 * k + 1, 1, 2)
+            selected = greedy(set(support), variable, weight, characteristic)
+            require(selected == set(support) - leading_row_pivots(rows, support, weight, characteristic),
+                    "factorial boundary rows agree with residue selection")
+            states.setdefault(tuple(sorted(selected)), weight)
+            if uniform:
+                b = (2 * k + 3) // 4
+                expected = {(1, 0, j) for j in range(length - b)} | {(0, 0, length + j) for j in range(b)}
+                require(selected == expected, "proved factorial boundary allocation")
+                moment = [sum(p[i] for p in fixed | selected) for i in range(3)]
+                require(moment == [length - b, 0, length * (length - 1) + b * b],
+                        "factorial boundary quadratic state-moment chain")
+            old = greedy(set(support), untruncated, weight, characteristic)
+            require(len(old) == 2 * length - 1, "untruncated two-copy rank")
+            untruncated_states.add(tuple(sorted(old)))
+        require(len(untruncated_states) == 2, "untruncated positive Newton fan has two bases")
+        if uniform:
+            require(len(states) == length + 1, "factorial boundary exact positive fan count")
+        for selected, weight in states.items():
+            actual = greedy(domain | border, columns, weight, characteristic)
+            require(actual == fixed | set(selected), "factorial full algebra agrees with the variable block")
+            require(all(tuple(x - (i == j) for j, x in enumerate(p)) in actual
+                        for p in actual for i in range(3) if p[i]), "factorial selected set is a staircase")
+            full_checks += 1
+        fields.append({"characteristic": characteristic, "exact_initial_ideal_count": len(states),
+                       "uniform_characteristic_hypothesis": uniform, "untruncated_positive_basis_count": 2,
+                       "witnesses": [{"weights": w, "selected_column_indices": [support.index(p) for p in selected]}
+                                     for selected, w in sorted(states.items())]})
+    same_cell = None
+    if length >= 3:
+        weights = [(5, 1, 2), (9, 1, 2)]
+        old = [greedy(set(support), untruncated, w, 0) for w in weights]
+        new = [greedy(set(support), variable, w, 0) for w in weights]
+        require(old[0] == old[1] and new[0] != new[1],
+                "one untruncated Newton cell contains two different boundary bases")
+        same_cell = {"weights": weights, "untruncated_selected_column_indices": [support.index(p) for p in sorted(old[0])],
+                     "boundary_selected_column_indices": [[support.index(p) for p in sorted(v)] for v in new]}
+    return {"L": length, "quotient_length": 2 * length, "integer_exponential_coefficients": coefficients,
+            "ideal": "(y,x^2,z^L-x*A_L(z)), A_L=(L-1)!*sum_{j=0}^{L-1}z^j/j!",
+            "reference_domain": sorted(domain), "relation_support": support, "relation_matrix": rows,
+            "prefix_minors": minors, "exact_internal_order_intervals": 2 * length,
+            "row_and_greedy_checks": 8 * length, "full_matrix_checks": full_checks,
+            "multiplication_matrices_commute": True, "cyclicity_checked": True,
+            "exhaustive_positive_fan_covered": True, "same_newton_cell_countercontrol": same_cell, "fields": fields}
+
+
+def independent_boundary_arms_fixture(t, one_arm_counts):
+    constant = factorial(t - 1)
+    coefficients = [constant // factorial(j) for j in range(t)]
+    model = thick_hook_model(1, 1, t + 1, t + 1,
+                             [{(j + 1, 0): c for j, c in enumerate(coefficients)}, {},
+                              {(0, j + 1): c for j, c in enumerate(coefficients)}])
+    support, variable = model["support"], model["variable"]
+    left = {(1, j, 0) for j in range(1, t + 1)} | {(0, t + 1 + j, 0) for j in range(t)}
+    right = {(1, 0, j) for j in range(1, t + 1)} | {(0, 0, t + 1 + j) for j in range(t)}
+    coloop = (1, 0, 0)
+    loops = set(support) - left - right - {coloop}
+    require(all(not any(variable[p]) for p in loops), "independent arm leftover columns are loops")
+    for block, allowed in ((left, {(j, 0) for j in range(1, t + 1)}),
+                            (right, {(0, j) for j in range(1, t + 1)})):
+        require(all(not c or q in allowed for p in block for q, c in zip(model["base_order"], variable[p])),
+                "independent arm residue spaces are disjoint")
+    fields, full_checks = [], 0
+    for characteristic in (0, 2, 3, 29):
+        states, left_states, right_states = {}, set(), set()
+        uniform = characteristic == 0 or characteristic > t - 1
+        for i, j in product(range(2 * t), repeat=2):
+            weight = ((2 * i + 1) * (2 * j + 1), 2 * (2 * j + 1), 2 * (2 * i + 1))
+            selected = greedy(set(support), variable, weight, characteristic)
+            require(selected == set(support) - leading_row_pivots(model["rows"], support, weight, characteristic),
+                    "independent boundary arm rows agree with residue selection")
+            require(coloop in selected, "the constant x column remains a coloop")
+            states.setdefault(tuple(sorted(selected)), weight)
+            left_states.add(tuple(sorted(selected & left)))
+            right_states.add(tuple(sorted(selected & right)))
+            if uniform:
+                b, c = (2 * i + 3) // 4, (2 * j + 3) // 4
+                expected = ({coloop} | {(1, h, 0) for h in range(1, t - b + 1)} |
+                            {(0, t + 1 + h, 0) for h in range(b)} |
+                            {(1, 0, h) for h in range(1, t - c + 1)} |
+                            {(0, 0, t + 1 + h) for h in range(c)})
+                require(selected == expected, "independent factorial arm allocation")
+                moment = [sum(p[h] for p in model["fixed"] | selected) for h in range(3)]
+                require(moment == [2 * t + 1 - b - c, t * (t + 1) + b * b, t * (t + 1) + c * c],
+                        "independent arm quadratic moment surface")
+        require(len(left_states) == len(right_states) == one_arm_counts[characteristic] and
+                len(states) == one_arm_counts[characteristic] ** 2,
+                "independent arm counts equal the product of the separately computed one-arm counts")
+        if uniform:
+            require(len(states) == (t + 1) ** 2, "sharp quadratic hook-family count")
+        for selected, weight in states.items():
+            require(greedy(model["domain"] | model["border"], model["columns"], weight, characteristic) ==
+                    model["fixed"] | set(selected), "independent arm full quotient agrees with module")
+            full_checks += 1
+        fields.append({"characteristic": characteristic, "exact_initial_ideal_count": len(states),
+                       "one_arm_count": one_arm_counts[characteristic], "uniform_characteristic_hypothesis": uniform,
+                       "witnesses": [{"weights": w, "selected_column_indices": [support.index(p) for p in selected]}
+                                     for selected, w in sorted(states.items())]})
+    return {"t": t, "quotient_length": 4 * t + 2, "integer_exponential_coefficients": coefficients,
+            "ideal": "(x^2,y*z,y^(t+1)-x*y*A_t(y),z^(t+1)-x*z*A_t(z))",
+            "reference_domain": sorted(model["domain"]), "relation_support": support,
+            "relation_matrix": model["rows"], "arm_blocks": [sorted(left), sorted(right)],
+            "exact_internal_order_cells": 4 * t * t, "row_and_greedy_checks": 16 * t * t,
+            "full_matrix_checks": full_checks, "exhaustive_positive_fan_covered": True, "fields": fields}
+
+
 def main():
     fixtures = []
     for weights, cutoff in [((1, 1, 1), 2), ((1, 1, 1), 3),
@@ -1644,6 +1815,10 @@ def main():
              for a, b, r, s in ((1, 2, 3, 5), (2, 2, 5, 5), (2, 3, 5, 7), (2, 2, 9, 11))]
     power_control = thick_power_substitution_control()
     untruncated = untruncated_convolution_controls()
+    factorial_boundary = [factorial_boundary_fixture(length) for length in range(1, 7)]
+    arm_counts = {f["L"]: {v["characteristic"]: v["exact_initial_ideal_count"] for v in f["fields"]}
+                  for f in factorial_boundary}
+    independent_arms = [independent_boundary_arms_fixture(t, arm_counts[t]) for t in (2, 3, 4, 5)]
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
         "schema_version": 1, "command": "python3 -B scripts/run_structural_complexity_checks.py",
@@ -1712,6 +1887,11 @@ def main():
             "koszul_support_matching_negative_control": thick_koszul_countercontrol(),
             "untruncated_convolution_rank_and_basis_control": untruncated,
         },
+        "factorial_boundary_control": {
+            "uniform_conclusion": "For I_L=(x^2,z^L-x*A_L(z)) over characteristic zero or p>L-1, length is 2L and there are exactly L+1 global initial ideals, versus two positive coherent bases in the corresponding untruncated convolution. Two disjoint arms give length 4t+2 and exactly (t+1)^2 initial ideals; their interaction dimension is zero.",
+            "scope": "A proved boundary mechanism and sharp restricted quadratic control below the existing generic lower order. Classical Toeplitz/Padé ingredients; novelty and an unrestricted advance are not established.",
+            "one_arm_fixtures": factorial_boundary, "independent_arm_fixtures": independent_arms,
+        },
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
                     "independent_greedy_checks": sum(f["greedy_checks"] for f in fixtures),
@@ -1748,7 +1928,14 @@ def main():
                     "thick_hook_row_and_greedy_checks": sum(f["row_and_greedy_checks"] for f in thick),
                     "thick_hook_full_matrix_checks": sum(f["full_matrix_checks"] for f in thick),
                     "power_substitution_basis_checks": power_control["basis_lifting_checks"],
-                    "untruncated_convolution_basis_checks": untruncated["exact_basis_checks"]},
+                    "untruncated_convolution_basis_checks": untruncated["exact_basis_checks"],
+                    "factorial_boundary_fixtures": len(factorial_boundary),
+                    "factorial_boundary_prefix_minors": sum(len(f["prefix_minors"]) for f in factorial_boundary),
+                    "factorial_boundary_row_and_greedy_checks": sum(f["row_and_greedy_checks"] for f in factorial_boundary),
+                    "factorial_boundary_full_matrix_checks": sum(f["full_matrix_checks"] for f in factorial_boundary),
+                    "independent_boundary_arm_fixtures": len(independent_arms),
+                    "independent_boundary_arm_row_and_greedy_checks": sum(f["row_and_greedy_checks"] for f in independent_arms),
+                    "independent_boundary_arm_full_matrix_checks": sum(f["full_matrix_checks"] for f in independent_arms)},
         "goal_qualifying_advance": False,
     }
     target = ROOT / "results/research/structural_complexity_checks.json"

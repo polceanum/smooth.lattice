@@ -2,7 +2,7 @@
   "schema_version": 1,
   "recorded_on": "2026-10-18",
   "title": "Universal algebraic complexity beyond generic corner cuts",
-  "status": "active_untruncated_rank_polytope_formula_proved_boundary_complexity_pending",
+  "status": "active_boundary_amplification_and_quadratic_sharpness_proved_coupled_case_pending",
   "objective": "Prove a new structural theorem determining or substantially narrowing the worst-case asymptotic number of monomial initial ideals of finite polynomial algebras, starting with three variables and seeking a mechanism valid in every fixed dimension. Establish the strongest relevant primary baseline first. Success requires a complete uniform proof of sharp growth or a substantial asymptotic advance over that baseline for all colength-n ideals or all n-point configurations, a rigorous further algebraic, geometric or enumeration consequence, reproducible exact certificates and an honestly scoped manuscript. Examples, reformulations, already known corollaries and a plan alone do not complete this goal.",
   "plan": "docs/interleaving_research.md#higher-impact-research-plan-universal-algebraic-complexity",
   "relationship_to_previous_goal": "A new research objective. The completed corner-cut counting manuscript and its acceptance records remain separate and unchanged in mathematical content.",
@@ -29,17 +29,17 @@
   "milestones": [
     {
       "id": "primary_baseline",
-      "status": "general_bound_proof_and_GIT_comparison_checked_remaining_access_and_priority_audit_incomplete",
+      "status": "working_unrestricted_bound_proof_verified_current_priority_audit_pending",
       "deliverable": "A theorem-level primary-source comparison identifying the best relevant unrestricted and restricted bounds, exact hypotheses, input models and still viable targets."
     },
     {
       "id": "dependency_mechanism",
-      "status": "interface_and_thickness_bounds_plus_untruncated_newton_formula_proved_boundary_pending",
+      "status": "one_variable_boundary_amplification_proved_coupled_bivariate_case_pending",
       "deliverable": "A precise lemma about multiplication-compatible residue dependencies or state-polyhedron geometry, with its proof attempt and adversarial controls."
     },
     {
       "id": "infinite_lower_family",
-      "status": "mixed_thick_hooks_require_growing_thickness_symbolic_rank_count_pending",
+      "status": "sharp_quadratic_independent_boundary_family_below_generic_coupled_family_pending",
       "deliverable": "A symbolic realizable family and count proof, or a documented obstruction to the tested construction; finite examples alone are insufficient."
     },
     {
@@ -123,7 +123,7 @@
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Commit 2f92871 proved the interface-rank lemma, its constructive order-list consequence, and the sparse unbounded-corner obstruction. It classified the thick-hook candidate and proved power-substitution invariance. The unrestricted goal remained open."
+    "reason": "Commit 6f44807 proved the thick-hook thickness threshold, a Koszul support-matching counterexample, and an exact untruncated rank/basis-polytope formula. It isolated quotient boundary reduction as the next proof target; the unrestricted goal remained open."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -246,6 +246,13 @@
       "version": "2006 preprint",
       "inspected": "Definition 2.8 and statements of Theorems 3.2--3.3; external proof dependencies and the full paper were not audited.",
       "finding": "The established superregular lower triangular Toeplitz and specified block construction hypotheses do not justify replacing a bivariate two-polynomial convolution by independent nonzero entries. No theorem from this paper is used in the new bounds or countercontrol."
+    },
+    {
+      "source": "https://arxiv.org/abs/2002.06404",
+      "authors": "Naldi and Neiger",
+      "version": "2020 v2",
+      "inspected": "Setup and Schreyer orders; Theorem 4.3, Lemma 5.2 and proofs; Algorithm 4 correctness and Proposition 5.5 complexity argument.",
+      "finding": "Finite-quotient syzygies and the Hermite-Pade boundary formulation are established. Computing a basis for a prescribed order does not count all orders; no new Pade algorithm is claimed."
     }
   ],
   "next_actions": [
@@ -370,11 +377,18 @@
           "thick_hook_row_and_greedy_checks": 96,
           "thick_hook_full_matrix_checks": 96,
           "power_substitution_basis_checks": 20,
-          "untruncated_convolution_basis_checks": 120
+          "untruncated_convolution_basis_checks": 120,
+          "factorial_boundary_fixtures": 6,
+          "factorial_boundary_prefix_minors": 83,
+          "factorial_boundary_row_and_greedy_checks": 168,
+          "factorial_boundary_full_matrix_checks": 87,
+          "independent_boundary_arm_fixtures": 4,
+          "independent_boundary_arm_row_and_greedy_checks": 864,
+          "independent_boundary_arm_full_matrix_checks": 236
         }
       }
     ],
-    "scope": "Build, smoke tests and the full exact research checker passed. This pass adds four mixed thick-hook models with 96 row/greedy and 96 full-matrix checks, 20 free-extension basis checks, an exact Koszul rank/matching certificate, and 120 untruncated rank/basis/polytope checks across four characteristics. Positive and negative costs in the untruncated controls are finite vector-configuration tests, not claims about negative-weight global monomial orders. The unrestricted theorem, strongest-current-priority assessment and target manuscript remain incomplete."
+    "scope": "Build, smoke tests and the full research checker passed. This pass adds 83 factorial prefix determinant certificates, 1,032 relation-row/greedy comparisons and 323 full quotient-matrix state checks over four characteristics. Exhaustive internal comparison intervals and direct-sum product cells cover the positive fans of these fixtures. Uniform formulas retain their characteristic hypotheses. The unrestricted asymptotic theorem, strongest-current-priority audit and target manuscript remain incomplete."
   },
   "second_feasibility_results": {
     "record": "docs/interleaving_research.md, Second feasibility pass: interacting relations and a conditional count",
@@ -992,5 +1006,132 @@
       "limits": "Convex lattice-complete multiplier domains and untruncated products are required. Common-factor multiplication can cease to be injective and Newton products can change after quotient reduction.",
       "priority": "Derived from the classical principal two-generator syzygy, Newton-product identity and complementary greedy criterion. Novelty has not been established; this is not an unrestricted advance."
     }
+  },
+  "ninth_feasibility_results": {
+    "record": "docs/interleaving_research.md, Ninth feasibility pass: boundary amplification is real, but independent arms remain quadratic",
+    "factorial_prefix_minor": {
+      "polynomial": "A_L(z)=(L-1)!*sum_{j=0}^{L-1}z^j/j!, with integer coefficients.",
+      "formula": "For a,b>=0,a+b<=L, det[(L-1)!/(a+i-j)!]_{0<=i,j<b}=((L-1)!)^b*product_{j=0}^{b-1}j!/product_{i=0}^{b-1}(a+i)!, with negative-factorial entries zero.",
+      "proof": "Row scaling gives monic falling-factorial polynomials at a,...,a+b-1; their determinant is Vandermonde.",
+      "field_scope": "Nonzero over characteristic zero or characteristic p>L-1. Smaller-characteristic ranks are checked separately.",
+      "priority": "A classical Pascal/Toeplitz determinant argument; no new total-positivity theorem is claimed."
+    },
+    "one_variable_boundary_amplification": {
+      "ideal": "I_L=(x^2,z^L-x*A_L(z)) in K[x,z]. The checker adds y to embed it in three variables.",
+      "length": "Exactly 2L over every field.",
+      "count": "Exactly L+1 global initial ideals over characteristic zero or p>L-1.",
+      "initial_ideals": "(x^2,x*z^(L-b),z^(L+b)), 0<=b<=L, with redundant endpoint generators omitted.",
+      "witnesses": "Positive weights (w_x,w_z)=(4b+1,2).",
+      "positive_state_points": "(L-b,L*(L-1)+b^2), with fan boundaries w_x=(2b+1)*w_z.",
+      "proof": "Every merged initial prefix of the identity and convolution progressions with at most L columns is independent by the prefix determinant, so the first L columns form the greedy basis. All allocations are realized.",
+      "untruncated_comparison": "The corresponding untruncated column configuration has rank 2L-1 and exactly two positive coherent bases. For L>=3, weights (5,2),(9,2) give the same untruncated basis and different boundary bases.",
+      "scope": "An unbounded boundary amplification, not an improvement of the unrestricted asymptotic lower bound or a novelty claim."
+    },
+    "sharp_independent_arm_family": {
+      "ideal": "H_t=(x^2,y*z,y^(t+1)-x*y*A_t(y),z^(t+1)-x*z*A_t(z)), t>=2.",
+      "length": "4t+2 over every field.",
+      "count": "Exactly (t+1)^2 over characteristic zero or p>t-1.",
+      "state_points": "(2t+1-b-c,t*(t+1)+b^2,t*(t+1)+c^2), 0<=b,c<=t.",
+      "weights": "((4b+1)*(4c+1),2*(4c+1),2*(4b+1)).",
+      "mechanism": "After removing fixed summands, a coloop and loops, the residue matroid is the direct sum of the two one-variable arm configurations. Its interaction dimension is zero.",
+      "consequence": "The earlier O(n^2) hook bound is sharp along lengths 4t+2, but this remains below the existing generic n^2*(log n)^2 order. Further enlargement of independent arms cannot meet the goal."
+    },
+    "finite_controls": {
+      "one_arm_parameters": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "two_arm_parameters": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "fields": [
+        "Q",
+        "F_2",
+        "F_3",
+        "F_29"
+      ],
+      "scope": "Every one-arm internal comparison interval and every product internal cell for two independent arms is checked; this covers their full positive fans in each tested field. Relation rows and Gaussian residue selection are compared, and full commuting cyclic algebra matrices check every realized state. All prefix minors and same-Newton-cell witnesses are saved.",
+      "characteristic_policy": "The uniform count is asserted only under the stated characteristic hypothesis. Smaller-prime counts are reported exactly without promoting them to the same formula.",
+      "factorial_boundary_fixtures": 6,
+      "factorial_boundary_prefix_minors": 83,
+      "factorial_boundary_row_and_greedy_checks": 168,
+      "factorial_boundary_full_matrix_checks": 87,
+      "independent_boundary_arm_fixtures": 4,
+      "independent_boundary_arm_row_and_greedy_checks": 864,
+      "independent_boundary_arm_full_matrix_checks": 236,
+      "one_arm_counts_by_L": {
+        "1": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "2": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "3": [
+          4,
+          2,
+          4,
+          4
+        ],
+        "4": [
+          5,
+          3,
+          2,
+          5
+        ],
+        "5": [
+          6,
+          2,
+          3,
+          6
+        ],
+        "6": [
+          7,
+          3,
+          4,
+          7
+        ]
+      },
+      "two_arm_counts_by_t": {
+        "2": [
+          9,
+          9,
+          9,
+          9
+        ],
+        "3": [
+          16,
+          4,
+          16,
+          16
+        ],
+        "4": [
+          25,
+          9,
+          4,
+          25
+        ],
+        "5": [
+          36,
+          4,
+          9,
+          36
+        ]
+      }
+    },
+    "goal_qualifying_unrestricted_advance": false,
+    "decision": "Stop expanding independent one-variable boundary examples. The concrete lower gate is a symbolic geometric-prefix rank/count mechanism for genuinely coupled bivariate boundary relations with growing thickness. Existing one-order Pade algorithms supply no all-order count. Continue the unrestricted upper route and primary-priority audit; the original objective and acceptance criteria stay active."
   }
 }
