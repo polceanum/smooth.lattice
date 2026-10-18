@@ -20,6 +20,9 @@ import shlex
 import sys
 
 from run_pyramidal_poset_checks import strict_cone_witness
+from run_interleaving_research import (
+    integer_score_prefix, minimal_excluded_border, ordered_prefix_integer_weights,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -812,6 +815,83 @@ def planar_ordered_prefix_checks():
             'scope': 'Known planar object and exact finite checks; no planar novelty claim or proof of the all-dimensional theorem.'}
 
 
+def vasiliev_pavlov_table_checks():
+    """Compare the actual prefix class with Tables 7--8 of the 2009 paper.
+
+    The small three-dimensional tree is exhaustive: every next point lies
+    in the minimal excluded border, and the exact unit-margin LP accepts
+    precisely strict positive-weight prefixes. A heap independently checks
+    every accepted certificate. This is a bounded source comparison, not a
+    new enumeration algorithm or evidence for the asymptotic theorem.
+    """
+    planar = {5: 8, 6: 12, 7: 14, 8: 16, 9: 20, 10: 24, 11: 26, 12: 32,
+              13: 34, 14: 36, 15: 42, 16: 46, 17: 48, 18: 54, 19: 56,
+              20: 60, 50: 204, 100: 492, 200: 1144, 300: 1874, 400: 2628,
+              500: 3414, 600: 4240, 700: 5070}
+    planar_records = []
+    for n, published in planar.items():
+        actual = 1 + sum(gcd(a, b) == 1
+                         for a in range(1, 2 * n)
+                         for b in range(1, 2 * n // (a + 1))
+                         if (a + 1) * (b + 1) <= 2 * n)
+        require(actual == published, ('Vasiliev--Pavlov Table 7', n, actual, published))
+        planar_records.append({'length': n, 'published': published, 'exact': actual})
+
+    spatial = {3: 9, 4: 21, 5: 39, 6: 69, 7: 123, 8: 177, 9: 243, 10: 339}
+    level = [((0, 0, 0),)]
+    spatial_records, accepted, rejected = [], 0, 0
+    for n in range(2, 11):
+        next_level, example = [], None
+        for word in level:
+            for point in minimal_excluded_border(word):
+                candidate = word + (point,)
+                try:
+                    certificate = ordered_prefix_integer_weights(candidate)
+                except ValueError:
+                    rejected += 1
+                    continue
+                values, next_score = integer_score_prefix(certificate['weights'], n)
+                require(tuple(p for _, p in values) == candidate,
+                        ('published-class certificate order', n, candidate))
+                require(len({score for score, _ in values}) == n
+                        and next_score > certificate['cutoff_score'],
+                        ('published-class strict order and infinite cutoff', n, candidate))
+                next_level.append(candidate)
+                accepted += 1
+                if example is None:
+                    example = {'word': candidate, 'weights': certificate['weights'],
+                               'cutoff_score': certificate['cutoff_score'],
+                               'next_score': next_score}
+        require(len(set(next_level)) == len(next_level), 'each prefix occurs once')
+        level = next_level
+        if n in spatial:
+            require(len(level) == spatial[n],
+                    ('Vasiliev--Pavlov Table 8', n, len(level), spatial[n]))
+            payload = json.dumps(sorted(level), separators=(',', ':')).encode()
+            spatial_records.append({'length': n, 'published': spatial[n], 'exact': len(level),
+                                    'words_sha256': hashlib.sha256(payload).hexdigest(),
+                                    'representative': example})
+
+    # Remark 1, p. 80: finite local admissibility need not give an initial interval.
+    not_strict = [(0, 0), (1, 0), (2, 0), (0, 1), (0, 2)]
+    try:
+        ordered_prefix_integer_weights(not_strict)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError('paper Remark 1 incorrectly accepted as a strict prefix')
+    return {'source': 'https://doi.org/10.1134/S0361768809020030',
+            'location': 'Definition 5, p. 80; Section 6; Tables 7--8, p. 88',
+            'class': 'strictly admissible initial intervals with labeled variables',
+            'planar_table_7': planar_records, 'spatial_table_8': spatial_records,
+            'accepted_certificates_heap_checked': accepted, 'infeasible_extensions': rejected,
+            'class_distinction_control': {'word': not_strict,
+                                         'strict_prefix_lp': 'infeasible',
+                                         'source': 'Remark 1, p. 80'},
+            'all_compared_values_agree': True,
+            'scope': 'All 24 planar table entries and eight spatial entries; no claim to reproduce the remaining spatial table or validate every published algorithm.'}
+
+
 
 def main():
     fixtures = [primitive_fixture(sides) for sides in
@@ -836,8 +916,10 @@ def main():
         "nongeneric_point_ideal_control": nongeneric_point_ideal_control(),
         "ordered_prefix_chart_checks": ordered_prefix_chart_checks(),
         "planar_ordered_prefix_checks": planar_ordered_prefix_checks(),
+        "vasiliev_pavlov_table_checks": vasiliev_pavlov_table_checks(),
         "source_sha256": {str(path): hashlib.sha256((ROOT / path).read_bytes()).hexdigest()
                           for path in (Path("scripts/run_corner_cut_growth_checks.py"),
+                                       Path("scripts/run_interleaving_research.py"),
                                        Path("scripts/run_pyramidal_poset_checks.py"),
                                        Path("docs/interleaving_research.md"),
                                        Path("paper/corner_cut_growth/main.tex"))},

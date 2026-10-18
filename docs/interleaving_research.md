@@ -59,6 +59,15 @@ supports proceeding to mathematical review. Overall priority remains
 unverified; no referee assessment or journal acceptance is claimed. The
 structural note and its elementary consequences do not satisfy this goal.
 
+**2026-10-18 source update:** the user supplied the full Vasiliev--Pavlov
+(2009) paper. All eleven pages have now been read and visually checked.
+Its strictly admissible finite orderings are exactly the ordered-prefix
+class in Candidate 24. Its algorithms and tables are prior art; it states
+neither our proposed asymptotic counting orders nor a prime-height bound.
+The detailed comparison and exact table checks are recorded at the end of
+this note. The specific source-access blocker is resolved. Overall
+originality and final submission assessment remain open.
+
 The first bounded study is complete: for the reconstructed rounded-occurrence
 rule, Propositions 10--13 below give a partition reduction, a prefix-period
 lifting lemma, a complete classification of periodic frequency partitions for
@@ -3184,3 +3193,120 @@ prime-height proof are preserved. The new candidates are not being added
 to the manuscript while this concrete source comparison remains open.
 Source access failure is not evidence of novelty, and further isolated
 examples would not answer the missing comparison.
+
+### Full Vasiliev--Pavlov comparison: source gate resolved, 2026-10-18
+
+The user supplied a readable copy of the published eleven-page paper,
+*Enumeration of finite monomial orderings and combinatorics of universal
+Groebner bases*, Programming and Computer Software 35 (2009), 79--89,
+[doi:10.1134/S0361768809020030](https://doi.org/10.1134/S0361768809020030).
+Every page, all nine propositions, eight tables, algorithm figures,
+implementation comments and references have been read; the page renders
+were also inspected. The supplied PDF has SHA-256
+`9b7379754cca81198d84ce21ced054de59fdce485070e0cf786f25a77873da20`.
+The source PDF and extracted text are local reading materials and are not
+being added to the public repository.
+
+#### Definitions and the exact common class
+
+The paper uses *degree n* for the number of monomials in a finite chain,
+not for their total polynomial degree. Definition 4, p. 80, imposes
+divisor closure together with the relevant finite ordering axiom.
+Definition 5, on the same page, calls a finite ordering *strictly
+admissible* when it is the beginning of a total admissible monomial
+ordering. This is exactly Candidate 24's family, with coordinates labeled.
+The finite-weight consequence of Robbiano already recorded above proves
+the equivalence with strict positive-weight prefixes. This equivalence
+and the existence of enumeration algorithms are established background.
+
+The distinction from the paper's wider finite *admissible* class matters.
+Remark 1 gives the chain
+
+    1 < x < x^2 < y < y^2.
+
+It satisfies the finite local condition but cannot be an initial interval:
+x<y forces xy<y^2, yet xy is missing. Thus Tables 5--6 must not be used
+as counts of our ordered prefixes. The relevant counts are Tables 7--8
+on p. 88. Forgetting the order in a strictly admissible prefix gives a
+corner cut; every corner cut has at least one such strict internal order.
+The set count C_d(n) and the word count O_d(n) remain different parameters.
+
+| Paper location | Actual result or computation | Boundary for this project |
+| --- | --- | --- |
+| Definitions 1--5 and Proposition 1, p. 80 | Four ordering classes, their inclusions and the distinction between local finite admissibility and a global initial interval | Credit the object and terminology; do not claim to introduce the ordered-prefix family. |
+| Sections 3--4, Propositions 2--3, pp. 80--82 | Recursive divisor-border enumeration and convex-hull tests for larger classes | These classes include many words outside the strict prefix class. Their table sizes do not give its asymptotic count. |
+| Section 5, Propositions 4--5 and Figure 7, pp. 82--83 | Weight cones, finite linear comparisons and a reduced constraint set for finite admissible orderings | Finite inequalities, weight feasibility and cone-based enumeration are prior art. No bit-size or uniform prefix-cardinality estimate is stated. |
+| Section 6, Propositions 6--7 and Figure 8, pp. 83--84, 86 | Multiplication/front constraints and a recursive enumeration procedure for strictly admissible finite orderings | This concerns our exact word class. It supplies an enumeration method, not the sharp asymptotic count or a prescribed-size lower-bound construction. |
+| Section 7 and Tables 7--8, pp. 84--85, 88 | Numerical strict-prefix counts in dimensions two and three; discussion of partition enumeration | The values agree with the exact checks below. No all-n asymptotic theorem is stated for strict prefixes or corner-cut shapes. |
+| Sections 8--9, Propositions 8--9, pp. 85--89 | Finite descriptions of Groebner-fan cells, pseudobases and extended universal bases | These known algebraic constructions do not state a quantitative corner-cut or strict-prefix cardinality bound. No new fan algorithm is claimed here. |
+| Section 10, p. 89 | Common Lisp implementation for arbitrary dimension, exact integer arithmetic and normalized integer normals | Exact arithmetic is prior implementation practice. No uniform runtime, integer-weight-height or realizing-prime-size theorem is supplied. |
+
+There is a reversed inequality in the opening prose of Section 6: its
+literal statement about excluded monomials conflicts with Definition 5.
+The comparison uses the explicit initial-interval definition and the
+published strict-prefix tables. It does not rely on that sentence or
+claim to validate every line of the published pseudocode.
+
+#### Independent finite identification checks
+
+The existing research checker now includes
+`vasiliev_pavlov_table_checks()`. It compares **all 24 entries of Table 7**,
+including n=50,100,200,...,700, with the exact planar crossing formula
+
+    O_2(n) = 1 + #{(a,b)>=1 : gcd(a,b)=1, (a+1)(b+1)<=2n}.
+
+All agree. This reuses the established signature-prefix crossing rule;
+it is not a new planar counting claim.
+
+For dimension three, the checker exhausts every positive-weight strict
+prefix through length 10 by extending the minimal excluded border.
+The exact unit-margin feasibility oracle includes both consecutive
+comparisons and the final excluded border. Each accepted certificate is
+checked by an independent additive heap for the full order and strict
+cutoff. An infeasible LP is rejected only after exhausting its vertex
+bases; a search cap raises an error rather than silently rejecting it.
+Every genuine strict prefix is reached because every next point is in
+the minimal excluded border of its predecessor. Counts for n=3,...,10 are
+
+    9, 21, 39, 69, 123, 177, 243, 339,
+
+agreeing with all eight corresponding Table 8 entries. Across lengths
+2--10, 1,023 accepted certificates are heap-checked and 2,856 infeasible
+extensions are rejected. The paper's Remark 1 chain is separately
+rejected as a strict prefix. These checks identify the parameter and
+family; they do not prove the asymptotic results, reproduce the larger
+three-dimensional table entries, or establish novelty.
+
+Reproduce with
+
+    python3 -B scripts/run_corner_cut_growth_checks.py
+
+The report's `vasiliev_pavlov_table_checks` field records the exact
+published/computed counts, canonical word-list hashes, representative
+integer certificates, method and limitations. No new search framework
+or mandatory dependency has been added.
+
+#### Consequences for the proposed contribution
+
+* **Candidate 23 is retained.** The full paper does not state a matching
+  asymptotic corner-cut count or an argument yielding the multiscale
+  prescribed-cardinality lower bound. The comparison does not preempt
+  the proposed improvement over Wagner's inspected bounds.
+* **Candidate 24 is retained with explicit attribution.** It would give
+  the asymptotic order of the exact strict-prefix family enumerated in
+  this paper. The class, finite scalar representation, feasible cones and
+  recursive enumeration are prior art. The candidate contribution is the
+  sharp uniform counting order and its bounded mean order multiplicity.
+* **Candidate 25 is retained.** The paper contains no prime-realization
+  theorem, prescribed prime-height bound or asymptotic integer-certificate
+  size estimate. The known qualitative prime-realization theorem remains
+  credited to Vietri. Our candidate is the sharp worst-case prime-bit
+  budget, using established prime-interval estimates.
+
+The exact missing-primary-text comparison is now complete and its
+source-access blocker is resolved. This is favorable evidence for
+continuing the quantitative paper, not a certificate of originality
+against all literature or an independent referee report. Do not mark the
+publication goal achieved solely because this paper does not preempt the
+claims. The next task is the final contribution and manuscript assessment,
+using the completed source comparison and unchanged acceptance criteria.

@@ -19,7 +19,7 @@
 \newcommand{\dd}{\delta}
 \title{Sharp growth of corner cuts\\in fixed dimension}
 \author{}
-\date{17 October 2026}
+\date{18 October 2026}
 \begin{document}
 \maketitle
 \begin{center}
@@ -637,6 +637,20 @@ Wagner's lower and upper orders for corner cuts, while treating a
 numerical statistical fan. That passage does not supply a stronger
 corner-cut counting bound or a proof of our prescribed-size lemma.
 
+Vasiliev and Pavlov \cite[Definition 5 and Section 6]{VP}
+call the finite initial intervals of global monomial orders
+\emph{strictly admissible} orderings. Their parameter is the number of
+monomials in the interval, and Tables 7--8 enumerate ordered intervals
+in two and three variables. Forgetting their internal order gives
+corner-cut sets; their wider finite \emph{admissible} class need not
+form an initial interval \cite[Remark 1]{VP}.
+The finite-weight representation and recursive border/cone enumeration
+are established background. The full paper supplies algorithms and
+numerical tables, but no asymptotic corner-cut count, no prescribed-size
+lower bound of the order in Theorem~\ref{thm:main}, and no quantitative
+prime-realization bound. Our contribution concerns the uniform
+cardinality count, rather than introducing this family of finite orders.
+
 \paragraph{Scope of the comparison.}
 The count in Theorem~\ref{thm:main} improves the lower bound of
 \cite{W02,W03} and matches their upper bound. The restriction and lifting
@@ -666,6 +680,12 @@ deterministic samples in dimensions five and six.
 Six prime-realization fixtures, including equal weights and unused
 coordinates, are checked by integer products and an independent
 heap generation of the corresponding smooth-number prefixes.
+As a check of the finite-ordering identification, all 24 planar entries
+of \cite[Table 7]{VP} agree with the exact crossing count. Exhaustive
+border extension with exact rational feasibility reproduces the eight
+entries for lengths three through ten in their Table 8. All 1,023
+accepted certificates are checked independently by an additive heap;
+the non-initial finite ordering in their Remark 1 is rejected.
 The explicit constants and 352 scale-rounding cases in dimensions
 two through twelve are checked with rational arithmetic.
 These computations can falsify steps; they do not prove the uniform
@@ -691,6 +711,7 @@ acceptance is claimed. The proof is included in full so that it can be
 checked independently of the software.
 
 \begin{thebibliography}{99}
+\small
 \raggedright
 \bibitem{OS}
 S.~Onn and B.~Sturmfels,
@@ -760,6 +781,13 @@ A.~Vietri,
 Combinatorial aspects of total weight orders over monomials of fixed degree,
 \emph{Order} 19 (2002), 239--263.
 \href{https://doi.org/10.1023/A:1021236722756}{doi:10.1023/A:1021236722756}.
+
+\bibitem{VP}
+N.~N.~Vasiliev and D.~A.~Pavlov,
+Enumeration of finite monomial orderings and combinatorics of
+universal Gr\"obner bases,
+\emph{Programming and Computer Software} 35 (2009), 79--89.
+\href{https://doi.org/10.1134/S0361768809020030}{doi:10.1134/S0361768809020030}.
 
 \bibitem{HM}
 P.~Haukkanen and J.~K.~Merikoski,
