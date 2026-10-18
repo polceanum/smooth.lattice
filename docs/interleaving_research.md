@@ -5163,3 +5163,280 @@ a divides R and b divides S, so it must not be presented as a lower
 amplification. The meaningful next test is the full (TH1) family with
 tails mixing the residue classes, together with a symbolic count or
 a new uniform obstruction. Growing interface rank alone is insufficient.
+
+### Eighth feasibility pass: a thickness threshold and a convolution constraint
+
+The preceding turn made progress in commit 2f92871: the interface lemma
+proved a uniform bound for an unbounded-corner sparse class and supplied
+the compatible thick-hook candidate. This pass treats the full (TH1)
+tail class, including coefficients that mix all residue classes. It
+proves a parameter-sensitive upper bound and identifies an exact
+commutativity obstruction to importing a support-matching lower model.
+Neither conclusion is the requested unrestricted advance.
+
+#### Use the interface lemma polynomially when the interface grows
+
+The constructive part of (IR1) already implies, in three variables,
+
+    g <= A(q) L,
+    A(q)=1+binom(q,2)(binom(q,2)+1)/2=O((q+1)^4),             (IR2)
+
+where L is the number of joint internal-order regions. Indeed, in each
+region only q optional columns remain after contracting the private
+columns. Their at most binom(q,2) comparison lines cut the normalized
+convex weight region into at most A(q) cells. This also bounds the
+number of bases, irrespective of the larger bound 2^q. No new
+parametric-matroid theorem is imported for this elementary observation.
+
+For M=(y^R,y^a z^b,z^S) as in (TH1), split its diagram into the
+bottom rectangle D_* and the disjoint outer arms
+
+    U={y^i z^j:a<=i<R,0<=j<b},
+    V={y^i z^j:0<=i<a,b<=j<S}.
+
+Let U_top be the a-by-b rectangle at the right end of U, and V_top
+the a-by-b rectangle at the top of V. The full tail classification is
+
+    f_0 in span(U union V_top),
+    f_1 in span(U union V),
+    f_2 in span(U_top union V).
+
+The xD_* columns are fixed coloops in the variable residue matroid.
+After removing them, define three blocks:
+
+    E_Y = x(U minus U_top)
+          union {y^(R+i)z^j:a<=i<R,0<=j<b}
+          union {y^(a+i)z^(b+j):a<=i<R,0<=j<b},
+
+    E_Z = x(V minus V_top)
+          union {y^(a+i)z^(b+j):0<=i<a,b<=j<S}
+          union {y^i z^(S+j):0<=i<a,b<=j<S},
+
+    E_C = x(U_top union V_top)
+          union {g_l y^i z^j:l=0,1,2,0<=i<a,0<=j<b}.
+
+Here g_0=y^R,g_1=y^a z^b,g_2=z^S. These disjoint column sets lie
+in the reference diagram of J=(x^2,xM,M^2); E_C has 5ab columns.
+Any remaining variable column is zero. For example, multiplying the
+f_1 tail by y^i with i>=a kills its V component, whereas multiplying
+by z^j with j>=b kills its U component. Both together kill the tail.
+For f_0 and f_2 the endpoint annihilators give the corresponding
+one-arm statement. This proves the claimed partition without assuming
+independent coefficient rows.
+
+The arm residue spaces lie in x span(U) and x span(V) and are
+disjoint. The core's U projection is contained in
+
+    x span(U_top)
+    + span{x y^i z^j (f_0)_U, x y^i z^j (f_1)_U:0<=i<a,0<=j<b},
+
+of dimension at most 3ab. Its V projection has the same bound, using
+f_1 and f_2. Therefore the three interface dimensions are at most
+3ab,3ab,6ab, and
+
+    q<=12ab.                                                (TH2)
+
+The internal comparison arrangement remains linear in m even when
+the interface grows. In E_Y the x differences have three possible
+values, y differences have at most 4R+1 values and z differences at
+most 4b-1. Thus at most 60Rb distinct hyperplanes suffice. Similarly
+E_Z uses at most 60Sa. The core is the union of five a-by-b exponent
+rectangles. Each ordered pair of rectangles supplies at most
+(2a-1)(2b-1) difference vectors, with fixed x difference, hence at
+most 100ab altogether. Consequently
+
+    H<=60Rb+60Sa+100ab=60m+160ab<=120m,
+    L<=1+H(H+1)/2,
+
+because m=Rb+Sa-ab>=3ab. Applying (IR2), with n=2m, proves
+
+    g(I_phi)=O(n^2 (ab)^4).                                  (TH3)
+
+The independent one-annihilator moment-layer estimate also applies:
+all variable relations in this reference are killed by x and closed
+under y,z. Combining the two bounds gives, over every field and for
+every compatible set of tails,
+
+    g(I_phi)=O(min{n^(7/3), n^2 (ab)^4}).                     (TH4)
+
+The constants are absolute for this three-variable class. In
+particular, fixed thickness cannot beat the existing generic order,
+even with arbitrary mixed-residue coefficients. More generally,
+ab=O(sqrt(log n)) cannot give an asymptotic order larger than
+n^2(log n)^2. A proposed lower bound Omega(n^(2+epsilon)) would require
+ab=Omega(n^(epsilon/4)); testing the ceiling n^(7/3) therefore requires
+at least ab=Omega(n^(1/12)). These are necessary conditions, not
+existence assertions.
+
+#### A perfect support matching can still give a forced dependence
+
+One possible lower strategy would replace the convolution columns by
+independent entries with the same zero pattern, then import a hard
+transversal-matroid example. Commutativity obstructs that step even
+with generic polynomial coefficients.
+
+Take a=2,b=3,R=5,S=7, and let
+
+    F=1+2y+3z,  G=5+7y+11z,
+    f_0=y^2 F,  f_1=y^2 G,  f_2=0.
+
+These satisfy (TH1), giving an actual length-46 quotient. The six
+plain monomials
+
+    g_0, y g_0, z g_0, g_1, y g_1, z g_1
+
+have xB residues x y^2 times F,yF,zF,G,yG,zG. All their products
+fit inside the arm, so truncation removes no coefficient. With rows
+1,y,z,y^2,yz,z^2 after removing the common x y^2 factor, the matrix is
+
+    [1 0 0  5  0  0]
+    [2 1 0  7  5  0]
+    [3 0 1 11  0  5]
+    [0 2 0  0  7  0]
+    [0 3 2  0 11  7]
+    [0 0 3  0  0 11].
+
+Its support has a matching of size six, but its actual rank over Q
+is five. The exact relation is
+
+    5F+7yF+11zF-G-2yG-3zG=GF-FG=0.                         (TH5)
+
+The saved control also gives a nonzero 5-by-5 minor of determinant 48
+in its explicitly recorded row/column order. Thus the rank is exactly
+five. More generally GF-FG=0 holds for symbolic coefficients too;
+the displayed nonzero minor shows that rank five is generic for this
+matrix pattern. The support-matching model would instead have generic
+rank six. This is a classical Koszul relation, used as a realizability
+control, not a new syzygy theorem or a lower-bound result.
+
+The relevant established matrix literature must keep its hypotheses.
+[Hutchinson--Smarandache--Trumpf, 2006](https://arxiv.org/abs/cs/0607089),
+Definition 2.8 and the statements of Theorems 3.2--3.3, concern
+superregular lower triangular Toeplitz matrices and a specified
+block construction. Those statements were inspected; their external
+proof dependencies were not audited. They do not justify replacing
+the present two-polynomial bivariate convolution by independent
+nonzero entries. No result from that paper is used in (TH2)--(TH5).
+
+#### Exact controls and the remaining lower-bound gate
+
+Four mixed-tail fixtures use (a,b,R,S)=(1,2,3,5),(2,2,5,5),
+(2,3,5,7),(2,2,9,11). The longer asymmetric arms in the last fixture
+test the proof outside the minimum-arm examples. Every allowed tail
+coefficient is an explicitly saved positive integer, generated by a
+fixed-seed standard-library procedure in sorted monomial order. No
+genericity is inferred from those choices. Their supports include all
+ab power-substitution residue classes over Q.
+
+The checker verifies the full tangent dimension 2m, adjacent syzygies,
+commuting multiplication matrices, cyclicity on the reference domain
+and its border, the three block spaces, the interface bounds and the
+linear internal-hyperplane budget. At selected strict positive integer
+weights it compares descending relation rows with Gaussian residue
+selection and then with the full algebra matrices over Q,F_2,F_3,F_29.
+It does not enumerate the full fan or extrapolate a count from samples.
+
+A separate 2-by-2 power-substitution control lifts every checked basis
+of a length-10 hook quotient to the corresponding length-40 quotient
+at rescaled weights, in all four characteristics. The exact uniform
+free-extension proof from the preceding pass remains the justification
+for equality of full fan counts. The integer Koszul matrix, matching,
+null vector and nonzero minor are saved separately.
+
+The next lower construction must therefore grow its thickness at the
+required rate, avoid pure power inflation, and respect polynomial
+syzygies in the convolution blocks. A support-matching or arbitrary
+matroid count alone is insufficient. The concrete next proof target
+is a symbolic rank/count description of these two-polynomial blocks,
+before any larger enumeration. No family with the required new growth
+has been obtained. Keep the unrestricted upper route, strongest-primary
+baseline comparison and full goal active; this pass does not establish
+publication novelty or complete the requested theorem.
+
+#### The untruncated two-polynomial block can be solved exactly
+
+The symbolic rank/count subproblem has an exact answer before boundary
+reduction. This gives a sharper next gate than treating all convolution
+blocks as unexplained: the remaining difficulty is specifically the
+quotient boundary or a more complicated syzygy module.
+
+Let F,G be nonzero polynomials in S=K[t_1,...,t_d], any field and
+dimension. Remove their common factor and call the resulting coprime
+polynomials F',G'. Multiplication by the common factor is injective
+in S, so this removal preserves every linear dependence of their
+multiple columns. Let A=P intersect N^d and B=Q intersect N^d,
+where P,Q are bounded convex polytopes. Consider the finite vector
+configuration consisting of the two tagged sets
+
+    {t^u F:u in A},  {t^v G:v in B}.
+
+There is no reduction modulo another ideal. Define the finite set
+
+    K_0={h in N^d:h+Newt(G') subset P,
+                     h+Newt(F') subset Q},  h_0=|K_0|.       (UC1)
+
+Then its rank is exactly
+
+    |A|+|B|-h_0.                                           (UC2)
+
+Proof. Every relation UF'+VG'=0 is uniquely (U,V)=(HG',-HF'),
+by coprimality in the polynomial UFD. The Newton-product identity
+Newt(HG')=Newt(H)+Newt(G') says that HG' has support inside P
+exactly when every exponent of H satisfies the first containment in
+(UC1); similarly for the second domain and F'. Thus H ranges over precisely the
+monomial vector space spanned by K_0. This proves the kernel dimension
+and the rank. Convex, lattice-complete multiplier domains are essential
+to this argument; arbitrary sets with holes are not silently included.
+
+The full coherent-basis description is equally explicit. Assign the
+first copy cost vectors p+(0,u) and the second q+(0,v), with disjoint
+tags and fixed offsets p,q. Form the tagged Newton polytope
+
+    C=conv({p+(0,g):g in supp(G')}
+           union {q+(0,f):f in supp(F')}).
+
+At a generic weight, let c be its unique maximizing tagged term in C.
+The leading positions of the whole relation space are exactly
+
+    {c+(0,h):h in K_0}.                                    (UC3)
+
+Indeed, the winner between the two components of (HG',-HF') is the
+same tagged term c for every H; its other factor is the leading term
+of H. Taking all monomial H in K_0 gives precisely (UC3). Descending
+row reduction and the complementary greedy-basis criterion then say
+that the coherent basis consists of all input columns except this
+translated set. There are at most |supp(F')|+|supp(G')| possible bases.
+If h_0>0, distinct exposed tagged terms give different bases; if
+h_0=0 there is the single all-column basis.
+
+There is an exact polytope consequence. Write T for the sum of all
+input cost vectors and S_0=sum_{h in K_0}(0,h). The projected matroid
+basis polytope is
+
+    T-S_0-h_0 C.                                           (UC4)
+
+For every generic weight the minimizing basis has the point
+T-S_0-h_0 c by (UC3). These support functions determine the polytope;
+the formula also covers h_0=0. Thus the Newton polytope determines
+all coherent bases and their normal fan without enumerating minors.
+For negative cost weights this is a finite vector-configuration
+statement, not an assertion about global monomial orders on an
+infinite polynomial ring.
+
+This is derived from the classical two-generator syzygy, the
+Newton-product identity and the existing complementary greedy rule.
+It is not represented as an established novel theorem. More
+importantly, multiplication by a nonzero polynomial need not be
+injective after quotient reduction, and truncated products need not
+have the Newton sum above. Consequently (UC1)--(UC4) do not settle
+the thick-hook boundary problem or the unrestricted goal.
+
+The exact checker takes F=1+y+z,G=1+2y+3z, coprime in all four
+checked fields, with three pairs of rectangular multiplier domains.
+It checks (UC2)--(UC4) by direct Gaussian selection at positive and
+negative finite cost weights. One asymmetric pair has ranks 15 over
+Q and 14 over F_2: the support change in G changes the erosion domain,
+and the formula correctly accounts for this difference. The next
+symbolic target is the truncated version of these blocks, where
+boundary annihilation supplies additional relations. The larger
+theorem goal and its original acceptance criteria remain active.

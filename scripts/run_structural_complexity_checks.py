@@ -10,9 +10,10 @@ Uses only Python's standard library. Run from the repository root:
 from fractions import Fraction
 from heapq import heappop, heappush
 from hashlib import sha256
-from itertools import combinations, product
+from itertools import combinations, permutations, product
 from math import comb, factorial, gcd, lcm
 from pathlib import Path
+from random import Random
 import json
 
 
@@ -1330,6 +1331,285 @@ def interface_pairwise_countercontrol():
             "joint_internal_order_regions": 1, "fields": fields}
 
 
+def thick_hook_model(a, b, r, s, tails=None):
+    """Construct the exact dual-number algebra used in the thick-hook gate."""
+    require(a >= 1 and b >= 1 and r >= 2 * a + 1 and s >= 2 * b + 1, "thick hook parameters")
+    generators = [(r, 0), (a, b), (0, s)]
+    divisible = lambda p, q: all(x >= y for x, y in zip(p, q))
+    base = {p for p in product(range(r), range(s)) if not any(divisible(p, g) for g in generators)}
+    m = len(base)
+    require(m == r * b + s * a - a * b, "thick hook colength")
+    y_arm = {p for p in base if p[0] >= a}
+    z_arm = {p for p in base if p[1] >= b}
+    y_top = {p for p in y_arm if p[0] >= r - a}
+    z_top = {p for p in z_arm if p[1] >= s - b}
+    allowed = [y_arm | z_top, y_arm | z_arm, y_top | z_arm]
+    require([len(p) for p in allowed] == [r * b, m - a * b, s * a], "full tail coordinate dimensions")
+    if tails is None:
+        coefficients = Random(271828 + 997 * a + 10007 * b + 100003 * r + 1000003 * s)
+        tails = [{p: coefficients.randrange(1, 1009) for p in sorted(points)} for points in allowed]
+    require(all(set(f) <= points for f, points in zip(tails, allowed)), "compatible tail support")
+    square = {tuple(x + y for x, y in zip(g, h)) for g in generators for h in generators}
+    outer = {p for p in product(range(2 * r), range(2 * s))
+             if not any(divisible(p, g) for g in square)}
+    base_order = sorted(base)
+
+    def multiply(f, shift):
+        return {tuple(x + y for x, y in zip(p, shift)): c for p, c in f.items()
+                if tuple(x + y for x, y in zip(p, shift)) in base and c}
+
+    require(multiply(tails[0], (0, b)) == multiply(tails[1], (r - a, 0)), "first thick syzygy")
+    require(multiply(tails[1], (0, s - b)) == multiply(tails[2], (a, 0)), "second thick syzygy")
+
+    def phi(p):
+        images = [multiply(f, tuple(x - y for x, y in zip(p, g)))
+                  for g, f in zip(generators, tails) if divisible(p, g)]
+        require(images and all(v == images[0] for v in images), "thick generator-independent module map")
+        return images[0]
+
+    fixed = {(0, *p) for p in base}
+    basis = sorted(fixed | {(1, *p) for p in base})
+    indices = {p: i for i, p in enumerate(basis)}
+    domain = {(0, *p) for p in outer} | {(1, *p) for p in base}
+    support = sorted(domain - fixed)
+
+    def residue(p):
+        power, point = p[0], p[1:]
+        vector = [0] * (2 * m)
+        if power < 2 and point in base:
+            vector[indices[(power, *point)]] = 1
+        elif not power and point in outer:
+            for q, c in phi(point).items():
+                vector[indices[(1, *q)]] = c
+        return tuple(vector)
+
+    matrices = [tuple(residue(tuple(x + (i == j) for j, x in enumerate(p))) for p in basis) for i in range(3)]
+    for i, j in combinations(range(3), 2):
+        for p in range(2 * m):
+            require(matvec(matrices[i], matrices[j][p]) == matvec(matrices[j], matrices[i][p]),
+                    "thick multiplication matrices commute")
+    border = {tuple(x + (i == j) for j, x in enumerate(p)) for p in domain for i in range(3)} - domain
+    columns = {}
+    for p in sorted(domain | border):
+        vector = residue((0, 0, 0))
+        for matrix, exponent in zip(matrices, p):
+            for _ in range(exponent):
+                vector = matvec(matrix, vector)
+        require(vector == residue(p), "thick cyclicity including reference border")
+        columns[p] = vector
+    variable = {p: tuple(columns[p][indices[(1, *q)]] for q in base_order) for p in support}
+    rows = []
+    for p in sorted(outer - base):
+        row = [0] * len(support)
+        row[support.index((0, *p))] = 1
+        for q, c in phi(p).items():
+            row[support.index((1, *q))] -= c
+        rows.append(row)
+    return {"base": base, "m": m, "generators": generators, "allowed": allowed, "tails": tails,
+            "y_arm": y_arm, "z_arm": z_arm, "y_top": y_top, "z_top": z_top,
+            "base_order": base_order, "domain": domain, "border": border, "fixed": fixed,
+            "support": support, "columns": columns, "variable": variable, "rows": rows, "phi": phi}
+
+
+def thick_hook_fixture(a, b, r, s):
+    model = thick_hook_model(a, b, r, s)
+    m, support, variable = model["m"], model["support"], model["variable"]
+    left = ({(1, *p) for p in model["y_arm"] - model["y_top"]} |
+            {(0, r + i, j) for i in range(a, r) for j in range(b)} |
+            {(0, a + i, b + j) for i in range(a, r) for j in range(b)})
+    right = ({(1, *p) for p in model["z_arm"] - model["z_top"]} |
+             {(0, a + i, b + j) for i in range(a) for j in range(b, s)} |
+             {(0, i, s + j) for i in range(a) for j in range(b, s)})
+    core = ({(1, *p) for p in model["y_top"] | model["z_top"]} |
+            {(0, g[0] + i, g[1] + j) for g in model["generators"] for i in range(a) for j in range(b)})
+    blocks = [left, right, core]
+    ground = set().union(*blocks)
+    coloops = {(1, *p) for p in model["base"] - model["y_arm"] - model["z_arm"]}
+    loops = set(support) - ground - coloops
+    require(sum(map(len, blocks)) == len(ground) and ground <= set(support), "thick block partition")
+    require(len(core) == 5 * a * b and len(coloops) == a * b, "thick core and coloop sizes")
+    require(all(not any(variable[p]) for p in loops), "remaining thick columns are zero")
+    for block, allowed in ((left, model["y_arm"]), (right, model["z_arm"])):
+        require(all(not c or q in allowed for p in block for q, c in zip(model["base_order"], variable[p])),
+                "thick arm residue support")
+    normals = set()
+    for block in blocks:
+        normals.update(primitive(tuple(x - y for x, y in zip(p, q))) for p, q in combinations(sorted(block), 2)
+                       if min(x - y for x, y in zip(p, q)) < 0 < max(x - y for x, y in zip(p, q)))
+    require(len(normals) <= 120 * m, "uniform linear internal hyperplane budget")
+    scale = 4 * max(r, s) + 1
+    weights = [tuple(scale ** 3 * x + scale ** i for i, x in enumerate(w))
+               for w in ((1, 2, 3), (3, 2, 1), (2, 3, 1), (1, 3, 2), (7, 2, 3), (2, 5, 7))]
+    require(all(len({dot(w, p) for p in support}) == len(support) for w in weights), "strict thick weights")
+    unknowns = [(i, p) for i in range(3) for p in model["base_order"]]
+    equations = []
+    for i, (g, h) in enumerate(zip(model["generators"], model["generators"][1:])):
+        for target in model["base_order"]:
+            equations.append([sum(sign for index, shift, sign in ((i, (0, h[1] - g[1]), 1),
+                                                                  (i + 1, (g[0] - h[0], 0), -1))
+                                  if j == index and tuple(x + y for x, y in zip(p, shift)) == target)
+                              for j, p in unknowns])
+    free = {i for i, (j, p) in enumerate(unknowns) if p in model["allowed"][j]}
+    require(len(free) == 2 * m and all(not row[i] for row in equations for i in free), "thick free tangent coordinates")
+    fields = []
+    for characteristic in (0, 2, 3, 29):
+        rank = lambda points: len(greedy(set(points), variable, (1, 1, 1), characteristic))
+        total_rank = rank(ground)
+        interfaces = [rank(block) + rank(ground - block) - total_rank for block in blocks]
+        require(all(x <= c * a * b for x, c in zip(interfaces, (3, 3, 6))), "thick interface dimensions")
+        tangent_columns = {(i, 0, 0): tuple(row[i] for row in equations) for i in range(len(unknowns))}
+        dimension = len(unknowns) - len(greedy(set(tangent_columns), tangent_columns, (1, 1, 1), characteristic))
+        require(dimension == 2 * m, "full thick tangent dimension")
+        witnesses = []
+        for weight in weights:
+            selected = greedy(set(support), variable, weight, characteristic)
+            require(selected == set(support) - leading_row_pivots(model["rows"], support, weight, characteristic),
+                    "thick relation rows agree with residue greedy")
+            require(greedy(model["domain"] | model["border"], model["columns"], weight, characteristic) ==
+                    model["fixed"] | selected, "thick full algebra basis agrees with module")
+            require(coloops <= selected, "thick bottom identity columns are coloops")
+            witnesses.append({"positive_integer_weights": weight,
+                              "selected_column_indices": [support.index(p) for p in sorted(selected)]})
+        fields.append({"characteristic": characteristic, "interface_dimensions": interfaces,
+                       "tangent_dimension": dimension, "witnesses": witnesses})
+    residue_classes = {tuple(x % modulus for x, modulus in zip(p, (a, b)))
+                       for tail in model["tails"] for p in tail}
+    require(len(residue_classes) == a * b, "integer tails mix all power-substitution residue classes")
+    return {"a": a, "b": b, "R": r, "S": s, "base_colength": m, "quotient_length": 2 * m,
+            "plane_generators": model["generators"],
+            "coefficient_seed": 271828 + 997 * a + 10007 * b + 100003 * r + 1000003 * s,
+            "coefficient_rule": "Single Python Random instance; randrange(1,1009), traversing each allowed tail support in sorted order. No genericity assertion.",
+            "tails": [[{"monomial": p, "coefficient": c} for p, c in sorted(f.items())] for f in model["tails"]],
+            "reference_domain": sorted(model["domain"]), "relation_support": support,
+            "relation_matrix": model["rows"], "blocks": [sorted(v) for v in blocks],
+            "internal_hyperplanes": sorted(normals), "tail_residue_classes_over_Q": sorted(residue_classes),
+            "witness_encoding": "selected_column_indices index relation_support",
+            "row_and_greedy_checks": 4 * len(weights), "full_matrix_checks": 4 * len(weights),
+            "multiplication_matrices_commute": True, "cyclicity_checked": True,
+            "exhaustive_fan_enumeration": False, "fields": fields}
+
+
+def thick_power_substitution_control():
+    thin_tails = [{(1, 0): 2, (2, 0): 3, (0, 2): 6},
+                  {(1, 0): 9, (2, 0): 16, (0, 1): 64, (0, 2): 125},
+                  {(2, 0): 8, (0, 1): 36, (0, 2): 49}]
+    thin = thick_hook_model(1, 1, 3, 3, thin_tails)
+    a, b = 2, 2
+    big_tails = [{(a * p[0], b * p[1]): c for p, c in tail.items()} for tail in thin_tails]
+    big = thick_hook_model(a, b, 6, 6, big_tails)
+    require(big["m"] == a * b * thin["m"], "substitution length scaling")
+    weights = [(1, 31, 961), (961, 1, 31), (31, 961, 1), (101, 17, 23), (19, 101, 37)]
+    fields = []
+    for characteristic in (0, 2, 3, 29):
+        witnesses = []
+        for weight in weights:
+            small_weight = (weight[0], a * weight[1], b * weight[2])
+            small_basis = greedy(thin["domain"] | thin["border"], thin["columns"], small_weight, characteristic)
+            expected = {(p[0], a * p[1] + i, b * p[2] + j) for p in small_basis
+                        for i in range(a) for j in range(b)}
+            actual = greedy(big["domain"] | big["border"], big["columns"], weight, characteristic)
+            require(actual == expected, "free power extension preserves every checked coherent basis")
+            witnesses.append({"large_weights": weight, "rescaled_small_weights": small_weight,
+                              "small_standard_monomials": sorted(small_basis)})
+        fields.append({"characteristic": characteristic, "witnesses": witnesses})
+    return {"small_quotient_length": 2 * thin["m"], "large_quotient_length": 2 * big["m"],
+            "power_scaling": [a, b], "small_tails": [[{"monomial": p, "coefficient": c} for p, c in sorted(f.items())]
+                                                     for f in thin_tails],
+            "basis_lifting_checks": 4 * len(weights), "fields": fields,
+            "scope": "Exact selected-weight controls support the uniform free-extension proof; this does not enumerate either full fan."}
+
+
+def thick_koszul_countercontrol():
+    """Commutativity forces a dependence despite a full support matching."""
+    a, b, r, s = 2, 3, 5, 7
+    f = {(0, 0): 1, (1, 0): 2, (0, 1): 3}
+    g = {(0, 0): 5, (1, 0): 7, (0, 1): 11}
+    shifts = [(0, 0), (1, 0), (0, 1)]
+    model = thick_hook_model(a, b, r, s,
+                             [{(a + p[0], p[1]): c for p, c in f.items()},
+                              {(a + p[0], p[1]): c for p, c in g.items()}, {}])
+    points = [(0, r + p[0], p[1]) for p in shifts] + [(0, a + p[0], b + p[1]) for p in shifts]
+    outputs = sorted({(a + p[0] + q[0], p[1] + q[1]) for p in shifts for q in shifts})
+    matrix = [[model["phi"](p[1:]).get(q, 0) for p in points] for q in outputs]
+    columns = {p: tuple(row[i] for row in matrix) for i, p in enumerate(points)}
+    matching = next(perm for perm in permutations(range(6)) if all(matrix[perm[i]][i] for i in range(6)))
+    relation = [g[p] for p in shifts] + [-f[p] for p in shifts]
+    require(all(sum(c * x for c, x in zip(relation, row)) == 0 for row in matrix),
+            "G*F-F*G is an exact integer relation between allowed thick columns")
+    basis = sorted(greedy(set(points), columns, (1, 17, 31), 0))
+    require(len(basis) == 5 and determinant(matrix) == 0, "support matching rank six differs from true rank five")
+    selected = [points.index(p) for p in basis]
+    minor_rows = next(rows for rows in combinations(range(6), 5)
+                      if determinant([[matrix[i][j] for j in selected] for i in rows]))
+    minor = determinant([[matrix[i][j] for j in selected] for i in minor_rows])
+    return {"parameters": [a, b, r, s], "quotient_length": 2 * model["m"],
+            "F": [{"monomial": p, "coefficient": c} for p, c in sorted(f.items())],
+            "G": [{"monomial": p, "coefficient": c} for p, c in sorted(g.items())],
+            "input_monomials": points, "output_monomials_after_removing_x": outputs,
+            "residue_matrix_rows": matrix, "full_support_matching_rows_by_column": matching,
+            "integer_syzygy_coefficients": relation, "rational_rank": 5, "support_matching_size": 6,
+            "nonzero_minor": {"rows": minor_rows, "columns": selected, "determinant": str(minor)},
+            "uniform_constraint": "For any coefficients, the shifted columns of two polynomials satisfy G*F-F*G=0 whenever these products fit without truncation. The displayed integer specialization has rank exactly five.",
+            "scope": "A classical Koszul relation used as a realizability control, not a novel syzygy theorem or an asymptotic lower bound."}
+
+
+def untruncated_convolution_controls():
+    """Check the principal-syzygy rank and basis formula on rectangles."""
+    f = {(0, 0): 1, (1, 0): 1, (0, 1): 1}
+    g = {(0, 0): 1, (1, 0): 2, (0, 1): 3}
+    offsets = [(0, 2, 0), (1, 0, 0)]
+    weights = [(1, 13, 169), (169, 1, 13), (13, 169, 1), (19, 5, 7), (5, 19, 7), (7, 5, 19),
+               (-13, 1, 2), (1, -13, 2), (1, 2, -13), (-1, -13, -169)]
+    results = []
+    for sizes in (((2, 2), (2, 2)), ((4, 3), (4, 3)), ((3, 3), (4, 2))):
+        domains = [set(product(range(u), range(v))) for u, v in sizes]
+        inputs = [(i, p) for i, domain in enumerate(domains) for p in sorted(domain)]
+        labels = [tuple(x + y for x, y in zip(offsets[i], (0, *p))) for i, p in inputs]
+        outputs = sorted({tuple(x + y for x, y in zip(p, q))
+                          for i, p in inputs for q in (f, g)[i]})
+        fields = []
+        for characteristic in (0, 2, 3, 29):
+            polys = [{p: c for p, c in h.items() if not characteristic or c % characteristic}
+                     for h in (f, g)]
+            degrees = [tuple(max(p[j] for p in h) for j in range(2)) for h in polys]
+            h_sizes = [max(0, min(sizes[0][j] - degrees[1][j], sizes[1][j] - degrees[0][j]))
+                       for j in range(2)]
+            h_domain = set(product(*(range(v) for v in h_sizes)))
+            columns = {label: tuple(polys[i].get(tuple(x - y for x, y in zip(q, p)), 0) for q in outputs)
+                       for label, (i, p) in zip(labels, inputs)}
+            expected_rank = len(inputs) - len(h_domain)
+            require(len(greedy(set(labels), columns, (1, 13, 169), characteristic)) == expected_rank,
+                    "untruncated convolution rank equals domain count minus eroded-domain count")
+            witnesses = []
+            for weight in weights:
+                syzygy_terms = [(tuple(x + y for x, y in zip(offsets[0], (0, *p))), 0, p) for p in polys[1]]
+                syzygy_terms += [(tuple(x + y for x, y in zip(offsets[1], (0, *p))), 1, p) for p in polys[0]]
+                lead_label, side, monomial = max(syzygy_terms, key=lambda item: (dot(weight, item[0]), item[0]))
+                deleted = {tuple(x + y for x, y in zip(offsets[side], (0, h[0] + monomial[0], h[1] + monomial[1])))
+                           for h in h_domain}
+                selected = greedy(set(labels), columns, weight, characteristic)
+                require(deleted <= set(labels) and selected == set(labels) - deleted,
+                        "tagged Newton leading term translates the entire kernel domain")
+                total_moment = tuple(sum(p[j] for p in labels) for j in range(3))
+                kernel_moment = (0, sum(p[0] for p in h_domain), sum(p[1] for p in h_domain))
+                predicted = tuple(x - y - len(h_domain) * z for x, y, z in zip(total_moment, kernel_moment, lead_label))
+                require(tuple(sum(p[j] for p in selected) for j in range(3)) == predicted,
+                        "projected basis polytope has the translated reflected Newton support function")
+                witnesses.append({"weights": weight, "winning_tagged_term": lead_label,
+                                  "deleted_column_indices": [labels.index(p) for p in sorted(deleted)]})
+            fields.append({"characteristic": characteristic, "kernel_rectangle_sizes": h_sizes,
+                           "rank": expected_rank, "polytope_scale": len(h_domain),
+                           "polytope_translation": [x - y for x, y in zip(total_moment, kernel_moment)],
+                           "tagged_support_points": sorted({t[0] for t in syzygy_terms}), "witnesses": witnesses})
+        results.append({"multiplier_rectangle_sizes": sizes,
+                        "input_labels": labels, "output_monomials": outputs, "fields": fields})
+    return {"F": [{"monomial": p, "coefficient": c} for p, c in sorted(f.items())],
+            "G": [{"monomial": p, "coefficient": c} for p, c in sorted(g.items())],
+            "input_offsets": offsets, "fixtures": results, "exact_basis_checks": 4 * len(weights) * len(results),
+            "uniform_conclusion": "For coprime nonzero F,G and convex lattice-complete multiplier domains, the kernel is (H*G,-H*F) with H in the Newton-polytope erosion domain. Its translated leading terms determine every coherent basis, and the projected basis polytope is a translate of minus the kernel dimension times the tagged Newton polytope. Common factors may be removed before applying the formula. No quotient truncation is allowed.",
+            "priority": "An elementary consequence of the classical two-generator syzygy and Newton-product identity; novelty is not established."}
+
+
 def main():
     fixtures = []
     for weights, cutoff in [((1, 1, 1), 2), ((1, 1, 1), 3),
@@ -1360,6 +1640,10 @@ def main():
     hook = [hook_deformation_fixture(r, s) for r, s in ((2, 2), (2, 3), (3, 3))]
     sparse = [sparse_corner_deformation_fixture(k, r, s)
               for k, r, s in ((2, 5, 5), (3, 7, 7), (4, 9, 9), (3, 11, 13))]
+    thick = [thick_hook_fixture(a, b, r, s)
+             for a, b, r, s in ((1, 2, 3, 5), (2, 2, 5, 5), (2, 3, 5, 7), (2, 2, 9, 11))]
+    power_control = thick_power_substitution_control()
+    untruncated = untruncated_convolution_controls()
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
         "schema_version": 1, "command": "python3 -B scripts/run_structural_complexity_checks.py",
@@ -1421,6 +1705,13 @@ def main():
             "fixtures": sparse,
             "pairwise_intersection_negative_control": interface_pairwise_countercontrol(),
         },
+        "thick_hook_deformation_control": {
+            "uniform_conclusion": "For all compatible thick-hook first-order tails, q<=12*a*b and at most 120*m internal hyperplanes give O(n^2*(a*b)^4) initial ideals by optional-column refinement. Together with the prior annihilator bound this is O(min(n^(7/3),n^2*(a*b)^4)). Fixed thickness is therefore insufficient for a stronger unrestricted lower bound.",
+            "scope": "A parameter-sensitive restricted upper bound, not an unrestricted advance or novelty claim. These are selected-weight controls, not fan enumeration.",
+            "fixtures": thick, "power_substitution_negative_control": power_control,
+            "koszul_support_matching_negative_control": thick_koszul_countercontrol(),
+            "untruncated_convolution_rank_and_basis_control": untruncated,
+        },
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
                     "independent_greedy_checks": sum(f["greedy_checks"] for f in fixtures),
@@ -1452,7 +1743,12 @@ def main():
                     "sparse_corner_row_and_greedy_checks": sum(f["row_and_greedy_checks"] for f in sparse),
                     "sparse_corner_full_matrix_checks": sum(f["full_matrix_checks"] for f in sparse),
                     "sparse_corner_interface_flag_checks": sum(f["interface_flag_checks"] for f in sparse),
-                    "sparse_corner_optional_recovery_checks": sum(f["optional_recovery_checks"] for f in sparse)},
+                    "sparse_corner_optional_recovery_checks": sum(f["optional_recovery_checks"] for f in sparse),
+                    "thick_hook_fixtures": len(thick),
+                    "thick_hook_row_and_greedy_checks": sum(f["row_and_greedy_checks"] for f in thick),
+                    "thick_hook_full_matrix_checks": sum(f["full_matrix_checks"] for f in thick),
+                    "power_substitution_basis_checks": power_control["basis_lifting_checks"],
+                    "untruncated_convolution_basis_checks": untruncated["exact_basis_checks"]},
         "goal_qualifying_advance": False,
     }
     target = ROOT / "results/research/structural_complexity_checks.json"

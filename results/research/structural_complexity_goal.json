@@ -2,7 +2,7 @@
   "schema_version": 1,
   "recorded_on": "2026-10-18",
   "title": "Universal algebraic complexity beyond generic corner cuts",
-  "status": "active_growing_corner_interface_gate_resolved_unrestricted_advance_pending",
+  "status": "active_untruncated_rank_polytope_formula_proved_boundary_complexity_pending",
   "objective": "Prove a new structural theorem determining or substantially narrowing the worst-case asymptotic number of monomial initial ideals of finite polynomial algebras, starting with three variables and seeking a mechanism valid in every fixed dimension. Establish the strongest relevant primary baseline first. Success requires a complete uniform proof of sharp growth or a substantial asymptotic advance over that baseline for all colength-n ideals or all n-point configurations, a rigorous further algebraic, geometric or enumeration consequence, reproducible exact certificates and an honestly scoped manuscript. Examples, reformulations, already known corollaries and a plan alone do not complete this goal.",
   "plan": "docs/interleaving_research.md#higher-impact-research-plan-universal-algebraic-complexity",
   "relationship_to_previous_goal": "A new research objective. The completed corner-cut counting manuscript and its acceptance records remain separate and unchanged in mathematical content.",
@@ -34,12 +34,12 @@
     },
     {
       "id": "dependency_mechanism",
-      "status": "interface_rank_and_annihilator_lemmas_proved_unrestricted_dependency_mechanism_pending",
+      "status": "interface_and_thickness_bounds_plus_untruncated_newton_formula_proved_boundary_pending",
       "deliverable": "A precise lemma about multiplication-compatible residue dependencies or state-polyhedron geometry, with its proof attempt and adversarial controls."
     },
     {
       "id": "infinite_lower_family",
-      "status": "sparse_growing_corner_class_ruled_out_unbounded_interaction_gate_next",
+      "status": "mixed_thick_hooks_require_growing_thickness_symbolic_rank_count_pending",
       "deliverable": "A symbolic realizable family and count proof, or a documented obstruction to the tested construction; finite examples alone are insufficient."
     },
     {
@@ -123,7 +123,7 @@
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Commit e611ebf proved the full hook-deformation obstruction using bounded connectors and saved exact quotient checks; this eliminated the sparse hook route. The unrestricted goal stayed open."
+    "reason": "Commit 2f92871 proved the interface-rank lemma, its constructive order-list consequence, and the sparse unbounded-corner obstruction. It classified the thick-hook candidate and proved power-substitution invariance. The unrestricted goal remained open."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -239,6 +239,13 @@
       "year": 2025,
       "inspected": "Definition 3.1, Theorems 5.4--5.5 and their proofs, and Examples 6.1--6.2; not a full-paper audit.",
       "finding": "Plane monomial first-order and formal Hilbert--Burch deformations are established. The examples show why the formal parametrization cannot be treated as an arbitrary finite perturbation of constant colength. The hook dual-number family here has a separate elementary flatness proof; no new deformation theory is claimed."
+    },
+    {
+      "source": "https://arxiv.org/abs/cs/0607089",
+      "authors": "Hutchinson, Smarandache and Trumpf",
+      "version": "2006 preprint",
+      "inspected": "Definition 2.8 and statements of Theorems 3.2--3.3; external proof dependencies and the full paper were not audited.",
+      "finding": "The established superregular lower triangular Toeplitz and specified block construction hypotheses do not justify replacing a bivariate two-polynomial convolution by independent nonzero entries. No theorem from this paper is used in the new bounds or countercontrol."
     }
   ],
   "next_actions": [
@@ -358,11 +365,16 @@
           "sparse_corner_row_and_greedy_checks": 240,
           "sparse_corner_full_matrix_checks": 240,
           "sparse_corner_interface_flag_checks": 720,
-          "sparse_corner_optional_recovery_checks": 240
+          "sparse_corner_optional_recovery_checks": 240,
+          "thick_hook_fixtures": 4,
+          "thick_hook_row_and_greedy_checks": 96,
+          "thick_hook_full_matrix_checks": 96,
+          "power_substitution_basis_checks": 20,
+          "untruncated_convolution_basis_checks": 120
         }
       }
     ],
-    "scope": "Build and smoke tests passed. The current exact controls add four sparse growing-corner quotients over four characteristics, 240 relation-row/greedy comparisons, 240 full-matrix checks, 720 block-interface flag checks and 240 recoveries using only optional columns after contraction. Tangent dimensions and a three-line negative control are checked. Selected weights are not represented as exhaustive fan enumeration. The unrestricted theorem, strongest-bound priority audit and target manuscript remain incomplete."
+    "scope": "Build, smoke tests and the full exact research checker passed. This pass adds four mixed thick-hook models with 96 row/greedy and 96 full-matrix checks, 20 free-extension basis checks, an exact Koszul rank/matching certificate, and 120 untruncated rank/basis/polytope checks across four characteristics. Positive and negative costs in the untruncated controls are finite vector-configuration tests, not claims about negative-weight global monomial orders. The unrestricted theorem, strongest-current-priority assessment and target manuscript remain incomplete."
   },
   "second_feasibility_results": {
     "record": "docs/interleaving_research.md, Second feasibility pass: interacting relations and a conditional count",
@@ -879,6 +891,106 @@
       "negative_control": "Free extension under Y=y^a,Z=z^b multiplies quotient length by a*b while preserving the initial-ideal count, by the residue-class decomposition and positive weight rescaling. The displayed witness is such an inflation when a divides R and b divides S.",
       "next_gate": "Use the full compatible tail class mixing power-substitution residue classes, and derive a symbolic count or obstruction. Unbounded rank in one natural partition is insufficient to claim a large fan or an unavoidable interface.",
       "goal_qualifying_advance": false
+    }
+  },
+  "eighth_feasibility_results": {
+    "record": "docs/interleaving_research.md, Eighth feasibility pass: a thickness threshold and a convolution constraint",
+    "polynomial_interface_count": {
+      "hypotheses": "The previous three-variable linear-matroid interface setting, with q total interaction dimension and L joint internal-order regions.",
+      "bound": "g<=A(q)*L, where A(q)=1+binom(q,2)*(binom(q,2)+1)/2=O((q+1)^4).",
+      "reason": "After contracting the private columns, only at most q optional columns remain in a fixed region. Their pair comparisons cut its normalized convex polygon into at most A(q) cells.",
+      "priority": "Already implicit in the prior constructive lemma; not represented as an established novel parametric-matroid theorem."
+    },
+    "full_mixed_thick_hook_upper": {
+      "family": "The full compatible tail class for M=(y^R,y^a*z^b,z^S), a,b>=1, R>=2a+1,S>=2b+1; n=2m, m=R*b+S*a-a*b.",
+      "partition": "Two arm blocks and a core of 5*a*b monomials. Remove a*b bottom identity coloops and zero columns. Every remaining column has the stated arm or core support.",
+      "interface_bound": "The core projects into at most 3*a*b dimensions on either arm, so the three interface dimensions are <=3*a*b,3*a*b,6*a*b and q<=12*a*b.",
+      "hyperplane_bound": "H<=60*R*b+60*S*a+100*a*b=60*m+160*a*b<=120*m.",
+      "uniform_count": "g(I_phi)=O(min(n^(7/3),n^2*(a*b)^4)), over every field and for every compatible tail choice, including mixed-residue tails.",
+      "thresholds": "Fixed a*b gives O(n^2). More generally a*b=O(sqrt(log n)) cannot exceed the generic n^2*(log n)^2 order asymptotically. An Omega(n^(2+epsilon)) family needs a*b=Omega(n^(epsilon/4)); reaching the one-annihilator ceiling needs at least a*b=Omega(n^(1/12)).",
+      "scope": "A restricted parameter-sensitive obstruction, not the qualifying unrestricted advance or a claimed new publication result."
+    },
+    "koszul_matching_obstruction": {
+      "parameters": [
+        2,
+        3,
+        5,
+        7
+      ],
+      "quotient_length": 46,
+      "tails": "f0=y^2*(1+2*y+3*z), f1=y^2*(5+7*y+11*z), f2=0.",
+      "six_inputs": "g0,y*g0,z*g0,g1,y*g1,z*g1",
+      "constraint": "The residue columns are x*y^2 times F,y*F,z*F,G,y*G,z*G. The coefficient vector (5,7,11,-1,-2,-3) is an exact integer relation, by G*F-F*G=0.",
+      "support_matching_size": 6,
+      "actual_rank_over_Q": 5,
+      "nonzero_minor": "The exact report records a 5-by-5 minor of determinant 48 in its specified ordering.",
+      "generic_implication": "The classical relation holds symbolically and the nonzero specialization minor proves generic rank five over Q. The same zero pattern with independent entries has generic rank six. Thus a support-matching transversal matroid cannot be substituted for these convolution columns.",
+      "priority": "A classical Koszul relation used as a realizability control; no new syzygy theorem or asymptotic lower claim."
+    },
+    "finite_controls": {
+      "mixed_parameters": [
+        [
+          1,
+          2,
+          3,
+          5
+        ],
+        [
+          2,
+          2,
+          5,
+          5
+        ],
+        [
+          2,
+          3,
+          5,
+          7
+        ],
+        [
+          2,
+          2,
+          9,
+          11
+        ]
+      ],
+      "fields": [
+        "Q",
+        "F_2",
+        "F_3",
+        "F_29"
+      ],
+      "coefficient_rule": "Saved positive integer coefficients from fixed-seed Python Random instances, traversing sorted allowed monomials. No genericity is inferred.",
+      "scope": "Full tangent dimensions, actual commuting cyclic quotient matrices and border residues, arm/core support, interaction dimensions, internal hyperplane budget and exact selected-weight basis comparisons. The full fan is not enumerated.",
+      "power_substitution_control": "A length-10 thin quotient lifts to a length-40 thick quotient under powers (2,2); selected coherent bases are compared at the rescaled weights in all four characteristics.",
+      "untruncated_formula": "Three rectangle-domain pairs, F=1+y+z and G=1+2*y+3*z, four characteristics and positive/negative finite cost weights verify rank, deleted columns and the reflected Newton-polytope moment formula. One asymmetric case has rank 15 over Q and 14 over F_2; the field-specific erosion formula predicts both.",
+      "thick_hook_fixtures": 4,
+      "thick_hook_row_and_greedy_checks": 96,
+      "thick_hook_full_matrix_checks": 96,
+      "power_substitution_basis_checks": 20,
+      "untruncated_convolution_basis_checks": 120,
+      "mixed_model_base_colengths": [
+        9,
+        16,
+        23,
+        36
+      ],
+      "koszul_certificate_verified": "Six-column perfect support matching; exact integer null vector; actual rational rank five; saved nonzero minor determinant 48."
+    },
+    "goal_qualifying_unrestricted_advance": false,
+    "decision": "Fixed-thickness mixed tails and power inflation cannot supply the required separation. Untruncated two-polynomial blocks are now described exactly, so stop treating their ranks as unexplained or importing support-matching matroids. The concrete remaining symbolic target is boundary-reduced convolution, with growing thickness and its extra annihilator relations. Derive its rank and basis-count mechanism before larger enumeration. Keep the full unrestricted upper route, strongest-primary audit, original objective and acceptance criteria active.",
+    "untruncated_two_polynomial_description": {
+      "scope": "Every field and any number of polynomial variables; two nonzero polynomials and bounded convex lattice-complete multiplier domains. No quotient reduction is permitted.",
+      "common_factors": "Remove the common factor to obtain coprime F_prime,G_prime. Multiplication by the common factor is injective in the polynomial ring and preserves the represented matroid.",
+      "kernel_domain": "K0={h in N^d: h+Newt(G_prime) is contained in P, h+Newt(F_prime) is contained in Q}.",
+      "rank": "|P intersect N^d|+|Q intersect N^d|-|K0|.",
+      "kernel_proof": "Every relation is uniquely (H*G_prime,-H*F_prime). The Newton-product identity makes its allowed supports equivalent to H lying in the monomial space on K0.",
+      "coherent_bases": "At any generic cost weight, choose the largest tagged term c from the G_prime support in the first input copy and F_prime support in the second. Delete exactly c+(0,K0); every other input column is in the coherent basis.",
+      "basis_count": "At most |supp(F_prime)|+|supp(G_prime)| coherent bases, independent of multiplier-domain size. If K0 is empty there is one all-column basis.",
+      "projected_basis_polytope": "T-S0-|K0|*C, where T is the total input cost-vector sum, S0=sum_{h in K0}(0,h), and C is the tagged Newton polytope of (G_prime,-F_prime) including the two input offsets.",
+      "constructive_consequence": "Rank and the entire coherent-basis family are obtained from the erosion lattice set and the small tagged Newton polytope without minor enumeration.",
+      "limits": "Convex lattice-complete multiplier domains and untruncated products are required. Common-factor multiplication can cease to be injective and Newton products can change after quotient reduction.",
+      "priority": "Derived from the classical principal two-generator syzygy, Newton-product identity and complementary greedy criterion. Novelty has not been established; this is not an unrestricted advance."
     }
   }
 }
