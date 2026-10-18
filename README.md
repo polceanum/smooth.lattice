@@ -53,11 +53,11 @@ separation and lattice-counting results. New work must add something beyond
 that baseline. Exact research checks and witnesses are saved; novelty and prime
 distribution applications remain unestablished.
 
-The [refined research goal](results/research/quantitative_goal.json) requires a
-new quantitative theorem, a verified literature gap and a useful mathematical
-consequence before preparing a submission. The first candidate is to close or
-strictly narrow Wagner's published logarithmic gap in the number of
-three-dimensional corner cuts, the shapes underlying smooth exponent prefixes.
+The [completed quantitative goal](results/research/quantitative_goal.json)
+required a new quantitative theorem, a verified literature gap and a useful
+mathematical consequence. Its original target was Wagner's published
+logarithmic gap in the number of three-dimensional corner cuts, the shapes
+underlying smooth exponent prefixes.
 The existing proofs and closest primary results have been compared at the
 theorem level, including the full Vasiliev--Pavlov finite-ordering paper and
 Wagner's stronger face-flag bound. The final internal assessment supports a
@@ -87,6 +87,15 @@ The [acceptance audit](results/research/corner_cut_growth_audit.json) records
 the mathematical contribution and the reading scope of each comparison.
 The novelty position is a documented research assessment; no independent
 referee assessment or journal acceptance is claimed.
+
+The [next research plan](docs/interleaving_research.md#higher-impact-research-plan-universal-algebraic-complexity)
+aims to explain how algebraic relations change the number of monomial initial
+ideals of arbitrary finite polynomial algebras. The
+[new goal record](results/research/structural_complexity_goal.json) separates
+the full extremal ambition from the first literature and proof-feasibility
+gates. Success requires a uniform asymptotic advance and a mathematical
+consequence; examples or a roadmap alone do not complete it. This is a new
+research objective, not an additional theorem of the existing manuscript.
 
 The existing structural results are preserved as a separate note about the
 geometry and containment intervals of pyramidal partitions. Applying Edelman's

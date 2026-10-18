@@ -3481,3 +3481,163 @@ recorded in `results/research/quantitative_goal.json` and
 `results/research/corner_cut_growth_audit.json`. Their completion decision
 must be made only after inspecting the current reports, compiled artifact,
 source hashes and reviewed public Git state.
+
+## Higher-impact research plan: universal algebraic complexity
+
+### Ambition and precise question
+
+The next objective is a general theorem explaining how algebraic relations
+change the complexity of monomial orderings. The smooth-prefix theorem is
+the generic geometric starting point. The larger class consists of arbitrary
+finite-dimensional polynomial quotients, including ideals of distinct points
+and ideals with multiplicities. This is a change in the mathematical research
+scope requested by the user; the toolkit's fixed-prime rank/unrank task remains
+unchanged.
+
+For a field K and I contained in K[x_1,...,x_d], put
+
+    length(I) = dim_K(K[x_1,...,x_d]/I),
+    g(I) = #{in_prec(I) : prec is a global monomial order},
+    G_d(n) = max g(I), over all fields K and ideals of length n,
+    F_d(n) = max g(I(P)), over all fields and n distinct K-rational points.
+
+Keep G and F separate: F_d(n) <= G_d(n). This counts different monomial
+initial ideals, equivalently initial staircases in the state-polyhedron
+framework. It does not count the polynomials in a single basis or the time
+required to compute a basis. No generic maximality assumption is made.
+
+The long-term target is the sharp asymptotic growth of G_d(n) in each fixed
+dimension, together with a mechanism explaining when dependencies increase
+the generic count. Begin with d=3; use d=2 as a proof diagnostic. A theorem
+for every n-point configuration is also a substantial target, but its radical
+scope must be explicit rather than silently promoted to all colength-n ideals.
+
+The current manuscript and the inspected primary bounds give the starting
+comparison
+
+    C_d(n) <= F_d(n) <= G_d(n) = O_d(n^(2d(d-1)/(d+1))),
+    C_d(n) = Theta_d(n^(d-1)(log n)^(d-1)).
+
+Thus the currently checked three-variable range is
+
+    Omega(n^2(log n)^2) <= F_3(n) <= G_3(n) <= O(n^3).
+
+These are verified starting statements, not a certification that later work
+has not improved the unrestricted bounds. The first milestone must establish
+the strongest relevant primary baseline. The candidate equality G_d(n) of
+the same order as C_d(n) is a question to test, not an adopted conjecture.
+
+### Established framework and first comparison gate
+
+* [Onn--Sturmfels, Cutting corners (1999)](https://doi.org/10.1006/aama.1999.0645),
+  Corollary 5.4 and Proposition 5.6, define the point-configuration problem
+  and already show that generic configurations are not exact maximizers:
+  C_2(7)=8 whereas F_2(7)=10. The previous exact reproduction is a mandatory
+  negative control for any transfer argument.
+* [Babson--Onn--Thomas (2003), inspected preprint](https://arxiv.org/pdf/math/0207135),
+  Corollary 2.5, extends the displayed upper exponent to all colength-n
+  ideals. Theorem 3.5 supplies a common Hilbert-zonotope refinement;
+  Theorem 4.2 supplies a fixed-dimension polynomial-time algorithm.
+  The projected-matroid and greedy-basis framework is already present.
+  Rephrasing it, or providing another universal list without improving a
+  proved bound, is not the proposed contribution.
+* [Zhang--Stigler, inspected v1](https://arxiv.org/pdf/1907.01080v1),
+  Section 5, supplies a finite-field specialization. Its parameters and the
+  later published theorem must be compared without identifying fixed field
+  size with the maximum over all fields. The earlier pass found that the
+  v1 expression recovers the old exponent when p>n.
+* [Dimitrova--He--Robbiano--Stigler, inspected v2](https://arxiv.org/pdf/1704.03680v2),
+  Theorem 4.8 and Corollary 4.11, give the grid-complement invariance.
+  Taking a complement inside a grid cannot amplify the basis count.
+
+The new comparison must trace later uses of the extremal bound and its
+proof ingredients, including lattice-polytope vertex bounds, state polytopes,
+universal monomial-order lists, and algorithms for enumerating Groebner fans.
+For each potentially stronger result record its exact parameter, field,
+radicality, dimension and input model. Inspect the actual theorem and relevant
+proof. Search snippets and failure to find a paper do not establish novelty.
+The current comparison is partial; no new open-problem claim is certified here.
+
+### Proof programme
+
+1. **Locate the loss in the general bound.** Reconstruct the established
+   state-polyhedron upper proof and determine which lattice-polytope estimates
+   ignore constraints imposed by multiplication in a finite algebra. Record a
+   specific inequality that a new lemma would have to improve. Do not assume
+   the generic corner-cut fan refines the fan of every ideal; the known
+   seven-point example rules this out.
+
+2. **Use a common exact model for dependencies.** Represent a length-n
+   quotient by commuting multiplication matrices M_1,...,M_d and the cyclic
+   vector representing 1. Residues of monomials are M_1^a_1...M_d^a_d v.
+   Greedy linear independence under a monomial order recovers the standard
+   monomial basis. This is established finite-algebra machinery, not a new
+   lemma. Any proposed lower-bound construction must actually define an
+   algebra: check commutation, cyclicity, dimension, and the claimed radical
+   or point-configuration properties. Arbitrary vector matroids cannot be
+   silently substituted for realizable polynomial quotients.
+
+3. **Test two proof routes before expanding computation.** For an upper
+   bound, try to charge extra state vertices or subdivisions to minimal
+   monomial-residue dependencies and use their multiplication constraints to
+   improve the general count. Any structural parameter must be explicitly
+   defined independently of g(I). For a lower bound, seek a formula for an
+   infinite family whose dependencies create provably many distinct positive
+   normal cones, with exact witnesses and control of duplicate staircases.
+   Tensor, union, deformation or complement operations need a proved
+   fan/count transformation before being treated as amplification mechanisms.
+
+4. **Demand an asymptotic theorem for a broad class.** The leading target
+   is a sharp order for G_3(n), followed by general fixed d if the mechanism
+   supports it. An intermediate success must substantially advance the
+   strongest checked bound for G_3 or all-point F_3. A power improvement
+   O(n^(3-epsilon)), epsilon>0, over the currently checked universal upper
+   bound is an example, conditional on the literature gate. An explicit
+   family growing as Omega(n^(2+epsilon)) would similarly separate it from
+   the current generic order, but must also improve the strongest relevant
+   published lower bound. A theorem giving sharp growth with the same
+   exponent and the correct logarithms is another valid major milestone.
+   Small examples, an extra finite-field case, or a renamed known result do
+   not meet this gate.
+
+5. **Establish a consequence beyond recounting the theorem.** Seek an
+   improved bound or a proved limitation for universal order selection or
+   Groebner-fan enumeration. A smaller number of outputs alone does not give
+   a faster algorithm: such a claim requires an enumeration procedure, an
+   input/output model and a complete complexity analysis. If an algorithmic
+   consequence does not follow, identify a separate precise geometric or
+   algebraic consequence. Do not advertise an implication for prime
+   distribution or fixed-prime random access without an arithmetic theorem.
+
+6. **Prepare a separate honest manuscript only after these gates.** Supply
+   complete uniform proofs, exact prior-art comparisons, independently
+   implemented finite checks and certificates, and explicit unresolved
+   points. Preserve the current corner-cut manuscript as its own result.
+   Internal assessment is distinct from independent refereeing or acceptance.
+   No correspondence, messages or submission is authorized.
+
+### Bounded first milestone and decision rule
+
+The first milestone consists of three recorded passes: a theorem-level
+baseline audit, an attempted upper-bound lemma, and an attempted infinite
+lower-bound construction. Each proof attempt must state its hypotheses and
+the precise obstacle or falsifying witness if it fails. The existing
+seven-point split and grid-complement theorem must be respected.
+
+After those passes, record whether there is a viable uniform mechanism,
+whether the target is already settled, or which specific obstruction remains.
+Do not expand searches in n, characteristic or dimension without a conjecture
+and a discriminating test. A failed attempt is not evidence that the full
+problem is intractable. An inconclusive feasibility report does not complete
+the theorem goal; it triggers an explicit assessment and a proposed redirect.
+
+The arithmetic route remains a possible later redirect, not simultaneous
+open-ended work. It would first need a precise fixed-prime theorem exceeding
+the existing log-separation plus fixed-dimension lattice-counting baseline,
+with a concrete rank/unrank consequence. Merely changing prime bases, adding
+cycle examples or demonstrating fixed-dimension tractability is insufficient.
+
+The plan is saved in `results/research/structural_complexity_goal.json`.
+Its status records research progress, not an assertion of mathematical impact.
+This planning addition changes no proof or executable input of the completed
+manuscript; earlier computational reports retain their original source hashes.

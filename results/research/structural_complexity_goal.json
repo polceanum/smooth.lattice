@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-10-18",
+  "title": "Universal algebraic complexity beyond generic corner cuts",
+  "status": "active_primary_baseline_audit",
+  "objective": "Prove a new structural theorem determining or substantially narrowing the worst-case asymptotic number of monomial initial ideals of finite polynomial algebras, starting with three variables and seeking a mechanism valid in every fixed dimension. Establish the strongest relevant primary baseline first. Success requires a complete uniform proof of sharp growth or a substantial asymptotic advance over that baseline for all colength-n ideals or all n-point configurations, a rigorous further algebraic, geometric or enumeration consequence, reproducible exact certificates and an honestly scoped manuscript. Examples, reformulations, already known corollaries and a plan alone do not complete this goal.",
+  "plan": "docs/interleaving_research.md#higher-impact-research-plan-universal-algebraic-complexity",
+  "relationship_to_previous_goal": "A new research objective. The completed corner-cut counting manuscript and its acceptance records remain separate and unchanged in mathematical content.",
+  "aspirational_endpoint": "Determine the sharp asymptotic order of G_d(n) for every fixed dimension and explain quantitatively when algebraic dependencies increase the generic corner-cut count.",
+  "parameters": {
+    "g_I": "Number of distinct monomial initial ideals of I under global monomial orders.",
+    "G_d_n": "Maximum g(I) over all fields K and ideals I in K[x_1,...,x_d] with dim_K(K[x]/I)=n.",
+    "F_d_n": "Maximum g(I(P)) over all fields and n distinct K-rational points in d-dimensional affine space.",
+    "distinction": "F_d(n) <= G_d(n). Do not transfer a point-ideal result to nonradical ideals without proof.",
+    "first_dimension": 3,
+    "diagnostic_dimension": 2,
+    "not_measured": [
+      "Number of polynomials in one Groebner basis",
+      "Runtime of computing a basis without an explicit algorithm and input model"
+    ]
+  },
+  "starting_bounds": {
+    "generic": "The existing manuscript proves C_d(n)=Theta_d(n^(d-1)(log n)^(d-1)).",
+    "general_inspected_upper": "Babson--Onn--Thomas Corollary 2.5: G_d(n)=O_d(n^(2d(d-1)/(d+1))).",
+    "three_variables": "Omega(n^2(log n)^2) <= F_3(n) <= G_3(n) <= O(n^3).",
+    "strongest_current_bounds_verified": false,
+    "do_not_assume": "G_d(n) has the same asymptotic order as C_d(n)."
+  },
+  "milestones": [
+    {
+      "id": "primary_baseline",
+      "status": "initial_sources_rechecked_full_later_bound_audit_pending",
+      "deliverable": "A theorem-level primary-source comparison identifying the best relevant unrestricted and restricted bounds, exact hypotheses, input models and still viable targets."
+    },
+    {
+      "id": "dependency_mechanism",
+      "status": "not_started",
+      "deliverable": "A precise lemma about multiplication-compatible residue dependencies or state-polyhedron geometry, with its proof attempt and adversarial controls."
+    },
+    {
+      "id": "infinite_lower_family",
+      "status": "not_started",
+      "deliverable": "A symbolic realizable family and count proof, or a documented obstruction to the tested construction; finite examples alone are insufficient."
+    },
+    {
+      "id": "uniform_asymptotic_theorem",
+      "status": "not_started",
+      "deliverable": "Sharp growth or a substantial advance over the strongest checked asymptotic bound for G_3 or all-point F_3, with explicit scope and a route to general fixed dimension where justified."
+    },
+    {
+      "id": "further_consequence",
+      "status": "not_started",
+      "deliverable": "A proved algebraic, geometric or enumeration consequence beyond restating the count; any speed claim needs a full algorithmic complexity argument."
+    },
+    {
+      "id": "proof_priority_artifact",
+      "status": "not_started",
+      "deliverable": "Complete proof, precise prior-art assessment, independently checked exact certificates and a separate honest manuscript suitable for the user's later review."
+    }
+  ],
+  "initial_feasibility_gate": {
+    "passes": [
+      "Complete primary-baseline audit",
+      "Attempt a uniform dependency-sensitive upper-bound lemma",
+      "Attempt an infinite asymptotically stronger lower-bound family"
+    ],
+    "required_controls": [
+      "Onn--Sturmfels: C_2(7)=8<F_2(7)=10; the generic fan is not a universal refinement.",
+      "Grid complements preserve the Groebner fan and cannot amplify the basis count.",
+      "Every quotient model must satisfy commutation, cyclicity and the claimed length; arbitrary matroid data are insufficient.",
+      "Finite-field and characteristic-zero claims require their own hypotheses and cannot be interchanged."
+    ],
+    "after_passes": "Record a viable uniform mechanism, an existing theorem settling the target, or a precise remaining obstruction. An inconclusive report prompts a reasoned redirect and does not complete the theorem goal.",
+    "search_expansion_rule": "Increase n, characteristic or dimension only to test an explicit conjecture or discriminate between stated mechanisms."
+  },
+  "acceptance_criteria": [
+    "A theorem for a broad class, not only isolated configurations or a bounded enumeration.",
+    "Sharp asymptotics or a substantial improvement over the strongest relevant primary bound established by the first milestone.",
+    "A reusable structural proof explaining the effect of algebraic dependencies.",
+    "A rigorously established further consequence with its mathematical and algorithmic scope separated.",
+    "Exact reproducible certificates supporting, rather than replacing, a uniform proof.",
+    "An honest comparison and manuscript; impact, independent verification and journal acceptance are not presumed."
+  ],
+  "primary_starting_sources": [
+    {
+      "source": "https://doi.org/10.1006/aama.1999.0645",
+      "authors": "Onn and Sturmfels",
+      "relevant_statements": "Corollary 5.4 and Proposition 5.6",
+      "role": "Point-configuration upper bound and known nongeneric counterexample."
+    },
+    {
+      "source": "https://arxiv.org/pdf/math/0207135",
+      "doi": "https://doi.org/10.1016/S0196-8858(02)00509-2",
+      "authors": "Babson, Onn and Thomas",
+      "relevant_statements": "Corollary 2.5; Theorems 3.5 and 4.2",
+      "role": "General colength bound, common zonotope refinement and existing polynomial-time algorithm. Statements rechecked when setting this plan; earlier proof-reading scope remains in the research note."
+    },
+    {
+      "source": "https://arxiv.org/pdf/1907.01080v1",
+      "authors": "Zhang and Stigler",
+      "relevant_statements": "Section 5, Theorem 4 and equations (8)--(13)",
+      "role": "Finite-field specialization; later full-text retrieval remains incomplete and is not represented as inspected."
+    },
+    {
+      "source": "https://arxiv.org/pdf/1704.03680v2",
+      "authors": "Dimitrova, He, Robbiano and Stigler",
+      "relevant_statements": "Theorem 4.8 and Corollary 4.11",
+      "role": "Known grid-complement invariance; rules out a naive amplification route."
+    }
+  ],
+  "deferred_arithmetic_route": "Reopen only with a precise theorem beyond the existing log-separation plus fixed-dimension counting baseline and a concrete fixed-prime rank/unrank consequence. It is not simultaneous open-ended work.",
+  "policies": {
+    "outbound_messages": "Never send emails, author queries, chat messages, messages to other tasks or external submissions.",
+    "preserve": "Existing smooth-number CLI and kernels, the completed corner-cut manuscript and its historical acceptance audit.",
+    "public_repository": "Review an explicit file list before committing or pushing to main; exclude correspondence, credentials, local app identifiers and private metadata.",
+    "prior_art": "No novelty inference from an unsuccessful search, a reformulation or a difference in terminology.",
+    "completion": "Do not mark complete for creating this plan, running examples or writing an inconclusive feasibility report."
+  },
+  "goal_complete": false,
+  "new_theorem_proved": false,
+  "novelty_established": false,
+  "independent_referee_assessment": false,
+  "journal_submission_sent": false
+}
