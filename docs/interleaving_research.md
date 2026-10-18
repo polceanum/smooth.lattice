@@ -10499,3 +10499,398 @@ additive-binding and channel-gate counterexamples, and 57 exact product-
 key top-k comparisons including ties. These computations check concrete
 certificates; the uniform claims rest on the arguments and cited theorems
 above. They do not test model quality or establish novelty.
+
+### Associative-memory goal: first proof iteration
+
+The user has explicitly requested a new active goal: obtain a substantive
+provable advantage in total storage, active read/write cost or retention,
+with high-dimensional queries and cross-coordinate binding. The complete
+criteria and current milestones are in
+`results/research/associative_memory_goal.json`. This supersedes the old
+blocked algebraic-complexity objective as the active task; it does not
+claim that the old objective was achieved. Previous manuscripts and
+results remain intact. No new neural training has been run.
+
+The first iteration establishes the model and three rigorous baselines.
+They are useful proof tools and feasibility tests, not a completed novel
+theorem or a claim of superiority over existing methods.
+
+#### Model and information accounting
+
+Fix n distinguishable keys. A scalar value at each key can be replaced
+independently; an exact overwrite changes one requested value and leaves
+every other stored-key read unchanged. For an alphabet of size a, a
+zero-error memory needs at least n*log2(a) mutable bits: the a^n possible
+latest-value vectors must produce different distinguishable states.
+This elementary bound includes any mutable parameter/index storage. It
+does not apply unchanged to distributional, lossy or correlated values.
+
+For the initial algebraic model, stored state s has m scalar cells and
+fixed-key reads are Fs, where F is an n-by-m real feature matrix. The
+feature encoder and its parameters are fixed during an overwrite. Cost
+t means the number of changed scalar cells, a lower bound on physical
+write access, rather than a claim about total running time. Values with
+several independent components require corresponding storage and work.
+Computing an address, constructing a feature, reading the old value and
+updating metadata must also be charged. Adaptive/nonlinear read schemes
+or changes to the encoder need separate analysis.
+
+#### A sharp locality/interference identity
+
+Choose a target key i and a set T of cells that an overwrite may change.
+Let C=F[:,T], let P_T be the orthogonal projector onto range(C), and set
+ell_i(T)=(P_T)[i,i]. Among all such changes producing a unit change at
+key i, the minimum total squared change at the other keys is exactly
+
+    (1-ell_i(T))/ell_i(T),          if ell_i(T)>0.
+
+If ell_i(T)=0, a unit target change is impossible. To prove the formula,
+write the read change as r in range(C), with r_i=1. Then
+
+    1 = <P_T e_i,r> <= sqrt(ell_i(T))*||r||_2.
+
+Thus sum_{j!=i} r_j^2=||r||_2^2-1 is at least 1/ell_i(T)-1. Equality
+is attained by r=P_T e_i/ell_i(T). A target change delta multiplies the
+optimal interference energy by delta^2. Minimizing over allowed sets
+|T|<=t equivalently maximizes this leverage score. This is an elementary
+projection argument using classical statistical leverage, not a newly
+introduced invariant. See the projection-diagonal definition in
+[Drineas--Mahoney, Section 3](https://arxiv.org/html/1005.3097v1#S3), and
+the related underconstrained-regression discussion in
+[Drineas et al., Section 6.2](https://arxiv.org/html/1109.3843v2#S6.SS2).
+The definition and relevant displayed identities were inspected; a full
+audit of their randomized algorithms is not claimed.
+
+One exact consequence is particularly restrictive. Suppose deleting
+any row of F leaves every set of at most n-1 columns independent. Then
+every nonzero exact isolated overwrite changes at least n cells,
+irrespective of how many redundant columns m>=n are available. Indeed,
+for a smaller support T the unchanged reads require
+
+    F[all rows except i,T]*delta_s[T] = 0.
+
+Column independence forces delta_s[T]=0, contradicting the requested
+change. The update algorithm itself can be nonlinear or depend on the
+current state; its before/after difference still obeys this equation.
+The hypothesis holds for generic evaluations of distinct monomials on
+an open domain: each relevant minor is a nonzero polynomial in the
+evaluation points, and finitely many such nonvanishing conditions can
+hold simultaneously. It is stronger than merely having full row rank.
+Special sparse address matrices need not satisfy it.
+
+An exact approximate-retention frontier is available for a Hadamard
+read matrix H of order n. Its columns are orthogonal with norm sqrt(n),
+so every t-column projector has ell_i(T)=t/n for every i. Hence
+
+    minimum off-target squared interference = n/t - 1.
+
+This is attained by delta_s[j]=H[i,j]/t on the selected columns.
+Orthogonal rows alone therefore do not make a sparse coordinate update
+safe. Changing to a private-address basis can eliminate this cost, but
+the computation/storage needed for the resulting query representation
+must be included. Neither statement lower-bounds all memory algorithms.
+
+In particular, storing a linear encoding By of latest values and reading
+with F gives exact stored-key retention precisely when FB=I_n. More
+general specified linear queries W require W=RB. Column sparsity of B
+is update locality and row sparsity of R is query locality. This
+correspondence already belongs to dynamic linear-data-structure and
+linear-circuit research; the definition and proof in
+[Brody--Larsen, Section 3](https://arxiv.org/html/1208.2846v2#S3)
+were inspected. That preprint uses different lemma numbering from its
+journal version. It would be incorrect to claim a new theorem merely
+by translating this correspondence into neural-memory terminology.
+
+#### A constructive baseline with horizon-independent retention
+
+Fixed sparse features also give a positive control. Let G=FF^T and
+choose alpha>0 such that
+
+    A=I-alpha*G,       ||A||_infinity = rho < 1.
+
+For integer L>=0 define
+
+    P_L=alpha*sum_{j=0}^L A^j,       B_L=F^T*P_L.
+
+Store the current latest-value matrix V and s=B_L*V. An overwrite
+V_i<-v changes s by B_L[:,i]*(v-V_i). This preserves the encoding
+identity exactly. Since G*P_L=I-A^(L+1), the stored-key reads obey
+
+    F*s - V = -A^(L+1)*V,
+    maximum absolute entry error <= rho^(L+1)*max_abs_entry(V).
+
+The bound depends on the current value range, not the number or order
+of preceding overwrites. This distinction requires storing the latest
+V_i separately: subtracting an approximate read instead would not
+maintain the stated identity. Existence of alpha is a genuine hypothesis;
+the result does not assert contraction for arbitrary learned features.
+
+This construction also specifies a richer query function. For any query
+feature z, compare z^T*s with the exact minimum-norm kernel interpolant
+z^T*F^T*G^(-1)*V. The difference is at most
+
+    ||z^T*F^T||_1 * alpha*rho^(L+1)/(1-rho) * max_abs_entry(V)
+
+in each value component. No reduction of z to two coordinates is used,
+but the bound alone does not construct a suitable high-dimensional
+encoder, establish semantic robustness, or support arbitrary binding
+tasks. Those requirements remain part of the goal.
+
+Here is the cost ledger. Suppose every stored-key feature has at most k
+nonzeros, and the off-diagonal support graph of G has maximum degree
+Delta. Let b_L bound the number of keys within graph distance L of any
+key. A column of P_L is supported in this ball, so a column of B_L has
+at most c=min(m,k*b_L) nonzeros. With an explicitly stored sparse B_L:
+
+- a replacement touches at most c state rows plus the latest-value row;
+- a query with k_q nonzero features reads k_q state rows, after paying
+  the encoder and routing cost;
+- state and latest-value storage together use (m+n)*value_width scalars;
+- coefficient/index storage can use n*c entries, in addition to keys,
+  encoder parameters, F/graph data and any query-routing tables;
+- given the sparse Gram graph, a direct column construction takes at
+  most O(n*L*(Delta+1)*b_L+n*k*b_L) scalar operations, with an additional
+  O(n*k) term for L=0. Forming/validating the Gram graph is separate.
+
+For a general bounded-degree graph, b_L can grow exponentially with L.
+The cost does not disappear because the coefficients are fixed. Exact
+matrix operations over arbitrary reals are also not a bit-complexity
+or hardware guarantee.
+
+Finite precision can be made explicit. Round nonzero entries of B_L to
+dyadic coefficients with absolute error at most eta, retaining zero
+entries. Let h<=n bound the number of stored coefficients in a state
+row. Then the retention bound becomes
+
+    [rho^(L+1) + ||F||_infinity*h*eta] * max_abs_entry(V).
+
+Represent bounded dyadic values by integers, and maintain the resulting
+integer state sums exactly. If their integer magnitudes are at most R
+and coefficient numerators at most C, each accumulator is bounded by
+n*C*R at every time. Signed word length O(log(n*C*R+1)) therefore
+suffices independently of the overwrite horizon. Every coefficient,
+value and accumulator bit is charged. Repeated floating-point additions
+without this or another error-control mechanism do not inherit the
+horizon-independent bound automatically.
+
+This baseline follows geometric-series inversion and fixed linear
+encoding. Sparse inverse locality and sparse matrix-function
+approximation are established subjects, including
+[Demko--Moss--Smith](https://www.ams.org/mcom/1984-43-168/S0025-5718-1984-0758197-9/S0025-5718-1984-0758197-9.pdf)
+and [Benzi--Razouk](https://etna.ricam.oeaw.ac.at/vol.28.2007-2008/pp16-39.dir/pp16-39.pdf).
+Benzi--Razouk's Theorem 3.4 and its proof were inspected in the full
+paper, including graph-distance support of matrix powers and the
+eigenvector-conditioning factor; Section 4.1 gives polynomial-approximation
+algorithms. This establishes a direct classical baseline for the locality
+mechanism. Demko--Moss--Smith was checked at searchable-statement level;
+its full proof remains to audit. Our elementary proof is self-contained,
+but establishes neither priority nor an advantage over those methods.
+
+#### Literature boundary and next proof test
+
+Regression-based retention is not new. The model and online inverse
+updates in [Flexible Kernel Memory](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0010955),
+Sections 2.1/2.4, already use kernel interpolation. Formula images were
+not independently transcribed, so this is not a full proof audit.
+[Kalman Delta Networks](https://arxiv.org/html/2609.07816v1) and
+[Memory by Design](https://arxiv.org/html/2605.31163v1) explicitly track
+memory uncertainty or approximate it. Their relevant model definitions
+and covariance recurrences were inspected; experimental claims are not
+adopted. Adding a covariance state without a new cost/retention guarantee
+does not establish a contribution.
+
+Two further primary sources identify strong comparison targets.
+[Adaptive exact graphical inference](https://jmlr.org/papers/v12/sumer11a.html)
+was inspected beyond its abstract: Section 1.2 and Theorems 4/5 give
+preprocessing O(n*d^(3w)), marginal queries O(d^(2w)*log n), and a
+single factor/model update O(d^(3w)*log n), for finite domain size d
+and the specified elimination width w. These are not dimension-free
+bounds, and a continuous Gaussian specialization is not established by
+that statement alone. The relevant query/update proof arguments were
+inspected; the entire paper was not independently re-proved.
+[Online structured kernel interpolation](https://proceedings.mlr.press/v130/stanton21a.html)
+was checked at primary-abstract level. Its inducing-grid, precision and
+approximation costs remain to audit before claiming a gap.
+
+A [preliminary sparse-factorization note](https://lucablanchi.it/presentation-theory/local-linear-presentations-sparse-factorization)
+also explicitly states the workload factorization correspondence. It
+labels itself AI-assisted and not fully verified. Its elementary overlap
+is a priority flag; it is not an authoritative theorem audit or a reliable
+basis for claiming an open problem.
+
+The next constructive test is insertion/deletion or motion of keys,
+because the fixed-key baseline leaves a significant issue unresolved:
+changing F changes G and the entire encoding B_L. Reusing the old
+coefficients silently invalidates the bound. We will derive the affected
+supports and residual through the inverse/resolvent identity, charge
+updates to both values and coefficient metadata, and compare with dynamic
+inference and online kernel-regression guarantees. A new result must
+improve an applicable published bound for a clearly specified richer
+query workload; it cannot simply outperform a dense implementation or
+ordinary delta writes. Exact-key dictionary lookup remains a baseline
+where it satisfies the whole query specification.
+
+The goal remains active. None of the bounds in this first iteration is
+being presented as a publishable novelty or as completing it. No neural
+experiment should be launched from these controls alone.
+
+Run the exact certificates with
+
+    python3 scripts/run_retention_tradeoff_checks.py
+
+The report is `results/research/retention_tradeoff_checks.json`. It checks
+row-deleted monomial evaluation minors, sharp constrained-leverage
+optimizers, Hadamard support frontiers and local polynomial encodings.
+The fixed-feature examples use F=I+(1/16)*adjacency(cycle), without private
+feature coordinates. They independently compare sparse replacement
+updates with the full current-value encoding and include dyadic integer
+accumulator controls. Finite streams and sampled assignments verify the
+implementation; the horizon-uniform statement follows from the encoding
+identity, not from extrapolating a tested stream length.
+
+#### Second proof pass: local repair when keys change
+
+The fixed-key construction extends algebraically to local key edits.
+This is a candidate comparison baseline, with novelty unresolved; it is
+not an established improvement over dynamic kernel/inference algorithms.
+Keep alpha and L fixed in advance, and suppose every permitted feature
+matrix F_t satisfies the same contraction bound rho<1. A local edit
+changes one row i of F. Then G'=F'F'^T differs from G only in row/column
+i. Let H be the union of the old and new off-diagonal Gram support
+graphs, and C the keys within H-distance L of i.
+
+For A=I-alpha*G and A'=I-alpha*G', the noncommutative identity
+
+    A'^j-A^j = sum_{r=0}^{j-1} A'^r*(A'-A)*A^(j-1-r)
+
+shows that every changed column of P_L is indexed in C. In each term,
+the changed entry lies at i or an incident Gram edge, and no product
+can reach a column farther than j<=L from i. Moreover,
+
+    B'_L-B_L = (F'-F)^T*P'_L + F^T*(P'_L-P_L).
+
+The first term also has columns only in C, since the changed feature row
+is i. Hence B'_L[:,j]=B_L[:,j] whenever j is outside C. Recompute the
+columns in C using their new sparse polynomial expansions. With old
+values V and a concurrent value change delta at slot i, update
+
+    s <- s + sum_{j in C}(B'_L[:,j]-B_L[:,j])*V_j
+             + B'_L[:,i]*delta.
+
+This gives s=B'_L*V' exactly after the edit. The current retention bound
+therefore remains rho^(L+1)*max_abs_entry(V') for arbitrarily many such
+edits. Quantizing each current encoding column to a canonical dyadic
+value and updating its integer contribution gives the same fixed
+coefficient-error bound as before, without history-dependent drift.
+One must change the coefficients as well as the value state: a local
+residual update that silently leaves B_L unchanged does not prove this.
+
+To include insertions and deletions, reserve a maximum of N slots and
+mark unused slots inactive. Set their feature rows and latest values to
+zero, and use the auxiliary matrix
+
+    G_hat=F*F^T+alpha^(-1)*diag(inactive slots).
+
+Inactive rows are isolated, their A entries are zero, and their encoding
+columns F^T*P_L are zero. They require occupancy metadata rather than
+physical feature coordinates. On active rows, G_hat equals the active
+Gram matrix and the same retention identity applies. Activating or
+deactivating a slot is still a single star-supported matrix edit. This
+is a bounded-capacity construction; resizing is not free.
+
+If the union overlap graph has L-balls of at most b_L vertices and every
+feature row has at most k entries, a direct repair recomputes at most
+b_L encoding columns. A conservative scalar-work bound is
+
+    O(b_L^2*[L*(Delta+1)+k+k*value_width])
+
+plus finding and updating the affected Gram entries, feature incidence
+lists and routing metadata. Here Delta bounds the union graph degree.
+An inverted feature index with at most h keys per coordinate can find
+the changed inner products in O(k*h) scalar operations; maintaining
+that index, the Gram graph and all sparse encoding columns uses
+additional storage. Large h is not excluded just by a small Gram degree,
+because inner-product cancellations can hide shared coordinates.
+All these quantities must be charged. The construction visits old/new
+graph neighborhoods and compares coefficient changes; it does not prove
+that encoder evaluation or graph discovery is cheap for arbitrary keys.
+
+The fixed alpha is essential. Retuning alpha after each key change can
+alter all diagonal entries of A and invalidate this locality argument.
+Insertion requests violating the uniform contraction or support bounds
+are outside the guarantee. Global changes to encoder parameters are
+also outside the one-row edit model.
+
+The exact script now checks this extension against an independently
+recomputed full encoding, including inserts, deletes, feature replacements,
+concurrent value changes and fixed-point state updates. It uses sparse
+selected-column polynomial expansion for the local correction, with a
+dense Gram/full-encoding oracle for verification. It is not a runtime
+implementation or performance benchmark.
+
+The literature gate has also become more specific.
+[Dynamic Kernel Graph Sparsifiers](https://arxiv.org/html/2211.14825v2)
+already studies moving points, dynamic kernel graphs and sketches of
+Laplacian solutions. Its introductory statements and the displayed
+Theorems 2.1--2.4/G.1/I.5 were inspected. Its Laplacian/sketch output,
+error norm, kernel regularity, dimension/aspect-ratio assumptions and
+adversary model differ from the explicit per-key maximum-error guarantee
+above; a full proof comparison is still required. A low-dimensional
+sketch of a solution must not silently be treated as individually readable
+memory values. This review does not assert a flaw or an improvement over
+that work.
+
+The next decisive question is whether a useful high-dimensional binding
+encoder can satisfy the locality/separation assumptions with a total
+storage and precision cost that improves an applicable prior bound.
+The polynomial identity alone is elementary and dynamic graph-filter
+maintenance is an existing subject. The example cycle features are
+controls, not evidence of a novel architecture. The unresolved work is
+the strongest-prior-art comparison and a construction/separation with
+meaningful query robustness, not a larger sweep of these examples.
+
+#### Generality check: a concrete binding workload and its strong baselines
+
+One sufficiently explicit workload is a matrix of independently
+replaceable bindings V_ij with bounded values, addressed by two vector
+queries u and v. Asking for u^T*V*v preserves interactions between the
+two index sets while allowing arbitrary, full-rank value tables. The
+two query parts can each have many coordinates; they are not two scalar
+latents. All table entries, query construction and index storage count.
+
+Requiring fast answers for every *unnormalized* Boolean u,v at absolute
+error strictly below 1/2 already contains Boolean vector-matrix-vector
+multiplication: on Boolean V, threshold the integer-valued arithmetic
+answer at 1/2 to decide whether any requested binding is present.
+[Henzinger et al., Theorem 2.7/Corollary 2.8](https://arxiv.org/html/1511.06773v1#S2.SS2)
+place this problem behind the OMv conjecture even with polynomial
+preprocessing. The statements and reduction argument were inspected.
+Thus an unrestricted truly subquadratic guarantee here would be a major
+conditional-complexity breakthrough. This is a known conditional
+barrier, not an unconditional impossibility theorem or a new result.
+
+Normalization and approximation change the baseline substantially.
+For nonnegative probability vectors u,v and scalar values in [-1,1],
+draw independent I~u,J~v and average s samples of V_IJ. This estimates
+u^T*V*v with error at most epsilon except with probability delta when
+
+    s >= 2*epsilon^(-2)*log(2/delta).
+
+This is the standard bounded-variable concentration argument. A current
+table supports exact latest-value replacement in one cell; one-hot
+queries also read their value exactly. General binding queries use s
+table probes after paying to construct/sample the two distributions.
+For dense input vectors, constructing the samplers generally costs at
+least linear work in their lengths. The independent table still costs
+all its stored bits. Fresh randomness gives a conditional per-query
+guarantee under adaptive past updates; a simultaneous guarantee for H
+queries needs its own failure accounting, for example delta/H per query.
+It is not an unlimited-horizon deterministic retention theorem.
+
+This is an existing Monte Carlo baseline, not a proposed contribution.
+A constant-cost approximate binding query by itself would not beat it.
+Our next comparison must distinguish exact stored associations, robust
+mixture queries, deterministic versus probabilistic error, and the costs
+of encoding/routing. We should seek a useful improvement to that complete
+tradeoff while avoiding both an OMv-hard unrestricted promise and a
+repackaging of ordinary lookup or sampling.

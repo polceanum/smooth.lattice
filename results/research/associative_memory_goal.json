@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "title": "Associative memory: total storage, active access and retention",
+  "status": "active",
+  "objective": "Prove a new, useful theorem giving an associative-memory architecture a quantified advantage in total memory, active read/write cost or retention over the strongest applicable published methods, while preserving high-dimensional queries and cross-coordinate binding.",
+  "relationship_to_previous_goal": "This explicitly requested goal supersedes the blocked algebraic-complexity objective as the active research task. Historical records, manuscripts and priority uncertainties are preserved without claiming that the old objective was achieved.",
+  "plan": [
+    {
+      "stage": 1,
+      "task": "Specify fixed-feature overwrite and richer-query semantics; prove access/retention accounting lemmas; audit exact-regression and dynamic-linear-data-structure prior art.",
+      "status": "basic_model_and_baseline_lemmas_checked_primary_audit_continues"
+    },
+    {
+      "stage": 2,
+      "task": "Audit primary theorems for sparse inverse/local correction and dynamic graphical inference; classify what is already a known corollary.",
+      "status": "in_progress"
+    },
+    {
+      "stage": 3,
+      "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
+      "status": "binding_workload_defined_new_construction_or_separation_pending"
+    },
+    {
+      "stage": 4,
+      "task": "Derive a matching obstruction or a substantive separation against the strongest applicable published guarantee, including preprocessing, metadata, precision and encoder costs.",
+      "status": "pending"
+    },
+    {
+      "stage": 5,
+      "task": "Produce a complete uniform proof and independent exact certificates; audit novelty and all boundary cases before training.",
+      "status": "pending"
+    },
+    {
+      "stage": 6,
+      "task": "Prepare an honestly scoped manuscript only if novelty and impact gates pass. Use model experiments subsequently to assess the proven practical regime.",
+      "status": "pending"
+    }
+  ],
+  "acceptance_criteria": [
+    "A complete uniform proof with explicit hypotheses and a substantive new guarantee beyond the strongest primary baseline.",
+    "High-dimensional queries and useful cross-coordinate binding; no silent two-scalar bottleneck or arbitrary-label low-rank assumption.",
+    "All stored values, keys, codebooks, index/metadata, parameters, precision and preprocessing are charged.",
+    "Overwrite, forgetting, query robustness and horizon assumptions are explicit; no unlimited-precision capacity argument.",
+    "Exact reproducible certificates support the proof; numerical agreement alone does not establish it.",
+    "A defensible novelty boundary and a useful consequence support an honest paper; known reformulations and baseline separations alone do not complete the goal."
+  ],
+  "policies": {
+    "no_outbound_messages": true,
+    "no_author_queries_or_submissions": true,
+    "no_further_neural_training_before_theorem_gate": true,
+    "preserve_prior_research_and_benchmark_artifacts": true,
+    "public_changes_require_explicit_file_privacy_review": true
+  },
+  "goal_complete": false,
+  "new_theorem_beyond_prior_art_proved": false,
+  "novelty_established": false,
+  "publication_ready": false,
+  "first_iteration": {
+    "record": "docs/interleaving_research.md, Associative-memory goal: first proof iteration",
+    "certificate_script": "scripts/run_retention_tradeoff_checks.py",
+    "certificate_report": "results/research/retention_tradeoff_checks.json",
+    "proved_baselines": [
+      "At least n*log2(alphabet_size) bits are needed to retain n independently replaceable values at known keys.",
+      "For fixed linear reads F and write support T, optimal off-target squared interference for a unit target change is (1-ell_i(T))/ell_i(T), with ell a projection leverage score.",
+      "If every row deletion of F has all column sets of size at most n-1 independent, an exact isolated overwrite needs at least n changed cells even with redundant state width.",
+      "An n-by-n Hadamard read basis has the sharp frontier n/t-1 for t changed cells.",
+      "For fixed sparse features with ||I-alpha*F*F^T||_infinity=rho<1, local polynomial correction gives uniform-in-horizon retention error at most rho^(L+1) times the bound on latest values. Metadata and the latest-value cache are charged.",
+      "Dyadic coefficient rounding plus bounded exact integer accumulators adds a fixed coefficient-error term without horizon-growing accumulation drift.",
+      "With fixed alpha and uniformly contracting active Gram matrices, a one-row key edit changes only encoding columns in the radius-L ball of the union of old/new overlap graphs. Local column replacement maintains the current polynomial encoding exactly under bounded-capacity insert/delete/replace and value edits."
+    ],
+    "classification": "Elementary information/least-squares/sparse-inverse consequences and baselines. No superiority over the strongest existing methods or publishable novelty established.",
+    "primary_sources": [
+      {
+        "url": "https://arxiv.org/html/1208.2846v2",
+        "scope": "Linear data structure/circuit correspondence and proof, Section 3. Uses the preprint numbering; do not transfer lemma numbers to the journal version."
+      },
+      {
+        "url": "https://arxiv.org/html/1005.3097v1",
+        "scope": "Definition of leverage as a projection diagonal and the corresponding identities, Section 3."
+      },
+      {
+        "url": "https://arxiv.org/html/1109.3843v2",
+        "scope": "Leverage-score and underconstrained least-squares discussion, especially Section 6.2; no full algorithm audit claimed."
+      },
+      {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0010955",
+        "scope": "Kernel memory and dynamic inverse updates, Sections 2.1/2.4; formula images were not independently transcribed, so no full proof audit claimed."
+      },
+      {
+        "url": "https://arxiv.org/html/2609.07816v1",
+        "scope": "Exact covariance tracking versus diagonal/isotropic Kalman delta approximations, model definitions and Appendix B; experiments not replicated."
+      },
+      {
+        "url": "https://arxiv.org/html/2605.31163v1",
+        "scope": "Probabilistic memory layer definition and covariance recursion; no superiority or empirical result adopted."
+      },
+      {
+        "url": "https://jmlr.org/papers/v12/sumer11a.html",
+        "scope": "Full-paper Section 1.2 and Theorems 4/5 plus query/update proof arguments inspected. Finite domain d and elimination width w are charged: preprocessing O(n*d^(3w)), queries O(d^(2w)*log n), single updates O(d^(3w)*log n). Continuous Gaussian specialization not established by the discrete statement."
+      },
+      {
+        "url": "https://proceedings.mlr.press/v130/stanton21a.html",
+        "scope": "Primary abstract on online structured kernel interpolation; fixed inducing-grid and precision costs remain to audit."
+      },
+      {
+        "url": "https://www.ams.org/mcom/1984-43-168/S0025-5718-1984-0758197-9/S0025-5718-1984-0758197-9.pdf",
+        "scope": "Primary searchable statement identifies existing sparse inverse locality; full relevant proof remains to audit."
+      },
+      {
+        "url": "https://etna.ricam.oeaw.ac.at/vol.28.2007-2008/pp16-39.dir/pp16-39.pdf",
+        "scope": "Full relevant Theorem 3.4/proof, graph-distance support of matrix powers and Section 4.1 polynomial approximation inspected. Earlier underlying approximation theorems and the entire paper were not independently re-proved."
+      },
+      {
+        "url": "https://lucablanchi.it/presentation-theory/local-linear-presentations-sparse-factorization",
+        "scope": "Preliminary explicitly unverified AI-assisted note; inspect elementary sparse-factorization overlap as a priority flag, not as an established theorem or reliable list of open problems."
+      },
+      {
+        "url": "https://arxiv.org/html/2211.14825v2",
+        "scope": "Introductory statements and displayed Theorems 2.1--2.4/G.1/I.5 inspected. Laplacian sketch output, error norm, regularity, dimension/aspect-ratio and adversary assumptions need a full proof comparison before claiming a gap."
+      },
+      {
+        "url": "https://arxiv.org/html/1511.06773v1#S2.SS2",
+        "scope": "Theorem 2.7/Corollary 2.8 and the displayed reduction argument inspected; gives an OMv-conditional barrier for unrestricted unnormalized Boolean bilinear binding queries. Not an unconditional lower bound."
+      }
+    ],
+    "next_actions": [
+      "Complete the primary theorem audit for dynamic inference, sparse matrix-function approximations and dynamic kernel-graph algorithms before claiming a stronger architecture.",
+      "Specify a high-dimensional binding encoder and query-robustness workload that can realize sparse overlap and uniform contraction with useful total storage, index and precision costs.",
+      "Compare the dynamic local-polynomial guarantee with the strongest prior guarantee for exactly that workload; a Laplacian solution sketch is not automatically an individual memory read.",
+      "Reject the proposal if it is only an elementary polynomial-filter corollary or wins only against dense updates; do not launch neural training on those grounds."
+    ],
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "dynamic_extension": {
+      "record": "docs/interleaving_research.md, Second proof pass: local repair when keys change",
+      "uniform_guarantee": "Current encoding identity and per-key maximum-error bound remain valid independently of horizon when all affected columns and integer contributions are replaced canonically.",
+      "conditions": [
+        "Fixed alpha and correction depth",
+        "Uniform active-Gram contraction bound",
+        "Bounded feature/overlap support and charged incidence discovery",
+        "Bounded slot capacity with explicit inactive mask",
+        "Fixed global encoder parameters; edits change one key feature row"
+      ],
+      "cost": "At most b_L columns change; direct repair costs O(b_L^2*[L*(Delta+1)+k+k*value_width]) scalar operations plus discovery, metadata and finite-precision arithmetic costs. Index and coefficient storage is charged.",
+      "novelty_established": false,
+      "machine_learning_advantage_established": false
+    },
+    "verification_commands": [
+      "python3 scripts/run_retention_tradeoff_checks.py",
+      "python3 scripts/run_feature_dimension_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py",
+      "python3 -B scripts/run_structural_complexity_checks.py"
+    ],
+    "concrete_workload_gate": {
+      "workload": "Maintain bounded independent V_ij under point replacements; query a full-rank binding table by u^T*V*v with two vector-valued query parts.",
+      "exact_hardness": "Unnormalized Boolean queries with absolute error below 1/2 contain Boolean vector-matrix-vector multiplication; do not promise truly subquadratic time with polynomial preprocessing without addressing the known OMv-conditional barrier.",
+      "approximate_baseline": "For probability-vector queries and values in [-1,1], ordinary sampling uses O(epsilon^(-2)*log(1/delta)) table probes after paying sampler construction, while retaining all table entries and exact one-hot reads.",
+      "acceptance_requirement": "Beat an applicable full-tradeoff baseline, including routing, precision and failure accounting; a dense-implementation saving or the classical sampler alone does not qualify."
+    },
+    "certificate_summary": {
+      "row_deleted_minors": 629,
+      "leverage_optimizer_cases": 54,
+      "hadamard_target_support_cases": 2106,
+      "fixed_feature_correction_cases": 12,
+      "total_stream_overwrites": 3840,
+      "dynamic_key_edit_cases": 3,
+      "dynamic_key_edits": 108
+    },
+    "historical_certificate_blocks_preserved": 46
+  }
+}
