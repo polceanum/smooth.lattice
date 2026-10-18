@@ -3857,6 +3857,333 @@ def product_excess_and_extension_controls():
             "bounded_extension_fixtures": extensions, "high_degree_boundary_controls": degree_boundary}
 
 
+def quadratic_pole_flag_controls():
+    """Direct quotient ranks versus pole flags, with complete small 3D fans."""
+    def scalar(value, characteristic):
+        value = Fraction(value)
+        return (value.numerator * pow(value.denominator, -1, characteristic) % characteristic
+                if characteristic else value)
+
+    def eliminate(columns, characteristic, invert=False):
+        if not columns:
+            return 0, []
+        rows, size = len(columns[0]), len(columns)
+        require(not invert or rows == size, "only invert a square residue matrix")
+        matrix = [[scalar(columns[j][i], characteristic) for j in range(size)] +
+                  ([scalar(i == j, characteristic) for j in range(rows)] if invert else [])
+                  for i in range(rows)]
+        pivot_row = 0
+        for j in range(size):
+            pivot = next((i for i in range(pivot_row, rows) if matrix[i][j]), None)
+            if pivot is None:
+                continue
+            matrix[pivot_row], matrix[pivot] = matrix[pivot], matrix[pivot_row]
+            scale = (pow(matrix[pivot_row][j], -1, characteristic) if characteristic
+                     else 1 / matrix[pivot_row][j])
+            matrix[pivot_row] = [scalar(x * scale, characteristic) for x in matrix[pivot_row]]
+            for i in range(rows):
+                if i != pivot_row and matrix[i][j]:
+                    scale = matrix[i][j]
+                    matrix[i] = [scalar(x - scale * y, characteristic)
+                                 for x, y in zip(matrix[i], matrix[pivot_row])]
+            pivot_row += 1
+            if pivot_row == rows:
+                break
+        inverse = [row[size:] for row in matrix] if invert and pivot_row == rows else None
+        return pivot_row, inverse
+
+    def multiply(left, right):
+        values = [0] * (len(left) + len(right) - 1)
+        for i, x in enumerate(left):
+            for j, y in enumerate(right):
+                values[i + j] += x * y
+        return values
+
+    def inverse_linear(modulus, node):
+        quotient, carry = [0] * (len(modulus) - 1), modulus[-1]
+        for i in range(len(quotient) - 1, -1, -1):
+            quotient[i], carry = carry, modulus[i] + node * carry
+        require(carry != 0, "the requested pole avoids the divisor")
+        return tuple(-Fraction(x, carry) for x in quotient)
+
+    def compositions(total, size):
+        if not size:
+            if total == 0:
+                yield ()
+        elif size == 1:
+            yield (total,)
+        else:
+            for first in range(total + 1):
+                for rest in compositions(total - first, size - 1):
+                    yield (first,) + rest
+
+    def patterns(n, d, chosen):
+        other = [i for i in range(d) if i not in (1, chosen)]
+        for a in range(1, n + 1):
+            for b1 in range((n - a) // 2 + 1):
+                if b1 and a < 2:
+                    continue
+                for gap in range(n - a - 2 * b1 + 1):
+                    for chains in compositions(n - a - 2 * b1 - gap, len(other)):
+                        state = {(0,) * d}
+                        state.update(tuple(k * (i == chosen) for i in range(d)) for k in range(1, a))
+                        state.update(tuple(k * (i == 1) for i in range(d)) for k in range(1, b1 + gap + 1))
+                        state.update(tuple(k * (i == 1) + (i == chosen) for i in range(d))
+                                     for k in range(1, b1 + 1))
+                        for axis, length in zip(other, chains):
+                            state.update(tuple(k * (i == axis) for i in range(d))
+                                         for k in range(1, length + 1))
+                        require(len(state) == n, "the pole pattern has the stated length")
+                        yield (a, b1 + gap, b1, chains), frozenset(state)
+
+    fixtures, tables, prefix_counters = [], {}, []
+    models = [(3, 5, 0, "roots"), (3, 7, 0, "roots"),
+              (3, 7, 0, "collision"), (3, 9, 0, "collision"),
+              (3, 5, 2, "trinomial"), (3, 7, 2, "trinomial"),
+              (3, 5, 2, "delayed_odd_gap"), (3, 7, 3, "trinomial"),
+              (4, 6, 0, "four_coordinates"), (4, 6, 3, "four_coordinates"),
+              (2, 7, 0, "roots"), (2, 7, 2, "trinomial")]
+    for d, n, characteristic, kind in models:
+        if kind == "roots":
+            modulus = [-1] + [0] * (n - 1) + [1]
+        elif kind == "collision":
+            modulus = [comb(n, j) * (-1) ** (n - j) for j in range(n + 1)]
+        elif kind == "delayed_odd_gap":
+            modulus = [1, 1, 0, 1, 1, 1]
+        elif kind == "four_coordinates":
+            modulus = [2, 0, 1] + [0] * (n - 3) + [1]
+        else:
+            modulus = [1, 1] + [0] * (n - 2) + [1]
+        poles = {i: (1 if characteristic == 2 else 2) if d == 3 else i - 1
+                 for i in range(2, d)}
+        inverse_t = inverse_linear(modulus, 0)
+        images = [tuple(int(i == 1) for i in range(n)),
+                  univariate_product_mod(inverse_t, inverse_t, modulus)]
+        images.extend(inverse_linear(modulus, poles[i]) for i in range(2, d))
+        ground = set(hyperbolic_cross(2 * n, d))
+        raw_columns = cyclic_univariate_model(modulus, images, ground)
+        columns = {a: tuple(scalar(x, characteristic) for x in vector)
+                   for a, vector in raw_columns.items()}
+        require(eliminate([columns[tuple(k * (i == 0) for i in range(d))]
+                           for k in range(n)], characteristic)[0] == n,
+                "the cyclic parameter still generates in the specified characteristic")
+        simple = [0] + list(range(2, d))
+        cached, sectors, flag_ranks = {}, [], {}
+        pattern_lookup, parameter_lookup = {}, {}
+        for chosen in simple:
+            records = list(patterns(n, d, chosen))
+            table_key = str((n, d, chosen))
+            table = [{"parameters": parameters, "basis": sorted(state)} for parameters, state in records]
+            if table_key in tables:
+                require(tables[table_key] == table, "shared pattern tables agree")
+            else:
+                tables[table_key] = table
+                allowed = lambda a: (sum(a[i] > 0 for i in simple) <= 1 and
+                                     (not a[1] or (all(a[i] == 0 for i in simple if i != chosen)
+                                                   and a[chosen] < 2)))
+                exhaustive = {state for state in finite_staircases(n, d)
+                              if all(allowed(a) for a in state)}
+                require(exhaustive == {state for _, state in records},
+                        "the pole patterns enumerate every downset in the parent normal domain")
+            sector_records, minimum_gaps = [], {}
+            for index, (parameters, state) in enumerate(records):
+                a, b0, b1, chains = parameters
+                gap = b0 - b1
+                other = [i for i in range(d) if i not in (1, chosen)]
+                chain = dict(zip(other, chains))
+                if state not in cached:
+                    ordered = sorted(state)
+                    rank_value, inverse = eliminate([columns[p] for p in ordered], characteristic, True)
+                    normals = set()
+                    if inverse is not None:
+                        border = {tuple(x + (i == j) for j, x in enumerate(p))
+                                  for p in state for i in range(d)} - state
+                        require(border <= ground, "the independent border columns lie in the larger cross")
+                        for b in border:
+                            coefficients = [scalar(dot(row, columns[b]), characteristic) for row in inverse]
+                            for p, value in zip(ordered, coefficients):
+                                if value:
+                                    normal = tuple(x - y for x, y in zip(b, p))
+                                    require(max(normal) > 0, "a border comparison has a positive component")
+                                    if min(normal) < 0:
+                                        divisor = gcd(*normal)
+                                        normals.add(tuple(x // divisor for x in normal))
+                    cached[state] = rank_value, sorted(normals)
+                rank_value, normals = cached[state]
+                if a >= 2:
+                    flag = (chosen, gap, chains) if chosen == 0 else (
+                        chosen, gap, a, tuple(chain[i] for i in range(2, d) if i != chosen))
+                    if flag not in flag_ranks:
+                        if chosen == 0:
+                            common = [1]
+                            for axis, length in chain.items():
+                                for _ in range(length):
+                                    common = multiply(common, [-poles[axis], 1])
+                            independent_columns = [univariate_power_mod((0, 1), 2 * gap + j, modulus)
+                                                   for j in range(n - gap)]
+                            independent_columns += [univariate_product_mod(
+                                univariate_power_mod((0, 1), 2 * k, modulus), common, modulus)
+                                for k in range(gap)]
+                            reduced_rank = eliminate(independent_columns, characteristic)[0]
+                        else:
+                            reciprocal = tuple(Fraction(x, modulus[0]) for x in reversed(modulus))
+                            common = [1]
+                            for _ in range(a - 1):
+                                common = multiply(common, [1, -poles[chosen]])
+                            for axis in range(2, d):
+                                if axis != chosen:
+                                    for _ in range(chain[axis]):
+                                        common = multiply(common, [1, -poles[axis]])
+                            exponent = n - a - gap - sum(chain[i] for i in range(2, d) if i != chosen)
+                            top_columns = [univariate_product_mod(
+                                univariate_power_mod((0, 1), exponent + 2 * k, reciprocal),
+                                common, reciprocal)[n - gap:] for k in range(1, gap + 1)]
+                            reduced_rank = n - gap + eliminate(top_columns, characteristic)[0]
+                        flag_ranks[flag] = reduced_rank
+                    require(flag_ranks[flag] == rank_value,
+                            "the independent pole flag gives the complete direct quotient rank")
+                    if rank_value == n and chosen != 0:
+                        key = (a, tuple(chain[i] for i in range(2, d) if i != chosen), gap % 2)
+                        minimum_gaps[key] = min(minimum_gaps.get(key, gap), gap)
+                row = {"pattern_index": index, "rank": rank_value, "status": "dependent"}
+                if rank_value == n and d == 3:
+                    sector_normals = [tuple(int(i == axis) - int(i == chosen) for i in range(d))
+                                      for axis in simple if axis != chosen]
+                    polygon = [tuple(Fraction(i == j) for i in range(3)) for j in range(3)]
+                    for normal in normals + sector_normals:
+                        polygon = clip(polygon, normal, 1)
+                        if not polygon:
+                            break
+                    row.update({"status": "independent_but_incoherent", "strict_border_normals": normals,
+                                "strict_sector_normals": sector_normals, "closed_region_vertices": []})
+                    if polygon:
+                        center = [sum(p[i] for p in polygon) / len(polygon) for i in range(3)]
+                        scale = lcm(*(x.denominator for x in center))
+                        weight = tuple(int(x * scale) for x in center)
+                        require(min(weight) > 0 and all(dot(weight, v) > 0 for v in normals + sector_normals),
+                                "every complete-fan certificate has a strict positive integer weight")
+                        require(greedy(hyperbolic_cross(n, d), columns, weight, characteristic) == set(state),
+                                "independent cross-wide greedy elimination verifies the complete-fan witness")
+                        row.update({"status": "coherent", "weight": weight,
+                                    "closed_region_vertices": [[str(x) for x in p] for p in polygon]})
+                elif rank_value == n:
+                    row["status"] = "independent_not_fan_classified"
+                sector_records.append(row)
+                pattern_lookup[chosen, state] = index
+                parameter_lookup[chosen, parameters] = state
+            sectors.append({"chosen_axis": chosen, "pattern_table": table_key,
+                            "minimum_admissible_gaps": [{"flag": key, "gap": value}
+                                                        for key, value in sorted(minimum_gaps.items())],
+                            "all_pattern_checks": sector_records})
+
+        selected = []
+        if d != 3:
+            tie = tuple((2 * n + 1) ** i for i in range(d))
+            scale = 1 + max(dot(tie, p) for p in ground)
+            for ordering in permutations((1, 3) if d == 2 else (1, 3, 7, 15)):
+                weight = tuple(scale * x + y for x, y in zip(ordering, tie))
+                require(len({dot(weight, p) for p in ground}) == len(ground), "selected weights have no cross ties")
+                chosen = min(simple, key=lambda i: weight[i])
+                state = frozenset(greedy(hyperbolic_cross(n, d), columns, weight, characteristic))
+                require((chosen, state) in pattern_lookup and cached[state][0] == n,
+                        "selected global greedy bases lie in the predicted complete parent domains")
+                selected.append({"chosen_axis": chosen, "pattern_index": pattern_lookup[chosen, state],
+                                 "weight": weight})
+
+        count_checks, monotone, mechanism_checks = 0, {}, []
+        witnesses = [dict(row, chosen_axis=sector["chosen_axis"])
+                     for sector in sectors for row in sector["all_pattern_checks"] if row["status"] == "coherent"] + selected
+        for row in witnesses:
+            chosen, weight = row["chosen_axis"], row["weight"]
+            parameters, state = list(patterns(n, d, chosen))[row["pattern_index"]]
+            a, b0, b1, chains = parameters
+            gap, h = b0 - b1, Fraction(b0 + b1, 2)
+            if a < 2:
+                continue
+            if chosen == 0:
+                monotone.setdefault((chains, gap % 2), []).append((Fraction(weight[0], weight[1]), h, gap))
+            else:
+                chain = dict(zip([i for i in range(d) if i not in (1, chosen)], chains))
+                key = (a, tuple(chain[i] for i in range(2, d) if i != chosen), gap % 2)
+                sector = next(s for s in sectors if s["chosen_axis"] == chosen)
+                least = next(r["gap"] for r in sector["minimum_admissible_gaps"] if r["flag"] == key)
+                product_bound = max(chain[0] - 1, 0) * max(gap - least - 1, 0)
+                require(product_bound < n, "minimum feasible parity gaps satisfy the characteristic-free hyperbolic bound")
+                comparisons = []
+                competitors = []
+                if gap > least:
+                    new_b1 = (b0 + b1 - least) // 2
+                    competitors.append(("least_gap", (a, new_b1 + least, new_b1, chains)))
+                if chain[0] >= 2:
+                    axes = [i for i in range(d) if i not in (1, chosen)]
+                    new_chains = tuple(value - 2 * (axis == 0) for axis, value in zip(axes, chains))
+                    competitors.append(("common_shift", (a, b0 + 1, b1 + 1, new_chains)))
+                for name, parameters_other in competitors:
+                    competitor = parameter_lookup[chosen, parameters_other]
+                    require(cached[competitor][0] == n, "the counting comparison is an actual independent quotient basis")
+                    cost_difference = sum(dot(weight, p) for p in competitor) - sum(dot(weight, p) for p in state)
+                    require(cost_difference > 0, "strict global coherence verifies the comparison cost inequality")
+                    comparisons.append({"comparison": name, "pattern_index": pattern_lookup[chosen, competitor],
+                                        "rank": n, "cost_difference": cost_difference})
+                mechanism_checks.append({"chosen_axis": chosen, "pattern_index": row["pattern_index"],
+                                         "weight": weight, "minimum_admissible_gap": least,
+                                         "hyperbolic_product": product_bound, "comparison_basis_checks": comparisons})
+                count_checks += 1
+        for values in monotone.values():
+            ordered = sorted(set(values))
+            require(all(h1 <= h2 and l1 <= l2 for (_, h1, l1), (_, h2, l2) in zip(ordered, ordered[1:])),
+                    "coherent first-axis minimizers form the predicted coordinatewise monotone chain")
+        distinct = {tuple(map(tuple, tables[s["pattern_table"]][r["pattern_index"]]["basis"]))
+                    for s in sectors for r in s["all_pattern_checks"] if r["status"] == "coherent"}
+        fixtures.append({"dimension": d, "n": n, "characteristic": characteristic, "kind": kind,
+                         "modulus": modulus, "poles_by_axis": poles,
+                         "coordinate_images": [[str(v) for v in image] for image in images],
+                         "sectors": sectors, "independent_flag_rank_checks": len(flag_ranks),
+                         "complete_positive_fan": d == 3,
+                         "initial_ideal_count": len(distinct) if d == 3 else None,
+                         "selected_weight_checks": selected, "hyperbolic_witness_checks": count_checks,
+                         "counting_mechanism_witnesses": mechanism_checks,
+                         "monotone_chain_checks": [{"flag": key, "ordered_weights_h_and_gaps":
+                                                    [[str(r), str(h), gap] for r, h, gap in sorted(set(values))]}
+                                                   for key, values in sorted(monotone.items())]})
+
+    for m in (2, 3, 5):
+        n = 2 * m + 1
+        weight = (2 * n * m + 1, 2 * n)
+        parent = {(i, 0) for i in range(3 * m + 2)}
+        parent |= {(i, j) for i in (0, 1) for j in range(1, 3 * m + 2)}
+        prefix = sorted(parent, key=lambda a: dot(weight, a))[:3 * m + 1]
+        expected_before = {(0, j) for j in range(2 * m)} | {(1, j) for j in range(m)}
+        require(set(prefix[:-1]) == expected_before and prefix[-1] == (0, 2 * m),
+                "the first rank completion occurs at the asserted parent-normal position")
+        residues = [(a - 2 * b) % n for a, b in prefix]
+        require(len(set(residues[:-1])) == n - 1 and len(set(residues)) == n,
+                "independent standard-unit residues prove the rank delay over every field")
+        require(len({(-2 * j) % n for j in range(n)}) == n,
+                "both coordinate images are cyclic over every field")
+        prefix_counters.append({"m": m, "n": n, "modulus": "t^n-1", "images": ["t", "t^(-2)"],
+                                "integer_weight": weight, "parent_normal_prefix": prefix,
+                                "standard_unit_residue_indices": residues,
+                                "rank_before_completion": n - 1, "completion_position": 3 * m + 1,
+                                "delay_beyond_n": m})
+
+    delayed = next(f for f in fixtures if f["kind"] == "delayed_odd_gap")
+    checks = next(s for s in delayed["sectors"] if s["chosen_axis"] == 2)
+    least = next(r["gap"] for r in checks["minimum_admissible_gaps"] if r["flag"] == (2, (), 1))
+    require(least == 3, "a real characteristic-two quotient disproves comparison with gap one alone")
+    encoded_tables = {key: [row["parameters"] for row in table] for key, table in tables.items()}
+    for fixture in fixtures:
+        for sector in fixture["sectors"]:
+            for row in sector["all_pattern_checks"]:
+                for key in ("strict_border_normals", "strict_sector_normals", "closed_region_vertices"):
+                    if key in row:
+                        row[key] = [",".join(map(str, vector)) for vector in row[key]]
+    return {"uniform_conclusion": "For every field and every fixed d>=3, all length-n finite quotients with coordinates t,t^(-2),(t-lambda_3)^(-1),...,(t-lambda_d)^(-1), at distinct nonzero poles avoiding the divisor, have O_d(n^(d-1)*log(n+1)) monomial initial ideals. For d=2 the bound is O(n).",
+            "scope": "The proof uses minimum admissible parity gaps and is uniform in the divisor, poles and characteristic. It remains restricted and does not improve the unrestricted asymptotic bound.",
+            "encoding": "A pattern table key is (n,d,chosen_axis). Each row is (a,b0,b1,other_axis_chain_lengths), with other axes increasing and excluding y and the chosen axis; QP2 reconstructs the exact basis. Border normals and polygon vertices are comma-separated exact coordinate strings.",
+            "pattern_tables": encoded_tables, "fixtures": fixtures, "prefix_delay_countercontrols": prefix_counters}
+
+
 def attention_rank_sanity_control():
     """An exact Vandermonde witness, not an attention-compression algorithm."""
     parameters = (1, 2, 3, 4)
@@ -3928,6 +4255,7 @@ def main():
     grading_controls = grading_and_perturbation_controls(monogenic, truncated_partition)
     minimum_products = minimum_product_rank_controls()
     product_excess = product_excess_and_extension_controls()
+    quadratic_poles = quadratic_pole_flag_controls()
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
         "schema_version": 1, "command": "python3 -B scripts/run_structural_complexity_checks.py",
@@ -4024,6 +4352,7 @@ def main():
         "grading_and_perturbation_control": grading_controls,
         "minimum_product_rank_control": minimum_products,
         "product_excess_and_extension_control": product_excess,
+        "quadratic_pole_flag_control": quadratic_poles,
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
                     "independent_greedy_checks": sum(f["greedy_checks"] for f in fixtures),
@@ -4121,7 +4450,14 @@ def main():
                     "product_excess_threshold_counters": len(product_excess["degree_threshold_counters"]),
                     "bounded_extension_staircase_checks": sum(len(f["all_staircase_ranks"]) for f in product_excess["bounded_extension_fixtures"]),
                     "bounded_extension_quotient_witnesses": sum(len(f["quotient_inclusion_witnesses"]) for f in product_excess["bounded_extension_fixtures"]),
-                    "high_degree_boundary_controls": len(product_excess["high_degree_boundary_controls"])},
+                    "high_degree_boundary_controls": len(product_excess["high_degree_boundary_controls"]),
+                    "quadratic_pole_fixtures": len(quadratic_poles["fixtures"]),
+                    "quadratic_pole_pattern_rank_checks": sum(len(s["all_pattern_checks"]) for f in quadratic_poles["fixtures"] for s in f["sectors"]),
+                    "quadratic_pole_independent_flag_checks": sum(f["independent_flag_rank_checks"] for f in quadratic_poles["fixtures"]),
+                    "quadratic_pole_complete_fan_witnesses": sum(sum(r["status"] == "coherent" for r in s["all_pattern_checks"]) for f in quadratic_poles["fixtures"] for s in f["sectors"]),
+                    "quadratic_pole_selected_weight_checks": sum(len(f["selected_weight_checks"]) for f in quadratic_poles["fixtures"]),
+                    "quadratic_pole_hyperbolic_checks": sum(f["hyperbolic_witness_checks"] for f in quadratic_poles["fixtures"]),
+                    "quadratic_pole_prefix_delay_counters": len(quadratic_poles["prefix_delay_countercontrols"])},
         "goal_qualifying_advance": False,
     }
     target = ROOT / "results/research/structural_complexity_checks.json"

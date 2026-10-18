@@ -2,7 +2,7 @@
   "schema_version": 1,
   "recorded_on": "2026-10-18",
   "title": "Universal algebraic complexity beyond generic corner cuts",
-  "status": "active_rank_excess_degree_exception_tradeoff_proved_bounded_fractional_linear_extensions_closed",
+  "status": "active_characteristic_free_quadratic_pole_flag_bound_proved_unrestricted_mechanism_open",
   "objective": "Prove a new structural theorem determining or substantially narrowing the worst-case asymptotic number of monomial initial ideals of finite polynomial algebras, starting with three variables and seeking a mechanism valid in every fixed dimension. Establish the strongest relevant primary baseline first. Success requires a complete uniform proof of sharp growth or a substantial asymptotic advance over that baseline for all colength-n ideals or all n-point configurations, a rigorous further algebraic, geometric or enumeration consequence, reproducible exact certificates and an honestly scoped manuscript. Examples, reformulations, already known corollaries and a plan alone do not complete this goal.",
   "plan": "docs/interleaving_research.md#higher-impact-research-plan-universal-algebraic-complexity",
   "relationship_to_previous_goal": "A new research objective. The completed corner-cut counting manuscript and its acceptance records remain separate and unchanged in mathematical content.",
@@ -29,12 +29,12 @@
   "milestones": [
     {
       "id": "primary_baseline",
-      "status": "rational_relation_module_primary_comparison_added_broader_extremal_audit_open",
+      "status": "later_squarefree_algebra_count_scope_compared_broader_extremal_audit_open",
       "deliverable": "A theorem-level primary-source comparison identifying the best relevant unrestricted and restricted bounds, exact hypotheses, input models and still viable targets."
     },
     {
       "id": "dependency_mechanism",
-      "status": "rank_excess_tradeoff_and_all_ideal_bounded_border_extension_bound_proved_higher_degree_and_fast_growth_open",
+      "status": "least_admissible_flag_count_proved_for_all_quadratic_pole_quotients_all_fields_higher_degree_and_general_fast_growth_open",
       "deliverable": "A precise lemma about multiplication-compatible residue dependencies or state-polyhedron geometry, with its proof attempt and adversarial controls."
     },
     {
@@ -114,7 +114,8 @@
     "preserve": "Existing smooth-number CLI and kernels, the completed corner-cut manuscript and its historical acceptance audit.",
     "public_repository": "Review an explicit file list before committing or pushing to main; exclude correspondence, credentials, local app identifiers and private metadata.",
     "prior_art": "No novelty inference from an unsuccessful search, a reformulation or a difference in terminology.",
-    "completion": "Do not mark complete for creating this plan, running examples or writing an inconclusive feasibility report."
+    "completion": "Do not mark complete for creating this plan, running examples or writing an inconclusive feasibility report.",
+    "ml_architecture_direction": "The user clarified that ML relevance includes designing new architectures around mathematical structure with provable fundamental advantages in computation, representation or learning. Do not restrict assessment to compressing or accelerating existing Transformers. State expressivity costs, assumptions and comparison classes explicitly; distinguish established guarantees from hypotheses. This direction does not silently replace the active unrestricted initial-ideal theorem goal."
   },
   "goal_complete": false,
   "new_theorem_proved": false,
@@ -122,8 +123,8 @@
   "independent_referee_assessment": false,
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
-    "classification": "progress",
-    "reason": "Commit a694c84 saved the all-field minimum-product inverse classification, exact pole-group counts and complete box-profile information loss, with final-source checks and a verified push to main. It did not improve the unrestricted exponent."
+    "classification": "no_progress",
+    "reason": "The intervening ML assessment rechecked an already saved application boundary, but changed no authoritative mathematical artifact. The last published mathematical progress remains commit 95dcbc3. This continuation revalidated the clean worktree and resumed the unresolved degree-two branch."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -433,6 +434,12 @@
       "authors": "Dimitrova, Fredrickson, Rondoni, Stigler and Veliz-Cuba",
       "inspected": "Preprint introduction, Definition 3.11, Theorem 3.12 with its displayed proof, Corollary 3.13 with its proof, and the Section 4 transition. Publisher abstract, metadata and references inspected; no preprint/publisher identity assumed and no full-paper proof audit.",
       "finding": "The inspected results give a necessary diagonal-free condition for unique reduced bases and motivate Hamming-distance experiments. They do not provide an inspected stronger unrestricted worst-case count. This is a resolved scope comparison for those statements, not evidence that no other result exists."
+    },
+    {
+      "source": "https://arxiv.org/html/2411.10209v1#S2.SS4",
+      "authors": "Jonsson Kling, Lundqvist, Mohammadi, Orth and Saenz-de-Cabezon",
+      "inspected": "Characteristic-zero setup, Definition 2.26, Lemma 2.27 with its proof, Proposition 2.29 with its proof and Remark 2.30. The main basis-construction and Lefschetz proofs were not audited.",
+      "finding": "The multinomial count concerns a family with a growing number of variables. For fixed d, the squarefree parent has length at most 2^d; this is not an unrestricted fixed-d bound or an asymptotically growing fixed-d lower family."
     }
   ],
   "next_actions": [
@@ -1679,7 +1686,65 @@
       "finding": "Potential structured-feature and kernel applications exist, but the established project statements are matrix-rank and special factorization results. No general CP/TT tensor-rank theorem or Transformer speedup has been proved.",
       "prior_art": "Altschuler--Parrilo already give coordinate-ring polynomial-kernel rank and optimal factorizations; TaylorShift already uses tensor-product polynomial attention features.",
       "exact_limit": "For N>=2, rank-one logits S_ij=i*log(t_j) yield full-rank Vandermonde softmax attention for distinct positive t_j. The exact four-token witness has kernel determinant 12 and normalized determinant 1/10000. Full exact rank does not preclude approximate compression.",
-      "next_qualification": "An explicit input model, stable approximate features, normalized-attention error and complete computation cost are necessary. This lead does not replace the active mathematical objective."
+      "next_qualification": "An explicit input model, stable approximate features, normalized-attention error and complete computation cost are necessary. This lead does not replace the active mathematical objective.",
+      "architecture_scope": "Architecture changes are within the intended ML research scope: build the model around usable algebraic structure and seek a proved advantage, rather than assessing only retrofit compression. The next assessment must compare architecture-specific guarantees, expressivity, robustness and full cost against relevant prior work.",
+      "architecture_prior_art_first_look": [
+        {
+          "source": "https://arxiv.org/html/2501.06425v7#S3.SS1",
+          "title": "Tensor Product Attention Is All You Need",
+          "inspected": "Section 3.1 factor maps, tensor shapes and equations (3.1)--(3.3), including the retained scaled dot-product softmax; the first paragraph of Section 3.3. No full proof or experimental audit.",
+          "relevance": "Contextual factorization of Q,K,V is already an architecture design. Its factor ranks differ from the rank of the softmax attention matrix; it is a direct prior-art comparison for activation/KV factorization."
+        },
+        {
+          "source": "https://arxiv.org/html/2405.21060v1#S4.SS3",
+          "title": "Transformers are SSMs: Generalized Models and Efficient Algorithms Through Structured State Space Duality",
+          "inspected": "Equations (15a)--(15c), Definition 4.2 and its complete contraction-order construction, adjacent Toeplitz/Fourier examples and Section 4.3.1. Theorem 3.7 statement and its explicit preprocessing exclusion were also read, without a full proof audit.",
+          "relevance": "Efficient structured masked attention already permits masks with fast multiplication. Full-rank structured operators and a change of contraction order alone do not establish a new architecture advantage; preprocessing belongs in the cost comparison."
+        },
+        {
+          "source": "https://proceedings.mlr.press/v119/katharopoulos20a/katharopoulos20a.pdf",
+          "title": "Transformers are RNNs: Fast Autoregressive Transformers with Linear Attention",
+          "inspected": "Sections 3.2--3.3 forward feature identities, polynomial-feature costs, causal state equations (9)--(12), and the beginning of the gradient discussion. No complete backpropagation or experimental audit.",
+          "relevance": "Exact finite-feature polynomial attention and causal sufficient statistics are established. A new algebraic feature architecture must add a benefit beyond choosing a finite kernel feature map."
+        },
+        {
+          "source": "https://arxiv.org/abs/2204.00595",
+          "title": "Monarch: Expressive Structured Matrices for Efficient and Accurate Training",
+          "inspected": "Primary abstract only; definitions, expressivity and projection proofs not yet audited.",
+          "relevance": "Structured products with efficient application and broad transform expressivity are existing architecture tools; compare before treating full-rank fast factorization as a new principle."
+        },
+        {
+          "source": "https://arxiv.org/abs/1705.10142",
+          "title": "Kronecker Recurrent Units",
+          "inspected": "Primary abstract only; factorization and conditioning proofs not yet audited.",
+          "relevance": "Kronecker-factored recurrent operators and constraints on factor conditioning are established architectural ingredients."
+        },
+        {
+          "source": "https://arxiv.org/abs/2510.27258",
+          "title": "Higher-order Linear Attention",
+          "inspected": "Primary abstract only; streaming identities, masks and expressivity scope not audited.",
+          "relevance": "Higher-order streaming interaction summaries already exist; higher polynomial order and constant state alone are not a novelty claim."
+        }
+      ],
+      "architecture_hotpath_assessment": {
+        "priority": "Seek an architecture-level guarantee and a precise comparison with the strongest relevant method. Both changes to existing architectures and new architectures are within scope.",
+        "candidate_hotpaths": [
+          {
+            "operation": "Polynomial/linear attention feature expansion and streaming-state update",
+            "project_connection": "Coordinate-ring dependencies and product-rank structure can reduce redundant features under explicit algebraic representation constraints.",
+            "exact_control": "For query/key embeddings (t,t^2,...,t^D), quadratic Taylor attention has an exact feature representation of width 2D+1 instead of 1+D+D*(D+1)/2 generic symmetric features. The coefficient of (q*k)^r is 1[r=0]+1[1<=r<=D]+(1/2)*#{(i,j):1<=i,j<=D,i+j=r}.",
+            "conditional_cost": "With scalar encoders charged separately and value width v, the direct collapsed streaming algorithm uses O(T*D*(v+1)) arithmetic and O(D*(v+1)) state. It computes the designed polynomial kernel exactly, including normalization. Coefficients can be precomputed in O(D^2).",
+            "important_scope": "An elementary instance of the already published polynomial-kernel/coordinate-ring principle. The architecture enforces the moment-curve constraints. This is not an improvement for arbitrary learned Q,K, proof of comparable language-model quality, a GPU benchmark or a novel asymptotic theorem."
+          },
+          {
+            "operation": "Structured token mixing or recurrent state transitions",
+            "project_connection": "Separable exponential coefficients can describe full-rank multiplication operators; low matrix rank is not necessary for cheap structured application. Prefix restriction and boundary projection require separate rank and cost proofs.",
+            "prior_art_boundary": "Structured masked attention, Monarch and Kronecker recurrent units already exploit fast structured operators. A new contribution must preserve a useful interaction class under composition with a proved cost and stability guarantee."
+          }
+        ],
+        "next_theorem_gate": "Specify the function class, precision model, width/depth/context scaling and full preprocessing/representation costs. Establish a proved improvement in cost for an explicitly retained interaction class, or a stronger representation/retrieval guarantee at the same budget. Audit composition, order sensitivity and numerical conditioning rather than infer them from exact factorization.",
+        "current_verdict": "Exact conditional hotpath savings are feasible. No new fundamental advantage over the best relevant existing structured architecture has yet been established."
+      }
     },
     "strongest_current_bound_verified": false,
     "goal_qualifying_unrestricted_advance": false,
@@ -2313,5 +2378,94 @@
     "strongest_current_bound_verified": false,
     "goal_qualifying_unrestricted_advance": false,
     "decision": "Keep the full goal active. Retain rank excess as a degree/exception tradeoff and the general extension count as a reusable obstruction. Fixed-error fractional-linear amplification cannot provide the desired stronger lower exponent. Higher rational degree, growing exceptions and the unrestricted fast-growth alternative remain unresolved; no new manuscript."
+  },
+  "twentieth_feasibility_results": {
+    "record": "docs/interleaving_research.md, Twentieth feasibility pass: a characteristic-free multiple-pole bound",
+    "scope": "Every field, every fixed dimension, every finite quotient on the curve with coordinates t,t^(-2),(t-lambda_j)^(-1) at distinct nonzero poles avoiding the divisor; arbitrary multiplicities and nonsplit divisors included.",
+    "uniform_bound": "O_d(n^(d-1)*log(n+1)) for d>=3, and O(n) for d=2. Constants independent of divisor, poles and characteristic.",
+    "mechanism": [
+      "Complete parent normal domains with two y rows and simple-pole chains.",
+      "Unit common-denominator subspace identities give rank flags invariant under common shifts.",
+      "Separable costs give a monotone chain in the t sector.",
+      "In other sectors compare against the least admissible gap of the same parity, then use (c0-1)_+*(L-L_min-1)_+<n. Arbitrarily delayed odd gaps do not create an extra characteristic-dependent term."
+    ],
+    "small_characteristic_counter": "Over F_2, f=t^5+t^4+t^3+t+1, lambda=1 and a=2 have first admissible odd gap three. Gap one must not be silently treated as independent.",
+    "rank_delay_counter": "For every field, n=2m+1, f=t^n-1, coordinates t,t^(-2), and weights (m+epsilon,1), completion occurs at parent-normal prefix position 3m+1=n+m. Both coordinates are cyclic; fixed rational degree does not give n+O(1) rank completion.",
+    "checks": {
+      "commands": [
+        "./build.sh",
+        "python3 tests/test_smoke.py",
+        "python3 -B scripts/run_structural_complexity_checks.py"
+      ],
+      "all_exit_codes": 0,
+      "source_sha256": {
+        "scripts/run_structural_complexity_checks.py": "9a03bcd579deb78d1e5245515e424a17835518d906b263c972034b88a030db41",
+        "docs/interleaving_research.md": "5668a215bd94d7dbea9ac00ec988d7b2838932e5b9f07612c5e7e87eb2fca84a"
+      },
+      "new_summary_counts": {
+        "quadratic_pole_fixtures": 12,
+        "quadratic_pole_pattern_rank_checks": 1022,
+        "quadratic_pole_independent_flag_checks": 522,
+        "quadratic_pole_complete_fan_witnesses": 242,
+        "quadratic_pole_selected_weight_checks": 52,
+        "quadratic_pole_hyperbolic_checks": 141,
+        "quadratic_pole_prefix_delay_counters": 3
+      },
+      "comparison_basis_cost_checks": 46,
+      "compact_encoding_preserves_exact_certificates": true,
+      "complete_fan_counts": [
+        {
+          "n": 5,
+          "characteristic": 0,
+          "kind": "roots",
+          "count": 15
+        },
+        {
+          "n": 7,
+          "characteristic": 0,
+          "kind": "roots",
+          "count": 28
+        },
+        {
+          "n": 7,
+          "characteristic": 0,
+          "kind": "collision",
+          "count": 33
+        },
+        {
+          "n": 9,
+          "characteristic": 0,
+          "kind": "collision",
+          "count": 55
+        },
+        {
+          "n": 5,
+          "characteristic": 2,
+          "kind": "trinomial",
+          "count": 14
+        },
+        {
+          "n": 7,
+          "characteristic": 2,
+          "kind": "trinomial",
+          "count": 26
+        },
+        {
+          "n": 5,
+          "characteristic": 2,
+          "kind": "delayed_odd_gap",
+          "count": 16
+        },
+        {
+          "n": 7,
+          "characteristic": 3,
+          "kind": "trinomial",
+          "count": 28
+        }
+      ]
+    },
+    "strongest_current_bound_verified": false,
+    "goal_qualifying_unrestricted_advance": false,
+    "decision": "Park this whole quadratic multiple-pole family as an exponent-amplification source, including in small characteristic. Retain the least-feasible-flag mechanism. The next gate is a degree-sensitive bound for interacting higher-pole flags plus a complementary mechanism covering general finite algebras; do not enlarge enumeration in the bounded family."
   }
 }

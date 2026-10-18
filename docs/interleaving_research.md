@@ -8005,3 +8005,279 @@ Keep the full goal active. Reproduce all controls with
 ```bash
 python3 -B scripts/run_structural_complexity_checks.py
 ```
+
+### Twentieth feasibility pass: a characteristic-free multiple-pole bound
+
+The last published mathematical pass, commit 95dcbc3, separated rational
+degree from exceptional dimension. The intervening ML assessment changed
+no theorem or authoritative artifact and is classified as no progress
+toward the unrestricted goal. This pass returns to the degree-two branch.
+It proves a bound for a whole multiple-pole family, including arbitrary
+nonreduced divisors over every field. The proof removes an apparent small
+characteristic exception by retaining the least admissible gap, rather
+than assuming gap one is independent. This is a restricted structural
+component, not the unrestricted advance required by the goal.
+
+#### A later counting comparison and the remaining baseline audit
+
+[Jonsson Kling--Lundqvist--Mohammadi--Orth--Saenz-de-Cabezon,
+arXiv:2411.10209v1](https://arxiv.org/html/2411.10209v1#S2.SS4)
+studies the characteristic-zero ideals
+
+    (x_1^2,...,x_r^2,(x_1+...+x_r)^k).
+
+The setup, Definition 2.26, Lemma 2.27 with its proof, Proposition 2.29
+with its proof, and Remark 2.30 were inspected. Their number of distinct
+reduced bases is the multinomial coefficient with blocks k,2,...,2 and
+a final singleton when needed. Variable rankings determine these bases.
+Here r is the number of variables, not colength. With fixed d this family
+has bounded length (at most 2^d), so its growing-r count supplies neither
+an unrestricted fixed-d upper bound nor an infinite fixed-d lower family.
+No full audit of the paper's main basis construction or its later
+Lefschetz proofs is claimed. This is a precise comparison with a named
+later counting result, not evidence that all relevant literature has been
+exhausted.
+
+A fresh NSF-deposit retrieval again failed. The already inspected
+finite-field Theorem 8 and proof remain the comparison recorded in the
+sixteenth pass: when p>n that expression recovers the old exponent.
+The failed retrieval is not a new mathematical blocker and is not used
+as evidence of novelty. The broader strongest-current-bound audit remains
+incomplete; the inspected unrestricted benchmark is still Babson--Onn--
+Thomas's O_d(n^(2d(d-1)/(d+1))).
+
+#### The family, its length, and its complete parent normal domains
+
+Let K be any field, d>=2, and choose distinct nonzero elements
+lambda_3,...,lambda_d in K when d>2. In K(t) set
+
+    x=t,   y=t^(-2),   z_j=(t-lambda_j)^(-1), j=3,...,d.
+
+Let f be monic of degree n>=1 with
+f(0)*product_j f(lambda_j) nonzero, and let I_f be the kernel of these
+coordinate images in A=K[t]/(f). The quotient has length n since x=t.
+It can be nonreduced or nonsplit. In fact these are all finite quotients
+of this coordinate ring: x*y=t^(-1), so the ring is the localization
+K[t,t^(-1),(t-lambda_3)^(-1),...,(t-lambda_d)^(-1)], a localization of
+the principal ideal domain K[t]. Its finite-colength ideals are given
+by the stated divisors f after removing inverted factors.
+
+Call M={x,z_3,...,z_d} the simple-pole axes. At a generic positive weight,
+choose its unique cheapest member u. Relations between distinct members
+of M have their mixed products leading, by partial fractions. Also
+
+    x^2*y=1,
+    lambda_j^2*y*z_j+x*y+lambda_j*y-z_j=0.                (QP1)
+
+If u=x, (QP1) makes y*z_j leading for every j. If u=z_s, its equation
+makes x*y leading; subtracting its equation from the others makes every
+y*z_j with j!=s leading. Finally
+
+    y*(1+lambda_s*z_s)^2=z_s^2
+
+makes u^2*y leading, including in characteristic two. The complete
+parent normal domain therefore consists of pure chains on M, together
+with y^k and u*y^k for k>=1. These monomials are independent in K(t):
+at t=0 the pairs y^k,u*y^k separate even and odd pole orders, since
+u=t or u has a nonzero first derivative at zero. After these coefficients
+vanish, uniqueness of partial fractions separates the pure chains.
+The displayed reductions span the ring and decrease the chosen order,
+so independence proves completeness of the parent domains, not merely
+an inclusion in them. Every global initial ideal of I_f has a positive
+weight witness avoiding the finitely many ties between axes in M.
+
+Consequently each length-n initial staircase has parameters
+
+    a>=1, b0>=b1>=0, c_v>=0 for v in M minus {u},
+    n=a+b0+b1+sum_v c_v,
+    a>=2 if b1>0.                                        (QP2)
+
+It contains 1,u,...,u^(a-1), y,...,y^b0,
+u*y,...,u*y^b1 and v,...,v^c_v for the other axes v.
+Put L=b0-b1 and h=(b0+b1)/2. Its three relevant moments are
+
+    mu_u=a*(a-1)/2+h-L/2,
+    mu_y=h^2+h+L^2/4,
+    mu_v=c_v*(c_v+1)/2.                                  (QP3)
+
+The cases a=1,b1=0 contribute only O_d(n^(d-2)) patterns and can be
+counted separately. All arguments below concern a>=2.
+
+#### Rank flags which retain the missing dependency information
+
+If u=x, hold the other chain lengths c_j fixed and set
+C(t)=product_j(t-lambda_j)^c_j. The paired y and x*y chains, the pure
+x chain and the other poles span all rational functions with respective
+pole bounds 2b1,a-1,c_j. This space has dimension n-L. Multiplication
+by the unit t^(2b0)*C(t) identifies the entire candidate span with
+
+    t^(2L)*K[t]_(<n-L)
+       + span(t^(2k)*C(t):0<=k<L), modulo f.             (QP4)
+
+This follows either by partial fractions or by multiplying those full
+pole-bound spaces by their common denominator. In particular its rank
+depends only on L and the c_j, not on h or on a separately.
+
+If u=z_s, write c0 for the length on x and c_j for the other finite
+simple poles. Set v=1/t and
+
+    g(v)=v^n*f(1/v)/f(0),
+    C_s(v)=(1-lambda_s*v)^(a-1)
+                  *product_(j!=s)(1-lambda_j*v)^c_j.
+
+Multiplication by the unit v^c0*C_s(v) identifies the full pole-bound
+core with K[v]_(<n-L). The L remaining columns are
+
+    v^(n-a-sum_(j!=s)c_j-L+2k)*C_s(v), 1<=k<=L,
+    modulo g.                                           (QP5)
+
+Thus the rank depends only on (a,(c_j)_(j!=s),L), not on c0 and h
+separately. Projecting the columns in (QP5) onto the top L coefficients
+after reduction modulo g gives an L-by-L rank test; total rank is
+n-L plus that rank. Both (QP4) and (QP5) are identities of subspaces
+after multiplication by units, so they hold over every field, with
+arbitrary multiplicities in f. A collection of independent partial
+fractions before reduction alone would not prove them modulo f.
+
+For each fixed flag (a,(c_j)_(j!=s)) and each parity, let L_* be its
+smallest admissible L giving rank n, if one exists. Even parity always
+allows L_*=0. Odd parity need not allow L=1. For instance over F_2,
+
+    f(t)=t^5+t^4+t^3+t+1, lambda_s=1, a=2
+
+has no basis at odd gap one, whereas gap three is a basis. This exact
+countercontrol prevents replacing an arbitrary admissibility set by
+the condition on its first minor. No bound on L_* is assumed below.
+
+#### A separable monotonicity count in the x sector
+
+Fix c=(c_j) and one parity of L. Put N=n-sum c_j, so a=N-2h. By
+(QP4), feasibility is independent of h, except for the inequalities
+
+    L/2<=h<=(N-2)/2.
+
+The pairs (h,L) are closed under coordinatewise minimum and maximum,
+even if admissible L values have arbitrary gaps. Normalize w_y=1 and
+put r=w_x. The cost in (QP3) is a sum of a function of h and a
+function of L; mu_x strictly decreases when either h or L increases
+on this parity lattice. If p minimizes at r1 and q at r2>r1, write
+m=p meet q and j=p join q. Separability gives
+
+    F_(r2)(j)-F_(r2)(q)
+      = F_(r1)(p)-F_(r1)(m)
+             +(r2-r1)*(mu_x(p)-mu_x(m)).                (QP6)
+
+If p is not coordinatewise at most q, the last term is strictly
+negative and the first is nonpositive, contradicting optimality of q.
+Strict coherent minimizers therefore form a coordinatewise monotone
+chain as r increases. Each coordinate has O(N) possible values, so
+there are O(N) such pairs for fixed c and parity. Summing over the
+O_d(n^(d-2)) other chain vectors proves O_d(n^(d-1)) initials in this
+sector. Costs of the fixed other axes do not affect this argument.
+
+#### The least-admissible-gap count in every finite-pole sector
+
+Fix u=z_s, a>=2, the c_j at j!=s, and a parity with some admissible
+gap. Normalize w_y=1, write s=w_u and r=w_x. The sector inequality
+is r>s>0. Take any coherent pattern with gap L and put Delta=L-L_*.
+Replacing L by L_* at the same h,c0 gives another basis by (QP5),
+with integral b1'=h-L_*/2>=0. If Delta>0, strict cost optimality and
+(QP3) imply
+
+    0>F(L)-F(L_*)
+      =(L-L_*)*((L+L_*)/4-s/2),
+    hence L+L_*<2s.                                     (QP7)
+
+If c0>=2, increasing both b0,b1 by one and decreasing c0 by two
+also preserves the rank flag and gives another basis. Its cost minus
+the original cost is 2h+2+s-(2c0-1)r>0. Since s<r,
+
+    (c0-1)*r<h+1.                                       (QP8)
+
+For c0>=2 and Delta>=2, combine (QP7)--(QP8) to get
+
+    (c0-1)*(Delta-1)<2*(h+1)
+       =n-a-sum_(j!=s)c_j-c0+2<n.                       (QP9)
+
+The same product with each factor replaced by its nonnegative part
+is zero in the other cases. For fixed a,(c_j) and parity, c0 and
+Delta determine L,h,b0,b1. The number of positive integer pairs
+R,S with R*S<n is at most
+
+    sum_(R=1)^(n-1) floor((n-1)/R)=O(n*log(n+1)).
+
+The zero-factor boundary contributes O(n) more pairs. There are only
+O_d(n^(d-2)) choices of a,(c_j); parity and the choice of u cost
+constant factors. Combining this with the x sector proves
+
+    g(I_f)=O_d(n^(d-1)*log(n+1)), d>=3,
+    g(I_f)=O(n), d=2.                                   (QP10)
+
+The constants are independent of f, the poles and the characteristic.
+In particular there is no extra n^d/p term from persistent small-field
+dependencies. The useful mechanism is comparison to the least feasible
+flag, with its potentially large offset removed before counting integer
+pairs. The proof does not require a generic divisor, a nonsingular rank
+minor at gap one, or an equality of fans for different divisors.
+
+#### A linear rank-delay counterexample even at rational degree two
+
+The rank flags cannot be replaced by a claim that every parent-normal
+prefix completes rank after n+O(1) entries. Take d=2, n=2m+1,
+f=t^n-1, x=t and y=t^(-2), over any field. Both coordinates generate
+the quotient: x=y^m modulo f, and the y powers permute the t-power
+basis. With w_y=1 and w_x=m+epsilon, 0<epsilon<1, the parent-normal
+monomials of cost below 2m are exactly
+
+    y^j, 0<=j<2m;       x*y^j, 0<=j<m.
+
+There are 3m of them. The latter m columns repeat y^m,...,y^(2m-1),
+so their combined rank is n-1. The next monomial y^(2m) completes
+rank at position 3m+1=n+m. The delay is linear in n despite fixed
+rational degree and full coordinate elimination degrees. This is a
+rank-completion obstruction, not a large fan or an unrestricted lower
+bound. The matrices are standard unit columns in every characteristic,
+so the argument does not rely on a numerical rank tolerance.
+
+#### Verification, scope and next mechanism
+
+The checker constructs twelve actual cyclic quotients over Q,F_2,F_3
+in dimensions two through four. It compares direct residue ranks with
+the independent flag formulas, and independently enumerates every
+downset in each parent domain. Eight three-dimensional fixtures have
+complete positive fans: every candidate has a saved rank, and every
+independent candidate has exact border comparisons and a full polygon
+clip; nonempty regions have strict integer weights and independent
+cross-wide greedy checks. Four other fixtures have selected strict
+weights, explicitly not a claimed full fan. Checks also cover the
+monotone-chain and minimum-gap counting inequalities, and the three
+rank-delay controls m=2,3,5. These are bounded proof controls; the
+uniform asymptotic statement is established by (QP1)--(QP10).
+
+Shared pattern tables store the chain parameters in (QP2), which reconstruct
+each exact basis. Border normals and polygon vertices use comma-separated
+exact coordinate strings. This avoids repeating full bases across models;
+the checker validates the expanded bases before encoding them.
+
+For this whole degree-two multiple-pole family, (QP10) lies below the
+existing generic n^(d-1)*log^(d-1)(n) lower order when d>=3. Park it
+as an exponent-amplification source, including in small characteristic.
+No novelty for this restricted bound has been certified. The retained
+counting mechanism suggests a next proof gate: for higher rational
+degree, determine whether independent common shifts leave a bounded
+collection of rank flags and whether least-admissible comparisons still
+bound all coherent patterns. An arbitrary rational parametrization may
+have several interacting pole gaps, and general finite algebras need
+not have such a parametrization. A dependence on rational degree and a
+complementary bound for the remaining algebras are still required for
+an unrestricted result. Do not expand enumeration merely by increasing
+n in the now-bounded family.
+
+The original goal, further-consequence requirement, primary-priority
+audit and honest new-manuscript gate remain open. Reproduce with
+
+```bash
+./build.sh
+python3 tests/test_smoke.py
+python3 -B scripts/run_structural_complexity_checks.py
+```
