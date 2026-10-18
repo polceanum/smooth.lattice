@@ -32,10 +32,10 @@ The three-group classification is a worked example, not the research endpoint.
 Propositions 14--16 below add general reconstruction and transient laws, an
 obstruction to recovering three-prime order from finite pairwise patterns,
 and a generic exact-unranking baseline derived from established theory.
-Proposition 17 is the first candidate under the active research goal: an
-integer representation of an entire ordered prefix with a cutoff score
-linear in its length for fixed dimension. Its novelty and usefulness are
-unresolved; it is not yet a paper result or a faster unranking algorithm.
+Proposition 17 gives an integer representation of an entire ordered prefix
+with a cutoff score linear in its length for fixed dimension. It is now
+included as a supporting lemma in the quantitative manuscript. The paper
+claims no new general weight-compression method or faster unranking algorithm.
 The preserved structural note concerns Propositions 18--20: a formula for the Mobius function of
 pyramidal-partition intervals in every dimension, obtained by a precise
 reduction to Edelman's region-poset theorem. It addresses a specific question
@@ -67,6 +67,13 @@ neither our proposed asymptotic counting orders nor a prime-height bound.
 The detailed comparison and exact table checks are recorded at the end of
 this note. The specific source-access blocker is resolved. Overall
 originality and final submission assessment remain open.
+
+The current manuscript also includes the complete ordered-prefix count,
+linear integer-score certificate and sharp worst-case prime-height proof.
+Its title is *Corner cuts and monomial prefixes: sharp counts and prime
+realizations*. The main pointwise lower count remains its central result;
+the additional theorems give a quantitative consequence for the established
+finite-ordering class and an explicit arithmetic size guarantee.
 
 The first bounded study is complete: for the reconstructed rounded-occurrence
 rule, Propositions 10--13 below give a partition reduction, a prefix-period
@@ -3310,3 +3317,84 @@ against all literature or an independent referee report. Do not mark the
 publication goal achieved solely because this paper does not preempt the
 claims. The next task is the final contribution and manuscript assessment,
 using the completed source comparison and unchanged acceptance criteria.
+
+### Integrated quantitative manuscript, 2026-10-18
+
+The source-access comparison is resolved, so Candidates 24--25 and their
+supporting lemmas are now integrated into `paper/corner_cut_growth/main.tex`.
+The resulting paper is titled *Corner cuts and monomial prefixes: sharp
+counts and prime realizations*. This is a manuscript development step,
+not a claim of journal acceptance or an independent referee assessment.
+
+The argument now has the following complete dependency structure:
+
+| Manuscript label | Statement and role | Attribution and scope |
+| --- | --- | --- |
+| `thm:main` | Sharp pointwise set count C_d(n)=Theta_d(n^(d-1)(log n)^(d-1)), including the prescribed-size primitive-normal injection | Wagner's upper bound and the known planar order are credited. The asserted advance is the matching lower bound in d>=3. |
+| `lem:finiteweight` | Ordered positive-weight prefixes equal finite initial intervals of global monomial orders | Known consequence of Robbiano. The proof uses finite unit, consecutive-order and minimal-excluded-border comparisons. The finite prefix is essential. |
+| `thm:orders` | The full ordered-prefix count O_d(n) has the same sharp growth order | The family and its enumeration are credited to Vasiliev--Pavlov. A bounded-width dyadic product shell and central arrangements give the uniform upper bound; the main set theorem supplies the lower bound. |
+| `lem:linear-score` | Positive integer weights with n-1<=S<=c_d n and max A_i<=S+1, c_d=d(d!)^2 2^(d-1) | Supporting LP/Cramer/product-bound lemma, with no separate claim of a new general compression method. The proof handles unused coordinates explicitly. |
+| `thm:height` | Worst-case minimum log(max p_i) equals Theta_d(n log(max(B,2))) for n>=2, B>0, for ordered words and underlying sets | Qualitative prime realization is Vietri's. The upper bound uses Dusart's published Proposition 5.4, the integer certificate and an exact anchor; a pure-axis word gives the matching lower bound. |
+| `cor:budget` | Imposing the explicit linear-bit prime budget leaves both complete pattern families unchanged | A consequence of the two counts and the prime-height theorem, not a prime-distribution estimate or efficient construction algorithm. |
+
+The earlier qualitative prime-realization proof is replaced in the paper
+by its attribution and the stronger quantitative argument. The separate
+structural note, original occurrence rule and smooth-number CLI remain
+unchanged. No additional search framework or mandatory dependency is
+introduced.
+
+#### Internal audit during integration
+
+The newly typeset proofs were checked against the saved arguments, with
+the following boundary cases made explicit:
+
+* A finite global-order prefix is controlled by finitely many differences,
+  including all unit vectors and the minimal excluded border. Positivity
+  then controls the infinite complement; no scalar representation of the
+  whole infinite order is asserted.
+* The ordered count restricts to active coordinate faces before applying
+  volume bounds. Its product lies in a bounded-width dyadic shell, which
+  supplies exactly the logarithmic exponent d-1. Chart intersections and
+  repeated hyperplanes only overcount.
+* In the certificate LP, the excluded border is taken in the active face.
+  Compact sublevel sets give an optimal vertex. Cramer scaling preserves
+  every unit-margin inequality. Active weights are at most S because
+  their unit vectors are included; inactive weights are restored as S+1.
+* Axis collisions at lcm(A_i,A_j)<=S are impossible because included
+  scores are strict. Thus all except possibly the smallest weight exceed
+  sqrt(n-1), even when some coordinates are unused.
+* The smallest-weight prime is anchored exactly. All other logarithmic
+  errors are positive and their total on any included point is below one
+  scaled integer-score gap. Distinctness of primes holds for equal larger
+  weights, and positivity of the errors controls every excluded point.
+* Dusart's published interval is used only at x>=exp(30), where its
+  1/(log x)^3 width is strictly smaller than 1/[25(log x)^2]. The source
+  statement and publisher metadata were rechecked; its full analytic
+  proof is an established input, not independently rederived here.
+* The theorem is uniform in B>0 for fixed d; n=1 is handled separately.
+  The same pure-axis family proves the word and set lower bounds.
+
+The primitive-window, affine-patch, height-to-rank and cross-aspect steps
+of the main set-count argument were also checked for consistency with the
+new consequences. The two new theorems do not alter that proof. No
+unresolved mathematical step was identified in this internal pass.
+
+The cited Robbiano source is the 1985 EUROCAL chapter, with the inspected
+ordered-group formulation in MPI/SFB 85-17, Theorem 2.5, pp. 23--25.
+Its 2005 online date is not used as the original publication date.
+The Dusart citation is the 2018 published paper, not the differently
+numbered 2010 preprint. Both sources retain their earlier recorded
+reading-scope qualifications.
+
+The current finite evidence includes 230 exact integer-score fixtures,
+90 matrix-order fixtures and the 32 published-table comparisons with
+1,023 accepted strict-prefix certificates. The chart, lattice-patch and
+primitive-sieve checks remain supporting falsification evidence. None of
+these numerical checks proves a uniform asymptotic theorem or priority.
+
+The original goal is not reduced to manuscript preparation. Its final
+contribution and submission assessment must evaluate the complete set
+of statements against the strongest inspected primary work and the
+original acceptance criteria. The full-source comparison and the newly
+integrated proofs make that assessment possible; typesetting alone does
+not establish its outcome.

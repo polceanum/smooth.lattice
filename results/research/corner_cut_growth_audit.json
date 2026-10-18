@@ -1,6 +1,6 @@
 {
   "date": "2026-10-18",
-  "status": "primary_text_comparison_complete_candidates_retained_final_assessment_pending",
+  "status": "integrated_uniform_count_and_prime_height_manuscript_final_assessment_pending",
   "mathematical_record": "docs/interleaving_research.md, Candidate 23 (Candidates 21 and 22 preserved as the earlier cumulative route)",
   "proposed_results": [
     "For every fixed d >= 2, C_d(n) = Theta_d(n^(d-1) (log n)^(d-1)).",
@@ -377,7 +377,7 @@
     "uniform_argument": "The full pointwise argument passed a fresh internal adversarial review with no unresolved logical step identified. The audit includes ties, witnessing-height multiplicities, affine-coset reductions, two-patch integer rigidity, rank-to-height estimates and cross-aspect duplication. This is not an independent human referee report.",
     "novelty": "Consolidated internal assessment is favorable: the uniform matching count strictly improves the same-object lower bound in the inspected primary lineage, and known ingredients are explicitly attributed. Overall originality remains unverified; the goal is not complete.",
     "mathematical_usefulness": "The matching count closes the inspected corner-cut logarithmic gap in every fixed dimension d>=3. It also determines the mean completion multiplicity as Theta_d(log n), addressing Wagner's explicit suggested route, and counts the established polytope/model and varying-prime prefix shapes.",
-    "manuscript": "Anonymous review manuscript now includes the full Vasiliev--Pavlov comparison and exact table reproduction; quantitative claims unchanged. Final contribution and submission assessment remain open.",
+    "manuscript": "Integrated manuscript now gives full proofs of the ordered count, linear integer certificate and sharp worst-case prime height, with Robbiano, Vasiliev--Pavlov, Vietri and Dusart attribution. Final contribution and submission assessment remains open.",
     "decision": "Continue final contribution and manuscript assessment. The full 2009 primary-text comparison is complete and favorable; the source-access blocker is resolved. Goal achievement is not inferred solely from this comparison."
   },
   "explicit_cumulative_lower_bound": {
@@ -414,26 +414,30 @@
   },
   "manuscript": {
     "source": "paper/corner_cut_growth/main.tex",
-    "title": "Sharp growth of corner cuts in fixed dimension",
-    "status": "anonymous_mathematical_review_manuscript_prepared_final_assessment_incomplete",
+    "title": "Corner cuts and monomial prefixes: sharp counts and prime realizations",
+    "status": "complete_integrated_internal_review_draft_final_submission_assessment_pending",
     "proof_contents": [
       "Uniform primitive-window bound with closed constants",
-      "Full-lattice injection and bounded-height division to count primitive normals",
-      "Lexicographic prefix realized by positive integer weights",
-      "Two integer patches proving same-dimension fixed-size injectivity",
-      "Volume bounds and disjoint aspect extents at prescribed size",
-      "Matching pointwise count and established polytope and prime-base interpretations",
-      "Logarithmic average-completion corollary and exact finite-grid cardinality comparison"
+      "Primitive-plane injection and bounded-height division",
+      "Lexicographic prefix realization and prescribed-size two-patch injectivity",
+      "Observable axis extents and disjoint aspect ranges",
+      "Matching pointwise corner-cut count",
+      "Known finite-weight bridge for global monomial-order prefixes",
+      "Ordered-prefix dyadic shell and central-arrangement upper bound",
+      "Positive integer-score certificate with linear cutoff",
+      "Sharp worst-case prime-height upper bound and pure-axis lower bound",
+      "Explicit prime-budget universality for words and sets",
+      "Mean order and coordinate-completion multiplicities; known model/vertex dictionaries"
     ],
     "compilation": "latest_source_compiled_successfully_with_latexmk",
     "author_metadata": "Left blank; no authorship or affiliation invented.",
     "pdf": "output/pdf/corner_cut_growth.pdf",
-    "pdf_pages": 10,
-    "tex_sha256": "0b81631dabc8d5161da1591301ba8668fc53d0dd8894a4a93cedb26b22f2821d",
-    "pdf_sha256": "d4136e69dc8bccb8236dc4c40d46f92ddee39cf4ecc6573ba991a5aac3b5e26b",
-    "visual_review": "All ten page layouts checked. First eight final page-content streams are byte-identical to the reviewed renders; final pages nine and ten rendered and inspected after bibliography adjustment. No clipping, overlap or orphan reference page.",
+    "pdf_pages": 14,
+    "tex_sha256": "52a5654e8e3de8f28fb7c5dbef6d753f68a95825411cea7cbc4a3a18b45bd817",
+    "pdf_sha256": "dd158377ecf6ab9b0e14ef103e449a3098c50815fbae6018949e3ff98c87be44",
+    "visual_review": "All fourteen final page layouts inspected in rendered contact sheets; new proof pages six through ten also inspected individually at full resolution. No clipping, overlap, unreadable formulas or orphan reference page.",
     "latex_log_check": "No errors, warnings, overfull or underfull boxes, or undefined references in the final pass.",
-    "pdf_structure_check": "Ten pages, blank author metadata, resolved Vasiliev--Pavlov and Vietri citations, no unresolved references in extracted text.",
+    "pdf_structure_check": "Fourteen pages, blank author metadata, new theorem labels and source citations present, no unresolved references in extracted text.",
     "pdf_build_command": "latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=results/local/corner-cut-latex paper/corner_cut_growth/main.tex",
     "assistance_disclosure": "OpenAI Codex proposed and developed the quantitative argument, carried out the literature comparison, and produced the checks and draft during an investigation prompted by the project owner. No independent referee assessment or acceptance claimed.",
     "version_citations": "Inspected Elizalde--Galvan arXiv v1 and the uninspected journal version are cited separately. Wagner's upper theorem is also located as thesis Theorem 3.15.",
@@ -442,7 +446,7 @@
   },
   "prime_base_realization": {
     "statement": "Every nonempty finite corner cut is realizable as a smooth-number exponent prefix over distinct ordered prime bases, all above any prescribed bound B.",
-    "proof_location": "paper/corner_cut_growth/main.tex, Proposition labelled prop:prime; docs/interleaving_research.md, Additional attribution and the exact prime-base connection",
+    "proof_location": "paper/corner_cut_growth/main.tex, Section sec:primeheight, Lemma lem:linear-score and Theorem thm:height; qualitative realization attributed to Vietri Proposition 6.2.",
     "arithmetic_input": "Classical Bertrand postulate; for sorted positive weights choose disjoint intervals (2^(i-1) exp(T w_i), 2^i exp(T w_i)).",
     "source": "https://users.renyi.hu/~p_erdos/1932-01.pdf",
     "source_inspected": "Published text pp. 197--198, stating and completing the proof of Bertrand's postulate.",
@@ -542,11 +546,11 @@
     "goal_complete": false
   },
   "review_manuscript_checks": {
-    "mathematical_statements": "Main bound, quantifiers, constants, primitive sieve, fixed-size injection and consequences unchanged from the passed internal proof audit.",
-    "bibliography": "Vasiliev--Pavlov Definition 5, Section 6, Remark 1 and Tables 7--8 compared and credited; Vietri qualitative realization, Wagner upper theorem, Remond attribution and deferred Elizalde--Galvan version check retained.",
+    "mathematical_statements": "Main set-count proof unchanged; complete finite-weight, ordered-count, linear-certificate and sharp prime-height arguments added, with singleton, inactive-face and infinite-complement cases explicit.",
+    "bibliography": "Known qualitative prime realization credited to Vietri; strict-prefix class and enumeration to Vasiliev--Pavlov; finite-weight classification to Robbiano; published Dusart Proposition 5.4 used as the analytic input. Original dates and reading scopes distinguished.",
     "honesty": "Anonymous author field; explicit extent of AI work; no independent review or acceptance claimed; overall novelty and submission flags remain false.",
-    "reproducibility": "All three research reports regenerated for current sources; core build and smoke checks pass; source hashes verified.",
-    "layout": "latexmk succeeds with no final warnings or overfull/underfull boxes; all ten final page layouts checked, blank author metadata and resolved references; no single-entry overflow page.",
+    "reproducibility": "All three research reports regenerated and passed for current sources; all source hashes verified. Prior build/smoke evidence retained for unchanged core sources.",
+    "layout": "Fourteen-page integrated draft compiled with no final warnings, overfull/underfull boxes or unresolved references; all page layouts inspected, new proof pages inspected individually, author metadata blank.",
     "limitation": "This completes preparation of an anonymous mathematical review manuscript and its consolidated internal assessment. It does not establish unrestricted priority or final submission readiness."
   },
   "broader_extremal_feasibility": {
@@ -664,7 +668,7 @@
   },
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "evidence": "Resolved the recurring primary-text dependency from the user-supplied paper; read all pages; established exact class identification and independently checked 32 published values with 1,023 exact certificates; added precise prior-art attribution to the manuscript. Original acceptance criteria unchanged."
+    "evidence": "Integrated complete ordered-prefix, integer-score and sharp prime-height proofs into the manuscript with explicit known-input attribution and size-budget corollary; checked the active-face, LP, collision and infinite-complement obligations. Goal scope and original acceptance criteria unchanged."
   },
   "ordered_prefix_growth_candidate": {
     "record": "docs/interleaving_research.md, Candidate 24: full ordered prefixes have the same growth order",
@@ -755,9 +759,9 @@
       }
     ],
     "novelty_established": false,
-    "manuscript_extended": false,
+    "manuscript_extended": true,
     "goal_complete": false,
-    "decision": "The full Vasiliev--Pavlov comparison is complete and does not preempt the quantitative bound. Continue final contribution and manuscript assessment, explicitly crediting the established prefix family and enumeration methods.",
+    "decision": "Full quantitative proof included after completing the exact 2009 comparison. Attribute the class, scalar representation and enumeration methods; assess the contribution together with the main matching count and prime-height theorem.",
     "global_monomial_order_scope": {
       "record": "docs/interleaving_research.md, Global monomial orders: exact finite-prefix scope",
       "statement": "O_d(n) counts exactly the finite n-prefixes of all global monomial orders, with labeled variables; one weight vector need not represent a global order at every length.",
@@ -791,7 +795,8 @@
       "status": "Complete supporting deduction from known methods and saved lemma; novelty of the quantitative formulation unverified.",
       "limit": "No new prime-distribution estimate, efficient prime-tuple search, or fixed-prime unranking improvement.",
       "sharpened_by": "prime_height_candidate: the quadratic bit estimate is valid but the new complete argument gives the sharp linear worst-case order."
-    }
+    },
+    "manuscript_location": "Section sec:orders, Lemma lem:finiteweight and Theorem thm:orders"
   },
   "prime_height_candidate": {
     "record": "docs/interleaving_research.md, Candidate 25: sharp worst-case prime size for finite-prefix realization",
@@ -818,12 +823,12 @@
         "limit": "No independent rederivation of all analytic prerequisites claimed."
       }
     },
-    "proof_status": "Complete argument passed a fresh internal audit with no unresolved logical step identified. Published Dusart Proposition 5.4 supplies the used interval bound. Not independently refereed; priority remains unresolved.",
+    "proof_status": "Complete uniform argument now included in the manuscript, checked internally against the saved proof; all inactive-coordinate, equal-weight, arbitrary-B, singleton and infinite-complement cases addressed. No independent referee assessment claimed.",
     "priority_status": "Not preempted by the fully inspected Vasiliev--Pavlov (2009) paper, which contains no prime-size theorem. Qualitative realization is Vietri Proposition 6.2; finite-weight representation and generic compression methods remain credited. Overall originality and final contribution assessment remain open.",
     "finite_checks": "Axis-collision conditions added to the existing 230 compression fixtures and 90 matrix-order fixtures; scalar heaps verify full order and cutoff. Rational short-interval error budget checked in the non-singleton matrix cases.",
     "usefulness": "An explicit asymptotically optimal worst-case prime-bit budget for all admissible finite words and shapes; for fixed B, O_d(n) bits suffice and some patterns require Omega(n).",
     "limits": "No faster fixed-prime unranking, fast realizing-prime search, new prime-gap estimate, leading constant or growing-dimension bound.",
-    "manuscript_extended": false,
+    "manuscript_extended": true,
     "novelty_established": false,
     "goal_complete": false,
     "original_preprint_arithmetic_input": {
@@ -852,7 +857,8 @@
         "Matching word and shape axis lower family"
       ],
       "limitation": "Internal review can miss an error; priority and submission readiness remain unresolved."
-    }
+    },
+    "manuscript_location": "Section sec:primeheight, Lemma lem:linear-score, Theorem thm:height and Corollary cor:budget"
   },
   "primary_text_dependency": {
     "paper": "https://doi.org/10.1134/S0361768809020030",
@@ -919,5 +925,37 @@
     "candidate_25": "Retained. This source does not supply a sharp quantitative prime-bit bound; qualitative realization remains credited to Vietri.",
     "decision": "Resolve this specific primary-text blocker and continue the quantitative paper. This source comparison is favorable evidence, not a universal originality certificate or an independent referee report.",
     "public_source_redistribution": false
+  },
+  "manuscript_integration_audit": {
+    "status": "complete_uniform_arguments_integrated_final_contribution_assessment_pending",
+    "date": "2026-10-18",
+    "title": "Corner cuts and monomial prefixes: sharp counts and prime realizations",
+    "source": "paper/corner_cut_growth/main.tex",
+    "record": "docs/interleaving_research.md, Integrated quantitative manuscript, 2026-10-18",
+    "dependency_labels": [
+      "thm:main",
+      "lem:finiteweight",
+      "thm:orders",
+      "lem:linear-score",
+      "thm:height",
+      "cor:budget"
+    ],
+    "scope": "The full ordered-prefix count and sharp prime-height result now have complete proofs in the manuscript, rather than only in the research notebook. The pointwise corner-cut lower bound remains central.",
+    "known_inputs": "Robbiano finite-weight representation; Vasiliev--Pavlov strict-prefix family and enumeration; Vietri qualitative prime realization; LP/Cramer methods and product bounds; Bertrand and published Dusart Proposition 5.4.",
+    "internal_math_review": "Finite excluded borders and all unit directions; active-face volume estimates; bounded-width dyadic shell; central arrangements; full-rank LP vertex and determinant scaling; restored inactive weights; axis-collision rigidity; exact prime anchor; positive errors and infinite complement; uniform B and singleton; word/set matching lower family.",
+    "review_limit": "Internal logical and transcription review, not an independent human referee report.",
+    "preserved_scope": "Fixed-prime kernels, CLI and separate structural note unchanged. No mandatory dependency or new prime-search framework added.",
+    "remaining_gate": "Final contribution, priority and submission-readiness assessment against the original objective; integration or compilation alone does not establish it.",
+    "validation": "All three research scripts passed against current source hashes; final latexmk log clean; fourteen-page PDF and bibliography visually checked.",
+    "core_validation_reuse": {
+      "validated_commit": "d5f0b6f7a92b717733a7531f9ba27660ef25e96f",
+      "commands": [
+        "./build.sh",
+        "python3 tests/test_smoke.py"
+      ],
+      "reason": "Kernels, wrapper, build and smoke sources are byte-unchanged from the preceding passed validation; git diff --quiet confirms this. No new core result is claimed."
+    },
+    "central_proof_preservation": "The primitive-window, prescribed-size injection and aspect-summation source is byte-identical to the preceding audited manuscript.",
+    "next_review": "Audit the integrated paper against each original acceptance criterion; distinguish the central new lower-count claim from supporting ordered/prime consequences and check implications of the stronger published flag-count upper bound. Do not infer goal achievement from a clean PDF or positive examples."
   }
 }

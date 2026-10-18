@@ -17,7 +17,7 @@
 \newcommand{\floor}[1]{\lfloor#1\rfloor}
 \newcommand{\ceil}[1]{\lceil#1\rceil}
 \newcommand{\dd}{\delta}
-\title{Sharp growth of corner cuts\\in fixed dimension}
+\title{Corner cuts and monomial prefixes:\\sharp counts and prime realizations}
 \author{}
 \date{18 October 2026}
 \begin{document}
@@ -33,16 +33,23 @@ hyperplane. For every fixed \(d\geq2\), we prove
 \[
  C_d(n)=\Theta_d\!\bigl(n^{d-1}(\log n)^{d-1}\bigr).
 \]
-The upper bound is due to Wagner. For the lower bound, a finite
+The same order holds for the number of complete ordered prefixes of
+length \(n\), equivalently the strictly admissible finite monomial
+orderings. The set-count upper bound is due to Wagner. For the lower
+bound, a finite
 sieve produces primitive lattice simplices in separated axis boxes.
 Their primitive normal directions are distinguished at a prescribed
 cardinality by two integer patches on opposite sides of a boundary
 level. Summing over disjoint aspect ranges supplies the logarithmic
 factor. This gives a matching lower bound in every fixed dimension,
 including the three-dimensional order \(n^2(\log n)^2\).
-The cumulative count is consequently of order \(n^d(\log n)^{d-1}\).
-The mean number of completions of a coordinate slice is of order
-\(\log n\), as suggested in Wagner's discussion of the lower bound.
+An active-face dyadic decomposition gives the ordered-prefix upper bound.
+We also prove an optimal worst-case prime-realization bound: every
+ordered prefix is realizable over distinct primes above \(B\) with
+\(\log\max_i p_i=O_d(n\log\max(B,2))\), and some prefixes require
+this order. The latter argument combines a linear integer-score
+certificate with an established short-interval prime theorem. Qualitative
+prime realization and the finite-weight representation are prior results.
 \end{abstract}
 
 \section{The counting problem and its scope}
@@ -56,8 +63,8 @@ number of such sets of cardinality \(n\), and put
 \[
  A_d(n)=\sum_{j=1}^{n}C_d(j).
 \]
-We count sets, rather than the orders of their elements or the weights
-representing them. Every cut is an order ideal for the coordinate order.
+The parameter \(C_d(n)\) counts sets, without their internal orders or
+representing weights. Every cut is an order ideal for the coordinate order.
 In particular, every coordinate of an element of an \(n\)-point cut
 is at most \(n-1\), so these counts are finite.
 
@@ -66,7 +73,8 @@ numbers. For distinct primes \(p_1,\ldots,p_d\), comparing the products
 \(\prod_i p_i^{x_i}\) is equivalent to comparing
 \(\sum_i x_i\log p_i\). An exponent prefix is consequently a corner cut.
 Conversely, every corner cut has such a realization, even with all
-primes above any prescribed bound (Proposition~\ref{prop:prime}).
+primes above any prescribed bound \cite[Proposition 6.2]{Vietri}.
+Theorem~\ref{thm:height} bounds the required prime sizes.
 Thus the full geometric class is exactly the class of exponent-prefix
 sets as the ordered prime bases vary. This does not give a
 prime-distribution estimate or a faster random-access algorithm for a
@@ -120,6 +128,17 @@ Summing gives \(A_d(n)=\Theta_d(n^d(\log n)^{d-1})\).
 The pointwise conclusion matches \eqref{eq:baseline} and strengthens
 its lower logarithmic exponent when \(d\geq3\).
 For \(d=2\), it recovers the known planar order.
+
+We also count complete ordered prefixes, denoting their number by
+\(O_d(n)\). These are precisely Vasiliev--Pavlov's strictly admissible
+finite monomial orderings \cite[Definition 5]{VP}; the class and its
+enumeration are established background. Theorem~\ref{thm:orders} proves
+\(O_d(n)=\Theta_d(n^{d-1}(\log n)^{d-1})\).
+Thus retaining the full internal order changes the total count by only a
+bounded factor in fixed dimension. Theorem~\ref{thm:height} then gives a
+sharp worst-case arithmetic size bound for realizing any such word over
+prime bases. All constants may depend on \(d\); the dimension is fixed
+throughout.
 
 \section{Primitive simplices in axis boxes}
 Fix an ambient integer \(d\geq2\) and set \(\dd=1/(100d)\).
@@ -444,7 +463,294 @@ For the latter explicit bound, \(d^2\leq4^{d-1}\) gives
 Multiplying the counts yields \eqref{eq:explicit}.
 \end{proof}
 
-\section{Consequences and limitations}\label{sec:consequences}
+\section{Counting complete ordered prefixes}\label{sec:orders}
+Let \(\mathcal O_d(n)\) consist of ordered tuples
+\(W=(x_1,\ldots,x_n)\) of the first \(n\) points of \(\Nzero^d\)
+in increasing \(w\cdot x\), as positive vectors \(w\) with rationally
+independent coordinates vary. Put \(O_d(n)=\card{\mathcal O_d(n)}\).
+Coordinates are labeled. Forgetting the internal order maps this class
+onto the \(n\)-point corner cuts. Indeed, strict separation is controlled
+by the finitely many minimal excluded points, so a separator may be
+perturbed to have rationally independent coordinates.
+
+We record explicitly the known connection with global monomial orders.
+The statement concerns each finite initial interval, and does not assert
+that one scalar vector represents an entire infinite monomial order.
+
+\begin{lemma}[Finite-weight representation]\label{lem:finiteweight}
+The words in \(\mathcal O_d(n)\) are exactly the length-\(n\) initial
+intervals of global monomial orders.
+\end{lemma}
+\begin{proof}
+A positive rationally independent vector gives a total, multiplicative
+well-order on monomials, since only finitely many exponents have bounded
+score. Conversely, Robbiano's representation \cite{Robbiano} expresses a
+global monomial order by lexicographic comparison of finitely many real
+linear forms \(u_1,\ldots,u_s\).
+For an initial interval \(W\), put \(D=\{x_1,\ldots,x_n\}\)
+and let \(E\) be the coordinatewise minimal points outside \(D\).
+The set \(E\) is finite: all its coordinates are at most one more
+than the corresponding coordinate maximum of \(D\).
+Each vector in the finite family
+\[
+ \{e_i:1\leq i\leq d\}\ \cup\
+ \{x_{j+1}-x_j:1\leq j<n\}\ \cup\
+ \{b-x_n:b\in E\}
+\]
+has lexicographically positive image under these forms. Consequently
+\(w(\varepsilon)=u_1+\varepsilon u_2+\cdots+
+\varepsilon^{s-1}u_s\) is positive on the whole family for sufficiently
+small \(\varepsilon>0\). The unit vectors make its coordinates positive;
+the other inequalities give the prescribed order and put the entire
+excluded border after it. Every excluded point dominates a border point,
+so positivity controls the infinite complement. A small generic
+perturbation preserves these finite inequalities and gives rational
+independence.
+\end{proof}
+
+\begin{theorem}[Ordered-prefix count]\label{thm:orders}
+For every fixed \(d\geq2\),
+\[
+ C_d(n)\leq O_d(n)=O_d\!\left(n^{d-1}(\log(n+1))^{d-1}\right).
+\]
+In combination with Theorem~\ref{thm:main}, this gives
+\(O_d(n)=\Theta_d(n^{d-1}(\log n)^{d-1})\).
+\end{theorem}
+\begin{proof}
+The case \(n=1\) is immediate. For a witnessing weight \(w\), put
+\(t=w\cdot x_n>0\), and restrict to the active coordinates
+\(J=\{i:w_i\leq t\}\). Write \(r=\card J\geq1\).
+All other coordinates vanish throughout the prefix. In this face put
+\[
+ b_i=t/w_i\geq1,\qquad
+ L_i=2^{\floor{\log_2 b_i}},\qquad Q=\prod_iL_i=2^R.
+\]
+The simplex of height \(t\) is covered by the unit cubes based at its
+\(n\) lattice points, so \(\prod_i b_i\leq r!n\).
+The bounding box gives
+\(n\leq\prod_i(\floor{b_i}+1)\leq2^r\prod_i b_i\).
+Since \(L_i\leq b_i<2L_i\),
+\[
+ n<4^rQ,\qquad Q\leq r!n.                    \tag{14}\label{eq:order-shell}
+\]
+For fixed \(r\), the integer \(R\) occupies a bounded-width interval
+and is at most \(\log_2n+\log_2(r!)\).
+For each \(R\), there are \(\binom{R+r-1}{r-1}\) possible tuples
+of nonnegative integer exponents. Thus the number of aspect tuples is
+\[
+ O_r\!\left((\log(n+1))^{r-1}\right).
+\]
+The lower
+product bound in \eqref{eq:order-shell} is essential here.
+
+For one such tuple, all prefix points lie in
+\(G_L=\prod_i\{0,\ldots,2L_i-1\}\).
+Comparisons within this box change on central hyperplanes
+\(w\cdot v=0\), where \(v\ne0\) is an integer vector with
+\(\lvert v_i\rvert\leq2L_i-1\). Up to sign, there are at most
+\[
+ \frac{\prod_i(4L_i-1)-1}{2}\leq4^rQ\leq4^rr!n
+\]
+such hyperplanes. An arrangement of \(m\geq1\) central hyperplanes in
+\(\R^r\) has at most
+\[
+ 2\sum_{j=0}^{r-1}\binom{m-1}{j}=O_r(m^{r-1})
+\]
+chambers.
+The bound follows by adding one hyperplane at a time and inducting on
+the restricted central arrangement; degeneracies only reduce the count.
+
+Within a chamber the order on \(G_L\) is fixed, and any global prefix
+whose witness has this chart must be its first \(n\) points.
+Thus there is at most one word per chart and chamber. Charts that are
+not realized, and words counted in more than one chart, only overcount.
+There are consequently
+\(O_r(n^{r-1}(\log(n+1))^{r-1})\) words for each active set \(J\).
+Summing over its \(\binom dr\) choices and over \(1\leq r\leq d\)
+proves the upper bound. The surjection onto corner cuts gives the lower
+bound \(C_d(n)\leq O_d(n)\).
+\end{proof}
+
+In particular, the mean number of admissible internal orders per
+\(n\)-point corner cut is \(O_d(n)/C_d(n)=\Theta_d(1)\).
+This is an average statement and gives no constant bound for each shape.
+The upper argument also recovers Wagner's set-count upper order;
+its original attribution is unchanged.
+
+\section{An optimal prime-size bound}\label{sec:primeheight}
+Qualitative realization by distinct prime bases follows from Vietri's
+finite-inequality theorem \cite[Proposition 6.2]{Vietri}, including any
+prescribed lower bound on the primes. Consecutive comparisons and the
+minimal excluded border specialize that result to ordered prefixes.
+We now bound the worst-case size of the realizing primes.
+
+\begin{lemma}[Linear integer-score certificate]\label{lem:linear-score}
+Put \(c_d=d(d!)^2 2^{d-1}\). Every \(W\in\mathcal O_d(n)\) has a
+positive integer weight vector \(A\) realizing exactly the same ordered
+prefix, with all included scores distinct. Its final score \(S=A\cdot x_n\)
+satisfies
+\[
+ n-1\leq S\leq c_dn,\qquad
+ \max_iA_i\leq S+1.                         \tag{15}\label{eq:linear-score}
+\]
+For \(n=1\), take \(A=(1,\ldots,1)\) and \(S=0\).
+\end{lemma}
+The proof uses a separation LP, determinant bounds and a simplex product
+estimate. These are established methods \cite{OS,W02}; we include the
+certificate bound as a supporting lemma, without a separate claim of a
+new general weight-compression method.
+\begin{proof}
+Assume \(n>1\), choose a strict positive witnessing vector \(w\), and
+put \(T=w\cdot x_n\). Restrict to the \(r\) active coordinates
+\(w_i\leq T\), and write \(B_i=\floor{T/w_i}\geq1\).
+In this face \(D=\{x_1,\ldots,x_n\}\) is the set of all lattice
+points of score at most \(T\). Its based unit cubes cover the simplex,
+and hence
+\[
+ \prod_iB_i\leq\frac{T^r}{\prod_iw_i}\leq r!n.
+\]
+Let \(E\) be the minimal excluded border in this \(r\)-dimensional
+face. Each \(b\in E\) has \(b_i\leq B_i+1\), and every excluded
+point dominates an element of \(E\). The finite system
+\[
+ z_i\geq1,\quad (x_{j+1}-x_j)\cdot z\geq1\ (1\leq j<n),
+ \quad (b-x_n)\cdot z\geq1\ (b\in E)
+\]
+is feasible after scaling \(w\). Minimize \(\sum_i z_i\);
+bounded sublevel sets are compact, so the optimal face has a vertex.
+At that vertex choose \(r\) independent tight rows, giving an integer
+matrix \(M\) with \(Mz=\boldsymbol1\).
+Every entry in column \(i\) has absolute value at most \(2B_i\).
+Cramer's rule gives positive integers \(A_i=\lvert\det M\rvert z_i\)
+with
+\[
+ A_i\leq r!2^{r-1}\prod_{j\ne i}B_j.
+\]
+All unit-margin constraints remain satisfied. Thus they give the
+prescribed order and strictly exclude the entire complement, and
+\[
+ S\leq\sum_i B_iA_i
+ \leq r(r!)^2 2^{r-1}n\leq c_dn.
+\]
+Each active unit vector belongs to \(D\), so \(A_i\leq S\).
+Restore inactive coordinates with weight \(S+1\); every point using
+one of them is excluded. Finally, the \(n\) distinct nonnegative
+integer scores start at zero, so \(S\geq n-1\).
+\end{proof}
+
+For \(B>0\) and \(W\in\mathcal O_d(n)\), let \(h_B(W)\) be the
+minimum of \(\log\max_i p_i\) over ordered tuples of distinct primes
+\(p_i>B\) realizing \(W\). Let
+\(H_d(n,B)=\max_{W\in\mathcal O_d(n)}h_B(W)\).
+All logarithms in this section are natural. Qualitative realization
+ensures these minima exist; there are finitely many words.
+
+\begin{theorem}[Sharp worst-case prime height]\label{thm:height}
+For each fixed \(d\geq2\), uniformly for \(n\geq2\) and \(B>0\),
+\[
+ H_d(n,B)=\Theta_d\bigl(n\log\max(B,2)\bigr).
+\]
+More explicitly, put \(\alpha=\max\{30,d,\log\max(B,2)+1\}\).
+Then
+\[
+ (n-1)\log\max(B,2)\leq H_d(n,B)
+ <(\alpha+\log2)(c_dn+1)+1.                 \tag{16}\label{eq:primeheight}
+\]
+The same bounds hold for the worst-case minimum when only an underlying
+\(n\)-point corner-cut set is prescribed.
+\end{theorem}
+\begin{proof}
+Take the certificate of Lemma~\ref{lem:linear-score}, and sort its
+coordinates temporarily as \(m=A_1\leq A_2\leq\cdots\leq A_d\).
+For distinct \(i,j\),
+\[
+ \operatorname{lcm}(A_i,A_j)>S.              \tag{17}\label{eq:axis-collision}
+\]
+Otherwise two distinct pure-axis lattice points of that common score
+would both be included, contradicting their strict integer order.
+Consequently \(A_j^2\geq mA_j>n-1\) for every \(j\geq2\).
+Thus at most one weight can be as small as \(\sqrt{n-1}\).
+
+Our arithmetic input is Dusart's unconditional estimate
+\cite[Proposition 5.4]{Dusart}: for real \(x\geq89693\) there is a
+prime \(x<p\leq x(1+1/(\log x)^3)\).
+In particular, for \(x\geq e^{30}\),
+\[
+ x<p<x\left(1+\frac{1}{25(\log x)^2}\right).
+                                                        \tag{18}\label{eq:primeinterval}
+\]
+Put \(\varepsilon=1/[25\alpha^2(n-1)]\).
+Bertrand's postulate \cite{Erdos} gives a prime
+\(e^{\alpha m}<p_1<2e^{\alpha m}\). Define
+\[
+ T=\frac{\log p_1}{m},\quad \alpha<T<\alpha+\log2,
+ \qquad X_j=e^{TA_j}(1+\varepsilon)^{j-2}\quad(2\leq j\leq d).
+\]
+By \eqref{eq:axis-collision}, \(\log X_j>\alpha\sqrt{n-1}\)
+and \(X_j\geq e^{30}\). Formula~\eqref{eq:primeinterval} supplies
+\[
+ X_j<p_j<X_j(1+\varepsilon).
+\]
+The intervals are disjoint since \(A_{j+1}\geq A_j\), even if some
+larger weights agree; also \(X_2\geq p_1\).
+Hence all chosen primes are distinct and greater than \(B\).
+Writing \(\eta_i=\log p_i-TA_i\), we have
+\[
+ \eta_1=0,\qquad 0<\eta_j<(d-1)\varepsilon\quad(j\geq2).
+\]
+Every point \(x\) of an \(n\)-point downset has
+\(\sum_i x_i\leq n-1\), by following a unit-step path from zero to
+\(x\). It follows that
+\[
+ 0\leq\eta\cdot x<\frac{d-1}{25\alpha^2}<\alpha<T
+ \qquad(x\in D).                            \tag{19}\label{eq:height-error}
+\]
+For successive included \(x,y\), the integer-score gap is at least
+one, so
+\(\log(p^y)-\log(p^x)\geq T-\eta\cdot x>0\).
+Every excluded \(y\) has \(A\cdot y\geq S+1\) and
+\(\eta\cdot y\geq0\). Every included product has logarithm
+less than \(T(S+1)\). This preserves the entire ordered prefix and
+controls its infinite complement. Undo the coordinate permutation.
+The certificate bound and \((d-1)\varepsilon<1\) give
+\[
+ \log\max_i p_i<T\max_iA_i+1
+ <(\alpha+\log2)(c_dn+1)+1.
+\]
+
+For the lower bound, use the admissible word
+\(W=(0,e_1,2e_1,\ldots,(n-1)e_1)\).
+Every realization has \(p_j>p_1^{n-1}\) for \(j\geq2\), since
+\(e_j\) is excluded. Thus
+\(h_B(W)\geq(n-1)\log\max(B,2)\).
+This same set proves the unordered lower bound, and the ordered upper
+bound applies after choosing any admissible internal order.
+Since \(\alpha=O_d(\log\max(B,2))\) and \(n-1\geq n/2\), the
+asserted uniform orders follow.
+\end{proof}
+
+For \(n=1\), repeated Bertrand intervals give
+\(\log\max_i p_i<\log\max(B,2)+d\log2\).
+The prime-interval estimate is an established analytic input, not a new
+prime-gap result. The bound above does not supply an efficient search
+for the realizing primes or improve unranking for fixed input bases.
+
+\begin{corollary}[A bounded prime budget realizes all prefixes]\label{cor:budget}
+For \(n\geq2\) and \(B>0\), restricting the ordered prime bases to
+\[
+ B<p_i,\qquad
+ \log\max_i p_i<(\alpha+\log2)(c_dn+1)+1
+\]
+leaves both the set count \(C_d(n)\) and the word count \(O_d(n)\)
+unchanged. Their common asymptotic order is
+\(n^{d-1}(\log n)^{d-1}\). For fixed \(d,B\), primes of
+\(O_{d,B}(n)\) bits suffice for every pattern; some patterns require
+\(\Omega(n)\) bits.
+\end{corollary}
+This counts distinct exponent patterns, not realizing prime tuples.
+For one fixed tuple there is exactly one prefix of each length.
+
+\section{Further consequences and limitations}\label{sec:consequences}
 The theorem also determines the average completion multiplicity raised
 in Wagner's discussion \cite[Section 3.5]{W03}. Write
 \(\mathcal C_{d-1}(\leq n)\) for all nonempty corner cuts of size at
@@ -494,58 +800,19 @@ quantitative lower count, not the dictionary.
 For generic experimental designs the same count describes their
 corner-cut models \cite[Definition 7 and Theorem 2]{BMORW}.
 
-\begin{proposition}[Realization by prime bases]\label{prop:prime}
-For every nonempty finite corner cut \(D\subset\Nzero^d\) and every
-\(B>0\), there are distinct primes \(p_1,\ldots,p_d>B\) such that \(D\)
-is the exponent set of the first \(\card{D}\) smooth numbers on these
-ordered bases.
-\end{proposition}
-This is a specialization of Vietri's finite-inequality realization
-theorem \cite[Proposition 6.2]{Vietri}. To apply that theorem, perturb
-a separator to have distinct coordinates and impose the finitely many
-product comparisons between points of \(D\) and the coordinatewise
-minimal points of its complement. Every excluded point dominates one
-of these minimal points. Vietri's proof also permits all realizing
-primes to exceed \(B\), by increasing its scaling parameter.
-We include a direct proof for the present setting.
-\begin{proof}
-Write \(D=\{x:w\cdot x<1\}\) strictly, and set
-\[
- g=1-\max_{x\in D}w\cdot x>0,
- \qquad H=\max_{x\in D}\sum_i x_i.
-\]
-Relabel the coordinates temporarily so that \(w_1\leq\cdots\leq w_d\).
-Choose \(T>0\) with \(e^{Tw_1}>\max(B,2)\) and
-\(dH\log 2/T<g\).
-Bertrand's postulate \cite{Erdos} supplies a prime in each interval
-\[
- 2^{i-1}e^{Tw_i}<p_i<2^i e^{Tw_i}.
-\]
-These intervals are disjoint, so the primes are distinct, including
-when some weights agree. Put \(v_i=\log p_i/T\). Then
-\(0<v_i-w_i<d\log 2/T\).
-For \(x\in D\),
-\(v\cdot x<w\cdot x+g\leq1\), whereas for every \(x\notin D\),
-\(v\cdot x\geq w\cdot x>1\).
-Consequently the products for \(x\in D\) are precisely those below
-\(e^T\). Unique factorization makes their order strict. Undoing the
-coordinate relabeling proves the statement.
-\end{proof}
-
 For fixed \(B\), let \(S_{d,B}(n)\) count distinct exponent sets of
 length \(n\) obtained over ordered tuples of distinct primes greater
 than \(B\). Count each set once, however many tuples realize it.
-The proposition and the converse observation in Section 1 give
+Qualitative realization and the converse observation in Section 1 give
 \[
  S_{d,B}(n)=C_d(n)=\Theta_d(n^{d-1}(\log n)^{d-1}),
 \]\[
  \sum_{j=1}^n S_{d,B}(j)
    =\Theta_d\!\bigl(n^d(\log n)^{d-1}\bigr).
 \]
-The realization statement is a consequence of Vietri's earlier theorem;
-it is not a separate novelty claim. Its role is to specify exactly
-which smooth-number shapes the counting result describes. A single
-fixed prime tuple gives one prefix of each length.
+The qualitative equality is a consequence of Vietri's earlier theorem.
+Corollary~\ref{cor:budget} strengthens it by imposing the explicit,
+asymptotically optimal worst-case prime-size budget.
 
 The pointwise count gives a matching asymptotic order in every fixed
 dimension and for the established polytope and model dictionaries.
@@ -656,7 +923,12 @@ The count in Theorem~\ref{thm:main} improves the lower bound of
 \cite{W02,W03} and matches their upper bound. The restriction and lifting
 viewpoint, primitive-matrix methods, boundary-point recognition, and
 polytope and model correspondences are attributed above. The improvement
-is the resulting uniform cardinality count. The accompanying research
+is the resulting uniform cardinality count. Theorem~\ref{thm:orders}
+extends the count to complete words in the established finite-ordering
+class. Theorem~\ref{thm:height} bounds prime height rather than asserting
+a new qualitative realization result. Robbiano's finite-weight
+consequence, determinant compression methods and Dusart's interval
+estimate retain their original attribution. The accompanying research
 audit records precisely which source versions and statements were
 inspected, including the use of the author's thesis proofs for
 \cite{W02} and the deferred journal-version check for \cite{EGjournal}.
@@ -686,6 +958,12 @@ border extension with exact rational feasibility reproduces the eight
 entries for lengths three through ten in their Table 8. All 1,023
 accepted certificates are checked independently by an additive heap;
 the non-initial finite ordering in their Remark 1 is rejected.
+The separate prefix checker tests 230 integer-score certificates and
+90 matrix-order prefixes with exact rational vertex enumeration and an
+independent scalar heap. These include unused coordinates, all active
+dimensions up to four, pure-axis collision checks and the rational
+error budget for Theorem~\ref{thm:height}. They do not experimentally
+verify the analytic prime-interval theorem.
 The explicit constants and 352 scale-rounding cases in dimensions
 two through twelve are checked with rational arithmetic.
 These computations can falsify steps; they do not prove the uniform
@@ -694,11 +972,14 @@ theorem or its novelty.
 Run, from the repository root,
 \begin{verbatim}
 python3 -B scripts/run_corner_cut_growth_checks.py
+python3 -B scripts/run_interleaving_research.py --ranks 20000
 \end{verbatim}
-The report records fixtures, witnesses, the exact command and SHA-256
-hashes of its sources in
-\path{results/research/corner_cut_growth_checks.json}.
-The proof above is independent of the computation.
+The reports record fixtures, witnesses, exact commands and source hashes:
+\begin{verbatim}
+results/research/corner_cut_growth_checks.json
+results/research/exponent_interleaving.json
+\end{verbatim}
+The proofs above are independent of the computation.
 The other project kernels and public rank/unrank interface are unchanged.
 
 \paragraph{Assistance and review.}
@@ -788,6 +1069,24 @@ Enumeration of finite monomial orderings and combinatorics of
 universal Gr\"obner bases,
 \emph{Programming and Computer Software} 35 (2009), 79--89.
 \href{https://doi.org/10.1134/S0361768809020030}{doi:10.1134/S0361768809020030}.
+
+\bibitem{Robbiano}
+L.~Robbiano,
+Term orderings on the polynomial ring,
+in \emph{EUROCAL '85}, Lecture Notes in Computer Science 204
+(1985), 513--517.
+\href{https://doi.org/10.1007/3-540-15984-3_321}{doi:10.1007/3-540-15984-3\_321}.
+The ordered-group formulation is also given in
+\emph{On the theory of graded structures}, MPI/SFB 85-17 (1985),
+Theorem 2.5, pp.~23--25,
+\href{https://archive.mpim-bonn.mpg.de/2939/1/preprint_1985_17.pdf}{author's preprint}.
+
+\bibitem{Dusart}
+P.~Dusart,
+Explicit estimates of some functions over primes,
+\emph{The Ramanujan Journal} 45 (2018), 227--251,
+Proposition 5.4.
+\href{https://doi.org/10.1007/s11139-016-9839-4}{doi:10.1007/s11139-016-9839-4}.
 
 \bibitem{HM}
 P.~Haukkanen and J.~K.~Merikoski,
