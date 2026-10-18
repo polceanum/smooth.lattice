@@ -3542,10 +3542,11 @@ the same order as C_d(n) is a question to test, not an adopted conjecture.
   Rephrasing it, or providing another universal list without improving a
   proved bound, is not the proposed contribution.
 * [Zhang--Stigler, inspected v1](https://arxiv.org/pdf/1907.01080v1),
-  Section 5, supplies a finite-field specialization. Its parameters and the
-  later published theorem must be compared without identifying fixed field
-  size with the maximum over all fields. The earlier pass found that the
-  v1 expression recovers the old exponent when p>n.
+  Section 5, supplies a finite-field specialization. The sixteenth pass
+  additionally inspects the later NSF deposit's Theorem 8 and its proof
+  through indexed pages 15--16. Its bound recovers the old exponent when
+  p>n. Fixed field size is not the maximum over all fields; a complete
+  publisher-version comparison is not claimed.
 * [Dimitrova--He--Robbiano--Stigler, inspected v2](https://arxiv.org/pdf/1704.03680v2),
   Theorem 4.8 and Corollary 4.11, give the grid-complement invariance.
   Taking a complement inside a grid cannot amplify the basis count.
@@ -7120,3 +7121,181 @@ finite-field chapter was again unavailable from its public repository.
 No qualifying unrestricted asymptotic advance, new-paper novelty claim,
 further consequence for the target theorem, or manuscript is asserted.
 The original goal remains active.
+
+### Sixteenth feasibility pass: exact moment ranges and the remaining hard regime
+
+The last recorded research pass, commit 0caf537, proved a uniform bound
+that closed the divisible-grid amplification route. The intervening ML
+assessment did not advance the unrestricted theorem. This pass resolves
+a named baseline comparison at the level of its accessible repository
+text and proves a parameter-sensitive bound for every finite quotient.
+It does not improve the worst-case exponent or meet the goal's manuscript
+gate. No further enumeration of the parked family is undertaken.
+
+#### The later finite-field bound: relevant proof now inspected
+
+The [NSF deposit](https://par.nsf.gov/servlets/purl/10177092) exposes the
+statement and full displayed proof of Theorem 8 through indexed pages
+15--16. The [publisher record](https://doi.org/10.1007/978-3-030-42687-3_9)
+identifies the 2020 chapter and its Theorem 8. The deposit bounds ideals
+of m rational points over F_p in d coordinates. With r=min(m,p^d-m),
+its nonendpoint expression is
+
+    O_d((p^2*floor(r/p)+(r mod p)^2)^(d*(d-1)/(d+1))).
+
+The argument caps coordinate moments, applies a lattice-polytope vertex
+bound, and uses complementary point sets. The cap and complement steps
+are independently justified below and in (RC1)--(RC3). For p>m and d>=2,
+r=m and the displayed base is m^2, recovering the old unrestricted
+exponent. This resolves that named bound's scope; it does not supply an
+improvement for a maximum over all fields. The complete chapter and a
+line-by-line comparison with the publisher PDF remain unread. No identity
+with the earlier arXiv version is assumed. Broader priority work remains
+incomplete.
+
+#### Exact coordinate ranges for all box staircases
+
+Fix positive integer side lengths s_1,...,s_d, put Q=product_i s_i,
+and let B={a:0<=a_i<s_i}. For 0<=n<=Q and coordinate i write
+s=s_i and K=Q/s. Define
+
+    U(n,s)=floor(n/s)*binom(s,2)+binom(n mod s,2),
+    L(n,K)=K*binom(floor(n/K),2)+floor(n/K)*(n mod K),
+    W_i(n)=U(n,s_i)-L(n,Q/s_i).                           (CM1)
+
+For every n-element downset D in B, its moment satisfies
+
+    L(n,Q/s_i) <= sum_{a in D} a_i <= U(n,s_i).            (CM2)
+
+Both bounds are attained by downsets for every permitted n and box.
+To prove the upper bound, write its i-parallel column heights as h_j.
+Then 0<=h_j<=s, sum_j h_j=n, and the moment is sum_j binom(h_j,2).
+If two heights are strictly between zero and s, transferring one unit
+from the smaller to the larger does not decrease this convex sum.
+Iteration leaves floor(n/s) full columns and at most one nonfull column,
+giving U. Put those columns first in increasing lexicographic order on
+the other coordinates, with the partial column next. This height
+assignment is nonincreasing in the coordinatewise order, so it is a
+downset and attains the bound.
+
+For the lower bound, transferring one unit from a height exceeding
+another by at least two strictly decreases the sum. The minimum thus
+has heights floor(n/K) or floor(n/K)+1, with the longer columns first
+in the same lexicographic order. This is again a downset and its moment
+is L. These arguments optimize over all bounded column heights; the
+explicit downsets show that the relaxation loses nothing. Individual
+coordinate extrema need not be simultaneously attained, nor need their
+extremizers be initial staircases of a given ideal.
+
+The reflected complement E={c-a:a in B\D}, c=(s_i-1)_i, has length Q-n
+and is a downset. Its moments obey the exact translation
+
+    mu_i(E)=mu_i(D)+(Q-n)*(s_i-1)-Q*(s_i-1)/2.             (CM3)
+
+All displayed half-integers combine to integers. Since reflection is
+an involution, (CM3) also proves
+
+    W_i(n)=W_i(Q-n).                                     (CM4)
+
+In the colon setting of (RC1)--(RC3), this translates the convex hulls
+of the corresponding initial-staircase moments, strengthening the
+pointwise fan correspondence to an explicit moment translation.
+
+#### A parameter-sensitive bound over every field
+
+Let I have positive colength n in K[x_1,...,x_d], d>=2. Choose monic
+univariate polynomials f_i(x_i) in I of degrees s_i. Their grid parent
+J=(f_1,...,f_d) is contained in I and has the same box initial for every
+global order. Thus Q>=n and every initial staircase of I lies in B.
+The established moment-state correspondence and (CM2) put its moment
+polytope in the integral translate of a box with sides W_i(n). Adding
+the integral unit cube makes it full-dimensional, refines its normal
+fan, and increases its number of vertices. Its volume is at most
+product_i(W_i(n)+1). The same lattice-polytope estimate used in the
+proof of Babson--Onn--Thomas Corollary 2.5 therefore gives
+
+    g(I) <= C_d*(product_i [W_i(n)+1])^((d-1)/(d+1)).      (CM5)
+
+This covers all fields and nonreduced ideals, with no genericity,
+comaximality or uniform-matroid assumption. It is a sharpening of the
+coordinate cap in (MB1), obtained from established tools; novelty is
+not certified. The unit cube also handles zero-dimensional or otherwise
+lower-dimensional moment polytopes, where their ambient volume alone
+would be zero.
+
+Take f_i to be the minimal coordinate elimination polynomial. Its degree
+s_i is at most n by Cayley--Hamilton for coordinate multiplication.
+If Q=n, the inclusion J contained in I and equal lengths give I=J and
+g(I)=1. Otherwise put r=min(n,Q-n)>=1. By (CM4) and
+
+    W_i(r)+1 <= U(r,s_i)+1 <= r*s_i,
+
+(CM5) implies
+
+    g(I) <= C_d*(r^d*Q)^((d-1)/(d+1)).                   (CM6)
+
+In three variables this is g(I)<=C*r^(3/2)*Q^(1/2).
+Consequently, for each fixed delta>0, an elimination degree
+s_i<=n^(1-delta) implies g(I)=O(n^(3-delta/2)). Conversely, an infinite
+family with g(I)>=c*n^(3-epsilon) must have
+
+    Q=Omega(n^(3-2*epsilon)),
+    every s_i=Omega(n^(1-2*epsilon)).                    (CM7)
+
+A lower family beating the generic exponent by a fixed epsilon>0,
+g(I)>=c*n^(2+epsilon), requires Q=Omega(n^(1+2*epsilon)). These are
+necessary conditions, not sufficient constructions. They make no claim
+that a sublinear loss in degree is a linear approximation to cyclicity.
+
+The hard regime is still unrestricted in an essential way. Generic
+point configurations have s_i=n in every coordinate. So do the exact
+seven-point monomial-curve controls (t,t^6,t^9), t=1,...,7, which have
+37 initials versus 36 generic corner cuts. Large coordinate degrees
+therefore do not force a generic fan. Arbitrary embeddings of local
+curvilinear algebras can also have full coordinate degree. With Q=n^d
+and r=n, (CM6) is precisely the old exponent. A universal improvement
+still requires a new multiplication-sensitive argument in this regime.
+
+For the finite-field comparison, with 1<=r and p>=2, set
+
+    M=U(r,p),   H=p^2*floor(r/p)+(r mod p)^2.
+
+Direct integer algebra gives H/4<=M+1<=H. Thus the positive cap used
+here reproduces Theorem 8's asymptotic expression uniformly in p;
+the added one has no effect on that comparison. Its ambient-dimension
+convention is justified independently instead of treating a
+lower-dimensional polytope's zero volume as an upper bound on vertices.
+Rational point ideals over F_p contain x_i^p-x_i. General finite
+F_p-algebras do not: F_p[x,y,z]/(x^n,y,z) for n>p is a simple negative
+control. Field size cannot silently replace elimination degrees for G.
+
+#### Independent exact controls and next decision
+
+The checker independently optimizes the moment sum by dynamic programming
+over all column heights. It checks every n from zero to box volume in
+85 specified boxes: all side tuples in {1,2,3,4}^d for d=2,3, together
+with (5,5), (5,5,5), (2,3,7), (2,2,2,2), and (2,2,3,3).
+It reconstructs and checks 8,398 attaining downsets, their cardinalities,
+moments and reflected complements. It also checks 432 coordinate
+identities on all saved nonreduced/reduced grid-quotient chambers over
+Q,F_2,F_3,F_5, and 192 finite-field bound comparisons for p=2,3,5 and
+d=2,3. Full coordinate degrees and the nongeneric fan are checked
+against the existing exact point fixture. Three nonreduced finite-algebra
+controls verify the failure of the rational-point field equations. These
+finite controls support
+the uniform proof above; they do not prove an unrestricted exponent gain.
+
+Use the full reproducible command:
+
+```bash
+python3 -B scripts/run_structural_complexity_checks.py
+```
+
+Retain (CM5)--(CM7) as a general screening lemma and the finite-field
+comparison as a resolved named baseline. Do not enlarge small-coordinate
+or near-full-grid searches to pursue the worst-case exponent: these
+bounds already explain their limitation. The next upper argument must
+handle large coordinate degrees and mixed dependencies. A next lower
+family must escape all proved coordinate and endpoint caps and supply
+a symbolic count before larger enumeration. The original unrestricted
+objective, consequence requirement and manuscript gate remain active.

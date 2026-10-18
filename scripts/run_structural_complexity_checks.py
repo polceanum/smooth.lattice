@@ -3166,6 +3166,142 @@ def nonuniform_grid_deletion_controls():
             "decision": "Independent exchanges persist outside socle-supported constructions, but the whole divisible-grid family has only linear growth and cannot provide the required n^(2+epsilon) lower family. No unrestricted upper advance or novelty certification."}
 
 
+def coordinate_moment_range_controls(residual_duality, point_fixture):
+    """Exact box moment extrema, independent height optimization and colon checks."""
+    fixtures, extremizer_checks, residual_checks = [], 0, 0
+    specifications = [sides for d in (2, 3)
+                      for sides in product(range(1, 5), repeat=d)]
+    specifications += [(5, 5), (5, 5, 5), (2, 3, 7),
+                       (2, 2, 2, 2), (2, 2, 3, 3)]
+
+    def bounds(n, side, columns):
+        full, remainder = divmod(n, side)
+        upper = full * comb(side, 2) + comb(remainder, 2)
+        layers, remainder = divmod(n, columns)
+        lower = columns * comb(layers, 2) + layers * remainder
+        return lower, upper
+
+    for sides in specifications:
+        size = 1
+        for side in sides:
+            size *= side
+        box = set(product(*(range(side) for side in sides)))
+        records = []
+        for axis, side in enumerate(sides):
+            columns = list(product(*(range(sides[j]) for j in range(len(sides)) if j != axis)))
+            count = len(columns)
+            # Optimize over every column-height assignment, without imposing a downset.
+            # The separate constructions below show both relaxed optima are attained by downsets.
+            minimum, maximum = [0], [0]
+            for _ in columns:
+                next_min, next_max = [None] * (len(minimum) + side), [None] * (len(maximum) + side)
+                for previous, (low, high) in enumerate(zip(minimum, maximum)):
+                    for height in range(side + 1):
+                        target, cost = previous + height, comb(height, 2)
+                        candidate = low + cost
+                        if next_min[target] is None or candidate < next_min[target]:
+                            next_min[target] = candidate
+                        candidate = high + cost
+                        if next_max[target] is None or candidate > next_max[target]:
+                            next_max[target] = candidate
+                minimum, maximum = next_min, next_max
+
+            def staircase(heights):
+                result = set()
+                for column, height in zip(columns, heights):
+                    for value in range(height):
+                        point = column[:axis] + (value,) + column[axis:]
+                        result.add(point)
+                return result
+
+            for n in range(size + 1):
+                low, high = bounds(n, side, count)
+                require((low, high) == (minimum[n], maximum[n]),
+                        (sides, axis, n, "independent column-height optimization"))
+                full, rest = divmod(n, side)
+                upper_heights = [side if j < full else rest if j == full else 0 for j in range(count)]
+                layers, rest = divmod(n, count)
+                lower_heights = [layers + int(j < rest) for j in range(count)]
+                for heights, expected in ((lower_heights, low), (upper_heights, high)):
+                    state = staircase(heights)
+                    require(len(state) == n and state <= box and
+                            all(tuple(x - int(i == j) for j, x in enumerate(a)) in state
+                                for a in state for i in range(len(sides)) if a[i]),
+                            (sides, axis, n, "attaining witness is a box downset"))
+                    require(sum(a[axis] for a in state) == expected,
+                            (sides, axis, n, "extremal moment witness"))
+                    complement = {tuple(s - 1 - x for s, x in zip(sides, a)) for a in box - state}
+                    shift = (size - n) * (side - 1) - sum(a[axis] for a in box)
+                    require(sum(a[axis] for a in complement) == expected + shift,
+                            "reflected-complement moment translation")
+                    extremizer_checks += 1
+                other_low, other_high = bounds(size - n, side, count)
+                require(high - low == other_high - other_low,
+                        "coordinate width is invariant under complementary length")
+                require(0 <= high - low <= high and high + 1 <= max(1, n * side),
+                        "width cap implies the simpler product-degree bound")
+            records.append({"axis": axis, "column_count": count,
+                            "minimum_moments_by_length": minimum,
+                            "maximum_moments_by_length": maximum,
+                            "moment_widths_by_length": [hi - lo for lo, hi in zip(minimum, maximum)]})
+        fixtures.append({"box_sides": sides, "box_volume": size, "coordinate_extrema": records})
+
+    for fixture in residual_duality["fixtures"]:
+        size, n = fixture["parent_length"], fixture["child_length"]
+        for witness in fixture["all_comparison_chamber_checks"]:
+            child, residual = witness["child_standard_monomials"], witness["residual_standard_monomials"]
+            for axis in range(3):
+                low, high = bounds(n, 2, size // 2)
+                child_moment, residual_moment = sum(a[axis] for a in child), sum(a[axis] for a in residual)
+                require(low <= child_moment <= high and
+                        residual_moment == child_moment + size // 2 - n,
+                        "actual grid quotients obey the moment interval and translation in every checked field")
+                residual_checks += 1
+
+    finite_fields = []
+    for prime in (2, 3, 5):
+        for dimension in (2, 3):
+            size = prime ** dimension
+            comparisons = []
+            for n in range(1, size):
+                r = min(n, size - n)
+                low, high = bounds(r, prime, size // prime)
+                base = prime * prime * (r // prime) + (r % prime) ** 2
+                require(base <= 4 * (high + 1) and high + 1 <= base,
+                        "Theorem 8 base and positive moment-cap expression agree up to absolute constants")
+                comparisons.append({"length": n, "smaller_length": r, "published_base": base,
+                                    "moment_upper_plus_one": high + 1, "moment_width_plus_one": high - low + 1})
+            finite_fields.append({"prime": prime, "dimension": dimension, "comparisons": comparisons})
+
+    points, n = point_fixture["points"], point_fixture["n"]
+    require(all(len({point[axis] for point in points}) == n for axis in range(3)),
+            "the known nongeneric point fixture has full coordinate elimination degrees")
+    require(point_fixture["point_initial_ideals"] > point_fixture["generic_corner_cuts"],
+            "full coordinate degrees do not force the generic corner-cut count")
+    field_equation_counters = []
+    for prime in (2, 3, 5):
+        length = prime + 1
+        modulus = (0,) * length + (1,)
+        variable = (0, 1) + (0,) * (length - 2)
+        power = univariate_power_mod(variable, prime, modulus)
+        remainder = [(a - b) % prime for a, b in zip(power, variable)]
+        require(any(remainder), "field equations need not vanish in a nonreduced finite algebra")
+        field_equation_counters.append({"prime": prime, "length": length,
+                                        "quotient": "F_p[x,y,z]/(x^(p+1),y,z)",
+                                        "remainder_of_x_to_p_minus_x": remainder})
+    return {"scope": "Every finite-colength ideal over every field, using any univariate grid cover. The n-based consequence uses its minimal coordinate elimination degrees.",
+            "uniform_bound": "g(I)<=C_d*(product_i (W_i+1))^((d-1)/(d+1)), with W_i the exact coordinate-moment width of n-element downsets in its grid box.",
+            "worst_case_limit": "Minimal degrees s_i<=n recover the old unrestricted exponent. No qualifying worst-case asymptotic improvement or novelty is asserted.",
+            "box_fixtures": fixtures, "attaining_downset_checks": extremizer_checks,
+            "existing_quotient_coordinate_checks": residual_checks,
+            "finite_field_theorem_comparisons": finite_fields,
+            "finite_algebra_field_equation_counters": field_equation_counters,
+            "full_coordinate_degree_countercontrol": {
+                "points": points, "coordinate_degrees": [n] * 3,
+                "point_initial_ideals": point_fixture["point_initial_ideals"],
+                "generic_corner_cuts": point_fixture["generic_corner_cuts"]}}
+
+
 def attention_rank_sanity_control():
     """An exact Vandermonde witness, not an attention-compression algorithm."""
     parameters = (1, 2, 3, 4)
@@ -3233,6 +3369,7 @@ def main():
     residual_duality = box_residual_duality_controls(codimension_one)
     two_level_exchange = nonuniform_two_level_exchange_control()
     grid_deletion = nonuniform_grid_deletion_controls()
+    coordinate_moments = coordinate_moment_range_controls(residual_duality, truncated_partition)
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
         "schema_version": 1, "command": "python3 -B scripts/run_structural_complexity_checks.py",
@@ -3325,6 +3462,7 @@ def main():
         "box_residual_duality_control": residual_duality,
         "nonuniform_two_level_exchange_control": two_level_exchange,
         "nonuniform_grid_deletion_control": grid_deletion,
+        "coordinate_moment_range_control": coordinate_moments,
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
                     "independent_greedy_checks": sum(f["greedy_checks"] for f in fixtures),
@@ -3405,7 +3543,11 @@ def main():
                     "nonuniform_grid_deletion_fixtures": len(grid_deletion["fixtures"]),
                     "nonuniform_grid_deletion_regime_cells": sum(len(f["all_regime_and_maximum_cells"]) for f in grid_deletion["fixtures"]),
                     "nonuniform_grid_deletion_gaussian_checks": sum(f["gaussian_checks"] for f in grid_deletion["fixtures"]),
-                    "nonsocle_uniform_crossing_sectors": 4 * len(grid_deletion["uniform_local_crossing_controls"])},
+                    "nonsocle_uniform_crossing_sectors": 4 * len(grid_deletion["uniform_local_crossing_controls"]),
+                    "coordinate_moment_box_fixtures": len(coordinate_moments["box_fixtures"]),
+                    "coordinate_moment_attaining_downset_checks": coordinate_moments["attaining_downset_checks"],
+                    "coordinate_moment_existing_quotient_checks": coordinate_moments["existing_quotient_coordinate_checks"],
+                    "finite_field_bound_comparisons": sum(len(f["comparisons"]) for f in coordinate_moments["finite_field_theorem_comparisons"])},
         "goal_qualifying_advance": False,
     }
     target = ROOT / "results/research/structural_complexity_checks.json"
