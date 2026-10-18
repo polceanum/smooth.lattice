@@ -8281,3 +8281,342 @@ audit and honest new-manuscript gate remain open. Reproduce with
 python3 tests/test_smoke.py
 python3 -B scripts/run_structural_complexity_checks.py
 ```
+
+### Twenty-first feasibility pass: the staircase-moment relaxation is sharp
+
+The previous turn made progress in commit 13f37ec: it proved the all-field
+quadratic-pole bound, saved exact controls and recorded the user's broader
+ML architecture direction. It did not improve the unrestricted initial-ideal
+bound. This pass tests whether individual staircase geometry can improve
+that bound without additional algebraic information. An explicit moment
+cube shows that this relaxation already has the full old exponent, in
+every fixed dimension. The remaining compatibility gap is made precise;
+no family of ideals attaining that exponent is constructed.
+
+#### The relaxation and the exact scope of the result
+
+Let O_d(n) be all n-element downsets in N_0^d and write
+mu(D)=sum_(a in D) a. For a family F contained in O_d(n), call D in F
+positively exposed in F if some w in R_(>0)^d satisfies
+
+    w.mu(D)<w.mu(E) for every E in F minus {D}.
+
+Let H_d(n) be the largest possible number of such D over all choices of
+F. Different members with the same moment cannot both be strictly exposed.
+If F is the initial-staircase family of one colength-n ideal, every member
+is positively exposed. Hence
+
+    F_d(n)<=G_d(n)<=H_d(n).
+
+The converse is not assumed: F in the definition of H need not be the
+basis family, or initial family, of any common quotient or even a common
+linear matroid. The result proved below is
+
+    H_d(n)=Theta_d(n^(2d(d-1)/(d+1))), d>=2.              (MCB1)
+
+This determines a geometric relaxation of the target, not G_d or F_d.
+In three dimensions it gives H_3(n)=Theta(n^3), while the established
+gap for actual ideals remains Omega(n^2*log^2 n)<=G_3(n)<=O(n^3).
+Thus a uniformly smaller bound cannot follow from downward closure,
+cardinality, positive exposure and moment geometry alone.
+
+#### An arithmetic interval of moments at fixed planar cardinality
+
+Fix an integer R>=1. Put M=4R+1 and B=12M+2R+13=50R+25. For every
+s in {0,...,R^2}, use Lagrange's classical four-square theorem to choose
+nonnegative integers z_0,...,z_3 with sum z_j^2=s. Each z_j is at most R.
+Make a vector v on rows i=0,...,12 by setting v_0=0 and, for j=0,...,3,
+
+    (v_(3j+1),v_(3j+2),v_(3j+3))=(z_j,-2z_j,z_j).
+
+Its four supports are disjoint, and direct summation gives
+
+    sum_i v_i=0, sum_i i*v_i=0, sum_i v_i^2=6s.          (MCB2)
+
+Set ell_i=B-M*i+v_i. Since |v_i|<=2R, these are strictly decreasing
+positive row lengths with ell_i>=13. The first row ell_0=B is fixed.
+Let A_s be the planar downset with row i containing x=0,...,ell_i-1.
+Then every A_s has the same size
+
+    S=sum_i ell_i=13B-78M=338R+247.
+
+Its second-coordinate moment is independent of s by (MCB2). Its first
+moment is sum_i binom(ell_i,2). Expanding this expression, the linear
+terms in v vanish because the baseline lengths are affine in i, while
+one half of sum v_i^2 is 3s. Thus, with constants U,V depending on R,
+
+    |A_s|=S, mu(A_s)=(U+3s,V).                          (MCB3)
+
+This realizes every third integer in an interval of length 3R^2 while
+preserving size and the other moment. The four-square input is established
+number theory, not a new arithmetic consequence here. One accessible
+statement is [Steven V Sam, Theorem 1](https://mathweb.ucsd.edu/~ssam/notes/lagrange-4sq.pdf);
+only that classical theorem is needed for this step.
+
+#### Independent arms give a full moment cube in fixed dimension
+
+For d>=3 place one copy of A_(s_i) in each cyclic coordinate plane
+(i,i+1 mod d), taking i as its long coordinate, and let D_s be their
+union. Different arms meet only on pure coordinate axes or at the origin.
+On each pure axis the overlap is exactly the thirteen points 0,...,12,
+independent of s, because every row length is at least thirteen. Counting
+nonorigin pure-axis points and the disjoint mixed-plane points gives
+
+    |D_s|=d*(S-13)+1=338dR+234d+1.
+
+Coordinate i gets the long moment U+3s_i from its own arm and the short
+moment V from the preceding arm. The duplicated axis contributes
+sum_(j=0)^12 j=78. Therefore
+
+    mu(D_s)=(U+V-78)*1+3s, s in {0,...,R^2}^d.          (MCB4)
+
+For d=2 the two oppositely oriented planar arms overlap in the fixed
+thirteen-by-thirteen square. The same calculation gives
+
+    |D_s|=2S-169=676R+325,
+    mu(D_s)=(U+V-1014)*1+3s.                            (MCB5)
+
+These unions are genuine downsets. They are not being called initial
+staircases of a common ideal.
+
+The fixed first row makes exact-cardinality padding possible. Extend the
+first pure axis by delta points starting at B. This adds delta to size
+and delta*B+binom(delta,2) to the first moment, independently of s. It
+preserves downward closure and (MCB4)--(MCB5) up to a fixed translation.
+Define (a_d,b_d)=(676,325) for d=2 and
+(a_d,b_d)=(338d,234d+1) for d>=3. For any n>=a_d+b_d, choose
+
+    R=floor((n-b_d)/a_d)>=1,
+    delta=n-a_d*R-b_d, 0<=delta<a_d.
+
+It follows that for every sufficiently large n, moments of actual
+n-element downsets contain a translated grid
+
+    c_n+3*{0,...,R^2}^d, R=Theta_d(n).                  (MCB6)
+
+All points of the grid are realized, not just its corners, and the padding
+handles every large n rather than an infinite subsequence alone.
+
+#### The classical lattice bound is already sharp on these moment sets
+
+[Barany--Larman (1998), Theorem 1](https://www.renyi.hu/~barany/cikkek/73.pdf)
+states that the integer hull P_r=conv(Z^d intersect r*B^d) has
+Theta_d(r^(d(d-1)/(d+1))) vertices. The theorem, the k=0 deduction in
+Section 3 from Theorem 4, and Section 5's full proof of that volume
+estimate were inspected. Their upper theorem and the usual volume estimate
+are established inputs, not a new lattice-polytope theorem in this project.
+Proofs for the other face numbers and the later smooth-body extension were
+not audited. This does not complete the strongest-current-initial-ideal
+priority comparison.
+
+Take r=floor(R^2/2). After translation by r*1, all lattice points of this
+ball fit in the grid in (MCB6). Its vertices therefore give distinct actual
+n-staircases with that moment configuration, after scaling by three.
+At least a 2^(-d) fraction of these vertices have a strict positive
+minimizing normal. Indeed every vertex has a strict minimizing normal
+with all coordinates nonzero. Coordinate reflections preserve P_r and
+can make that normal positive; any resulting vertex has at most 2^d
+preimages under these reflections. Choosing the ball-indexed family of
+staircases gives
+
+    H_d(n)>=c_d*R^(2d(d-1)/(d+1))
+           >=c'_d*n^(2d(d-1)/(d+1)).                   (MCB7)
+
+For the upper bound, every coordinate of every n-staircase moment is
+between zero and binom(n,2). The established lattice-polytope vertex bound,
+with the unit-cube device of (MB2) for lower-dimensional hulls, gives the
+matching upper estimate for any subfamily. This proves (MCB1).
+
+The lower estimate is inherited from the classical integer-ball theorem
+after an explicit staircase encoding. It does not establish a new
+initial-ideal asymptotic. The missing common-algebra realization is exactly
+the distinction between H and G; it cannot be discharged by convexity or
+by the fact that each individual downset defines a monomial ideal.
+
+There is an established stronger necessary condition even before one uses
+commutation. [Babson--Onn--Thomas, Proposition 2.2 and its proof](https://arxiv.org/pdf/math/0207135)
+show that the monomials of an initial basis, ordered by its monomial order,
+are no later at each position than the ordered monomials of any other
+basis. For a positive weight, this implies componentwise dominance of
+the sorted lists of costs. Rechecking the full displayed proof gives a
+simple usable filter: below any cost threshold, an initial basis must
+contain at least as many entries as any independent competing prefix.
+Total moment minimization alone does not supply this condition for an
+arbitrary family. It follows from the actual residue-rank structure.
+
+For example, take d=3,R=2,delta=7, so n=2738, and index the encoded
+family by lattice points p in the radius-two ball, using s=p+(2,2,2).
+At weight (4,1,1), p=(-2,0,0) is a strict total-moment minimizer in
+that family. But compared with q=(-1,-1,-1), its 1262nd monomial has
+cost 61 while the other's has cost 60. If both encoded staircases are
+bases of one quotient, the first cannot be initial at that weight or
+under any order refining it. The checker supplies analogous witnesses
+for all four positive exposed vertices of this small ball. These are
+weight-specific disqualifications, not a proof that the full family
+cannot be realized at some other collection of weights.
+
+#### Exact controls and the next algebraic question
+
+The checker supplies four-square witnesses and directly expands the planar
+partitions for R=1,...,6 and every s<=R^2. It verifies the row constraints,
+cardinalities and both moments without using the closed moment formula to
+compute the answer. Cyclic unions in dimensions two through five are
+expanded as point sets; checks include downward closure, exact moments,
+and padding at zero, one and the end of each cardinality period.
+
+For d=3, R=2,3, it also enumerates all lattice points of balls of radii
+two and four. Exact polygon clipping finds every positive exposed ball
+vertex, then gives a strict integer normal and checks the corresponding
+expanded staircase against the entire ball-indexed moment family. These
+certificates concern exposure in a relaxation, with no assertion of a
+common quotient or residue-rank certificate. The general asymptotic
+argument uses (MCB2)--(MCB7), not extrapolation from the finite ball counts.
+Four exact sorted-prefix countercontrols separately check the stronger
+necessary comparison, including its strict total-cost and prefix-count
+inequalities.
+
+Park moment-only improvements to the unrestricted exponent, even if they
+retain the complete set of possible individual staircase moments. A viable
+upper argument must use compatibility among bases of one multiplication
+representation. A viable lower argument must construct one common algebra
+and prove its rank and coherence conditions; the independently encoded
+moment cube is insufficient. The next discriminating gate is a quantitative
+restriction on rank-feasible staircase families from commuting cyclic
+multiplication matrices, retaining the ordered-prefix dominance required
+of a greedy basis, beyond the properties used in H. Arbitrary matroids
+must not be substituted for such quotient representations. The newly located
+Hilbert-function curve-carrier results are only a possible comparison to
+inspect, not a theorem or reduction being invoked here.
+
+The original unrestricted goal, further consequence, primary-priority audit
+and separate manuscript requirements remain open. No publication novelty is
+certified for this relaxation result. Reproduce all controls with
+
+```bash
+./build.sh
+python3 tests/test_smoke.py
+python3 -B scripts/run_structural_complexity_checks.py
+```
+
+### ML follow-up: an exact reference for a compressed attention hot path
+
+The user asked specifically whether the factorizations can improve existing
+ML hot paths. The most concrete candidate is the feature expansion and
+streaming-state update in polynomial attention. This is an architectural
+constraint with an exact implementation benefit. It is not evidence that
+our initial-ideal counting results accelerate ordinary softmax, and its
+underlying kernel factorization is already established mathematics.
+
+#### Several latent coordinates instead of a single moment curve
+
+Let s>=1, m>=1, A={0,...,m}^s minus {0}, and D=|A|=(m+1)^s-1.
+Use learned latent query and key encoders q,k in R^s and positive parameters
+theta_a. Design the score and the positive attention kernel as
+
+    S(q,k)=sum_(a in A) theta_a*q^a*k^a,
+    K(q,k)=1+S(q,k)+S(q,k)^2/2.
+
+Equivalently the D-dimensional query/key embeddings have entries
+sqrt(theta_a)*q^a and sqrt(theta_a)*k^a. The product relations are built
+into these embeddings. They do not hold for unrestricted D-dimensional
+queries and keys. Collect equal monomials in the quadratic expansion:
+
+    K(q,k)=sum_(b in B) c_b*q^b*k^b,
+    B={0} union A union (A+A)={0,...,2m}^s,
+    c_b=1[b=0]+1[b in A]*theta_b
+        +(1/2)*sum_(a,a' in A, a+a'=b) theta_a*theta_(a').       (MLH1)
+
+All coefficients are positive. The identity is elementary collection of
+monomials, an instance of the already audited
+[Altschuler--Parrilo polynomial-kernel framework](https://arxiv.org/pdf/2106.02755v1).
+The M=(2m+1)^s features are also the minimal exact separation width for
+this particular kernel on nonempty open latent domains: the M monomials
+are linearly independent on each domain and the diagonal coefficient
+matrix is nonsingular. Choosing unisolvent evaluation sets on both sides
+gives a rank-M kernel matrix. This standard rank argument is not being
+claimed as a new tensor-rank result.
+
+For value vectors v_j of width v, maintain for each b a denominator
+statistic Z_b=sum_j k_j^b and a value statistic H_b=sum_j k_j^b*v_j.
+At query q the numerator is sum_b c_b*q^b*H_b and the denominator is
+sum_b c_b*q^b*Z_b. Restrict the sums to j<=i for causal attention. This
+computes exactly the designed quadratic kernel, including normalization.
+Since K=(S+1)^2/2+1/2, every nonempty denominator is at least T_visible/2.
+That lower bound does not establish good conditioning of the monomial
+basis or of its gradients.
+
+Counting the latent encoders separately, straightforward monomial tables
+give O(T*M*(s+v+1)) forward arithmetic and O(M*(v+1)) streaming state.
+Direct coefficient preparation costs O(D^2*s), charged whenever theta
+changes. Backpropagation storage/recomputation needs a separate analysis;
+the forward state bound is not a constant-memory-training claim.
+For fixed s, M=Theta_s(D), compared with 1+D+D(D+1)/2 generic symmetric
+quadratic features. Concrete feature/state-row counts are
+
+| Latent coordinates s | Box degree m | Embedding D | Generic symmetric features | Collected features |
+| --- | --- | --- | --- | --- |
+| 1 | 64 | 64 | 2145 | 129 |
+| 2 | 7 | 63 | 2080 | 225 |
+| 3 | 3 | 63 | 2080 | 343 |
+
+These are exact representation and streaming-state counts for the same
+constrained embeddings. They are not measured wall-clock speedups, and
+they are not savings against a method already using the collected kernel.
+Larger s costs more: (2m+1)^s is exponential in latent dimension. Multiple
+heads and nonlinear encoders can be tested, but cannot be assumed to
+remove this interaction-class restriction. Arbitrary learned mixing of
+the expanded coordinates generally destroys the diagonal form in (MLH1).
+
+#### Implementation and prior-art boundary
+
+The existing research checker now includes a dependency-free rational
+reference for five one-, two- and three-dimensional fixtures. Its direct
+oracle forms S and K from the uncollected score, independently of (MLH1).
+The streaming implementation collects exponents and maintains the finite
+state. Exact controls cover pair kernels; query, key and tied-weight
+kernel derivatives; causal and noncausal normalized outputs; and normalized
+query/key derivatives, including a key masked out of early causal prefixes.
+This validates the algebraic reference, not an optimized training kernel.
+
+[TaylorShift, Sections 3.1--3.3 and 4](https://arxiv.org/html/2403.02920v1#S3)
+already expands quadratic attention features, changes contraction order,
+and analyses normalization and crossover costs. Its efficient expression
+uses the full tensor product; the symmetric feature count in the table
+already improves that elementary redundancy before applying (MLH1).
+[Linear attention, Sections 3.2--3.3](https://proceedings.mlr.press/v119/katharopoulos20a/katharopoulos20a.pdf)
+already supplies the causal sufficient-statistic construction. Thus neither
+linear context scaling nor a finite recurrent state is a novelty claim.
+
+Other credible hot paths are structured token/channel mixing and recurrent
+state transitions. The project's separable exponential coefficients explain
+how a full-matrix-rank operator can still have a cheap structured application;
+they do not imply low matrix rank. Existing
+[Monarch matrices](https://arxiv.org/abs/2204.00595),
+[structured state-space duality](https://arxiv.org/abs/2405.21060), and
+[Tensor Product Attention](https://arxiv.org/abs/2501.06425) are mandatory
+comparisons before presenting a new factorized block. The prior inspection
+scopes in the goal manifest still apply; this follow-up rechecked their
+primary abstracts and TaylorShift's displayed feature formulas, not all
+their proofs or experiments.
+
+#### The experiment that would establish an ML contribution
+
+Prioritize (MLH1) as a small architectural experiment within an existing
+polynomial-attention block. Compare its actual implementation with the
+same constrained kernel through generic symmetric features to measure the
+implementation benefit. Separately compare learned models against ordinary
+polynomial/linear attention at matched state, parameters and training cost;
+include associative recall to expose losses in selective retrieval. Charge
+encoders, coefficient updates, forward/backward computation and state traffic.
+Use a numerically suitable basis or bounded latents and measure both output
+and gradient error against a high-precision reference. No GPU or model-quality
+experiment has yet been run. Do not report the feature-count ratios as
+throughput or quality improvements.
+
+A worthwhile new theorem would have to add a stable approximation or
+representation guarantee for a useful interaction class at a lower complete
+cost than the strongest applicable prior method. A practical paper could
+instead demonstrate a useful accuracy/memory/throughput tradeoff with a
+proper controlled comparison. The current exact factorization alone does
+not establish either result. This ML application work preserves the active
+unrestricted mathematics goal rather than silently substituting for it.

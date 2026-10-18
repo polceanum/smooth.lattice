@@ -3,8 +3,8 @@
   "command": "python3 -B scripts/run_structural_complexity_checks.py",
   "scope": "Bounded exact checks of route obstructions and a conditional counting lemma; no unrestricted asymptotic advance or novelty assertion.",
   "source_sha256": {
-    "scripts/run_structural_complexity_checks.py": "9a03bcd579deb78d1e5245515e424a17835518d906b263c972034b88a030db41",
-    "docs/interleaving_research.md": "5668a215bd94d7dbea9ac00ec988d7b2838932e5b9f07612c5e7e87eb2fca84a"
+    "scripts/run_structural_complexity_checks.py": "635e3d44058552a028902e4608505261d54b712717bc0ca8d4fd63d70bcd7241",
+    "docs/interleaving_research.md": "8a92fddded4888a7572fca8b42d2e1ed5029fac1292c71d61d9ed122cf5005a4"
   },
   "volume_obstruction": {
     "scope": "Exact determinant controls for an infinite symbolic construction; the uniform proof is in the research note.",
@@ -454276,6 +454276,7781 @@
       }
     ]
   },
+  "staircase_moment_cube_control": {
+    "uniform_cube": "For every fixed d>=2 and all sufficiently large n, moments of actual n-element downsets contain a translated 3*[0,R^2]^d integer grid, with R=Theta_d(n). Four disjoint (1,-2,1) row patches, Lagrange's theorem and fixed-row padding prove this.",
+    "relaxation_extremal_order": "The maximum positive exposed-moment count of an arbitrary family of n-element staircases is Theta_d(n^(2*d*(d-1)/(d+1))). The lower bound uses the classical Barany--Larman integer-ball theorem; the upper uses the existing lattice-polytope bound.",
+    "scope": "A sharp obstruction to improving the unrestricted bound using only individual downsets and their moments. No common quotient, representable residue matroid or improved G_d/F_d bound is supplied.",
+    "row_encoding": "Rows j=0,...,12 contain x=0,...,ell_j-1. Cyclic arm i uses coordinates i and (i+1) mod d. Padding extends the first pure axis from B=50*R+25 by the stated count.",
+    "row_certificates": [
+      {
+        "radius": 1,
+        "value": 0,
+        "four_squares": "0,0,0,0",
+        "row_lengths": "75,70,65,60,55,50,45,40,35,30,25,20,15",
+        "cardinality": 585,
+        "moments": [
+          15145,
+          2600
+        ]
+      },
+      {
+        "radius": 1,
+        "value": 1,
+        "four_squares": "0,0,0,1",
+        "row_lengths": "75,70,65,60,55,50,45,40,35,30,26,18,16",
+        "cardinality": 585,
+        "moments": [
+          15148,
+          2600
+        ]
+      },
+      {
+        "radius": 2,
+        "value": 0,
+        "four_squares": "0,0,0,0",
+        "row_lengths": "125,116,107,98,89,80,71,62,53,44,35,26,17",
+        "cardinality": 923,
+        "moments": [
+          39676,
+          3900
+        ]
+      },
+      {
+        "radius": 2,
+        "value": 1,
+        "four_squares": "0,0,0,1",
+        "row_lengths": "125,116,107,98,89,80,71,62,53,44,36,24,18",
+        "cardinality": 923,
+        "moments": [
+          39679,
+          3900
+        ]
+      },
+      {
+        "radius": 2,
+        "value": 2,
+        "four_squares": "0,0,1,1",
+        "row_lengths": "125,116,107,98,89,80,71,63,51,45,36,24,18",
+        "cardinality": 923,
+        "moments": [
+          39682,
+          3900
+        ]
+      },
+      {
+        "radius": 2,
+        "value": 3,
+        "four_squares": "0,1,1,1",
+        "row_lengths": "125,116,107,98,90,78,72,63,51,45,36,24,18",
+        "cardinality": 923,
+        "moments": [
+          39685,
+          3900
+        ]
+      },
+      {
+        "radius": 2,
+        "value": 4,
+        "four_squares": "0,0,0,2",
+        "row_lengths": "125,116,107,98,89,80,71,62,53,44,37,22,19",
+        "cardinality": 923,
+        "moments": [
+          39688,
+          3900
+        ]
+      },
+      {
+        "radius": 3,
+        "value": 0,
+        "four_squares": "0,0,0,0",
+        "row_lengths": "175,162,149,136,123,110,97,84,71,58,45,32,19",
+        "cardinality": 1261,
+        "moments": [
+          75907,
+          5200
+        ]
+      },
+      {
+        "radius": 3,
+        "value": 1,
+        "four_squares": "0,0,0,1",
+        "row_lengths": "175,162,149,136,123,110,97,84,71,58,46,30,20",
+        "cardinality": 1261,
+        "moments": [
+          75910,
+          5200
+        ]
+      },
+      {
+        "radius": 3,
+        "value": 2,
+        "four_squares": "0,0,1,1",
+        "row_lengths": "175,162,149,136,123,110,97,85,69,59,46,30,20",
+        "cardinality": 1261,
+        "moments": [
+          75913,
+          5200
+        ]
+      },
+      {
+        "radius": 3,
+        "value": 3,
+        "four_squares": "0,1,1,1",
+        "row_lengths": "175,162,149,136,124,108,98,85,69,59,46,30,20",
+        "cardinality": 1261,
+        "moments": [
+          75916,
+          5200
+        ]
+      },
+      {
+        "radius": 3,
+        "value": 4,
+        "four_squares": "0,0,0,2",
+        "row_lengths": "175,162,149,136,123,110,97,84,71,58,47,28,21",
+        "cardinality": 1261,
+        "moments": [
+          75919,
+          5200
+        ]
+      },
+      {
+        "radius": 3,
+        "value": 5,
+        "four_squares": "0,0,1,2",
+        "row_lengths": "175,162,149,136,123,110,97,85,69,59,47,28,21",
+        "cardinality": 1261,
+        "moments": [
+          75922,
+          5200
+        ]
+      },
+      {
+        "radius": 3,
+        "value": 6,
+        "four_squares": "0,1,1,2",
+        "row_lengths": "175,162,149,136,124,108,98,85,69,59,47,28,21",
+        "cardinality": 1261,
+        "moments": [
+          75925,
+          5200
+        ]
+      },
+      {
+        "radius": 3,
+        "value": 7,
+        "four_squares": "1,1,1,2",
+        "row_lengths": "175,163,147,137,124,108,98,85,69,59,47,28,21",
+        "cardinality": 1261,
+        "moments": [
+          75928,
+          5200
+        ]
+      },
+      {
+        "radius": 3,
+        "value": 8,
+        "four_squares": "0,0,2,2",
+        "row_lengths": "175,162,149,136,123,110,97,86,67,60,47,28,21",
+        "cardinality": 1261,
+        "moments": [
+          75931,
+          5200
+        ]
+      },
+      {
+        "radius": 3,
+        "value": 9,
+        "four_squares": "0,0,0,3",
+        "row_lengths": "175,162,149,136,123,110,97,84,71,58,48,26,22",
+        "cardinality": 1261,
+        "moments": [
+          75934,
+          5200
+        ]
+      },
+      {
+        "radius": 4,
+        "value": 0,
+        "four_squares": "0,0,0,0",
+        "row_lengths": "225,208,191,174,157,140,123,106,89,72,55,38,21",
+        "cardinality": 1599,
+        "moments": [
+          123838,
+          6500
+        ]
+      },
+      {
+        "radius": 4,
+        "value": 1,
+        "four_squares": "0,0,0,1",
+        "row_lengths": "225,208,191,174,157,140,123,106,89,72,56,36,22",
+        "cardinality": 1599,
+        "moments": [
+          123841,
+          6500
+        ]
+      },
+      {
+        "radius": 4,
+        "value": 2,
+        "four_squares": "0,0,1,1",
+        "row_lengths": "225,208,191,174,157,140,123,107,87,73,56,36,22",
+        "cardinality": 1599,
+        "moments": [
+          123844,
+          6500
+        ]
+      },
+      {
+        "radius": 4,
+        "value": 3,
+        "four_squares": "0,1,1,1",
+        "row_lengths": "225,208,191,174,158,138,124,107,87,73,56,36,22",
+        "cardinality": 1599,
+        "moments": [
+          123847,
+          6500
+        ]
+      },
+      {
+        "radius": 4,
+        "value": 4,
+        "four_squares": "0,0,0,2",
+        "row_lengths": "225,208,191,174,157,140,123,106,89,72,57,34,23",
+        "cardinality": 1599,
+        "moments": [
+          123850,
+          6500
+        ]
+      },
+      {
+        "radius": 4,
+        "value": 5,
+        "four_squares": "0,0,1,2",
+        "row_lengths": "225,208,191,174,157,140,123,107,87,73,57,34,23",
+        "cardinality": 1599,
+        "moments": [
+          123853,
+          6500
+        ]
+      },
+      {
+        "radius": 4,
+        "value": 6,
+        "four_squares": "0,1,1,2",
+        "row_lengths": "225,208,191,174,158,138,124,107,87,73,57,34,23",
+        "cardinality": 1599,
+        "moments": [
+          123856,
+          6500
+        ]
+      },
+      {
+        "radius": 4,
+        "value": 7,
+        "four_squares": "1,1,1,2",
+        "row_lengths": "225,209,189,175,158,138,124,107,87,73,57,34,23",
+        "cardinality": 1599,
+        "moments": [
+          123859,
+          6500
+        ]
+      },
+      {
+        "radius": 4,
+        "value": 8,
+        "four_squares": "0,0,2,2",
+        "row_lengths": "225,208,191,174,157,140,123,108,85,74,57,34,23",
+        "cardinality": 1599,
+        "moments": [
+          123862,
+          6500
+        ]
+      },
+      {
+        "radius": 4,
+        "value": 9,
+        "four_squares": "0,0,0,3",
+        "row_lengths": "225,208,191,174,157,140,123,106,89,72,58,32,24",
+        "cardinality": 1599,
+        "moments": [
+          123865,
+          6500
+        ]
+      },
+      {
+        "radius": 4,
+        "value": 10,
+        "four_squares": "0,0,1,3",
+        "row_lengths": "225,208,191,174,157,140,123,107,87,73,58,32,24",
+        "cardinality": 1599,
+        "moments": [
+          123868,
+          6500
+        ]
+      },
+      {
+        "radius": 4,
+        "value": 11,
+        "four_squares": "0,1,1,3",
+        "row_lengths": "225,208,191,174,158,138,124,107,87,73,58,32,24",
+        "cardinality": 1599,
+        "moments": [
+          123871,
+          6500
+        ]
+      },
+      {
+        "radius": 4,
+        "value": 12,
+        "four_squares": "1,1,1,3",
+        "row_lengths": "225,209,189,175,158,138,124,107,87,73,58,32,24",
+        "cardinality": 1599,
+        "moments": [
+          123874,
+          6500
+        ]
+      },
+      {
+        "radius": 4,
+        "value": 13,
+        "four_squares": "0,0,2,3",
+        "row_lengths": "225,208,191,174,157,140,123,108,85,74,58,32,24",
+        "cardinality": 1599,
+        "moments": [
+          123877,
+          6500
+        ]
+      },
+      {
+        "radius": 4,
+        "value": 14,
+        "four_squares": "0,1,2,3",
+        "row_lengths": "225,208,191,174,158,138,124,108,85,74,58,32,24",
+        "cardinality": 1599,
+        "moments": [
+          123880,
+          6500
+        ]
+      },
+      {
+        "radius": 4,
+        "value": 15,
+        "four_squares": "1,1,2,3",
+        "row_lengths": "225,209,189,175,158,138,124,108,85,74,58,32,24",
+        "cardinality": 1599,
+        "moments": [
+          123883,
+          6500
+        ]
+      },
+      {
+        "radius": 4,
+        "value": 16,
+        "four_squares": "0,0,0,4",
+        "row_lengths": "225,208,191,174,157,140,123,106,89,72,59,30,25",
+        "cardinality": 1599,
+        "moments": [
+          123886,
+          6500
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 0,
+        "four_squares": "0,0,0,0",
+        "row_lengths": "275,254,233,212,191,170,149,128,107,86,65,44,23",
+        "cardinality": 1937,
+        "moments": [
+          183469,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 1,
+        "four_squares": "0,0,0,1",
+        "row_lengths": "275,254,233,212,191,170,149,128,107,86,66,42,24",
+        "cardinality": 1937,
+        "moments": [
+          183472,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 2,
+        "four_squares": "0,0,1,1",
+        "row_lengths": "275,254,233,212,191,170,149,129,105,87,66,42,24",
+        "cardinality": 1937,
+        "moments": [
+          183475,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 3,
+        "four_squares": "0,1,1,1",
+        "row_lengths": "275,254,233,212,192,168,150,129,105,87,66,42,24",
+        "cardinality": 1937,
+        "moments": [
+          183478,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 4,
+        "four_squares": "0,0,0,2",
+        "row_lengths": "275,254,233,212,191,170,149,128,107,86,67,40,25",
+        "cardinality": 1937,
+        "moments": [
+          183481,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 5,
+        "four_squares": "0,0,1,2",
+        "row_lengths": "275,254,233,212,191,170,149,129,105,87,67,40,25",
+        "cardinality": 1937,
+        "moments": [
+          183484,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 6,
+        "four_squares": "0,1,1,2",
+        "row_lengths": "275,254,233,212,192,168,150,129,105,87,67,40,25",
+        "cardinality": 1937,
+        "moments": [
+          183487,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 7,
+        "four_squares": "1,1,1,2",
+        "row_lengths": "275,255,231,213,192,168,150,129,105,87,67,40,25",
+        "cardinality": 1937,
+        "moments": [
+          183490,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 8,
+        "four_squares": "0,0,2,2",
+        "row_lengths": "275,254,233,212,191,170,149,130,103,88,67,40,25",
+        "cardinality": 1937,
+        "moments": [
+          183493,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 9,
+        "four_squares": "0,0,0,3",
+        "row_lengths": "275,254,233,212,191,170,149,128,107,86,68,38,26",
+        "cardinality": 1937,
+        "moments": [
+          183496,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 10,
+        "four_squares": "0,0,1,3",
+        "row_lengths": "275,254,233,212,191,170,149,129,105,87,68,38,26",
+        "cardinality": 1937,
+        "moments": [
+          183499,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 11,
+        "four_squares": "0,1,1,3",
+        "row_lengths": "275,254,233,212,192,168,150,129,105,87,68,38,26",
+        "cardinality": 1937,
+        "moments": [
+          183502,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 12,
+        "four_squares": "1,1,1,3",
+        "row_lengths": "275,255,231,213,192,168,150,129,105,87,68,38,26",
+        "cardinality": 1937,
+        "moments": [
+          183505,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 13,
+        "four_squares": "0,0,2,3",
+        "row_lengths": "275,254,233,212,191,170,149,130,103,88,68,38,26",
+        "cardinality": 1937,
+        "moments": [
+          183508,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 14,
+        "four_squares": "0,1,2,3",
+        "row_lengths": "275,254,233,212,192,168,150,130,103,88,68,38,26",
+        "cardinality": 1937,
+        "moments": [
+          183511,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 15,
+        "four_squares": "1,1,2,3",
+        "row_lengths": "275,255,231,213,192,168,150,130,103,88,68,38,26",
+        "cardinality": 1937,
+        "moments": [
+          183514,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 16,
+        "four_squares": "0,0,0,4",
+        "row_lengths": "275,254,233,212,191,170,149,128,107,86,69,36,27",
+        "cardinality": 1937,
+        "moments": [
+          183517,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 17,
+        "four_squares": "0,0,1,4",
+        "row_lengths": "275,254,233,212,191,170,149,129,105,87,69,36,27",
+        "cardinality": 1937,
+        "moments": [
+          183520,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 18,
+        "four_squares": "0,0,3,3",
+        "row_lengths": "275,254,233,212,191,170,149,131,101,89,68,38,26",
+        "cardinality": 1937,
+        "moments": [
+          183523,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 19,
+        "four_squares": "0,1,3,3",
+        "row_lengths": "275,254,233,212,192,168,150,131,101,89,68,38,26",
+        "cardinality": 1937,
+        "moments": [
+          183526,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 20,
+        "four_squares": "0,0,2,4",
+        "row_lengths": "275,254,233,212,191,170,149,130,103,88,69,36,27",
+        "cardinality": 1937,
+        "moments": [
+          183529,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 21,
+        "four_squares": "0,1,2,4",
+        "row_lengths": "275,254,233,212,192,168,150,130,103,88,69,36,27",
+        "cardinality": 1937,
+        "moments": [
+          183532,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 22,
+        "four_squares": "1,1,2,4",
+        "row_lengths": "275,255,231,213,192,168,150,130,103,88,69,36,27",
+        "cardinality": 1937,
+        "moments": [
+          183535,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 23,
+        "four_squares": "1,2,3,3",
+        "row_lengths": "275,255,231,213,193,166,151,131,101,89,68,38,26",
+        "cardinality": 1937,
+        "moments": [
+          183538,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 24,
+        "four_squares": "0,2,2,4",
+        "row_lengths": "275,254,233,212,193,166,151,130,103,88,69,36,27",
+        "cardinality": 1937,
+        "moments": [
+          183541,
+          7800
+        ]
+      },
+      {
+        "radius": 5,
+        "value": 25,
+        "four_squares": "0,0,0,5",
+        "row_lengths": "275,254,233,212,191,170,149,128,107,86,70,34,28",
+        "cardinality": 1937,
+        "moments": [
+          183544,
+          7800
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 0,
+        "four_squares": "0,0,0,0",
+        "row_lengths": "325,300,275,250,225,200,175,150,125,100,75,50,25",
+        "cardinality": 2275,
+        "moments": [
+          254800,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 1,
+        "four_squares": "0,0,0,1",
+        "row_lengths": "325,300,275,250,225,200,175,150,125,100,76,48,26",
+        "cardinality": 2275,
+        "moments": [
+          254803,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 2,
+        "four_squares": "0,0,1,1",
+        "row_lengths": "325,300,275,250,225,200,175,151,123,101,76,48,26",
+        "cardinality": 2275,
+        "moments": [
+          254806,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 3,
+        "four_squares": "0,1,1,1",
+        "row_lengths": "325,300,275,250,226,198,176,151,123,101,76,48,26",
+        "cardinality": 2275,
+        "moments": [
+          254809,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 4,
+        "four_squares": "0,0,0,2",
+        "row_lengths": "325,300,275,250,225,200,175,150,125,100,77,46,27",
+        "cardinality": 2275,
+        "moments": [
+          254812,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 5,
+        "four_squares": "0,0,1,2",
+        "row_lengths": "325,300,275,250,225,200,175,151,123,101,77,46,27",
+        "cardinality": 2275,
+        "moments": [
+          254815,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 6,
+        "four_squares": "0,1,1,2",
+        "row_lengths": "325,300,275,250,226,198,176,151,123,101,77,46,27",
+        "cardinality": 2275,
+        "moments": [
+          254818,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 7,
+        "four_squares": "1,1,1,2",
+        "row_lengths": "325,301,273,251,226,198,176,151,123,101,77,46,27",
+        "cardinality": 2275,
+        "moments": [
+          254821,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 8,
+        "four_squares": "0,0,2,2",
+        "row_lengths": "325,300,275,250,225,200,175,152,121,102,77,46,27",
+        "cardinality": 2275,
+        "moments": [
+          254824,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 9,
+        "four_squares": "0,0,0,3",
+        "row_lengths": "325,300,275,250,225,200,175,150,125,100,78,44,28",
+        "cardinality": 2275,
+        "moments": [
+          254827,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 10,
+        "four_squares": "0,0,1,3",
+        "row_lengths": "325,300,275,250,225,200,175,151,123,101,78,44,28",
+        "cardinality": 2275,
+        "moments": [
+          254830,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 11,
+        "four_squares": "0,1,1,3",
+        "row_lengths": "325,300,275,250,226,198,176,151,123,101,78,44,28",
+        "cardinality": 2275,
+        "moments": [
+          254833,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 12,
+        "four_squares": "1,1,1,3",
+        "row_lengths": "325,301,273,251,226,198,176,151,123,101,78,44,28",
+        "cardinality": 2275,
+        "moments": [
+          254836,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 13,
+        "four_squares": "0,0,2,3",
+        "row_lengths": "325,300,275,250,225,200,175,152,121,102,78,44,28",
+        "cardinality": 2275,
+        "moments": [
+          254839,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 14,
+        "four_squares": "0,1,2,3",
+        "row_lengths": "325,300,275,250,226,198,176,152,121,102,78,44,28",
+        "cardinality": 2275,
+        "moments": [
+          254842,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 15,
+        "four_squares": "1,1,2,3",
+        "row_lengths": "325,301,273,251,226,198,176,152,121,102,78,44,28",
+        "cardinality": 2275,
+        "moments": [
+          254845,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 16,
+        "four_squares": "0,0,0,4",
+        "row_lengths": "325,300,275,250,225,200,175,150,125,100,79,42,29",
+        "cardinality": 2275,
+        "moments": [
+          254848,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 17,
+        "four_squares": "0,0,1,4",
+        "row_lengths": "325,300,275,250,225,200,175,151,123,101,79,42,29",
+        "cardinality": 2275,
+        "moments": [
+          254851,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 18,
+        "four_squares": "0,0,3,3",
+        "row_lengths": "325,300,275,250,225,200,175,153,119,103,78,44,28",
+        "cardinality": 2275,
+        "moments": [
+          254854,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 19,
+        "four_squares": "0,1,3,3",
+        "row_lengths": "325,300,275,250,226,198,176,153,119,103,78,44,28",
+        "cardinality": 2275,
+        "moments": [
+          254857,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 20,
+        "four_squares": "0,0,2,4",
+        "row_lengths": "325,300,275,250,225,200,175,152,121,102,79,42,29",
+        "cardinality": 2275,
+        "moments": [
+          254860,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 21,
+        "four_squares": "0,1,2,4",
+        "row_lengths": "325,300,275,250,226,198,176,152,121,102,79,42,29",
+        "cardinality": 2275,
+        "moments": [
+          254863,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 22,
+        "four_squares": "1,1,2,4",
+        "row_lengths": "325,301,273,251,226,198,176,152,121,102,79,42,29",
+        "cardinality": 2275,
+        "moments": [
+          254866,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 23,
+        "four_squares": "1,2,3,3",
+        "row_lengths": "325,301,273,251,227,196,177,153,119,103,78,44,28",
+        "cardinality": 2275,
+        "moments": [
+          254869,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 24,
+        "four_squares": "0,2,2,4",
+        "row_lengths": "325,300,275,250,227,196,177,152,121,102,79,42,29",
+        "cardinality": 2275,
+        "moments": [
+          254872,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 25,
+        "four_squares": "0,0,0,5",
+        "row_lengths": "325,300,275,250,225,200,175,150,125,100,80,40,30",
+        "cardinality": 2275,
+        "moments": [
+          254875,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 26,
+        "four_squares": "0,0,1,5",
+        "row_lengths": "325,300,275,250,225,200,175,151,123,101,80,40,30",
+        "cardinality": 2275,
+        "moments": [
+          254878,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 27,
+        "four_squares": "0,1,1,5",
+        "row_lengths": "325,300,275,250,226,198,176,151,123,101,80,40,30",
+        "cardinality": 2275,
+        "moments": [
+          254881,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 28,
+        "four_squares": "1,1,1,5",
+        "row_lengths": "325,301,273,251,226,198,176,151,123,101,80,40,30",
+        "cardinality": 2275,
+        "moments": [
+          254884,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 29,
+        "four_squares": "0,0,2,5",
+        "row_lengths": "325,300,275,250,225,200,175,152,121,102,80,40,30",
+        "cardinality": 2275,
+        "moments": [
+          254887,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 30,
+        "four_squares": "0,1,2,5",
+        "row_lengths": "325,300,275,250,226,198,176,152,121,102,80,40,30",
+        "cardinality": 2275,
+        "moments": [
+          254890,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 31,
+        "four_squares": "1,1,2,5",
+        "row_lengths": "325,301,273,251,226,198,176,152,121,102,80,40,30",
+        "cardinality": 2275,
+        "moments": [
+          254893,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 32,
+        "four_squares": "0,0,4,4",
+        "row_lengths": "325,300,275,250,225,200,175,154,117,104,79,42,29",
+        "cardinality": 2275,
+        "moments": [
+          254896,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 33,
+        "four_squares": "0,1,4,4",
+        "row_lengths": "325,300,275,250,226,198,176,154,117,104,79,42,29",
+        "cardinality": 2275,
+        "moments": [
+          254899,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 34,
+        "four_squares": "0,0,3,5",
+        "row_lengths": "325,300,275,250,225,200,175,153,119,103,80,40,30",
+        "cardinality": 2275,
+        "moments": [
+          254902,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 35,
+        "four_squares": "0,1,3,5",
+        "row_lengths": "325,300,275,250,226,198,176,153,119,103,80,40,30",
+        "cardinality": 2275,
+        "moments": [
+          254905,
+          9100
+        ]
+      },
+      {
+        "radius": 6,
+        "value": 36,
+        "four_squares": "0,0,0,6",
+        "row_lengths": "325,300,275,250,225,200,175,150,125,100,81,38,31",
+        "cardinality": 2275,
+        "moments": [
+          254908,
+          9100
+        ]
+      }
+    ],
+    "expanded_union_checks": [
+      {
+        "dimension": 2,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0
+        ],
+        "n": 1001,
+        "base_moment": [
+          16731,
+          16731
+        ],
+        "actual_moment": [
+          16731,
+          16731
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0
+        ],
+        "n": 1002,
+        "base_moment": [
+          16806,
+          16731
+        ],
+        "actual_moment": [
+          16806,
+          16731
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 1,
+        "padding": 675,
+        "cube_coordinates": [
+          0,
+          0
+        ],
+        "n": 1676,
+        "base_moment": [
+          294831,
+          16731
+        ],
+        "actual_moment": [
+          294831,
+          16731
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          1
+        ],
+        "n": 1001,
+        "base_moment": [
+          16731,
+          16731
+        ],
+        "actual_moment": [
+          16731,
+          16734
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          1
+        ],
+        "n": 1002,
+        "base_moment": [
+          16806,
+          16731
+        ],
+        "actual_moment": [
+          16806,
+          16734
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 1,
+        "padding": 675,
+        "cube_coordinates": [
+          0,
+          1
+        ],
+        "n": 1676,
+        "base_moment": [
+          294831,
+          16731
+        ],
+        "actual_moment": [
+          294831,
+          16734
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          1,
+          0
+        ],
+        "n": 1001,
+        "base_moment": [
+          16731,
+          16731
+        ],
+        "actual_moment": [
+          16734,
+          16731
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          1,
+          0
+        ],
+        "n": 1002,
+        "base_moment": [
+          16806,
+          16731
+        ],
+        "actual_moment": [
+          16809,
+          16731
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 1,
+        "padding": 675,
+        "cube_coordinates": [
+          1,
+          0
+        ],
+        "n": 1676,
+        "base_moment": [
+          294831,
+          16731
+        ],
+        "actual_moment": [
+          294834,
+          16731
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          1,
+          1
+        ],
+        "n": 1001,
+        "base_moment": [
+          16731,
+          16731
+        ],
+        "actual_moment": [
+          16734,
+          16734
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          1,
+          1
+        ],
+        "n": 1002,
+        "base_moment": [
+          16806,
+          16731
+        ],
+        "actual_moment": [
+          16809,
+          16734
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 1,
+        "padding": 675,
+        "cube_coordinates": [
+          1,
+          1
+        ],
+        "n": 1676,
+        "base_moment": [
+          294831,
+          16731
+        ],
+        "actual_moment": [
+          294834,
+          16734
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0
+        ],
+        "n": 1677,
+        "base_moment": [
+          42562,
+          42562
+        ],
+        "actual_moment": [
+          42562,
+          42562
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0
+        ],
+        "n": 1678,
+        "base_moment": [
+          42687,
+          42562
+        ],
+        "actual_moment": [
+          42687,
+          42562
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 2,
+        "padding": 675,
+        "cube_coordinates": [
+          0,
+          0
+        ],
+        "n": 2352,
+        "base_moment": [
+          354412,
+          42562
+        ],
+        "actual_moment": [
+          354412,
+          42562
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          4
+        ],
+        "n": 1677,
+        "base_moment": [
+          42562,
+          42562
+        ],
+        "actual_moment": [
+          42562,
+          42574
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          4
+        ],
+        "n": 1678,
+        "base_moment": [
+          42687,
+          42562
+        ],
+        "actual_moment": [
+          42687,
+          42574
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 2,
+        "padding": 675,
+        "cube_coordinates": [
+          0,
+          4
+        ],
+        "n": 2352,
+        "base_moment": [
+          354412,
+          42562
+        ],
+        "actual_moment": [
+          354412,
+          42574
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          2,
+          4
+        ],
+        "n": 1677,
+        "base_moment": [
+          42562,
+          42562
+        ],
+        "actual_moment": [
+          42568,
+          42574
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          2,
+          4
+        ],
+        "n": 1678,
+        "base_moment": [
+          42687,
+          42562
+        ],
+        "actual_moment": [
+          42693,
+          42574
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 2,
+        "padding": 675,
+        "cube_coordinates": [
+          2,
+          4
+        ],
+        "n": 2352,
+        "base_moment": [
+          354412,
+          42562
+        ],
+        "actual_moment": [
+          354418,
+          42574
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          4,
+          0
+        ],
+        "n": 1677,
+        "base_moment": [
+          42562,
+          42562
+        ],
+        "actual_moment": [
+          42574,
+          42562
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          4,
+          0
+        ],
+        "n": 1678,
+        "base_moment": [
+          42687,
+          42562
+        ],
+        "actual_moment": [
+          42699,
+          42562
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 2,
+        "padding": 675,
+        "cube_coordinates": [
+          4,
+          0
+        ],
+        "n": 2352,
+        "base_moment": [
+          354412,
+          42562
+        ],
+        "actual_moment": [
+          354424,
+          42562
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          4,
+          4
+        ],
+        "n": 1677,
+        "base_moment": [
+          42562,
+          42562
+        ],
+        "actual_moment": [
+          42574,
+          42574
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          4,
+          4
+        ],
+        "n": 1678,
+        "base_moment": [
+          42687,
+          42562
+        ],
+        "actual_moment": [
+          42699,
+          42574
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 2,
+        "padding": 675,
+        "cube_coordinates": [
+          4,
+          4
+        ],
+        "n": 2352,
+        "base_moment": [
+          354412,
+          42562
+        ],
+        "actual_moment": [
+          354424,
+          42574
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0
+        ],
+        "n": 2353,
+        "base_moment": [
+          80093,
+          80093
+        ],
+        "actual_moment": [
+          80093,
+          80093
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0
+        ],
+        "n": 2354,
+        "base_moment": [
+          80268,
+          80093
+        ],
+        "actual_moment": [
+          80268,
+          80093
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 3,
+        "padding": 675,
+        "cube_coordinates": [
+          0,
+          0
+        ],
+        "n": 3028,
+        "base_moment": [
+          425693,
+          80093
+        ],
+        "actual_moment": [
+          425693,
+          80093
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          9
+        ],
+        "n": 2353,
+        "base_moment": [
+          80093,
+          80093
+        ],
+        "actual_moment": [
+          80093,
+          80120
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          9
+        ],
+        "n": 2354,
+        "base_moment": [
+          80268,
+          80093
+        ],
+        "actual_moment": [
+          80268,
+          80120
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 3,
+        "padding": 675,
+        "cube_coordinates": [
+          0,
+          9
+        ],
+        "n": 3028,
+        "base_moment": [
+          425693,
+          80093
+        ],
+        "actual_moment": [
+          425693,
+          80120
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          3,
+          6
+        ],
+        "n": 2353,
+        "base_moment": [
+          80093,
+          80093
+        ],
+        "actual_moment": [
+          80102,
+          80111
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          3,
+          6
+        ],
+        "n": 2354,
+        "base_moment": [
+          80268,
+          80093
+        ],
+        "actual_moment": [
+          80277,
+          80111
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 3,
+        "padding": 675,
+        "cube_coordinates": [
+          3,
+          6
+        ],
+        "n": 3028,
+        "base_moment": [
+          425693,
+          80093
+        ],
+        "actual_moment": [
+          425702,
+          80111
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          9,
+          0
+        ],
+        "n": 2353,
+        "base_moment": [
+          80093,
+          80093
+        ],
+        "actual_moment": [
+          80120,
+          80093
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          9,
+          0
+        ],
+        "n": 2354,
+        "base_moment": [
+          80268,
+          80093
+        ],
+        "actual_moment": [
+          80295,
+          80093
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 3,
+        "padding": 675,
+        "cube_coordinates": [
+          9,
+          0
+        ],
+        "n": 3028,
+        "base_moment": [
+          425693,
+          80093
+        ],
+        "actual_moment": [
+          425720,
+          80093
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          9,
+          9
+        ],
+        "n": 2353,
+        "base_moment": [
+          80093,
+          80093
+        ],
+        "actual_moment": [
+          80120,
+          80120
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          9,
+          9
+        ],
+        "n": 2354,
+        "base_moment": [
+          80268,
+          80093
+        ],
+        "actual_moment": [
+          80295,
+          80120
+        ]
+      },
+      {
+        "dimension": 2,
+        "radius": 3,
+        "padding": 675,
+        "cube_coordinates": [
+          9,
+          9
+        ],
+        "n": 3028,
+        "base_moment": [
+          425693,
+          80093
+        ],
+        "actual_moment": [
+          425720,
+          80120
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          0
+        ],
+        "n": 1717,
+        "base_moment": [
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17667,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          0
+        ],
+        "n": 1718,
+        "base_moment": [
+          17742,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17742,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 1,
+        "padding": 1013,
+        "cube_coordinates": [
+          0,
+          0,
+          0
+        ],
+        "n": 2730,
+        "base_moment": [
+          606220,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          606220,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          1
+        ],
+        "n": 1717,
+        "base_moment": [
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17667,
+          17667,
+          17670
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          1
+        ],
+        "n": 1718,
+        "base_moment": [
+          17742,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17742,
+          17667,
+          17670
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 1,
+        "padding": 1013,
+        "cube_coordinates": [
+          0,
+          0,
+          1
+        ],
+        "n": 2730,
+        "base_moment": [
+          606220,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          606220,
+          17667,
+          17670
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          1,
+          0
+        ],
+        "n": 1717,
+        "base_moment": [
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17667,
+          17670,
+          17667
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          1,
+          0
+        ],
+        "n": 1718,
+        "base_moment": [
+          17742,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17742,
+          17670,
+          17667
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 1,
+        "padding": 1013,
+        "cube_coordinates": [
+          0,
+          1,
+          0
+        ],
+        "n": 2730,
+        "base_moment": [
+          606220,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          606220,
+          17670,
+          17667
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          1,
+          0,
+          0
+        ],
+        "n": 1717,
+        "base_moment": [
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17670,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          1,
+          0,
+          0
+        ],
+        "n": 1718,
+        "base_moment": [
+          17742,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17745,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 1,
+        "padding": 1013,
+        "cube_coordinates": [
+          1,
+          0,
+          0
+        ],
+        "n": 2730,
+        "base_moment": [
+          606220,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          606223,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          1,
+          0,
+          1
+        ],
+        "n": 1717,
+        "base_moment": [
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17670,
+          17667,
+          17670
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          1,
+          0,
+          1
+        ],
+        "n": 1718,
+        "base_moment": [
+          17742,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17745,
+          17667,
+          17670
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 1,
+        "padding": 1013,
+        "cube_coordinates": [
+          1,
+          0,
+          1
+        ],
+        "n": 2730,
+        "base_moment": [
+          606220,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          606223,
+          17667,
+          17670
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          1,
+          1,
+          1
+        ],
+        "n": 1717,
+        "base_moment": [
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17670,
+          17670,
+          17670
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          1,
+          1,
+          1
+        ],
+        "n": 1718,
+        "base_moment": [
+          17742,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17745,
+          17670,
+          17670
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 1,
+        "padding": 1013,
+        "cube_coordinates": [
+          1,
+          1,
+          1
+        ],
+        "n": 2730,
+        "base_moment": [
+          606220,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          606223,
+          17670,
+          17670
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          0
+        ],
+        "n": 2731,
+        "base_moment": [
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43498,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          0
+        ],
+        "n": 2732,
+        "base_moment": [
+          43623,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43623,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 2,
+        "padding": 1013,
+        "cube_coordinates": [
+          0,
+          0,
+          0
+        ],
+        "n": 3744,
+        "base_moment": [
+          682701,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          682701,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          4
+        ],
+        "n": 2731,
+        "base_moment": [
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43498,
+          43498,
+          43510
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          4
+        ],
+        "n": 2732,
+        "base_moment": [
+          43623,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43623,
+          43498,
+          43510
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 2,
+        "padding": 1013,
+        "cube_coordinates": [
+          0,
+          0,
+          4
+        ],
+        "n": 3744,
+        "base_moment": [
+          682701,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          682701,
+          43498,
+          43510
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          4,
+          0
+        ],
+        "n": 2731,
+        "base_moment": [
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43498,
+          43510,
+          43498
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          4,
+          0
+        ],
+        "n": 2732,
+        "base_moment": [
+          43623,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43623,
+          43510,
+          43498
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 2,
+        "padding": 1013,
+        "cube_coordinates": [
+          0,
+          4,
+          0
+        ],
+        "n": 3744,
+        "base_moment": [
+          682701,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          682701,
+          43510,
+          43498
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          2,
+          4,
+          1
+        ],
+        "n": 2731,
+        "base_moment": [
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43504,
+          43510,
+          43501
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          2,
+          4,
+          1
+        ],
+        "n": 2732,
+        "base_moment": [
+          43623,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43629,
+          43510,
+          43501
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 2,
+        "padding": 1013,
+        "cube_coordinates": [
+          2,
+          4,
+          1
+        ],
+        "n": 3744,
+        "base_moment": [
+          682701,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          682707,
+          43510,
+          43501
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          4,
+          0,
+          0
+        ],
+        "n": 2731,
+        "base_moment": [
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43510,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          4,
+          0,
+          0
+        ],
+        "n": 2732,
+        "base_moment": [
+          43623,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43635,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 2,
+        "padding": 1013,
+        "cube_coordinates": [
+          4,
+          0,
+          0
+        ],
+        "n": 3744,
+        "base_moment": [
+          682701,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          682713,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          4,
+          4,
+          4
+        ],
+        "n": 2731,
+        "base_moment": [
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43510,
+          43510,
+          43510
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          4,
+          4,
+          4
+        ],
+        "n": 2732,
+        "base_moment": [
+          43623,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43635,
+          43510,
+          43510
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 2,
+        "padding": 1013,
+        "cube_coordinates": [
+          4,
+          4,
+          4
+        ],
+        "n": 3744,
+        "base_moment": [
+          682701,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          682713,
+          43510,
+          43510
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          0
+        ],
+        "n": 3745,
+        "base_moment": [
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81029,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          0
+        ],
+        "n": 3746,
+        "base_moment": [
+          81204,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81204,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 3,
+        "padding": 1013,
+        "cube_coordinates": [
+          0,
+          0,
+          0
+        ],
+        "n": 4758,
+        "base_moment": [
+          770882,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          770882,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          9
+        ],
+        "n": 3745,
+        "base_moment": [
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81029,
+          81029,
+          81056
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          9
+        ],
+        "n": 3746,
+        "base_moment": [
+          81204,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81204,
+          81029,
+          81056
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 3,
+        "padding": 1013,
+        "cube_coordinates": [
+          0,
+          0,
+          9
+        ],
+        "n": 4758,
+        "base_moment": [
+          770882,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          770882,
+          81029,
+          81056
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          9,
+          0
+        ],
+        "n": 3745,
+        "base_moment": [
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81029,
+          81056,
+          81029
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          9,
+          0
+        ],
+        "n": 3746,
+        "base_moment": [
+          81204,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81204,
+          81056,
+          81029
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 3,
+        "padding": 1013,
+        "cube_coordinates": [
+          0,
+          9,
+          0
+        ],
+        "n": 4758,
+        "base_moment": [
+          770882,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          770882,
+          81056,
+          81029
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          3,
+          6,
+          9
+        ],
+        "n": 3745,
+        "base_moment": [
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81038,
+          81047,
+          81056
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          3,
+          6,
+          9
+        ],
+        "n": 3746,
+        "base_moment": [
+          81204,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81213,
+          81047,
+          81056
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 3,
+        "padding": 1013,
+        "cube_coordinates": [
+          3,
+          6,
+          9
+        ],
+        "n": 4758,
+        "base_moment": [
+          770882,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          770891,
+          81047,
+          81056
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          9,
+          0,
+          0
+        ],
+        "n": 3745,
+        "base_moment": [
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81056,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          9,
+          0,
+          0
+        ],
+        "n": 3746,
+        "base_moment": [
+          81204,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81231,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 3,
+        "padding": 1013,
+        "cube_coordinates": [
+          9,
+          0,
+          0
+        ],
+        "n": 4758,
+        "base_moment": [
+          770882,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          770909,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          9,
+          9,
+          9
+        ],
+        "n": 3745,
+        "base_moment": [
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81056,
+          81056,
+          81056
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          9,
+          9,
+          9
+        ],
+        "n": 3746,
+        "base_moment": [
+          81204,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81231,
+          81056,
+          81056
+        ]
+      },
+      {
+        "dimension": 3,
+        "radius": 3,
+        "padding": 1013,
+        "cube_coordinates": [
+          9,
+          9,
+          9
+        ],
+        "n": 4758,
+        "base_moment": [
+          770882,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          770909,
+          81056,
+          81056
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 2289,
+        "base_moment": [
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17667,
+          17667,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 2290,
+        "base_moment": [
+          17742,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17742,
+          17667,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 1,
+        "padding": 1351,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 3640,
+        "base_moment": [
+          1030917,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          1030917,
+          17667,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "n": 2289,
+        "base_moment": [
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17667,
+          17667,
+          17667,
+          17670
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "n": 2290,
+        "base_moment": [
+          17742,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17742,
+          17667,
+          17667,
+          17670
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 1,
+        "padding": 1351,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "n": 3640,
+        "base_moment": [
+          1030917,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          1030917,
+          17667,
+          17667,
+          17670
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "n": 2289,
+        "base_moment": [
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17667,
+          17667,
+          17670,
+          17667
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "n": 2290,
+        "base_moment": [
+          17742,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17742,
+          17667,
+          17670,
+          17667
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 1,
+        "padding": 1351,
+        "cube_coordinates": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "n": 3640,
+        "base_moment": [
+          1030917,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          1030917,
+          17667,
+          17670,
+          17667
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "n": 2289,
+        "base_moment": [
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17667,
+          17670,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "n": 2290,
+        "base_moment": [
+          17742,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17742,
+          17670,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 1,
+        "padding": 1351,
+        "cube_coordinates": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "n": 3640,
+        "base_moment": [
+          1030917,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          1030917,
+          17670,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "n": 2289,
+        "base_moment": [
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17670,
+          17667,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "n": 2290,
+        "base_moment": [
+          17742,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17745,
+          17667,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 1,
+        "padding": 1351,
+        "cube_coordinates": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "n": 3640,
+        "base_moment": [
+          1030917,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          1030920,
+          17667,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          1,
+          0,
+          1,
+          0
+        ],
+        "n": 2289,
+        "base_moment": [
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17670,
+          17667,
+          17670,
+          17667
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          1,
+          0,
+          1,
+          0
+        ],
+        "n": 2290,
+        "base_moment": [
+          17742,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17745,
+          17667,
+          17670,
+          17667
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 1,
+        "padding": 1351,
+        "cube_coordinates": [
+          1,
+          0,
+          1,
+          0
+        ],
+        "n": 3640,
+        "base_moment": [
+          1030917,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          1030920,
+          17667,
+          17670,
+          17667
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "n": 2289,
+        "base_moment": [
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17670,
+          17670,
+          17670,
+          17670
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "n": 2290,
+        "base_moment": [
+          17742,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17745,
+          17670,
+          17670,
+          17670
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 1,
+        "padding": 1351,
+        "cube_coordinates": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "n": 3640,
+        "base_moment": [
+          1030917,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          1030920,
+          17670,
+          17670,
+          17670
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 3641,
+        "base_moment": [
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43498,
+          43498,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 3642,
+        "base_moment": [
+          43623,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43623,
+          43498,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 2,
+        "padding": 1351,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 4992,
+        "base_moment": [
+          1124298,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          1124298,
+          43498,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          4
+        ],
+        "n": 3641,
+        "base_moment": [
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43498,
+          43498,
+          43498,
+          43510
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          4
+        ],
+        "n": 3642,
+        "base_moment": [
+          43623,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43623,
+          43498,
+          43498,
+          43510
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 2,
+        "padding": 1351,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          4
+        ],
+        "n": 4992,
+        "base_moment": [
+          1124298,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          1124298,
+          43498,
+          43498,
+          43510
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          4,
+          0
+        ],
+        "n": 3641,
+        "base_moment": [
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43498,
+          43498,
+          43510,
+          43498
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          4,
+          0
+        ],
+        "n": 3642,
+        "base_moment": [
+          43623,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43623,
+          43498,
+          43510,
+          43498
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 2,
+        "padding": 1351,
+        "cube_coordinates": [
+          0,
+          0,
+          4,
+          0
+        ],
+        "n": 4992,
+        "base_moment": [
+          1124298,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          1124298,
+          43498,
+          43510,
+          43498
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          4,
+          0,
+          0
+        ],
+        "n": 3641,
+        "base_moment": [
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43498,
+          43510,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          4,
+          0,
+          0
+        ],
+        "n": 3642,
+        "base_moment": [
+          43623,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43623,
+          43510,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 2,
+        "padding": 1351,
+        "cube_coordinates": [
+          0,
+          4,
+          0,
+          0
+        ],
+        "n": 4992,
+        "base_moment": [
+          1124298,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          1124298,
+          43510,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          2,
+          4,
+          1,
+          3
+        ],
+        "n": 3641,
+        "base_moment": [
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43504,
+          43510,
+          43501,
+          43507
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          2,
+          4,
+          1,
+          3
+        ],
+        "n": 3642,
+        "base_moment": [
+          43623,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43629,
+          43510,
+          43501,
+          43507
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 2,
+        "padding": 1351,
+        "cube_coordinates": [
+          2,
+          4,
+          1,
+          3
+        ],
+        "n": 4992,
+        "base_moment": [
+          1124298,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          1124304,
+          43510,
+          43501,
+          43507
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          4,
+          0,
+          0,
+          0
+        ],
+        "n": 3641,
+        "base_moment": [
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43510,
+          43498,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          4,
+          0,
+          0,
+          0
+        ],
+        "n": 3642,
+        "base_moment": [
+          43623,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43635,
+          43498,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 2,
+        "padding": 1351,
+        "cube_coordinates": [
+          4,
+          0,
+          0,
+          0
+        ],
+        "n": 4992,
+        "base_moment": [
+          1124298,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          1124310,
+          43498,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          4,
+          4,
+          4,
+          4
+        ],
+        "n": 3641,
+        "base_moment": [
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43510,
+          43510,
+          43510,
+          43510
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          4,
+          4,
+          4,
+          4
+        ],
+        "n": 3642,
+        "base_moment": [
+          43623,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43635,
+          43510,
+          43510,
+          43510
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 2,
+        "padding": 1351,
+        "cube_coordinates": [
+          4,
+          4,
+          4,
+          4
+        ],
+        "n": 4992,
+        "base_moment": [
+          1124298,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          1124310,
+          43510,
+          43510,
+          43510
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 4993,
+        "base_moment": [
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81029,
+          81029,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 4994,
+        "base_moment": [
+          81204,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81204,
+          81029,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 3,
+        "padding": 1351,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 6344,
+        "base_moment": [
+          1229379,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          1229379,
+          81029,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          9
+        ],
+        "n": 4993,
+        "base_moment": [
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81029,
+          81029,
+          81029,
+          81056
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          9
+        ],
+        "n": 4994,
+        "base_moment": [
+          81204,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81204,
+          81029,
+          81029,
+          81056
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 3,
+        "padding": 1351,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          9
+        ],
+        "n": 6344,
+        "base_moment": [
+          1229379,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          1229379,
+          81029,
+          81029,
+          81056
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          9,
+          0
+        ],
+        "n": 4993,
+        "base_moment": [
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81029,
+          81029,
+          81056,
+          81029
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          9,
+          0
+        ],
+        "n": 4994,
+        "base_moment": [
+          81204,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81204,
+          81029,
+          81056,
+          81029
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 3,
+        "padding": 1351,
+        "cube_coordinates": [
+          0,
+          0,
+          9,
+          0
+        ],
+        "n": 6344,
+        "base_moment": [
+          1229379,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          1229379,
+          81029,
+          81056,
+          81029
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          9,
+          0,
+          0
+        ],
+        "n": 4993,
+        "base_moment": [
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81029,
+          81056,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          9,
+          0,
+          0
+        ],
+        "n": 4994,
+        "base_moment": [
+          81204,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81204,
+          81056,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 3,
+        "padding": 1351,
+        "cube_coordinates": [
+          0,
+          9,
+          0,
+          0
+        ],
+        "n": 6344,
+        "base_moment": [
+          1229379,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          1229379,
+          81056,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          3,
+          6,
+          9,
+          2
+        ],
+        "n": 4993,
+        "base_moment": [
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81038,
+          81047,
+          81056,
+          81035
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          3,
+          6,
+          9,
+          2
+        ],
+        "n": 4994,
+        "base_moment": [
+          81204,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81213,
+          81047,
+          81056,
+          81035
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 3,
+        "padding": 1351,
+        "cube_coordinates": [
+          3,
+          6,
+          9,
+          2
+        ],
+        "n": 6344,
+        "base_moment": [
+          1229379,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          1229388,
+          81047,
+          81056,
+          81035
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          9,
+          0,
+          0,
+          0
+        ],
+        "n": 4993,
+        "base_moment": [
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81056,
+          81029,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          9,
+          0,
+          0,
+          0
+        ],
+        "n": 4994,
+        "base_moment": [
+          81204,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81231,
+          81029,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 3,
+        "padding": 1351,
+        "cube_coordinates": [
+          9,
+          0,
+          0,
+          0
+        ],
+        "n": 6344,
+        "base_moment": [
+          1229379,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          1229406,
+          81029,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          9,
+          9,
+          9,
+          9
+        ],
+        "n": 4993,
+        "base_moment": [
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81056,
+          81056,
+          81056,
+          81056
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          9,
+          9,
+          9,
+          9
+        ],
+        "n": 4994,
+        "base_moment": [
+          81204,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81231,
+          81056,
+          81056,
+          81056
+        ]
+      },
+      {
+        "dimension": 4,
+        "radius": 3,
+        "padding": 1351,
+        "cube_coordinates": [
+          9,
+          9,
+          9,
+          9
+        ],
+        "n": 6344,
+        "base_moment": [
+          1229379,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          1229406,
+          81056,
+          81056,
+          81056
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 2861,
+        "base_moment": [
+          17667,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17667,
+          17667,
+          17667,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 2862,
+        "base_moment": [
+          17742,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17742,
+          17667,
+          17667,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 1689,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 4550,
+        "base_moment": [
+          1569858,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          1569858,
+          17667,
+          17667,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "n": 2861,
+        "base_moment": [
+          17667,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17667,
+          17667,
+          17667,
+          17667,
+          17670
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "n": 2862,
+        "base_moment": [
+          17742,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17742,
+          17667,
+          17667,
+          17667,
+          17670
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 1689,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "n": 4550,
+        "base_moment": [
+          1569858,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          1569858,
+          17667,
+          17667,
+          17667,
+          17670
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        "n": 2861,
+        "base_moment": [
+          17667,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17667,
+          17667,
+          17667,
+          17670,
+          17667
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        "n": 2862,
+        "base_moment": [
+          17742,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17742,
+          17667,
+          17667,
+          17670,
+          17667
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 1689,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        "n": 4550,
+        "base_moment": [
+          1569858,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          1569858,
+          17667,
+          17667,
+          17670,
+          17667
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "n": 2861,
+        "base_moment": [
+          17667,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17667,
+          17667,
+          17670,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "n": 2862,
+        "base_moment": [
+          17742,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17742,
+          17667,
+          17670,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 1689,
+        "cube_coordinates": [
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "n": 4550,
+        "base_moment": [
+          1569858,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          1569858,
+          17667,
+          17670,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        "n": 2861,
+        "base_moment": [
+          17667,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17667,
+          17670,
+          17667,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        "n": 2862,
+        "base_moment": [
+          17742,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17742,
+          17670,
+          17667,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 1689,
+        "cube_coordinates": [
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        "n": 4550,
+        "base_moment": [
+          1569858,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          1569858,
+          17670,
+          17667,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 2861,
+        "base_moment": [
+          17667,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17670,
+          17667,
+          17667,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 2862,
+        "base_moment": [
+          17742,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17745,
+          17667,
+          17667,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 1689,
+        "cube_coordinates": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 4550,
+        "base_moment": [
+          1569858,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          1569861,
+          17667,
+          17667,
+          17667,
+          17667
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          1,
+          0,
+          1,
+          0,
+          1
+        ],
+        "n": 2861,
+        "base_moment": [
+          17667,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17670,
+          17667,
+          17670,
+          17667,
+          17670
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          1,
+          0,
+          1,
+          0,
+          1
+        ],
+        "n": 2862,
+        "base_moment": [
+          17742,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17745,
+          17667,
+          17670,
+          17667,
+          17670
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 1689,
+        "cube_coordinates": [
+          1,
+          0,
+          1,
+          0,
+          1
+        ],
+        "n": 4550,
+        "base_moment": [
+          1569858,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          1569861,
+          17667,
+          17670,
+          17667,
+          17670
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 0,
+        "cube_coordinates": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "n": 2861,
+        "base_moment": [
+          17667,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17670,
+          17670,
+          17670,
+          17670,
+          17670
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 1,
+        "cube_coordinates": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "n": 2862,
+        "base_moment": [
+          17742,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          17745,
+          17670,
+          17670,
+          17670,
+          17670
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 1,
+        "padding": 1689,
+        "cube_coordinates": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "n": 4550,
+        "base_moment": [
+          1569858,
+          17667,
+          17667,
+          17667,
+          17667
+        ],
+        "actual_moment": [
+          1569861,
+          17670,
+          17670,
+          17670,
+          17670
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 4551,
+        "base_moment": [
+          43498,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43498,
+          43498,
+          43498,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 4552,
+        "base_moment": [
+          43623,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43623,
+          43498,
+          43498,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 1689,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 6240,
+        "base_moment": [
+          1680139,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          1680139,
+          43498,
+          43498,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0,
+          4
+        ],
+        "n": 4551,
+        "base_moment": [
+          43498,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43498,
+          43498,
+          43498,
+          43498,
+          43510
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0,
+          4
+        ],
+        "n": 4552,
+        "base_moment": [
+          43623,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43623,
+          43498,
+          43498,
+          43498,
+          43510
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 1689,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0,
+          4
+        ],
+        "n": 6240,
+        "base_moment": [
+          1680139,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          1680139,
+          43498,
+          43498,
+          43498,
+          43510
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          4,
+          0
+        ],
+        "n": 4551,
+        "base_moment": [
+          43498,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43498,
+          43498,
+          43498,
+          43510,
+          43498
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          4,
+          0
+        ],
+        "n": 4552,
+        "base_moment": [
+          43623,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43623,
+          43498,
+          43498,
+          43510,
+          43498
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 1689,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          4,
+          0
+        ],
+        "n": 6240,
+        "base_moment": [
+          1680139,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          1680139,
+          43498,
+          43498,
+          43510,
+          43498
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          4,
+          0,
+          0
+        ],
+        "n": 4551,
+        "base_moment": [
+          43498,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43498,
+          43498,
+          43510,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          4,
+          0,
+          0
+        ],
+        "n": 4552,
+        "base_moment": [
+          43623,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43623,
+          43498,
+          43510,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 1689,
+        "cube_coordinates": [
+          0,
+          0,
+          4,
+          0,
+          0
+        ],
+        "n": 6240,
+        "base_moment": [
+          1680139,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          1680139,
+          43498,
+          43510,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          4,
+          0,
+          0,
+          0
+        ],
+        "n": 4551,
+        "base_moment": [
+          43498,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43498,
+          43510,
+          43498,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          4,
+          0,
+          0,
+          0
+        ],
+        "n": 4552,
+        "base_moment": [
+          43623,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43623,
+          43510,
+          43498,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 1689,
+        "cube_coordinates": [
+          0,
+          4,
+          0,
+          0,
+          0
+        ],
+        "n": 6240,
+        "base_moment": [
+          1680139,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          1680139,
+          43510,
+          43498,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          2,
+          4,
+          1,
+          3,
+          0
+        ],
+        "n": 4551,
+        "base_moment": [
+          43498,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43504,
+          43510,
+          43501,
+          43507,
+          43498
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          2,
+          4,
+          1,
+          3,
+          0
+        ],
+        "n": 4552,
+        "base_moment": [
+          43623,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43629,
+          43510,
+          43501,
+          43507,
+          43498
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 1689,
+        "cube_coordinates": [
+          2,
+          4,
+          1,
+          3,
+          0
+        ],
+        "n": 6240,
+        "base_moment": [
+          1680139,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          1680145,
+          43510,
+          43501,
+          43507,
+          43498
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          4,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 4551,
+        "base_moment": [
+          43498,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43510,
+          43498,
+          43498,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          4,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 4552,
+        "base_moment": [
+          43623,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43635,
+          43498,
+          43498,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 1689,
+        "cube_coordinates": [
+          4,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 6240,
+        "base_moment": [
+          1680139,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          1680151,
+          43498,
+          43498,
+          43498,
+          43498
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 0,
+        "cube_coordinates": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "n": 4551,
+        "base_moment": [
+          43498,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43510,
+          43510,
+          43510,
+          43510,
+          43510
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 1,
+        "cube_coordinates": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "n": 4552,
+        "base_moment": [
+          43623,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          43635,
+          43510,
+          43510,
+          43510,
+          43510
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 2,
+        "padding": 1689,
+        "cube_coordinates": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "n": 6240,
+        "base_moment": [
+          1680139,
+          43498,
+          43498,
+          43498,
+          43498
+        ],
+        "actual_moment": [
+          1680151,
+          43510,
+          43510,
+          43510,
+          43510
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 6241,
+        "base_moment": [
+          81029,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81029,
+          81029,
+          81029,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 6242,
+        "base_moment": [
+          81204,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81204,
+          81029,
+          81029,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 1689,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 7930,
+        "base_moment": [
+          1802120,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          1802120,
+          81029,
+          81029,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0,
+          9
+        ],
+        "n": 6241,
+        "base_moment": [
+          81029,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81029,
+          81029,
+          81029,
+          81029,
+          81056
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0,
+          9
+        ],
+        "n": 6242,
+        "base_moment": [
+          81204,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81204,
+          81029,
+          81029,
+          81029,
+          81056
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 1689,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          0,
+          9
+        ],
+        "n": 7930,
+        "base_moment": [
+          1802120,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          1802120,
+          81029,
+          81029,
+          81029,
+          81056
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          9,
+          0
+        ],
+        "n": 6241,
+        "base_moment": [
+          81029,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81029,
+          81029,
+          81029,
+          81056,
+          81029
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          9,
+          0
+        ],
+        "n": 6242,
+        "base_moment": [
+          81204,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81204,
+          81029,
+          81029,
+          81056,
+          81029
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 1689,
+        "cube_coordinates": [
+          0,
+          0,
+          0,
+          9,
+          0
+        ],
+        "n": 7930,
+        "base_moment": [
+          1802120,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          1802120,
+          81029,
+          81029,
+          81056,
+          81029
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          0,
+          9,
+          0,
+          0
+        ],
+        "n": 6241,
+        "base_moment": [
+          81029,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81029,
+          81029,
+          81056,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          0,
+          9,
+          0,
+          0
+        ],
+        "n": 6242,
+        "base_moment": [
+          81204,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81204,
+          81029,
+          81056,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 1689,
+        "cube_coordinates": [
+          0,
+          0,
+          9,
+          0,
+          0
+        ],
+        "n": 7930,
+        "base_moment": [
+          1802120,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          1802120,
+          81029,
+          81056,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          0,
+          9,
+          0,
+          0,
+          0
+        ],
+        "n": 6241,
+        "base_moment": [
+          81029,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81029,
+          81056,
+          81029,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          0,
+          9,
+          0,
+          0,
+          0
+        ],
+        "n": 6242,
+        "base_moment": [
+          81204,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81204,
+          81056,
+          81029,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 1689,
+        "cube_coordinates": [
+          0,
+          9,
+          0,
+          0,
+          0
+        ],
+        "n": 7930,
+        "base_moment": [
+          1802120,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          1802120,
+          81056,
+          81029,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          3,
+          6,
+          9,
+          2,
+          5
+        ],
+        "n": 6241,
+        "base_moment": [
+          81029,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81038,
+          81047,
+          81056,
+          81035,
+          81044
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          3,
+          6,
+          9,
+          2,
+          5
+        ],
+        "n": 6242,
+        "base_moment": [
+          81204,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81213,
+          81047,
+          81056,
+          81035,
+          81044
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 1689,
+        "cube_coordinates": [
+          3,
+          6,
+          9,
+          2,
+          5
+        ],
+        "n": 7930,
+        "base_moment": [
+          1802120,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          1802129,
+          81047,
+          81056,
+          81035,
+          81044
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          9,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 6241,
+        "base_moment": [
+          81029,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81056,
+          81029,
+          81029,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          9,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 6242,
+        "base_moment": [
+          81204,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81231,
+          81029,
+          81029,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 1689,
+        "cube_coordinates": [
+          9,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n": 7930,
+        "base_moment": [
+          1802120,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          1802147,
+          81029,
+          81029,
+          81029,
+          81029
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 0,
+        "cube_coordinates": [
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "n": 6241,
+        "base_moment": [
+          81029,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81056,
+          81056,
+          81056,
+          81056,
+          81056
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 1,
+        "cube_coordinates": [
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "n": 6242,
+        "base_moment": [
+          81204,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          81231,
+          81056,
+          81056,
+          81056,
+          81056
+        ]
+      },
+      {
+        "dimension": 5,
+        "radius": 3,
+        "padding": 1689,
+        "cube_coordinates": [
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "n": 7930,
+        "base_moment": [
+          1802120,
+          81029,
+          81029,
+          81029,
+          81029
+        ],
+        "actual_moment": [
+          1802147,
+          81056,
+          81056,
+          81056,
+          81056
+        ]
+      }
+    ],
+    "integer_ball_relaxation_checks": [
+      {
+        "radius_parameter": 2,
+        "integer_ball_radius": 2,
+        "all_ball_points": [
+          "-2,0,0",
+          "-1,-1,-1",
+          "-1,-1,0",
+          "-1,-1,1",
+          "-1,0,-1",
+          "-1,0,0",
+          "-1,0,1",
+          "-1,1,-1",
+          "-1,1,0",
+          "-1,1,1",
+          "0,-2,0",
+          "0,-1,-1",
+          "0,-1,0",
+          "0,-1,1",
+          "0,0,-2",
+          "0,0,-1",
+          "0,0,0",
+          "0,0,1",
+          "0,0,2",
+          "0,1,-1",
+          "0,1,0",
+          "0,1,1",
+          "0,2,0",
+          "1,-1,-1",
+          "1,-1,0",
+          "1,-1,1",
+          "1,0,-1",
+          "1,0,0",
+          "1,0,1",
+          "1,1,-1",
+          "1,1,0",
+          "1,1,1",
+          "2,0,0"
+        ],
+        "positive_minimum_certificates": [
+          {
+            "ball_vertex": [
+              -2,
+              0,
+              0
+            ],
+            "cube_coordinates": [
+              0,
+              2,
+              2
+            ],
+            "positive_weight": [
+              4,
+              1,
+              1
+            ],
+            "strict_integer_margin": 6,
+            "n": 2738,
+            "staircase_moment": [
+              44394,
+              43504,
+              43504
+            ]
+          },
+          {
+            "ball_vertex": [
+              -1,
+              -1,
+              -1
+            ],
+            "cube_coordinates": [
+              1,
+              1,
+              1
+            ],
+            "positive_weight": [
+              1,
+              1,
+              1
+            ],
+            "strict_integer_margin": 3,
+            "n": 2738,
+            "staircase_moment": [
+              44397,
+              43501,
+              43501
+            ]
+          },
+          {
+            "ball_vertex": [
+              0,
+              -2,
+              0
+            ],
+            "cube_coordinates": [
+              2,
+              0,
+              2
+            ],
+            "positive_weight": [
+              1,
+              4,
+              1
+            ],
+            "strict_integer_margin": 6,
+            "n": 2738,
+            "staircase_moment": [
+              44400,
+              43498,
+              43504
+            ]
+          },
+          {
+            "ball_vertex": [
+              0,
+              0,
+              -2
+            ],
+            "cube_coordinates": [
+              2,
+              2,
+              0
+            ],
+            "positive_weight": [
+              1,
+              1,
+              4
+            ],
+            "strict_integer_margin": 6,
+            "n": 2738,
+            "staircase_moment": [
+              44400,
+              43504,
+              43498
+            ]
+          }
+        ],
+        "scope": "Exposed only within this explicit family of staircases; not certified initial ideals of a common algebra."
+      },
+      {
+        "radius_parameter": 3,
+        "integer_ball_radius": 4,
+        "all_ball_points": [
+          "-4,0,0",
+          "-3,-2,-1",
+          "-3,-2,0",
+          "-3,-2,1",
+          "-3,-1,-2",
+          "-3,-1,-1",
+          "-3,-1,0",
+          "-3,-1,1",
+          "-3,-1,2",
+          "-3,0,-2",
+          "-3,0,-1",
+          "-3,0,0",
+          "-3,0,1",
+          "-3,0,2",
+          "-3,1,-2",
+          "-3,1,-1",
+          "-3,1,0",
+          "-3,1,1",
+          "-3,1,2",
+          "-3,2,-1",
+          "-3,2,0",
+          "-3,2,1",
+          "-2,-3,-1",
+          "-2,-3,0",
+          "-2,-3,1",
+          "-2,-2,-2",
+          "-2,-2,-1",
+          "-2,-2,0",
+          "-2,-2,1",
+          "-2,-2,2",
+          "-2,-1,-3",
+          "-2,-1,-2",
+          "-2,-1,-1",
+          "-2,-1,0",
+          "-2,-1,1",
+          "-2,-1,2",
+          "-2,-1,3",
+          "-2,0,-3",
+          "-2,0,-2",
+          "-2,0,-1",
+          "-2,0,0",
+          "-2,0,1",
+          "-2,0,2",
+          "-2,0,3",
+          "-2,1,-3",
+          "-2,1,-2",
+          "-2,1,-1",
+          "-2,1,0",
+          "-2,1,1",
+          "-2,1,2",
+          "-2,1,3",
+          "-2,2,-2",
+          "-2,2,-1",
+          "-2,2,0",
+          "-2,2,1",
+          "-2,2,2",
+          "-2,3,-1",
+          "-2,3,0",
+          "-2,3,1",
+          "-1,-3,-2",
+          "-1,-3,-1",
+          "-1,-3,0",
+          "-1,-3,1",
+          "-1,-3,2",
+          "-1,-2,-3",
+          "-1,-2,-2",
+          "-1,-2,-1",
+          "-1,-2,0",
+          "-1,-2,1",
+          "-1,-2,2",
+          "-1,-2,3",
+          "-1,-1,-3",
+          "-1,-1,-2",
+          "-1,-1,-1",
+          "-1,-1,0",
+          "-1,-1,1",
+          "-1,-1,2",
+          "-1,-1,3",
+          "-1,0,-3",
+          "-1,0,-2",
+          "-1,0,-1",
+          "-1,0,0",
+          "-1,0,1",
+          "-1,0,2",
+          "-1,0,3",
+          "-1,1,-3",
+          "-1,1,-2",
+          "-1,1,-1",
+          "-1,1,0",
+          "-1,1,1",
+          "-1,1,2",
+          "-1,1,3",
+          "-1,2,-3",
+          "-1,2,-2",
+          "-1,2,-1",
+          "-1,2,0",
+          "-1,2,1",
+          "-1,2,2",
+          "-1,2,3",
+          "-1,3,-2",
+          "-1,3,-1",
+          "-1,3,0",
+          "-1,3,1",
+          "-1,3,2",
+          "0,-4,0",
+          "0,-3,-2",
+          "0,-3,-1",
+          "0,-3,0",
+          "0,-3,1",
+          "0,-3,2",
+          "0,-2,-3",
+          "0,-2,-2",
+          "0,-2,-1",
+          "0,-2,0",
+          "0,-2,1",
+          "0,-2,2",
+          "0,-2,3",
+          "0,-1,-3",
+          "0,-1,-2",
+          "0,-1,-1",
+          "0,-1,0",
+          "0,-1,1",
+          "0,-1,2",
+          "0,-1,3",
+          "0,0,-4",
+          "0,0,-3",
+          "0,0,-2",
+          "0,0,-1",
+          "0,0,0",
+          "0,0,1",
+          "0,0,2",
+          "0,0,3",
+          "0,0,4",
+          "0,1,-3",
+          "0,1,-2",
+          "0,1,-1",
+          "0,1,0",
+          "0,1,1",
+          "0,1,2",
+          "0,1,3",
+          "0,2,-3",
+          "0,2,-2",
+          "0,2,-1",
+          "0,2,0",
+          "0,2,1",
+          "0,2,2",
+          "0,2,3",
+          "0,3,-2",
+          "0,3,-1",
+          "0,3,0",
+          "0,3,1",
+          "0,3,2",
+          "0,4,0",
+          "1,-3,-2",
+          "1,-3,-1",
+          "1,-3,0",
+          "1,-3,1",
+          "1,-3,2",
+          "1,-2,-3",
+          "1,-2,-2",
+          "1,-2,-1",
+          "1,-2,0",
+          "1,-2,1",
+          "1,-2,2",
+          "1,-2,3",
+          "1,-1,-3",
+          "1,-1,-2",
+          "1,-1,-1",
+          "1,-1,0",
+          "1,-1,1",
+          "1,-1,2",
+          "1,-1,3",
+          "1,0,-3",
+          "1,0,-2",
+          "1,0,-1",
+          "1,0,0",
+          "1,0,1",
+          "1,0,2",
+          "1,0,3",
+          "1,1,-3",
+          "1,1,-2",
+          "1,1,-1",
+          "1,1,0",
+          "1,1,1",
+          "1,1,2",
+          "1,1,3",
+          "1,2,-3",
+          "1,2,-2",
+          "1,2,-1",
+          "1,2,0",
+          "1,2,1",
+          "1,2,2",
+          "1,2,3",
+          "1,3,-2",
+          "1,3,-1",
+          "1,3,0",
+          "1,3,1",
+          "1,3,2",
+          "2,-3,-1",
+          "2,-3,0",
+          "2,-3,1",
+          "2,-2,-2",
+          "2,-2,-1",
+          "2,-2,0",
+          "2,-2,1",
+          "2,-2,2",
+          "2,-1,-3",
+          "2,-1,-2",
+          "2,-1,-1",
+          "2,-1,0",
+          "2,-1,1",
+          "2,-1,2",
+          "2,-1,3",
+          "2,0,-3",
+          "2,0,-2",
+          "2,0,-1",
+          "2,0,0",
+          "2,0,1",
+          "2,0,2",
+          "2,0,3",
+          "2,1,-3",
+          "2,1,-2",
+          "2,1,-1",
+          "2,1,0",
+          "2,1,1",
+          "2,1,2",
+          "2,1,3",
+          "2,2,-2",
+          "2,2,-1",
+          "2,2,0",
+          "2,2,1",
+          "2,2,2",
+          "2,3,-1",
+          "2,3,0",
+          "2,3,1",
+          "3,-2,-1",
+          "3,-2,0",
+          "3,-2,1",
+          "3,-1,-2",
+          "3,-1,-1",
+          "3,-1,0",
+          "3,-1,1",
+          "3,-1,2",
+          "3,0,-2",
+          "3,0,-1",
+          "3,0,0",
+          "3,0,1",
+          "3,0,2",
+          "3,1,-2",
+          "3,1,-1",
+          "3,1,0",
+          "3,1,1",
+          "3,1,2",
+          "3,2,-1",
+          "3,2,0",
+          "3,2,1",
+          "4,0,0"
+        ],
+        "positive_minimum_certificates": [
+          {
+            "ball_vertex": [
+              -4,
+              0,
+              0
+            ],
+            "cube_coordinates": [
+              0,
+              4,
+              4
+            ],
+            "positive_weight": [
+              11,
+              2,
+              2
+            ],
+            "strict_integer_margin": 15,
+            "n": 3752,
+            "staircase_moment": [
+              82275,
+              81041,
+              81041
+            ]
+          },
+          {
+            "ball_vertex": [
+              -3,
+              -2,
+              -1
+            ],
+            "cube_coordinates": [
+              1,
+              2,
+              3
+            ],
+            "positive_weight": [
+              63,
+              41,
+              16
+            ],
+            "strict_integer_margin": 48,
+            "n": 3752,
+            "staircase_moment": [
+              82278,
+              81035,
+              81038
+            ]
+          },
+          {
+            "ball_vertex": [
+              -3,
+              -1,
+              -2
+            ],
+            "cube_coordinates": [
+              1,
+              3,
+              2
+            ],
+            "positive_weight": [
+              63,
+              16,
+              41
+            ],
+            "strict_integer_margin": 48,
+            "n": 3752,
+            "staircase_moment": [
+              82278,
+              81038,
+              81035
+            ]
+          },
+          {
+            "ball_vertex": [
+              -2,
+              -3,
+              -1
+            ],
+            "cube_coordinates": [
+              2,
+              1,
+              3
+            ],
+            "positive_weight": [
+              41,
+              63,
+              16
+            ],
+            "strict_integer_margin": 48,
+            "n": 3752,
+            "staircase_moment": [
+              82281,
+              81032,
+              81038
+            ]
+          },
+          {
+            "ball_vertex": [
+              -2,
+              -1,
+              -3
+            ],
+            "cube_coordinates": [
+              2,
+              3,
+              1
+            ],
+            "positive_weight": [
+              41,
+              16,
+              63
+            ],
+            "strict_integer_margin": 48,
+            "n": 3752,
+            "staircase_moment": [
+              82281,
+              81038,
+              81032
+            ]
+          },
+          {
+            "ball_vertex": [
+              -1,
+              -3,
+              -2
+            ],
+            "cube_coordinates": [
+              3,
+              1,
+              2
+            ],
+            "positive_weight": [
+              16,
+              63,
+              41
+            ],
+            "strict_integer_margin": 48,
+            "n": 3752,
+            "staircase_moment": [
+              82284,
+              81032,
+              81035
+            ]
+          },
+          {
+            "ball_vertex": [
+              -1,
+              -2,
+              -3
+            ],
+            "cube_coordinates": [
+              3,
+              2,
+              1
+            ],
+            "positive_weight": [
+              16,
+              41,
+              63
+            ],
+            "strict_integer_margin": 48,
+            "n": 3752,
+            "staircase_moment": [
+              82284,
+              81035,
+              81032
+            ]
+          },
+          {
+            "ball_vertex": [
+              0,
+              -4,
+              0
+            ],
+            "cube_coordinates": [
+              4,
+              0,
+              4
+            ],
+            "positive_weight": [
+              2,
+              11,
+              2
+            ],
+            "strict_integer_margin": 15,
+            "n": 3752,
+            "staircase_moment": [
+              82287,
+              81029,
+              81041
+            ]
+          },
+          {
+            "ball_vertex": [
+              0,
+              0,
+              -4
+            ],
+            "cube_coordinates": [
+              4,
+              4,
+              0
+            ],
+            "positive_weight": [
+              2,
+              2,
+              11
+            ],
+            "strict_integer_margin": 15,
+            "n": 3752,
+            "staircase_moment": [
+              82287,
+              81041,
+              81029
+            ]
+          }
+        ],
+        "scope": "Exposed only within this explicit family of staircases; not certified initial ideals of a common algebra."
+      }
+    ],
+    "prefix_dominance_countercontrols": [
+      {
+        "selected_ball_vertex": [
+          -2,
+          0,
+          0
+        ],
+        "other_ball_point": [
+          -1,
+          -1,
+          -1
+        ],
+        "positive_weight": [
+          4,
+          1,
+          1
+        ],
+        "rank_position_one_based": 1262,
+        "selected_cost_at_position": 61,
+        "other_cost_at_position": 60,
+        "selected_prefix_size": 1261,
+        "other_prefix_size": 1262,
+        "selected_total_cost": 264584,
+        "other_total_cost": 264590,
+        "conditional_conclusion": "If both encoded staircases are quotient bases, the selected one cannot be initial at this weight or any monomial order refining it. Other weights are not excluded."
+      },
+      {
+        "selected_ball_vertex": [
+          -1,
+          -1,
+          -1
+        ],
+        "other_ball_point": [
+          -2,
+          0,
+          0
+        ],
+        "positive_weight": [
+          1,
+          1,
+          1
+        ],
+        "rank_position_one_based": 1145,
+        "selected_cost_at_position": 37,
+        "other_cost_at_position": 36,
+        "selected_prefix_size": 1144,
+        "other_prefix_size": 1145,
+        "selected_total_cost": 131399,
+        "other_total_cost": 131402,
+        "conditional_conclusion": "If both encoded staircases are quotient bases, the selected one cannot be initial at this weight or any monomial order refining it. Other weights are not excluded."
+      },
+      {
+        "selected_ball_vertex": [
+          0,
+          -2,
+          0
+        ],
+        "other_ball_point": [
+          -2,
+          0,
+          0
+        ],
+        "positive_weight": [
+          1,
+          4,
+          1
+        ],
+        "rank_position_one_based": 1474,
+        "selected_cost_at_position": 70,
+        "other_cost_at_position": 69,
+        "selected_prefix_size": 1473,
+        "other_prefix_size": 1474,
+        "selected_total_cost": 261896,
+        "other_total_cost": 261914,
+        "conditional_conclusion": "If both encoded staircases are quotient bases, the selected one cannot be initial at this weight or any monomial order refining it. Other weights are not excluded."
+      },
+      {
+        "selected_ball_vertex": [
+          0,
+          0,
+          -2
+        ],
+        "other_ball_point": [
+          -2,
+          0,
+          0
+        ],
+        "positive_weight": [
+          1,
+          1,
+          4
+        ],
+        "rank_position_one_based": 656,
+        "selected_cost_at_position": 37,
+        "other_cost_at_position": 36,
+        "selected_prefix_size": 655,
+        "other_prefix_size": 656,
+        "selected_total_cost": 261896,
+        "other_total_cost": 261914,
+        "conditional_conclusion": "If both encoded staircases are quotient bases, the selected one cannot be initial at this weight or any monomial order refining it. Other weights are not excluded."
+      }
+    ]
+  },
+  "algebraic_attention_hotpath_control": {
+    "scope": "Exact reference computation for deliberately constrained polynomial query/key embeddings, an instance of established polynomial-kernel compression. No new ML algorithm, GPU speedup or quality equivalence is asserted.",
+    "identity": "For A={0,...,m}^s minus {0}, S(q,k)=sum_(a in A) theta_a*q^a*k^a and p2(S)=1+S+S^2/2 have support B={0,...,2m}^s. Positive theta give a diagonal separable representation with |B| features.",
+    "cost": "With s fixed, D=(m+1)^s-1, M=(2m+1)^s, value width v and T tokens: O(T*M*(s+v+1)) arithmetic, O(M*(v+1)) streaming state, plus latent-encoder costs. Direct coefficient setup is O(D^2*s), outside the token loop but charged whenever weights change. This is a forward streaming bound, not constant-memory training.",
+    "limits": [
+      "The latent embedding and tied polynomial coefficients restrict the interaction class; arbitrary Q/K or dense learned mixing do not retain the diagonal collapse.",
+      "The kernel is quadratic Taylor attention, not exact exponential softmax. Exact rational checks do not establish floating-point conditioning or trainability.",
+      "The algebraic reduction is existing kernel-on-variety methodology; scientific novelty requires a stronger comparison and an additional theorem or useful measured model advantage."
+    ],
+    "width_examples": [
+      {
+        "latent_dimension": 1,
+        "box_degree": 64,
+        "embedding_width": 64,
+        "generic_symmetric_quadratic_width": 2145,
+        "collapsed_width": 129
+      },
+      {
+        "latent_dimension": 2,
+        "box_degree": 7,
+        "embedding_width": 63,
+        "generic_symmetric_quadratic_width": 2080,
+        "collapsed_width": 225
+      },
+      {
+        "latent_dimension": 3,
+        "box_degree": 3,
+        "embedding_width": 63,
+        "generic_symmetric_quadratic_width": 2080,
+        "collapsed_width": 343
+      }
+    ],
+    "pair_kernel_checks": 125,
+    "kernel_derivative_checks": 1050,
+    "normalized_output_checks": 150,
+    "normalized_derivative_checks": 540,
+    "fixtures": [
+      {
+        "latent_dimension": 1,
+        "box_degree": 2,
+        "embedding_width": 2,
+        "collapsed_feature_width": 5,
+        "generic_symmetric_quadratic_width": 6,
+        "positive_weights": {
+          "1": "1/2",
+          "2": "3/4"
+        },
+        "queries": [
+          [
+            "-1/5"
+          ],
+          [
+            "0"
+          ],
+          [
+            "1/5"
+          ],
+          [
+            "2/5"
+          ],
+          [
+            "3/5"
+          ]
+        ],
+        "keys": [
+          [
+            "-1/6"
+          ],
+          [
+            "1/6"
+          ],
+          [
+            "1/2"
+          ],
+          [
+            "-1/3"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "samples": [
+          {
+            "causal": false,
+            "exact_outputs": [
+              [
+                "51093/14393339",
+                "-80969/14393339",
+                "13182345/28786678"
+              ],
+              [
+                "0",
+                "0",
+                "137/300"
+              ],
+              [
+                "-45467/14490859",
+                "210151/14490859",
+                "13183385/28981718"
+              ],
+              [
+                "-5427/916979",
+                "35071/916979",
+                "118575/261994"
+              ],
+              [
+                "-13923/1661171",
+                "118799/1661171",
+                "4482835/9967026"
+              ]
+            ]
+          },
+          {
+            "causal": true,
+            "exact_outputs": [
+              [
+                "-2",
+                "-2",
+                "1"
+              ],
+              [
+                "-3/2",
+                "-3/2",
+                "3/4"
+              ],
+              [
+                "-8600363/8815963",
+                "-2499641/8815963",
+                "10633937/17631926"
+              ],
+              [
+                "-365427/736979",
+                "215071/736979",
+                "758025/1473958"
+              ],
+              [
+                "-13923/1661171",
+                "118799/1661171",
+                "4482835/9967026"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "latent_dimension": 1,
+        "box_degree": 4,
+        "embedding_width": 4,
+        "collapsed_feature_width": 9,
+        "generic_symmetric_quadratic_width": 15,
+        "positive_weights": {
+          "1": "1/4",
+          "2": "3/8",
+          "3": "1/2",
+          "4": "5/8"
+        },
+        "queries": [
+          [
+            "-1/5"
+          ],
+          [
+            "0"
+          ],
+          [
+            "1/5"
+          ],
+          [
+            "2/5"
+          ],
+          [
+            "3/5"
+          ]
+        ],
+        "keys": [
+          [
+            "-1/6"
+          ],
+          [
+            "1/6"
+          ],
+          [
+            "1/2"
+          ],
+          [
+            "-1/3"
+          ],
+          [
+            "0"
+          ]
+        ],
+        "samples": [
+          {
+            "causal": false,
+            "exact_outputs": [
+              [
+                "30072830485/16789835627787",
+                "-51354329593/16789835627787",
+                "15356427024017/33579671255574"
+              ],
+              [
+                "0",
+                "0",
+                "137/300"
+              ],
+              [
+                "-26951535947/16848650214891",
+                "122409883751/16848650214891",
+                "15358361610545/33697300429782"
+              ],
+              [
+                "-52141139/16562659395",
+                "333737711/16562659395",
+                "15057340889/33125318790"
+              ],
+              [
+                "-12347115/2614491403",
+                "107233287/2614491403",
+                "7104219571/15686948418"
+              ]
+            ]
+          },
+          {
+            "causal": true,
+            "exact_outputs": [
+              [
+                "-2",
+                "-2",
+                "1"
+              ],
+              [
+                "-3/2",
+                "-3/2",
+                "3/4"
+              ],
+              [
+                "-1436312521629/1454378014205",
+                "-3135902347161/10180646099435",
+                "12360282752817/20361292198870"
+              ],
+              [
+                "-6613141139/13282159395",
+                "3614237711/13282159395",
+                "13745140889/26564318790"
+              ],
+              [
+                "-12347115/2614491403",
+                "107233287/2614491403",
+                "7104219571/15686948418"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "latent_dimension": 2,
+        "box_degree": 1,
+        "embedding_width": 3,
+        "collapsed_feature_width": 9,
+        "generic_symmetric_quadratic_width": 10,
+        "positive_weights": {
+          "0,1": "1/2",
+          "1,0": "1/3",
+          "1,1": "2/3"
+        },
+        "queries": [
+          [
+            "-1/5",
+            "1/5"
+          ],
+          [
+            "0",
+            "3/5"
+          ],
+          [
+            "1/5",
+            "-2/5"
+          ],
+          [
+            "2/5",
+            "0"
+          ],
+          [
+            "3/5",
+            "2/5"
+          ]
+        ],
+        "keys": [
+          [
+            "-1/6",
+            "0"
+          ],
+          [
+            "1/6",
+            "1/2"
+          ],
+          [
+            "1/2",
+            "-1/6"
+          ],
+          [
+            "-1/3",
+            "1/3"
+          ],
+          [
+            "0",
+            "-1/3"
+          ]
+        ],
+        "samples": [
+          {
+            "causal": false,
+            "exact_outputs": [
+              [
+                "-86167/6666146",
+                "4109/73327606",
+                "6113347/13332292"
+              ],
+              [
+                "-197/4098",
+                "37/4098",
+                "56519/122940"
+              ],
+              [
+                "617218/18090061",
+                "110894/18090061",
+                "8187541/18090061"
+              ],
+              [
+                "-89/20355",
+                "293/20355",
+                "9253/20355"
+              ],
+              [
+                "-96542/2064421",
+                "18974/2064421",
+                "943741/2064421"
+              ]
+            ]
+          },
+          {
+            "causal": true,
+            "exact_outputs": [
+              [
+                "-2",
+                "-2",
+                "1"
+              ],
+              [
+                "-2529/1729",
+                "-2529/1729",
+                "2529/3458"
+              ],
+              [
+                "-31622/32549",
+                "-738/2959",
+                "59185/97647"
+              ],
+              [
+                "-8189/16305",
+                "4343/16305",
+                "8443/16305"
+              ],
+              [
+                "-96542/2064421",
+                "18974/2064421",
+                "943741/2064421"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "latent_dimension": 2,
+        "box_degree": 2,
+        "embedding_width": 8,
+        "collapsed_feature_width": 25,
+        "generic_symmetric_quadratic_width": 45,
+        "positive_weights": {
+          "0,1": "3/16",
+          "0,2": "5/16",
+          "1,0": "1/8",
+          "1,1": "1/4",
+          "1,2": "1/16",
+          "2,0": "3/16",
+          "2,1": "5/16",
+          "2,2": "1/8"
+        },
+        "queries": [
+          [
+            "-1/5",
+            "1/5"
+          ],
+          [
+            "0",
+            "3/5"
+          ],
+          [
+            "1/5",
+            "-2/5"
+          ],
+          [
+            "2/5",
+            "0"
+          ],
+          [
+            "3/5",
+            "2/5"
+          ]
+        ],
+        "keys": [
+          [
+            "-1/6",
+            "0"
+          ],
+          [
+            "1/6",
+            "1/2"
+          ],
+          [
+            "1/2",
+            "-1/6"
+          ],
+          [
+            "-1/3",
+            "1/3"
+          ],
+          [
+            "0",
+            "-1/3"
+          ]
+        ],
+        "samples": [
+          {
+            "causal": false,
+            "exact_outputs": [
+              [
+                "-1976713726505/421539585810718",
+                "237406356233/421539585810718",
+                "385479892060463/843079171621436"
+              ],
+              [
+                "-17625/1044274",
+                "1689/1044274",
+                "14315569/31328220"
+              ],
+              [
+                "1413189708970/105207267805897",
+                "227545906562/105207267805897",
+                "47840069866051/105207267805897"
+              ],
+              [
+                "-21627/14461979",
+                "130471/14461979",
+                "13179825/28923958"
+              ],
+              [
+                "-7101314070/439610963099",
+                "5003163834/439610963099",
+                "257683754929/565214095413"
+              ]
+            ]
+          },
+          {
+            "causal": true,
+            "exact_outputs": [
+              [
+                "-2",
+                "-2",
+                "1"
+              ],
+              [
+                "-632409/427609",
+                "-632409/427609",
+                "632409/855218"
+              ],
+              [
+                "-769843389574/778805981993",
+                "-235566143486/778805981993",
+                "1421903707405/2336417945979"
+              ],
+              [
+                "-5781627/11581979",
+                "3010471/11581979",
+                "12027825/23163958"
+              ],
+              [
+                "-7101314070/439610963099",
+                "5003163834/439610963099",
+                "257683754929/565214095413"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "latent_dimension": 3,
+        "box_degree": 1,
+        "embedding_width": 7,
+        "collapsed_feature_width": 27,
+        "generic_symmetric_quadratic_width": 36,
+        "positive_weights": {
+          "0,0,1": "2/7",
+          "0,1,0": "3/14",
+          "0,1,1": "1/14",
+          "1,0,0": "1/7",
+          "1,0,1": "5/14",
+          "1,1,0": "2/7",
+          "1,1,1": "1/7"
+        },
+        "queries": [
+          [
+            "-1/5",
+            "1/5",
+            "3/5"
+          ],
+          [
+            "0",
+            "3/5",
+            "-1/5"
+          ],
+          [
+            "1/5",
+            "-2/5",
+            "2/5"
+          ],
+          [
+            "2/5",
+            "0",
+            "-2/5"
+          ],
+          [
+            "3/5",
+            "2/5",
+            "1/5"
+          ]
+        ],
+        "keys": [
+          [
+            "-1/6",
+            "0",
+            "1/6"
+          ],
+          [
+            "1/6",
+            "1/2",
+            "-1/3"
+          ],
+          [
+            "1/2",
+            "-1/6",
+            "1/3"
+          ],
+          [
+            "-1/3",
+            "1/3",
+            "-1/6"
+          ],
+          [
+            "0",
+            "-1/3",
+            "1/2"
+          ]
+        ],
+        "samples": [
+          {
+            "causal": false,
+            "exact_outputs": [
+              [
+                "855986230/40413782773",
+                "-450665062/40413782773",
+                "18427416649/40413782773"
+              ],
+              [
+                "-265029/8866534",
+                "249261/44332670",
+                "406605321/886653400"
+              ],
+              [
+                "457473010/12900781291",
+                "134207642/90305469037",
+                "40913602036/90305469037"
+              ],
+              [
+                "-89726/3927657",
+                "9998/3927657",
+                "8988086/19638285"
+              ],
+              [
+                "-364928130/40238418397",
+                "329255162/40238418397",
+                "55025088088/120715255191"
+              ]
+            ]
+          },
+          {
+            "causal": true,
+            "exact_outputs": [
+              [
+                "-2",
+                "-2",
+                "1"
+              ],
+              [
+                "-6768021/4583921",
+                "-6768021/4583921",
+                "6768021/9167842"
+              ],
+              [
+                "-5859296166/5984830097",
+                "-1585317054/5984830097",
+                "3641977935/5984830097"
+              ],
+              [
+                "-83642/167259",
+                "39986/167259",
+                "1647670/3177921"
+              ],
+              [
+                "-364928130/40238418397",
+                "329255162/40238418397",
+                "55025088088/120715255191"
+              ]
+            ]
+          }
+        ]
+      }
+    ]
+  },
   "summary": {
     "volume_fixtures": 30,
     "socle_fixtures": 18,
@@ -454382,7 +462157,15 @@
     "quadratic_pole_complete_fan_witnesses": 242,
     "quadratic_pole_selected_weight_checks": 52,
     "quadratic_pole_hyperbolic_checks": 141,
-    "quadratic_pole_prefix_delay_counters": 3
+    "quadratic_pole_prefix_delay_counters": 3,
+    "staircase_moment_row_checks": 97,
+    "staircase_moment_expanded_union_checks": 231,
+    "staircase_moment_positive_relaxation_witnesses": 13,
+    "staircase_moment_prefix_dominance_counters": 4,
+    "algebraic_attention_pair_checks": 125,
+    "algebraic_attention_kernel_derivative_checks": 1050,
+    "algebraic_attention_output_checks": 150,
+    "algebraic_attention_normalized_derivative_checks": 540
   },
   "goal_qualifying_advance": false
 }

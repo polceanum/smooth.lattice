@@ -4184,6 +4184,336 @@ def quadratic_pole_flag_controls():
             "pattern_tables": encoded_tables, "fixtures": fixtures, "prefix_delay_countercontrols": prefix_counters}
 
 
+def staircase_moment_cube_controls():
+    """An exact staircase-moment relaxation; no common ideal is constructed."""
+    row_tables, profiles, unions, ball_controls, prefix_counters = [], {}, [], [], []
+
+    def row_profile(radius, value):
+        key = radius, value
+        if key in profiles:
+            return profiles[key]
+        pairs = {}
+        for a, b in product(range(radius + 1), repeat=2):
+            pairs.setdefault(a * a + b * b, (a, b))
+        first = next((s for s in sorted(pairs) if value - s in pairs), None)
+        require(first is not None, "the bounded four-square witness exists")
+        squares = pairs[first] + pairs[value - first]
+        require(sum(x * x for x in squares) == value <= radius * radius,
+                "the exact four-square certificate has the requested norm")
+        variation = [0] * 13
+        for j, z in enumerate(squares):
+            variation[3 * j + 1:3 * j + 4] = [z, -2 * z, z]
+        require(variation[0] == sum(variation) == sum(i * x for i, x in enumerate(variation)) == 0,
+                "the independent second-difference patches preserve both linear constraints")
+        require(sum(x * x for x in variation) == 6 * value,
+                "the disjoint patches have their claimed squared norm")
+        slope = 4 * radius + 1
+        intercept = 12 * slope + 2 * radius + 13
+        baseline = [intercept - slope * i for i in range(13)]
+        rows = [x + y for x, y in zip(baseline, variation)]
+        require(rows[0] == intercept and min(rows) >= 13 and
+                all(x > y for x, y in zip(rows, rows[1:])),
+                "the row lengths define a partition with a fixed first row")
+        points = {(x, y) for y, length in enumerate(rows) for x in range(length)}
+        actual = tuple(sum(p[i] for p in points) for i in range(2))
+        base_moment = (sum(comb(x, 2) for x in baseline), sum(i * x for i, x in enumerate(baseline)))
+        require(len(points) == sum(baseline) == 338 * radius + 247 and
+                actual == (base_moment[0] + 3 * value, base_moment[1]),
+                "direct planar enumeration proves the fixed-cardinality moment interval")
+        profiles[key] = tuple(rows)
+        row_tables.append({"radius": radius, "value": value,
+                           "four_squares": ",".join(map(str, squares)),
+                           "row_lengths": ",".join(map(str, rows)),
+                           "cardinality": len(points), "moments": actual})
+        return profiles[key]
+
+    def construct(d, radius, values, padding):
+        state = set()
+        for axis, value in enumerate(values):
+            rows = row_profile(radius, value)
+            for j, length in enumerate(rows):
+                for k in range(length):
+                    a = [0] * d
+                    a[axis], a[(axis + 1) % d] = k, j
+                    state.add(tuple(a))
+        intercept = 50 * radius + 25
+        additions = {tuple(k if j == 0 else 0 for j in range(d))
+                     for k in range(intercept, intercept + padding)}
+        require(not state & additions, "fixed-first-row padding adds exactly the stated number of cells")
+        state |= additions
+        require(all(tuple(x - (i == j) for j, x in enumerate(a)) in state
+                    for a in state for i in range(d) if a[i]),
+                "every expanded union and padding is a genuine monomial downset")
+        slope = 4 * radius + 1
+        baseline = [intercept - slope * i for i in range(13)]
+        planar_moments = sum(comb(x, 2) for x in baseline) + sum(i * x for i, x in enumerate(baseline))
+        correction = 13 * 78 if d == 2 else 78
+        base = [planar_moments - correction] * d
+        base[0] += padding * intercept + padding * (padding - 1) // 2
+        expected_n = (676 * radius + 325 if d == 2 else 338 * d * radius + 234 * d + 1) + padding
+        moments = tuple(sum(a[i] for a in state) for i in range(d))
+        require(len(state) == expected_n and moments == tuple(x + 3 * v for x, v in zip(base, values)),
+                "direct union enumeration proves the translated moment-cube identity")
+        return expected_n, tuple(base), moments
+
+    for radius in range(1, 7):
+        for value in range(radius * radius + 1):
+            row_profile(radius, value)
+    for d in range(2, 6):
+        for radius in (1, 2, 3):
+            period = 676 if d == 2 else 338 * d
+            offset = 325 if d == 2 else 234 * d + 1
+            tuples = {(0,) * d, (radius * radius,) * d,
+                      tuple((i + 1) * radius % (radius * radius + 1) for i in range(d))}
+            tuples.update(tuple(radius * radius * (i == j) for j in range(d)) for i in range(d))
+            for values in sorted(tuples):
+                for padding in (0, 1, period - 1):
+                    n, base, actual = construct(d, radius, values, padding)
+                    require((n - offset) // period == radius,
+                            "bounded padding covers the complete cardinality period")
+                    unions.append({"dimension": d, "radius": radius, "padding": padding,
+                                   "cube_coordinates": values, "n": n, "base_moment": base,
+                                   "actual_moment": actual})
+
+    for radius in (2, 3):
+        ball_radius = radius * radius // 2
+        points = sorted(p for p in product(range(-ball_radius, ball_radius + 1), repeat=3)
+                        if sum(x * x for x in p) <= ball_radius * ball_radius)
+        certificates = []
+        for p in points:
+            if max(p) > 0:
+                continue
+            polygon = [tuple(Fraction(i == j) for i in range(3)) for j in range(3)]
+            for q in points:
+                if q != p:
+                    normal = tuple(y - x for x, y in zip(p, q))
+                    polygon = clip(polygon, normal, 1)
+                    if not polygon:
+                        break
+            if not polygon:
+                continue
+            center = [sum(v[i] for v in polygon) / len(polygon) for i in range(3)]
+            scale = lcm(*(x.denominator for x in center))
+            weight = tuple(int(x * scale) for x in center)
+            divisor = gcd(*weight)
+            weight = tuple(x // divisor for x in weight)
+            margin = min(dot(weight, tuple(y - x for x, y in zip(p, q))) for q in points if q != p)
+            require(min(weight) > 0 and margin > 0, "the ball vertex has a strict positive minimum witness")
+            values = tuple(x + ball_radius for x in p)
+            n, base, actual = construct(3, radius, values, 7)
+            require(all(dot(weight, actual) < dot(weight, tuple(base[i] + 3 * (q[i] + ball_radius)
+                                                             for i in range(3)))
+                        for q in points if q != p),
+                    "the expanded staircase is exposed among the entire ball-indexed family")
+            certificates.append({"ball_vertex": p, "cube_coordinates": values, "positive_weight": weight,
+                                 "strict_integer_margin": 3 * margin, "n": n, "staircase_moment": actual})
+        require(certificates, "the finite ball control has positive exposed vertices")
+        ball_controls.append({"radius_parameter": radius, "integer_ball_radius": ball_radius,
+                              "all_ball_points": [",".join(map(str, p)) for p in points],
+                              "positive_minimum_certificates": certificates,
+                              "scope": "Exposed only within this explicit family of staircases; not certified initial ideals of a common algebra."})
+        if radius == 2:
+            def costs(point, weight):
+                state = set()
+                for axis, value in enumerate(tuple(x + ball_radius for x in point)):
+                    for j, length in enumerate(row_profile(radius, value)):
+                        for k in range(length):
+                            a = [0] * 3
+                            a[axis], a[(axis + 1) % 3] = k, j
+                            state.add(tuple(a))
+                intercept = 50 * radius + 25
+                state.update((k, 0, 0) for k in range(intercept, intercept + 7))
+                return sorted(dot(weight, a) for a in state)
+
+            for certificate in certificates:
+                point, weight = certificate["ball_vertex"], certificate["positive_weight"]
+                own = costs(point, weight)
+                counter = None
+                for other in points:
+                    if other == point:
+                        continue
+                    comparison = costs(other, weight)
+                    failure = next((i for i, (x, y) in enumerate(zip(own, comparison)) if x > y), None)
+                    if failure is not None:
+                        threshold = comparison[failure]
+                        own_prefix = sum(x <= threshold for x in own)
+                        other_prefix = sum(x <= threshold for x in comparison)
+                        require(sum(own) < sum(comparison) and own_prefix < other_prefix,
+                                "positive total-moment exposure does not imply the necessary greedy prefix dominance")
+                        counter = {"selected_ball_vertex": point, "other_ball_point": other,
+                                   "positive_weight": weight, "rank_position_one_based": failure + 1,
+                                   "selected_cost_at_position": own[failure],
+                                   "other_cost_at_position": threshold,
+                                   "selected_prefix_size": own_prefix, "other_prefix_size": other_prefix,
+                                   "selected_total_cost": sum(own), "other_total_cost": sum(comparison),
+                                   "conditional_conclusion": "If both encoded staircases are quotient bases, the selected one cannot be initial at this weight or any monomial order refining it. Other weights are not excluded."}
+                        break
+                require(counter is not None, "each saved small exposure has an independently checked prefix obstruction")
+                prefix_counters.append(counter)
+    return {"uniform_cube": "For every fixed d>=2 and all sufficiently large n, moments of actual n-element downsets contain a translated 3*[0,R^2]^d integer grid, with R=Theta_d(n). Four disjoint (1,-2,1) row patches, Lagrange's theorem and fixed-row padding prove this.",
+            "relaxation_extremal_order": "The maximum positive exposed-moment count of an arbitrary family of n-element staircases is Theta_d(n^(2*d*(d-1)/(d+1))). The lower bound uses the classical Barany--Larman integer-ball theorem; the upper uses the existing lattice-polytope bound.",
+            "scope": "A sharp obstruction to improving the unrestricted bound using only individual downsets and their moments. No common quotient, representable residue matroid or improved G_d/F_d bound is supplied.",
+            "row_encoding": "Rows j=0,...,12 contain x=0,...,ell_j-1. Cyclic arm i uses coordinates i and (i+1) mod d. Padding extends the first pure axis from B=50*R+25 by the stated count.",
+            "row_certificates": row_tables, "expanded_union_checks": unions,
+            "integer_ball_relaxation_checks": ball_controls,
+            "prefix_dominance_countercontrols": prefix_counters}
+
+
+def algebraic_attention_hotpath_controls():
+    """Exact constrained polynomial attention, using an established feature principle."""
+    fixtures, pair_checks, derivative_checks, output_checks, output_derivatives = [], 0, 0, 0, 0
+
+    def monomial(point, exponent):
+        answer = Fraction(1)
+        for x, power in zip(point, exponent):
+            answer *= x ** power
+        return answer
+
+    def partial(point, exponent, axis):
+        if not exponent[axis]:
+            return Fraction(0)
+        reduced = tuple(x - (i == axis) for i, x in enumerate(exponent))
+        return exponent[axis] * monomial(point, reduced)
+
+    for dimension, degree in ((1, 2), (1, 4), (2, 1), (2, 2), (3, 1)):
+        zero = (0,) * dimension
+        support = [a for a in product(range(degree + 1), repeat=dimension) if a != zero]
+        weights = {a: Fraction(1 + sum((i + 1) * x for i, x in enumerate(a)) % 5,
+                               2 * len(support)) for a in support}
+        coefficients = {zero: Fraction(1)}
+        for a, value in weights.items():
+            coefficients[a] = coefficients.get(a, 0) + value
+        for a, first in weights.items():
+            for b, second in weights.items():
+                exponent = tuple(x + y for x, y in zip(a, b))
+                coefficients[exponent] = coefficients.get(exponent, 0) + first * second / 2
+        require(set(coefficients) == set(product(range(2 * degree + 1), repeat=dimension)),
+                "the collapsed support is the full doubled box")
+        queries = [tuple(Fraction(((i + 2) * (j + 1)) % 7 - 3, 5)
+                         for j in range(dimension)) for i in range(5)]
+        keys = [tuple(Fraction(((i + 1) * (j + 2)) % 7 - 3, 6)
+                      for j in range(dimension)) for i in range(5)]
+        values = [(Fraction(i - 2), Fraction((i * i) % 5 - 2), Fraction(1, i + 1))
+                  for i in range(5)]
+
+        def direct(q, k):
+            score = sum(value * monomial(q, a) * monomial(k, a)
+                        for a, value in weights.items())
+            return 1 + score + score * score / 2
+
+        def direct_partial(q, k, axis, query_side):
+            score = sum(value * monomial(q, a) * monomial(k, a)
+                        for a, value in weights.items())
+            change = sum(value * (partial(q, a, axis) * monomial(k, a) if query_side
+                                  else monomial(q, a) * partial(k, a, axis))
+                         for a, value in weights.items())
+            return (1 + score) * change
+
+        def collapsed_partial(q, k, axis, query_side):
+            return sum(value * (partial(q, b, axis) * monomial(k, b) if query_side
+                                else monomial(q, b) * partial(k, b, axis))
+                       for b, value in coefficients.items())
+
+        for q in queries:
+            for k in keys:
+                actual = sum(c * monomial(q, b) * monomial(k, b) for b, c in coefficients.items())
+                require(actual == direct(q, k) >= Fraction(1, 2),
+                        "expanded dot-product attention and collapsed features agree exactly")
+                pair_checks += 1
+                for axis in range(dimension):
+                    for query_side in (False, True):
+                        require(direct_partial(q, k, axis, query_side) ==
+                                collapsed_partial(q, k, axis, query_side),
+                                "query and key derivatives survive the feature collapse")
+                        derivative_checks += 1
+                for a in support:
+                    score = sum(c * monomial(q, b) * monomial(k, b) for b, c in weights.items())
+                    expected = (1 + score) * monomial(q, a) * monomial(k, a)
+                    actual = monomial(q, a) * monomial(k, a)
+                    actual += sum(c * monomial(q, tuple(x + y for x, y in zip(a, b))) *
+                                  monomial(k, tuple(x + y for x, y in zip(a, b)))
+                                  for b, c in weights.items())
+                    require(actual == expected, "the tied coefficient map retains learned-weight derivatives")
+                    derivative_checks += 1
+
+        samples = []
+        for causal in (False, True):
+            state = {b: [Fraction(0)] * 4 for b in coefficients}
+
+            def add(index):
+                for b, row in state.items():
+                    feature = monomial(keys[index], b)
+                    row[0] += feature
+                    for channel in range(3):
+                        row[channel + 1] += feature * values[index][channel]
+
+            if not causal:
+                for j in range(len(keys)):
+                    add(j)
+            outputs = []
+            for i, q in enumerate(queries):
+                if causal:
+                    add(i)
+                visible = list(range(i + 1 if causal else len(keys)))
+                direct_kernel = [direct(q, keys[j]) for j in visible]
+                denominator = sum(direct_kernel)
+                require(denominator >= Fraction(len(visible), 2), "normalization has a strict exact lower bound")
+                totals = [sum(c * monomial(q, b) * state[b][a] for b, c in coefficients.items())
+                          for a in range(4)]
+                numerators = [sum(cost * values[j][a] for j, cost in zip(visible, direct_kernel))
+                              for a in range(3)]
+                require(totals == [denominator] + numerators, "streaming sufficient statistics equal direct sums")
+                output = [x / totals[0] for x in totals[1:]]
+                require(output == [x / denominator for x in numerators], "normalized attention is exactly preserved")
+                output_checks += len(output)
+                outputs.append([str(x) for x in output])
+                for axis in range(dimension):
+                    # Both query gradients and a key masked out of early causal prefixes.
+                    for query_side in (True, False):
+                        changed_key = len(keys) - 2
+                        changes = [direct_partial(q, keys[j], axis, query_side)
+                                   if query_side or j == changed_key else Fraction(0) for j in visible]
+                        dden = sum(changes)
+                        dnum = [sum(change * values[j][a] for j, change in zip(visible, changes))
+                                for a in range(3)]
+                        dtotals = [Fraction(0)] * 4
+                        for b, c in coefficients.items():
+                            if query_side:
+                                factor = c * partial(q, b, axis)
+                                for a in range(4):
+                                    dtotals[a] += factor * state[b][a]
+                            elif changed_key in visible:
+                                factor = c * monomial(q, b) * partial(keys[changed_key], b, axis)
+                                dtotals[0] += factor
+                                for a in range(3):
+                                    dtotals[a + 1] += factor * values[changed_key][a]
+                        require(dtotals == [dden] + dnum, "the streaming derivative respects the causal mask")
+                        for a in range(3):
+                            expected = (dnum[a] * denominator - numerators[a] * dden) / denominator ** 2
+                            actual = (dtotals[a + 1] * totals[0] - totals[a + 1] * dtotals[0]) / totals[0] ** 2
+                            require(actual == expected, "normalized query/key derivatives agree exactly")
+                            output_derivatives += 1
+            samples.append({"causal": causal, "exact_outputs": outputs})
+        fixtures.append({"latent_dimension": dimension, "box_degree": degree,
+                         "embedding_width": len(support), "collapsed_feature_width": len(coefficients),
+                         "generic_symmetric_quadratic_width": 1 + len(support) + comb(len(support) + 1, 2),
+                         "positive_weights": {",".join(map(str, a)): str(c) for a, c in weights.items()},
+                         "queries": [[str(x) for x in q] for q in queries],
+                         "keys": [[str(x) for x in k] for k in keys], "samples": samples})
+    return {"scope": "Exact reference computation for deliberately constrained polynomial query/key embeddings, an instance of established polynomial-kernel compression. No new ML algorithm, GPU speedup or quality equivalence is asserted.",
+            "identity": "For A={0,...,m}^s minus {0}, S(q,k)=sum_(a in A) theta_a*q^a*k^a and p2(S)=1+S+S^2/2 have support B={0,...,2m}^s. Positive theta give a diagonal separable representation with |B| features.",
+            "cost": "With s fixed, D=(m+1)^s-1, M=(2m+1)^s, value width v and T tokens: O(T*M*(s+v+1)) arithmetic, O(M*(v+1)) streaming state, plus latent-encoder costs. Direct coefficient setup is O(D^2*s), outside the token loop but charged whenever weights change. This is a forward streaming bound, not constant-memory training.",
+            "limits": ["The latent embedding and tied polynomial coefficients restrict the interaction class; arbitrary Q/K or dense learned mixing do not retain the diagonal collapse.",
+                       "The kernel is quadratic Taylor attention, not exact exponential softmax. Exact rational checks do not establish floating-point conditioning or trainability.",
+                       "The algebraic reduction is existing kernel-on-variety methodology; scientific novelty requires a stronger comparison and an additional theorem or useful measured model advantage."],
+            "width_examples": [{"latent_dimension": s, "box_degree": m, "embedding_width": (m + 1) ** s - 1,
+                                "generic_symmetric_quadratic_width": 1 + ((m + 1) ** s - 1) + comb((m + 1) ** s, 2),
+                                "collapsed_width": (2 * m + 1) ** s} for s, m in ((1, 64), (2, 7), (3, 3))],
+            "pair_kernel_checks": pair_checks, "kernel_derivative_checks": derivative_checks,
+            "normalized_output_checks": output_checks, "normalized_derivative_checks": output_derivatives,
+            "fixtures": fixtures}
+
+
 def attention_rank_sanity_control():
     """An exact Vandermonde witness, not an attention-compression algorithm."""
     parameters = (1, 2, 3, 4)
@@ -4256,6 +4586,8 @@ def main():
     minimum_products = minimum_product_rank_controls()
     product_excess = product_excess_and_extension_controls()
     quadratic_poles = quadratic_pole_flag_controls()
+    moment_cubes = staircase_moment_cube_controls()
+    algebraic_attention = algebraic_attention_hotpath_controls()
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
         "schema_version": 1, "command": "python3 -B scripts/run_structural_complexity_checks.py",
@@ -4353,6 +4685,8 @@ def main():
         "minimum_product_rank_control": minimum_products,
         "product_excess_and_extension_control": product_excess,
         "quadratic_pole_flag_control": quadratic_poles,
+        "staircase_moment_cube_control": moment_cubes,
+        "algebraic_attention_hotpath_control": algebraic_attention,
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
                     "independent_greedy_checks": sum(f["greedy_checks"] for f in fixtures),
@@ -4457,7 +4791,15 @@ def main():
                     "quadratic_pole_complete_fan_witnesses": sum(sum(r["status"] == "coherent" for r in s["all_pattern_checks"]) for f in quadratic_poles["fixtures"] for s in f["sectors"]),
                     "quadratic_pole_selected_weight_checks": sum(len(f["selected_weight_checks"]) for f in quadratic_poles["fixtures"]),
                     "quadratic_pole_hyperbolic_checks": sum(f["hyperbolic_witness_checks"] for f in quadratic_poles["fixtures"]),
-                    "quadratic_pole_prefix_delay_counters": len(quadratic_poles["prefix_delay_countercontrols"])},
+                    "quadratic_pole_prefix_delay_counters": len(quadratic_poles["prefix_delay_countercontrols"]),
+                    "staircase_moment_row_checks": len(moment_cubes["row_certificates"]),
+                    "staircase_moment_expanded_union_checks": len(moment_cubes["expanded_union_checks"]),
+                    "staircase_moment_positive_relaxation_witnesses": sum(len(f["positive_minimum_certificates"]) for f in moment_cubes["integer_ball_relaxation_checks"]),
+                    "staircase_moment_prefix_dominance_counters": len(moment_cubes["prefix_dominance_countercontrols"]),
+                    "algebraic_attention_pair_checks": algebraic_attention["pair_kernel_checks"],
+                    "algebraic_attention_kernel_derivative_checks": algebraic_attention["kernel_derivative_checks"],
+                    "algebraic_attention_output_checks": algebraic_attention["normalized_output_checks"],
+                    "algebraic_attention_normalized_derivative_checks": algebraic_attention["normalized_derivative_checks"]},
         "goal_qualifying_advance": False,
     }
     target = ROOT / "results/research/structural_complexity_checks.json"

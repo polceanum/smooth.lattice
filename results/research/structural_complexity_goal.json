@@ -2,7 +2,7 @@
   "schema_version": 1,
   "recorded_on": "2026-10-18",
   "title": "Universal algebraic complexity beyond generic corner cuts",
-  "status": "active_characteristic_free_quadratic_pole_flag_bound_proved_unrestricted_mechanism_open",
+  "status": "active_moment_geometry_relaxation_sharp_common_algebra_compatibility_open",
   "objective": "Prove a new structural theorem determining or substantially narrowing the worst-case asymptotic number of monomial initial ideals of finite polynomial algebras, starting with three variables and seeking a mechanism valid in every fixed dimension. Establish the strongest relevant primary baseline first. Success requires a complete uniform proof of sharp growth or a substantial asymptotic advance over that baseline for all colength-n ideals or all n-point configurations, a rigorous further algebraic, geometric or enumeration consequence, reproducible exact certificates and an honestly scoped manuscript. Examples, reformulations, already known corollaries and a plan alone do not complete this goal.",
   "plan": "docs/interleaving_research.md#higher-impact-research-plan-universal-algebraic-complexity",
   "relationship_to_previous_goal": "A new research objective. The completed corner-cut counting manuscript and its acceptance records remain separate and unchanged in mathematical content.",
@@ -123,8 +123,8 @@
   "independent_referee_assessment": false,
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
-    "classification": "no_progress",
-    "reason": "The intervening ML assessment rechecked an already saved application boundary, but changed no authoritative mathematical artifact. The last published mathematical progress remains commit 95dcbc3. This continuation revalidated the clean worktree and resumed the unresolved degree-two branch."
+    "classification": "progress",
+    "reason": "Commit 13f37ec proved the characteristic-free quadratic-pole bound and saved the architecture prior-art assessment. The family remains below the established generic order; no unrestricted exponent advance was obtained."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -440,13 +440,36 @@
       "authors": "Jonsson Kling, Lundqvist, Mohammadi, Orth and Saenz-de-Cabezon",
       "inspected": "Characteristic-zero setup, Definition 2.26, Lemma 2.27 with its proof, Proposition 2.29 with its proof and Remark 2.30. The main basis-construction and Lefschetz proofs were not audited.",
       "finding": "The multinomial count concerns a family with a growing number of variables. For fixed d, the squarefree parent has length at most 2^d; this is not an unrestricted fixed-d bound or an asymptotically growing fixed-d lower family."
+    },
+    {
+      "source": "https://www.renyi.hu/~barany/cikkek/73.pdf",
+      "authors": "Barany and Larman",
+      "title": "The convex hull of the integer points in a large ball",
+      "publication": "Mathematische Annalen 312 (1998), 167-181",
+      "doi": "https://doi.org/10.1007/s002080050217",
+      "inspected": "Theorem 1, the k=0 deduction in Section 3 from Theorem 4, and the complete Section 5 proof of the volume estimate. Other face-number proofs and the smooth-body extension were not audited.",
+      "finding": "The known ball-hull vertex order supplies the lower bound for the staircase-moment relaxation after the explicit encoding. It does not supply a common ideal or complete the current initial-ideal baseline audit."
+    },
+    {
+      "source": "https://mathweb.ucsd.edu/~ssam/notes/lagrange-4sq.pdf",
+      "authors": "Steven V Sam",
+      "title": "Lagrange\u2019s four square theorem via convex geometry",
+      "inspected": "Theorem 1 statement of the classical four-square theorem; no novelty or new number-theory claim.",
+      "finding": "Every integer s in [0,R^2] is a sum of four nonnegative squares, each coordinate at most R. This supplies the four row patches."
+    },
+    {
+      "source": "https://arxiv.org/pdf/math/0207135",
+      "authors": "Babson, Onn and Thomas",
+      "inspected": "Proposition 2.2 and its complete proof rechecked for sorted-prefix comparison.",
+      "finding": "An initial basis dominates any competing basic set position by position in the monomial order. Its cost-prefix count therefore dominates every competing independent prefix for a positive weight. The encoded geometric witnesses can fail this stronger necessary condition."
     }
   ],
   "next_actions": [
-    "A complete upper mechanism must cover slow and fast product growth for all finite quotients. EX1 gives a degree-versus-exception tradeoff in the cyclic case; EX5 screens some large but partial coordinate degrees. Neither supplies that full dichotomy or a new unrestricted exponent.",
-    "Bounded-dimensional extensions of a fractional-linear quotient are closed below generic growth by EX4. Exceptions o(log n/log log n) cannot yield a fixed power separation. Do not enlarge fixed-error fractional-linear examples. No logarithmic impossibility is claimed for growing errors.",
-    "The first unresolved inverse branch has primitive rational degree two or more, rather than a cancellable exceptional factor. Before larger searches, derive a uniform rank/fan mechanism or a quantitative obstruction for that branch, respecting the already proved fixed-monomial-curve bounds. Small rank excess alone supplies no new lower count.",
-    "Continue the primary extremal-baseline audit. Rational reconstruction and relation bases are explicit prior art; do not claim a reconstruction algorithm or speed result. Preserve the completed manuscript and require the original unrestricted asymptotic advance and further consequence before a new manuscript."
+    "Retain the sharpness obstruction for arbitrary families of individual staircases. A geometry-only volume or moment argument cannot lower the old exponent; the common-algebra constraint is essential.",
+    "Seek a quantitative ordered-prefix rank or basis-exchange restriction that also uses commuting multiplication matrices. Arbitrary matroids and independently constructed downsets are not interchangeable with quotient basis families.",
+    "For a lower route, construct one common finite algebra and prove independence and coherence at the proposed weights. Screen candidates with the exact sorted-prefix necessary condition before larger enumeration.",
+    "Complete the strongest-current primary extremal-baseline audit; preserve the protected completed manuscript and require the original unrestricted asymptotic advance plus a further consequence before preparing a new manuscript.",
+    "For the user\u2019s ML direction, benchmark the collected multivariate polynomial kernel against both the same uncollected kernel and existing learned attention at matched budgets. Exact feature counts do not establish a new architecture theorem, trainability, or GPU throughput."
   ],
   "forward_citation_discovery": {
     "method": "Read-only OpenAlex forward-citation queries for the two founding papers, followed by primary-source inspection of potentially relevant records.",
@@ -627,11 +650,30 @@
           "product_excess_threshold_counters": 3,
           "bounded_extension_staircase_checks": 1264,
           "bounded_extension_quotient_witnesses": 323,
-          "high_degree_boundary_controls": 9
+          "high_degree_boundary_controls": 9,
+          "quadratic_pole_fixtures": 12,
+          "quadratic_pole_pattern_rank_checks": 1022,
+          "quadratic_pole_independent_flag_checks": 522,
+          "quadratic_pole_complete_fan_witnesses": 242,
+          "quadratic_pole_selected_weight_checks": 52,
+          "quadratic_pole_hyperbolic_checks": 141,
+          "quadratic_pole_prefix_delay_counters": 3,
+          "staircase_moment_row_checks": 97,
+          "staircase_moment_expanded_union_checks": 231,
+          "staircase_moment_positive_relaxation_witnesses": 13,
+          "staircase_moment_prefix_dominance_counters": 4,
+          "algebraic_attention_pair_checks": 125,
+          "algebraic_attention_kernel_derivative_checks": 1050,
+          "algebraic_attention_output_checks": 150,
+          "algebraic_attention_normalized_derivative_checks": 540
         }
       }
     ],
-    "scope": "Final-source build, smoke tests and complete exact checker passed. Every historical certificate object and summary count is unchanged. New controls include 98 reconstruction kernels, three nonzero degree-threshold eliminants, 24 coordinate-compatible extensions, 1264 staircase rank decisions, 323 strict quotient-inclusion witnesses and nine high-degree boundary controls. The reconstruction mechanisms are established prior art; the structural consequences do not improve the unrestricted exponent, complete the broader priority audit or justify a new manuscript."
+    "scope": "Final-source build, smoke tests and complete exact checker passed. All 35 historical report blocks and all historical summary counts are unchanged. New controls verify the staircase moment-cube construction and weight-specific prefix obstructions, plus exact multivariate polynomial-attention kernels, outputs and derivatives. The unrestricted mathematics goal, strongest-current baseline audit and ML quality/hardware comparisons remain open.",
+    "source_sha256": {
+      "scripts/run_structural_complexity_checks.py": "635e3d44058552a028902e4608505261d54b712717bc0ca8d4fd63d70bcd7241",
+      "docs/interleaving_research.md": "8a92fddded4888a7572fca8b42d2e1ed5029fac1292c71d61d9ed122cf5005a4"
+    }
   },
   "second_feasibility_results": {
     "record": "docs/interleaving_research.md, Second feasibility pass: interacting relations and a conditional count",
@@ -1457,7 +1499,7 @@
   },
   "this_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Proved a dimension-sensitive bound for all multigraded finite quotients and an explicit flat perturbation obstruction to transferring it by coefficient closeness, with full coordinate degrees unchanged. Located the published 2013 prior art for the point-grid moment translation and inspected a primary counterexample to an algorithm lead. No qualifying unrestricted exponent advance is claimed."
+    "reason": "Proved sharpness of the individual-staircase moment relaxation at the old general upper exponent, with exact-cardinality encodings in every fixed dimension. Saved ordered-prefix countercontrols identifying a stronger necessary algebraic condition. Implemented and exactly verified a constrained multivariate polynomial-attention reference. These are scoped progress, not a qualifying unrestricted initial-ideal advance or a new ML theorem."
   },
   "eleventh_feasibility_results": {
     "record": "docs/interleaving_research.md, Eleventh feasibility pass: coordinate flags survive the Jordan reduction",
@@ -1724,6 +1766,30 @@
           "title": "Higher-order Linear Attention",
           "inspected": "Primary abstract only; streaming identities, masks and expressivity scope not audited.",
           "relevance": "Higher-order streaming interaction summaries already exist; higher polynomial order and constant state alone are not a novelty claim."
+        },
+        {
+          "source": "https://arxiv.org/html/2402.18668v2",
+          "title": "Simple linear attention language models balance the recall-throughput tradeoff (BASED)",
+          "inspected": "Primary abstract and introduction; Section 4.1 displayed feature-map formulas; Theorem F.12 and its complete displayed reduction proof. Other expressivity results and experiments not audited.",
+          "relevance": "Taylor features, recurrent state updates and hardware-aware implementation are established. The recurrent-model recall lower bound is a bit-memory statement and does not assert impossibility for arbitrary infinite-precision real states. Compare recall at matched state rather than infer it from a smaller feature count."
+        },
+        {
+          "source": "https://proceedings.mlr.press/v235/kacham24a.html",
+          "title": "PolySketchFormer: Fast Transformers via Sketching Polynomial Kernels",
+          "inspected": "Published ICML 2024 abstract only; the linked PDF fetch failed. Approximation guarantees and experiments not audited.",
+          "relevance": "Higher-order polynomial feature compression through sketching is existing prior art. It must be included before claiming that exact feature collection is the best cost-quality tradeoff."
+        },
+        {
+          "source": "https://arxiv.org/abs/2507.04239",
+          "title": "Scaling Context Requires Rethinking Attention",
+          "inspected": "Primary abstract, Lemma 4.2 statement, Section 4.1 displayed update/query equations and the tiled symmetric-power implementation discussion. No complete proof or performance audit.",
+          "relevance": "Power Attention already uses symmetric polynomial interactions, an adjustable recurrent state and fused GPU expansion/matrix multiplication. The implementation deliberately retains some redundant features for regular hardware tiles: minimal mathematical feature width need not be fastest on a GPU. Compare actual kernels, not only row counts."
+        },
+        {
+          "source": "https://arxiv.org/abs/2503.03269",
+          "title": "Conformal Transformations for Symmetric Power Transformers",
+          "inspected": "Primary abstract only.",
+          "relevance": "Data-dependent gates and rotations to manage recurrent-state capacity are already architectural prior art. A gating extension alone is not a novelty claim."
         }
       ],
       "architecture_hotpath_assessment": {
@@ -1743,7 +1809,60 @@
           }
         ],
         "next_theorem_gate": "Specify the function class, precision model, width/depth/context scaling and full preprocessing/representation costs. Establish a proved improvement in cost for an explicitly retained interaction class, or a stronger representation/retrieval guarantee at the same budget. Audit composition, order sensitivity and numerical conditioning rather than infer them from exact factorization.",
-        "current_verdict": "Exact conditional hotpath savings are feasible. No new fundamental advantage over the best relevant existing structured architecture has yet been established."
+        "current_verdict": "Exact conditional hotpath savings are feasible. No new fundamental advantage over the best relevant existing structured architecture has yet been established.",
+        "multivariate_reference_extension": {
+          "record": "docs/interleaving_research.md, ML follow-up: an exact reference for a compressed attention hot path",
+          "implementation": "scripts/run_structural_complexity_checks.py, algebraic_attention_hotpath_controls",
+          "kernel": "K(q,k)=1+S+S^2/2, S=sum_(a in A) theta_a*q^a*k^a, A={0,...,m}^s minus {0}, theta_a>0.",
+          "exact_features": "Collect exponents in {0} union A union (A+A)={0,...,2m}^s. D=(m+1)^s-1 expanded coordinates need M=(2m+1)^s features rather than 1+D+D*(D+1)/2 generic symmetric quadratic features.",
+          "width_examples": [
+            {
+              "s": 1,
+              "m": 64,
+              "D": 64,
+              "generic_symmetric_width": 2145,
+              "collected_width": 129
+            },
+            {
+              "s": 2,
+              "m": 7,
+              "D": 63,
+              "generic_symmetric_width": 2080,
+              "collected_width": 225
+            },
+            {
+              "s": 3,
+              "m": 3,
+              "D": 63,
+              "generic_symmetric_width": 2080,
+              "collected_width": 343
+            }
+          ],
+          "scope": "Established polynomial-kernel/coordinate-ring methodology for an enforced interaction class. No exact-softmax, unrestricted-Q/K, model-quality or new tensor-rank claim.",
+          "cost": "Forward O(T*M*(s+v+1)) arithmetic and O(M*(v+1)) streaming state, plus latent encoders and O(D^2*s) direct coefficient preparation whenever theta changes. Training storage/recomputation not covered.",
+          "isolated_exact_checks": {
+            "pair_kernels": 125,
+            "kernel_derivatives": 1050,
+            "normalized_outputs": 150,
+            "normalized_query_key_derivatives": 540
+          },
+          "measured_gpu_speedup": false,
+          "model_quality_tested": false,
+          "novelty_established": false,
+          "comparison_gate": "Measure the same constrained kernel through generic and collected features; then compare trained models with ordinary polynomial/linear attention at matched state, parameter and training budgets, including selective associative recall. Include numerical error, encoders, coefficient updates and backward cost.",
+          "required_named_comparisons": [
+            "TaylorShift",
+            "BASED",
+            "Power Attention",
+            "PolySketchFormer",
+            "matched-state learned polynomial/linear features"
+          ],
+          "full_checker_verified": true,
+          "source_sha256": {
+            "scripts/run_structural_complexity_checks.py": "635e3d44058552a028902e4608505261d54b712717bc0ca8d4fd63d70bcd7241",
+            "docs/interleaving_research.md": "8a92fddded4888a7572fca8b42d2e1ed5029fac1292c71d61d9ed122cf5005a4"
+          }
+        }
       }
     },
     "strongest_current_bound_verified": false,
@@ -2467,5 +2586,76 @@
     "strongest_current_bound_verified": false,
     "goal_qualifying_unrestricted_advance": false,
     "decision": "Park this whole quadratic multiple-pole family as an exponent-amplification source, including in small characteristic. Retain the least-feasible-flag mechanism. The next gate is a degree-sensitive bound for interacting higher-pole flags plus a complementary mechanism covering general finite algebras; do not enlarge enumeration in the bounded family."
+  },
+  "twenty_first_feasibility_results": {
+    "record": "docs/interleaving_research.md, Twenty-first feasibility pass: the staircase-moment relaxation is sharp",
+    "relaxation": "H_d(n) maximizes the number of strictly positive exposed moments over arbitrary families of n-element monomial downsets. F_d(n)<=G_d(n)<=H_d(n), with no common algebra assumed for H.",
+    "uniform_result": "H_d(n)=Theta_d(n^(2*d*(d-1)/(d+1))) for every fixed d>=2 and all sufficiently large n. This determines only the geometric relaxation, not G_d or F_d.",
+    "moment_cube": {
+      "row_count": 13,
+      "row_slope": "4R+1",
+      "fixed_first_row": "50R+25",
+      "planar_size": "338R+247",
+      "planar_moment_increment": "(3s,0) for every s=0,...,R^2, from four disjoint second-difference patches and the classical four-square theorem",
+      "d2_size": "676R+325",
+      "d_ge3_size": "338dR+234d+1",
+      "padding": "Extend the fixed first pure axis by delta in a complete cardinality period. For every large n, actual n-downset moments contain c_n+3*{0,...,R^2}^d with R=Theta_d(n)."
+    },
+    "lower_mechanism": "Encode the lattice vertices of a radius floor(R^2/2) Euclidean ball. The established Barany--Larman vertex estimate and reflection symmetry provide the matching number of strictly positive exposed moments.",
+    "ordered_prefix_filter": "Babson--Onn--Thomas Proposition 2.2 requires componentwise dominance of sorted monomial costs for an initial basis against every competing basis. Moment exposure by itself does not imply this.",
+    "explicit_counter": {
+      "dimension": 3,
+      "R": 2,
+      "padding": 7,
+      "n": 2738,
+      "selected_ball_vertex": [
+        -2,
+        0,
+        0
+      ],
+      "other_ball_point": [
+        -1,
+        -1,
+        -1
+      ],
+      "weight": [
+        4,
+        1,
+        1
+      ],
+      "position_one_based": 1262,
+      "selected_cost": 61,
+      "other_cost": 60,
+      "scope": "The selected staircase uniquely minimizes total moment weight in the encoded ball family, but cannot be initial at this weight if both compared staircases are quotient bases. No all-weight nonrealizability result follows."
+    },
+    "checks": {
+      "status": "passed",
+      "commands": [
+        "./build.sh",
+        "python3 tests/test_smoke.py",
+        "python3 -B scripts/run_structural_complexity_checks.py"
+      ],
+      "all_exit_codes": 0,
+      "source_sha256": {
+        "scripts/run_structural_complexity_checks.py": "635e3d44058552a028902e4608505261d54b712717bc0ca8d4fd63d70bcd7241",
+        "docs/interleaving_research.md": "8a92fddded4888a7572fca8b42d2e1ed5029fac1292c71d61d9ed122cf5005a4"
+      },
+      "new_summary_counts": {
+        "staircase_moment_row_checks": 97,
+        "staircase_moment_expanded_union_checks": 231,
+        "staircase_moment_positive_relaxation_witnesses": 13,
+        "staircase_moment_prefix_dominance_counters": 4,
+        "algebraic_attention_pair_checks": 125,
+        "algebraic_attention_kernel_derivative_checks": 1050,
+        "algebraic_attention_output_checks": 150,
+        "algebraic_attention_normalized_derivative_checks": 540
+      },
+      "historical_report_blocks_preserved": true,
+      "historical_summary_counts_preserved": true
+    },
+    "strongest_current_bound_verified": false,
+    "goal_qualifying_unrestricted_advance": false,
+    "novelty_established": false,
+    "decision": "Park geometry-only exponent improvements even with all individual staircase moments retained. Future progress must quantify ordered-prefix rank compatibility and the commuting multiplication representation of one common quotient. No unrestricted theorem or new manuscript is certified."
   }
 }
