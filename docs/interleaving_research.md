@@ -6897,3 +6897,226 @@ socle-support constructions; fixed defect there has not been ruled out.
 The unrestricted asymptotic advance, further consequence, complete
 priority audit and new manuscript remain pending. The goal is active;
 these supporting deductions are not completion or a publication claim.
+
+### Fifteenth feasibility pass: nonsocle exchanges and a global linear obstruction
+
+The preceding turn made progress in commit 1c01f1f by proving the
+box-initial colon identity and distinguishing uniform from nonuniform
+exchange vertices. This pass asks whether independent exchanges can
+persist outside the full-socle construction. They can, in an explicit
+infinite family. A uniform global count nevertheless bounds the whole
+family linearly, so it cannot supply the required asymptotic lower
+advance. This is a route obstruction, not completion of the goal.
+
+#### Primary input: a complicated basis is not a large fan
+
+[Sturmfels--Weismantel--Ziegler, *Groebner bases of lattices, corner
+polyhedra, and integer programming*, Section 4](https://www.mi.fu-berlin.de/math/groups/discgeom/ziegler/Preprintfiles/042PREPRINT.pdf)
+was inspected through the setup, Theorem 4.2, Theorem 4.4, Lemma 4.5
+and its proof, and Remark 4.6 and its proof. Its explicit trivariate
+family has colength 2r(r-2) and a reduced basis of size 2r-2. The
+exponential statement uses the bit length of r, not colength. This
+does not improve a bound on the number of different initial ideals.
+The example also prevents assuming bounded initial complexity solely
+from a three-variable finite-group presentation.
+
+The published family is a graph of a torus grid after writing x=y/z.
+The construction below uses such graph grids with a divisibility
+hypothesis; the resulting count is not asserted for every member of
+the published family. Its group interpretation is established prior
+art. No novelty claim follows from changing the grid periods.
+
+#### The quotient and its multiplication-compatible relation space
+
+Fix even V>=4 and a multiple U of V with U>=V. Over any field put
+
+    J=(xz-y, y^U-1, z^V-1),     q=UV,
+    h_0=sum_{a=0}^{U-1} sum_{0<=b<V, b even} y^a*z^b,
+    h_1=z*h_0,
+    I=J+(h_0),                  n=q-2.
+
+The parent A=S/J is the group algebra on Z_U times Z_V: z is
+invertible, x=y/z, and {y^a*z^b:0<=a<U,0<=b<V} is a basis. The
+displayed h_0,h_1 have disjoint nonempty even/odd supports. On their
+span y acts as identity and x,z interchange them. Thus they span an
+ideal R=I/J of dimension two over every field, and I has length n.
+All three variable actions on R are invertible. This does not fit the
+variable-annihilated full-socle support construction of (RSoc1).
+
+In characteristic zero, over a splitting field, I removes exactly
+the points (1,1,1) and (-1,1,-1) from the q-point torus graph.
+In characteristics dividing q the quotient may be nonreduced; its
+length and the relation-space argument still hold.
+
+Monomials have parent class labels
+
+    (i,j)=(a+b mod U, c-a mod V) for x^a*y^b*z^c.
+
+After choosing the cheapest representative of each class, the child
+basis omits its most expensive even-j class and its most expensive
+odd-j class. This is (DR1) for a rank-two relation matrix whose columns
+are (1,0) or (0,1). It is not a uniform rank-two matroid. The rule and
+all basis decisions here are independent of the characteristic.
+
+#### A global bound for all parameters and all global orders
+
+For this entire family,
+
+    g(I)<=18*V^2+34*V+2=O(n).                              (NG1)
+
+The constant in O(n) is absolute, since V^2<=UV=n+2. This is a
+restricted family theorem, not an upper bound for G_3(n) or F_3(n).
+Here is a uniform proof; write the positive weights as (X,Y,Z).
+Finite strict weight witnesses let us avoid the finitely many boundary
+equalities in the cases below.
+
+If Y>X+Z, eliminate y=xz. Since V divides U, the remaining parent
+is the grid (x^U-1,z^V-1), with fixed box 0<=a<U,0<=c<V.
+Its top corner has even class parity. The odd maximum is one of its
+two immediate predecessors, according as X<Z or Z<X. Thus this
+entire region contributes at most two child staircases.
+
+Suppose next that X>Y. Set A=X-Y>0 and S=A+Z. Reducing xz to y,
+x^V to y^V, and the two periods shows that each class (i,c),
+0<=i<U, 1<=c<V, has just two canonical candidates:
+
+    x^(V-c)*y^((i-(V-c)) mod U),    y^i*z^c.
+
+The c=0 candidate is y^i. Put a=V-c. If i>=a the difference
+between the first candidate's cost and the second's is
+
+    delta_0(c)=a*A-c*Z=V*A-c*S.
+
+If i<a the difference is delta_1(c)=delta_0(c)+U*Y. Each is strictly
+decreasing in c. Consequently two integer cutoffs 0<=k_0<=k_1<V
+determine every parent representative: for c<=k_0 always choose yz;
+for k_0<c<=k_1 choose yz only when i<a; for c>k_1 always choose xy.
+There are at most V(V+1)/2 parent diagrams in this region.
+
+Within any one of these regimes, each color maximum has at most six
+affine candidates, independently of U,V. To see this, maximize first
+over i. For an all-yz row use i=U-1; its maximum increases with c.
+For an all-xy row use the largest y exponent U-1; its cost decreases
+with c. In a hybrid row the xy maximum has cost
+(U-1)Y+(V-c)A, decreasing in c. The yz maximum has cost
+(V-1)Y+c(Z-Y), affine in c. For either parity, each applicable interval
+therefore contributes an endpoint, or two endpoints for the last
+affine expression. Include y^(U-1) separately for the even color.
+The budget is at most 1+1+1+2+1=6 per color. Each parent diagram
+therefore contributes at most 36 child staircases, one for each
+possible pair of maxima.
+
+It remains to consider X<Y<X+Z. Here y^V reduces to x^V and
+x^U=1. The latter uses V|U. A canonical xy box is
+0<=a<U,0<=b<V; the other candidate remains y^i*z^c. Except when
+a+b=i+U, the xy candidate is cheaper. In the exceptional case
+a=U-c and 0<=i<V-c, the cost difference is
+
+    delta(c)=U*X-c*(X+Z-Y).
+
+This decreases strictly in c. One integer cutoff 0<=k<V determines
+the parent: for 1<=c<=k, replace the xy monomials
+x^(U-c)*y^b with c<=b<V by y^i*z^c with 0<=i<V-c.
+All other monomials of the xy box remain. There are at most V
+parent diagrams.
+
+Each color has at most four maximum candidates in such a diagram.
+The full xy rows maximize at their largest a and b=V-1. A truncated
+row has maximum cost U*X-Y+c*(Y-X), increasing in c, so take the
+largest c of that parity. The yz row maximum has cost
+(V-1)Y+c*(Z-Y), so take its two parity endpoints. Thus there are
+at most 16 choices of the two maxima per parent diagram.
+
+Adding the three bounds gives 36*V(V+1)/2+16*V+2, proving (NG1).
+The proof counts all positive coherent bases; it does not infer a
+global bound from weights sampled near the crossing below.
+
+Nor does it assume bounded parent initial socle type. At weights
+(U+1,U,U), the parent diagram is
+
+    {x^a*y^b:0<=a<V,0<=b<U-a}
+       union {y^b*z^c:1<=c<V,0<=b<V-c}.
+
+It has 2V-1 socle monomials. Its unbounded type is compatible with
+the endpoint argument, which controls maxima rather than listing
+all corners separately.
+
+#### An infinite family of independent nonsocle exchanges
+
+Take U=V^2 and
+
+    W=(2V-2, 4, 3V^2-7V+10).
+
+This is strictly inside the parent regime k_0=0,k_1=2.
+Indeed delta_0(1)=-V^2-V-4<0, while delta_1(1)=3V^2-V-4>0,
+delta_1(2)=4V-8>0 and delta_1(3)=-3V^2+9V-12<0.
+At W the two even maximizers are
+
+    B=x^(V-2)*y^(U-V+1),    E=y^(V-3)*z^2,
+
+both of cost 6V^2-10V+8. The two odd maximizers are
+
+    A=x^(V-3)*y^(U-1),      C=x^(V-1)*y^(U-V),
+
+both of cost 6V^2-8V+2. Other class maxima are strictly lower.
+The two cost levels differ by 2V-6, and their equality planes
+are independent.
+
+For s,t in {-1,1}, explicit positive integer witnesses are
+
+    W_(s,t)=(2V-2+s, 4,
+             3V^2-7V+10+(V-2)*s/2+t).                    (NG2)
+
+They preserve the parent diagram. Substitution gives C-A=2s and
+E-B=2t in cost. The nearby parent inequalities remain strict:
+delta_1(2) changes by -2t and the other margins are larger.
+The next competing even full row stays at least 4+2s>=2 below B;
+the other odd endpoint stays below A,C. Thus all four combinations
+are realized for every even V>=4, over every field.
+
+This is a symbolic mechanism outside the preceding full-socle model,
+but not an asymptotic amplification: (NG1) bounds its entire fan.
+An increasing number of local exchange sectors must not be confused
+with a count exceeding n^2(log n)^2.
+
+#### Independent finite controls and decision
+
+The checker implements the threshold regimes and their endpoint lists,
+clips their full positive weight regions exactly, and deduplicates the
+child staircases. Cayley shortest paths independently check the parent
+representatives at every resulting cell. The child multiplication
+matrices are constructed over Z, commute, and have the stated cyclic
+vector and two-dimensional relation ideal. Independent Gaussian checks
+over Q,F_2,F_3,F_7 cover every initial basis in the two smallest fixtures.
+
+| U | V | parent initials | child initials |
+| --- | --- | --- | --- |
+| 4 | 4 | 11 | 14 |
+| 8 | 4 | 15 | 26 |
+| 12 | 4 | 15 | 26 |
+| 16 | 4 | 15 | 26 |
+| 6 | 6 | 22 | 38 |
+
+There are 166 regime/maximum cells and 160 independent Gaussian
+checks. Formula (NG2) is checked at V=4,6,8 by independent shortest
+paths, giving twelve exact sector witnesses; the uniform proof, not
+these three parameters, establishes the infinite family.
+The report encodes a staircase by triples (a,c,length), meaning exactly
+x^a*y^b*z^c for 0<=b<length; this saves exact witnesses without repeating
+every point of a long row. The checker verifies the encoding.
+
+Park this divisible-grid two-point-deletion family as an exponent
+amplification route. The nonuniform mechanism is real, but its global
+threshold compression prevents the required growth. Retain that
+compression argument as a possible ingredient for a broader dependency
+bound, without assuming arbitrary quotients have two thresholds or
+constant endpoint lists. The unrestricted upper route still needs a
+quantitative multiplication-compatible statement beyond this special
+group geometry. A lower route must escape the proved endpoint bound,
+not enlarge these fixtures.
+
+The strongest-current-primary audit remains incomplete; the full later
+finite-field chapter was again unavailable from its public repository.
+No qualifying unrestricted asymptotic advance, new-paper novelty claim,
+further consequence for the target theorem, or manuscript is asserted.
+The original goal remains active.

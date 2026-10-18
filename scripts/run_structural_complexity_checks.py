@@ -2945,6 +2945,227 @@ def nonuniform_two_level_exchange_control():
             "limit": "The example is supported on the full socle, so the already proved O(n^(3/2)) support-class bound applies. It is not an exponent-amplifying family. Nonuniform fixed defect outside that class is not excluded by the uniform-defect theorem."}
 
 
+def nonuniform_grid_deletion_controls():
+    """Two-point deletion on a torus graph: threshold proof and exact finite fans."""
+    triangle = [tuple(Fraction(i == j) for i in range(3)) for j in range(3)]
+
+    def integer_centroid(polygon):
+        w = tuple(sum(a[i] for a in polygon) / len(polygon) for i in range(3))
+        scale = lcm(*(value.denominator for value in w))
+        w = tuple(int(value * scale) for value in w)
+        common = gcd(*w)
+        return tuple(value // common for value in w)
+
+    def y_row_lengths(domain):
+        rows = {}
+        for a, b, c in domain:
+            rows.setdefault((a, c), set()).add(b)
+        require(all(values == set(range(len(values))) for values in rows.values()),
+                "row-length witness encoding reconstructs the full staircase exactly")
+        return [(a, c, len(values)) for (a, c), values in sorted(rows.items())]
+
+    def shortest_representatives(u, v, w):
+        best, queue = {(0, 0): (0, (0, 0, 0))}, [(0, (0, 0, 0), (0, 0))]
+        while queue:
+            cost, a, key = heappop(queue)
+            if best[key] != (cost, a):
+                continue
+            for axis, step in enumerate(((1, -1), (1, 0), (0, 1))):
+                other = ((key[0] + step[0]) % u, (key[1] + step[1]) % v)
+                b = tuple(value + (axis == j) for j, value in enumerate(a))
+                candidate = (cost + w[axis], b)
+                if other not in best or candidate < best[other]:
+                    best[other] = candidate
+                    heappush(queue, (candidate[0], candidate[1], other))
+        require(len(best) == u * v, "Cayley generators reach the entire actual group")
+        return {key: a for key, (_, a) in best.items()}
+
+    def regimes(u, v):
+        # Each result has a fixed parent diagram and at most six candidates per color.
+        box = set(product(range(u), (0,), range(v)))
+        yield "y_expensive", [( -1, 1, -1)], box, [
+            {(u - 1, 0, v - 1)}, {(u - 2, 0, v - 1), (u - 1, 0, v - 2)}]
+        for k0 in range(v):
+            for k1 in range(k0, v):
+                inequalities = [(1, -1, 0)]
+                for c in range(1, v):
+                    for normal, cutoff in (((v - c, c - v, -c), k0), ((v - c, u - v + c, -c), k1)):
+                        inequalities.append(normal if c <= cutoff else tuple(-x for x in normal))
+                domain = set()
+                for c in range(v):
+                    for t in range(u):
+                        a = (v - c) % v
+                        domain.add((0, t, c) if c <= k0 or (c <= k1 and t < a)
+                                   else (a, (t - a) % u, 0))
+                candidates = [{(0, u - 1, 0)}, set()]
+                for color in range(2):
+                    values = [c for c in range(1, k0 + 1) if c % 2 == color]
+                    if values:
+                        candidates[color].add((0, u - 1, max(values)))
+                    values = [c for c in range(k0 + 1, k1 + 1) if c % 2 == color]
+                    if values:
+                        c = min(values)
+                        candidates[color].add((v - c, u - v + c - 1, 0))
+                        candidates[color].update((0, v - c - 1, c) for c in (min(values), max(values)))
+                    values = [c for c in range(k1 + 1, v) if c % 2 == color]
+                    if values:
+                        c = min(values)
+                        candidates[color].add((v - c, u - 1, 0))
+                yield "x_above_y_" + str(k0) + "_" + str(k1), inequalities, domain, candidates
+        for k in range(v):
+            inequalities = [(-1, 1, 0), (1, -1, 1)]
+            for c in range(1, v):
+                normal = (u - c, c, -c)
+                inequalities.append(normal if c <= k else tuple(-x for x in normal))
+            domain = set(product(range(u), range(v), (0,)))
+            for c in range(1, k + 1):
+                domain.difference_update((u - c, b, 0) for b in range(c, v))
+                domain.update((0, b, c) for b in range(v - c))
+            candidates = [set(), set()]
+            for color in range(2):
+                values = [a for a in range(u - k) if a % 2 == color]
+                if values:
+                    candidates[color].add((max(values), v - 1, 0))
+                values = [c for c in range(1, k + 1) if c % 2 == color]
+                if values:
+                    c = max(values)
+                    candidates[color].add((u - c, c - 1, 0))
+                    candidates[color].update((0, v - c - 1, c) for c in (min(values), max(values)))
+            yield "x_below_y_" + str(k), inequalities, domain, candidates
+
+    fixtures = []
+    for u, v, expected in ((4, 4, 14), (8, 4, 26), (12, 4, 26), (16, 4, 26), (6, 6, 38)):
+        q = u * v
+
+        def label(a):
+            return ((a[0] + a[1]) % u, (a[2] - a[0]) % v)
+
+        group = list(product(range(u), range(v)))
+        relation_rows = [tuple(int(key[1] % 2 == color) for key in group) for color in range(2)]
+        for color, row in enumerate(relation_rows):
+            for a, b in ((1, -1), (1, 0), (0, 1)):
+                shifted = tuple(int(((key[1] - b) % v) % 2 == color) for key in group)
+                require(shifted == relation_rows[(color + b) % 2],
+                        "the two relation rows form an invariant ideal, with invertible variable actions")
+        reference = [key for key in group if key not in ((0, 0), (0, 1))]
+
+        def quotient_column(key):
+            if key in reference:
+                return tuple(int(key == other) for other in reference)
+            return tuple(-int(key[1] % 2 == other[1] % 2) for other in reference)
+
+        columns = {key: quotient_column(key) for key in group}
+        matrices = [[columns[((key[0] + a) % u, (key[1] + b) % v)] for key in reference]
+                    for a, b in ((1, -1), (1, 0), (0, 1))]
+        require(all(matvec(matrices[i], a) == matvec(matrices[j], b)
+                    for i, j in combinations(range(3), 2) for a, b in zip(matrices[j], matrices[i])),
+                "two-character quotient matrices commute over Z, including even characteristics")
+        require(all(matvec(matrices[0], a) == b for a, b in zip(matrices[2], matrices[1])),
+                "the actual quotient matrices satisfy xz=y")
+        unit = columns[(0, 0)]
+        for axis, period in ((1, u), (2, v)):
+            vector = unit
+            for _ in range(period):
+                vector = matvec(matrices[axis], vector)
+            require(vector == unit, "the stated grid periods hold on the cyclic vector")
+        for key in group:
+            vector = unit
+            for _ in range(key[0]):
+                vector = matvec(matrices[1], vector)
+            for _ in range(key[1]):
+                vector = matvec(matrices[2], vector)
+            require(vector == columns[key], "the quotient representation is cyclic with the stated class columns")
+        socle_parent = set(shortest_representatives(u, v, (u + 1, u, u)).values())
+        socle = {a for a in socle_parent if all(tuple(value + (axis == j) for j, value in enumerate(a)) not in socle_parent
+                                              for axis in range(3))}
+        require(len(socle) == 2 * v - 1, "the same family has unbounded parent initial socle type")
+        records, child_states, parent_states, parent_for_basis = [], {}, set(), {}
+        for name, inequalities, domain, candidates in regimes(u, v):
+            polygon = triangle
+            for normal in inequalities:
+                polygon = clip(polygon, normal, 1)
+                if not polygon:
+                    break
+            if not polygon:
+                continue
+            require(len(domain) == q and len({label(a) for a in domain}) == q,
+                    "each threshold regime is a full parent transversal")
+            require(all(group_candidates <= domain and len(group_candidates) <= 6
+                        for group_candidates in candidates), "uniformly bounded color-max candidate lists")
+            parent_states.add(tuple(sorted(domain)))
+            for even in sorted(candidates[0]):
+                for odd in sorted(candidates[1]):
+                    piece = polygon
+                    for chosen, group_candidates in zip((even, odd), candidates):
+                        for other in group_candidates - {chosen}:
+                            piece = clip(piece, tuple(x - y for x, y in zip(chosen, other)), 1)
+                            if not piece:
+                                break
+                        if not piece:
+                            break
+                    if not piece:
+                        continue
+                    w = integer_centroid(piece)
+                    require(all(dot(w, normal) > 0 for normal in inequalities), "strict parent-regime witness")
+                    actual = shortest_representatives(u, v, w)
+                    require(set(actual.values()) == domain, "independent shortest paths check the canonical parent formula")
+                    for color, chosen in enumerate((even, odd)):
+                        require(label(chosen)[1] % 2 == color and
+                                all(dot(w, chosen) > dot(w, a) for a in domain
+                                    if a != chosen and label(a)[1] % 2 == color),
+                                "endpoint candidates give the unique maxima among all actual group classes")
+                    basis = tuple(sorted(domain - {even, odd}))
+                    child_states.setdefault(basis, w)
+                    parent_for_basis.setdefault(basis, domain)
+                    records.append({"regime": name, "positive_integer_weights": w,
+                                    "parent_y_row_lengths": y_row_lengths(domain),
+                                    "omitted_even_and_odd": [even, odd], "standard_y_row_lengths": y_row_lengths(basis)})
+        require(len(child_states) == expected, "complete finite counts from the proved threshold partition")
+        gaussian_checks = 0
+        if q <= 32:
+            for basis, w in child_states.items():
+                ground = parent_for_basis[basis]
+                evaluated = {a: columns[label(a)] for a in ground}
+                for characteristic in (0, 2, 3, 7):
+                    require(greedy(ground, evaluated, w, characteristic) == set(basis),
+                            "independent Gaussian selection on every small-fixture initial basis")
+                    gaussian_checks += 1
+        fixtures.append({"u": u, "v": v, "parent_length": q, "child_length": q - 2,
+                         "parent_fan_count": len(parent_states), "child_fan_count": len(child_states),
+                         "parent_initial_socle_type_at_weights_u_plus_one_u_u": len(socle),
+                         "all_regime_and_maximum_cells": records, "gaussian_checks": gaussian_checks})
+
+    local = []
+    for v in (4, 6, 8):
+        u = v * v
+        x, y, z = 2 * v - 2, 4, 3 * v * v - 7 * v + 10
+        a, b, c, e = (v - 3, u - 1, 0), (v - 2, u - v + 1, 0), (v - 1, u - v, 0), (0, v - 3, 2)
+        sector_records = []
+        for s, t in product((-1, 1), repeat=2):
+            w = (x + s, y, z + (v - 2) * s // 2 + t)
+            parent = shortest_representatives(u, v, w)
+            omitted = [max((point for key, point in parent.items() if key[1] % 2 == color),
+                           key=lambda point: dot(w, point)) for color in range(2)]
+            require(omitted == [e if t == 1 else b, c if s == 1 else a],
+                    "uniform four-sector witnesses in the nonsocle family")
+            sector_records.append({"positive_integer_weights": w, "omitted_even_and_odd": omitted})
+        require(len({tuple(record["omitted_even_and_odd"]) for record in sector_records}) == 4,
+                "independent two-height exchanges occur for every tested parameter")
+        local.append({"u": u, "v": v, "central_weight": [x, y, z],
+                      "even_maximum_cost": 6 * v * v - 10 * v + 8,
+                      "odd_maximum_cost": 6 * v * v - 8 * v + 2,
+                      "four_sector_witnesses": sector_records})
+    return {"uniform_scope": "Every even v>=4 and every positive multiple u of v with u>=v, over every field: J=(xz-y,y^u-1,z^v-1), I=J+(sum_{a=0}^{u-1} sum_{0<=b<v, b even} y^a*z^b).",
+            "length_and_upper_bound": "The child has n=uv-2 and g(I)<=18*v^2+34*v+2=O(n). In characteristic zero it removes the two points (1,1,1),(-1,1,-1) from the full torus grid graph.",
+            "proof_budget": {"x_above_y_parent_regimes": "at most v*(v+1)/2", "max_candidates_per_color": 6,
+                             "x_below_y_parent_regimes": "at most v", "max_candidates_per_color_in_that_region": 4,
+                             "y_expensive_child_states": 2},
+            "nonannihilation": "On the two-dimensional relation ideal, y acts as identity and x,z swap its displayed basis. These actions are invertible, so this is outside the variable-annihilated full-socle construction.",
+            "unbounded_initial_socle_type": "At weights (u+1,u,u), the parent initial algebra has 2*v-1 socle monomials. The count bound does not assume bounded initial type.",
+            "fixtures": fixtures, "uniform_local_crossing_controls": local,
+            "decision": "Independent exchanges persist outside socle-supported constructions, but the whole divisible-grid family has only linear growth and cannot provide the required n^(2+epsilon) lower family. No unrestricted upper advance or novelty certification."}
+
+
 def attention_rank_sanity_control():
     """An exact Vandermonde witness, not an attention-compression algorithm."""
     parameters = (1, 2, 3, 4)
@@ -3011,6 +3232,7 @@ def main():
     uniform_deletion = uniform_deletion_and_dual_relation_controls()
     residual_duality = box_residual_duality_controls(codimension_one)
     two_level_exchange = nonuniform_two_level_exchange_control()
+    grid_deletion = nonuniform_grid_deletion_controls()
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
         "schema_version": 1, "command": "python3 -B scripts/run_structural_complexity_checks.py",
@@ -3102,6 +3324,7 @@ def main():
         "attention_exact_rank_sanity_control": attention_rank_sanity_control(),
         "box_residual_duality_control": residual_duality,
         "nonuniform_two_level_exchange_control": two_level_exchange,
+        "nonuniform_grid_deletion_control": grid_deletion,
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
                     "independent_greedy_checks": sum(f["greedy_checks"] for f in fixtures),
@@ -3178,7 +3401,11 @@ def main():
                     "nonbox_residual_transfer_counter_witnesses": 2,
                     "nonuniform_two_level_exchange_chambers": len(two_level_exchange["all_comparison_chambers"]),
                     "nonuniform_two_level_exchange_gaussian_checks": 4 * len(two_level_exchange["all_comparison_chambers"]),
-                    "nonuniform_two_level_exchange_local_sectors": 4},
+                    "nonuniform_two_level_exchange_local_sectors": 4,
+                    "nonuniform_grid_deletion_fixtures": len(grid_deletion["fixtures"]),
+                    "nonuniform_grid_deletion_regime_cells": sum(len(f["all_regime_and_maximum_cells"]) for f in grid_deletion["fixtures"]),
+                    "nonuniform_grid_deletion_gaussian_checks": sum(f["gaussian_checks"] for f in grid_deletion["fixtures"]),
+                    "nonsocle_uniform_crossing_sectors": 4 * len(grid_deletion["uniform_local_crossing_controls"])},
         "goal_qualifying_advance": False,
     }
     target = ROOT / "results/research/structural_complexity_checks.json"
