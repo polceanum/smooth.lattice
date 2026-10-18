@@ -12,7 +12,7 @@ from fractions import Fraction
 from heapq import heappop, heappush
 from hashlib import sha256
 from itertools import combinations, permutations, product
-from math import comb, factorial, gcd, isqrt, lcm
+from math import comb, factorial, gcd, isqrt, lcm, prod
 from pathlib import Path
 from random import Random
 import json
@@ -4775,6 +4775,127 @@ def algebraic_power_delta_controls():
             "fixtures": fixtures}
 
 
+def algebraic_channel_gate_controls():
+    """Exact closure and a failed-projection control for feature-wise forgetting.
+
+    Store S_nu=sqrt(w_nu)*h_nu, avoiding irrational arithmetic. Reads are
+    sum w_nu*raw_nu*h_nu; collected coordinates use c_b in place of w_nu.
+    """
+    def compositions(total, length):
+        if length == 1:
+            yield (total,)
+        else:
+            for first in range(total + 1):
+                for tail in compositions(total - first, length - 1):
+                    yield (first,) + tail
+
+    fixtures = []
+    for dimension, degree, order in ((1, 2, 2), (2, 1, 2), (2, 1, 4)):
+        support = list(product(range(degree + 1), repeat=dimension))
+        theta = [Fraction(1 + sum(a), 3) for a in support]
+        generic, collected = [], {}
+        for counts in compositions(order, len(support)):
+            exponent = tuple(sum(n * a[j] for n, a in zip(counts, support))
+                             for j in range(dimension))
+            weight = Fraction(factorial(order))
+            for n, coefficient in zip(counts, theta):
+                weight *= coefficient ** n / factorial(n)
+            generic.append((exponent, weight))
+            collected[exponent] = collected.get(exponent, Fraction(0)) + weight
+
+        points = [tuple(Fraction((t + 2) * (j + 1) % 7 - 3, 5)
+                        for j in range(dimension)) for t in range(5)]
+
+        def raw(point, exponent):
+            norm2 = sum(c * prod(x ** (2 * a) for x, a in zip(point, powers))
+                        for powers, c in zip(support, theta))
+            return prod(x ** a for x, a in zip(point, exponent)) / norm2 ** (order // 2)
+
+        for gate_family in ("independent_collected_channels", "separable_exponent_gates"):
+            full = [[Fraction(0)] * 2 for _ in generic]
+            small = {a: [Fraction(0)] * 2 for a in collected}
+            reads = closure_checks = latest_writes = 0
+            for t, key in enumerate(points):
+                if gate_family == "independent_collected_channels":
+                    gates = {a: Fraction(1 + (t + sum((j + 1) * x for j, x in enumerate(a))) % 5, 6)
+                             for a in collected}
+                else:
+                    axis_gates = [Fraction(2 + (t + j) % 3, 5) for j in range(dimension)]
+                    gates = {a: Fraction(4, 5) * prod(g ** x for g, x in zip(axis_gates, a))
+                             for a in collected}
+                beta = Fraction(1) if t == 4 else Fraction(1 + t % 3, 3)
+                value = [Fraction(t - 2, 3), Fraction(t * t % 5, 4)]
+                full_decay = [[gates[a] * x for x in row] for (a, _), row in zip(generic, full)]
+                small_decay = {a: [gates[a] * x for x in row] for a, row in small.items()}
+                prior_full = [sum(c * raw(key, a) * row[j]
+                                  for (a, c), row in zip(generic, full_decay)) for j in range(2)]
+                prior_small = [sum(collected[a] * raw(key, a) * row[j]
+                                   for a, row in small_decay.items()) for j in range(2)]
+                require(prior_full == prior_small, "feature-wise forgetting preserves the correction read")
+                full = [[row[j] + beta * raw(key, a) * (value[j] - prior_full[j]) for j in range(2)]
+                        for (a, _), row in zip(generic, full_decay)]
+                small = {a: [row[j] + beta * raw(key, a) * (value[j] - prior_small[j]) for j in range(2)]
+                         for a, row in small_decay.items()}
+                require(all(row == small[a] for (a, _), row in zip(generic, full)),
+                        "every generic state remains in the grouped invariant subspace")
+                closure_checks += 1
+                for query in points:
+                    expected = [sum(c * raw(query, a) * row[j]
+                                    for (a, c), row in zip(generic, full)) for j in range(2)]
+                    actual = [sum(collected[a] * raw(query, a) * row[j]
+                                  for a, row in small.items()) for j in range(2)]
+                    require(expected == actual, "channel-gated delta outputs agree at every prefix")
+                    reads += 2
+                if beta == 1:
+                    require([sum(collected[a] * raw(key, a) * row[j]
+                                 for a, row in small.items()) for j in range(2)] == value,
+                            "feature-wise forgetting retains the exact current-key delta write")
+                    latest_writes += 2
+            fixtures.append({"latent_dimension": dimension, "box_degree": degree, "power": order,
+                             "gate_family": gate_family, "generic_width": len(generic),
+                             "collected_width": len(collected), "state_closure_checks": closure_checks,
+                             "prefix_query_coordinate_checks": reads, "latest_write_coordinates": latest_writes,
+                             "theta": [str(c) for c in theta],
+                             "final_collected_state": {str(a): [str(x) for x in row] for a, row in small.items()}})
+
+    # P(x)=1+x+x^2, order two: exponent two has weights 2 and 1.
+    # Write value one at x=1 (unit features), then apply two disjoint masks
+    # within that duplicate group. Projecting each gate to its weighted mean
+    # matches the first read, but incorrectly retains a value after the second.
+    entries = []
+    for counts in compositions(2, 3):
+        exponent = sum(i * n for i, n in enumerate(counts))
+        weight = Fraction(2, prod(factorial(n) for n in counts))
+        entries.append((counts, exponent, weight))
+    grouped = {a: sum(w for _, b, w in entries if b == a) for a in range(5)}
+    full = [Fraction(1, 3)] * len(entries)
+    small = {a: Fraction(1, 3) for a in grouped}
+    masks = [tuple(counts == keep for counts, _, _ in entries) for keep in ((1, 0, 1), (0, 2, 0))]
+    counter_reads = []
+    for mask in masks:
+        full = [x * g for x, g in zip(full, mask)]
+        projected_gate = {a: sum(w * g for (_, b, w), g in zip(entries, mask) if b == a) / c
+                          for a, c in grouped.items()}
+        small = {a: x * projected_gate[a] for a, x in small.items()}
+        exact = sum(w * x / 3 for (_, _, w), x in zip(entries, full))
+        projected = sum(grouped[a] * x / 3 for a, x in small.items())
+        counter_reads.append({"generic_read": str(exact), "projected_read": str(projected)})
+    require(counter_reads == [{"generic_read": "2/9", "projected_read": "2/9"},
+                              {"generic_read": "0", "projected_read": "2/27"}],
+            "arbitrary duplicate-coordinate gates cannot be silently projected at each step")
+    return {"scope": "Elementary invariant-subspace closure for an explicitly constrained KDA-style architecture. No new general attention method, trained-quality advantage or GPU speedup is asserted.",
+            "criterion": "For U^T U=I, a linear gate A preserves the compressed state exactly iff (I-U U^T) A U=0. For diagonal generic gates and positive grouping weights, this holds iff the gate is constant within each equal-exponent group.",
+            "architecture": "Use any independently learned gate per collected exponent, then the ordinary KDA delta correction. This retains arbitrary collected-channel forgetting at M*v state and O(M*v) recurrent arithmetic, plus all feature, encoder and gate costs.",
+            "fixtures": fixtures,
+            "state_closure_checks": sum(f["state_closure_checks"] for f in fixtures),
+            "prefix_query_coordinate_checks": sum(f["prefix_query_coordinate_checks"] for f in fixtures),
+            "latest_write_coordinates": sum(f["latest_write_coordinates"] for f in fixtures),
+            "incompatible_gate_countercontrol": {"base_coefficients": [1, 1, 1], "power": 2,
+                                                 "write_key": 1, "write_value": 1,
+                                                 "kept_generic_multiplicities": [[1, 0, 1], [0, 2, 0]],
+                                                 "gate_only_steps_beta": 0, "reads": counter_reads}}
+
+
 def algebraic_attention_mixing_controls():
     """Exact finite controls for established polynomial collection and state rank."""
     def monomial(point, exponent):
@@ -5262,6 +5383,7 @@ def main():
     algebraic_attention = algebraic_attention_hotpath_controls()
     attention_mixing = algebraic_attention_mixing_controls()
     power_delta = algebraic_power_delta_controls()
+    channel_gates = algebraic_channel_gate_controls()
     lattice_shadows = lattice_shadow_controls()
     staircase_generators = staircase_generator_controls()
     exchange_cycles = exchange_cycle_coherence_controls()
@@ -5366,6 +5488,7 @@ def main():
         "algebraic_attention_hotpath_control": algebraic_attention,
         "algebraic_attention_mixing_control": attention_mixing,
         "algebraic_power_delta_control": power_delta,
+        "algebraic_channel_gate_control": channel_gates,
         "lattice_shadow_control": lattice_shadows,
         "staircase_generator_control": staircase_generators,
         "exchange_cycle_coherence_control": exchange_cycles,
@@ -5488,6 +5611,8 @@ def main():
                     "attention_accumulated_state_rank_witnesses": len(attention_mixing["state_rank_witnesses"]),
                     "algebraic_power_pair_checks": power_delta["pair_kernel_checks"],
                     "algebraic_power_delta_prefix_query_checks": power_delta["delta_prefix_query_checks"],
+                    "algebraic_channel_gate_state_closure_checks": channel_gates["state_closure_checks"],
+                    "algebraic_channel_gate_prefix_query_coordinates": channel_gates["prefix_query_coordinate_checks"],
                     "lattice_shadow_facet_certificates": lattice_shadows["facet_certificates"],
                     "lattice_shadow_vertex_normal_certificates": lattice_shadows["vertex_normal_certificates"],
                     "lattice_shadow_exact_sections": lattice_shadows["shadow_sections"],

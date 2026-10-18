@@ -9474,3 +9474,249 @@ quality/memory/throughput tradeoff or an additional representation theorem.
 Exact compression alone does not establish a fundamental advantage over
 existing architectures. This application assessment leaves the active
 unrestricted mathematical theorem and priority audit unchanged.
+
+### Twenty-fifth pass: the primary-source boundary of the lattice-shadow claim
+
+The last mathematical goal work was progress: `b846187` proved the uniform
+bound and `4aecba3` saved the manuscript record and generator certificates.
+The intervening user-directed ML work in `e1f169c` changed the application
+assessment, not the unrestricted asymptotic bound. This pass returns to the
+remaining theorem-level priority requirement. It supplies positive primary
+comparisons and a clearer proof boundary, without declaring novelty from
+an unsuccessful search or a missing source.
+
+#### What the classical area budget gives, and what the shadow adds
+
+Retain the notation of (LS3)--(LS8). Vertex normal cones partition the unit
+sphere up to null boundaries, so their spherical areas sum to a constant.
+By (LS6), a good vertex contributes at least c_d/H^d to that area. Hence
+the classical area budget alone gives
+
+    V <= C_d*(H^d+S/H), H>=1,
+    V = O_d(S^(d/(d+1))).                               (PA1)
+
+For bounded S, fixed-dimensional constants absorb the cutoff H>=1;
+the earlier incidence budget gives S>=V/(d-1)! in any case. Substituting
+S=O_d(n^(2(d-1))) in (PA1) recovers precisely the historical all-colength
+exponent 2d(d-1)/(d+1). This is a reconstruction of a classical surface
+bound, not a new theorem.
+
+The proposed improvement uses the boundary budget instead: (LS7) gives
+p_v>=c_d/H^(d(d-2)/(d-1)), and the classical projection identity (LS8)
+sums those boundaries using the mean shadow size. This produces (LS3)
+with s(P)*H^a in place of H^d. The distinction identifies the additional
+quantitative step; it does not prove that no earlier theorem implies it.
+
+#### Nonlinear angle sums and discrete intrinsic volumes
+
+A public university archive contains the original coauthored chapter
+[McMullen--Schneider, Valuations on convex bodies (1983)](https://www.math.ucdavis.edu/~deloera/MISC/LA-BIBLIO/trunk/McMullen/McMullen9.pdf).
+Section 8, especially Theorems (8.5)--(8.9), gives cone dissections and
+internal/external angle identities. The displayed derivations were read,
+and (8.9) was checked against the scanned page. The section explicitly
+paraphrases McMullen's 1975 argument. Its identities are classical
+background; the inspected section does not state our joint cardinality
+bound or the primitive-facet-normal cutoff. This is not a claim that the
+entire 1975 article, including its lattice application, has been read.
+
+[Dospolova, arXiv:2107.06549v1](https://arxiv.org/html/2107.06549v1)
+provides a full primary preprint behind the later 2024 article identified
+in the previous audit. Theorems 1.1--1.4, the cone definitions, Theorems
+3.1--3.2 with their displayed angle arguments, and Sections 4.2--4.4 were
+inspected. These define lattice-point sums weighted by tangent-cone
+angles and prove valuation/dilation/reciprocity properties. In particular
+the preprint has A_0(P)=1 and G_0(P)=|P intersect Z^d|-1. Those quantities
+are not f_0(P) or s(P): on P=[0,t]^d they are 1 and (t+1)^d-1, while
+f_0(P)=2^d and the generic planar shadow has 2d vertices. The cited
+statements do not themselves state (LS4). No equivalence to the full
+2024 translation or exclusion of every possible corollary is asserted.
+
+#### A bounded citation trace selects further actual theorem comparisons
+
+A recorded public OpenAlex lookup of the Babson--Onn--Thomas DOI returned
+35 citing work records. The inventory is metadata, not evidence that all
+later research has been indexed or read. It selected the following
+positive comparisons; the scientific judgments use the primary texts.
+
+[Wagner's 2003 thesis](https://ti.inf.ethz.ch/ew/research/phdtheses/wagner03.pdf),
+Section 3.1, explicitly restricts the corner-cut/state-polyhedron
+correspondence to generic point ideals and then cites Babson--Onn--Thomas
+for finite-colength ideals. Theorem 3.15 gives the corner-cut upper bound
+O((k log k)^(d-1)); Section 3.5 extends it to flags of that polyhedron.
+The definitions, final count argument and flag extension were inspected.
+They do not replace the multiplication-compatible matroid of a general
+quotient by a uniform matroid, so they do not supply an unrestricted
+G_d(n) bound of that order.
+
+[Lemmens, arXiv:1812.09527v3](https://arxiv.org/html/1812.09527v3),
+Theorem 4 and Corollary 5, concerns lattice-point saturation of distinct
+subset sums of planar lattice polygons and of the two-dimensional corner
+cut polyhedron. The full Corollary 5 proof in Section 3 was inspected.
+The application is absent from v1, so the revised version was checked
+separately. Lattice-point saturation of a sum set does not enforce
+residue-matroid independence or count initial ideals of arbitrary
+finite algebras. No identity of the preprint and 2022 article is assumed.
+
+[Berstein et al., arXiv:0707.4618v1](https://arxiv.org/pdf/0707.4618v1),
+Theorems 1.1 and 1.3, solves nonlinear matroid optimization. Its
+Proposition 4.2 and Lemmas 4.3--4.4 encode attainable basis-weight profiles
+by det(A*Y*A^T) and interpolate on the box {0,...,rp}^d. Those statements
+and the complete determinant/interpolation derivation were read. They
+provide an algorithm for integer matrix representations and unary-bounded
+weights, not the smaller vertex cardinality in (LS10). Our comparison is
+to this version; a failed published-copy link does not establish its
+identity with the 2008 journal article.
+
+[Onn, arXiv:2109.06569v1](https://arxiv.org/html/2109.06569v1),
+Theorem 2.2 and its full dynamic-programming proof, optimizes vector
+partitions with fixed part count and attribute dimension. Its feasible
+objects are partitions satisfying size constraints, without an arbitrary
+residue-matroid independence constraint. No unstated reduction or
+improved enumeration count is imported from that algorithmic result.
+
+[Onn's author-hosted 2010 monograph, archived in 2013](https://web.archive.org/web/20131015172108/http://ie.technion.ac.il/~onn/Book/NDO.pdf),
+is now retrieved and inspected in Section 6.3.3, including Definition 6.29,
+Corollary 6.30 with its full proof, and the attribution notes on page 128.
+The copy bears the publisher's 2010 imprint, matching ISBN and pagination.
+It credits the general-colength framework and universal-basis algorithm
+to Babson--Onn--Thomas. Its edge-direction route uses at most binom(N,2)
+differences for N ground elements; Lemma 2.13 gives the usual
+O(N^(2(d-1))) zonotope bound. These inspected results do not state the
+smaller count (LS1). This closes the previously unread book-section
+comparison; no identity with another archived copy is assumed.
+
+[Deza--Pournin--Rakotonarivo (2021)](https://www.cas.mcmaster.ca/~deza/cm2021.pdf),
+Theorems 1.2--1.4, estimates primitive-zonotope vertices with fixed
+coordinate bounds and growing dimension. The primary offprint and its
+definitions/principal statements were inspected. These statements do not
+establish the optional fixed-dimension, growing-generator-bound sharpness
+construction mentioned in the private continuation note. That construction
+remains unproved here; no sharpness claim is added to the manuscript.
+
+#### Artifact and remaining gate
+
+The private manuscript now includes these source/version comparisons and
+the area-versus-boundary explanation. Its previous source and PDF are
+preserved in ignored version storage. This is a substantive priority
+audit update, not a new numerical improvement to (LS1).
+
+The original [McMullen 1975 article](https://doi.org/10.1017/S0305004100051665),
+including its lattice application, remains incompletely inspected.
+Publisher metadata identifies this target; neither an abstract nor a
+failed public download settles its relevant content. The author-archived
+Onn book comparison above is now complete at its stated section scope.
+The later finite-field deposit still has only the exact indexed theorem
+comparison already recorded. These are explicit limits, not reasons to
+assume a theorem is new or to contact anyone. The strongest-current-bound
+and novelty flags remain false, and the full mathematical goal stays
+active. Kernel and historical-manuscript bytes are preserved.
+
+### ML hot-path decision: preserve selective forgetting in the compressed layer
+
+The strongest present application candidate is a structured recurrent
+attention layer. The saving concerns redundant polynomial features and
+memory reads/writes. Neither prime factorization nor the lattice-shadow
+initial-ideal bound supplies a faster algorithm for arbitrary learned
+weights. A useful architecture needs both economical computation and
+retained learning/recall quality; the exact identity alone settles only
+the former's representation count.
+
+#### Which memory transitions survive compression?
+
+Use the fixed orthonormal-column grouping map U and unit feature phi from
+(MLP1), with generic feature f=U*phi. For any linear state transition A,
+the subspace im(U) is invariant exactly when
+
+    (I-U*U^T)*A*U=0.
+
+Indeed invariance implies A*U=U*B with B=U^T*A*U, and conversely this
+identity implies invariance. This is elementary linear algebra, not a new
+compression theorem. For a diagonal generic gate diag(g_nu), the grouping
+map's positive entries give the sharper criterion
+
+    diag(g)*U=U*diag(gamma)
+    iff g_nu=gamma_b whenever b(nu)=b.                    (MLG1)
+
+Every nonzero entry U_(nu,b) forces the corresponding equality; it also
+suffices. Thus scalar forgetting is not required. Choose arbitrary learned
+gates gamma_(t,b) in [0,1] on the M collected coordinates and use
+
+    T_t=(I-beta_t*phi(k_t)*phi(k_t)^T)*diag(gamma_t)*T_(t-1)
+        +beta_t*phi(k_t)*v_t^T.                           (MLG2)
+
+The generic model with tied gates (MLG1) satisfies S_t=U*T_t at every
+prefix, including the delta correction and all query reads. The proof is
+substitution using U^T*U=I. At beta=1 the current key reads its new value
+exactly. For beta in [0,2] the homogeneous transition is nonexpansive,
+since both factors are contractions. None of this guarantees that earlier
+values remain retrievable. Shared theta must remain fixed within the
+sequence, as in (MLP1); arbitrary time-dependent changes of U are excluded.
+
+Equation (MLG2) is the established channel-gated delta recurrence applied
+to our deliberately restricted features.
+[Kimi Linear, Section 3, equation (1)](https://arxiv.org/html/2510.26692v1#S3)
+already gives that recurrence and its chunkwise implementation; Sections
+3.1--3.2 discuss parallelization and precision. We inspected those displayed
+formulas and adjacent explanation, not all experiments or kernel code.
+[GLA, Section 4.1](https://arxiv.org/html/2312.06635v6#S4.SS1)
+already allows channel-dependent forgetting and discusses gate-parameter
+costs. No new gate, parallel algorithm or improvement over these methods
+is claimed. The architecture can use their recurrence interfaces with
+collected width M, although this integration has not been implemented or
+benchmarked against their kernels.
+
+The dependency-free checker adds six exact two-value fixtures: independent
+collected-channel gates and cheaper exponent-separable gates
+gamma_b=g_0*product_j g_j^(b_j), with g_j in [0,1]. It verifies 30 invariant
+state steps, 300 query-output coordinates and 24 exact latest-write
+coordinates. The separable family needs only s+1 gate outputs but imposes
+an additional restriction; independent M-channel gates do not.
+
+A negative control uses P(x)=1+x+x^2, power two, and a unit-feature write
+at x=1 with value one. Exponent two has two generic coordinates of weights
+two and one. Two gate-only steps retain disjoint members of this pair.
+The full state then reads zero. Replacing each gate by its weighted group
+average first matches the read 2/9, but after the second step incorrectly
+reads 2/27. Projection after each transition therefore does not justify
+compressing an arbitrary existing gated model. This counterexample is
+saved exactly alongside the positive controls.
+
+#### What an improvement would have to beat
+
+For s=2,m=7,p=2, the same constrained polynomial model has 2080 generic
+symmetric coordinates or 225 collected coordinates. With value width 64,
+their delta states contain 133120 or 14400 scalars: 520 or 56.25 KiB in
+float32. These are state counts, not total-model memory or a measured
+9.24-fold speedup. Ordinary KDA with 225 features already has the same
+state size; our candidate must earn its extra feature-encoder cost through
+a better quality/cost tradeoff. Raising polynomial degree while retaining
+a small latent dimension does not restore unrestricted query/key capacity.
+
+Forward recurrence arithmetic remains O(M*v), plus feature evaluation,
+gate/latent encoders and coefficient preparation. Generating M gates
+with a dense model-width-to-M projection can be expensive. Chunkwise
+training, all derivatives, activations, padding and state traffic must be
+charged. [Power Attention, Section 4.1](https://arxiv.org/html/2507.04239v1#S4.SS1)
+explains why a mathematically smaller feature representation need not
+produce a faster GPU kernel. Its polynomial features are also a mandatory
+baseline, not evidence that combining existing ingredients is novel.
+
+For dense channel/FFN mixing, [Monarch](https://arxiv.org/abs/2204.00595)
+already designs fast structured matrices. For attention-cache factorization,
+[Tensor Product Attention](https://arxiv.org/abs/2501.06425) and
+[DeepSeek-V2's MLA](https://arxiv.org/abs/2405.04434) are existing architecture
+families. Their primary abstracts were rechecked here; this is not a
+proof or experiment audit. No project-specific advantage in those hot paths
+has been established. Rank-one token updates also need not leave a low-rank
+accumulated memory, as the earlier exact Vandermonde control demonstrates.
+
+The next implementation gate is one trained multi-query recall comparison:
+native learned-feature KDA, scalar-gated structured features, and (MLG2),
+at matched total state, parameters and training compute. Include Power
+Attention in the subsequent sequence-model comparison. Report held-out
+keys, longer contexts, interference and overwrite behavior across seeds;
+then measure complete forward/backward and decoding on the same GPU.
+Only a useful quality/memory/latency frontier justifies a custom fused
+kernel or wider architecture program. No trained-model or GPU result was
+produced in this pass. This application assessment preserves the active
+unrestricted mathematical goal and its open priority audit.

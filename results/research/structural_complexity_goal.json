@@ -29,7 +29,7 @@
   "milestones": [
     {
       "id": "primary_baseline",
-      "status": "matched_BOT_baseline_and_later_field_parameter_comparisons_checked_Grassmann_identity_attributed_novelty_gate_open",
+      "status": "targeted_angle_valuation_citation_and_2010_monograph_comparisons_completed_original_1975_scope_open",
       "deliverable": "A theorem-level primary-source comparison identifying the best relevant unrestricted and restricted bounds, exact hypotheses, input models and still viable targets."
     },
     {
@@ -54,7 +54,7 @@
     },
     {
       "id": "proof_priority_artifact",
-      "status": "complete_working_manuscript_compiled_and_rendered_exact_certificates_extended_priority_gate_open",
+      "status": "complete_working_manuscript_priority_appendix_extended_remaining_source_comparisons_open",
       "deliverable": "Complete proof, precise prior-art assessment, independently checked exact certificates and a separate honest manuscript suitable for the user's later review."
     }
   ],
@@ -124,7 +124,7 @@
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Commit b846187 saved the complete uniform all-fields upper-bound derivation, its further algebraic consequence and exact lattice/shadow/matroid certificates. This narrowed the unrestricted exponent relative to the proof-checked BOT baseline; priority and manuscript requirements remained open."
+    "reason": "The previous mathematical goal work saved the uniform proof and exact controls in b846187, then the manuscript record and generator certificates in 4aecba3. The intervening user-directed ML assessment in e1f169c was application progress, not a further change to G_d(n). This continuation returns to the unresolved primary-baseline and priority requirement."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -3073,5 +3073,182 @@
     },
     "historical_report_blocks_preserved": 41,
     "historical_summary_counts_preserved": true
+  },
+  "twenty_fifth_results": {
+    "record": "docs/interleaving_research.md, Twenty-fifth pass: the primary-source boundary of the lattice-shadow claim",
+    "uniform_counting_bound_changed": false,
+    "classical_area_budget_reconstruction": {
+      "statement": "Normal-cone areas sum to a constant. The short-normal determinant bound and facet-incidence budget give V<=C_d*(H^d+S/H), hence V=O_d(S^(d/(d+1))). The colength surface budget recovers the BOT exponent exactly.",
+      "additional_proposed_step": "Use normal-cone boundaries, their isoperimetric lower bound and the classical shadow identity instead of the area budget. This gives LS3/LS4; novelty is not inferred merely from the distinction.",
+      "novel_theorem_claim": false
+    },
+    "citation_inventory": {
+      "baseline_doi": "https://doi.org/10.1016/S0196-8858(02)00509-2",
+      "service": "OpenAlex public work/citation metadata",
+      "returned_records": 35,
+      "all_returned_titles_screened": true,
+      "all_citing_papers_proof_audited": false,
+      "inference_limit": "A bounded discovery inventory, not proof of complete indexing or of novelty. Scientific comparisons use the named primary statements."
+    },
+    "primary_comparisons": [
+      {
+        "source": "https://www.math.ucdavis.edu/~deloera/MISC/LA-BIBLIO/trunk/McMullen/McMullen9.pdf",
+        "title": "Valuations on convex bodies",
+        "authors": "McMullen and Schneider",
+        "version": "1983 coauthored chapter, university-hosted scan",
+        "inspected": "Section 8, especially Theorems (8.5)--(8.9) and displayed derivations; (8.9) also checked visually on printed page 207. Additional valuation/dilation statements in Sections 10 and 12 inspected at stated scope.",
+        "finding": "Classical cone dissection/internal-external angle identities are attributed to prior work. No joint vertex/surface/shadow inequality or primitive-facet-height cutoff is a stated result of the inspected section. This does not claim the entire 1975 article was read."
+      },
+      {
+        "source": "https://arxiv.org/html/2107.06549v1",
+        "title": "Discrete intrinsic volumes",
+        "authors": "Dospolova",
+        "version": "arXiv:2107.06549v1, 2021; no assumed identity with 2024 translated article",
+        "inspected": "Theorems 1.1--1.4; cone definitions and displayed angle derivations in Theorems 3.1--3.2; Sections 4.2--4.4.",
+        "finding": "Angle-weighted lattice-point valuations, dilation polynomials and reciprocity differ from vertex and mean-shadow counts. On [0,t]^d its A_0=1 and G_0=(t+1)^d-1, whereas f_0=2^d and s=2d. No LS4 statement is imported."
+      },
+      {
+        "source": "https://ti.inf.ethz.ch/ew/research/phdtheses/wagner03.pdf",
+        "title": "On k-Sets and Applications",
+        "authors": "Wagner",
+        "version": "2003 ETH doctoral thesis",
+        "inspected": "Section 3.1 generic-point correspondence and explicit general-colength distinction; Theorem 3.15 final count argument; Section 3.5 flag extension.",
+        "finding": "The O((k log k)^(d-1)) corner-cut/flag bound is for that polyhedron. It does not identify the general residue matroid with a uniform matroid."
+      },
+      {
+        "source": "https://arxiv.org/html/1812.09527v3",
+        "title": "Convexity of distinct sum sets",
+        "authors": "Lemmens",
+        "version": "v3, 2021, separately from v1; no assumed identity with 2022 article",
+        "inspected": "Definitions, Theorem 4, Corollary 5 and complete Section 3 corollary proof; v1 checked to establish that the later application was added.",
+        "finding": "Planar distinct-sum lattice-point saturation does not impose arbitrary residue-matroid independence or supply an unrestricted initial-ideal count."
+      },
+      {
+        "source": "https://arxiv.org/pdf/0707.4618v1",
+        "title": "Nonlinear Matroid Optimization and Experimental Design",
+        "authors": "Berstein, Lee, Maruri-Aguilar, Onn, Riccomagno, Weismantel and Wynn",
+        "version": "2007 preprint; no assumed identity with 2008 journal article",
+        "inspected": "Theorems 1.1 and 1.3; Proposition 4.2 and complete Lemmas 4.3--4.4 determinant/interpolation derivation.",
+        "finding": "An algorithm enumerating attainable basis-weight profiles in {0,...,rp}^d for integer representations and unary weights, rather than the smaller vertex cardinality in LS10."
+      },
+      {
+        "source": "https://arxiv.org/html/2109.06569v1",
+        "title": "The Complexity of Vector Partition",
+        "authors": "Onn",
+        "version": "v1, 2021",
+        "inspected": "Problem definitions and full Theorem 2.2 dynamic-programming proof.",
+        "finding": "Size-constrained partitions do not contain a general residue-matroid independence constraint. No unstated reduction is assumed."
+      },
+      {
+        "source": "https://www.cas.mcmaster.ca/~deza/cm2021.pdf",
+        "title": "The vertices of primitive zonotopes",
+        "authors": "Deza, Pournin and Rakotonarivo",
+        "version": "2021 publisher offprint hosted by an author",
+        "inspected": "Definitions and principal statements Theorems 1.2--1.4.",
+        "finding": "These fixed-coordinate-bound, growing-dimension statements do not establish the optional fixed-dimension, growing-coordinate-bound sharpness construction. No sharpness claim is made."
+      },
+      {
+        "source": "https://web.archive.org/web/20131015172108/http://ie.technion.ac.il/~onn/Book/NDO.pdf",
+        "title": "Nonlinear Discrete Optimization: An Algorithmic Theory",
+        "authors": "Onn",
+        "version": "Author-hosted copy, public archive snapshot 15 October 2013, bearing publisher 2010 imprint, matching ISBN and 147-page pagination. No identity with another archived copy assumed.",
+        "inspected": "Complete Section 6.3.3, including Definition 6.29, Corollary 6.30 with its proof and attribution notes; Lemma 2.13 zonotope vertex bound and Corollary 2.25 edge-direction argument. Corollary page also checked visually.",
+        "finding": "Credits the general-colength framework and universal-basis algorithm to BOT. Its at-most binom(N,2) edge differences give the usual O(N^(2(d-1))) zonotope bound through Lemma 2.13, rather than LS1. The previously unread section comparison is closed.",
+        "retrieved_pdf_sha256": "4192d1d2cc8ee48d5b17d2c2df6d783dac5e4cd4e4044e40750762c2d8783a72"
+      }
+    ],
+    "remaining_precise_comparisons": [
+      {
+        "source": "https://doi.org/10.1017/S0305004100051665",
+        "target": "Original 1975 McMullen article, including its lattice application",
+        "status": "Publisher abstract/metadata and later coauthored reproduction of angle identities inspected; original full article not retrieved."
+      },
+      {
+        "source": "https://par.nsf.gov/servlets/purl/10177092",
+        "target": "Later finite-field chapter, full version comparison",
+        "status": "Exact indexed Theorem 8 comparison retained; complete PDF retrieval still unconfirmed. Failure supplies no novelty evidence."
+      }
+    ],
+    "separate_manuscript_updated": true,
+    "private_prior_manuscript_version_preserved": true,
+    "private_sources_and_reading_records_uploaded": false,
+    "full_checker_verified": true,
+    "complete_primary_baseline_audit": false,
+    "strongest_current_bound_verified": false,
+    "novelty_established": false,
+    "goal_complete": false,
+    "next_gate": "Complete the focused priority/proof audit, including the original 1975 lattice application or a sufficient matched primary comparison. The Onn 2010 universal-basis section is now read and compared; do not repeat an access-only search for it. Retain the all-ideal objective and do not treat metadata inventory or failed access as novelty evidence.",
+    "source_sha256": {
+      "scripts/run_structural_complexity_checks.py": "2829de6be0d16cad2c2a2b60e11b9b49be46a2fd18f73210e4c8a7c24f9aae6c",
+      "docs/interleaving_research.md": "5b421ed5a19a4e31d26fa2a19c16a8d3e426e1ffe35b47d0f4d5c121ad552945"
+    }
+  },
+  "ml_channel_gate_extension": {
+    "record": "docs/interleaving_research.md, ML hot-path decision: preserve selective forgetting in the compressed layer",
+    "implementation": "scripts/run_structural_complexity_checks.py, algebraic_channel_gate_controls",
+    "uniform_criterion": "A preserves im(U) iff (I-U*U^T)*A*U=0. For the positive equal-exponent grouping map and diagonal A, this is equivalent to gate equality within each duplicate group.",
+    "architecture": "Arbitrary learned forgetting on each collected coordinate followed by the existing KDA delta correction. Exact for the constrained monomial feature family with theta fixed over a sequence.",
+    "gate_families": [
+      "independent collected channels",
+      "exponent-separable product gates with s+1 outputs"
+    ],
+    "exact_controls": {
+      "fixtures": 6,
+      "state_closure_steps": 30,
+      "prefix_query_output_coordinates": 300,
+      "latest_write_coordinates": 24,
+      "incompatible_gate_witness": {
+        "full_final_read": "0",
+        "projected_final_read": "2/27"
+      }
+    },
+    "cost": "M*v recurrent state and O(M*v) recurrent arithmetic; feature and gate encoders, coefficient changes, backward, padding and memory traffic are additional. Native KDA with M features already has the same state size.",
+    "primary_comparisons": [
+      {
+        "source": "https://arxiv.org/html/2510.26692v1#S3",
+        "inspection": "Section 3 equation (1), displayed chunkwise formulas and adjacent Sections 3.1--3.2 precision/efficiency discussion. No full experiment or kernel audit.",
+        "finding": "The channel-gated delta recurrence and efficient chunk algorithm are existing methods."
+      },
+      {
+        "source": "https://arxiv.org/html/2312.06635v6#S4.SS1",
+        "inspection": "Section 4.1 recurrence, gate parameterization table and adjacent gate cost discussion.",
+        "finding": "Fine-grained forgetting and gate projection costs must be included."
+      },
+      {
+        "source": "https://arxiv.org/html/2507.04239v1#S4.SS1",
+        "inspection": "Rechecked Section 4 symmetric-power definitions and Section 4.1 expansion/tiling discussion.",
+        "finding": "Fewer exact features do not guarantee GPU speedup."
+      },
+      {
+        "source": "https://arxiv.org/abs/2204.00595",
+        "inspection": "Primary abstract only.",
+        "finding": "Existing structured dense-matrix architecture; no project-specific improvement established."
+      },
+      {
+        "source": "https://arxiv.org/abs/2501.06425",
+        "inspection": "Primary abstract only.",
+        "finding": "Existing contextual tensor-factorized attention comparison; no project-specific improvement established."
+      },
+      {
+        "source": "https://arxiv.org/abs/2405.04434",
+        "inspection": "Primary abstract only.",
+        "finding": "Existing latent-attention cache compression comparison; no project-specific improvement established."
+      }
+    ],
+    "next_gate": "Train a matched-state/parameter/compute multi-query recall comparison against native learned-feature KDA and the scalar-gated structured feature model; compare held-out keys, context extrapolation, interference and overwrites across seeds. Measure complete GPU training and decode costs before custom kernels.",
+    "novelty_established": false,
+    "fundamental_advantage_established": false,
+    "measured_gpu_speedup": false,
+    "trained_model_quality_tested": false,
+    "full_checker_verified": true,
+    "active_mathematical_goal_preserved": true,
+    "source_sha256": {
+      "scripts/run_structural_complexity_checks.py": "2829de6be0d16cad2c2a2b60e11b9b49be46a2fd18f73210e4c8a7c24f9aae6c",
+      "docs/interleaving_research.md": "5b421ed5a19a4e31d26fa2a19c16a8d3e426e1ffe35b47d0f4d5c121ad552945"
+    },
+    "historical_report_blocks_preserved": 42,
+    "historical_summary_counts_preserved": true,
+    "build_and_smoke_passed": true,
+    "protected_files_preserved": true
   }
 }
