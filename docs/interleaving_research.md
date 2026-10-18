@@ -10158,3 +10158,129 @@ and time, not feature count alone. No trained-model or GPU benchmark was
 run here. The prior untrained poor-recall diagnostic remains a reason to
 test this, not evidence of an improvement. Prime-specific theorems and
 initial-ideal counts still supply no direct acceleration of dense weights.
+
+### Learned associative recall: the structured block loses the matched-budget test
+
+The user requested a learned comparison against existing recurrent memory
+updates. We ran the experiment rather than treating feature-count savings
+as a model-quality result. The tested two-latent structured block did not
+show an advantage. Preserve its exact factorization, but park this version
+as a proposed general ML replacement; these results do not justify a
+custom GPU kernel for it.
+
+#### Protocol and the comparison class
+
+`scripts/run_learned_recall.py` implements the published KDA and Gated
+DeltaNet-2 recurrences with a common small encoder interface, each with
+either unconstrained learned features or the collected quadratic features
+of (MLP1), s=2 and m=7. These are one-layer memory-block references, not
+complete Kimi Linear/Gated DeltaNet-2 models or their fused kernels. No
+official Zoology MQAR or language-model benchmark was replicated.
+
+All four blocks have exactly 225*16=3600 float32 recurrent-state scalars
+(14400 bytes). They share a cap of 32768 active trainable parameters,
+with actual counts 32331--32686, and have no persistent basis/index
+buffers. Hidden widths use the largest size fitting that cap; no unused
+padding parameters are counted. Training activations and peak process RAM
+are not matched. Thus memory matching concerns recurrent state and the
+closely matched parameter storage, not total training-memory consumption.
+
+Each architecture receives the same two-learning-rate tuning budget on a
+separate seed, then 30 process CPU seconds per main run at seeds 11,23,37.
+The budget includes batch generation, feature/coefficient construction,
+gate encoders, forward/backward, clipping and AdamW. Evaluation and
+checkpoint I/O are excluded. Actual main budgets are 30.000--30.053
+seconds; the excess is the final step. One CPU thread is used throughout.
+The local host has 16 logical x86_64 CPUs and 16 GiB RAM; the environment
+is Python 3.12.14, PyTorch 2.2.2 and NumPy 1.26.4. The PyTorch wheel is
+prebuilt; no custom compiler flags or GPU kernels are involved. These
+optional dependencies do not change the core toolkit's dependencies.
+
+Episodes contain fresh normalized Gaussian keys and independent uniform
+16-way values. Models receive explicit key/value writes, then shuffled
+read-only queries for those keys. Query/key encoders are shared. Training
+mixes 4/8/16 target associations, overwrites and unrelated writes. Test
+episodes are separate from tuning and training; they include 32/64-key
+contexts, overwrites and 32 unrelated writes. Key dimensions two and eight
+are tested separately. Chance classification accuracy is 6.25%.
+
+A preflight linear feature head would have limited the native query span
+to hidden_width+1. We discarded that tuning before any main test run and
+restarted with a final SiLU activation. An independent rank control checks
+that the native feature span exceeds that artificial bound. No final test
+data were used for this correction. All subsequent choices and the
+superiority criterion were saved in `protocol.json` before the main tests.
+
+#### Results, including equal-exposure controls
+
+The primary score is the mean of 16-key recall and 16-key overwrite
+accuracy. Percentages below are means over the three training seeds.
+
+| Memory block | Two-dimensional keys | Eight-dimensional keys | 64-key recall, eight-dimensional keys |
+| --- | --- | --- | --- |
+| Learned-feature KDA reference | 75.98% | 98.14% | 84.65% |
+| Structured KDA | 67.77% | 70.64% | 37.01% |
+| Learned-feature Gated DeltaNet-2 reference | 70.43% | 97.24% | 82.19% |
+| Structured Gated DeltaNet-2 | 68.58% | 71.12% | 37.31% |
+
+For eight-dimensional keys, structured-minus-native primary-score gaps
+are -27.50 percentage points for KDA and -26.12 for Gated DeltaNet-2.
+Their descriptive three-seed 95% paired t intervals are respectively
+[-28.69,-26.32] and [-28.64,-23.61] points. The two-dimensional gaps
+are -8.21 and -1.85 points; the latter interval includes zero. These are
+small-pilot descriptive intervals, not multiple-comparison-adjusted
+confirmatory significance claims. None of the four comparisons passes
+the predeclared structured-superiority criterion.
+
+The equal-example checkpoint control also favors native learned features
+in every seed and recurrence family. For eight-dimensional keys all
+models are evaluated after exactly 1000 updates; the mean structured
+gaps are -28.58 and -25.62 points. In the two-dimensional condition the
+largest predeclared common milestones are 1000,1000,500 by seed, with
+mean paired gaps -7.03 and -2.27 points. Thus fewer training examples
+within the CPU budget do not explain away the negative result.
+
+Complete reference forwards at batch one, with 16 writes and 16 reads,
+also cost more for the structured variants on this CPU: for eight-dimensional
+keys, median timings are 1.173 versus 1.606 ms for native/structured KDA
+and 1.483 versus 1.610 ms for native/structured Gated DeltaNet-2. These
+include the encoders and feature preparation. They are not production
+decoding or GPU-throughput comparisons.
+
+#### Verification, artifacts and decision
+
+The saved controls check all four recurrences against independent dense
+transition matrices, full-network directional gradients, overwrite labels
+against a latest-match oracle, and an exact orthogonal-address positive
+control. Additional checks of the actual 225-feature two-dimensional
+encoder compare against the direct 64-coordinate squared kernel, compare
+parameter gradients through those independent expressions, and check
+full-network directional gradients. Maximum pair-kernel discrepancy in
+double precision is below 1.6e-15 in these fixtures. These checks support
+implementation correctness, not universal numerical conditioning.
+
+`scripts/analyze_learned_recall.py` independently verifies all 24 result
+cells, memory caps, CPU budgets, training exposure counts, test query
+counts, aggregate scores and paired intervals. The protocol, every tuning
+trial and main run, equal-exposure scores, raw stdout, source hashes and
+machine-readable tables are under `results/benchmarks/learned_recall_v2/`.
+Private checkpoints and the optional environment remain ignored locally.
+Exact CLI arguments are in `protocol.json`; the audit command is
+
+    python3 scripts/analyze_learned_recall.py results/benchmarks/learned_recall_v2
+
+Add `--check-model` inside the optional PyTorch environment to repeat the
+actual-configuration kernel and gradient checks. Budgeted reruns can
+complete different numbers of updates on different hosts; raw rows save
+the exact count, and the exposed `train(..., fixed_steps=count)` function
+permits deterministic exposure replay in the recorded environment.
+
+This experiment finds no practical or fundamental advantage for this
+particular structured block under its tested budgets. It does not rule
+out every structured feature family, training regime or hardware target.
+The exact 2080-to-225 compression remains correct for its constrained
+model, while a learned 225-feature model already uses the same recurrent
+state and learns better in this comparison. A new ML direction needs a
+stronger representation or task-specific mechanism before another kernel
+development program. The separate mathematics goal and its unresolved
+primary-source priority comparison remain unchanged.

@@ -1,0 +1,23 @@
+{
+  "actual_training_configuration_checked": true,
+  "fixtures": [
+    {
+      "kind": "structured_kda",
+      "latent_dimension": 2,
+      "degree": 7,
+      "feature_width": 225,
+      "direct_kernel_max_abs_error": 1.2212453270876722e-15,
+      "independent_kernel_parameter_gradients_passed": true,
+      "full_network_directional_gradient_passed": true
+    },
+    {
+      "kind": "structured_gdn2",
+      "latent_dimension": 2,
+      "degree": 7,
+      "feature_width": 225,
+      "direct_kernel_max_abs_error": 1.5543122344752192e-15,
+      "independent_kernel_parameter_gradients_passed": true,
+      "full_network_directional_gradient_passed": true
+    }
+  ]
+}

@@ -1,0 +1,218 @@
+{
+  "kind": "learned_kda",
+  "config": {
+    "key_dim": 8,
+    "latent_dim": 2,
+    "degree": 7,
+    "value_dim": 16,
+    "parameter_target": 32768,
+    "batch_size": 24,
+    "train_pairs": [
+      4,
+      8,
+      16
+    ]
+  },
+  "seed": 37,
+  "learning_rate": 0.003,
+  "parameters": 32604,
+  "hidden_width": 62,
+  "parameter_bytes_float32": 130416,
+  "persistent_buffer_bytes": 0,
+  "state_scalars": 3600,
+  "state_bytes_float32": 14400,
+  "training_cpu_seconds": 30.0083159999989,
+  "training_wall_seconds": 30.51243007495941,
+  "steps": 1359,
+  "training_queries": 302016,
+  "training_writes": 381264,
+  "final_batch_loss": 0.05614699795842171,
+  "history": [
+    {
+      "step": 100,
+      "training_cpu_seconds": 2.061394000001087,
+      "training_wall_seconds": 2.0632770819502184,
+      "loss": 0.6328277587890625,
+      "gradient_norm_before_clip": 0.6046659350395203,
+      "training_queries": 22080,
+      "training_writes": 28176
+    },
+    {
+      "step": 200,
+      "training_cpu_seconds": 4.146198000001277,
+      "training_wall_seconds": 4.149387036974076,
+      "loss": 0.3841274678707123,
+      "gradient_norm_before_clip": 0.3523229956626892,
+      "training_queries": 44640,
+      "training_writes": 56928
+    },
+    {
+      "step": 300,
+      "training_cpu_seconds": 6.18851200000131,
+      "training_wall_seconds": 6.192708388000028,
+      "loss": 0.1890609860420227,
+      "gradient_norm_before_clip": 0.23387175798416138,
+      "training_queries": 67296,
+      "training_writes": 84960
+    },
+    {
+      "step": 400,
+      "training_cpu_seconds": 8.399951000001124,
+      "training_wall_seconds": 8.413498807989527,
+      "loss": 0.09217256307601929,
+      "gradient_norm_before_clip": 0.2542226016521454,
+      "training_queries": 90240,
+      "training_writes": 113472
+    },
+    {
+      "step": 500,
+      "training_cpu_seconds": 10.391206000001148,
+      "training_wall_seconds": 10.40802053110383,
+      "loss": 0.021846696734428406,
+      "gradient_norm_before_clip": 0.12317521125078201,
+      "training_queries": 111264,
+      "training_writes": 139632
+    },
+    {
+      "step": 600,
+      "training_cpu_seconds": 13.109868000001597,
+      "training_wall_seconds": 13.296225925107137,
+      "loss": 0.012351269833743572,
+      "gradient_norm_before_clip": 0.0900258794426918,
+      "training_queries": 133536,
+      "training_writes": 171072
+    },
+    {
+      "step": 700,
+      "training_cpu_seconds": 15.28956900000128,
+      "training_wall_seconds": 15.483527727192268,
+      "loss": 0.013633056543767452,
+      "gradient_norm_before_clip": 0.10362903773784637,
+      "training_queries": 156384,
+      "training_writes": 199296
+    },
+    {
+      "step": 800,
+      "training_cpu_seconds": 17.282621000000518,
+      "training_wall_seconds": 17.483082349135657,
+      "loss": 0.049693699926137924,
+      "gradient_norm_before_clip": 0.1540905386209488,
+      "training_queries": 176448,
+      "training_writes": 224976
+    },
+    {
+      "step": 900,
+      "training_cpu_seconds": 19.518694999999866,
+      "training_wall_seconds": 19.726535268026055,
+      "loss": 0.04752619192004204,
+      "gradient_norm_before_clip": 0.12221536040306091,
+      "training_queries": 199392,
+      "training_writes": 253680
+    },
+    {
+      "step": 1000,
+      "training_cpu_seconds": 21.646537999999623,
+      "training_wall_seconds": 21.865079908035113,
+      "loss": 0.06405281275510788,
+      "gradient_norm_before_clip": 0.2468927651643753,
+      "training_queries": 220416,
+      "training_writes": 280224
+    },
+    {
+      "step": 1100,
+      "training_cpu_seconds": 23.95910599999911,
+      "training_wall_seconds": 24.19417564898322,
+      "loss": 0.06376401335000992,
+      "gradient_norm_before_clip": 0.13937531411647797,
+      "training_queries": 244512,
+      "training_writes": 309504
+    },
+    {
+      "step": 1200,
+      "training_cpu_seconds": 26.486395999999445,
+      "training_wall_seconds": 26.86368540105468,
+      "loss": 0.0035251190420240164,
+      "gradient_norm_before_clip": 0.04259127005934715,
+      "training_queries": 267360,
+      "training_writes": 338880
+    },
+    {
+      "step": 1300,
+      "training_cpu_seconds": 28.74456199999895,
+      "training_wall_seconds": 29.139460650942056,
+      "loss": 0.03451734408736229,
+      "gradient_norm_before_clip": 0.10742926597595215,
+      "training_queries": 288864,
+      "training_writes": 365040
+    }
+  ],
+  "test": {
+    "recall_8": {
+      "accuracy": 0.9951171875,
+      "cross_entropy": 0.018865601916331798,
+      "correct": 2038,
+      "query_count": 2048
+    },
+    "recall_16": {
+      "accuracy": 0.986083984375,
+      "cross_entropy": 0.044129885733127594,
+      "correct": 4039,
+      "query_count": 4096
+    },
+    "recall_32": {
+      "accuracy": 0.9495849609375,
+      "cross_entropy": 0.14467506483197212,
+      "correct": 7779,
+      "query_count": 8192
+    },
+    "recall_64": {
+      "accuracy": 0.84869384765625,
+      "cross_entropy": 0.45750533044338226,
+      "correct": 13905,
+      "query_count": 16384
+    },
+    "overwrite_16": {
+      "accuracy": 0.978515625,
+      "cross_entropy": 0.06923855980858207,
+      "correct": 4008,
+      "query_count": 4096
+    },
+    "overwrite_32": {
+      "accuracy": 0.9317626953125,
+      "cross_entropy": 0.20283028669655323,
+      "correct": 7633,
+      "query_count": 8192
+    },
+    "distractors_16": {
+      "accuracy": 0.8173828125,
+      "cross_entropy": 0.5150692500174046,
+      "correct": 3348,
+      "query_count": 4096
+    }
+  },
+  "test_primary": 0.9822998046875,
+  "complete_episode_cpu_reference_timing": {
+    "16": {
+      "batch": 1,
+      "writes": 16,
+      "queries": 16,
+      "repeats": 15,
+      "median_cpu_ms": 1.1729999999943175,
+      "median_wall_ms": 1.1749800032703206
+    },
+    "64": {
+      "batch": 1,
+      "writes": 64,
+      "queries": 64,
+      "repeats": 15,
+      "median_cpu_ms": 4.086000000029344,
+      "median_wall_ms": 4.087928988155909
+    }
+  },
+  "equal_step_milestones": [
+    100,
+    250,
+    500,
+    1000
+  ]
+}

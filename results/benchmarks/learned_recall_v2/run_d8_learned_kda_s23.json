@@ -1,0 +1,227 @@
+{
+  "kind": "learned_kda",
+  "config": {
+    "key_dim": 8,
+    "latent_dim": 2,
+    "degree": 7,
+    "value_dim": 16,
+    "parameter_target": 32768,
+    "batch_size": 24,
+    "train_pairs": [
+      4,
+      8,
+      16
+    ]
+  },
+  "seed": 23,
+  "learning_rate": 0.003,
+  "parameters": 32604,
+  "hidden_width": 62,
+  "parameter_bytes_float32": 130416,
+  "persistent_buffer_bytes": 0,
+  "state_scalars": 3600,
+  "state_bytes_float32": 14400,
+  "training_cpu_seconds": 30.018536000000154,
+  "training_wall_seconds": 30.199726382794324,
+  "steps": 1468,
+  "training_queries": 322848,
+  "training_writes": 406800,
+  "final_batch_loss": 0.049035441130399704,
+  "history": [
+    {
+      "step": 100,
+      "training_cpu_seconds": 2.1862750000002507,
+      "training_wall_seconds": 2.1877793300081976,
+      "loss": 1.2286540269851685,
+      "gradient_norm_before_clip": 0.42487719655036926,
+      "training_queries": 23328,
+      "training_writes": 29616
+    },
+    {
+      "step": 200,
+      "training_cpu_seconds": 4.226129000000128,
+      "training_wall_seconds": 4.22851906302094,
+      "loss": 0.3924478590488434,
+      "gradient_norm_before_clip": 0.41412386298179626,
+      "training_queries": 45888,
+      "training_writes": 57840
+    },
+    {
+      "step": 300,
+      "training_cpu_seconds": 6.204200000000242,
+      "training_wall_seconds": 6.207420655147871,
+      "loss": 0.021092986688017845,
+      "gradient_norm_before_clip": 0.13677090406417847,
+      "training_queries": 67296,
+      "training_writes": 85008
+    },
+    {
+      "step": 400,
+      "training_cpu_seconds": 8.242326000000503,
+      "training_wall_seconds": 8.375819637221866,
+      "loss": 0.17950958013534546,
+      "gradient_norm_before_clip": 0.27028530836105347,
+      "training_queries": 88320,
+      "training_writes": 110784
+    },
+    {
+      "step": 500,
+      "training_cpu_seconds": 10.223618000000101,
+      "training_wall_seconds": 10.358632976101944,
+      "loss": 0.021187221631407738,
+      "gradient_norm_before_clip": 0.14042383432388306,
+      "training_queries": 110496,
+      "training_writes": 137856
+    },
+    {
+      "step": 600,
+      "training_cpu_seconds": 12.476806000000124,
+      "training_wall_seconds": 12.6165955249744,
+      "loss": 0.24271784722805023,
+      "gradient_norm_before_clip": 0.31061655282974243,
+      "training_queries": 132480,
+      "training_writes": 167280
+    },
+    {
+      "step": 700,
+      "training_cpu_seconds": 14.446368000000462,
+      "training_wall_seconds": 14.586625550975441,
+      "loss": 0.005869003478437662,
+      "gradient_norm_before_clip": 0.05569888651371002,
+      "training_queries": 154848,
+      "training_writes": 194640
+    },
+    {
+      "step": 800,
+      "training_cpu_seconds": 16.43009100000097,
+      "training_wall_seconds": 16.571695593942422,
+      "loss": 0.013435753993690014,
+      "gradient_norm_before_clip": 0.09758169203996658,
+      "training_queries": 176448,
+      "training_writes": 221952
+    },
+    {
+      "step": 900,
+      "training_cpu_seconds": 18.48879100000147,
+      "training_wall_seconds": 18.63098390698724,
+      "loss": 0.004002015106379986,
+      "gradient_norm_before_clip": 0.044558651745319366,
+      "training_queries": 198816,
+      "training_writes": 250128
+    },
+    {
+      "step": 1000,
+      "training_cpu_seconds": 20.464367000001175,
+      "training_wall_seconds": 20.608027201946243,
+      "loss": 0.027965664863586426,
+      "gradient_norm_before_clip": 0.14697910845279694,
+      "training_queries": 220704,
+      "training_writes": 277248
+    },
+    {
+      "step": 1100,
+      "training_cpu_seconds": 22.404156000000853,
+      "training_wall_seconds": 22.548499506912776,
+      "loss": 0.018780341371893883,
+      "gradient_norm_before_clip": 0.14194701611995697,
+      "training_queries": 240960,
+      "training_writes": 303888
+    },
+    {
+      "step": 1200,
+      "training_cpu_seconds": 24.5782549999999,
+      "training_wall_seconds": 24.755333729845006,
+      "loss": 0.0027893828228116035,
+      "gradient_norm_before_clip": 0.03795376047492027,
+      "training_queries": 263904,
+      "training_writes": 332640
+    },
+    {
+      "step": 1300,
+      "training_cpu_seconds": 26.671225000001186,
+      "training_wall_seconds": 26.849402323787217,
+      "loss": 0.01024163980036974,
+      "gradient_norm_before_clip": 0.07176787406206131,
+      "training_queries": 286080,
+      "training_writes": 361152
+    },
+    {
+      "step": 1400,
+      "training_cpu_seconds": 28.508431000000883,
+      "training_wall_seconds": 28.688822393800365,
+      "loss": 0.0977991595864296,
+      "gradient_norm_before_clip": 0.21023806929588318,
+      "training_queries": 306528,
+      "training_writes": 386064
+    }
+  ],
+  "test": {
+    "recall_8": {
+      "accuracy": 0.99365234375,
+      "cross_entropy": 0.018478772952221334,
+      "correct": 2035,
+      "query_count": 2048
+    },
+    "recall_16": {
+      "accuracy": 0.986328125,
+      "cross_entropy": 0.043039572425186634,
+      "correct": 4040,
+      "query_count": 4096
+    },
+    "recall_32": {
+      "accuracy": 0.9478759765625,
+      "cross_entropy": 0.14282074756920338,
+      "correct": 7765,
+      "query_count": 8192
+    },
+    "recall_64": {
+      "accuracy": 0.8511962890625,
+      "cross_entropy": 0.4476720243692398,
+      "correct": 13946,
+      "query_count": 16384
+    },
+    "overwrite_16": {
+      "accuracy": 0.975830078125,
+      "cross_entropy": 0.07350816298276186,
+      "correct": 3997,
+      "query_count": 4096
+    },
+    "overwrite_32": {
+      "accuracy": 0.929443359375,
+      "cross_entropy": 0.21355151571333408,
+      "correct": 7614,
+      "query_count": 8192
+    },
+    "distractors_16": {
+      "accuracy": 0.8212890625,
+      "cross_entropy": 0.5167805105447769,
+      "correct": 3364,
+      "query_count": 4096
+    }
+  },
+  "test_primary": 0.9810791015625,
+  "complete_episode_cpu_reference_timing": {
+    "16": {
+      "batch": 1,
+      "writes": 16,
+      "queries": 16,
+      "repeats": 15,
+      "median_cpu_ms": 1.0719999999082575,
+      "median_wall_ms": 1.073251012712717
+    },
+    "64": {
+      "batch": 1,
+      "writes": 64,
+      "queries": 64,
+      "repeats": 15,
+      "median_cpu_ms": 3.769000000033884,
+      "median_wall_ms": 3.771267001866363
+    }
+  },
+  "equal_step_milestones": [
+    100,
+    250,
+    500,
+    1000
+  ]
+}

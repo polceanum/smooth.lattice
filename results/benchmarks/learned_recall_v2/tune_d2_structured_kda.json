@@ -1,0 +1,231 @@
+{
+  "learning_rate": 0.003,
+  "trials": [
+    {
+      "kind": "structured_kda",
+      "config": {
+        "key_dim": 2,
+        "latent_dim": 2,
+        "degree": 7,
+        "value_dim": 16,
+        "parameter_target": 32768,
+        "batch_size": 24,
+        "train_pairs": [
+          4,
+          8,
+          16
+        ]
+      },
+      "seed": 101,
+      "learning_rate": 0.001,
+      "parameters": 32568,
+      "hidden_width": 124,
+      "parameter_bytes_float32": 130272,
+      "persistent_buffer_bytes": 0,
+      "state_scalars": 3600,
+      "state_bytes_float32": 14400,
+      "training_cpu_seconds": 10.020489999999963,
+      "training_wall_seconds": 10.03550659683242,
+      "steps": 419,
+      "training_queries": 94944,
+      "training_writes": 118656,
+      "final_batch_loss": 1.4162659645080566,
+      "history": [
+        {
+          "step": 100,
+          "training_cpu_seconds": 2.315789999999982,
+          "training_wall_seconds": 2.3190968279523076,
+          "loss": 1.1560827493667603,
+          "gradient_norm_before_clip": 0.9521727561950684,
+          "training_queries": 21696,
+          "training_writes": 27408
+        },
+        {
+          "step": 200,
+          "training_cpu_seconds": 4.511934999999983,
+          "training_wall_seconds": 4.519314982870128,
+          "loss": 1.4900015592575073,
+          "gradient_norm_before_clip": 0.6392161846160889,
+          "training_queries": 42432,
+          "training_writes": 53184
+        },
+        {
+          "step": 300,
+          "training_cpu_seconds": 7.285377999999984,
+          "training_wall_seconds": 7.2967331118125,
+          "loss": 1.5819792747497559,
+          "gradient_norm_before_clip": 0.4912782907485962,
+          "training_queries": 68448,
+          "training_writes": 86496
+        },
+        {
+          "step": 400,
+          "training_cpu_seconds": 9.622773999999968,
+          "training_wall_seconds": 9.637204660772113,
+          "loss": 0.6605843901634216,
+          "gradient_norm_before_clip": 2.001436948776245,
+          "training_queries": 91104,
+          "training_writes": 114000
+        }
+      ],
+      "validation": {
+        "recall_8": {
+          "accuracy": 0.728515625,
+          "cross_entropy": 0.9146104454994202,
+          "correct": 373,
+          "query_count": 512
+        },
+        "recall_16": {
+          "accuracy": 0.5302734375,
+          "cross_entropy": 1.4178923964500427,
+          "correct": 543,
+          "query_count": 1024
+        },
+        "recall_32": {
+          "accuracy": 0.34814453125,
+          "cross_entropy": 2.020955801010132,
+          "correct": 713,
+          "query_count": 2048
+        },
+        "recall_64": {
+          "accuracy": 0.213134765625,
+          "cross_entropy": 2.575123906135559,
+          "correct": 873,
+          "query_count": 4096
+        },
+        "overwrite_16": {
+          "accuracy": 0.515625,
+          "cross_entropy": 1.5106809735298157,
+          "correct": 528,
+          "query_count": 1024
+        },
+        "overwrite_32": {
+          "accuracy": 0.3447265625,
+          "cross_entropy": 2.105660915374756,
+          "correct": 706,
+          "query_count": 2048
+        },
+        "distractors_16": {
+          "accuracy": 0.0849609375,
+          "cross_entropy": 3.049131155014038,
+          "correct": 87,
+          "query_count": 1024
+        }
+      },
+      "validation_primary": 0.52294921875
+    },
+    {
+      "kind": "structured_kda",
+      "config": {
+        "key_dim": 2,
+        "latent_dim": 2,
+        "degree": 7,
+        "value_dim": 16,
+        "parameter_target": 32768,
+        "batch_size": 24,
+        "train_pairs": [
+          4,
+          8,
+          16
+        ]
+      },
+      "seed": 101,
+      "learning_rate": 0.003,
+      "parameters": 32568,
+      "hidden_width": 124,
+      "parameter_bytes_float32": 130272,
+      "persistent_buffer_bytes": 0,
+      "state_scalars": 3600,
+      "state_bytes_float32": 14400,
+      "training_cpu_seconds": 10.012611999999976,
+      "training_wall_seconds": 10.02802754509321,
+      "steps": 410,
+      "training_queries": 93216,
+      "training_writes": 116448,
+      "final_batch_loss": 1.1755295991897583,
+      "history": [
+        {
+          "step": 100,
+          "training_cpu_seconds": 2.3798950000000545,
+          "training_wall_seconds": 2.3836654270562576,
+          "loss": 1.0768013000488281,
+          "gradient_norm_before_clip": 1.0699350833892822,
+          "training_queries": 21696,
+          "training_writes": 27408
+        },
+        {
+          "step": 200,
+          "training_cpu_seconds": 4.625525000000039,
+          "training_wall_seconds": 4.632049657040625,
+          "loss": 1.3214608430862427,
+          "gradient_norm_before_clip": 0.6153462529182434,
+          "training_queries": 42432,
+          "training_writes": 53184
+        },
+        {
+          "step": 300,
+          "training_cpu_seconds": 7.454741999999989,
+          "training_wall_seconds": 7.465526753076119,
+          "loss": 1.380982756614685,
+          "gradient_norm_before_clip": 0.5060396194458008,
+          "training_queries": 68448,
+          "training_writes": 86496
+        },
+        {
+          "step": 400,
+          "training_cpu_seconds": 9.81390099999998,
+          "training_wall_seconds": 9.829141439084196,
+          "loss": 0.5542833209037781,
+          "gradient_norm_before_clip": 2.642857551574707,
+          "training_queries": 91104,
+          "training_writes": 114000
+        }
+      ],
+      "validation": {
+        "recall_8": {
+          "accuracy": 0.7578125,
+          "cross_entropy": 0.6530084908008575,
+          "correct": 388,
+          "query_count": 512
+        },
+        "recall_16": {
+          "accuracy": 0.5791015625,
+          "cross_entropy": 1.208491027355194,
+          "correct": 593,
+          "query_count": 1024
+        },
+        "recall_32": {
+          "accuracy": 0.388671875,
+          "cross_entropy": 2.0021244287490845,
+          "correct": 796,
+          "query_count": 2048
+        },
+        "recall_64": {
+          "accuracy": 0.25,
+          "cross_entropy": 2.781536102294922,
+          "correct": 1024,
+          "query_count": 4096
+        },
+        "overwrite_16": {
+          "accuracy": 0.5458984375,
+          "cross_entropy": 1.353056788444519,
+          "correct": 559,
+          "query_count": 1024
+        },
+        "overwrite_32": {
+          "accuracy": 0.38037109375,
+          "cross_entropy": 2.1544681787490845,
+          "correct": 779,
+          "query_count": 2048
+        },
+        "distractors_16": {
+          "accuracy": 0.107421875,
+          "cross_entropy": 3.380360722541809,
+          "correct": 110,
+          "query_count": 1024
+        }
+      },
+      "validation_primary": 0.5625
+    }
+  ]
+}

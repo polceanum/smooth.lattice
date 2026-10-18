@@ -3538,5 +3538,151 @@
       "docs/interleaving_research.md": "65826d492067288e01a72b48ea92c60c4a89854964cf1ebdb8b22b114387d5b0"
     },
     "historical_report_blocks_preserved": 45
+  },
+  "ml_learned_recall_comparison": {
+    "record": "docs/interleaving_research.md, Learned associative recall: the structured block loses the matched-budget test",
+    "protocol": "results/benchmarks/learned_recall_v2/protocol.json",
+    "results": "results/benchmarks/learned_recall_v2/summary.json",
+    "independent_audit": "results/benchmarks/learned_recall_v2/analysis.json",
+    "table": "results/benchmarks/learned_recall_v2/comparison.csv",
+    "implementation": [
+      "scripts/run_learned_recall.py",
+      "scripts/analyze_learned_recall.py"
+    ],
+    "decision": "No tested structured variant passes the predeclared superiority gate; park this two-latent block as a general ML replacement and do not justify custom kernels from redundant-feature count savings.",
+    "matching": "Exactly 3600 float32 recurrent-state values; common 32768-active-parameter cap, actual counts 32331--32686; equal tuning budgets and 30 CPU seconds per main run; training activation peak is not matched.",
+    "main_runs": 24,
+    "training_seeds": [
+      11,
+      23,
+      37
+    ],
+    "key_dimensions": [
+      2,
+      8
+    ],
+    "cost_matched_comparisons": [
+      {
+        "key_dim": 2,
+        "recurrence": "kda",
+        "structured_minus_native_percentage_points": -8.207194010416668,
+        "descriptive_interval_percentage_points": [
+          -10.291032444698422,
+          -6.123355576134913
+        ],
+        "predeclared_pilot_superiority_gate_passed": false
+      },
+      {
+        "key_dim": 2,
+        "recurrence": "gdn2",
+        "structured_minus_native_percentage_points": -1.8513997395833333,
+        "descriptive_interval_percentage_points": [
+          -7.566505092409716,
+          3.8637056132430487
+        ],
+        "predeclared_pilot_superiority_gate_passed": false
+      },
+      {
+        "key_dim": 8,
+        "recurrence": "kda",
+        "structured_minus_native_percentage_points": -27.50244140625,
+        "descriptive_interval_percentage_points": [
+          -28.685075326683428,
+          -26.319807485816572
+        ],
+        "predeclared_pilot_superiority_gate_passed": false
+      },
+      {
+        "key_dim": 8,
+        "recurrence": "gdn2",
+        "structured_minus_native_percentage_points": -26.123046875,
+        "descriptive_interval_percentage_points": [
+          -28.63591239928029,
+          -23.61018135071971
+        ],
+        "predeclared_pilot_superiority_gate_passed": false
+      }
+    ],
+    "equal_exposure_comparisons": [
+      {
+        "key_dim": 2,
+        "recurrence": "kda",
+        "seed_differences_percentage_points": [
+          -6.396484375,
+          -7.3974609375,
+          -7.2998046875
+        ],
+        "common_steps_by_seed": [
+          1000,
+          1000,
+          500
+        ],
+        "mean_difference_percentage_points": -7.03125
+      },
+      {
+        "key_dim": 2,
+        "recurrence": "gdn2",
+        "seed_differences_percentage_points": [
+          -2.62451171875,
+          -3.03955078125,
+          -1.15966796875
+        ],
+        "common_steps_by_seed": [
+          1000,
+          1000,
+          500
+        ],
+        "mean_difference_percentage_points": -2.274576822916667
+      },
+      {
+        "key_dim": 8,
+        "recurrence": "kda",
+        "seed_differences_percentage_points": [
+          -28.25927734375,
+          -28.33251953125,
+          -29.13818359375
+        ],
+        "common_steps_by_seed": [
+          1000,
+          1000,
+          1000
+        ],
+        "mean_difference_percentage_points": -28.57666015625
+      },
+      {
+        "key_dim": 8,
+        "recurrence": "gdn2",
+        "seed_differences_percentage_points": [
+          -24.70703125,
+          -25.634765625,
+          -26.513671875
+        ],
+        "common_steps_by_seed": [
+          1000,
+          1000,
+          1000
+        ],
+        "mean_difference_percentage_points": -25.618489583333332
+      }
+    ],
+    "verification": "Independent dense recurrence, kernel and gradient checks pass, including the actual 225-feature two-dimensional polynomial encoder. Independent artifact audit verifies counts, matching, aggregates and intervals.",
+    "scope": "Small continuous-key CPU memory-block pilot using the published KDA/Gated DeltaNet-2 recurrences, not complete models, official Zoology MQAR, natural language or fused GPU kernels. Three-seed intervals are descriptive.",
+    "public_raw_data_reviewed": true,
+    "full_repository_checks_passed": true,
+    "ml_advantage_established": false,
+    "gpu_speedup_verified": false,
+    "mathematical_goal_replaced": false,
+    "verification_commands": [
+      "./build.sh",
+      "python3 tests/test_smoke.py",
+      "python3 -B scripts/run_structural_complexity_checks.py",
+      "python3 scripts/analyze_learned_recall.py results/benchmarks/learned_recall_v2",
+      "python3 scripts/analyze_learned_recall.py results/benchmarks/learned_recall_v2 --check-model"
+    ],
+    "implementation_sha256": {
+      "scripts/run_learned_recall.py": "0b9696d81c19e50029f28b29fa830578711f6e9996de037161299a66b1c9e5ef",
+      "scripts/analyze_learned_recall.py": "5282dff607c51397eaf470ec1abb1a64619bf6061efa0ad0f2975f4c5ce3a343"
+    },
+    "historical_certificate_blocks_preserved": 46
   }
 }

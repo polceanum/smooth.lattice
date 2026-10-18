@@ -1,0 +1,213 @@
+{
+  "learning_rate": 0.003,
+  "trials": [
+    {
+      "kind": "learned_gdn2",
+      "config": {
+        "key_dim": 2,
+        "latent_dim": 2,
+        "degree": 7,
+        "value_dim": 16,
+        "parameter_target": 32768,
+        "batch_size": 24,
+        "train_pairs": [
+          4,
+          8,
+          16
+        ]
+      },
+      "seed": 101,
+      "learning_rate": 0.001,
+      "parameters": 32454,
+      "hidden_width": 35,
+      "parameter_bytes_float32": 129816,
+      "persistent_buffer_bytes": 0,
+      "state_scalars": 3600,
+      "state_bytes_float32": 14400,
+      "training_cpu_seconds": 10.006980999999925,
+      "training_wall_seconds": 10.074431053712033,
+      "steps": 368,
+      "training_queries": 82944,
+      "training_writes": 104208,
+      "final_batch_loss": 0.42654263973236084,
+      "history": [
+        {
+          "step": 100,
+          "training_cpu_seconds": 2.67507999999998,
+          "training_wall_seconds": 2.679308727994794,
+          "loss": 1.9640651941299438,
+          "gradient_norm_before_clip": 0.5127638578414917,
+          "training_queries": 21696,
+          "training_writes": 27408
+        },
+        {
+          "step": 200,
+          "training_cpu_seconds": 5.046361999999988,
+          "training_wall_seconds": 5.053306851958041,
+          "loss": 1.5436893701553345,
+          "gradient_norm_before_clip": 0.33703941106796265,
+          "training_queries": 42432,
+          "training_writes": 53184
+        },
+        {
+          "step": 300,
+          "training_cpu_seconds": 8.37810799999999,
+          "training_wall_seconds": 8.443278178790933,
+          "loss": 1.7287958860397339,
+          "gradient_norm_before_clip": 0.7885989546775818,
+          "training_queries": 68448,
+          "training_writes": 86496
+        }
+      ],
+      "validation": {
+        "recall_8": {
+          "accuracy": 0.759765625,
+          "cross_entropy": 0.6679471135139465,
+          "correct": 389,
+          "query_count": 512
+        },
+        "recall_16": {
+          "accuracy": 0.544921875,
+          "cross_entropy": 1.220737099647522,
+          "correct": 558,
+          "query_count": 1024
+        },
+        "recall_32": {
+          "accuracy": 0.35498046875,
+          "cross_entropy": 2.0654813051223755,
+          "correct": 727,
+          "query_count": 2048
+        },
+        "recall_64": {
+          "accuracy": 0.245361328125,
+          "cross_entropy": 3.0015482902526855,
+          "correct": 1005,
+          "query_count": 4096
+        },
+        "overwrite_16": {
+          "accuracy": 0.458984375,
+          "cross_entropy": 1.5883290767669678,
+          "correct": 470,
+          "query_count": 1024
+        },
+        "overwrite_32": {
+          "accuracy": 0.31640625,
+          "cross_entropy": 2.5178383588790894,
+          "correct": 648,
+          "query_count": 2048
+        },
+        "distractors_16": {
+          "accuracy": 0.20703125,
+          "cross_entropy": 3.1031073331832886,
+          "correct": 212,
+          "query_count": 1024
+        }
+      },
+      "validation_primary": 0.501953125
+    },
+    {
+      "kind": "learned_gdn2",
+      "config": {
+        "key_dim": 2,
+        "latent_dim": 2,
+        "degree": 7,
+        "value_dim": 16,
+        "parameter_target": 32768,
+        "batch_size": 24,
+        "train_pairs": [
+          4,
+          8,
+          16
+        ]
+      },
+      "seed": 101,
+      "learning_rate": 0.003,
+      "parameters": 32454,
+      "hidden_width": 35,
+      "parameter_bytes_float32": 129816,
+      "persistent_buffer_bytes": 0,
+      "state_scalars": 3600,
+      "state_bytes_float32": 14400,
+      "training_cpu_seconds": 10.000949999999982,
+      "training_wall_seconds": 10.018263175123138,
+      "steps": 374,
+      "training_queries": 84000,
+      "training_writes": 105408,
+      "final_batch_loss": 0.4617380201816559,
+      "history": [
+        {
+          "step": 100,
+          "training_cpu_seconds": 2.5882999999999754,
+          "training_wall_seconds": 2.5919102230400313,
+          "loss": 0.6897154450416565,
+          "gradient_norm_before_clip": 0.7482077479362488,
+          "training_queries": 21696,
+          "training_writes": 27408
+        },
+        {
+          "step": 200,
+          "training_cpu_seconds": 4.994282999999967,
+          "training_wall_seconds": 5.002266163050081,
+          "loss": 1.1104182004928589,
+          "gradient_norm_before_clip": 0.33608585596084595,
+          "training_queries": 42432,
+          "training_writes": 53184
+        },
+        {
+          "step": 300,
+          "training_cpu_seconds": 8.233864999999945,
+          "training_wall_seconds": 8.247758975136094,
+          "loss": 1.4204587936401367,
+          "gradient_norm_before_clip": 0.733457088470459,
+          "training_queries": 68448,
+          "training_writes": 86496
+        }
+      ],
+      "validation": {
+        "recall_8": {
+          "accuracy": 0.849609375,
+          "cross_entropy": 0.40741464495658875,
+          "correct": 435,
+          "query_count": 512
+        },
+        "recall_16": {
+          "accuracy": 0.6923828125,
+          "cross_entropy": 0.8530480563640594,
+          "correct": 709,
+          "query_count": 1024
+        },
+        "recall_32": {
+          "accuracy": 0.47412109375,
+          "cross_entropy": 1.7233481407165527,
+          "correct": 971,
+          "query_count": 2048
+        },
+        "recall_64": {
+          "accuracy": 0.311279296875,
+          "cross_entropy": 2.8536049127578735,
+          "correct": 1275,
+          "query_count": 4096
+        },
+        "overwrite_16": {
+          "accuracy": 0.5576171875,
+          "cross_entropy": 1.3085280656814575,
+          "correct": 571,
+          "query_count": 1024
+        },
+        "overwrite_32": {
+          "accuracy": 0.38232421875,
+          "cross_entropy": 2.3404773473739624,
+          "correct": 783,
+          "query_count": 2048
+        },
+        "distractors_16": {
+          "accuracy": 0.296875,
+          "cross_entropy": 2.618667483329773,
+          "correct": 304,
+          "query_count": 1024
+        }
+      },
+      "validation_primary": 0.625
+    }
+  ]
+}

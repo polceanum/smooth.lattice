@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "matching_audits_passed": true,
+  "complete_main_runs": 24,
+  "host_logical_cpu_count": 16,
+  "analysis_script_sha256": "5282dff607c51397eaf470ec1abb1a64619bf6061efa0ad0f2975f4c5ce3a343",
+  "decision": "No tested structured variant passes the predeclared pilot superiority gate.",
+  "cost_matched_comparisons": [
+    {
+      "key_dim": 2,
+      "recurrence": "kda",
+      "structured_minus_native_percentage_points": -8.207194010416668,
+      "descriptive_interval_percentage_points": [
+        -10.291032444698422,
+        -6.123355576134913
+      ],
+      "predeclared_pilot_superiority_gate_passed": false
+    },
+    {
+      "key_dim": 2,
+      "recurrence": "gdn2",
+      "structured_minus_native_percentage_points": -1.8513997395833333,
+      "descriptive_interval_percentage_points": [
+        -7.566505092409716,
+        3.8637056132430487
+      ],
+      "predeclared_pilot_superiority_gate_passed": false
+    },
+    {
+      "key_dim": 8,
+      "recurrence": "kda",
+      "structured_minus_native_percentage_points": -27.50244140625,
+      "descriptive_interval_percentage_points": [
+        -28.685075326683428,
+        -26.319807485816572
+      ],
+      "predeclared_pilot_superiority_gate_passed": false
+    },
+    {
+      "key_dim": 8,
+      "recurrence": "gdn2",
+      "structured_minus_native_percentage_points": -26.123046875,
+      "descriptive_interval_percentage_points": [
+        -28.63591239928029,
+        -23.61018135071971
+      ],
+      "predeclared_pilot_superiority_gate_passed": false
+    }
+  ],
+  "equal_exposure_comparisons": [
+    {
+      "key_dim": 2,
+      "recurrence": "kda",
+      "seed_differences_percentage_points": [
+        -6.396484375,
+        -7.3974609375,
+        -7.2998046875
+      ],
+      "common_steps_by_seed": [
+        1000,
+        1000,
+        500
+      ],
+      "mean_difference_percentage_points": -7.03125
+    },
+    {
+      "key_dim": 2,
+      "recurrence": "gdn2",
+      "seed_differences_percentage_points": [
+        -2.62451171875,
+        -3.03955078125,
+        -1.15966796875
+      ],
+      "common_steps_by_seed": [
+        1000,
+        1000,
+        500
+      ],
+      "mean_difference_percentage_points": -2.274576822916667
+    },
+    {
+      "key_dim": 8,
+      "recurrence": "kda",
+      "seed_differences_percentage_points": [
+        -28.25927734375,
+        -28.33251953125,
+        -29.13818359375
+      ],
+      "common_steps_by_seed": [
+        1000,
+        1000,
+        1000
+      ],
+      "mean_difference_percentage_points": -28.57666015625
+    },
+    {
+      "key_dim": 8,
+      "recurrence": "gdn2",
+      "seed_differences_percentage_points": [
+        -24.70703125,
+        -25.634765625,
+        -26.513671875
+      ],
+      "common_steps_by_seed": [
+        1000,
+        1000,
+        1000
+      ],
+      "mean_difference_percentage_points": -25.618489583333332
+    }
+  ],
+  "memory": {
+    "state_bytes_exact": 14400,
+    "parameter_byte_cap": 131072,
+    "actual_parameter_byte_min": 129324,
+    "actual_parameter_byte_max": 130744,
+    "training_activation_peak_matched": false
+  },
+  "table": [
+    {
+      "key_dim": 2,
+      "kind": "learned_kda",
+      "primary_accuracy_percent": 75.9765625,
+      "recall_16_percent": 78.09244791666666,
+      "overwrite_16_percent": 73.86067708333334,
+      "recall_64_percent": 42.02067057291667,
+      "distractors_16_percent": 31.494140625,
+      "train_cpu_ms_per_step": 22.526367618248962,
+      "episode_16_cpu_ms": 1.2279999999975644,
+      "parameters": 32686,
+      "state_bytes": 14400
+    },
+    {
+      "key_dim": 2,
+      "kind": "structured_kda",
+      "primary_accuracy_percent": 67.76936848958334,
+      "recall_16_percent": 69.91373697916666,
+      "overwrite_16_percent": 65.625,
+      "recall_64_percent": 34.16341145833333,
+      "distractors_16_percent": 24.454752604166664,
+      "train_cpu_ms_per_step": 23.444148043569584,
+      "episode_16_cpu_ms": 1.7670000000009622,
+      "parameters": 32568,
+      "state_bytes": 14400
+    },
+    {
+      "key_dim": 2,
+      "kind": "learned_gdn2",
+      "primary_accuracy_percent": 70.43050130208334,
+      "recall_16_percent": 75.57779947916666,
+      "overwrite_16_percent": 65.283203125,
+      "recall_64_percent": 36.94051106770833,
+      "distractors_16_percent": 34.38313802083333,
+      "train_cpu_ms_per_step": 27.70350996381338,
+      "episode_16_cpu_ms": 1.5420000000290202,
+      "parameters": 32454,
+      "state_bytes": 14400
+    },
+    {
+      "key_dim": 2,
+      "kind": "structured_gdn2",
+      "primary_accuracy_percent": 68.5791015625,
+      "recall_16_percent": 72.61555989583334,
+      "overwrite_16_percent": 64.54264322916666,
+      "recall_64_percent": 34.35872395833333,
+      "distractors_16_percent": 31.315104166666668,
+      "train_cpu_ms_per_step": 29.38880820290911,
+      "episode_16_cpu_ms": 1.783999999986463,
+      "parameters": 32496,
+      "state_bytes": 14400
+    },
+    {
+      "key_dim": 8,
+      "kind": "learned_kda",
+      "primary_accuracy_percent": 98.14453125,
+      "recall_16_percent": 98.5595703125,
+      "overwrite_16_percent": 97.7294921875,
+      "recall_64_percent": 84.65169270833334,
+      "distractors_16_percent": 81.48600260416666,
+      "train_cpu_ms_per_step": 21.25220854740084,
+      "episode_16_cpu_ms": 1.1729999999943175,
+      "parameters": 32604,
+      "state_bytes": 14400
+    },
+    {
+      "key_dim": 8,
+      "kind": "structured_kda",
+      "primary_accuracy_percent": 70.64208984375,
+      "recall_16_percent": 73.81184895833334,
+      "overwrite_16_percent": 67.47233072916666,
+      "recall_64_percent": 37.005615234375,
+      "distractors_16_percent": 26.334635416666668,
+      "train_cpu_ms_per_step": 23.703276642089133,
+      "episode_16_cpu_ms": 1.606000000037966,
+      "parameters": 32601,
+      "state_bytes": 14400
+    },
+    {
+      "key_dim": 8,
+      "kind": "learned_gdn2",
+      "primary_accuracy_percent": 97.2412109375,
+      "recall_16_percent": 98.47005208333334,
+      "overwrite_16_percent": 96.01236979166666,
+      "recall_64_percent": 82.19401041666666,
+      "distractors_16_percent": 79.28059895833334,
+      "train_cpu_ms_per_step": 26.063853750210228,
+      "episode_16_cpu_ms": 1.4830000000074506,
+      "parameters": 32664,
+      "state_bytes": 14400
+    },
+    {
+      "key_dim": 8,
+      "kind": "structured_gdn2",
+      "primary_accuracy_percent": 71.1181640625,
+      "recall_16_percent": 76.220703125,
+      "overwrite_16_percent": 66.015625,
+      "recall_64_percent": 37.30875651041667,
+      "distractors_16_percent": 33.38216145833333,
+      "train_cpu_ms_per_step": 28.981278416130205,
+      "episode_16_cpu_ms": 1.610000000027867,
+      "parameters": 32331,
+      "state_bytes": 14400
+    }
+  ],
+  "statistics_limit": "Three training seeds, fixed shared test episodes, descriptive t intervals; no multiple-comparison-adjusted confirmatory significance or general architecture superiority claim.",
+  "sources_sha256": {
+    "results/benchmarks/learned_recall_v2/implementation_checks.json": "b33ee4532fd728660d0403e9fd998c3348babde98372a959b0404571ccaccc19",
+    "results/benchmarks/learned_recall_v2/protocol.json": "12a8216cf55e09ba51e478ce58c8359c6940fd169f51b0b17a45f9583c6c44fb",
+    "results/benchmarks/learned_recall_v2/run_d2_learned_gdn2_s11.json": "e9560e80dc4960a8dd8c3e9f805c9083876a6f2d95165d2c9b3ffd111a3cb539",
+    "results/benchmarks/learned_recall_v2/run_d2_learned_gdn2_s23.json": "9638f58eb7009ba41f7bd4c0c20e3ef03064ee5139be82eea7164517f30d1d90",
+    "results/benchmarks/learned_recall_v2/run_d2_learned_gdn2_s37.json": "a90b8c5c5c185391b38f6591a79d86425b4b557f1b99f7add2fda5c5ed0cc197",
+    "results/benchmarks/learned_recall_v2/run_d2_learned_kda_s11.json": "673c1f95dae10bb3e6c3610dd59df3986a9a31e0e199129b9eb02f1032eb559d",
+    "results/benchmarks/learned_recall_v2/run_d2_learned_kda_s23.json": "4a9b077d465ba847c0a5fb5397483cbf1431a648dce9eb4b80db627fa4981b58",
+    "results/benchmarks/learned_recall_v2/run_d2_learned_kda_s37.json": "17151b9c70f25866a26e08ea7e6b3b738332ad8a7659bdfaf891b6466c70fa4d",
+    "results/benchmarks/learned_recall_v2/run_d2_structured_gdn2_s11.json": "937a1c68721e6ea3996c971f9f85d0128074d2a31360d2b2e3f0d6ab756bebfd",
+    "results/benchmarks/learned_recall_v2/run_d2_structured_gdn2_s23.json": "b5331179852e9983810a33734aa696ff91bc08e11799b6e7e3be23e5bca9c228",
+    "results/benchmarks/learned_recall_v2/run_d2_structured_gdn2_s37.json": "3475cbd27bbbe7ffc8a562ccff94ef193ea1ce525ca5485ff96388a5c84e2626",
+    "results/benchmarks/learned_recall_v2/run_d2_structured_kda_s11.json": "473382ad8c7387d0479690eb497f09dc53271828c05fc450e5ce2175056c50b4",
+    "results/benchmarks/learned_recall_v2/run_d2_structured_kda_s23.json": "3593f6fde28349060b92dfb865b7eabb74355cee0c79e619db5bc76861f1c4e8",
+    "results/benchmarks/learned_recall_v2/run_d2_structured_kda_s37.json": "6b4c281c122ce012875a1414818827edae086c075fbddd93ee550d663df18e94",
+    "results/benchmarks/learned_recall_v2/run_d8_learned_gdn2_s11.json": "f4a70f22c0642e913e7ddcf4824753bf81b179b30f9d6b837becd7042ade4883",
+    "results/benchmarks/learned_recall_v2/run_d8_learned_gdn2_s23.json": "c1ae2834415f0ad9c7b41350de327ec36fc79ab467ff842fb5b1dd485fb13fa4",
+    "results/benchmarks/learned_recall_v2/run_d8_learned_gdn2_s37.json": "4dc4fd0357844f3e29e6832bbfe44b671cd3696f7c196bab74b290d1eca66353",
+    "results/benchmarks/learned_recall_v2/run_d8_learned_kda_s11.json": "d80df46eed57ef043ff58aafc4fb7c72effb88649ecabc49a083062cb9426f29",
+    "results/benchmarks/learned_recall_v2/run_d8_learned_kda_s23.json": "7ef79ee71c58241238b4c849758ec553f1257437531d0d386a472265ca70027b",
+    "results/benchmarks/learned_recall_v2/run_d8_learned_kda_s37.json": "6b8f8879f35293afe70cee7c1f76fdc447e599b6ace65ef48d7e1dcead901f93",
+    "results/benchmarks/learned_recall_v2/run_d8_structured_gdn2_s11.json": "384ce4bfd1ca2608abd4c75caaa6ece3075591858d22b747fbbe246a2ea583dd",
+    "results/benchmarks/learned_recall_v2/run_d8_structured_gdn2_s23.json": "92219cd40e16e5c3b5b6eedc545a4e2f9eb161067ca3a392441baabfe47b9902",
+    "results/benchmarks/learned_recall_v2/run_d8_structured_gdn2_s37.json": "fb8ade621edd5bcfb170815b2ed5b629c1bdafd7713d7ad9dbfe60b915967646",
+    "results/benchmarks/learned_recall_v2/run_d8_structured_kda_s11.json": "30f27cad8b98f1116b1f6da0e8134ef9a5f596dd22665693cd5365d4a696689f",
+    "results/benchmarks/learned_recall_v2/run_d8_structured_kda_s23.json": "20b0cf820a76d069fb10f7fd4861bab74a7ee05d1cc8c9f68e17607c6a2a098a",
+    "results/benchmarks/learned_recall_v2/run_d8_structured_kda_s37.json": "50226397c9dd82eae9d893765925d087bb30f7a4e995e40bb3badfbc2785342f",
+    "results/benchmarks/learned_recall_v2/self_checks.json": "bb940d366aaa2ec6fa040be866fadfd27a43157f9a6f2b8b5b0b869fff16d49c",
+    "results/benchmarks/learned_recall_v2/summary.json": "850d9b044347ad1bb3c3600e466df9ca73ef4f8efb18a6d2eef4c369f53ea0a9",
+    "results/benchmarks/learned_recall_v2/tune_d2_learned_gdn2.json": "921bc501709e1834eb30dee7df00b2512fe48ec624164cfae670a8fa6298a5ca",
+    "results/benchmarks/learned_recall_v2/tune_d2_learned_kda.json": "f4a2d676293be735d582f417b6e9fc7d967e5efc74d87a8cc96d896097775ed8",
+    "results/benchmarks/learned_recall_v2/tune_d2_structured_gdn2.json": "d3e20a7ef49040e31f78450dbe06ac4995130a066695a6fdb8ac0939388c637f",
+    "results/benchmarks/learned_recall_v2/tune_d2_structured_kda.json": "4db188ee724d687dc7895ed98166ecfa1e643b32fc84a8eeec356b2887e32b64",
+    "results/benchmarks/learned_recall_v2/tune_d8_learned_gdn2.json": "d8af1dd43276abb7c2dd3ad6b411778f0b5b49daf9346dc2f98feb12cafb1c10",
+    "results/benchmarks/learned_recall_v2/tune_d8_learned_kda.json": "ef416cb6ffa4d6473a3d75d7c857c362db8181058c5a744342a65944e3af45c1",
+    "results/benchmarks/learned_recall_v2/tune_d8_structured_gdn2.json": "8e9c587f4a6bda17fdd7e9e79705358b129d934a93726b75c701c5c14b32ad62",
+    "results/benchmarks/learned_recall_v2/tune_d8_structured_kda.json": "6a220f6a167f99728380d0917148bb65b747b736bce189df87cc32509c6f0ac6"
+  }
+}

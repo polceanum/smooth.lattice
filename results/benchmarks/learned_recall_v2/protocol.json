@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "command": "python3 scripts/run_learned_recall.py run --output results/benchmarks/learned_recall_v2 --seconds 30 --tune-seconds 10 --key-dims 2 8 --seeds 11 23 37 --learning-rates 0.001 0.003 --eval-batches 8 --ram-bytes 17179869184",
+  "scope": "CPU float32, one-layer explicit-write/read memory blocks. Native published recurrences with a common small encoder; not full Kimi Linear/GDN-2 models, official Zoology MQAR, fused kernels or GPU throughput.",
+  "models": [
+    "learned_kda",
+    "structured_kda",
+    "learned_gdn2",
+    "structured_gdn2"
+  ],
+  "key_dimensions": [
+    2,
+    8
+  ],
+  "seeds": [
+    11,
+    23,
+    37
+  ],
+  "config": {
+    "key_dim": 8,
+    "latent_dim": 2,
+    "degree": 7,
+    "value_dim": 16,
+    "parameter_target": 32768,
+    "batch_size": 24,
+    "train_pairs": [
+      4,
+      8,
+      16
+    ]
+  },
+  "learning_rates": [
+    0.001,
+    0.003
+  ],
+  "feature_encoders": "Shared query/key tanh trunk. Native: SiLU on the final M-feature projection followed by L2 normalization, avoiding a linear hidden-rank bottleneck. Structured: bounded tanh latent projection, learned positive polynomial coefficients, exact degree-two collected features and L2 normalization. No persistent index/basis buffers.",
+  "preflight_correction": "Discarded a linear-head native baseline before any main test run; restarted all tuning with the nonlinear head. Final test data were not used to make that correction.",
+  "tuning_seed": 101,
+  "tuning_cpu_seconds_per_trial": 10.0,
+  "training_cpu_seconds_per_run": 30.0,
+  "evaluation_batches_per_case": 8,
+  "matching": {
+    "recurrent_state": "Exactly 225*16 float32 scalars = 14400 bytes per episode for all four blocks; encoder/gates/optimizer/activations reported separately.",
+    "parameters": "Common cap of 32768 active float32 parameters (128 KiB), largest fitting hidden width, within 2.5% of cap; no persistent basis/index buffers or unused padding. Optimizer state scales with actual parameter count.",
+    "training_cost": "Primary: equal process CPU seconds, one intra-op/inter-op thread. Includes synthetic batch generation, feature/coefficient preparation, all forward/backward, clipping and AdamW; excludes evaluation/checkpoint I/O. One final step may overshoot; actual times reported.",
+    "secondary": "Same-seed data-stream prefix at the largest predeclared common step milestone reached by every block. Equal examples, not a compute-equivalence claim. Peak training activation/RSS memory is not matched or claimed equal.",
+    "tuning": "Equal two-learning-rate CPU budget per architecture and key dimension, separate seed and validation keys; select on mean recall_16/overwrite_16 accuracy. Never select on final test data."
+  },
+  "task": {
+    "keys": "Independent Gaussian vectors normalized to unit length, fresh each episode. Query keys equal stored keys. Values are independent uniform 16-way classes encoded one-hot.",
+    "training": "Uniform 4/8/16 target associations; independently 25% episodes add pairs/2 overwrites and 25% add pairs/2 unrelated writes. All target keys queried in shuffled order after writes; query events do not alter memory.",
+    "test": {
+      "recall_8": [
+        8,
+        0,
+        0
+      ],
+      "recall_16": [
+        16,
+        0,
+        0
+      ],
+      "recall_32": [
+        32,
+        0,
+        0
+      ],
+      "recall_64": [
+        64,
+        0,
+        0
+      ],
+      "overwrite_16": [
+        16,
+        8,
+        0
+      ],
+      "overwrite_32": [
+        32,
+        16,
+        0
+      ],
+      "distractors_16": [
+        16,
+        0,
+        32
+      ]
+    },
+    "chance_accuracy": 0.0625,
+    "primary_test_score": "Unweighted mean of recall_16 and overwrite_16 accuracy, same fixed held-out episodes across models and seeds.",
+    "limitations": "Explicit episode boundaries, write/read masks, one-hot values and shared query/key encoder simplify the task. Synthetic diagnostic only; no natural-language generalization claim."
+  },
+  "decision_rule": {
+    "advantage": "Require positive paired primary-score differences in every training seed and a positive descriptive paired 95% t interval; also inspect overwrite/longer-context behavior and measured end-to-end cost. Three seeds only supports a pilot conclusion.",
+    "negative": "If matched-state learned features win reliably, record no advantage for this tested structured family, preserve results, and do not justify custom kernels from state counts."
+  },
+  "primary_recurrence_sources": [
+    "https://arxiv.org/html/2510.26692v2#S3",
+    "https://arxiv.org/html/2605.22791v1#S3.SS1"
+  ],
+  "runtime": {
+    "python": "3.12.14",
+    "pytorch": "2.2.2",
+    "numpy": "1.26.4",
+    "system": "Darwin",
+    "machine": "x86_64",
+    "device": "cpu",
+    "threads": 1,
+    "compiler_flags": "Prebuilt PyTorch CPU wheel; no custom compiled kernel",
+    "ram_bytes": 17179869184
+  },
+  "script_sha256": "0b9696d81c19e50029f28b29fa830578711f6e9996de037161299a66b1c9e5ef"
+}
