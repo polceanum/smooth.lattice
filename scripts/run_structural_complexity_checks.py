@@ -5009,6 +5009,110 @@ def algebraic_attention_mixing_controls():
             "normalized_output_checks": sum(x["normalized_output_checks"] for x in fixtures)}
 
 
+def bounded_grid_shadow_controls(residual_duality):
+    """Cover-sensitive bound inputs, residual duality and border budgets.
+
+    Exact finite controls support the note's uniform proof. No finite-value
+    comparison of asymptotic big-O constants or new duality theorem is claimed.
+    """
+    def heads(staircase, d):
+        if not staircase:
+            return {(0,) * d}
+        border = {tuple(x + int(i == j) for j, x in enumerate(a))
+                  for a in staircase for i in range(d)} - staircase
+        return {a for a in border if all(tuple(x - int(i == j) for j, x in enumerate(a)) in staircase
+                                        for i in range(d) if a[i])}
+
+    def ground(sides, length):
+        return {a for a in product(*(range(s) for s in sides)) if prod(x + 1 for x in a) <= length}
+
+    box_records = []
+    for sides in ((3, 3), (2, 2, 2), (2, 3, 2), (2, 2, 2, 2)):
+        d = len(sides)
+        box = list(product(*(range(s) for s in sides)))
+        index = {a: j for j, a in enumerate(box)}
+        predecessors = [sum(1 << index[tuple(x - int(i == j) for j, x in enumerate(a))]
+                            for i in range(d) if a[i]) for a in box]
+        count, max_inside, samples = 0, 0, []
+        for mask in range(1 << len(box)):
+            if any(mask >> j & 1 and mask & pred != pred for j, pred in enumerate(predecessors)):
+                continue
+            staircase = {a for j, a in enumerate(box) if mask >> j & 1}
+            residual = {tuple(s - 1 - x for s, x in zip(sides, a)) for a in set(box) - staircase}
+            colon_standard = {a for a in box if any(all(x + y < s for x, y, s in zip(a, b, sides))
+                                                   for b in set(box) - staircase)}
+            require(residual == colon_standard, "independent monomial product oracle gives reflected residual")
+            generators = heads(staircase, d)
+            inside = {a for a in generators if all(x < s for x, s in zip(a, sides))}
+            outside = generators - inside
+            pure_powers = {tuple(sides[i] if i == j else 0 for j in range(d)) for i in range(d)}
+            require(outside <= pure_powers and len(inside) <= len(box) - len(staircase),
+                    "minimal heads split into residual-box monomials and pure powers")
+            require(len(generators) <= len(box) - len(staircase) + d, "residual generator budget")
+            for state in (staircase, residual):
+                require(state <= ground(sides, len(state)), "every box staircase lies in the capped universal ground")
+            count += 1
+            max_inside = max(max_inside, len(inside))
+            if 0 < len(box) - len(staircase) <= 2 and len(samples) < 2:
+                samples.append({"length": len(staircase), "residual_length": len(residual),
+                                "staircase": sorted(staircase), "minimal_heads": sorted(generators)})
+        box_records.append({"sides": sides, "staircases_checked": count,
+                            "maximum_inside_heads": max_inside, "near_full_samples": samples})
+
+    quotient_records, quotient_chambers = [], 0
+    for fixture in residual_duality["fixtures"]:
+        sides = tuple(len(p) - 1 for p in fixture["univariate_moduli"])
+        child, other = fixture["child_length"], fixture["residual_length"]
+        length = min(child, other)
+        chosen = "child_standard_monomials" if child <= other else "residual_standard_monomials"
+        domain = ground(sides, length)
+        caps = tuple(min(s - 1, length - 1) for s in sides)
+        widths = tuple(length * p + 1 for p in caps)
+        surface_budget = sum(prod(widths[j] for j in range(len(sides)) if j != i)
+                             for i in range(len(sides)))
+        max_heads = 0
+        for chamber in fixture["all_comparison_chamber_checks"]:
+            state = set(map(tuple, chamber[chosen]))
+            require(len(state) == length and state <= domain, "actual reduced or nonreduced smaller quotient uses capped ground")
+            require(all(sum(a[i] for a in state) <= length * caps[i] for i in range(len(sides))),
+                    "actual smaller quotient obeys the integer coordinate budget")
+            original = set(map(tuple, chamber["child_standard_monomials"]))
+            k = len(heads(original, len(sides)))
+            require(k <= prod(sides) - child + len(sides), "actual quotient obeys the residual border bound")
+            max_heads = max(max_heads, k)
+            quotient_chambers += 1
+        quotient_records.append({"label": fixture["label"], "characteristic": fixture["characteristic"],
+                                 "degrees": sides, "original_length": child, "residual_length": other,
+                                 "smaller_length": length, "capped_ground_size": len(domain),
+                                 "coordinate_caps": caps, "regularized_side_lengths": widths,
+                                 "half_surface_budget": surface_budget, "maximum_original_minimal_heads": max_heads})
+
+    exponents = []
+    for d in range(3, 33):
+        D = d * d - d - 1
+        alpha, beta = Fraction(d * (d - 2), D), Fraction(d - 1, D)
+        old_power = Fraction(d * (d - 1), d + 1)
+        threshold = Fraction(3 * d, d + 4)
+        records = []
+        for gamma in (Fraction(1), (1 + threshold) / 2, threshold, (threshold + d) / 2):
+            new = (gamma + 1) * (d - 1) * alpha + Fraction(4, 3) * gamma * beta
+            old = (gamma + 1) * old_power
+            gap = Fraction(d - 1, 3 * (d + 1) * D) * (3 * d - gamma * (d + 4))
+            require(old - new == gap, "exact crossover against the named finite-field upper-bound expression")
+            require((gap > 0) == (gamma < threshold), "strict power improvement only in its stated range")
+            records.append({"smaller_length_power_of_field_order": str(gamma), "new_power": str(new),
+                            "published_expression_power": str(old), "power_gap": str(gap)})
+        exponents.append({"dimension": d, "strict_crossover": str(threshold), "samples": records})
+    return {"scope": "Uniform cover-sensitive consequence of the lattice-shadow bound and established grid residual duality, over every field including nonreduced separated parents. The original unrestricted objective is retained; no new duality or numerical finite-size dominance is asserted.",
+            "parameters": "Q=product b_i, h=min(n,Q-n)>0, p_i=min(b_i-1,h-1), M=#{u:0<=u_i<b_i,product(u_i+1)<=h}, A=sum_i product_(j!=i)(h*p_j+1).",
+            "count_bound": "g(I)<=O_d(A^(d(d-2)/(d^2-d-1))*(M*h^(1/3)+1)^((d-1)/(d^2-d-1))).",
+            "generator_consequence": "Each reduced basis has at most Q-n+d elements, as well as the classical O_d(n^((d-1)/d)) bound. Multiply the smaller generator budget by the count bound for the union.",
+            "box_controls": box_records, "actual_quotient_controls": quotient_records,
+            "finite_field_crossover_controls": exponents,
+            "box_staircases_checked": sum(f["staircases_checked"] for f in box_records),
+            "actual_quotient_chambers_checked": quotient_chambers}
+
+
 def lattice_shadow_sharpness_controls():
     """Finite certificates for the uniform primitive-zonotope sharpness proof.
 
@@ -5507,6 +5611,7 @@ def main():
     channel_gates = algebraic_channel_gate_controls()
     lattice_shadows = lattice_shadow_controls()
     shadow_sharpness = lattice_shadow_sharpness_controls()
+    bounded_grids = bounded_grid_shadow_controls(residual_duality)
     staircase_generators = staircase_generator_controls()
     exchange_cycles = exchange_cycle_coherence_controls()
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
@@ -5613,6 +5718,7 @@ def main():
         "algebraic_channel_gate_control": channel_gates,
         "lattice_shadow_control": lattice_shadows,
         "lattice_shadow_sharpness_control": shadow_sharpness,
+        "bounded_grid_shadow_control": bounded_grids,
         "staircase_generator_control": staircase_generators,
         "exchange_cycle_coherence_control": exchange_cycles,
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
@@ -5744,6 +5850,8 @@ def main():
                     "lattice_shadow_exponent_controls": len(lattice_shadows["exponent_controls"]),
                     "lattice_shadow_sharpness_support_vertices": shadow_sharpness["support_vertices_checked"],
                     "lattice_shadow_sharpness_box_tuples": shadow_sharpness["primitive_box_tuples_checked"],
+                    "bounded_grid_shadow_staircases": bounded_grids["box_staircases_checked"],
+                    "bounded_grid_shadow_quotient_chambers": bounded_grids["actual_quotient_chambers_checked"],
                     "staircase_generator_staircases_checked": staircase_generators["staircases_checked"],
                     "staircase_generator_minimal_generators_checked": staircase_generators["minimal_generators_checked"],
                     "exchange_cycle_rank_two_contractions": sum(x["invertible_new_pairs"] for x in exchange_cycles["rank_two_contractions"]),

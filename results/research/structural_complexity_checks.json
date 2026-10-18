@@ -3,8 +3,8 @@
   "command": "python3 -B scripts/run_structural_complexity_checks.py",
   "scope": "Bounded exact checks of route obstructions and a conditional counting lemma; no unrestricted asymptotic advance or novelty assertion.",
   "source_sha256": {
-    "scripts/run_structural_complexity_checks.py": "b60c4cd89e27804438590d9e5368f9969397aac0b55922c0b3e09973ecfd4aff",
-    "docs/interleaving_research.md": "59710aa1cc40ba9e5b025aef9b1d33b3792f5020ea627f8f7ad7e7685e5ebc83"
+    "scripts/run_structural_complexity_checks.py": "759cb47442a63c91acdb08064c4a6c2d033d085f4713cf30f8ca8a87474b5788",
+    "docs/interleaving_research.md": "99d7f5a4d3e9c6d4254f622c5018ff9c84be370ba06084ca309c0dd67ae7cf8f"
   },
   "volume_obstruction": {
     "scope": "Exact determinant controls for an infinite symbolic construction; the uniform proof is in the research note.",
@@ -484690,6 +484690,1876 @@
     "support_vertices_checked": 12288,
     "primitive_box_tuples_checked": 4160
   },
+  "bounded_grid_shadow_control": {
+    "scope": "Uniform cover-sensitive consequence of the lattice-shadow bound and established grid residual duality, over every field including nonreduced separated parents. The original unrestricted objective is retained; no new duality or numerical finite-size dominance is asserted.",
+    "parameters": "Q=product b_i, h=min(n,Q-n)>0, p_i=min(b_i-1,h-1), M=#{u:0<=u_i<b_i,product(u_i+1)<=h}, A=sum_i product_(j!=i)(h*p_j+1).",
+    "count_bound": "g(I)<=O_d(A^(d(d-2)/(d^2-d-1))*(M*h^(1/3)+1)^((d-1)/(d^2-d-1))).",
+    "generator_consequence": "Each reduced basis has at most Q-n+d elements, as well as the classical O_d(n^((d-1)/d)) bound. Multiply the smaller generator budget by the count bound for the union.",
+    "box_controls": [
+      {
+        "sides": [
+          3,
+          3
+        ],
+        "staircases_checked": 20,
+        "maximum_inside_heads": 3,
+        "near_full_samples": [
+          {
+            "length": 7,
+            "residual_length": 2,
+            "staircase": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                0
+              ]
+            ],
+            "minimal_heads": [
+              [
+                0,
+                3
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                3,
+                0
+              ]
+            ]
+          },
+          {
+            "length": 7,
+            "residual_length": 2,
+            "staircase": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            "minimal_heads": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                0
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "sides": [
+          2,
+          2,
+          2
+        ],
+        "staircases_checked": 20,
+        "maximum_inside_heads": 3,
+        "near_full_samples": [
+          {
+            "length": 6,
+            "residual_length": 2,
+            "staircase": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ]
+            ],
+            "minimal_heads": [
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "length": 6,
+            "residual_length": 2,
+            "staircase": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "minimal_heads": [
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "sides": [
+          2,
+          3,
+          2
+        ],
+        "staircases_checked": 50,
+        "maximum_inside_heads": 4,
+        "near_full_samples": [
+          {
+            "length": 10,
+            "residual_length": 2,
+            "staircase": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ]
+            ],
+            "minimal_heads": [
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "length": 10,
+            "residual_length": 2,
+            "staircase": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ]
+            ],
+            "minimal_heads": [
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "sides": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "staircases_checked": 168,
+        "maximum_inside_heads": 6,
+        "near_full_samples": [
+          {
+            "length": 14,
+            "residual_length": 2,
+            "staircase": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0,
+                1
+              ]
+            ],
+            "minimal_heads": [
+              [
+                0,
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "length": 14,
+            "residual_length": 2,
+            "staircase": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                0
+              ]
+            ],
+            "minimal_heads": [
+              [
+                0,
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0,
+                1
+              ],
+              [
+                2,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "actual_quotient_controls": [
+      {
+        "label": "local_cube",
+        "characteristic": 0,
+        "degrees": [
+          2,
+          2,
+          2
+        ],
+        "original_length": 3,
+        "residual_length": 5,
+        "smaller_length": 3,
+        "capped_ground_size": 4,
+        "coordinate_caps": [
+          1,
+          1,
+          1
+        ],
+        "regularized_side_lengths": [
+          4,
+          4,
+          4
+        ],
+        "half_surface_budget": 48,
+        "maximum_original_minimal_heads": 4
+      },
+      {
+        "label": "local_cube",
+        "characteristic": 2,
+        "degrees": [
+          2,
+          2,
+          2
+        ],
+        "original_length": 4,
+        "residual_length": 4,
+        "smaller_length": 4,
+        "capped_ground_size": 7,
+        "coordinate_caps": [
+          1,
+          1,
+          1
+        ],
+        "regularized_side_lengths": [
+          5,
+          5,
+          5
+        ],
+        "half_surface_budget": 75,
+        "maximum_original_minimal_heads": 3
+      },
+      {
+        "label": "local_cube",
+        "characteristic": 3,
+        "degrees": [
+          2,
+          2,
+          2
+        ],
+        "original_length": 3,
+        "residual_length": 5,
+        "smaller_length": 3,
+        "capped_ground_size": 4,
+        "coordinate_caps": [
+          1,
+          1,
+          1
+        ],
+        "regularized_side_lengths": [
+          4,
+          4,
+          4
+        ],
+        "half_surface_budget": 48,
+        "maximum_original_minimal_heads": 4
+      },
+      {
+        "label": "local_cube",
+        "characteristic": 5,
+        "degrees": [
+          2,
+          2,
+          2
+        ],
+        "original_length": 3,
+        "residual_length": 5,
+        "smaller_length": 3,
+        "capped_ground_size": 4,
+        "coordinate_caps": [
+          1,
+          1,
+          1
+        ],
+        "regularized_side_lengths": [
+          4,
+          4,
+          4
+        ],
+        "half_surface_budget": 48,
+        "maximum_original_minimal_heads": 4
+      },
+      {
+        "label": "mixed_repeated_grid",
+        "characteristic": 0,
+        "degrees": [
+          2,
+          2,
+          2
+        ],
+        "original_length": 2,
+        "residual_length": 6,
+        "smaller_length": 2,
+        "capped_ground_size": 4,
+        "coordinate_caps": [
+          1,
+          1,
+          1
+        ],
+        "regularized_side_lengths": [
+          3,
+          3,
+          3
+        ],
+        "half_surface_budget": 27,
+        "maximum_original_minimal_heads": 3
+      },
+      {
+        "label": "mixed_repeated_grid",
+        "characteristic": 2,
+        "degrees": [
+          2,
+          2,
+          2
+        ],
+        "original_length": 2,
+        "residual_length": 6,
+        "smaller_length": 2,
+        "capped_ground_size": 4,
+        "coordinate_caps": [
+          1,
+          1,
+          1
+        ],
+        "regularized_side_lengths": [
+          3,
+          3,
+          3
+        ],
+        "half_surface_budget": 27,
+        "maximum_original_minimal_heads": 3
+      },
+      {
+        "label": "mixed_repeated_grid",
+        "characteristic": 3,
+        "degrees": [
+          2,
+          2,
+          2
+        ],
+        "original_length": 2,
+        "residual_length": 6,
+        "smaller_length": 2,
+        "capped_ground_size": 4,
+        "coordinate_caps": [
+          1,
+          1,
+          1
+        ],
+        "regularized_side_lengths": [
+          3,
+          3,
+          3
+        ],
+        "half_surface_budget": 27,
+        "maximum_original_minimal_heads": 3
+      },
+      {
+        "label": "mixed_repeated_grid",
+        "characteristic": 5,
+        "degrees": [
+          2,
+          2,
+          2
+        ],
+        "original_length": 2,
+        "residual_length": 6,
+        "smaller_length": 2,
+        "capped_ground_size": 4,
+        "coordinate_caps": [
+          1,
+          1,
+          1
+        ],
+        "regularized_side_lengths": [
+          3,
+          3,
+          3
+        ],
+        "half_surface_budget": 27,
+        "maximum_original_minimal_heads": 3
+      },
+      {
+        "label": "reduced_binary_grid",
+        "characteristic": 0,
+        "degrees": [
+          2,
+          2,
+          2
+        ],
+        "original_length": 3,
+        "residual_length": 5,
+        "smaller_length": 3,
+        "capped_ground_size": 4,
+        "coordinate_caps": [
+          1,
+          1,
+          1
+        ],
+        "regularized_side_lengths": [
+          4,
+          4,
+          4
+        ],
+        "half_surface_budget": 48,
+        "maximum_original_minimal_heads": 4
+      },
+      {
+        "label": "reduced_binary_grid",
+        "characteristic": 2,
+        "degrees": [
+          2,
+          2,
+          2
+        ],
+        "original_length": 4,
+        "residual_length": 4,
+        "smaller_length": 4,
+        "capped_ground_size": 7,
+        "coordinate_caps": [
+          1,
+          1,
+          1
+        ],
+        "regularized_side_lengths": [
+          5,
+          5,
+          5
+        ],
+        "half_surface_budget": 75,
+        "maximum_original_minimal_heads": 3
+      },
+      {
+        "label": "reduced_binary_grid",
+        "characteristic": 3,
+        "degrees": [
+          2,
+          2,
+          2
+        ],
+        "original_length": 3,
+        "residual_length": 5,
+        "smaller_length": 3,
+        "capped_ground_size": 4,
+        "coordinate_caps": [
+          1,
+          1,
+          1
+        ],
+        "regularized_side_lengths": [
+          4,
+          4,
+          4
+        ],
+        "half_surface_budget": 48,
+        "maximum_original_minimal_heads": 4
+      },
+      {
+        "label": "reduced_binary_grid",
+        "characteristic": 5,
+        "degrees": [
+          2,
+          2,
+          2
+        ],
+        "original_length": 3,
+        "residual_length": 5,
+        "smaller_length": 3,
+        "capped_ground_size": 4,
+        "coordinate_caps": [
+          1,
+          1,
+          1
+        ],
+        "regularized_side_lengths": [
+          4,
+          4,
+          4
+        ],
+        "half_surface_budget": 48,
+        "maximum_original_minimal_heads": 4
+      }
+    ],
+    "finite_field_crossover_controls": [
+      {
+        "dimension": 3,
+        "strict_crossover": "9/7",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "44/15",
+            "published_expression_power": "3",
+            "power_gap": "1/15"
+          },
+          {
+            "smaller_length_power_of_field_order": "8/7",
+            "new_power": "334/105",
+            "published_expression_power": "45/14",
+            "power_gap": "1/30"
+          },
+          {
+            "smaller_length_power_of_field_order": "9/7",
+            "new_power": "24/7",
+            "published_expression_power": "24/7",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "15/7",
+            "new_power": "172/35",
+            "published_expression_power": "33/7",
+            "power_gap": "-1/5"
+          }
+        ]
+      },
+      {
+        "dimension": 4,
+        "strict_crossover": "3/2",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "52/11",
+            "published_expression_power": "24/5",
+            "power_gap": "4/55"
+          },
+          {
+            "smaller_length_power_of_field_order": "5/4",
+            "new_power": "59/11",
+            "published_expression_power": "27/5",
+            "power_gap": "2/55"
+          },
+          {
+            "smaller_length_power_of_field_order": "3/2",
+            "new_power": "6",
+            "published_expression_power": "6",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "11/4",
+            "new_power": "101/11",
+            "published_expression_power": "9",
+            "power_gap": "-2/11"
+          }
+        ]
+      },
+      {
+        "dimension": 5,
+        "strict_crossover": "5/3",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "376/57",
+            "published_expression_power": "20/3",
+            "power_gap": "4/57"
+          },
+          {
+            "smaller_length_power_of_field_order": "4/3",
+            "new_power": "1324/171",
+            "published_expression_power": "70/9",
+            "power_gap": "2/57"
+          },
+          {
+            "smaller_length_power_of_field_order": "5/3",
+            "new_power": "80/9",
+            "published_expression_power": "80/9",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "10/3",
+            "new_power": "2500/171",
+            "published_expression_power": "130/9",
+            "power_gap": "-10/57"
+          }
+        ]
+      },
+      {
+        "dimension": 6,
+        "strict_crossover": "9/5",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "740/87",
+            "published_expression_power": "60/7",
+            "power_gap": "40/609"
+          },
+          {
+            "smaller_length_power_of_field_order": "7/5",
+            "new_power": "892/87",
+            "published_expression_power": "72/7",
+            "power_gap": "20/609"
+          },
+          {
+            "smaller_length_power_of_field_order": "9/5",
+            "new_power": "12",
+            "published_expression_power": "12",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "39/10",
+            "new_power": "614/29",
+            "published_expression_power": "21",
+            "power_gap": "-5/29"
+          }
+        ]
+      },
+      {
+        "dimension": 7,
+        "strict_crossover": "21/11",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "428/41",
+            "published_expression_power": "21/2",
+            "power_gap": "5/82"
+          },
+          {
+            "smaller_length_power_of_field_order": "16/11",
+            "new_power": "5798/451",
+            "published_expression_power": "567/44",
+            "power_gap": "5/164"
+          },
+          {
+            "smaller_length_power_of_field_order": "21/11",
+            "new_power": "168/11",
+            "published_expression_power": "168/11",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "49/11",
+            "new_power": "12992/451",
+            "published_expression_power": "315/11",
+            "power_gap": "-7/41"
+          }
+        ]
+      },
+      {
+        "dimension": 8,
+        "strict_crossover": "2",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "2044/165",
+            "published_expression_power": "112/9",
+            "power_gap": "28/495"
+          },
+          {
+            "smaller_length_power_of_field_order": "3/2",
+            "new_power": "854/55",
+            "published_expression_power": "140/9",
+            "power_gap": "14/495"
+          },
+          {
+            "smaller_length_power_of_field_order": "2",
+            "new_power": "56/3",
+            "published_expression_power": "56/3",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "5",
+            "new_power": "6188/165",
+            "published_expression_power": "112/3",
+            "power_gap": "-28/165"
+          }
+        ]
+      },
+      {
+        "dimension": 9,
+        "strict_crossover": "27/13",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "3056/213",
+            "published_expression_power": "72/5",
+            "power_gap": "56/1065"
+          },
+          {
+            "smaller_length_power_of_field_order": "20/13",
+            "new_power": "50536/2769",
+            "published_expression_power": "1188/65",
+            "power_gap": "28/1065"
+          },
+          {
+            "smaller_length_power_of_field_order": "27/13",
+            "new_power": "288/13",
+            "published_expression_power": "288/13",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "72/13",
+            "new_power": "43608/923",
+            "published_expression_power": "612/13",
+            "power_gap": "-12/71"
+          }
+        ]
+      },
+      {
+        "dimension": 10,
+        "strict_crossover": "15/7",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "1452/89",
+            "published_expression_power": "180/11",
+            "power_gap": "48/979"
+          },
+          {
+            "smaller_length_power_of_field_order": "11/7",
+            "new_power": "13092/623",
+            "published_expression_power": "1620/77",
+            "power_gap": "24/979"
+          },
+          {
+            "smaller_length_power_of_field_order": "15/7",
+            "new_power": "180/7",
+            "published_expression_power": "180/7",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "85/14",
+            "new_power": "36150/623",
+            "published_expression_power": "405/7",
+            "power_gap": "-15/89"
+          }
+        ]
+      },
+      {
+        "dimension": 11,
+        "strict_crossover": "11/5",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "5980/327",
+            "published_expression_power": "55/3",
+            "power_gap": "5/109"
+          },
+          {
+            "smaller_length_power_of_field_order": "8/5",
+            "new_power": "7786/327",
+            "published_expression_power": "143/6",
+            "power_gap": "5/218"
+          },
+          {
+            "smaller_length_power_of_field_order": "11/5",
+            "new_power": "88/3",
+            "published_expression_power": "88/3",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "33/5",
+            "new_power": "7612/109",
+            "published_expression_power": "209/3",
+            "power_gap": "-55/327"
+          }
+        ]
+      },
+      {
+        "dimension": 12,
+        "strict_crossover": "9/4",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "7964/393",
+            "published_expression_power": "264/13",
+            "power_gap": "220/5109"
+          },
+          {
+            "smaller_length_power_of_field_order": "13/8",
+            "new_power": "20933/786",
+            "published_expression_power": "693/26",
+            "power_gap": "110/5109"
+          },
+          {
+            "smaller_length_power_of_field_order": "9/4",
+            "new_power": "33",
+            "published_expression_power": "33",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "57/8",
+            "new_power": "21659/262",
+            "published_expression_power": "165/2",
+            "power_gap": "-22/131"
+          }
+        ]
+      },
+      {
+        "dimension": 13,
+        "strict_crossover": "39/17",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "3448/155",
+            "published_expression_power": "156/7",
+            "power_gap": "44/1085"
+          },
+          {
+            "smaller_length_power_of_field_order": "28/17",
+            "new_power": "77668/2635",
+            "published_expression_power": "3510/119",
+            "power_gap": "22/1085"
+          },
+          {
+            "smaller_length_power_of_field_order": "39/17",
+            "new_power": "624/17",
+            "published_expression_power": "624/17",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "130/17",
+            "new_power": "254332/2635",
+            "published_expression_power": "1638/17",
+            "power_gap": "-26/155"
+          }
+        ]
+      },
+      {
+        "dimension": 14,
+        "strict_crossover": "7/3",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "13156/543",
+            "published_expression_power": "364/15",
+            "power_gap": "104/2715"
+          },
+          {
+            "smaller_length_power_of_field_order": "5/3",
+            "new_power": "52676/1629",
+            "published_expression_power": "1456/45",
+            "power_gap": "52/2715"
+          },
+          {
+            "smaller_length_power_of_field_order": "7/3",
+            "new_power": "364/9",
+            "published_expression_power": "364/9",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "49/6",
+            "new_power": "181454/1629",
+            "published_expression_power": "1001/9",
+            "power_gap": "-91/543"
+          }
+        ]
+      },
+      {
+        "dimension": 15,
+        "strict_crossover": "45/19",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "16436/627",
+            "published_expression_power": "105/4",
+            "power_gap": "91/2508"
+          },
+          {
+            "smaller_length_power_of_field_order": "32/19",
+            "new_power": "1162/33",
+            "published_expression_power": "5355/152",
+            "power_gap": "91/5016"
+          },
+          {
+            "smaller_length_power_of_field_order": "45/19",
+            "new_power": "840/19",
+            "published_expression_power": "840/19",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "165/19",
+            "new_power": "1400/11",
+            "published_expression_power": "2415/19",
+            "power_gap": "-35/209"
+          }
+        ]
+      },
+      {
+        "dimension": 16,
+        "strict_crossover": "12/5",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "6740/239",
+            "published_expression_power": "480/17",
+            "power_gap": "140/4063"
+          },
+          {
+            "smaller_length_power_of_field_order": "17/10",
+            "new_power": "9106/239",
+            "published_expression_power": "648/17",
+            "power_gap": "70/4063"
+          },
+          {
+            "smaller_length_power_of_field_order": "12/5",
+            "new_power": "48",
+            "published_expression_power": "48",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "46/5",
+            "new_power": "34456/239",
+            "published_expression_power": "144",
+            "power_gap": "-40/239"
+          }
+        ]
+      },
+      {
+        "dimension": 17,
+        "strict_crossover": "17/7",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "24544/813",
+            "published_expression_power": "272/9",
+            "power_gap": "80/2439"
+          },
+          {
+            "smaller_length_power_of_field_order": "12/7",
+            "new_power": "77776/1897",
+            "published_expression_power": "2584/63",
+            "power_gap": "40/2439"
+          },
+          {
+            "smaller_length_power_of_field_order": "17/7",
+            "new_power": "1088/21",
+            "published_expression_power": "1088/21",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "68/7",
+            "new_power": "922352/5691",
+            "published_expression_power": "3400/21",
+            "power_gap": "-136/813"
+          }
+        ]
+      },
+      {
+        "dimension": 18,
+        "strict_crossover": "27/11",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "29444/915",
+            "published_expression_power": "612/19",
+            "power_gap": "544/17385"
+          },
+          {
+            "smaller_length_power_of_field_order": "19/11",
+            "new_power": "441932/10065",
+            "published_expression_power": "9180/209",
+            "power_gap": "272/17385"
+          },
+          {
+            "smaller_length_power_of_field_order": "27/11",
+            "new_power": "612/11",
+            "published_expression_power": "612/11",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "225/22",
+            "new_power": "607206/3355",
+            "published_expression_power": "1989/11",
+            "power_gap": "-51/305"
+          }
+        ]
+      },
+      {
+        "dimension": 19,
+        "strict_crossover": "57/23",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "11652/341",
+            "published_expression_power": "171/5",
+            "power_gap": "51/1705"
+          },
+          {
+            "smaller_length_power_of_field_order": "40/23",
+            "new_power": "367242/7843",
+            "published_expression_power": "10773/230",
+            "power_gap": "51/3410"
+          },
+          {
+            "smaller_length_power_of_field_order": "57/23",
+            "new_power": "1368/23",
+            "published_expression_power": "1368/23",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "247/23",
+            "new_power": "1575708/7843",
+            "published_expression_power": "4617/23",
+            "power_gap": "-57/341"
+          }
+        ]
+      },
+      {
+        "dimension": 20,
+        "strict_crossover": "5/2",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "41116/1137",
+            "published_expression_power": "760/21",
+            "power_gap": "76/2653"
+          },
+          {
+            "smaller_length_power_of_field_order": "7/4",
+            "new_power": "56563/1137",
+            "published_expression_power": "1045/21",
+            "power_gap": "38/2653"
+          },
+          {
+            "smaller_length_power_of_field_order": "5/2",
+            "new_power": "190/3",
+            "published_expression_power": "190/3",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "45/4",
+            "new_power": "84075/379",
+            "published_expression_power": "665/3",
+            "power_gap": "-190/1137"
+          }
+        ]
+      },
+      {
+        "dimension": 21,
+        "strict_crossover": "63/25",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "47960/1257",
+            "published_expression_power": "420/11",
+            "power_gap": "380/13827"
+          },
+          {
+            "smaller_length_power_of_field_order": "44/25",
+            "new_power": "331076/6285",
+            "published_expression_power": "2898/55",
+            "power_gap": "190/13827"
+          },
+          {
+            "smaller_length_power_of_field_order": "63/25",
+            "new_power": "336/5",
+            "published_expression_power": "336/5",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "294/25",
+            "new_power": "510692/2095",
+            "published_expression_power": "1218/5",
+            "power_gap": "-70/419"
+          }
+        ]
+      },
+      {
+        "dimension": 22,
+        "strict_crossover": "33/13",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "18508/461",
+            "published_expression_power": "924/23",
+            "power_gap": "280/10603"
+          },
+          {
+            "smaller_length_power_of_field_order": "23/13",
+            "new_power": "333284/5993",
+            "published_expression_power": "16632/299",
+            "power_gap": "140/10603"
+          },
+          {
+            "smaller_length_power_of_field_order": "33/13",
+            "new_power": "924/13",
+            "published_expression_power": "924/13",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "319/26",
+            "new_power": "1598366/5993",
+            "published_expression_power": "3465/13",
+            "power_gap": "-77/461"
+          }
+        ]
+      },
+      {
+        "dimension": 23,
+        "strict_crossover": "23/9",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "63844/1515",
+            "published_expression_power": "253/6",
+            "power_gap": "77/3030"
+          },
+          {
+            "smaller_length_power_of_field_order": "16/9",
+            "new_power": "798358/13635",
+            "published_expression_power": "6325/108",
+            "power_gap": "77/6060"
+          },
+          {
+            "smaller_length_power_of_field_order": "23/9",
+            "new_power": "2024/27",
+            "published_expression_power": "2024/27",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "115/9",
+            "new_power": "3962992/13635",
+            "published_expression_power": "7843/27",
+            "power_gap": "-253/1515"
+          }
+        ]
+      },
+      {
+        "dimension": 24,
+        "strict_crossover": "18/7",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "72956/1653",
+            "published_expression_power": "1104/25",
+            "power_gap": "1012/41325"
+          },
+          {
+            "smaller_length_power_of_field_order": "25/14",
+            "new_power": "711574/11571",
+            "published_expression_power": "10764/175",
+            "power_gap": "506/41325"
+          },
+          {
+            "smaller_length_power_of_field_order": "18/7",
+            "new_power": "552/7",
+            "published_expression_power": "552/7",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "93/7",
+            "new_power": "1217252/3857",
+            "published_expression_power": "2208/7",
+            "power_gap": "-92/551"
+          }
+        ]
+      },
+      {
+        "dimension": 25,
+        "strict_crossover": "75/29",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "27632/599",
+            "published_expression_power": "600/13",
+            "power_gap": "184/7787"
+          },
+          {
+            "smaller_length_power_of_field_order": "52/29",
+            "new_power": "1119464/17371",
+            "published_expression_power": "24300/377",
+            "power_gap": "92/7787"
+          },
+          {
+            "smaller_length_power_of_field_order": "75/29",
+            "new_power": "2400/29",
+            "published_expression_power": "2400/29",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "400/29",
+            "new_power": "5933000/17371",
+            "published_expression_power": "9900/29",
+            "power_gap": "-100/599"
+          }
+        ]
+      },
+      {
+        "dimension": 26,
+        "strict_crossover": "13/5",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "93700/1947",
+            "published_expression_power": "1300/27",
+            "power_gap": "400/17523"
+          },
+          {
+            "smaller_length_power_of_field_order": "9/5",
+            "new_power": "43740/649",
+            "published_expression_power": "1820/27",
+            "power_gap": "200/17523"
+          },
+          {
+            "smaller_length_power_of_field_order": "13/5",
+            "new_power": "260/3",
+            "published_expression_power": "260/3",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "143/10",
+            "new_power": "717470/1947",
+            "published_expression_power": "1105/3",
+            "power_gap": "-325/1947"
+          }
+        ]
+      },
+      {
+        "dimension": 27,
+        "strict_crossover": "81/31",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "105404/2103",
+            "published_expression_power": "351/7",
+            "power_gap": "325/14721"
+          },
+          {
+            "smaller_length_power_of_field_order": "56/31",
+            "new_power": "4586374/65193",
+            "published_expression_power": "30537/434",
+            "power_gap": "325/29442"
+          },
+          {
+            "smaller_length_power_of_field_order": "81/31",
+            "new_power": "2808/31",
+            "published_expression_power": "2808/31",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "459/31",
+            "new_power": "8615412/21731",
+            "published_expression_power": "12285/31",
+            "power_gap": "-117/701"
+          }
+        ]
+      },
+      {
+        "dimension": 28,
+        "strict_crossover": "21/8",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "39348/755",
+            "published_expression_power": "1512/29",
+            "power_gap": "468/21895"
+          },
+          {
+            "smaller_length_power_of_field_order": "29/16",
+            "new_power": "221391/3020",
+            "published_expression_power": "8505/116",
+            "power_gap": "234/21895"
+          },
+          {
+            "smaller_length_power_of_field_order": "21/8",
+            "new_power": "189/2",
+            "published_expression_power": "189/2",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "245/16",
+            "new_power": "1284759/3020",
+            "published_expression_power": "1701/4",
+            "power_gap": "-126/755"
+          }
+        ]
+      },
+      {
+        "dimension": 29,
+        "strict_crossover": "29/11",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "131656/2433",
+            "published_expression_power": "812/15",
+            "power_gap": "84/4055"
+          },
+          {
+            "smaller_length_power_of_field_order": "20/11",
+            "new_power": "2041172/26763",
+            "published_expression_power": "12586/165",
+            "power_gap": "42/4055"
+          },
+          {
+            "smaller_length_power_of_field_order": "29/11",
+            "new_power": "3248/33",
+            "published_expression_power": "3248/33",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "174/11",
+            "new_power": "4062436/8921",
+            "published_expression_power": "15022/33",
+            "power_gap": "-406/2433"
+          }
+        ]
+      },
+      {
+        "dimension": 30,
+        "strict_crossover": "45/17",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "146276/2607",
+            "published_expression_power": "1740/31",
+            "power_gap": "1624/80817"
+          },
+          {
+            "smaller_length_power_of_field_order": "31/17",
+            "new_power": "3511436/44319",
+            "published_expression_power": "41760/527",
+            "power_gap": "812/80817"
+          },
+          {
+            "smaller_length_power_of_field_order": "45/17",
+            "new_power": "1740/17",
+            "published_expression_power": "1740/17",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "555/34",
+            "new_power": "7184750/14773",
+            "published_expression_power": "8265/17",
+            "power_gap": "-145/869"
+          }
+        ]
+      },
+      {
+        "dimension": 31,
+        "strict_crossover": "93/35",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "53980/929",
+            "published_expression_power": "465/8",
+            "power_gap": "145/7432"
+          },
+          {
+            "smaller_length_power_of_field_order": "64/35",
+            "new_power": "534518/6503",
+            "published_expression_power": "9207/112",
+            "power_gap": "145/14864"
+          },
+          {
+            "smaller_length_power_of_field_order": "93/35",
+            "new_power": "744/7",
+            "published_expression_power": "744/7",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "589/35",
+            "new_power": "3370568/6503",
+            "published_expression_power": "3627/7",
+            "power_gap": "-155/929"
+          }
+        ]
+      },
+      {
+        "dimension": 32,
+        "strict_crossover": "8/3",
+        "samples": [
+          {
+            "smaller_length_power_of_field_order": "1",
+            "new_power": "178684/2973",
+            "published_expression_power": "1984/33",
+            "power_gap": "620/32703"
+          },
+          {
+            "smaller_length_power_of_field_order": "11/6",
+            "new_power": "759562/8919",
+            "published_expression_power": "8432/99",
+            "power_gap": "310/32703"
+          },
+          {
+            "smaller_length_power_of_field_order": "8/3",
+            "new_power": "992/9",
+            "published_expression_power": "992/9",
+            "power_gap": "0"
+          },
+          {
+            "smaller_length_power_of_field_order": "52/3",
+            "new_power": "4916848/8919",
+            "published_expression_power": "4960/9",
+            "power_gap": "-496/2973"
+          }
+        ]
+      }
+    ],
+    "box_staircases_checked": 258,
+    "actual_quotient_chambers_checked": 144
+  },
   "staircase_generator_control": {
     "scope": "Finite supporting certificates for the established minimal-generator estimate used in the universal-basis corollary. No new generator theorem or uniform proof by enumeration is claimed.",
     "method": "Enumerate small staircases; compare one-step minimal borders against independent coordinate-fiber caps, and certify the disjoint-chain packing bound exactly.",
@@ -509054,6 +510924,8 @@
     "lattice_shadow_exponent_controls": 30,
     "lattice_shadow_sharpness_support_vertices": 12288,
     "lattice_shadow_sharpness_box_tuples": 4160,
+    "bounded_grid_shadow_staircases": 258,
+    "bounded_grid_shadow_quotient_chambers": 144,
     "staircase_generator_staircases_checked": 325,
     "staircase_generator_minimal_generators_checked": 1462,
     "exchange_cycle_rank_two_contractions": 15750,

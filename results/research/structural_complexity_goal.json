@@ -49,7 +49,7 @@
     },
     {
       "id": "further_consequence",
-      "status": "universal_groebner_basis_cardinality_and_general_integer_weight_matroid_bounds_proved_pending_priority",
+      "status": "universal_basis_and_coordinate_cover_residual_bounds_proved_with_exact_finite_field_crossover_pending_priority",
       "deliverable": "A proved algebraic, geometric or enumeration consequence beyond restating the count; any speed claim needs a full algorithmic complexity argument."
     },
     {
@@ -124,7 +124,7 @@
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "reason": "The previous mathematical pass completed eight scoped primary comparisons and extended the manuscript; 217265a saved that audit with exact ML channel-gate checks. The application work did not change G_d(n), and priority remained open."
+    "reason": "Commit a80e26f added a complete fixed-dimension geometric sharpness proof, its exact certificates and a rendered manuscript. The unrestricted exponent and its open priority gate were preserved."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -1517,7 +1517,7 @@
   },
   "this_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Proved in every fixed dimension that established primitive zonotopes saturate both exponents of the lattice surface/shadow bridge, even as projections of representable partition matroids; added independent exact finite certificates and the complete manuscript proof. This strengthens the structural theorem without asserting sharpness of G_d or closing priority."
+    "reason": "Proved a uniform coordinate-cover and residual-colength bound over every field, including nonreduced separated parents, with a universal-basis consequence and an exact crossover against the named prime-field upper-bound expression. Read the 1978 primary lattice-valuation follow-up. This strengthens the theorem package without replacing the unrestricted objective or claiming priority is settled."
   },
   "eleventh_feasibility_results": {
     "record": "docs/interleaving_research.md, Eleventh feasibility pass: coordinate flags survive the Jordan reduction",
@@ -3329,6 +3329,91 @@
         "layout_defects_found": false
       },
       "scope": "Complete working manuscript with geometric sharpness. Main bound priority remains open; no submission or independent human referee assessment."
+    }
+  },
+  "twenty_seventh_results": {
+    "record": "docs/interleaving_research.md, Twenty-seventh pass: coordinate covers, residual colength and a precise crossover",
+    "checks": "results/research/structural_complexity_checks.json, bounded_grid_shadow_control",
+    "uniform_cover_bound_proved": true,
+    "scope": "Every field, arbitrary monic separated univariate cover J contained in I, including repeated roots and nonradical quotients; fixed d>=3. The original all-colength bound remains intact.",
+    "parameters": "Q=product b_i; h=min(n,Q-n)>0; p_i=min(b_i-1,h-1); M=#{u in the degree box:product(u_i+1)<=h}; A=sum_i product_(j!=i)(h*p_j+1).",
+    "count_bound": "g(I)=O_d(A^(d(d-2)/(d^2-d-1))*(M*h^(1/3)+1)^((d-1)/(d^2-d-1))).",
+    "further_consequence": "The union of reduced bases has O_d(B(h,b)*min(n^((d-1)/d),Q-n+d)) elements. No coefficient-size or running-time bound.",
+    "finite_field_comparison": {
+      "scope": "Compare with the inspected later Theorem 8 only for prime fields; own cover theorem also applies to prime powers.",
+      "smaller_size_regime": "h=Theta(p^gamma), 1<=gamma<d",
+      "power_gap": "(d-1)*(3d-gamma*(d+4))/(3*(d+1)*(d^2-d-1))",
+      "strict_improvement": "1<=gamma<3d/(d+4), logarithms absorbed by the strict power gap",
+      "outside_regime": "At equality no improvement is claimed; beyond the threshold the older expression has the smaller power. Unknown big-O constants are not compared at finite input sizes.",
+      "three_variable_example": {
+        "gamma": "6/5",
+        "new_power": "82/25",
+        "previous_expression_power": "33/10",
+        "power_gain": "1/50"
+      }
+    },
+    "primary_lattice_comparison": {
+      "source": "https://www.math.ucdavis.edu/~deloera/MISC/LA-BIBLIO/trunk/McMullen/McMullen11.pdf",
+      "title": "Lattice invariant valuations on rational polytopes",
+      "year_as_printed": 1978,
+      "pages": 8,
+      "sha256": "fd51faf3c5cf90acc149b31294f8db8f26e0ddc5a95224d3fe0d5b41c7a9d530",
+      "inspection": "Simple-valuation construction, Theorems 6--8 and Section 4 translated lattice-point enumeration/reciprocity application; formulas and application visually checked. The later coauthored Section 7 attribution of simple-valuation lattice polynomiality/parity was also inspected.",
+      "limit": "Positive comparison of these named statements; original 1975 article still not read in full and no equivalence of versions or exhaustive novelty inference."
+    },
+    "duality_priority": "Point-grid reflected-complement fans are published prior art; all-field box-colon argument and Frobenius pairing are established inputs, not novelty claims.",
+    "exact_controls": {
+      "box_staircases": 258,
+      "actual_quotient_chambers": 144,
+      "crossover_dimensions": [
+        3,
+        32
+      ]
+    },
+    "main_unrestricted_exponent_changed": false,
+    "full_checker_verified": true,
+    "separate_manuscript_updated": true,
+    "novelty_established": false,
+    "strongest_current_bound_verified": false,
+    "goal_complete": false,
+    "next_gate": "Complete the scoped priority/proof audit of the unrestricted quantitative advance. Cover-sensitive improvements and the exact crossover are consequences, not a replacement objective or proof of novelty.",
+    "source_sha256": {
+      "scripts/run_structural_complexity_checks.py": "759cb47442a63c91acdb08064c4a6c2d033d085f4713cf30f8ca8a87474b5788",
+      "docs/interleaving_research.md": "99d7f5a4d3e9c6d4254f622c5018ff9c84be370ba06084ca309c0dd67ae7cf8f"
+    },
+    "historical_report_blocks_preserved": 44,
+    "historical_summary_counts_preserved": true,
+    "build_and_smoke_passed": true,
+    "manuscript": {
+      "tex": {
+        "path": "results/local/lattice_shadow_paper/main.tex",
+        "sha256": "59eb129e4ebc1ff847f9ea00083b77730c8158ba7663ae90bfdc719499165d15"
+      },
+      "pdf": {
+        "path": "results/local/lattice_shadow_paper/output/pdf/main.pdf",
+        "sha256": "d7eff832eb743c7a2610420fc0ae99eefb7dca37357fa101d17db8b69f3c9112",
+        "bytes": 429503,
+        "pages": 18
+      },
+      "compile": {
+        "desktop_editor": "success",
+        "latexmk": "success",
+        "overfull_boxes": false,
+        "unresolved_references": false
+      },
+      "visual_review": {
+        "all_pages_rendered": true,
+        "contact_sheet_checked": true,
+        "new_pages_checked_at_full_size": [
+          10,
+          11,
+          12,
+          14,
+          15
+        ],
+        "layout_defects_found": false
+      },
+      "scope": "Complete working manuscript with all-field cover theorem, residual generator bound and prime-field crossover. Original unrestricted exponent retained; priority remains open."
     }
   }
 }

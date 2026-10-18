@@ -9883,3 +9883,146 @@ remain intact. A stronger unrestricted estimate must exploit information
 beyond these two geometric budgets or the existing shadow estimate; this
 result does not rule out such an advance. Complete the focused primary
 comparison before claiming the resulting paper is new or publishable.
+
+### Twenty-seventh pass: coordinate covers, residual colength and a precise crossover
+
+The preceding goal turn was progress: `a80e26f` added a uniform sharpness
+proof for the geometric powers, independent exact controls and the updated
+manuscript. This pass retains the unrestricted bound (LS1) and derives a
+parameter-sensitive theorem valid over every field, including nonreduced
+quotients. It also makes the finite-field comparison quantitative. It does
+not replace the full objective with a grid-only problem.
+
+#### A positive lattice-valuation comparison
+
+The available eight-page
+[McMullen, Lattice invariant valuations on rational polytopes (1978)](https://www.math.ucdavis.edu/~deloera/MISC/LA-BIBLIO/trunk/McMullen/McMullen11.pdf)
+was read through the simple-valuation construction, Theorems 6--8 and the
+Section 4 application. Theorem 6, the angle-inversion formula and the
+application were checked on the page images. These concern polynomial
+expansions and reciprocity for translated lattice-point enumeration.
+The later coauthored account, Section 7, printed page 203, explicitly
+attributes the lattice versions of simple-valuation polynomiality and
+reflection parity to the 1975 and 1977 papers. This is a comparison of
+named statements, not a claim to have read the full 1975 article or to
+have classified all consequences. No joint vertex/surface/shadow count
+is a stated result of these inspected passages. The original article's
+remaining scope and the strongest-current-priority assessment stay open.
+
+#### A uniform bound with a separated univariate cover
+
+Let f_i in K[x_i] be monic of degree b_i>=1 over any field, and suppose
+
+    J=(f_1,...,f_d) is contained in I,
+    Q=product_i b_i,  n=dim_K K[x]/I,  0<n<Q.
+
+Set Omega=product_i {0,...,b_i-1}, and define
+
+    h=min(n,Q-n),  p_i=min(b_i-1,h-1),
+    M=#{u in Omega : product_i(u_i+1)<=h},
+    A=sum_i product_(j!=i)(h*p_j+1),
+    alpha=d(d-2)/(d^2-d-1),  beta=(d-1)/(d^2-d-1),
+    B(h,b)=A^alpha*(M*h^(1/3)+1)^beta.
+
+For each fixed d>=3 we prove
+
+    g(I) = O_d(B(h,b)),
+    M <= min(Q,h*(1+log h)^(d-1)).                         (CV1)
+
+The constants do not depend on the field, coefficients or multiplicities.
+At n=0 or Q, the initial-ideal count is one. For a cover with all b_i>=n
+and h=n, (CV1) recovers the unrestricted estimate (LS1), so the full
+scope is retained.
+
+Here is a complete justification of the residual step. The algebra
+T=K[x]/J has basis Omega. Extracting the coefficient of x^(b-1) defines
+a nondegenerate multiplication pairing: for nonzero a, choose a
+componentwise maximal exponent u in its support and multiply by
+x^(b-1-u). Every other support exponent has a coordinate below u and
+cannot contribute to the top coefficient, even after univariate reductions.
+For the ideal R=I/J, its annihilator equals its orthogonal complement,
+because R is closed under multiplication. Thus J:I has colength Q-n,
+and double annihilation recovers I.
+
+For any global order, in(J)=(x_i^b_i), and the standard initial-colon
+inclusion is
+
+    in(J:I) subset in(J):in(I).
+
+If D is the standard staircase of I in Omega, the right side has
+standard set {b-1-u : u in Omega minus D}. To check this directly,
+v is in the monomial colon exactly when b-1-v is in D: the existence
+of a nonstandard u with u+v inside Omega is equivalent, by upward
+closure, to b-1-v being nonstandard. Both sides have colength Q-n,
+so the inclusion is equality. Reflection is invertible, hence I and
+J:I have identical initial-ideal counts over every field. For point
+grids the reflected-complement correspondence is established prior art:
+[Maruri-Aguilar--Saenz-de-Cabezon--Wynn, Theorem 1, Lemma 1 and Corollary 1 (2013)](https://www.ism.ac.jp/editsec/aism/pdf/10463_2012_Article_390.pdf).
+The general box-colon proof was already established in this project;
+no new duality is claimed.
+
+Choose I or J:I to have colength h. Its initial staircases are all in
+Omega intersect V_h^d. This capped set represents a rank-h residue matroid,
+contains every such staircase and has M elements. Restricting the usual
+strict greedy exposure preserves the injection of initials into vertices.
+All basis-sum coordinates are at most h*p_i. Adding the unit cube gives
+surface at most 2*A by coordinate projections, and planar shadows of size
+O_d(M*h^(1/3)+1) by the established matroid bound. Substituting these in
+(LS4) proves (CV1). The ground-size estimate is the hyperbolic-cross bound.
+
+Every reduced basis of I also has at most Q-n+d polynomials: minimal
+outside monomials inside Omega are among its Q-n nonstandard monomials;
+those outside Omega must be among the d pure powers x_i^b_i. Combining
+with the classical generator estimate gives the further consequence
+
+    |U(I)| = O_d(B(h,b)*min(n^((d-1)/d),Q-n+d)).             (CV2)
+
+This counts elements, not coefficient sizes or enumeration work.
+
+#### Exact comparison with the named prime-field expression
+
+For a set in F_q^d use f_i=x_i^q-x_i. Then Q=q^d and h is the smaller
+of the set and complement sizes. Formula (CV1) applies to every prime
+power q, with p_i=min(q-1,h-1). To compare only with the scope actually
+inspected in the later Stigler--Zhang Theorem 8, take q=p prime. Its
+first-range upper-bound expression is
+
+    (p^2*floor(h/p)+(h mod p)^2)^(d(d-1)/(d+1)).
+
+For h=Theta(p^gamma), fixed 1<=gamma<d, its power in p is
+(gamma+1)*d(d-1)/(d+1). The power in (CV1) is
+
+    (gamma+1)*(d-1)*alpha+(4*gamma/3)*beta,
+
+with logarithmic factor (1+log p)^L_d. The difference is exactly
+
+    (d-1)*(3d-gamma*(d+4))/(3*(d+1)*(d^2-d-1)).             (CV3)
+
+There is a strict asymptotic power improvement when
+1<=gamma<3d/(d+4). At the threshold the powers agree and the logarithm
+prevents claiming an improvement; beyond it the earlier expression has
+the better power. This is a comparison of upper-bound expressions, not
+of achieved maximum counts or unknown finite-size constants. For d=3
+and gamma=6/5 the powers are 82/25 and 33/10, a gain of 1/50. The
+finite-field comparison is not blanket dominance or a prime-distribution
+consequence. Use the smaller applicable proved bound outside this range.
+
+#### Verification and remaining scope
+
+The new `bounded_grid_shadow_control` checks all 258 staircases in four
+small boxes. A direct monomial-product colon oracle independently checks
+reflection; capped grounds and the residual generator budgets are also
+verified. It checks 144 chambers of the existing reduced, repeated-root
+and local quotient fixtures in characteristic zero and finite fields.
+Exact rational calculations verify (CV3) and its sign in dimensions 3--32.
+Finite tests support the implementation; the preceding arguments prove
+the uniform statements.
+
+The working manuscript includes (CV1)--(CV3), credits the existing duality
+and records the actual 1978 reading scope. Its stale sentence disclaiming
+geometric sharpness was corrected to distinguish the proved geometric
+sharpness from the unresolved initial-ideal lower bound. The original
+kernels and completed corner-cut manuscript are preserved. The main
+unrestricted exponent is unchanged and the goal remains active: the
+strongest-current-priority audit is still incomplete. No failed retrieval,
+new parameter specialization or finite check is used as novelty evidence.
