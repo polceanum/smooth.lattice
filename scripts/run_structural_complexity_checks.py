@@ -4667,6 +4667,119 @@ def algebraic_attention_hotpath_controls():
             "fixtures": fixtures}
 
 
+def algebraic_attention_mixing_controls():
+    """Exact finite controls for established polynomial collection and state rank."""
+    def monomial(point, exponent):
+        answer = Fraction(1)
+        for x, power in zip(point, exponent):
+            answer *= x ** power
+        return answer
+
+    def partial(point, exponent, axis):
+        if not exponent[axis]:
+            return Fraction(0)
+        reduced = tuple(x - (i == axis) for i, x in enumerate(exponent))
+        return exponent[axis] * monomial(point, reduced)
+
+    fixtures = []
+    for dimension, degree in ((1, 3), (2, 1), (2, 2), (3, 1)):
+        zero = (0,) * dimension
+        support = [x for x in product(range(degree + 1), repeat=dimension) if x != zero]
+        collected = list(product(range(2 * degree + 1), repeat=dimension))
+        index = {x: i for i, x in enumerate(collected)}
+        h = [[Fraction(((i + 1) * 7 + (j + 2) * 3) % 11 - 5, 3 * len(support))
+              for j in range(len(support))] for i in range(len(support))]
+        terms = [(x, y, h[i][j]) for i, x in enumerate(support) for j, y in enumerate(support)]
+        c = [[Fraction(0) for _ in collected] for _ in collected]
+        c[index[zero]][index[zero]] = Fraction(1)
+        for x, y, value in terms:
+            c[index[x]][index[y]] += value
+        for x, y, value in terms:
+            for xx, yy, second in terms:
+                row = tuple(v + w for v, w in zip(x, xx))
+                column = tuple(v + w for v, w in zip(y, yy))
+                c[index[row]][index[column]] += value * second / 2
+        points = [tuple(Fraction(((i + 1) * (axis + 2)) % 7 - 3, 5)
+                        for axis in range(dimension)) for i in range(5)]
+        values = [(Fraction(i - 2), Fraction((i * i) % 5, 3)) for i in range(5)]
+        pair_checks = derivative_checks = output_checks = 0
+
+        def score(q, k):
+            return sum(value * monomial(q, x) * monomial(k, y) for x, y, value in terms)
+
+        for q in points:
+            for k in reversed(points):
+                mq = [monomial(q, x) for x in collected]
+                mk = [monomial(k, x) for x in collected]
+                expected = 1 + score(q, k) + score(q, k) ** 2 / 2
+                actual = sum(mq[i] * c[i][j] * mk[j]
+                             for i in range(len(collected)) for j in range(len(collected)))
+                require(expected == actual >= Fraction(1, 2), "dense mixing preserves the collected kernel")
+                pair_checks += 1
+                for axis in range(dimension):
+                    for query_side in (True, False):
+                        ds = sum(value * (partial(q, x, axis) * monomial(k, y) if query_side
+                                          else monomial(q, x) * partial(k, y, axis))
+                                 for x, y, value in terms)
+                        actual_d = sum(c[i][j] * (partial(q, x, axis) * mk[j] if query_side
+                                                  else mq[i] * partial(k, y, axis))
+                                       for i, x in enumerate(collected) for j, y in enumerate(collected))
+                        require(actual_d == (1 + score(q, k)) * ds, "mixed query and key derivatives agree")
+                        derivative_checks += 1
+        for causal in (False, True):
+            state = [[Fraction(0)] * 3 for _ in collected]
+
+            def add(j):
+                for k, exponent in enumerate(collected):
+                    feature = monomial(points[j], exponent)
+                    for channel, value in enumerate((Fraction(1),) + values[j]):
+                        state[k][channel] += feature * value
+
+            if not causal:
+                for j in range(len(points)):
+                    add(j)
+            for i, q in enumerate(points):
+                if causal:
+                    add(i)
+                transformed = [sum(monomial(q, x) * c[k][j] for k, x in enumerate(collected))
+                               for j in range(len(collected))]
+                totals = [sum(feature * row[channel] for feature, row in zip(transformed, state))
+                          for channel in range(3)]
+                visible = range(i + 1 if causal else len(points))
+                weights = [1 + score(q, points[j]) + score(q, points[j]) ** 2 / 2 for j in visible]
+                expected = [sum(weight * ((Fraction(1),) + values[j])[channel]
+                                for j, weight in zip(visible, weights)) for channel in range(3)]
+                require(totals == expected, "the M-row mixed streaming state equals direct summation")
+                require([x / totals[0] for x in totals[1:]] == [x / expected[0] for x in expected[1:]],
+                        "dense mixing preserves normalized causal and noncausal outputs")
+                output_checks += 2
+        fixtures.append({"latent_dimension": dimension, "box_degree": degree,
+                         "embedding_width": len(support), "collected_width": len(collected),
+                         "score_coefficient_matrix": [[str(x) for x in row] for row in h],
+                         "nonzero_kernel_coefficients": sum(bool(x) for row in c for x in row),
+                         "off_diagonal_kernel_coefficients": sum(bool(c[i][j]) for i in range(len(collected))
+                                                                 for j in range(len(collected)) if i != j),
+                         "pair_checks": pair_checks, "query_key_derivative_checks": derivative_checks,
+                         "normalized_output_checks": output_checks})
+    witnesses = []
+    points = [Fraction(i + 1, 6) for i in range(5)]
+    for n in range(1, 6):
+        moment = [[sum(x ** (i + j) for x in points[:n]) for j in range(5)] for i in range(5)]
+        minor = determinant([row[:n] for row in moment[:n]])
+        require(minor > 0, "separable token updates accumulate state of growing exact rank")
+        witnesses.append({"tokens": n, "exact_rank": n, "nonzero_leading_minor": str(minor),
+                          "points": [str(x) for x in points[:n]],
+                          "state": [[str(x) for x in row] for row in moment]})
+    return {"scope": "Elementary polynomial collection with arbitrary bilinear mixing and a classical Vandermonde state-rank witness; no new ML method, benchmark, unrestricted Q/K compression or trained-quality claim.",
+            "identity": "S(q,k)=sum H[a,b]*q^a*k^b gives p2(S)=u(q)^T*C*u(k) on the doubled exponent box, even for dense nonsymmetric H. The coefficient matrix C is generally dense.",
+            "cost": "M*(v+1) recurrent state, O(M*v) update/read plus O(M^2) query transformation and O(M^2) coefficient storage; naive coefficient preparation O(D^4*s), charged when H changes. Encoders and training/backward cost are additional.",
+            "rank_limit": "For distinct real t_j, Z[r,c]=sum_j t_j^(r+c)=V*V^T has rank min(N,L) in an L-by-L moment state. Rank-one token updates therefore do not imply a fixed-rank state under accumulation.",
+            "mixed_fixtures": fixtures, "state_rank_witnesses": witnesses,
+            "pair_checks": sum(x["pair_checks"] for x in fixtures),
+            "query_key_derivative_checks": sum(x["query_key_derivative_checks"] for x in fixtures),
+            "normalized_output_checks": sum(x["normalized_output_checks"] for x in fixtures)}
+
+
 def attention_rank_sanity_control():
     """An exact Vandermonde witness, not an attention-compression algorithm."""
     parameters = (1, 2, 3, 4)
@@ -4741,6 +4854,7 @@ def main():
     quadratic_poles = quadratic_pole_flag_controls()
     moment_cubes = staircase_moment_cube_controls()
     algebraic_attention = algebraic_attention_hotpath_controls()
+    attention_mixing = algebraic_attention_mixing_controls()
     exchange_cycles = exchange_cycle_coherence_controls()
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
@@ -4841,6 +4955,7 @@ def main():
         "quadratic_pole_flag_control": quadratic_poles,
         "staircase_moment_cube_control": moment_cubes,
         "algebraic_attention_hotpath_control": algebraic_attention,
+        "algebraic_attention_mixing_control": attention_mixing,
         "exchange_cycle_coherence_control": exchange_cycles,
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
@@ -4955,6 +5070,10 @@ def main():
                     "algebraic_attention_kernel_derivative_checks": algebraic_attention["kernel_derivative_checks"],
                     "algebraic_attention_output_checks": algebraic_attention["normalized_output_checks"],
                     "algebraic_attention_normalized_derivative_checks": algebraic_attention["normalized_derivative_checks"],
+                    "mixed_attention_pair_checks": attention_mixing["pair_checks"],
+                    "mixed_attention_query_key_derivative_checks": attention_mixing["query_key_derivative_checks"],
+                    "mixed_attention_normalized_output_checks": attention_mixing["normalized_output_checks"],
+                    "attention_accumulated_state_rank_witnesses": len(attention_mixing["state_rank_witnesses"]),
                     "exchange_cycle_rank_two_contractions": sum(x["invertible_new_pairs"] for x in exchange_cycles["rank_two_contractions"]),
                     "exchange_cycle_patch_checks": sum(x["weight_checks"] for x in exchange_cycles["patch_controls"]),
                     "exchange_cycle_rational_controls": len(exchange_cycles["rational_cycle_controls"]),

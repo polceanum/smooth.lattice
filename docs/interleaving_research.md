@@ -8824,3 +8824,120 @@ The goal remains active. Reproduce the exact controls with
 python3 tests/test_smoke.py
 python3 -B scripts/run_structural_complexity_checks.py
 ```
+### ML implementation gate: learned mixing, state closure and honest comparisons
+
+The current ML application priority is the feature expansion and recurrent
+state update in a deliberately structured polynomial-attention block. The
+existing exact example has 63 expanded query/key coordinates, from two
+latent coordinates of box degree seven, and 225 collected features instead
+of 2080 generic symmetric quadratic features. This is a 2080/225 ratio in
+feature/state rows for the same constrained kernel. It is not a throughput
+measurement or equivalence to unrestricted 63-dimensional queries and keys.
+
+#### Dense learned mixing retains the state reduction but adds computation
+
+The earlier diagonal restriction is sufficient for the cheapest algorithm,
+but is not necessary for an M-row recurrent state. Let
+A={0,...,m}^s minus {0}, D=|A|, B={0,...,2m}^s and M=|B|.
+For any real D-by-D matrix H, including a nonsymmetric matrix obtained from
+different learned query/key projections, put
+
+    S(q,k)=sum_(a,b in A) H_(a,b)*q^a*k^b,
+    K(q,k)=1+S(q,k)+S(q,k)^2/2.
+
+Writing u(q)=(q^r)_(r in B), collection of the two sets of exponents gives
+
+    K(q,k)=u(q)^T*C*u(k),
+    C_(r,t)=1[r=t=0]+1[r,t in A]*H_(r,t)
+      +(1/2)*sum_(a+c=r,b+d=t) H_(a,b)*H_(c,d).              (MLH2)
+
+Thus store Z=sum_j u(k_j) and V=sum_j u(k_j)*v_j^T, using M*(v+1)
+scalar entries. At each query first form u(q)^T*C, then contract it with
+Z and V. The same formulas hold for causal prefixes. They compute exactly
+the designed kernel, including normalization, since K>=1/2 pointwise.
+That positivity does not imply that C is positive semidefinite.
+
+The proof of (MLH2) is direct multiplication: linear terms have exponent
+pair (a,b), while quadratic terms have pair (a+c,b+d). Every pair lies in
+B-by-B. It is an instance of the already established coordinate-ring
+kernel principle, not a new factorization theorem.
+[Altschuler--Parrilo, Proposition 3.6 and Corollary 3.8](https://arxiv.org/html/2106.02755v1#S3.SS1.SSS3)
+
+For a general dense H the straightforward costs are O(M*v) state
+update/read, O(M^2) additional query transformation, O(M^2) coefficient
+storage and O(D^4*s) naive coefficient preparation whenever H changes.
+These are explicit upper bounds, not optimal preprocessing claims. Latent
+encoders, backward computation and training storage remain additional.
+The 225-row state survives mixing, but the dense C contains 50625 scalar
+entries. For value width 64, the recurrent state alone shrinks from
+135200 entries to 14625; storing a dense C as well gives 65250 entries
+before other parameters/workspace. The 9.24-fold state-row reduction must
+not be advertised as a 9.24-fold total-memory or speed improvement.
+Positive diagonal H retains the earlier diagonal C and cheaper contraction.
+
+The public checker independently forms the direct bilinear score and the
+collected coefficient matrix for four small dense nonsymmetric examples.
+It verifies 100 pair kernels, 400 query/key kernel derivatives and 80
+normalized causal/noncausal output coordinates using rational arithmetic.
+These are forward and kernel-derivative checks, not full backward or
+learned-model validation.
+
+#### Factorized features do not ensure a factorized accumulated state
+
+For two latent coordinates, u(k)=u_1(k_1) tensor u_2(k_2) is separable.
+However the state is a sum of these rank-one tensors. Take N distinct real
+numbers t_j and keys k_j=(t_j,t_j). With powers 0,...,L-1 its denominator
+state is
+
+    Z_(r,c)=sum_(j=1)^N t_j^(r+c)=V*V^T,
+    V_(r,j)=t_j^r.
+
+The Vandermonde matrix V has rank min(N,L), and over the reals V*V^T
+has the same rank. Thus the state can reach full matrix rank L, although
+every token update has rank one. The checker saves exact positive leading
+minors for ranks one through five. This classical witness rules out an
+unjustified fixed-rank-state inference from the project's separable
+coefficients. It does not preclude approximate state compression under
+additional assumptions or nonlinear finite-precision memory schemes.
+
+#### Practical decision
+
+Begin with the diagonal structured block, because its representation
+benefit has the clearest complete forward cost. Compare it with the same
+kernel evaluated through generic symmetric features, then with a learned
+225-feature linear/polynomial baseline and the relevant existing methods
+at matched memory, parameters and training compute. Measure associative
+recall as context grows before investing in a custom GPU kernel. A smaller
+state that loses necessary retrieval capacity does not establish an
+architectural advantage.
+
+[TaylorShift, Sections 3--4](https://arxiv.org/html/2403.02920v1#S3)
+already treats polynomial attention, normalization and crossover costs.
+[Power Attention, Section 4.1](https://arxiv.org/html/2507.04239v1#S4.SS1)
+specifically fuses feature expansion with matrix multiplication and retains
+some redundant features to obtain regular GPU tiles. It demonstrates why
+minimum mathematical feature width is insufficient as a hardware claim.
+For structured MLP/channel mixers, also compare with
+[Block Tensor-Train, Sections 2--3](https://arxiv.org/html/2406.06248v1#S2),
+including its structure-dependent initialization and learning rates.
+No new advantage over those architecture families has been established by
+the project's current special factorizations.
+
+An additional local NumPy diagnostic compared the diagonal generic and
+collected implementations against an independent direct float64 kernel
+and analytic query derivatives, using float32 feature/state arithmetic.
+Its four bounded random fixtures each used 96 tokens, value width 16,
+causal and noncausal evaluation, and both representations: 16 comparisons
+in total. Maximum absolute output error was below 6e-6 and maximum absolute
+query-derivative error below 1e-5. Local diagnostic sources and raw values
+remain in ignored storage; these observations are not the public exact
+certificate, a uniform conditioning theorem, a mixed-kernel numerical
+test, a timing result, a GPU experiment, a full gradient check or a
+trained-quality result. The public reproducible assertions are (MLH2)
+and the rational checks above.
+
+The actionable lead is an exact, explicitly restricted attention block
+with a smaller recurrent state. A new mathematical or ML contribution
+still requires a retained interaction/recall guarantee or a useful measured
+quality--cost tradeoff against the strongest relevant method. The active
+unrestricted initial-ideal theorem goal is preserved.

@@ -3,8 +3,8 @@
   "command": "python3 -B scripts/run_structural_complexity_checks.py",
   "scope": "Bounded exact checks of route obstructions and a conditional counting lemma; no unrestricted asymptotic advance or novelty assertion.",
   "source_sha256": {
-    "scripts/run_structural_complexity_checks.py": "57565df9488c85ba09fc97870ac94d5776e82d406a8181a117f12398f876ccb9",
-    "docs/interleaving_research.md": "8bcf331512ff7bbfa552776b8f53aca15adfef84848cc20d9a0793f0bfb3b3af"
+    "scripts/run_structural_complexity_checks.py": "a3d72ddbe8626e476bebc23b57e03234e853cfa6e7536fd82202c7ff27b48e72",
+    "docs/interleaving_research.md": "ae4ffc3b1308de136f57f8ef92c4481596d54402ba7b4e3dd3d8c0a52be822e0"
   },
   "volume_obstruction": {
     "scope": "Exact determinant controls for an infinite symbolic construction; the uniform proof is in the research note.",
@@ -462051,6 +462051,479 @@
       }
     ]
   },
+  "algebraic_attention_mixing_control": {
+    "scope": "Elementary polynomial collection with arbitrary bilinear mixing and a classical Vandermonde state-rank witness; no new ML method, benchmark, unrestricted Q/K compression or trained-quality claim.",
+    "identity": "S(q,k)=sum H[a,b]*q^a*k^b gives p2(S)=u(q)^T*C*u(k) on the doubled exponent box, even for dense nonsymmetric H. The coefficient matrix C is generally dense.",
+    "cost": "M*(v+1) recurrent state, O(M*v) update/read plus O(M^2) query transformation and O(M^2) coefficient storage; naive coefficient preparation O(D^4*s), charged when H changes. Encoders and training/backward cost are additional.",
+    "rank_limit": "For distinct real t_j, Z[r,c]=sum_j t_j^(r+c)=V*V^T has rank min(N,L) in an L-by-L moment state. Rank-one token updates therefore do not imply a fixed-rank state under accumulation.",
+    "mixed_fixtures": [
+      {
+        "latent_dimension": 1,
+        "box_degree": 3,
+        "embedding_width": 3,
+        "collected_width": 7,
+        "score_coefficient_matrix": [
+          [
+            "-1/3",
+            "0",
+            "1/3"
+          ],
+          [
+            "4/9",
+            "-4/9",
+            "-1/9"
+          ],
+          [
+            "0",
+            "1/3",
+            "-5/9"
+          ]
+        ],
+        "nonzero_kernel_coefficients": 25,
+        "off_diagonal_kernel_coefficients": 18,
+        "pair_checks": 25,
+        "query_key_derivative_checks": 50,
+        "normalized_output_checks": 20
+      },
+      {
+        "latent_dimension": 2,
+        "box_degree": 1,
+        "embedding_width": 3,
+        "collected_width": 9,
+        "score_coefficient_matrix": [
+          [
+            "-1/3",
+            "0",
+            "1/3"
+          ],
+          [
+            "4/9",
+            "-4/9",
+            "-1/9"
+          ],
+          [
+            "0",
+            "1/3",
+            "-5/9"
+          ]
+        ],
+        "nonzero_kernel_coefficients": 33,
+        "off_diagonal_kernel_coefficients": 24,
+        "pair_checks": 25,
+        "query_key_derivative_checks": 100,
+        "normalized_output_checks": 20
+      },
+      {
+        "latent_dimension": 2,
+        "box_degree": 2,
+        "embedding_width": 8,
+        "collected_width": 25,
+        "score_coefficient_matrix": [
+          [
+            "-1/8",
+            "0",
+            "1/8",
+            "-5/24",
+            "-1/12",
+            "1/24",
+            "1/6",
+            "-1/6"
+          ],
+          [
+            "1/6",
+            "-1/6",
+            "-1/24",
+            "1/12",
+            "5/24",
+            "-1/8",
+            "0",
+            "1/8"
+          ],
+          [
+            "0",
+            "1/8",
+            "-5/24",
+            "-1/12",
+            "1/24",
+            "1/6",
+            "-1/6",
+            "-1/24"
+          ],
+          [
+            "-1/6",
+            "-1/24",
+            "1/12",
+            "5/24",
+            "-1/8",
+            "0",
+            "1/8",
+            "-5/24"
+          ],
+          [
+            "1/8",
+            "-5/24",
+            "-1/12",
+            "1/24",
+            "1/6",
+            "-1/6",
+            "-1/24",
+            "1/12"
+          ],
+          [
+            "-1/24",
+            "1/12",
+            "5/24",
+            "-1/8",
+            "0",
+            "1/8",
+            "-5/24",
+            "-1/12"
+          ],
+          [
+            "-5/24",
+            "-1/12",
+            "1/24",
+            "1/6",
+            "-1/6",
+            "-1/24",
+            "1/12",
+            "5/24"
+          ],
+          [
+            "1/12",
+            "5/24",
+            "-1/8",
+            "0",
+            "1/8",
+            "-5/24",
+            "-1/12",
+            "1/24"
+          ]
+        ],
+        "nonzero_kernel_coefficients": 500,
+        "off_diagonal_kernel_coefficients": 475,
+        "pair_checks": 25,
+        "query_key_derivative_checks": 100,
+        "normalized_output_checks": 20
+      },
+      {
+        "latent_dimension": 3,
+        "box_degree": 1,
+        "embedding_width": 7,
+        "collected_width": 27,
+        "score_coefficient_matrix": [
+          [
+            "-1/7",
+            "0",
+            "1/7",
+            "-5/21",
+            "-2/21",
+            "1/21",
+            "4/21"
+          ],
+          [
+            "4/21",
+            "-4/21",
+            "-1/21",
+            "2/21",
+            "5/21",
+            "-1/7",
+            "0"
+          ],
+          [
+            "0",
+            "1/7",
+            "-5/21",
+            "-2/21",
+            "1/21",
+            "4/21",
+            "-4/21"
+          ],
+          [
+            "-4/21",
+            "-1/21",
+            "2/21",
+            "5/21",
+            "-1/7",
+            "0",
+            "1/7"
+          ],
+          [
+            "1/7",
+            "-5/21",
+            "-2/21",
+            "1/21",
+            "4/21",
+            "-4/21",
+            "-1/21"
+          ],
+          [
+            "-1/21",
+            "2/21",
+            "5/21",
+            "-1/7",
+            "0",
+            "1/7",
+            "-5/21"
+          ],
+          [
+            "-5/21",
+            "-2/21",
+            "1/21",
+            "4/21",
+            "-4/21",
+            "-1/21",
+            "2/21"
+          ]
+        ],
+        "nonzero_kernel_coefficients": 519,
+        "off_diagonal_kernel_coefficients": 492,
+        "pair_checks": 25,
+        "query_key_derivative_checks": 150,
+        "normalized_output_checks": 20
+      }
+    ],
+    "state_rank_witnesses": [
+      {
+        "tokens": 1,
+        "exact_rank": 1,
+        "nonzero_leading_minor": "1",
+        "points": [
+          "1/6"
+        ],
+        "state": [
+          [
+            "1",
+            "1/6",
+            "1/36",
+            "1/216",
+            "1/1296"
+          ],
+          [
+            "1/6",
+            "1/36",
+            "1/216",
+            "1/1296",
+            "1/7776"
+          ],
+          [
+            "1/36",
+            "1/216",
+            "1/1296",
+            "1/7776",
+            "1/46656"
+          ],
+          [
+            "1/216",
+            "1/1296",
+            "1/7776",
+            "1/46656",
+            "1/279936"
+          ],
+          [
+            "1/1296",
+            "1/7776",
+            "1/46656",
+            "1/279936",
+            "1/1679616"
+          ]
+        ]
+      },
+      {
+        "tokens": 2,
+        "exact_rank": 2,
+        "nonzero_leading_minor": "1/36",
+        "points": [
+          "1/6",
+          "1/3"
+        ],
+        "state": [
+          [
+            "2",
+            "1/2",
+            "5/36",
+            "1/24",
+            "17/1296"
+          ],
+          [
+            "1/2",
+            "5/36",
+            "1/24",
+            "17/1296",
+            "11/2592"
+          ],
+          [
+            "5/36",
+            "1/24",
+            "17/1296",
+            "11/2592",
+            "65/46656"
+          ],
+          [
+            "1/24",
+            "17/1296",
+            "11/2592",
+            "65/46656",
+            "43/93312"
+          ],
+          [
+            "17/1296",
+            "11/2592",
+            "65/46656",
+            "43/93312",
+            "257/1679616"
+          ]
+        ]
+      },
+      {
+        "tokens": 3,
+        "exact_rank": 3,
+        "nonzero_leading_minor": "1/11664",
+        "points": [
+          "1/6",
+          "1/3",
+          "1/2"
+        ],
+        "state": [
+          [
+            "3",
+            "1",
+            "7/18",
+            "1/6",
+            "49/648"
+          ],
+          [
+            "1",
+            "7/18",
+            "1/6",
+            "49/648",
+            "23/648"
+          ],
+          [
+            "7/18",
+            "1/6",
+            "49/648",
+            "23/648",
+            "397/23328"
+          ],
+          [
+            "1/6",
+            "49/648",
+            "23/648",
+            "397/23328",
+            "193/23328"
+          ],
+          [
+            "49/648",
+            "23/648",
+            "397/23328",
+            "193/23328",
+            "3409/839808"
+          ]
+        ]
+      },
+      {
+        "tokens": 4,
+        "exact_rank": 4,
+        "nonzero_leading_minor": "1/15116544",
+        "points": [
+          "1/6",
+          "1/3",
+          "1/2",
+          "2/3"
+        ],
+        "state": [
+          [
+            "4",
+            "5/3",
+            "5/6",
+            "25/54",
+            "59/216"
+          ],
+          [
+            "5/3",
+            "5/6",
+            "25/54",
+            "59/216",
+            "325/1944"
+          ],
+          [
+            "5/6",
+            "25/54",
+            "59/216",
+            "325/1944",
+            "815/7776"
+          ],
+          [
+            "25/54",
+            "59/216",
+            "325/1944",
+            "815/7776",
+            "4675/69984"
+          ],
+          [
+            "59/216",
+            "325/1944",
+            "815/7776",
+            "4675/69984",
+            "12059/279936"
+          ]
+        ]
+      },
+      {
+        "tokens": 5,
+        "exact_rank": 5,
+        "nonzero_leading_minor": "1/44079842304",
+        "points": [
+          "1/6",
+          "1/3",
+          "1/2",
+          "2/3",
+          "5/6"
+        ],
+        "state": [
+          [
+            "5",
+            "5/2",
+            "55/36",
+            "25/24",
+            "979/1296"
+          ],
+          [
+            "5/2",
+            "55/36",
+            "25/24",
+            "979/1296",
+            "1475/2592"
+          ],
+          [
+            "55/36",
+            "25/24",
+            "979/1296",
+            "1475/2592",
+            "20515/46656"
+          ],
+          [
+            "25/24",
+            "979/1296",
+            "1475/2592",
+            "20515/46656",
+            "32275/93312"
+          ],
+          [
+            "979/1296",
+            "1475/2592",
+            "20515/46656",
+            "32275/93312",
+            "462979/1679616"
+          ]
+        ]
+      }
+    ],
+    "pair_checks": 100,
+    "query_key_derivative_checks": 400,
+    "normalized_output_checks": 80
+  },
   "exchange_cycle_coherence_control": {
     "general_lemma": "For a common basis D and two-for-two competing bases, contract the common n-2 entries. A new monomial u-alpha*e_i+beta*e_j replaces at least one of u,u+h*e_i. A directed coordinate cycle with product(alpha)>product(beta) therefore forces a convex combination of actual bases whose moment is strictly below mu(D) on every cycle coordinate. D cannot be initial under any global monomial order.",
     "scope": "A self-contained use of established basis exchange and state-polyhedron theory. It is a coherence obstruction, not a characterization, unrestricted fan count, or certified novel theorem.",
@@ -464395,6 +464868,10 @@
     "algebraic_attention_kernel_derivative_checks": 1050,
     "algebraic_attention_output_checks": 150,
     "algebraic_attention_normalized_derivative_checks": 540,
+    "mixed_attention_pair_checks": 100,
+    "mixed_attention_query_key_derivative_checks": 400,
+    "mixed_attention_normalized_output_checks": 80,
+    "attention_accumulated_state_rank_witnesses": 5,
     "exchange_cycle_rank_two_contractions": 15750,
     "exchange_cycle_patch_checks": 324,
     "exchange_cycle_rational_controls": 6,

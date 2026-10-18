@@ -1881,6 +1881,47 @@
             "scripts/run_structural_complexity_checks.py": "635e3d44058552a028902e4608505261d54b712717bc0ca8d4fd63d70bcd7241",
             "docs/interleaving_research.md": "8a92fddded4888a7572fca8b42d2e1ed5029fac1292c71d61d9ed122cf5005a4"
           }
+        },
+        "dense_mixing_and_state_closure_audit": {
+          "record": "docs/interleaving_research.md, ML implementation gate: learned mixing, state closure and honest comparisons",
+          "implementation": "scripts/run_structural_complexity_checks.py, algebraic_attention_mixing_controls",
+          "dense_mixing_identity": "For arbitrary real H on A={0,...,m}^s minus {0}, p2(sum H[a,b]*q^a*k^b)=u(q)^T*C*u(k) on the doubled box. Dense mixing retains M=(2m+1)^s state rows but generally makes C dense.",
+          "full_cost": "M*(v+1) recurrent state, O(M*v) update/read plus O(M^2) query transform and O(M^2) coefficient storage; naive coefficient preparation O(D^4*s) whenever H changes. Encoders, backward and training storage are additional.",
+          "dense_memory_example": {
+            "D": 63,
+            "M": 225,
+            "value_width": 64,
+            "generic_state_entries": 135200,
+            "collected_state_entries": 14625,
+            "dense_C_entries": 50625,
+            "state_plus_C_entries": 65250
+          },
+          "state_closure_limit": "Distinct real keys (t_j,t_j) give Z[r,c]=sum_j t_j^(r+c)=V*V^T, of exact rank min(N,L). Separable per-token features do not imply a fixed-rank accumulated state.",
+          "exact_checks": {
+            "dense_mixed_fixtures": 4,
+            "pair_kernels": 100,
+            "query_key_kernel_derivatives": 400,
+            "normalized_causal_noncausal_output_coordinates": 80,
+            "state_rank_witnesses": 5
+          },
+          "numerical_diagnostic_scope": "Additional ignored local NumPy float32/float64 comparisons on four bounded random fixtures; not the public exact certificate, a conditioning theorem, runtime/GPU measurement, full gradient check or learned-quality result.",
+          "priority": "Start with the diagonal constrained polynomial block. Compare exact generic symmetric features, then learned M-feature linear/polynomial baselines and relevant existing architectures at matched state, parameters and training compute. Test associative recall before custom GPU engineering.",
+          "new_primary_comparison": {
+            "title": "Compute Better Spent: Replacing Dense Layers with Structured Matrices",
+            "source": "https://arxiv.org/html/2406.06248v1",
+            "inspected": "Abstract and introduction, Table 1, initialization/learning-rate discussion and Appendix B runtime discussion; no full theoretical or experimental audit.",
+            "relevance": "Block Tensor-Train contains Monarch and is a required structured-MLP comparison. A parameter-count or factorization identity alone is not a new compute/quality advantage."
+          },
+          "fundamental_advantage_established": false,
+          "measured_gpu_speedup": false,
+          "trained_model_quality_tested": false,
+          "novelty_established": false,
+          "active_mathematical_goal_preserved": true,
+          "full_checker_verified": true,
+          "source_sha256": {
+            "scripts/run_structural_complexity_checks.py": "a3d72ddbe8626e476bebc23b57e03234e853cfa6e7536fd82202c7ff27b48e72",
+            "docs/interleaving_research.md": "ae4ffc3b1308de136f57f8ef92c4481596d54402ba7b4e3dd3d8c0a52be822e0"
+          }
         }
       }
     },
