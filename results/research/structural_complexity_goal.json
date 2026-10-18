@@ -2,7 +2,7 @@
   "schema_version": 1,
   "recorded_on": "2026-10-18",
   "title": "Universal algebraic complexity beyond generic corner cuts",
-  "status": "active_uniform_truncation_defect_bound_proved_general_dual_relation_gate_open",
+  "status": "active_box_initial_residual_duality_verified_nonbox_relation_information_open",
   "objective": "Prove a new structural theorem determining or substantially narrowing the worst-case asymptotic number of monomial initial ideals of finite polynomial algebras, starting with three variables and seeking a mechanism valid in every fixed dimension. Establish the strongest relevant primary baseline first. Success requires a complete uniform proof of sharp growth or a substantial asymptotic advance over that baseline for all colength-n ideals or all n-point configurations, a rigorous further algebraic, geometric or enumeration consequence, reproducible exact certificates and an honestly scoped manuscript. Examples, reformulations, already known corollaries and a plan alone do not complete this goal.",
   "plan": "docs/interleaving_research.md#higher-impact-research-plan-universal-algebraic-complexity",
   "relationship_to_previous_goal": "A new research objective. The completed corner-cut counting manuscript and its acceptance records remain separate and unchanged in mathematical content.",
@@ -34,7 +34,7 @@
     },
     {
       "id": "dependency_mechanism",
-      "status": "dual_relation_reduction_and_uniform_truncation_defect_bound_proved_general_compatible_matroid_gate_open",
+      "status": "box_initial_colon_recovery_proved_nonbox_socle_information_loss_certified_general_compatible_matroid_gate_open",
       "deliverable": "A precise lemma about multiplication-compatible residue dependencies or state-polyhedron geometry, with its proof attempt and adversarial controls."
     },
     {
@@ -123,7 +123,7 @@
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Proved a uniform envelope bound for every one-dimensional quotient of a finite binomial algebra in dimensions two and three, with complete exact parent/child fan controls. It rules out exponent amplification by deleting one orbit point. No qualifying unrestricted advance has been achieved."
+    "reason": "Proved an r-dependent envelope bound for uniform truncations, derived the exact dual-relation reduction for arbitrary binomial quotients, and certified a realizable defect-two failure of the unconstrained omission rule. Added primary ML comparisons and a full-rank softmax witness in response to the user. No unrestricted asymptotic advance is claimed."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -340,12 +340,25 @@
       "authors": "Nauen, Palacio and Dengel",
       "inspected": "Sections 3.1--3.3, including the tensor-product feature identity, reassociation and normalization.",
       "finding": "Polynomial attention already uses tensor-product feature factorizations. Any ML application needs new approximation, conditioning and complete cost guarantees beyond this existing framework."
+    },
+    {
+      "source": "https://arxiv.org/pdf/1208.5639",
+      "publication_locator": "https://doi.org/10.1016/j.laa.2014.01.007",
+      "authors": "Onn and Rozenblit in the preprint; Melamed and Onn in the publication locator",
+      "inspected": "Setup, Theorem 2.3 with proof and adjacent algorithm, and Theorem 4.1 with proof. Published version identified, not assumed identical.",
+      "finding": "The O((e(S)*||W||_infinity)^(d*(d-1))) projection bound has e(S)=2 for matroids and ||W||_infinity<=n-1 on the hyperbolic cross. Its direct d=3 consequence is O(n^6), weaker than the inspected O(n^3) colength bound."
+    },
+    {
+      "source": "https://arxiv.org/pdf/1704.03680v2",
+      "authors": "Dimitrova, He, Robbiano and Stigler",
+      "inspected": "Definitions 4.1 and 4.6; Lemmas 4.5--4.7 with proofs; Theorem 4.8 with proof; Corollary 4.11 with proof.",
+      "finding": "The grid-complement fan correspondence is established prior art. Arbitrary nonreduced colon links need not split primary components or be comaximal; the local cube witness prevents relying on v2 Lemma 4.7(d) as written in that scope. The box-initial identity saved here has an independent top-coefficient-pairing proof. No claim that the published version retains this scope problem, and no novelty certification."
     }
   ],
   "next_actions": [
-    "Seek a valid two-variable module of relations on a one-coordinate relative-socle support, with both surviving multiplication actions proved compatible, and a count exceeding n^2 log^2 n. The O(n^(7/3)) ceiling makes this a precise lower-family target; arbitrary unrelated matroid rows are insufficient.",
-    "Continue the unrestricted mixed-leading upper argument with extension data included. The two-component elimination-fan shortcut is explicitly false; a relation/box/layer cover must also handle forced staircases and cannot assume a pure top-degree relation.",
-    "Do not enlarge fixed-curve or two-annihilator enumeration. Complete the priority audit for any actual unrestricted advance before preparing its manuscript; construction-level results do not change the acceptance criterion."
+    "For the unrestricted upper route, quantify the information lost by colon duality on nonbox initial algebras, retaining the multiplication-compatible relation matroid. A complete-intersection parent alone is insufficient, as the exact cyclic counter proves.",
+    "For the uniform cyclic lower route, require a symbolic growing-defect family with an actual additive-residue mechanism before expanding enumeration. Nonuniform fixed defect is not excluded: any alternative needs commuting multiplication actions and a mechanism outside the already bounded full-socle support class.",
+    "Continue the strongest-primary comparison for any actual unrestricted advance. The unavailable later finite-field chapter and an unsuccessful keyword search do not establish novelty. Preserve the existing manuscript and do not prepare a new one before the asymptotic and consequence gates pass."
   ],
   "forward_citation_discovery": {
     "method": "Read-only OpenAlex forward-citation queries for the two founding papers, followed by primary-source inspection of potentially relevant records.",
@@ -471,11 +484,44 @@
           "factorial_boundary_full_matrix_checks": 87,
           "independent_boundary_arm_fixtures": 4,
           "independent_boundary_arm_row_and_greedy_checks": 864,
-          "independent_boundary_arm_full_matrix_checks": 236
+          "independent_boundary_arm_full_matrix_checks": 236,
+          "positive_collision_profiles": 4,
+          "positive_collision_staircase_rank_checks": 344,
+          "positive_collision_fan_witness_checks": 296,
+          "monogenic_fixed_algebra_fixtures": 4,
+          "monogenic_all_minors_checked": 830,
+          "centered_curvilinear_staircase_checks": 322,
+          "sparse_prefix_exact_matching_rank_controls": 1,
+          "sparse_prefix_uniform_dual_certificates": 3,
+          "jordan_graded_map_rank_checks": 334,
+          "jordan_three_node_string_rank_checks": 224,
+          "jordan_filtered_prefix_rank_checks": 124,
+          "jordan_full_tag_power_diagonal_cost_checks": 4,
+          "unequal_jordan_staircases_checked": 144,
+          "unequal_jordan_coherent_basis_checks": 35,
+          "unequal_jordan_infeasibility_certificates": 34,
+          "codimension_one_binomial_quotient_fixtures": 3,
+          "codimension_one_staircase_rank_checks": 514,
+          "codimension_one_coherent_basis_checks": 63,
+          "codimension_one_infeasibility_certificates": 4,
+          "uniform_deletion_fourier_minors_checked": 1666,
+          "uniform_deletion_staircase_rank_checks": 37,
+          "uniform_deletion_coherent_basis_checks": 24,
+          "uniform_deletion_gaussian_checks": 48,
+          "nonuniform_complementary_basis_checks": 15,
+          "attention_full_rank_softmax_witnesses": 1,
+          "box_residual_duality_fixtures": 12,
+          "box_residual_duality_chamber_checks": 144,
+          "box_residual_duality_gaussian_checks": 288,
+          "nongrid_box_cone_checks": 2,
+          "nonbox_residual_transfer_counter_witnesses": 2,
+          "nonuniform_two_level_exchange_chambers": 19,
+          "nonuniform_two_level_exchange_gaussian_checks": 76,
+          "nonuniform_two_level_exchange_local_sectors": 4
         }
       }
     ],
-    "scope": "Build, smoke tests and the full research checker passed. This pass adds 83 factorial prefix determinant certificates, 1,032 relation-row/greedy comparisons and 323 full quotient-matrix state checks over four characteristics. Exhaustive internal comparison intervals and direct-sum product cells cover the positive fans of these fixtures. Uniform formulas retain their characteristic hypotheses. The unrestricted asymptotic theorem, strongest-current-priority audit and target manuscript remain incomplete."
+    "scope": "Build, smoke tests and the full final-source research checker passed. New controls cover 12 nonreduced/reduced grid fixtures, 144 complete comparison chambers, 288 independent quotient Gaussian selections, two nongrid box cones, two actual nonbox residual-recovery counterweights, and a nonuniform two-level quotient with 19 chambers and 76 Gaussian selections. All prior certificate objects and summary counts are retained. These checks support the saved uniform proof and route obstructions; no qualifying unrestricted asymptotic advance, complete strongest-priority audit or new manuscript is claimed."
   },
   "second_feasibility_results": {
     "record": "docs/interleaving_research.md, Second feasibility pass: interacting relations and a conditional count",
@@ -1301,7 +1347,7 @@
   },
   "this_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Proved an r-dependent envelope bound for uniform truncations, derived the exact dual-relation reduction for arbitrary binomial quotients, and certified a realizable defect-two failure of the unconstrained omission rule. Added primary ML comparisons and a full-rank softmax witness in response to the user. No unrestricted asymptotic advance is claimed."
+    "reason": "Proved the precise box-initial residual-colon identity over every field, checked noncomaximal nonreduced examples, and certified that an arbitrary complete-intersection parent does not determine its child from the residual fan. Added a realizable two-height exchange vertex showing why uniform fixed-defect obstructions do not extend to all quotient matroids. No unrestricted asymptotic advance is claimed."
   },
   "eleventh_feasibility_results": {
     "record": "docs/interleaving_research.md, Eleventh feasibility pass: coordinate flags survive the Jordan reduction",
@@ -1535,5 +1581,109 @@
     "strongest_current_bound_verified": false,
     "goal_qualifying_unrestricted_advance": false,
     "decision": "Keep uniform truncations separate from arbitrary quotient matroids. Require a symbolic additive-residue realization mechanism before enlarging periodic searches; the general upper lemma must retain the multiplication-compatible dual matroid. Main theorem, further consequence, strongest-priority audit and honest new manuscript remain pending."
+  },
+  "fourteenth_feasibility_results": {
+    "record": "docs/interleaving_research.md, Fourteenth feasibility pass: the exact boundary of residual duality",
+    "uniform_colon_identity": {
+      "scope": "Every field, every containment J contained in I, on every global-order cone with in(J) a pure-power complete intersection. Neither radicality nor comaximality is needed.",
+      "statement": "If C=in(J)=(x_i^s_i), q=product(s_i), n=length(S/I), and L=J:I, then length(S/L)=q-n, in(L)=C:in(I), and D(L)=c-(B minus D(I)), where B is the parent box and c its top corner.",
+      "proof": "The coefficient of the top box monomial gives a perfect associative pairing on S/J. Orthogonal to I/J equals its annihilator, giving complementary lengths. The always-valid initial-colon inclusion and the equal monomial colengths give equality; reflection is involutive.",
+      "priority": "Standard complete-intersection duality and elementary leading-term reasoning. Not certified novel and not a new unrestricted count."
+    },
+    "grid_reduction": {
+      "statement": "For every univariate grid parent and every contained quotient, the child and its residual have identical positive initial-ideal fans, even when they are nonreduced and not comaximal.",
+      "obstruction": "Generic n-point inputs have n distinct values in each coordinate. Every grid parent has length at least n^d; the minimal residual has length n^d-n. This is not a general smaller-instance upper-bound reduction."
+    },
+    "nonbox_countercontrol": {
+      "parent": "(y-x^2,z-x^3,x^7-1), itself a complete intersection",
+      "child": "(y-x^2,z-x^3,1+x+...+x^6)",
+      "residual": "(x-1,y-1,z-1)",
+      "weights": [
+        [
+          41,
+          53,
+          10
+        ],
+        [
+          23,
+          53,
+          10
+        ]
+      ],
+      "same_parent_initial": "(y,x^2,x*z^2,z^5)",
+      "same_residual_initial": "(x,y,z)",
+      "different_child_omissions": [
+        "x*z",
+        "z^4"
+      ],
+      "information_loss": "The nonbox parent initial has two socle monomials. Coloning the residual initial adds both, losing which individual corner was omitted."
+    },
+    "finite_controls": {
+      "status": "passed",
+      "grid_fixtures": 12,
+      "characteristics": [
+        0,
+        2,
+        3,
+        5
+      ],
+      "complete_comparison_chambers_per_fixture": 12,
+      "chamber_checks": 144,
+      "independent_gaussian_checks": 288,
+      "nongrid_box_cones": 2,
+      "nonbox_counter_witnesses": 2,
+      "nonbox_witness_characteristics": [
+        0,
+        2,
+        3,
+        7
+      ],
+      "commands": [
+        "./build.sh",
+        "python3 tests/test_smoke.py",
+        "python3 -B scripts/run_structural_complexity_checks.py"
+      ],
+      "nonuniform_two_level_chambers": 19,
+      "nonuniform_two_level_gaussian_checks": 76,
+      "nonuniform_two_level_local_sectors": 4,
+      "source_sha256": {
+        "scripts/run_structural_complexity_checks.py": "12e951f099c8775b9bd74d49d21338bb2a47726840ed2c214271ba53be4e0e45",
+        "docs/interleaving_research.md": "dddcab31b8ef66052f1193be90f343d1b786f2bfc7fbbb84162badd56d2cee5a"
+      },
+      "new_summary_counts": {
+        "box_residual_duality_fixtures": 12,
+        "box_residual_duality_chamber_checks": 144,
+        "box_residual_duality_gaussian_checks": 288,
+        "nongrid_box_cone_checks": 2,
+        "nonbox_residual_transfer_counter_witnesses": 2,
+        "nonuniform_two_level_exchange_chambers": 19,
+        "nonuniform_two_level_exchange_gaussian_checks": 76,
+        "nonuniform_two_level_exchange_local_sectors": 4
+      }
+    },
+    "strongest_current_bound_verified": false,
+    "goal_qualifying_unrestricted_advance": false,
+    "decision": "Use residual duality only on proved box-initial cones. Retain the lost nonbox socle information and the compatible relation matroid in the general upper argument. The uniform lower route requires growing defect; a nonuniform fixed-defect route instead needs a multiplication-compatible mechanism outside the bounded socle-support class. Main theorem, further consequence, complete priority audit and new manuscript remain unachieved.",
+    "nonuniform_two_level_control": {
+      "parent_definition": "Union of the divisor boxes of x^3,y^3,x*z,z^4,y*z^3,x^2*y; monomial complement ideal J has length 17.",
+      "child_additional_generators": [
+        "x^3+y^3+x*z",
+        "z^4+y*z^3+x^2*y"
+      ],
+      "child_length": 15,
+      "relation_dimension": 2,
+      "central_weight": [
+        1,
+        1,
+        1
+      ],
+      "independent_exchange_costs": [
+        3,
+        4
+      ],
+      "complete_initial_ideal_count": 7,
+      "finding": "Two independent circuit maxima exchange at different costs. There is no single uniform cutoff, even for a genuine nonbinomial quotient with commuting cyclic matrices.",
+      "limit": "This witness is supported on the full socle and is subject to the existing O(n^(3/2)) support bound. It is not an amplification family. Uniform fixed-defect obstructions must not be promoted to every nonuniform fixed-defect construction."
+    }
   }
 }

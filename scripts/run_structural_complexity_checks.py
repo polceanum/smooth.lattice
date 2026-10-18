@@ -2677,6 +2677,274 @@ def uniform_deletion_and_dual_relation_controls():
             "priority": "Uses established envelope bounds, elementary random-sampling estimates and standard matroid duality. Novelty and an unrestricted asymptotic advance are not established."}
 
 
+def box_residual_duality_controls(codimension_one):
+    """Box-initial colon duality, with nonreduced and nonbox negative controls."""
+    domain = list(product(range(2), repeat=3))
+    coordinates = {a: i for i, a in enumerate(domain)}
+    top = (1, 1, 1)
+    normals = sorted({primitive(tuple(x - y for x, y in zip(a, b)))
+                      for a, b in combinations(domain, 2)
+                      if min(x - y for x, y in zip(a, b)) < 0 < max(x - y for x, y in zip(a, b))})
+    weights = positive_chambers(normals)
+    fixtures = []
+    specifications = [
+        ("local_cube", ((0, 0, 1),) * 3, 0),
+        ("mixed_repeated_grid", ((-1, 0, 1), (0, -1, 1), (0, -1, 1)), -1),
+        ("reduced_binary_grid", ((0, -1, 1),) * 3, -1),
+    ]
+    for label, moduli, constant in specifications:
+        powers = [[univariate_power_mod((0, 1), exponent, modulus) for exponent in range(3)]
+                  for modulus in moduli]
+        products = {(a, b): tuple(powers[0][a[0] + b[0]][c[0]] *
+                                 powers[1][a[1] + b[1]][c[1]] *
+                                 powers[2][a[2] + b[2]][c[2]] for c in domain)
+                    for a in domain for b in domain}
+        for characteristic in (0, 2, 3, 5):
+            def scalar(value):
+                return value % characteristic if characteristic else Fraction(value)
+
+            def row_reduce(rows):
+                matrix = [[scalar(x) for x in row] for row in rows]
+                rank, pivots = 0, []
+                for column in range(len(domain)):
+                    pivot = next((i for i in range(rank, len(matrix)) if matrix[i][column]), None)
+                    if pivot is None:
+                        continue
+                    matrix[rank], matrix[pivot] = matrix[pivot], matrix[rank]
+                    inverse = (pow(matrix[rank][column], -1, characteristic) if characteristic
+                               else 1 / matrix[rank][column])
+                    matrix[rank] = [scalar(x * inverse) for x in matrix[rank]]
+                    for i in range(len(matrix)):
+                        if i != rank:
+                            coefficient = matrix[i][column]
+                            matrix[i] = [scalar(x - coefficient * y) for x, y in zip(matrix[i], matrix[rank])]
+                    pivots.append(column)
+                    rank += 1
+                    if rank == len(matrix):
+                        break
+                return matrix[:rank], pivots
+
+            def reduce_vector(vector, rows, pivots):
+                vector = [scalar(x) for x in vector]
+                for row, pivot in zip(rows, pivots):
+                    coefficient = vector[pivot]
+                    vector = [scalar(x - coefficient * y) for x, y in zip(vector, row)]
+                return tuple(vector)
+
+            def nullspace(rows):
+                reduced, pivots = row_reduce(rows)
+                result = []
+                for free in range(len(domain)):
+                    if free not in pivots:
+                        vector = [scalar(int(i == free)) for i in range(len(domain))]
+                        for row, pivot in zip(reduced, pivots):
+                            vector[pivot] = scalar(-row[free])
+                        result.append(tuple(vector))
+                return result
+
+            def multiply(left, right):
+                return tuple(scalar(sum(left[i] * right[j] * products[a, b][k]
+                                        for i, a in enumerate(domain) for j, b in enumerate(domain)))
+                             for k in range(len(domain)))
+
+            unit_vectors = [tuple(scalar(int(i == j)) for i in range(len(domain)))
+                            for j in range(len(domain))]
+            variable_vectors = [unit_vectors[coordinates[e]] for e in ((1, 0, 0), (0, 1, 0), (0, 0, 1))]
+            require(all(multiply(a, multiply(b, unit)) == multiply(b, multiply(a, unit))
+                        for a, b in combinations(variable_vectors, 2) for unit in unit_vectors),
+                    "the three actual parent multiplication matrices commute")
+            generator = tuple(scalar(constant if a == (0, 0, 0) else int(sum(a) == 1)) for a in domain)
+            multiplication_columns = [multiply(unit, generator) for unit in unit_vectors]
+            relations, relation_pivots = row_reduce(multiplication_columns)
+            annihilator, annihilator_pivots = row_reduce(nullspace(list(zip(*multiplication_columns))))
+            require(len(relations) + len(annihilator) == len(domain), "rank-nullity in the actual grid algebra")
+            require(all(not any(multiply(a, b)) for a in relations for b in annihilator),
+                    "the computed colon annihilates the entire relation ideal")
+            gram = [[scalar(products[a, b][coordinates[top]]) for b in domain] for a in domain]
+            require(len(row_reduce(gram)[0]) == len(domain), "top-coefficient pairing is perfect in every checked field")
+            orthogonal = nullspace([[scalar(sum(row[i] * gram[i][j] for i in range(len(domain))))
+                                     for j in range(len(domain))] for row in relations])
+            require(len(orthogonal) == len(annihilator) and
+                    all(not any(reduce_vector(row, annihilator, annihilator_pivots)) for row in orthogonal),
+                    "independent pairing-orthogonal and multiplication-kernel computations agree")
+            for rows, pivots in ((relations, relation_pivots), (annihilator, annihilator_pivots)):
+                require(all(not any(reduce_vector(multiply(unit_vectors[coordinates[e]], row), rows, pivots))
+                            for e in ((1, 0, 0), (0, 1, 0), (0, 0, 1)) for row in rows),
+                        "both relation subspaces are stable under all three multiplication actions")
+            quotient_columns = [{a: reduce_vector(unit, rows, pivots) for a, unit in zip(domain, unit_vectors)}
+                                for rows, pivots in ((relations, relation_pivots), (annihilator, annihilator_pivots))]
+            records = []
+            for weight in weights:
+                leading = [leading_row_pivots(rows, domain, weight, characteristic)
+                           for rows in (relations, annihilator)]
+                bases = [set(domain) - chosen for chosen in leading]
+                reflected = {tuple(c - a for c, a in zip(top, point)) for point in leading[0]}
+                require(bases[1] == reflected, "exact reflected complement for the colon standard basis")
+                monomial_annihilator = {b for b in domain
+                                        if all(any(x + y >= 2 for x, y in zip(a, b)) for a in leading[0])}
+                require(leading[1] == monomial_annihilator, "initial colon equals colon of the two initial ideals")
+                for basis, columns in zip(bases, quotient_columns):
+                    require(greedy(domain, columns, weight, characteristic) == basis,
+                            "ascending quotient-column selection independently checks descending relation pivots")
+                records.append({"positive_integer_weights": weight, "child_standard_monomials": sorted(bases[0]),
+                                "residual_standard_monomials": sorted(bases[1])})
+            child_states = {tuple(record["child_standard_monomials"]) for record in records}
+            residual_states = {tuple(record["residual_standard_monomials"]) for record in records}
+            require(len(child_states) == len(residual_states), "pointwise bijection identifies the complete two fans")
+            unit = unit_vectors[coordinates[(0, 0, 0)]]
+            sum_rows, sum_pivots = row_reduce(relations + annihilator)
+            comaximal = not any(reduce_vector(unit, sum_rows, sum_pivots))
+            common_top = (not any(reduce_vector(unit_vectors[coordinates[top]], relations, relation_pivots)) and
+                          not any(reduce_vector(unit_vectors[coordinates[top]], annihilator, annihilator_pivots)))
+            if label == "local_cube":
+                require(not comaximal and common_top, "colon links need not be comaximal CRT complements")
+                require(all(any(reduce_vector(a, relations, relation_pivots)) for a in variable_vectors),
+                        "the local child has nonzero square-zero coordinates, so this is its maximal grid")
+            fixtures.append({"label": label, "univariate_moduli": moduli, "linear_generator_constant": constant,
+                             "linear_generator_variable_coefficients": [1, 1, 1], "characteristic": characteristic,
+                             "parent_length": len(domain), "child_length": len(annihilator),
+                             "residual_length": len(relations), "number_of_initial_ideals": len(child_states),
+                             "relation_rows": [[str(x) for x in row] for row in relations],
+                             "annihilator_rows": [[str(x) for x in row] for row in annihilator],
+                             "comaximal": comaximal, "nonzero_top_in_both_ideals": common_top,
+                             "all_comparison_chamber_checks": records})
+
+    nongrid_ground = hyperbolic_cross(8, 3)
+    nongrid_models = [{a: tuple(int((a[0] + 2 * a[1], a[2]) == (i, j))
+                               for i, j in product(range(length), range(2))) for a in nongrid_ground}
+                      for length in (4, 3)]
+    nongrid_boxes = []
+    for weight in ((17, 7, 3), (5, 13, 3)):
+        box = greedy(nongrid_ground, nongrid_models[0], weight, 0)
+        sides = tuple(max(a[i] for a in box) + 1 for i in range(3))
+        require(box == set(product(*(range(side) for side in sides))), "the nongrid parent cone has a box initial")
+        child = {(0, 0, 0), (0, 0, 1)}
+        residual = greedy(nongrid_ground, nongrid_models[1], weight, 0)
+        corner = tuple(side - 1 for side in sides)
+        require(residual == {tuple(c - a for c, a in zip(corner, point)) for point in box - child},
+                "box-cone residual duality also holds for the nongrid complete intersection")
+        nongrid_boxes.append({"positive_integer_weights": weight, "box_sides": sides,
+                              "parent_standard_monomials": sorted(box), "child_standard_monomials": sorted(child),
+                              "residual_standard_monomials": sorted(residual)})
+
+    pair = [dict(record, positive_integer_weights=weight) for record, weight in
+            zip(codimension_one["fixtures"][0]["same_parent_distinct_child_initials"], ((41, 53, 10), (23, 53, 10)))]
+    require(len(pair) == 2, "existing nonbox complete-intersection parent countercontrol is present")
+    parent_basis = set(map(tuple, pair[0]["parent_standard_monomials"]))
+    require(parent_basis == set(map(tuple, pair[1]["parent_standard_monomials"])), "same parent initial ideal")
+    socle = {a for a in parent_basis if all(tuple(x + (i == j) for j, x in enumerate(a)) not in parent_basis
+                                           for i in range(3))}
+    require(socle == {(0, 0, 4), (1, 0, 1)}, "the parent initial algebra has two socle monomials")
+    full_ground = hyperbolic_cross(7, 3)
+    cyclic_models = []
+    for modulus in ((-1, 0, 0, 0, 0, 0, 0, 1), (1,) * 7):
+        t = (0, 1) + (0,) * (len(modulus) - 3)
+        images = [univariate_power_mod(t, power, modulus) for power in (1, 2, 3)]
+        cyclic_models.append(cyclic_univariate_model(modulus, images, full_ground))
+    for witness in pair:
+        child = set(map(tuple, witness["staircase"]))
+        for characteristic in (0, 2, 3, 7):
+            require(greedy(full_ground, cyclic_models[0], witness["positive_integer_weights"], characteristic) == parent_basis and
+                    greedy(full_ground, cyclic_models[1], witness["positive_integer_weights"], characteristic) == child,
+                    "independent actual quotient checks at the smaller nonbox counterweights")
+        removed = parent_basis - child
+        require(len(removed) == 1 and removed <= socle, "different omitted socle monomials")
+        monomial_annihilator = {b for b in parent_basis
+                                if all(tuple(x + y for x, y in zip(a, b)) not in parent_basis for a in removed)}
+        require(monomial_annihilator == parent_basis - {(0, 0, 0)}, "both monomial colons have initial ideal (x,y,z)")
+    return {"uniform_statement": "For every J contained in I, on every term-order cone where in(J)=(x_1^s_1,...,x_d^s_d), in(J:I)=in(J):in(I), with reflected complementary box standard bases. This holds over every field without radicality or comaximality.",
+            "grid_consequence": "Every univariate grid parent has the same box at all global orders, so I and J:I have identical positive initial-ideal fans and complementary lengths.",
+            "scope_limit": "A complete-intersection parent alone is insufficient: its initial ideal must be a box for this invertible recovery. General grid covers can have residual length n^d-n and do not improve the unrestricted bound.",
+            "fixtures": fixtures,
+            "nongrid_box_cones": {"parent_generators": ["x^2-y", "y^2", "z^2"],
+                                   "child_additional_generator": "x", "residual_additional_generator": "x*y",
+                                   "checks": nongrid_boxes},
+            "nonbox_countercontrol": {"parent_generators": ["y-x^2", "z-x^3", "x^7-1"],
+                                       "child_generators": ["y-x^2", "z-x^3", "1+x+x^2+x^3+x^4+x^5+x^6"],
+                                       "actual_residual_generators": ["x-1", "y-1", "z-1"],
+                                       "parent_initial_generators": ["y", "x^2", "x*z^2", "z^5"],
+                                       "socle_monomials": sorted(socle),
+                                       "residual_initial_generators": ["x", "y", "z"],
+                                       "distinct_child_witnesses": pair,
+                                       "information_loss": "Both colons are identical, but coloning again adds both parent socle monomials rather than recovering either of the two different child initials."},
+            "priority": "Standard complete-intersection duality plus the initial-colon inclusion; the grid-complement fan correspondence is established prior art. No new unrestricted theorem or novelty certification."}
+
+
+def nonuniform_two_level_exchange_control():
+    """A realizable defect-two vertex with two exchange heights, not one cutoff."""
+    groups = (((3, 0, 0), (0, 3, 0), (1, 0, 1)),
+              ((0, 0, 4), (0, 1, 3), (2, 1, 0)))
+    corners = groups[0] + groups[1]
+    domain = sorted({a for c in corners for a in product(*(range(value + 1) for value in c))})
+    require(len(domain) == 17 and all(tuple(value + (i == j) for j, value in enumerate(a)) not in domain
+                                    for a in corners for i in range(3)), "six genuine parent socle monomials")
+    removed_reference = {group[0] for group in groups}
+    reference_bases = [domain, [a for a in domain if a not in removed_reference]]
+    column_models = []
+    ground = hyperbolic_cross(len(domain), 3)
+    for basis in reference_bases:
+        zero = (0,) * len(basis)
+
+        def column(a):
+            if a not in domain:
+                return zero
+            if a in basis:
+                return tuple(int(a == b) for b in basis)
+            group = next(group for group in groups if a == group[0])
+            return tuple(-int(b in group[1:]) for b in basis)
+
+        matrices = [[column(tuple(value + (i == j) for j, value in enumerate(a))) for a in basis]
+                    for i in range(3)]
+        require(all(matvec(matrices[i], vector) == matvec(matrices[j], other)
+                    for i, j in combinations(range(3), 2)
+                    for vector, other in zip(matrices[j], matrices[i])), "actual two-circuit quotient matrices commute over Z")
+        columns = {}
+        for a in ground:
+            vector = column((0, 0, 0))
+            for axis in range(3):
+                for _ in range(a[axis]):
+                    vector = matvec(matrices[axis], vector)
+            require(vector == column(a), "cyclic evaluation agrees with the independently specified socle quotient")
+            columns[a] = vector
+        column_models.append(columns)
+    rows = [tuple(int(a in group) for a in domain) for group in groups]
+    normals = sorted({primitive(tuple(x - y for x, y in zip(a, b)))
+                      for group in groups for a, b in combinations(group, 2)})
+    weights = positive_chambers(normals)
+    records, states = [], set()
+    for weight in weights:
+        omitted = {max(group, key=lambda a: dot(weight, a)) for group in groups}
+        basis = set(domain) - omitted
+        for characteristic in (0, 2, 3, 7):
+            require(leading_row_pivots(rows, domain, weight, characteristic) == omitted and
+                    greedy(ground, column_models[1], weight, characteristic) == basis,
+                    "independent row and actual quotient-column checks on every chamber")
+        states.add(tuple(sorted(basis)))
+        records.append({"positive_integer_weights": weight, "omitted_monomials": sorted(omitted),
+                        "standard_monomials": sorted(basis)})
+    central = (1, 1, 1)
+    require([dot(central, a) for a in groups[0]] == [3, 3, 2] and
+            [dot(central, a) for a in groups[1]] == [4, 4, 3], "the two simultaneous exchange heights differ")
+    require(cross((3, -3, 0), (0, -1, 1)) != (0, 0, 0), "the exchange lines are independent")
+    central_records = []
+    for weight in ((101, 100, 102), (100, 101, 102), (101, 100, 99), (100, 101, 99)):
+        omitted = {max(group, key=lambda a: dot(weight, a)) for group in groups}
+        basis = set(domain) - omitted
+        require(tuple(sorted(basis)) in states and
+                greedy(ground, column_models[1], weight, 0) == basis, "all four local sectors are realized")
+        central_records.append({"positive_integer_weights": weight, "omitted_monomials": sorted(omitted)})
+    require(len({tuple(record["omitted_monomials"]) for record in central_records}) == 4,
+            "a genuine four-sector vertex at two distinct costs")
+    return {"parent_definition": "The monomial complement of the union of the divisor boxes of the six displayed socle corners.",
+            "parent_standard_monomials": domain, "socle_circuit_supports": groups,
+            "relation_coefficients": [[1, 1, 1], [1, 1, 1]], "parent_length": 17, "child_length": 15,
+            "deletion_defect": 2, "characteristics_checked": [0, 2, 3, 7],
+            "initial_ideal_count": len(states), "all_comparison_chambers": records,
+            "central_weight": central, "two_exchange_cost_levels": [3, 4], "four_sector_witnesses": central_records,
+            "conclusion": "Nonuniform rank-two relation matroids can have independent simultaneous exchanges at different costs. The single-cutoff vertex argument for uniform truncations does not extend to arbitrary quotient matroids.",
+            "limit": "The example is supported on the full socle, so the already proved O(n^(3/2)) support-class bound applies. It is not an exponent-amplifying family. Nonuniform fixed defect outside that class is not excluded by the uniform-defect theorem."}
+
+
 def attention_rank_sanity_control():
     """An exact Vandermonde witness, not an attention-compression algorithm."""
     parameters = (1, 2, 3, 4)
@@ -2741,6 +3009,8 @@ def main():
     unequal_jordan = unequal_weight_jordan_countercontrols()
     codimension_one = codimension_one_binomial_quotient_controls()
     uniform_deletion = uniform_deletion_and_dual_relation_controls()
+    residual_duality = box_residual_duality_controls(codimension_one)
+    two_level_exchange = nonuniform_two_level_exchange_control()
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
         "schema_version": 1, "command": "python3 -B scripts/run_structural_complexity_checks.py",
@@ -2830,6 +3100,8 @@ def main():
         "codimension_one_binomial_quotient_control": codimension_one,
         "uniform_deletion_and_dual_relation_control": uniform_deletion,
         "attention_exact_rank_sanity_control": attention_rank_sanity_control(),
+        "box_residual_duality_control": residual_duality,
+        "nonuniform_two_level_exchange_control": two_level_exchange,
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
                     "independent_greedy_checks": sum(f["greedy_checks"] for f in fixtures),
@@ -2898,7 +3170,15 @@ def main():
                     "uniform_deletion_coherent_basis_checks": sum(f["initial_ideal_count"] for f in uniform_deletion["uniform_fixtures"]),
                     "uniform_deletion_gaussian_checks": 2 * sum(f["initial_ideal_count"] for f in uniform_deletion["uniform_fixtures"]),
                     "nonuniform_complementary_basis_checks": len(uniform_deletion["nonuniform_two_relation_countercontrol"]["complementary_basis_checks"]),
-                    "attention_full_rank_softmax_witnesses": 1},
+                    "attention_full_rank_softmax_witnesses": 1,
+                    "box_residual_duality_fixtures": len(residual_duality["fixtures"]),
+                    "box_residual_duality_chamber_checks": sum(len(f["all_comparison_chamber_checks"]) for f in residual_duality["fixtures"]),
+                    "box_residual_duality_gaussian_checks": 2 * sum(len(f["all_comparison_chamber_checks"]) for f in residual_duality["fixtures"]),
+                    "nongrid_box_cone_checks": len(residual_duality["nongrid_box_cones"]["checks"]),
+                    "nonbox_residual_transfer_counter_witnesses": 2,
+                    "nonuniform_two_level_exchange_chambers": len(two_level_exchange["all_comparison_chambers"]),
+                    "nonuniform_two_level_exchange_gaussian_checks": 4 * len(two_level_exchange["all_comparison_chambers"]),
+                    "nonuniform_two_level_exchange_local_sectors": 4},
         "goal_qualifying_advance": False,
     }
     target = ROOT / "results/research/structural_complexity_checks.json"

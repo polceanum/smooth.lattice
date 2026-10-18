@@ -6655,7 +6655,7 @@ is asserted. This is an application lead, not a Transformer breakthrough.
 #### Research decision
 
 Retain (DR1)--(DR4) with their distinct hypotheses. Stop fixed-defect
-periodic searches for an exponent improvement; the uniform theorem
+uniform periodic searches for an exponent improvement; the uniform theorem
 now covers a growing defect quantitatively. Before enlarging that
 search, a symbolic family must explain how additive cyclic residue
 classes realize many cutoff events. Arbitrary independently chosen
@@ -6670,3 +6670,230 @@ stays active. Reproduce the expanded exact checks with
 ```bash
 python3 -B scripts/run_structural_complexity_checks.py
 ```
+
+### Fourteenth feasibility pass: the exact boundary of residual duality
+
+The preceding goal turn made progress in commit 76827ad: it saved
+(DR1)--(DR4), their finite controls, and the ML application assessment.
+This pass tests a possible general replacement for the uniform-matroid
+assumption: recover a child ideal from its parent and its residual colon.
+There is an exact reduction on box-initial cones. The proposed extension
+to arbitrary complete-intersection parents is false. Neither conclusion
+is the required unrestricted asymptotic advance.
+
+#### An exact colon identity on every box-initial cone
+
+Let S=K[x_1,...,x_d], let J be contained in I, and suppose that for a
+global monomial order sigma,
+
+    in_sigma(J)=C=(x_1^s_1,...,x_d^s_d),
+    q=product_i s_i,   n=dim_K(S/I),   L=J:I.
+
+Assume 0<n<q and put B={a:0<=a_i<s_i}, c=(s_1-1,...,s_d-1).
+Then, over every field and without radicality or comaximality,
+
+    dim_K(S/L)=q-n,
+    in_sigma(L)=C:in_sigma(I),                            (RC1)
+    D_sigma(L)={c-a:a in B\D_sigma(I)}.                    (RC2)
+
+Here D_sigma denotes the standard exponent staircase. These statements
+hold throughout every open cone where the parent has this box initial.
+
+Here is a self-contained proof of the needed duality. In A=S/J define
+lambda(a) as the coefficient of x^c in its reduced normal form. For
+nonzero a take the leading monomial x^u of that normal form. Since
+u belongs to B, multiply by x^(c-u). Its leading product is x^c, and
+every other product is smaller under sigma. Reduction cannot increase
+a monomial under sigma; x^c itself is standard. Consequently
+lambda(a*x^(c-u)) is the nonzero leading coefficient of a. Thus the
+bilinear form (a,b) -> lambda(ab) on A is nondegenerate.
+
+Put R=I/J. Its orthogonal subspace is exactly Ann_A(R). One inclusion
+is immediate. Conversely, if lambda(ar)=0 for every r in R but some
+ar is nonzero, nondegeneracy gives b with lambda(bar)!=0; this is
+impossible because br belongs to R. Therefore
+
+    dim_K Ann_A(R)=q-dim_K R=n.
+
+This gives the first identity in (RC1). The usual leading-product
+argument always gives
+
+    in_sigma(J:I) contained in in_sigma(J):in_sigma(I).
+
+For the monomial box C, a monomial x^b in B belongs to C:in_sigma(I)
+exactly when c-b belongs to D_sigma(I). Indeed, if c-b is outside that
+staircase, its product with x^b is the surviving top monomial. In the
+other direction, any initial monomial a with a+b<=c would force
+c-b outside the staircase by upward closure. The right colon thus has
+colength q-n, equal to the left colon. Inclusion and equal finite
+colengths prove equality, and the reflected complement proves (RC2).
+Applying the reflection twice recovers the original staircase.
+
+This uses standard complete-intersection duality and the elementary
+initial-colon inclusion, not a new general liaison theorem.
+
+#### Grid parents: a general reduction, but no automatic smaller instance
+
+For any monic nonconstant univariate polynomials f_i(x_i), the grid
+parent J=(f_1(x_1),...,f_d(x_d)) has the same box initial under every
+global order. Hence I and J:I have identical positive initial-ideal
+fans, with pointwise reflected complementary staircases, for every
+ideal I containing J. Repeated roots and local nonreduced quotients
+are allowed. In particular, with r=q-n,
+
+    g(I)=g(J:I)<=G_d(r).                                  (RC3)
+
+Every finite-colength I admits a grid parent from its univariate
+elimination polynomials. This makes (RC3) a general exact reduction,
+but does not make it an asymptotic improvement. For n points with
+pairwise distinct values in every coordinate, each of those univariate
+polynomials has degree n. Every grid parent then has q>=n^d, and the
+minimal one has residual length n^d-n. This includes generic point
+configurations. A near-full-grid argument therefore cannot silently
+replace the unrestricted problem by one of smaller length.
+
+The established grid-complement comparison is
+[Dimitrova--He--Robbiano--Stigler, arXiv:1704.03680v2, Section 4](https://arxiv.org/pdf/1704.03680v2).
+Definitions 4.1 and 4.6, Lemmas 4.5--4.7 and their proofs, Theorem 4.8
+and its proof, and Corollary 4.11 and its proof were inspected. Their
+complementary-ideal definition splits primary components and supplies
+comaximal factors; the radical grid case already gives the known
+complementary-point fan correspondence. The present colon argument
+does not require a Chinese-remainder decomposition. Its elementary
+extension is not novelty-certified, and it supplies no new extremal count.
+
+For a concrete noncomaximal case, take
+
+    J=(x^2,y^2,z^2),   I=J+(x+y+z).
+
+Over Q, I has length three and J:I has length five. Both ideals are
+contained in (x,y,z), and xyz is a nonzero residue in both I/J and
+(J:I)/J: (x+y+z)*yz=xyz modulo J, and xyz annihilates the maximal
+ideal. Thus I+(J:I) is proper and I intersect (J:I) is strictly larger
+than J. The arbitrary-nonreduced reading of Lemma 4.7(d) in the
+inspected v2 cannot be used as written; the displayed witness refutes
+its comaximality/Chinese-remainder claims in that scope. The published
+version has not been checked here for a correction. The length and fan
+duality used in (RC1)--(RC3) instead has the independent proof above.
+
+#### A complete-intersection parent alone is insufficient
+
+Use the already certified cyclic parent and child
+
+    J=(y-x^2,z-x^3,x^7-1),
+    I=(y-x^2,z-x^3,1+x+...+x^6).
+
+The actual residual is L=J:I=(x-1,y-1,z-1), by the univariate
+factorization x^7-1=(x-1)*(1+x+...+x^6). This remains valid in
+characteristic seven. Thus L has the constant initial ideal (x,y,z).
+
+At both weights (41,53,10) and (23,53,10), the parent staircase is
+
+    D={1,z,z^2,z^3,z^4,x,xz},
+    C=in(J)=(y,x^2,xz^2,z^5).
+
+The first child staircase removes xz from D; the second removes z^4.
+Both removed monomials are in the socle of S/C. Thus these two weights
+give the same parent initial and the same residual initial but different
+child initials. The parent J is a complete intersection; its displayed
+initial C is not. Merely assuming that J is Gorenstein or a complete
+intersection does not supply the missing box hypothesis.
+
+Here even in(L)=C:in(I) holds for both children. What fails is invertible
+recovery: C:(x,y,z)=C+(xz,z^4) adds both socle monomials, rather than
+recovering either individual child initial. The proof route must retain
+this information loss on nonbox parent cones. A common refinement of
+the two ordinary parent/residual fans does not suffice.
+
+#### Exact controls and an additional primary comparison
+
+The checker constructs three eight-dimensional tensor-product grid
+algebras and a principal relation ideal in each, over Q,F_2,F_3,F_5.
+The grids include repeated roots. Multiplication matrices commute; the
+relation and annihilator spaces are stable under all three actions.
+The multiplication kernel and an independent top-pairing orthogonal
+calculation give the same colon space. All twelve positive comparison
+chambers are checked for every fixture. Descending relation pivots,
+ascending quotient-column selection and the monomial-colon test agree:
+12 fixtures, 144 chamber checks, 288 independent Gaussian selections.
+The local cube has child/residual lengths 3/5 in characteristic zero,
+three and five, and 4/4 in characteristic two; both fans have three
+initials in each case. No cross-characteristic rank identity is assumed.
+
+Two further checks use the nongrid parent
+J=(x^2-y,y^2,z^2), its child J+(x), and residual J+(xy). The weights
+(17,7,3) and (5,13,3) give the different parent boxes (2,2,2) and
+(4,1,2), respectively; (RC2) holds in both cones. Independent cyclic
+quotient matrices recheck both nonbox counterweights over
+Q,F_2,F_3,F_7. These are bounded controls of the stated proof, not a
+substitute for its uniform argument.
+
+[Onn--Rozenblit, arXiv:1208.5639](https://arxiv.org/pdf/1208.5639)
+was checked through the setup, Theorem 2.3 and proof, and Theorem 4.1
+and proof. The small-coordinate projection estimate is
+O((e(S)*||W||_infinity)^(d*(d-1))), with e(S)=2 for a matroid.
+For the monomial exponent matrix on V_n^d the maximum entry can be
+n-1, so its direct substitution is O_d(n^(d*(d-1))), or O(n^6) in
+three variables. This does not improve the inspected O(n^3) bound.
+The published locator is [Melamed--Onn, 2014](https://doi.org/10.1016/j.laa.2014.01.007);
+the preprint's author name differs, and no version identity is assumed.
+The full later finite-field chapter remains unread after the primary
+repository again returned a retrieval error; that remains an incomplete
+comparison rather than evidence of novelty or a reason to halt research.
+
+#### Nonuniform fixed defect is a separate mechanism
+
+The fixed-defect obstruction in (DR2)--(DR4) has the uniform-matroid
+hypothesis. It does not rule out every nonuniform fixed-defect family.
+In particular a general relation matroid can exchange two independent
+pairs at different cost levels; there need not be one common cutoff.
+
+Here is an actual quotient demonstrating the distinction. Let D be the
+union of the divisor boxes of the six monomials
+
+    x^3, y^3, xz, z^4, yz^3, x^2y,
+
+and let J be its monomial complement. All six are in the parent socle,
+|D|=17, and
+
+    I=J+(x^3+y^3+xz, z^4+yz^3+x^2y)
+
+has length fifteen over every field. The two relation rows have disjoint
+three-element supports and are killed by every variable, so this is
+an ideal rather than an arbitrary vector-space construction. Neither
+row nor a nontrivial combination is a binomial modulo J; this child
+does not reduce to the binomial quotient case.
+
+At w=(1,1,1), the first circuit has two maximizers of cost three and
+the second has two maximizers of cost four. The exchange lines are
+w_x=w_y and w_z=w_y. Four adjacent distinct child initials are witnessed
+by (101,100,102), (100,101,102), (101,100,99), (100,101,99).
+They independently omit x^3 or y^3, and z^4 or yz^3. Thus the
+single-cutoff vertex argument cannot be transferred to this matroid.
+
+The checker verifies commuting cyclic quotient matrices over Z,
+all 19 comparison chambers over Q,F_2,F_3,F_7, and exactly seven
+initial staircases, with 76 independent Gaussian selections. This
+example itself is within the full-socle class already bounded by
+O(n^(3/2)) in (RSoc1); it is not an amplification family. A potential
+nonuniform lower route must supply a mechanism beyond that class.
+In particular, growing defect is necessary for the uniform route,
+not an established necessity for every possible construction.
+
+#### Decision for the unrestricted goal
+
+Use residual duality only on proved box-initial cones. Do not replace
+arbitrary quotient matroids by uniform matroids, arbitrary complete
+intersections by box initials, or noncomaximal colon links by disjoint
+point complements. Grid enlargement is not a general small-defect
+construction: generic n-point inputs already force residual length
+n^d-n. The upper route still needs a quantitative treatment of nonbox
+initial socles and the compatible relation matroid. The uniform lower
+route still needs a symbolic growing-defect family with an actual
+additive-residue mechanism producing many distinct states. A nonuniform
+route instead needs a compatible mechanism outside the already bounded
+socle-support constructions; fixed defect there has not been ruled out.
+
+The unrestricted asymptotic advance, further consequence, complete
+priority audit and new manuscript remain pending. The goal is active;
+these supporting deductions are not completion or a publication claim.
