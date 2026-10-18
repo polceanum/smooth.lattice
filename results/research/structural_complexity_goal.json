@@ -2,7 +2,7 @@
   "schema_version": 1,
   "recorded_on": "2026-10-18",
   "title": "Universal algebraic complexity beyond generic corner cuts",
-  "status": "active_fixed_curve_gate_resolved_unrestricted_circuit_bound_pending",
+  "status": "active_two_annihilator_gate_resolved_unrestricted_dependency_bound_pending",
   "objective": "Prove a new structural theorem determining or substantially narrowing the worst-case asymptotic number of monomial initial ideals of finite polynomial algebras, starting with three variables and seeking a mechanism valid in every fixed dimension. Establish the strongest relevant primary baseline first. Success requires a complete uniform proof of sharp growth or a substantial asymptotic advance over that baseline for all colength-n ideals or all n-point configurations, a rigorous further algebraic, geometric or enumeration consequence, reproducible exact certificates and an honestly scoped manuscript. Examples, reformulations, already known corollaries and a plan alone do not complete this goal.",
   "plan": "docs/interleaving_research.md#higher-impact-research-plan-universal-algebraic-complexity",
   "relationship_to_previous_goal": "A new research objective. The completed corner-cut counting manuscript and its acceptance records remain separate and unchanged in mathematical content.",
@@ -34,12 +34,12 @@
     },
     {
       "id": "dependency_mechanism",
-      "status": "anisotropic_relation_sector_bound_proved_unrestricted_multiterm_cover_pending",
+      "status": "relative_annihilator_moment_budgets_proved_general_extension_bound_pending",
       "deliverable": "A precise lemma about multiplication-compatible residue dependencies or state-polyhedron geometry, with its proof attempt and adversarial controls."
     },
     {
       "id": "infinite_lower_family",
-      "status": "fixed_curve_growth_sharply_classified_below_generic_variable_geometry_or_other_mechanism_required",
+      "status": "one_surviving_coordinate_sharply_below_generic_two_surviving_actions_targeted",
       "deliverable": "A symbolic realizable family and count proof, or a documented obstruction to the tested construction; finite examples alone are insufficient."
     },
     {
@@ -123,7 +123,7 @@
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Proved the binomial counting reduction, checked actual cyclic quotients in four characteristics and a nonpartition point circuit, and saved a realizable truncated-class point model with 37 versus 36 initial ideals in commit 57318ab. The unrestricted theorem remained open."
+    "reason": "Proved the fixed-curve upper bound and matching rational-normal-curve family, a conditional moment-layer route, and an exact distinction between class regions and bases; reviewed findings were saved in af20074. The unrestricted theorem remained open."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -235,9 +235,9 @@
     }
   ],
   "next_actions": [
-    "Extend the relation/box/layer method to mixed leading monomials and large forced staircases. The proved O(n^(7/3)D) criterion would yield O(n^(8/3)) for ideals having a degree-O(n^(1/3)) relation with all pure top coefficients nonzero, but the Cartesian family explicitly prevents assuming this condition universally.",
-    "For a lower construction, vary the monomial-curve exponent vector with n and respect the explicit primitive-ratio upper bound, or use a different realizable dependency mechanism. Fixed-A asymptotic amplification is now ruled out; do not expand its finite enumeration.",
-    "Any use of colored k-level literature must include the missing representative-refinement bound. Complete the priority audit for an actual unrestricted advance before writing the target manuscript; restricted controls do not change acceptance criteria."
+    "Seek a valid two-variable module of relations on a one-coordinate relative-socle support, with both surviving multiplication actions proved compatible, and a count exceeding n^2 log^2 n. The O(n^(7/3)) ceiling makes this a precise lower-family target; arbitrary unrelated matroid rows are insufficient.",
+    "Continue the unrestricted mixed-leading upper argument with extension data included. The two-component elimination-fan shortcut is explicitly false; a relation/box/layer cover must also handle forced staircases and cannot assume a pure top-degree relation.",
+    "Do not enlarge fixed-curve or two-annihilator enumeration. Complete the priority audit for any actual unrestricted advance before preparing its manuscript; construction-level results do not change the acceptance criterion."
   ],
   "forward_citation_discovery": {
     "method": "Read-only OpenAlex forward-citation queries for the two founding papers, followed by primary-source inspection of potentially relevant records.",
@@ -339,11 +339,15 @@
           "coarse_class_path_intervals": 6,
           "normal_curve_fixtures": 10,
           "normal_curve_allocations_checked": 726,
-          "normal_curve_independent_rank_checks": 4
+          "normal_curve_independent_rank_checks": 4,
+          "relative_socle_fixtures": 4,
+          "relative_socle_row_and_greedy_checks": 896,
+          "relative_socle_full_matrix_checks": 112,
+          "relative_socle_lower_certificates": 116
         }
       }
     ],
-    "scope": "Exact controls now also verify 97 primitive-power sector witnesses, 726 normal-curve allocation certificates, four independent rational-minor certificates obtained modulo a proved prime, and the complete six-interval coarse-region path. The uniform moment, layer and fixed-curve conclusions rest on their saved proofs. No unrestricted theorem or novelty claim is established by these checks."
+    "scope": "Exact controls include four coupled relative-socle modules with actual commuting cyclic multiplication matrices, 896 relation-row/greedy checks in four characteristics, 112 full-matrix states and 116 symbolic allocation witnesses. The uniform proofs establish the stated restricted bounds. The unrestricted goal, novelty assessment and target manuscript remain incomplete."
   },
   "second_feasibility_results": {
     "record": "docs/interleaving_research.md, Second feasibility pass: interacting relations and a conditional count",
@@ -472,5 +476,90 @@
       "failure_of_unrestricted_promotion": "Translated Cartesian axis configurations of length n=1+3L have g=1 but no such polynomial of degree D<=L. Pure top coefficients vanish by restriction to each L+1-point axis.",
       "scope": "A proved conditional bound, not an unrestricted advance. Mixed leading monomials and forced staircases still require a new mechanism."
     }
-  }
+  },
+  "fifth_feasibility_results": {
+    "record": "docs/interleaving_research.md, Fifth feasibility pass: how many variables can propagate a relation?",
+    "failed_gluing_shortcut": {
+      "family": "I=(xy,x+y,z^m)=(x+y,x^2,z^m), any field, m>=1, length 2m.",
+      "component_ideals": "The elimination ideals in K[x,z] and K[y,z] are (x^2,z^m) and (y^2,z^m), both with a unique initial ideal.",
+      "global_fan": "I has two initial staircases, selected by w_y>w_x or w_x>w_y; exact witnesses are (1,2,1) and (2,1,1).",
+      "conclusion": "The connecting relation has information absent from the two component fans, so their common refinement is not sufficient."
+    },
+    "relative_socle_upper": {
+      "reference": "A finite monomial order ideal D, its complement ideal J_D, and a support S_U maximal in s specified coordinate directions.",
+      "hypotheses": "R is a linear subspace of span(S_U) stable under all remaining coordinate multiplications in K[x]/J_D. Then I=J_D+R is an actual ideal of length n=|D|-dim R.",
+      "coordinate_budget": "Disjoint downward chains give sum_{a in S_U}(a_i+1)<=|D| for each specified coordinate. After subtracting the fixed standard part, these moment coordinates are <=n and the others are <=n(n-1)/2.",
+      "volume_bound": "g(I)=O_d(n^((2*d-s)*(d-1)/(d+1))).",
+      "three_variable_refinement": {
+        "s=3": "O(n^(3/2))",
+        "s=2": "O(n^2)",
+        "s=1": "O(n^(7/3)) by O(n) integer layers and the planar lattice-vertex bound."
+      },
+      "product_extension": "Also valid for the explicitly justified product reference J_E+(F(z)), whose order-independent diagram and normal forms preserve the relative support.",
+      "scope": "A support-based construction theorem, not an assertion for all ideals containing a mixed polynomial; no novelty established."
+    },
+    "matching_infinite_family": {
+      "field": "Q",
+      "F_L": "product_{j=1}^L(z-j)",
+      "ideal": "I_L=(x^4,x^2*y,x*y^2,y^4,F_L(z),x*y-z^L*y^3,x^3-z^(2L)*y^3).",
+      "length": "6L",
+      "quotient_model": "The three socle rows y^3,xy,x^3 map to 1,z^L,z^(2L) in Q[z]/F_L; the other five reference monomials remain independent. The relation kernel is a z-stable module of dimension 2L.",
+      "count": "g(I_L)=Theta(L^2)=Theta(length(I_L)^2).",
+      "lower_certificates": "For L=4m+e, choose a,c in [m,m+floor(m/8)] and b=L-a-c. With u=b-a,v=b-c, weights (3u+6v+5,6u+3v+4,9) select counts (a,b,c) in the three socle progressions.",
+      "realizability": "Companion multiplication matrices commute and are cyclic. The characteristic-zero socle matroid is uniform by positive generalized Vandermonde independence.",
+      "scope": "The bound is sharp in this construction along lengths 6L; it does not improve the unrestricted generic lower bound."
+    },
+    "finite_controls": {
+      "length_parameters": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "fields": [
+        "Q",
+        "F_2",
+        "F_3",
+        "F_29"
+      ],
+      "row_and_greedy_comparisons": 896,
+      "full_cyclic_matrix_states": 112,
+      "larger_lower_allocation_certificates": 116,
+      "field_counts_by_L": {
+        "2": [
+          5,
+          3,
+          3,
+          5
+        ],
+        "3": [
+          8,
+          4,
+          4,
+          8
+        ],
+        "4": [
+          12,
+          3,
+          8,
+          10
+        ],
+        "5": [
+          14,
+          5,
+          6,
+          14
+        ]
+      },
+      "field_scope": "Only the characteristic-zero lower count is asserted uniformly. All fields have the claimed quotient length but can have different fans."
+    },
+    "goal_qualifying_unrestricted_advance": false,
+    "decision": "Stop the two-annihilator enumeration. Within this construction, test a relation module killed by one coordinate and stable under two surviving multiplication actions; its proved O(n^(7/3)) ceiling leaves room for a qualifying lower advance. The full goal and acceptance criteria remain unchanged."
+  },
+  "remaining_primary_access_notes": [
+    {
+      "source": "https://par.nsf.gov/servlets/purl/10177092",
+      "status": "The public primary text is indexed, but a direct full-text request did not complete. The later finite-field chapter is not represented as proof-audited; this is not a blocker for independent research."
+    }
+  ]
 }

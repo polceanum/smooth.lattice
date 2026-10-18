@@ -3,8 +3,8 @@
   "command": "python3 -B scripts/run_structural_complexity_checks.py",
   "scope": "Bounded exact checks of route obstructions and a conditional counting lemma; no unrestricted asymptotic advance or novelty assertion.",
   "source_sha256": {
-    "scripts/run_structural_complexity_checks.py": "2bd702fae79450e217c5e64a490c10f45f157a68c35edb12c56bd517c5b11c37",
-    "docs/interleaving_research.md": "0a0a1e69a5dbb4cee4a80bd299af6588013da6f7433e1921acd1aaada884f57f"
+    "scripts/run_structural_complexity_checks.py": "8a2664b0bf24d024674fbd49facf8a3628a157dfb0956154b8b694b1c96001d1",
+    "docs/interleaving_research.md": "58679d8e94fc4ca17f0ef99194f01529b2fa73e70c06bb874b1960e830344a33"
   },
   "volume_obstruction": {
     "scope": "Exact determinant controls for an infinite symbolic construction; the uniform proof is in the research note.",
@@ -31831,6 +31831,6575 @@
       }
     ]
   },
+  "relative_socle_control": {
+    "uniform_conclusion": "For the stated finite monomial reference (or the justified product reference), relations supported on the relative socle in s specified variables and closed under the remaining multiplications give O_d(n^((2*d-s)*(d-1)/(d+1))) initial ideals. In dimension three the layer argument improves s=1 to O(n^(7/3)); s=2 gives O(n^2), with a matching family of lengths 6L.",
+    "scope": "A restricted mechanism with genuinely surviving z multiples; it cannot beat the existing unrestricted generic lower order. No novelty or unrestricted improvement is asserted.",
+    "fixtures": [
+      {
+        "L": 2,
+        "quotient_length": 12,
+        "reference_domain": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            3,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            1
+          ],
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            1
+          ]
+        ],
+        "relative_socle": [
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            3,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            1
+          ]
+        ],
+        "fixed_standard_monomials": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            1
+          ]
+        ],
+        "monic_z_polynomial_low_degree_first": [
+          2,
+          -3,
+          1
+        ],
+        "socle_relation_matrix": [
+          [
+            2,
+            -3,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            6,
+            -7,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            14,
+            -15,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            30,
+            -31,
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "relative_coordinate_budgets_xy": [
+          8,
+          8
+        ],
+        "multiplication_matrices_commute": true,
+        "cyclicity_checked": true,
+        "nonconstant_z_multiples_of_relation_terms_nonzero_over_Q": true,
+        "exact_chambers": 18,
+        "fields": [
+          {
+            "characteristic": 0,
+            "distinct_initial_staircases": 5,
+            "all_chambers_checked": 18,
+            "witnesses": [
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  13,
+                  2,
+                  3
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  4,
+                  3,
+                  11
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  14,
+                  19,
+                  3
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  3,
+                  11,
+                  10
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  2,
+                  13,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "characteristic": 2,
+            "distinct_initial_staircases": 3,
+            "all_chambers_checked": 18,
+            "witnesses": [
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  13,
+                  2,
+                  3
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  10,
+                  17,
+                  9
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  2,
+                  13,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "characteristic": 3,
+            "distinct_initial_staircases": 3,
+            "all_chambers_checked": 18,
+            "witnesses": [
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  7,
+                  2,
+                  27
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  10,
+                  17,
+                  9
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  2,
+                  13,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "characteristic": 29,
+            "distinct_initial_staircases": 5,
+            "all_chambers_checked": 18,
+            "witnesses": [
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  13,
+                  2,
+                  3
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  4,
+                  3,
+                  11
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  14,
+                  19,
+                  3
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  3,
+                  11,
+                  10
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  2,
+                  13,
+                  3
+                ]
+              }
+            ]
+          }
+        ],
+        "row_and_greedy_checks": 72,
+        "full_matrix_checks": 16
+      },
+      {
+        "L": 3,
+        "quotient_length": 18,
+        "reference_domain": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            3,
+            1
+          ],
+          [
+            0,
+            3,
+            2
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            2
+          ],
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            1
+          ],
+          [
+            3,
+            0,
+            2
+          ]
+        ],
+        "relative_socle": [
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            3,
+            1
+          ],
+          [
+            0,
+            3,
+            2
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            1
+          ],
+          [
+            3,
+            0,
+            2
+          ]
+        ],
+        "fixed_standard_monomials": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            2
+          ]
+        ],
+        "monic_z_polynomial_low_degree_first": [
+          -6,
+          11,
+          -6,
+          1
+        ],
+        "socle_relation_matrix": [
+          [
+            -6,
+            11,
+            -6,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            -36,
+            60,
+            -25,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            -150,
+            239,
+            -90,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            -540,
+            840,
+            -301,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            -1806,
+            2771,
+            -966,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            -5796,
+            8820,
+            -3025,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "relative_coordinate_budgets_xy": [
+          12,
+          12
+        ],
+        "multiplication_matrices_commute": true,
+        "cyclicity_checked": true,
+        "nonconstant_z_multiples_of_relation_terms_nonzero_over_Q": true,
+        "exact_chambers": 38,
+        "fields": [
+          {
+            "characteristic": 0,
+            "distinct_initial_staircases": 8,
+            "all_chambers_checked": 38,
+            "witnesses": [
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    0,
+                    3,
+                    2
+                  ]
+                ],
+                "positive_integer_weights": [
+                  7,
+                  1,
+                  1
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  11,
+                  2,
+                  23
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  69,
+                  64,
+                  47
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  2,
+                  7,
+                  27
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ]
+                ],
+                "positive_integer_weights": [
+                  17,
+                  23,
+                  2
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  40,
+                  71,
+                  24
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  2,
+                  11,
+                  5
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    2
+                  ]
+                ],
+                "positive_integer_weights": [
+                  1,
+                  7,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "characteristic": 2,
+            "distinct_initial_staircases": 4,
+            "all_chambers_checked": 38,
+            "witnesses": [
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    0,
+                    3,
+                    2
+                  ]
+                ],
+                "positive_integer_weights": [
+                  11,
+                  2,
+                  5
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  110,
+                  169,
+                  36
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  10,
+                  29,
+                  15
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  1,
+                  7,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "characteristic": 3,
+            "distinct_initial_staircases": 4,
+            "all_chambers_checked": 38,
+            "witnesses": [
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    0,
+                    3,
+                    2
+                  ]
+                ],
+                "positive_integer_weights": [
+                  11,
+                  2,
+                  5
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  110,
+                  169,
+                  36
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  10,
+                  29,
+                  15
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  1,
+                  7,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "characteristic": 29,
+            "distinct_initial_staircases": 8,
+            "all_chambers_checked": 38,
+            "witnesses": [
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    0,
+                    3,
+                    2
+                  ]
+                ],
+                "positive_integer_weights": [
+                  7,
+                  1,
+                  1
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  11,
+                  2,
+                  23
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  69,
+                  64,
+                  47
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  2,
+                  7,
+                  27
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ]
+                ],
+                "positive_integer_weights": [
+                  17,
+                  23,
+                  2
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  40,
+                  71,
+                  24
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  2,
+                  11,
+                  5
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    2
+                  ]
+                ],
+                "positive_integer_weights": [
+                  1,
+                  7,
+                  1
+                ]
+              }
+            ]
+          }
+        ],
+        "row_and_greedy_checks": 152,
+        "full_matrix_checks": 24
+      },
+      {
+        "L": 4,
+        "quotient_length": 24,
+        "reference_domain": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            3,
+            1
+          ],
+          [
+            0,
+            3,
+            2
+          ],
+          [
+            0,
+            3,
+            3
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            1,
+            0,
+            3
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            3
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            2
+          ],
+          [
+            2,
+            0,
+            3
+          ],
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            1
+          ],
+          [
+            3,
+            0,
+            2
+          ],
+          [
+            3,
+            0,
+            3
+          ]
+        ],
+        "relative_socle": [
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            3,
+            1
+          ],
+          [
+            0,
+            3,
+            2
+          ],
+          [
+            0,
+            3,
+            3
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            3
+          ],
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            1
+          ],
+          [
+            3,
+            0,
+            2
+          ],
+          [
+            3,
+            0,
+            3
+          ]
+        ],
+        "fixed_standard_monomials": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            1,
+            0,
+            3
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            2
+          ],
+          [
+            2,
+            0,
+            3
+          ]
+        ],
+        "monic_z_polynomial_low_degree_first": [
+          24,
+          -50,
+          35,
+          -10,
+          1
+        ],
+        "socle_relation_matrix": [
+          [
+            24,
+            -50,
+            35,
+            -10,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            240,
+            -476,
+            300,
+            -65,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1560,
+            -3010,
+            1799,
+            -350,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            8400,
+            -15940,
+            9240,
+            -1701,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            40824,
+            -76650,
+            43595,
+            -7770,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            186480,
+            -347676,
+            195300,
+            -34105,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            818520,
+            -1518770,
+            845999,
+            -145750,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            3498000,
+            -6468980,
+            3582480,
+            -611501,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "relative_coordinate_budgets_xy": [
+          16,
+          16
+        ],
+        "multiplication_matrices_commute": true,
+        "cyclicity_checked": true,
+        "nonconstant_z_multiples_of_relation_terms_nonzero_over_Q": true,
+        "exact_chambers": 66,
+        "fields": [
+          {
+            "characteristic": 0,
+            "distinct_initial_staircases": 12,
+            "all_chambers_checked": 66,
+            "witnesses": [
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    0,
+                    3,
+                    2
+                  ],
+                  [
+                    0,
+                    3,
+                    3
+                  ]
+                ],
+                "positive_integer_weights": [
+                  29,
+                  4,
+                  3
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    0,
+                    3,
+                    2
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  149,
+                  10,
+                  111
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  43,
+                  26,
+                  39
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  7,
+                  2,
+                  27
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ]
+                ],
+                "positive_integer_weights": [
+                  802,
+                  767,
+                  321
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  10,
+                  13,
+                  13
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  2,
+                  11,
+                  23
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ],
+                  [
+                    1,
+                    1,
+                    3
+                  ]
+                ],
+                "positive_integer_weights": [
+                  37,
+                  50,
+                  3
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  25,
+                  40,
+                  7
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  25,
+                  62,
+                  21
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    2
+                  ]
+                ],
+                "positive_integer_weights": [
+                  4,
+                  25,
+                  7
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    2
+                  ],
+                  [
+                    3,
+                    0,
+                    3
+                  ]
+                ],
+                "positive_integer_weights": [
+                  4,
+                  29,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "characteristic": 2,
+            "distinct_initial_staircases": 3,
+            "all_chambers_checked": 66,
+            "witnesses": [
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    0,
+                    3,
+                    2
+                  ],
+                  [
+                    0,
+                    3,
+                    3
+                  ]
+                ],
+                "positive_integer_weights": [
+                  25,
+                  4,
+                  7
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  11,
+                  20,
+                  5
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  4,
+                  29,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "characteristic": 3,
+            "distinct_initial_staircases": 8,
+            "all_chambers_checked": 66,
+            "witnesses": [
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    0,
+                    3,
+                    2
+                  ],
+                  [
+                    0,
+                    3,
+                    3
+                  ]
+                ],
+                "positive_integer_weights": [
+                  29,
+                  4,
+                  3
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    0,
+                    3,
+                    2
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  149,
+                  10,
+                  111
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  43,
+                  26,
+                  39
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  7,
+                  2,
+                  27
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ]
+                ],
+                "positive_integer_weights": [
+                  133,
+                  200,
+                  27
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  11,
+                  20,
+                  5
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  5,
+                  28,
+                  12
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    2
+                  ]
+                ],
+                "positive_integer_weights": [
+                  4,
+                  29,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "characteristic": 29,
+            "distinct_initial_staircases": 10,
+            "all_chambers_checked": 66,
+            "witnesses": [
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    0,
+                    3,
+                    2
+                  ],
+                  [
+                    0,
+                    3,
+                    3
+                  ]
+                ],
+                "positive_integer_weights": [
+                  29,
+                  4,
+                  3
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    0,
+                    3,
+                    2
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  121,
+                  20,
+                  129
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  7,
+                  2,
+                  27
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ]
+                ],
+                "positive_integer_weights": [
+                  802,
+                  767,
+                  321
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  26,
+                  43,
+                  39
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  35,
+                  136,
+                  189
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ],
+                  [
+                    1,
+                    1,
+                    3
+                  ]
+                ],
+                "positive_integer_weights": [
+                  37,
+                  50,
+                  3
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  11,
+                  20,
+                  5
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    2
+                  ]
+                ],
+                "positive_integer_weights": [
+                  4,
+                  25,
+                  7
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    2
+                  ],
+                  [
+                    3,
+                    0,
+                    3
+                  ]
+                ],
+                "positive_integer_weights": [
+                  4,
+                  29,
+                  3
+                ]
+              }
+            ]
+          }
+        ],
+        "row_and_greedy_checks": 264,
+        "full_matrix_checks": 33
+      },
+      {
+        "L": 5,
+        "quotient_length": 30,
+        "reference_domain": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            0,
+            1,
+            4
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            0,
+            2,
+            4
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            3,
+            1
+          ],
+          [
+            0,
+            3,
+            2
+          ],
+          [
+            0,
+            3,
+            3
+          ],
+          [
+            0,
+            3,
+            4
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            1,
+            0,
+            3
+          ],
+          [
+            1,
+            0,
+            4
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            3
+          ],
+          [
+            1,
+            1,
+            4
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            2
+          ],
+          [
+            2,
+            0,
+            3
+          ],
+          [
+            2,
+            0,
+            4
+          ],
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            1
+          ],
+          [
+            3,
+            0,
+            2
+          ],
+          [
+            3,
+            0,
+            3
+          ],
+          [
+            3,
+            0,
+            4
+          ]
+        ],
+        "relative_socle": [
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            3,
+            1
+          ],
+          [
+            0,
+            3,
+            2
+          ],
+          [
+            0,
+            3,
+            3
+          ],
+          [
+            0,
+            3,
+            4
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            3
+          ],
+          [
+            1,
+            1,
+            4
+          ],
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            1
+          ],
+          [
+            3,
+            0,
+            2
+          ],
+          [
+            3,
+            0,
+            3
+          ],
+          [
+            3,
+            0,
+            4
+          ]
+        ],
+        "fixed_standard_monomials": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            0,
+            1,
+            4
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            0,
+            2,
+            4
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            1,
+            0,
+            3
+          ],
+          [
+            1,
+            0,
+            4
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            2
+          ],
+          [
+            2,
+            0,
+            3
+          ],
+          [
+            2,
+            0,
+            4
+          ]
+        ],
+        "monic_z_polynomial_low_degree_first": [
+          -120,
+          274,
+          -225,
+          85,
+          -15,
+          1
+        ],
+        "socle_relation_matrix": [
+          [
+            -120,
+            274,
+            -225,
+            85,
+            -15,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            -1800,
+            3990,
+            -3101,
+            1050,
+            -140,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            -16800,
+            36560,
+            -27510,
+            8799,
+            -1050,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            -126000,
+            270900,
+            -199690,
+            61740,
+            -6951,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            -834120,
+            1778574,
+            -1293075,
+            391145,
+            -42525,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            -5103000,
+            10817730,
+            -7789551,
+            2321550,
+            -246730,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            -29607600,
+            62501020,
+            -44696520,
+            13182499,
+            -1379400,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            -165528000,
+            348348000,
+            -247863980,
+            72552480,
+            -7508501,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            -901020120,
+            1891801274,
+            -1341064725,
+            390358605,
+            -40075035,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            -4809004200,
+            10079539470,
+            -7125081601,
+            2065313250,
+            -210766920,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "relative_coordinate_budgets_xy": [
+          20,
+          20
+        ],
+        "multiplication_matrices_commute": true,
+        "cyclicity_checked": true,
+        "nonconstant_z_multiples_of_relation_terms_nonzero_over_Q": true,
+        "exact_chambers": 102,
+        "fields": [
+          {
+            "characteristic": 0,
+            "distinct_initial_staircases": 14,
+            "all_chambers_checked": 102,
+            "witnesses": [
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    0,
+                    3,
+                    2
+                  ],
+                  [
+                    0,
+                    3,
+                    3
+                  ],
+                  [
+                    0,
+                    3,
+                    4
+                  ]
+                ],
+                "positive_integer_weights": [
+                  37,
+                  5,
+                  3
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    0,
+                    3,
+                    2
+                  ],
+                  [
+                    0,
+                    3,
+                    3
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  25,
+                  4,
+                  7
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    0,
+                    3,
+                    2
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  121,
+                  20,
+                  129
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ]
+                ],
+                "positive_integer_weights": [
+                  239,
+                  190,
+                  111
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  4,
+                  3,
+                  11
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ],
+                  [
+                    1,
+                    1,
+                    3
+                  ]
+                ],
+                "positive_integer_weights": [
+                  671,
+                  650,
+                  191
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  202,
+                  227,
+                  111
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  35,
+                  136,
+                  189
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ],
+                  [
+                    1,
+                    1,
+                    3
+                  ],
+                  [
+                    1,
+                    1,
+                    4
+                  ]
+                ],
+                "positive_integer_weights": [
+                  97,
+                  131,
+                  6
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ],
+                  [
+                    1,
+                    1,
+                    3
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  326,
+                  505,
+                  60
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  98,
+                  181,
+                  36
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    2
+                  ]
+                ],
+                "positive_integer_weights": [
+                  6,
+                  23,
+                  7
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    2
+                  ],
+                  [
+                    3,
+                    0,
+                    3
+                  ]
+                ],
+                "positive_integer_weights": [
+                  20,
+                  133,
+                  27
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    2
+                  ],
+                  [
+                    3,
+                    0,
+                    3
+                  ],
+                  [
+                    3,
+                    0,
+                    4
+                  ]
+                ],
+                "positive_integer_weights": [
+                  5,
+                  37,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "characteristic": 2,
+            "distinct_initial_staircases": 5,
+            "all_chambers_checked": 102,
+            "witnesses": [
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    0,
+                    3,
+                    2
+                  ],
+                  [
+                    0,
+                    3,
+                    3
+                  ],
+                  [
+                    0,
+                    3,
+                    4
+                  ]
+                ],
+                "positive_integer_weights": [
+                  37,
+                  5,
+                  3
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    0,
+                    3,
+                    2
+                  ],
+                  [
+                    0,
+                    3,
+                    3
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  205,
+                  14,
+                  159
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ]
+                ],
+                "positive_integer_weights": [
+                  196,
+                  323,
+                  48
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  6,
+                  23,
+                  7
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    2
+                  ]
+                ],
+                "positive_integer_weights": [
+                  5,
+                  37,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "characteristic": 3,
+            "distinct_initial_staircases": 6,
+            "all_chambers_checked": 102,
+            "witnesses": [
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    0,
+                    3,
+                    2
+                  ],
+                  [
+                    0,
+                    3,
+                    3
+                  ],
+                  [
+                    0,
+                    3,
+                    4
+                  ]
+                ],
+                "positive_integer_weights": [
+                  133,
+                  20,
+                  27
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    0,
+                    3,
+                    2
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  254,
+                  145,
+                  141
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  2,
+                  11,
+                  23
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ],
+                  [
+                    1,
+                    1,
+                    3
+                  ]
+                ],
+                "positive_integer_weights": [
+                  488,
+                  727,
+                  72
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  46,
+                  107,
+                  27
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    2
+                  ],
+                  [
+                    3,
+                    0,
+                    3
+                  ]
+                ],
+                "positive_integer_weights": [
+                  5,
+                  37,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "characteristic": 29,
+            "distinct_initial_staircases": 14,
+            "all_chambers_checked": 102,
+            "witnesses": [
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    0,
+                    3,
+                    2
+                  ],
+                  [
+                    0,
+                    3,
+                    3
+                  ],
+                  [
+                    0,
+                    3,
+                    4
+                  ]
+                ],
+                "positive_integer_weights": [
+                  37,
+                  5,
+                  3
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    0,
+                    3,
+                    2
+                  ],
+                  [
+                    0,
+                    3,
+                    3
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  25,
+                  4,
+                  7
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    0,
+                    3,
+                    2
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  121,
+                  20,
+                  129
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ]
+                ],
+                "positive_integer_weights": [
+                  239,
+                  190,
+                  111
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    0,
+                    3,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  4,
+                  3,
+                  11
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ],
+                  [
+                    1,
+                    1,
+                    3
+                  ]
+                ],
+                "positive_integer_weights": [
+                  671,
+                  650,
+                  191
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  202,
+                  227,
+                  111
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    0,
+                    3,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  35,
+                  136,
+                  189
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ],
+                  [
+                    1,
+                    1,
+                    3
+                  ],
+                  [
+                    1,
+                    1,
+                    4
+                  ]
+                ],
+                "positive_integer_weights": [
+                  97,
+                  131,
+                  6
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ],
+                  [
+                    1,
+                    1,
+                    3
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ]
+                ],
+                "positive_integer_weights": [
+                  326,
+                  505,
+                  60
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ]
+                ],
+                "positive_integer_weights": [
+                  98,
+                  181,
+                  36
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    2
+                  ]
+                ],
+                "positive_integer_weights": [
+                  6,
+                  23,
+                  7
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    1,
+                    1,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    2
+                  ],
+                  [
+                    3,
+                    0,
+                    3
+                  ]
+                ],
+                "positive_integer_weights": [
+                  20,
+                  133,
+                  27
+                ]
+              },
+              {
+                "selected_relative_socle_monomials": [
+                  [
+                    3,
+                    0,
+                    0
+                  ],
+                  [
+                    3,
+                    0,
+                    1
+                  ],
+                  [
+                    3,
+                    0,
+                    2
+                  ],
+                  [
+                    3,
+                    0,
+                    3
+                  ],
+                  [
+                    3,
+                    0,
+                    4
+                  ]
+                ],
+                "positive_integer_weights": [
+                  5,
+                  37,
+                  3
+                ]
+              }
+            ]
+          }
+        ],
+        "row_and_greedy_checks": 408,
+        "full_matrix_checks": 39
+      }
+    ],
+    "symbolic_lower_certificates": [
+      {
+        "L": 32,
+        "quotient_length": 192,
+        "m": 8,
+        "remainder": 0,
+        "outer_count_range": [
+          8,
+          9
+        ],
+        "certificates_checked": 4,
+        "certificates": [
+          {
+            "selected_ray_counts": [
+              8,
+              16,
+              8
+            ],
+            "positive_integer_weights": [
+              77,
+              76,
+              9
+            ],
+            "doubled_cutoff": 593
+          },
+          {
+            "selected_ray_counts": [
+              8,
+              15,
+              9
+            ],
+            "positive_integer_weights": [
+              62,
+              64,
+              9
+            ],
+            "doubled_cutoff": 521
+          },
+          {
+            "selected_ray_counts": [
+              9,
+              15,
+              8
+            ],
+            "positive_integer_weights": [
+              65,
+              61,
+              9
+            ],
+            "doubled_cutoff": 521
+          },
+          {
+            "selected_ray_counts": [
+              9,
+              14,
+              9
+            ],
+            "positive_integer_weights": [
+              50,
+              49,
+              9
+            ],
+            "doubled_cutoff": 449
+          }
+        ]
+      },
+      {
+        "L": 33,
+        "quotient_length": 198,
+        "m": 8,
+        "remainder": 1,
+        "outer_count_range": [
+          8,
+          9
+        ],
+        "certificates_checked": 4,
+        "certificates": [
+          {
+            "selected_ray_counts": [
+              8,
+              17,
+              8
+            ],
+            "positive_integer_weights": [
+              86,
+              85,
+              9
+            ],
+            "doubled_cutoff": 647
+          },
+          {
+            "selected_ray_counts": [
+              8,
+              16,
+              9
+            ],
+            "positive_integer_weights": [
+              71,
+              73,
+              9
+            ],
+            "doubled_cutoff": 575
+          },
+          {
+            "selected_ray_counts": [
+              9,
+              16,
+              8
+            ],
+            "positive_integer_weights": [
+              74,
+              70,
+              9
+            ],
+            "doubled_cutoff": 575
+          },
+          {
+            "selected_ray_counts": [
+              9,
+              15,
+              9
+            ],
+            "positive_integer_weights": [
+              59,
+              58,
+              9
+            ],
+            "doubled_cutoff": 503
+          }
+        ]
+      },
+      {
+        "L": 34,
+        "quotient_length": 204,
+        "m": 8,
+        "remainder": 2,
+        "outer_count_range": [
+          8,
+          9
+        ],
+        "certificates_checked": 4,
+        "certificates": [
+          {
+            "selected_ray_counts": [
+              8,
+              18,
+              8
+            ],
+            "positive_integer_weights": [
+              95,
+              94,
+              9
+            ],
+            "doubled_cutoff": 701
+          },
+          {
+            "selected_ray_counts": [
+              8,
+              17,
+              9
+            ],
+            "positive_integer_weights": [
+              80,
+              82,
+              9
+            ],
+            "doubled_cutoff": 629
+          },
+          {
+            "selected_ray_counts": [
+              9,
+              17,
+              8
+            ],
+            "positive_integer_weights": [
+              83,
+              79,
+              9
+            ],
+            "doubled_cutoff": 629
+          },
+          {
+            "selected_ray_counts": [
+              9,
+              16,
+              9
+            ],
+            "positive_integer_weights": [
+              68,
+              67,
+              9
+            ],
+            "doubled_cutoff": 557
+          }
+        ]
+      },
+      {
+        "L": 35,
+        "quotient_length": 210,
+        "m": 8,
+        "remainder": 3,
+        "outer_count_range": [
+          8,
+          9
+        ],
+        "certificates_checked": 4,
+        "certificates": [
+          {
+            "selected_ray_counts": [
+              8,
+              19,
+              8
+            ],
+            "positive_integer_weights": [
+              104,
+              103,
+              9
+            ],
+            "doubled_cutoff": 755
+          },
+          {
+            "selected_ray_counts": [
+              8,
+              18,
+              9
+            ],
+            "positive_integer_weights": [
+              89,
+              91,
+              9
+            ],
+            "doubled_cutoff": 683
+          },
+          {
+            "selected_ray_counts": [
+              9,
+              18,
+              8
+            ],
+            "positive_integer_weights": [
+              92,
+              88,
+              9
+            ],
+            "doubled_cutoff": 683
+          },
+          {
+            "selected_ray_counts": [
+              9,
+              17,
+              9
+            ],
+            "positive_integer_weights": [
+              77,
+              76,
+              9
+            ],
+            "doubled_cutoff": 611
+          }
+        ]
+      },
+      {
+        "L": 64,
+        "quotient_length": 384,
+        "m": 16,
+        "remainder": 0,
+        "outer_count_range": [
+          16,
+          18
+        ],
+        "certificates_checked": 9,
+        "certificates": [
+          {
+            "selected_ray_counts": [
+              16,
+              32,
+              16
+            ],
+            "positive_integer_weights": [
+              149,
+              148,
+              9
+            ],
+            "doubled_cutoff": 1169
+          },
+          {
+            "selected_ray_counts": [
+              16,
+              31,
+              17
+            ],
+            "positive_integer_weights": [
+              134,
+              136,
+              9
+            ],
+            "doubled_cutoff": 1097
+          },
+          {
+            "selected_ray_counts": [
+              16,
+              30,
+              18
+            ],
+            "positive_integer_weights": [
+              119,
+              124,
+              9
+            ],
+            "doubled_cutoff": 1025
+          },
+          {
+            "selected_ray_counts": [
+              17,
+              31,
+              16
+            ],
+            "positive_integer_weights": [
+              137,
+              133,
+              9
+            ],
+            "doubled_cutoff": 1097
+          },
+          {
+            "selected_ray_counts": [
+              17,
+              30,
+              17
+            ],
+            "positive_integer_weights": [
+              122,
+              121,
+              9
+            ],
+            "doubled_cutoff": 1025
+          },
+          {
+            "selected_ray_counts": [
+              17,
+              29,
+              18
+            ],
+            "positive_integer_weights": [
+              107,
+              109,
+              9
+            ],
+            "doubled_cutoff": 953
+          },
+          {
+            "selected_ray_counts": [
+              18,
+              30,
+              16
+            ],
+            "positive_integer_weights": [
+              125,
+              118,
+              9
+            ],
+            "doubled_cutoff": 1025
+          },
+          {
+            "selected_ray_counts": [
+              18,
+              29,
+              17
+            ],
+            "positive_integer_weights": [
+              110,
+              106,
+              9
+            ],
+            "doubled_cutoff": 953
+          },
+          {
+            "selected_ray_counts": [
+              18,
+              28,
+              18
+            ],
+            "positive_integer_weights": [
+              95,
+              94,
+              9
+            ],
+            "doubled_cutoff": 881
+          }
+        ]
+      },
+      {
+        "L": 65,
+        "quotient_length": 390,
+        "m": 16,
+        "remainder": 1,
+        "outer_count_range": [
+          16,
+          18
+        ],
+        "certificates_checked": 9,
+        "certificates": [
+          {
+            "selected_ray_counts": [
+              16,
+              33,
+              16
+            ],
+            "positive_integer_weights": [
+              158,
+              157,
+              9
+            ],
+            "doubled_cutoff": 1223
+          },
+          {
+            "selected_ray_counts": [
+              16,
+              32,
+              17
+            ],
+            "positive_integer_weights": [
+              143,
+              145,
+              9
+            ],
+            "doubled_cutoff": 1151
+          },
+          {
+            "selected_ray_counts": [
+              16,
+              31,
+              18
+            ],
+            "positive_integer_weights": [
+              128,
+              133,
+              9
+            ],
+            "doubled_cutoff": 1079
+          },
+          {
+            "selected_ray_counts": [
+              17,
+              32,
+              16
+            ],
+            "positive_integer_weights": [
+              146,
+              142,
+              9
+            ],
+            "doubled_cutoff": 1151
+          },
+          {
+            "selected_ray_counts": [
+              17,
+              31,
+              17
+            ],
+            "positive_integer_weights": [
+              131,
+              130,
+              9
+            ],
+            "doubled_cutoff": 1079
+          },
+          {
+            "selected_ray_counts": [
+              17,
+              30,
+              18
+            ],
+            "positive_integer_weights": [
+              116,
+              118,
+              9
+            ],
+            "doubled_cutoff": 1007
+          },
+          {
+            "selected_ray_counts": [
+              18,
+              31,
+              16
+            ],
+            "positive_integer_weights": [
+              134,
+              127,
+              9
+            ],
+            "doubled_cutoff": 1079
+          },
+          {
+            "selected_ray_counts": [
+              18,
+              30,
+              17
+            ],
+            "positive_integer_weights": [
+              119,
+              115,
+              9
+            ],
+            "doubled_cutoff": 1007
+          },
+          {
+            "selected_ray_counts": [
+              18,
+              29,
+              18
+            ],
+            "positive_integer_weights": [
+              104,
+              103,
+              9
+            ],
+            "doubled_cutoff": 935
+          }
+        ]
+      },
+      {
+        "L": 66,
+        "quotient_length": 396,
+        "m": 16,
+        "remainder": 2,
+        "outer_count_range": [
+          16,
+          18
+        ],
+        "certificates_checked": 9,
+        "certificates": [
+          {
+            "selected_ray_counts": [
+              16,
+              34,
+              16
+            ],
+            "positive_integer_weights": [
+              167,
+              166,
+              9
+            ],
+            "doubled_cutoff": 1277
+          },
+          {
+            "selected_ray_counts": [
+              16,
+              33,
+              17
+            ],
+            "positive_integer_weights": [
+              152,
+              154,
+              9
+            ],
+            "doubled_cutoff": 1205
+          },
+          {
+            "selected_ray_counts": [
+              16,
+              32,
+              18
+            ],
+            "positive_integer_weights": [
+              137,
+              142,
+              9
+            ],
+            "doubled_cutoff": 1133
+          },
+          {
+            "selected_ray_counts": [
+              17,
+              33,
+              16
+            ],
+            "positive_integer_weights": [
+              155,
+              151,
+              9
+            ],
+            "doubled_cutoff": 1205
+          },
+          {
+            "selected_ray_counts": [
+              17,
+              32,
+              17
+            ],
+            "positive_integer_weights": [
+              140,
+              139,
+              9
+            ],
+            "doubled_cutoff": 1133
+          },
+          {
+            "selected_ray_counts": [
+              17,
+              31,
+              18
+            ],
+            "positive_integer_weights": [
+              125,
+              127,
+              9
+            ],
+            "doubled_cutoff": 1061
+          },
+          {
+            "selected_ray_counts": [
+              18,
+              32,
+              16
+            ],
+            "positive_integer_weights": [
+              143,
+              136,
+              9
+            ],
+            "doubled_cutoff": 1133
+          },
+          {
+            "selected_ray_counts": [
+              18,
+              31,
+              17
+            ],
+            "positive_integer_weights": [
+              128,
+              124,
+              9
+            ],
+            "doubled_cutoff": 1061
+          },
+          {
+            "selected_ray_counts": [
+              18,
+              30,
+              18
+            ],
+            "positive_integer_weights": [
+              113,
+              112,
+              9
+            ],
+            "doubled_cutoff": 989
+          }
+        ]
+      },
+      {
+        "L": 67,
+        "quotient_length": 402,
+        "m": 16,
+        "remainder": 3,
+        "outer_count_range": [
+          16,
+          18
+        ],
+        "certificates_checked": 9,
+        "certificates": [
+          {
+            "selected_ray_counts": [
+              16,
+              35,
+              16
+            ],
+            "positive_integer_weights": [
+              176,
+              175,
+              9
+            ],
+            "doubled_cutoff": 1331
+          },
+          {
+            "selected_ray_counts": [
+              16,
+              34,
+              17
+            ],
+            "positive_integer_weights": [
+              161,
+              163,
+              9
+            ],
+            "doubled_cutoff": 1259
+          },
+          {
+            "selected_ray_counts": [
+              16,
+              33,
+              18
+            ],
+            "positive_integer_weights": [
+              146,
+              151,
+              9
+            ],
+            "doubled_cutoff": 1187
+          },
+          {
+            "selected_ray_counts": [
+              17,
+              34,
+              16
+            ],
+            "positive_integer_weights": [
+              164,
+              160,
+              9
+            ],
+            "doubled_cutoff": 1259
+          },
+          {
+            "selected_ray_counts": [
+              17,
+              33,
+              17
+            ],
+            "positive_integer_weights": [
+              149,
+              148,
+              9
+            ],
+            "doubled_cutoff": 1187
+          },
+          {
+            "selected_ray_counts": [
+              17,
+              32,
+              18
+            ],
+            "positive_integer_weights": [
+              134,
+              136,
+              9
+            ],
+            "doubled_cutoff": 1115
+          },
+          {
+            "selected_ray_counts": [
+              18,
+              33,
+              16
+            ],
+            "positive_integer_weights": [
+              152,
+              145,
+              9
+            ],
+            "doubled_cutoff": 1187
+          },
+          {
+            "selected_ray_counts": [
+              18,
+              32,
+              17
+            ],
+            "positive_integer_weights": [
+              137,
+              133,
+              9
+            ],
+            "doubled_cutoff": 1115
+          },
+          {
+            "selected_ray_counts": [
+              18,
+              31,
+              18
+            ],
+            "positive_integer_weights": [
+              122,
+              121,
+              9
+            ],
+            "doubled_cutoff": 1043
+          }
+        ]
+      },
+      {
+        "L": 96,
+        "quotient_length": 576,
+        "m": 24,
+        "remainder": 0,
+        "outer_count_range": [
+          24,
+          27
+        ],
+        "certificates_checked": 16,
+        "certificates": [
+          {
+            "selected_ray_counts": [
+              24,
+              48,
+              24
+            ],
+            "positive_integer_weights": [
+              221,
+              220,
+              9
+            ],
+            "doubled_cutoff": 1745
+          },
+          {
+            "selected_ray_counts": [
+              24,
+              47,
+              25
+            ],
+            "positive_integer_weights": [
+              206,
+              208,
+              9
+            ],
+            "doubled_cutoff": 1673
+          },
+          {
+            "selected_ray_counts": [
+              24,
+              46,
+              26
+            ],
+            "positive_integer_weights": [
+              191,
+              196,
+              9
+            ],
+            "doubled_cutoff": 1601
+          },
+          {
+            "selected_ray_counts": [
+              24,
+              45,
+              27
+            ],
+            "positive_integer_weights": [
+              176,
+              184,
+              9
+            ],
+            "doubled_cutoff": 1529
+          },
+          {
+            "selected_ray_counts": [
+              25,
+              47,
+              24
+            ],
+            "positive_integer_weights": [
+              209,
+              205,
+              9
+            ],
+            "doubled_cutoff": 1673
+          },
+          {
+            "selected_ray_counts": [
+              25,
+              46,
+              25
+            ],
+            "positive_integer_weights": [
+              194,
+              193,
+              9
+            ],
+            "doubled_cutoff": 1601
+          },
+          {
+            "selected_ray_counts": [
+              25,
+              45,
+              26
+            ],
+            "positive_integer_weights": [
+              179,
+              181,
+              9
+            ],
+            "doubled_cutoff": 1529
+          },
+          {
+            "selected_ray_counts": [
+              25,
+              44,
+              27
+            ],
+            "positive_integer_weights": [
+              164,
+              169,
+              9
+            ],
+            "doubled_cutoff": 1457
+          },
+          {
+            "selected_ray_counts": [
+              26,
+              46,
+              24
+            ],
+            "positive_integer_weights": [
+              197,
+              190,
+              9
+            ],
+            "doubled_cutoff": 1601
+          },
+          {
+            "selected_ray_counts": [
+              26,
+              45,
+              25
+            ],
+            "positive_integer_weights": [
+              182,
+              178,
+              9
+            ],
+            "doubled_cutoff": 1529
+          },
+          {
+            "selected_ray_counts": [
+              26,
+              44,
+              26
+            ],
+            "positive_integer_weights": [
+              167,
+              166,
+              9
+            ],
+            "doubled_cutoff": 1457
+          },
+          {
+            "selected_ray_counts": [
+              26,
+              43,
+              27
+            ],
+            "positive_integer_weights": [
+              152,
+              154,
+              9
+            ],
+            "doubled_cutoff": 1385
+          },
+          {
+            "selected_ray_counts": [
+              27,
+              45,
+              24
+            ],
+            "positive_integer_weights": [
+              185,
+              175,
+              9
+            ],
+            "doubled_cutoff": 1529
+          },
+          {
+            "selected_ray_counts": [
+              27,
+              44,
+              25
+            ],
+            "positive_integer_weights": [
+              170,
+              163,
+              9
+            ],
+            "doubled_cutoff": 1457
+          },
+          {
+            "selected_ray_counts": [
+              27,
+              43,
+              26
+            ],
+            "positive_integer_weights": [
+              155,
+              151,
+              9
+            ],
+            "doubled_cutoff": 1385
+          },
+          {
+            "selected_ray_counts": [
+              27,
+              42,
+              27
+            ],
+            "positive_integer_weights": [
+              140,
+              139,
+              9
+            ],
+            "doubled_cutoff": 1313
+          }
+        ]
+      },
+      {
+        "L": 97,
+        "quotient_length": 582,
+        "m": 24,
+        "remainder": 1,
+        "outer_count_range": [
+          24,
+          27
+        ],
+        "certificates_checked": 16,
+        "certificates": [
+          {
+            "selected_ray_counts": [
+              24,
+              49,
+              24
+            ],
+            "positive_integer_weights": [
+              230,
+              229,
+              9
+            ],
+            "doubled_cutoff": 1799
+          },
+          {
+            "selected_ray_counts": [
+              24,
+              48,
+              25
+            ],
+            "positive_integer_weights": [
+              215,
+              217,
+              9
+            ],
+            "doubled_cutoff": 1727
+          },
+          {
+            "selected_ray_counts": [
+              24,
+              47,
+              26
+            ],
+            "positive_integer_weights": [
+              200,
+              205,
+              9
+            ],
+            "doubled_cutoff": 1655
+          },
+          {
+            "selected_ray_counts": [
+              24,
+              46,
+              27
+            ],
+            "positive_integer_weights": [
+              185,
+              193,
+              9
+            ],
+            "doubled_cutoff": 1583
+          },
+          {
+            "selected_ray_counts": [
+              25,
+              48,
+              24
+            ],
+            "positive_integer_weights": [
+              218,
+              214,
+              9
+            ],
+            "doubled_cutoff": 1727
+          },
+          {
+            "selected_ray_counts": [
+              25,
+              47,
+              25
+            ],
+            "positive_integer_weights": [
+              203,
+              202,
+              9
+            ],
+            "doubled_cutoff": 1655
+          },
+          {
+            "selected_ray_counts": [
+              25,
+              46,
+              26
+            ],
+            "positive_integer_weights": [
+              188,
+              190,
+              9
+            ],
+            "doubled_cutoff": 1583
+          },
+          {
+            "selected_ray_counts": [
+              25,
+              45,
+              27
+            ],
+            "positive_integer_weights": [
+              173,
+              178,
+              9
+            ],
+            "doubled_cutoff": 1511
+          },
+          {
+            "selected_ray_counts": [
+              26,
+              47,
+              24
+            ],
+            "positive_integer_weights": [
+              206,
+              199,
+              9
+            ],
+            "doubled_cutoff": 1655
+          },
+          {
+            "selected_ray_counts": [
+              26,
+              46,
+              25
+            ],
+            "positive_integer_weights": [
+              191,
+              187,
+              9
+            ],
+            "doubled_cutoff": 1583
+          },
+          {
+            "selected_ray_counts": [
+              26,
+              45,
+              26
+            ],
+            "positive_integer_weights": [
+              176,
+              175,
+              9
+            ],
+            "doubled_cutoff": 1511
+          },
+          {
+            "selected_ray_counts": [
+              26,
+              44,
+              27
+            ],
+            "positive_integer_weights": [
+              161,
+              163,
+              9
+            ],
+            "doubled_cutoff": 1439
+          },
+          {
+            "selected_ray_counts": [
+              27,
+              46,
+              24
+            ],
+            "positive_integer_weights": [
+              194,
+              184,
+              9
+            ],
+            "doubled_cutoff": 1583
+          },
+          {
+            "selected_ray_counts": [
+              27,
+              45,
+              25
+            ],
+            "positive_integer_weights": [
+              179,
+              172,
+              9
+            ],
+            "doubled_cutoff": 1511
+          },
+          {
+            "selected_ray_counts": [
+              27,
+              44,
+              26
+            ],
+            "positive_integer_weights": [
+              164,
+              160,
+              9
+            ],
+            "doubled_cutoff": 1439
+          },
+          {
+            "selected_ray_counts": [
+              27,
+              43,
+              27
+            ],
+            "positive_integer_weights": [
+              149,
+              148,
+              9
+            ],
+            "doubled_cutoff": 1367
+          }
+        ]
+      },
+      {
+        "L": 98,
+        "quotient_length": 588,
+        "m": 24,
+        "remainder": 2,
+        "outer_count_range": [
+          24,
+          27
+        ],
+        "certificates_checked": 16,
+        "certificates": [
+          {
+            "selected_ray_counts": [
+              24,
+              50,
+              24
+            ],
+            "positive_integer_weights": [
+              239,
+              238,
+              9
+            ],
+            "doubled_cutoff": 1853
+          },
+          {
+            "selected_ray_counts": [
+              24,
+              49,
+              25
+            ],
+            "positive_integer_weights": [
+              224,
+              226,
+              9
+            ],
+            "doubled_cutoff": 1781
+          },
+          {
+            "selected_ray_counts": [
+              24,
+              48,
+              26
+            ],
+            "positive_integer_weights": [
+              209,
+              214,
+              9
+            ],
+            "doubled_cutoff": 1709
+          },
+          {
+            "selected_ray_counts": [
+              24,
+              47,
+              27
+            ],
+            "positive_integer_weights": [
+              194,
+              202,
+              9
+            ],
+            "doubled_cutoff": 1637
+          },
+          {
+            "selected_ray_counts": [
+              25,
+              49,
+              24
+            ],
+            "positive_integer_weights": [
+              227,
+              223,
+              9
+            ],
+            "doubled_cutoff": 1781
+          },
+          {
+            "selected_ray_counts": [
+              25,
+              48,
+              25
+            ],
+            "positive_integer_weights": [
+              212,
+              211,
+              9
+            ],
+            "doubled_cutoff": 1709
+          },
+          {
+            "selected_ray_counts": [
+              25,
+              47,
+              26
+            ],
+            "positive_integer_weights": [
+              197,
+              199,
+              9
+            ],
+            "doubled_cutoff": 1637
+          },
+          {
+            "selected_ray_counts": [
+              25,
+              46,
+              27
+            ],
+            "positive_integer_weights": [
+              182,
+              187,
+              9
+            ],
+            "doubled_cutoff": 1565
+          },
+          {
+            "selected_ray_counts": [
+              26,
+              48,
+              24
+            ],
+            "positive_integer_weights": [
+              215,
+              208,
+              9
+            ],
+            "doubled_cutoff": 1709
+          },
+          {
+            "selected_ray_counts": [
+              26,
+              47,
+              25
+            ],
+            "positive_integer_weights": [
+              200,
+              196,
+              9
+            ],
+            "doubled_cutoff": 1637
+          },
+          {
+            "selected_ray_counts": [
+              26,
+              46,
+              26
+            ],
+            "positive_integer_weights": [
+              185,
+              184,
+              9
+            ],
+            "doubled_cutoff": 1565
+          },
+          {
+            "selected_ray_counts": [
+              26,
+              45,
+              27
+            ],
+            "positive_integer_weights": [
+              170,
+              172,
+              9
+            ],
+            "doubled_cutoff": 1493
+          },
+          {
+            "selected_ray_counts": [
+              27,
+              47,
+              24
+            ],
+            "positive_integer_weights": [
+              203,
+              193,
+              9
+            ],
+            "doubled_cutoff": 1637
+          },
+          {
+            "selected_ray_counts": [
+              27,
+              46,
+              25
+            ],
+            "positive_integer_weights": [
+              188,
+              181,
+              9
+            ],
+            "doubled_cutoff": 1565
+          },
+          {
+            "selected_ray_counts": [
+              27,
+              45,
+              26
+            ],
+            "positive_integer_weights": [
+              173,
+              169,
+              9
+            ],
+            "doubled_cutoff": 1493
+          },
+          {
+            "selected_ray_counts": [
+              27,
+              44,
+              27
+            ],
+            "positive_integer_weights": [
+              158,
+              157,
+              9
+            ],
+            "doubled_cutoff": 1421
+          }
+        ]
+      },
+      {
+        "L": 99,
+        "quotient_length": 594,
+        "m": 24,
+        "remainder": 3,
+        "outer_count_range": [
+          24,
+          27
+        ],
+        "certificates_checked": 16,
+        "certificates": [
+          {
+            "selected_ray_counts": [
+              24,
+              51,
+              24
+            ],
+            "positive_integer_weights": [
+              248,
+              247,
+              9
+            ],
+            "doubled_cutoff": 1907
+          },
+          {
+            "selected_ray_counts": [
+              24,
+              50,
+              25
+            ],
+            "positive_integer_weights": [
+              233,
+              235,
+              9
+            ],
+            "doubled_cutoff": 1835
+          },
+          {
+            "selected_ray_counts": [
+              24,
+              49,
+              26
+            ],
+            "positive_integer_weights": [
+              218,
+              223,
+              9
+            ],
+            "doubled_cutoff": 1763
+          },
+          {
+            "selected_ray_counts": [
+              24,
+              48,
+              27
+            ],
+            "positive_integer_weights": [
+              203,
+              211,
+              9
+            ],
+            "doubled_cutoff": 1691
+          },
+          {
+            "selected_ray_counts": [
+              25,
+              50,
+              24
+            ],
+            "positive_integer_weights": [
+              236,
+              232,
+              9
+            ],
+            "doubled_cutoff": 1835
+          },
+          {
+            "selected_ray_counts": [
+              25,
+              49,
+              25
+            ],
+            "positive_integer_weights": [
+              221,
+              220,
+              9
+            ],
+            "doubled_cutoff": 1763
+          },
+          {
+            "selected_ray_counts": [
+              25,
+              48,
+              26
+            ],
+            "positive_integer_weights": [
+              206,
+              208,
+              9
+            ],
+            "doubled_cutoff": 1691
+          },
+          {
+            "selected_ray_counts": [
+              25,
+              47,
+              27
+            ],
+            "positive_integer_weights": [
+              191,
+              196,
+              9
+            ],
+            "doubled_cutoff": 1619
+          },
+          {
+            "selected_ray_counts": [
+              26,
+              49,
+              24
+            ],
+            "positive_integer_weights": [
+              224,
+              217,
+              9
+            ],
+            "doubled_cutoff": 1763
+          },
+          {
+            "selected_ray_counts": [
+              26,
+              48,
+              25
+            ],
+            "positive_integer_weights": [
+              209,
+              205,
+              9
+            ],
+            "doubled_cutoff": 1691
+          },
+          {
+            "selected_ray_counts": [
+              26,
+              47,
+              26
+            ],
+            "positive_integer_weights": [
+              194,
+              193,
+              9
+            ],
+            "doubled_cutoff": 1619
+          },
+          {
+            "selected_ray_counts": [
+              26,
+              46,
+              27
+            ],
+            "positive_integer_weights": [
+              179,
+              181,
+              9
+            ],
+            "doubled_cutoff": 1547
+          },
+          {
+            "selected_ray_counts": [
+              27,
+              48,
+              24
+            ],
+            "positive_integer_weights": [
+              212,
+              202,
+              9
+            ],
+            "doubled_cutoff": 1691
+          },
+          {
+            "selected_ray_counts": [
+              27,
+              47,
+              25
+            ],
+            "positive_integer_weights": [
+              197,
+              190,
+              9
+            ],
+            "doubled_cutoff": 1619
+          },
+          {
+            "selected_ray_counts": [
+              27,
+              46,
+              26
+            ],
+            "positive_integer_weights": [
+              182,
+              178,
+              9
+            ],
+            "doubled_cutoff": 1547
+          },
+          {
+            "selected_ray_counts": [
+              27,
+              45,
+              27
+            ],
+            "positive_integer_weights": [
+              167,
+              166,
+              9
+            ],
+            "doubled_cutoff": 1475
+          }
+        ]
+      }
+    ]
+  },
   "summary": {
     "volume_fixtures": 30,
     "socle_fixtures": 18,
@@ -31852,7 +38421,11 @@
     "coarse_class_path_intervals": 6,
     "normal_curve_fixtures": 10,
     "normal_curve_allocations_checked": 726,
-    "normal_curve_independent_rank_checks": 4
+    "normal_curve_independent_rank_checks": 4,
+    "relative_socle_fixtures": 4,
+    "relative_socle_row_and_greedy_checks": 896,
+    "relative_socle_full_matrix_checks": 112,
+    "relative_socle_lower_certificates": 116
   },
   "goal_qualifying_advance": false
 }

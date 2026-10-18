@@ -4463,3 +4463,197 @@ what a relation-based box cover would need to save; arbitrary mixed
 leading monomials do not supply the pure coordinate bounds used here.
 Keep the original goal active, with the unrestricted theorem, further
 consequence and target manuscript still outstanding.
+
+### Fifth feasibility pass: how many variables can propagate a relation?
+
+**Status:** a proposed lower mechanism with one surviving coordinate is
+now sharply bounded. This is a construction-level result, not the
+unrestricted theorem. It uses the established state-polytope estimate;
+novelty is not asserted. The preceding turn was progress, with the
+fixed-curve gate and exact certificates saved in commit af20074.
+
+#### A gluing shortcut fails even for a simple mixed relation
+
+The relation xy=0 suggests treating the (x,z) and (y,z) components
+separately. Their initial ideals alone need not determine the answer.
+For any field K and integer m>=1, take
+
+    I=(xy,x+y,z^m)=(x+y,x^2,z^m).
+
+The two elimination ideals are (x^2,z^m) in K[x,z] and (y^2,z^m)
+in K[y,z]. Each has a unique initial ideal. But I has two initial
+staircases: {1,x} times {1,z,...,z^(m-1)} when w_y>w_x, and the same
+set with y replacing x when w_x>w_y. The displayed generators reduce
+triangularly and leave exactly 2m standard monomials, proving the claim.
+Weights (1,2,1) and (2,1,1) are exact witnesses. The connecting relation
+x+y contains information absent from both component fans. This refutes
+the proposed common-refinement shortcut; it is not a novelty claim.
+
+#### A uniform relative-socle bound
+
+Let D be any finite monomial order ideal of size N in d variables, and
+let J_D be its monomial complement ideal. Fix a set U of s coordinates,
+1<=s<=d, and define the relative socle support
+
+    S_U={a in D : a+e_i is outside D for every i in U}.
+
+Let R be a linear subspace supported on S_U, stable under multiplication
+in K[x]/J_D by the remaining variables. Multiplication by every variable
+in U is already zero on this support, so J_D+R is an ideal. The stability
+hypothesis is essential: arbitrary relation rows cannot be substituted
+for a polynomial quotient. Write n=N-dim R>=1.
+
+Then
+
+    g(J_D+R)=O_d(n^((2d-s)*(d-1)/(d+1))).          (RSoc1)
+
+To prove this, put q=|S_U|. For each i in U, the downward i-chains from
+the distinct members of S_U are disjoint. Two members on one such chain
+would contradict maximality in coordinate i. Therefore
+
+    sum_{a in S_U}(a_i+1)<=N,
+    sum_{a in S_U}a_i<=N-q<=n.                    (RSoc2)
+
+Every initial staircase contains the same fixed set D minus S_U.
+The other standard monomials are selected from S_U by the residue
+matroid of span(S_U)/R. Subtract the moment of the fixed set. In the s
+specified coordinates the remaining moment is at most n by (RSoc2).
+In every other coordinate it is at most the total moment of an
+n-element staircase, hence at most n(n-1)/2. The variable moment
+polytope thus lies in
+
+    [0,n]^s times [0,n^2]^(d-s).
+
+Adding the integral unit cube handles lower-dimensional cases. Its
+volume is O_d(n^(2d-s)); the lattice-polytope vertex bound in the
+[Babson--Onn--Thomas proof of Corollary 2.5](https://arxiv.org/pdf/math/0207135)
+gives (RSoc1). The constant depends only on d, not on N, R, the field
+or the chosen monomial order ideal. This recovers the full-socle result
+at s=d and permits genuinely nonzero multiples in the other coordinates.
+
+For d=3 the consequences are more informative when the layer argument
+is included:
+
+| Coordinates killing the relation support | Uniform upper bound |
+| --- | --- |
+| Three | O(n^(3/2)) |
+| Two | O(n^2) |
+| One | O(n^(7/3)) |
+
+The last row improves the volume-only O(n^(5/2)): the bounded moment
+coordinate has at most n+1 integer values. Each slice is a planar
+lattice polytope in a square of side n^2, hence has O(n^(4/3)) vertices.
+The other two rows use (RSoc1). These statements concern this specified
+relation-support construction. They do not classify arbitrary ideals
+containing a mixed polynomial.
+
+#### The one-surviving-coordinate exponent is attained
+
+The quadratic upper bound in the second row is sharp along an explicit
+infinite family. Let L>=2, let F_L(z)=product_{j=1}^L(z-j) over Q, and set
+
+    J=(x^4,x^2*y,x*y^2,y^4,F_L(z)),
+    I_L=J+(x*y-z^L*y^3, x^3-z^(2L)*y^3).         (RSoc3)
+
+The two-variable monomial reference diagram is
+
+    E={1,x,x^2,x^3,y,y^2,y^3,xy},
+
+with maximal monomials y^3,xy,x^3. Their multiples by x and y vanish
+in the reference ring, but their z multiples need not vanish. Modulo J,
+this support is a free rank-three module over B=Q[z]/F_L. Its quotient
+in (RSoc3) is B, under
+
+    y^3 |-> 1,   xy |-> z^L,   x^3 |-> z^(2L).
+
+The kernel is a B-submodule of dimension 2L, so I_L has length 8L-2L=6L.
+The other five monomials of E, each times z^k for 0<=k<L, remain fixed
+independent standard columns. The reference J has the same diagram
+E times [0,L) for every monomial order: its generators are monomials
+in x,y and one monic univariate polynomial in z. Normal-form reduction
+preserves the relative support. Thus the proof of (RSoc1) applies
+verbatim to this product reference, giving g(I_L)=O(L^2).
+
+For the lower bound, evaluate B at z=1,...,L. The 3L support monomials
+have columns t^k, t^(L+k), t^(2L+k), 0<=k<L. Every L of them are
+independent by the positive-root/Vandermonde argument already proved.
+Therefore the varying part of the standard basis is exactly the L
+cheapest support monomials, from three arithmetic progressions.
+
+Here are integer weights for quadratically many different choices.
+Write L=4m+e, 0<=e<=3, take m>=8, and put h=floor(m/8). Independently
+choose a,c in [m,m+h], and set b=L-a-c, u=b-a, v=b-c. Both u and v
+are positive. In the progression order y^3,xy,x^3 choose counts (a,b,c)
+and weights
+
+    w_x=3u+6v+5,  w_y=6u+3v+4,  w_z=9.
+
+Relative to the middle offset w_x+w_y, the outer offsets are 9u+3
+and 9v+6. The threshold
+
+    T=w_x+w_y+9b-1/2
+
+selects exactly a,b,c monomials from the three progressions. Each last
+selected score is at most w_x+w_y+9b-3, while each first unselected
+score is at least w_x+w_y+9b. Different allocations give distinct
+standard staircases. There are (h+1)^2=Omega(L^2) choices, proving
+
+    g(I_L)=Theta(L^2)=Theta(length(I_L)^2).       (RSoc4)
+
+The reference now contains F_L(z) rather than a monomial z^L, which
+allows the positive evaluation proof. This extension is justified by
+its order-independent reference diagram and support-preserving normal
+forms; it is not silently assumed for arbitrary reference ideals.
+
+#### Exact checks and field scope
+
+The checker constructs full commuting multiplication matrices and a
+cyclic vector for L=2,3,4,5. Companion-polynomial remainders implement
+(RSoc3) independently of its positive evaluation coordinates. In every
+positive-weight comparison chamber, descending relation-row reduction
+is checked against ascending Gaussian selection over Q, F_2, F_3 and
+F_29. Rational selection is also checked against the separate positive
+evaluation matrix and the L-cheapest-column rule. Full matrix greedy
+selection is checked once for every realized state in every field.
+
+The exact numbers of initial staircases for these fixtures are:
+
+| L | Q | F_2 | F_3 | F_29 |
+| --- | --- | --- | --- | --- |
+| 2 | 5 | 3 | 3 | 5 |
+| 3 | 8 | 4 | 4 | 8 |
+| 4 | 12 | 3 | 8 | 10 |
+| 5 | 14 | 5 | 6 | 14 |
+
+The relation module has dimension 2L and the quotient length is 6L in
+all these characteristics. The characteristic-zero lower proof uses
+positive distinct samples and is not promoted to a uniform finite-field
+lower assertion. The checks cover 896 row/greedy comparisons, 112 full
+matrix states, and 116 explicit lower-allocation certificates at larger
+L. Saved witnesses include the actual reference diagrams, F_L
+coefficients, relation matrices and positive integer weights.
+
+#### Decision and remaining mathematical gap
+
+Adding z levels to these socle-supported constructions can produce a
+quadratic number of states, but cannot exceed the existing generic
+n^2 log^2 n lower order. This rules out that proposed amplification
+mechanism with a proof rather than a larger search.
+
+Within this support-based approach, the remaining candidate has only
+one annihilating coordinate and a relation module stable under two
+surviving coordinate actions. Its proved O(n^(7/3)) ceiling leaves room
+for a power improvement over the current generic lower bound; no family
+achieving that improvement has been constructed. Any proposed module
+must satisfy both multiplication actions, not just specify unrelated
+matroid rows. Do not expand the two-annihilator enumeration.
+
+The unrestricted upper problem also remains open. The gluing example
+above shows why component fans alone do not settle mixed-leading cases.
+Further primary-source access attempts for the NSF-hosted later
+finite-field chapter did not retrieve its full text; its improved
+finite-field theorem is still not represented as proof-audited. This
+access issue does not halt independent work and is not evidence that
+the unrestricted bound is new. Keep the full goal active; the
+qualifying unrestricted advance, further consequence and target
+manuscript are still missing.

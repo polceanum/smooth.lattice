@@ -873,6 +873,148 @@ def normal_curve_lower_controls():
     return fixtures
 
 
+def relative_socle_fixture(length):
+    """Coupled relation modules killed by x,y, with nonzero z multiples."""
+    plane = {(0, 0), (1, 0), (2, 0), (3, 0),
+             (0, 1), (0, 2), (0, 3), (1, 1)}
+    tops = {(0, 3), (1, 1), (3, 0)}
+    domain = {(*a, k) for a in plane for k in range(length)}
+    support = sorted((*a, k) for a in tops for k in range(length))
+    fixed = domain - set(support)
+    basis = sorted(fixed | {(0, 3, k) for k in range(length)})
+    n = len(basis)
+    require(n == 6 * length, "exact quotient length")
+    indices = {p: i for i, p in enumerate(basis)}
+    polynomial = [1]
+    for root in range(1, length + 1):
+        following = [0] * (len(polynomial) + 1)
+        for k, value in enumerate(polynomial):
+            following[k] -= root * value
+            following[k + 1] += value
+        polynomial = following
+    remainders = [(1,) + (0,) * (length - 1)]
+    for _ in range(3 * length):
+        current = remainders[-1]
+        following = [0] + list(current[:-1])
+        for k in range(length):
+            following[k] -= current[-1] * polynomial[k]
+        remainders.append(tuple(following))
+    offsets = {(0, 3): 0, (1, 1): length, (3, 0): 2 * length}
+
+    def residue(point):
+        a, k = point[:2], point[2]
+        vector = [0] * n
+        if a in plane:
+            anchor = (0, 3) if a in tops else a
+            for j, coefficient in enumerate(remainders[k + offsets.get(a, 0)]):
+                vector[indices[(*anchor, j)]] = coefficient
+        return tuple(vector)
+
+    matrices = [tuple(residue(tuple(x + (i == j) for j, x in enumerate(a)))
+                      for a in basis) for i in range(3)]
+    for i, j in combinations(range(3), 2):
+        for k in range(n):
+            require(matvec(matrices[i], matrices[j][k]) ==
+                    matvec(matrices[j], matrices[i][k]), "relative-socle multiplication commutes")
+    border = {tuple(x + (i == j) for j, x in enumerate(a))
+              for a in domain for i in range(3)} - domain
+    columns = {}
+    for a in sorted(domain | border):
+        vector = residue((0, 0, 0))
+        for matrix, exponent in zip(matrices, a):
+            for _ in range(exponent):
+                vector = matvec(matrix, vector)
+        require(vector == residue(a), "relative-socle quotient is cyclic on the domain and border")
+        columns[a] = vector
+    socle_columns = {a: remainders[a[2] + offsets[a[:2]]] for a in support}
+    rows = []
+    for a in support:
+        if a[:2] == (0, 3):
+            continue
+        row = [0] * len(support)
+        row[support.index(a)] = 1
+        for k, value in enumerate(socle_columns[a]):
+            row[support.index((0, 3, k))] -= value
+        rows.append(row)
+    require(any(socle_columns[(1, 1, 1)]), "z*xy remains nonzero over Q")
+    budgets = [sum(a[i] for a in support) for i in (0, 1)]
+    require(all(b + len(support) <= len(domain) and b <= n for b in budgets),
+            "relative-antichain coordinate budgets")
+    normals = sorted({primitive(tuple(x - y for x, y in zip(a, b)))
+                      for a, b in combinations(support, 2)
+                      if min(x - y for x, y in zip(a, b)) < 0 < max(x - y for x, y in zip(a, b))})
+    weights = positive_chambers(normals)
+    fields, full_checks = [], 0
+    evaluation = {a: tuple(t ** (a[2] + offsets[a[:2]]) for t in range(1, length + 1))
+                  for a in support}
+    for characteristic in (0, 2, 3, 29):
+        states = {}
+        for weight in weights:
+            excluded = leading_row_pivots(rows, support, weight, characteristic)
+            selected = greedy(set(support), socle_columns, weight, characteristic)
+            require(selected == set(support) - excluded and len(selected) == length,
+                    "relative module row reduction and residue greedy agree")
+            if not characteristic:
+                require(greedy(set(support), evaluation, weight, 0) == selected,
+                        "independent positive evaluation agrees with companion residues")
+                require(selected == set(sorted(support, key=lambda a: (dot(weight, a), a))[:length]),
+                        "positive Vandermonde model chooses the cheapest L socle monomials")
+            standard = fixed | selected
+            require(all(tuple(x - (i == j) for j, x in enumerate(a)) in standard
+                        for a in standard for i in range(3) if a[i]), "relative-module standard staircase")
+            moment = tuple(sum(a[i] for a in selected) for i in range(3))
+            require(moment[0] <= n and moment[1] <= n and moment[2] <= n * (n - 1) // 2,
+                    "translated state lies in the n by n by n-squared box")
+            states.setdefault(tuple(sorted(selected)), weight)
+        for selected, weight in states.items():
+            require(greedy(domain | border, columns, weight, characteristic) == fixed | set(selected),
+                    "full commuting-matrix greedy agrees with the relation-module basis")
+            full_checks += 1
+        fields.append({"characteristic": characteristic, "distinct_initial_staircases": len(states),
+                       "all_chambers_checked": len(weights),
+                       "witnesses": [{"selected_relative_socle_monomials": s, "positive_integer_weights": w}
+                                     for s, w in sorted(states.items())]})
+    return {"L": length, "quotient_length": n, "reference_domain": sorted(domain),
+            "relative_socle": support, "fixed_standard_monomials": sorted(fixed),
+            "monic_z_polynomial_low_degree_first": polynomial,
+            "socle_relation_matrix": rows,
+            "relative_coordinate_budgets_xy": budgets,
+            "multiplication_matrices_commute": True, "cyclicity_checked": True,
+            "nonconstant_z_multiples_of_relation_terms_nonzero_over_Q": True,
+            "exact_chambers": len(weights), "fields": fields,
+            "row_and_greedy_checks": 4 * len(weights), "full_matrix_checks": full_checks}
+
+
+def relative_socle_lower_controls():
+    """A symbolic quadratic-size family of choices in the relative socle."""
+    fixtures = []
+    for m in (8, 16, 24):
+        h = m // 8
+        for remainder in range(4):
+            length = 4 * m + remainder
+            certificates = []
+            for left, right in product(range(m, m + h + 1), repeat=2):
+                middle = length - left - right
+                first, second = middle - left, middle - right
+                weight = (3 * first + 6 * second + 5, 6 * first + 3 * second + 4, 9)
+                require(min(weight) > 0, "strict positive integer allocation weight")
+                offsets = [3 * weight[1], weight[0] + weight[1], 3 * weight[0]]
+                counts = [left, middle, right]
+                last = max(a + 9 * (r - 1) for a, r in zip(offsets, counts))
+                following = min(a + 9 * r for a, r in zip(offsets, counts))
+                threshold = 2 * (offsets[1] + 9 * middle) - 1
+                require(2 * last < threshold < 2 * following,
+                        "the exact cutoff selects the prescribed L relative-socle monomials")
+                certificates.append({"selected_ray_counts": counts, "positive_integer_weights": weight,
+                                     "doubled_cutoff": threshold})
+            require(len({tuple(c["selected_ray_counts"]) for c in certificates}) == (h + 1) ** 2,
+                    "distinct allocations give distinct initial staircases")
+            fixtures.append({"L": length, "quotient_length": 6 * length, "m": m,
+                             "remainder": remainder, "outer_count_range": [m, m + h],
+                             "certificates_checked": len(certificates), "certificates": certificates})
+    return fixtures
+
+
 def main():
     fixtures = []
     for weights, cutoff in [((1, 1, 1), 2), ((1, 1, 1), 3),
@@ -898,6 +1040,8 @@ def main():
     sectors = pure_power_sector_controls(binomial, truncated_partition)
     coarse_path = coarse_class_path_control(truncated_partition)
     normal_curve = normal_curve_lower_controls()
+    relative_socle = [relative_socle_fixture(length) for length in (2, 3, 4, 5)]
+    relative_lower = relative_socle_lower_controls()
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
         "schema_version": 1, "command": "python3 -B scripts/run_structural_complexity_checks.py",
@@ -943,6 +1087,11 @@ def main():
             "point_description": "For each fixture take t=1,...,n over Q; ray residue i has monomials x_i*x_d^k, with x_0=1.",
             "fixtures": normal_curve,
         },
+        "relative_socle_control": {
+            "uniform_conclusion": "For the stated finite monomial reference (or the justified product reference), relations supported on the relative socle in s specified variables and closed under the remaining multiplications give O_d(n^((2*d-s)*(d-1)/(d+1))) initial ideals. In dimension three the layer argument improves s=1 to O(n^(7/3)); s=2 gives O(n^2), with a matching family of lengths 6L.",
+            "scope": "A restricted mechanism with genuinely surviving z multiples; it cannot beat the existing unrestricted generic lower order. No novelty or unrestricted improvement is asserted.",
+            "fixtures": relative_socle, "symbolic_lower_certificates": relative_lower,
+        },
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
                     "independent_greedy_checks": sum(f["greedy_checks"] for f in fixtures),
@@ -962,7 +1111,11 @@ def main():
                     "coarse_class_path_intervals": coarse_path["same_connected_class_region"]["open_intervals_checked"],
                     "normal_curve_fixtures": len(normal_curve),
                     "normal_curve_allocations_checked": sum(f["allocation_certificates_checked"] for f in normal_curve),
-                    "normal_curve_independent_rank_checks": sum(f["independent_modular_rank_check"] is not None for f in normal_curve)},
+                    "normal_curve_independent_rank_checks": sum(f["independent_modular_rank_check"] is not None for f in normal_curve),
+                    "relative_socle_fixtures": len(relative_socle),
+                    "relative_socle_row_and_greedy_checks": sum(f["row_and_greedy_checks"] for f in relative_socle),
+                    "relative_socle_full_matrix_checks": sum(f["full_matrix_checks"] for f in relative_socle),
+                    "relative_socle_lower_certificates": sum(f["certificates_checked"] for f in relative_lower)},
         "goal_qualifying_advance": False,
     }
     target = ROOT / "results/research/structural_complexity_checks.json"
