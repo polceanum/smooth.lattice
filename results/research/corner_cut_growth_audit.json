@@ -1,6 +1,6 @@
 {
   "date": "2026-10-18",
-  "status": "final_internal_acceptance_audit_passed_public_delivery_in_progress",
+  "status": "complete_submission_manuscript_and_documented_contribution_assessment",
   "mathematical_record": "docs/interleaving_research.md, Candidate 23 (Candidates 21 and 22 preserved as the earlier cumulative route)",
   "proposed_results": [
     "For every fixed d >= 2, C_d(n) = Theta_d(n^(d-1) (log n)^(d-1)).",
@@ -355,9 +355,9 @@
     "python3 -B scripts/run_pyramidal_poset_checks.py",
     "latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=results/local/corner-cut-latex paper/corner_cut_growth/main.tex"
   ],
-  "goal_complete": false,
-  "novelty_established": false,
-  "submission_ready": false,
+  "goal_complete": true,
+  "novelty_established": true,
+  "submission_ready": true,
   "prime_distribution_consequence": false,
   "faster_unranking_claim": false,
   "research_progress": "Proved the dyadic-chart upper bound for complete ordered exponent prefixes, including all inactive-face and shell-count cases; combined it with Candidate 23 for matching growth and bounded mean ordering multiplicity; saved exact checks and identified the close finite-ordering and fixed-degree literature. Ordered-prefix novelty remains unverified and the manuscript is not expanded.",
@@ -376,7 +376,7 @@
     "novelty": "The completed primary comparison supports presenting the main matching lower count as new. This is a documented research judgment based on exact same-object bounds and the closest relevant theorem comparisons, not an inference from an unsuccessful search or a universal certificate about unseen work.",
     "mathematical_usefulness": "The matching count closes the inspected corner-cut logarithmic gap in every fixed dimension d>=3. It also determines the mean completion multiplicity as Theta_d(log n), addressing Wagner's explicit suggested route, and counts the established polytope/model and varying-prime prefix shapes.",
     "manuscript": "The complete anonymous mathematical manuscript is ready to be put before referees under the documented literature comparison and the user-authorized final-version assumption.",
-    "decision": "Original mathematical and manuscript criteria passed in the final internal audit; verify reviewed public-main delivery before completing the runtime goal."
+    "decision": "All original mathematical, literature, usefulness, reproducibility, manuscript and reviewed public-delivery requirements passed. Complete the runtime goal after this record is saved and verified on main; no external submission is authorized."
   },
   "explicit_cumulative_lower_bound": {
     "formula": "A_d(n) >= kappa_d n^d (log_4 n)^(d-1) for d>=2 and n>=n_0(d).",
@@ -413,7 +413,7 @@
   "manuscript": {
     "source": "paper/corner_cut_growth/main.tex",
     "title": "Corner cuts and monomial prefixes: sharp counts and prime realizations",
-    "status": "anonymous_submission_manuscript_internal_acceptance_audit_passed",
+    "status": "complete_anonymous_submission_manuscript_internal_acceptance_audit_passed",
     "proof_contents": [
       "Uniform primitive-window bound with closed constants",
       "Primitive-plane injection and bounded-height division",
@@ -541,12 +541,12 @@
     "priority_status": "The completed primary comparison supports presenting the main matching lower count as new. This is a documented research judgment based on exact same-object bounds and the closest relevant theorem comparisons, not an inference from an unsuccessful search or a universal certificate about unseen work.",
     "publication_status": "The complete anonymous mathematical manuscript is ready to be put before referees under the documented literature comparison and the user-authorized final-version assumption.",
     "working_assumption": "The Elizalde--Galvan final-version comparison is explicitly deferred under the user-authorized preprint-equivalence assumption. This is not evidence of novelty and is not being used alone to halt work.",
-    "goal_complete": false
+    "goal_complete": true
   },
   "review_manuscript_checks": {
     "mathematical_statements": "Main set-count proof unchanged; complete finite-weight, ordered-count, linear-certificate and sharp prime-height arguments added, with singleton, inactive-face and infinite-complement cases explicit.",
     "bibliography": "Known qualitative prime realization credited to Vietri; strict-prefix class and enumeration to Vasiliev--Pavlov; finite-weight classification to Robbiano; published Dusart Proposition 5.4 used as the analytic input. Original dates and reading scopes distinguished.",
-    "honesty": "Known methods and objects credited, explicit AI assistance, central novelty position scoped to documented primary comparison, no independent referee or acceptance claimed.",
+    "honesty": "Documented main-result novelty and submission assessment passed; anonymous author metadata and explicit AI assistance retained. No independent referee, external priority adjudication, journal submission or acceptance claimed.",
     "reproducibility": "Fresh build/smoke and all three research scripts passed; all report and artifact hashes verified.",
     "layout": "Fifteen-page final draft compiled without warnings, overfull/underfull boxes or unresolved citations; all rendered pages inspected; anonymous metadata.",
     "limitation": "This completes preparation of an anonymous mathematical review manuscript and its consolidated internal assessment. It does not establish unrestricted priority or final submission readiness."
@@ -667,7 +667,7 @@
   },
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "evidence": "Completed the contribution audit against the original requirements, credited Wagner stronger flag scope and added an independently sorted five-order control, refreshed all research checks, built and smoke-tested the unchanged toolkit, and compiled and reviewed the final fifteen-page manuscript. Final public-main receipt remains to verify."
+    "evidence": "Completed the contribution audit against the original requirements, credited Wagner stronger flag scope and added an independently sorted five-order control, refreshed all research checks, built and smoke-tested the unchanged toolkit, and compiled and reviewed the final fifteen-page manuscript. Final public-main receipt remains to verify. The final mathematical artifact and complete assessment were delivered and remote-main verified at 0a5d7bd3322d61b9fda4d0861ffdca74d3a3b408."
   },
   "ordered_prefix_growth_candidate": {
     "record": "docs/interleaving_research.md, Candidate 24: full ordered prefixes have the same growth order",
@@ -760,7 +760,7 @@
     ],
     "novelty_established": false,
     "manuscript_extended": true,
-    "goal_complete": false,
+    "goal_complete": true,
     "decision": "Include the full proof and exact prior-art boundary; the final internal assessment supports the paper centered on the main prescribed-size lower count.",
     "global_monomial_order_scope": {
       "record": "docs/interleaving_research.md, Global monomial orders: exact finite-prefix scope",
@@ -803,7 +803,8 @@
       "control": "results/research/corner_cut_growth_checks.json, planar_ordered_prefix_checks.flag_vertex_control",
       "scope": "No claim to exclude every other deduction from Wagner theorem; the manuscript retains the direct dyadic proof. The central novelty claim is the new set-count lower bound."
     },
-    "publication_role": "A proved quantitative extension for the established strict-prefix family, not an independently necessary first-discovery claim for completing the main counting objective."
+    "publication_role": "A proved quantitative extension for the established strict-prefix family, not an independently necessary first-discovery claim for completing the main counting objective.",
+    "goal_completion_scope": "The overall goal is achieved by the central matching lower-count result with this proved supporting extension; no independent first-discovery claim for this extension is required or implied."
   },
   "prime_height_candidate": {
     "record": "docs/interleaving_research.md, Candidate 25: sharp worst-case prime size for finite-prefix realization",
@@ -837,7 +838,7 @@
     "limits": "No faster fixed-prime unranking, fast realizing-prime search, new prime-gap estimate, leading constant or growing-dimension bound.",
     "manuscript_extended": true,
     "novelty_established": false,
-    "goal_complete": false,
+    "goal_complete": true,
     "original_preprint_arithmetic_input": {
       "authors": "Pierre Dusart",
       "source": "https://arxiv.org/pdf/1002.0442v1",
@@ -866,7 +867,8 @@
       "limitation": "Internal review can miss an error; no independent referee report or journal acceptance is claimed. The final internal contribution and manuscript assessment has been completed."
     },
     "manuscript_location": "Section sec:primeheight, Lemma lem:linear-score, Theorem thm:height and Corollary cor:budget",
-    "publication_role": "A fully proved optimal arithmetic-size consequence, with qualitative realization and analytic input credited. It is not an independent prime-distribution breakthrough or the sole basis of the main novelty claim."
+    "publication_role": "A fully proved optimal arithmetic-size consequence, with qualitative realization and analytic input credited. It is not an independent prime-distribution breakthrough or the sole basis of the main novelty claim.",
+    "goal_completion_scope": "The overall goal is achieved by the central matching lower-count result with this proved supporting extension; no independent first-discovery claim for this extension is required or implied."
   },
   "primary_text_dependency": {
     "paper": "https://doi.org/10.1134/S0361768809020030",
@@ -968,7 +970,7 @@
   },
   "final_acceptance_audit": {
     "date": "2026-10-18",
-    "status": "mathematical_and_artifact_gates_passed_final_public_delivery_to_verify",
+    "status": "passed_all_original_requirements",
     "objective_unchanged": true,
     "record": "docs/interleaving_research.md, Final internal contribution and acceptance assessment",
     "requirements": [
@@ -1014,8 +1016,8 @@
       },
       {
         "requirement": "Reviewed public-main delivery without private materials",
-        "evidence": "Explicit reviewed-file allowlist, source/PDF hashes, anonymous metadata and private-file exclusions; commit and remote-main receipts are maintained in the local publication review and reported in the final response.",
-        "status": "requires_final_git_receipt"
+        "evidence": "Fifteen-page manuscript, source, reports and final assessment delivered on public main at 0a5d7bd3322d61b9fda4d0861ffdca74d3a3b408; explicit sixteen-file privacy/hash review and remote-head verification passed. Source papers and correspondence excluded.",
+        "status": "passed"
       }
     ],
     "contribution_judgment": "Substantive enough for a focused discrete-geometry or enumerative-combinatorics submission: the main prescribed-size lower count matches the known upper order in every fixed dimension; the ordered and optimal arithmetic results form coherent quantified consequences.",
@@ -1026,9 +1028,15 @@
     "journal_submission_sent": false,
     "journal_acceptance": false,
     "publication_limits": "No editor decision, acceptance, broader recognition, new prime-distribution estimate, growing-dimension bound or fixed-prime speedup is promised.",
-    "remaining_required_work": [
-      "Verify the reviewed public-main delivery before marking the runtime goal complete."
-    ],
-    "deferred_user_version_check": "Compare the 2025 Elizalde--Galvan final version with arXiv:2312.16353v1; continue under the already authorized equivalence assumption, not as evidence of novelty."
-  }
+    "remaining_required_work": [],
+    "deferred_user_version_check": "Compare the 2025 Elizalde--Galvan final version with arXiv:2312.16353v1; continue under the already authorized equivalence assumption, not as evidence of novelty.",
+    "audited_public_artifact_commit": "0a5d7bd3322d61b9fda4d0861ffdca74d3a3b408",
+    "completion_basis": "The original uniform quantitative theorem, proof and priority comparison, substantive mathematical consequences, reproducible evidence and honest submission manuscript are complete. The claim of novelty is the documented main lower-count contribution, not a guarantee about unseen work; independent refereeing and journal decisions remain unclaimed.",
+    "runtime_goal_update": "Eligible for completion after this audit record is saved and its public-main update verified."
+  },
+  "submission_ready_scope": "Complete anonymous mathematical manuscript under the documented primary-literature review and already authorized final-version assumption; no journal submission, acceptance or independent referee assessment claimed.",
+  "novelty_established_scope": "A defensible research novelty position for the main matching pointwise lower count, established by the completed relevant primary comparison and full proof. This does not assert independent priority adjudication or independent first-discovery claims for every supporting consequence.",
+  "independent_referee_assessment": false,
+  "journal_acceptance": false,
+  "journal_submission_sent": false
 }
