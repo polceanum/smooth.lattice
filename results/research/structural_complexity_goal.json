@@ -2999,5 +2999,79 @@
     },
     "historical_report_blocks_preserved": 40,
     "historical_summary_counts_preserved": true
+  },
+  "ml_power_delta_extension": {
+    "record": "docs/interleaving_research.md, ML architecture extension: exact power features and delta-state closure",
+    "implementation": "scripts/run_structural_complexity_checks.py, algebraic_power_delta_controls",
+    "architecture": "Normalized even-power features of a shared positive monomial embedding; ordinary scalar-gated DeltaNet recurrence. Encoders and scalar gates may be learned.",
+    "uniform_identity": "An orthonormal-column grouping map U satisfies generic_feature=U*collected_feature. Starting at zero, every generic scalar-gated delta state is U times the compressed state, so every read agrees. Arbitrary coordinate gates or feature nonlinearities need separate closure.",
+    "width_examples": [
+      {
+        "power": 2,
+        "expanded_embedding_width": 64,
+        "generic_symmetric_width": 2080,
+        "collected_width": 225
+      },
+      {
+        "power": 4,
+        "expanded_embedding_width": 64,
+        "generic_symmetric_width": 766480,
+        "collected_width": 841
+      },
+      {
+        "power": 6,
+        "expanded_embedding_width": 64,
+        "generic_symmetric_width": 119877472,
+        "collected_width": 1849
+      }
+    ],
+    "coefficient_preparation": "Standard multidimensional FFT convolution power with padding at least pm+1 per axis; O_s(M*(log(M+1)+log(p+1))) unit-cost arithmetic for fixed s. Charge coefficient changes and differentiation; no conditioning or bit-complexity claim.",
+    "per_token_forward": "O(M*(s+v)) plus latent encoders and gates; M*v delta state. Training/backward and GPU throughput not measured.",
+    "exact_controls": {
+      "fixtures": 6,
+      "pair_kernel_checks": 150,
+      "delta_prefix_query_checks": 150
+    },
+    "local_numerical_diagnostic": {
+      "scope": "Ignored NumPy probe; 128 fixed random keys in two latent dimensions, degree-seven box, value width 16, powers 2/4/6. No trained model or GPU measurement.",
+      "fft_coefficient_relative_l2_below": 5e-16,
+      "float32_attention_output_max_abs_error_below": 5e-07,
+      "degree_six_mean_correct_key_weight": 0.07841289350253074,
+      "degree_six_random_value_attention_mse": 0.885706826597862,
+      "degree_six_ungated_beta_one_delta_mse": 1.4370223617227182,
+      "zero_predictor_expected_mse": 1,
+      "interpretation": "The untrained embedding has poor arbitrary-value recall. Delta correction alone did not solve it; latest-write exactness does not imply retained-history quality."
+    },
+    "primary_sources": [
+      {
+        "source": "https://arxiv.org/html/2507.04239v1#S4",
+        "inspection": "Section 4 power-feature definitions, Lemma 4.2 and symmetric width table; previous hardware discussion scope retained."
+      },
+      {
+        "source": "https://arxiv.org/html/2106.02755v1#S3.SS1",
+        "inspection": "Coordinate-ring reduction, Proposition 3.6 and Corollary 3.8 with relevant displayed proofs, as previously recorded."
+      },
+      {
+        "source": "https://arxiv.org/html/2406.06484v1#S2.SS2",
+        "inspection": "Delta update definitions and displayed derivations through Sections 2.2--3.2. No full experiment audit."
+      },
+      {
+        "source": "https://arxiv.org/html/2412.06464v1#S3.SS1",
+        "inspection": "Section 3.1, equation (8), scalar-forgetting definition and adjacent online-learning derivation. No full proof or experiment audit."
+      }
+    ],
+    "next_gate": "Train multi-query associative recall against matched-state learned DeltaNet features and polynomial Power Attention. Include encoder, coefficient update, backward and state traffic. Require useful quality/memory/throughput tradeoff before custom kernels.",
+    "novelty_established": false,
+    "fundamental_advantage_established": false,
+    "measured_gpu_speedup": false,
+    "trained_model_quality_tested": false,
+    "active_mathematical_goal_preserved": true,
+    "full_checker_verified": true,
+    "source_sha256": {
+      "scripts/run_structural_complexity_checks.py": "0cf3a3c33efb211349d0cbb3fd46b045f4e356291d4c8925b281ac776545d3d3",
+      "docs/interleaving_research.md": "d050f83d88f94241f34e513d8c441bd29d42fcac135137cb9a51529a57eba4aa"
+    },
+    "historical_report_blocks_preserved": 41,
+    "historical_summary_counts_preserved": true
   }
 }

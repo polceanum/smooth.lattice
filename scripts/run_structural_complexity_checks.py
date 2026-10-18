@@ -4668,6 +4668,113 @@ def algebraic_attention_hotpath_controls():
             "fixtures": fixtures}
 
 
+def algebraic_power_delta_controls():
+    """Established polynomial collection also preserves scalar-gated delta updates."""
+    def multiply(a, b):
+        result = {}
+        for x, c in a.items():
+            for y, d in b.items():
+                z = tuple(v + w for v, w in zip(x, y))
+                result[z] = result.get(z, Fraction(0)) + c * d
+        return result
+
+    def compositions(total, length):
+        if length == 1:
+            yield (total,)
+            return
+        for first in range(total + 1):
+            for tail in compositions(total - first, length - 1):
+                yield (first,) + tail
+
+    fixtures = []
+    for dimension, degree in ((1, 2), (2, 1)):
+        zero = (0,) * dimension
+        support = list(product(range(degree + 1), repeat=dimension))
+        theta = {a: Fraction(1 + sum(a), 11) for a in support}
+        theta[zero] = Fraction(1)
+        points = [tuple(Fraction((i + 2) * (j + 1) % 7 - 3, 5)
+                        for j in range(dimension)) for i in range(5)]
+
+        def monomial(point, exponent):
+            result = Fraction(1)
+            for x, power in zip(point, exponent):
+                result *= x ** power
+            return result
+
+        def base(point):
+            return sum(c * monomial(point, a) for a, c in theta.items())
+
+        for order in (2, 4, 6):
+            collected = {zero: Fraction(1)}
+            for _ in range(order):
+                collected = multiply(collected, theta)
+            generic, grouped = [], {}
+            for counts in compositions(order, len(support)):
+                exponent = tuple(sum(n * a[j] for n, a in zip(counts, support))
+                                 for j in range(dimension))
+                weight = Fraction(factorial(order))
+                for a, n in zip(support, counts):
+                    weight *= theta[a] ** n / factorial(n)
+                generic.append((exponent, weight))
+                grouped[exponent] = grouped.get(exponent, Fraction(0)) + weight
+            require(grouped == collected, "independent symmetric multinomials collect to the convolution power")
+            require(set(collected) == set(product(range(order * degree + 1), repeat=dimension)) and
+                    all(c > 0 for c in collected.values()), "positive full-box power coefficients")
+            require(len(generic) == comb(len(support) + order - 1, order), "generic symmetric width")
+
+            def raw(point, exponent):
+                return monomial(point, exponent) / base(tuple(x * x for x in point)) ** (order // 2)
+
+            pair_checks = output_checks = 0
+            for q in points:
+                for k in points:
+                    expected = base(tuple(x * y for x, y in zip(q, k))) ** order / (
+                        base(tuple(x * x for x in q)) * base(tuple(x * x for x in k))) ** (order // 2)
+                    require(sum(c * raw(q, a) * raw(k, a) for a, c in collected.items()) == expected,
+                            "collected normalized power features equal the direct kernel")
+                    pair_checks += 1
+            generic_state = [Fraction(0)] * len(generic)
+            collected_state = {a: Fraction(0) for a in collected}
+            for t, key in enumerate(points):
+                alpha = Fraction(4 + t % 2, 5)
+                beta = Fraction(1) if t == 4 else Fraction(1 + t % 3, 3)
+                value = Fraction(t - 2, 3)
+                old_generic = alpha * sum(c * raw(key, a) * state
+                                          for (a, c), state in zip(generic, generic_state))
+                old_collected = alpha * sum(c * raw(key, a) * collected_state[a]
+                                            for a, c in collected.items())
+                require(old_generic == old_collected, "delta read before correction")
+                generic_state = [alpha * state + beta * raw(key, a) * (value - old_generic)
+                                 for (a, _), state in zip(generic, generic_state)]
+                collected_state = {a: alpha * state + beta * raw(key, a) * (value - old_collected)
+                                   for a, state in collected_state.items()}
+                require(all(state == collected_state[a] for (a, _), state in zip(generic, generic_state)),
+                        "every duplicate coordinate remains in the common feature subspace")
+                for q in points:
+                    require(sum(c * raw(q, a) * state for (a, c), state in zip(generic, generic_state)) ==
+                            sum(c * raw(q, a) * collected_state[a] for a, c in collected.items()),
+                            "scalar-gated delta outputs agree at every prefix")
+                    output_checks += 1
+                if beta == 1:
+                    require(sum(c * raw(key, a) * collected_state[a] for a, c in collected.items()) == value,
+                            "unit-feature delta writes the current value exactly at beta one")
+            fixtures.append({"latent_dimension": dimension, "box_degree": degree, "power": order,
+                             "generic_width": len(generic), "collected_width": len(collected),
+                             "pair_kernel_checks": pair_checks, "prefix_query_checks": output_checks,
+                             "points": [[str(x) for x in q] for q in points],
+                             "theta": {str(a): str(c) for a, c in theta.items()},
+                             "final_collected_state": {str(a): str(c) for a, c in collected_state.items()},
+                             "beta_one_last_write": str(value)})
+    return {"scope": "Exact reference for a constrained normalized even-power feature map and ordinary scalar-gated delta recurrence. Existing kernel-on-variety and DeltaNet methodology; no novelty, hardware or trained-quality claim.",
+            "restriction": "Shared positive feature weights are constant across one sequence; query/key embeddings lie on the specified monomial variety. Arbitrary coordinate-wise gates or mixing need not preserve the subspace.",
+            "width_examples": [{"power": p, "expanded_embedding_width": 64,
+                                "generic_symmetric_width": comb(64 + p - 1, p),
+                                "collected_width": (7 * p + 1) ** 2} for p in (2, 4, 6)],
+            "pair_kernel_checks": sum(f["pair_kernel_checks"] for f in fixtures),
+            "delta_prefix_query_checks": sum(f["prefix_query_checks"] for f in fixtures),
+            "fixtures": fixtures}
+
+
 def algebraic_attention_mixing_controls():
     """Exact finite controls for established polynomial collection and state rank."""
     def monomial(point, exponent):
@@ -5154,6 +5261,7 @@ def main():
     moment_cubes = staircase_moment_cube_controls()
     algebraic_attention = algebraic_attention_hotpath_controls()
     attention_mixing = algebraic_attention_mixing_controls()
+    power_delta = algebraic_power_delta_controls()
     lattice_shadows = lattice_shadow_controls()
     staircase_generators = staircase_generator_controls()
     exchange_cycles = exchange_cycle_coherence_controls()
@@ -5257,6 +5365,7 @@ def main():
         "staircase_moment_cube_control": moment_cubes,
         "algebraic_attention_hotpath_control": algebraic_attention,
         "algebraic_attention_mixing_control": attention_mixing,
+        "algebraic_power_delta_control": power_delta,
         "lattice_shadow_control": lattice_shadows,
         "staircase_generator_control": staircase_generators,
         "exchange_cycle_coherence_control": exchange_cycles,
@@ -5377,6 +5486,8 @@ def main():
                     "mixed_attention_query_key_derivative_checks": attention_mixing["query_key_derivative_checks"],
                     "mixed_attention_normalized_output_checks": attention_mixing["normalized_output_checks"],
                     "attention_accumulated_state_rank_witnesses": len(attention_mixing["state_rank_witnesses"]),
+                    "algebraic_power_pair_checks": power_delta["pair_kernel_checks"],
+                    "algebraic_power_delta_prefix_query_checks": power_delta["delta_prefix_query_checks"],
                     "lattice_shadow_facet_certificates": lattice_shadows["facet_certificates"],
                     "lattice_shadow_vertex_normal_certificates": lattice_shadows["vertex_normal_certificates"],
                     "lattice_shadow_exact_sections": lattice_shadows["shadow_sections"],

@@ -9323,3 +9323,154 @@ equivalent mixed lattice/angle estimate or an existing unrestricted
 counting result already implies the claimed advance. Failure to find a
 keyword match is not evidence that it is new. The goal remains active
 with this question explicit; the draft alone does not complete it.
+
+### ML architecture extension: exact power features and delta-state closure
+
+The user asked whether the efficient factorizations can improve existing ML
+hot paths. The actionable connection is polynomial feature expansion and
+recurrent memory reads/writes. The prime-specific and initial-ideal counting
+theorems do not themselves accelerate arbitrary Transformer weights. This
+extension records a more useful architectural option than merely shrinking
+the quadratic example: retain higher-order interactions within a modest
+state budget, and check that compression preserves the entire memory update.
+
+#### Higher powers with an explicit representation constraint
+
+Let A={0,...,m}^s, theta_0=1 and theta_a>0, shared across the sequence.
+Set z(x)=(sqrt(theta_a)*x^a)_(a in A), D=|A|, r(x)=||z(x)||_2>0.
+For an even positive integer p use the normalized power kernel
+
+    K_p(q,k)=(z(q).z(k)/(r(q)*r(k)))^p.
+
+The encoders producing q,k in R^s may be learned and distinct. Their
+expanded coordinates are constrained; this is not unrestricted R^D.
+Write P(t)=sum_(a in A) theta_a*t^a and let c_b be the coefficients of
+P(t)^p. Every c_b is positive and its support is B={0,...,pm}^s.
+Indeed every integer coordinate between zero and pm is a sum of p
+integers between zero and m; these coordinatewise decompositions combine
+to p vectors in A. Consequently
+
+    phi_b(x)=sqrt(c_b)*x^b/r(x)^p, b in B,
+    K_p(q,k)=phi(q).phi(k), ||phi(x)||_2=1.              (MLP1)
+
+For fixed theta the M=(pm+1)^s functions in (MLP1) are linearly
+independent on any nonempty open latent domain: multiply a proposed
+linear relation by r(x)^p to obtain a relation among distinct monomials.
+Positive coefficients then give kernel separation rank M, as in the
+established coordinate-ring framework. This is not a new rank theorem.
+
+For s=2,m=7, the augmented embedding has D=64 coordinates:
+
+| Power p | Generic symmetric power width | Collected width M |
+| --- | --- | --- |
+| 2 | 2080 | 225 |
+| 4 | 766480 | 841 |
+| 6 | 119877472 | 1849 |
+
+These compare two exact representations of this same constrained kernel.
+The generic column describes an algorithm that does not collect the
+additional monomial identities. It is not an assertion that our two
+latent coordinates retain arbitrary 64-dimensional interaction capacity.
+The power kernel also differs from the earlier quadratic Taylor kernel;
+their coinciding width counts do not make their outputs equal.
+[Power Attention, Section 4 and Lemma 4.2](https://arxiv.org/html/2507.04239v1#S4)
+already supplies the symmetric-power kernel, width and hardware-aware
+implementation. [Altschuler--Parrilo, Proposition 3.6 and Corollary 3.8](https://arxiv.org/html/2106.02755v1#S3.SS1)
+already supplies the restriction/rank principle. No novelty for their
+combination has been established.
+
+Coefficient preparation need not enumerate D^p tensor entries. Pad the
+coefficient box to length L>=pm+1 in every coordinate, evaluate P by an
+s-dimensional discrete Fourier transform, raise each value to p, and
+inverse-transform. No wraparound occurs because the true degree in each
+coordinate is at most pm. With power-of-two padding this costs
+O_s(M*(log(M+1)+log(p+1))) unit-cost arithmetic for fixed s, including
+exponentiation by squaring. It is a standard convolution algorithm, not
+a bit-complexity or numerical-error theorem. Charge it whenever theta
+changes; differentiating it is part of training cost. Forward feature
+evaluation plus a recurrent update/read costs O(M*(s+v)), with value
+width v, in addition to encoders and gates. Training memory, recomputation
+and actual GPU utilization still require measurement.
+
+#### The compressed subspace is closed under scalar-gated delta updates
+
+This point is stronger than agreement of pairwise kernels. Index generic
+symmetric features by multiplicity vectors nu with sum(nu)=p. Their
+coefficient is w_nu=p!*product(theta_a^nu_a)/product(nu_a!), and their
+monomial exponent is b(nu)=sum(nu_a*a). The generic feature is
+sqrt(w_nu)*x^b(nu)/r(x)^p. Since c_b=sum_(b(nu)=b) w_nu, the matrix
+
+    U_(nu,b)=1[b(nu)=b]*sqrt(w_nu/c_b)
+
+satisfies U^T*U=I and f_generic(x)=U*phi(x). Initialize both memory
+states at zero. For scalar gates alpha_t,beta_t and value row v_t^T,
+use the ordinary gated delta recurrence
+
+    S_t=alpha_t*S_(t-1)
+        +beta_t*f(k_t)*(v_t^T-alpha_t*f(k_t)^T*S_(t-1)). (MLP2)
+
+Substitute S_(t-1)=U*T_(t-1) and f=U*phi into (MLP2). The identity
+U^T*U=I gives S_t=U*T_t, where T follows the same recurrence in M
+coordinates. Every read f(q)^T*S_t equals phi(q)^T*T_t. This proves
+exact equivalence for every sequence, not just an additive attention sum.
+It also covers gates determined by already identical outputs. Arbitrary
+feature-coordinate gates, feature-wise nonlinearities or a learned initial
+state outside this subspace require a separate closure argument.
+
+For unit features, beta in [0,2] makes I-beta*phi*phi^T nonexpansive.
+With |alpha|<=1 the homogeneous state transition remains nonexpansive.
+This does not bound the sum of forced writes. At beta=1, the just-written
+key reads back v_t exactly, before subsequent writes can interfere.
+These are established delta-rule properties; exact latest-write recall is
+not a guarantee for all previous keys. The full mathematical identity also
+implies equality of derivatives where both implementations differentiate
+all theta-dependent operations correctly; no full backward implementation
+or optimizer-cost advantage is claimed here.
+
+[DeltaNet, Sections 2.2--3.2](https://arxiv.org/html/2406.06484v1#S2.SS2)
+already gives the correction, Householder-product representation and
+chunkwise training. [Gated DeltaNet, Section 3.1, equation (8)](https://arxiv.org/html/2412.06464v1#S3.SS1)
+already gives exactly the scalar-forgetting recurrence above. Those
+definitions and displayed derivations were inspected. No novelty is claimed
+for delta memory or parallelizing it. Its existing chunk algorithm is a
+required implementation comparison, rather than a sequential Python loop.
+
+#### Verification and the practical gate
+
+The dependency-free public checker now builds six exact examples in one
+and two latent dimensions at powers two, four and six. It compares direct
+pair kernels against convolution coefficients (150 pairs), independently
+expands generic symmetric multinomials, verifies their grouped coefficients,
+and compares generic and collected scalar-gated delta states and outputs
+at every prefix (150 query reads). It checks unit-feature exact writes at
+beta=1. These finite controls support (MLP1)--(MLP2); the derivation above
+establishes the general identity.
+
+An additional ignored local NumPy diagnostic used the 64-coordinate
+embedding, 128 random latent keys in [-1,1]^2, value width 16 and fixed
+positive random weights. At powers two, four and six, FFT coefficients
+agreed with independent direct convolution to relative L2 error below
+5e-16, and collected float32 attention outputs agreed with direct float64
+pair kernels to maximum absolute error below 5e-7. This is bounded forward
+evidence, not conditioning, training, runtime or GPU validation.
+
+The same diagnostic deliberately queried stored keys. Although every key
+was its own top-scoring match, the degree-six normalized attention assigned
+the correct key only about 0.0784 weight on average. For independent
+mean-zero unit-variance scalar values, its analytic average retrieval MSE
+was about 0.886, computed as ||A-I||_F^2/128. One pass of ungated beta=1
+delta writes had MSE about 1.437, despite exact newest-key writes. The zero
+predictor has MSE one in this diagnostic. Thus neither this fixed embedding
+nor a delta correction by itself establishes useful recall. These are
+untrained, single-fixture diagnostics, not comparative model-quality results.
+
+The next useful experiment is learned multi-query associative recall with
+matched total state, parameters and training compute: ordinary learned
+features in DeltaNet, polynomial Power Attention and this collected feature
+family. Include encoder, coefficient-update, backward and state-traffic
+costs. Test several latent dimensions/heads and out-of-distribution context
+lengths before custom GPU work. Continue only for a reproducible useful
+quality/memory/throughput tradeoff or an additional representation theorem.
+Exact compression alone does not establish a fundamental advantage over
+existing architectures. This application assessment leaves the active
+unrestricted mathematical theorem and priority audit unchanged.
