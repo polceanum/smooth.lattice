@@ -3302,6 +3302,92 @@ def coordinate_moment_range_controls(residual_duality, point_fixture):
                 "generic_corner_cuts": point_fixture["generic_corner_cuts"]}}
 
 
+def grading_and_perturbation_controls(monogenic, point_fixture):
+    """Grading moment constraints and loss of the fan under small coefficient changes."""
+    graded, perturbed = [], []
+
+    def rank(rows):
+        columns = {(i,): row for i, row in enumerate(rows)}
+        return len(greedy(columns, columns, (1,), 0))
+
+    for n in range(3, 8):
+        modulus = (0,) * n + (1,)
+        ground, states = hyperbolic_cross(n, 3), finite_staircases(n, 3)
+        for degrees in ((1, 1, 1), (1, 2, 3), (1, 2, 4)):
+            images = [tuple(int(j == degree) for j in range(n)) for degree in degrees]
+            columns = cyclic_univariate_model(modulus, images, ground)
+            bases, moments = [], []
+            for state in states:
+                minor = determinant([columns[a] for a in sorted(state)])
+                require(bool(minor) == ({dot(a, degrees) for a in state} == set(range(n))),
+                        "independent normal-form determinant and graded-degree criterion agree")
+                if minor:
+                    moment = tuple(sum(a[i] for a in state) for i in range(3))
+                    require(dot(degrees, moment) == n * (n - 1) // 2,
+                            "all homogeneous monomial bases have the same grading moment")
+                    bases.append(sorted(state))
+                    moments.append(moment)
+            differences = [tuple(x - y for x, y in zip(moment, moments[0])) for moment in moments[1:]]
+            dimension = rank(differences)
+            require(dimension <= 2, "grading confines the moment polytope to a plane")
+            if degrees == (1, 1, 1):
+                require(len(bases) == 3 and dimension == 2,
+                        "the diagonal curvilinear embedding has exactly its three axis bases")
+            graded.append({"n": n, "coordinate_t_degrees": degrees,
+                           "all_staircases_checked": len(states), "independent_staircases": bases,
+                           "basis_moments": moments, "affine_moment_dimension": dimension,
+                           "grading_moment": n * (n - 1) // 2})
+
+        powers = (1, n, n * n)
+        largest_change = max(max(power - 1, *(comb(power, j) for j in range(2, n)))
+                             for power in powers[1:])
+        denominator = 1000000 * (largest_change + 1)
+        # These are the numerators of x=t, y=t+epsilon*((1+t)^n-1-t), etc.
+        # Scaling coordinates by nonzero constants preserves every initial staircase.
+        numerators = [tuple(int(j == 1) for j in range(n))]
+        for power in powers[1:]:
+            numerators.append(tuple(0 if j == 0 else denominator + power - 1 if j == 1
+                                    else comb(power, j) for j in range(n)))
+        columns = cyclic_univariate_model(modulus, numerators, ground)
+        minors = [determinant([columns[a] for a in sorted(state)]) for state in states]
+        require(all(minors), "every staircase remains independent at the small rational perturbation")
+        endpoint = next(item for item in monogenic["centered_curvilinear_fixtures"]
+                        if item["n"] == n and item["dimension"] == 3)
+        require(len(states) == endpoint["all_staircase_determinants_checked"],
+                "the endpoint nonvanishing theorem covers the same complete staircase set")
+        differences = []
+        for axis, image in enumerate(numerators[1:], 1):
+            for degree, coefficient in enumerate(image):
+                if coefficient:
+                    differences.append(tuple(int(i == axis) - degree * int(i == 0) for i in range(3)))
+        require(rank(differences) == 3,
+                "the two reduced graph relations have trivial homogeneity space")
+        require(all(image[1] for image in numerators),
+                "all coordinates retain nilpotency index n and minimal elimination degree n")
+        require(Fraction(largest_change, denominator) < Fraction(1, 1000000),
+                "every original graph coefficient changes by less than one millionth")
+        coefficient_bound = 2 + n * (n * n) ** (n - 1)
+        determinant_height_bound = factorial(n) * coefficient_bound ** (n * (n - 1) // 2)
+        perturbed.append({"n": n, "epsilon": "1/" + str(denominator),
+                          "coefficient_distance_sup_norm": str(Fraction(largest_change, denominator)),
+                          "coordinate_image_numerators_low_to_high": numerators,
+                          "coordinate_image_denominators": [1, denominator, denominator],
+                          "all_staircases_in_lexicographic_order": [sorted(state) for state in states],
+                          "nonzero_scaled_basis_determinants": [str(value) for value in minors],
+                          "homogeneity_dimension": 0, "coordinate_elimination_degrees": [n] * 3,
+                          "uniform_integer_coefficient_bound": coefficient_bound,
+                          "uniform_determinant_polynomial_height_bound": str(determinant_height_bound),
+                          "uniform_safe_epsilon_denominator": str(2 * determinant_height_bound + 2)})
+    require(point_fixture["n"] == 7 and point_fixture["generic_corner_cuts"] == 36,
+            "the independent existing seven-box generic corner-cut count is available")
+    return {"graded_scope": "Any multigraded finite quotient over every field has all monomial-basis moments on the grading affine subspace. The dimension-sensitive count uses the established relative-lattice vertex estimate.",
+            "uniform_bound": "If h independent integer gradings make I homogeneous and r=d-h, then g(I)<=1 for r=0, <=2 for r=1, and O_d(n^(2*r*(r-1)/(r+1))) for r>=2.",
+            "graded_fixtures": graded, "perturbation_fixtures": perturbed,
+            "perturbation_scope": "Over Q, for each n>=3, a finite excluded set of epsilon values contains every possible staircase determinant zero. Epsilon=0 has three initials, whereas sufficiently small nonzero epsilon has C_3(n). The same fixed abstract algebra and all three elimination degrees n persist.",
+            "seven_box_fan_counts": {"epsilon_zero": 3, "coefficient_distance_less_than_one_millionth": 36},
+            "priority": "Consequences of established multigrading, lattice-polytope and open-minor arguments, not a new unrestricted asymptotic theorem or certified novelty."}
+
+
 def attention_rank_sanity_control():
     """An exact Vandermonde witness, not an attention-compression algorithm."""
     parameters = (1, 2, 3, 4)
@@ -3370,6 +3456,7 @@ def main():
     two_level_exchange = nonuniform_two_level_exchange_control()
     grid_deletion = nonuniform_grid_deletion_controls()
     coordinate_moments = coordinate_moment_range_controls(residual_duality, truncated_partition)
+    grading_controls = grading_and_perturbation_controls(monogenic, truncated_partition)
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
         "schema_version": 1, "command": "python3 -B scripts/run_structural_complexity_checks.py",
@@ -3463,6 +3550,7 @@ def main():
         "nonuniform_two_level_exchange_control": two_level_exchange,
         "nonuniform_grid_deletion_control": grid_deletion,
         "coordinate_moment_range_control": coordinate_moments,
+        "grading_and_perturbation_control": grading_controls,
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
                     "independent_greedy_checks": sum(f["greedy_checks"] for f in fixtures),
@@ -3547,7 +3635,9 @@ def main():
                     "coordinate_moment_box_fixtures": len(coordinate_moments["box_fixtures"]),
                     "coordinate_moment_attaining_downset_checks": coordinate_moments["attaining_downset_checks"],
                     "coordinate_moment_existing_quotient_checks": coordinate_moments["existing_quotient_coordinate_checks"],
-                    "finite_field_bound_comparisons": sum(len(f["comparisons"]) for f in coordinate_moments["finite_field_theorem_comparisons"])},
+                    "finite_field_bound_comparisons": sum(len(f["comparisons"]) for f in coordinate_moments["finite_field_theorem_comparisons"]),
+                    "graded_staircase_rank_checks": sum(f["all_staircases_checked"] for f in grading_controls["graded_fixtures"]),
+                    "small_perturbation_staircase_checks": sum(len(f["nonzero_scaled_basis_determinants"]) for f in grading_controls["perturbation_fixtures"])},
         "goal_qualifying_advance": False,
     }
     target = ROOT / "results/research/structural_complexity_checks.json"

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "recorded_on": "2026-10-18",
   "title": "Universal algebraic complexity beyond generic corner cuts",
-  "status": "active_all_ideal_coordinate_moment_ranges_proved_large_degree_regime_open",
+  "status": "active_grading_bound_and_flat_transfer_obstruction_proved_trivial_homogeneity_regime_open",
   "objective": "Prove a new structural theorem determining or substantially narrowing the worst-case asymptotic number of monomial initial ideals of finite polynomial algebras, starting with three variables and seeking a mechanism valid in every fixed dimension. Establish the strongest relevant primary baseline first. Success requires a complete uniform proof of sharp growth or a substantial asymptotic advance over that baseline for all colength-n ideals or all n-point configurations, a rigorous further algebraic, geometric or enumeration consequence, reproducible exact certificates and an honestly scoped manuscript. Examples, reformulations, already known corollaries and a plan alone do not complete this goal.",
   "plan": "docs/interleaving_research.md#higher-impact-research-plan-universal-algebraic-complexity",
   "relationship_to_previous_goal": "A new research objective. The completed corner-cut counting manuscript and its acceptance records remain separate and unchanged in mathematical content.",
@@ -29,12 +29,12 @@
   "milestones": [
     {
       "id": "primary_baseline",
-      "status": "named_finite_field_deposit_bound_compared_broader_priority_audit_pending",
+      "status": "additional_primary_comparisons_resolved_broader_priority_queue_still_open",
       "deliverable": "A theorem-level primary-source comparison identifying the best relevant unrestricted and restricted bounds, exact hypotheses, input models and still viable targets."
     },
     {
       "id": "dependency_mechanism",
-      "status": "all_ideal_coordinate_moment_bound_proved_large_degree_mixed_dependency_step_open",
+      "status": "grading_dimension_bound_and_flat_transfer_obstruction_proved_trivial_homogeneity_step_open",
       "deliverable": "A precise lemma about multiplication-compatible residue dependencies or state-polyhedron geometry, with its proof attempt and adversarial controls."
     },
     {
@@ -123,7 +123,7 @@
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Constructed a uniform infinite family of independent two-height exchanges outside the variable-annihilated socle model, then proved a global O(n) fan bound for its entire divisible-grid two-point-deletion class using threshold and endpoint compression. The family cannot supply the required lower exponent. No qualifying unrestricted advance is claimed."
+    "reason": "Inspected the later finite-field deposit Theorem 8 and its complete displayed proof through indexed pages 15--16. Proved exact coordinate-moment ranges and a parameter-sensitive bound for every finite-colength ideal over every field. This supplies a necessary large-elimination-degree condition for near-cubic lower families, not a new unrestricted exponent. The intervening ML answer changed no research artifacts."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -360,12 +360,52 @@
       "authors": "Sturmfels, Weismantel and Ziegler",
       "inspected": "Setup; Theorem 4.2; Theorem 4.4; Lemma 4.5 and its proof; Remark 4.6 and its proof.",
       "finding": "The trivariate family has colength 2r(r-2) and one reduced basis of cardinality 2r-2. The exponential lower bound is in the bit size of r, not in colength, and counts basis elements rather than distinct initial ideals. The torus-graph interpretation is prior art; no new fan-count bound is inferred from it."
+    },
+    {
+      "source": "https://www.ism.ac.jp/editsec/aism/pdf/10463_2012_Article_390.pdf",
+      "publication_locator": "https://doi.org/10.1007/s10463-012-0390-9",
+      "authors": "Maruri-Aguilar, Saenz-de-Cabezon and Wynn",
+      "inspected": "Published full text, Sections 1.2.2--2.1: reflected-complement definition; Theorem 1 and Lemma 1 with proofs; Corollary 1; Lemma 2 with its calculation; Corollary 2.",
+      "finding": "For real Cartesian grid fractions the fan correspondence and moment-state-polytope translation are explicit prior art. Lemma 2 is the reduced point-set case of CM3. The independent nonreduced colon proof does not establish novelty for its elementary extension."
+    },
+    {
+      "source": "https://arxiv.org/html/2109.06569v1",
+      "publication_locator": "https://doi.org/10.1007/s10013-021-00523-6",
+      "authors": "Onn",
+      "inspected": "Theorem 2.2 and proof, and Section 4. The published version was located previously, not compared line by line.",
+      "finding": "The dynamic program optimizes partition attribute sums. Section 4 uses an existing projected-edge zonotope framework; the inspected statements do not sharpen the number of initial ideals of all finite quotients."
+    },
+    {
+      "source": "https://arxiv.org/html/2510.05103v1",
+      "authors": "Heisel and Lauritzen",
+      "inspected": "Entire three-page counterexample note, including the specified S-pair processing and remarks.",
+      "finding": "The original Hashemi--Kapur algorithm can return heads xz,z^2,y^2z although an S-polynomial equals y^4. This prevents relying on that original procedure as a proved enumeration consequence. Its displayed three-variable example has positive dimension and is not a colength extremal construction. A later corrigendum was not inspected; no claim that a corrected algorithm fails."
+    },
+    {
+      "source": "https://arxiv.org/pdf/0808.3055",
+      "publication_locator": "https://doi.org/10.1007/s10463-010-0291-8",
+      "authors": "Berstein, Maruri-Aguilar, Onn, Riccomagno and Wynn",
+      "inspected": "Theorem 3 with its proof and Theorem 4. The published abstract was separately inspected, not a full version comparison.",
+      "finding": "These statements minimize weighted-degree aberration. Optimization over identifiable models is distinct from the unrestricted count of initial ideals."
+    },
+    {
+      "source": "https://arxiv.org/pdf/0707.4618",
+      "publication_locator": "https://doi.org/10.1137/070696465",
+      "authors": "Berstein, Lee, Maruri-Aguilar, Onn, Riccomagno, Weismantel and Wynn",
+      "inspected": "Setup and Theorems 1.1 and 1.3, with weight-encoding assumptions. Full algorithm proofs were not audited.",
+      "finding": "Nonlinear optimization over oracle or vectorial matroids is established; no sharper initial-ideal count is inferred from these optimization theorems."
+    },
+    {
+      "source": "https://arxiv.org/pdf/math/0509544",
+      "authors": "Fukuda, Jensen and Thomas",
+      "inspected": "Proposition 2.6 with its proof, the homogeneity-space discussion in Section 6, and the operation-count discussion in Section 5. The served PDF labels itself v1 while its embedded date is later; no publisher-version identity is assumed.",
+      "finding": "The homogeneity space and support comparisons are established machinery. Section 5 does not bound flip cost; reverse-search operation accounting alone gives no new colength-only complexity guarantee."
     }
   ],
   "next_actions": [
-    "For a universal exponent improvement, address large coordinate minimal-polynomial degrees and mixed dependencies. CM5--CM7 cover every finite quotient but recover the old exponent when all degrees equal n. The 37-versus-36 point witness prevents replacing this regime by generic corner cuts.",
-    "Use the exact coordinate-width bound to reject lower candidates that cannot beat the generic exponent. Do not enlarge small-coordinate, near-full-grid, or the parked divisible-grid deletion searches; a lower family needs a symbolic global count that escapes these caps.",
-    "Continue the remaining primary-source queue for actual all-colength or all-point asymptotic advances. The later finite-field deposit comparison is resolved at its relevant theorem/proof level, not a full publisher-version audit. Preserve the existing manuscript; no new manuscript before the asymptotic and consequence gates pass."
+    "The remaining unrestricted upper problem has large coordinate degrees and trivial homogeneity space. Exact gradings give the known-tool HG2 bound, but coefficient closeness to a graded ideal cannot transfer it, even with flatness, fixed abstract algebra and every elimination degree n.",
+    "A lower family exceeding the generic order must have trivial homogeneity and escape the prior coordinate/endpoint caps. Do not enlarge the HG3 perturbation checks: that entire family has only the generic C_d(n) fan away from its finite determinant-zero parameters near zero.",
+    "Continue the remaining primary-source comparison. The point-grid moment translation is explicit published prior art from 2013. Do not use the original Hashemi--Kapur conversion algorithm without a checked correction; distinguish optimization results from extremal initial-ideal counts. Preserve the completed manuscript and do not start a replacement before the asymptotic and consequence gates pass."
   ],
   "forward_citation_discovery": {
     "method": "Read-only OpenAlex forward-citation queries for the two founding papers, followed by primary-source inspection of potentially relevant records.",
@@ -393,8 +433,8 @@
       {
         "source": "https://doi.org/10.1007/s10013-021-00523-6",
         "title": "The Complexity of Vector Partition",
-        "scope": "Primary publisher abstract only.",
-        "finding": "The stated problem partitions vectors under parameters p,d,a,t; no conclusion about the sharper quotient-algebra count is inferred from the abstract."
+        "scope": "Preprint Theorem 2.2 and proof, and Section 4, now inspected beyond the publisher abstract.",
+        "finding": "Partition optimization and the known projected-edge zonotope framework do not supply a sharper unrestricted initial-ideal count in the inspected statements."
       },
       {
         "source": "https://arxiv.org/abs/2205.15238v2",
@@ -428,8 +468,9 @@
       {
         "source": "https://www.sciencedirect.com/science/article/abs/pii/S0747717124000956",
         "title": "A new algorithm for Groebner bases conversion",
-        "status": "Published metadata and a possible preprint discovered, but manuscript equivalence and algorithm proof not checked. A secondary record also lists a corrigendum DOI 10.1016/j.jsc.2026.102633; its primary text and relevance are unverified. Do not rely on the unexamined algorithm for a complexity claim.",
-        "doi": "https://doi.org/10.1016/j.jsc.2024.102391"
+        "status": "Publisher section previews and the complete primary counterexample note inspected. The original conversion procedure is unsafe as stated; the later corrigendum primary text remains unchecked, so no claim about a repaired algorithm. This lead supplies no inspected stronger extremal count and cannot support an enumeration consequence without a checked correction.",
+        "doi": "https://doi.org/10.1016/j.jsc.2024.102391",
+        "counterexample_source": "https://arxiv.org/html/2510.05103v1"
       }
     ]
   },
@@ -532,7 +573,9 @@
           "coordinate_moment_box_fixtures": 85,
           "coordinate_moment_attaining_downset_checks": 8398,
           "coordinate_moment_existing_quotient_checks": 432,
-          "finite_field_bound_comparisons": 192
+          "finite_field_bound_comparisons": 192,
+          "graded_staircase_rank_checks": 531,
+          "small_perturbation_staircase_checks": 177
         }
       }
     ],
@@ -1362,7 +1405,7 @@
   },
   "this_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Inspected the later finite-field deposit Theorem 8 and its complete displayed proof through indexed pages 15--16. Proved exact coordinate-moment ranges and a parameter-sensitive bound for every finite-colength ideal over every field. This supplies a necessary large-elimination-degree condition for near-cubic lower families, not a new unrestricted exponent. The intervening ML answer changed no research artifacts."
+    "reason": "Proved a dimension-sensitive bound for all multigraded finite quotients and an explicit flat perturbation obstruction to transferring it by coefficient closeness, with full coordinate degrees unchanged. Located the published 2013 prior art for the point-grid moment translation and inspected a primary counterexample to an algorithm lead. No qualifying unrestricted exponent advance is claimed."
   },
   "eleventh_feasibility_results": {
     "record": "docs/interleaving_research.md, Eleventh feasibility pass: coordinate flags survive the Jordan reduction",
@@ -1819,7 +1862,8 @@
     },
     "moment_translation": {
       "statement": "For a grid residual L=J:I, corresponding initial-staircase moment polytopes differ by the integral vector ((Q-n)*(s_i-1)-Q*(s_i-1)/2)_i.",
-      "proof": "Sum the reflected complement in the box; RC1--RC3 identify it pointwise with the residual staircase."
+      "proof": "Sum the reflected complement in the box; RC1--RC3 identify it pointwise with the residual staircase.",
+      "priority_update": "The reduced real Cartesian-grid case is explicitly Lemma 2 of Maruri-Aguilar--Saenz-de-Cabezon--Wynn (2013), now inspected in published full text."
     },
     "finite_field_comparison": {
       "source": "https://par.nsf.gov/servlets/purl/10177092",
@@ -1920,5 +1964,148 @@
     "strongest_current_bound_verified": false,
     "goal_qualifying_unrestricted_advance": false,
     "decision": "Retain the all-ideal parameter-sensitive inequality as a screening lemma. The next upper argument must handle large elimination degrees and mixed relations. No qualifying asymptotic theorem, consequence for that target, new manuscript or goal completion is claimed."
+  },
+  "seventeenth_feasibility_results": {
+    "record": "docs/interleaving_research.md, Seventeenth feasibility pass: grading reduction and its discontinuity",
+    "grading_reduction": {
+      "scope": "Every finite-colength ideal over every field homogeneous for an integer h-by-d grading matrix of rational rank h. Weight columns need not be positive.",
+      "invariant": "For every monomial quotient basis D, W*sum(D)=sum_gamma gamma*dim(A_gamma). This is an integer grading identity, not an Euler trace modulo the field characteristic.",
+      "bound": "With r=d-h, g(I)=1 if r=0, <=2 if r=1, and O_d(n^(2*r*(r-1)/(r+1))) if r>=2. In three variables, any nontrivial grading gives O(n^(4/3)).",
+      "proof": "All initial moments lie in an affine subspace of dimension at most r inside a cube of side binom(n,2). The intrinsic integer lattice has covolume at least one; apply the established lattice-polytope vertex theorem in its actual dimension.",
+      "priority": "Dimension-sensitive consequence of known multigrading and state geometry, not an unrestricted improvement or established novelty."
+    },
+    "flat_perturbation_obstruction": {
+      "field": "Characteristic zero; displayed exact coefficients and finite controls are over Q.",
+      "uniform_family": "For B=Q[t]/(t^n), x_1=t and x_i=t+epsilon*((1+t)^(n^(i-1))-1-t) mod t^n, i>=2.",
+      "flatness": "The quotient over Q[epsilon] is free with basis 1,t,...,t^(n-1). The abstract algebra is fixed in every fiber.",
+      "coordinate_degrees": "Every coordinate has minimal elimination degree n for epsilon>=0.",
+      "counts": "At epsilon=0 there are exactly d axis-chain initials. For every sufficiently small nonzero epsilon, every staircase is a basis and g=C_d(n).",
+      "uniform_rational_bound": "Put A=n^(d-1), B_0=2+n*A^(n-1), H=n!*B_0^(n*(n-1)/2). Every 0<|epsilon|<=1/(2H+2) avoids all staircase determinant zeros. The displayed positive rational choice has O_d(n^3 log n) denominator bits.",
+      "proof": "Each determinant is an integer polynomial, nonzero at epsilon=1 by ME4, of coefficient height at most H. After removing its zero-root multiplicity, a nonzero integer constant dominates the other terms in the stated interval.",
+      "limit": "Rules out count transfer from coefficient closeness to a graded limit, even when flatness and full coordinate degrees persist. It gives the already known generic growth, not a stronger lower exponent or established novelty."
+    },
+    "primary_comparisons": [
+      {
+        "source": "https://www.ism.ac.jp/editsec/aism/pdf/10463_2012_Article_390.pdf",
+        "publication_locator": "https://doi.org/10.1007/s10463-012-0390-9",
+        "authors": "Maruri-Aguilar, Saenz-de-Cabezon and Wynn",
+        "inspected": "Published full text, Sections 1.2.2--2.1: reflected-complement definition; Theorem 1 and Lemma 1 with proofs; Corollary 1; Lemma 2 with its calculation; Corollary 2.",
+        "finding": "For real Cartesian grid fractions the fan correspondence and moment-state-polytope translation are explicit prior art. Lemma 2 is the reduced point-set case of CM3. The independent nonreduced colon proof does not establish novelty for its elementary extension."
+      },
+      {
+        "source": "https://arxiv.org/html/2109.06569v1",
+        "publication_locator": "https://doi.org/10.1007/s10013-021-00523-6",
+        "authors": "Onn",
+        "inspected": "Theorem 2.2 and proof, and Section 4. The published version was located previously, not compared line by line.",
+        "finding": "The dynamic program optimizes partition attribute sums. Section 4 uses an existing projected-edge zonotope framework; the inspected statements do not sharpen the number of initial ideals of all finite quotients."
+      },
+      {
+        "source": "https://arxiv.org/html/2510.05103v1",
+        "authors": "Heisel and Lauritzen",
+        "inspected": "Entire three-page counterexample note, including the specified S-pair processing and remarks.",
+        "finding": "The original Hashemi--Kapur algorithm can return heads xz,z^2,y^2z although an S-polynomial equals y^4. This prevents relying on that original procedure as a proved enumeration consequence. Its displayed three-variable example has positive dimension and is not a colength extremal construction. A later corrigendum was not inspected; no claim that a corrected algorithm fails."
+      },
+      {
+        "source": "https://arxiv.org/pdf/0808.3055",
+        "publication_locator": "https://doi.org/10.1007/s10463-010-0291-8",
+        "authors": "Berstein, Maruri-Aguilar, Onn, Riccomagno and Wynn",
+        "inspected": "Theorem 3 with its proof and Theorem 4. The published abstract was separately inspected, not a full version comparison.",
+        "finding": "These statements minimize weighted-degree aberration. Optimization over identifiable models is distinct from the unrestricted count of initial ideals."
+      },
+      {
+        "source": "https://arxiv.org/pdf/0707.4618",
+        "publication_locator": "https://doi.org/10.1137/070696465",
+        "authors": "Berstein, Lee, Maruri-Aguilar, Onn, Riccomagno, Weismantel and Wynn",
+        "inspected": "Setup and Theorems 1.1 and 1.3, with weight-encoding assumptions. Full algorithm proofs were not audited.",
+        "finding": "Nonlinear optimization over oracle or vectorial matroids is established; no sharper initial-ideal count is inferred from these optimization theorems."
+      },
+      {
+        "source": "https://arxiv.org/pdf/math/0509544",
+        "authors": "Fukuda, Jensen and Thomas",
+        "inspected": "Proposition 2.6 with its proof, the homogeneity-space discussion in Section 6, and the operation-count discussion in Section 5. The served PDF labels itself v1 while its embedded date is later; no publisher-version identity is assumed.",
+        "finding": "The homogeneity space and support comparisons are established machinery. Section 5 does not bound flip cost; reverse-search operation accounting alone gives no new colength-only complexity guarantee."
+      }
+    ],
+    "finite_controls": {
+      "status": "passed",
+      "field": "Q",
+      "graded_fixtures": 15,
+      "graded_lengths": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "graded_coordinate_t_degrees": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          2,
+          4
+        ]
+      ],
+      "all_graded_staircase_rank_checks": 531,
+      "perturbed_fixtures": 5,
+      "all_perturbed_staircase_determinants": 177,
+      "coefficient_distance": "Strictly below 1/1000000 in every displayed graph coefficient.",
+      "parameters": [
+        {
+          "n": 3,
+          "epsilon": "1/37000000",
+          "coefficient_distance_sup_norm": "9/9250000"
+        },
+        {
+          "n": 4,
+          "epsilon": "1/561000000",
+          "coefficient_distance_sup_norm": "7/7012500"
+        },
+        {
+          "n": 5,
+          "epsilon": "1/12651000000",
+          "coefficient_distance_sup_norm": "253/253020000"
+        },
+        {
+          "n": 6,
+          "epsilon": "1/376993000000",
+          "coefficient_distance_sup_norm": "11781/11781031250"
+        },
+        {
+          "n": 7,
+          "epsilon": "1/13983817000000",
+          "coefficient_distance_sup_norm": "1747977/1747977125000"
+        }
+      ],
+      "seven_box_fan_counts": {
+        "epsilon_zero": 3,
+        "coefficient_distance_less_than_one_millionth": 36
+      },
+      "certificate_encoding": "Every staircase and its nonzero determinant after scaling coordinate images by their listed denominators; the actual rational coordinate numerators and denominators are retained.",
+      "commands": [
+        "./build.sh",
+        "python3 tests/test_smoke.py",
+        "python3 -B scripts/run_structural_complexity_checks.py"
+      ],
+      "source_sha256": {
+        "scripts/run_structural_complexity_checks.py": "f43d45b77e7f0850cdaa9ecb53a19cf37785b8a5bd29d814af0a7c6c7744175e",
+        "docs/interleaving_research.md": "22e5ef8d9450ffe4fa86e3f283fb1a2b499a5568d531031859dd10c8957b4f29"
+      },
+      "new_summary_counts": {
+        "graded_staircase_rank_checks": 531,
+        "small_perturbation_staircase_checks": 177
+      }
+    },
+    "strongest_current_bound_verified": false,
+    "goal_qualifying_unrestricted_advance": false,
+    "decision": "Work on multiplication-compatible mixed dependencies with trivial homogeneity. The exact grading estimate cannot be extended merely by perturbation continuity. The original full theorem, relevant further consequence, complete priority audit and new manuscript remain unachieved."
   }
 }

@@ -7200,6 +7200,9 @@ an involution, (CM3) also proves
 In the colon setting of (RC1)--(RC3), this translates the convex hulls
 of the corresponding initial-staircase moments, strengthening the
 pointwise fan correspondence to an explicit moment translation.
+The reduced grid-point case of this translation is already Lemma 2 of
+Maruri-Aguilar--Saenz-de-Cabezon--Wynn (2013); the next pass records
+the exact published comparison. It is not a new point-set consequence.
 
 #### A parameter-sensitive bound over every field
 
@@ -7299,3 +7302,199 @@ handle large coordinate degrees and mixed dependencies. A next lower
 family must escape all proved coordinate and endpoint caps and supply
 a symbolic count before larger enumeration. The original unrestricted
 objective, consequence requirement and manuscript gate remain active.
+
+### Seventeenth feasibility pass: grading reduction and its discontinuity
+
+The previous pass made progress in commit f5a9b3e: it proved exact box
+moment ranges and a general degree-sensitive inequality. It did not
+improve the unrestricted exponent. This pass tests a possible treatment
+of the remaining large-coordinate-degree case: reduce by a grading, then
+try to transfer the count to a nearby inhomogeneous embedding. The exact
+grading bound follows from existing geometry. A uniform flat family shows
+why coefficient closeness cannot justify the proposed transfer.
+
+#### Primary comparisons: explicit prior art and an unsafe algorithm lead
+
+[Maruri-Aguilar--Saenz-de-Cabezon--Wynn (2013), published full text](https://www.ism.ac.jp/editsec/aism/pdf/10463_2012_Article_390.pdf)
+already proves the reflected-complement correspondence for fractions of
+real Cartesian grids. Section 1.2.2 defines the reflection, Theorem 1
+and Lemma 1 prove it, Corollary 1 identifies the fans, and Lemma 2 gives
+exactly the moment translation in (CM3) in this reduced point-set scope.
+The statements, proofs and Lemma 2's direct calculation in Sections
+1.2.2--2.1 were inspected. Thus the translated point-state polytopes are
+explicit prior art, earlier than the 2019 grid-complement paper. Our
+nonreduced colon argument has an independent proof; no novelty is
+claimed for its elementary extension.
+
+[Onn, The Complexity of Vector Partition, inspected v1](https://arxiv.org/html/2109.06569v1)
+Theorem 2.2 and its proof optimize attribute sums by a dynamic program.
+Section 4 describes the established projected-edge zonotope method and
+separates fixed parameters from unary and binary coefficient encodings.
+These passages were inspected. Their partition-optimization bounds do
+not give a sharper count for the multiplication-compatible matroids
+in this project. Polynomial optimization and an improved number of
+initial ideals remain separate claims.
+
+[Heisel--Lauritzen, inspected v1](https://arxiv.org/html/2510.05103v1)
+gives counterexamples to the original Hashemi--Kapur conversion algorithm.
+The entire three-page note, including the specified processing order and
+its remarks, was inspected. In its F_2 example, the returned polynomials
+have leading monomials xz,z^2,y^2z, but an S-polynomial equals y^4 and
+cannot reduce by those heads. This is a counterexample to that stated
+algorithm, not a new extremal count, and its three-variable example has
+positive dimension. A later corrigendum's primary text remains unchecked;
+we make no claim that the repaired algorithm still fails. Do not use the
+original procedure as a proved enumeration consequence.
+
+The inspected Theorem 3, its proof and Theorem 4 in
+[Berstein et al., arXiv:0808.3055](https://arxiv.org/pdf/0808.3055)
+concern minimal linear aberration: optimization of weighted degree over
+identifiable models. They are not bounds on the number of initial ideals.
+The inspected Theorems 1.1 and 1.3 in
+[Berstein et al., arXiv:0707.4618](https://arxiv.org/pdf/0707.4618)
+likewise concern nonlinear matroid optimization, with explicit weight
+encoding assumptions. Their full algorithm proofs were not audited here.
+No stronger count is inferred from these optimization statements.
+The broader strongest-current-bound audit remains incomplete.
+
+#### Exact grading removes ambient moment dimensions
+
+Let I be a colength-n ideal in d variables over any field. Suppose an
+integer h-by-d matrix W of rational rank h defines a grading for which
+I is homogeneous; weight columns need not be positive. Every monomial
+residue has a degree in Z^h. Any monomial basis of the finite quotient
+has the same number of elements in every degree, since the graded
+components are a direct sum. Therefore, for every such basis D,
+
+    W*mu(D)=sum_gamma gamma*dim_K(A_gamma),                (HG1)
+
+an integer vector independent of D. In particular the convex hull P
+of all initial-staircase moments has affine dimension at most r=d-h.
+This uses integer degrees, not a trace identity reduced modulo the
+characteristic.
+
+Every moment coordinate lies between zero and binom(n,2). If P has
+actual dimension k, its Euclidean k-volume is O_d(n^(2k)): it lies in
+a section of that cube, of bounded diameter. Its affine integer lattice
+has covolume at least one. Indeed the squared covolume is a sum of
+squares of integer maximal minors of a lattice basis. Thus its relative
+lattice volume is also O_d(n^(2k)). Applying the established lattice
+vertex bound in dimension k gives
+
+    g(I)=1                         if r=0,
+    g(I)<=2                        if r=1,
+    g(I)=O_d(n^(2r*(r-1)/(r+1)))    if r>=2.              (HG2)
+
+If k<r, use the stronger bound in dimension k; its exponent is no
+larger. Segments and points are handled directly. Constants are uniform
+in W, including large grading coefficients. For d=3, any nontrivial
+grading gives O(n^(4/3)). This is a dimension-sensitive consequence of
+known state geometry, not a new unrestricted estimate.
+
+The homogeneity space can be read from any reduced Groebner basis:
+it is the real orthogonal complement of all differences between two
+exponents in the support of the same basis polynomial. If I is
+homogeneous, take the homogeneous component containing a basis
+polynomial's marked leading term. Subtracting it leaves an element
+of I supported only on standard monomials, so that difference is zero.
+The converse follows from homogeneous generators. Using an arbitrary
+nonreduced generating set instead would not prove this equality.
+The homogeneity space and defining linear comparisons are established
+Groebner-fan machinery; [Fukuda--Jensen--Thomas](https://arxiv.org/pdf/math/0509544),
+Proposition 2.6 with its proof and the homogeneity-space discussion in
+Section 6, were inspected. Their Section 5 does not provide a bound on
+flip cost; its reverse-search operation count alone is not a new
+colength-only runtime guarantee.
+
+#### Full coordinate degrees and a flat perturbation obstruction
+
+For n>=3 and fixed d>=2 work over Q and set B=Q[t]/(t^n). Put
+A_i=n^(i-1) and define coordinate images, with parameter epsilon, by
+
+    x_1=t,
+    x_i=t+epsilon*((1+t)^A_i-1-t) mod t^n,  i>=2.          (HG3)
+
+The kernel is generated by x_1^n and the d-1 displayed graph relations.
+The quotient over Q[epsilon] is free with basis 1,t,...,t^(n-1), hence
+flat; the abstract fiber algebra is always B. For epsilon>=0 every
+coordinate has a nonzero t coefficient, so its minimal elimination
+polynomial has degree n.
+
+At epsilon=0 all coordinates equal t. A standard basis must select
+one monomial of each total degree 0,...,n-1. A downset with that property
+is a pure coordinate chain. Each of the d chains is initial by making
+its coordinate uniquely cheapest, so g(I_0)=d. Its moment polytope
+already has dimension d-1 despite its constant number of vertices.
+
+For any n-element staircase D, its basis determinant P_D(epsilon) is
+an integer polynomial. At epsilon=1 the tuple is (ME4), so every such
+determinant is nonzero by the simultaneous Vandermonde proof. Thus
+P_D is not the zero polynomial. There are finitely many staircases,
+so every sufficiently small nonzero real epsilon makes all of them
+bases at once. Under any global order the first n monomials are a
+staircase; their independence forces them to be the standard basis.
+Consequently
+
+    g(I_epsilon)=C_d(n)
+      for every sufficiently small nonzero epsilon,      (HG4)
+
+while g(I_0)=d and every coordinate degree remains n. This does not
+exceed the known generic lower bound. It prevents a continuity argument
+from transferring (HG2) to merely near-homogeneous coefficients.
+
+There is a uniform explicit rational choice, rather than only an
+existence argument. Set A=n^(d-1), B_0=2+n*A^(n-1), and
+
+    H=n!*B_0^(n*(n-1)/2).
+
+The sum of absolute coefficients of each coordinate image, considered
+as a polynomial in epsilon and t, is at most B_0. An n-element downset
+has sum of total degrees at most n(n-1)/2: listing it in increasing
+total degree, the j-th degree is at most j, starting with j=0. The
+coefficient sum, and hence every coefficient's absolute value, of P_D
+is at most H by the determinant expansion. After removing its power
+of epsilon, its constant coefficient is a nonzero integer. For
+0<|epsilon|<=1/(2H+2), the sum of absolute values of the other terms
+is at most H*|epsilon|/(1-|epsilon|)<1. Hence P_D(epsilon)!=0 for all D.
+One can choose epsilon=1/(2H+2), or any smaller positive rational;
+its denominator has O_d(n^3 log n) bits. Choosing it smaller still
+makes every graph coefficient as close to its epsilon=0 value as any
+prescribed positive tolerance. No numerical rank decision is involved.
+
+This argument uses (ME4) and standard open-minor reasoning. It does
+not claim a new flatness theorem or established novelty. It supplies
+a precise obstruction to the proposed upper-bound transfer in the
+same full-coordinate-degree regime left open by (CM7).
+
+#### Exact controls and research decision
+
+For n=3,...,7 the checker tests all staircases against the actual
+quotients t^n=0 with coordinate degrees (1,1,1), (1,2,3), (1,2,4).
+The 531 independent determinant decisions agree with their degree-class
+criterion. Every basis moment obeys (HG1), and the affine dimension is
+checked independently. For the diagonal tuple it verifies that the
+only bases are the three coordinate chains.
+
+It also constructs (HG3) at five exact positive rational parameters,
+chosen so every graph coefficient changes by less than 1/1000000.
+All 177 staircase determinants are nonzero. The report saves their
+integer-scaled determinants, coordinate numerators and denominators,
+full coordinate elimination degrees, and the rank-three support
+comparisons establishing trivial homogeneity space. At n=7 the count
+changes from three to 36. These finite checks certify their fixtures;
+the uniform determinant-height argument proves (HG4) for all n and d.
+Reproduce them together with the earlier controls using
+
+```bash
+python3 -B scripts/run_structural_complexity_checks.py
+```
+
+A candidate improving the generic lower order in three variables must
+have trivial homogeneity space, as well as escape the previous degree
+and endpoint caps. Do not try to bound all nearby inhomogeneous ideals
+by the fan count of a graded limit, even with fixed abstract algebra
+and full coordinate degrees. Continue on genuinely mixed dependencies
+with trivial homogeneity, rather than enlarging these perturbation
+fixtures. The baseline audit, qualifying unrestricted advance, further
+consequence and new manuscript are still incomplete. The goal remains
+active; none of the known-tool consequences is substituted for success.
