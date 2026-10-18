@@ -4896,6 +4896,107 @@ def algebraic_channel_gate_controls():
                                                  "gate_only_steps_beta": 0, "reads": counter_reads}}
 
 
+def algebraic_erase_write_controls():
+    """Independent exact oracle for grouped Gated DeltaNet-2 recurrence.
+
+    Generic states are stored after dividing row nu by sqrt(weight_nu).
+    This makes polynomial unit features and all recurrence checks rational.
+    An arbitrary erase gate can be averaged inside each duplicate group;
+    the forgetting gate must still preserve the grouped state subspace.
+    """
+    def compositions(total, length):
+        if length == 1:
+            yield (total,)
+        else:
+            for first in range(total + 1):
+                for tail in compositions(total - first, length - 1):
+                    yield (first,) + tail
+
+    fixtures = []
+    for dimension, degree, order in ((1, 2, 2), (1, 2, 4), (2, 1, 2), (2, 1, 4)):
+        support = list(product(range(degree + 1), repeat=dimension))
+        theta = [Fraction(1 + sum(a), 3) for a in support]
+        generic, collected = [], {}
+        for counts in compositions(order, len(support)):
+            exponent = tuple(sum(n * a[j] for n, a in zip(counts, support))
+                             for j in range(dimension))
+            weight = Fraction(factorial(order))
+            for n, coefficient in zip(counts, theta):
+                weight *= coefficient ** n / factorial(n)
+            generic.append((exponent, weight))
+            collected[exponent] = collected.get(exponent, Fraction(0)) + weight
+        points = [tuple(Fraction((t + 2) * (j + 1) % 7 - 3, 5)
+                        for j in range(dimension)) for t in range(6)]
+
+        def raw(point, exponent):
+            norm2 = sum(c * prod(x ** (2 * a) for x, a in zip(point, powers))
+                        for powers, c in zip(support, theta))
+            return prod(x ** a for x, a in zip(point, exponent)) / norm2 ** (order // 2)
+
+        full = [[Fraction(0)] * 2 for _ in generic]
+        small = {a: [Fraction(0)] * 2 for a in collected}
+        reads = nonconstant_groups = 0
+        for t, key in enumerate(points):
+            decay = {a: Fraction(1 + (t + sum(a)) % 5, 6) for a in collected}
+            erase = [Fraction((3 * i + t) % 7, 6) for i in range(len(generic))]
+            write = [Fraction((t + j + 2) % 5, 4) for j in range(2)]
+            value = [Fraction(t - 2, 3), Fraction(t * t % 5, 4)]
+            averaged = {a: sum(w * b for (aa, w), b in zip(generic, erase) if aa == a) / c
+                        for a, c in collected.items()}
+            require(all(0 <= b <= 1 for b in averaged.values()), "erase averages remain admissible gates")
+            nonconstant_groups += sum(len({b for (aa, _), b in zip(generic, erase) if aa == a}) > 1
+                                      for a in collected)
+            full_decay = [[decay[a] * x for x in row] for (a, _), row in zip(generic, full)]
+            small_decay = {a: [decay[a] * x for x in row] for a, row in small.items()}
+            erased_full = [sum(c * b * raw(key, a) * row[j]
+                               for (a, c), b, row in zip(generic, erase, full_decay)) for j in range(2)]
+            erased_small = [sum(collected[a] * averaged[a] * raw(key, a) * row[j]
+                                for a, row in small_decay.items()) for j in range(2)]
+            require(erased_full == erased_small, "untied generic erase gates give exactly the weighted group read")
+            full = [[row[j] + raw(key, a) * (write[j] * value[j] - erased_full[j]) for j in range(2)]
+                    for (a, _), row in zip(generic, full_decay)]
+            small = {a: [row[j] + raw(key, a) * (write[j] * value[j] - erased_small[j]) for j in range(2)]
+                     for a, row in small_decay.items()}
+            require(all(row == small[a] for (a, _), row in zip(generic, full)),
+                    "decoupled erase/write preserves grouped states at every prefix")
+            for query in points:
+                expected = [sum(c * raw(query, a) * row[j]
+                                for (a, c), row in zip(generic, full)) for j in range(2)]
+                actual = [sum(collected[a] * raw(query, a) * row[j]
+                              for a, row in small.items()) for j in range(2)]
+                require(expected == actual, "all grouped erase/write query coordinates agree")
+                reads += 2
+        require(nonconstant_groups > 0, "oracle exercises erase gates that differ inside a duplicate group")
+        fixtures.append({"latent_dimension": dimension, "box_degree": degree, "power": order,
+                         "generic_width": len(generic), "collected_width": len(collected),
+                         "state_closure_checks": len(points), "prefix_query_coordinate_checks": reads,
+                         "nonconstant_erase_group_steps": nonconstant_groups,
+                         "final_collected_state": {str(a): [str(x) for x in row] for a, row in small.items()}})
+
+    # Unit key (3/5,4/5), erase (1,0). The oblique erase I-k*(b*k)^T
+    # expands this vector, despite every gate belonging to [0,1].
+    key, erase = [Fraction(3, 5), Fraction(4, 5)], [Fraction(1), Fraction(0)]
+    before = [Fraction(-1, 2), Fraction(1)]
+    prior = sum(b * k * x for b, k, x in zip(erase, key, before))
+    after = [x - k * prior for k, x in zip(key, before)]
+    norm_before, norm_after = sum(x * x for x in before), sum(x * x for x in after)
+    require(norm_before == Fraction(5, 4) and norm_after == Fraction(41, 25) > norm_before,
+            "channel-wise erase need not be nonexpansive even for a unit key")
+    return {"scope": "Exact algebraic compatibility with the published Gated DeltaNet-2 update, not a new recurrence, trained-model result or performance benchmark.",
+            "criterion": "For f=U*phi and U^T*U=I, tied group decay preserves im(U); arbitrary generic erase gates reduce to U^T*diag(b)*U, a diagonal weighted group average. Value-axis write gates are unrestricted.",
+            "cost_caveat": "M-row recurrence costs O(M*v), but computing generic F-row erase gates and averaging still costs at least O(F). Generate M-row gates directly for an economical architecture; this does not preserve arbitrary nonlinear gate-encoder parameterizations.",
+            "fixtures": fixtures,
+            "state_closure_checks": sum(f["state_closure_checks"] for f in fixtures),
+            "prefix_query_coordinate_checks": sum(f["prefix_query_coordinate_checks"] for f in fixtures),
+            "nonconstant_erase_group_steps": sum(f["nonconstant_erase_group_steps"] for f in fixtures),
+            "nonexpansiveness_countercontrol": {"unit_key": [str(x) for x in key],
+                                                "erase_gate": [str(x) for x in erase],
+                                                "input": [str(x) for x in before],
+                                                "output": [str(x) for x in after],
+                                                "input_norm_squared": str(norm_before),
+                                                "output_norm_squared": str(norm_after)}}
+
+
 def algebraic_attention_mixing_controls():
     """Exact finite controls for established polynomial collection and state rank."""
     def monomial(point, exponent):
@@ -5609,6 +5710,7 @@ def main():
     attention_mixing = algebraic_attention_mixing_controls()
     power_delta = algebraic_power_delta_controls()
     channel_gates = algebraic_channel_gate_controls()
+    erase_write = algebraic_erase_write_controls()
     lattice_shadows = lattice_shadow_controls()
     shadow_sharpness = lattice_shadow_sharpness_controls()
     bounded_grids = bounded_grid_shadow_controls(residual_duality)
@@ -5716,6 +5818,7 @@ def main():
         "algebraic_attention_mixing_control": attention_mixing,
         "algebraic_power_delta_control": power_delta,
         "algebraic_channel_gate_control": channel_gates,
+        "algebraic_erase_write_control": erase_write,
         "lattice_shadow_control": lattice_shadows,
         "lattice_shadow_sharpness_control": shadow_sharpness,
         "bounded_grid_shadow_control": bounded_grids,
@@ -5842,6 +5945,8 @@ def main():
                     "algebraic_power_delta_prefix_query_checks": power_delta["delta_prefix_query_checks"],
                     "algebraic_channel_gate_state_closure_checks": channel_gates["state_closure_checks"],
                     "algebraic_channel_gate_prefix_query_coordinates": channel_gates["prefix_query_coordinate_checks"],
+                    "algebraic_erase_write_state_closure_checks": erase_write["state_closure_checks"],
+                    "algebraic_erase_write_query_coordinates": erase_write["prefix_query_coordinate_checks"],
                     "lattice_shadow_facet_certificates": lattice_shadows["facet_certificates"],
                     "lattice_shadow_vertex_normal_certificates": lattice_shadows["vertex_normal_certificates"],
                     "lattice_shadow_exact_sections": lattice_shadows["shadow_sections"],

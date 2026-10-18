@@ -10026,3 +10026,135 @@ kernels and completed corner-cut manuscript are preserved. The main
 unrestricted exponent is unchanged and the goal remains active: the
 strongest-current-priority audit is still incomplete. No failed retrieval,
 new parameter specialization or finite check is used as novelty evidence.
+
+### Twenty-eighth pass: completion audit and the remaining primary-source gate
+
+The preceding turn was progress: `e70ca14` saved the all-field separated-cover
+bound, residual generator consequence, finite-field crossover and exact
+controls. This pass checks the original objective against the current proof
+package. It does not declare the goal complete from a working manuscript,
+passing tests or the comparison with one historical bound.
+
+| Original requirement | Current evidence | Completion assessment |
+| --- | --- | --- |
+| Broad uniform theorem | (LS1), proved for every colength-n ideal over every field and every fixed d>=3; the separate manuscript's main theorem and geometric/matroid lemmas supply the argument. | Proof supplied, with established inputs explicitly credited. Finite checks are supporting evidence. |
+| Advance over the strongest relevant primary baseline | The exponent is strictly smaller than the inspected Babson--Onn--Thomas exponent; later named bounds and their parameter regimes have scoped comparisons. Originality and the strongest-current comparison are still explicitly open. | Not established. This prevents completion of the full objective. |
+| Reusable dependency or geometric mechanism | (LS3)--(LS8), the primitive-facet incidence budget, cone boundary estimate and planar matroid reduction; (SH1)--(SH2) delimit geometric sharpness. | Uniform structural argument supplied; priority of its quantitative application remains open. |
+| Initial upper and infinite lower attempts | (RS1)--(RS3) and their rank-delay counterexamples; the symbolic nonsocle family (NG1)--(NG2), including its global O(n) obstruction. | The staged proof attempts and their limitations are recorded. The upper-bound route does not require pretending the tested lower family is extremal. |
+| Further consequence | (LS11), the integer-weight projection estimate, geometric sharpness, and (CV1)--(CV3) with the residual generator budget. | Precise derivations supplied. No enumeration speedup or prime-distribution claim follows. |
+| Reproducible certificates | Existing dependency-free research command and report, with source hashes, independent finite oracles and exact witnesses. | Sources and all prior blocks checked; computations support the proofs and do not prove novelty. |
+| Honest separate manuscript and preservation | Current 18-page working draft, matching recorded source/PDF hashes, prior compilation and page review; the seven protected kernel/manuscript files match their saved baseline. | Artifact present and internally checked. Priority remains a stated limit; no independent referee or journal decision is imposed as an additional requirement. |
+
+The source access gap has recurred through the three consecutive mathematical
+passes ending in `a80e26f`, `e70ca14` and this audit. The precise remaining
+comparisons are:
+
+1. [McMullen, Non-linear angle-sum relations for polyhedral cones and
+   polytopes (1975), pp. 247--261](https://doi.org/10.1017/S0305004100051665),
+   particularly its lattice application. The 1978 and 1983 readings establish
+   the named angle/valuation comparisons already recorded; they are not
+   asserted to reproduce every statement of this original article.
+2. [Stigler--Zhang, The Number of Groebner Bases in Finite Fields (2020),
+   pp. 139--158](https://doi.org/10.1007/978-3-030-42687-3_9), with the later
+   [public deposit](https://par.nsf.gov/servlets/purl/10177092). Its indexed
+   Theorem 8 and displayed proof support the numerical comparisons above,
+   but the full later source has not been retrieved. The arXiv history was
+   rechecked and lists only v1; a later arXiv version cannot be assumed.
+
+Current public requests still did not retrieve either complete text. This is
+an access observation, not evidence of novelty or mathematical non-equivalence.
+There is no live download or background research process to wait on.
+
+The proof package and all exact artifacts are retained. Adding another
+restricted consequence would not settle this remaining requirement. The
+appropriate status is blocked on the primary-source priority comparison,
+with the original full objective preserved. A complete copy of the named
+sources, or a primary replacement that actually resolves their relevant
+content, permits this audit to resume. No purchase, author contact, external
+message or submission is authorized or has been made.
+### ML follow-up: preserve decoupled erase and write in the smaller state
+
+The next comparison should include newer recurrent architectures, rather
+than stopping at the scalar-gated delta rule. In particular,
+[Gated DeltaNet-2, Section 3.1, equations (8)--(10)](https://arxiv.org/html/2605.22791v1#S3.SS1)
+separates an erase gate on the key axis from a write gate on the value
+axis. We inspected these definitions and the adjacent derivation; this is
+not a replication of its training or GPU results. Its update is
+
+    Sbar=D_alpha*S,
+    Snew=Sbar+f*((w*v)^T-(b*f)^T*Sbar).                  (MLE1)
+
+Here * between vectors denotes elementwise multiplication, D_alpha is
+diagonal, and f is the key feature. The recurrence is published work.
+The following observation extends our compression compatibility check;
+it does not establish a new architecture or a novelty claim.
+
+Fix the positive grouping weights from (MLP1)--(MLP2), so f=U*phi and
+U^T*U=I. Suppose the decay is constant within each equal-exponent group,
+as required in (MLG1), and S=U*T. Set
+
+    bbar_a=sum_(nu: b(nu)=a) (w_nu/c_a)*b_nu.
+
+The supports of different columns of U are disjoint. Therefore
+U^T*diag(b)*U=diag(bbar), even when b varies inside a group. Substitution
+in (MLE1) gives the exact smaller recurrence
+
+    Tbar=diag(alpha_collected)*T,
+    Tnew=Tbar+phi*((w*v)^T-(bbar*phi)^T*Tbar).             (MLE2)
+
+It follows inductively from zero initialization that every full state
+equals U times its smaller state, and every query read agrees. Values
+and their write gates can be arbitrary. The feature weights and grouping
+map must remain fixed within the sequence. Gates may vary with time; if
+they depend on past reads, their evaluation must receive the same reads.
+
+This distinguishes two operations. Untied diagonal forgetting can move
+the stored state outside im(U), as the earlier two-step counterexample
+shows. Untied erasing only changes the scalar read before the update
+writes along f, which is in im(U). Consequently arbitrary generic erase
+gates have an exact weighted-average reduction. For gates in [0,1], the
+averaged gates remain in [0,1]; every averaged gate vector is attainable
+by tying its generic entries. This is a statement about the recurrence's
+gate values, not equivalence of arbitrary gate-encoder parameterizations.
+
+The independent rational control `algebraic_erase_write_controls` checks
+four one- and two-dimensional polynomial fixtures at powers two and four,
+including deliberately different erase gates within duplicate groups.
+It compares 24 state steps and 288 prefix-query coordinates exactly.
+It also retains a stability limit: a unit key (3/5,4/5) with erase gate
+(1,0) maps (-1/2,1) to (-8/25,31/25). Squared norm increases from 5/4
+to 41/25. Thus the previous nonexpansiveness guarantee for a symmetric
+scalar delta correction cannot be transferred to arbitrary channel-wise
+erase gates. Decoupled erasing and writing likewise does not automatically
+give exact current-key writes.
+
+The implementation opportunity remains a small feature encoder attached
+to an existing recurrent update. Generate M collected erase/decay gates
+directly and keep the state at M*v scalars. Computing F generic gates
+and averaging them still costs at least O(F); an arbitrary nonlinear
+gate encoder cannot be folded by simply averaging its weights. The
+M=225 versus F=2080 example retains the previous 9.24-fold state-count
+ratio for the same constrained feature family, with no measured speedup.
+An ordinary 225-feature Gated DeltaNet-2 has the same state size and is
+the stronger direct learned-feature comparison.
+
+Another recent comparison is
+[Complex KDA, abstract and Section 3](https://arxiv.org/html/2609.24797v1#S3).
+Its signed gates and delta coefficients in [0,2] already provide stable
+rotations and state-tracking results. The inspected statements establish
+a relevant baseline, not an audited proof comparison. Our scalar-gated
+grouping identity also permits signed collected gates with absolute value
+at most one; this elementary compatibility alone adds no new rotation,
+state-tracking or learning guarantee over that work.
+
+Proceed to a trained, matched-state associative-recall comparison before
+custom GPU development. Include native learned-feature KDA/Gated
+DeltaNet-2, the structured scalar and channel-gated variants, and the
+decoupled variant (MLE2). Use held-out keys, overwrite/interference and
+longer contexts across seeds; charge encoders, gates, coefficient updates,
+backward and state traffic. Compare with Power Attention in a subsequent
+sequence-model test. Select based on measured quality at equal memory
+and time, not feature count alone. No trained-model or GPU benchmark was
+run here. The prior untrained poor-recall diagnostic remains a reason to
+test this, not evidence of an improvement. Prime-specific theorems and
+initial-ideal counts still supply no direct acceleration of dense weights.
