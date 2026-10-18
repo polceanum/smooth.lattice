@@ -3641,3 +3641,166 @@ The plan is saved in `results/research/structural_complexity_goal.json`.
 Its status records research progress, not an assertion of mathematical impact.
 This planning addition changes no proof or executable input of the completed
 manuscript; earlier computational reports retain their original source hashes.
+
+### First feasibility pass: two rigorous route obstructions
+
+The previous goal turn completed the requested goal registration and saved the
+plan. That is progress on setup, not a new mathematical advance. This pass
+adds two uniform negative controls and an independent exact quotient checker.
+Neither control meets the new theorem goal, and neither is presented as a new
+publishable result. They rule out specific proof mechanisms.
+
+#### Upper-bound attempt: shrinking the full state-polytope volume fails
+
+The proof of Babson--Onn--Thomas Corollary 2.5 encloses all staircase moments
+in [0,n^2]^d and applies Andrews's lattice-polytope vertex bound. It is natural
+to ask whether multiplication constraints force a smaller full volume. They
+do not: already a generic point configuration attains order n^(2d).
+
+Here is a uniform exact witness. Fix d>=2, r>=1, and n=binom(r+d,d).
+In a single generic n-point ideal all corner cuts are initial staircases,
+by the established generic-point correspondence. In particular, the d pure
+axis chains and the degree simplex
+
+    Delta_r = {a in N_0^d : a_1+...+a_d <= r}
+
+are initial staircases. The axis moments are A e_i with A=n(n-1)/2.
+By counting weak compositions, the degree-simplex moment is B(1,...,1),
+where B=nr/(d+1)=binom(r+d,d+1). The simplex formed by these d+1 moment
+points has volume
+
+    A^(d-1) (A-dB) / d!.
+
+Indeed its edge matrix is A Id - B 11^T, whose determinant is
+A^(d-1)(A-dB). For fixed d, r=Theta_d(n^(1/d)), hence dB/A tends to zero
+and the displayed volume is Theta_d(n^(2d)). All of these points belong to
+the convex hull P of initial-staircase moments for the same ideal. The
+existing cube gives the matching volume upper order. The pure axis chains
+and Delta_r are separated sets even though Delta_r has internal degree
+ties; no internal ordering assertion is needed.
+There is also a closed lower estimate: Delta_r contains 0 and the dr nonzero
+pure-axis points, so n-1>=dr and dB/A<=2/(d+1). Its moment-simplex volume
+is therefore at least ((d-1)/(d+1)) A^d/d! for every r>=1.
+
+Consequently a universal o(n^(2d)) bound for the full volume is false,
+even just along these infinitely many exact cardinalities and even for
+radical point ideals. Applying the same vertex-versus-volume inequality
+to a supposedly smaller whole polytope cannot improve the exponent. A
+successful argument needs finer control of the positive-normal boundary,
+its local caps, or the algebraic restrictions on its vertices. This does
+not rule out an improved vertex count or a different use of volume.
+
+The exact checker enumerates the simplex points independently of the moment
+formula, then computes the determinant by rational elimination in dimensions
+2--6 at r=1--6. The finite checks support the displayed uniform derivation;
+they do not prove the asymptotic statement by extrapolation.
+
+#### Lower-bound attempt: disjoint socle relations cannot amplify enough
+
+Let D be a finite monomial order ideal of size N in three variables, and let
+S be its coordinatewise maximal points, of size m. Choose disjoint subsets
+S_1,...,S_q of S, each of size at least two, and nonzero coefficients. Set
+
+    J_D = (x^a : a outside D),
+    f_j = sum_{a in S_j} c_{j,a} x^a,
+    I = J_D + (f_1,...,f_q).
+
+Every nonconstant monomial multiple of each f_j lies in J_D, since its
+support is in maximal points. Thus the additional relation space is exactly
+the q-dimensional span of the f_j, and length(I)=n=N-q. Disjoint supports
+make the relations independent over any field. For a generic positive
+weight w, the initial staircase is exactly
+
+    D minus {argmax_{a in S_j} w.a : 1<=j<=q}.
+
+To see this directly, a polynomial in I has, modulo J_D, a scalar linear
+combination of the f_j. Its possible leading monomials in D are the maxima
+of the disjoint supports. They cannot cancel between different relations;
+all their nonconstant multiples are already in J_D. This proves the formula
+for the entire ideal, not merely for a proposed generating set.
+
+For one relation this gives at most m initial staircases. For all disjoint
+relations together it gives O(m^2) in three variables. Each maximum is a
+vertex of P_j=conv(S_j). A polytope with s vertices in dimension at most
+three has at most 3s edges, with the lower-dimensional cases included.
+The normal fans of all P_j therefore have a common refinement by at most
+3m central edge hyperplanes. On the positive weight simplex these are at
+most 3m lines, making at most 1+(3m)(3m+1)/2 regions. Every possible
+initial staircase is realized by a full-dimensional region. Other global
+monomial orders introduce no extra staircase: the finite strict comparisons
+for their reduced bases admit a positive scalar weight, as in the established
+finite-order representation.
+
+For completeness, m=O_d(N^((d-1)/d)) has a simple chain-packing proof in
+every fixed dimension. Choose h=ceil(N^(1/d)). There are at most h^(d-1)
+maximal points in [0,h-1]^d, because a vertical line contains at most one
+point of an antichain. For each coordinate i, maximal points with a_i>=h
+give disjoint h-point downward chains parallel to that coordinate. Their
+number is at most N/h. Taking the union over i yields
+
+    m <= h^(d-1) + dN/h = O_d(N^((d-1)/d)).
+
+In the present construction q<=m/2<=N/2, so N<=2n. Therefore
+
+    g(I) = O(n^(4/3))  (three variables, disjoint socle relations).
+
+This is much smaller than the generic n^2(log n)^2 order. Arbitrarily many
+disjoint relations of this type cannot provide the desired lower family.
+The bound does not cover arbitrary overlapping relation spaces on S, or
+relations whose multiples survive in the quotient. Those remain possible
+mechanisms. The socle and convex-hull bounds are elementary tools, not new
+general compression or matroid theorems.
+
+#### Independent finite verification
+
+Run
+
+```bash
+python3 -B scripts/run_structural_complexity_checks.py
+```
+
+The script checks 30 volume fixtures and 18 socle-quotient fixtures. For each
+quotient it constructs multiplication matrices, checks every commutator on
+a basis, and verifies cyclic monomial evaluation on D and its border. Exact
+polygon clipping enumerates the positive-weight chambers of all within-support
+comparison planes. A separate line-intersection recurrence checks the region
+count, including concurrency. Each resulting initial staircase is independently
+recovered by greedy linear algebra over Q, F_2, F_3 and F_29. The complete
+finite run has 398 chambers and 1,592 greedy checks. It saves defining order
+ideals, relation supports and integer weight witnesses, with source hashes,
+in `results/research/structural_complexity_checks.json`.
+
+#### Prior-art update and next discriminating question
+
+The unrestricted bound remains the strongest inspected statement, not a
+claim to have excluded every subsequent improvement. Additional sources
+already constrain possible algorithmic claims:
+
+* [Maruri-Aguilar, Universal Groebner Bases for Designs of Experiments
+  (2005)](https://rendiconti.dmi.units.it/volumi/37/05.pdf), Theorem 5.1
+  and Section 6, give the planar Hilbert-zonotope normal fan directly from
+  primitive vectors in [0,n-1]^2. The construction removes the logarithmic
+  overhead of the previous planar universal-order construction. This is
+  established prior art; generating that same list is not a new consequence.
+  The theorem statement and indexed proof/discussion passages were inspected,
+  not the entire paper or all of its proof details.
+* [Deza--Manoussakis--Onn, inspected 2015 preprint](https://optimization-online.org/wp-content/uploads/2015/12/5266.pdf),
+  Theorem 3.3 and its adjacent propositions, bound projections of arbitrary
+  matroid polytopes in terms of a fixed coordinate range p, using Euler
+  zonotopes. Their general matrices need not be multiplication-compatible
+  monomial residue data. The theorem statement, parameter definitions and
+  displayed construction were inspected, not the full paper.
+* [Hausbrandt--Bachtler--Ruzika--Schaefer, inspected 2023 preprint](https://arxiv.org/pdf/2310.05147),
+  Section 2, recalls the one-parameter matroid breakpoint bound
+  O(M r^(1/3)) for ground-set size M and rank r, with references to Dey and
+  Eppstein. The article's principal problem is interdiction, a different
+  problem. This excerpt is a guide to the original sources, not a new
+  two-parameter or quotient-algebra bound.
+
+The next proof question is whether overlapping, multiplication-compatible
+dependencies admit a useful bound on the additional positive-normal boundary
+pieces, or an explicit realizable family forcing faster growth. The two
+controls above show why shrinking the full volume and adding independent
+socle gadgets do not answer that question. The strongest-current-bound audit
+and the unrestricted asymptotic theorem remain unfinished. The goal stays
+active, and these auxiliary controls do not change the completed manuscript.
