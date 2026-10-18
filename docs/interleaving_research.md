@@ -10284,3 +10284,218 @@ state and learns better in this comparison. A new ML direction needs a
 stronger representation or task-specific mechanism before another kernel
 development program. The separate mathematics goal and its unresolved
 primary-source priority comparison remain unchanged.
+
+### Full-dimensional factorization: a precise barrier and a higher proof target
+
+This follow-up answers whether the two-latent restriction can be removed
+before any more model training. No new neural experiments were run. The
+previous learned-recall protocol, implementations and raw results are
+unchanged. The conclusions below are established-literature consequences
+and elementary controls, not a new architecture or a novelty claim.
+
+#### What exact compression does, and what it does not imply
+
+Let A be a finite set of nonnegative integer exponent vectors, containing
+0, with D=|A| and affine dimension r>=1. Write
+z_a(x)=sqrt(theta_a)*x^a, where every theta_a>0. On an open subset of the
+positive orthant, consider the normalized kernel
+
+    K_p(x,y) = (z(x).z(y)/(||z(x)|| ||z(y)||))^p,  p>=1 integer.
+
+Expanding the numerator and collecting equal exponents gives one feature
+for each element of the sumset pA. All collected coefficients are
+positive. Distinct monomials are linearly independent on an open set;
+division by the same nonzero normalization preserves that independence.
+An invertible evaluation matrix at |pA| suitable points then makes the
+kernel Gram matrix have rank |pA|. Thus its minimal exact separation rank
+is M=|pA|, not merely an upper bound from one implementation. This is a
+special case of the kernel-rank framework in
+[Altschuler--Parrilo, Proposition 3.6 and Corollary 3.8](https://arxiv.org/html/2106.02755v1#S3.SS1).
+It compares exact representations of this same kernel. It does not show
+superiority to an unrelated learned M-feature kernel.
+
+The classical Freiman dimension bound gives
+
+    |2A| >= (r+1)*D - r*(r+1)/2.
+
+For general p the sharp bound is
+
+    |pA| >= binom(p+r-1,r)*D - (p-1)*binom(p+r-1,r-1).
+
+See [Lopez Bruch--Jing--Mudgal, Theorem 1.5 and Section 7](https://arxiv.org/html/2409.05638v1).
+The statement, sharp construction and Section 7 argument were inspected;
+the underlying cited compression lemmas were not independently re-proved.
+These are published bounds, not results originating in this project.
+
+For D=64, the quadratic consequences are:
+
+| Independent exponent directions r | Minimum exact quadratic width |
+| --- | --- |
+| 2 | 189 |
+| 3 | 250 |
+| 8 | 540 |
+| 32 | 1584 |
+| 63 | 2080 |
+
+Since this lower bound increases for 1<=r<=D-1, D=64 and M=225 force
+r<=2. The tested support {0,...,7}^2 has |2A|=225. Within this family we
+cannot keep those two widths and simply add independent continuous
+directions. This is not a lower bound for arbitrary neural architectures,
+approximate features, discrete input sets or other kernel families.
+
+There is a concrete escape if we change the base width. The sharp support
+
+    A = {0,e_2,...,e_r} union {e_1,2e_1,...,(D-r)e_1}
+
+has D elements and attains the bound. For r=8,D=29 it gives exactly 225
+quadratic features. It includes every coordinate monomial: the ratio of
+the collected e_i feature to the constant feature is a known positive
+constant times x_i. Hence the normalized feature map retains all eight
+input coordinates on the positive orthant. But degrees up to 21 are
+concentrated on one axis. Injectivity alone guarantees neither good
+conditioning nor balanced interactions or successful training. Keeping
+D=64 instead allows eight directions at width 540, versus 2080 for the
+generic symmetric square of 64 independent coordinates. That is a
+conditional exact feature-count saving, not an advantage over a freely
+learned 540-feature memory.
+
+#### Exact rank can coexist with failed recall
+
+A two-write example makes the missing implication explicit. Take
+A={0,1}, theta=1 and p=2, so the unit-norm features have kernel
+
+    K(x,y) = (1+xy)^2 / ((1+x^2)*(1+y^2)).
+
+Write the distinct keys x_1=-1/10 and x_2=1/10 with scalar values +1
+and -1. Their correlation is mu=9801/10201. The two-key Gram matrix has
+determinant 1-mu^2>0 and rank two, so the features have enough linear
+capacity to interpolate these two associations.
+
+Nevertheless, the ordinary ungated, unit-step delta rule
+
+    S <- S + f(x)*(v - f(x)^T*S)
+
+starting at zero gives, after the two writes,
+
+    S = f(x_1) - (1+mu)*f(x_2),
+    read(x_1) = 1-mu-mu^2 = -91979201/104060401,
+    read(x_2) = -1.
+
+The first read has the wrong sign, about -0.884 instead of +1, in exact
+arithmetic. As the two distinct keys approach zero, mu approaches one
+and the first read approaches -1. No dimensional information was lost
+in this example. Exact compression faithfully preserves a kernel whose
+geometry permits destructive interference; full rank is not a stability
+or single-pass recall guarantee. This supplies a failure mechanism,
+not a causal diagnosis of the trained models' score gaps.
+
+Two apparent remedies also need precise limits. A sum of kernels on
+disjoint coordinate blocks retains coordinates but gives additive read
+functions across blocks. On the four points (x,y) in {-1,1}^2, even
+arbitrary one-coordinate functions span only {1,x,y}; they cannot equal
+the binding xy. The corresponding evaluation ranks are three and four.
+Taking products restores interactions but generally increases the
+expanded feature count. Rank-one individual writes also need not give a
+low-rank sum of many writes.
+
+Nor can an arbitrary exact state sketch automatically retain independent
+channel gates. If a linear compression E represents all states and every
+diagonal gate can be updated from ES alone, ker(E) must be invariant under
+each coordinate projector. If E*e_i is nonzero for every original
+coordinate, any nonzero vector in ker(E) would imply E*e_i=0 for one of
+its nonzero coordinates, a contradiction. Therefore E is injective and
+cannot reduce dimension. For example E=(1,1) identifies states (1,0)
+and (0,1), whereas gate diag(1,0) separates them. The scope is exact
+linear compression with all those gates and states, not all recurrent
+models. Tied gates, restricted reachable states or approximation change
+the question.
+
+#### Existing architectures that avoid two scalar latents
+
+The clearest exact alternative is
+[Large Memory Layers with Product Keys](https://arxiv.org/html/1907.05242v2),
+Sections 3.1--3.2. Its two query parts are vectors, not scalar latents.
+For query (q_1,q_2), two codebooks of n vectors give N=n^2 addresses with
+score s_ij=q_1.a_i+q_2.b_j. A globally top-k address must use a top-k
+entry in each codebook: otherwise keeping the other index fixed already
+provides k better addresses. Compatible deterministic tie-breaking gives
+the same conclusion for ties. Thus full-dimensional queries can have
+exact factorized access to this structured address family. Computing
+subscores costs O(d*sqrt(N)); at most k^2 candidate sums remain, plus
+selection and O(k*v) costs to read v-dimensional values. The N*v value
+table still occupies memory. This advantage is over exhaustive scoring
+of the same Cartesian-product codebook, not arbitrary learned addressing
+or equal-memory neural models. The defining construction, top-k proof
+and cost argument were inspected; experiments were not replicated.
+
+[Sparse Delta Memory](https://arxiv.org/html/2607.07386v1), Sections 2--3,
+already combines product-key indexing with sparse delta updates to an
+explicit memory table. Its selected addresses permit reads and writes
+that leave other slots untouched. Its equal-FLOP framing allows increased
+state memory; it is not an equal-memory superiority theorem. The
+definition and update rule were inspected, not its code or experimental
+claims. Consequently, combining high-dimensional factorized access with
+delta updates is already occupied prior art.
+
+Another route keeps rich polynomial kernels but permits approximation.
+[PolySketchFormer](https://arxiv.org/html/2310.01655v3), Theorem 1.1 and
+Theorems 2.2/2.4, gives polynomial-kernel sketches with matrix-error
+guarantees and a positivity construction. These do not require a
+two-dimensional encoder. The displayed statements and proof arguments
+were inspected. A matrix approximation guarantee alone does not prove
+uniform error control through long selective-overwrite trajectories or a
+trained-model advantage. The original
+[high-degree polynomial sketch paper](https://arxiv.org/abs/1909.01410)
+was checked at abstract level, not independently proof-audited.
+[Incremental sketching for online kernel learning](https://proceedings.mlr.press/v97/zhang19h.html)
+already studies online approximation and regret; only its primary abstract
+was inspected here. These prevent treating a generic sketch-plus-online-
+update proposal as a demonstrated gap.
+
+#### Higher-impact target and decision gate
+
+The useful objective is a theorem relating memory size, active access
+cost and retention for a model that preserves high-dimensional queries
+and cross-coordinate binding. An exact factorization theorem for a
+redundant implementation is insufficient. Before another model run:
+
+1. Specify the query/address family and allowed overwrite and forgetting
+   operations. Count all stored values, indices, feature parameters,
+   metadata and required precision. Distinguish an exact codebook search
+   saving from compression of the value table.
+2. Prove either a new access/retention guarantee beyond product-key and
+   sparse-delta memory, or a sharp approximation/capacity tradeoff for
+   full recurrent trajectories beyond existing kernel-sketch/online
+   learning results. The guarantee must support cross-coordinate
+   associations and state its dependence on horizon, overlap and gates.
+3. Establish the primary-source boundary for that exact theorem. Compare
+   against the strongest applicable architecture, not just its dense
+   implementation. If it follows from existing work, park that proposal.
+4. Only then use experiments to test the theorem's practical regime.
+   Explicit exact-key recall also admits ordinary finite dictionary
+   baselines when keys fit in memory; it alone cannot establish a
+   fundamental architectural advantage. Meaningful extensions must
+   specify noisy/semantic queries or other binding demands and charge
+   the corresponding memory.
+
+No project-specific architectural advantage or publishable novelty has
+been established by this review. The dimension obstruction and the
+interference control explain why the earlier exact mathematics was
+insufficient to imply one. The eight-direction construction is an
+algebraic feasibility witness, not a recommended new training run.
+The strongest current direction is full-dimensional structured access
+with a retention guarantee; its first deliverable must be a theorem and
+an audited comparison, not another benchmark sweep. This does not replace
+or resolve the separate blocked mathematical priority audit.
+
+Reproduce the finite certificates with
+
+    python3 scripts/run_feature_dimension_checks.py
+
+The output is `results/research/full_dimensional_factorization_checks.json`.
+It records 45 sharp higher-sumset fixtures, the five dimension-frontier
+cases, the eight-direction witness, rational two-write interference,
+additive-binding and channel-gate counterexamples, and 57 exact product-
+key top-k comparisons including ties. These computations check concrete
+certificates; the uniform claims rest on the arguments and cited theorems
+above. They do not test model quality or establish novelty.

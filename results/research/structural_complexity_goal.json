@@ -3684,5 +3684,78 @@
       "scripts/analyze_learned_recall.py": "5282dff607c51397eaf470ec1abb1a64619bf6061efa0ad0f2975f4c5ce3a343"
     },
     "historical_certificate_blocks_preserved": 46
+  },
+  "ml_full_dimensional_theory_review": {
+    "record": "docs/interleaving_research.md, Full-dimensional factorization: a precise barrier and a higher proof target",
+    "certificate_script": "scripts/run_feature_dimension_checks.py",
+    "certificate_report": "results/research/full_dimensional_factorization_checks.json",
+    "decision": "Do not run more model training until a new full-dimensional access/retention or recurrent approximation guarantee survives primary-source comparison. Exact feature compression alone does not imply an architectural advantage.",
+    "established_corollaries": [
+      "On an open domain, a positive weighted monomial power kernel has minimal exact feature width |pA|. The sharp published higher-sumset bound controls dimension versus width.",
+      "For 64 base monomials and 225 exact quadratic features, independent exponent dimension is at most two; three directions require at least 250 and eight at least 540.",
+      "A sharp long-simplex support with 29 base monomials retains eight input coordinates in exactly 225 quadratic features; it is anisotropic and has no learning/conditioning guarantee.",
+      "An exact full-rank two-key normalized polynomial kernel produces a wrong-sign earlier read after two unit-step delta writes; rank and exact arithmetic do not ensure recall.",
+      "Disjoint-block additive reads cannot express two-coordinate parity. Exact linear state compression preserving all independent diagonal gates and every coordinate is injective."
+    ],
+    "prior_art_routes": [
+      {
+        "source": "https://arxiv.org/html/2106.02755v1#S3.SS1",
+        "scope": "Kernel-rank framework; relevant Proposition 3.6/Corollary 3.8 rechecked."
+      },
+      {
+        "source": "https://arxiv.org/html/2409.05638v1",
+        "scope": "Theorem 1.5 and Section 7 sharp higher-sumset bound; underlying cited compression lemmas not independently re-proved."
+      },
+      {
+        "source": "https://arxiv.org/html/1907.05242v2",
+        "scope": "Product-key vector queries and exact top-k factorization, Sections 3.1--3.2; experiments not replicated."
+      },
+      {
+        "source": "https://arxiv.org/html/2607.07386v1",
+        "scope": "Sparse delta updates with product-key access, Sections 2--3; code and empirical claims not audited; equal FLOPs do not mean equal memory."
+      },
+      {
+        "source": "https://arxiv.org/html/2310.01655v3",
+        "scope": "Full-input polynomial sketches, displayed Theorem 1.1 and Theorems 2.2/2.4 plus proof arguments; no recurrent retention consequence assumed."
+      },
+      {
+        "source": "https://arxiv.org/abs/1909.01410",
+        "scope": "High-degree polynomial sketching; primary abstract only."
+      },
+      {
+        "source": "https://proceedings.mlr.press/v97/zhang19h.html",
+        "scope": "Incremental online kernel sketching; primary abstract only."
+      }
+    ],
+    "next_theorem_gate": {
+      "target": "A provable tradeoff between total memory, active read/write cost and retention while preserving high-dimensional queries and cross-coordinate binding.",
+      "required_comparisons": [
+        "Product-key memory and sparse delta memory",
+        "Polynomial kernel sketches and online kernel approximation",
+        "Ordinary finite dictionary for explicit exact-key recall when memory permits"
+      ],
+      "required_accounting": [
+        "Stored values and codebooks",
+        "Index and metadata storage",
+        "Feature and gate parameters",
+        "Precision",
+        "Horizon, address overlap and allowed gates"
+      ],
+      "continuation_condition": "A concrete theorem with a substantive guarantee beyond those primary baselines; a corollary, plan or experiment alone does not pass."
+    },
+    "additional_model_training_runs": 0,
+    "new_architecture_advantage_established": false,
+    "new_publishable_result_established": false,
+    "previous_learned_recall_artifacts_preserved": true,
+    "mathematical_goal_replaced": false,
+    "verification_commands": [
+      "python3 scripts/run_feature_dimension_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py",
+      "python3 -B scripts/run_structural_complexity_checks.py"
+    ],
+    "public_raw_data_reviewed": true,
+    "full_repository_checks_passed": true,
+    "historical_certificate_blocks_preserved": 46
   }
 }
