@@ -2,7 +2,7 @@
   "schema_version": 1,
   "recorded_on": "2026-10-18",
   "title": "Universal algebraic complexity beyond generic corner cuts",
-  "status": "active_minimum_product_classification_and_rank_information_loss_proved_general_mixed_flags_open",
+  "status": "active_rank_excess_degree_exception_tradeoff_proved_bounded_fractional_linear_extensions_closed",
   "objective": "Prove a new structural theorem determining or substantially narrowing the worst-case asymptotic number of monomial initial ideals of finite polynomial algebras, starting with three variables and seeking a mechanism valid in every fixed dimension. Establish the strongest relevant primary baseline first. Success requires a complete uniform proof of sharp growth or a substantial asymptotic advance over that baseline for all colength-n ideals or all n-point configurations, a rigorous further algebraic, geometric or enumeration consequence, reproducible exact certificates and an honestly scoped manuscript. Examples, reformulations, already known corollaries and a plan alone do not complete this goal.",
   "plan": "docs/interleaving_research.md#higher-impact-research-plan-universal-algebraic-complexity",
   "relationship_to_previous_goal": "A new research objective. The completed corner-cut counting manuscript and its acceptance records remain separate and unchanged in mathematical content.",
@@ -29,12 +29,12 @@
   "milestones": [
     {
       "id": "primary_baseline",
-      "status": "code_product_and_affine_invariance_primary_comparisons_checked_broader_priority_audit_open",
+      "status": "rational_relation_module_primary_comparison_added_broader_extremal_audit_open",
       "deliverable": "A theorem-level primary-source comparison identifying the best relevant unrestricted and restricted bounds, exact hypotheses, input models and still viable targets."
     },
     {
       "id": "dependency_mechanism",
-      "status": "minimum_product_cyclic_class_classified_all_fields_including_nonreduced_higher_mixed_flags_open",
+      "status": "rank_excess_tradeoff_and_all_ideal_bounded_border_extension_bound_proved_higher_degree_and_fast_growth_open",
       "deliverable": "A precise lemma about multiplication-compatible residue dependencies or state-polyhedron geometry, with its proof attempt and adversarial controls."
     },
     {
@@ -122,8 +122,8 @@
   "independent_referee_assessment": false,
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
-    "classification": "no_progress",
-    "reason": "The intervening ML application answer inspected and explained existing results but changed no theorem-goal artifacts or unrestricted bounds. This turn revalidated the clean worktree and pursued the next safe dependency test."
+    "classification": "progress",
+    "reason": "Commit a694c84 saved the all-field minimum-product inverse classification, exact pole-group counts and complete box-profile information loss, with final-source checks and a verified push to main. It did not improve the unrestricted exponent."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -414,12 +414,32 @@
       "authors": "Dimitrova, He, Stigler and Zhang",
       "inspected": "Introduction general bound; Theorem 3.12 and its proof; Corollaries 3.13--3.14. Not a full-paper proof audit.",
       "finding": "Separate affine coordinate changes preserve point initial ideals and their counts. The uniqueness results are sufficient conditions and do not give a stronger unrestricted extremal bound."
+    },
+    {
+      "source": "https://arxiv.org/html/2609.21051v1",
+      "authors": "Neiger, Safey El Din and Tran",
+      "inspected": "Section 1.1 relation-module definition; Section 2.2 reduced/Popov setup; Section 2.3 Lemma 3 with proof and Corollary 2 with proof. Later algorithm proofs not audited.",
+      "finding": "Rational reconstruction over arbitrary polynomial moduli and relation-basis determinant characterization are established machinery. The rank-excess interpretation uses these standard ideas and has an independent short proof; no new reconstruction algorithm or unrestricted initial-ideal count is inferred."
+    },
+    {
+      "source": "https://www.csd.uwo.ca/~mmorenom/CS424/Lectures/bugs/EuclideanMethods.html/node8.html",
+      "authors": "Moreno Maza",
+      "inspected": "Weak versus unit-denominator rational reconstruction and Theorem 5 with its proof.",
+      "finding": "A weak polynomial congruence need not permit cancellation of its common factor inside a finite quotient. A unit-denominator claim requires a separate argument."
+    },
+    {
+      "source": "https://arxiv.org/pdf/2208.02726v1",
+      "publication_locator": "https://doi.org/10.1137/22M1513241",
+      "authors": "Dimitrova, Fredrickson, Rondoni, Stigler and Veliz-Cuba",
+      "inspected": "Preprint introduction, Definition 3.11, Theorem 3.12 with its displayed proof, Corollary 3.13 with its proof, and the Section 4 transition. Publisher abstract, metadata and references inspected; no preprint/publisher identity assumed and no full-paper proof audit.",
+      "finding": "The inspected results give a necessary diagonal-free condition for unique reduced bases and motivate Hamming-distance experiments. They do not provide an inspected stronger unrestricted worst-case count. This is a resolved scope comparison for those statements, not evidence that no other result exists."
     }
   ],
   "next_actions": [
-    "Keep the unrestricted target with large coordinate degrees and trivial homogeneity. The minimum-bilinear-rank cyclic class is now classified by pole groups and has only O_d(n^(d-1)) initials; do not enlarge it as a stronger lower search.",
-    "A general dependency-sensitive upper lemma must retain compatible mixed monomial flags beyond box ranks and stabilizer dimensions. These complete scalar profiles agree in infinite full-coordinate-degree, trivial-homogeneity families whose counts range from d to binom(n+d-2,d-1). This does not rule out a uniform upper bound derived from such profiles, but prevents recovering or transferring a fan within a bounded factor from them alone.",
-    "Continue the primary baseline audit and compare any inverse-growth extension against established code-product critical-pair results. The code Kneser theorem applies to split point algebras; arbitrary nonreduced scope needs its own proof. The complete planar universal-order-list result does not improve the per-ideal extremal bound. Preserve the completed manuscript and require an unrestricted asymptotic advance and further consequence before a replacement manuscript."
+    "A complete upper mechanism must cover slow and fast product growth for all finite quotients. EX1 gives a degree-versus-exception tradeoff in the cyclic case; EX5 screens some large but partial coordinate degrees. Neither supplies that full dichotomy or a new unrestricted exponent.",
+    "Bounded-dimensional extensions of a fractional-linear quotient are closed below generic growth by EX4. Exceptions o(log n/log log n) cannot yield a fixed power separation. Do not enlarge fixed-error fractional-linear examples. No logarithmic impossibility is claimed for growing errors.",
+    "The first unresolved inverse branch has primitive rational degree two or more, rather than a cancellable exceptional factor. Before larger searches, derive a uniform rank/fan mechanism or a quantitative obstruction for that branch, respecting the already proved fixed-monomial-curve bounds. Small rank excess alone supplies no new lower count.",
+    "Continue the primary extremal-baseline audit. Rational reconstruction and relation bases are explicit prior art; do not claim a reconstruction algorithm or speed result. Preserve the completed manuscript and require the original unrestricted asymptotic advance and further consequence before a new manuscript."
   ],
   "forward_citation_discovery": {
     "method": "Read-only OpenAlex forward-citation queries for the two founding papers, followed by primary-source inspection of potentially relevant records.",
@@ -595,11 +615,16 @@
           "minimum_product_fan_witness_checks": 760,
           "minimum_product_box_rank_checks": 2295,
           "minimum_product_stabilizer_checks": 120,
-          "minimum_product_inverse_rectangle_checks": 81
+          "minimum_product_inverse_rectangle_checks": 81,
+          "product_excess_reconstruction_fixtures": 98,
+          "product_excess_threshold_counters": 3,
+          "bounded_extension_staircase_checks": 1264,
+          "bounded_extension_quotient_witnesses": 323,
+          "high_degree_boundary_controls": 9
         }
       }
     ],
-    "scope": "Final-source build, smoke tests and full exact checker passed. All historical certificate objects and summary counts are retained. The new minimum-product block checks 85 reduced/nonreduced quotients over five fields, 3009 staircase determinants and independent ranks, 760 full-ground fan witnesses, 2295 box ranks, 120 prefix stabilizers and 81 inverse-rectangle controls. The uniform inverse proof requires an unsaturated box and is independently scoped to cyclic coordinates. It does not improve the unrestricted asymptotic bound, complete the broader strongest-priority audit or justify a new manuscript."
+    "scope": "Final-source build, smoke tests and complete exact checker passed. Every historical certificate object and summary count is unchanged. New controls include 98 reconstruction kernels, three nonzero degree-threshold eliminants, 24 coordinate-compatible extensions, 1264 staircase rank decisions, 323 strict quotient-inclusion witnesses and nine high-degree boundary controls. The reconstruction mechanisms are established prior art; the structural consequences do not improve the unrestricted exponent, complete the broader priority audit or justify a new manuscript."
   },
   "second_feasibility_results": {
     "record": "docs/interleaving_research.md, Second feasibility pass: interacting relations and a conditional count",
@@ -2210,5 +2235,83 @@
     "strongest_current_bound_verified": false,
     "goal_qualifying_unrestricted_advance": false,
     "decision": "Retain the full objective. The minimum-growth endpoint is solved but cannot improve the unrestricted lower order. A broad upper argument must keep compatible mixed flags beyond scalar box profiles and compare higher inverse-growth statements against primary code-product literature. No new manuscript or goal completion."
+  },
+  "nineteenth_feasibility_results": {
+    "record": "docs/interleaving_research.md, Nineteenth feasibility pass: rank excess, exceptional ideals and extension bounds",
+    "rank_excess_tradeoff": {
+      "scope": "Every field, A=K[t]/(f) of length n>=3, with a second cyclic coordinate x, b>=2 and 2*b-2<n. The two-by-b product has rank R<2*b.",
+      "statement": "There is a unique primitive rational ratio P/Q among the short relations. With m=max(deg P,deg Q)>=1 and E=(P+x*Q)A of dimension delta, R=b+m+delta. The quotient A/E has length n-delta, Q is a unit there and x=-P/Q.",
+      "proof": "Eliminants have degree below n, so short polynomial pairs are proportional. Their multipliers are exactly the multiples of f/gcd(f,P+x*Q). Kernel dimension gives the exact sum of rational degree and exceptional dimension. Bezout makes Q a unit only on the retained quotient.",
+      "larger_rectangle": "If a>=b>=e+2 and rank(a-by-b)=a+b-1+e<n, its two-by-b subrectangle gives m+delta<=e+1.",
+      "scope_limit": "A small excess does not force degree one; quadratic exact maps and degree-one maps with one exceptional dimension both realize excess one. Nonreduced exceptions are ideal dimensions, not point counts."
+    },
+    "bounded_extension_count": {
+      "scope": "Every field, ideals I contained in J in the same d-variable polynomial ring, colengths n and n-e, and all initial ideals of J having at most q minimal monomial generators.",
+      "statement": "g(I)<=g(J)*product_(j=0)^(e-1)(q+(d-1)*j).",
+      "proof": "For the same order the larger algebra staircase contains the smaller one. Each added box removes one available corner and creates at most d new ones. Count ordered e-step additions and sum over smaller initial staircases.",
+      "fractional_linear_case": "If the smaller quotient is the classified fractional-linear algebra of length n-e>=3, q<=d*(d+1)/2 and g(J)<=binom(n-e+d-2,d-1). Thus g(I)<=that binomial times the same product with q=d*(d+1)/2.",
+      "asymptotic_limit": "Fixed e gives O_(d,e)(n^(d-1)). If e=o(log n/log log(n+2)), the bound is n^(d-1+o(1)), excluding a fixed power gain. This does not exclude logarithmic gains for growing e.",
+      "scope_limit": "Requires coordinate-compatible containment, not an arbitrary abstract algebra map. The degree-two-and-higher rational branch is not covered by the fractional-linear consequence."
+    },
+    "high_coordinate_degree_test": {
+      "statement": "In any length-n algebra generated by its coordinates, if s_1+s_i>n+2 and span(1,x_1,x_i,x_1*x_i) has dimension at most three for every i>=2, all coordinates are cyclic and fractional-linear in x_1.",
+      "proof": "Affine multiplication ranks are at least s_i-1. A factored bilinear zero product would have positive Sylvester rank; a nondegenerate relation has a unit denominator whose inverse lies in the finite coordinate subalgebra. All coordinates then lie in K[x_1]=A.",
+      "sharp_boundary": "K[x,y]/(x*y,x^m,y^m,x^(m-1)-y^(m-1)), with z=y+1, has n=2*m-2, all s_i=m and bilinear ranks three, but no coordinate is cyclic. Equality s_1+s_i=n+2 is insufficient."
+    },
+    "primary_comparisons": [
+      {
+        "source": "https://arxiv.org/html/2609.21051v1",
+        "authors": "Neiger, Safey El Din and Tran",
+        "inspected": "Section 1.1 relation-module definition; Section 2.2 reduced/Popov setup; Section 2.3 Lemma 3 with proof and Corollary 2 with proof. Later algorithm proofs not audited.",
+        "finding": "Rational reconstruction over arbitrary polynomial moduli and relation-basis determinant characterization are established machinery. The rank-excess interpretation uses these standard ideas and has an independent short proof; no new reconstruction algorithm or unrestricted initial-ideal count is inferred."
+      },
+      {
+        "source": "https://www.csd.uwo.ca/~mmorenom/CS424/Lectures/bugs/EuclideanMethods.html/node8.html",
+        "authors": "Moreno Maza",
+        "inspected": "Weak versus unit-denominator rational reconstruction and Theorem 5 with its proof.",
+        "finding": "A weak polynomial congruence need not permit cancellation of its common factor inside a finite quotient. A unit-denominator claim requires a separate argument."
+      },
+      {
+        "source": "https://arxiv.org/pdf/2208.02726v1",
+        "publication_locator": "https://doi.org/10.1137/22M1513241",
+        "authors": "Dimitrova, Fredrickson, Rondoni, Stigler and Veliz-Cuba",
+        "inspected": "Preprint introduction, Definition 3.11, Theorem 3.12 with its displayed proof, Corollary 3.13 with its proof, and the Section 4 transition. Publisher abstract, metadata and references inspected; no preprint/publisher identity assumed and no full-paper proof audit.",
+        "finding": "The inspected results give a necessary diagonal-free condition for unique reduced bases and motivate Hamming-distance experiments. They do not provide an inspected stronger unrestricted worst-case count. This is a resolved scope comparison for those statements, not evidence that no other result exists."
+      }
+    ],
+    "finite_controls": {
+      "status": "Final-source build, smoke tests and complete exact checker passed.",
+      "reconstruction_fixtures": 98,
+      "reconstruction_fields": [
+        "Q",
+        "F_2",
+        "F_3",
+        "F_37"
+      ],
+      "degree_threshold_counters": 3,
+      "extension_fixtures": 24,
+      "extension_fields": [
+        "Q",
+        "F_3",
+        "F_11",
+        "F_37"
+      ],
+      "extension_staircase_rank_checks": 1264,
+      "coordinate_compatible_quotient_witnesses": 323,
+      "high_degree_boundary_controls": 9,
+      "larger_fan_count_scope": "Selected weights certify actual initials and quotient containment. Independent-staircase counts are upper bounds, not asserted exact larger fan counts.",
+      "commands": [
+        "./build.sh",
+        "python3 tests/test_smoke.py",
+        "python3 -B scripts/run_structural_complexity_checks.py"
+      ],
+      "source_sha256": {
+        "scripts/run_structural_complexity_checks.py": "718fd169688c7172b5bb848cb76b49906e7526dfedf26156aea05a99f42456a1",
+        "docs/interleaving_research.md": "60dba40ec320aa5df6e760a760fa535fa5261a4b4a3e3fa21386b9dd869d3562"
+      }
+    },
+    "strongest_current_bound_verified": false,
+    "goal_qualifying_unrestricted_advance": false,
+    "decision": "Keep the full goal active. Retain rank excess as a degree/exception tradeoff and the general extension count as a reusable obstruction. Fixed-error fractional-linear amplification cannot provide the desired stronger lower exponent. Higher rational degree, growing exceptions and the unrestricted fast-growth alternative remain unresolved; no new manuscript."
   }
 }

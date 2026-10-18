@@ -3562,6 +3562,301 @@ def minimum_product_rank_controls():
             "unsaturated_inverse_negative_controls": inverse_controls}
 
 
+def product_excess_and_extension_controls():
+    """Rational reconstruction with an exceptional ideal, and bounded-border lifts."""
+    reconstruction, threshold_counters, extensions, degree_boundary = [], [], [], []
+
+    def scalar(value, characteristic):
+        value = Fraction(value)
+        return (value.numerator * pow(value.denominator, -1, characteristic) % characteristic
+                if characteristic else value)
+
+    def rank(rows, characteristic):
+        columns = {(i,): tuple(scalar(x, characteristic) for x in row) for i, row in enumerate(rows)}
+        return len(greedy(columns, columns, (1,), characteristic))
+
+    def trim(values, characteristic):
+        values = [scalar(x, characteristic) for x in values]
+        while values and not values[-1]:
+            values.pop()
+        return values
+
+    def add(left, right, characteristic, sign=1):
+        values = [0] * max(len(left), len(right))
+        for i, value in enumerate(left):
+            values[i] += value
+        for i, value in enumerate(right):
+            values[i] += sign * value
+        return trim(values, characteristic)
+
+    def multiply(left, right, characteristic):
+        values = [0] * max(0, len(left) + len(right) - 1)
+        for i, x in enumerate(left):
+            for j, y in enumerate(right):
+                values[i + j] += x * y
+        return trim(values, characteristic)
+
+    def divide(left, right, characteristic):
+        left, right = trim(left, characteristic), trim(right, characteristic)
+        require(right, "polynomial division by a nonzero polynomial")
+        quotient = [0] * max(0, len(left) - len(right) + 1)
+        inverse = scalar(1 / Fraction(right[-1]), characteristic) if not characteristic else pow(right[-1], -1, characteristic)
+        while len(left) >= len(right):
+            position, coefficient = len(left) - len(right), scalar(left[-1] * inverse, characteristic)
+            quotient[position] = coefficient
+            left = add(left, [0] * position + [coefficient * x for x in right], characteristic, -1)
+        return trim(quotient, characteristic), left
+
+    def polynomial_gcd(left, right, characteristic):
+        left, right = trim(left, characteristic), trim(right, characteristic)
+        while right:
+            left, right = right, divide(left, right, characteristic)[1]
+        if left:
+            inverse = (pow(left[-1], -1, characteristic) if characteristic else 1 / left[-1])
+            left = trim([x * inverse for x in left], characteristic)
+        return left
+
+    def kernel(columns, characteristic):
+        matrix = [[scalar(x, characteristic) for x in row] for row in zip(*columns)]
+        width, pivot_row, pivots = len(columns), 0, []
+        for j in range(width):
+            pivot = next((i for i in range(pivot_row, len(matrix)) if matrix[i][j]), None)
+            if pivot is None:
+                continue
+            matrix[pivot_row], matrix[pivot] = matrix[pivot], matrix[pivot_row]
+            inverse = (pow(matrix[pivot_row][j], -1, characteristic) if characteristic
+                       else 1 / matrix[pivot_row][j])
+            matrix[pivot_row] = [scalar(x * inverse, characteristic) for x in matrix[pivot_row]]
+            for i in range(len(matrix)):
+                if i != pivot_row:
+                    coefficient = matrix[i][j]
+                    matrix[i] = [scalar(x - coefficient * y, characteristic)
+                                 for x, y in zip(matrix[i], matrix[pivot_row])]
+            pivots.append(j)
+            pivot_row += 1
+            if pivot_row == len(matrix):
+                break
+        result = []
+        for free in range(width):
+            if free not in pivots:
+                vector = [scalar(int(i == free), characteristic) for i in range(width)]
+                for row, pivot in zip(matrix, pivots):
+                    vector[pivot] = scalar(-row[free], characteristic)
+                result.append(vector)
+        require(all(all(not scalar(sum(c * column[j] for c, column in zip(v, columns)), characteristic)
+                            for j in range(len(columns[0]))) for v in result),
+                "computed kernel vectors annihilate the independent residue matrix")
+        return result
+
+    for n in (7, 9):
+        t_image = [int(j == 1) for j in range(n)]
+        cases = [
+            ("affine", [int(j in (0, 1)) for j in range(n)], 1, 0),
+            ("reciprocal", [(-1) ** j for j in range(n)], 1, 0),
+            ("quadratic", [int(j in (1, 2)) for j in range(n)], 2, 0),
+            ("quadratic_denominator", [(-1) ** ((j - 1) // 2) if j % 2 else 0 for j in range(n)], 2, 0),
+            ("one_socle_error", [int(j in (1, n - 1)) for j in range(n)], 1, 1),
+            ("two_dimensional_error", [int(j in (1, n - 2)) for j in range(n)], 1, 2),
+            ("quadratic_with_socle_error", [int(j in (1, 2, n - 1)) for j in range(n)], 2, 1),
+            ("cubic", [int(j in (1, 3)) for j in range(n)], 3, 0),
+        ]
+        split_modulus = [1]
+        lagrange = [1]
+        for node in range(1, n + 1):
+            split_modulus = multiply(split_modulus, [-node, 1], 0)
+            if node < n:
+                lagrange = multiply(lagrange, [-node, 1], 0)
+        outlier = add(t_image, [Fraction(n + 1, factorial(n - 1)) * x for x in lagrange], 0)
+        for algebra, modulus, entries, characteristics in (
+                ("nilpotent", [0] * n + [1], cases, (0, 2, 3)),
+                ("split_points", split_modulus, [("one_outlier", outlier, 1, 1)], (0, 37))):
+            for label, x_image, expected_degree, expected_error in entries:
+                for characteristic in characteristics:
+                    for b in range(expected_degree + expected_error + 1, 5):
+                        require(2 * b - 2 < n, "the relation eliminants are below the modulus degree")
+                        domain = set(hyperbolic_cross(n, 2)) | set(product(range(2), range(b)))
+                        columns = cyclic_univariate_model(modulus, [x_image, t_image], domain)
+                        rows = [columns[(0, j)] for j in range(b)] + [columns[(1, j)] for j in range(b)]
+                        actual = rank(rows, characteristic)
+                        require(all(rank([columns[tuple(k * int(i == j) for j in range(2))]
+                                          for k in range(n)], characteristic) == n for i in range(2)),
+                                "both coordinates of the reconstruction fixture are cyclic")
+                        relations = kernel(rows, characteristic)
+                        require(len(relations) == 2 * b - actual > 0, "independent kernel dimension")
+                        p0, q0 = relations[0][:b], relations[0][b:]
+                        common = polynomial_gcd(p0, q0, characteristic)
+                        p0, q0 = divide(p0, common, characteristic)[0], divide(q0, common, characteristic)[0]
+                        require(q0, "cyclic data admit no nonzero relation in y alone below degree n")
+                        scale = pow(q0[-1], -1, characteristic) if characteristic else 1 / q0[-1]
+                        p0, q0 = trim([scale * x for x in p0], characteristic), trim([scale * x for x in q0], characteristic)
+                        require(all(not add(multiply(p0, vector[b:], characteristic),
+                                            multiply(vector[:b], q0, characteristic), characteristic, -1)
+                                    for vector in relations), "all low-degree relations have the same rational ratio")
+                        product_residue = univariate_product_mod(x_image, q0, modulus)
+                        residue = add(p0, product_residue, characteristic)
+                        quotient_modulus = polynomial_gcd(modulus, residue, characteristic)
+                        error = n - len(quotient_modulus) + 1
+                        multiplication = [univariate_product_mod(residue, [0] * j + [1], modulus)
+                                          for j in range(n)]
+                        require(rank(multiplication, characteristic) == error,
+                                "independent multiplication rank equals the exceptional ideal dimension")
+                        degree = max(len(p0), len(q0)) - 1
+                        require((degree, error) == (expected_degree, expected_error) and
+                                actual == b + degree + error,
+                                "rational degree plus exceptional dimension gives the exact two-row rank")
+                        require(polynomial_gcd(q0, quotient_modulus, characteristic) == [1],
+                                "the denominator is a unit in the retained quotient")
+                        require(not divide(residue, quotient_modulus, characteristic)[1],
+                                "the primitive rational relation holds in the retained quotient")
+                        annihilator, remainder = divide(modulus, quotient_modulus, characteristic)
+                        require(not remainder, "the exceptional annihilator divides the modulus")
+                        module_basis = []
+                        for j in range(b - degree - error):
+                            multiplier = [0] * j + annihilator
+                            p, q = multiply(multiplier, p0, characteristic), multiply(multiplier, q0, characteristic)
+                            module_basis.append(p + [0] * (b - len(p)) + q + [0] * (b - len(q)))
+                        require(rank(module_basis, characteristic) == len(relations) and
+                                all(all(not scalar(sum(c * col[j] for c, col in zip(v, rows)), characteristic)
+                                        for j in range(n)) for v in module_basis),
+                                "the annihilator multiples reproduce the entire truncated relation module")
+                        reconstruction.append({"n": n, "algebra": algebra, "case": label, "characteristic": characteristic,
+                                               "b": b, "monic_modulus": [str(x) for x in modulus],
+                                               "x_image": [str(x) for x in x_image], "rectangle_rank": actual,
+                                               "primitive_P": [str(x) for x in p0], "primitive_Q": [str(x) for x in q0],
+                                               "rational_degree": degree, "exceptional_ideal_dimension": error,
+                                               "retained_quotient_modulus": [str(x) for x in quotient_modulus],
+                                               "annihilator_polynomial": [str(x) for x in annihilator],
+                                               "full_kernel_basis": [[str(x) for x in row] for row in relations]})
+
+    for characteristic in (0, 2, 3):
+        n, b = 6, 4
+        image = [int(j in (1, 2, 3)) for j in range(n)]
+        modulus = [0] * n + [1]
+        columns = cyclic_univariate_model(modulus, [image, [0, 1, 0, 0, 0, 0]],
+                                          set(hyperbolic_cross(n, 2)) | set(product(range(2), range(b))))
+        rows = [columns[(0, j)] for j in range(b)] + [columns[(1, j)] for j in range(b)]
+        relations = kernel(rows, characteristic)
+        eliminant = add(multiply(relations[0][:b], relations[1][b:], characteristic),
+                        multiply(relations[1][:b], relations[0][b:], characteristic), characteristic, -1)
+        require(eliminant and not divide(eliminant, modulus, characteristic)[1],
+                "at the degree threshold a nonzero eliminant can be a multiple of the modulus")
+        threshold_counters.append({"n": n, "b": b, "characteristic": characteristic,
+                                   "rank": rank(rows, characteristic), "nonzero_eliminant": [str(x) for x in eliminant],
+                                   "kernel_basis": [[str(x) for x in row] for row in relations]})
+
+    def addable(state):
+        border = {tuple(x + int(i == j) for j, x in enumerate(a)) for a in state for i in range(3)} - state
+        return {a for a in border if all(tuple(x - int(i == j) for j, x in enumerate(a)) in state
+                                        for i, value in enumerate(a) if value)}
+
+    tables = {n: finite_staircases(n, 3) for n in (5, 6, 7)}
+    for n, states in tables.items():
+        ground = hyperbolic_cross(n, 3)
+        indices = {state: i for i, state in enumerate(states)}
+        for error in (1, 2):
+            m = n - error
+            parent_bases = [state for state in finite_staircases(m, 3)
+                            if all(sum(x > 0 for x in a) <= 1 for a in state)]
+            candidates = set()
+            for base in parent_bases:
+                level = {base}
+                for step in range(error):
+                    following = set()
+                    for state in level:
+                        corners = addable(state)
+                        require(len(corners) <= 6 + 2 * step, "bounded minimal-generator growth at each box addition")
+                        following.update(state | {corner} for corner in corners)
+                    level = following
+                candidates.update(level)
+            bound = comb(m + 1, 2)
+            for step in range(error):
+                bound *= 6 + 2 * step
+            require(len(candidates) <= bound and candidates <= set(states), "complete extension candidates obey the uniform product bound")
+            for algebra, characteristics in (("nilpotent", (0, 3, 11)), ("one_outlier", (0, 37))):
+                if algebra == "one_outlier" and error != 1:
+                    continue
+                if algebra == "nilpotent":
+                    images = [tuple(int(j == 1) for j in range(n)),
+                              tuple((-1) ** j + int(j == m) for j in range(n)),
+                              tuple((-2) ** j + 2 * int(j == m) + int(j == m + 1) for j in range(n))]
+                    columns = cyclic_univariate_model([0] * n + [1], images, ground)
+                    presentation = {"coordinate_images": images}
+                else:
+                    points = [(t, Fraction(1, 1 + t), Fraction(1, 1 + 2 * t)) for t in range(1, m + 1)]
+                    points.append((n, n + 1, -n - 1))
+                    columns = {a: tuple(p[0] ** a[0] * p[1] ** a[1] * p[2] ** a[2] for p in points) for a in ground}
+                    presentation = {"rational_points": [[str(x) for x in p] for p in points]}
+                for characteristic in characteristics:
+                    reduced = {a: tuple(scalar(x, characteristic) for x in row) for a, row in columns.items()}
+                    parent_reduced = {a: row[:m] for a, row in reduced.items()}
+                    ranks = [rank([reduced[a] for a in sorted(state)], characteristic) for state in states]
+                    independent = {states[i] for i, value in enumerate(ranks) if value == n}
+                    require(independent <= candidates, "all independent staircases in these fixtures are covered by parent extensions")
+                    witnesses = []
+                    delta = (1, n + 1, (n + 1) ** 2)
+                    scale = 1 + max(dot(delta, a) for a in ground)
+                    for base in parent_bases:
+                        lengths = [sum(a[i] > 0 for a in base) for i in range(3)]
+                        weights = [Fraction(2, 2 * length + 1) if length else Fraction(4) for length in lengths]
+                        denominator = lcm(*(w.denominator for w in weights))
+                        weight = tuple(scale * int(w * denominator) + delta[i] for i, w in enumerate(weights))
+                        small, large = greedy(ground, parent_reduced, weight, characteristic), greedy(ground, reduced, weight, characteristic)
+                        require(small == base and small <= large and len(large - small) == error and large in candidates,
+                                "coordinate-compatible quotient inclusion gives the predicted staircase extension")
+                        witnesses.append({"positive_integer_weight": weight, "larger_staircase_index": indices[frozenset(large)]})
+                    extensions.append({"n": n, "parent_length": m, "exceptional_dimension": error,
+                                       "algebra": algebra, "characteristic": characteristic, **presentation,
+                                       "parent_initial_ideal_count": len(parent_bases),
+                                       "uniform_extension_bound": bound, "extension_candidate_indices": sorted(indices[s] for s in candidates),
+                                       "all_staircase_ranks": ranks, "independent_staircase_indices": sorted(indices[s] for s in independent),
+                                       "quotient_inclusion_witnesses": witnesses,
+                                       "scope": "The independent-staircase count is an upper bound, not a claimed exact fan count for the larger quotient."})
+
+    for m in (3, 4, 5):
+        n = 2 * m - 2
+        basis = [(i, 0, 0) for i in range(m)] + [(0, j, 0) for j in range(1, m - 1)]
+        positions = {a: i for i, a in enumerate(basis)}
+
+        def residue(a):
+            values = [0] * n
+            for j in range(a[2] + 1):
+                x, y = a[0], a[1] + j
+                if (x and y) or x >= m or y >= m:
+                    continue
+                monomial = (m - 1, 0, 0) if y == m - 1 else (x, y, 0)
+                values[positions[monomial]] += comb(a[2], j)
+            return tuple(values)
+
+        matrices = [tuple(residue(tuple(a[j] + int(i == j) for j in range(3))) for a in basis)
+                    for i in range(3)]
+        require(all(residue(a) == tuple(int(i == j) for j in range(n)) for i, a in enumerate(basis)),
+                "the connected-sum reference monomials give a cyclic length-n presentation")
+        require(all(matvec(matrices[i], matrices[j][k]) == matvec(matrices[j], matrices[i][k])
+                    for i, j in combinations(range(3), 2) for k in range(n)),
+                "the connected-sum multiplication matrices commute")
+        unit = residue((0, 0, 0))
+        for characteristic in (0, 2, 3):
+            degrees = [rank([residue(tuple(k * int(i == j) for j in range(3))) for k in range(n)],
+                            characteristic) for i in range(3)]
+            bilinear = [rank([unit, residue((1, 0, 0)), residue(axis),
+                              residue(tuple(x + y for x, y in zip((1, 0, 0), axis)))], characteristic)
+                        for axis in ((0, 1, 0), (0, 0, 1))]
+            require(degrees == [m] * 3 and bilinear == [3, 3] and 2 * m == n + 2,
+                    "the strict high-degree threshold cannot be weakened to equality")
+            degree_boundary.append({"m": m, "n": n, "characteristic": characteristic,
+                                    "coordinate_elimination_degrees": degrees, "bilinear_ranks": bilinear,
+                                    "relations": ["x*y=0", "x^m=y^m=0", "x^(m-1)=y^(m-1)", "z=y+1"],
+                                    "reference_basis": basis, "multiplication_matrices_by_columns": matrices})
+
+    return {"scope": "All-field structural proofs are in the note. Reconstruction uses cyclic coordinates and 2*b-2<n. Extension counting requires coordinate-compatible containment and a bound on all smaller initial-ideal generator counts.",
+            "rank_tradeoff": "For the nonzero two-by-b relation kernel, rank=b+rational_degree+exceptional_ideal_dimension; these last two quantities sum to at most excess+1 for a larger near-minimum unsaturated rectangle.",
+            "extension_bound": "If I is contained in J, lengths differ by e and every initial ideal of J has at most q minimal generators, then g(I)<=g(J)*product_(j=0)^(e-1)(q+(d-1)*j).",
+            "priority": "Rational reconstruction, relation modules and minimal monomial generators are established tools. These consequences do not prove a new unrestricted asymptotic bound or certified publication novelty.",
+            "reconstruction_fixtures": reconstruction, "degree_threshold_counters": threshold_counters,
+            "staircase_tables": {str(n): [sorted(s) for s in states] for n, states in tables.items()},
+            "bounded_extension_fixtures": extensions, "high_degree_boundary_controls": degree_boundary}
+
+
 def attention_rank_sanity_control():
     """An exact Vandermonde witness, not an attention-compression algorithm."""
     parameters = (1, 2, 3, 4)
@@ -3632,6 +3927,7 @@ def main():
     coordinate_moments = coordinate_moment_range_controls(residual_duality, truncated_partition)
     grading_controls = grading_and_perturbation_controls(monogenic, truncated_partition)
     minimum_products = minimum_product_rank_controls()
+    product_excess = product_excess_and_extension_controls()
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
         "schema_version": 1, "command": "python3 -B scripts/run_structural_complexity_checks.py",
@@ -3727,6 +4023,7 @@ def main():
         "coordinate_moment_range_control": coordinate_moments,
         "grading_and_perturbation_control": grading_controls,
         "minimum_product_rank_control": minimum_products,
+        "product_excess_and_extension_control": product_excess,
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
                     "independent_greedy_checks": sum(f["greedy_checks"] for f in fixtures),
@@ -3819,7 +4116,12 @@ def main():
                     "minimum_product_fan_witness_checks": sum(f["initial_ideal_count"] for f in minimum_products["fixtures"]),
                     "minimum_product_box_rank_checks": sum(len(f["box_rank_checks"]) for f in minimum_products["fixtures"]),
                     "minimum_product_stabilizer_checks": sum(len(f["prefix_checks"]) for f in minimum_products["polynomial_prefix_stabilizer_controls"]),
-                    "minimum_product_inverse_rectangle_checks": sum(len(f["box_rank_checks"]) for f in minimum_products["unsaturated_inverse_negative_controls"])},
+                    "minimum_product_inverse_rectangle_checks": sum(len(f["box_rank_checks"]) for f in minimum_products["unsaturated_inverse_negative_controls"]),
+                    "product_excess_reconstruction_fixtures": len(product_excess["reconstruction_fixtures"]),
+                    "product_excess_threshold_counters": len(product_excess["degree_threshold_counters"]),
+                    "bounded_extension_staircase_checks": sum(len(f["all_staircase_ranks"]) for f in product_excess["bounded_extension_fixtures"]),
+                    "bounded_extension_quotient_witnesses": sum(len(f["quotient_inclusion_witnesses"]) for f in product_excess["bounded_extension_fixtures"]),
+                    "high_degree_boundary_controls": len(product_excess["high_degree_boundary_controls"])},
         "goal_qualifying_advance": False,
     }
     target = ROOT / "results/research/structural_complexity_checks.json"

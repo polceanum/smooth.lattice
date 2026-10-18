@@ -7773,3 +7773,235 @@ goal active. Reproduce the controls with
 ```bash
 python3 -B scripts/run_structural_complexity_checks.py
 ```
+
+### Nineteenth feasibility pass: rank excess, exceptional ideals and extension bounds
+
+The previous pass made progress in commit a694c84 by classifying minimum
+product growth and identifying information lost by complete box-rank
+profiles. This pass considers positive excess rather than expanding the
+solved minimum family. In a cyclic algebra, a short relation module gives
+an exact trade-off between rational degree and an exceptional ideal. An
+elementary extension bound then controls the branch where the retained
+coordinates are fractional-linear. Neither result closes the unrestricted
+asymptotic gap.
+
+#### Primary comparison: rational reconstruction is established machinery
+
+[Neiger--Safey El Din--Tran, arXiv:2609.21051v1](https://arxiv.org/html/2609.21051v1)
+defines the relation module R_M(a,b)={(p,q):ap+bq=0 mod M} in
+Section 1.1. Its arbitrary-field setup, reduced/Popov definitions in
+Section 2.2, and Section 2.3's Lemma 3 with its proof and Corollary 2
+with its proof were inspected. These already provide relation bases and
+their determinant characterization. The later fast algorithm proofs
+were not audited. [Moreno Maza's primary course text](https://www.csd.uwo.ca/~mmorenom/CS424/Lectures/bugs/EuclideanMethods.html/node8.html)
+distinguishes weak polynomial congruences from rational reconstruction
+with a unit denominator; Theorem 5 and its proof were inspected. Thus
+the reconstruction mechanism below belongs to established interpolation
+and relation-module mathematics. No new reconstruction algorithm or
+complexity bound is claimed. These sources do not supply an inspected
+improvement to the unrestricted initial-ideal count. The strongest-current
+baseline audit remains incomplete.
+
+#### An exact trade-off for two-by-b products
+
+Let A=K[t]/(f), deg(f)=n>=3, over any field, and let x also generate
+A. For b>=2 assume 2b-2<n. Set
+
+    R=dim span(1,t,...,t^(b-1),x,x*t,...,x*t^(b-1)).
+
+If R<2b, put e=R-b-1. Then e>=0, and there are coprime polynomials
+P,Q, with Q nonzero, and an ideal E of A such that
+
+    m=max(deg P,deg Q)>=1,
+    delta=dim_K E,
+    R=b+m+delta,  hence m+delta=e+1,                      (EX1)
+
+and, on the quotient A/E of length n-delta, Q is a unit and
+x=-P(t)/Q(t). This includes repeated or irreducible f; delta is an
+ideal dimension, not a count of distinct points unless A is split and
+reduced.
+
+Here is a complete module proof. The space
+
+    V={(U,W):deg U,deg W<b, U(t)+x*W(t)=0 in A}
+
+has dimension 2b-R>0. Eliminating x from any two relations produces
+U_1*W_2-U_2*W_1 of degree at most 2b-2<n, zero modulo f, hence
+zero as a polynomial. Divide one nonzero pair by its polynomial gcd
+to obtain the primitive pair (P,Q). Every pair in V is h*(P,Q),
+with h a polynomial. This is polynomial proportionality, using
+coprimality; it does not cancel h(t) in A.
+
+Put r=P(t)+x*Q(t) in A and E=r*A. Represent x by its polynomial
+of degree below n. Write f_0=gcd(f,r) and h_0=f/f_0, with monic
+gcds. Then
+
+    dim E=n-deg(f_0)=deg(h_0)=delta.
+
+A multiplier h gives a relation exactly when f divides h*r, equivalently
+h_0 divides h. The truncated relation space therefore has the basis
+
+    h_0*t^j*(P,Q),  0<=j<b-m-delta.
+
+Its dimension is b-m-delta, proving (EX1). If m=0, r is a nonzero
+affine function of the cyclic coordinate x, or a nonzero constant.
+Its multiplication rank delta is at least n-1. But (EX1) and R<2b
+give delta<=b-1<n-1, a contradiction. Thus m>=1 and delta<=e.
+
+On A/E, the primitive relation P+xQ is zero. A polynomial Bezout
+identity U*P+W*Q=1 gives Q*(W-U*x)=1 there, so Q is a unit. This
+proves the rational representation without assuming that the common
+factor removed from a weak reconstruction was already a unit in A.
+
+For a larger a-by-b rectangle with a>=b>=e+2 and rank
+a+b-1+e<n, the cyclic growth argument in (MR1) implies that its
+two-by-b subrectangle has rank at most b+1+e. Also n>=a+b+e>2b-2.
+Applying (EX1), with its actual smaller excess, yields
+
+    rational degree + exceptional dimension <= e+1.      (EX2)
+
+The same statement can be applied to each coordinate against one
+common cyclic parameter t. Taking the sum of the exceptional ideals
+retains one common quotient; its lost dimension is at most the sum
+of their individual dimensions. This is coordinate-compatible quotient
+construction, not a comparison between unrelated abstract presentations.
+
+#### Why the alternatives and degree threshold matter
+
+Excess one has two possibilities: m=2,delta=0, or m=1,delta=1.
+Both occur over every field in nilpotent examples of sufficient length.
+For x=t+t^2, the relation is already quadratic and exact. For
+x=t+t^(n-1), the primitive relation x-t fails in A but holds after
+quotienting by the one-dimensional ideal (t^(n-1)). The weak relation
+t*(x-t)=0 must not be divided by t inside A.
+
+At excess two, the examples x=t+t^3, x=t+t^2+t^(n-1), and
+x=t+t^(n-2) realize (m,delta)=(3,0),(2,1),(1,2). Unit rational
+denominators and reduced one-outlier examples are checked separately.
+Small rank excess alone cannot identify which branch occurs.
+
+The degree threshold is real. In K[t]/(t^6), take x=t+t^2+t^3 and
+b=4. The rank is six and there are two independent short relations.
+Their eliminant can be a nonzero multiple of t^6, of degree 2b-2=n.
+They need not have the same rational ratio as polynomial pairs. The
+argument above therefore does not extend across the degree threshold
+by treating equality modulo f as equality in K[t].
+
+#### A general bound for coordinate-compatible extensions
+
+Let I be contained in J in K[x_1,...,x_d], of respective finite
+colengths n and n-e. Suppose every monomial initial ideal of J has
+at most q minimal monomial generators. Then, over every field,
+
+    g(I)<=g(J)*product_(j=0)^(e-1)(q+(d-1)*j).            (EX3)
+
+For a fixed global order, in(I) is contained in in(J). Its staircase
+is obtained by adding exactly e boxes to the staircase of in(J).
+Any finite downset extension admits an ordering of its added boxes
+in which every intermediate set is a downset. Its first addable boxes
+are precisely the minimal generators of in(J). Adding one box removes
+that candidate and creates at most d new candidates, its immediate
+successors. After j additions there are at most q+(d-1)*j choices.
+Their product counts all ordered addition paths and hence bounds the
+number of resulting staircases. Sum over the at most g(J) starting
+staircases to prove (EX3). Multiple paths or starting staircases leading
+to the same result only overcount. No reducedness or point deletion
+interpretation is used.
+
+This direction is important: it bounds the larger algebra from a
+smaller quotient with controlled borders. It is not a monotonicity
+claim for fan counts under arbitrary quotienting or deformation.
+The containment is in the same polynomial ring with the same coordinate
+images. An arbitrary isomorphism between abstract algebras is insufficient.
+
+For a fractional-linear quotient in (MR3) of length n-e>=3, each
+initial staircase is a union of coordinate chains. If r axes are active,
+its minimal generators are the d inactive-or-terminal axis monomials
+and the binom(r,2) mixed quadratic monomials. Thus q<=d*(d+1)/2,
+and (MR4) is at most binom(n-e+d-2,d-1). Consequently
+
+    g(I)<=binom(n-e+d-2,d-1)
+          * product_(j=0)^(e-1)(d*(d+1)/2+(d-1)*j).       (EX4)
+
+The factor is exp(O_d(e*log(e+2))). Fixed e gives O_(d,e)(n^(d-1)),
+below the existing generic logarithmic order. If
+e=o(log n/log log(n+2)), the bound is n^(d-1+o(1)), so this regime
+cannot produce n^(d-1+epsilon) for any fixed positive epsilon. The
+latter statement does not exclude logarithmic gains when e grows.
+
+Combining (EX1)--(EX2) with (EX4) controls the branch where every
+retained primitive rational map has degree one. If some map has degree
+two or more, (EX4) has not been justified. It is not legitimate to
+call every small-excess presentation a bounded-error fractional-linear
+one. Likewise, (EX3) alone gives no unrestricted exponent improvement:
+general smaller quotients need not have uniformly bounded borders or
+a known smaller fan count.
+
+#### A sharp extension of the bilinear test to large coordinate degrees
+
+There is also an all-ideal screening statement that removes the initial
+assumption of full coordinate degrees. Write s_i=dim_K K[x_i] inside
+an arbitrary length-n quotient A generated by its d coordinates. If
+
+    s_1+s_i>n+2 and dim span(1,x_1,x_i,x_1*x_i)<=3
+      for every i>=2,                                    (EX5)
+
+then A=K[x_1], every s_i=n, and the fractional-linear classification
+applies. Indeed multiplication by a nonzero affine function of x_i
+has rank at least s_i-1 by restriction to K[x_i]. A degenerate bilinear
+relation would factor into affine functions and have positive product
+rank at least s_1+s_i-n-2, impossible for a zero product. Any remaining
+bilinear relation is nondegenerate, and Bezout gives x_i=N(x_1)/D(x_1)
+with D a unit in A. Its inverse already belongs to the finite subalgebra
+K[x_1]: its minimal polynomial has nonzero constant, so expresses that
+inverse polynomially. Thus all coordinates lie in K[x_1], which must
+be all of A. Each nonconstant fractional-linear coordinate also generates
+it. For n>=3, its bilinear rank is then exactly three by (MR2).
+
+Strictness cannot be dropped. For m>=3 take
+
+    A=K[x,y]/(x*y,x^m,y^m,x^(m-1)-y^(m-1)), z=y+1.
+
+This has length n=2m-2, all three coordinate degrees equal m, and
+both bilinear ranks against x equal three. But 2m=n+2 and none of
+these coordinates generates A. The connected-sum presentation is a
+standard small algebraic counterexample, not a new lower family.
+The larger-box inverse proof for full cyclic degrees is not transferred
+automatically to partial degrees: its primitive constant component can
+be supported in an affine-factor annihilator.
+
+#### Exact verification and research decision
+
+The checker saves 98 reconstruction fixtures over Q,F_2,F_3,F_37,
+including nilpotent and split point algebras. It computes full relation
+kernels independently, removes their polynomial gcds, checks exact
+polynomial proportionality, and compares the exceptional multiplication
+rank with the gcd quotient dimension. The annihilator multiples reproduce
+the complete truncated kernel. Three degree-threshold counters retain
+their nonzero eliminants, and nine connected-sum controls check the
+sharp high-degree boundary with actual commuting cyclic presentations.
+
+There are also 24 finite extension controls over Q,F_3,F_11,F_37.
+The smaller fractional-linear algebras have lengths n-e with n=5,6,7
+and e=1,2; the larger algebras are nilpotent extensions or reduced
+one-outlier configurations. All 1,264 staircase rank decisions are
+saved, with the staircase tables shared across fixtures. All independent
+staircases in these particular controls lie in the enumerated extension
+candidates. This stronger fixture fact is not asserted for general
+extensions. At 323 strict integer weights the checker independently
+selects both quotient bases, verifies containment, and checks that
+exactly e monomials were added. It does not report an exact full fan
+count for the larger algebra from these selected weights.
+
+These results close bounded-exception fractional-linear amplification
+and identify rational degree versus exceptional dimension as separate
+parameters. They do not settle the degree-two-and-higher branch, a
+growing-exception family, or the general fast-growth alternative. A
+uniform dependency-sensitive upper bound still has to control these
+branches; no unrestricted asymptotic advance, completed strongest-priority
+audit, further consequence at that target, or new manuscript is claimed.
+Keep the full goal active. Reproduce all controls with
+
+```bash
+python3 -B scripts/run_structural_complexity_checks.py
+```
