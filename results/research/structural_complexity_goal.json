@@ -2,7 +2,7 @@
   "schema_version": 1,
   "recorded_on": "2026-10-18",
   "title": "Universal algebraic complexity beyond generic corner cuts",
-  "status": "active_baseline_and_interacting_dependency_analysis",
+  "status": "active_conditional_count_and_surviving_relation_analysis",
   "objective": "Prove a new structural theorem determining or substantially narrowing the worst-case asymptotic number of monomial initial ideals of finite polynomial algebras, starting with three variables and seeking a mechanism valid in every fixed dimension. Establish the strongest relevant primary baseline first. Success requires a complete uniform proof of sharp growth or a substantial asymptotic advance over that baseline for all colength-n ideals or all n-point configurations, a rigorous further algebraic, geometric or enumeration consequence, reproducible exact certificates and an honestly scoped manuscript. Examples, reformulations, already known corollaries and a plan alone do not complete this goal.",
   "plan": "docs/interleaving_research.md#higher-impact-research-plan-universal-algebraic-complexity",
   "relationship_to_previous_goal": "A new research objective. The completed corner-cut counting manuscript and its acceptance records remain separate and unchanged in mathematical content.",
@@ -29,17 +29,17 @@
   "milestones": [
     {
       "id": "primary_baseline",
-      "status": "original_proof_and_additional_primary_comparisons_checked_later_bound_audit_incomplete",
+      "status": "general_bound_proof_and_GIT_comparison_checked_remaining_access_and_priority_audit_incomplete",
       "deliverable": "A theorem-level primary-source comparison identifying the best relevant unrestricted and restricted bounds, exact hypotheses, input models and still viable targets."
     },
     {
       "id": "dependency_mechanism",
-      "status": "first_volume_route_ruled_out_uniformly_finer_dependency_lemma_pending",
+      "status": "conditional_rectangular_spanning_count_proved_unrestricted_variation_bound_pending",
       "deliverable": "A precise lemma about multiplication-compatible residue dependencies or state-polyhedron geometry, with its proof attempt and adversarial controls."
     },
     {
       "id": "infinite_lower_family",
-      "status": "disjoint_socle_relation_route_proved_too_sparse_interacting_family_pending",
+      "status": "all_socle_relation_spaces_proved_too_sparse_surviving_multiples_required",
       "deliverable": "A symbolic realizable family and count proof, or a documented obstruction to the tested construction; finite examples alone are insufficient."
     },
     {
@@ -49,7 +49,7 @@
     },
     {
       "id": "further_consequence",
-      "status": "not_started",
+      "status": "sharp_universal_order_list_cardinality_proved_for_conditional_class_only",
       "deliverable": "A proved algebraic, geometric or enumeration consequence beyond restating the count; any speed claim needs a full algorithmic complexity argument."
     },
     {
@@ -123,7 +123,7 @@
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Completed the explicit request to save a precise research plan, register the new active goal, and push the reviewed setup. This was setup progress, not a mathematical advance."
+    "reason": "Proved the full-volume obstruction and disjoint socle upper bound, independently checked exact quotient models, inspected additional primary sources, and pushed the reviewed findings in e9e3fd7. The unrestricted theorem remained open."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -174,9 +174,9 @@
     }
   ],
   "next_actions": [
-    "Complete theorem-level forward and ingredient comparison for unrestricted state-polyhedron vertex counts; do not infer novelty from a failed search.",
-    "Investigate overlapping relation spaces in exact cyclic commuting-matrix models, separating arbitrary matroid shadows from realizable quotient data.",
-    "Attempt a boundary or local-cap count that avoids the false smaller-whole-volume premise; require a precise uniform inequality before enlarging finite searches."
+    "Develop a mechanism controlling additional initial-staircase variation when relations have surviving multiples; a socle-only lower construction is now ruled out in every fixed dimension.",
+    "Test rank-profile or boundary decompositions that distinguish a large forced staircase from genuine fan variation; a universal linear rank-delay argument is explicitly false.",
+    "Complete the unrestricted primary-bound and conditional-result priority comparisons before making a novelty claim or preparing the target manuscript."
   ],
   "forward_citation_discovery": {
     "method": "Read-only OpenAlex forward-citation queries for the two founding papers, followed by primary-source inspection of potentially relevant records.",
@@ -210,8 +210,8 @@
       {
         "source": "https://arxiv.org/abs/2205.15238v2",
         "title": "Variation of stability for moduli spaces of unordered points in the plane",
-        "scope": "Primary abstract only; relevant full statements still to inspect.",
-        "finding": "Addresses variation of GIT quotients and selected stability walls; do not identify GIT walls with the monomial-order fan without a proof."
+        "scope": "Section 6.2, Definitions 6.3--6.4, Theorem 6.5 and its proof, and Lemmas 6.6--6.7. Not a full-paper proof audit.",
+        "finding": "Uses the known generic corner-cut correspondence to calculate selected flat limits and GIT indices. The inspected statements do not supply the unrestricted extremal initial-ideal count; GIT linearization walls are a different parameter problem."
       },
       {
         "source": "https://arxiv.org/abs/1811.01114v2",
@@ -224,7 +224,7 @@
       {
         "source": "https://scholar.smu.edu/hum_sci_mathematics_etds/4/",
         "title": "Model Selection and Experimental Design of Biological Networks with Algebraic Geometry",
-        "status": "Primary dissertation abstract inspected; full counting chapter remains to compare with the finite-field paper."
+        "status": "Primary abstract inspected; the public download request returned HTTP 403. The counting chapter is not represented as read and access is not a blocker for independent proof work."
       },
       {
         "source": "https://doi.org/10.1007/978-3-319-96418-8_23",
@@ -234,12 +234,13 @@
       {
         "source": "https://arxiv.org/abs/2205.15238v2",
         "title": "Variation of stability for moduli spaces of unordered points in the plane",
-        "status": "Inspect the exact corner-cut/state-polytope passages before excluding as an extremal-bound source."
+        "status": "Relevant corner-cut and state-polytope passages inspected; no extremal count follows from those statements."
       },
       {
         "source": "https://www.sciencedirect.com/science/article/abs/pii/S0747717124000956",
         "title": "A new algorithm for Groebner bases conversion",
-        "status": "Potential comparison for a future enumeration consequence; primary algorithm and complexity statements not yet inspected."
+        "status": "Published metadata and a possible preprint discovered, but manuscript equivalence and algorithm proof not checked. A secondary record also lists a corrigendum DOI 10.1016/j.jsc.2026.102633; its primary text and relevance are unverified. Do not rely on the unexamined algorithm for a complexity claim.",
+        "doi": "https://doi.org/10.1016/j.jsc.2024.102391"
       }
     ]
   },
@@ -260,10 +261,42 @@
           "volume_fixtures": 30,
           "socle_fixtures": 18,
           "exact_chambers": 398,
-          "independent_greedy_checks": 1592
+          "independent_greedy_checks": 1592,
+          "overlapping_socle_fixtures": 6,
+          "overlapping_row_and_greedy_checks": 2008,
+          "overlapping_full_matrix_checks": 239,
+          "rectangular_boxes_checked": 517,
+          "rectangular_prefix_checks": 9,
+          "cartesian_rank_delay_fixtures": 9
         }
       }
     ],
-    "scope": "The new controls validate only the two stated proof-route obstructions. They do not prove the target unrestricted asymptotic theorem."
+    "scope": "The expanded exact controls verify overlapping-socle quotient models, the conditional rectangular rank lemma, field-sensitive fans and Cartesian rank-delay witnesses. They do not prove the unrestricted target theorem."
+  },
+  "second_feasibility_results": {
+    "record": "docs/interleaving_research.md, Second feasibility pass: interacting relations and a conditional count",
+    "checks": "results/research/structural_complexity_checks.json",
+    "all_socle_relation_spaces": {
+      "hypotheses": "I=J_D+R with D a finite monomial order ideal and R any linear relation space supported on its maximal monomials, in any field.",
+      "proof": "Parallel downward chains from the maximal antichain are disjoint, so each total socle-coordinate sum is at most N-m <= n. Translating away the fixed standard monomials places the variable moment polytope in [0,n]^d. Apply the established lattice-polytope vertex theorem.",
+      "conclusion": "g(I)=O_d(n^(d(d-1)/(d+1))); in three variables O(n^(3/2)).",
+      "decision": "Even arbitrary overlap confined to the socle cannot beat the generic order. Relations with surviving nonconstant multiples are required.",
+      "novelty_claimed": false
+    },
+    "conditional_count": {
+      "hypothesis": "For an integer kappa>=1, every monomial box of volume at least kappa*n has quotient residues spanning the length-n algebra.",
+      "lemma": "The first M=d^d*kappa*n monomials of every generic positive geometric order span the quotient. Greedy independence recovers its standard basis.",
+      "conclusion": "g(I)=O_d((kappa*n)^(d-1)(log(kappa*n+1))^(d-1)) using the existing ordered-prefix theorem.",
+      "further_consequence": "For fixed d and kappa, the minimum cardinality of a universal monomial-order list for this whole class is Theta_d,kappa(n^(d-1)(log n)^(d-1)), with the lower bound supplied by one generic point ideal.",
+      "scope": "A conditional theorem, not an unrestricted bound or a new runtime theorem.",
+      "non_generic_control": "The published seven-point F_29 configuration with ten initial staircases satisfies the rectangular condition with kappa=1, despite the generic count eight.",
+      "priority_established": false
+    },
+    "unrestricted_obstructions": [
+      "For n diagonal points, kappa grows as Theta_d(n^(d-1)) even though g(I)=d for n>=2.",
+      "Translated Cartesian axis staircases give radical point ideals with g(I)=1, no identically zero monomial evaluations, and minimum representing-word/rank-completion length Omega_d(n^d). A uniform linear representative-word bound is false even for point ideals."
+    ],
+    "goal_qualifying_unrestricted_advance": false,
+    "completion_decision": "Keep the full goal active. These supporting results identify the remaining mechanism and do not satisfy the all-ideal or all-point-configuration acceptance criterion."
   }
 }

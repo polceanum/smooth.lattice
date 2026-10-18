@@ -3804,3 +3804,190 @@ controls above show why shrinking the full volume and adding independent
 socle gadgets do not answer that question. The strongest-current-bound audit
 and the unrestricted asymptotic theorem remain unfinished. The goal stays
 active, and these auxiliary controls do not change the completed manuscript.
+
+### Second feasibility pass: interacting relations and a conditional count
+
+The preceding turn made progress by proving and testing two specific route
+obstructions. This pass strengthens one obstruction to all socle relation
+spaces and proves a conditional counting lemma that permits non-generic
+dependencies. These are supporting results for the unrestricted objective;
+neither the objective nor its acceptance criteria is replaced by this class.
+Priority of the conditional result is not established.
+
+#### All socle relation spaces have a small moment budget
+
+Keep a finite order ideal D in d variables, of size N, and its maximal-point
+antichain S, of size m. For each coordinate i, the downward coordinate chains
+
+    {a-t e_i : 0<=t<=a_i},  a in S,
+
+are disjoint subsets of D: two maximal points cannot have the same other
+coordinates. Consequently
+
+    sum_{a in S}(a_i+1) <= N,
+    sum_{a in S} a_i <= N-m.                         (SC1)
+
+Let R be any r-dimensional linear subspace of the span of the socle
+monomials x^a, a in S, over any field. No disjoint-support assumption is made.
+Then I=J_D+R is an ideal, because every nonconstant monomial multiple of R
+lies in J_D. Its length is n=N-r. Every standard monomial basis consists
+of the fixed set D minus S and a basis of the vector configuration S/R.
+The latter statement follows either by row reduction of R in the chosen
+monomial order or by greedy independence of the residue columns.
+
+Translate the state moments by the fixed sum of D minus S. The remaining
+moments are sums of subsets of S. By (SC1), each coordinate lies between
+0 and N-m<=n. Thus their convex hull is an integer polytope in [0,n]^d.
+The established projected-matroid/state-polyhedron correspondence identifies
+each initial staircase with a distinct positive-normal vertex of this
+polytope. Andrews's lattice-polytope vertex bound, used in the original
+general proof, now gives
+
+    g(I) = O_d(n^(d(d-1)/(d+1))).                    (SC2)
+
+If the affine dimension is smaller, apply the bound in that dimension; its
+exponent is no larger. In three variables (SC2) is O(n^(3/2)). The earlier
+O(n^(4/3)) bound remains stronger for disjoint one-relation blocks. In every
+fixed dimension, the exponent in (SC2) is strictly less than d-1. Therefore
+even arbitrary overlapping socle relations cannot beat the existing generic
+corner-cut order. A viable larger lower construction must use relations
+whose nonconstant multiples also survive.
+
+The antichain budget and application of the known vertex theorem are
+elementary supporting tools; no separate novelty claim is made for (SC2).
+The checker constructs six genuine quotient algebras with overlapping
+relation spaces. It checks multiplication, cyclicity and the moment budget,
+then compares descending relation-row reduction with ascending residue-column
+greediness on every exact weight chamber. Characteristics are kept separate:
+for one 32-dimensional quotient the counts are 18 over Q and F_29, 10 over
+F_2, and 14 over F_3. Reducing a rational configuration modulo a prime does
+not generally preserve its entire fan.
+
+#### Conditional count from rectangular spanning
+
+Let A=K[x_1,...,x_d]/I have dimension n. Suppose an integer kappa>=1 has
+the following property:
+
+    Every monomial box B(L)={a:0<=a_i<L_i} of volume
+    L_1...L_d >= kappa*n has residues spanning A.     (RS)
+
+This condition is stated in terms of quotient ranks, independently of the
+number of initial ideals. It allows dependencies among particular n-element
+staircases. Then
+
+    g(I) <= W_d(M),  M=d^d*kappa*n,                 (RS1)
+
+where W_d(M) denotes the number of geometric ordered prefixes. In particular,
+using the completed ordered-prefix theorem,
+
+    g(I) = O_d((kappa*n)^(d-1)
+                 (log(kappa*n+1))^(d-1)).          (RS2)
+
+Proof. Choose a positive rationally independent weight w and a threshold t
+strictly between its M-th and (M+1)-st lattice scores. Put
+
+    L_i=floor(t/(d*w_i))+1.
+
+The box B(L) lies strictly inside the t-cut. Moreover
+
+    M <= product_i(floor(t/w_i)+1)
+      <= d^d product_i(floor(t/(d*w_i))+1)
+       = d^d |B(L)|.
+
+Thus |B(L)|>=kappa*n, and (RS) shows that the first M monomials already
+span A. Greedy independence on this ordered word recovers its n standard
+monomials. For fixed I, identical words give identical standard bases, so
+the number of bases is bounded by the number of words. Every global
+monomial initial ideal is represented by such a generic positive weight,
+by the established finite-order representation. This proves (RS1), and
+the previously proved word count proves (RS2).
+
+There is a precise consequence for universal order selection in this class.
+For fixed d and kappa, choose one order for each length-M geometric word.
+This list, independent of I, recovers every initial ideal of every quotient
+satisfying (RS). Its cardinality is O_d,kappa(n^(d-1)(log n)^(d-1)). The
+class contains generic point ideals, since a box of volume at least n
+contains an n-element staircase and every such staircase is basic in the
+generic case. A single generic ideal already has C_d(n) distinct initial
+ideals. Hence any universal list for this class has the matching lower
+order. The minimum list size is therefore
+
+    Theta_d,kappa(n^(d-1)(log n)^(d-1)).            (RS3)
+
+This is a cardinality result, not a new enumeration-runtime claim. Known
+universal-order constructions and the prior-art boundary still need to be
+compared before treating it as a paper contribution.
+
+The condition is strictly broader than the full generic staircase model:
+the published seven-point configuration over F_29, with ten initial
+staircases rather than the generic eight, satisfies (RS) with kappa=1.
+The checker verifies all 49 boxes with sides at most seven. Each coordinate
+axis gives a seven-element basis, so any larger box also spans; this finite
+check proves (RS) for that exact configuration. The resulting positive
+weight tests complete rank by indices 8, 7 and 7, respectively, within the
+guaranteed length 28. The first case explicitly contains a rejected monomial.
+
+#### Why rank delay alone cannot settle the unrestricted problem
+
+The parameter kappa cannot be bounded uniformly for all point configurations.
+For n distinct diagonal points (t_j,...,t_j), the rank of B(L) is
+
+    min(n, L_1+...+L_d-d+1),
+
+by ordinary Vandermonde independence. Deficient boxes have sum_i L_i <=
+n+d-2; their largest volume is attained by balanced side lengths and has
+order n^d. The smallest integer kappa in (RS) consequently has order
+n^(d-1), even though this ideal has exactly d initial staircases for n>=2.
+All linear relations x_i-x_j eliminate every variable except the least one
+in the order, leaving its powers 0 through n-1. Thus large rank delay does
+not imply a large fan.
+
+Even choosing a different representing weight for each staircase cannot
+make rank completion uniformly linear in n. Set
+
+    D_L={0} union {j e_i:1<=j<=L,1<=i<=d},  n=1+dL.
+
+Over Q, the same points form a Cartesian configuration. Its ideal has a
+Groebner basis for every monomial order given by x_i*x_j (i!=j) and the
+univariate polynomials product_{j=0}^L(x_i-j). Their leading monomials
+are x_i*x_j and x_i^(L+1) for every global order, so D_L is the unique
+standard staircase. Indeed, the displayed leading monomials leave exactly
+n standard monomials, while the polynomials vanish on n distinct points;
+the matching dimensions prove the Groebner and point-ideal assertions.
+Translating each coordinate by L+1 preserves all
+initial ideals and makes every point coordinate nonzero. Translation
+preserves leading monomials because its additional terms are divisors of
+the original terms.
+
+Every geometric word containing D_L reaches score at least L*max_i w_i.
+All points with coordinates at most floor((L-1)/d) have strictly smaller
+score. Every representing word therefore has length at least
+
+    (floor((L-1)/d)+1)^d = Omega_d(n^d).
+
+This is a radical point-ideal family with g(I)=1 and no monomial evaluating
+to zero identically on its points. It rules out extending (RS2) simply by
+asserting a short representative word for every initial staircase. The
+proof needs a way to separate a large forced staircase from genuine
+variation; it cannot rely solely on the time at which rank becomes n.
+
+#### Additional primary comparison and remaining scope
+
+[Gallardo--Schmidt, arXiv:2205.15238v2](https://arxiv.org/html/2205.15238v2),
+Section 6.2, Definitions 6.3--6.4, Theorem 6.5 and its proof, and Lemmas
+6.6--6.7, have now been inspected. They use the established generic
+corner-cut correspondence to compute selected flat limits and GIT indices.
+Those statements do not give an unrestricted extremal count in our sense;
+the GIT linearization walls are a different parameter problem. The rest of
+the paper has not received a full proof audit. The primary SMU dissertation
+page is readable, but direct access to its download returned HTTP 403; its
+counting chapter is not claimed as read.
+
+The new exact tests cover 517 rectangular boxes, nine geometric-prefix
+checks, six overlapping-socle quotients and nine translated Cartesian
+rank-delay fixtures. The report retains the earlier controls, with separate
+field-dependent witnesses. The unrestricted asymptotic advance, full
+priority assessment and target manuscript are still missing. The goal
+remains active. The next construction must have surviving multiples of
+relations; the next upper argument must control variation despite a large
+fixed staircase.

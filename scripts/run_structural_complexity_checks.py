@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """Exact, bounded controls for the general initial-ideal research goal.
 
-This checks two proof-route obstructions, not a new unrestricted bound.
+This checks proof-route obstructions and a conditional rank lemma, not a new
+unrestricted bound.
 Uses only Python's standard library. Run from the repository root:
     python3 -B scripts/run_structural_complexity_checks.py
 """
 
 from fractions import Fraction
+from heapq import heappop, heappush
 from hashlib import sha256
 from itertools import combinations, product
 from math import comb, factorial, gcd, lcm
@@ -255,6 +257,254 @@ def socle_fixture(weights, cutoff, block_size):
     }
 
 
+def leading_row_pivots(rows, points, weight, characteristic):
+    """Initial monomials of a finite relation space, via descending row reduction."""
+    order = sorted(range(len(points)), key=lambda i: (dot(weight, points[i]), points[i]),
+                   reverse=True)
+    matrix = [[row[i] % characteristic if characteristic else Fraction(row[i])
+               for i in order] for row in rows]
+    rank, pivots = 0, []
+    for column in range(len(points)):
+        pivot = next((r for r in range(rank, len(matrix)) if matrix[r][column]), None)
+        if pivot is None:
+            continue
+        matrix[rank], matrix[pivot] = matrix[pivot], matrix[rank]
+        inverse = (pow(matrix[rank][column], -1, characteristic) if characteristic
+                   else 1 / matrix[rank][column])
+        matrix[rank] = [x * inverse for x in matrix[rank]]
+        if characteristic:
+            matrix[rank] = [x % characteristic for x in matrix[rank]]
+        for r in range(rank + 1, len(matrix)):
+            coefficient = matrix[r][column]
+            matrix[r] = [x - coefficient * y for x, y in zip(matrix[r], matrix[rank])]
+            if characteristic:
+                matrix[r] = [x % characteristic for x in matrix[r]]
+        pivots.append(points[order[column]])
+        rank += 1
+        if rank == len(matrix):
+            break
+    require(rank == len(rows), "relation space has the claimed dimension")
+    return set(pivots)
+
+
+def overlapping_socle_fixture(weights, cutoff, socle_rank):
+    domain = {p for p in product(*(range(cutoff // w + 1) for w in weights))
+              if dot(weights, p) <= cutoff}
+    socle = sorted(p for p in domain if all(
+        tuple(x + (i == j) for j, x in enumerate(p)) not in domain for i in range(3)))
+    require(1 <= socle_rank < len(socle), "proper nonzero quotient of the socle")
+    free = socle[:socle_rank]
+    vectors = {p: tuple(int(i == j) for i in range(socle_rank))
+               for j, p in enumerate(free)}
+    for j, point in enumerate(socle[socle_rank:], start=2):
+        vectors[point] = tuple(j ** i for i in range(socle_rank))
+    rows = []
+    for point in socle[socle_rank:]:
+        row = [0] * len(socle)
+        row[socle.index(point)] = 1
+        for i, coefficient in enumerate(vectors[point]):
+            row[i] = -coefficient
+        rows.append(row)
+    fixed = domain - set(socle)
+    basis = sorted(fixed | set(free))
+    n = len(basis)
+    indices = {p: i for i, p in enumerate(basis)}
+
+    def residue(point):
+        vector = [0] * n
+        if point in indices:
+            vector[indices[point]] = 1
+        elif point in vectors:
+            for i, coefficient in enumerate(vectors[point]):
+                vector[indices[free[i]]] = coefficient
+        return tuple(vector)
+
+    matrices = [tuple(residue(tuple(x + (i == j) for j, x in enumerate(p)))
+                      for p in basis) for i in range(3)]
+    for i, j in combinations(range(3), 2):
+        for a in range(n):
+            require(matvec(matrices[i], matrices[j][a]) ==
+                    matvec(matrices[j], matrices[i][a]), "overlapping relations commute")
+    border = {tuple(x + (i == j) for j, x in enumerate(p))
+              for p in domain for i in range(3)} - domain
+    columns = {}
+    for point in sorted(domain | border):
+        vector = residue((0, 0, 0))
+        for matrix, power in zip(matrices, point):
+            for _ in range(power):
+                vector = matvec(matrix, vector)
+        require(vector == residue(point), "overlapping quotient is cyclic on D and its border")
+        columns[point] = vector
+    budget = [sum(p[i] for p in socle) for i in range(3)]
+    require(all(x + len(socle) <= len(domain) for x in budget), "antichain chain budget")
+    require(all(x <= n for x in budget), "all relative state moments fit in the length-n cube")
+    normals = sorted({primitive(tuple(x - y for x, y in zip(p, q)))
+                      for p, q in combinations(socle, 2)})
+    witnesses = positive_chambers(normals)
+    fields = []
+    full_checks = 0
+    for characteristic in (0, 2, 3, 29):
+        states = {}
+        for weight in witnesses:
+            excluded = leading_row_pivots(rows, socle, weight, characteristic)
+            selected = greedy(set(socle), vectors, weight, characteristic)
+            require(selected == set(socle) - excluded, "relation reduction agrees with residue greediness")
+            require(len(selected) == socle_rank, "socle rank")
+            moment = tuple(sum(p[i] for p in selected) for i in range(3))
+            require(all(0 <= moment[i] <= budget[i] <= n for i in range(3)), "relative state moment budget")
+            states.setdefault(tuple(sorted(selected)), weight)
+        for selected, weight in states.items():
+            actual = greedy(domain | border, columns, weight, characteristic)
+            require(actual == fixed | set(selected), "full cyclic-matrix greedy basis")
+            full_checks += 1
+        fields.append({
+            "characteristic": characteristic, "distinct_initial_staircases": len(states),
+            "all_chambers_checked": len(witnesses),
+            "witnesses": [{"selected_socle_monomials": selected, "positive_integer_weights": weight}
+                          for selected, weight in sorted(states.items())],
+        })
+    return {
+        "cut_weights": weights, "cutoff": cutoff, "monomial_order_ideal": sorted(domain),
+        "socle": socle, "socle_quotient_rank": socle_rank, "quotient_length": n,
+        "relation_matrix_columns_indexed_by_socle": rows,
+        "fixed_standard_monomials": sorted(fixed), "socle_coordinate_budgets": budget,
+        "multiplication_matrices_commute": True, "cyclicity_checked": True,
+        "exact_arrangement_chambers": len(witnesses), "fields": fields,
+        "row_relation_and_socle_greedy_checks": 4 * len(witnesses),
+        "full_cyclic_matrix_greedy_checks": full_checks,
+    }
+
+
+def integer_prefix(weights, length):
+    zero = (0,) * len(weights)
+    heap, seen, prefix = [(0, zero)], {zero}, []
+    while len(prefix) < length:
+        score, point = heappop(heap)
+        prefix.append((score, point))
+        for i, coefficient in enumerate(weights):
+            other = tuple(x + (i == j) for j, x in enumerate(point))
+            if other not in seen:
+                seen.add(other)
+                heappush(heap, (score + coefficient, other))
+    return prefix
+
+
+def rectangular_spanning_fixture(points, characteristic, label):
+    n, d = len(points), len(points[0])
+
+    def column(exponent):
+        return tuple(product_value(point, exponent) for point in points)
+
+    def product_value(point, exponent):
+        value = 1
+        for coordinate, power in zip(point, exponent):
+            value = value * pow(coordinate, power, characteristic) % characteristic
+        return value
+
+    deficient, box_count = [], 0
+    for sides in product(range(1, n + 1), repeat=d):
+        box = set(product(*(range(x) for x in sides)))
+        columns = {p: column(p) for p in box}
+        rank = len(greedy(box, columns, (1,) * d, characteristic))
+        box_count += 1
+        if rank < n:
+            deficient.append((len(box), sides, rank))
+        if max(sides) == n:
+            require(rank == n, "axis cyclicity bounds the entire infinite box check")
+    largest = max(deficient) if deficient else (0, (), 0)
+    kappa = largest[0] // n + 1
+    length = d ** d * kappa * n
+    tests = []
+    rough_weights = ([(1, 1), (1, 3), (3, 1)] if d == 2
+                     else [(1, 1, 1), (1, 2, 4), (4, 2, 1)])
+    for rough in rough_weights:
+        base = length + 1
+        scale = d * length * base ** (d - 1) + 1
+        weight = tuple(scale * x + base ** i for i, x in enumerate(rough))
+        word = integer_prefix(weight, length + 1)
+        require(all(a[0] < b[0] for a, b in zip(word, word[1:])), "strict finite word")
+        threshold = Fraction(word[-2][0] + word[-1][0], 2)
+        sides = tuple(int(threshold // (d * x)) + 1 for x in weight)
+        box = set(product(*(range(x) for x in sides)))
+        require(max(dot(weight, p) for p in box) < threshold, "inscribed box is strictly inside the cut")
+        require(len(box) * d ** d >= length, "geometric box-to-prefix cardinality bound")
+        require(len(box) >= kappa * n, "box satisfies the spanning threshold")
+        require(len(greedy(box, {p: column(p) for p in box}, weight, characteristic)) == n,
+                "inscribed box spans the quotient")
+        prefix = {p for _, p in word[:-1]}
+        selected = greedy(prefix, {p: column(p) for p in prefix}, weight, characteristic)
+        require(len(selected) == n, "length-M word determines a full standard basis")
+        completion = max(i + 1 for i, (_, p) in enumerate(word[:-1]) if p in selected)
+        tests.append({"positive_integer_weights": weight, "prefix_length": length,
+                      "inscribed_box_sides": sides, "box_volume": len(box),
+                      "rank_completion_index": completion,
+                      "selected_standard_monomials": sorted(selected)})
+    return {
+        "label": label, "field_characteristic": characteristic, "points": points,
+        "dimension": d, "n": n, "rectangular_spanning_parameter": kappa,
+        "finite_boxes_checked": box_count,
+        "largest_deficient_box": {"volume": largest[0], "sides": largest[1], "rank": largest[2]},
+        "infinite_box_reduction": "Every box with an axis side at least n contains a verified n-element axis basis; all remaining boxes were enumerated.",
+        "prefix_checks": tests,
+    }
+
+
+def cartesian_rank_delay_controls():
+    """Point ideals with one initial staircase but no short geometric cover."""
+    results = []
+    d, characteristic = 3, 101
+    for axis_length in (3, 6, 9):
+        zero = (0,) * d
+        staircase = {zero} | {tuple(k * (i == j) for j in range(d))
+                              for i in range(d) for k in range(1, axis_length + 1)}
+        shift = axis_length + 1
+        points = [tuple(x + shift for x in p) for p in sorted(staircase)]
+        require(all(0 < x < characteristic for p in points for x in p),
+                "translated point coordinates are nonzero")
+        for rough in ((1, 1, 1), (1, 2, 3), (3, 2, 1)):
+            exponent_bound = d * axis_length * (max(rough) + 1)
+            base = exponent_bound + 1
+            scale = d * exponent_bound * base ** (d - 1) + 1
+            weight = tuple(scale * x + base ** i for i, x in enumerate(rough))
+            last = max(staircase, key=lambda p: dot(weight, p))
+            threshold = dot(weight, last)
+            heap, seen, word = [(0, zero)], {zero}, []
+            while heap and heap[0][0] <= threshold:
+                score, point = heappop(heap)
+                word.append((score, point))
+                for i, coefficient in enumerate(weight):
+                    other = tuple(x + (i == j) for j, x in enumerate(point))
+                    if other not in seen:
+                        seen.add(other)
+                        heappush(heap, (score + coefficient, other))
+            require(all(a[0] < b[0] for a, b in zip(word, word[1:])), "strict Cartesian cover")
+            prefix = {p for _, p in word}
+            require(staircase <= prefix and word[-1][1] == last, "entire axis staircase is covered")
+            columns = {}
+            for a in prefix:
+                values = []
+                for point in points:
+                    value = 1
+                    for coordinate, power in zip(point, a):
+                        value = value * pow(coordinate, power, characteristic) % characteristic
+                    values.append(value)
+                columns[a] = tuple(values)
+            selected = greedy(prefix, columns, weight, characteristic)
+            require(selected == staircase, "unique staircase recovered from point evaluation")
+            require(len(greedy(prefix - {last}, columns, weight, characteristic)) == len(points) - 1,
+                    "rank completes only when the last axis monomial appears")
+            lower_side = (axis_length - 1) // d + 1
+            require(len(prefix) >= lower_side ** d, "uniform geometric cover lower bound")
+            results.append({
+                "axis_length": axis_length, "n": len(points), "field_characteristic": characteristic,
+                "translated_points": points, "unique_standard_staircase": sorted(staircase),
+                "positive_integer_weights": weight, "rank_completion_index": len(prefix),
+                "uniform_cover_lower_bound": lower_side ** d,
+                "nonzero_point_coordinates": True,
+            })
+    return results
+
+
 def main():
     fixtures = []
     for weights, cutoff in [((1, 1, 1), 2), ((1, 1, 1), 3),
@@ -262,10 +512,23 @@ def main():
                             ((2, 3, 5), 14), ((1, 2, 4), 9)]:
         for block_size in (2, 3, 100):
             fixtures.append(socle_fixture(weights, cutoff, block_size))
+    overlapping = [overlapping_socle_fixture(weights, cutoff, rank)
+                   for weights, cutoff in [((1, 1, 1), 3), ((2, 3, 5), 11), ((2, 3, 5), 14)]
+                   for rank in (2, 3)]
+    rectangular = [
+        rectangular_spanning_fixture(
+            [(0, 0), (1, 1), (2, 2), (3, 4), (5, 7), (11, 13), (17, 10)],
+            29, "published nongeneric seven-point control"),
+        rectangular_spanning_fixture([(t, t ** 5, t ** 25) for t in range(1, 6)],
+                                     1009, "five-point exponential evaluation configuration"),
+        rectangular_spanning_fixture([(t, t, t) for t in range(1, 8)],
+                                     29, "diagonal configuration: spanning parameter need not be one"),
+    ]
+    cartesian = cartesian_rank_delay_controls()
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
         "schema_version": 1, "command": "python3 -B scripts/run_structural_complexity_checks.py",
-        "scope": "Bounded exact controls for two failed proof routes; no unrestricted asymptotic advance or novelty assertion.",
+        "scope": "Bounded exact checks of route obstructions and a conditional counting lemma; no unrestricted asymptotic advance or novelty assertion.",
         "source_sha256": {name: sha256((ROOT / name).read_bytes()).hexdigest() for name in sources},
         "volume_obstruction": volume_controls(),
         "disjoint_socle_relation_control": {
@@ -274,9 +537,29 @@ def main():
             "arbitrary_overlapping_relation_spaces_covered": False,
             "fixtures": fixtures,
         },
+        "overlapping_socle_relations": {
+            "uniform_conclusion": "Arbitrary relation spaces confined to the socle give O_d(n^(d(d-1)/(d+1))) initial staircases, by an antichain coordinate budget and the established lattice-polytope bound.",
+            "scope_exclusion": "Relations with surviving nonconstant multiples are not covered.",
+            "fixtures": overlapping,
+        },
+        "rectangular_spanning_control": {
+            "conditional_conclusion": "If every monomial box of volume at least kappa*n spans, every standard basis is determined by a geometric word of length d^d*kappa*n. The existing ordered-prefix theorem then gives O_d((kappa*n)^(d-1)(log(kappa*n+1))^(d-1)).",
+            "scope_exclusion": "The spanning parameter is not universally bounded; the diagonal family has growing parameter and only d initial ideals.",
+            "fixtures": rectangular,
+        },
+        "cartesian_rank_delay_control": {
+            "uniform_conclusion": "Translated Cartesian axis staircases give radical point ideals with g(I)=1, no zero monomial evaluations, and minimum geometric rank-completion length Omega_d(n^d). A linear rank-delay bound cannot be imposed on all point ideals.",
+            "fixtures": cartesian,
+        },
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
-                    "independent_greedy_checks": sum(f["greedy_checks"] for f in fixtures)},
+                    "independent_greedy_checks": sum(f["greedy_checks"] for f in fixtures),
+                    "overlapping_socle_fixtures": len(overlapping),
+                    "overlapping_row_and_greedy_checks": sum(f["row_relation_and_socle_greedy_checks"] for f in overlapping),
+                    "overlapping_full_matrix_checks": sum(f["full_cyclic_matrix_greedy_checks"] for f in overlapping),
+                    "rectangular_boxes_checked": sum(f["finite_boxes_checked"] for f in rectangular),
+                    "rectangular_prefix_checks": sum(len(f["prefix_checks"]) for f in rectangular),
+                    "cartesian_rank_delay_fixtures": len(cartesian)},
         "goal_qualifying_advance": False,
     }
     target = ROOT / "results/research/structural_complexity_checks.json"
