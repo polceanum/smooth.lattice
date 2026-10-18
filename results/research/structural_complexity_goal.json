@@ -2,7 +2,7 @@
   "schema_version": 1,
   "recorded_on": "2026-10-18",
   "title": "Universal algebraic complexity beyond generic corner cuts",
-  "status": "active_conditional_count_and_surviving_relation_analysis",
+  "status": "active_fixed_curve_gate_resolved_unrestricted_circuit_bound_pending",
   "objective": "Prove a new structural theorem determining or substantially narrowing the worst-case asymptotic number of monomial initial ideals of finite polynomial algebras, starting with three variables and seeking a mechanism valid in every fixed dimension. Establish the strongest relevant primary baseline first. Success requires a complete uniform proof of sharp growth or a substantial asymptotic advance over that baseline for all colength-n ideals or all n-point configurations, a rigorous further algebraic, geometric or enumeration consequence, reproducible exact certificates and an honestly scoped manuscript. Examples, reformulations, already known corollaries and a plan alone do not complete this goal.",
   "plan": "docs/interleaving_research.md#higher-impact-research-plan-universal-algebraic-complexity",
   "relationship_to_previous_goal": "A new research objective. The completed corner-cut counting manuscript and its acceptance records remain separate and unchanged in mathematical content.",
@@ -34,17 +34,17 @@
     },
     {
       "id": "dependency_mechanism",
-      "status": "conditional_rank_and_binomial_minkowski_reductions_proved_multiterm_circuit_bound_pending",
+      "status": "anisotropic_relation_sector_bound_proved_unrestricted_multiterm_cover_pending",
       "deliverable": "A precise lemma about multiplication-compatible residue dependencies or state-polyhedron geometry, with its proof attempt and adversarial controls."
     },
     {
       "id": "infinite_lower_family",
-      "status": "socle_amplification_ruled_out_binomial_surviving_multiples_controlled_multiterm_family_pending",
+      "status": "fixed_curve_growth_sharply_classified_below_generic_variable_geometry_or_other_mechanism_required",
       "deliverable": "A symbolic realizable family and count proof, or a documented obstruction to the tested construction; finite examples alone are insufficient."
     },
     {
       "id": "uniform_asymptotic_theorem",
-      "status": "not_started",
+      "status": "proof_attempts_active_no_qualifying_unrestricted_advance",
       "deliverable": "Sharp growth or a substantial advance over the strongest checked asymptotic bound for G_3 or all-point F_3, with explicit scope and a route to general fixed dimension where justified."
     },
     {
@@ -123,7 +123,7 @@
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Proved the conditional rectangular-spanning count and its universal-order-list consequence, extended the socle obstruction to arbitrary relation spaces, and gave radical Cartesian counterexamples to uniform rank delay. Reviewed results were pushed in 1fa1db3; the unrestricted theorem remained open."
+    "reason": "Proved the binomial counting reduction, checked actual cyclic quotients in four characteristics and a nonpartition point circuit, and saved a realizable truncated-class point model with 37 versus 36 initial ideals in commit 57318ab. The unrestricted theorem remained open."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -213,12 +213,31 @@
       "authors": "Hassin and Tamir",
       "inspected": "Primary metadata and abstract only.",
       "finding": "A pair of objective data for planar convex optimization is not automatically two independent normalized weight parameters. No result is imported from the unread proof."
+    },
+    {
+      "source": "https://link.springer.com/content/pdf/10.1007/s00454-001-0086-z.pdf",
+      "authors": "Katoh and Tokuyama",
+      "inspected": "Theorem 12, Corollary 13, Proposition 15 and their proofs, set-equivalence definition and Section 4. The general Lovasz lemma statement and role were inspected, not its full proof.",
+      "finding": "An accessible official copy resolves the previous direct-download access issue. The class/level bounds need an additional representative-refinement argument before they can bound all bases; an explicit connected-region control demonstrates the distinction."
+    },
+    {
+      "source": "https://arxiv.org/pdf/2504.06960",
+      "authors": "Bae, Oliver and Papadopoulou",
+      "version": "v1; compared with SoCG 2025 conference version",
+      "inspected": "Section 6.1, Lemma 33, Corollaries 34--35 and adjacent arguments; not a full-paper audit.",
+      "finding": "Distinguishes levels and refined color diagrams. Specific convex-distance or position hypotheses do not automatically hold for our full residue-basis problem."
+    },
+    {
+      "source": "https://msp.org/ant/2007/1-3/ant-v1-n3-p01-p.pdf",
+      "authors": "Conca, De Negri and Rossi",
+      "inspected": "Abstract and introduction only.",
+      "finding": "Studies Cohen--Macaulay initial ideals of the homogeneous projective rational normal curve and contracted ideals. No novelty for the finite affine quotient count is inferred from the parameter difference; a full comparison would be needed if that restricted result were pursued as a contribution."
     }
   ],
   "next_actions": [
-    "Develop a dependency-sensitive count that handles overlapping multi-term circuits while retaining commuting multiplication and a cyclic vector; the binomial parallel-class argument alone cannot cover all point ideals.",
-    "Establish a symbolic asymptotic count or a uniform obstruction for the realizable truncated-degree-class point family, rather than enlarging finite enumeration. A lower family must exceed n^2 log^2 n in three variables to advance the goal.",
-    "Finish the remaining theorem-level priority checks for any actual unrestricted advance before preparing its manuscript. Keep binomial and conditional results scoped as comparison tools rather than changing the goal."
+    "Extend the relation/box/layer method to mixed leading monomials and large forced staircases. The proved O(n^(7/3)D) criterion would yield O(n^(8/3)) for ideals having a degree-O(n^(1/3)) relation with all pure top coefficients nonzero, but the Cartesian family explicitly prevents assuming this condition universally.",
+    "For a lower construction, vary the monomial-curve exponent vector with n and respect the explicit primitive-ratio upper bound, or use a different realizable dependency mechanism. Fixed-A asymptotic amplification is now ruled out; do not expand its finite enumeration.",
+    "Any use of colored k-level literature must include the missing representative-refinement bound. Complete the priority audit for an actual unrestricted advance before writing the target manuscript; restricted controls do not change acceptance criteria."
   ],
   "forward_citation_discovery": {
     "method": "Read-only OpenAlex forward-citation queries for the two founding papers, followed by primary-source inspection of potentially relevant records.",
@@ -315,11 +334,16 @@
           "binomial_exact_chambers": 595,
           "nonpartition_point_circuits": 1,
           "truncated_partition_staircases_checked": 86,
-          "truncated_partition_rational_checks": 37
+          "truncated_partition_rational_checks": 37,
+          "pure_power_sector_witnesses": 97,
+          "coarse_class_path_intervals": 6,
+          "normal_curve_fixtures": 10,
+          "normal_curve_allocations_checked": 726,
+          "normal_curve_independent_rank_checks": 4
         }
       }
     ],
-    "scope": "Exact checks cover the conditional rank lemma, socle obstructions, cyclic binomial quotients in four characteristics, a nonpartition point circuit, and all seven-box staircases of a truncated-class point model. These support restricted reductions and a finite mechanism test; the unrestricted target remains unproved."
+    "scope": "Exact controls now also verify 97 primitive-power sector witnesses, 726 normal-curve allocation certificates, four independent rational-minor certificates obtained modulo a proved prime, and the complete six-interval coarse-region path. The uniform moment, layer and fixed-curve conclusions rest on their saved proofs. No unrestricted theorem or novelty claim is established by these checks."
   },
   "second_feasibility_results": {
     "record": "docs/interleaving_research.md, Second feasibility pass: interacting relations and a conditional count",
@@ -385,6 +409,68 @@
       "finite_control": "For n=7, A=(1,6,9), t_j=j over Q, 37 initial staircases versus 36 generic corner cuts; all 86 staircases checked, with independent rational Gaussian checks of every positive witness.",
       "priority": "A finite test of a mechanism, not a new asymptotic theorem or a claim of novelty.",
       "next_gate": "Prove a symbolic count or a uniform obstruction for this family before enlarging enumeration."
+    }
+  },
+  "fourth_feasibility_results": {
+    "record": "docs/interleaving_research.md, Fourth feasibility pass: fixed curves cannot supply the required separation",
+    "anisotropic_moment_bound": {
+      "lemma": "For an n-element staircase in an integer box q, 2*mu_i <= n*(q_i-1). The old lattice-polytope vertex estimate applied to any subcollection of coherent moment vertices gives O_d((product_i(n*(q_i-1)/2+1))^((d-1)/(d+1))).",
+      "dimension_caveat": "Add the integral unit cube; the normal fan refines the old one and the resulting full-dimensional volume has the stated product bound.",
+      "priority": "An anisotropic reuse of the established Babson--Onn--Thomas/Andrews method, not a new unrestricted vertex theorem."
+    },
+    "fixed_curve_upper_bound": {
+      "hypotheses": "Every colength-n ideal over any field containing the primitive pure-power relations supplied by A=(A_1,...,A_d), positive integer A_i. The ideal need not be radical or binomial.",
+      "sector": "If i uniquely minimizes w_i/A_i, standard exponents satisfy a_j < min(n,A_i/gcd(A_i,A_j)) for j!=i.",
+      "uniform_parameter_bound": "g(I) <= C_d*n^(d-1)*sum_i(product_{j!=i}min(n,A_i/gcd(A_i,A_j)))^((d-1)/(d+1)).",
+      "fixed_A_consequence": "g(I)=O_A(n^(d-1)) for all finite quotients of a fixed monomial-curve ring, in every characteristic.",
+      "scope": "Does not give a new unrestricted upper bound; when the capped ratios grow to n, the expression returns the old exponent."
+    },
+    "sharp_restricted_infinite_family": {
+      "family": "The ideal of any n distinct positive samples (t,t^2,...,t^d), fixed d>=2.",
+      "conclusion": "g(I_n)=Theta_d(n^(d-1)).",
+      "upper": "Use the fixed-curve result A=(1,...,d).",
+      "lower": "For n=(d+1)m+e, m>=16d, independently take r_i in [m,m+floor(m/(8d))], i=1,...,d-1; set r_0=n-sum r_i. Weights w_d=d and w_i=d*(r_0-r_i)+i select exactly the n monomials in the d rays x_i*x_d^k, 0<=k<r_i, x_0=1.",
+      "realizability": "The quadratic toric reductions are strict; selected t-degrees are distinct, hence their evaluation columns are independent on every positive sample set by the proved Rolle argument.",
+      "lower_bound_cost": "At least (floor(m/(8d))+1)^(d-1) distinct staircases for every sufficiently large n, including every remainder.",
+      "scope": "Sharp only within this fixed curve. Its growth is below the existing generic lower bound; it does not improve F_d or G_d.",
+      "novelty_established": false
+    },
+    "coarse_class_refinement_control": {
+      "example": "The seven-point A=(1,6,9) model has different initial staircases at weights (131,22,27) and (181,26,45).",
+      "same_classes": [
+        0,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21
+      ],
+      "path_proof": "All changes of ground order on the straight segment occur at 0,1/26,7/38,13/50,1/2,29/34,1. The same classes and a strict cutoff gap persist at all boundaries and all six open intervals.",
+      "conclusion": "One connected coarse halfspace-deformation class contains different bases. A colored k-set count cannot be directly identified with the number of initial ideals.",
+      "caveat": "The 34 distinct degree sets among the 37 bases are not asserted to count connected class regions."
+    },
+    "finite_controls": {
+      "pure_power_sector_witnesses": 97,
+      "normal_curve_dimensions": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "normal_curve_allocation_certificates": 726,
+      "independent_modular_rank_checks": 4,
+      "coarse_class_path_intervals": 6,
+      "scope": "Finite exact checks support the uniform proofs; the modular rank checks certify rational minors and do not assert a uniform finite-field lower bound."
+    },
+    "goal_qualifying_unrestricted_advance": false,
+    "decision": "Stop fixed-A enumeration. Any curve-based lower separation needs A growing with n and must respect the explicit ratio bound. Continue an unrestricted dependency-sensitive upper argument or a different realizable lower mechanism; retain the full goal.",
+    "layer_upper_bound": {
+      "lemma": "If all staircases in a subcollection satisfy a_j<D, their moment vertices lie in O(nD) integer layers. Each layer has O(n^(4/3)) vertices by the established two-dimensional lattice bound, giving O(n^(7/3)D).",
+      "conditional_algebraic_consequence": "If I contains a degree-D polynomial with nonzero x^D,y^D,z^D coefficients, its leading monomial is pure in each maximum-weight sector. Thus g(I)=O(n^(7/3)D); D=O(n^(1/3)) gives O(n^(8/3)) for this class.",
+      "failure_of_unrestricted_promotion": "Translated Cartesian axis configurations of length n=1+3L have g=1 but no such polynomial of degree D<=L. Pure top coefficients vanish by restriction to each L+1-point axis.",
+      "scope": "A proved conditional bound, not an unrestricted advance. Mixed leading monomials and forced staircases still require a new mechanism."
     }
   }
 }

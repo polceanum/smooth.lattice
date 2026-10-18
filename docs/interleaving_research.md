@@ -4217,3 +4217,249 @@ increase as a new principle. Before increasing search size, the next task
 is a symbolic count or a uniform obstruction for this truncated-class
 family. It offers a realizable test of multi-term dependencies, while the
 unrestricted acceptance criterion remains unchanged.
+
+### Fourth feasibility pass: fixed curves cannot supply the required separation
+
+**Status:** the fixed-curve gate now has a proof, including a matching
+infinite family. Its growth is below the existing unrestricted generic
+lower bound, so it does not satisfy the goal. The results below use the
+established lattice-polytope estimate; novelty is not asserted.
+
+#### An anisotropic version of the established moment argument
+
+For any n-element staircase D in a box with integer sides q_1,...,q_d,
+write mu(D)=sum_{a in D} a. Columns parallel to coordinate i have lengths
+ell<=q_i, so
+
+    mu_i(D) = sum_columns ell*(ell-1)/2
+            <= n*(q_i-1)/2.                         (MB1)
+
+Take any subcollection of the initial staircases of a fixed colength-n
+ideal. Each of their moment sums remains a vertex of their convex hull:
+a positive weight selecting that staircase uniquely also selects its
+moment uniquely among any smaller collection. This is the established
+state-polytope correspondence, with no generic-point hypothesis. If the
+subcollection is contained in the same box, (MB1) and the lattice-polytope
+vertex estimate used in
+[Babson--Onn--Thomas, proof of Corollary 2.5](https://arxiv.org/pdf/math/0207135)
+give a bound
+
+    O_d((product_i [n*(q_i-1)/2+1])^((d-1)/(d+1))).  (MB2)
+
+The added ones make the dimension issue harmless. Add the integral unit
+cube to the moment polytope. Its normal fan refines the old one, so it has
+at least as many vertices; it is full-dimensional and has volume bounded
+by the product displayed in (MB2). Apply the usual volume bound there.
+Consequently the weaker, simpler expression
+
+    O_d((n^d * product_i q_i)^((d-1)/(d+1)))
+
+always suffices. A finite explicit cover by boxes allows summing this
+bound over the boxes. This is an anisotropic reuse of a known proof, not
+a new unrestricted vertex theorem.
+
+There is also a useful layer estimate in three variables. If a
+subcollection has a_j<D throughout, then its moment vertices occupy at
+most floor(n*(D-1)/2)+1 integer layers perpendicular to coordinate j.
+In each layer they remain vertices of a two-dimensional lattice
+polytope in a square of side at most n^2. The two-dimensional version of
+the same vertex theorem bounds that layer by O(n^(4/3)). Thus this
+subcollection has
+
+    O(n^(7/3)*D)                                  (MB3)
+
+initial staircases. This can be stronger than using only the full
+three-dimensional volume. In particular, if I contains a degree-D
+polynomial whose coefficients of x^D,y^D,z^D are all nonzero, then for
+a positive weight with a unique largest coordinate its leading monomial
+is that coordinate's D-th power. Three groups therefore cover all
+initial ideals, proving g(I)=O(n^(7/3)*D). The condition D=O(n^(1/3))
+would give O(n^(8/3)) for this class of ideals.
+
+The condition is not automatic, even for radical point ideals. For the
+Cartesian axis configuration D_L already used above, a polynomial of
+degree at most L vanishing on the points restricts to a univariate
+polynomial with L+1 roots on each axis. These restrictions are zero, so
+all its pure top-degree coefficients vanish. Translation preserves the
+top homogeneous part, giving the same obstruction with all point
+coordinates nonzero. Here n=1+3L and g(I)=1. A general proof must also
+handle mixed leading monomials and forced staircases; it cannot assert
+the small-D condition for every point set.
+
+#### Every finite quotient on a fixed monomial curve
+
+Let A=(A_1,...,A_d) be a vector of positive integers, with d>=2. Suppose
+I has colength n and contains the primitive pure-power relations
+
+    x_j^(A_i/gcd(A_i,A_j)) - x_i^(A_j/gcd(A_i,A_j))
+
+for every i!=j. In particular this holds for every finite quotient of
+the monomial-curve ring K[t^A_1,...,t^A_d], in every characteristic.
+Nonzero scalar twists of the relations give the same leading-power
+argument. The ideal I itself need not be binomial or radical.
+
+For a positive weight generic on the finitely many ratio ties, let i be
+the unique minimizer of w_i/A_i. The displayed relation has leading
+monomial x_j^(A_i/gcd(A_i,A_j)) for every j!=i. Hence the standard
+staircase has coordinate bounds
+
+    q_i=n,
+    q_j=min(n,A_i/gcd(A_i,A_j)) for j!=i.
+
+Every monomial initial ideal has a weight avoiding these ratio ties:
+its finite set of strict defining comparisons remains true on an open
+set. There are only d choices of i. Apply (MB2) to each group of moment
+vertices to obtain the explicit uniform estimate
+
+    g(I) <= C_d * n^(d-1)
+            * sum_i (product_{j!=i}
+                     min(n,A_i/gcd(A_i,A_j)))^((d-1)/(d+1)).       (MC1)
+
+All constants in (MC1) depend only on d. In particular,
+
+    g(I)=O_A(n^(d-1))                               (MC2)
+
+when the curve is fixed. No Vandermonde or positivity assumption is used
+for this upper bound. It covers all its finite quotients, not just the
+positive point configurations tested in the preceding pass.
+
+The dependence on A must not be suppressed when A varies with n. With
+every capped ratio as large as n, (MC1) returns the old unrestricted
+exponent 2d(d-1)/(d+1). Thus it is a quantitative restriction on a proposed
+construction, not an unrestricted improvement in disguise.
+
+The checker verifies 97 existing binomial and positive-point witnesses
+against these sector boxes and the stronger moment bound (MB1). It first
+perturbs each integer weight to remove ratio ties, preserving every
+previously strict comparison on V_n. For the point witnesses the perturbed
+basis is checked independently by rational Gaussian elimination.
+
+#### The exponent is attained on the affine rational normal curve
+
+For each fixed d>=2, let I_n be the ideal of any n distinct positive real
+samples on
+
+    (t,t^2,...,t^d).
+
+Then
+
+    g(I_n)=Theta_d(n^(d-1)).                       (MC3)
+
+Here is an explicit lower construction, valid for every sufficiently
+large n. Write n=(d+1)m+e, 0<=e<=d, take m>=16d, and put
+h=floor(m/(8d)). Independently choose integers r_i in [m,m+h] for
+1<=i<d, and set r_0=n-sum_{i=1}^{d-1}r_i. Thus r_0-r_i lies in
+[7m/8,m+d]. With x_0=1, define the staircase
+
+    D_r = union_{i=0}^{d-1} {x_i*x_d^k:0<=k<r_i}.
+
+It has n members and is closed under division, since r_0>=r_i.
+Choose integer weights
+
+    w_d=d,    w_i=d*(r_0-r_i)+i for 1<=i<d.
+
+For 1<=i,j<d, write i+j=q*d+s, 0<=s<d. The toric relations
+
+    x_i*x_j - x_s*x_d^q
+
+strictly reduce the product on the left. Indeed its weight is at least
+(7/4)*d*m+2, while the right side has weight at most
+d*m+d^2+2d-1 (or just d when s=0). The chosen m ensures strictness.
+These reductions leave exactly the d rays x_s*x_d^k. Their images are
+t^(s+d*k), one for each nonnegative integer degree, so they are
+independent in K[t] and give the unique normal representatives there.
+This also proves the claimed reduction system, without an assumption
+about a generic toric Groebner basis.
+
+The threshold T=d*r_0-1/2 selects exactly D_r from these rays: the last
+selected monomial on each ray has weight at most d*r_0-1, and the first
+unselected monomial has weight at least d*r_0. The selected degrees are
+distinct. The positive-root argument in the previous pass makes their
+evaluation columns independent on the n positive samples, so D_r is
+exactly the minimum-weight residue basis. Monomials outside the rays
+have a strictly cheaper representative of the same degree and cannot
+alter this conclusion.
+
+Different allocations give different staircases, providing
+(h+1)^(d-1)=Omega_d(n^(d-1)) witnesses. Apply (MC2) with A=(1,...,d)
+for the matching upper bound. This proves (MC3) for all sufficiently
+large n, including every remainder e, and for every choice of distinct
+positive samples. For a rational, completely explicit family take t_j=j.
+
+The checker verifies 726 allocation certificates in dimensions 2--6,
+including nonzero remainders. Each record gives the allocation ranges,
+exact first and last certificates, a digest of the full deterministically
+generated list, quadratic-reduction margins and cut thresholds. Four
+additional evaluation-rank checks are performed modulo the proved prime
+1000003. A nonzero integer evaluation determinant modulo that prime
+certifies a nonzero determinant over Q. This is a check of those rational
+examples, not a uniform assertion about arbitrary finite fields.
+
+This is a sharp infinite restricted-family control. It is below
+C_d(n)=Theta_d(n^(d-1)(log n)^(d-1)), and supplies no new lower bound
+for F_d(n) or G_d(n). In particular, the earlier finite excess 37 versus
+36 cannot justify a claim of asymptotic amplification on a fixed curve.
+
+#### Prior-art distinction: a class region can contain different bases
+
+An accessible publisher copy of
+[Katoh--Tokuyama, *K-levels of concave surfaces*](https://link.springer.com/content/pdf/10.1007/s00454-001-0086-z.pdf)
+has now been inspected at Theorem 12, Corollary 13, Proposition 15 and
+their proofs, the set-equivalence definition, and Section 4. Proposition
+15 bounds connected halfspace-deformation classes preserving which sets
+are intersected. Corollary 13 bounds a single concave-surface level.
+Neither statement, by itself, counts all representatives selected inside
+the intersected degree classes. The proof of their general Lovasz lemma
+has not been fully audited here; its statement and role were inspected.
+
+The existing seven-point curve control makes the distinction exact.
+Weights (131,22,27) and (181,26,45) select the same degree set
+
+    {0,6,9,12,15,18,21}
+
+but different initial staircases. Along their straight weight segment,
+every pairwise-order change on V_7 occurs at one of
+
+    0, 1/26, 7/38, 13/50, 1/2, 29/34, 1.
+
+Exact checks at all seven endpoints and the six open intervals show that
+the selected degree classes remain the same and the gap to every
+unselected class remains positive. Choosing the halfspace threshold in
+that gap gives a continuous deformation. Thus even one connected class
+region contains two different bases. The 37 bases use 34 distinct degree
+sets, but the number 34 alone is not asserted to count connected regions.
+An additional refinement argument is required to convert a colored-level
+bound to an initial-ideal bound.
+
+The 2025 primary work of
+[Bae--Oliver--Papadopoulou, full version arXiv:2504.06960](https://arxiv.org/pdf/2504.06960),
+Section 6.1, Lemma 33, Corollaries 34--35 and their adjacent arguments,
+was inspected alongside the conference version. It distinguishes level
+complexity and refined color diagrams, and still cites the older
+single-level bound. Its precise convex-distance or position hypotheses
+must be checked before importing its sharper Voronoi counts. No
+unrestricted polynomial-quotient count is inferred from these results.
+
+[Conca--De Negri--Rossi (2007)](https://msp.org/ant/2007/1-3/ant-v1-n3-p01-p.pdf),
+abstract and introduction only, studies Cohen--Macaulay initial ideals
+of the homogeneous projective rational normal curve and their relation
+to contracted ideals. Its parameter and ideal differ from the varying
+colength-n finite affine quotients above. That distinction does not
+establish novelty for (MC3); the full relevant theorem comparison is
+still pending, and the curve result is not being promoted to a paper.
+
+#### Decision for the full goal
+
+The previous turn was progress: it produced the binomial reduction,
+actual cyclic quotient checks and a realizable nonbinomial control,
+saved in commit 57318ab. This turn resolves the promised fixed-curve
+asymptotic gate and identifies an exact gap in a possible literature
+transfer. It does not prove the required unrestricted advance.
+
+Do not extend the fixed-A enumeration. A stronger lower construction
+must vary A with n while respecting (MC1), or use a different realizable
+multi-term dependency mechanism. For the upper route, (MB2) identifies
+what a relation-based box cover would need to save; arbitrary mixed
+leading monomials do not supply the pure coordinate bounds used here.
+Keep the original goal active, with the unrestricted theorem, further
+consequence and target manuscript still outstanding.

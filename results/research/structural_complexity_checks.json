@@ -3,8 +3,8 @@
   "command": "python3 -B scripts/run_structural_complexity_checks.py",
   "scope": "Bounded exact checks of route obstructions and a conditional counting lemma; no unrestricted asymptotic advance or novelty assertion.",
   "source_sha256": {
-    "scripts/run_structural_complexity_checks.py": "e07dbd20ce5ab0ac965ed9c0a61b51270db243e9e16dd252b7099d5afc0248f7",
-    "docs/interleaving_research.md": "6853b246f4232eca390a4c81633d534cfa0bf9c9cb13059e88ccdd25d78920ad"
+    "scripts/run_structural_complexity_checks.py": "2bd702fae79450e217c5e64a490c10f45f157a68c35edb12c56bd517c5b11c37",
+    "docs/interleaving_research.md": "0a0a1e69a5dbb4cee4a80bd299af6588013da6f7433e1921acd1aaada884f57f"
   },
   "volume_obstruction": {
     "scope": "Exact determinant controls for an infinite symbolic construction; the uniform proof is in the research note.",
@@ -28284,6 +28284,3553 @@
     "rank_rule": "Over positive real samples, columns of distinct t-degrees form a generalized Vandermonde matrix; rank equals min(n, number of distinct degrees). This is a truncation of the degree-class partition matroid.",
     "scope": "A finite realizable test of a proposed lower-family mechanism, not an asymptotic advance or a novelty claim."
   },
+  "pure_power_sector_control": {
+    "uniform_conclusion": "Primitive pure-power relations supply d sector boxes. The lattice-polytope moment bound gives O_A(n^(d-1)) for every finite quotient on a fixed monomial curve, over every field; this rules out a fixed-curve asymptotic separation from the generic order.",
+    "scope": "A restricted consequence of the established state-polytope vertex estimate; not an unrestricted improvement or an established novelty claim.",
+    "witness_checks": [
+      {
+        "source": "binomial fixture 0",
+        "witness_index": 0,
+        "n": 4,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          161,
+          804,
+          1936
+        ],
+        "cheapest_variable_index": 0,
+        "box_sides": [
+          4,
+          1,
+          1
+        ],
+        "moment_sum": [
+          6,
+          0,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          12,
+          0,
+          0
+        ]
+      },
+      {
+        "source": "binomial fixture 0",
+        "witness_index": 1,
+        "n": 4,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          801,
+          644,
+          4336
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          2,
+          4,
+          2
+        ],
+        "moment_sum": [
+          2,
+          2,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          4,
+          12,
+          4
+        ]
+      },
+      {
+        "source": "binomial fixture 0",
+        "witness_index": 2,
+        "n": 4,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          161,
+          644,
+          176
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          3,
+          3,
+          4
+        ],
+        "moment_sum": [
+          3,
+          0,
+          1
+        ],
+        "doubled_moment_coordinate_bounds": [
+          8,
+          8,
+          12
+        ]
+      },
+      {
+        "source": "binomial fixture 0",
+        "witness_index": 3,
+        "n": 4,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          321,
+          164,
+          176
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          3,
+          3,
+          4
+        ],
+        "moment_sum": [
+          1,
+          1,
+          1
+        ],
+        "doubled_moment_coordinate_bounds": [
+          8,
+          8,
+          12
+        ]
+      },
+      {
+        "source": "binomial fixture 1",
+        "witness_index": 0,
+        "n": 4,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          801,
+          5124,
+          8496
+        ],
+        "cheapest_variable_index": 0,
+        "box_sides": [
+          4,
+          1,
+          1
+        ],
+        "moment_sum": [
+          6,
+          0,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          12,
+          0,
+          0
+        ]
+      },
+      {
+        "source": "binomial fixture 1",
+        "witness_index": 1,
+        "n": 4,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          1281,
+          1604,
+          7216
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          2,
+          4,
+          2
+        ],
+        "moment_sum": [
+          2,
+          2,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          4,
+          12,
+          4
+        ]
+      },
+      {
+        "source": "binomial fixture 1",
+        "witness_index": 2,
+        "n": 4,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          16161,
+          15044,
+          26416
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          2,
+          4,
+          2
+        ],
+        "moment_sum": [
+          1,
+          1,
+          1
+        ],
+        "doubled_moment_coordinate_bounds": [
+          4,
+          12,
+          4
+        ]
+      },
+      {
+        "source": "binomial fixture 1",
+        "witness_index": 3,
+        "n": 4,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          53601,
+          7684,
+          28336
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          2,
+          4,
+          2
+        ],
+        "moment_sum": [
+          0,
+          2,
+          2
+        ],
+        "doubled_moment_coordinate_bounds": [
+          4,
+          12,
+          4
+        ]
+      },
+      {
+        "source": "binomial fixture 1",
+        "witness_index": 4,
+        "n": 4,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          4961,
+          13764,
+          10096
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          3,
+          3,
+          4
+        ],
+        "moment_sum": [
+          3,
+          0,
+          1
+        ],
+        "doubled_moment_coordinate_bounds": [
+          8,
+          8,
+          12
+        ]
+      },
+      {
+        "source": "binomial fixture 1",
+        "witness_index": 5,
+        "n": 4,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          1761,
+          6724,
+          1136
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          3,
+          3,
+          4
+        ],
+        "moment_sum": [
+          1,
+          0,
+          3
+        ],
+        "doubled_moment_coordinate_bounds": [
+          8,
+          8,
+          12
+        ]
+      },
+      {
+        "source": "binomial fixture 1",
+        "witness_index": 6,
+        "n": 4,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          3041,
+          10884,
+          496
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          3,
+          3,
+          4
+        ],
+        "moment_sum": [
+          0,
+          0,
+          6
+        ],
+        "doubled_moment_coordinate_bounds": [
+          8,
+          8,
+          12
+        ]
+      },
+      {
+        "source": "binomial fixture 2",
+        "witness_index": 0,
+        "n": 5,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          182,
+          1271,
+          1826
+        ],
+        "cheapest_variable_index": 0,
+        "box_sides": [
+          5,
+          1,
+          1
+        ],
+        "moment_sum": [
+          10,
+          0,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "source": "binomial fixture 2",
+        "witness_index": 1,
+        "n": 5,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          182,
+          728,
+          197
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          3,
+          3,
+          5
+        ],
+        "moment_sum": [
+          4,
+          0,
+          2
+        ],
+        "doubled_moment_coordinate_bounds": [
+          10,
+          10,
+          20
+        ]
+      },
+      {
+        "source": "binomial fixture 2",
+        "witness_index": 2,
+        "n": 5,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          1268,
+          1452,
+          559
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          3,
+          3,
+          5
+        ],
+        "moment_sum": [
+          2,
+          1,
+          2
+        ],
+        "doubled_moment_coordinate_bounds": [
+          10,
+          10,
+          20
+        ]
+      },
+      {
+        "source": "binomial fixture 2",
+        "witness_index": 3,
+        "n": 5,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          906,
+          728,
+          4903
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          2,
+          5,
+          2
+        ],
+        "moment_sum": [
+          2,
+          4,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          5,
+          20,
+          5
+        ]
+      },
+      {
+        "source": "binomial fixture 2",
+        "witness_index": 4,
+        "n": 5,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          1268,
+          366,
+          559
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          2,
+          5,
+          2
+        ],
+        "moment_sum": [
+          1,
+          3,
+          1
+        ],
+        "doubled_moment_coordinate_bounds": [
+          5,
+          20,
+          5
+        ]
+      },
+      {
+        "source": "binomial fixture 3",
+        "witness_index": 0,
+        "n": 5,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          906,
+          3805,
+          25175
+        ],
+        "cheapest_variable_index": 0,
+        "box_sides": [
+          5,
+          1,
+          1
+        ],
+        "moment_sum": [
+          10,
+          0,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          20,
+          0,
+          0
+        ]
+      },
+      {
+        "source": "binomial fixture 3",
+        "witness_index": 1,
+        "n": 5,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          11404,
+          12855,
+          89249
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          2,
+          5,
+          2
+        ],
+        "moment_sum": [
+          2,
+          4,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          5,
+          20,
+          5
+        ]
+      },
+      {
+        "source": "binomial fixture 3",
+        "witness_index": 2,
+        "n": 5,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          4526,
+          728,
+          23003
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          2,
+          5,
+          2
+        ],
+        "moment_sum": [
+          0,
+          10,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          5,
+          20,
+          5
+        ]
+      },
+      {
+        "source": "binomial fixture 3",
+        "witness_index": 3,
+        "n": 5,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          8867010,
+          8701217,
+          15059578
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          2,
+          5,
+          2
+        ],
+        "moment_sum": [
+          1,
+          3,
+          1
+        ],
+        "doubled_moment_coordinate_bounds": [
+          5,
+          20,
+          5
+        ]
+      },
+      {
+        "source": "binomial fixture 3",
+        "witness_index": 4,
+        "n": 5,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          318018,
+          79463,
+          223732
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          2,
+          5,
+          2
+        ],
+        "moment_sum": [
+          0,
+          6,
+          1
+        ],
+        "doubled_moment_coordinate_bounds": [
+          5,
+          20,
+          5
+        ]
+      },
+      {
+        "source": "binomial fixture 3",
+        "witness_index": 5,
+        "n": 5,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          123624,
+          317840,
+          278575
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          3,
+          3,
+          5
+        ],
+        "moment_sum": [
+          4,
+          0,
+          2
+        ],
+        "doubled_moment_coordinate_bounds": [
+          10,
+          10,
+          20
+        ]
+      },
+      {
+        "source": "binomial fixture 3",
+        "witness_index": 6,
+        "n": 5,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          67514,
+          111500,
+          117485
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          3,
+          3,
+          5
+        ],
+        "moment_sum": [
+          2,
+          1,
+          2
+        ],
+        "doubled_moment_coordinate_bounds": [
+          10,
+          10,
+          20
+        ]
+      },
+      {
+        "source": "binomial fixture 3",
+        "witness_index": 7,
+        "n": 5,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          409604,
+          182995,
+          160020
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          3,
+          3,
+          5
+        ],
+        "moment_sum": [
+          0,
+          3,
+          3
+        ],
+        "doubled_moment_coordinate_bounds": [
+          10,
+          10,
+          20
+        ]
+      },
+      {
+        "source": "binomial fixture 3",
+        "witness_index": 8,
+        "n": 5,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          440555,
+          456667,
+          163278
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          3,
+          3,
+          5
+        ],
+        "moment_sum": [
+          0,
+          1,
+          6
+        ],
+        "doubled_moment_coordinate_bounds": [
+          10,
+          10,
+          20
+        ]
+      },
+      {
+        "source": "binomial fixture 3",
+        "witness_index": 9,
+        "n": 5,
+        "powers": [
+          1,
+          2,
+          3
+        ],
+        "perturbed_integer_weights": [
+          2354,
+          8511,
+          559
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          3,
+          3,
+          5
+        ],
+        "moment_sum": [
+          0,
+          0,
+          10
+        ],
+        "doubled_moment_coordinate_bounds": [
+          10,
+          10,
+          20
+        ]
+      },
+      {
+        "source": "binomial fixture 4",
+        "witness_index": 0,
+        "n": 6,
+        "powers": [
+          1,
+          2,
+          4
+        ],
+        "perturbed_integer_weights": [
+          1069,
+          4633,
+          16757
+        ],
+        "cheapest_variable_index": 0,
+        "box_sides": [
+          6,
+          1,
+          1
+        ],
+        "moment_sum": [
+          15,
+          0,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          30,
+          0,
+          0
+        ]
+      },
+      {
+        "source": "binomial fixture 4",
+        "witness_index": 1,
+        "n": 6,
+        "powers": [
+          1,
+          2,
+          4
+        ],
+        "perturbed_integer_weights": [
+          4273,
+          3565,
+          29573
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          2,
+          6,
+          1
+        ],
+        "moment_sum": [
+          3,
+          6,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          6,
+          30,
+          0
+        ]
+      },
+      {
+        "source": "binomial fixture 4",
+        "witness_index": 2,
+        "n": 6,
+        "powers": [
+          1,
+          2,
+          4
+        ],
+        "perturbed_integer_weights": [
+          3561,
+          14601,
+          4297
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          4,
+          2,
+          6
+        ],
+        "moment_sum": [
+          7,
+          0,
+          2
+        ],
+        "doubled_moment_coordinate_bounds": [
+          18,
+          6,
+          30
+        ]
+      },
+      {
+        "source": "binomial fixture 4",
+        "witness_index": 3,
+        "n": 6,
+        "powers": [
+          1,
+          2,
+          4
+        ],
+        "perturbed_integer_weights": [
+          11037,
+          7125,
+          4297
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          4,
+          2,
+          6
+        ],
+        "moment_sum": [
+          3,
+          2,
+          2
+        ],
+        "doubled_moment_coordinate_bounds": [
+          18,
+          6,
+          30
+        ]
+      },
+      {
+        "source": "binomial fixture 5",
+        "witness_index": 0,
+        "n": 6,
+        "powers": [
+          1,
+          2,
+          4
+        ],
+        "perturbed_integer_weights": [
+          2137,
+          8905,
+          72293
+        ],
+        "cheapest_variable_index": 0,
+        "box_sides": [
+          6,
+          1,
+          1
+        ],
+        "moment_sum": [
+          15,
+          0,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          30,
+          0,
+          0
+        ]
+      },
+      {
+        "source": "binomial fixture 5",
+        "witness_index": 1,
+        "n": 6,
+        "powers": [
+          1,
+          2,
+          4
+        ],
+        "perturbed_integer_weights": [
+          33465,
+          39165,
+          330037
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          2,
+          6,
+          1
+        ],
+        "moment_sum": [
+          3,
+          6,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          6,
+          30,
+          0
+        ]
+      },
+      {
+        "source": "binomial fixture 5",
+        "witness_index": 2,
+        "n": 6,
+        "powers": [
+          1,
+          2,
+          4
+        ],
+        "perturbed_integer_weights": [
+          167321,
+          389469,
+          567133
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          4,
+          2,
+          6
+        ],
+        "moment_sum": [
+          7,
+          0,
+          2
+        ],
+        "doubled_moment_coordinate_bounds": [
+          18,
+          6,
+          30
+        ]
+      },
+      {
+        "source": "binomial fixture 5",
+        "witness_index": 3,
+        "n": 6,
+        "powers": [
+          1,
+          2,
+          4
+        ],
+        "perturbed_integer_weights": [
+          138129,
+          221437,
+          325765
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          4,
+          2,
+          6
+        ],
+        "moment_sum": [
+          3,
+          2,
+          2
+        ],
+        "doubled_moment_coordinate_bounds": [
+          18,
+          6,
+          30
+        ]
+      },
+      {
+        "source": "binomial fixture 5",
+        "witness_index": 4,
+        "n": 6,
+        "powers": [
+          1,
+          2,
+          4
+        ],
+        "perturbed_integer_weights": [
+          63725,
+          191533,
+          53781
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          4,
+          2,
+          6
+        ],
+        "moment_sum": [
+          3,
+          0,
+          6
+        ],
+        "doubled_moment_coordinate_bounds": [
+          18,
+          6,
+          30
+        ]
+      },
+      {
+        "source": "binomial fixture 6",
+        "witness_index": 0,
+        "n": 7,
+        "powers": [
+          1,
+          2,
+          4
+        ],
+        "perturbed_integer_weights": [
+          4645,
+          28256,
+          64654
+        ],
+        "cheapest_variable_index": 0,
+        "box_sides": [
+          7,
+          1,
+          1
+        ],
+        "moment_sum": [
+          21,
+          0,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          0,
+          0
+        ]
+      },
+      {
+        "source": "binomial fixture 6",
+        "witness_index": 1,
+        "n": 7,
+        "powers": [
+          1,
+          2,
+          4
+        ],
+        "perturbed_integer_weights": [
+          775,
+          779,
+          6604
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          2,
+          7,
+          1
+        ],
+        "moment_sum": [
+          3,
+          9,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          7,
+          42,
+          0
+        ]
+      },
+      {
+        "source": "binomial fixture 6",
+        "witness_index": 2,
+        "n": 7,
+        "powers": [
+          1,
+          2,
+          4
+        ],
+        "perturbed_integer_weights": [
+          775,
+          5810,
+          1573
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          4,
+          2,
+          7
+        ],
+        "moment_sum": [
+          9,
+          0,
+          3
+        ],
+        "doubled_moment_coordinate_bounds": [
+          21,
+          7,
+          42
+        ]
+      },
+      {
+        "source": "binomial fixture 6",
+        "witness_index": 3,
+        "n": 7,
+        "powers": [
+          1,
+          2,
+          4
+        ],
+        "perturbed_integer_weights": [
+          43732,
+          54959,
+          23245
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          4,
+          2,
+          7
+        ],
+        "moment_sum": [
+          3,
+          3,
+          3
+        ],
+        "doubled_moment_coordinate_bounds": [
+          21,
+          7,
+          42
+        ]
+      },
+      {
+        "source": "binomial fixture 7",
+        "witness_index": 0,
+        "n": 7,
+        "powers": [
+          1,
+          2,
+          4
+        ],
+        "perturbed_integer_weights": [
+          4645,
+          28256,
+          64654
+        ],
+        "cheapest_variable_index": 0,
+        "box_sides": [
+          7,
+          1,
+          1
+        ],
+        "moment_sum": [
+          21,
+          0,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          0,
+          0
+        ]
+      },
+      {
+        "source": "binomial fixture 7",
+        "witness_index": 1,
+        "n": 7,
+        "powers": [
+          1,
+          2,
+          4
+        ],
+        "perturbed_integer_weights": [
+          1936,
+          3101,
+          11248
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          2,
+          7,
+          1
+        ],
+        "moment_sum": [
+          3,
+          9,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          7,
+          42,
+          0
+        ]
+      },
+      {
+        "source": "binomial fixture 7",
+        "witness_index": 2,
+        "n": 7,
+        "powers": [
+          1,
+          2,
+          4
+        ],
+        "perturbed_integer_weights": [
+          3097,
+          392,
+          29050
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          2,
+          7,
+          1
+        ],
+        "moment_sum": [
+          0,
+          21,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          7,
+          42,
+          0
+        ]
+      },
+      {
+        "source": "binomial fixture 7",
+        "witness_index": 3,
+        "n": 7,
+        "powers": [
+          1,
+          2,
+          4
+        ],
+        "perturbed_integer_weights": [
+          80884,
+          259295,
+          285631
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          4,
+          2,
+          7
+        ],
+        "moment_sum": [
+          9,
+          0,
+          3
+        ],
+        "doubled_moment_coordinate_bounds": [
+          21,
+          7,
+          42
+        ]
+      },
+      {
+        "source": "binomial fixture 7",
+        "witness_index": 4,
+        "n": 7,
+        "powers": [
+          1,
+          2,
+          4
+        ],
+        "perturbed_integer_weights": [
+          16642,
+          27869,
+          36790
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          4,
+          2,
+          7
+        ],
+        "moment_sum": [
+          3,
+          3,
+          3
+        ],
+        "doubled_moment_coordinate_bounds": [
+          21,
+          7,
+          42
+        ]
+      },
+      {
+        "source": "binomial fixture 7",
+        "witness_index": 5,
+        "n": 7,
+        "powers": [
+          1,
+          2,
+          4
+        ],
+        "perturbed_integer_weights": [
+          53794,
+          20903,
+          22858
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          4,
+          2,
+          7
+        ],
+        "moment_sum": [
+          0,
+          3,
+          9
+        ],
+        "doubled_moment_coordinate_bounds": [
+          21,
+          7,
+          42
+        ]
+      },
+      {
+        "source": "binomial fixture 7",
+        "witness_index": 6,
+        "n": 7,
+        "powers": [
+          1,
+          2,
+          4
+        ],
+        "perturbed_integer_weights": [
+          1549,
+          14324,
+          412
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          4,
+          2,
+          7
+        ],
+        "moment_sum": [
+          0,
+          0,
+          21
+        ],
+        "doubled_moment_coordinate_bounds": [
+          21,
+          7,
+          42
+        ]
+      },
+      {
+        "source": "binomial fixture 8",
+        "witness_index": 0,
+        "n": 9,
+        "powers": [
+          1,
+          3,
+          5
+        ],
+        "perturbed_integer_weights": [
+          1411,
+          14811,
+          21891
+        ],
+        "cheapest_variable_index": 0,
+        "box_sides": [
+          9,
+          1,
+          1
+        ],
+        "moment_sum": [
+          36,
+          0,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          72,
+          0,
+          0
+        ]
+      },
+      {
+        "source": "binomial fixture 8",
+        "witness_index": 1,
+        "n": 9,
+        "powers": [
+          1,
+          3,
+          5
+        ],
+        "perturbed_integer_weights": [
+          1411,
+          14106,
+          3561
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          5,
+          5,
+          9
+        ],
+        "moment_sum": [
+          16,
+          0,
+          4
+        ],
+        "doubled_moment_coordinate_bounds": [
+          36,
+          36,
+          72
+        ]
+      },
+      {
+        "source": "binomial fixture 8",
+        "witness_index": 2,
+        "n": 9,
+        "powers": [
+          1,
+          3,
+          5
+        ],
+        "perturbed_integer_weights": [
+          26086,
+          35961,
+          14136
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          5,
+          5,
+          9
+        ],
+        "moment_sum": [
+          7,
+          3,
+          4
+        ],
+        "doubled_moment_coordinate_bounds": [
+          36,
+          36,
+          72
+        ]
+      },
+      {
+        "source": "binomial fixture 8",
+        "witness_index": 3,
+        "n": 9,
+        "powers": [
+          1,
+          3,
+          5
+        ],
+        "perturbed_integer_weights": [
+          1411,
+          2121,
+          15546
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          3,
+          9,
+          3
+        ],
+        "moment_sum": [
+          9,
+          9,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          18,
+          72,
+          18
+        ]
+      },
+      {
+        "source": "binomial fixture 8",
+        "witness_index": 4,
+        "n": 9,
+        "powers": [
+          1,
+          3,
+          5
+        ],
+        "perturbed_integer_weights": [
+          13396,
+          4236,
+          7791
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          3,
+          9,
+          3
+        ],
+        "moment_sum": [
+          5,
+          7,
+          2
+        ],
+        "doubled_moment_coordinate_bounds": [
+          18,
+          72,
+          18
+        ]
+      },
+      {
+        "source": "binomial fixture 9",
+        "witness_index": 0,
+        "n": 9,
+        "powers": [
+          1,
+          3,
+          5
+        ],
+        "perturbed_integer_weights": [
+          131836,
+          810051,
+          2408316
+        ],
+        "cheapest_variable_index": 0,
+        "box_sides": [
+          9,
+          1,
+          1
+        ],
+        "moment_sum": [
+          36,
+          0,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          72,
+          0,
+          0
+        ]
+      },
+      {
+        "source": "binomial fixture 9",
+        "witness_index": 1,
+        "n": 9,
+        "powers": [
+          1,
+          3,
+          5
+        ],
+        "perturbed_integer_weights": [
+          317956,
+          784671,
+          2247576
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          3,
+          9,
+          3
+        ],
+        "moment_sum": [
+          9,
+          9,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          18,
+          72,
+          18
+        ]
+      },
+      {
+        "source": "binomial fixture 9",
+        "witness_index": 2,
+        "n": 9,
+        "powers": [
+          1,
+          3,
+          5
+        ],
+        "perturbed_integer_weights": [
+          263671,
+          251691,
+          740991
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          3,
+          9,
+          3
+        ],
+        "moment_sum": [
+          5,
+          7,
+          2
+        ],
+        "doubled_moment_coordinate_bounds": [
+          18,
+          72,
+          18
+        ]
+      },
+      {
+        "source": "binomial fixture 9",
+        "witness_index": 3,
+        "n": 9,
+        "powers": [
+          1,
+          3,
+          5
+        ],
+        "perturbed_integer_weights": [
+          223486,
+          74031,
+          273576
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          3,
+          9,
+          3
+        ],
+        "moment_sum": [
+          3,
+          9,
+          3
+        ],
+        "doubled_moment_coordinate_bounds": [
+          18,
+          72,
+          18
+        ]
+      },
+      {
+        "source": "binomial fixture 9",
+        "witness_index": 4,
+        "n": 9,
+        "powers": [
+          1,
+          3,
+          5
+        ],
+        "perturbed_integer_weights": [
+          207976,
+          14811,
+          81816
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          3,
+          9,
+          3
+        ],
+        "moment_sum": [
+          0,
+          9,
+          9
+        ],
+        "doubled_moment_coordinate_bounds": [
+          18,
+          72,
+          18
+        ]
+      },
+      {
+        "source": "binomial fixture 9",
+        "witness_index": 5,
+        "n": 9,
+        "powers": [
+          1,
+          3,
+          5
+        ],
+        "perturbed_integer_weights": [
+          210796,
+          765636,
+          1003251
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          5,
+          5,
+          9
+        ],
+        "moment_sum": [
+          16,
+          0,
+          4
+        ],
+        "doubled_moment_coordinate_bounds": [
+          36,
+          36,
+          72
+        ]
+      },
+      {
+        "source": "binomial fixture 9",
+        "witness_index": 6,
+        "n": 9,
+        "powers": [
+          1,
+          3,
+          5
+        ],
+        "perturbed_integer_weights": [
+          19741,
+          41601,
+          55026
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          5,
+          5,
+          9
+        ],
+        "moment_sum": [
+          7,
+          3,
+          4
+        ],
+        "doubled_moment_coordinate_bounds": [
+          36,
+          36,
+          72
+        ]
+      },
+      {
+        "source": "binomial fixture 9",
+        "witness_index": 7,
+        "n": 9,
+        "powers": [
+          1,
+          3,
+          5
+        ],
+        "perturbed_integer_weights": [
+          45826,
+          86721,
+          19776
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          5,
+          5,
+          9
+        ],
+        "moment_sum": [
+          0,
+          3,
+          18
+        ],
+        "doubled_moment_coordinate_bounds": [
+          36,
+          36,
+          72
+        ]
+      },
+      {
+        "source": "binomial fixture 9",
+        "witness_index": 8,
+        "n": 9,
+        "powers": [
+          1,
+          3,
+          5
+        ],
+        "perturbed_integer_weights": [
+          2821,
+          34551,
+          741
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          5,
+          5,
+          9
+        ],
+        "moment_sum": [
+          0,
+          0,
+          36
+        ],
+        "doubled_moment_coordinate_bounds": [
+          36,
+          36,
+          72
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 0,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          46874,
+          46883,
+          2567
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          7,
+          3,
+          7
+        ],
+        "moment_sum": [
+          0,
+          0,
+          21
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          14,
+          42
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 1,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          8523486,
+          4642904,
+          944961
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          7,
+          3,
+          7
+        ],
+        "moment_sum": [
+          0,
+          1,
+          15
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          14,
+          42
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 2,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          4642895,
+          8523495,
+          944961
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          7,
+          3,
+          7
+        ],
+        "moment_sum": [
+          1,
+          0,
+          15
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          14,
+          42
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 3,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          1776241,
+          732709,
+          254201
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          7,
+          3,
+          7
+        ],
+        "moment_sum": [
+          0,
+          2,
+          11
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          14,
+          42
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 4,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          6732444,
+          6732453,
+          1731934
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          7,
+          3,
+          7
+        ],
+        "moment_sum": [
+          1,
+          1,
+          10
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          14,
+          42
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 5,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          732700,
+          1776250,
+          254201
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          7,
+          3,
+          7
+        ],
+        "moment_sum": [
+          2,
+          0,
+          11
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          14,
+          42
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 6,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          1290242,
+          360192,
+          249267
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          7,
+          3,
+          7
+        ],
+        "moment_sum": [
+          0,
+          4,
+          7
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          14,
+          42
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 7,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          197626437,
+          143290771,
+          69394343
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          7,
+          3,
+          7
+        ],
+        "moment_sum": [
+          1,
+          2,
+          7
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          14,
+          42
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 8,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          143290762,
+          197626446,
+          69394343
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          7,
+          3,
+          7
+        ],
+        "moment_sum": [
+          2,
+          1,
+          7
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          14,
+          42
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 9,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          360183,
+          1290251,
+          249267
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          7,
+          3,
+          7
+        ],
+        "moment_sum": [
+          4,
+          0,
+          7
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          14,
+          42
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 10,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          323178,
+          54284,
+          66709
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          7,
+          3,
+          7
+        ],
+        "moment_sum": [
+          0,
+          6,
+          5
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          14,
+          42
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 11,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          14414682,
+          7465152,
+          7428237
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          7,
+          3,
+          7
+        ],
+        "moment_sum": [
+          1,
+          4,
+          4
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          14,
+          42
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 12,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          41940,
+          41949,
+          27237
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          7,
+          3,
+          7
+        ],
+        "moment_sum": [
+          2,
+          2,
+          5
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          14,
+          42
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 13,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          942395,
+          1778717,
+          942494
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          7,
+          3,
+          7
+        ],
+        "moment_sum": [
+          4,
+          1,
+          4
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          14,
+          42
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 14,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          249168,
+          1290251,
+          360282
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          7,
+          3,
+          7
+        ],
+        "moment_sum": [
+          7,
+          0,
+          4
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          14,
+          42
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 15,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          446528,
+          64152,
+          111115
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          6,
+          7,
+          2
+        ],
+        "moment_sum": [
+          0,
+          9,
+          3
+        ],
+        "doubled_moment_coordinate_bounds": [
+          35,
+          42,
+          7
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 16,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          1776241,
+          254111,
+          732799
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          6,
+          7,
+          2
+        ],
+        "moment_sum": [
+          0,
+          11,
+          2
+        ],
+        "doubled_moment_coordinate_bounds": [
+          35,
+          42,
+          7
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 17,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          18201527,
+          6214383,
+          12885241
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          6,
+          7,
+          2
+        ],
+        "moment_sum": [
+          1,
+          7,
+          2
+        ],
+        "doubled_moment_coordinate_bounds": [
+          35,
+          42,
+          7
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 18,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          41940,
+          27147,
+          42039
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          6,
+          7,
+          2
+        ],
+        "moment_sum": [
+          2,
+          5,
+          2
+        ],
+        "doubled_moment_coordinate_bounds": [
+          35,
+          42,
+          7
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 19,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          8523486,
+          944871,
+          4642994
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          6,
+          7,
+          2
+        ],
+        "moment_sum": [
+          0,
+          15,
+          1
+        ],
+        "doubled_moment_coordinate_bounds": [
+          35,
+          42,
+          7
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 20,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          6732444,
+          1731844,
+          6732543
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          6,
+          7,
+          2
+        ],
+        "moment_sum": [
+          1,
+          10,
+          1
+        ],
+        "doubled_moment_coordinate_bounds": [
+          35,
+          42,
+          7
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 21,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          143290762,
+          69394253,
+          197626536
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          6,
+          7,
+          2
+        ],
+        "moment_sum": [
+          2,
+          7,
+          1
+        ],
+        "doubled_moment_coordinate_bounds": [
+          35,
+          42,
+          7
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 22,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          942395,
+          942404,
+          1778807
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          6,
+          7,
+          2
+        ],
+        "moment_sum": [
+          4,
+          4,
+          1
+        ],
+        "doubled_moment_coordinate_bounds": [
+          35,
+          42,
+          7
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 23,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          27138,
+          41949,
+          42039
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          7,
+          3,
+          7
+        ],
+        "moment_sum": [
+          5,
+          2,
+          2
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          14,
+          42
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 24,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          69394244,
+          197626446,
+          143290861
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          7,
+          3,
+          7
+        ],
+        "moment_sum": [
+          7,
+          1,
+          2
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          14,
+          42
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 25,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          69394244,
+          143290771,
+          197626536
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          7,
+          3,
+          7
+        ],
+        "moment_sum": [
+          7,
+          2,
+          1
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          14,
+          42
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 26,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          1731835,
+          6732453,
+          6732543
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          7,
+          3,
+          7
+        ],
+        "moment_sum": [
+          10,
+          1,
+          1
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          14,
+          42
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 27,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          254102,
+          1776250,
+          732799
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          7,
+          3,
+          7
+        ],
+        "moment_sum": [
+          11,
+          0,
+          2
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          14,
+          42
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 28,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          944862,
+          8523495,
+          4642994
+        ],
+        "cheapest_variable_index": 2,
+        "box_sides": [
+          7,
+          3,
+          7
+        ],
+        "moment_sum": [
+          15,
+          0,
+          1
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          14,
+          42
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 29,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          46874,
+          2477,
+          46973
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          6,
+          7,
+          2
+        ],
+        "moment_sum": [
+          0,
+          21,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          35,
+          42,
+          7
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 30,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          4642895,
+          944871,
+          8523585
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          6,
+          7,
+          2
+        ],
+        "moment_sum": [
+          1,
+          15,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          35,
+          42,
+          7
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 31,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          732700,
+          254111,
+          1776340
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          6,
+          7,
+          2
+        ],
+        "moment_sum": [
+          2,
+          11,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          35,
+          42,
+          7
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 32,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          360183,
+          249177,
+          1290341
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          6,
+          7,
+          2
+        ],
+        "moment_sum": [
+          4,
+          7,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          35,
+          42,
+          7
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 33,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          249168,
+          360192,
+          1290341
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          6,
+          7,
+          2
+        ],
+        "moment_sum": [
+          7,
+          4,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          35,
+          42,
+          7
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 34,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          254102,
+          732709,
+          1776340
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          6,
+          7,
+          2
+        ],
+        "moment_sum": [
+          11,
+          2,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          35,
+          42,
+          7
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 35,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          944862,
+          4642904,
+          8523585
+        ],
+        "cheapest_variable_index": 1,
+        "box_sides": [
+          6,
+          7,
+          2
+        ],
+        "moment_sum": [
+          15,
+          1,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          35,
+          42,
+          7
+        ]
+      },
+      {
+        "source": "positive monomial-curve points",
+        "witness_index": 36,
+        "n": 7,
+        "powers": [
+          1,
+          6,
+          9
+        ],
+        "perturbed_integer_weights": [
+          2468,
+          46883,
+          46973
+        ],
+        "cheapest_variable_index": 0,
+        "box_sides": [
+          7,
+          1,
+          1
+        ],
+        "moment_sum": [
+          21,
+          0,
+          0
+        ],
+        "doubled_moment_coordinate_bounds": [
+          42,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "coarse_class_path_control": {
+    "point_initial_ideals": 37,
+    "distinct_selected_degree_sets": 34,
+    "same_connected_class_region": {
+      "degree_set": [
+        0,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21
+      ],
+      "witness_indices": [
+        10,
+        15
+      ],
+      "endpoint_integer_weights": [
+        [
+          131,
+          22,
+          27
+        ],
+        [
+          181,
+          26,
+          45
+        ]
+      ],
+      "complete_order_breakpoints": [
+        "0",
+        "1/26",
+        "7/38",
+        "13/50",
+        "1/2",
+        "29/34",
+        "1"
+      ],
+      "open_intervals_checked": 6,
+      "boundaries_checked": 7
+    },
+    "conclusion": "The two different initial staircases are in one connected halfspace-deformation class with the same selected degree classes. A coarse colored k-set count cannot be used directly as the number of initial ideals."
+  },
+  "normal_curve_lower_control": {
+    "uniform_conclusion": "The ideals of n distinct positive samples (t,t^2,...,t^d) have Theta_d(n^(d-1)) initial ideals. The full proof combines the fixed-curve upper bound with an explicit open family of ray allocations.",
+    "scope": "A sharp restricted-family control below the existing generic logarithmic order. It does not improve the unrestricted lower bound and novelty has not been established.",
+    "point_description": "For each fixture take t=1,...,n over Q; ray residue i has monomials x_i*x_d^k, with x_0=1.",
+    "fixtures": [
+      {
+        "dimension": 2,
+        "n": 96,
+        "m": 32,
+        "remainder": 0,
+        "offset_range": [
+          0,
+          2
+        ],
+        "allocation_certificates_checked": 3,
+        "canonical_certificates_sha256": "97e107a4ea034fb99c7f95a4f0474d824a458b73273c17f9eb9024081a00e6c9",
+        "first_certificate": {
+          "ray_counts": [
+            64,
+            32
+          ],
+          "positive_integer_weights": [
+            65,
+            2
+          ],
+          "minimum_quadratic_reduction_margin": 128,
+          "doubled_cut_threshold": 255
+        },
+        "last_certificate": {
+          "ray_counts": [
+            62,
+            34
+          ],
+          "positive_integer_weights": [
+            57,
+            2
+          ],
+          "minimum_quadratic_reduction_margin": 112,
+          "doubled_cut_threshold": 247
+        },
+        "independent_modular_rank_check": {
+          "characteristic": 1000003,
+          "rank": 96,
+          "allocation": [
+            62,
+            34
+          ],
+          "meaning": "The integer positive-point evaluation minor is nonzero modulo a proved prime, so it is also nonzero over Q. No uniform finite-field assertion is made."
+        }
+      },
+      {
+        "dimension": 2,
+        "n": 98,
+        "m": 32,
+        "remainder": 2,
+        "offset_range": [
+          0,
+          2
+        ],
+        "allocation_certificates_checked": 3,
+        "canonical_certificates_sha256": "a5c331a98ebe62f6a701d8e97feceb956881abbd03fcf5265e52b4084132c50c",
+        "first_certificate": {
+          "ray_counts": [
+            66,
+            32
+          ],
+          "positive_integer_weights": [
+            69,
+            2
+          ],
+          "minimum_quadratic_reduction_margin": 136,
+          "doubled_cut_threshold": 263
+        },
+        "last_certificate": {
+          "ray_counts": [
+            64,
+            34
+          ],
+          "positive_integer_weights": [
+            61,
+            2
+          ],
+          "minimum_quadratic_reduction_margin": 120,
+          "doubled_cut_threshold": 255
+        },
+        "independent_modular_rank_check": {
+          "characteristic": 1000003,
+          "rank": 98,
+          "allocation": [
+            64,
+            34
+          ],
+          "meaning": "The integer positive-point evaluation minor is nonzero modulo a proved prime, so it is also nonzero over Q. No uniform finite-field assertion is made."
+        }
+      },
+      {
+        "dimension": 3,
+        "n": 192,
+        "m": 48,
+        "remainder": 0,
+        "offset_range": [
+          0,
+          2
+        ],
+        "allocation_certificates_checked": 9,
+        "canonical_certificates_sha256": "c0f6d1b80d0c3762e6f8f97a00ebf1a01a4534e46014db7d0323954b8a3c727b",
+        "first_certificate": {
+          "ray_counts": [
+            96,
+            48,
+            48
+          ],
+          "positive_integer_weights": [
+            145,
+            146,
+            3
+          ],
+          "minimum_quadratic_reduction_margin": 144,
+          "doubled_cut_threshold": 575
+        },
+        "last_certificate": {
+          "ray_counts": [
+            92,
+            50,
+            50
+          ],
+          "positive_integer_weights": [
+            127,
+            128,
+            3
+          ],
+          "minimum_quadratic_reduction_margin": 126,
+          "doubled_cut_threshold": 551
+        },
+        "independent_modular_rank_check": {
+          "characteristic": 1000003,
+          "rank": 192,
+          "allocation": [
+            92,
+            50,
+            50
+          ],
+          "meaning": "The integer positive-point evaluation minor is nonzero modulo a proved prime, so it is also nonzero over Q. No uniform finite-field assertion is made."
+        }
+      },
+      {
+        "dimension": 3,
+        "n": 195,
+        "m": 48,
+        "remainder": 3,
+        "offset_range": [
+          0,
+          2
+        ],
+        "allocation_certificates_checked": 9,
+        "canonical_certificates_sha256": "024c2954d97ecd7903ae5c663b368c4ba3fcdb599e3973b1ed5d545e3f25a422",
+        "first_certificate": {
+          "ray_counts": [
+            99,
+            48,
+            48
+          ],
+          "positive_integer_weights": [
+            154,
+            155,
+            3
+          ],
+          "minimum_quadratic_reduction_margin": 153,
+          "doubled_cut_threshold": 593
+        },
+        "last_certificate": {
+          "ray_counts": [
+            95,
+            50,
+            50
+          ],
+          "positive_integer_weights": [
+            136,
+            137,
+            3
+          ],
+          "minimum_quadratic_reduction_margin": 135,
+          "doubled_cut_threshold": 569
+        },
+        "independent_modular_rank_check": {
+          "characteristic": 1000003,
+          "rank": 195,
+          "allocation": [
+            95,
+            50,
+            50
+          ],
+          "meaning": "The integer positive-point evaluation minor is nonzero modulo a proved prime, so it is also nonzero over Q. No uniform finite-field assertion is made."
+        }
+      },
+      {
+        "dimension": 4,
+        "n": 320,
+        "m": 64,
+        "remainder": 0,
+        "offset_range": [
+          0,
+          2
+        ],
+        "allocation_certificates_checked": 27,
+        "canonical_certificates_sha256": "dd7cfdc58ff546d89aafb02268fc8d555d81c09d9eae2be8f1145c9a998a97f1",
+        "first_certificate": {
+          "ray_counts": [
+            128,
+            64,
+            64,
+            64
+          ],
+          "positive_integer_weights": [
+            257,
+            258,
+            259,
+            4
+          ],
+          "minimum_quadratic_reduction_margin": 256,
+          "doubled_cut_threshold": 1023
+        },
+        "last_certificate": {
+          "ray_counts": [
+            122,
+            66,
+            66,
+            66
+          ],
+          "positive_integer_weights": [
+            225,
+            226,
+            227,
+            4
+          ],
+          "minimum_quadratic_reduction_margin": 224,
+          "doubled_cut_threshold": 975
+        },
+        "independent_modular_rank_check": null
+      },
+      {
+        "dimension": 4,
+        "n": 324,
+        "m": 64,
+        "remainder": 4,
+        "offset_range": [
+          0,
+          2
+        ],
+        "allocation_certificates_checked": 27,
+        "canonical_certificates_sha256": "6fa7d49ec224c819dc38bd7aa97d51539f92a8812d32136f8fd8d0ed1d9d7978",
+        "first_certificate": {
+          "ray_counts": [
+            132,
+            64,
+            64,
+            64
+          ],
+          "positive_integer_weights": [
+            273,
+            274,
+            275,
+            4
+          ],
+          "minimum_quadratic_reduction_margin": 272,
+          "doubled_cut_threshold": 1055
+        },
+        "last_certificate": {
+          "ray_counts": [
+            126,
+            66,
+            66,
+            66
+          ],
+          "positive_integer_weights": [
+            241,
+            242,
+            243,
+            4
+          ],
+          "minimum_quadratic_reduction_margin": 240,
+          "doubled_cut_threshold": 1007
+        },
+        "independent_modular_rank_check": null
+      },
+      {
+        "dimension": 5,
+        "n": 480,
+        "m": 80,
+        "remainder": 0,
+        "offset_range": [
+          0,
+          2
+        ],
+        "allocation_certificates_checked": 81,
+        "canonical_certificates_sha256": "44bbdad37250ff1c2dd66cf1f54fd749f674ee3417d0d0f18267b46124f0e422",
+        "first_certificate": {
+          "ray_counts": [
+            160,
+            80,
+            80,
+            80,
+            80
+          ],
+          "positive_integer_weights": [
+            401,
+            402,
+            403,
+            404,
+            5
+          ],
+          "minimum_quadratic_reduction_margin": 400,
+          "doubled_cut_threshold": 1599
+        },
+        "last_certificate": {
+          "ray_counts": [
+            152,
+            82,
+            82,
+            82,
+            82
+          ],
+          "positive_integer_weights": [
+            351,
+            352,
+            353,
+            354,
+            5
+          ],
+          "minimum_quadratic_reduction_margin": 350,
+          "doubled_cut_threshold": 1519
+        },
+        "independent_modular_rank_check": null
+      },
+      {
+        "dimension": 5,
+        "n": 485,
+        "m": 80,
+        "remainder": 5,
+        "offset_range": [
+          0,
+          2
+        ],
+        "allocation_certificates_checked": 81,
+        "canonical_certificates_sha256": "e54e8f6b65ea5ec90715a4c0eec02b5562b8e2a0de5a4b1450fc05daae4b4c41",
+        "first_certificate": {
+          "ray_counts": [
+            165,
+            80,
+            80,
+            80,
+            80
+          ],
+          "positive_integer_weights": [
+            426,
+            427,
+            428,
+            429,
+            5
+          ],
+          "minimum_quadratic_reduction_margin": 425,
+          "doubled_cut_threshold": 1649
+        },
+        "last_certificate": {
+          "ray_counts": [
+            157,
+            82,
+            82,
+            82,
+            82
+          ],
+          "positive_integer_weights": [
+            376,
+            377,
+            378,
+            379,
+            5
+          ],
+          "minimum_quadratic_reduction_margin": 375,
+          "doubled_cut_threshold": 1569
+        },
+        "independent_modular_rank_check": null
+      },
+      {
+        "dimension": 6,
+        "n": 672,
+        "m": 96,
+        "remainder": 0,
+        "offset_range": [
+          0,
+          2
+        ],
+        "allocation_certificates_checked": 243,
+        "canonical_certificates_sha256": "3eb22de8411adf086ff6e07704f7927da0fc0dfcc0ffd6c0adaef5bf88b4b3ec",
+        "first_certificate": {
+          "ray_counts": [
+            192,
+            96,
+            96,
+            96,
+            96,
+            96
+          ],
+          "positive_integer_weights": [
+            577,
+            578,
+            579,
+            580,
+            581,
+            6
+          ],
+          "minimum_quadratic_reduction_margin": 576,
+          "doubled_cut_threshold": 2303
+        },
+        "last_certificate": {
+          "ray_counts": [
+            182,
+            98,
+            98,
+            98,
+            98,
+            98
+          ],
+          "positive_integer_weights": [
+            505,
+            506,
+            507,
+            508,
+            509,
+            6
+          ],
+          "minimum_quadratic_reduction_margin": 504,
+          "doubled_cut_threshold": 2183
+        },
+        "independent_modular_rank_check": null
+      },
+      {
+        "dimension": 6,
+        "n": 678,
+        "m": 96,
+        "remainder": 6,
+        "offset_range": [
+          0,
+          2
+        ],
+        "allocation_certificates_checked": 243,
+        "canonical_certificates_sha256": "3d6d5d6cc16f8fd0d9fc1db4ae6ad6771b4aa0c9b5205011e39e57dc2425edaa",
+        "first_certificate": {
+          "ray_counts": [
+            198,
+            96,
+            96,
+            96,
+            96,
+            96
+          ],
+          "positive_integer_weights": [
+            613,
+            614,
+            615,
+            616,
+            617,
+            6
+          ],
+          "minimum_quadratic_reduction_margin": 612,
+          "doubled_cut_threshold": 2375
+        },
+        "last_certificate": {
+          "ray_counts": [
+            188,
+            98,
+            98,
+            98,
+            98,
+            98
+          ],
+          "positive_integer_weights": [
+            541,
+            542,
+            543,
+            544,
+            545,
+            6
+          ],
+          "minimum_quadratic_reduction_margin": 540,
+          "doubled_cut_threshold": 2255
+        },
+        "independent_modular_rank_check": null
+      }
+    ]
+  },
   "summary": {
     "volume_fixtures": 30,
     "socle_fixtures": 18,
@@ -28300,7 +31847,12 @@
     "binomial_exact_chambers": 595,
     "nonpartition_point_circuits": 1,
     "truncated_partition_staircases_checked": 86,
-    "truncated_partition_rational_checks": 37
+    "truncated_partition_rational_checks": 37,
+    "pure_power_sector_witnesses": 97,
+    "coarse_class_path_intervals": 6,
+    "normal_curve_fixtures": 10,
+    "normal_curve_allocations_checked": 726,
+    "normal_curve_independent_rank_checks": 4
   },
   "goal_qualifying_advance": false
 }

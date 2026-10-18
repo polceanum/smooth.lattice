@@ -718,6 +718,161 @@ def truncated_partition_point_control():
             "scope": "A finite realizable test of a proposed lower-family mechanism, not an asymptotic advance or a novelty claim."}
 
 
+def pure_power_sector_controls(binomial, point_fixture):
+    """Check the boxes supplied by primitive pure-power relations."""
+    results = []
+    sources = [(f"binomial fixture {index}", f) for index, f in enumerate(binomial)]
+    sources.append(("positive monomial-curve points", point_fixture))
+    for label, fixture in sources:
+        n, powers = fixture["n"], tuple(fixture["powers"])
+        ground = hyperbolic_cross(n, 3)
+        base = max(powers) + 1
+        delta = (1, base, base ** 2)
+        scale = 1 + (n - 1) * sum(delta) + 2 * max(powers) * max(delta)
+        for index, witness in enumerate(fixture["witnesses"]):
+            original = tuple(witness["positive_integer_weights"])
+            weight = tuple(scale * x + y for x, y in zip(original, delta))
+            for a, b in combinations(ground, 2):
+                normal = tuple(x - y for x, y in zip(a, b))
+                before, after = dot(original, normal), dot(weight, normal)
+                require(not before or before * after > 0,
+                        "integer perturbation preserves all strict ground comparisons")
+            ratios = [Fraction(w, a) for w, a in zip(weight, powers)]
+            require(len(set(ratios)) == 3, "unique degree-normalized cheapest variable")
+            axis = min(range(3), key=lambda i: ratios[i])
+            sides = [n if j == axis else min(n, powers[axis] // gcd(powers[axis], powers[j]))
+                     for j in range(3)]
+            selected = set(map(tuple, witness["standard_monomials"]))
+            require(all(a[j] < sides[j] for a in selected for j in range(3)),
+                    "standard staircase lies in the certified sector box")
+            moment = [sum(a[j] for a in selected) for j in range(3)]
+            require(all(2 * moment[j] <= n * (sides[j] - 1) for j in range(3)),
+                    "downward-column moment bound")
+            if label == "positive monomial-curve points":
+                columns = {a: tuple(t ** dot(a, powers) for t in range(1, n + 1))
+                           for a in ground}
+                require(greedy(ground, columns, weight, 0) == selected,
+                        "independent point evaluation after removing sector-boundary ties")
+            else:
+                chosen = {min(map(tuple, group), key=lambda a: (dot(weight, a), a))
+                          for group in fixture["parallel_classes"].values()}
+                require(chosen == selected, "binomial class minima survive perturbation")
+            results.append({"source": label, "witness_index": index, "n": n,
+                            "powers": powers, "perturbed_integer_weights": weight,
+                            "cheapest_variable_index": axis, "box_sides": sides,
+                            "moment_sum": moment,
+                            "doubled_moment_coordinate_bounds": [n * (side - 1) for side in sides]})
+    return results
+
+
+def coarse_class_path_control(fixture):
+    """Same connected class-selection region, different initial staircases."""
+    powers, n = fixture["powers"], fixture["n"]
+    ground = hyperbolic_cross(n, 3)
+    classes = {}
+    for a in ground:
+        classes.setdefault(dot(a, powers), []).append(a)
+    groups = {}
+    for index, witness in enumerate(fixture["witnesses"]):
+        degrees = tuple(sorted(dot(a, powers) for a in witness["standard_monomials"]))
+        groups.setdefault(degrees, []).append(index)
+    target, indices = next((degrees, indices) for degrees, indices in groups.items() if len(indices) > 1)
+    indices = indices[:2]
+    left, right = [tuple(fixture["witnesses"][i]["positive_integer_weights"]) for i in indices]
+    roots = {Fraction(0), Fraction(1)}
+    for a, b in combinations(ground, 2):
+        normal = tuple(x - y for x, y in zip(a, b))
+        start, finish = dot(left, normal), dot(right, normal)
+        if start != finish:
+            root = Fraction(start, start - finish)
+            if 0 < root < 1:
+                roots.add(root)
+    roots = sorted(roots)
+    samples = sorted(set(roots) | {(a + b) / 2 for a, b in zip(roots, roots[1:])})
+    for parameter in samples:
+        weight = tuple((1 - parameter) * a + parameter * b for a, b in zip(left, right))
+        require(min(weight) > 0, "entire parameter path has positive weights")
+        minima = sorted((min(dot(weight, a) for a in group), degree)
+                        for degree, group in classes.items())
+        require(tuple(sorted(degree for _, degree in minima[:n])) == target,
+                "same selected degree classes on every order interval and boundary")
+        require(minima[n - 1][0] < minima[n][0],
+                "continuous halfspace threshold separates selected and unselected classes")
+    require(fixture["witnesses"][indices[0]]["standard_monomials"] !=
+            fixture["witnesses"][indices[1]]["standard_monomials"],
+            "initial ideals change inside one connected coarse region")
+    return {"point_initial_ideals": fixture["point_initial_ideals"],
+            "distinct_selected_degree_sets": len(groups),
+            "same_connected_class_region": {"degree_set": target, "witness_indices": indices,
+                                            "endpoint_integer_weights": [left, right],
+                                            "complete_order_breakpoints": [str(x) for x in roots],
+                                            "open_intervals_checked": len(roots) - 1,
+                                            "boundaries_checked": len(roots)},
+            "conclusion": "The two different initial staircases are in one connected halfspace-deformation class with the same selected degree classes. A coarse colored k-set count cannot be used directly as the number of initial ideals."}
+
+
+def normal_curve_lower_controls():
+    """Exact allocation certificates for the uniform rational-normal-curve family."""
+    characteristic = 1_000_003
+    require(all(characteristic % p for p in range(2, 1001)), "prime modulus for independent rank checks")
+    fixtures = []
+    for d in range(2, 7):
+        m = 16 * d
+        h = m // (8 * d)
+        for remainder in (0, d):
+            n = (d + 1) * m + remainder
+            certificates = []
+            for offsets in product(range(h + 1), repeat=d - 1):
+                counts = [m + offset for offset in offsets]
+                counts.insert(0, n - sum(counts))
+                weight = tuple(d * (counts[0] - counts[i]) + i for i in range(1, d)) + (d,)
+                require(sum(counts) == n and min(counts) > 0, "positive allocation of n classes")
+                require(counts[0] >= max(counts[1:]), "ray union is a staircase")
+                margins = []
+                for i in range(1, d):
+                    for j in range(i, d):
+                        quotient, residue = divmod(i + j, d)
+                        tail = quotient * weight[-1] + (weight[residue - 1] if residue else 0)
+                        margins.append(weight[i - 1] + weight[j - 1] - tail)
+                require(min(margins) > 0, "every product of small variables is strictly reducible")
+                last_selected = [d * (counts[0] - 1)] + [weight[i - 1] + d * (counts[i] - 1)
+                                                         for i in range(1, d)]
+                first_unselected = [d * counts[0]] + [weight[i - 1] + d * counts[i]
+                                                     for i in range(1, d)]
+                doubled_threshold = 2 * d * counts[0] - 1
+                require(2 * max(last_selected) < doubled_threshold < 2 * min(first_unselected),
+                        "exact threshold cuts the prescribed n monomials in the d rays")
+                certificates.append({"ray_counts": counts, "positive_integer_weights": weight,
+                                     "minimum_quadratic_reduction_margin": min(margins),
+                                     "doubled_cut_threshold": doubled_threshold})
+            require(len({tuple(c["ray_counts"]) for c in certificates}) == (h + 1) ** (d - 1),
+                    "different allocations give distinct staircases")
+            rank_check = None
+            if d <= 3:
+                certificate = certificates[-1]
+                selected = []
+                for residue, count in enumerate(certificate["ray_counts"]):
+                    for k in range(count):
+                        a = [0] * d
+                        a[-1] = k
+                        if residue:
+                            a[residue - 1] = 1
+                        selected.append(tuple(a))
+                columns = {a: tuple(pow(t, dot(a, range(1, d + 1)), characteristic)
+                                    for t in range(1, n + 1)) for a in selected}
+                require(len(greedy(selected, columns, certificate["positive_integer_weights"], characteristic)) == n,
+                        "independent modular Vandermonde rank certificate implies nonzero rational determinant")
+                rank_check = {"characteristic": characteristic, "rank": n,
+                              "allocation": certificate["ray_counts"],
+                              "meaning": "The integer positive-point evaluation minor is nonzero modulo a proved prime, so it is also nonzero over Q. No uniform finite-field assertion is made."}
+            fixtures.append({"dimension": d, "n": n, "m": m, "remainder": remainder,
+                             "offset_range": [0, h], "allocation_certificates_checked": len(certificates),
+                             "canonical_certificates_sha256": sha256(json.dumps(certificates, sort_keys=True).encode()).hexdigest(),
+                             "first_certificate": certificates[0], "last_certificate": certificates[-1],
+                             "independent_modular_rank_check": rank_check})
+    return fixtures
+
+
 def main():
     fixtures = []
     for weights, cutoff in [((1, 1, 1), 2), ((1, 1, 1), 3),
@@ -740,6 +895,9 @@ def main():
     cartesian = cartesian_rank_delay_controls()
     binomial = binomial_controls()
     truncated_partition = truncated_partition_point_control()
+    sectors = pure_power_sector_controls(binomial, truncated_partition)
+    coarse_path = coarse_class_path_control(truncated_partition)
+    normal_curve = normal_curve_lower_controls()
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
         "schema_version": 1, "command": "python3 -B scripts/run_structural_complexity_checks.py",
@@ -773,6 +931,18 @@ def main():
             "nonpartition_point_control": nonpartition_point_control(),
         },
         "truncated_partition_point_control": truncated_partition,
+        "pure_power_sector_control": {
+            "uniform_conclusion": "Primitive pure-power relations supply d sector boxes. The lattice-polytope moment bound gives O_A(n^(d-1)) for every finite quotient on a fixed monomial curve, over every field; this rules out a fixed-curve asymptotic separation from the generic order.",
+            "scope": "A restricted consequence of the established state-polytope vertex estimate; not an unrestricted improvement or an established novelty claim.",
+            "witness_checks": sectors,
+        },
+        "coarse_class_path_control": coarse_path,
+        "normal_curve_lower_control": {
+            "uniform_conclusion": "The ideals of n distinct positive samples (t,t^2,...,t^d) have Theta_d(n^(d-1)) initial ideals. The full proof combines the fixed-curve upper bound with an explicit open family of ray allocations.",
+            "scope": "A sharp restricted-family control below the existing generic logarithmic order. It does not improve the unrestricted lower bound and novelty has not been established.",
+            "point_description": "For each fixture take t=1,...,n over Q; ray residue i has monomials x_i*x_d^k, with x_0=1.",
+            "fixtures": normal_curve,
+        },
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
                     "independent_greedy_checks": sum(f["greedy_checks"] for f in fixtures),
@@ -787,7 +957,12 @@ def main():
                     "binomial_exact_chambers": sum(f["exact_arrangement_chambers"] for f in binomial),
                     "nonpartition_point_circuits": 1,
                     "truncated_partition_staircases_checked": truncated_partition["staircases_checked"],
-                    "truncated_partition_rational_checks": truncated_partition["independent_rational_gaussian_checks"]},
+                    "truncated_partition_rational_checks": truncated_partition["independent_rational_gaussian_checks"],
+                    "pure_power_sector_witnesses": len(sectors),
+                    "coarse_class_path_intervals": coarse_path["same_connected_class_region"]["open_intervals_checked"],
+                    "normal_curve_fixtures": len(normal_curve),
+                    "normal_curve_allocations_checked": sum(f["allocation_certificates_checked"] for f in normal_curve),
+                    "normal_curve_independent_rank_checks": sum(f["independent_modular_rank_check"] is not None for f in normal_curve)},
         "goal_qualifying_advance": False,
     }
     target = ROOT / "results/research/structural_complexity_checks.json"
