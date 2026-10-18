@@ -2378,6 +2378,142 @@ def unequal_weight_jordan_countercontrols():
             "scope": "Exact falsification certificates for a transfer lemma, not an asymptotic lower bound or a novelty claim."}
 
 
+def codimension_one_binomial_quotient_controls():
+    """Complete small fans for a one-dimensional quotient of a binomial algebra."""
+    fixtures = []
+    for period, delay, expected in ((7, 0, (11, 18)), (6, 1, (8, 12)), (6, 2, (6, 8))):
+        q, powers = period + delay, (1, 2, 3)
+        parent_modulus = [0] * (q + 1)
+        parent_modulus[delay], parent_modulus[q] = -1, 1
+        child_modulus = [0] * delay + [1] * period
+        # Removing one factor t-1 gives an actual ideal containment of length difference one.
+        product_modulus = [0] * (q + 1)
+        for i, value in enumerate(child_modulus):
+            product_modulus[i] -= value
+            product_modulus[i + 1] += value
+        require(product_modulus == parent_modulus, "parent=(t-1)*child")
+        circuit = set(range(delay, q))
+        full_ground = hyperbolic_cross(q, 3)
+
+        def residue_class(a):
+            degree = dot(a, powers)
+            return degree if degree < delay else delay + (degree - delay) % period
+
+        def model(modulus, ground):
+            t = (0, 1) + (0,) * (len(modulus) - 3)
+            images = [univariate_power_mod(t, exponent, modulus) for exponent in powers]
+            return cyclic_univariate_model(modulus, images, ground)
+
+        parent_columns = model(parent_modulus, full_ground)
+        child_columns = model(child_modulus, full_ground)
+        require(all(parent_columns[a] == tuple(int(i == residue_class(a)) for i in range(q))
+                    for a in full_ground), "parent columns are exactly the stated parallel classes")
+        circuit_columns = [child_columns[(i, 0, 0)] for i in sorted(circuit)]
+        require(tuple(sum(column[i] for column in circuit_columns) for i in range(q - 1)) ==
+                (0,) * (q - 1), "the unique child circuit has all coefficients one")
+        require(all(determinant([child_columns[(i, 0, 0)] for i in range(q) if i != omitted]) != 0
+                    for omitted in circuit), "omitting any circuit class gives a child basis")
+        if delay:
+            require(determinant([child_columns[(i, 0, 0)] for i in range(q) if i == 0 or i >= 2]) == 0
+                    if delay == 2 else determinant(circuit_columns) == 0,
+                    "omitting a coloop does not give a child basis")
+
+        fans, checked = [], 0
+        for n, columns, removed in ((q, parent_columns, 0), (q - 1, child_columns, 1)):
+            records = []
+            for state in finite_staircases(n, 3):
+                ordered = sorted(state)
+                classes = {residue_class(a): a for a in ordered}
+                missing = set(range(q)) - set(classes)
+                independent = len(classes) == n and (not removed or missing <= circuit)
+                minor = determinant([columns[a] for a in ordered])
+                require((minor != 0) == independent, "single-circuit basis criterion agrees with exact determinant")
+                require(minor in (-1, 0, 1), "these fixture basis decisions hold in every characteristic")
+                record = {"staircase": ordered, "basis_determinant": str(minor)}
+                checked += 1
+                if not independent:
+                    record["status"] = "dependent"
+                    records.append(record)
+                    continue
+                normals = set()
+                for b in full_ground:
+                    if b in state:
+                        continue
+                    label = residue_class(b)
+                    targets = ([classes[label]] if label in classes else
+                               [a for key, a in classes.items() if key in circuit])
+                    for a in targets:
+                        normal = tuple(x - y for x, y in zip(b, a))
+                        if min(normal) >= 0:
+                            continue
+                        divisor = gcd(*normal)
+                        normals.add(tuple(x // divisor for x in normal))
+                polygon = [tuple(Fraction(i == j) for i in range(3)) for j in range(3)]
+                for normal in sorted(normals):
+                    polygon = clip(polygon, normal, 1)
+                    if not polygon:
+                        break
+                record["strict_class_and_circuit_comparison_normals"] = sorted(normals)
+                if not polygon:
+                    certificate = strict_linear_infeasibility_certificate(normals)
+                    require(all(value >= 0 for value in certificate["nonnegative_coefficients"]) and
+                            any(certificate["nonnegative_coefficients"]) and
+                            tuple(sum(value * normal[i] for value, normal in
+                                      zip(certificate["nonnegative_coefficients"], certificate["normals"]))
+                                  for i in range(3)) == (0, 0, 0), "independent infeasibility certificate check")
+                    record.update({"status": "independent_but_incoherent", "infeasibility_certificate": certificate})
+                else:
+                    weight = tuple(sum(p[i] for p in polygon) / len(polygon) for i in range(3))
+                    denominator = lcm(*(value.denominator for value in weight))
+                    weight = tuple(int(value * denominator) for value in weight)
+                    delta = (1, q + 1, (q + 1) ** 2)
+                    scale = 1 + max(dot(delta, a) for a in full_ground)
+                    weight = tuple(scale * value + step for value, step in zip(weight, delta))
+                    divisor = gcd(*weight)
+                    weight = tuple(value // divisor for value in weight)
+                    require(min(weight) > 0 and all(dot(weight, normal) > 0 for normal in normals) and
+                            len({dot(weight, a) for a in full_ground}) == len(full_ground), "strict fully separated witness")
+                    parent_basis = greedy(full_ground, parent_columns, weight, 0)
+                    omitted = max((a for a in parent_basis if residue_class(a) in circuit),
+                                  key=lambda a: dot(weight, a))
+                    formula = parent_basis - {omitted} if removed else parent_basis
+                    require(formula == state, "parent class minima minus largest circuit representative")
+                    for characteristic in (0, 2, 3, 7):
+                        require(greedy(full_ground, columns, weight, characteristic) == state,
+                                "independent Gaussian selection in each recorded characteristic")
+                    record.update({"status": "coherent", "positive_integer_weights": weight,
+                                   "parent_standard_monomials": sorted(parent_basis),
+                                   "omitted_circuit_representative": omitted if removed else None})
+                records.append(record)
+            fans.append({"length": n, "modulus": parent_modulus if not removed else child_modulus,
+                         "initial_ideal_count": sum(record["status"] == "coherent" for record in records),
+                         "all_staircase_certificates": records})
+        counts = tuple(fan["initial_ideal_count"] for fan in fans)
+        require(counts == expected, "complete parent and one-dimensional quotient fan counts")
+        groups = {}
+        for record in fans[1]["all_staircase_certificates"]:
+            if record["status"] == "coherent":
+                groups.setdefault(tuple(map(tuple, record["parent_standard_monomials"])), []).append(record)
+        pair = next((group[:2] for group in groups.values() if len(group) >= 2), [])
+        if not delay:
+            require(pair, "two child initials have exactly the same parent initial")
+        fixtures.append({"period": period, "nilpotent_delay": delay, "parent_length": q,
+                         "coordinate_powers": powers, "field_characteristics_checked": [0, 2, 3, 7],
+                         "reference_parent_basis": ["t^" + str(i) for i in range(q)],
+                         "single_circuit_classes": sorted(circuit), "coloop_classes": list(range(delay)),
+                         "nilpotent_parent_and_child_at_zero": delay >= 2,
+                         "monomial_rank_and_staircase_checks": checked, "fans": fans,
+                         "same_parent_distinct_child_initials": [
+                             {key: record[key] for key in ("staircase", "positive_integer_weights", "parent_standard_monomials",
+                                                          "omitted_circuit_representative")} for record in pair]})
+    return {"uniform_scope": "Every ideal I containing a colength-q binomial ideal J, with dim(I/J)=1, over every field, in dimensions two and three.",
+            "count_bound": "O(M*alpha(M)) in dimension two and O(M^2*alpha(M)) in dimension three, M=|V_q^d|. Thus O(q^2*log(q+1)^4*alpha(q*(1+log(q))^2)) in dimension three.",
+            "geometric_input": "Pach--Sharir (1989), Theorem 1-prime, the segment-envelope bound and the overlay argument of Lemma 2.2.",
+            "decision": "Deleting one point from a cyclic binomial orbit cannot produce an n^(2+epsilon) lower family in three variables for fixed epsilon>0. The unrestricted goal is not completed; logarithmic improvements are not ruled out.",
+            "priority": "A consequence of established binomial normal forms and envelope bounds; novelty has not been established.",
+            "fixtures": fixtures}
+
+
 def main():
     fixtures = []
     for weights, cutoff in [((1, 1, 1), 2), ((1, 1, 1), 3),
@@ -2421,6 +2557,7 @@ def main():
     sparse_prefix = sparse_prefix_interpolation_control()
     jordan_prefix = jordan_filtered_convolution_controls()
     unequal_jordan = unequal_weight_jordan_countercontrols()
+    codimension_one = codimension_one_binomial_quotient_controls()
     sources = ["scripts/run_structural_complexity_checks.py", "docs/interleaving_research.md"]
     report = {
         "schema_version": 1, "command": "python3 -B scripts/run_structural_complexity_checks.py",
@@ -2507,6 +2644,7 @@ def main():
         "sparse_prefix_interpolation_control": sparse_prefix,
         "jordan_filtered_convolution_control": jordan_prefix,
         "unequal_weight_jordan_countercontrol": unequal_jordan,
+        "codimension_one_binomial_quotient_control": codimension_one,
         "summary": {"volume_fixtures": 30, "socle_fixtures": len(fixtures),
                     "exact_chambers": sum(f["exact_arrangement_chambers"] for f in fixtures),
                     "independent_greedy_checks": sum(f["greedy_checks"] for f in fixtures),
@@ -2565,7 +2703,11 @@ def main():
                     "jordan_full_tag_power_diagonal_cost_checks": sum(len(f.get("full_tag_power_diagonal_cost_controls", [])) for f in jordan_prefix["fixtures"]),
                     "unequal_jordan_staircases_checked": sum(len(f["all_staircase_certificates"]) for f in unequal_jordan["embeddings"]),
                     "unequal_jordan_coherent_basis_checks": sum(f["exact_initial_ideal_count"] for f in unequal_jordan["embeddings"]),
-                    "unequal_jordan_infeasibility_certificates": sum(sum(c["status"] == "independent_but_incoherent" for c in f["all_staircase_certificates"]) for f in unequal_jordan["embeddings"])},
+                    "unequal_jordan_infeasibility_certificates": sum(sum(c["status"] == "independent_but_incoherent" for c in f["all_staircase_certificates"]) for f in unequal_jordan["embeddings"]),
+                    "codimension_one_binomial_quotient_fixtures": len(codimension_one["fixtures"]),
+                    "codimension_one_staircase_rank_checks": sum(f["monomial_rank_and_staircase_checks"] for f in codimension_one["fixtures"]),
+                    "codimension_one_coherent_basis_checks": sum(g["initial_ideal_count"] for f in codimension_one["fixtures"] for g in f["fans"]),
+                    "codimension_one_infeasibility_certificates": sum(sum(c["status"] == "independent_but_incoherent" for c in g["all_staircase_certificates"]) for f in codimension_one["fixtures"] for g in f["fans"])},
         "goal_qualifying_advance": False,
     }
     target = ROOT / "results/research/structural_complexity_checks.json"

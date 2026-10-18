@@ -2,7 +2,7 @@
   "schema_version": 1,
   "recorded_on": "2026-10-18",
   "title": "Universal algebraic complexity beyond generic corner cuts",
-  "status": "active_fixed_algebra_unequal_weight_transfer_refuted_recent_restricted_bound_compared",
+  "status": "active_codimension_one_binomial_quotient_bound_proved_periodic_deletion_gate_narrowed",
   "objective": "Prove a new structural theorem determining or substantially narrowing the worst-case asymptotic number of monomial initial ideals of finite polynomial algebras, starting with three variables and seeking a mechanism valid in every fixed dimension. Establish the strongest relevant primary baseline first. Success requires a complete uniform proof of sharp growth or a substantial asymptotic advance over that baseline for all colength-n ideals or all n-point configurations, a rigorous further algebraic, geometric or enumeration consequence, reproducible exact certificates and an honestly scoped manuscript. Examples, reformulations, already known corollaries and a plan alone do not complete this goal.",
   "plan": "docs/interleaving_research.md#higher-impact-research-plan-universal-algebraic-complexity",
   "relationship_to_previous_goal": "A new research objective. The completed corner-cut counting manuscript and its acceptance records remain separate and unchanged in mathematical content.",
@@ -34,12 +34,12 @@
     },
     {
       "id": "dependency_mechanism",
-      "status": "diagonal_jordan_formula_proved_full_fan_determination_refuted_coordinate_flags_required",
+      "status": "codimension_one_binomial_extension_envelope_bound_proved_unrestricted_dependency_mechanism_open",
       "deliverable": "A precise lemma about multiplication-compatible residue dependencies or state-polyhedron geometry, with its proof attempt and adversarial controls."
     },
     {
       "id": "infinite_lower_family",
-      "status": "positive_collision_amplification_ruled_out_coupled_rank_gate_requires_hermite_conditions",
+      "status": "positive_collision_and_codimension_one_periodic_exponent_amplification_closed_growing_defect_gate_pending",
       "deliverable": "A symbolic realizable family and count proof, or a documented obstruction to the tested construction; finite examples alone are insufficient."
     },
     {
@@ -123,7 +123,7 @@
   "journal_submission_sent": false,
   "previous_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Commit d58e0c2 saved complete uniform collision, monogenic-embedding, graded-Jordan rank and diagonal full-algebra support proofs, with exact certificates and attribution. The unrestricted asymptotic goal remained open."
+    "reason": "Established exact fixed-algebra countercertificates to a Jordan-only full-fan transfer, including independently checkable incoherence certificates, and compared a recent all-order factorial bound with the target. The full unrestricted theorem and strongest-primary audit remain incomplete."
   },
   "first_feasibility_results": {
     "record": "docs/interleaving_research.md, First feasibility pass: two rigorous route obstructions",
@@ -301,6 +301,26 @@
       "authors": "Stigler and Zhang",
       "inspected": "Official publisher abstract, reference list and appendix preview only. Full NSF deposit retrieval by web and direct timed download failed.",
       "finding": "The published chapter uses different theorem numbering and has an expanded bibliography compared with arXiv:1907.01080v1. Full theorem comparison remains pending; no identity assumption is imported."
+    },
+    {
+      "source": "https://doi.org/10.1007/BF02187732",
+      "primary_full_text": "https://link.springer.com/content/pdf/10.1007/BF02187732.pdf",
+      "authors": "Pach and Sharir",
+      "year": 1989,
+      "inspected": "Published full text: segment-envelope discussion, Section 2 Theorem 1 proof, Lemma 2.2 and proof, Theorem 1-prime and adjacent degeneracy argument.",
+      "finding": "Existing segment/triangle upper-envelope bounds and their line-overlay argument supply the geometric input for the codimension-one binomial quotient consequence; no new envelope theorem is claimed."
+    },
+    {
+      "source": "https://arxiv.org/pdf/math/0308286v6",
+      "authors": "Tao",
+      "inspected": "Lemma 1.2 and Lemma 1.3, including both proofs and the attribution to Chebotarev.",
+      "finding": "The established nonvanishing-minor theorem makes every n-subset of a fixed prime cyclic orbit have the same modular class-rank function. This is a known-tool consequence; consecutive samples and one-point deletion do not require primality."
+    },
+    {
+      "source": "https://arxiv.org/pdf/0705.3631v1",
+      "authors": "Sabariego and Santos",
+      "inspected": "Setup and Theorem 3.5--3.6 statements, including the graded-order scope; not a full proof audit of the later Hilbert-basis or extremal constructions.",
+      "finding": "The periodic lattice-ideal interpretation is established. Their minimum-distance diagrams use graded orders; their diagram counts do not replace our all-global-order counts."
     }
   ],
   "next_actions": [
@@ -1262,7 +1282,7 @@
   },
   "this_goal_turn_classification": {
     "classification": "progress",
-    "reason": "Established exact fixed-algebra countercertificates to a Jordan-only full-fan transfer, including independently checkable incoherence certificates, and compared a recent all-order factorial bound with the target. The full unrestricted theorem and strongest-primary audit remain incomplete."
+    "reason": "Proved a uniform envelope bound for every one-dimensional quotient of a finite binomial algebra in dimensions two and three, with complete exact parent/child fan controls. It rules out exponent amplification by deleting one orbit point. No qualifying unrestricted advance has been achieved."
   },
   "eleventh_feasibility_results": {
     "record": "docs/interleaving_research.md, Eleventh feasibility pass: coordinate flags survive the Jordan reduction",
@@ -1368,5 +1388,62 @@
     },
     "goal_qualifying_unrestricted_advance": false,
     "decision": "Keep the proved diagonal formula. A full-dimensional extension must retain the within-degree monomial coordinate flags or use an independent upper method. Stop finite parameter enlargement without a new discriminating hypothesis. Preserve the unrestricted asymptotic objective and primary-priority gate; no manuscript is started for these countercontrols."
+  },
+  "twelfth_feasibility_results": {
+    "record": "docs/interleaving_research.md, Twelfth feasibility pass: one-dimensional quotients of binomial algebras",
+    "uniform_theorem": {
+      "scope": "Every binomial ideal J of colength q>=2 and containing ideal I with dim_K(I/J)=1, in dimensions two and three, over every field. I has length n=q-1.",
+      "bounds": "With M=|V_q^d|, g(I)=O(M*alpha(M)) in dimension two and O(M^2*alpha(M)) in dimension three. Thus the spatial bound is O(q^2*(1+log(q))^4*alpha(q*(1+log(q))^2)).",
+      "proof": "The binomial parent gives q parallel classes. The child has a unique circuit on the support of its kernel vector, with other classes coloops. Choose each class minimum and omit the largest minimum on the circuit. The segment/triangle upper envelope, refined by every parent affine-patch boundary line, has the stated complexity by Pach--Sharir and its line-restriction overlay proof.",
+      "degeneracy_and_field_scope": "Strict witnesses survive a small generic geometric perturbation; the algebraic reduction uses only the support of a one-dimensional relation and is characteristic-independent.",
+      "limits": "This is a restricted consequence of established tools. It does not bound all ideals by the new exponent, certify novelty, or rule out a logarithmic improvement within the class."
+    },
+    "finite_controls": {
+      "quotients": "K[t]/(t^e*(t^h-1)) -> K[t]/(t^e*(1+t+...+t^(h-1))), with (x,y,z)=(t,t^2,t^3).",
+      "period_delay_and_parent_child_counts": [
+        [
+          7,
+          0,
+          11,
+          18
+        ],
+        [
+          6,
+          1,
+          8,
+          12
+        ],
+        [
+          6,
+          2,
+          6,
+          8
+        ]
+      ],
+      "field_characteristics": [
+        0,
+        2,
+        3,
+        7
+      ],
+      "scope": "All 514 parent/child staircases have determinant/rank decisions; coherent cases have strict fully separated weights, independent Gaussian selection in all four characteristics and the omission formula. Independent incoherent cases have exact positive-dependence certificates. Includes a proper circuit, coloops, a nonreduced zero component and same-parent distinct-child witnesses.",
+      "status": "passed",
+      "commands": [
+        "./build.sh",
+        "python3 tests/test_smoke.py",
+        "python3 -B scripts/run_structural_complexity_checks.py"
+      ],
+      "source_sha256": {
+        "scripts/run_structural_complexity_checks.py": "cf3c480d5cd8cb03fad65b83c2c0df0dd61f101ded035cc45cdb50dc0b56c402",
+        "docs/interleaving_research.md": "7f4f959b0191f7b20f0da396333a266cf204376bc239d8f20e46ce6af0c34393"
+      },
+      "codimension_one_binomial_quotient_fixtures": 3,
+      "codimension_one_staircase_rank_checks": 514,
+      "codimension_one_coherent_basis_checks": 63,
+      "codimension_one_infeasibility_certificates": 4
+    },
+    "known_prime_input": "Chebotarev nonvanishing Fourier minors imply identical modular class-rank functions and fans for all equally sized subsets of a fixed prime orbit. Ordinary Vandermonde suffices for consecutive parameters for any orbit size; one-point deletion also works for every size.",
+    "goal_qualifying_unrestricted_advance": false,
+    "decision": "Do not enlarge one-point-deletion examples to infer n^(2+epsilon) growth: the uniform theorem forbids it. A periodic lower construction must analyze growing deletion defect or prove a logarithmic improvement. The next concrete lemma is a defect-sensitive bound for the sum of the r largest class-minimum costs; this remains unproved here. Keep the unrestricted upper route, strongest-current-primary audit and manuscript gate active."
   }
 }

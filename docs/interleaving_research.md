@@ -6201,3 +6201,207 @@ rules out falling back to its homogeneous family as a new lower result.
 The unrestricted asymptotic goal, the further-consequence requirement,
 the primary-priority audit and the manuscript gate remain unchanged.
 No qualifying asymptotic advance or new-paper novelty claim is made.
+
+### Twelfth feasibility pass: one-dimensional quotients of binomial algebras
+
+The preceding goal turn made progress in commit b566928: it refuted
+the Jordan-only full-fan transfer with exact certificates. The next
+construction tested here replaces positive monomial-curve samples by
+roots of unity. This has an exact rank model, and deleting an orbit
+point really can increase the count. The uniform result below bounds
+that increase without assuming monotonicity.
+
+#### A uniform upper bound for the whole extension class
+
+Let J be a binomial ideal of colength q>=2 in K[x_1,...,x_d], let
+J be contained in I, and suppose dim_K(I/J)=1. Thus I has colength
+n=q-1. Over every field, for d=2 and d=3 respectively,
+
+    g(I)=O(M*alpha(M)),       M=|V_q^2|,                    (BE1)
+    g(I)=O(M^2*alpha(M)),     M=|V_q^3|.                    (BE2)
+
+Here alpha is the inverse Ackermann function. In particular (BE2) is
+
+    O(q^2*(1+log q)^4*alpha(q*(1+log q)^2)).                (BE3)
+
+This includes reduced and nonreduced algebras and quotients with a
+unique relation involving many residue classes. It is a restricted
+consequence of established normal-form and envelope theorems. Its
+novelty has not been established. It does not improve the bound for
+all colength-n ideals or all n-point configurations.
+
+Here is the complete reduction. Use a monomial basis b_1,...,b_q of
+K[x]/J. The binomial normal-form theorem used in (BQ1)--(BQ2) partitions
+the nonzero monomial residues on V_q^d into q nonempty parallel classes
+S_j, each mapping to the line K*b_j. Write the new one-dimensional
+kernel as
+
+    I/J=K*v,   v=sum_j c_j*b_j,   T={j:c_j is nonzero}.
+
+The only dependence among these q reference columns in K[x]/I is v.
+A basis consequently chooses one representative from every class
+except one class in T. This statement also covers |T|=1, where that
+class becomes a loop, and |T|=2, where its two classes merge.
+
+For a generic positive weight w put
+
+    m_j(w)=argmin_{a in S_j} w.a,   c_j(w)=w.m_j(w).
+
+The notation c_j(w) for a cost is distinct from the fixed coefficient
+c_j in v. The unique minimum-cost child basis is
+
+    {m_1(w),...,m_q(w)} minus {m_k(w)},
+    where k maximizes c_j(w) over j in T.                  (BE4)
+
+To prove (BE4), first minimize the representative independently within
+each selected class. Every possible omitted class has a basis cost
+equal to sum_j c_j(w) minus its own cost, so the best omission maximizes
+that cost. All parent and child standard monomials are covered: for
+the same global order, in(J) is contained in in(I), so the child
+staircase is contained in the parent staircase, which lies in V_q^d.
+The finite-comparison positive-weight lemma covers arbitrary global
+orders. No representation of their entire infinite order by one
+scalar weight is needed.
+
+For d=2, normalize w_1+w_2=1. Each c_j(w) is a concave polygonal
+function with at most |S_j| affine intervals. There are O(M) intervals
+in total. The upper envelope max_{j in T} c_j(w) of these line segments
+has O(M*alpha(M)) pieces. Adding all O(M) individual breakpoints
+determines every representative and the omitted class, proving (BE1).
+
+For d=3, normalize to the closed weight triangle sum_i w_i=1, w_i>=0.
+Each c_j is the lower support function of conv(S_j). A three-dimensional
+polytope with m vertices has O(m) faces and edges; the same bound holds
+for a polygon, segment or point. Its normal map on the weight triangle
+therefore has O(|S_j|) edges and total polygon side incidences. Triangulate
+each affine patch. Across all classes there are O(M) triangles, and
+O(M) lines supporting their projected edges. Call this line set L.
+
+The graph of max_{j in T} c_j is the upper envelope of O(M) triangles.
+Its planar map has O(M^2*alpha(M)) total complexity by
+[Pach--Sharir, *The upper envelope of piecewise linear functions and the
+boundary of a region enclosed by convex plates: Combinatorial analysis*,
+Theorem 1'](https://doi.org/10.1007/BF02187732).
+Superimpose L. This step needs a count: multiplying the two map
+complexities would lose the desired exponent.
+
+The overlay argument in the proof of their Lemma 2.2 applies directly.
+The lines have O(M^2) pair intersections. On any one line, each triangle
+restricts to a segment, so the restricted upper envelope has
+O(M*alpha(M)) pieces. Adding all O(M) lines thus creates at most
+O(M^2*alpha(M)) further pieces and faces. On each open cell of this
+refined map all class representatives and the maximizing class are
+fixed. Equation (BE4) is then fixed, proving (BE2).
+
+Degeneracies do not invalidate the bound. Choose finitely many strict
+weights witnessing the different child bases, and preserve their
+strict comparisons under an arbitrarily small generic perturbation of
+the affine patches and their domains. Apply the envelope and overlay
+bounds to the perturbed maps. Their cell count still bounds the number
+of original strict bases. Boundary-only ties of a global order are
+handled by its finite strict weight representation. The hyperbolic-cross
+estimate M<=q*(1+log q)^(d-1) gives (BE3).
+
+The geometric input was checked in the published primary full text:
+the segment-envelope discussion, Section 2's Theorem 1 proof, Lemma 2.2
+and its proof, Theorem 1', and the adjacent degeneracy argument.
+No new envelope theorem is asserted. The combined application needs
+its own priority comparison before it could be called novel.
+
+#### Exact models refute monotonicity and cover a proper circuit
+
+For integers h>=2 and e>=0, use the actual kernels of
+
+    K[x,y,z] -> A=K[t]/(t^e*(t^h-1)),
+    K[x,y,z] -> B=K[t]/(t^e*(1+t+...+t^(h-1))),
+    (x,y,z) |-> (t,t^2,t^3).                              (BE5)
+
+The parent modulus equals (t-1) times the child modulus. Both maps are
+surjective since x maps to t, and their lengths differ by exactly one.
+For e=0 over C, this deletes the point (1,1,1) from the full h-root
+orbit. For e=1 there is also the point at zero. For e=2 both algebras
+have a nonreduced component at zero.
+
+The parent classes have labels 0,...,e+h-1. An exponent degree lambda
+has label lambda for lambda<e, and otherwise
+
+    e+((lambda-e) mod h).
+
+The child has the single circuit on labels e,...,e+h-1, with every
+coefficient equal to one. Labels 0,...,e-1 are coloops. This includes a
+proper circuit, rather than relying only on a uniform truncation.
+
+| h | e | parent length | parent initial ideals | child initial ideals |
+| --- | --- | --- | --- | --- |
+| 7 | 0 | 7 | 11 | 18 |
+| 6 | 1 | 7 | 8 | 12 |
+| 6 | 2 | 8 | 6 | 8 |
+
+These are complete positive fan counts, not counts of orders sampled.
+The checker enumerates all 514 relevant three-variable staircases.
+It constructs commuting cyclic quotient matrices independently of the
+class formula. Every candidate's determinant agrees with the circuit
+criterion and is 0,1 or -1. Each coherent candidate has a strict integer
+weight and independent Gaussian checks over Q,F_2,F_3,F_7; every
+independent incoherent candidate has a nonnegative zero-dependence
+certificate for its strict comparison normals. Each child witness
+independently verifies (BE4). Two distinct child initials with the same
+parent initial are saved, so the increase is not inferred only from
+aggregate counts. The published bound does not assert monotonicity.
+
+#### The prime connection is a known input, not an asymptotic advance
+
+Let zeta be a primitive p-th root for a prime p, fix A_1=1 and other
+integer exponents A_i, and take any n distinct parameters t=zeta^j.
+For every finite monomial set E the evaluation rank over C is
+
+    min(n, number of distinct A.a modulo p for a in E).    (BE6)
+
+Indeed duplicate residues give identical columns; any square minor
+on distinct residues and parameters is nonzero by the classical
+Chebotarev theorem, proved in
+[Tao, arXiv:math/0308286v6, Lemma 1.3](https://arxiv.org/pdf/math/0308286v6).
+Its cyclotomic Lemma 1.2 and the full proof of Lemma 1.3 were inspected.
+Thus, with p,n,A fixed, all n-element subsets have the same labeled
+monomial matroid and positive fan. This is a direct consequence of
+an existing theorem, not a new uncertainty principle.
+
+For consecutive parameters j=0,...,n-1, ordinary Vandermonde already
+proves (BE6) for every orbit size h, including composite h. In the
+one-point deletion case, any h-1 Fourier columns restricted to the
+other h-1 rows are independent for every h: the kernel on its h columns
+is generated by the conjugate of the omitted row, whose entries are
+all nonzero. Consequently primality is not needed for (BE5) or (BE3).
+
+The full-orbit class-minimum description has an established routing
+interpretation. [Sabariego--Santos, arXiv:0705.3631v1, Theorems 3.5--3.6](https://arxiv.org/pdf/0705.3631)
+identifies the corresponding lattice ideal and its graded initial ideals
+with coherent minimum distance diagrams. Its setup and these statements
+were inspected. Their diagram counts refer to graded orders, whereas
+our table uses all global orders; those counts must not be substituted
+for each other. The periodic interpretation alone is not a new
+algebraic correspondence.
+
+#### Decision and the next proof gate
+
+Deleting one orbit point genuinely increases some finite fans, but
+(BE3) rules out an n^(2+epsilon) lower family by this operation for
+every fixed epsilon>0. It does not rule out an improved logarithmic
+factor. Stop enlarging one-point-deletion examples to fit an exponent.
+
+A periodic lower construction must instead analyze a growing deletion
+defect, or prove a logarithmic improvement. Before expanding its finite
+search, the next concrete comparison is a defect-sensitive count for
+the sum of the largest r class-minimum costs. For r=1 the envelope proof
+above settles the exponent; for growing r the relevant level complexity
+needs a separate bound. The general upper route still needs a
+multiplication-compatible mechanism beyond the one-dimensional kernel.
+
+The strongest-current-priority audit remains incomplete. No qualifying
+unrestricted asymptotic advance, novelty certification or new manuscript
+is claimed. The goal remains active and its acceptance criteria are
+unchanged. Reproduce these controls together with the previous checks:
+
+```bash
+python3 -B scripts/run_structural_complexity_checks.py
+```
