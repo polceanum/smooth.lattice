@@ -257,6 +257,15 @@ $$
 The sum is an upper bound even when one vertex is visible many times.
 No averaging over irrational projections is required.
 
+The [five-cone quotient construction](initial_cone_height.md) shows that
+the square-root radius cannot be improved uniformly, even for actual
+finite quotients over every field. Its exact minimum radius is
+$\lfloor k/2\rfloor+1$ while its largest primitive cone ray has height
+$k(k+1)$. Yet two planes cover all five cones. Individual radius and
+the number of planes in a selected cover therefore require separate
+estimates. This does not assert that summing all directions in (6) is
+optimal for quotient state polytopes.
+
 ## Application to arbitrary three-variable quotients
 
 Let $I\subset K[x,y,z]$ have colength $n\ge1$. Use its rank-$n$
@@ -338,6 +347,18 @@ charging theorem (2), and its combination (8) are the exact statements
 whose priority must be assessed. An absence of matching search results
 does not establish novelty. The unresolved older-paper comparison is
 preserved; this proof does not rely on its contents being unknown.
+
+Dyadic families of weights already appear in
+[van der Hoeven--Lecerf, *Amortized multi-point evaluation of multivariate
+polynomials*](https://www.texmacs.org/joris/genamp/genamp.pdf), Sections
+3.2--3.4 and 4.1. Their polylogarithmic family selects polynomials for
+heterogeneous quasi-reduction, rather than meeting every initial cone.
+Quasi-reduced monomials need not be a quotient basis. Thus this does not
+supply a polylogarithmic projection cover or an initial-ideal count.
+The inspected PDF is dated December 26, 2021; the
+[HTML version](https://www.texmacs.org/joris/genamp/genamp.html) is dated
+June 6, 2025, and version equivalence has not been assumed. The dyadic
+construction is relevant prior art for the cover argument.
 
 Two further primary comparisons have limited, explicit scope.
 [Black, *Small Shadows of Lattice Polytopes*, arXiv v1 (2022),

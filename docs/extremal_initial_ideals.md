@@ -31,6 +31,12 @@ spacings can keep the count linear even when the carrier degree grows.
 A sharper Frobenius obstruction classifies the additive prime-power class:
 its initial ideals are prime-power boxes, with a sharp polylogarithmic
 count. This restricted classification is not the unrestricted target.
+The [integer cone-height obstruction](initial_cone_height.md) separates
+arithmetic certificate size from fan cardinality: an all-field family has
+five initial ideals, a necessary integer weight height $\Theta(n^2)$,
+and a necessary projection radius $\Theta(n)$, while exactly two planes
+cover its cones. It rules out two individual-cone shortcuts without
+excluding a stronger aggregate projection bound.
 
 ## Connection to the original observations
 
@@ -46,6 +52,11 @@ The question here is how much those dependencies can increase the number of
 possible standard sets. This remains an exponent-lattice problem linked to the
 original observations, but does not by itself give a prime-distribution result
 or a faster smooth-number unranking algorithm.
+The [five-cone family](initial_cone_height.md) gives a concrete distinction:
+$x^2$ and $y^2$ are standard while $xy$ is dependent. A smooth prefix
+cannot have this midpoint exclusion. The algebra changes which shapes
+are possible; the number of shapes in one fan remains the unresolved
+quantitative issue.
 
 ## Target and established comparison
 
@@ -1632,6 +1643,18 @@ dependencies. The exact planar and rational-shadow priority comparisons
 remain necessary. The affine $q$-linearized classification excludes that
 additive class as a power-gain construction in dimension three.
 
+The [five-cone family](initial_cone_height.md) now closes the proposed
+uniform $O(n)$ integer-weight route: its exact minimum is
+$(n+1)^2/4$ along odd lengths. The corresponding square-root dependence
+on primitive cone-ray height is also sharp. These are genuine commuting
+quotient algebras, rather than unattached rational cones. Neither a hard
+weight representation nor a large necessary projection radius implies a
+large initial-ideal count: exactly two chosen planes cover all five cones.
+The next projection theorem must therefore bound a selected cover or
+its incidence multiplicities globally, instead of improving those
+individual-cone exponents. The unrestricted upper and lower targets
+are unchanged.
+
 The nonlinear rectangle route remains available. Its filtration bound
 identifies a quantitative window, and the rational relation distinguishes
 the fixed surface from free-coefficient embeddings. A proposed count must
@@ -1671,6 +1694,7 @@ python3 -B scripts/run_extremal_initial_ideals_checks.py
 python3 -B scripts/run_additive_initial_ideals_checks.py
 python3 -B scripts/run_planar_dyadic_bound_checks.py
 python3 -B scripts/run_rational_shadow_bound_checks.py
+python3 -B scripts/run_initial_cone_height_checks.py
 ./build.sh
 python3 tests/test_smoke.py
 ```

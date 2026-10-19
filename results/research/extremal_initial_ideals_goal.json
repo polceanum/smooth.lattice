@@ -5,7 +5,7 @@
   "status": "active",
   "objective": "Achieve a substantial mathematical advance connected to the smooth-number exponent-lattice observations, with resolving a recognized quantitative problem as the success criterion rather than producing another manuscript. The concrete first target is the worst-case number G_3(n) of distinct monomial initial ideals of a length-n polynomial quotient in three variables, over all fields. Determine its sharp asymptotic growth, or prove an infinite realizable family with a polynomially larger number of orderings than the generic corner-cut scale, together with a consequential general theorem. Explain what algebraic dependencies add to the prime/smooth lattice geometry. First audit the strongest relevant primary literature and the repository's unfinished lattice-shadow work; distinguish a genuinely new theorem from a classical geometric corollary before using it. Success requires a complete uniform proof that settles this extremal question or a substantial recognized part of it, a rigorous consequence for algebraic or geometric complexity beyond restating the count, independently implemented reproducible supporting checks, and an honestly attributed paper. A draft, a bounded priority review, isolated examples, a minor refinement, or an unverified novelty claim cannot complete this goal. If this target is already settled or a route fails, record the evidence and choose a comparably consequential problem still directly linked to the original mathematics; do not silently lower the success criterion. Preserve all existing manuscripts, core smooth-number kernels and auditor, previous research, and the paused ML work. Never send emails, messages to people or other tasks, author queries, or submissions. Publish only explicitly privacy-reviewed research files to the already authorized main branch.",
   "goal_complete": false,
-  "asymptotic_improvement_established_this_iteration": true,
+  "asymptotic_improvement_established_this_iteration": false,
   "novelty_established_this_iteration": false,
   "note": "docs/extremal_initial_ideals.md",
   "relationship_to_previous_work": "New active objective with a higher completion bar. Previous goal records, lattice-shadow candidate, manuscripts and paused ML results are preserved as historical research.",
@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Keep the original sharp or polynomially separated G_3 endpoint. The new rational-shadow theorem gives G_3(n)=O(n^(23/8)*log(n+1)^(3/8)) and universal reduced-basis cardinality O(n^(85/24)*log(n+1)^(3/8)), but the remaining power gap and current priority are unresolved. Seek an O(n^2*polylog(n)) upper theorem or a realizable genuinely three-variable power lower family. On the upper route, improve the current O(n^4/h) charge for vertices incident to large facet normals by exploiting the common quotient and commuting multiplication, or prove a quantitatively smaller arithmetic projection cover. The existing proof already sums all primitive kernel vectors up to height O(sqrt(h)); merely repeating its balances or a larger finite screen is not a new mechanism. Retain nonlinear local rectangles as exact rank controls, and require a uniform dependency count before extending their experiments. Audit the precise priority of the sharp planar count, height-dependent rational-shadow theorem and spatial consequence against current primary literature; the old unavailable lattice application is not a prerequisite for this proof. Do not mark the goal complete for another nonsharp exponent improvement, a draft, elementary ingredient, isolated example or an unverified novelty claim.",
+  "next_proof_task": "Keep the original sharp or polynomially separated G_3 endpoint; no completion criterion is weakened. The all-field five-cone family I_k=(xy-y^2,y^(k+1)-x^k,x^(k+1)-x^k,z-x^k), n=2k+1, rules out a uniform O(n) integer weight for every initial cone and a better-than-square-root primitive-kernel radius in cone-ray height. Its exact two-plane cover separates cover cardinality from required radius. Seek a general bound on how many difficult cones can coexist, using the common quotient and commuting multiplication to improve the O(n^4/h) large-normal incidence or to bound a selected rational projection cover or visibility multiplicities. A larger search or rebalancing the existing sum over all small kernels supplies no new mechanism. The lower route still requires a quantitatively large simultaneous dependency family outside the binomial and additive classes. Compare the planar and height-dependent rational-shadow bounds against current primary literature. The newly located van der Hoeven--Lecerf dyadic quasi-reduction family covers monomial reduction regions, not all initial cones; inspect that distinction before proposing a polylogarithmic fan cover. Do not complete for these route obstructions, another nonsharp exponent, a draft, finite examples or unverified novelty.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -79,7 +79,9 @@
     "Compare the exact all-fields bound g(I)<=5*D*n for finite planar quotients containing an irreducible degree-D equation against prior curve-dependent counting results. The proof uses classical Bezout and state geometry; unsuccessful searches do not establish novelty.",
     "Compare the exact all-global-order box classification, sharp composition maximum and canonical complete weight list for finite affine q-linearized ideals against additive-group and skew-polynomial-module literature. Frobenius elimination, distinct leading positions and specialized algorithms are established inputs; the restricted count has no novelty certificate and does not settle the unrestricted target.",
     "Audit the exact hyperbolic integer-weight matroid bound and its application G_2(n)=Theta(n*log(n+1)), including the O(n^(3/2)*log(n+1)) universal reduced-basis cardinality. Classical token paths and lattice-chain counting are attributed; the matching generic lower bound is published. The inspected historical planar O(n^(4/3)) statements and the 2025 general multi-parameter arrangement bound do not establish current novelty. This proof does not depend on the unresolved 1975 McMullen application.",
-    "Compare the exact general matroid shadow bound O_d(log(H+1)*(1+r+(r^2*H*Delta)^(1/3))), with normalized rank-two integer projection height Delta, and the derived G_3 upper bound with the strongest current primary statements. Greedy convex token paths, integer lattice covolumes, lattice triangle charging and short-relation pigeonhole are classical. The explicit dyadic weighted sum and short-normal vertex incidence have self-contained proofs but no priority certificate. The 2022 Small Shadows principal statements concern selected monotone paths; the 2025 unrestricted multi-parameter arrangement bound does not state the new height dependence. Those scoped comparisons are not proof of novelty."
+    "Compare the exact general matroid shadow bound O_d(log(H+1)*(1+r+(r^2*H*Delta)^(1/3))), with normalized rank-two integer projection height Delta, and the derived G_3 upper bound with the strongest current primary statements. Greedy convex token paths, integer lattice covolumes, lattice triangle charging and short-relation pigeonhole are classical. The explicit dyadic weighted sum and short-normal vertex incidence have self-contained proofs but no priority certificate. The 2022 Small Shadows principal statements concern selected monotone paths; the 2025 unrestricted multi-parameter arrangement bound does not state the new height dependence. Those scoped comparisons are not proof of novelty.",
+    "Compare the explicit all-field five-cone family, its exact (n+1)^2/4 integer certificate height, exact floor(k/2)+1 kernel radius and optimal two-plane cover against current primary literature. Cofactor upper bounds, positive-weight representation and symbolic Groebner walks are established inputs; no novelty or extremal endpoint is claimed.",
+    "Complete the precise comparison with van der Hoeven--Lecerf heterogeneous quasi-reduction before claiming a new dyadic weight-cover principle. Distinguish its versioned source and monomial reduction regions from a cover of all Groebner cones."
   ],
   "primary_sources": [
     {
@@ -200,6 +202,25 @@
       "url": "https://arxiv.org/pdf/2204.09129",
       "version": "v1, 2022",
       "scope": "Introductory results numbered 1.1--1.7 and Corollary 2.2 inspected. They control selected coherent paths and monotone diameter, not every rational shadow by normalized projection height or the full vertex incidence bound. This is a limited statement comparison, not a complete priority audit or an asserted identity with later published versions."
+    },
+    {
+      "authors": "Fukuda, Jensen, Lauritzen and Thomas",
+      "title": "The generic Groebner walk",
+      "url": "https://arxiv.org/pdf/math/0501345",
+      "scope": "Sections 2.2--2.3, Lemma 2.1, Corollary 2.2, reduced-basis cone definition and Proposition 2.3 with proofs. Rational-group-order exposition; finite positive-weight representation and cone inequalities are classical. Introduction inspected for symbolic avoidance of large numeric perturbations."
+    },
+    {
+      "authors": "Tran",
+      "title": "A fast algorithm for Groebner basis conversion and its applications",
+      "url": "https://www3.risc.jku.at/research/theorema/Groebner-Bases-Bibliography/gbbib_files/publication_627.pdf",
+      "scope": "Lemma 3.1 and Theorem 3.1 with proofs, for degree-based representing weights. Exact minima for the new family are not given a novelty certificate. Entire applications section not inspected."
+    },
+    {
+      "authors": "van der Hoeven and Lecerf",
+      "title": "Amortized multi-point evaluation of multivariate polynomials",
+      "url": "https://www.texmacs.org/joris/genamp/genamp.pdf",
+      "html_version": "https://www.texmacs.org/joris/genamp/genamp.html",
+      "scope": "PDF dated December 26, 2021; HTML dated June 6, 2025. PDF Sections 3.2--3.4 and 4.1 inspected. Dyadic heterogeneous reduction is relevant prior art, distinct from a cover of all initial cones. Version equivalence is unverified."
     }
   ],
   "verification": {
@@ -247,24 +268,40 @@
       "oblique_lattice_direction_cases": 15,
       "weighted_dyadic_pair_sums": 60,
       "projected_ground_cover_checks": 1464
+    },
+    "initial_cone_height_research": {
+      "command": "python3 -B scripts/run_initial_cone_height_checks.py",
+      "status": "passed",
+      "report": "results/research/initial_cone_height_checks.json",
+      "source_hashes_verified": true,
+      "polynomial_fixtures": 19,
+      "ordinary_s_pairs": 570,
+      "ground_normal_forms": 3665,
+      "complete_fans": 11,
+      "initial_ideals_checked": 55,
+      "arithmetic_fixtures": 23,
+      "primitive_kernels_examined": 55415,
+      "subcritical_integer_weights_examined": 171178
     }
   },
-  "preservation": "Only the six listed public research files are updated in this continuation. The planar proof and all its checks, every other earlier research script and report, all core kernels, manuscripts and paused ML files are byte-identical to the baseline. Private exploration, source caches and raw verification logs stay ignored.",
+  "preservation": "Only the seven listed public research files are changed in this continuation. Every other tracked file is byte-preserved, including all manuscripts and their balanced attribution, core kernels and auditor, previous research scripts and reports, and paused ML work. The earlier mathematical sections of both modified research notes are retained; additions state the new obstruction and scoped source comparison. Private probes, baselines and reading records remain ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
     "docs/extremal_initial_ideals.md",
     "docs/rational_shadow_bound.md",
-    "scripts/run_rational_shadow_bound_checks.py",
-    "results/research/rational_shadow_bound_checks.json",
+    "docs/initial_cone_height.md",
+    "scripts/run_initial_cone_height_checks.py",
+    "results/research/initial_cone_height_checks.json",
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "9bbc8ed8e23f51bcacb4fc81f5ecccb76f6f9ad21bbaca80c547107a9968e7be",
-    "docs/extremal_initial_ideals.md": "9534d2a7d788306880abfb349bd60ba167f9e2f43a3599acda70efd05a9e54ef",
-    "docs/rational_shadow_bound.md": "239bafafac1d8fcf2bdac3661b4a4da7b57c0e22e1c2e3d7d0713eb1ac7b4de6",
-    "scripts/run_rational_shadow_bound_checks.py": "b292ce76d1b8d6aa812fff56afad56346c274fc65df9c2d1179318547b5c1a68",
-    "results/research/rational_shadow_bound_checks.json": "d042e618a451e0ac174904078d13d91f5d15e02a17261364001349a7d7a0a7a7"
+    "README.md": "b57b614eb83806677f234a03f4944f3253be65209f9c91cef9378575a0203412",
+    "docs/extremal_initial_ideals.md": "b8de16b0b87676ce9e6c55ccd5c0f3a2bad38ea252a5db9a31c3b4c5e7185636",
+    "docs/rational_shadow_bound.md": "ae0ebaf340bd05278c4159f6ee04269e92468e15a44400e67720227a87e13b21",
+    "docs/initial_cone_height.md": "1dd598f074e7eb973a822361f94c9ce782716dac6cdb7f8eb8c3c647c6387bae",
+    "scripts/run_initial_cone_height_checks.py": "f804aff89da53a6139aed7cacc9fd802dee8fd8529ee48a0d240dd9740df3dab",
+    "results/research/initial_cone_height_checks.json": "30841a32cd406336eb59b55f1a9b5567378f0a6c2ee22f379129598c0b67e509"
   },
   "continuations": [
     {
@@ -644,7 +681,46 @@
         "smoke": "passed",
         "all_prior_research_sources_and_reports": "unchanged"
       }
+    },
+    {
+      "title": "Five initial cones separate certificate height from projection-cover size",
+      "recorded_on": "2026-10-19",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "The prior turn completed the user-requested balanced research attribution; the preceding mathematical continuation gave the height-dependent rational-shadow upper bound. Both are preserved.",
+      "progress_classification": "uniform_all_field_route_obstruction_and_exact_projection_cover_with_independent_controls; unrestricted_count_and_priority_open",
+      "uniform_proofs": [
+        "For every k>=2 and field K, I_k=(xy-y^2,y^(k+1)-x^k,x^(k+1)-x^k,z-x^k) has length 2k+1 and exactly five monomial initial ideals. Its complete positive fan is given by a segment-plus-triangle lower support function.",
+        "One initial cone has inequalities s>t, (k+1)*t>k*s, u>k*s and a unimodular slack matrix. Its coordinatewise minimal positive integer weight is (k+2,k+1,(k+1)^2). The exact minimum height is (n+1)^2/4. The classical cofactor argument gives at most d!*n^(d-1) for arbitrary colength-n cones, so the three-variable height exponent is sharp along odd lengths.",
+        "The same cone has maximum primitive ray height k*(k+1), while the exact minimum kernel height for an intersecting plane is floor(k/2)+1. It is the full normal cone of a vertex of the actual universal residue-matroid profile polytope, not an unattached cone. Thus the square-root visibility radius cannot be uniformly improved even for these quotients.",
+        "Exactly two planes cover all five open cones. Their primitive kernels are (floor(k/2)+1,floor(k/2)+1,-1) and (1,0,-1); all five strict objectives are explicit. Every single projective line meets at most four cones because its support function has at most one segment break and two triangle-envelope breaks."
+      ],
+      "independent_controls": {
+        "command": "python3 -B scripts/run_initial_cone_height_checks.py",
+        "report": "results/research/initial_cone_height_checks.json",
+        "polynomial_fixtures": 19,
+        "ordinary_s_pairs": 570,
+        "ground_normal_forms": 3665,
+        "complete_fans": 11,
+        "initial_ideals_checked": 55,
+        "arithmetic_fixtures": 23,
+        "primitive_kernels_examined": 55415,
+        "subcritical_integer_weights_examined": 171178,
+        "checks": "Ordinary polynomial division and all S-pairs over Q,F_2,F_3,F_5,F_101; commuting integer multiplication on a cyclic module; Gaussian basis selection; exact cone clipping and disjointness/full-area checks; independent profile-exchange dimension certificate; exact primitive-kernel and integer-cube enumeration; explicit two-plane objectives and bounded single-plane hit controls."
+      },
+      "literature_boundary": "Finite positive-weight representation, reduced-basis cone inequalities, degree-based numeric weights, symbolic walks and the cofactor upper bound are established. The exact family and cover have no priority certificate. The new dyadic quasi-reduction comparison is recorded in the rational-shadow note, with PDF/HTML version dates separated.",
+      "effect_on_next_action": "Keep the original sharp or polynomially separated G_3 endpoint; no completion criterion is weakened. The all-field five-cone family I_k=(xy-y^2,y^(k+1)-x^k,x^(k+1)-x^k,z-x^k), n=2k+1, rules out a uniform O(n) integer weight for every initial cone and a better-than-square-root primitive-kernel radius in cone-ray height. Its exact two-plane cover separates cover cardinality from required radius. Seek a general bound on how many difficult cones can coexist, using the common quotient and commuting multiplication to improve the O(n^4/h) large-normal incidence or to bound a selected rational projection cover or visibility multiplicities. A larger search or rebalancing the existing sum over all small kernels supplies no new mechanism. The lower route still requires a quantitatively large simultaneous dependency family outside the binomial and additive classes. Compare the planar and height-dependent rational-shadow bounds against current primary literature. The newly located van der Hoeven--Lecerf dyadic quasi-reduction family covers monomial reduction regions, not all initial cones; inspect that distinction before proposing a polylogarithmic fan cover. Do not complete for these route obstructions, another nonsharp exponent, a draft, finite examples or unverified novelty.",
+      "new_unrestricted_counting_exponent": false,
+      "sharp_or_separated_endpoint_achieved": false,
+      "novelty_established": false,
+      "goal_complete": false,
+      "verification": {
+        "new_research": "passed",
+        "build": "passed",
+        "smoke": "passed",
+        "prior_research_scripts_reports_and_manuscripts": "unchanged"
+      }
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "Uniform unrestricted three-variable upper bound via height-dependent rational matroid shadows; sharp growth and novelty remain unestablished."
+  "asymptotic_improvement_scope_this_iteration": "No new unrestricted counting exponent. A uniform all-field family gives exact integer certificate height, primitive-kernel radius, five initial ideals and an optimal two-plane cover, excluding individual-cone shortcuts while preserving the aggregate counting route.",
+  "previous_goal_turn_classification": "progress: the user-requested attribution revision was implemented, compiled, privacy-reviewed and saved on main; the research objective and its success criteria were preserved."
 }

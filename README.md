@@ -75,6 +75,10 @@ It bounds rational matroid shadows by their normalized integer height,
 then uses short integer relations to cover vertices with bounded facet
 normals. This is a uniform upper-bound improvement; sharp growth,
 current novelty and the goal's publication assessment remain open.
+A [five-cone construction](docs/initial_cone_height.md) shows why large
+necessary integer weights need not indicate a large fan: it requires
+quadratic weight height but only two projection planes. The next count
+must control those planes collectively.
 The additive prime-power class is now classified separately: at length
 `n=q^k`, every initial ideal is a prime-power box and the sharp maximum
 is `binomial(k+d-1,d-1)`. The proof uses established Frobenius reduction;
