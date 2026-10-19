@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Keep the original sharp or polynomially separated G_3 endpoint; no completion criterion is weakened. The all-field five-cone family I_k=(xy-y^2,y^(k+1)-x^k,x^(k+1)-x^k,z-x^k), n=2k+1, rules out a uniform O(n) integer weight for every initial cone and a better-than-square-root primitive-kernel radius in cone-ray height. Its exact two-plane cover separates cover cardinality from required radius. Seek a general bound on how many difficult cones can coexist, using the common quotient and commuting multiplication to improve the O(n^4/h) large-normal incidence or to bound a selected rational projection cover or visibility multiplicities. A larger search or rebalancing the existing sum over all small kernels supplies no new mechanism. The lower route still requires a quantitatively large simultaneous dependency family outside the binomial and additive classes. Compare the planar and height-dependent rational-shadow bounds against current primary literature. The newly located van der Hoeven--Lecerf dyadic quasi-reduction family covers monomial reduction regions, not all initial cones; inspect that distinction before proposing a polylogarithmic fan cover. Do not complete for these route obstructions, another nonsharp exponent, a draft, finite examples or unverified novelty.",
+  "next_proof_task": "Preserve the original sharp or polynomially separated G_3 endpoint and the exact current-priority and paper requirements. The new reduction isolates T(I)=sum_w ||w||_infinity*d(w), over strictly positive primitive fan rays and their incident cells. Three fixed rational planes cover all boundary-adjacent cells at cost O(n^(5/3)*log(n+1)); the remaining count is O(n*h^(5/3)*log(n+1)+T(I)/h). The classical T=O(n^4) reproduces the existing bound. Seek a uniform improvement of this weighted vertex-incidence budget using the common graded quotient at each ray, multiplication-induced parallel exchanges and a global count of simultaneous dependencies. T=O(n^3) is a concrete unproved intermediate target, conditionally giving exponent 9/4; it does not replace the original completion criterion. A new local all-field family has quartic surface-area tail even at threshold Theta(n^2), so a blanket power saving in total or large-normal area is false. Its four initial ideals and exact eight bad vertices separate area from incidence. Positive facet aspect ratio can also be quadratic, ruling out a linear-aspect shortcut. Do not merely fit the finite T values or count all algebraic bases. Continue the strongest-current-bound audit and the non-binomial realizable lower route; no conditional reduction, obstruction family or nonsharp exponent alone completes this goal.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -81,7 +81,8 @@
     "Audit the exact hyperbolic integer-weight matroid bound and its application G_2(n)=Theta(n*log(n+1)), including the O(n^(3/2)*log(n+1)) universal reduced-basis cardinality. Classical token paths and lattice-chain counting are attributed; the matching generic lower bound is published. The inspected historical planar O(n^(4/3)) statements and the 2025 general multi-parameter arrangement bound do not establish current novelty. This proof does not depend on the unresolved 1975 McMullen application.",
     "Compare the exact general matroid shadow bound O_d(log(H+1)*(1+r+(r^2*H*Delta)^(1/3))), with normalized rank-two integer projection height Delta, and the derived G_3 upper bound with the strongest current primary statements. Greedy convex token paths, integer lattice covolumes, lattice triangle charging and short-relation pigeonhole are classical. The explicit dyadic weighted sum and short-normal vertex incidence have self-contained proofs but no priority certificate. The 2022 Small Shadows principal statements concern selected monotone paths; the 2025 unrestricted multi-parameter arrangement bound does not state the new height dependence. Those scoped comparisons are not proof of novelty.",
     "Compare the explicit all-field five-cone family, its exact (n+1)^2/4 integer certificate height, exact floor(k/2)+1 kernel radius and optimal two-plane cover against current primary literature. Cofactor upper bounds, positive-weight representation and symbolic Groebner walks are established inputs; no novelty or extremal endpoint is claimed.",
-    "Complete the precise comparison with van der Hoeven--Lecerf heterogeneous quasi-reduction before claiming a new dyadic weight-cover principle. Distinguish its versioned source and monomial reduction regions from a cover of all Groebner cones."
+    "Complete the precise comparison with van der Hoeven--Lecerf heterogeneous quasi-reduction before claiming a new dyadic weight-cover principle. Distinguish its versioned source and monomial reduction regions from a cover of all Groebner cones.",
+    "Assess priority of the boundary-plane reduction, weighted interior-facet incidence formulation and exact local surface-tail example. The next unconditional count requires a stronger incidence theorem, not an unproved area or aspect bound. Classical ingredients and the binomial subclass boundary remain credited."
   ],
   "primary_sources": [
     {
@@ -282,26 +283,37 @@
       "arithmetic_fixtures": 23,
       "primitive_kernels_examined": 55415,
       "subcritical_integer_weights_examined": 171178
+    },
+    "weighted_facet_incidence_research": {
+      "command": "python3 -B scripts/run_weighted_facet_incidence_checks.py",
+      "status": "passed",
+      "report": "results/research/weighted_facet_incidence_checks.json",
+      "source_hashes_verified": true,
+      "quartic_fixtures": 7,
+      "ordinary_s_pairs": 168,
+      "ground_normal_forms": 1123,
+      "complete_fans": 11,
+      "boundary_cells_checked": 92
     }
   },
-  "preservation": "Only the seven listed public research files are changed in this continuation. Every other tracked file is byte-preserved, including all manuscripts and their balanced attribution, core kernels and auditor, previous research scripts and reports, and paused ML work. The earlier mathematical sections of both modified research notes are retained; additions state the new obstruction and scoped source comparison. Private probes, baselines and reading records remain ignored.",
+  "preservation": "Only the seven listed public research files change. Every other tracked file, including all manuscripts and their balanced attribution, core kernels and auditor, earlier research scripts and reports, and paused ML files, is byte-preserved. The existing text of the two modified research notes is retained with additions; private probes and baselines remain ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
     "docs/extremal_initial_ideals.md",
     "docs/rational_shadow_bound.md",
-    "docs/initial_cone_height.md",
-    "scripts/run_initial_cone_height_checks.py",
-    "results/research/initial_cone_height_checks.json",
+    "docs/weighted_facet_incidence.md",
+    "scripts/run_weighted_facet_incidence_checks.py",
+    "results/research/weighted_facet_incidence_checks.json",
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "b57b614eb83806677f234a03f4944f3253be65209f9c91cef9378575a0203412",
-    "docs/extremal_initial_ideals.md": "b8de16b0b87676ce9e6c55ccd5c0f3a2bad38ea252a5db9a31c3b4c5e7185636",
-    "docs/rational_shadow_bound.md": "ae0ebaf340bd05278c4159f6ee04269e92468e15a44400e67720227a87e13b21",
-    "docs/initial_cone_height.md": "1dd598f074e7eb973a822361f94c9ce782716dac6cdb7f8eb8c3c647c6387bae",
-    "scripts/run_initial_cone_height_checks.py": "f804aff89da53a6139aed7cacc9fd802dee8fd8529ee48a0d240dd9740df3dab",
-    "results/research/initial_cone_height_checks.json": "30841a32cd406336eb59b55f1a9b5567378f0a6c2ee22f379129598c0b67e509"
+    "README.md": "0780c1a6967464dbdfc9bf30c7fb44d06df30293f6fb2526f508f26d185a80c8",
+    "docs/extremal_initial_ideals.md": "66adab9e34e7819e6b5d07d4b56e592082087503216ba19ee514bc67b9d08844",
+    "docs/rational_shadow_bound.md": "b59b7b190923f9c60d85af61d099fc8ca1c1a6c966f7cbcb59f841c8035e2e00",
+    "docs/weighted_facet_incidence.md": "8d9da03177a2545b92b1c5f41688202cba6f900cf65326a15346925744e2b2ad",
+    "scripts/run_weighted_facet_incidence_checks.py": "648952859bb75658cd3f4d2397298b97ce56c6718ee6c9b40edee0af50525c64",
+    "results/research/weighted_facet_incidence_checks.json": "68078f415493ffb3ac3fb9801c47b2829745f43c5705979e5922627108b0a9f6"
   },
   "continuations": [
     {
@@ -719,8 +731,45 @@
         "smoke": "passed",
         "prior_research_scripts_reports_and_manuscripts": "unchanged"
       }
+    },
+    {
+      "title": "A weighted interior-facet budget and sharp failure of surface-tail savings",
+      "recorded_on": "2026-10-19",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "Commit 40a672d saved the five-cone certificate-height and projection-cover separation; all of that work is preserved.",
+      "progress_classification": "uniform_boundary_cover_and_weighted_incidence_reduction_with_exact_all_field_surface_obstruction; unrestricted_count_and_priority_open",
+      "uniform_proofs": [
+        "Every boundary-adjacent positive initial cell is visible in one of the three planes with primitive kernels (Q,-1,-1),(-1,Q,-1),(-1,-1,Q), Q=12*n^2+1. A strict integer certificate of height <=6*n^2 and a nonzero boundary ray give an explicit strict intersection objective. Rational shadows bound these cells by O(n^(5/3)*log(n+1)).",
+        "Writing T(I)=sum_w ||w||_infinity*d(w) over strictly positive interior fan rays, the count is O(n^(5/3)*log(n+1)+n*h^(5/3)*log(n+1)+T(I)/h). Classical facet charging gives only T=O(n^4). A hypothetical T=O(n^3) gives the conditional exponent 9/4; no such stronger bound is proved.",
+        "For every k>=2 and every field, J_k=(xy-x^(k+1),x^(2k+1),y^(2k),z-y^k) is a local quotient of length 4*k with exactly four initial ideals. Its residue matroid has 2^(2*k) bases, (k+1)^2 profile sums, and a parallelogram profile polytope a+k*[0,(-k,1,0)]+k*[0,(0,-k,1)].",
+        "The primitive positive normal is (1,k,k^2). The exact regularization by the unit cube has two facets above normal threshold k^2/2, each of area k^2*sqrt(1+k^2+k^4). Their total is Theta(n^4), but exactly eight vertices are incident to them and T(J_k)=4*k^2. This refutes a uniform surface-area-tail power saving at quadratic normal height, without refuting a better vertex-incidence bound.",
+        "The same normal has coordinate ratio k^2=n^2/16. The classical cofactor upper height 2*n^2 makes the positive-facet aspect-ratio exponent sharp along these lengths. This auxiliary sharpness does not settle the extremal count."
+      ],
+      "independent_controls": {
+        "command": "python3 -B scripts/run_weighted_facet_incidence_checks.py",
+        "report": "results/research/weighted_facet_incidence_checks.json",
+        "quartic_fixtures": 7,
+        "ordinary_s_pairs": 168,
+        "ground_normal_forms": 1123,
+        "complete_fans": 11,
+        "boundary_cells_checked": 92,
+        "checks": "Ordinary polynomial division versus cyclic commuting matrices; all S-pairs over Q,F_2,F_3,F_101; exhaustive profile convolution and exact hull; every regularized supporting facet computed from integer triples; exact cone clipping and Gaussian boundary-cover replay, including the four existing complete nonlinear rectangle fans. Finite T values are controls, not an asymptotic fit."
+      },
+      "literature_boundary": "The state dictionary, cofactor certificate, lattice triangle estimate and normal-fan geometry are classical. The reduction uses the existing rational-shadow theorem. The elementary binomial example is a proof-route obstruction with unassessed exact priority; no new general binomial result, improved unconditional count or publication claim follows.",
+      "effect_on_next_action": "Preserve the original sharp or polynomially separated G_3 endpoint and the exact current-priority and paper requirements. The new reduction isolates T(I)=sum_w ||w||_infinity*d(w), over strictly positive primitive fan rays and their incident cells. Three fixed rational planes cover all boundary-adjacent cells at cost O(n^(5/3)*log(n+1)); the remaining count is O(n*h^(5/3)*log(n+1)+T(I)/h). The classical T=O(n^4) reproduces the existing bound. Seek a uniform improvement of this weighted vertex-incidence budget using the common graded quotient at each ray, multiplication-induced parallel exchanges and a global count of simultaneous dependencies. T=O(n^3) is a concrete unproved intermediate target, conditionally giving exponent 9/4; it does not replace the original completion criterion. A new local all-field family has quartic surface-area tail even at threshold Theta(n^2), so a blanket power saving in total or large-normal area is false. Its four initial ideals and exact eight bad vertices separate area from incidence. Positive facet aspect ratio can also be quadratic, ruling out a linear-aspect shortcut. Do not merely fit the finite T values or count all algebraic bases. Continue the strongest-current-bound audit and the non-binomial realizable lower route; no conditional reduction, obstruction family or nonsharp exponent alone completes this goal.",
+      "new_unrestricted_counting_exponent": false,
+      "improved_incidence_budget_proved": false,
+      "sharp_or_separated_endpoint_achieved": false,
+      "novelty_established": false,
+      "goal_complete": false,
+      "verification": {
+        "new_research": "passed",
+        "build": "passed",
+        "smoke": "passed",
+        "prior_scripts_reports_manuscripts_and_core": "unchanged"
+      }
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "No new unrestricted counting exponent. A uniform all-field family gives exact integer certificate height, primitive-kernel radius, five initial ideals and an optimal two-plane cover, excluding individual-cone shortcuts while preserving the aggregate counting route.",
-  "previous_goal_turn_classification": "progress: the user-requested attribution revision was implemented, compiled, privacy-reviewed and saved on main; the research objective and its success criteria were preserved."
+  "asymptotic_improvement_scope_this_iteration": "No new unconditional counting exponent. A uniform all-field large-normal surface-area obstruction and a boundary/interior incidence reduction identify the precise next quantitative budget.",
+  "previous_goal_turn_classification": "progress: commit 40a672d preserved the exact five-cone family, quadratic integer weights, sharp short-kernel radius and optimal two-plane cover with independent checks."
 }

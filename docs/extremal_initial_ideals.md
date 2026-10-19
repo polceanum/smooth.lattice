@@ -37,6 +37,11 @@ five initial ideals, a necessary integer weight height $\Theta(n^2)$,
 and a necessary projection radius $\Theta(n)$, while exactly two planes
 cover its cones. It rules out two individual-cone shortcuts without
 excluding a stronger aggregate projection bound.
+The [weighted-incidence reduction](weighted_facet_incidence.md) now
+isolates the missing aggregate budget. Three planes cover all boundary
+cells, and an explicit local family rules out a power saving in the
+large-normal surface-area tail. The required stronger incidence bound
+has not been established.
 
 ## Connection to the original observations
 
@@ -1655,6 +1660,20 @@ its incidence multiplicities globally, instead of improving those
 individual-cone exponents. The unrestricted upper and lower targets
 are unchanged.
 
+The next aggregate estimate is now formulated explicitly. Write
+$T(I)=\sum_w\|w\|_\infty d(w)$ over strictly positive primitive fan
+rays, with $d(w)$ their incident-cell counts. The
+[complete reduction](weighted_facet_incidence.md) gives
+$g(I)=O(n^{5/3}\log(n+1)+nh^{5/3}\log(n+1)+T(I)/h)$.
+The current classical estimate is $T(I)=O(n^4)$. A theorem
+$T(I)=O(n^3)$ would yield the conditional exponent $9/4$; it remains
+unproved and would not alone establish sharp growth. In a local
+all-field family of length $4k$, a facet normal $(1,k,k^2)$ and
+quartic facet area coexist with four initial ideals and $T=4k^2$.
+At normal threshold $k^2/2$, exactly eight vertices are charged.
+This rules out a blanket surface-tail saving at the relevant large
+heights, but preserves the possibility of a stronger incidence theorem.
+
 The nonlinear rectangle route remains available. Its filtration bound
 identifies a quantitative window, and the rational relation distinguishes
 the fixed surface from free-coefficient embeddings. A proposed count must
@@ -1695,6 +1714,7 @@ python3 -B scripts/run_additive_initial_ideals_checks.py
 python3 -B scripts/run_planar_dyadic_bound_checks.py
 python3 -B scripts/run_rational_shadow_bound_checks.py
 python3 -B scripts/run_initial_cone_height_checks.py
+python3 -B scripts/run_weighted_facet_incidence_checks.py
 ./build.sh
 python3 tests/test_smoke.py
 ```

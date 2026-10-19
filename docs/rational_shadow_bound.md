@@ -257,6 +257,15 @@ $$
 The sum is an upper bound even when one vertex is visible many times.
 No averaging over irrational projections is required.
 
+The [weighted-incidence continuation](weighted_facet_incidence.md)
+separates this charge into the number of facet vertices and their
+primitive normal height. Three fixed rational planes cover all cells
+touching the positive-weight boundary. An exact local quotient shows
+that the remaining large-normal surface area can still be quartic,
+even for normal heights proportional to $n^2$. A stronger count must
+therefore improve weighted vertex incidence rather than assume a
+smaller surface-area tail.
+
 The [five-cone quotient construction](initial_cone_height.md) shows that
 the square-root radius cannot be improved uniformly, even for actual
 finite quotients over every field. Its exact minimum radius is
