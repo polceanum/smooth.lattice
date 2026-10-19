@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "title": "Bounded exact controls for the timing-adaptive conversion candidate",
+  "status": "passed",
+  "renewal": {
+    "cdf_distributions": 1166,
+    "truncated_mean_checks": 6733,
+    "iid_renewal_horizons": 27984,
+    "near_sharp_uniform_example": {
+      "m": 16,
+      "horizon": 256,
+      "ratio_exceptions_to_Qp": "5361355408089377592728726795807628450000128029760254911743143157182282811478414187184197932580992779859492252526397697386296324672503939776801721563022587144774060196168396487994573440339332157583899700947265035248307363632073678228880002123776262357482487519144145529811989995937761056153792107053735023185921/2876309015779705452366888305262439573788763166307690516374881298523722812888015410123335637158520576337921822077942293722540636301030665959885558890231585990044286294797847764420835513619937505911249327233360092301410410917479406103582609768653235794613608170953380771839155935015675460877365701273987586195456"
+    },
+    "scope": "Finite IID controls support the general analytical epoch proof; they do not exhaust adaptive epoch laws."
+  },
+  "adaptive_policies": {
+    "optimized_games": [
+      {
+        "seed_alphabet": 2,
+        "copies": 1,
+        "bad_set_size": 1,
+        "fresh_timeout_probability": "1/2",
+        "maximal_ratio_exceptions_to_Qp": "88857107/67108864",
+        "horizons": 24
+      },
+      {
+        "seed_alphabet": 2,
+        "copies": 2,
+        "bad_set_size": 1,
+        "fresh_timeout_probability": "1/4",
+        "maximal_ratio_exceptions_to_Qp": "9/8",
+        "horizons": 24
+      },
+      {
+        "seed_alphabet": 3,
+        "copies": 1,
+        "bad_set_size": 1,
+        "fresh_timeout_probability": "1/3",
+        "maximal_ratio_exceptions_to_Qp": "417760355789/282429536481",
+        "horizons": 24
+      },
+      {
+        "seed_alphabet": 3,
+        "copies": 2,
+        "bad_set_size": 1,
+        "fresh_timeout_probability": "1/9",
+        "maximal_ratio_exceptions_to_Qp": "271/243",
+        "horizons": 24
+      },
+      {
+        "seed_alphabet": 4,
+        "copies": 1,
+        "bad_set_size": 1,
+        "fresh_timeout_probability": "1/4",
+        "maximal_ratio_exceptions_to_Qp": "2645864617879969/1688849860263936",
+        "horizons": 24
+      },
+      {
+        "seed_alphabet": 4,
+        "copies": 1,
+        "bad_set_size": 2,
+        "fresh_timeout_probability": "1/2",
+        "maximal_ratio_exceptions_to_Qp": "88857107/67108864",
+        "horizons": 24
+      },
+      {
+        "seed_alphabet": 4,
+        "copies": 2,
+        "bad_set_size": 1,
+        "fresh_timeout_probability": "1/16",
+        "maximal_ratio_exceptions_to_Qp": "17985/16384",
+        "horizons": 24
+      },
+      {
+        "seed_alphabet": 4,
+        "copies": 2,
+        "bad_set_size": 2,
+        "fresh_timeout_probability": "1/4",
+        "maximal_ratio_exceptions_to_Qp": "2204895385188529/1688849860263936",
+        "horizons": 24
+      },
+      {
+        "seed_alphabet": 5,
+        "copies": 1,
+        "bad_set_size": 1,
+        "fresh_timeout_probability": "1/5",
+        "maximal_ratio_exceptions_to_Qp": "19316387970444454/11920928955078125",
+        "horizons": 24
+      },
+      {
+        "seed_alphabet": 5,
+        "copies": 1,
+        "bad_set_size": 2,
+        "fresh_timeout_probability": "2/5",
+        "maximal_ratio_exceptions_to_Qp": "32776422461262049/23841857910156250",
+        "horizons": 24
+      },
+      {
+        "seed_alphabet": 5,
+        "copies": 2,
+        "bad_set_size": 1,
+        "fresh_timeout_probability": "1/25",
+        "maximal_ratio_exceptions_to_Qp": "2115751/1953125",
+        "horizons": 24
+      },
+      {
+        "seed_alphabet": 5,
+        "copies": 2,
+        "bad_set_size": 2,
+        "fresh_timeout_probability": "4/25",
+        "maximal_ratio_exceptions_to_Qp": "4301147302708099180604871516019139/3410605131648480892181396484375000",
+        "horizons": 24
+      }
+    ],
+    "belief_horizon_states": 25383,
+    "conditional_hazard_counterexample": {
+      "fresh_hazard": "1/8",
+      "after_seven_ordinary_replies": "1"
+    },
+    "scope": "All timing-adaptive query policies in each finite game, with fresh independent copies only after exceptions."
+  },
+  "rebuilding": {
+    "slot_seed_independence_checks": 32,
+    "accepted_seed_conditioning_checks": 1024,
+    "unpadded_build_time_seed_leak": true
+  },
+  "backlog": {
+    "dyadic_spike_outcomes": 2026,
+    "witnesses": [
+      {
+        "phase_length": 2,
+        "budget": "1/3",
+        "per_operation_mean_bound": "1",
+        "final_busy_probability": "1"
+      },
+      {
+        "phase_length": 2,
+        "budget": "1",
+        "per_operation_mean_bound": "1",
+        "final_busy_probability": "1/3"
+      },
+      {
+        "phase_length": 4,
+        "budget": "2/3",
+        "per_operation_mean_bound": "1",
+        "final_busy_probability": "1"
+      },
+      {
+        "phase_length": 4,
+        "budget": "2",
+        "per_operation_mean_bound": "1",
+        "final_busy_probability": "1/3"
+      },
+      {
+        "phase_length": 8,
+        "budget": "1",
+        "per_operation_mean_bound": "1",
+        "final_busy_probability": "1"
+      },
+      {
+        "phase_length": 8,
+        "budget": "3",
+        "per_operation_mean_bound": "1",
+        "final_busy_probability": "1/3"
+      },
+      {
+        "phase_length": 16,
+        "budget": "4/3",
+        "per_operation_mean_bound": "1",
+        "final_busy_probability": "1"
+      },
+      {
+        "phase_length": 16,
+        "budget": "4",
+        "per_operation_mean_bound": "1",
+        "final_busy_probability": "1/3"
+      },
+      {
+        "phase_length": 32,
+        "budget": "5/3",
+        "per_operation_mean_bound": "1",
+        "final_busy_probability": "1"
+      },
+      {
+        "phase_length": 32,
+        "budget": "5",
+        "per_operation_mean_bound": "1",
+        "final_busy_probability": "1/3"
+      },
+      {
+        "phase_length": 64,
+        "budget": "2",
+        "per_operation_mean_bound": "1",
+        "final_busy_probability": "1"
+      },
+      {
+        "phase_length": 64,
+        "budget": "6",
+        "per_operation_mean_bound": "1",
+        "final_busy_probability": "1/3"
+      },
+      {
+        "phase_length": 128,
+        "budget": "7/3",
+        "per_operation_mean_bound": "1",
+        "final_busy_probability": "1"
+      },
+      {
+        "phase_length": 128,
+        "budget": "7",
+        "per_operation_mean_bound": "1",
+        "final_busy_probability": "1/3"
+      },
+      {
+        "phase_length": 256,
+        "budget": "8/3",
+        "per_operation_mean_bound": "1",
+        "final_busy_probability": "1"
+      },
+      {
+        "phase_length": 256,
+        "budget": "8",
+        "per_operation_mean_bound": "1",
+        "final_busy_probability": "1/3"
+      },
+      {
+        "phase_length": 512,
+        "budget": "3",
+        "per_operation_mean_bound": "1",
+        "final_busy_probability": "1"
+      },
+      {
+        "phase_length": 512,
+        "budget": "9",
+        "per_operation_mean_bound": "1",
+        "final_busy_probability": "1/3"
+      }
+    ],
+    "scope": "Necessity of log L order for the generic first-moment counter argument, not a lower bound for all indexes or compilers."
+  },
+  "canonical_lookup": {
+    "raw_query_candidate_choices": 3888,
+    "independent_payload_overwrites": 24,
+    "scope": "Exact finite reduction controls, with no ANN index, timing benchmark, learned encoder or dynamic performance claim."
+  },
+  "novelty_established": false,
+  "strongest_baseline_advantage_established": false,
+  "publication_ready": false,
+  "source_sha256": {
+    "scripts/run_timing_restart_checks.py": "5e4a7ec51e401d6d759093569aaa3028510ebdc6b1dbe195ecfaaf9d5bbf8540",
+    "docs/associative_memory_timing.md": "fd6a683215e87ac9675b5169b2d7016a90f20972d25643aa499aed31ad4a96c8"
+  }
+}

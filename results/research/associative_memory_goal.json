@@ -18,7 +18,7 @@
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "shared_threshold_nonlinear_routing_equals_known_simplex_lattice_interpolation; local_corner_retention_global_sensitivity_and_active_read_rank_distinguished; new_encoder_routing_advantage_unproved"
+      "status": "canonical_timing_adaptive_static_and_dynamic_conversion_proof_recorded; known_backlog_lemma_and_complete_phase_costs_identified; dynamic_index_instantiation_novelty_and_strongest_baseline_advantage_unproved"
     },
     {
       "stage": 4,
@@ -1056,5 +1056,93 @@
       "./build.sh",
       "python3 tests/test_smoke.py"
     ]
+  },
+  "fourteenth_iteration": {
+    "previous_turn_classification": "progress: shared-threshold routing was identified as existing simplex interpolation, its exact scope controls saved and checked; full objective unachieved",
+    "record": "docs/associative_memory_timing.md",
+    "certificate_script": "scripts/run_timing_restart_checks.py",
+    "certificate_report": "results/research/timing_restart_checks.json",
+    "candidate_claim": {
+      "model": "Finite-word sequential RAM; client sees canonical answers and complete operation times, but not private state, seeds or access traces. Fresh coins and padding steps charged. Read-only index queries use randomness separate from updates.",
+      "base_hypotheses": "Always-correct index; expected build R and uniform per-operation expected T for every fixed legal history; expected maximum live space M_L over an entire fixed length-L phase, including build and partial updates. Deterministic reference state U with initialization I, commit/queue/output cost D and fallback F; maximum update-record width w. Copies and delayed updates are self-contained; shared key storage cannot be overwritten underneath a paused copy. Fixed word width, input records, fresh randomness and reference initialization are charged.",
+      "static_bound": "I+8*k*R initial cost plus Q*[k*B+2*(8*k*R+F)*(2*T/B)^k] expected subsequent work, with independent accepted builds, B>=2*T, static read-only indexes, and O(U+k*(M+B)) words. Explicit logarithmic-copy choice gives O(T*log(2+(R+F)/T)) expected amortized work, not worst-case time per query.",
+      "dynamic_bound": "I+8*k*R+Q*[D+k*(G+B)+2*(8*k*R+F)*((3/4)^k+1/L)], G=ceil(8*T*ceil(log2(2*L))), B=ceil(16*T). Space O(U+k*M_L+L*w+k). Choosing L from (R+F)/T and k=4*ceil(log2(2*L)) gives O(D+T*log^2(2+(R+F)/T)) expected amortized work, uniformly over fixed finite Q with unchanged parameters.",
+      "proof_status": "A complete conditional derivation is recorded, using the published backlog lemma. Its novelty, an efficient fully audited dynamic ANN instantiation, and superiority on the same workload/observation model are not established. This does not complete the original goal.",
+      "limits": "Canonical outputs and private internals are essential. No access-trace protection, real-CPU constant-time claim, worst-case per-operation bound, arbitrary stopping-time guarantee, free value compression, learned encoder or ANN exponent superiority."
+    },
+    "proof_corrections_and_controls": [
+      "Use first-exception CDF and E[N_Q]<=2*a*Q; conditioning directly on survival can make the next hazard one.",
+      "Pad each build attempt; the accepted seed is independent of the visible number of failed attempts. An unpadded successful build can reveal the new seed.",
+      "Changing keys require queued updates to all copies and only caught-up copies may answer; static all-copy fast-query amplification alone does not synchronize updates.",
+      "Charge phase-maximum live space and a bounded update queue. An instantaneous expected index size does not imply the phase-space bound.",
+      "The logarithmic phase budget uses an existing first-moment backlog lemma. Exact dyadic spike controls show that logarithmic order can be necessary for that generic counter argument, not for all architectures."
+    ],
+    "primary_sources": [
+      {
+        "url": "https://arxiv.org/html/2601.00272v1",
+        "scope": "Definitions 3.1/4.1, Theorem 4.2, Claim 4.3 and Section 7 inspected; answers-only formal transcript, oblivious updates and robust release of internal timing statistics distinguished from all operation times. Strong fair/density and for-all comparators retained."
+      },
+      {
+        "url": "https://thomasahle.com/papers/lasvegas.pdf",
+        "scope": "Full version dated June 27, 2018, Definition 1, Theorem 1, Lemma 1 and Section 3 expected-cost construction inspected; PDF page 3 visually checked. Complete dynamic phase-space/word-cost instantiation remains pending."
+      },
+      {
+        "url": "https://arxiv.org/abs/1704.02054v3",
+        "scope": "Versioned Ahle preprint metadata checked; no unverified transfer of theorem numbers between versions."
+      },
+      {
+        "url": "https://arxiv.org/abs/1807.07527",
+        "scope": "Wei primary abstract and Corollary 3.11/construction discussion inspected; entire data-dependent proof and dynamic finite-precision instantiation not audited. No exponent superiority claimed."
+      },
+      {
+        "url": "https://eprints.cs.univie.ac.at/7159/1/A_Deamortization_Approach.pdf",
+        "scope": "Bernstein--Forster--Henzinger 57-page author version, Theorem 2.1, Lemma 2.3 and queue/counter argument inspected; PDF pages 6--7 visually checked. Known bounded-work/backlog primitive, not a new deamortization claim."
+      },
+      {
+        "url": "https://reitermk.github.io/papers/2009/ESORICS.pdf",
+        "scope": "Bethea--Reiter timing-adversary model and Sections 1/2/5 inspected; existing timing-adaptive sets and per-operation rerandomization recognized."
+      },
+      {
+        "url": "https://arxiv.org/abs/1506.00189",
+        "scope": "Braun--Jana--Boneh Section IV-A padding, overruns and secret replacement inspected; these component ideas are established. Hardware protections are not supplied by our abstract RAM proof."
+      },
+      {
+        "url": "https://arxiv.org/abs/2111.03980",
+        "scope": "Beimel et al. primary abstract only; exact generic-reduction/blinking-adversary theorem comparison remains pending, so no gap is inferred."
+      }
+    ],
+    "decision": "Continue the exact prior-art comparison and a complete dynamic index instantiation before any architecture claim. Preserve the conditional compiler proof; do not treat its known components, small exact controls or horizon language alone as a publishable advantage.",
+    "next_actions": [
+      "Audit the complete generic adaptive-reduction and timing/rekeying literature, especially the relevant primary theorems of Beimel et al. and the concurrent robust search work cited by Andoni et al.; identify an exact equivalence or defensible gap.",
+      "Instantiate every R,T,M_L,U,D,F,w and finite-word/randomness cost for a canonical dynamic raw-key index with independently changing bindings and useful geometric/density promises; no abstract-only ANN performance claim.",
+      "Compare the full tradeoff against the strongest same-workload robust fair, Las Vegas and for-all index, including its observation model and finite versus unbounded horizon. A comparison only against sqrt(Q)-space ANN is insufficient.",
+      "If the conversion is a known corollary or its canonical/separation promise removes the advantage, retain it as a baseline and seek a structural improvement. No training, manuscript of a claimed contribution or goal completion on this evidence."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "verification_commands": [
+      "python3 -B scripts/run_timing_restart_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py"
+    ],
+    "preservation": "Existing proof records, all previous checkers and reports, core kernels, both manuscripts and learned-recall artifacts are unchanged; this separate candidate note avoids rewriting historical provenance hashes.",
+    "certificate_summary": {
+      "cdf_distributions": 1166,
+      "truncated_mean_controls": 6733,
+      "iid_renewal_horizon_controls": 27984,
+      "optimal_timing_adaptive_games": 12,
+      "belief_horizon_states": 25383,
+      "safe_build_slot_seed_independence": 32,
+      "accepted_seed_conditioning_controls": 1024,
+      "dyadic_backlog_spike_outcomes": 2026,
+      "canonical_raw_query_candidate_choices": 3888,
+      "independent_payload_overwrites": 24,
+      "scope": "Bounded supporting certificates; no ANN implementation, full formal proof verification, benchmark, novelty or strongest-baseline advantage."
+    },
+    "verification_scope": "New exact checker plus build and smoke tests passed. Existing eleven proof scripts/reports were not rerun because all their sources and artifacts, including the main research note, are byte-for-byte preserved."
   }
 }
