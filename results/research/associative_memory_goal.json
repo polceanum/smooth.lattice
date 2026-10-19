@@ -18,7 +18,7 @@
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "complete_exact_range_baseline_derived_from_optimal_Las_Vegas_filtering_in_its_arithmetic_model; bounded_outer_density_static_key_advantage_ruled_out_in_that_model; spectral_only_and_fully_dynamic_finite_word_frontiers_open"
+      "status": "finite_word_exact_subset_signature_baseline_asymptotically_dominates_compact_random_shell_witness_with_efficient_admission_and_overwrites; no_novel_frontier_from_that_example; full_spectral_only_class_open"
     },
     {
       "stage": 4,
@@ -1593,5 +1593,76 @@
     },
     "old_functions_and_certificate_blocks_preserved": true,
     "verification_scope": "Extended exact checker, build and smoke tests passed. All 234 protected files, eighteen prior non-main function ASTs, nineteen prior goal iterations and historical certificate blocks are preserved. Source hashes match the final note/checker. Other proof checkers were not rerun because their sources/artifacts are unchanged. The controls are exact finite algebra/boundary checks, not an optimal LSF implementation, finite-word compilation, adaptive-key theorem, performance experiment or novelty determination."
+  },
+  "twenty_first_iteration": {
+    "previous_turn_classification": "progress: complete exact-range optimal-filter baseline derived and verified in its native arithmetic model; fixed-key bounded-outer-density route removed from the novelty case; full original publication goal unachieved",
+    "record": "docs/associative_memory_timing.md, A finite-word signature baseline for the compact sparse examples",
+    "certificate_script": "scripts/run_timing_restart_checks.py",
+    "certificate_report": "results/research/timing_restart_checks.json",
+    "primary_prior_art": [
+      {
+        "url": "https://arxiv.org/abs/1605.02673v2",
+        "scope": "Equation (1) and Theorem 3 explicitly optimize query work from the full LSH collision profile, rather than a single coarse outer-density count. Large outer balls alone do not establish a search advantage."
+      },
+      {
+        "url": "https://www.vldb.org/conf/2006/p918-arasu.pdf",
+        "author_hosted_copy": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/vldb06.pdf",
+        "scope": "Arasu--Ganti--Kaushik 2006, Sections 3 and 7, exact signature filtering followed by verification. Figure 8 and WTENUM text on PDF page 7 visually checked. Before prefix pruning, unit-weight minimal-subset enumeration gives all subsets of the selected size. The comparator uses this elementary unpruned family plus query prefix filtering. Do not claim that signature idea is new or attribute our promise-specific dynamic accounting as a theorem of that paper."
+      },
+      {
+        "url": "https://arxiv.org/abs/1612.07710",
+        "scope": "Christiani--Pagh Chosen Path uses set-intersection geometry in a logarithmic-word RAM. Theorem 1.1 assumes fixed thresholds; no direct substitution of a vanishing far-similarity threshold is used. The deterministic subset proof establishes the needed comparator independently of that parameter-uniformity question."
+      }
+    ],
+    "finite_parameter_signature_baseline": {
+      "model": "n fixed-capacity slots, d>=2 raw binary coordinates, active key weight t, pairwise support intersections <ell, 1<=ell<=t, radius 0<=r<=t-ell. Arbitrary independent finite-word payloads, sequential atomic operations, deterministic word RAM with capacity/address/coordinate/payload guard bits.",
+      "exact_dictionary": "Store all F=binom(t,ell) increasing coordinate tuples of each active support. A tuple has B=ell*ceil(log2 d) bits and a unique active owner. A depth-B binary trie with <=1+n*F*B preallocated nodes gives deterministic O(B) lookup/insert/delete and a bounded free list. No probabilistic fingerprints, real parameters or randomized dictionary are required.",
+      "complete_query": "Reject if query weight w_q differs from t by more than r. Otherwise u=floor((w_q-t+r)/2) bounds the number of its one-coordinates absent from a true key. Enumerate ell-subsets of the first u+ell one-coordinates, giving <=G=binom(r+ell,ell)<=F lookups, deduplicate and verify original full Hamming distances. A true neighbor shares a looked-up signature. Distinct keys have distance >=2(t-ell+1)>2r, so at most one passes; returning after verification is a complete read.",
+      "admission_and_overwrites": "Check new weight and all signatures before mutation, allowing an old-slot self hit but rejecting every other owner. A collision is equivalent to overlap >=ell, so admission is an exact certificate. Rejection preserves keys/values/trie. On success remove old signatures before insertion; capacity bound suffices. Deletions prune trie paths; independent value writes do not touch geometry. Exact retention persists through any admitted operation history until explicit deletion/replacement.",
+      "total_cost": "Space O(n*(ceil(d/w)+v+1)+n*F*B+d) words; initialization O(n*d+n*F*B+n*v); worst-case key admission/replacement/deletion O(d+F*B), plus O(v) if a new value is supplied; payload-only overwrite O(v); worst-case complete read O(d+G*(B+d)+s*v), s<=1. Raw bits, all values, node metadata/free list, input loading, scratch marks and cleanup are charged. All bounds are deterministic and independent of operation horizon.",
+      "paired_mixture_extension": "For each admitted center store (x,0),(x,1) with independent values. Decode at most one prefix center within radius r, verify both suffix distances and form the exact weighted mixture. Store center/signatures once, both payloads separately, s<=2. A center-key replacement moves the structured pair together; this extension does not claim arbitrary independent paired-key relocation outside the center-code restriction."
+    },
+    "same_compact_random_input_regime": {
+      "parameters": "Even t>=256, n=2^t, d=16*t^2, independent uniform weight-t supports; a=floor(log2 t), ell=ceil(4t/a)<=t/2. All earlier r=floor(t/c), fixed c>=2, are eligible.",
+      "uniform_probability_proof": "Hypergeometric factorial moments give Pr(I>=ell)<=binom(t,ell)^2/binom(d,ell)<=(3/(16ell))^ell. Since a<=16*2^(a/4), ell>=4t/a and t>=2^a, (16ell/3)^ell>=2^(3t). A pair union bound gives total failure <=n^2*(3/(16ell))^ell<=1/n. Duplicates are excluded on the same event.",
+      "joint_spectral_event": "Combining with the saved sparse-shell theorem, both the subset condition and kernel norm <=3 hold with probability >=1-1/n-delta_pair(t)-n^(-2). Paired norm remains below 6. No query-specific or random-query event is introduced.",
+      "subpolynomial_proof": "ell<=5t/a, b<=2a+6, B<=14t and G<=F<=(3t/ell)^ell<=((3/4)a)^(5t/a). Therefore log2(F)/t<=5*log2((3/4)a)/a tends to zero. Space and initialization are n^(1+o(1))+O(n*v); complete reads and admitted key writes are n^o(1)+their explicit payload cost in a finite-word model.",
+      "practical_limit": "The asymptotics converge slowly. Exact finite binomial counts, not n^o(1) alone, determine actual cost. No practical speedup at learned-pilot sizes, performance experiment, new training or claimed new architecture."
+    },
+    "decision": "A standard deterministic signature dictionary asymptotically outperforms the current covering block on a high-probability subfamily of its same compact random-shell examples, including exact paired mixtures, while certifying admission and supporting overwrites. These examples cannot establish a new access/storage/retention frontier, and finite-word precision is no longer an escape from that comparison. The full spectral-only class remains open; the signature condition is stronger and is not a spectral-norm admission test. Keep the original publication goal active without promoting this known baseline consequence into a contribution.",
+    "next_actions": [
+      "Analyze the full bounded-spectral-norm class against exact set filters, including clusters of nearly coincident keys that violate the low-overlap signature condition. Do not reuse the compact random-shell example as evidence of a new frontier.",
+      "Determine whether a substantive new admission/access/retention tradeoff remains when efficient classical signature dictionaries and full-profile LSH are included, with raw query coordinates, independent values and all finite-word costs counted.",
+      "Audit fast batch-covering factorization and generic timing conversion priority only on a remaining full-workload advantage, not as a substitute for one. Preserve the valid variance/covariance identities and restricted attacks without inflating their scope.",
+      "No neural training, outreach, submissions or claimed-contribution manuscript before the original novelty, strongest-baseline and impact gates pass."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "verification_commands": [
+      "python3 -B scripts/run_timing_restart_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py"
+    ],
+    "preservation": "All twenty prior goal iterations, nineteen previous non-main checker functions, historical certificate blocks, other proof scripts/reports, kernels, manuscripts and learned-recall artifacts are preserved. Only the existing timing note/checker/report and active research manifest change.",
+    "certificate_summary": {
+      "dynamic_trie_snapshots": 144,
+      "complete_raw_query_reads": 43008,
+      "genuine_two_payload_mixtures": 1260,
+      "accepted_key_replacements": 36,
+      "atomic_rejected_proposals": 59,
+      "center_deletions": 36,
+      "payload_only_writes": 36,
+      "verified_false_signature_candidates": 11692,
+      "raw_weight_empty_answer_gates": 7488,
+      "maximum_live_trie_nodes_in_controls": 38,
+      "uniform_overlap_induction_controls": 249,
+      "random_shell_parameter_and_integer_bound_controls": 60
+    },
+    "old_functions_and_certificate_blocks_preserved": true,
+    "verification_scope": "Extended exact checker, build and smoke tests passed. All 234 protected files, nineteen prior non-main function ASTs, twenty prior goal iterations and historical certificate blocks are preserved. Final note/checker hashes match the report. Other proof checkers were not rerun because their sources/artifacts are unchanged. New controls use a preallocated finite trie and exhaustive raw Hamming oracle; the written proof supplies uniform parameter bounds. No practical performance, new architecture, neural training or novelty claim."
   }
 }

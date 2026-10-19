@@ -1236,11 +1236,160 @@
     "multiple_neighbor_mixtures": 4672,
     "scope": "Exact algebraic boundary checks support the written full-range arithmetic-model baseline derivation. No optimal LSF implementation, Gaussian experiment, finite-word compilation, adaptive-key theorem, measured performance or novelty claim."
   },
+  "sparse_signature_baseline": {
+    "dynamic_trie_snapshots": 144,
+    "complete_raw_query_reads": 43008,
+    "genuine_two_payload_mixtures": 1260,
+    "accepted_key_replacements": 36,
+    "atomic_rejected_proposals": 59,
+    "center_deletions": 36,
+    "payload_only_writes": 36,
+    "verified_false_signature_candidates": 11692,
+    "raw_weight_empty_answer_gates": 7488,
+    "maximum_live_trie_nodes_in_controls": 38,
+    "uniform_overlap_induction_controls": 249,
+    "random_shell_parameter_and_integer_bound_controls": 60,
+    "finite_formula_witnesses": [
+      {
+        "log2_n": 256,
+        "dimension": 1048576,
+        "signature_level": 128,
+        "signature_bits": 2560,
+        "radius": 128,
+        "per_key_signature_count_log2_upper": 252,
+        "query_signature_count_log2_upper": 252,
+        "overlap_failure_probability_bound": "2^(-t)",
+        "finite_formula_warning": "Subpolynomial asymptotics converge slowly; these bit lengths are exact integer upper bounds, not timings."
+      },
+      {
+        "log2_n": 258,
+        "dimension": 1065024,
+        "signature_level": 129,
+        "signature_bits": 2709,
+        "radius": 129,
+        "per_key_signature_count_log2_upper": 254,
+        "query_signature_count_log2_upper": 254,
+        "overlap_failure_probability_bound": "2^(-t)",
+        "finite_formula_warning": "Subpolynomial asymptotics converge slowly; these bit lengths are exact integer upper bounds, not timings."
+      },
+      {
+        "log2_n": 510,
+        "dimension": 4161600,
+        "signature_level": 255,
+        "signature_bits": 5610,
+        "radius": 255,
+        "per_key_signature_count_log2_upper": 506,
+        "query_signature_count_log2_upper": 506,
+        "overlap_failure_probability_bound": "2^(-t)",
+        "finite_formula_warning": "Subpolynomial asymptotics converge slowly; these bit lengths are exact integer upper bounds, not timings."
+      },
+      {
+        "log2_n": 512,
+        "dimension": 4194304,
+        "signature_level": 228,
+        "signature_bits": 5016,
+        "radius": 256,
+        "per_key_signature_count_log2_upper": 503,
+        "query_signature_count_log2_upper": 479,
+        "overlap_failure_probability_bound": "2^(-t)",
+        "finite_formula_warning": "Subpolynomial asymptotics converge slowly; these bit lengths are exact integer upper bounds, not timings."
+      },
+      {
+        "log2_n": 514,
+        "dimension": 4227136,
+        "signature_level": 229,
+        "signature_bits": 5267,
+        "radius": 257,
+        "per_key_signature_count_log2_upper": 505,
+        "query_signature_count_log2_upper": 481,
+        "overlap_failure_probability_bound": "2^(-t)",
+        "finite_formula_warning": "Subpolynomial asymptotics converge slowly; these bit lengths are exact integer upper bounds, not timings."
+      },
+      {
+        "log2_n": 1022,
+        "dimension": 16711744,
+        "signature_level": 455,
+        "signature_bits": 10920,
+        "radius": 511,
+        "per_key_signature_count_log2_upper": 1008,
+        "query_signature_count_log2_upper": 959,
+        "overlap_failure_probability_bound": "2^(-t)",
+        "finite_formula_warning": "Subpolynomial asymptotics converge slowly; these bit lengths are exact integer upper bounds, not timings."
+      },
+      {
+        "log2_n": 1024,
+        "dimension": 16777216,
+        "signature_level": 410,
+        "signature_bits": 9840,
+        "radius": 512,
+        "per_key_signature_count_log2_upper": 990,
+        "query_signature_count_log2_upper": 909,
+        "overlap_failure_probability_bound": "2^(-t)",
+        "finite_formula_warning": "Subpolynomial asymptotics converge slowly; these bit lengths are exact integer upper bounds, not timings."
+      },
+      {
+        "log2_n": 2048,
+        "dimension": 67108864,
+        "signature_level": 745,
+        "signature_bits": 19370,
+        "radius": 1024,
+        "per_key_signature_count_log2_upper": 1932,
+        "query_signature_count_log2_upper": 1732,
+        "overlap_failure_probability_bound": "2^(-t)",
+        "finite_formula_warning": "Subpolynomial asymptotics converge slowly; these bit lengths are exact integer upper bounds, not timings."
+      },
+      {
+        "log2_n": 4096,
+        "dimension": 268435456,
+        "signature_level": 1366,
+        "signature_bits": 38248,
+        "radius": 2048,
+        "per_key_signature_count_log2_upper": 3756,
+        "query_signature_count_log2_upper": 3309,
+        "overlap_failure_probability_bound": "2^(-t)",
+        "finite_formula_warning": "Subpolynomial asymptotics converge slowly; these bit lengths are exact integer upper bounds, not timings."
+      },
+      {
+        "log2_n": 8192,
+        "dimension": 1073741824,
+        "signature_level": 2521,
+        "signature_bits": 75630,
+        "radius": 4096,
+        "per_key_signature_count_log2_upper": 7289,
+        "query_signature_count_log2_upper": 6338,
+        "overlap_failure_probability_bound": "2^(-t)",
+        "finite_formula_warning": "Subpolynomial asymptotics converge slowly; these bit lengths are exact integer upper bounds, not timings."
+      },
+      {
+        "log2_n": 16384,
+        "dimension": 4294967296,
+        "signature_level": 4682,
+        "signature_bits": 149824,
+        "radius": 8192,
+        "per_key_signature_count_log2_upper": 14136,
+        "query_signature_count_log2_upper": 12168,
+        "overlap_failure_probability_bound": "2^(-t)",
+        "finite_formula_warning": "Subpolynomial asymptotics converge slowly; these bit lengths are exact integer upper bounds, not timings."
+      },
+      {
+        "log2_n": 65536,
+        "dimension": 68719476736,
+        "signature_level": 16384,
+        "signature_bits": 589824,
+        "radius": 32768,
+        "per_key_signature_count_log2_upper": 53160,
+        "query_signature_count_log2_upper": 45129,
+        "overlap_failure_probability_bound": "2^(-t)",
+        "finite_formula_warning": "Subpolynomial asymptotics converge slowly; these bit lengths are exact integer upper bounds, not timings."
+      }
+    ],
+    "scope": "Exact preallocated-trie oracle checks dynamic admission, atomic rejection, raw verification, scratch cleanup and independent weighted payloads against exhaustive Hamming reads. Integer controls support the written random-shell/asymptotic proof. This is a known signature-dictionary baseline consequence, not a new architecture, optimal implementation, performance benchmark or novelty claim."
+  },
   "novelty_established": false,
   "strongest_baseline_advantage_established": false,
   "publication_ready": false,
   "source_sha256": {
-    "scripts/run_timing_restart_checks.py": "16c5c4145d7ab367b1655b51168541cda6ccc92fe91490ea7b67ec14207ab073",
-    "docs/associative_memory_timing.md": "a470fb9bdfa48e9b2bc74769ddccec3a37f7b076388c8a0326337ed21ce40839"
+    "scripts/run_timing_restart_checks.py": "efc4f7c7cf0033f0d15adf092790802b57abc068dbb57d9f2302c1971fa63f2a",
+    "docs/associative_memory_timing.md": "621bfc7bd5f83987cc69d4cffbdea235ef0061e3cd79e59aeae6f6cecd5eefb1"
   }
 }

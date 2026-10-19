@@ -1417,6 +1417,271 @@ def full_range_baseline_controls():
             "scope": "Exact algebraic boundary checks support the written full-range arithmetic-model baseline derivation. No optimal LSF implementation, Gaussian experiment, finite-word compilation, adaptive-key theorem, measured performance or novelty claim."}
 
 
+def sparse_signature_controls():
+    from math import comb
+
+    class SignatureIndex:
+        """Small exact trie oracle; all payloads remain independent words."""
+        def __init__(self, capacity, dimension, weight, level, radius):
+            self.n, self.d, self.t, self.level, self.r = capacity, dimension, weight, level, radius
+            assert 1 <= level <= weight and 0 <= radius <= weight - level
+            self.b = max(1, (dimension - 1).bit_length())
+            self.B = level * self.b
+            self.limit = 1 + capacity * comb(weight, level) * self.B
+            self.child = [[0, 0] for _ in range(self.limit)]
+            self.leaf = [None] * self.limit
+            self.free = list(range(1, self.limit))
+            self.free_count = self.limit - 1
+            self.keys = [None] * capacity
+            self.values = [[(slot - 9, 3 * slot + 1), (7 - 2 * slot, slot + 13)]
+                           for slot in range(capacity)]
+            self.marked = [False] * capacity
+            self.lookup_steps = 0
+            self.false_candidates = self.query_gates = self.queries = 0
+
+        def signatures(self, key, prefix_length=None):
+            support = [j for j in range(self.d) if key & (1 << j)]
+            if prefix_length is not None:
+                assert self.level <= prefix_length <= len(support)
+                support = support[:prefix_length]
+            for subset in combinations(support, self.level):
+                packed = 0
+                for coordinate in subset:
+                    packed = (packed << self.b) | coordinate
+                assert packed.bit_length() <= self.B
+                yield packed
+
+        def get(self, packed):
+            node = 0
+            for bit in range(self.B - 1, -1, -1):
+                self.lookup_steps += 1
+                node = self.child[node][(packed >> bit) & 1]
+                if not node:
+                    return None
+            return self.leaf[node]
+
+        def put(self, packed, slot):
+            node = 0
+            for bit in range(self.B - 1, -1, -1):
+                direction = (packed >> bit) & 1
+                following = self.child[node][direction]
+                if not following:
+                    assert self.free_count > 0
+                    self.free_count -= 1
+                    following = self.free[self.free_count]
+                    assert self.child[following] == [0, 0] and self.leaf[following] is None
+                    self.child[node][direction] = following
+                node = following
+            assert self.leaf[node] is None
+            self.leaf[node] = slot
+
+        def remove(self, packed, slot):
+            node, path = 0, []
+            for bit in range(self.B - 1, -1, -1):
+                direction = (packed >> bit) & 1
+                following = self.child[node][direction]
+                assert following
+                path.append((node, direction, following))
+                node = following
+            assert self.leaf[node] == slot
+            self.leaf[node] = None
+            for parent, direction, current in reversed(path):
+                if self.leaf[current] is not None or self.child[current] != [0, 0]:
+                    break
+                self.child[parent][direction] = 0
+                self.free[self.free_count] = current
+                self.free_count += 1
+
+        def replace(self, slot, key):
+            if key is not None:
+                if not 0 <= key < 1 << self.d or key.bit_count() != self.t:
+                    return False
+                for packed in self.signatures(key):
+                    owner = self.get(packed)
+                    if owner is not None and owner != slot:
+                        return False
+            old = self.keys[slot]
+            if old is not None:
+                for packed in self.signatures(old):
+                    self.remove(packed, slot)
+            if key is not None:
+                for packed in self.signatures(key):
+                    self.put(packed, slot)
+            self.keys[slot] = key
+            return True
+
+        def geometry_snapshot(self):
+            return repr((self.child, self.leaf, self.free, self.free_count, self.keys))
+
+        def validate(self):
+            expected = {}
+            for slot, key in enumerate(self.keys):
+                if key is None:
+                    continue
+                assert key.bit_count() == self.t
+                for packed in self.signatures(key):
+                    assert packed not in expected
+                    expected[packed] = slot
+            active = [x for x in self.keys if x is not None]
+            assert all((x & y).bit_count() < self.level for x, y in combinations(active, 2))
+            assert all((x ^ y).bit_count() > 2 * self.r for x, y in combinations(active, 2))
+            seen, actual = set(), {}
+            def walk(node, prefix, depth):
+                assert node not in seen
+                seen.add(node)
+                if self.leaf[node] is not None:
+                    assert depth == self.B
+                    actual[prefix] = self.leaf[node]
+                for bit, following in enumerate(self.child[node]):
+                    if following:
+                        assert depth < self.B
+                        walk(following, (prefix << 1) | bit, depth + 1)
+            walk(0, 0, 0)
+            assert actual == expected
+            unused = self.free[:self.free_count]
+            assert len(unused) == len(set(unused))
+            assert set(unused).isdisjoint(seen)
+            assert len(unused) + len(seen) == self.limit
+            assert all(self.child[i] == [0, 0] and self.leaf[i] is None for i in unused)
+            assert not any(self.marked)
+
+        def read(self, full_query):
+            query = full_query & ((1 << self.d) - 1)
+            suffix = (full_query >> self.d) & 1
+            self.queries += 1
+            if abs(query.bit_count() - self.t) > self.r:
+                self.query_gates += 1
+                return (0, (0, 0))
+            target, touched, lookups, before = None, [], 0, self.lookup_steps
+            prefix_length = self.level + (query.bit_count() - self.t + self.r) // 2
+            assert prefix_length <= self.r + self.level
+            for packed in self.signatures(query, prefix_length):
+                lookups += 1
+                slot = self.get(packed)
+                if slot is None or self.marked[slot]:
+                    continue
+                self.marked[slot] = True
+                touched.append(slot)
+                distance = (self.keys[slot] ^ query).bit_count()
+                if distance <= self.r:
+                    target = (slot, distance)
+                    break
+                self.false_candidates += 1
+            assert lookups <= comb(self.r + self.level, self.level)
+            assert self.lookup_steps - before <= self.B * lookups
+            for slot in touched:
+                self.marked[slot] = False
+            assert not any(self.marked)
+            if target is None:
+                return (0, (0, 0))
+            slot, base_distance = target
+            neighbors = [(z, base_distance + (z != suffix)) for z in range(2)
+                         if base_distance + (z != suffix) <= self.r]
+            denominator = sum(self.r + 1 - distance for z, distance in neighbors)
+            numerator = tuple(sum((self.r + 1 - distance) * self.values[slot][z][j]
+                                  for z, distance in neighbors) for j in range(2))
+            return denominator, numerator
+
+    snapshots = reads = mixtures = accepted = rejected = deletions = value_writes = 0
+    false_candidates = weight_gates = maximum_nodes = 0
+    for capacity, dimension, weight, level, radius in ((3, 6, 2, 1, 1),
+                                                      (4, 7, 3, 2, 1),
+                                                      (2, 8, 4, 2, 2)):
+        index = SignatureIndex(capacity, dimension, weight, level, radius)
+        candidates = [sum(1 << j for j in subset) for subset in combinations(range(dimension), weight)]
+        for slot in range(capacity):
+            assert any(index.replace(slot, key) for key in candidates)
+        for step in range(48):
+            slot = step % capacity
+            if step % 4 == 0:
+                before = index.geometry_snapshot()
+                index.values[slot][(step // 4) % 2] = (3 * step - 17, 29 - 2 * step)
+                assert index.geometry_snapshot() == before
+                value_writes += 1
+            elif step % 4 == 1:
+                assert index.replace(slot, None)
+                deletions += 1
+            elif step % 4 == 2:
+                for offset in range(len(candidates)):
+                    key = candidates[(17 * step + offset) % len(candidates)]
+                    legal = all(other == slot or old is None or (key & old).bit_count() < level
+                                for other, old in enumerate(index.keys))
+                    before, payloads = index.geometry_snapshot(), repr(index.values)
+                    result = index.replace(slot, key)
+                    assert result == legal
+                    if result:
+                        accepted += 1
+                        break
+                    assert index.geometry_snapshot() == before and repr(index.values) == payloads
+                    rejected += 1
+            else:
+                key = next((old for other, old in enumerate(index.keys)
+                            if other != slot and old is not None), 0)
+                before, payloads = index.geometry_snapshot(), repr(index.values)
+                assert not index.replace(slot, key)
+                assert index.geometry_snapshot() == before and repr(index.values) == payloads
+                rejected += 1
+            index.validate()
+            snapshots += 1
+            maximum_nodes = max(maximum_nodes, index.limit - index.free_count)
+            for full_query in range(1 << (dimension + 1)):
+                neighbors = [(i, z, ((key | (z << dimension)) ^ full_query).bit_count())
+                             for i, key in enumerate(index.keys) if key is not None for z in range(2)
+                             if ((key | (z << dimension)) ^ full_query).bit_count() <= radius]
+                reference = (sum(radius + 1 - distance for i, z, distance in neighbors),
+                             tuple(sum((radius + 1 - distance) * index.values[i][z][j]
+                                       for i, z, distance in neighbors) for j in range(2)))
+                assert index.read(full_query) == reference
+                mixtures += len(neighbors) > 1
+                reads += 1
+        false_candidates += index.false_candidates
+        weight_gates += index.query_gates
+    assert mixtures and rejected and accepted and false_candidates and weight_gates
+
+    parameter_controls, induction_controls = 0, 0
+    for a in range(8, 257):
+        assert a ** 4 <= 16 ** 4 * 2 ** a
+        assert F(a + 1, a) ** 4 <= F(9, 8) ** 4 < 2
+        induction_controls += 1
+    records = []
+    for t in (256, 258, 510, 512, 514, 1022, 1024, 2048, 4096, 8192, 16384, 65536):
+        a = t.bit_length() - 1
+        ell = (4 * t + a - 1) // a
+        d = 16 * t * t
+        b = (d - 1).bit_length()
+        B = ell * b
+        assert 1 <= ell <= t // 2
+        assert ell * a <= 5 * t and b <= 2 * a + 6 and B <= 14 * t
+        assert 2 ** (3 * t) * 3 ** ell <= (16 * ell) ** ell
+        F_count = comb(t, ell)
+        for c in (2, 3, 4, 8, 16):
+            radius = t // c
+            G_count = comb(radius + ell, ell)
+            assert radius <= t - ell and G_count <= F_count
+            # Exact binomial bound and rational entropy envelope, with no
+            # logarithmic rounding or claim of a practical speedup.
+            assert F_count * ell ** ell <= (3 * t) ** ell
+            assert F(3 * t, ell) <= F(3 * a, 4)
+            assert F_count <= F(3 * a, 4) ** ell
+            parameter_controls += 1
+            if c == 2:
+                records.append({"log2_n": t, "dimension": d, "signature_level": ell,
+                                "signature_bits": B, "radius": radius,
+                                "per_key_signature_count_log2_upper": F_count.bit_length(),
+                                "query_signature_count_log2_upper": G_count.bit_length(),
+                                "overlap_failure_probability_bound": "2^(-t)",
+                                "finite_formula_warning": "Subpolynomial asymptotics converge slowly; these bit lengths are exact integer upper bounds, not timings."})
+    return {"dynamic_trie_snapshots": snapshots, "complete_raw_query_reads": reads,
+            "genuine_two_payload_mixtures": mixtures, "accepted_key_replacements": accepted,
+            "atomic_rejected_proposals": rejected, "center_deletions": deletions,
+            "payload_only_writes": value_writes, "verified_false_signature_candidates": false_candidates,
+            "raw_weight_empty_answer_gates": weight_gates, "maximum_live_trie_nodes_in_controls": maximum_nodes,
+            "uniform_overlap_induction_controls": induction_controls,
+            "random_shell_parameter_and_integer_bound_controls": parameter_controls,
+            "finite_formula_witnesses": records,
+            "scope": "Exact preallocated-trie oracle checks dynamic admission, atomic rejection, raw verification, scratch cleanup and independent weighted payloads against exhaustive Hamming reads. Integer controls support the written random-shell/asymptotic proof. This is a known signature-dictionary baseline consequence, not a new architecture, optimal implementation, performance benchmark or novelty claim."}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -1437,6 +1702,7 @@ def main():
               "sparse_shell": sparse_shell_controls(),
               "compact_timing_attack": compact_timing_attack_controls(),
               "full_range_baseline": full_range_baseline_controls(),
+              "sparse_signature_baseline": sparse_signature_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,

@@ -1972,3 +1972,216 @@ spectral promise alone permits unbounded outer density; this baseline's
 k_out term has not been eliminated under that promise. Those are the
 remaining precise research questions. No learned experiment or new paper
 claim is justified by the baseline consequence proved here.
+
+## A finite-word signature baseline for the compact sparse examples
+
+The previous iteration was **progress**: it closed the complete-range
+comparison in the published arithmetic model. The compact spectral examples
+still have large outer balls, but that alone does not make them hard for
+known search methods. This iteration gives a deterministic finite-word
+comparator that is asymptotically stronger on a high-probability subfamily
+of those same examples, including their two-payload mixture extension.
+It is an elementary signature-dictionary consequence, not a new result
+beyond prior art or completion of the publication goal.
+
+### Prior art that changes the comparison
+
+[Ahle--Aumuller--Pagh](https://arxiv.org/abs/1605.02673v2), Equation (1) and
+Theorem 3, already optimize expected query work using the full collision
+profile, rather than just a coarse outer-neighbor count. A large outer
+ball is therefore insufficient evidence of an advantage even against
+LSH-based methods.
+
+[Arasu--Ganti--Kaushik, VLDB 2006](https://www.vldb.org/conf/2006/p918-arasu.pdf),
+Sections 3 and 7, gives exact signature filtering followed by verification.
+Before prefix pruning, its unit-weight minimal-subset enumeration produces
+all subsets of the chosen size. Figure 8 and the accompanying WTENUM text
+on PDF page 7 were visually inspected in the
+[author-hosted copy](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/vldb06.pdf).
+Our baseline below uses that elementary unpruned subset family. We do not
+attribute its dynamic/promise-specific cost analysis to the paper.
+
+[Christiani--Pagh, Set Similarity Search Beyond MinHash](https://arxiv.org/abs/1612.07710)
+is another important comparator: its Chosen Path construction exploits set
+intersection, and its model is a logarithmic-word RAM. Theorem 1.1 assumes
+fixed similarity thresholds. We do not substitute a threshold tending to
+zero into that statement without accounting for its parameter dependence.
+The direct deterministic proof below needs no such substitution. These
+sources establish that the signature idea and the benefit of sparse-set
+geometry are existing research, not discoveries of this project.
+
+### General finite-parameter dictionary lemma
+
+Let capacity be n, raw dimension d>=2, and every occupied key have exactly
+t ones. Choose an integer 1<=ell<=t. Require distinct active supports to
+have intersection less than ell. For a supplied integer radius
+0<=r<=t-ell, define
+
+```text
+F = binom(t,ell), G = binom(r+ell,ell) <= F,
+b = ceil(log2 d), B = ell*b.
+```
+
+Store every ell-subset of each support, in increasing coordinate order,
+as an exact dictionary signature. Each signature belongs to at most one
+active key, by the intersection requirement. A signature is encoded by
+ell fields of b bits; leading zero fields cause no ambiguity because the
+field count and total length B are fixed. No probabilistic fingerprint
+or unchecked hash collision is used.
+
+A simple binary trie of depth B suffices. Preallocate at most
+1+n*F*B nodes, with constant-word child/slot metadata and a bounded free
+list. Lookup, insertion and deletion take O(B) word operations; deletion
+prunes the empty path. No randomized dictionary or amortized allocator
+is needed. A compressed trie could save space, but is unnecessary for
+the stated exclusion of the covering construction.
+
+For a raw query q let w_q be its number of ones. If |w_q-t|>r, the exact
+answer is empty. Otherwise put u=floor((w_q-t+r)/2), select the first
+u+ell one-coordinates in a fixed order, enumerate their ell-subsets,
+look them up and verify each new candidate in the original Hamming metric.
+If a key x is within radius r, then
+
+```text
+|supp(x) intersect supp(q)| = (t+w_q-dist(x,q))/2
+                          >= t-r >= ell.
+```
+
+A true key omits at most u of the query's one-coordinates, so the selected
+prefix contains at least ell shared coordinates and a common signature
+is looked up. Also 0<=u<=r and u+ell<=w_q, making the selection valid
+and giving at most G lookups. Distinct active keys have distance at least
+2*(t-ell+1)>2r, so at most one can actually be an inner neighbor.
+After an original-distance verification succeeds, stopping is correct
+for the complete operator. False signature candidates are verified and
+discarded. Candidate IDs are marked and explicitly cleared on every
+return; no increasing query counter is needed.
+
+All independently chosen payloads remain in a separate current-value
+array. Query signatures never encode a supplied target ID: the full raw
+query determines its family of coordinate subsets. The support condition
+is a declared restriction on keys, not a free learned encoder.
+
+### Admission, replacement, deletion and total cost
+
+For a proposed key, first check its weight. Then look up all F signatures.
+A hit belonging to another slot proves overlap at least ell and rejects
+the proposal. Conversely, overlap at least ell supplies a common
+signature, so this test is complete. When replacing a slot, hits on that
+same old slot are allowed during this precheck. Do not mutate the index
+until the whole precheck succeeds. Then remove the old signatures and
+insert the new ones. Rejection leaves keys, payloads and trie unchanged.
+The preallocated node bound suffices because the old key is removed
+before the new one is installed. Operations are sequential and atomic.
+
+With v finite words per payload, the explicit bounds are
+
+```text
+space O(n*(ceil(d/w)+v+1) + n*F*B + d) words,
+initial work O(n*d+n*F*B+n*v),
+worst-case key admission/replacement/deletion O(d+F*B),
+payload-only write O(v),
+worst-case complete read O(d+G*(B+d)+s*v), s<=1.
+```
+
+An accompanying new payload costs its additional O(v) to load/write.
+The d factors allow straightforward bit scans, without assuming a
+population-count instruction. Enumerating a signature costs O(ell),
+absorbed by B. Address, coordinate and fixed-grid aggregation guard bits
+are included in the word width. Input loading, trie initialization,
+free-list metadata and scratch marks are charged. Finite word widths
+depend on capacity and payload precision, not on the operation horizon.
+Every bound is deterministic, so arbitrary timing-adaptive operation
+histories do not require copies, refreshes or failure probabilities.
+Retention is exact until a slot is explicitly deleted or replaced;
+inadmissible keys are rejected rather than silently weakening the promise.
+
+The mixture version of the previous compact witness is also covered.
+For each center keep the keys (x,0) and (x,1), with independent current
+payloads and optional occupancy flags. Decode the base query prefix to
+its at-most-one radius-r center. For that center check the two suffix
+distances and form exactly the specified weighted sum/denominator. This
+permits two genuine neighbors and independently overwritten values; at
+(x,0) their weights are r+1 and r when r>=1. Raw center bits and its
+signatures are stored once, and the two payloads are both charged. A
+center-key replacement changes that structured pair together. This
+extension does not assert support for arbitrary independently moved
+paired keys that destroy the center-code restriction.
+
+### The same random-shell regime admits these signatures
+
+Take even t>=256, n=2^t, d=16*t^2, and the same independent uniform
+weight-t supports as before. Put
+
+```text
+a=floor(log2 t), ell=ceil(4*t/a).
+```
+
+Then a>=8 and ell<=t/2, so all the earlier radii r=floor(t/c), c>=2,
+are eligible. With probability at least 1-1/n every pair intersects in
+fewer than ell positions, including exclusion of duplicate keys.
+To prove this, for a fixed pair let I be its hypergeometric intersection.
+The factorial moment identity gives
+
+```text
+Pr(I>=ell) <= E binom(I,ell)
+  = binom(t,ell)^2/binom(d,ell)
+  <= binom(t,ell)/(16*t)^ell <= (3/(16*ell))^ell.
+```
+
+The final inequality uses the usual binomial bound and e<3. Union bound
+over fewer than n^2 pairs gives failure at most
+n^2*(3/(16*ell))^ell. Here is a uniform elementary bound, not a numerical
+fit: a<=16*2^(a/4) for a>=8, by induction, since
+(a+1)/a<=9/8<2^(1/4). As t>=2^a and ell>=4t/a, this implies
+16*ell/3 >= (4/3)*2^(3a/4). Raising to ell therefore gives
+
+```text
+(16*ell/3)^ell >= 2^(3t),
+n^2*(3/(16*ell))^ell <= 2^(-t)=1/n.
+```
+
+For even t, combine this event with the previous spectral event. Both
+the subset restriction and ||K||_2<=3 then hold with probability at least
+1-1/n-delta_pair(t)-n^(-2). No extra query-independence assumption is
+needed. The same paired construction has norm below 6, as before.
+
+Finally ell<=5t/a, b<=2a+6 and B<=14t. For every r<=t-ell,
+
+```text
+G <= F <= (3*t/ell)^ell <= ((3/4)*a)^(5*t/a),
+log2(F)/t <= (5/a)*log2((3/4)*a) -> 0.
+```
+
+Thus these inputs have n^(1+o(1))+O(n*v) finite-word space,
+n^(1+o(1))+O(n*v) initialization, n^o(1)+O(v) worst-case admitted key
+replacement, and n^o(1)+O(s*v) complete reads. The raw dimension is still
+Theta(log^2 n), raw queries remain unrestricted binary vectors, and the
+legal-key condition is checked within the stated update budget. In the
+mixture extension charge two payloads per center and s<=2. No latent
+rank restriction is imposed on those payloads.
+
+These asymptotic bounds converge slowly. They do not establish a practical
+speedup at the learned pilot's sizes, and the written finite-parameter
+formulas, not n^o(1) alone, determine actual cost. No new training or
+hardware benchmark is supplied.
+
+### Consequence for the current research direction
+
+The compact random-shell witness, even with exact mixtures, therefore
+does not establish a new access/storage/retention frontier for our
+covering block. On a high-probability subfamily of these same inputs a
+standard signature dictionary has stronger asymptotic bounds in a
+finite-word model, including key admission and overwrites. This removes
+the earlier precision caveat as a defense of that particular example.
+It does not dominate every bounded-spectral-norm dataset: bounded norm
+allows a few nearly coincident keys whose overlaps violate the signature
+restriction. Nor does admission here certify the spectral norm; the
+dictionary simply does not need that norm bound.
+
+The remaining task must address the full spectral-only class or a
+different substantive workload, with comparisons that include exact set
+filters and dictionaries. The existing variance identity, XOR batch
+factorization and timing obstruction remain valid records. Their
+ingredients or a favorable synthetic outer-density example do not
+establish the original publication goal.
