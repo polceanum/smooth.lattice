@@ -4247,11 +4247,461 @@
     ],
     "scope": "Classical trace Fourier-slice/Walsh specialization exactly matches finite-field incidence multiplication and its transpose. Finite basis and signed controls, Gram identities and complete causal normalized finite-feature reads are checked. This is not a new Radon transform, softmax kernel approximation guarantee, learned-selector speedup, native benchmark or strongest-published-method separation. Characteristic-two geometry is an explicit field extension of the prime-field SMat presentation. All independent original payloads must remain charged; pooled summaries alone collide on duplicate profiles."
   },
+  "affine_generator_memory_boundary": {
+    "affine_systematic_cases": [
+      {
+        "dimension": 1,
+        "independent_value_slots": 2,
+        "ranks_checked": [
+          0,
+          1
+        ],
+        "complete_mixture_laws": 4,
+        "exact_point_queries_and_overwrites": 2
+      },
+      {
+        "dimension": 2,
+        "independent_value_slots": 4,
+        "ranks_checked": [
+          0,
+          1,
+          2
+        ],
+        "complete_mixture_laws": 19,
+        "exact_point_queries_and_overwrites": 4
+      },
+      {
+        "dimension": 3,
+        "independent_value_slots": 8,
+        "ranks_checked": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "complete_mixture_laws": 136,
+        "exact_point_queries_and_overwrites": 8
+      },
+      {
+        "dimension": 4,
+        "independent_value_slots": 16,
+        "ranks_checked": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "complete_mixture_laws": 17,
+        "exact_point_queries_and_overwrites": 16
+      }
+    ],
+    "complete_probability_laws": 176,
+    "finite_random_streams": 158106,
+    "independent_kernel_entries": 1444,
+    "exact_point_queries": 30,
+    "current_value_overwrites": 30,
+    "atomic_malformed_query_rejections": 12,
+    "selectivity_boundaries": [
+      {
+        "dimension": 2,
+        "rank": 0,
+        "fiber_size": 4,
+        "maximum_atom_mass": "1/4",
+        "worst_case_individual_mean_error_at_least": "3/2"
+      },
+      {
+        "dimension": 2,
+        "rank": 1,
+        "fiber_size": 2,
+        "maximum_atom_mass": "1/2",
+        "worst_case_individual_mean_error_at_least": "1"
+      },
+      {
+        "dimension": 3,
+        "rank": 0,
+        "fiber_size": 8,
+        "maximum_atom_mass": "1/8",
+        "worst_case_individual_mean_error_at_least": "7/4"
+      },
+      {
+        "dimension": 3,
+        "rank": 1,
+        "fiber_size": 4,
+        "maximum_atom_mass": "1/4",
+        "worst_case_individual_mean_error_at_least": "3/2"
+      },
+      {
+        "dimension": 3,
+        "rank": 2,
+        "fiber_size": 2,
+        "maximum_atom_mass": "1/2",
+        "worst_case_individual_mean_error_at_least": "1"
+      },
+      {
+        "dimension": 4,
+        "rank": 0,
+        "fiber_size": 16,
+        "maximum_atom_mass": "1/16",
+        "worst_case_individual_mean_error_at_least": "15/8"
+      },
+      {
+        "dimension": 4,
+        "rank": 1,
+        "fiber_size": 8,
+        "maximum_atom_mass": "1/8",
+        "worst_case_individual_mean_error_at_least": "7/4"
+      },
+      {
+        "dimension": 4,
+        "rank": 2,
+        "fiber_size": 4,
+        "maximum_atom_mass": "1/4",
+        "worst_case_individual_mean_error_at_least": "3/2"
+      },
+      {
+        "dimension": 4,
+        "rank": 3,
+        "fiber_size": 2,
+        "maximum_atom_mass": "1/2",
+        "worst_case_individual_mean_error_at_least": "1"
+      },
+      {
+        "dimension": 5,
+        "rank": 0,
+        "fiber_size": 32,
+        "maximum_atom_mass": "1/32",
+        "worst_case_individual_mean_error_at_least": "31/16"
+      },
+      {
+        "dimension": 5,
+        "rank": 1,
+        "fiber_size": 16,
+        "maximum_atom_mass": "1/16",
+        "worst_case_individual_mean_error_at_least": "15/8"
+      },
+      {
+        "dimension": 5,
+        "rank": 2,
+        "fiber_size": 8,
+        "maximum_atom_mass": "1/8",
+        "worst_case_individual_mean_error_at_least": "7/4"
+      },
+      {
+        "dimension": 5,
+        "rank": 3,
+        "fiber_size": 4,
+        "maximum_atom_mass": "1/4",
+        "worst_case_individual_mean_error_at_least": "3/2"
+      },
+      {
+        "dimension": 5,
+        "rank": 4,
+        "fiber_size": 2,
+        "maximum_atom_mass": "1/2",
+        "worst_case_individual_mean_error_at_least": "1"
+      },
+      {
+        "dimension": 6,
+        "rank": 0,
+        "fiber_size": 64,
+        "maximum_atom_mass": "1/64",
+        "worst_case_individual_mean_error_at_least": "63/32"
+      },
+      {
+        "dimension": 6,
+        "rank": 1,
+        "fiber_size": 32,
+        "maximum_atom_mass": "1/32",
+        "worst_case_individual_mean_error_at_least": "31/16"
+      },
+      {
+        "dimension": 6,
+        "rank": 2,
+        "fiber_size": 16,
+        "maximum_atom_mass": "1/16",
+        "worst_case_individual_mean_error_at_least": "15/8"
+      },
+      {
+        "dimension": 6,
+        "rank": 3,
+        "fiber_size": 8,
+        "maximum_atom_mass": "1/8",
+        "worst_case_individual_mean_error_at_least": "7/4"
+      },
+      {
+        "dimension": 6,
+        "rank": 4,
+        "fiber_size": 4,
+        "maximum_atom_mass": "1/4",
+        "worst_case_individual_mean_error_at_least": "3/2"
+      },
+      {
+        "dimension": 6,
+        "rank": 5,
+        "fiber_size": 2,
+        "maximum_atom_mass": "1/2",
+        "worst_case_individual_mean_error_at_least": "1"
+      },
+      {
+        "dimension": 7,
+        "rank": 0,
+        "fiber_size": 128,
+        "maximum_atom_mass": "1/128",
+        "worst_case_individual_mean_error_at_least": "127/64"
+      },
+      {
+        "dimension": 7,
+        "rank": 1,
+        "fiber_size": 64,
+        "maximum_atom_mass": "1/64",
+        "worst_case_individual_mean_error_at_least": "63/32"
+      },
+      {
+        "dimension": 7,
+        "rank": 2,
+        "fiber_size": 32,
+        "maximum_atom_mass": "1/32",
+        "worst_case_individual_mean_error_at_least": "31/16"
+      },
+      {
+        "dimension": 7,
+        "rank": 3,
+        "fiber_size": 16,
+        "maximum_atom_mass": "1/16",
+        "worst_case_individual_mean_error_at_least": "15/8"
+      },
+      {
+        "dimension": 7,
+        "rank": 4,
+        "fiber_size": 8,
+        "maximum_atom_mass": "1/8",
+        "worst_case_individual_mean_error_at_least": "7/4"
+      },
+      {
+        "dimension": 7,
+        "rank": 5,
+        "fiber_size": 4,
+        "maximum_atom_mass": "1/4",
+        "worst_case_individual_mean_error_at_least": "3/2"
+      },
+      {
+        "dimension": 7,
+        "rank": 6,
+        "fiber_size": 2,
+        "maximum_atom_mass": "1/2",
+        "worst_case_individual_mean_error_at_least": "1"
+      },
+      {
+        "dimension": 8,
+        "rank": 0,
+        "fiber_size": 256,
+        "maximum_atom_mass": "1/256",
+        "worst_case_individual_mean_error_at_least": "255/128"
+      },
+      {
+        "dimension": 8,
+        "rank": 1,
+        "fiber_size": 128,
+        "maximum_atom_mass": "1/128",
+        "worst_case_individual_mean_error_at_least": "127/64"
+      },
+      {
+        "dimension": 8,
+        "rank": 2,
+        "fiber_size": 64,
+        "maximum_atom_mass": "1/64",
+        "worst_case_individual_mean_error_at_least": "63/32"
+      },
+      {
+        "dimension": 8,
+        "rank": 3,
+        "fiber_size": 32,
+        "maximum_atom_mass": "1/32",
+        "worst_case_individual_mean_error_at_least": "31/16"
+      },
+      {
+        "dimension": 8,
+        "rank": 4,
+        "fiber_size": 16,
+        "maximum_atom_mass": "1/16",
+        "worst_case_individual_mean_error_at_least": "15/8"
+      },
+      {
+        "dimension": 8,
+        "rank": 5,
+        "fiber_size": 8,
+        "maximum_atom_mass": "1/8",
+        "worst_case_individual_mean_error_at_least": "7/4"
+      },
+      {
+        "dimension": 8,
+        "rank": 6,
+        "fiber_size": 4,
+        "maximum_atom_mass": "1/4",
+        "worst_case_individual_mean_error_at_least": "3/2"
+      },
+      {
+        "dimension": 8,
+        "rank": 7,
+        "fiber_size": 2,
+        "maximum_atom_mass": "1/2",
+        "worst_case_individual_mean_error_at_least": "1"
+      },
+      {
+        "dimension": 9,
+        "rank": 0,
+        "fiber_size": 512,
+        "maximum_atom_mass": "1/512",
+        "worst_case_individual_mean_error_at_least": "511/256"
+      },
+      {
+        "dimension": 9,
+        "rank": 1,
+        "fiber_size": 256,
+        "maximum_atom_mass": "1/256",
+        "worst_case_individual_mean_error_at_least": "255/128"
+      },
+      {
+        "dimension": 9,
+        "rank": 2,
+        "fiber_size": 128,
+        "maximum_atom_mass": "1/128",
+        "worst_case_individual_mean_error_at_least": "127/64"
+      },
+      {
+        "dimension": 9,
+        "rank": 3,
+        "fiber_size": 64,
+        "maximum_atom_mass": "1/64",
+        "worst_case_individual_mean_error_at_least": "63/32"
+      },
+      {
+        "dimension": 9,
+        "rank": 4,
+        "fiber_size": 32,
+        "maximum_atom_mass": "1/32",
+        "worst_case_individual_mean_error_at_least": "31/16"
+      },
+      {
+        "dimension": 9,
+        "rank": 5,
+        "fiber_size": 16,
+        "maximum_atom_mass": "1/16",
+        "worst_case_individual_mean_error_at_least": "15/8"
+      },
+      {
+        "dimension": 9,
+        "rank": 6,
+        "fiber_size": 8,
+        "maximum_atom_mass": "1/8",
+        "worst_case_individual_mean_error_at_least": "7/4"
+      },
+      {
+        "dimension": 9,
+        "rank": 7,
+        "fiber_size": 4,
+        "maximum_atom_mass": "1/4",
+        "worst_case_individual_mean_error_at_least": "3/2"
+      },
+      {
+        "dimension": 9,
+        "rank": 8,
+        "fiber_size": 2,
+        "maximum_atom_mass": "1/2",
+        "worst_case_individual_mean_error_at_least": "1"
+      }
+    ],
+    "signed_density_controls": [
+      {
+        "dimension": 1,
+        "signed_rank_two_density_entries": 4,
+        "per_query_density_rank_is_not_shared_kernel_feature_rank": true
+      },
+      {
+        "dimension": 2,
+        "signed_rank_two_density_entries": 24,
+        "per_query_density_rank_is_not_shared_kernel_feature_rank": true
+      },
+      {
+        "dimension": 3,
+        "signed_rank_two_density_entries": 112,
+        "per_query_density_rank_is_not_shared_kernel_feature_rank": true
+      },
+      {
+        "dimension": 4,
+        "signed_rank_two_density_entries": 480,
+        "per_query_density_rank_is_not_shared_kernel_feature_rank": true
+      },
+      {
+        "dimension": 5,
+        "signed_rank_two_density_entries": 1984,
+        "per_query_density_rank_is_not_shared_kernel_feature_rank": true
+      },
+      {
+        "dimension": 6,
+        "signed_rank_two_density_entries": 8064,
+        "per_query_density_rank_is_not_shared_kernel_feature_rank": true
+      }
+    ],
+    "normalization_witness": {
+      "mean_of_normalized_type_outputs": "1/2",
+      "complete_weighted_output": "5/13",
+      "difference": "3/26",
+      "rare_type_probability": "1/256",
+      "rare_complete_output": "256/511",
+      "proposal_acceptance": "511/65536"
+    },
+    "product_mixture_boundary": {
+      "product_laws": 780,
+      "two_product_mixtures": 7780,
+      "robust_bound": "K >= (1-2*TV)*2^(D-1)",
+      "efficient_two_state_parity_circuit_checked": true,
+      "arbitrary_finite_alphabet_code_mode_controls": [
+        {
+          "alphabet": 2,
+          "dimension": 1,
+          "all_nonempty_min_distance_two_codes": 2,
+          "all_product_laws_on_quarter_grid": 5,
+          "off_mode_code_mass_inequalities": 10
+        },
+        {
+          "alphabet": 2,
+          "dimension": 2,
+          "all_nonempty_min_distance_two_codes": 6,
+          "all_product_laws_on_quarter_grid": 25,
+          "off_mode_code_mass_inequalities": 150
+        },
+        {
+          "alphabet": 2,
+          "dimension": 3,
+          "all_nonempty_min_distance_two_codes": 34,
+          "all_product_laws_on_quarter_grid": 125,
+          "off_mode_code_mass_inequalities": 4250
+        },
+        {
+          "alphabet": 2,
+          "dimension": 4,
+          "all_nonempty_min_distance_two_codes": 742,
+          "all_product_laws_on_quarter_grid": 625,
+          "off_mode_code_mass_inequalities": 463750
+        },
+        {
+          "alphabet": 3,
+          "dimension": 2,
+          "all_nonempty_min_distance_two_codes": 33,
+          "all_product_laws_on_quarter_grid": 225,
+          "off_mode_code_mass_inequalities": 7425
+        }
+      ]
+    },
+    "scope": "Exact finite dyadic ancestral sampling agrees with the complete systematic affine-fiber mixture, preserving every independent original value and its current overwrite. Hyperplane/fiber cardinality limits individual mean recall. Positive key weights reintroduce normalization/rare conditioning. The parity mixture-size bound does not beat efficient parity circuits, coding samplers, or other strongest methods. These are classical comparator gates, not a new architecture separation, trained model, softmax approximation, arbitrary active-mask sampler or native benchmark."
+  },
   "novelty_established": false,
   "strongest_baseline_advantage_established": false,
   "publication_ready": false,
   "source_sha256": {
-    "scripts/run_timing_restart_checks.py": "fa39c52f52b83a877d0df71df8241f5e3ed52ff384ceaa3fd260276202213e17",
-    "docs/associative_memory_timing.md": "40e70fb37aed1249e8aab4a67ea0f46ba2e54b4fd695758f60d6dd720188b2c8"
+    "scripts/run_timing_restart_checks.py": "621ef990fc111e825e3bacf2c092376e05ddb81785fde2cde9f0046d15c19470",
+    "docs/associative_memory_timing.md": "09f44e9a369369e0b8702cf5c39e1990a7702f16705a15b610183240c7727702"
   }
 }

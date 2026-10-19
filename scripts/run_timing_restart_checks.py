@@ -6258,6 +6258,224 @@ def finite_radon_attention_controls():
             'scope': 'Classical trace Fourier-slice/Walsh specialization exactly matches finite-field incidence multiplication and its transpose. Finite basis and signed controls, Gram identities and complete causal normalized finite-feature reads are checked. This is not a new Radon transform, softmax kernel approximation guarantee, learned-selector speedup, native benchmark or strongest-published-method separation. Characteristic-two geometry is an explicit field extension of the prime-field SMat presentation. All independent original payloads must remain charged; pooled summaries alone collide on duplicate profiles.'}
 
 
+def affine_generator_memory_controls():
+    """Exact finite mixture laws, selectivity and classical comparator gates."""
+    from collections import Counter
+
+    def point(matrix_bits, offsets, tail):
+        head = tuple(b ^ (sum(a * y for a, y in zip(row, tail)) % 2)
+                     for row, b in zip(matrix_bits, offsets))
+        return head + tuple(tail)
+
+    def decode_latent(bits, dimension, rank):
+        width = dimension - rank
+        rows = tuple(tuple(bits[i * width:(i + 1) * width]) for i in range(rank))
+        return rows, tuple(bits[rank * width:])
+
+    def generate(parameters, words, tail, dimension, rank, precision=2):
+        assert 0 <= rank <= dimension
+        count = rank * (dimension - rank) + rank
+        assert len(parameters) == len(words) == count and len(tail) == dimension - rank
+        units = 1 << precision
+        assert all(type(x) is int and 0 <= x <= units for x in parameters)
+        assert all(type(x) is int and 0 <= x < units for x in words)
+        assert all(type(x) is int and x in (0, 1) for x in tail)
+        bits = tuple(int(word < p) for word, p in zip(words, parameters))
+        rows, offsets = decode_latent(bits, dimension, rank)
+        return point(rows, offsets, tail)
+
+    cases, probability_laws, finite_random_streams, kernel_checks = [], 0, 0, 0
+    exact_point_queries, current_value_overwrites, malformed_rejections = 0, 0, 0
+    for dimension in range(1, 5):
+        addresses = list(product((0, 1), repeat=dimension))
+        positions = {x: j for j, x in enumerate(addresses)}
+        raw_values = [((7 * i + 3) % 33 - 16, (11 * i + 5) % 33 - 16) for i in range(1 << dimension)]
+        checked = 0
+        for rank in range(dimension + 1):
+            count = rank * (dimension - rank) + rank
+            if dimension <= 3:
+                queries = list(product((0, 2, 4), repeat=count))
+            else:
+                queries = sorted(set([(0,) * count, (4,) * count, (2,) * count,
+                                      tuple(i % 5 for i in range(count))]))
+            for parameters in queries:
+                histogram = Counter()
+                for words in product(range(4), repeat=count):
+                    for tail in product((0, 1), repeat=dimension - rank):
+                        histogram[generate(parameters, words, tail, dimension, rank)] += 1
+                        finite_random_streams += 1
+                denominator = 4 ** count * 2 ** (dimension - rank)
+                assert sum(histogram.values()) == denominator
+                # Independent score/mask route: sum all latent incidence
+                # weights at each raw point, then normalize the full kernel.
+                kernel = dict.fromkeys(addresses, 0)
+                for latent in product((0, 1), repeat=count):
+                    weight = 1
+                    for bit, parameter in zip(latent, parameters):
+                        weight *= parameter if bit else 4 - parameter
+                    rows, offsets = decode_latent(latent, dimension, rank)
+                    selected = 0
+                    for x in addresses:
+                        if all((x[i] + sum(row[j] * x[rank + j] for j in range(dimension - rank))) % 2 == offsets[i]
+                               for i, row in enumerate(rows)):
+                            kernel[x] += weight; selected += 1
+                    assert selected == 1 << (dimension - rank)
+                assert sum(kernel.values()) == denominator
+                assert all(histogram[x] == kernel[x] for x in addresses)
+                assert max(histogram.values()) * (1 << (dimension - rank)) <= denominator
+                kernel_checks += len(addresses)
+                for coordinate in range(2):
+                    by_sampling = F(sum(mass * raw_values[positions[x]][coordinate] for x, mass in histogram.items()), 16 * denominator)
+                    by_kernel = F(sum(kernel[x] * raw_values[positions[x]][coordinate] for x in addresses), 16 * denominator)
+                    assert by_sampling == by_kernel
+                probability_laws += 1; checked += 1
+        for x in addresses:
+            parameters = tuple(4 * bit for bit in x)
+            assert generate(parameters, (0,) * dimension, (), dimension, dimension) == x
+            raw_values[positions[x]] = (16, -16)
+            assert raw_values[positions[generate(parameters, (3,) * dimension, (), dimension, dimension)]] == (16, -16)
+            exact_point_queries += 1; current_value_overwrites += 1
+        snapshot = tuple(raw_values)
+        for bad in [((5,) * dimension, (0,) * dimension, ()),
+                    ((2,) * dimension, (4,) * dimension, ()),
+                    ((2,) * dimension, (), ())]:
+            rejected = False
+            try:
+                generate(*bad, dimension, dimension)
+            except AssertionError:
+                rejected = True
+            assert rejected
+            malformed_rejections += 1
+            assert tuple(raw_values) == snapshot
+        cases.append({'dimension': dimension, 'independent_value_slots': 1 << dimension,
+                      'ranks_checked': list(range(dimension + 1)), 'complete_mixture_laws': checked,
+                      'exact_point_queries_and_overwrites': 1 << dimension})
+
+    # A positive mixture of M-point uniform fibers has atom mass at most 1/M.
+    # Target value +1 versus all other independent values -1 gives error
+    # at least 2*(1-1/M). This concerns that mean, not arbitrary decoders.
+    selectivity = []
+    for dimension in range(2, 10):
+        for rank in range(dimension):
+            fiber_size = 1 << (dimension - rank)
+            assert 2 * (1 - F(1, fiber_size)) >= 1
+            selectivity.append({'dimension': dimension, 'rank': rank, 'fiber_size': fiber_size,
+                                'maximum_atom_mass': str(F(1, fiber_size)),
+                                'worst_case_individual_mean_error_at_least': str(2 * (1 - F(1, fiber_size)))})
+
+    # Nonuniform key weights break averaging normalized per-type outputs.
+    type_probability = (F(1, 2), F(1, 2))
+    type_mass, type_numerator = (F(2), F(5, 4)), (F(0), F(5, 4))
+    mean_of_means = sum(p * u / z for p, u, z in zip(type_probability, type_numerator, type_mass))
+    complete_ratio = sum(p * u for p, u in zip(type_probability, type_numerator)) / sum(p * z for p, z in zip(type_probability, type_mass))
+    assert mean_of_means == F(1, 2) and complete_ratio == F(5, 13)
+    tiny = F(1, 256)
+    acceptance = (1 - tiny) * tiny + tiny
+    true_rare = tiny / acceptance
+    assert true_rare == F(256, 511) and acceptance == F(511, 65536)
+
+    # Robust parity boundary against nonnegative mixtures of products.
+    # Efficient two-state parity circuits remain stronger comparators.
+    product_controls = mixture_controls = 0
+    for dimension in range(1, 5):
+        addresses = list(product((0, 1), repeat=dimension))
+        target = [F(2, 1 << dimension) if sum(x) % 2 == 0 else F(0) for x in addresses]
+        catalog = []
+        for probabilities in product((F(0), F(1, 4), F(1, 2), F(3, 4), F(1)), repeat=dimension):
+            law = []
+            for x in addresses:
+                weight = F(1)
+                for bit, p in zip(x, probabilities):
+                    weight *= p if bit else 1 - p
+                law.append(weight)
+            parity_bias = sum(weight * (-1) ** sum(x) for x, weight in zip(addresses, law))
+            mode = tuple(int(p > F(1, 2)) for p in probabilities)
+            assert law[addresses.index(mode)] == max(law) and max(law) >= abs(parity_bias)
+            catalog.append((law, mode)); product_controls += 1
+        for i, (left, left_mode) in enumerate(catalog):
+            for j in sorted(set([(i + 1) % len(catalog), len(catalog) - 1 - i])):
+                right, right_mode = catalog[j]
+                centers = {left_mode, right_mode}
+                for weight in (F(0), F(1, 4), F(1, 2), F(3, 4), F(1)):
+                    law = [weight * a + (1 - weight) * b for a, b in zip(left, right)]
+                    distance = sum(abs(a - b) for a, b in zip(law, target)) / 2
+                    assert sum(law[addresses.index(x)] for x in centers) >= 1 - 2 * distance
+                    even_centers = {x for x in centers if sum(x) % 2 == 0}
+                    outside = sum(w for x, w in zip(addresses, law) if sum(x) % 2)
+                    off_centers = sum(w for x, w in zip(addresses, law) if sum(x) % 2 == 0 and x not in even_centers)
+                    assert off_centers <= outside
+                    assert F(len(even_centers), 1 << (dimension - 1)) >= 1 - 2 * distance
+                    witness = [1 if a > b else -1 if a < b else 0 for a, b in zip(target, law)]
+                    assert sum((a - b) * v for a, b, v in zip(target, law, witness)) == 2 * distance
+                    mixture_controls += 1
+        # Deterministic width-two parity automaton/circuit gives the target.
+        for x, mass in zip(addresses, target):
+            even, odd = F(1), F(0)
+            for bit in x:
+                even, odd = (even / 2, odd / 2) if not bit else (odd / 2, even / 2)
+            assert 2 * even == mass
+    code_controls = []
+    for alphabet, dimension in [(2, d) for d in range(1, 5)] + [(3, 2)]:
+        addresses = list(product(range(alphabet), repeat=dimension))
+        adjacency = [sum(1 << j for j, y in enumerate(addresses) if sum(a != b for a, b in zip(x, y)) == 1)
+                     for x in addresses]
+        codes = [tuple(i for i in range(len(addresses)) if mask & (1 << i))
+                 for mask in range(1, 1 << len(addresses))
+                 if all(not (mask & adjacency[i]) for i in range(len(addresses)) if mask & (1 << i))]
+        marginal_units = list(compositions(4, alphabet))
+        checked = 0
+        for probabilities in product(marginal_units, repeat=dimension):
+            masses = []
+            for x in addresses:
+                mass = 1
+                for i, bit in enumerate(x):
+                    mass *= probabilities[i][bit]
+                masses.append(mass)
+            mode = tuple(max(range(alphabet), key=lambda b: probabilities[i][b]) for i in range(dimension))
+            mode_index = addresses.index(mode)
+            for code in codes:
+                mass = sum(masses[i] for i in code)
+                off_mode = mass - (masses[mode_index] if mode_index in code else 0)
+                assert off_mode <= 4 ** dimension - mass
+                checked += 1
+        code_controls.append({'alphabet': alphabet, 'dimension': dimension,
+                              'all_nonempty_min_distance_two_codes': len(codes),
+                              'all_product_laws_on_quarter_grid': len(marginal_units) ** dimension,
+                              'off_mode_code_mass_inequalities': checked})
+    signed_density_cases = []
+    for dimension in range(1, 7):
+        addresses = list(product((0, 1), repeat=dimension))
+        checked = 0
+        for normal in addresses[1:]:
+            for offset in (0, 1):
+                density = []
+                for x in addresses:
+                    factor = (-1) ** offset
+                    for a, bit in zip(normal, x):
+                        factor *= (-1) ** (a * bit)
+                    probability = F(1 + factor, 1 << dimension)
+                    assert probability == (F(2, 1 << dimension) if sum(a * bit for a, bit in zip(normal, x)) % 2 == offset else 0)
+                    density.append(probability); checked += 1
+                assert sum(density) == 1
+        signed_density_cases.append({'dimension': dimension, 'signed_rank_two_density_entries': checked,
+                                     'per_query_density_rank_is_not_shared_kernel_feature_rank': True})
+    return {'affine_systematic_cases': cases, 'complete_probability_laws': probability_laws,
+            'finite_random_streams': finite_random_streams, 'independent_kernel_entries': kernel_checks,
+            'exact_point_queries': exact_point_queries, 'current_value_overwrites': current_value_overwrites,
+            'atomic_malformed_query_rejections': malformed_rejections,
+            'selectivity_boundaries': selectivity, 'signed_density_controls': signed_density_cases,
+            'normalization_witness': {'mean_of_normalized_type_outputs': str(mean_of_means),
+                                      'complete_weighted_output': str(complete_ratio),
+                                      'difference': str(mean_of_means - complete_ratio),
+                                      'rare_type_probability': str(tiny), 'rare_complete_output': str(true_rare),
+                                      'proposal_acceptance': str(acceptance)},
+            'product_mixture_boundary': {'product_laws': product_controls, 'two_product_mixtures': mixture_controls,
+                                         'robust_bound': 'K >= (1-2*TV)*2^(D-1)',
+                                         'efficient_two_state_parity_circuit_checked': True,
+                                         'arbitrary_finite_alphabet_code_mode_controls': code_controls},
+            'scope': 'Exact finite dyadic ancestral sampling agrees with the complete systematic affine-fiber mixture, preserving every independent original value and its current overwrite. Hyperplane/fiber cardinality limits individual mean recall. Positive key weights reintroduce normalization/rare conditioning. The parity mixture-size bound does not beat efficient parity circuits, coding samplers, or other strongest methods. These are classical comparator gates, not a new architecture separation, trained model, softmax approximation, arbitrary active-mask sampler or native benchmark.'}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -6291,6 +6509,7 @@ def main():
               "exponential_aggregation_comparators": exponential_comparator_controls(),
               "active_mask_sampling_boundary": active_mask_sampling_controls(),
               "finite_radon_attention_boundary": finite_radon_attention_controls(),
+              "affine_generator_memory_boundary": affine_generator_memory_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,

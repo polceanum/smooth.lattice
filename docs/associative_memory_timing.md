@@ -5666,3 +5666,223 @@ structured-attention and finite-geometry methods before claiming priority.
 The current result is a concrete improvement to one stated tabulation bound
 using existing mathematics, not a separation beyond the strongest applicable
 published methods. It leaves the full original goal active and unachieved.
+
+## Generative affine reads, selectivity, and a robust code boundary
+
+The previous turn made progress: it verified the fast Radon comparator,
+its transpose and its integer accounting. This turn checks the proposed
+product-weighted type query before maintaining more caches. The full-profile
+case has a simpler classical sampler. Broad hyperplane means also have an
+unavoidable selectivity limit, irrespective of tensor rank. A supporting
+code-distribution theorem below strengthens an inspected parity bound, but
+its priority and architectural significance remain open.
+
+### Sample the complete mixture without a Radon cache
+
+In F_2^D, every proper affine hyperplane has M=2^(D-1) points. Let pi(h)
+be a query-supplied distribution on hyperplanes and let every point have
+an independently stored value V(x) in [-1,1]^v. The complete normalized
+incidence read is
+
+    sum_h pi(h)*sum_{x in h} V(x) / sum_h pi(h)*|h|
+      = E_{h~pi} E_{x~Uniform(h)} V(x).
+
+Consequently, sample a type and a uniform point on it, then read the
+current original value. No type-mean cache, Fourier transform or A-way
+cached overwrite is required. Sampling a point on a nonempty affine
+space is ordinary linear algebra. This is a classical comparator for
+this query specification, not a new sampling theorem. The assumption of
+equal fiber sizes and full profile occupancy is material.
+
+There is also a simple query family that includes more than hyperplanes.
+Choose 0<=c<=D. Independently sample the entries of a binary c-by-(D-c)
+matrix A and a binary vector b of length c from query-specified Bernoulli
+distributions. Independently choose y uniformly in F_2^(D-c), and return
+
+    x=(b+A*y, y),       addition and multiplication in F_2.
+
+For every latent (A,b), the constraint x_head+A*x_tail=b defines exactly
+M=2^(D-c) points. Thus this procedure samples the complete normalized
+mixture of those fibers. Its query has J=c*(D-c)+c probability parameters;
+all J inputs and the matrix multiplication are charged. It represents
+cross-coordinate constraints rather than independent address coordinates.
+At c=0 it gives the uniform full-table mean. At c=D it gives a product
+law on b; deterministic b gives exact point recall through the same read
+family. Arbitrary active subsets and arbitrary point-dependent key weights
+are not silently supported by this construction.
+
+Here is a finite model, independent of exponential or real-number oracles.
+Each Bernoulli probability is an integer u in [0,2^f], supplied in f+1
+bits. Draw f fresh bits per parameter and test whether the resulting
+integer is below u. Draw D-c additional fair bits for y. Each address
+is therefore exact on the declared query grid. A draw costs
+O(J+c*(D-c)+D) scalar/index work and f*J+D-c random bits, then v payload
+probes. The query is fixed before its own fresh randomness. Parameters
+can depend on earlier reads and writes.
+
+Keep the full N=2^D codebook with N*v independent signed g+2-bit value
+units; construction initializes all N*v units. A canonical handle overwrite
+costs O(v). A raw binary address is validated and packed at O(D) additional
+cost. This is a fixed full codebook whose current values may change, not
+free admission into an arbitrary active-key family. Query workspace is
+O(J*(f+1)+D+v*(g+log(K+1)+p)+log(K+1)) bits for K samples and p-bit output
+accuracy, plus declared parameters and arithmetic scratch. Index words
+must hold D bits; accumulator/division words must hold g+log(K+1)+p+O(1)
+bits. No product denominator of size 2^(f*J) is stored by the sampler.
+The exhaustive verifier's probability numerators are a separate oracle.
+
+For epsilon=2^-p and a declared H-read horizon, use
+
+    K>=8*epsilon^-2*log(2vH/delta_fail).
+
+Conditional Hoeffding bounds the sample-mean error by epsilon/2 for every
+coordinate and every read except with total probability delta_fail.
+Rounding only the final result on grid 2^-(p+2) preserves an epsilon
+budget. This statement permits adaptive snapshots fixed before their own
+fresh samples; operations are sequential during each read. It does not
+supply infinite-horizon success from a fixed K. Current-value overwrites
+have no precision drift. Deterministic point queries can bypass sampling
+and retrieve the exact current grid value at every operation horizon.
+The concentration and ancestral-mixture argument are established machinery.
+
+### Selectivity and normalization are separate gates
+
+Every normalized positive mixture of M-point uniform fibers has point
+mass at most 1/M. Setting one independent scalar value to +1 and all
+others to -1 makes the target point's mean-recall error at least
+2*(1-1/M). For c<D this is at least one. Merely improving the selection
+of broad hyperplanes cannot guarantee individual recall for all value
+assignments. This concerns the specified normalized mean, not arbitrary
+signed decoders, multiple-read algorithms or direct dictionary access.
+The c=D singleton branch supplies the missing selectivity explicitly.
+
+Point-dependent positive key weights break the equal-cardinality
+normalizer. For two equally likely disjoint two-point fibers, take key
+masses 2 and 5/4, with values identically zero on the first and one on
+the second. Averaging their normalized outputs gives 1/2; the complete
+weighted output is 5/13. Every key weight can be positive.
+For a more severe case let the first fiber's key weights both equal
+t=1/256, the second's both equal one, and choose type probabilities
+1-t and t. The mean of per-type normalized outputs is t, while the
+correct complete output is 1/(2-t)=256/511. Sampling a point from the
+unweighted type mixture and accepting its key weight has probability
+511/65536. Its precision and rejected work cannot be omitted. This is
+the earlier rare-conditioning issue in another interface, not its solution.
+
+### A robust code-supported distribution theorem
+
+Let X be a product of arbitrary finite alphabets, and let C be a set
+of strings with pairwise Hamming distance at least two. Let P be any
+probability distribution supported on C. If Q is a mixture of at most
+K product distributions and TV(P,Q)<=eta, then there exists S subset C
+with at most K elements such that
+
+    P(S)>=1-2*eta.
+
+In particular, if P is uniform on M codewords, then
+
+    K >= (1-2*eta)*M.                         (code bound)
+
+This is a complete uniform proof, not an inference from finite tests.
+For one product distribution R, choose a coordinatewise mode m. In each
+coordinate sort the probabilities p_1>=...>=p_a, with p_(a+1)=0 and the
+chosen modal symbol first. That marginal is a mixture of uniform prefix
+sets: assign weight j*(p_j-p_(j+1)) to the uniform first-j distribution.
+The weights are nonnegative and sum to one. Hence R is a mixture of
+uniform Cartesian boxes, every one containing m.
+
+On a non-singleton box, select a coordinate with at least two symbols.
+For any fixed values of the other coordinates, C contains at most one
+of these symbols, by its distance condition. Thus at most half the box
+lies in C. It follows that the box's mass on C excluding m is at most
+its mass outside C. The singleton box {m} satisfies the same inequality.
+Averaging over boxes proves
+
+    R(C excluding {m}) <= R(X excluding C).
+
+For Q choose one such mode per mixture component, and let S be the
+chosen modes that belong to C. Since removing all of S only decreases
+each component's off-mode code mass,
+
+    Q(C excluding S) <= Q(X excluding C) <= eta.
+
+The event C excluding S and TV<=eta now give
+P(C excluding S)<=Q(C excluding S)+eta<=2*eta, proving the claim.
+If instead P(C)>=1-tau, the same argument yields P(S)>=1-2*tau-2*eta.
+Equivalently, the sum of the K largest target codeword masses must meet
+that bound. Arbitrary latent mixture weights and degenerate product
+components are included. No tensor-rank or dimension-count heuristic is
+substituted for the probability argument.
+
+For an attention implication, require the query's law Q to be independent
+of the current values. Uniform error epsilon for every assignment V(x)
+in [-1,1] implies ||P-Q||_1<=epsilon: choose the sign of P-Q as V.
+Thus the code bound requires K>=(1-epsilon)*M. This is a limitation of
+nonnegative mixtures of coordinate-product query laws. Value-dependent
+summaries/proposals, signed factorizations and other representations are
+outside that limitation.
+
+For uniform even parity, M=2^(D-1), and one deterministic rank-one affine
+constraint generates P with D-1 fair bits. Yet an exact nonnegative
+product mixture needs M components, and a uniform all-value approximation
+with epsilon<1 needs at least (1-epsilon)*M. Algebraic tensor rank tells
+a different story: the same query density is
+
+    P(x)=2^-D*(1+product_i (-1)^x_i),
+
+which has signed product rank at most two. This neither gives two positive
+sampling components nor a shared two-feature representation of the whole
+query family. All binary hyperplane rows together have full column rank:
+the previous Radon Gram identity gives
+C^T*C=(N/2)*I+(N/2-1)*J. These are different factorization questions.
+They explain why an algebraically efficient factorization alone does not
+establish a small universal value state or sharp recall.
+
+### Primary boundary and research decision
+
+[Montufar--Morton, Theorem 3.7](https://arxiv.org/pdf/1206.0387)
+already gives the exact mixture-component/strong-mode obstruction over
+arbitrary finite alphabets. [Ahmed et al., Theorem 2 and Appendix D.5](https://arxiv.org/html/2607.27529)
+explicitly proves K>=(1-3*eta)*2^(D-1) for binary parity and eta<1/3.
+The code bound above strengthens that inspected statement, including
+nonuniform code measures and eta<1/2, but this comparison does not
+establish priority against the wider approximation/coding literature.
+A constant improvement to a known exponential separation alone is not
+the impactful architectural theorem required by the goal.
+
+There are also efficient stronger comparators. A two-state parity circuit
+tracks even and odd prefixes, with the two states swapped on a one bit;
+its size is O(D). It samples parity exactly. General affine solution
+sampling is ordinary coding/linear algebra. Conditional probability
+parameters and tractable circuit gates are already studied in
+[conditional sum-product networks](https://proceedings.mlr.press/v138/shao20a/shao20a.pdf).
+The fact that a short product mixture fails is not a separation from these
+methods. [SANTA, Section 2 and Appendix A](https://arxiv.org/html/2605.01910)
+already averages values at sampled attention addresses. Our finite affine
+procedure supplies an efficient address distribution for a restricted
+query language; it does not make the Monte Carlo estimator new, solve
+arbitrary softmax sampling, or establish a native speed advantage.
+
+`python3 -B scripts/run_timing_restart_checks.py` adds
+`affine_generator_memory_boundary`: 176 complete mixture laws, 158106
+finite random streams, 1444 independently computed kernel entries,
+30 exact current-value point overwrites and twelve malformed-query
+rejections. It checks selectivity and both normalization witnesses,
+780 product laws and 7780 two-product mixtures, plus 475585 off-mode
+code inequalities. The latter exhaust all nonempty distance-two codes
+through four binary variables and two ternary variables on the stated
+quarter-grid marginals. Six signed-density catalogs check the rank-two
+identity. The symbolic proof covers all finite alphabets and dimensions;
+these exact bounded controls check implementations and boundary cases.
+There is no neural training, native benchmark, full arbitrary-key sampler,
+novelty certificate or contribution-paper claim.
+
+Close the cached product-hyperplane mixture as the next positive theorem:
+a classical sampler already removes its apparent update bottleneck, while
+broad averages fail the required worst-case selectivity. Preserve the
+rank-variable affine construction and the code bound as supporting
+comparators. Next audit the code bound's precise approximation-literature
+boundary, then seek a substantive architecture advantage that survives
+coding samplers and tractable circuits as well as product mixtures.
+Nonuniform key/mask normalization and all independent payload costs remain
+mandatory gates. The original goal remains active and unachieved.
