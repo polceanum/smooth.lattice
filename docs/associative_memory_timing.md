@@ -942,3 +942,265 @@ independence negative controls and 582 integer copy-choice checks. These are
 finite supporting certificates, not a production index or empirical speedup;
 the uniform assertion rests on the proof above. Historical certificate blocks
 and the other research artifacts are preserved.
+
+## XOR compression: direct buckets without losing the tail bound
+
+The next candidate removes the balanced-tree lookup and key-edit logarithm
+from the preceding construction. It changes the fingerprint algebra, rather
+than claiming a faster implementation of exactly the same integer hashes.
+The proof below is uniform; its priority and advantage against all applicable
+published methods remain unestablished. No additional neural training follows.
+
+### Linear-time evaluation of the entire family
+
+Write h=r+1, H=2^h-1 and choose a power of two M=2^b. A coordinate label
+m_j is uniform in F_2^h as before. Independently choose each coefficient c_j
+uniformly from F_2^b. Replace integer sums by bitwise XOR:
+
+```text
+g_u(x) = XOR_{j: x_j=1 and <m_j,u>=1} c_j,  u!=0.
+```
+
+This is a standard random linear fingerprint of each selected binary
+projection. Unequal projections collide with probability 1/M. A true
+projection collision is preserved for every coefficient choice, so covering
+and exact full-distance verification still give every inner neighbor.
+XOR tabulation is established prior art; see
+[Patrascu--Thorup](https://arxiv.org/abs/1011.5200v2). We do not import
+its concentration results as if the H correlated projected keys were
+independent inputs to independent tables.
+
+All H fingerprints can be evaluated in O(d+H) word operations, with O(H)
+scratch and O(d) seed words. First form T_l=XOR_{j:m_j=l,x_j=1} c_j in
+O(d+H) steps. Let P be its prefix-XOR array. For each coordinate t of a
+label, compute
+
+```text
+G_t = XOR_{l: bit_t(l)=1} T_l
+    = XOR_{a=2^t, 3*2^t, ... < 2^h} (P[a+2^t] XOR P[a]).
+```
+
+There are sum_t 2^(h-t-1)=H such interval queries in total. Finally
+g_u(x)=XOR_{t:bit_t(u)=1} G_t. Generate the outputs by repeated doubling:
+start with g_0=0; for t=0,...,h-1, set g_(2^t+a)=g_a XOR G_t for
+0<=a<2^t. This uses exactly H output XORs. No per-output scan of all
+h basis words, integer Hadamard transform, division, or large mask array
+is needed. The RAM algorithm scans packed input words to extract their
+bits; the small Python certificate uses integers and is not a timing
+implementation of that input scan.
+
+The factorization has h basis words and the original raw keys remain
+available for exact checking. It is an indexing fingerprint, not a
+two-scalar learned representation or a promise that arbitrary labels can
+be retained in h words without the stored values and index.
+
+### Shared coefficients: the missing covariance is explicit
+
+Direct buckets require fingerprints of only about log2 n bits. The earlier
+union bound forbidding *any* extra collision would require larger buckets
+and waste space. Instead allow extra candidates and analyze their count.
+They are correlated; pairwise independence of the masks is insufficient.
+
+Fix a dataset of a<=n occupied slots and q. Retain p_i, mu, K, lambda and
+v from the preceding proof, and put
+
+```text
+Q_ij=2^(-|S_i union S_j|), L_ij=2^(-dist(x_i,x_j)),
+V=sum_ij Q_ij-mu^2=v^T K v-mu^2,
+J=sum_ij L_ij, theta=1/M, beta=1-theta, alpha=theta*beta.
+```
+
+Let X_u be the compressed bucket's number of slots and C_xor=sum_u X_u,
+including repeated visits in different tables. The exact identities are
+
+```text
+E C_xor = H*(beta*mu+a/M),
+Cov(X_u,X_w)=alpha*V,                         u!=w,
+Var C_xor = H*beta*(1+(H-3)/M)*V + H*alpha*(J-mu^2).
+```
+
+Here is a derivation that keeps the shared randomness. Conditional on all
+coefficients, put p_i(c)=2^(-rank{c_j:j in S_i}) and mu_c=sum_i p_i(c).
+The masks in distinct tables are independent conditional on c, giving
+Cov(X_u,X_w)=Var_c(mu_c). Express p_i(c) as the probability that the
+linear coefficient map annihilates a uniform binary subset of S_i. For
+two such subsets, distinct nonzero vectors have independent uniform
+images; equal nonzero vectors have the same uniform image. Therefore
+
+```text
+E_c p_i(c) = beta*p_i+theta,
+Cov_c(p_i(c),p_j(c)) = alpha*(Q_ij-p_i*p_j),
+Var_c(mu_c)=alpha*V.
+```
+
+For one table's shared mask, its two masked difference vectors are both
+zero with probability Q_ij, equal with probability L_ij, and individually
+zero with probabilities p_i,p_j. Splitting into both-zero, one-zero,
+equal-nonzero and distinct-nonzero cases gives
+
+```text
+E[I_i I_j] = (1-3*theta+2*theta^2)*Q_ij
+            + alpha*(p_i+p_j+L_ij)+theta^2.
+```
+
+Summing, subtracting the squared mean and adding the H*(H-1) cross-table
+covariances proves the displayed total variance. For a one-bit key 0,
+query 1, r=1, M=4, the cross-table covariance is 3/64: the actual total
+variance is 63/64, whereas incorrectly independent compressed tables
+would give 45/64. Thus the covariance term is necessary.
+
+Suppose M>=max(n,H), H>=3 and A>=max(1,lambda). We already have
+mu<=A and V<=A^2/4. Since 0<=K_ij<=1, entrywise L_ij<=K_ij, whence
+
+```text
+J <= 1^T K 1 <= a*lambda <= n*A.
+```
+
+The variance identity now gives
+
+```text
+E C_xor <= H*(A+1),
+Var C_xor <= H*(A^2/2+A) <= H*(A+1)^2/2,
+Pr(C_xor > 2*H*(A+1)) <= 1/(2*H).
+```
+
+All inequalities hold with multiplicities and for every fixed q. They
+bound the actual compressed candidate visits, including false positives;
+no fingerprint-collision-free event or unjustified conditioning on an
+observed surviving seed is used. Exceptional seeds still exist: sixteen
+simplex-code keys in dimension 15 have lambda=31/16, but all-zero
+coefficients give 48 visits for r=1, above the A=2 budget of 18. The
+fallback/rebuild mechanism remains necessary for the runtime theorem.
+
+### A complete direct-address index and its cost
+
+Take H<=n and M=2^ceil(log2 n), so n<=M<2n. Store an H-by-M array of
+bucket heads and H preallocated nodes per slot. Each node has an ID and
+previous/next handles; the slot/table cache records its current bucket.
+Push and remove a node in O(1) worst-case operations, even when every
+fingerprint collides. Initialization and resets clear H*M heads and
+n*H nodes, and charge those operations. No second-level randomized
+dictionary, hidden lookup oracle, or tree comparison remains.
+
+To edit a key, remove its H old nodes using their handles, evaluate the
+new H hashes in O(d+H), and insert its H new nodes. Remove old entries in
+all private families before changing the shared key array; no query
+interleaves with that synchronous update. Raw-key-named updates still pay
+the separate exact dictionary cost. Pure value writes by slot ID still
+cost O(v) and leave all index metadata unchanged.
+
+Read the H bucket heads, visit candidates, deduplicate IDs and verify full
+Hamming distances. The existing touched-mark cleanup and common exact
+weighted aggregation apply. With the same finite-word and verification
+model as above, the per-family bounds are
+
+```text
+W_x = O(d+H),                         worst-case key edit,
+T_x = O(d+H+H*(A+1)*(D_h+1)),         fast complete candidate search,
+R_x = O(n*(d+H)+H*M+d*(b+r+1)),       worst-case padded rebuild,
+F_0 = O(n*D_h),                      exact fallback scan,
+common aggregation = O(s*v).
+
+space = O(n*(ceil(d/w)+v)+k*(n*H+d)) words,
+initial work = I+k*R_x.
+```
+
+The word width w holds addresses, b-bit coefficients, label bits, bounded
+operation counters and exact output numerators/denominators, as specified
+earlier. Fresh coefficient/label bits are all charged in R_x. Lookup and
+unlinking use only ordinary integer indexing and pointer operations; XOR
+does not assume free large-integer arithmetic. Population count, when
+used for D_h=O(ceil(d/w)), remains an explicit optional word operation.
+With ordinary bit counting one can conservatively take D_h=O(d).
+
+Use the preceding independent-family padding/reset scheme with
+p=(2H)^(-k), the explicit copy choice based on (R_x+F_0)/T_x, and the
+same all-prefix bound, replacing R_f,T_f,W_f by R_x,T_x,W_x. The fixed
+seed's updated bucket index equals the index built on the current keys,
+so the canonical all-normal-branch argument also covers keys chosen using
+earlier times. Space is worst-case bounded at every point of the history.
+Exact answers hold for every seed; runtime remains expected amortized,
+with the simultaneous all-prefix confidence bound and occasional expensive
+scan/reset. A single operation's query latency is not worst-case fast.
+
+For fixed c>1, r=floor(ceil(log2 n)/c), H=Theta_c(n^(1/c))<=n for all
+sufficiently large n, R_x+F_0=O(n*T_x). Thus k=O_c(1), with
+
+```text
+key edit O_c(d+H), vector write O(v),
+query O_c(d+H+H*(A+1)*(D_h+1)+s*v),
+space O_c(n*(ceil(d/w)+v)+n*H+d) words.
+```
+
+The supplied A and s promises still must hold at every operation boundary;
+the algorithm does not verify them for free. The full raw-key/value cost,
+superlinear n*H metadata and possible fingerprint-noise work remain.
+This is a construction/proof, not an implemented production memory layer
+or a practical transformer claim.
+
+### Stronger-baseline audit and the remaining publication decision
+
+The previous goal turn was **progress**: it saved and verified the spectral
+tail proof. This turn's audit rules out several weak novelty arguments:
+
+* [Ahle's full version](https://thomasahle.com/papers/lasvegas.pdf), Section 2,
+  PDF pages 9--10, explicitly stores all filter memberships, states close-
+  pair covering and discusses insertions/deletions and dynamization.
+  All-neighbor enumeration from such a covering is a routine extension;
+  exact vector payload sums do not themselves create a new search theorem.
+  Page 10 was visually checked. A complete enumeration bound must include
+  every visited membership, rather than reuse the first-hit query bound.
+* [Christiani's filtering framework](https://arxiv.org/abs/1605.02687),
+  Theorem 1.1, Appendix A's correctness calculation, and Appendix F were
+  inspected. Appendix F already supplies dynamization and fixed-horizon
+  logarithmic repetition; its stated word RAM uses Theta(log n)-bit words
+  and allows negligible sampling/rounding error. PDF page 15 was visually
+  checked. It does not supply our zero-error, all-time timing transcript
+  theorem merely by saying the adversary does not know its randomness.
+  Conversely, these differences are not evidence of novelty by themselves.
+* [Wei v1](https://arxiv.org/abs/1807.07527v1), Appendix A.3's final proof
+  paragraph, explicitly replaces representative leaves with full point
+  lists so search can continue after a false positive; PDF page 21 was
+  visually checked. Thus the earlier representative-leaf objection is
+  already addressed. The stronger data-dependent exponent is retained
+  as a serious comparator, with exact-range enumeration, adaptive key
+  changes, preprocessing and finite precision still to match fully.
+* [Schmitt et al., VLDB 2023](https://www.vldb.org/pvldb/vol16/p2686-schmitt.pdf),
+  Section 7.3, was inspected. It reuses fcLSH's Hadamard computation and
+  adds join-specific filtering of singleton lists. This targeted inspection
+  is not a full audit of every later covering-signature algorithm.
+
+There is now a precise comparison target. The published fcLSH signature
+algorithm takes O(d+H log H) operations; this XOR signature construction
+takes O(d+H) with a different universal fingerprint and the displayed
+compressed-candidate bound. The direct buckets also replace our previous
+balanced-tree key-edit bound O(d+H log n) by O(d+H), at the same asymptotic
+index space. This is a better bound for our construction, not yet a claim
+against the best full-workload method.
+
+In particular, packed raw-mask evaluation is already O(H*ceil(d/w)) in a
+suitable word model and can be competitive; when d fits in one word there
+is no general logarithmic improvement to claim. With d=Theta(log^2 n),
+w=Theta(log n), and H=n^rho much larger than d, XOR signature evaluation
+has O(H) work versus the published Hadamard evaluation's O(H log n) and
+straight packed projection's O(H log n). That is a concrete primitive-level
+comparison, not a lower bound against every signature algorithm. Full read
+time may still be dominated by candidate distance checks and payload work.
+
+Random linear XOR hashing, binary rank factorization, prefix sums, intrusive
+bucket lists and ordinary covering are established ingredients. An honest
+paper would need to establish that their complete combination and shared-
+coefficient spectral tail give a new, useful tradeoff against the strongest
+applicable methods. The next audit must check later covering implementations
+and optimal Las Vegas range/filter data structures on that full statement.
+The objective, strongest-baseline gate and publication standard are unchanged.
+
+The same three reproduction commands above run the added controls. They
+compare 2,051,936 XOR fingerprint values with direct selected-coordinate
+sums, enumerate 41,296 joint label/coefficient seed choices in the stated
+finite cases, and verify 24 exact mean/variance/covariance identities.
+The intrusive-list oracle checks 768 dynamic states, 512 key/occupancy
+edits, 256 independent payload writes and 32,256 budgeted reads, including
+abort cleanup and nontrivial mixtures. It does not implement the complete
+timing wrapper or measure hardware performance. All earlier certificate
+blocks, manuscripts, core kernels and learned-recall results are preserved.

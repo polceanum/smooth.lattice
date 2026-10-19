@@ -666,6 +666,265 @@ def constant_family_controls():
             "scope": "Exact parameter arithmetic at an illustrative reset/base cost ratio 4*n, not measured costs or a proof of a practical speedup."}
 
 
+def xor_covering_hashes(x, labels, coefficients, radius):
+    """Certificate implementation; RAM cost proof scans packed input bits."""
+    size = 2 ** (radius + 1)
+    grouped = [0] * size
+    for j, (label, coefficient) in enumerate(zip(labels, coefficients)):
+        if (x >> j) & 1:
+            grouped[label] ^= coefficient
+    prefix = [0]
+    for value in grouped:
+        prefix.append(prefix[-1] ^ value)
+    basis = []
+    for bit in range(radius + 1):
+        width = 2 ** bit
+        value = 0
+        for start in range(width, size, 2 * width):
+            value ^= prefix[start + width] ^ prefix[start]
+        basis.append(value)
+    hashes = [0] * size
+    for bit, value in enumerate(basis):
+        width = 2 ** bit
+        for lower in range(width):
+            hashes[width + lower] = hashes[lower] ^ value
+    return tuple(hashes[1:])
+
+
+def xor_covering_controls():
+    direct_values = moment_controls = joint_seed_families = tail_controls = 0
+    positive_covariance = None
+    cases = [(1, 1, 2, (0,), (1,)),
+             (2, 1, 1, (0, 1, 3), tuple(range(4))),
+             (2, 1, 2, (0, 1, 3), tuple(range(4))),
+             (2, 2, 3, (0, 3), tuple(range(4))),
+             (3, 1, 2, (0, 1, 3, 7), tuple(range(8))),
+             (3, 2, 2, (0, 3, 5, 6), (0, 1, 7))]
+    for dimension, radius, bits, keys, queries in cases:
+        H, M = 2 ** (radius + 1) - 1, 2 ** bits
+        row_bound = max(sum(F(1, 2 ** ((x ^ y).bit_count() // 2)) for y in keys)
+                        for x in keys)
+        moments = []
+        for q in queries:
+            supports = [x ^ q for x in keys]
+            mu = sum(F(1, 2 ** s.bit_count()) for s in supports)
+            second = sum(F(1, 2 ** (s | t).bit_count()) for s in supports for t in supports)
+            moments.append((mu, second - mu * mu))
+        energy = sum(F(1, 2 ** (x ^ y).bit_count()) for x in keys for y in keys)
+        sums, squares, cross, first, second_table, tails = ([0] * len(queries) for _ in range(6))
+        cutoff = 2 * H * (row_bound + 1)
+        seeds = 0
+        for labels in product(range(H + 1), repeat=dimension):
+            masks = covering_masks(labels, radius)
+            for coefficients in product(range(M), repeat=dimension):
+                hashes = [xor_covering_hashes(x, labels, coefficients, radius)
+                          for x in range(1 << dimension)]
+                for x, actual in enumerate(hashes):
+                    direct = []
+                    for mask in masks:
+                        value = 0
+                        for j, coefficient in enumerate(coefficients):
+                            if ((x & mask) >> j) & 1:
+                                value ^= coefficient
+                        direct.append(value)
+                    assert actual == tuple(direct)
+                    direct_values += H
+                for j, q in enumerate(queries):
+                    counts = [sum(hashes[x ^ q][u] == 0 for x in keys) for u in range(H)]
+                    C = sum(counts)
+                    sums[j] += C
+                    squares[j] += C * C
+                    first[j] += counts[0]
+                    second_table[j] += counts[1]
+                    cross[j] += counts[0] * counts[1]
+                    tails[j] += C > cutoff
+                seeds += 1
+        joint_seed_families += seeds
+        beta, alpha = F(M - 1, M), F(M - 1, M * M)
+        for j, (mu, V) in enumerate(moments):
+            mean = F(sums[j], seeds)
+            variance = F(squares[j], seeds) - mean * mean
+            covariance = F(cross[j], seeds) - F(first[j] * second_table[j], seeds * seeds)
+            assert mean == H * (beta * mu + F(len(keys), M))
+            assert covariance == alpha * V
+            predicted = H * beta * (1 + F(H - 3, M)) * V + H * alpha * (energy - mu * mu)
+            assert variance == predicted
+            moment_controls += 1
+            if M >= max(H, len(keys)):
+                assert variance <= H * (row_bound * row_bound / 2 + row_bound)
+                assert F(tails[j], seeds) <= F(1, 2 * H)
+                tail_controls += 1
+            if dimension == 1:
+                assert covariance == F(3, 64) and variance == F(63, 64)
+                assert variance != H * F(15, 64)
+                positive_covariance = {"dimension": 1, "radius": 1, "bits": 2,
+                                       "keys": [0], "query": 1,
+                                       "cross_table_covariance": str(covariance),
+                                       "actual_total_variance": str(variance),
+                                       "incorrect_independent_table_variance": "45/64"}
+    operation_counts = []
+    for radius in range(1, 13):
+        size = 2 ** (radius + 1)
+        ranges = sum(size // (2 ** (bit + 1)) for bit in range(radius + 1))
+        outputs = sum(2 ** bit for bit in range(radius + 1))
+        assert ranges == outputs == size - 1
+        operation_counts.append({"radius": radius, "tables": size - 1,
+                                 "prefix_interval_queries": ranges, "output_xors": outputs})
+    # A valid low-norm state can still have an exceptional fingerprint seed.
+    keys = tuple(sum(((v & j).bit_count() % 2) << (j - 1)
+                     for j in range(1, 16)) for v in range(16))
+    row_bound = max(sum(F(1, 2 ** ((x ^ y).bit_count() // 2)) for y in keys) for x in keys)
+    assert row_bound == F(31, 16) < 2
+    zero_fingerprints = [xor_covering_hashes(x, (1,) * 15, (0,) * 15, 1) for x in keys]
+    visits = sum(fp[u] == 0 for fp in zero_fingerprints for u in range(3))
+    assert visits == 48 > 2 * 3 * (2 + 1)
+    return {"direct_xor_fingerprint_values": direct_values,
+            "joint_covering_coefficient_seed_families": joint_seed_families,
+            "exact_mean_variance_covariance_controls": moment_controls,
+            "spectral_tail_controls": tail_controls,
+            "positive_shared_fingerprint_covariance": positive_covariance,
+            "linear_operation_counts": operation_counts,
+            "exceptional_seed_witness": {"dimension": 15, "capacity": 16, "radius": 1,
+                                         "kernel_norm_upper_bound": "31/16",
+                                         "all_coefficients_zero": True, "candidate_visits": visits,
+                                         "A_equals_two_budget": 18},
+            "scope": "Independent direct sums and exact joint-seed moments support the XOR/direct-bucket proof. Counts are RAM operation identities, not Python performance measurements or a novelty determination."}
+
+
+def direct_bucket_memory_controls():
+    class Index:
+        def __init__(self, n, radius, labels, coefficients):
+            self.n, self.radius = n, radius
+            self.labels, self.coefficients = labels, coefficients
+            self.H, self.M = 2 ** (radius + 1) - 1, 2 ** ((n - 1).bit_length())
+            self.heads = [[-1] * self.M for _ in range(self.H)]
+            self.prev = [[-1] * n for _ in range(self.H)]
+            self.next = [[-1] * n for _ in range(self.H)]
+            self.cache = [None] * n
+            self.keys, self.payloads, self.marked = [None] * n, [(0, 0)] * n, [False] * n
+
+        def edit(self, slot, key):
+            old = self.cache[slot]
+            if old is not None:
+                for u, value in enumerate(old):
+                    previous, following = self.prev[u][slot], self.next[u][slot]
+                    if previous < 0:
+                        self.heads[u][value] = following
+                    else:
+                        self.next[u][previous] = following
+                    if following >= 0:
+                        self.prev[u][following] = previous
+                    self.prev[u][slot] = self.next[u][slot] = -1
+            self.keys[slot] = key
+            self.cache[slot] = None
+            if key is not None:
+                hashed = xor_covering_hashes(key, self.labels, self.coefficients, self.radius)
+                for u, value in enumerate(hashed):
+                    following = self.heads[u][value]
+                    self.prev[u][slot], self.next[u][slot] = -1, following
+                    if following >= 0:
+                        self.prev[u][following] = slot
+                    self.heads[u][value] = slot
+                self.cache[slot] = hashed
+
+        def validate(self):
+            active = {i for i, x in enumerate(self.keys) if x is not None}
+            for u in range(self.H):
+                visited = set()
+                for value, head in enumerate(self.heads[u]):
+                    previous, slot = -1, head
+                    while slot >= 0:
+                        assert slot not in visited
+                        visited.add(slot)
+                        assert self.cache[slot][u] == value and self.prev[u][slot] == previous
+                        previous, slot = slot, self.next[u][slot]
+                assert visited == active
+            assert not any(self.marked)
+
+        def read(self, q, budget):
+            hashes = xor_covering_hashes(q, self.labels, self.coefficients, self.radius)
+            touched, neighbors, visits = [], [], 0
+            finished = True
+            for u, value in enumerate(hashes):
+                slot = self.heads[u][value]
+                while slot >= 0:
+                    visits += 1
+                    if visits > budget:
+                        finished = False
+                        break
+                    if not self.marked[slot]:
+                        self.marked[slot] = True
+                        touched.append(slot)
+                        distance = (self.keys[slot] ^ q).bit_count()
+                        if distance <= self.radius:
+                            neighbors.append((slot, distance))
+                    slot = self.next[u][slot]
+                if not finished:
+                    break
+            for slot in touched:
+                self.marked[slot] = False
+            if not finished:
+                return False, None, visits
+            denominator = sum(self.radius + 1 - distance for _, distance in neighbors)
+            numerators = tuple(sum((self.radius + 1 - distance) * self.payloads[slot][j]
+                                   for slot, distance in neighbors) for j in range(2))
+            return finished, (denominator, numerators), visits
+
+    n, B, t, dimension, radius = 16, 8, 4, 65, 1
+    queries = edits = payload_writes = complete = aborted = mixtures = snapshots = 0
+    for seed in range(16):
+        labels = tuple((j * (seed + 1) + seed) % 4 for j in range(dimension))
+        coefficients = tuple((j * seed + seed) % n for j in range(dimension))
+        index = Index(n, radius, labels, coefficients)
+        for slot in range(n):
+            index.edit(slot, (((1 << t) - 1) << ((slot // 2) * t)) | ((slot % 2) << (2 * B * t)))
+            index.payloads[slot] = (slot - 8, 7 - slot)
+        for step in range(48):
+            slot = step % n
+            if step % 3 == 0:
+                before = (repr(index.heads), repr(index.prev), repr(index.next), repr(index.cache))
+                index.payloads[slot] = (step - 24, 23 - step)
+                assert before == (repr(index.heads), repr(index.prev), repr(index.next), repr(index.cache))
+                payload_writes += 1
+            elif step % 3 == 1:
+                index.edit(slot, None)
+                edits += 1
+            else:
+                block = slot // 2 + (B if (step // n) % 2 else 0)
+                key = (((1 << t) - 1) << (block * t)) | ((slot % 2) << (2 * B * t))
+                index.edit(slot, key)
+                edits += 1
+            index.validate()
+            snapshots += 1
+            active = [x for x in index.keys if x is not None]
+            norm_upper = max(sum(F(1, 2 ** ((x ^ y).bit_count() // 2)) for y in active) for x in active)
+            assert norm_upper < 3
+            raw_queries = [0, (1 << dimension) - 1] + active[:6] + [x ^ 1 for x in active[:6]]
+            for q in raw_queries:
+                reference_neighbors = [(i, (x ^ q).bit_count()) for i, x in enumerate(index.keys)
+                                       if x is not None and (x ^ q).bit_count() <= radius]
+                reference = (sum(radius + 1 - distance for _, distance in reference_neighbors),
+                             tuple(sum((radius + 1 - distance) * index.payloads[i][j]
+                                       for i, distance in reference_neighbors) for j in range(2)))
+                mixtures += len(reference_neighbors) > 1
+                for budget in (1, 2 * index.H * 4, n * index.H):
+                    finished, answer, _ = index.read(q, budget)
+                    assert not any(index.marked)
+                    if finished:
+                        assert answer == reference
+                        complete += 1
+                    else:
+                        assert answer is None and budget < n * index.H
+                        aborted += 1
+                    queries += 1
+    assert aborted and mixtures
+    return {"dynamic_snapshots": snapshots, "direct_bucket_reads": queries,
+            "completed_exact_weighted_reads": complete, "aborted_reads_with_clean_scratch": aborted,
+            "multiple_neighbor_queries": mixtures, "slot_key_or_occupancy_edits": edits,
+            "payload_only_writes": payload_writes,
+            "scope": "Bounded intrusive-list oracle checks deletion handles, raw-key edits, independent payloads and abort cleanup. Selected seeds are correctness controls, not a runtime-distribution experiment or production implementation."}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -681,6 +940,8 @@ def main():
               "covering_spectral": covering_spectral_controls(),
               "covering_fingerprints": covering_fingerprint_controls(),
               "constant_families": constant_family_controls(),
+              "xor_covering": xor_covering_controls(),
+              "direct_buckets": direct_bucket_memory_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,

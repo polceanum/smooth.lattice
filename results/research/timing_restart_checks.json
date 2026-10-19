@@ -765,11 +765,123 @@
     ],
     "scope": "Exact parameter arithmetic at an illustrative reset/base cost ratio 4*n, not measured costs or a proof of a practical speedup."
   },
+  "xor_covering": {
+    "direct_xor_fingerprint_values": 2051936,
+    "joint_covering_coefficient_seed_families": 41296,
+    "exact_mean_variance_covariance_controls": 24,
+    "spectral_tail_controls": 17,
+    "positive_shared_fingerprint_covariance": {
+      "dimension": 1,
+      "radius": 1,
+      "bits": 2,
+      "keys": [
+        0
+      ],
+      "query": 1,
+      "cross_table_covariance": "3/64",
+      "actual_total_variance": "63/64",
+      "incorrect_independent_table_variance": "45/64"
+    },
+    "linear_operation_counts": [
+      {
+        "radius": 1,
+        "tables": 3,
+        "prefix_interval_queries": 3,
+        "output_xors": 3
+      },
+      {
+        "radius": 2,
+        "tables": 7,
+        "prefix_interval_queries": 7,
+        "output_xors": 7
+      },
+      {
+        "radius": 3,
+        "tables": 15,
+        "prefix_interval_queries": 15,
+        "output_xors": 15
+      },
+      {
+        "radius": 4,
+        "tables": 31,
+        "prefix_interval_queries": 31,
+        "output_xors": 31
+      },
+      {
+        "radius": 5,
+        "tables": 63,
+        "prefix_interval_queries": 63,
+        "output_xors": 63
+      },
+      {
+        "radius": 6,
+        "tables": 127,
+        "prefix_interval_queries": 127,
+        "output_xors": 127
+      },
+      {
+        "radius": 7,
+        "tables": 255,
+        "prefix_interval_queries": 255,
+        "output_xors": 255
+      },
+      {
+        "radius": 8,
+        "tables": 511,
+        "prefix_interval_queries": 511,
+        "output_xors": 511
+      },
+      {
+        "radius": 9,
+        "tables": 1023,
+        "prefix_interval_queries": 1023,
+        "output_xors": 1023
+      },
+      {
+        "radius": 10,
+        "tables": 2047,
+        "prefix_interval_queries": 2047,
+        "output_xors": 2047
+      },
+      {
+        "radius": 11,
+        "tables": 4095,
+        "prefix_interval_queries": 4095,
+        "output_xors": 4095
+      },
+      {
+        "radius": 12,
+        "tables": 8191,
+        "prefix_interval_queries": 8191,
+        "output_xors": 8191
+      }
+    ],
+    "exceptional_seed_witness": {
+      "dimension": 15,
+      "capacity": 16,
+      "radius": 1,
+      "kernel_norm_upper_bound": "31/16",
+      "all_coefficients_zero": true,
+      "candidate_visits": 48,
+      "A_equals_two_budget": 18
+    },
+    "scope": "Independent direct sums and exact joint-seed moments support the XOR/direct-bucket proof. Counts are RAM operation identities, not Python performance measurements or a novelty determination."
+  },
+  "direct_buckets": {
+    "dynamic_snapshots": 768,
+    "direct_bucket_reads": 32256,
+    "completed_exact_weighted_reads": 19024,
+    "aborted_reads_with_clean_scratch": 13232,
+    "multiple_neighbor_queries": 1248,
+    "slot_key_or_occupancy_edits": 512,
+    "payload_only_writes": 256,
+    "scope": "Bounded intrusive-list oracle checks deletion handles, raw-key edits, independent payloads and abort cleanup. Selected seeds are correctness controls, not a runtime-distribution experiment or production implementation."
+  },
   "novelty_established": false,
   "strongest_baseline_advantage_established": false,
   "publication_ready": false,
   "source_sha256": {
-    "scripts/run_timing_restart_checks.py": "06df4997424e9eb9a2a0bfa0dc4ae97be97e619e8b8141f45ac531bb63e54097",
-    "docs/associative_memory_timing.md": "a2fd01a01be928414ca5788f595832696a3d6a010079ebbc971ae4808a012c46"
+    "scripts/run_timing_restart_checks.py": "ad156d46733b31c3768f10f83b6593913fe041534bc1fdbcf317737ae4422bc2",
+    "docs/associative_memory_timing.md": "51429cc821658c3ff1d45df2ac9e74d538d7391f947f654c39144d6014d200a9"
   }
 }
