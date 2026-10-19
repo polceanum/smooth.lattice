@@ -13226,3 +13226,306 @@ oracle, not a runtime benchmark for the production indexed baseline.
 These finite certificates support the uniform identities and expose
 overstated guarantees; they do not establish novelty. All prior
 certificate blocks and the smooth-number kernels remain preserved.
+
+### Associative-memory goal: a dynamic bilinear sampler and its addressability ceiling
+
+The preceding turn was **progress**: a full-vector masked-mixture candidate
+was checked and identified as a weighted-join specialization. This turn
+constructs a stronger baseline with genuinely correlated squared bilinear
+scores, fresh full-matrix queries and changing factors. It also gives the
+exact worst-case point-recall limit for that reader. Both mechanisms have
+clear prior-art explanations. **Neither is a new strongest-method
+advantage or a publication claim.** They change the next architectural
+test: cheap score sampling and a large payload table do not by themselves
+give independently addressable memory.
+
+**Complete query/update model.** Store factors A in R^(m by d) and
+B in R^(n by d), with rows a_i^T,b_j^T, and independent current vector
+payloads V_ij in [-1,1]^v for all N=m*n logical pairs. A query supplies an
+arbitrary full d-by-d matrix X, with no rank restriction. Define
+
+```text
+Y_ij = a_i^T X b_j,
+Z = ||A X B^T||_F^2 > 0,
+P_ij(X) = Y_ij^2/Z,
+R(X,V) = sum_ij P_ij(X) V_ij.
+```
+
+The full d^2 query coordinates remain available. For A=B=I and X=I,
+the distribution is concentrated on the diagonal; for d>=2 it is not
+the product of its marginals. The reader therefore preserves a form of
+cross-coordinate binding. It does not represent every distribution on
+the m*n pairs. Z=0 is rejected.
+
+Allowed mutations are: replace a payload vector; replace one coordinate
+of A or B; or replace a whole factor row by its d coordinate edits.
+A row-key edit moves the scores of all incident logical pairs together.
+This is not an arbitrary independent edit to the key of one of the N
+pairs. Payload identities remain the fixed integer pairs (i,j), and
+key changes do not alter their contents. Any encoder, codebook or learned
+map producing X,A,B must be charged in addition to the data structure.
+
+**Independent derivation of the constructive baseline.** For either
+factor U, partition its rows into blocks of at most d, and build a balanced
+binary tree on those blocks. Cache the partial Gram matrix
+G_S=sum_{i in S} u_i*u_i^T at each node. There are
+2*ceil(I/d)-1 nodes for I factor rows. Given a vector q with q^T G_root q>0,
+an exact inverse-CDF walk uses child mass q^T G_child q and, at the final
+block, scans the weights (u_i^T q)^2. The product of branch probabilities
+telescopes to
+
+```text
+Pr(i | q) = (u_i^T q)^2/(q^T U^T U q).
+```
+
+Each internal mass takes O(d^2) arithmetic operations; the final block
+uses O(d^2) operations in total. The row sampler costs
+O(d^2*(1+log ceil(I/d))). Persistent key/Gram storage is O(I*d+d^2)
+scalar words, plus tree/row-address metadata. Bottom-up construction
+costs O(I*d^2), rather than rebuilding every node from all its rows.
+
+Let G_A=A^T A and G_B=B^T B. Compute a rational PSD decomposition
+G_B=sum_k s_k*u_k*u_k^T, with s_k>0 and at most d terms. A zero-aware
+LDL elimination suffices: at a positive diagonal pivot p, subtract p*u*u^T
+from the remaining Schur complement; at a zero pivot its row and column
+are zero because the residual is PSD. This introduces no square-root
+oracle and permits rank-deficient factors. Set
+
+```text
+q_k = X u_k,
+w_k = s_k*q_k^T G_A q_k,
+sum_k w_k = Z.
+```
+
+Draw k with probability w_k/Z, then use A's tree to draw i according to
+(a_i^T q_k)^2/(q_k^T G_A q_k). Terms with w_k=0 are never selected.
+Marginalizing k gives the exact row mass
+a_i^T X G_B X^T a_i/Z. Finally use B's tree with direction X^T a_i to draw j.
+Its conditional denominator is a_i^T X G_B X^T a_i, so the final pair
+law is exactly P_ij(X). The mixture component is used to select the row;
+the subsequent column draw uses the full conditional distribution,
+rather than a distribution artificially restricted to that component.
+
+The decomposition, the q_k and the component weights cost O(d^3)
+arithmetic operations per fresh X/current snapshot. Thereafter K samples
+cost
+
+```text
+O(K*d^2*(1+log ceil(m/d)+log ceil(n/d)) + K*v)
+```
+
+operations and K*v payload-word probes, with the initial O(d^3) charged
+even when K=1. Additional query workspace is O(d^2) scalar words plus
+O(v) accumulators. There is no scan of the m*n score matrix or implicit
+promise that arbitrary queries have already been prepared.
+
+For a coordinate update u_rc:=u_rc+Delta, every ancestor Gram changes by
+
+```text
+Delta*(e_c*u_r^T + u_r*e_c^T) + Delta^2*e_c*e_c^T,
+```
+
+where u_r is the old row. Only row/column c change, so each node takes
+O(d) work. Coordinate update cost is
+O(d*(1+log ceil(I/d))); a whole row costs O(d^2*(1+log ceil(I/d))).
+The query's decomposition is rebuilt from the current factors, not
+silently maintained for free after a key edit. Payload overwrites cost
+O(v) writes. Initializing N*v independent payloads and all indexes is
+also charged. Persistent state is
+O(N*v+(m+n)*d+d^2) scalar words, including the entire independent value
+table; tree topology needs O((ceil(m/d)+ceil(n/d))*log(m+n+1)) bits.
+The pair's payload address is computed in the packed table.
+
+**Finite precision and horizon.** One implementation takes signed B-bit
+integer factor and query entries, or fixed dyadic grids after separately
+clearing the common denominators of each input. Scaling an entire factor
+or query does not change P. Raw keys use (m+n)*d*B bits and the fresh query
+uses d^2*B bits, up to sign conventions. Integer Grams use
+O(B+log(m+n+1)) bits per scalar; they remain exact sums of the current
+keys under every bounded replacement history. Intermediate update
+arithmetic adds only a constant number of bits. No accumulated rounding
+error or increasing-precision history counter is required.
+
+The rational query workspace also has a finite cost. Gram minors of
+order at most d have O(d*(B+log(m+n+d))) bits, by the determinant expansion
+bound. LDL coefficients are ratios of such minors. Clearing each of at
+most d direction denominators, and then the component-weight
+denominators, gives a conservative bound
+
+```text
+T = O(d^3*(B+log(m+n+d))) bits
+```
+
+on the rational/integer sampling operands. This loose polynomial bound
+charges denominator products; it is not a claim that all operations fit
+in a hardware word. The arithmetic bounds above must be multiplied by
+the actual T-bit rational/integer operation costs, including reduction
+and comparisons. O(d^2*T) bits of query workspace and O(T) expected fresh
+random bits per inverse-CDF ticket are charged. Exact uniform integer
+tickets use fewer than two bit-rejection trials in expectation. There
+is no rejection of complete candidate pairs, and no arbitrary-real random
+number primitive. Payload storage costs N*v*(S+O(1)) bits at S dyadic
+fractional bits; averaging K samples needs O(v*(S+log(K+1))) accumulator
+bits and separately accounted output rounding.
+
+Fresh exact samples give the same bounded-variable guarantee proved in
+the preceding section: conditional failure probability
+2*v*exp(-K*epsilon^2/2) per read and at most
+2*v*Q*exp(-K*epsilon^2/2) for Q specified adaptive reads. Current keys,
+X and payloads may depend on prior outputs but must be fixed before
+the read's fresh coins. The deterministic indexes always describe the
+current state. This is stronger than assuming an old randomized sketch
+remains correct under arbitrary adaptive edits, but exact maintained
+data structures already have this property. Stable stored payloads do
+not imply accurate point recall, and no fixed positive query-noise
+radius or infinite-horizon all-read guarantee is inferred.
+
+**Sharp addressability limit, including full-matrix queries.** Assume
+both factors have positive rank so legal queries exist. Let
+P_A,P_B be the orthogonal projectors onto the column spaces of A,B and
+ell_i=(P_A)_ii, h_j=(P_B)_jj. For every pair with ell_i*h_j>0,
+
+```text
+max_{X: Z>0} P_ij(X) = ell_i*h_j.
+```
+
+Indeed, every Y=A X B^T lies in the matrix subspace with projector
+Y -> P_A Y P_B. Projecting the coordinate matrix E_ij onto this subspace
+gives P_A E_ij P_B, whose squared Frobenius norm is ell_i*h_j. Cauchy
+therefore bounds |Y_ij|^2/||Y||_F^2 by ell_i*h_j. The bound is attained
+by Y=P_A E_ij P_B. An explicit realizing query is
+
+```text
+X = (A^T A)^dagger * a_i * b_j^T * (B^T B)^dagger.
+```
+
+If the product leverage is zero, the pair has zero probability for every
+legal query. For rational keys the nonzero witnesses can be obtained by
+choosing independent columns and solving their nonsingular Gram systems;
+they are rational and can be scaled to integers. Their required query
+bit widths must still be charged. A fixed smaller query grid can decrease
+the attainable maximum; it cannot violate this upper bound.
+
+For scalar payloads in [-1,1], hold both factor matrices fixed while
+varying the independent payload assignment, and choose the target query
+independently of that assignment. The exact expected reader has
+
+```text
+min_X sup_{V in [-1,1]^(m*n)} |R(X,V)-V_ij|
+    = 2*(1-ell_i*h_j).
+```
+
+For a fixed P, the upper bound is 2*(1-P_ij), and assigning the target +1
+and every other payload -1 attains it. The preceding maximum proves the
+identity. Vector payloads give the same result coordinatewise. This is
+an expected-reader addressability statement, not a bound on an arbitrary
+nonlinear decoder with additional probes or on every random sample path.
+
+There is also a necessary high-probability condition for the sampled
+reader, independent of K, for 0<=epsilon<2 and 0<=eta<1. For the same
+target +1 / other -1 payload
+assignment, any unbiased output in [-1,1] has expected absolute error
+2*(1-P_ij). If its error is at most epsilon with probability at least
+1-eta, its expected error is at most epsilon*(1-eta)+2*eta. Hence
+
+```text
+P_ij >= (1-epsilon/2)*(1-eta).
+```
+
+Thus any target set with that uniform confidence promise must satisfy
+|T|*(1-epsilon/2)*(1-eta)<=rank(A)*rank(B). More samples estimate the
+existing mixture more accurately; they do not remove its access bias.
+This condition applies to the unbiased bounded sampler output described
+here, not to an arbitrary biased or nonlinear decoder. It is an elementary
+conversion of the same sensitivity bound.
+
+Consequently, if each address in a set T has some payload-independent
+query guaranteeing expected-read error at most epsilon<2 for every
+independent payload assignment, then
+
+```text
+|T|*(1-epsilon/2) <= sum_{(i,j) in T} ell_i*h_j
+                  <= rank(A)*rank(B) <= d^2.
+```
+
+This applies at every current key snapshot, regardless of how efficiently
+its scores are sampled. It is sharp on a family of increasingly loaded
+tables. Take each factor to contain t orthonormal bases of R^d, so every
+row leverage is 1/t. Then N=t^2*d^2 pairs have maximum mass 1/t^2 and
+best worst-payload error 2*(1-1/t^2). In d=2, distinct rational rotations
+of orthonormal pairs give such a family; multiply all rows by a common
+integer to obtain finite integer keys without changing their leverages.
+The checker records the resulting key widths. For t=2 there are sixteen
+pair payloads, but no pair can receive more than 1/4 of the read mass;
+the optimal worst-payload error is 3/2. All sixteen payloads are still
+stored exactly. The limitation is in access through this reader.
+The capacity test permits new key-only snapshots, but not a different
+value-dependent key/encoder state for every assignment in its universal
+payload quantifier. Such re-encoding requires separate state, update and
+retention accounting. This is not an impossibility claim about every
+learned transformer or every nonlinear memory decoder.
+
+**Precise prior-art boundary.** The partial-Gram tree, block-size
+tradeoff, PSD-mixture step and dynamic entry update are established in
+Bharadwaj et al.,
+[NeurIPS 2023 paper](https://proceedings.neurips.cc/paper_files/paper/2023/file/959f70ee50044bed305e48e3484005a7-Paper-Conference.pdf),
+Lemma 3.2, Section 3.2, Algorithms 3--5 and Appendix A.7; see also
+[arXiv v4](https://arxiv.org/html/2301.12584v4). The relevant definitions,
+proofs and update equations were inspected in both versions. The
+bilinear pair workload above is an independently derived specialization
+of those primitives, not a new sampler. The paper does not assert our
+payload overwrite theorem: that cost follows from keeping the payloads
+in a separate directly indexed table. No comparison against its method
+may omit its blocking or mixture construction.
+
+The addressability argument also has direct attention prior art.
+[LevAttention, v1](https://arxiv.org/html/2410.05462v1), the sensitivity
+definition and Theorems 2.2--2.4, identifies maximum squared-attention
+mass with leverage and bounds the number of potentially heavy keys.
+Those statements and their displayed proofs were inspected. Apply that
+identity to the implicit key matrix B tensor A, whose projector/leverage
+factorization is classical, to obtain the pair ceiling above. The
+worst-payload conversion is elementary. This is a known sensitivity
+consequence, not evidence of a new impossibility theorem or a new paper.
+
+The streamed tensor sampler in
+[Song--Xie--Zhou, v1](https://arxiv.org/html/2510.03678v1), Algorithm 2,
+Lemma 7.4 and Theorem 7.6, uses a different sketch/stream specification;
+the inspected tensor lemma holds one factor fixed. Its claimed costs
+must not be used as a lower bound for the current workload. The stronger
+Gram-tree baseline above already supplies the relevant exact conditional
+method. We do not infer any correction to or priority claim over that
+paper, or assume that every statement in a later published version is
+identical to the preprint.
+
+**Decision.** Keep the dynamic bilinear sampler as an applicable baseline
+and reject “cheap squared-bilinear sampling gives high-capacity associative
+recall” as the project contribution. A useful next construction must
+change the access/retention mechanism so that independent addresses can
+receive enough weight, while retaining a complete cheap-query/update
+guarantee beyond the strongest applicable routing/index or kernel method.
+Increasing the pair table, using a full-rank X, or deriving another
+fixed-feature leverage corollary does not meet the unchanged goal. The
+new addressability test must accompany a proposed access-cost theorem,
+rather than being deferred until training. No new neural training,
+outreach or contribution manuscript was undertaken.
+
+The existing command checks this construction and its limitations:
+
+```bash
+python3 -B scripts/run_correlated_routing_checks.py
+```
+
+The added controls include 320 fresh-query snapshots with changing factors
+and 320 independent vector-payload overwrites; 2,804 exact integer tree
+tickets; 3,452 joint-leverage probability bounds; 48 attaining queries
+with worst-payload witnesses; 25 address-count checks; 64 exact finite-sample
+confidence controls; four tight-frame
+families; zero PSD pivots/normalizers; and a full-rank correlated query.
+The law-enumeration routines deliberately visit every pair to compare
+against an independent direct score computation. They are proof oracles,
+not timing implementations of the sublinear sampler. The index update
+and ticket-walk routines implement the maintained tree directly. All
+older certificate blocks remain intact. These exact finite checks support
+the uniform arguments and their limits; novelty and the full goal remain
+unachieved.

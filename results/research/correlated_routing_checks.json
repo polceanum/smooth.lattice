@@ -380,10 +380,61 @@
     "novelty_established": false,
     "new_publishable_advantage_established": false
   },
+  "dynamic_gram_sampler": {
+    "fresh_query_snapshots": 320,
+    "positive_normalizer_snapshots": 286,
+    "zero_normalizer_snapshots": 34,
+    "factor_coordinate_replacements": 320,
+    "independent_vector_payload_overwrites": 320,
+    "integer_tree_tickets": 2804,
+    "joint_leverage_probability_bounds": 3452,
+    "exact_maximum_probability_witnesses": 48,
+    "addressability_count_controls": 25,
+    "tight_frame_families": [
+      {
+        "orthogonal_bases_per_factor": 1,
+        "independent_pair_payloads": 4,
+        "query_matrix_coordinates": 4,
+        "maximum_individual_read_mass": "1",
+        "best_worst_payload_error": "0",
+        "max_integer_key_bits": 3
+      },
+      {
+        "orthogonal_bases_per_factor": 2,
+        "independent_pair_payloads": 16,
+        "query_matrix_coordinates": 4,
+        "maximum_individual_read_mass": "1/4",
+        "best_worst_payload_error": "3/2",
+        "max_integer_key_bits": 3
+      },
+      {
+        "orthogonal_bases_per_factor": 3,
+        "independent_pair_payloads": 36,
+        "query_matrix_coordinates": 4,
+        "maximum_individual_read_mass": "1/9",
+        "best_worst_payload_error": "16/9",
+        "max_integer_key_bits": 7
+      },
+      {
+        "orthogonal_bases_per_factor": 5,
+        "independent_pair_payloads": 100,
+        "query_matrix_coordinates": 4,
+        "maximum_individual_read_mass": "1/25",
+        "best_worst_payload_error": "48/25",
+        "max_integer_key_bits": 16
+      }
+    ],
+    "exact_finite_sample_confidence_controls": 64,
+    "zero_pivot_and_zero_normalizer_controls": true,
+    "full_rank_correlated_query_control": true,
+    "classification": "Constructive baseline from published Gram-tree sampling and PSD mixtures; product-leverage address ceiling is a classical projection corollary. No new strongest-method advantage.",
+    "novelty_established": false,
+    "new_publishable_advantage_established": false
+  },
   "novelty_established": false,
   "new_publishable_advantage_established": false,
   "source_sha256": {
-    "scripts/run_correlated_routing_checks.py": "80571e089ba6588e1e2417500436d502d2803030b8e75e2f25862ab7c4a4c1e2",
-    "docs/interleaving_research.md": "9ae247cba925107a3888bd283eedeea5bc0da4c6a1d1aad4d43debdd6dd7f42b"
+    "scripts/run_correlated_routing_checks.py": "01dc8652fc3b1fb896bc6bfa44d825dfeb8111c1e15bc0d3c7f6af1997cde66e",
+    "docs/interleaving_research.md": "8e1d70f0cc97e9767033b95ae38f077ce26d7b7da291faae86c8f66b66b64e86"
   }
 }

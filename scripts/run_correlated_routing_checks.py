@@ -9,7 +9,7 @@ from fractions import Fraction as Q
 from hashlib import sha256
 from itertools import combinations, combinations_with_replacement, permutations, product
 from bisect import bisect_right
-from math import comb
+from math import comb, gcd
 import json
 from pathlib import Path
 import random
@@ -338,6 +338,319 @@ def check_weighted_prefix_join():
             "novelty_established": False, "new_publishable_advantage_established": False}
 
 
+def gram_dot(a, b):
+    return sum((x*y for x, y in zip(a, b)), Q(0))
+
+
+def gram_matrix(rows):
+    d = len(rows[0])
+    return [[sum((row[i]*row[j] for row in rows), Q(0)) for j in range(d)] for i in range(d)]
+
+
+def gram_quadratic(matrix, q):
+    return sum((q[i]*matrix[i][j]*q[j] for i in range(len(q)) for j in range(len(q))), Q(0))
+
+
+def gram_integer_scale(values):
+    denominator = 1
+    for value in values:
+        denominator = denominator*Q(value).denominator//gcd(denominator, Q(value).denominator)
+    return [int(value*denominator) for value in values]
+
+
+def gram_psd_components(matrix):
+    """Rational LDL rank-one terms, including zero pivots; no square roots."""
+    d = len(matrix)
+    residual = [list(map(Q, row)) for row in matrix]
+    components = []
+    for k in range(d):
+        pivot = residual[k][k]
+        assert pivot >= 0
+        if not pivot:
+            assert all(residual[i][k] == 0 for i in range(d))
+            continue
+        direction = [Q(0)]*d
+        direction[k] = Q(1)
+        for i in range(k+1, d):
+            direction[i] = residual[i][k]/pivot
+        components.append((pivot, direction))
+        for i in range(k, d):
+            for j in range(k, d):
+                residual[i][j] -= pivot*direction[i]*direction[j]
+    assert all(not value for row in residual for value in row)
+    assert [[sum((s*u[i]*u[j] for s, u in components), Q(0))
+             for j in range(d)] for i in range(d)] == matrix
+    return components
+
+
+class BlockGramIndex:
+    """Exact finite certificate for the published blocked partial-Gram method."""
+
+    def __init__(self, rows, block=None):
+        self.rows = [list(map(Q, row)) for row in rows]
+        self.d = len(rows[0])
+        self.block = self.d if block is None else block
+        self.nodes, self.leaves = [], []
+        chunks = [(s, min(s+self.block, len(rows))) for s in range(0, len(rows), self.block)]
+
+        def build(lo, hi, parent):
+            index = len(self.nodes)
+            start, stop = chunks[lo][0], chunks[hi-1][1]
+            node = {'start': start, 'stop': stop, 'parent': parent}
+            self.nodes.append(node)
+            if hi-lo == 1:
+                self.leaves.append(index)
+                node['gram'] = gram_matrix(self.rows[start:stop])
+            else:
+                mid = (lo+hi)//2
+                node['children'] = build(lo, mid, index), build(mid, hi, index)
+                left, right = (self.nodes[c]['gram'] for c in node['children'])
+                node['gram'] = [[left[i][j]+right[i][j] for j in range(self.d)] for i in range(self.d)]
+            return index
+
+        self.root = build(0, len(chunks), -1)
+        assert len(self.nodes) == 2*len(chunks)-1
+
+    def update_entry(self, row, column, value):
+        old = self.rows[row][:]
+        delta = Q(value)-old[column]
+        node_id, writes = self.leaves[row//self.block], 0
+        while node_id != -1:
+            node = self.nodes[node_id]
+            matrix = node['gram']
+            for k in range(self.d):
+                matrix[column][k] += delta*old[k]
+                matrix[k][column] += delta*old[k]
+            matrix[column][column] += delta*delta
+            writes += 2*self.d+1
+            node_id = node['parent']
+        self.rows[row][column] = Q(value)
+        return writes
+
+    def validate(self):
+        for node in self.nodes:
+            assert node['gram'] == gram_matrix(self.rows[node['start']:node['stop']])
+
+    def distribution(self, q):
+        total = gram_quadratic(self.nodes[self.root]['gram'], q)
+        if not total:
+            return {}
+        assert total > 0
+        result = {i: Q(0) for i in range(len(self.rows))}
+
+        def descend(index, probability):
+            node = self.nodes[index]
+            mass = gram_quadratic(node['gram'], q)
+            assert mass > 0
+            if 'children' in node:
+                child_masses = [gram_quadratic(self.nodes[c]['gram'], q) for c in node['children']]
+                assert sum(child_masses) == mass and min(child_masses) >= 0
+                for child, child_mass in zip(node['children'], child_masses):
+                    if child_mass:
+                        descend(child, probability*child_mass/mass)
+            else:
+                weights = [gram_dot(self.rows[i], q)**2 for i in range(node['start'], node['stop'])]
+                assert sum(weights) == mass
+                for i, weight in zip(range(node['start'], node['stop']), weights):
+                    result[i] = probability*weight/mass
+
+        descend(self.root, Q(1))
+        assert sum(result.values()) == 1
+        return result
+
+    def sample_ticket(self, q, ticket):
+        assert all(Q(x).denominator == 1 for x in q)
+        assert 0 <= ticket < gram_quadratic(self.nodes[self.root]['gram'], q)
+        index = self.root
+        while 'children' in self.nodes[index]:
+            left, right = self.nodes[index]['children']
+            left_mass = gram_quadratic(self.nodes[left]['gram'], q)
+            if ticket < left_mass:
+                index = left
+            else:
+                ticket -= left_mass
+                index = right
+        node = self.nodes[index]
+        for i in range(node['start'], node['stop']):
+            weight = gram_dot(self.rows[i], q)**2
+            if ticket < weight:
+                return i
+            ticket -= weight
+        raise AssertionError('Positive-mass ticket must reach a row')
+
+
+def gram_pair_distribution(a_index, b_index, x):
+    """Enumerate the sampler's law for proof checks, not a runtime benchmark."""
+    ga, gb = a_index.nodes[0]['gram'], b_index.nodes[0]['gram']
+    components = []
+    for scale, direction in gram_psd_components(gb):
+        q = [gram_dot(row, direction) for row in x]
+        weight = scale*gram_quadratic(ga, q)
+        assert weight >= 0
+        if weight:
+            components.append((weight, q))
+    total = sum((w for w, q in components), Q(0))
+    if not total:
+        return total, {}
+    integer_weights = gram_integer_scale([weight for weight, q in components])
+    assert [Q(w, sum(integer_weights)) for w in integer_weights] == [w/total for w, q in components]
+    row_probability = [Q(0)]*len(a_index.rows)
+    for weight, q in components:
+        distribution = a_index.distribution(q)
+        assert distribution == a_index.distribution(gram_integer_scale(q))
+        for i, p in distribution.items():
+            row_probability[i] += weight*p/total
+    result = {(i, j): Q(0) for i in range(len(a_index.rows)) for j in range(len(b_index.rows))}
+    for i, row_mass in enumerate(row_probability):
+        if not row_mass:
+            continue
+        q = [sum((x[r][c]*a_index.rows[i][r] for r in range(a_index.d)), Q(0))
+             for c in range(b_index.d)]
+        for j, p in b_index.distribution(q).items():
+            result[i, j] = row_mass*p
+    assert sum(result.values()) == 1
+    return total, result
+
+
+def gram_inverse(matrix):
+    n = len(matrix)
+    rows = [[Q(x) for x in row]+[Q(i == j) for j in range(n)] for i, row in enumerate(matrix)]
+    for c in range(n):
+        pivot = next((r for r in range(c, n) if rows[r][c]), None)
+        if pivot is None:
+            return None
+        rows[c], rows[pivot] = rows[pivot], rows[c]
+        scale = rows[c][c]
+        rows[c] = [x/scale for x in rows[c]]
+        for r in range(n):
+            if r != c:
+                scale = rows[r][c]
+                rows[r] = [x-scale*y for x, y in zip(rows[r], rows[c])]
+    return [row[n:] for row in rows]
+
+
+def gram_leverages(rows):
+    for rank in range(min(len(rows), len(rows[0])), 0, -1):
+        for columns in combinations(range(len(rows[0])), rank):
+            reduced = [[row[c] for c in columns] for row in rows]
+            inverse = gram_inverse(gram_matrix(reduced))
+            if inverse is not None:
+                ell = [gram_quadratic(inverse, row) for row in reduced]
+                assert sum(ell) == rank and all(0 <= x <= 1 for x in ell)
+                return columns, inverse, ell
+    return (), [], [Q(0)]*len(rows)
+
+
+def check_dynamic_gram_sampler():
+    rng = random.Random(221003)
+    snapshots = valid_snapshots = key_edits = payload_edits = ticket_checks = probability_checks = 0
+    attainment_checks = capacity_checks = 0
+    for m, n, d in ((1, 2, 1), (3, 4, 2), (5, 3, 2), (4, 5, 3), (3, 2, 3)):
+        aa = BlockGramIndex([[rng.randrange(-2, 3) for _ in range(d)] for _ in range(m)])
+        bb = BlockGramIndex([[rng.randrange(-2, 3) for _ in range(d)] for _ in range(n)])
+        values = {(i, j): (Q(0), Q(0)) for i in range(m) for j in range(n)}
+        for step in range(64):
+            index = aa if step % 2 else bb
+            r, c = rng.randrange(len(index.rows)), rng.randrange(d)
+            index.update_entry(r, c, rng.choice((-2, -1, 0, 0, 1, 2)))
+            aa.validate(); bb.validate()
+            key_edits += 1
+            edge = rng.randrange(m), rng.randrange(n)
+            values[edge] = tuple(Q(rng.randrange(-8, 9), 8) for _ in range(2))
+            payload_edits += 1
+            x = [[Q(rng.randrange(-2, 3)) for _ in range(d)] for _ in range(d)]
+            total, sampled = gram_pair_distribution(aa, bb, x)
+            raw = {(i, j): sum((aa.rows[i][r]*x[r][c]*bb.rows[j][c]
+                               for r in range(d) for c in range(d)), Q(0))**2
+                   for i in range(m) for j in range(n)}
+            assert total == sum(raw.values())
+            snapshots += 1
+            if not total:
+                continue
+            valid_snapshots += 1
+            direct = {e: w/total for e, w in raw.items()}
+            assert sampled == direct
+            for k in range(2):
+                assert sum(sampled[e]*values[e][k] for e in values) == sum(direct[e]*values[e][k] for e in values)
+            ac, ai, al = gram_leverages(aa.rows)
+            bc, bi, bl = gram_leverages(bb.rows)
+            for (i, j), probability in sampled.items():
+                assert probability <= al[i]*bl[j]
+                probability_checks += 1
+            q = [rng.randrange(-1, 2) for _ in range(d)]
+            mass = gram_quadratic(aa.nodes[0]['gram'], q)
+            if mass:
+                counts = [0]*m
+                for ticket in range(int(mass)):
+                    counts[aa.sample_ticket(q, ticket)] += 1
+                    ticket_checks += 1
+                assert [Q(x, int(mass)) for x in counts] == list(aa.distribution(q).values())
+        # Directly attain each nonzero product leverage, also for singular keys.
+        ac, ai, al = gram_leverages(aa.rows)
+        bc, bi, bl = gram_leverages(bb.rows)
+        for i in range(m):
+            for j in range(n):
+                if not al[i]*bl[j]:
+                    continue
+                u = [gram_dot(row, [aa.rows[i][c] for c in ac]) for row in ai]
+                v = [gram_dot(row, [bb.rows[j][c] for c in bc]) for row in bi]
+                x = [[Q(0)]*d for _ in range(d)]
+                for r, cr in enumerate(ac):
+                    for c, cc in enumerate(bc):
+                        x[cr][cc] = u[r]*v[c]
+                _, distribution = gram_pair_distribution(aa, bb, x)
+                assert distribution[i, j] == al[i]*bl[j]
+                worst_values = {edge: Q(1 if edge == (i, j) else -1) for edge in distribution}
+                assert 1-sum(distribution[e]*worst_values[e] for e in distribution) == 2*(1-al[i]*bl[j])
+                attainment_checks += 1
+        for epsilon in (Q(0), Q(1, 4), Q(1, 2), Q(1), Q(3, 2)):
+            qualifying = sum(a*b >= 1-epsilon/2 for a in al for b in bl)
+            assert qualifying*(1-epsilon/2) <= len(ac)*len(bc)
+            capacity_checks += 1
+
+    frames, confidence_controls = [], 0
+    for bases in (1, 2, 3, 5):
+        rows = []
+        for k in range(bases):
+            t = Q(1, k+2)
+            c, s = (1-t*t)/(1+t*t), 2*t/(1+t*t)
+            rows.extend(((c, s), (-s, c)))
+        flat = gram_integer_scale([x for row in rows for x in row])
+        rows = [flat[2*i:2*i+2] for i in range(len(rows))]
+        columns, inverse, ell = gram_leverages(rows)
+        assert len(set(map(tuple, rows))) == 2*bases and len(columns) == 2
+        assert ell == [Q(1, bases)]*(2*bases)
+        p = Q(1, bases*bases)
+        for sample_count in (1, 2, 4, 8):
+            for epsilon in (Q(0), Q(1, 4), Q(1, 2), Q(1)):
+                success = sum((Q(comb(sample_count, hits))*p**hits*(1-p)**(sample_count-hits)
+                               for hits in range(sample_count+1)
+                               if 2*(1-Q(hits, sample_count)) <= epsilon), Q(0))
+                assert p >= (1-epsilon/2)*success
+                confidence_controls += 1
+        frames.append({'orthogonal_bases_per_factor': bases, 'independent_pair_payloads': len(rows)**2,
+                       'query_matrix_coordinates': 4, 'maximum_individual_read_mass': str(Q(1, bases*bases)),
+                       'best_worst_payload_error': str(2*(1-Q(1, bases*bases))),
+                       'max_integer_key_bits': max(abs(x).bit_length() for row in rows for x in row)})
+    # Full-rank bilinear query gives a correlated joint distribution.
+    eye = BlockGramIndex([[1, 0], [0, 1]])
+    _, correlated = gram_pair_distribution(eye, eye, [[1, 0], [0, 1]])
+    assert correlated == {(0, 0): Q(1, 2), (0, 1): Q(0), (1, 0): Q(0), (1, 1): Q(1, 2)}
+    zero = BlockGramIndex([[0, 0], [0, 0]])
+    assert gram_pair_distribution(zero, eye, [[1, 0], [0, 1]]) == (0, {})
+    assert gram_psd_components([[0, 0], [0, 1]]) == [(Q(1), [Q(0), Q(1)])]
+    return {'fresh_query_snapshots': snapshots, 'positive_normalizer_snapshots': valid_snapshots,
+            'zero_normalizer_snapshots': snapshots-valid_snapshots, 'factor_coordinate_replacements': key_edits,
+            'independent_vector_payload_overwrites': payload_edits, 'integer_tree_tickets': ticket_checks,
+            'joint_leverage_probability_bounds': probability_checks,
+            'exact_maximum_probability_witnesses': attainment_checks,
+            'addressability_count_controls': capacity_checks, 'tight_frame_families': frames,
+            'exact_finite_sample_confidence_controls': confidence_controls,
+            'zero_pivot_and_zero_normalizer_controls': True, 'full_rank_correlated_query_control': True,
+            'classification': 'Constructive baseline from published Gram-tree sampling and PSD mixtures; product-leverage address ceiling is a classical projection corollary. No new strongest-method advantage.',
+            'novelty_established': False, 'new_publishable_advantage_established': False}
+
+
 def main():
     head_cases = 0
     for n in (2, 3):
@@ -415,6 +728,7 @@ def main():
                                 "signed_unfused_entries": n*n, "fused_active_values": n,
                                 "unrestricted_probe_lower_bound_refuted": True})
     weighted_prefix_join = check_weighted_prefix_join()
+    dynamic_gram_sampler = check_dynamic_gram_sampler()
     sources = ["scripts/run_correlated_routing_checks.py", "docs/interleaving_research.md"]
     summary = {"additive_head_cases_including_ties": head_cases,
                "tight_signed_decompositions": len(tight), "approximate_mixture_cases": len(approximate),
@@ -427,11 +741,13 @@ def main():
               "tight_signed_decompositions": tight, "approximate_mixtures": approximate,
               "layout_and_fusion_escapes": layout_controls, "summary": summary,
               "weighted_prefix_join": weighted_prefix_join,
+              "dynamic_gram_sampler": dynamic_gram_sampler,
               "novelty_established": False, "new_publishable_advantage_established": False,
               "source_sha256": {f: sha256((ROOT/f).read_bytes()).hexdigest() for f in sources}}
     (ROOT/"results/research/correlated_routing_checks.json").write_text(json.dumps(report, indent=2)+"\n")
     print(json.dumps(summary, sort_keys=True))
     print(json.dumps(weighted_prefix_join, sort_keys=True))
+    print(json.dumps(dynamic_gram_sampler, sort_keys=True))
 
 
 if __name__ == "__main__":

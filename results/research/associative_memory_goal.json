@@ -18,7 +18,7 @@
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "full_vector_masked_product_mixture_audited; exact_conditional_sampler_matches_weighted_indexed_join; candidate_parked; architecture_advantage_unproved"
+      "status": "dynamic_full_matrix_squared_bilinear_sampler_derived_from_published_Gram_trees; exact_product_leverage_addressability_ceiling_checked; new_architecture_advantage_unproved"
     },
     {
       "stage": 4,
@@ -883,6 +883,91 @@
       "exact_Bernoulli_tail_controls": 72,
       "prior_certificate_blocks_preserved": true
     },
+    "verification_commands": [
+      "python3 -B scripts/run_numerical_capacity_checks.py",
+      "python3 -B scripts/run_robust_frontier_checks.py",
+      "python3 -B scripts/run_affine_robust_checks.py",
+      "python3 -B scripts/run_robust_reader_checks.py",
+      "python3 -B scripts/run_regression_baseline_checks.py",
+      "python3 -B scripts/run_correlated_routing_checks.py",
+      "python3 -B scripts/run_shared_feature_retention_checks.py",
+      "python3 -B scripts/run_retention_geometry_checks.py",
+      "python3 -B scripts/run_retention_tradeoff_checks.py",
+      "python3 -B scripts/run_feature_dimension_checks.py",
+      "python3 -B scripts/run_structural_complexity_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py"
+    ]
+  },
+  "twelfth_iteration": {
+    "previous_turn_classification": "progress: full-vector prefix-mixture sampler and complete-cost equivalence to weighted indexed joins proved and saved; full objective unachieved",
+    "record": "docs/interleaving_research.md, Associative-memory goal: a dynamic bilinear sampler and its addressability ceiling",
+    "certificate_script": "scripts/run_correlated_routing_checks.py",
+    "certificate_report": "results/research/correlated_routing_checks.json",
+    "constructive_baseline": {
+      "query": "Arbitrary full d-by-d X, P_ij=(a_i^T*X*b_j)^2/||A*X*B^T||_F^2, independent dyadic vector pair payloads; reject zero normalizer. No query rank restriction or two-scalar projection.",
+      "updates": "Both factors admit current bounded coordinate replacement; full rows are d coordinate edits. Independent payload replacement has O(v) value-word writes. Factor row edits change all incident pair scores together, not arbitrary independent pair-key edits.",
+      "persistent_cost": "O(m*n*v+(m+n)*d+d^2) scalar words, including full payload table, blocked partial Grams and current factor entries. Tree metadata, input/query bits and rational workspace separately charged.",
+      "access_and_key_update": "O(d^3) current-query mixture preparation; K exact samples in O(K*d^2*(1+log ceil(m/d)+log ceil(n/d))+K*v) arithmetic operations and K*v payload-word probes. Coordinate edit O(d*(1+log ceil(I/d))); whole-row edit O(d^2*(1+log ceil(I/d))). Initialization/preparation not free.",
+      "precision": "B-bit integer or common-grid dyadic inputs; current Grams use O(B+log(m+n)) bits per scalar. Rational LDL, denominator clearing and exact integer tickets have conservative T=O(d^3*(B+log(m+n+d))) operand bits and O(d^2*T) query workspace; actual arithmetic and random-bit costs charged. No indefinite precision or update-history drift.",
+      "adaptive_horizon": "Exact current deterministic indexes and fresh read coins give conditional error failure <=2*v*exp(-K*epsilon^2/2), hence <=2*v*Q*exp(-K*epsilon^2/2) for specified finite Q adaptive reads. No fixed-K infinite-horizon claim or old-sketch adaptive guarantee.",
+      "classification": "Known partial-Gram sampling, PSD-mixture and update primitives give this specialization. Retained as a stronger baseline, not a new sampler or goal success."
+    },
+    "addressability": {
+      "exact_maximum": "For positive-rank factors, max_X P_ij=leverage_A(i)*leverage_B(j); nonzero maxima are attained by rational full-matrix queries for rational keys, with their query precision charged.",
+      "sharp_expected_error": "At fixed factors/encoder, a target query independent of arbitrary payload assignments has optimal worst-payload expected-reader error 2*(1-leverage_A(i)*leverage_B(j)). Stored payloads remain intact even when the reader cannot isolate them; a different value-dependent key state per assignment is outside this capacity quantifier.",
+      "capacity": "A target set with uniform expected numerical error epsilon<2 satisfies |T|*(1-epsilon/2)<=rank(A)*rank(B)<=d^2.",
+      "confidence": "An unbiased sampled output in [-1,1] with target error <=epsilon and success >=1-eta for every payload assignment requires target mass >=(1-epsilon/2)*(1-eta), hence |T|*(1-epsilon/2)*(1-eta)<=rank(A)*rank(B). Does not cover arbitrary nonlinear or biased decoders.",
+      "tight_family": "t orthonormal bases per factor give t^2*d^2 stored pairs, maximum individual mass 1/t^2 and best worst-payload error 2*(1-1/t^2). Exact integer-scaled rational examples record key widths.",
+      "classification": "Classical sensitivity/projection and Kronecker leverage consequences; LevAttention explicitly applies the maximum-mass identity to attention. No new impossibility theorem claimed."
+    },
+    "primary_sources": [
+      {
+        "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/959f70ee50044bed305e48e3484005a7-Paper-Conference.pdf",
+        "scope": "Lemma 3.2, Section 3.2, Algorithms 3--5, Appendices A.5--A.7 and Kronecker comparison inspected. PDF pages 5 and 20 visually checked for the row-sampler and coordinate-update equations. Dynamic Gram blocking and PSD mixtures are explicit prior art."
+      },
+      {
+        "url": "https://arxiv.org/html/2301.12584v4",
+        "scope": "Same relevant definitions, construction/update proofs and mixture derivation inspected in HTML. No claim of novelty from the distinct bilinear-payload workload."
+      },
+      {
+        "url": "https://arxiv.org/html/2410.05462v1",
+        "scope": "Sensitivity definition, Section 2, Theorems 2.2--2.4 and displayed proofs inspected. Maximum squared-attention mass equals leverage; tensor pair ceiling and worst-payload error are elementary consequences."
+      },
+      {
+        "url": "https://arxiv.org/html/2510.03678v1",
+        "scope": "Algorithm 2, Lemma 7.4, Theorem 7.6 and surrounding text compared. One factor is fixed in the tensor lemma; its costs are not a lower bound for the current workload. Later conference-version equality not assumed."
+      }
+    ],
+    "decision": "Keep the constructive dynamic sampler as a strong applicable baseline; reject cheap squared-bilinear sampling plus a large payload table as an independent high-capacity recall result. Test addressability before training the next candidate.",
+    "next_actions": [
+      "Seek a new constructive access/retention mechanism that permits sufficiently concentrated independent-address reads while maintaining a complete cheap-query/update theorem beyond applicable dynamic routing/index and kernel methods.",
+      "Treat arbitrary-rank matrix queries and extra pair-table entries as already covered by the squared-bilinear baseline and its sensitivity ceiling; another fixed-feature leverage corollary does not meet the goal.",
+      "Any proposed nonlinear score/routing escape must charge encoder and index maintenance, changing bindings, normalization, precision and adaptive horizon; compare its full fresh-query function with the strongest same-workload method.",
+      "Preserve the unchanged original goal and acceptance criteria. No neural training, outreach or contribution manuscript before novelty and complete-cost gates pass."
+    ],
+    "certificate_summary": {
+      "fresh_query_snapshots": 320,
+      "positive_normalizer_snapshots": 286,
+      "zero_normalizer_snapshots": 34,
+      "factor_coordinate_replacements": 320,
+      "independent_vector_payload_overwrites": 320,
+      "integer_tree_tickets": 2804,
+      "joint_leverage_probability_bounds": 3452,
+      "exact_maximum_probability_witnesses": 48,
+      "addressability_count_controls": 25,
+      "exact_finite_sample_confidence_controls": 64,
+      "zero_pivot_and_zero_normalizer_controls": true,
+      "full_rank_correlated_query_control": true,
+      "novelty_established": false,
+      "new_publishable_advantage_established": false
+    },
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
     "verification_commands": [
       "python3 -B scripts/run_numerical_capacity_checks.py",
       "python3 -B scripts/run_robust_frontier_checks.py",
