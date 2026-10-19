@@ -2307,12 +2307,351 @@
     "transcendence_scope": "The six-exponentials input is a cited theorem used in the written proof; these finite tests do not verify it or establish novelty.",
     "scope": "Exact finite identities and interval controls. Large-clock quadratic cases use a proved formula, not a generated huge stream. No unranking speedup or uniform prefix-recovery modulus is claimed."
   },
+  "finite_stream_reconstruction": {
+    "parameter_budget_cases": 192,
+    "parameter_examples": [
+      {
+        "requested_rank": 2,
+        "clock_bit_length": 100,
+        "observation_bound_bit_length": 297
+      },
+      {
+        "requested_rank": 3,
+        "clock_bit_length": 101,
+        "observation_bound_bit_length": 301
+      },
+      {
+        "requested_rank": 8,
+        "clock_bit_length": 124,
+        "observation_bound_bit_length": 369
+      },
+      {
+        "requested_rank": 32,
+        "clock_bit_length": 156,
+        "observation_bound_bit_length": 465
+      }
+    ],
+    "algebraic_norm_controls": 1330,
+    "adversarial_multi_generator_snapshot_cases": 48,
+    "independent_composite_witness_checks": 192,
+    "theorem_clock_quadratic_snapshots": [
+      {
+        "requested_rank": 2,
+        "clock": 679483392,
+        "observation_bound": 230848844758296601,
+        "canonical_prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "integer_weights": [
+          480467315,
+          679483394
+        ],
+        "atom_face_indices": [
+          1
+        ]
+      },
+      {
+        "requested_rank": 5,
+        "clock": 1658889600,
+        "observation_bound": 1375957364106307225,
+        "canonical_prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "integer_weights": [
+          1173012087,
+          1658889602
+        ],
+        "atom_face_indices": [
+          1
+        ]
+      },
+      {
+        "requested_rank": 16,
+        "clock": 173946273792,
+        "observation_bound": 15128653084278336946201,
+        "canonical_prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        "integer_weights": [
+          122998589762,
+          173946273794
+        ],
+        "atom_face_indices": [
+          1
+        ]
+      },
+      {
+        "requested_rank": 32,
+        "clock": 2783139201024,
+        "observation_bound": 3872931906157736515731481,
+        "canonical_prefix": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            4,
+            3
+          ]
+        ],
+        "integer_weights": [
+          1967976602031,
+          2783139201026
+        ],
+        "atom_face_indices": [
+          1
+        ]
+      }
+    ],
+    "complete_raw_mask_integration_controls": [
+      {
+        "requested_rank": 2,
+        "clock": 32,
+        "mask_entries_read": 439,
+        "height_error_certified_directly": true,
+        "uses_conservative_theorem_clock": false
+      },
+      {
+        "requested_rank": 5,
+        "clock": 39,
+        "mask_entries_read": 630,
+        "height_error_certified_directly": true,
+        "uses_conservative_theorem_clock": false
+      },
+      {
+        "requested_rank": 16,
+        "clock": 237,
+        "mask_entries_read": 20400,
+        "height_error_certified_directly": true,
+        "uses_conservative_theorem_clock": false
+      },
+      {
+        "requested_rank": 32,
+        "clock": 237,
+        "mask_entries_read": 20400,
+        "height_error_certified_directly": true,
+        "uses_conservative_theorem_clock": false
+      }
+    ],
+    "short_raw_mask_entries": 512,
+    "insufficient_raw_prefix_rejected": true,
+    "scope": "Uniform proof establishes the observation bound. Quadratic tests execute the full placement-statistic decoder at that clock using an exact formula. Multigenerator tests exercise adversarial accurate snapshots against independent full-box orders. Separate successful raw-mask controls use smaller clocks with directly certified actual height errors, not the conservative uniform clock. No enormous raw mask is read, and no arbitrary-input promise recognizer or faster unranking claim is made."
+  },
   "novelty_established": false,
   "publication_ready": false,
   "scope": "Finite exact controls support the uniform proofs; no prime-distribution or unranking speedup claim.",
   "source_sha256": {
-    "scripts/run_face_reconstruction_checks.py": "f827f2d382f3d73de8043966249d970c7176ed272cb4b41ad89171d3c51e0747",
+    "scripts/run_face_reconstruction_checks.py": "f127a281af4e0557577797c5003101a97e007ec21baf241a55e19eb67d7d5ce2",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
-    "docs/occurrence_reconstruction.md": "d9f653f05afba2b7ee81216c3e67c35f928fcba3eee400fdd3634cb56d393d5f"
+    "docs/occurrence_reconstruction.md": "77f3b221dad29e343f3b331969c5767809c6a21724d694687cb463ef54854b9c"
   }
 }

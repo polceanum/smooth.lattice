@@ -161,5 +161,75 @@
       "hidden_comparison_first_full_difference": 6
     },
     "verification_scope": "Full exact replay, build and smoke passed. All ten previous non-main checker functions, previous certificate blocks, the complete original note prefix, historical goal record and 235 other tracked files are preserved. The explicit five-file public set was reviewed. The infinite limits and prime corollary rely on the uniform written proofs and cited six-exponentials theorem; finite tests do not establish novelty or a speedup."
+  },
+  "third_iteration": {
+    "previous_turn_classification": "Progress: the second iteration proved infinite single-stream rigidity and an arithmetic consequence, but finite calibration, atom identification and a sufficient observation length remained unresolved.",
+    "record": "docs/occurrence_reconstruction.md, Finite recovery under a quantitative separation promise",
+    "checker": "scripts/run_face_reconstruction_checks.py",
+    "report": "results/research/face_reconstruction_checks.json",
+    "uniform_proof_supplied": true,
+    "results": [
+      "For normalized remaining weights in a supplied interval [h,H] and a supplied global Diophantine lower bound c/||z||^mu, Theorem 10 reconstructs the first n full exponent vectors from an explicit finite prefix of a single zero mask. Unobserved coordinates are labeled by increasing generator weight.",
+      "A Dirichlet argument and the quantitative promise force a sufficiently large approximation denominator without calibrating any unknown generator. The previous finite height bound then applies uniformly at an explicit clock.",
+      "All face heights through an integer cutoff covering the generators are observed. Separation distinguishes exact additive decompositions from nonzero forms using rational tests, identifying every generator rather than assuming early face points are atoms.",
+      "The observation bound charges every mask bit read, not a placement-rank oracle. For fixed class parameters the sufficient length is O(n^((m+1)(mu+1)^2)); this is polynomial in numerical rank, not its bit length, and constants can be enormous.",
+      "The same separation margin preserves all comparisons in the first-n candidate box, giving exact prefix reconstruction with rational weights. Source validity and the global numerical class are unchecked promises, not recognized from finite data.",
+      "Fixed prime systems admit some effective promise constants by published linear-form-in-logarithms bounds. This uses established number theory and supplies no new prime-gap bound, finite exact real-weight identification, practical recovery claim or faster unranking kernel."
+    ],
+    "primary_comparison": [
+      {
+        "source": "https://arxiv.org/pdf/1807.11364",
+        "scope": "Molcho-Wise Theorem 2.1.3.6 and proof restate classical Holder ordered-group uniqueness. The operation and full order are assumed given; the single-coordinate mask does not label hidden-face addition. Only this theorem and proof, not the full paper, were compared."
+      },
+      {
+        "source": "https://personal.eur.nl/wakker/pdfspubld/91.3algpart1jmp.pdf",
+        "scope": "Definition of restricted solvability, Theorem 3 and Corollary 7 inspected. The natural discrete placement domain fails restricted solvability already for weights (1,sqrt(2)); the named results do not apply directly. This does not rule out other conjoint-measurement arguments."
+      },
+      {
+        "source": "https://sites.socsci.uci.edu/~lnarens/1994/Luce%26Narens_Book%20Chapter_1994.pdf",
+        "scope": "Section 2.2 discusses standard-sequence approximation and ordered-group representation; these broad objectives are established. No claim to solve their broader finite-to-continuum question."
+      },
+      {
+        "source": "https://doi.org/10.1016/0165-4896(88)90046-7",
+        "scope": "Fishburn-Roberts finite conjoint uniqueness: publisher abstract and author record only. Full-theorem comparison remains open; access limits provide no evidence of novelty."
+      },
+      {
+        "source": "https://doi.org/10.1016/0022-2496(64)90015-X",
+        "scope": "Luce-Tukey original conjoint-measurement article inspected only at abstract level. No completed full-paper audit is claimed."
+      },
+      {
+        "source": "https://arxiv.org/pdf/1304.5429",
+        "scope": "Etessami-Stewart-Yannakakis Theorem 3.1 and fixed-dimension comparison proof supply the published Baker-Wustholz lower bound used to obtain some effective c,mu for each fixed prime basis. Constants depend on the bases."
+      }
+    ],
+    "verification_complete": true,
+    "privacy_review_complete": true,
+    "verification_commands": [
+      "python3 -B scripts/run_face_reconstruction_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py"
+    ],
+    "certificate_summary": {
+      "parameter_budget_cases": 192,
+      "algebraic_norm_controls": 1330,
+      "adversarial_multi_generator_snapshot_cases": 48,
+      "independent_composite_witness_checks": 192,
+      "theorem_clock_quadratic_snapshots": 4,
+      "successful_complete_raw_mask_controls": 4,
+      "successful_raw_mask_entries_read": 41869,
+      "insufficient_raw_mask_entries": 512,
+      "insufficient_raw_prefix_rejected": true
+    },
+    "verification_scope": "The uniform written proof establishes the general raw-mask bound. Tests exercise exact parameter inequalities, adversarial accurate multigenerator snapshots and full quadratic placement-statistic decoding using exact rank differences; they do not read the enormous sufficient raw prefixes. A short raw mask is rejected. No arbitrary-input recognizer is claimed. All eleven prior non-main checker functions, old certificate blocks, original note prefix, historical goal entries and 235 other tracked files are preserved. Exact replay, build and smoke passed. Four successful raw-mask integration controls use smaller clocks with independent actual-error certificates; they are not executions of the conservative uniform clock.",
+    "novelty_established": false,
+    "publication_ready": false,
+    "impact_assessment": "The finite-certification gate now has an explicit promised-class theorem beyond numerical height estimates. Its bounds are too large to support a practical access claim. The closest named Holder and solvability-based theorems do not apply directly, but multidimensional priority and publication significance remain unresolved. Preserve as a candidate result, not an established high-impact contribution.",
+    "next_actions": [
+      "Compare the complete finite observation theorem against existing ordinal reconstruction and conjoint-measurement results, distinguishing finite-pattern recovery from exact parameter identification. Credit any direct published implication.",
+      "Seek a substantially smaller observation bound or a matching quantitative obstruction. Charge numerical class constants, dimension, input length and all access operations; do not use snapshot access as free mask access.",
+      "Finish the finite-face hierarchy priority comparison before selecting a coherent manuscript contribution. A new theorem with little useful consequence does not by itself satisfy the full goal.",
+      "Continue the full original mathematics goal; preserve previous manuscripts, core kernels and the paused ML track. No author contact or outbound messages."
+    ],
+    "decision": "Continue. Uniform finite reconstruction is proved under explicit promises, but novelty, useful strength and honest publication assessment still require work. The goal remains active and is not achieved by this iteration alone."
   }
 }

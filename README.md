@@ -61,6 +61,12 @@ and absolute prime-basis uniqueness for three or more primes using the
 classical six exponentials theorem. Arbitrarily long finite stream prefixes
 can nevertheless hide a rank-6 ordering change. Priority and an efficient
 recovery algorithm remain unestablished.
+The [finite-recovery continuation](docs/occurrence_reconstruction.md#finite-recovery-under-a-quantitative-separation-promise)
+supplies an explicit sufficient mask length under stated weight bounds and
+a Diophantine separation promise, including generator identification and
+all observation costs. Its bound is polynomial in numerical rank for fixed
+class parameters but can be enormous. This is a finite-information result;
+priority, practical recovery and an unranking advantage remain unresolved.
 
 The [mathematical research note](docs/interleaving_research.md) targets general
 structure and certification for fixed-prime rank/unrank. It separates known

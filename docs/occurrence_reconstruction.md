@@ -571,3 +571,261 @@ formula checked against direct lattice sums; they do not pretend to generate
 the enormous full streams. Finite tests do not verify the transcendence
 theorem, the infinite limits or priority. These rest on the written proofs
 and the stated classical input. No core kernel or earlier manuscript changes.
+
+## Finite recovery under a quantitative separation promise
+
+The second iteration established infinite-data uniqueness, an arithmetic
+consequence and a finite height-error estimate. It left three algorithmic
+gaps: obtaining the estimate without calibrating an unknown generator,
+identifying the additive atoms from estimates, and bounding how many input
+symbols must actually be read. The following statement closes these gaps
+under an explicit numerical promise. It does not decide priority or give
+a practical random-access improvement.
+
+Continue to normalize the observed weight to 1. The supplied class parameters
+are an integer m>=1, positive rationals h,H,c with h<=H and c<=1, and an
+integer mu>=1. The unknown remaining weights satisfy theta_i in [h,H] and
+
+    abs(z_0 + sum_i z_i theta_i) >= c / ||z||_infinity^mu
+    for every nonzero z in Z^(m+1).                      (ND)
+
+In particular the weights are rationally independent. This is a promise
+about the source, not something certified by a finite observed mask. The
+input consists of exact mask bits, with 1 meaning that the observed exponent
+is zero. Unobserved coordinate names cannot be recovered; use their increasing
+weight order as the canonical labeling. The first output vector is all zeroes.
+Dimension and weight bounds alone cannot replace (ND): the construction in
+Theorem 9 can stay in the fixed class m=2, 1<=theta_i<=3, arbitrarily close
+to (sqrt(2),2 sqrt(2)). Its arbitrarily long masks still conceal a rank-6
+change. The separating form 2 theta_1-theta_2 approaches zero there.
+
+**Theorem 10 (a uniform finite observation bound).** For every n>=2 and every
+class just specified, a computable number L of initial mask bits determines
+the first n full exponent vectors with this canonical labeling. No actual
+generator value or rational approximation to one is supplied. One explicit
+choice, using any integer K>=max(1,ceil(H)), is
+
+    B_atom = max(1,2 ceil(K/h)),
+    eta = c/B_atom^mu,     delta = c/n^mu,
+    epsilon = min(1/4,h/4,eta/16,delta/(8 m n)),
+    J = ceil(H)+1,        c_pair = c/J^mu,
+    B_0 = ceil(32/epsilon),
+    Q = ceil(B_0^mu/c_pair)+1,
+    a = ceil(max(1, 4*2^m H Q/epsilon,
+                    4 m(2K+1)(K+mH)/epsilon)),
+    L = ceil((a+K+1+mH)^(m+1)/((m+1)! h^m)).            (FR1)
+
+These are sufficient bounds, not optimized estimates. For fixed
+m,h,H,c,mu,K, they give
+
+    L = O(n^((m+1)(mu+1)^2)).                            (FR2)
+
+The polynomial is in the numerical rank n, not its bit length. Neither
+the exponent nor the constants are uniform as dimension, separation
+parameters or prime sizes vary.
+
+**Proof: a uniform height estimate without calibration.** Pick any one of
+the actual remaining generators alpha. Dirichlet's elementary approximation
+argument at integer budget Q gives a reduced fraction p/b with
+
+    1<=b<=Q,   abs(b alpha-p)<=1/Q,
+    abs(alpha-p/b)<=1/(bQ)<=1/b^2.
+
+For completeness, place the Q+1 fractional parts of 0,alpha,...,Q alpha
+in Q equal intervals, subtract two in the same interval, and then reduce
+the fraction. Reduction preserves these displayed inequalities. Since
+abs(p)<=Hb+1<=Jb, (ND) applied to this two-coordinate form implies
+
+    abs(b alpha-p)>=c_pair/b^mu.
+
+The choice Q>B_0^mu/c_pair therefore forces b>B_0. The fraction exists
+for every admissible source; the algorithm does not have to find it.
+The first two terms of (SS3) are now at most epsilon/4 each.
+
+Write S=sum_i theta_i. Covering by unit cubes gives
+
+    T^m/(m! product_i theta_i) <= M(T)
+      <= (T+S)^m/(m! product_i theta_i),    T>=0.
+
+Consequently
+
+    [M(a+K)-M(a)]/M(a+1)
+      <= (1+(K+mH)/a)^m-1
+      <= 2m(K+mH)/a.
+
+For the last inequality, m(K+mH)/a<=1, and
+(1+x)^m<=exp(mx)<=1+2mx in this range. The choice of a in (FR1)
+ensures the range and makes the last term of (SS3) at most epsilon/2.
+Thus, simultaneously for every face height t_r<=K,
+
+    abs(R_a(r)-t_r)<=epsilon.                           (FR3)
+
+**Proof: all necessary observations are in the charged prefix.** Recover E
+from its zero mask by the deletion recursion already proved. Let R=M(K),
+obtained as the number of zeroes through A(K,0). This identifies precisely
+the face indices 0<=r<R with height at most K. Their required placements
+A(a,r), and also A(a+1,0), occur no later than
+
+    A(a+K,0)=F(a+K).
+
+The full (m+1)-dimensional cube bound, with product of weights at least h^m
+and sum at most 1+mH, gives F(a+K)<=L. Thus the algorithm can read at
+most L bits, stopping at the first occurrence of symbol a+K. Set
+
+    D=A(a+1,0)-A(a,0),
+    u_r=A(a,r)-A(a,0),    hat_t_r=u_r/D,    0<=r<R.
+
+All these quantities are integers or exact rational numbers computed from
+the input. In particular, an oracle for large placement ranks has not been
+silently substituted for reading the mask.
+
+**Proof: recover atoms by separated finite tests.** A positive face point
+t_r<=K is decomposable exactly when t_r=t_s+t_t for some 0<s,t<r.
+For each such triple, the exponent difference has maximum absolute
+coefficient at most 2 ceil(K/h). If its corresponding linear form is
+nonzero, (ND) bounds its absolute value below by eta. Since each of the
+three estimates has error at most epsilon and 6 epsilon<eta,
+
+    t_r=t_s+t_t  if and only if
+    abs(hat_t_r-hat_t_s-hat_t_t)<=3 epsilon.             (FR4)
+
+This decides all decompositions by rational comparisons. The indecomposable
+points are precisely the m generators: a vector of degree at least two
+splits into two positive vectors, and rational independence prevents a
+degree-one vector from having another representation. All generators are
+present because theta_i<=H<=K. Moreover their height order is their
+canonical coordinate order. Replacing each generator by its estimate
+therefore gives m positive weights, each within epsilon of its true value.
+
+**Proof: recover the entire requested prefix.** The first n vectors of any
+positive-weight order lie in {0,...,n-1}^(m+1), because a coordinate with
+value v has v+1 distinct pure powers no later than that point. Any two
+distinct vectors in this box have a true height difference at least delta
+by (ND). Replacing only the m remaining weights changes that comparison
+by at most mn epsilon<delta/2. All comparisons in the box are preserved.
+The first n vectors for the true and estimated weights both lie in the
+box, so their prefixes agree. Use the positive integer weights
+
+    (D,u_(first atom),...,u_(last atom))
+
+in a standard heap enumerator to produce this prefix exactly. Ties within
+the relevant prefix are excluded by the same separation estimate. This
+proves the algorithm and observation bound. Finally epsilon^(-1) is
+O(n^(mu+1)); hence Q=O(epsilon^(-mu)),
+a=O(epsilon^(-(mu+1))), and the cube bound yields (FR2). QED.
+
+After computing the parameters, a direct implementation reads at most L
+bits and stores O(L log L) bits for stream reconstruction and placements.
+The number R of tested face heights is bounded by
+
+    R<=ceil((K+mH)^m/(m! h^m)).
+
+Atom detection uses O(R^3) exact comparisons; prefix enumeration uses
+O(mn log(mn)) heap operations. Their integers have O(log L+log n) bits,
+in addition to the supplied rational-parameter precision. These costs can
+be enormous. The bounds do not recognize arbitrary invalid masks, decide
+the global promise (ND), recover exact real weights from finite data,
+or provide a fast unranking kernel. The case n=1 is the known zero vector.
+
+The class includes nontrivial examples: (1,sqrt(2)) satisfies (ND) with
+c=1/3, mu=1 by its quadratic norm. More generally
+(1,sqrt(2)/v,sqrt(3)/v), integer v>=1, satisfies it with
+c=1/[v(v+4)^3], mu=3: multiply the form by v and take its degree-four
+algebraic norm, a nonzero integer; each other conjugate is bounded by
+(v+4)||z||_infinity. This also checks scales where several monoid points
+occur before the second generator, rather than treating early terms as
+automatically indecomposable.
+
+For any fixed prime basis, effective linear-form bounds supply some
+admissible c and integer mu after normalization. This follows from the
+known Baker--Wustholz bound in [Etessami--Stewart--Yannakakis, Theorem 3.1](https://arxiv.org/pdf/1304.5429):
+with primes fixed, its exponent is a constant times log(max(e,||z||)).
+Delete zero coefficients, take a uniform constant over the finitely many
+subsets, and divide by the observed prime's logarithm. The constants depend
+on the primes and can be extremely poor. This is an application of known
+logarithm separation, not a new bound on prime logarithms or prime gaps.
+If the bases are supplied already, their order can of course be generated
+directly; Theorem 10 concerns recovery from an otherwise unlabelled mask
+with supplied numerical class bounds.
+
+## Focused ordinal-representation comparison
+
+The following comparisons narrow specific candidate reductions. They do
+not amount to a complete search of representation theory.
+
+[Molcho--Wise, Theorem 2.1.3.6](https://arxiv.org/pdf/1807.11364)
+states the classical Holder uniqueness theorem for an Archimedean ordered
+abelian group. Its proof uses rational comparisons of integer multiples.
+That theorem assumes the group operation is given. Here the mask names
+face ranks without naming their addition operation. Applying it before
+recovering that operation would assume information absent from the input.
+The periodic deformation example above demonstrates the issue. This
+comparison concerns the cited theorem and proof, not the rest of that paper.
+
+[Wakker, 1991, Theorem 3 and Corollary 7](https://personal.eur.nl/wakker/pdfspubld/91.3algpart1jmp.pdf)
+require restricted solvability. The natural placement domain fails it:
+for weights (1,sqrt(2)), (1,0)<(0,1)<(2,0), but no integer clock level
+at fixed face index 0 equals the middle alternative. Thus neither the
+named general theorem nor its discrete corollary applies directly.
+Their domains also have different structural assumptions. This hypothesis
+failure does not exclude other measurement-theoretic proofs of our results.
+
+[Luce--Narens, 1994, Section 2.2](https://sites.socsci.uci.edu/~lnarens/1994/Luce%26Narens_Book%20Chapter_1994.pdf)
+already discusses numerical approximation by standard sequences and the
+ordered-group framework. Recovering quantities from ordinal data is
+therefore an established objective. No general priority claim, or claim
+to solve their broader finite-to-continuum problem, follows from our formula.
+
+[Fishburn--Roberts, 1988](https://doi.org/10.1016/0165-4896(88)90046-7)
+is a further finite-uniqueness comparison. Its publisher abstract and author
+record were inspected; its full theorems have not been checked here.
+Finite exact parameter identification and the present recovery of a finite
+pattern under separation promises must be compared carefully. The original
+Luce--Tukey article, [DOI 10.1016/0022-2496(64)90015-X](https://doi.org/10.1016/0022-2496(64)90015-X),
+was likewise inspected only at abstract level. Neither reading limitation
+is evidence of novelty. The original finite-face priority audit also remains
+open. No contact with authors or publication action is authorized.
+
+## Third-iteration verification and decision
+
+Reproduce the checks with
+
+```sh
+python3 -B scripts/run_face_reconstruction_checks.py
+./build.sh
+python3 tests/test_smoke.py
+```
+
+The report retains all previous controls and adds 192 exact parameter-budget
+checks, 1,330 nonzero algebraic-norm controls, 48 adversarial accurate
+multi-generator snapshots and 192 independently checked additive witnesses.
+Their reconstructed prefixes are compared with independently sorted full
+boxes using rigorous root intervals. Four quadratic examples execute the
+complete placement-statistic decoder at the actual sufficient clock using
+the exact formula
+
+    A(a,r)-A(a,0)=r(a+1)+sum_(j=1)^r floor(j sqrt(2)),
+    D=floor((a+1)/sqrt(2))+1.
+
+The previous controls checked this formula against direct counts. The
+new examples do not generate or read their enormous full masks. A real
+512-entry mask is deliberately rejected as insufficient; the decoder must
+not silently substitute snapshot tests for adequate raw input. The general
+raw-input observation bound rests on the uniform proof above.
+Four additional controls run the entire raw-mask reader successfully at
+smaller quadratic clocks with independently certified actual height errors.
+They check the stopping rank against an independent exact lattice sum and
+the output against a full-box oracle. These exercise mask parsing, placement
+extraction and decoding together; their smaller clocks are not executions
+of the conservative sufficient-clock formula (FR1).
+
+This is progress on the finite-certification gate: atoms, input length and
+data-access costs are now explicit under a natural quantitative promise.
+It is not yet evidence of a significant new paper. The large bounds limit
+the computational claim; exact primary comparisons still limit the novelty
+claim. Continue the original mathematics goal, with neither completion nor
+publication readiness asserted. Next compare the finite recovery statement
+against existing ordinal-reconstruction results, seek a substantially sharper
+bound or a matching obstruction, and finish the face-hierarchy priority
+comparison before choosing a manuscript contribution. Preserve all earlier
+research and the paused ML work.

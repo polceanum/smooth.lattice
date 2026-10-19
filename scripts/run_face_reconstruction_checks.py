@@ -12,7 +12,7 @@ import hashlib
 import heapq
 from itertools import combinations, product
 import json
-from math import comb, gcd, isqrt, prod
+from math import comb, factorial, gcd, isqrt, prod
 from pathlib import Path
 
 from run_interleaving_research import exact_prefix, occurrence_transform, pointer_values
@@ -520,6 +520,286 @@ def single_stream_recovery_controls():
             "scope": "Exact finite identities and interval controls. Large-clock quadratic cases use a proved formula, not a generated huge stream. No unranking speedup or uniform prefix-recovery modulus is claimed."}
 
 
+def finite_recovery_parameters(n, m, h, height_bound, c, mu, cutoff=None):
+    """Explicit bounds under the Diophantine promise stated in Theorem 10.
+
+    This computes a sufficient observation length, not a practical estimate.
+    It does not verify the global promise for a proposed unknown source.
+    """
+    h, height_bound, c = map(Fraction, (h, height_bound, c))
+    if n < 2 or m < 1 or mu < 1 or not isinstance(mu, int):
+        raise ValueError("n>=2, m>=1 and integer mu>=1 are required")
+    if not 0 < h <= height_bound or not 0 < c <= 1:
+        raise ValueError("positive weight bounds and 0<c<=1 are required")
+    ceil = lambda x: -((-x.numerator) // x.denominator)
+    k = max(1, ceil(height_bound)) if cutoff is None else cutoff
+    if not isinstance(k, int) or k < 1 or k < height_bound:
+        raise ValueError("integer cutoff must cover all remaining weights")
+    atom_coefficient_bound = max(1, 2 * ceil(Fraction(k, 1) / h))
+    eta = c / atom_coefficient_bound ** mu
+    delta = c / n ** mu
+    epsilon = min(Fraction(1, 4), h / 4, eta / 16, delta / (8 * m * n))
+    pair_c = c / (ceil(height_bound) + 1) ** mu
+    b0 = ceil(32 / epsilon)
+    budget = ceil(Fraction(b0 ** mu, 1) / pair_c) + 1
+    clock = ceil(max(Fraction(1), 4 * 2 ** m * height_bound * budget / epsilon,
+                     4 * m * (2 * k + 1) * (k + m * height_bound) / epsilon))
+    observations = ceil((clock + k + 1 + m * height_bound) ** (m + 1) /
+                        (factorial(m + 1) * h ** m))
+    face_bound = ceil((k + m * height_bound) ** m / (factorial(m) * h ** m))
+    return {"requested_rank": n, "remaining_dimension": m, "h": h,
+            "height_bound": height_bound, "c": c, "mu": mu, "cutoff": k,
+            "atom_coefficient_bound": atom_coefficient_bound, "eta": eta,
+            "delta": delta, "epsilon": epsilon, "pair_c": pair_c,
+            "denominator_minimum": b0, "dirichlet_budget": budget,
+            "clock": clock, "observation_bound": observations,
+            "face_count_bound": face_bound}
+
+
+def decode_height_snapshot(n, m, numerators, denominator, radius):
+    """Decode accurate relative placement ranks; accuracy is an input promise.
+
+    Theorem 10 supplies that promise from an appropriate exact zero-mask prefix.
+    This function alone is not a recognizer for arbitrary numerical snapshots.
+    """
+    radius = Fraction(radius)
+    if denominator <= 0 or not numerators or numerators[0] != 0 or radius <= 0:
+        raise ValueError("positive denominator/radius and origin are required")
+    if any(a >= b for a, b in zip(numerators, numerators[1:])):
+        raise ValueError("estimated heights must be strictly increasing")
+    atoms, decompositions = [], {}
+    for r in range(1, len(numerators)):
+        witness = next(((s, t) for s in range(1, r) for t in range(1, r)
+                        if abs(numerators[r] - numerators[s] - numerators[t]) <=
+                        3 * radius * denominator), None)
+        if witness is None:
+            atoms.append(r)
+        else:
+            decompositions[r] = witness
+    if len(atoms) != m:
+        raise ValueError("snapshot does not meet the promised atom count/accuracy")
+    weights = (denominator,) + tuple(numerators[r] for r in atoms)
+    if min(weights) <= 0:
+        raise ValueError("recovered weights must be positive")
+    word, scores = weighted_prefix(weights, n)
+    if len(set(scores)) != n:
+        raise ValueError("recovered prefix has a tie; separation was not certified")
+    return {"canonical_prefix": word, "integer_weights": weights,
+            "atom_face_indices": atoms, "decomposition_witnesses": decompositions,
+            "conditional_on_accuracy_and_separation_promises": True}
+
+
+def recover_from_zero_mask(mask, parameters):
+    """Read exact mask bits (1 means exponent zero), charging every entry read.
+
+    Source validity and the numerical class are promises, not checked here.
+    The routine rejects a prefix that ends before the required placement data.
+    """
+    a, k = parameters["clock"], parameters["cutoff"]
+    history, positions, zeroes, face_count, reached = [0], defaultdict(list), 0, None, False
+    for n, flag in enumerate(mask, 1):
+        if flag not in (0, 1) or (n == 1 and not flag):
+            raise ValueError("an exact binary mask must start with a zero position")
+        zeroes += flag
+        value = 0 if flag else 1 + history[n - zeroes]
+        history.append(value)
+        positions[value].append(n)
+        if value == k and len(positions[value]) == 1:
+            face_count = zeroes
+        if value == a + k and len(positions[value]) == 1:
+            reached = True
+            break
+    if not reached or face_count is None or len(positions[a]) < face_count or not positions[a + 1]:
+        raise ValueError("insufficient zero-mask prefix for the required clock")
+    origin = positions[a][0]
+    result = decode_height_snapshot(parameters["requested_rank"], parameters["remaining_dimension"],
+                                    [x - origin for x in positions[a][:face_count]],
+                                    positions[a + 1][0] - origin, parameters["epsilon"])
+    result["mask_entries_read"] = len(history) - 1
+    result["observation_bound"] = parameters["observation_bound"]
+    return result
+
+
+def finite_recovery_controls():
+    arithmetic_cases = 0
+    parameter_examples = []
+    for m in range(1, 5):
+        for mu in range(m, m + 3):
+            for h, upper in ((Fraction(1), Fraction(2)), (Fraction(1, 2), Fraction(3, 2))):
+                for c in (Fraction(1, 3), Fraction(1, 125)):
+                    for n in (2, 3, 8, 32):
+                        p = finite_recovery_parameters(n, m, h, upper, c, mu)
+                        e, a, q, k = p["epsilon"], p["clock"], p["dirichlet_budget"], p["cutoff"]
+                        b0 = p["denominator_minimum"]
+                        require(q * p["pair_c"] > b0 ** mu, "Dirichlet denominator is forced large")
+                        require(Fraction(8, b0) <= e / 4, "rotation error budget")
+                        require(Fraction(2 ** m * upper * q, a) <= e / 4, "row error budget")
+                        require(2 * m * (2 * k + 1) * (k + m * upper) / a <= e / 2,
+                                "boundary error budget")
+                        require(a >= m * (k + m * upper), "binomial boundary estimate regime")
+                        require(6 * e < p["eta"] and m * n * e < p["delta"] / 2,
+                                "atom and word comparison margins")
+                        volume_bound = (a + k + 1 + m * upper) ** (m + 1) / (factorial(m + 1) * h ** m)
+                        require(p["observation_bound"] - 1 < volume_bound <= p["observation_bound"],
+                                "exact rounded observation budget")
+                        arithmetic_cases += 1
+                        if m == 2 and mu == 3 and h == 1 and c == Fraction(1, 125):
+                            parameter_examples.append({"requested_rank": n,
+                                                       "clock_bit_length": a.bit_length(),
+                                                       "observation_bound_bit_length": p["observation_bound"].bit_length()})
+
+    scale = 1 << 160
+    roots = {d: (Fraction(isqrt(d * scale ** 2), scale),
+                 Fraction(isqrt(d * scale ** 2) + 1, scale)) for d in (2, 3)}
+    for d, (lo, hi) in roots.items():
+        require(lo * lo < d < hi * hi, "exact quadratic-root intervals")
+    norm_checks = 0
+    for z in product(range(-5, 6), repeat=3):
+        if not any(z):
+            continue
+        a, b, c = z
+        norm = (a*a + 2*b*b - 3*c*c) ** 2 - 8*a*a*b*b
+        require(norm != 0, "nonzero algebraic norm")
+        norm_checks += 1
+
+    def interval(a, b, c, divisor=1):
+        return (a + (b * roots[2][0] + c * roots[3][0]) / divisor,
+                a + (b * roots[2][1] + c * roots[3][1]) / divisor)
+
+    def box_prefix(n, divisor):
+        candidates = [(interval(a, b, c, divisor), (a, b, c))
+                      for a, b, c in product(range(n), repeat=3)]
+        candidates.sort()
+        require(all(x[0][1] < y[0][0] for x, y in zip(candidates[:n], candidates[1:n + 1])),
+                "independent strict full-box oracle")
+        return [point for _, point in candidates[:n]]
+
+    decoder_cases = composite_witnesses = 0
+    for divisor, cutoff in ((1, 4), (2, 2), (5, 1)):
+        h, upper = Fraction(1, divisor), Fraction(2, divisor)
+        c = Fraction(1, divisor * (divisor + 4) ** 3)
+        bound = int(Fraction(cutoff, 1) / h)
+        face = []
+        for b, d in product(range(bound + 1), repeat=2):
+            lo, hi = interval(0, b, d, divisor)
+            if hi <= cutoff:
+                face.append((lo, hi, (b, d)))
+            else:
+                require(lo > cutoff, "face cutoff decided by rigorous intervals")
+        face.sort()
+        expected_atoms = [i for i, (_, _, point) in enumerate(face) if sum(point) == 1]
+        for n in (2, 5, 9, 16):
+            parameters = finite_recovery_parameters(n, 2, h, upper, c, 3, cutoff)
+            epsilon = parameters["epsilon"]
+            denominator = -((-Fraction(64, 1) / epsilon).numerator // (Fraction(64, 1) / epsilon).denominator)
+            oracle = box_prefix(n, divisor)
+            for pattern in range(4):
+                numerators = [0]
+                for r, (lo, hi, _) in enumerate(face[1:], 1):
+                    middle = (lo + hi) / 2
+                    rounded = (middle * denominator).numerator // (middle * denominator).denominator
+                    sign = 1 if (pattern == 0 or (r + pattern) % 3) else -1
+                    jitter = (epsilon * denominator * Fraction(4, 5)).numerator // (epsilon * denominator * Fraction(4, 5)).denominator
+                    value = rounded + sign * jitter
+                    require(Fraction(value, denominator) - epsilon <= lo <= hi <=
+                            Fraction(value, denominator) + epsilon, "adversarial snapshot accuracy")
+                    numerators.append(value)
+                result = decode_height_snapshot(n, 2, numerators, denominator, epsilon)
+                require(result["atom_face_indices"] == expected_atoms, "all generators, not just first terms")
+                require(result["canonical_prefix"] == oracle, "end-to-end snapshot prefix decoding")
+                for r, (s, t) in result["decomposition_witnesses"].items():
+                    require(tuple(x + y for x, y in zip(face[s][2], face[t][2])) == face[r][2],
+                            "independent additive witness")
+                    composite_witnesses += 1
+                decoder_cases += 1
+
+    # A complete placement-statistic test for (1,sqrt(2)) at the theorem's
+    # actual sufficient clock. No enormous raw mask is generated or read.
+    quadratic = []
+    for n in (2, 5, 16, 32):
+        p = finite_recovery_parameters(n, 1, 1, 2, Fraction(1, 3), 1, cutoff=4)
+        a, k = p["clock"], p["cutoff"]
+        denominator = isqrt((a + 1) ** 2 // 2) + 1
+        face_count = isqrt(k*k // 2) + 1
+        numerators = [r * (a + 1) + sum(isqrt(2 * j*j) for j in range(1, r + 1))
+                      for r in range(face_count)]
+        for r, value in enumerate(numerators):
+            require(Fraction(value, denominator) - p["epsilon"] <= r * roots[2][0] <=
+                    r * roots[2][1] <= Fraction(value, denominator) + p["epsilon"],
+                    "theorem-clock estimates contain the actual heights")
+        result = decode_height_snapshot(n, 1, numerators, denominator, p["epsilon"])
+        candidates = [(a + r * roots[2][0], a + r * roots[2][1], (a, r))
+                      for a, r in product(range(n), repeat=2)]
+        candidates.sort()
+        require(all(x[1] < y[0] for x, y in zip(candidates[:n], candidates[1:n + 1])),
+                "quadratic independent full-box order")
+        require(result["canonical_prefix"] == [x[2] for x in candidates[:n]],
+                "full theorem-clock snapshot result")
+        quadratic.append({"requested_rank": n, "clock": a,
+                          "observation_bound": p["observation_bound"],
+                          "canonical_prefix": result["canonical_prefix"],
+                          "integer_weights": result["integer_weights"],
+                          "atom_face_indices": result["atom_face_indices"]})
+
+    # Exercise the complete raw-mask path at smaller clocks whose actual
+    # height errors are independently certified. These are integration
+    # controls, not executions of the conservative clock bound in (FR1).
+    raw_controls = []
+    for n, a in ((2, 32), (5, 39), (16, 237), (32, 237)):
+        p = finite_recovery_parameters(n, 1, 1, 2, Fraction(1, 3), 1, cutoff=2)
+        p["clock"] = a
+        p["observation_bound"] = ((a + 5) ** 2 + 1) // 2
+        denominator = isqrt((a + 1) ** 2 // 2) + 1
+        estimate = Fraction(a + 2, denominator)
+        require(estimate - p["epsilon"] <= roots[2][0] <= roots[2][1] <=
+                estimate + p["epsilon"], "independent reduced-clock height certificate")
+        height = a + p["cutoff"]
+        # Exact lattice sum, independent of the stream reader and heap.
+        mask_length = height + 1 + sum(height - isqrt(2 * r*r)
+                                      for r in range(1, isqrt(height*height // 2) + 1))
+        require(3 * mask_length ** 2 < scale, "quadratic ordering survives weight rounding")
+        source, _ = weighted_prefix((scale, isqrt(2 * scale ** 2)), mask_length)
+        result = recover_from_zero_mask((int(point[0] == 0) for point in source), p)
+        candidates = sorted((a0 + r * roots[2][0], a0 + r * roots[2][1], (a0, r))
+                            for a0, r in product(range(n), repeat=2))
+        require(all(x[1] < y[0] for x, y in zip(candidates[:n], candidates[1:n + 1])),
+                "independent raw-control target order")
+        require(result["canonical_prefix"] == [x[2] for x in candidates[:n]],
+                "complete raw-mask reconstruction")
+        require(result["mask_entries_read"] == mask_length <= p["observation_bound"],
+                "raw input cost agrees with independent full lattice count")
+        require(result["integer_weights"] == (denominator, a + 2),
+                "raw placements agree with independent quadratic identity")
+        raw_controls.append({"requested_rank": n, "clock": a,
+                             "mask_entries_read": mask_length,
+                             "height_error_certified_directly": True,
+                             "uses_conservative_theorem_clock": False})
+
+    # A real finite mask cannot stand in for the larger input budget.
+    count = 512
+    require(2 * count * 125 * count ** 3 < scale, "rounding is below the algebraic separation")
+    word, _ = weighted_prefix((scale, isqrt(2 * scale ** 2), isqrt(3 * scale ** 2)), count)
+    mask = [int(point[0] == 0) for point in word]
+    p = finite_recovery_parameters(2, 2, 1, 2, Fraction(1, 125), 3)
+    try:
+        recover_from_zero_mask(mask, p)
+    except ValueError as error:
+        require("insufficient" in str(error), "short input rejected for its actual reason")
+    else:
+        raise AssertionError("short raw prefix was silently accepted")
+    require(roots[2][0] > 1 and roots[2][1] < 2, "restricted solvability counterexample")
+    return {"parameter_budget_cases": arithmetic_cases,
+            "parameter_examples": parameter_examples,
+            "algebraic_norm_controls": norm_checks,
+            "adversarial_multi_generator_snapshot_cases": decoder_cases,
+            "independent_composite_witness_checks": composite_witnesses,
+            "theorem_clock_quadratic_snapshots": quadratic,
+            "complete_raw_mask_integration_controls": raw_controls,
+            "short_raw_mask_entries": count,
+            "insufficient_raw_prefix_rejected": True,
+            "scope": "Uniform proof establishes the observation bound. Quadratic tests execute the full placement-statistic decoder at that clock using an exact formula. Multigenerator tests exercise adversarial accurate snapshots against independent full-box orders. Separate successful raw-mask controls use smaller clocks with directly certified actual height errors, not the conservative uniform clock. No enormous raw mask is read, and no arbitrary-input promise recognizer or faster unranking claim is made."}
+
+
 def main():
     report = {"schema_version": 1, "status": "passed",
               "command": "python3 -B scripts/run_face_reconstruction_checks.py",
@@ -529,6 +809,7 @@ def main():
               "proper_face_obstructions": proper_face_obstruction_controls(),
               "four_prime_obstruction": prime_obstruction_control(),
               "single_stream_recovery": single_stream_recovery_controls(),
+              "finite_stream_reconstruction": finite_recovery_controls(),
               "novelty_established": False, "publication_ready": False,
               "scope": "Finite exact controls support the uniform proofs; no prime-distribution or unranking speedup claim.",
               "source_sha256": {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest()
