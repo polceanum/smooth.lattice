@@ -13,9 +13,10 @@ The [goal record](../results/research/extremal_initial_ideals_goal.json) preserv
 the acceptance criteria. Current results include a primary-source comparison,
 uniform local bounds and exact distinctions between coefficient classes.
 Generic torus-grid graphs reduce to ordinary cuts, while local rectangles
-already have coherent dependencies that this reduction misses. A quantitative
-count of their interactions remains open; no new unrestricted asymptotic
-bound is established.
+already have coherent dependencies that this reduction misses. Published
+conditions for individual neighboring ideals add a further constraint, but
+cannot by themselves count one fan. A quantitative count of interacting
+dependencies remains open; no new unrestricted asymptotic bound is established.
 
 ## Connection to the original observations
 
@@ -715,6 +716,125 @@ cones have no ordinary-cut weights, or that the total fan is larger than
 the ordinary-cut fan. No larger fan enumeration is needed to reject the
 face-confinement claim.
 
+## Published neighbor constraints and their quantitative limit
+
+[Hering--Maclagan, *The T-graph of a multigraded Hilbert scheme*](https://arxiv.org/pdf/1110.1861),
+Definition 1.2 and Theorem 1.3, give necessary conditions for a pair of
+monomial ideals to be endpoints of one torus orbit. For a positive grading
+$\mathbb Z^d/\mathbb Zc$, an arrow map is a degree-preserving bijection
+between their ideal monomials. Its displacement along $c$ is nonnegative
+in one term order and cannot increase on multiples, in either direction.
+There must also be such a map for the two colon ideals by a common box
+$Q=(x_1^{r_1},\ldots,x_d^{r_d})$. Proposition 3.2 constructs the map from
+the intervening ideal. Example 3.7 shows that the first map alone is
+insufficient. These statements concern one pair, potentially using a
+different intervening ideal for each pair.
+
+They apply to neighboring cones of one finite quotient: take a generic
+positive weight in the common wall. Its initial ideal has a positive
+$\mathbb Z^d/\mathbb Zc$ grading, where $c$ is the primitive wall normal.
+The two small opposite perturbations give the two neighboring monomial
+ideals. There are only finitely many relevant Gröbner-basis comparisons;
+the wall weight can avoid every nonparallel comparison. This supplies
+the required one-dimensional torus orbit after a field extension, if needed.
+No converse or bound for the number of simultaneous neighbors follows.
+
+The later [Maclagan--Silversmith paper, published in 2024](https://escholarship.org/content/qt74v009bx/qt74v009bx.pdf)
+proves that the spine edges exist over every infinite field (Theorem 1.2).
+Its generic uniform-matroid theorem, Theorem 1.3, requires the **standard**
+grading in two variables; Section 3.5 gives counterexamples for other
+positive gradings. In particular, Example 3.25 has
+
+$$
+I_t=(x^7,xy,y^4+t x^6),\qquad \deg(x)=2,\quad\deg(y)=3.
+$$
+
+For $t\ne0$, the degree-12 quotient has rank one on
+$x^6,x^3y^2,y^4$, with $x^3y^2$ a loop. It is not uniform. Their
+Example 3.26 goes further: in length 29, a degree-18 rank-two matroid
+on four monomials is nonuniform with no loops or coloops. For parameters
+$(1,2,1)$, quotient columns can be chosen as
+$(1,0),(0,1),(0,-1),(-1,-1)$, in every characteristic.
+Thus loop removal does not repair the general assertion. This matters
+when using [Silversmith's earlier preprint](https://arxiv.org/pdf/1911.03569):
+its Remark 3.11 announces a forthcoming assertion for arbitrary positive
+two-variable gradings. That broader assertion is not the later theorem.
+The earlier paper's Theorem 5.11 instead classifies a particular family
+of edges by binary necklaces; it is not a count of one three-variable fan.
+Neither paper inspected here settles $G_3(n)$.
+
+### A uniform obstruction to counting individually realizable exchanges
+
+The difference between individual and simultaneous realizability can be
+exponential. The following elementary construction makes that obstruction
+explicit; it is a control from the classical state-polyhedron framework,
+not a new asymptotic extremal result.
+
+Fix $q\ge2$ and $k=\lfloor(q+1)/2\rfloor$. Let
+
+$$
+L_q=\{(i,j,0):i+j<q\},\qquad
+E_q=\{(i,q-i,0):0\le i\le q\}.
+$$
+
+For every $k$-subset $S\subset E_q$, put $D_S=L_q\cup S$. These
+are downsets of the common cardinality
+
+$$
+n_q=\frac{q(q+1)}2+k.
+$$
+
+Connect $S$ and $T$ when they differ by replacing one element. This is
+the connected Johnson graph $J(q+1,k)$, with
+
+$$
+\binom{q+1}{k}\ \ge\ \frac{2^{q+1}}{q+2}
+       =\exp(\Omega(\sqrt{n_q}))
+$$
+
+vertices. **Every edge is realizable over every field.** To prove this,
+write $S\setminus T=\{a\}$, $T\setminus S=\{b\}$, and let $C$ be the
+monomial ideal whose standard set is $D_S\cup D_T$. Both $x^a$ and
+$x^b$ are in the socle of $K[x,y,z]/C$: all their positive-degree
+multiples vanish. Consequently
+
+$$
+I_{S,T}=C+(x^a-x^b)
+$$
+
+has length $n_q$. If $w_x<w_y$, the cheaper of the two shell monomials
+survives; if $w_x>w_y$, the other survives. These are exactly its two
+standard sets $D_S,D_T$. Thus every graph edge comes from an actual
+binomial ideal, not just a representable matroid or an arrow-map test.
+
+**One fixed ideal can realize at most two of these vertices.** Indeed,
+the state vector $s(D)=\sum_{a\in D}a$ of every $D_S$ satisfies
+
+$$
+s_z(D_S)=0,\qquad
+s_x(D_S)+s_y(D_S)=\sum_{a\in L_q}|a|+kq.
+$$
+
+All these state vectors lie on a single affine line. For a fixed ideal,
+an initial basis is the unique positive-weight minimum among all its
+monomial vector-space bases. Among collinear vectors, only the two
+endpoints of the convex hull can be unique minima. Distinct bases with
+the same state vector cannot both be unique minima either. This proves
+the bound of two even if the fixed ideal is nonhomogeneous and has other
+initial bases outside the displayed family.
+
+The checker exhausts all exchanges for $2\le q\le7$, replays the
+commuting multiplication maps, and checks both initial bases by independent
+modular elimination in characteristics 2, 3 and 101. It also checks the
+published degree-12 and degree-18 nonuniform examples. The proof above,
+rather than this finite range, gives the uniform statement.
+
+Therefore the size or connectivity of a graph passing all pairwise
+realizability tests cannot replace a count of the fan of one fixed ideal.
+The example uses parallel walls and does not rule out using arrow maps
+*together with* global state geometry. No larger local fan search or new
+standalone arrow-map search is justified by the source comparison alone.
+
 ## Next proof task and stopping rule
 
 The next task is to characterize coherent bases of the nonlinear rectangle
@@ -742,7 +862,12 @@ Increasing the finite cases, fitting a curve to four counts, or replacing
 coefficient rank by support matching cannot serve as that proof. The source
 audit must also identify any existing theorem that already covers a proposed
 advance before it is presented as new. The existing lattice-shadow work remains
-available as a comparison tool, with its priority issue explicit.
+available as a comparison tool, with its priority issue explicit. The
+T-graph audit adds a second limitation: individually realizable neighboring
+ideals must be controlled simultaneously in one fan. Pairwise arrow-map
+conditions do not supply that global count. Any next proposed inequality
+must use the common quotient or additional global state geometry, and must
+give a quantitative estimate rather than another necessary condition.
 
 ## Reproduction
 

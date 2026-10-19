@@ -51,7 +51,10 @@ exponent-lattice connection behind the original interleavings. Uniform local
 bounds and exact coefficient comparisons delimit the candidate families.
 Generic torus-grid graphs reduce to ordinary geometric cuts; local rectangles
 have genuine coherent rank defects, including in cones using all three
-generators. A count of interacting dependencies remains necessary. The
+generators. Published constraints on neighboring ideals do not supply that
+count: an explicit connected family has exponentially many individually
+realizable candidate vertices, while one ideal realizes at most two of them.
+A count of simultaneous interacting dependencies remains necessary. The
 unrestricted asymptotic target and publication significance are still open.
 
 Current research returns to the original occurrence-count and prime-exponent

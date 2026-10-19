@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Count coherent basis changes caused by overlapping nongeneric dependencies in interior weight regions, or bound them enough to close the nonlinear rectangle route. Generic torus-grid graphs reduce to the classical k-set problem; ordinary-prefix rank defects alone can occur with only five total cones. Do not fit an exponent, expand fan sizes without a discriminating hypothesis, or replace the original sharp/asymptotic-separation success criterion with these screening results.",
+  "next_proof_task": "Derive a quantitative bound on simultaneous coherent basis changes using the common quotient and global state geometry, or construct an infinite realizable family with a proved growth rate. Published T-graph arrow-map constraints concern individual pairs and do not supply this count: an explicit connected shell graph has exponentially many individually realizable vertices but at most two can occur in one fan. The published generic-uniformity theorem also requires the standard grading; its positive nonstandard variants fail even after removing loops and coloops. Do not enlarge finite fan sizes without a discriminating quantitative hypothesis or lower the original success criterion.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -114,6 +114,28 @@
       "authors": "Kovacs and Toth",
       "url": "https://arxiv.org/pdf/1704.00229v2",
       "scope": "Introduction, Theorem 2 and higher-dimensional construction; supports a dated lower-bound comparison, not a complete 2026 priority certificate."
+    },
+    {
+      "authors": "Hering--Maclagan",
+      "title": "The T-graph of a multigraded Hilbert scheme",
+      "year": 2012,
+      "url": "https://arxiv.org/pdf/1110.1861",
+      "scope": "Definition 1.2, Theorem 1.3, Proposition 3.2 and its proof, Example 3.7. Necessary arrow maps for one edge and its box-colon dual; no simultaneous count for one fan."
+    },
+    {
+      "authors": "Maclagan--Silversmith",
+      "title": "The spine of the T-graph of the Hilbert scheme of points in the plane",
+      "year": 2024,
+      "url": "https://escholarship.org/content/qt74v009bx/qt74v009bx.pdf",
+      "doi": "10.5070/C64163834",
+      "scope": "Published Theorems 1.2--1.3, Section 3.5, Examples 3.25--3.26. The generic uniform-matroid result is standard-graded only. Nonstandard counterexamples remain nonuniform after loop and coloop removal."
+    },
+    {
+      "authors": "Silversmith",
+      "title": "The matroid stratification of the Hilbert scheme of points on P^1",
+      "url": "https://arxiv.org/pdf/1911.03569v3",
+      "version": "v3, 2021",
+      "scope": "Introduction, Remark 3.11, Theorem 5.11 and Section 4 setup. Its announced future uniformity result is broader than the later published theorem; necklace classification concerns a particular edge family, not one three-variable fan."
     }
   ],
   "verification": {
@@ -141,10 +163,10 @@
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "6053c630df67e10d1aecc019c72a32917f0ba504ed3b0731f9a020155e682e52",
-    "docs/extremal_initial_ideals.md": "fa00d8a24439d23eaa234d79aca1a5d27a4969989e04b90521edc18357002ff6",
-    "scripts/run_extremal_initial_ideals_checks.py": "27c52f7843fe5aee6b0f1a932a693463e18c26b92c09a2363274dda05e463fe0",
-    "results/research/extremal_initial_ideals_checks.json": "3958883235407d14c9a6ed82627bd5822e236861991341e78be4178b2b9f9e9b"
+    "README.md": "c188a0783db57b987940e761e23b35c6bd6417754e2e7c46173eabd9d4fea0bc",
+    "docs/extremal_initial_ideals.md": "40cb4431860cf176750f99d27e0116f0aea24e57b1fbac61dd656f18b098d99f",
+    "scripts/run_extremal_initial_ideals_checks.py": "4336a4a322dbb4465bb6cdbb3a0b34fb87a4313a8ed276c9a0fcfd12cf746209",
+    "results/research/extremal_initial_ideals_checks.json": "606f93aa257c531c95b3e2870e1e55a1d141f4c95da7f7835e2b108bc64d7a71"
   },
   "continuations": [
     {
@@ -276,6 +298,37 @@
       "effect_on_next_action": "Avoid generic torus-grid graph searches as an easy route to polynomial amplification. The local algebra family is not covered by that uniform-cut reduction, and the saved small fans already refute confinement of rank defects to coordinate-face bases. A quantitative theorem about overlapping coherent dependencies in interior weight regions is still needed.",
       "claim_limit": "No polynomial fan-count separation, new unrestricted asymptotic, algorithmic speedup, novelty certificate or paper-level significance is established.",
       "goal_complete": false
+    },
+    {
+      "recorded_on": "2026-10-19",
+      "progress_classification": "pairwise_realizability_boundary_and_published_grading_correction",
+      "uniform_control": "For n_q=q(q+1)/2+floor((q+1)/2), a connected Johnson graph of at least 2^(q+1)/(q+2) standard-set candidates has every edge realized by a length-n_q binomial ideal over every field. At most two candidates can be initial bases of any one fixed ideal, because their state vectors are collinear. This is an elementary classical-state-geometry control, not an asserted new extremal theorem.",
+      "primary_source_boundary": "Hering--Maclagan supplies individual necessary arrow-map and colon-dual constraints. Maclagan--Silversmith 2024 requires the standard two-variable grading for generic uniformity and gives nonstandard failures even with no loops or coloops. These sources do not supply the required simultaneous fan-count estimate.",
+      "checks": "All Johnson exchanges for shell degrees 2--7 are replayed through commuting multiplication maps and independent modular elimination in characteristics 2, 3 and 101. The published degree-12 and degree-18 nonuniform examples are checked separately. Existing complete fan sizes are unchanged.",
+      "effect_on_next_action": "Derive a quantitative bound on simultaneous coherent basis changes using the common quotient and global state geometry, or construct an infinite realizable family with a proved growth rate. Published T-graph arrow-map constraints concern individual pairs and do not supply this count: an explicit connected shell graph has exponentially many individually realizable vertices but at most two can occur in one fan. The published generic-uniformity theorem also requires the standard grading; its positive nonstandard variants fail even after removing loops and coloops. Do not enlarge finite fan sizes without a discriminating quantitative hypothesis or lower the original success criterion.",
+      "new_asymptotic_bound": false,
+      "novelty_established": false,
+      "goal_complete": false,
+      "checks_summary": {
+        "shell_degrees": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "realizable_exchanges": 905,
+        "characteristics": [
+          2,
+          3,
+          101
+        ],
+        "exchange_field_cases": 2715,
+        "research": "passed",
+        "build": "passed",
+        "smoke": "passed"
+      }
     }
   ]
 }

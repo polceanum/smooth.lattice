@@ -628,6 +628,129 @@ def support_matching_obstruction_controls():
             "scope": "A coefficient-sensitive dependence persists for every square size in the written proof. Exact integer convolution and modular elimination validate the listed fixtures. This rejects a support-only rank shortcut; it is not an asymptotic initial-ideal theorem."}
 
 
+def pairwise_realizability_controls():
+    """A connected graph of realizable exchanges is not one ideal's fan.
+
+    The written proof is uniform. These small cases independently replay the
+    binomial quotients by exact multiplication and modular linear algebra.
+    They do not enlarge the nonlinear-rectangle fan search.
+    """
+    fixtures = []
+    for q in range(2, 8):
+        shell = tuple((i, q-i, 0) for i in range(q+1))
+        lower = frozenset((i, j, 0) for i in range(q) for j in range(q-i))
+        k = (q+1)//2
+        choices = tuple(frozenset(s) for s in combinations(shell, k))
+        index = {s: i for i, s in enumerate(choices)}
+        graph = [set() for _ in choices]
+        edge_digests = {p: hashlib.sha256() for p in (2, 3, 101)}
+        edges = 0
+        for i, s in enumerate(choices):
+            for a in sorted(s):
+                for b in shell:
+                    if b in s:
+                        continue
+                    t = s.difference({a}) | {b}
+                    j = index[t]
+                    graph[i].add(j)
+                    if j <= i:
+                        continue
+                    edges += 1
+                    left, right = lower | s, lower | t
+                    union = left | right
+                    reference = tuple(sorted(left))
+                    n = len(reference)
+                    require(n == q*(q+1)//2+k == len(right), "equal quotient lengths")
+                    require(all(tuple(x-(axis == d) for d, x in enumerate(m)) in union
+                                for m in union for axis in range(3) if m[axis]),
+                            "the union is a downset")
+                    require(all(tuple(x+(axis == d) for d, x in enumerate(m)) not in union
+                                for m in (a, b) for axis in range(3)),
+                            "both exchanged monomials are in the union's socle")
+                    position = {m: h for h, m in enumerate(reference)}
+
+                    # In K[x,y,z]/(C, x^a-x^b), C the monomial complement
+                    # of the union, b has exactly the same residue as a.
+                    def residual_position(m):
+                        return position.get(a if m == b else m)
+
+                    actions = [[residual_position(tuple(x+(axis == d) for d, x in enumerate(m)))
+                                for m in reference] for axis in range(3)]
+                    for u, v in combinations(range(3), 2):
+                        for h in range(n):
+                            vu = None if actions[u][h] is None else actions[v][actions[u][h]]
+                            uv = None if actions[v][h] is None else actions[u][actions[v][h]]
+                            require(vu == uv, "independent multiplication actions commute")
+                    columns = {m: tuple(int(h == residual_position(m)) for h in range(n))
+                               for m in union}
+                    for p in edge_digests:
+                        bases = {frozenset(greedy(tuple(sorted(union)), columns, w, p))
+                                 for w in ((1, 2, 3), (2, 1, 3))}
+                        require(bases == {left, right}, "both predicted initial bases by elimination")
+                        edge_digests[p].update(json.dumps([i, j, sorted(map(sorted, bases))]).encode())
+
+        reached, pending = {0}, [0]
+        while pending:
+            for j in graph[pending.pop()]:
+                if j not in reached:
+                    reached.add(j)
+                    pending.append(j)
+        require(len(reached) == len(choices), "every candidate belongs to one connected exchange graph")
+        require(edges == len(choices)*k*(q+1-k)//2, "Johnson graph degree and edge count")
+        states = [tuple(sum(a[d] for a in lower | s) for d in range(3)) for s in choices]
+        total = sum(sum(a) for a in lower)+k*q
+        require(all(x+y == total and z == 0 for x, y, z in states),
+                "all candidate state vectors lie on one affine line")
+        # Any initial basis is a unique weight-minimum among all bases.
+        # The collinearity check is supporting data, not a finite substitute
+        # for the uniform at-most-two proof in the note.
+        fixtures.append({"shell_degree": q, "shell_points": list(shell), "selected_shell_points": k,
+                         "quotient_length": len(lower)+k, "candidate_vertices": len(choices),
+                         "distinct_state_vectors": len(set(states)), "realizable_exchange_edges": edges,
+                         "exchange_graph_connected": True, "every_exchange_is_a_binomial_quotient": True,
+                         "all_state_vectors_collinear": True, "uniform_bound_for_one_ideal": 2,
+                         "all_edge_controls_by_characteristic": {str(p): h.hexdigest()
+                                                                  for p, h in edge_digests.items()}})
+
+    # Published nonstandard-grading counterexample, not a new family:
+    # I_c=(x^7,xy,y^4+c*x^6), c!=0, weights (2,3).  The degree-12
+    # quotient columns x^6, x^3*y^2, y^4 are (1,0,-c) on the x^6 row.
+    nonstandard = []
+    for p in (2, 3, 101):
+        for c in (1, p-1):
+            exponents = ((6, 0, 0), (3, 2, 0), (0, 4, 0))
+            columns = dict(zip(exponents, ((1,), (0,), ((-c) % p,))))
+            require(all(2*a+3*b == 12 for a, b, _ in exponents), "published weighted degree")
+            require(len(greedy(exponents, columns, (1, 2, 3), p)) == 1 and
+                    sum(not any(v) for v in columns.values()) == 1,
+                    "a forced loop prevents the uniform rank-one matroid")
+            nonstandard.append({"characteristic": p, "coefficient": c,
+                                "weighted_degree": 12, "column_rank": 1, "forced_loops": [[3, 2, 0]]})
+    # Example 3.26 is stronger: removing loops and coloops still does
+    # not give uniformity. Set its parameters (a,b,c)=(1,2,1).
+    no_loops = []
+    for p in (2, 3, 101):
+        exponents = ((9, 0, 0), (6, 2, 0), (3, 4, 0), (0, 6, 0))
+        columns = dict(zip(exponents, ((1, 0), (0, 1), (0, -1), (-1, -1))))
+        rank = lambda s: len(greedy(s, columns, (1, 2, 3), p))
+        require(all(2*a+3*b == 18 for a, b, _ in exponents), "second published weighted degree")
+        circuits = [list(s) for k in range(1, 5) for s in combinations(exponents, k)
+                    if rank(s) < k and all(rank(s[:i]+s[i+1:]) == k-1 for i in range(k))]
+        expected = [[exponents[1], exponents[2]],
+                    [exponents[0], exponents[1], exponents[3]],
+                    [exponents[0], exponents[2], exponents[3]]]
+        require(circuits == expected and all(rank((e,)) == 1 for e in exponents) and
+                all(rank(tuple(e for e in exponents if e != deleted)) == 2 for deleted in exponents),
+                "published nonuniform matroid has neither loops nor coloops")
+        no_loops.append({"characteristic": p, "parameters_a_b_c": [1, 2 % p, 1],
+                         "weighted_degree": 18, "column_rank": 2, "circuits": circuits,
+                         "no_loops_or_coloops": True})
+    return {"shell_exchange_fixtures": fixtures, "nonstandard_grading_source_controls": nonstandard,
+            "nonstandard_grading_without_loops_or_coloops": no_loops,
+            "uniform_proof_in_note": True, "new_asymptotic_bound": False,
+            "scope": "Realizability of each pair is strictly weaker than realizability in one fan. The shell obstruction is an elementary state-polytope control, not a claimed new theorem. The nonstandard-grading example is published by Maclagan--Silversmith."}
+
+
 def main():
     grid = grid_controls()
     rectangles, homogeneous = [], []
@@ -645,7 +768,7 @@ def main():
     require(any(c["cone_counts"].get("three_generators_has_nonuniform_region", 0) > 0
                 for c in comparisons),
             "dependent-prefix regions are not confined to coordinate faces")
-    report = {"schema_version": 3, "status": "passed",
+    report = {"schema_version": 4, "status": "passed",
               "command": "python3 -B scripts/run_extremal_initial_ideals_checks.py",
               "grid_source_controls": grid, "rectangular_complete_intersections": rectangles,
               "homogeneous_controls": homogeneous,
@@ -656,6 +779,7 @@ def main():
               "coherent_skip_obstruction": coherent_skip_controls(),
               "generic_diagonal_graph": generic_diagonal_graph_controls(),
               "support_matching_obstruction": support_matching_obstruction_controls(),
+              "pairwise_realizability_boundary": pairwise_realizability_controls(),
               "asymptotic_improvement_established": False, "novelty_established": False,
               "goal_complete": False,
               "scope": "Exhaustive finite primary-bound and candidate-family diagnostics. No polynomial separation, sharp unrestricted asymptotic, or algorithmic speedup is inferred.",

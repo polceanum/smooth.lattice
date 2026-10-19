@@ -1,5 +1,5 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "status": "passed",
   "command": "python3 -B scripts/run_extremal_initial_ideals_checks.py",
   "grid_source_controls": {
@@ -17898,12 +17898,557 @@
     "uniform_identity_proved_in_note": true,
     "scope": "A coefficient-sensitive dependence persists for every square size in the written proof. Exact integer convolution and modular elimination validate the listed fixtures. This rejects a support-only rank shortcut; it is not an asymptotic initial-ideal theorem."
   },
+  "pairwise_realizability_boundary": {
+    "shell_exchange_fixtures": [
+      {
+        "shell_degree": 2,
+        "shell_points": [
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            2,
+            0,
+            0
+          ]
+        ],
+        "selected_shell_points": 1,
+        "quotient_length": 4,
+        "candidate_vertices": 3,
+        "distinct_state_vectors": 3,
+        "realizable_exchange_edges": 3,
+        "exchange_graph_connected": true,
+        "every_exchange_is_a_binomial_quotient": true,
+        "all_state_vectors_collinear": true,
+        "uniform_bound_for_one_ideal": 2,
+        "all_edge_controls_by_characteristic": {
+          "2": "3eeae092abaaa7447c85c4211cd1754b9acf6e75a6678ac5bdacb0dc1b40b83a",
+          "3": "3eeae092abaaa7447c85c4211cd1754b9acf6e75a6678ac5bdacb0dc1b40b83a",
+          "101": "3eeae092abaaa7447c85c4211cd1754b9acf6e75a6678ac5bdacb0dc1b40b83a"
+        }
+      },
+      {
+        "shell_degree": 3,
+        "shell_points": [
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            1,
+            2,
+            0
+          ],
+          [
+            2,
+            1,
+            0
+          ],
+          [
+            3,
+            0,
+            0
+          ]
+        ],
+        "selected_shell_points": 2,
+        "quotient_length": 8,
+        "candidate_vertices": 6,
+        "distinct_state_vectors": 5,
+        "realizable_exchange_edges": 12,
+        "exchange_graph_connected": true,
+        "every_exchange_is_a_binomial_quotient": true,
+        "all_state_vectors_collinear": true,
+        "uniform_bound_for_one_ideal": 2,
+        "all_edge_controls_by_characteristic": {
+          "2": "f1509e81437027e6718b9a98ed00a230801a80b7b238e7b7e2f2aba16d4ea581",
+          "3": "f1509e81437027e6718b9a98ed00a230801a80b7b238e7b7e2f2aba16d4ea581",
+          "101": "f1509e81437027e6718b9a98ed00a230801a80b7b238e7b7e2f2aba16d4ea581"
+        }
+      },
+      {
+        "shell_degree": 4,
+        "shell_points": [
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            1,
+            3,
+            0
+          ],
+          [
+            2,
+            2,
+            0
+          ],
+          [
+            3,
+            1,
+            0
+          ],
+          [
+            4,
+            0,
+            0
+          ]
+        ],
+        "selected_shell_points": 2,
+        "quotient_length": 12,
+        "candidate_vertices": 10,
+        "distinct_state_vectors": 7,
+        "realizable_exchange_edges": 30,
+        "exchange_graph_connected": true,
+        "every_exchange_is_a_binomial_quotient": true,
+        "all_state_vectors_collinear": true,
+        "uniform_bound_for_one_ideal": 2,
+        "all_edge_controls_by_characteristic": {
+          "2": "e677aceb23d7169b6467e97ce58a4945b7fde335d6c8050fcdf06e6aa70098b6",
+          "3": "e677aceb23d7169b6467e97ce58a4945b7fde335d6c8050fcdf06e6aa70098b6",
+          "101": "e677aceb23d7169b6467e97ce58a4945b7fde335d6c8050fcdf06e6aa70098b6"
+        }
+      },
+      {
+        "shell_degree": 5,
+        "shell_points": [
+          [
+            0,
+            5,
+            0
+          ],
+          [
+            1,
+            4,
+            0
+          ],
+          [
+            2,
+            3,
+            0
+          ],
+          [
+            3,
+            2,
+            0
+          ],
+          [
+            4,
+            1,
+            0
+          ],
+          [
+            5,
+            0,
+            0
+          ]
+        ],
+        "selected_shell_points": 3,
+        "quotient_length": 18,
+        "candidate_vertices": 20,
+        "distinct_state_vectors": 10,
+        "realizable_exchange_edges": 90,
+        "exchange_graph_connected": true,
+        "every_exchange_is_a_binomial_quotient": true,
+        "all_state_vectors_collinear": true,
+        "uniform_bound_for_one_ideal": 2,
+        "all_edge_controls_by_characteristic": {
+          "2": "61178578d00526dd8f48a26f0009a6630ae7378a809f63c1c7a70277b918ecd5",
+          "3": "61178578d00526dd8f48a26f0009a6630ae7378a809f63c1c7a70277b918ecd5",
+          "101": "61178578d00526dd8f48a26f0009a6630ae7378a809f63c1c7a70277b918ecd5"
+        }
+      },
+      {
+        "shell_degree": 6,
+        "shell_points": [
+          [
+            0,
+            6,
+            0
+          ],
+          [
+            1,
+            5,
+            0
+          ],
+          [
+            2,
+            4,
+            0
+          ],
+          [
+            3,
+            3,
+            0
+          ],
+          [
+            4,
+            2,
+            0
+          ],
+          [
+            5,
+            1,
+            0
+          ],
+          [
+            6,
+            0,
+            0
+          ]
+        ],
+        "selected_shell_points": 3,
+        "quotient_length": 24,
+        "candidate_vertices": 35,
+        "distinct_state_vectors": 13,
+        "realizable_exchange_edges": 210,
+        "exchange_graph_connected": true,
+        "every_exchange_is_a_binomial_quotient": true,
+        "all_state_vectors_collinear": true,
+        "uniform_bound_for_one_ideal": 2,
+        "all_edge_controls_by_characteristic": {
+          "2": "69b84279c79d4f0b1e39876fedfc615d83965c3fdb5f291cbc45d3838cb42b0d",
+          "3": "69b84279c79d4f0b1e39876fedfc615d83965c3fdb5f291cbc45d3838cb42b0d",
+          "101": "69b84279c79d4f0b1e39876fedfc615d83965c3fdb5f291cbc45d3838cb42b0d"
+        }
+      },
+      {
+        "shell_degree": 7,
+        "shell_points": [
+          [
+            0,
+            7,
+            0
+          ],
+          [
+            1,
+            6,
+            0
+          ],
+          [
+            2,
+            5,
+            0
+          ],
+          [
+            3,
+            4,
+            0
+          ],
+          [
+            4,
+            3,
+            0
+          ],
+          [
+            5,
+            2,
+            0
+          ],
+          [
+            6,
+            1,
+            0
+          ],
+          [
+            7,
+            0,
+            0
+          ]
+        ],
+        "selected_shell_points": 4,
+        "quotient_length": 32,
+        "candidate_vertices": 70,
+        "distinct_state_vectors": 17,
+        "realizable_exchange_edges": 560,
+        "exchange_graph_connected": true,
+        "every_exchange_is_a_binomial_quotient": true,
+        "all_state_vectors_collinear": true,
+        "uniform_bound_for_one_ideal": 2,
+        "all_edge_controls_by_characteristic": {
+          "2": "b099160e1507202dca54a3730958747e4e833cc8c17fab06f7e11bb24bff5d13",
+          "3": "b099160e1507202dca54a3730958747e4e833cc8c17fab06f7e11bb24bff5d13",
+          "101": "b099160e1507202dca54a3730958747e4e833cc8c17fab06f7e11bb24bff5d13"
+        }
+      }
+    ],
+    "nonstandard_grading_source_controls": [
+      {
+        "characteristic": 2,
+        "coefficient": 1,
+        "weighted_degree": 12,
+        "column_rank": 1,
+        "forced_loops": [
+          [
+            3,
+            2,
+            0
+          ]
+        ]
+      },
+      {
+        "characteristic": 2,
+        "coefficient": 1,
+        "weighted_degree": 12,
+        "column_rank": 1,
+        "forced_loops": [
+          [
+            3,
+            2,
+            0
+          ]
+        ]
+      },
+      {
+        "characteristic": 3,
+        "coefficient": 1,
+        "weighted_degree": 12,
+        "column_rank": 1,
+        "forced_loops": [
+          [
+            3,
+            2,
+            0
+          ]
+        ]
+      },
+      {
+        "characteristic": 3,
+        "coefficient": 2,
+        "weighted_degree": 12,
+        "column_rank": 1,
+        "forced_loops": [
+          [
+            3,
+            2,
+            0
+          ]
+        ]
+      },
+      {
+        "characteristic": 101,
+        "coefficient": 1,
+        "weighted_degree": 12,
+        "column_rank": 1,
+        "forced_loops": [
+          [
+            3,
+            2,
+            0
+          ]
+        ]
+      },
+      {
+        "characteristic": 101,
+        "coefficient": 100,
+        "weighted_degree": 12,
+        "column_rank": 1,
+        "forced_loops": [
+          [
+            3,
+            2,
+            0
+          ]
+        ]
+      }
+    ],
+    "nonstandard_grading_without_loops_or_coloops": [
+      {
+        "characteristic": 2,
+        "parameters_a_b_c": [
+          1,
+          0,
+          1
+        ],
+        "weighted_degree": 18,
+        "column_rank": 2,
+        "circuits": [
+          [
+            [
+              6,
+              2,
+              0
+            ],
+            [
+              3,
+              4,
+              0
+            ]
+          ],
+          [
+            [
+              9,
+              0,
+              0
+            ],
+            [
+              6,
+              2,
+              0
+            ],
+            [
+              0,
+              6,
+              0
+            ]
+          ],
+          [
+            [
+              9,
+              0,
+              0
+            ],
+            [
+              3,
+              4,
+              0
+            ],
+            [
+              0,
+              6,
+              0
+            ]
+          ]
+        ],
+        "no_loops_or_coloops": true
+      },
+      {
+        "characteristic": 3,
+        "parameters_a_b_c": [
+          1,
+          2,
+          1
+        ],
+        "weighted_degree": 18,
+        "column_rank": 2,
+        "circuits": [
+          [
+            [
+              6,
+              2,
+              0
+            ],
+            [
+              3,
+              4,
+              0
+            ]
+          ],
+          [
+            [
+              9,
+              0,
+              0
+            ],
+            [
+              6,
+              2,
+              0
+            ],
+            [
+              0,
+              6,
+              0
+            ]
+          ],
+          [
+            [
+              9,
+              0,
+              0
+            ],
+            [
+              3,
+              4,
+              0
+            ],
+            [
+              0,
+              6,
+              0
+            ]
+          ]
+        ],
+        "no_loops_or_coloops": true
+      },
+      {
+        "characteristic": 101,
+        "parameters_a_b_c": [
+          1,
+          2,
+          1
+        ],
+        "weighted_degree": 18,
+        "column_rank": 2,
+        "circuits": [
+          [
+            [
+              6,
+              2,
+              0
+            ],
+            [
+              3,
+              4,
+              0
+            ]
+          ],
+          [
+            [
+              9,
+              0,
+              0
+            ],
+            [
+              6,
+              2,
+              0
+            ],
+            [
+              0,
+              6,
+              0
+            ]
+          ],
+          [
+            [
+              9,
+              0,
+              0
+            ],
+            [
+              3,
+              4,
+              0
+            ],
+            [
+              0,
+              6,
+              0
+            ]
+          ]
+        ],
+        "no_loops_or_coloops": true
+      }
+    ],
+    "uniform_proof_in_note": true,
+    "new_asymptotic_bound": false,
+    "scope": "Realizability of each pair is strictly weaker than realizability in one fan. The shell obstruction is an elementary state-polytope control, not a claimed new theorem. The nonstandard-grading example is published by Maclagan--Silversmith."
+  },
   "asymptotic_improvement_established": false,
   "novelty_established": false,
   "goal_complete": false,
   "scope": "Exhaustive finite primary-bound and candidate-family diagnostics. No polynomial separation, sharp unrestricted asymptotic, or algorithmic speedup is inferred.",
   "source_sha256": {
-    "scripts/run_extremal_initial_ideals_checks.py": "27c52f7843fe5aee6b0f1a932a693463e18c26b92c09a2363274dda05e463fe0",
+    "scripts/run_extremal_initial_ideals_checks.py": "4336a4a322dbb4465bb6cdbb3a0b34fb87a4313a8ed276c9a0fcfd12cf746209",
     "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1"
   }
