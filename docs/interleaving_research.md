@@ -11418,3 +11418,220 @@ one tenth under their stated promises and test encoded perturbations.
 These are exact proof controls with dense oracles, not runtime or neural
 benchmarks. Small r controls do not establish a high-dimensional end-to-end
 architecture; the displayed proof quantifies the dependence on arbitrary r.
+
+### Associative-memory goal: correlated routing and a stronger-baseline check
+
+Previous turn classification: progress. It established the local/shared
+retention lemma with precision and repair costs, without establishing a
+useful input encoder or a novel strongest-method advantage. This iteration
+tests an explicit higher-dimensional binding workload and proves a
+head/support tradeoff. Stronger-baseline controls then show why that
+tradeoff is insufficient to complete the goal.
+
+#### A uniform signed-head bound, with its exact resource model
+
+Store arbitrary independent scalar values V_ij in an n-by-n Cartesian
+table. A head returns sum_ij P_h(i,j)*V_ij, where P_h is nonnegative.
+The final linear output may use arbitrary signed coefficients lambda_h.
+All heads use the same table coordinates; separate row/column reorderings
+are allowed. No pair-specific table remapping, value-dependent query
+weights or additional value summaries are included in this model.
+
+Suppose each head support is a chain/Ferrers bipartite graph: whenever
+(i,j) and (i',j') are present with distinct rows/columns, at least one of
+(i,j') and (i',j) is present. Additive scores a_i+b_j with a threshold
+or top-k cutoff have this property. Ties require a compatible rule, such
+as lexicographic row/column infinitesimals; an arbitrary pair-specific
+tie rule could itself encode a correlated mask and is excluded.
+
+[Original PKM, Section 3.3](https://arxiv.org/html/1907.05242v2) was checked
+for this comparison: its heads have separate query networks/subkeys,
+share the value table and sum their outputs. Our signed combination is
+more permissive than that reader. Applying the bound to independently
+replaceable literal bindings still requires the stated value-storage
+model; it does not constrain every learned encoding of those bindings.
+
+Let H_+ be the number of heads with positive lambda_h, and let
+
+    C_support = sum_{h: lambda_h != 0} |support(P_h)|.
+
+This counts **unfused intermediate head-support entries**, not unique
+physical value probes, memory size, or an implementation-independent
+runtime. Suppose the resulting coefficient matrix W equals the uniform
+matching D, with D_ii=1/n and all off-diagonal entries zero. Then
+
+    H_+ * C_support >= n^2.
+
+The same statement holds for any permutation matching by renaming columns.
+Proof: each positive target diagonal must have a positive contribution.
+Assign every diagonal to one such head, obtaining disjoint groups of
+sizes a_h summing to n. Within group h, every pair of selected diagonals
+forces an off-diagonal support entry in that head. Choose one such entry
+per pair. These entries are distinct, including across groups, because
+the groups have disjoint row/column labels. There are
+F=sum_h binomial(a_h,2) forced entries. Positive heads use at least n+F
+support entries. Every forced off-diagonal contribution must be cancelled
+by at least one negative head, using at least F additional entries.
+Thus C_support>=n+2*F=sum_h a_h^2>=n^2/H_+.
+
+In the unsigned case there can be no cancellation, so every head contains
+at most one target edge and H_+>=n. This is the classical induced-matching
+obstruction for chain-graph covers, not a new head-rank principle.
+[Alecu et al.](https://arxiv.org/html/2104.04471v1) was inspected for the
+chain/quasi-chain definitions and decomposition context. The explicit
+induced-matching argument also appears as Lemma 4.1 in
+[Edge partitions into induced-2K2-free bipartite graphs](https://combinatorialpress.com/ars-articles/volume-166/edge-partitions-into-induced-2k2-free-bipartite-graphs/),
+whose displayed definition, lemma and proof were inspected. Its unsigned
+edge-partition result is not a claim about signed attention.
+
+The signed bound is tight in this support-count model. Partition the n
+indices into g equal blocks of width m=n/g. In each block use separable
+positive raw weights 2^(j-i), normalized on the upper triangle including
+the diagonal, and on the strict upper triangle. Very small row/column
+weights outside the block keep both supports within it. Each is a top-k
+head for the same additive ordering. If their normalizers are Z_+,Z_-,
+combine them with coefficients Z_+/n and -Z_-/n. Off-diagonal weights
+cancel and each diagonal has weight 1/n. The two supports together use
+m^2 entries. Summing blocks gives H_+=g and C_support=n^2/g, with at most
+2*g heads. Singleton blocks need only the positive head.
+These are exact rational-weight witnesses; their coefficient bit lengths
+and cancellation gain grow with block size. This is not a fixed-precision
+or numerically stable model implementation claimed for free.
+
+#### An approximate version requires a weight condition
+
+For standard monotone normalizations of additive scores, two positive
+diagonal weights also force a cross weight at least their minimum.
+The checker verifies this for normalized separable weights with top-k
+and compatible ties. Assume this condition in addition to the support
+condition. Write epsilon=||W-D||_1, summing absolute values of all entries.
+For 0<=epsilon<=1/2,
+
+    C_support >= n^2*(1-2*epsilon)^2/H_+ - 2*n*H_+*epsilon.
+
+Here is the proof, including its dependence on H_+. Let S be the diagonal
+indices with W_ii>=1/(2*n). There are s>=n*(1-2*epsilon) such indices.
+Assign each to its largest positive head contribution, which is at least
+1/(2*n*H_+). A pair assigned to the same head now forces a cross
+contribution at least this large. Among the F>= (s^2/H_+-s)/2 distinct
+forced entries, at most 2*n*H_+*epsilon can lack a negative-head support:
+each uncovered entry would contribute at least 1/(2*n*H_+) to the error.
+Hence C_support>=s+2*F-2*n*H_+*epsilon, proving the formula.
+It can be vacuous when H_+ is large; do not omit the negative term.
+
+For fixed value-independent linear coefficients, this norm is exactly
+the worst output error over V_ij in [-1,1], attained by sign values.
+Thus it is a finite-alphabet value witness as well as a coefficient bound.
+It does not cover value-dependent routing, arbitrary nonlinear decoding,
+precomputed value summaries or multiple recurrent stages. Nearby head
+lower bounds use different models: the scalar normal form and Theorem 1
+statement in [The Head Complexity of Boolean Functions](https://arxiv.org/html/2609.04046v1)
+were inspected, without a full proof audit. Its Boolean attention-only
+model is not automatically our truncated Cartesian-support model.
+
+No novelty is established for the signed counting statement. Its relation
+to signed chain decompositions and architecture resource bounds needs
+an exact prior-art comparison. A search that did not find the formula
+would not establish a mathematical gap.
+
+#### Explicit correlated queries, and the dictionary that matches them
+
+An extra bilinear score can produce a matching support in one head.
+For general score arrays
+
+    s_ij = a_i+b_j+x_i*y_j,
+
+sorting x and y gives the anti-Monge identity
+
+    s_ij+s_i'j' - s_ij'-s_i'j = (x_i-x_i')*(y_j-y_j') >= 0.
+
+Row-max search in totally monotone matrices is classical
+[Aggarwal et al.](https://research.ibm.com/publications/geometric-applications-of-a-matrix-searching-algorithm);
+its primary abstract and stated resource were inspected. This alone
+does not establish an output-sensitive global sparse-normalization
+algorithm, a new selection theorem, or a novel architecture advantage.
+
+A concrete raw-query family is enough to test the proposed comparison.
+Let x=(1,...,n), let y be an arbitrary permutation of those tags, and set
+
+    s_ij = -(4/n)*(x_i-y_j)^2.
+
+The query consists of two n-dimensional vectors, not two scalar latents.
+Sparsemax over all n^2 scores has weight 1/n exactly at the matching
+pairs and zero elsewhere. Arbitrary values in all n^2 table positions
+are still independently replaceable; no low-rank binding assumption is
+being made. Perturb each tag by at most eta<=1/8. Matched squared gaps
+are at most 4*eta^2; unmatched gaps are at least (1-2*eta)^2. The simplex
+threshold lies between -(1+16*eta^2)/n and -1/n. All matched weights stay
+positive, all unmatched weights vanish, and the coefficient l1 error
+relative to uniform matching is at most 8*eta^2. The last bound uses
+mean absolute deviation at most half the range of the matched squared
+gaps. All these statements hold uniformly in n.
+
+However, an ordinary indexed lookup is stronger on this very workload.
+Round the noisy tags to integers, build an inverse-tag array from y,
+then read V_i,j at the unique matching j and average. This takes O(n)
+word operations/probes and O(n) temporary index words on the stated
+integer-tag family, with exact answers for tag noise below 1/2. Latest
+point replacement takes one value-word write for any horizon. It uses
+the full n^2 value table, plus the query and index storage, with no hidden
+continuous state. The tags need O(log n) integer bits and their specified
+fractional bits; the sum needs the value precision plus O(log n) bits.
+Sorting gives a standard deterministic alternative for more general
+separated comparable tags. The bilinear example therefore does not beat
+the strongest applicable dictionary/join baseline.
+
+Approximate probabilistic queries have an even cheaper familiar baseline
+on this particular family. Since the first tags are the canonical order,
+sample a column j uniformly, round y_j to get its row i, and read V_ij.
+The sample mean is unbiased for the matching average. For values in
+[-1,1], O(epsilon^(-2)*log(1/delta)) samples suffice for additive error
+epsilon with per-query failure probability delta. This avoids building
+the inverse-tag array. It retains the whole latest-value table; fresh
+randomness gives a per-query guarantee, while simultaneous guarantees
+over a horizon need separate failure accounting. The deterministic
+coefficient-norm lower bound does not exclude such per-value randomized
+guarantees. These standard sampling quantifiers must remain explicit.
+
+#### Two controls that prevent a false fundamental separation
+
+First, arbitrary table layout is outside the common-grid bound. The
+bijection (i,j)->(i,(j-i) mod n) moves the logical diagonal to one physical
+column. A single additive top-n head can select that column and return
+the uniform logical diagonal average with n physical accesses. Individual
+logical replacements still change one cell. This example concerns one
+fixed matching, rather than solving every permutation through one fixed
+layout, but already refutes an unrestricted reading of the head bound.
+
+Second, signed-head fusion changes what must be read. The two triangular
+heads above have n^2 intermediate support entries but their combined
+matrix has only n nonzeros. An evaluator that recognizes the cancellation
+can read only the n target values. Hence C_support is not a lower bound
+on physical probes for the fused computation. Computing normalization,
+discovering cancellation and handling numerical error have their own
+costs; we have not lower-bounded those for all implementations. Claiming
+a value-access win solely against unfused evaluation would violate our
+strongest-baseline criterion.
+
+The decision is to preserve the common-grid signed tradeoff as a scoped
+supporting lemma, and park the matching-query construction as a claimed
+architectural advantage. This iteration supplies an explicit raw-query
+family and a sharp signed support count, but the honest decision remains
+that no new publishable strongest-method advantage has been established.
+The next candidate must survive arbitrary permitted indexing, algebraic
+fusion and useful cached summaries on the *same* dynamic workload, not
+merely a head-by-head implementation comparison. The earlier local/shared
+retention lemma remains a conditional tool, not a completed contribution.
+
+Reproduce the controls with:
+
+```bash
+python3 -B scripts/run_correlated_routing_checks.py
+```
+
+The report `results/research/correlated_routing_checks.json` records
+6,885 additive-head cases including ties, 19 tight signed decompositions,
+19 approximate mixtures, 456 raw-query cases, three layout/fusion
+counterexamples and 192 dictionary replacements/matching reads. All
+arithmetic is rational. The checker uses dense oracles and is not a
+runtime benchmark, a novelty proof or a new neural training run.

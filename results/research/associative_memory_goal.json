@@ -18,12 +18,12 @@
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "conditional_local_shared_model_proved; raw_input_encoder_and_same_workload_separation_pending"
+      "status": "explicit_correlated_raw_query_family_tested; indexed_join_baseline_matches_or_improves_it; useful_separation_pending"
     },
     {
       "stage": 4,
       "task": "Derive a matching obstruction or a substantive separation against the strongest applicable published guarantee, including preprocessing, metadata, precision and encoder costs.",
-      "status": "pending"
+      "status": "signed_common_grid_support_tradeoff_proved; layout_fusion_and_auxiliary_index_gaps_prevent_general_cost_claim"
     },
     {
       "stage": 5,
@@ -311,6 +311,78 @@
       "depth_four_uniform_bounds_below_one_tenth": 3
     },
     "verification_commands": [
+      "python3 -B scripts/run_shared_feature_retention_checks.py",
+      "python3 -B scripts/run_retention_geometry_checks.py",
+      "python3 -B scripts/run_retention_tradeoff_checks.py",
+      "python3 -B scripts/run_feature_dimension_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py",
+      "python3 -B scripts/run_structural_complexity_checks.py"
+    ]
+  },
+  "fourth_iteration": {
+    "previous_turn_classification": "progress: conditional local/shared retention theorem, exact finite-precision controls and stronger primary-source audit saved; full objective unachieved",
+    "record": "docs/interleaving_research.md, Associative-memory goal: correlated routing and a stronger-baseline check",
+    "certificate_script": "scripts/run_correlated_routing_checks.py",
+    "certificate_report": "results/research/correlated_routing_checks.json",
+    "proved_supporting_result": "For nonnegative chain-support heads on a common Cartesian value table, signed linear mixing that realizes a uniform n-edge matching has H_positive * sum(head support sizes) >= n^2. Balanced triangular differences attain equality; an approximate version explicitly charges coefficient l1 error.",
+    "resource_limitation": "The counted resource is unfused intermediate head-support entries. It is not unique physical probes, arbitrary table layouts, value-dependent routing, cached summaries, nonlinear decoding or general architecture runtime. The deterministic uniform coefficient guarantee does not rule out randomized per-value query guarantees.",
+    "concrete_query_test": {
+      "workload": "Independent latest V_ij values; two n-dimensional noisy tag vectors specify a permutation matching; retrieve its uniform average.",
+      "coupled_reader": "Sparsemax on -(4/n)*(x_i-y_j)^2 selects the matching. Tag perturbations <=eta<=1/8 preserve its support and give coefficient l1 error <=8*eta^2.",
+      "stronger_baseline": "Rounding to integer tags plus an inverse-tag array gives exact answers at O(n) word cost/probes and O(n) temporary index words; point replacements cost one value-word write for any horizon. Full n^2 value storage and precision are charged.",
+      "decision": "Park this raw-query construction as a claimed architecture advantage; the indexed lookup baseline matches or improves it.",
+      "approximate_baseline": "With canonical first tags, uniform column sampling rounds the second tag to its row. The sample mean is unbiased, with standard O(epsilon^-2 log(1/delta)) probes per query after reading only sampled tags; no inverse-array construction. Full value storage, fresh randomness and horizon failure accounting are charged."
+    },
+    "countercontrols": [
+      "A fixed logical matching can be moved to one physical column by a table bijection, evading a purported layout-independent head bound.",
+      "Two signed triangular heads have n^2 unfused support entries but only n nonzero combined coefficients, refuting a physical-probe lower bound from this count alone."
+    ],
+    "primary_sources": [
+      {
+        "url": "https://arxiv.org/html/1907.05242v2",
+        "scope": "Section 3.3 independently queried subkeys, shared values and summed head outputs checked. Our signed mixing is more permissive, but the literal binding-table storage model does not cover arbitrary learned encodings."
+      },
+      {
+        "url": "https://arxiv.org/html/2104.04471v1",
+        "scope": "Chain/quasi-chain graph definitions and decomposition context inspected. No novelty of the elementary induced-matching obstruction claimed."
+      },
+      {
+        "url": "https://combinatorialpress.com/ars-articles/volume-166/edge-partitions-into-induced-2k2-free-bipartite-graphs/",
+        "scope": "Displayed chain/induced-matching definitions, Lemma 4.1 and proof inspected. Unsigned edge-partition bound does not by itself establish a signed-head cost result."
+      },
+      {
+        "url": "https://arxiv.org/html/2609.04046v1",
+        "scope": "Scalar normal form/model and Theorem 1 statement inspected; full proof chain not audited. Boolean attention-only head complexity differs from truncated Cartesian supports."
+      },
+      {
+        "url": "https://research.ibm.com/publications/geometric-applications-of-a-matrix-searching-algorithm",
+        "scope": "Primary abstract and totally monotone row-max resource inspected. Does not alone prove a sparse-normalization algorithm or novelty of coupled routing."
+      }
+    ],
+    "decision": "Preserve the scoped signed support lemma and explicit escapes. Neither the current matching construction nor literal head-support evaluation establishes the strongest-method advantage required by the active goal.",
+    "next_actions": [
+      "Determine the exact prior-art status of signed chain-support decompositions; a matching formula not found by keyword search is not evidence of novelty.",
+      "Seek a guarantee on a genuinely dynamic binding/query workload that survives the strongest permitted data layout, algebraic fusion and auxiliary summaries, with all precision and encoder costs included.",
+      "Before extending another candidate, specify and implement or prove its strongest same-workload indexed-data-structure baseline; reject advantages that disappear under that comparison.",
+      "Keep the original goal intact; no new neural training or contribution manuscript until an applicable substantive separation and novelty boundary pass."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "certificate_summary": {
+      "additive_head_cases_including_ties": 6885,
+      "tight_signed_decompositions": 19,
+      "approximate_mixture_cases": 19,
+      "correlated_raw_query_cases": 456,
+      "layout_and_fusion_escape_cases": 3,
+      "dictionary_point_overwrites_and_matching_reads": 192
+    },
+    "verification_commands": [
+      "python3 -B scripts/run_correlated_routing_checks.py",
       "python3 -B scripts/run_shared_feature_retention_checks.py",
       "python3 -B scripts/run_retention_geometry_checks.py",
       "python3 -B scripts/run_retention_tradeoff_checks.py",
