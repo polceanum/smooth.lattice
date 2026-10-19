@@ -3832,6 +3832,358 @@ def weighted_exponential_controls():
             'scope': 'Exact tuple-map controls for full base-two exponential attention under a signed-integer raw-query l1 budget and certified low-intersection binary key admission. Independent direct dyadic dot-product sums check normalized output and scaled numerator/denominator, including negative coefficients/corrections, updates, generic admission, cancellation, deletion/reuse, malformed inputs, large precision and noisy grid retrieval. Python arbitrary integers are bounded against preselected guard bits; this is not a finite-word arena implementation or performance/novelty certificate. The 169-value retention example is fully installed. Other capacities are explicit. No learned encoder, training, strongest-baseline advantage or publication priority is established.'}
 
 
+def capacity_frontier_controls():
+    """Capacity/admission audit and a classical unrestricted subset baseline."""
+    from math import comb
+
+    class FullSubsets:
+        # Independent current values live at the full (length, support)
+        # cells themselves. A separate reference is used only by the oracle.
+        def __init__(self, capacity, dimension, max_weight, noise=1, grid_bits=8, query_support=None):
+            self.n, self.d, self.w = capacity, dimension, max_weight
+            self.eta, self.g = noise, grid_bits
+            self.bias = noise + grid_bits + (8 * (capacity + 1) - 1).bit_length()
+            self.tmax = min(dimension, max_weight + noise if query_support is None else query_support)
+            self.budget = 2 * self.bias * max_weight + noise
+            self.qmax = sum(sum(comb(self.tmax, j) for j in range(min(t, self.tmax) + 1))
+                            for t in range(max_weight + 1))
+            self.guard = (2 * grid_bits + 2 + self.budget + self.bias * max_weight
+                          + (capacity + 1).bit_length() + self.qmax.bit_length() + 4)
+            self.keys, self.handles, self.cells = {}, {}, {}
+            self.stats = dict(reads=0, lookups=0, overwrites=0, deletes=0,
+                              admitted=0, rejected=0, negative_coefficients=0,
+                              max_cells=0, max_intermediate_bits=0, live_zero_sums=0)
+
+        def support(self, raw):
+            return tuple(i for i in range(self.d) if raw >> i & 1)
+
+        def full(self, raw):
+            support = self.support(raw)
+            return len(support), support
+
+        def value(self, slot):
+            count, value = self.cells[self.full(self.keys[slot])]
+            assert count == 1
+            return tuple(value)
+
+        def snapshot(self):
+            return (tuple(sorted(self.keys.items())), tuple(sorted(self.handles.items())),
+                    tuple(sorted((a, count, tuple(total)) for a, (count, total) in self.cells.items())))
+
+        def remove(self, slot):
+            if slot not in self.keys:
+                return
+            old = self.value(slot)
+            for a in self.handles.pop(slot):
+                count, total = self.cells[a]
+                count -= 1
+                total = [x - y for x, y in zip(total, old)]
+                if count:
+                    self.cells[a] = count, total
+                else:
+                    assert total == [0, 0]
+                    del self.cells[a]
+            del self.keys[slot]
+            self.stats['deletes'] += 1
+
+        def replace(self, slot, raw, value):
+            assert 0 <= slot < self.n and all(abs(x) <= 1 << self.g for x in value)
+            valid = 0 <= raw < 1 << self.d and raw.bit_count() <= self.w
+            if valid:
+                valid = self.full(raw) not in self.cells or self.keys.get(slot) == raw
+            if not valid:
+                self.stats['rejected'] += 1
+                return False
+            self.remove(slot)
+            support = self.support(raw)
+            handles = tuple((len(support), a) for j in range(len(support) + 1)
+                            for a in combinations(support, j))
+            self.keys[slot], self.handles[slot] = raw, handles
+            for a in handles:
+                count, total = self.cells.get(a, (0, [0, 0]))
+                self.cells[a] = count + 1, [x + y for x, y in zip(total, value)]
+            assert self.value(slot) == tuple(value)
+            self.stats['admitted'] += 1
+            self.stats['max_cells'] = max(self.stats['max_cells'], len(self.cells))
+            return True
+
+        def overwrite(self, slot, value):
+            assert all(abs(x) <= 1 << self.g for x in value)
+            delta = [x - y for x, y in zip(value, self.value(slot))]
+            for a in self.handles[slot]:
+                count, total = self.cells[a]
+                self.cells[a] = count, [x + y for x, y in zip(total, delta)]
+            assert self.value(slot) == tuple(value)
+            self.stats['overwrites'] += 1
+
+        def check(self, reference):
+            assert self.keys == {slot: raw for slot, (raw, _) in reference.items()}
+            expected = {}
+            for slot, (raw, value) in reference.items():
+                assert self.value(slot) == value
+                support = self.support(raw)
+                for j in range(len(support) + 1):
+                    for subset in combinations(support, j):
+                        a = len(support), subset
+                        count, total = expected.get(a, (0, [0, 0]))
+                        expected[a] = count + 1, [x + y for x, y in zip(total, value)]
+            assert self.cells == expected
+            assert len(self.cells) <= len(reference) * 2 ** self.w
+            self.stats['live_zero_sums'] += sum(count > 0 and total == [0, 0]
+                                               for count, total in self.cells.values())
+
+        def read(self, query):
+            if (len(query) != self.d or any(type(x) is not int for x in query)
+                    or sum(x != 0 for x in query) > self.tmax
+                    or sum(abs(x) for x in query) > self.budget):
+                raise ValueError('raw query exceeds the declared support/amplitude budgets')
+            self.stats['reads'] += 1
+            support = tuple(a for a, x in enumerate(query) if x)
+            negative = sum(-x for x in query if x < 0)
+            numerator, denominator = [0, 0], 0
+            for t in range(self.w + 1):
+                for j in range(min(t, len(support)) + 1):
+                    for subset in combinations(support, j):
+                        coefficient = 1 << (negative + self.bias * (self.w - t)
+                                            - sum(-query[a] for a in subset if query[a] < 0))
+                        for a in subset:
+                            coefficient *= ((1 << abs(query[a])) - 1) * (-1 if query[a] < 0 else 1)
+                        count, total = self.cells.get((t, subset), (0, [0, 0]))
+                        denominator += coefficient * count
+                        numerator = [x + coefficient * y for x, y in zip(numerator, total)]
+                        self.stats['lookups'] += 1
+                        self.stats['negative_coefficients'] += coefficient < 0
+                        bits = max(abs(x).bit_length() + 1 for x in [coefficient, denominator, *numerator])
+                        self.stats['max_intermediate_bits'] = max(self.stats['max_intermediate_bits'], bits)
+                        assert bits <= self.guard
+            assert denominator > 0 if self.keys else denominator == 0 and numerator == [0, 0]
+            self.last_totals = tuple(numerator), denominator, negative + self.bias * self.w
+            return tuple(F(x, denominator) for x in numerator) if denominator else None
+
+    def replace(index, reference, slot, raw, value):
+        expected = (0 <= raw < 1 << index.d and raw.bit_count() <= index.w
+                    and all(i == slot or key != raw for i, (key, _) in reference.items()))
+        before = index.snapshot()
+        assert index.replace(slot, raw, value) == expected
+        if expected:
+            reference[slot] = raw, tuple(value)
+        else:
+            assert index.snapshot() == before
+        index.check(reference)
+        return expected
+
+    def verify(index, reference, query):
+        result = index.read(query)
+        scale = sum(-x for x in query if x < 0) + index.bias * index.w
+        numerator, denominator = [0, 0], 0
+        for raw, value in reference.values():
+            # Direct biased dot-product weights, independent of subset cells.
+            score = sum(query[a] for a in range(index.d) if raw >> a & 1) - index.bias * raw.bit_count()
+            assert 0 <= scale + score <= index.budget + index.bias * index.w
+            weight = 1 << (scale + score)
+            denominator += weight
+            numerator = [x + weight * y for x, y in zip(numerator, value)]
+        assert index.last_totals == (tuple(numerator), denominator, scale)
+        expected = tuple(F(x, denominator) for x in numerator) if denominator else None
+        assert result == expected
+        return result
+
+    cases, noise_reads, raw_rejections = [], 0, 0
+    for dimension, weight in ((5, 2), (6, 3), (7, 3), (8, 4)):
+        keys = [sum(1 << a for a in subset) for t in range(weight + 1)
+                for subset in combinations(range(dimension), t)]
+        index, reference = FullSubsets(len(keys), dimension, weight, query_support=2 * weight), {}
+        for slot, raw in enumerate(keys):
+            assert replace(index, reference, slot, raw, (slot % 513 - 256, (3 * slot) % 513 - 256))
+        assert len(index.cells) == sum(comb(dimension, j) * (weight - j + 1) for j in range(weight + 1))
+        queries = [q for q in product((-1, 0, 1), repeat=dimension)
+                   if sum(x != 0 for x in q) <= index.tmax]
+        for a in range(dimension):
+            for b in range(a + 1, dimension):
+                q = [0] * dimension
+                q[a], q[b] = 3, -2
+                queries.append(tuple(q))
+        for q in queries:
+            verify(index, reference, q)
+        for slot in range(3):
+            for phase in range(2):
+                if phase:
+                    value = tuple(-x for x in reference[slot][1])
+                    index.overwrite(slot, value)
+                    reference[slot] = reference[slot][0], value
+                    index.check(reference)
+                center = tuple(2 * index.bias * int(reference[slot][0] >> a & 1) for a in range(dimension))
+                for a in range(-1, dimension):
+                    for delta in ((0,) if a < 0 else (-1, 1)):
+                        q = list(center)
+                        if a >= 0:
+                            q[a] += delta
+                        result = verify(index, reference, tuple(q))
+                        assert tuple(round(x) for x in result) == reference[slot][1]
+                        noise_reads += 1
+        for q in ((), (index.budget + 1,) + (0,) * (dimension - 1), (0.5,) + (0,) * (dimension - 1)):
+            before = index.snapshot()
+            try:
+                index.read(q)
+                assert False
+            except ValueError:
+                pass
+            assert index.snapshot() == before
+            raw_rejections += 1
+        assert not replace(index, reference, 0, reference[1][0], (17, -19))
+        assert not replace(index, reference, 0, 1 << dimension, (17, -19))
+        assert not replace(index, reference, 0, (1 << (weight + 1)) - 1, (17, -19))
+        first, second = reference[0], reference[1]
+        index.remove(0); reference.pop(0)
+        index.remove(1); reference.pop(1)
+        assert replace(index, reference, 0, second[0], (23, -31))
+        assert replace(index, reference, 1, first[0], (-37, 41))
+        for q in queries[:12] + queries[-12:]:
+            verify(index, reference, q)
+        for slot in list(reference):
+            index.remove(slot); reference.pop(slot)
+        index.check(reference)
+        verify(index, reference, (0,) * dimension)
+        assert replace(index, reference, 0, 0, (0, 0))
+        verify(index, reference, (0,) * dimension)
+        cases.append({'dimension': dimension, 'maximum_key_weight': weight, 'capacity': len(keys),
+                      'query_support_budget': index.tmax, 'query_l1_budget': index.budget,
+                      'length_bias': index.bias, 'preselected_guard_bits': index.guard,
+                      'controls': index.stats.copy()})
+
+    def johnson(dimension, weight, threshold):
+        bound = 1
+        for j in range(threshold - 1, -1, -1):
+            bound = (dimension - j) * bound // (weight - j)
+        return bound
+
+    packing_controls = 0
+    for dimension in range(2, 13):
+        for weight in range(1, dimension + 1):
+            for threshold in range(1, weight + 1):
+                upper = johnson(dimension, weight, threshold)
+                assert upper <= comb(dimension, threshold) // comb(weight, threshold)
+                packing_controls += 1
+    finite_frontier = []
+    for dimension in (128, 512, 4096, 65536):
+        for weight in (4, 8, 32, 64):
+            capacity = 1 << 20
+            threshold = next((k for k in range(1, weight + 1)
+                              if johnson(dimension, weight, k) >= capacity), None)
+            if threshold is None:
+                finite_frontier.append({'dimension': dimension, 'weight': weight,
+                                        'capacity': capacity, 'necessary_packing_feasible': False})
+                continue
+            finite_frontier.append({'dimension': dimension, 'weight': weight, 'capacity': capacity,
+                                    'necessary_packing_feasible': True,
+                                    'minimum_threshold_not_ruled_out_by_johnson': threshold,
+                                    'materialized_owner_entries': capacity * comb(weight, threshold),
+                                    'payload_cells_changed_per_overwrite': sum(comb(weight, j) for j in range(threshold)),
+                                    'binary_query_subset_visits_at_support_twice_weight': sum(comb(min(dimension, 2 * weight), j)
+                                                                                          for j in range(threshold + 1)),
+                                    'existence_or_retention_not_certified': True})
+
+    jam_cases, exhaustive_insertions, exhaustive_replacements = [], 0, 0
+    repair_example = None
+    for prime, exponent in ((2, 2), (2, 3), (3, 2), (3, 3), (5, 2), (7, 2)):
+        points = list(product(range(prime), repeat=exponent))
+        point_id = {point: i for i, point in enumerate(points)}
+        directions = [p for p in points if any(p) and next(x for x in p if x) == 1]
+        local_lines = []
+        for direction in directions:
+            pivot = next(i for i, x in enumerate(direction) if x)
+            for base in points:
+                if base[pivot] == 0:
+                    line = tuple(sorted(point_id[tuple((x + t * y) % prime for x, y in zip(base, direction))]
+                                        for t in range(prime)))
+                    local_lines.append(line)
+        v = prime ** exponent
+        dimension = (prime - 1) * v
+        supports = [tuple(group * v + a for a in line)
+                    for group in range(prime - 1) for line in local_lines]
+        owners, loads = {}, [0] * dimension
+        for slot, support in enumerate(supports):
+            assert len(set(support)) == prime
+            for a in support:
+                loads[a] += 1
+            for pair in combinations(support, 2):
+                assert pair not in owners
+                owners[pair] = slot
+        active = len(supports)
+        assert active == v * (v - 1) // prime
+        assert set(loads) == {(v - 1) // (prime - 1)}
+        assert len(owners) == (prime - 1) * comb(v, 2)
+        assert all((a, b) in owners for group in range(prime - 1)
+                   for a, b in combinations(range(group * v, (group + 1) * v), 2))
+        # The elementary Turan/Caro--Wei lower bound is attained exactly.
+        assert active * prime * (prime - 1) ** 2 == dimension * (dimension - prime + 1)
+        proposal_count = comb(dimension, prime)
+        replacement_count = sum(comb(prime, j) * comb(prime - 2, prime - j) * v ** (prime - j)
+                                for j in range(2, prime + 1))
+        if proposal_count <= 30000:
+            actual_replacements = 0
+            for proposal in combinations(range(dimension), prime):
+                blockers = {owners[pair] for pair in combinations(proposal, 2) if pair in owners}
+                assert blockers
+                actual_replacements += blockers == {0}
+                exhaustive_insertions += 1
+                exhaustive_replacements += 1
+            assert actual_replacements == replacement_count
+        acceptance = F(replacement_count, proposal_count)
+        assert acceptance * active * 2 ** (prime // 2) <= 64 * prime
+        intersecting = prime * ((v - 1) // (prime - 1) - 1)
+        off_numerator = intersecting * (2 ** 8 - 1) + active - 1
+        off = F(off_numerator, 2 ** (8 * prime))
+        # Each affine line meets q*(r-1) other lines at one point.
+        raw_keys = [sum(1 << a for a in support) for support in supports]
+        for key in raw_keys:
+            assert sum(1 << (8 * (key & other).bit_count()) for other in raw_keys if key != other) == off_numerator
+        assert 0 < off < 1
+        jam_cases.append({'prime': prime, 'affine_dimension': exponent, 'key_weight': prime,
+                          'raw_dimension': dimension, 'active_keys': active, 'slot_capacity': 2 * active,
+                          'actual_coordinate_load': loads[0], 'declared_load_limit': 2 * loads[0],
+                          'owned_pair_fraction': str(F(active * comb(prime, 2), comb(dimension, 2))),
+                          'all_within_group_pairs_certified': len(owners),
+                          'all_fresh_insertions_blocked': True, 'minimum_maximal_size_bound_attained': True,
+                          'single_deleted_slot_uniform_replacement_acceptance': str(acceptance),
+                          'near_identity_kernel_at_inverse_temperature_8_off_row_sum': str(off),
+                          'proposal_family_exhausted': proposal_count <= 30000})
+        if prime == 3 and exponent == 2:
+            index, reference = FullSubsets(2 * active, dimension, prime), {}
+            for slot, support in enumerate(supports):
+                raw = sum(1 << a for a in support)
+                assert replace(index, reference, slot, raw, (slot - 12, 12 - slot))
+            proposal = (0, 1, v)
+            assert any(pair in owners for pair in combinations(proposal, 2))
+            raw = sum(1 << a for a in proposal)
+            assert replace(index, reference, active, raw, (201, -197))
+            for slot in (0, active):
+                query = tuple(2 * index.bias * int(reference[slot][0] >> a & 1) for a in range(dimension))
+                assert tuple(round(x) for x in verify(index, reference, query)) == reference[slot][1]
+            repair_example = {'old_active_keys': active, 'new_active_keys': len(reference),
+                              'previously_blocked_raw_support': proposal,
+                              'generic_full_subset_baseline_admits_it': True,
+                              'old_and_new_values_retained_by_grid_rounding': True}
+
+    n, d, w, tmax = 1 << 20, 128, 4, 8
+    low_cells = sum(sum(comb(d, j) for j in range(t)) for t in range(1, w + 1))
+    resource = {'capacity': n, 'dimension': d, 'max_key_weight': w, 'query_support_budget': tmax,
+                'subsets_changed_per_largest_key': 2 ** w,
+                'query_cell_lookups': sum(sum(comb(tmax, j) for j in range(t + 1)) for t in range(w + 1)),
+                'proper_subset_payload_cell_upper_bound': low_cells,
+                'all_payload_cells_including_independent_values_upper_bound': n + low_cells,
+                'input_and_state_precision_and_all_dictionary_metadata_are_additional': True,
+                'no_million_slot_allocation_or_runtime_benchmark_performed': True}
+    return {'generic_baseline_cases': cases, 'complete_raw_reads': sum(c['controls']['reads'] for c in cases) + 2,
+            'exhaustive_integer_noise_grid_reads': noise_reads, 'atomic_invalid_queries': raw_rejections,
+            'johnson_vs_simple_packing_integer_controls': packing_controls,
+            'finite_frontier': finite_frontier,
+            'admission_jam_families': jam_cases, 'exhaustive_blocked_insertions': exhaustive_insertions,
+            'exhaustive_single_slot_replacement_proposals': exhaustive_replacements,
+            'relaxed_admission_witness': repair_example, 'finite_full_subset_resource_example': resource,
+            'scope': 'Exact oracle checks for the classical length-stratified all-subsets kernel with a fixed length bias and separate raw-query support/amplitude budgets. Arbitrary distinct keys of weight <=w are admitted; no low-intersection rule or independent value-cache duplicate is used. Full cells isolate each current value. Standard packing/Johnson bounds, affine-geometry minimal-maximal families and exact rekey acceptance counts audit the older admission promise. These are known kernel/design mechanisms, not a novelty or ML-advantage certificate. Fixed-grid amplitude jitter is distinct from binary-key erasure correction. Large finite resource counts are arithmetic bounds, not allocated memory or measured runtime.'}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -3859,6 +4211,7 @@ def main():
               "subset_aggregate_candidate": subset_aggregate_controls(),
               "affine_coded_baseline": affine_coded_controls(),
               "weighted_exponential_candidate": weighted_exponential_controls(),
+              "capacity_frontier_baselines": capacity_frontier_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,

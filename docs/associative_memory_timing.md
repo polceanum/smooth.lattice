@@ -3752,3 +3752,345 @@ prepare a contribution paper on this extension alone. The next substantive
 question is whether query/update cost can be improved in a useful finite
 regime, beyond these established subset and sparse-correction mechanisms,
 or whether this branch should be classified fully as a baseline.
+
+## Capacity, admission, and the stronger all-subsets baseline
+
+This iteration classifies the generic sparse-key exponential-attention
+workload as a classical baseline. The pair-intersection admission promise
+is unnecessary if all subsets of a sparse key are retained. Separate
+query support and amplitude budgets permit exact high-temperature reads
+without making every coordinate nonzero. This removes a real restriction
+from the previous candidate, but does not establish a new architecture,
+an advantage over the strongest applicable method, or a publishable result.
+
+### Necessary packing bounds do not guarantee admission
+
+For n distinct weight-w supports in [d], pairwise intersection less than k
+implies n*C(w,k)<=C(d,k): each k-subset has at most one owner. Repeatedly
+counting supports through a coordinate gives the stronger nested-floor
+Johnson bound. Define J(d,w,0)=1 and
+
+    J(d,w,k)=floor(d/w * J(d-1,w-1,k-1)).
+
+Indeed a coordinate belongs to at most J(d-1,w-1,k-1) supports, and
+counting all incidences gives the recurrence. It is only a necessary
+bound; it supplies neither a family nor an efficient insertion procedure.
+For the explicit materialized-subset recipe, a state of n keys has exactly
+n*C(w,k) owner entries, while an arbitrary independent value overwrite
+changes sum_{j<k} C(w,j) lower-order payload sums. These costs concern that
+recipe, not every possible data structure. The certificate records the
+smallest k not excluded by Johnson for sixteen (d,w) choices at capacity
+2^20, and checks the nested-floor bound against the elementary packing
+bound in 363 small integer cases. It does not certify existence or
+retention for those sixteen choices. For example d=128,w=8 already needs
+k>=5 by this necessary test, with 58,720,256 owner entries in that recipe.
+
+A uniform family shows why free slots and low coordinate load do not
+repair the admission promise. Let q be a prime, m>=2, v=q^m. Partition
+d=(q-1)*v coordinates into q-1 groups, each an affine space F_q^m. Use
+every affine line inside each group as a weight-q key. Any two keys
+intersect in at most one coordinate; every within-group pair lies on
+exactly one key. There are
+
+    n=v*(v-1)/q keys,
+    r=(v-1)/(q-1) keys through every coordinate.
+
+Allow 2*n slots and a coordinate-load limit 2*r. Every fresh weight-q
+insertion is still blocked: q points in q-1 groups include a within-group
+pair, which already has an owner. Thus this is an insertion obstruction
+despite spare resources. Its owned-pair fraction is
+(v-1)/((q-1)*v-1), tending to 1/(q-1) as v grows. A small fraction of all
+pairs can suffice to block every insertion.
+
+This is an extremal classical packing construction. To see the lower
+bound directly, form the graph of owned pairs in any maximal weight-w
+pair packing. It has E=n*C(w,2) edges and no independent set of size w.
+In a uniform random vertex ordering, the vertices earlier than all their
+neighbors form an independent set, with expected size
+sum_a 1/(deg(a)+1). Cauchy's inequality gives
+
+    d^2/(2*E+d) <= sum_a 1/(deg(a)+1) <= w-1,
+    n >= d*(d-w+1)/(w*(w-1)^2).
+
+The affine construction attains equality with w=q. Balanced disjoint
+cliques attain the graph bound, and exact pair designs inside them
+partition their edges into keys. Novák's 1995 paper uses precisely this
+Turán partition and exact-design mechanism for minimum maximal
+quadruple packings: see Theorems 1.1, 2.1--2.3 and their proofs on printed
+pages 368--369. We therefore treat the admission application as a transfer
+of known extremal design facts, not a new packing theorem.
+[Novák, *Packings of pairs with a minimum known number of quadruples*](https://www.dml.cz/handle/10338.dmlcz/126092).
+
+Even replacing one slot can require extensive uniform resampling. Delete
+one line in the construction. A weight-q proposal can then use j>=2
+points from that deleted line, with the remaining q-j points in different
+other groups. No other form is admissible. The exact number of accepted
+proposals is
+
+    A(q,v)=sum_{j=2}^q C(q,j)*C(q-2,q-j)*v^(q-j),
+    p_accept=A(q,v)/C((q-1)*v,q).
+
+This includes reinserting the removed key. In particular, rejecting that
+same key cannot improve the acceptance probability. Since v>=q^2,
+putting l=j-2 bounds A by
+(q^2/2)*v^(q-2)*sum_l 1/(l!)^2 < 2*q^2*v^(q-2).
+Also C((q-1)*v,q)>=((q-1)*(v-1))^q/q! and
+q!<=q^q*2^(-floor(q/2)). The elementary bounds
+(q/(q-1))^q<=6 and (v/(v-1))^q<=3 therefore give
+
+    p_accept <= 64*(q/n)*2^(-floor(q/2)).
+
+This is a conditional failure of uniform resampling in these states,
+not a lower bound on intelligently chosen replacements or all admission
+algorithms. It does not invalidate a theorem explicitly conditioned on
+accepted updates. It also does not assert a jam family at polylogarithmic
+dimension for the earlier candidate's parameters.
+
+Retrieval can remain well conditioned in a jammed state. For inverse
+temperature b, the symmetric kernel on these keys is
+K(i,j)=2^(-b*(q-|x_i intersect x_j|)), with K(i,i)=1. Every key meets
+a_hit=q*(r-1) others at one point, giving the exact off-diagonal row sum
+
+    [a_hit*(2^b-1)+n-1]/2^(b*q).
+
+Whenever this is less than one, strict diagonal dominance proves full
+rank. The six certified finite families have this property at b=8.
+The statement is not uniform in m at that fixed temperature. This
+separates the admission obstruction from an automatic rank collapse.
+
+### Exact attention for arbitrary distinct sparse keys
+
+Here is the stronger classical comparator, including its dynamic costs.
+Fix slot capacity N, raw dimension d, maximum key weight w<=d, a global
+integer bias a>=0, integer query support bound T0<=d and amplitude bound
+B. Every distinct binary key x_i with |x_i|<=w is admissible, including
+the empty key. Every value V_i is an arbitrary independent v-dimensional
+dyadic vector with declared grid and magnitude. Duplicate keys are
+rejected; any other valid raw key can replace a slot. There is no
+pair-intersection, codebook or coordinate-load constraint. The complete
+query function is
+
+    weight_i(q)=2^(<q,x_i>-a*|x_i|),
+    R(q)=sum_i weight_i(q)*V_i / sum_i weight_i(q),
+    q in Z^d, |supp(q)|<=T0, ||q||_1<=B.
+
+All active values contribute. This is ordinary exponential attention
+with a charged fixed length-bias coordinate on the keys. These Boolean
+keys and bounded signed-integer queries are essential hypotheses; no
+claim about unrestricted real transformer inputs follows.
+
+Maintain counts c[t,A] and current value sums H[t,A] over keys of length
+t containing A, for every subset A of every current key. Length strata
+are essential: they permit the factor 2^(-a*t) without treating every
+zero query coordinate as a nonzero feature. They also isolate every
+independent value. If a key's support is X, its full cell (|X|,X) has
+count one, so its sum equals exactly V_i. A separate copy of all N values
+is unnecessary. Cached handles for every subset of a slot's key support
+let an overwrite read this full cell, form the canonical value delta,
+and change all its subset sums. Deletion subtracts the old value and
+removes only zero-count cells. A zero signed sum does not mean that a
+cell is empty. Admission validates the entire raw key and checks its
+full cell for an exact duplicate before any mutation.
+
+For S=supp(q), set u_j=2^(q_j)-1 and D=sum_{q_j<0}|q_j|. Distributing
+the product gives, for a key X of size t,
+
+    2^(<q,x>-a*t)
+      =2^(-a*t)*product_{j in S intersect X}(1+u_j)
+      =2^(-a*t)*sum_{A subset S, A subset X} product_{j in A} u_j.
+
+Consequently querying all cells (t,A) with 0<=t<=w, A subset S, |A|<=t
+computes the exact numerator and denominator. A common power-of-two
+scale E=D+a*w makes every coefficient integral. Explicitly, the scaled
+coefficient of c[t,A] or H[t,A] is
+
+    C[t,A]=(-1)^(number of negative q_j in A)
+            *2^(D+a*(w-t)-sum_{j in A,q_j<0}|q_j|)
+            *product_{j in A}(2^|q_j|-1).
+
+The exponent is nonnegative. Signed intermediate cancellation is exact;
+the final denominator is positive whenever any slot is active. Empty
+state returns no value. This is a direct all-subsets product expansion,
+followed by the usual normalized kernel-attention aggregation. Both
+mechanisms are established: see Polato--Aiolli Section 2 for the
+all-subsets product and Katharopoulos et al. Sections 3.2--3.3,
+Equations 3--5 and 9--12 for the attention sums. Negative feature
+coefficients do not make the positive similarity weight negative.
+[Polato--Aiolli, *Propositional Kernels*](https://pmc.ncbi.nlm.nih.gov/articles/PMC8391199/),
+[Katharopoulos et al., *Transformers are RNNs*](https://arxiv.org/abs/2006.16236).
+
+Let M bound the number of live (length,subset) cells and let
+
+    M <= Mmax = min(N*2^w,
+                   N+sum_{t=1}^w sum_{j=0}^{t-1} C(d,j)),
+    Q(T)=sum_{t=0}^w sum_{j=0}^{min(t,T)} C(T,j)
+         <=(w+1)*2^T.
+
+The second M bound counts at most N full cells and every possible proper
+subset separately within each length stratum. It need not be attained.
+Use a balanced ordered dictionary, encoding a whole (t,A) tuple in
+O(w*log(d+1)+log(w+1)) bits of a sufficiently wide word. It has O(M)
+nodes and worst-case O(log(Mmax+1)) lookup. Per-slot cached cell handles
+use at most N*2^w words; store sparse raw supports in O(N*w) words.
+Tree deletion can transplant nodes rather than copy another live cell
+into the deleted node, preserving all surviving cached handles. Charge
+slot/free-node metadata and all counts and pointers as well as payloads.
+With word width as specified below, conservative operation bounds are
+
+    state: O(Mmax*(v+1)+N*2^w+N*w+d) words;
+    complete raw read:
+      O(d+Q(T)*(w+log(Mmax+1)+v+1)) operations;
+    value overwrite: O(2^w*(v+1)) operations;
+    raw admitted replacement:
+      O(d+2^w*(w+log(Mmax+1)+v+1)) operations.
+
+Deletion has the same conservative replacement bound without the raw
+scan. Building a state costs its allocation plus the sum of all raw
+admission costs; it is not free preprocessing. Scratch is
+O(v+T0+w+1) guarded words with depth-first subset enumeration. The
+word-operation model charges arithmetic on its explicitly wide words;
+bit costs must additionally charge the chosen integer algorithms.
+The Python certificate uses tuple maps and arbitrary integers checked
+against declared guards; it is not a balanced-tree arena implementation
+or a hardware benchmark.
+
+For finite precision let the signed value grid units require at most s
+bits, including sign, with the grid scale separately declared. State sums
+fit in s+ceil(log2(N+1))+O(1) bits. Every scaled coefficient is at most
+2^(B+a*w) in magnitude, and every partial numerator contains at most
+Q(T0) terms bounded by N times this magnitude times the value-unit
+bound. Thus
+
+    s+B+a*w+ceil(log2(N+1))+ceil(log2(Q(T0)+1))+O(1)
+
+bits suffice for scalar read intermediates. Choose the word width also
+to cover tuple keys, coordinates, handles, slot indices and the total
+arena address range. Output exact rational grid units with the declared
+scale; output construction and any requested rounding are charged.
+No fixed-width floating-point cancellation assumption is used.
+
+Retention is possible for every distinct sparse key, rather than only
+well-separated ones. Assume actual values are on the grid delta=2^-g
+in [-1,1]. Query a target through q=2*a*x_t+e with integer ||e||_1<=eta.
+For any other key x_i its score gap from the target is
+
+    a*|x_t symmetric_difference x_i| + <e,x_t-x_i> >= a-eta.
+
+Hence the total off-target weight relative to the target is at most
+Roff=(N-1)*2^(-(a-eta)). Every coordinate's absolute output error is
+at most 2*Roff/(1+Roff). Taking
+
+    a=eta+g+ceil(log2(8*(N+1)))
+
+makes that error strictly less than delta/4. Nearest-grid rounding
+therefore returns the current arbitrary independent value exactly.
+Bounds T0>=min(d,w+eta) and B>=2*a*w+eta cover every such integer
+perturbation. Canonical deltas preserve the invariants after arbitrarily
+many valid edits, with no finite history horizon or precision drift.
+
+This is tolerance of small amplitude jitter around the scaled query
+2*a*x_t. It is not a promise to correct binary-key bit flips or erasures.
+Two admissible keys can be one bit apart; a shared corrupted binary
+input cannot uniquely specify which arbitrary label was intended.
+Increasing a cannot remove that ambiguity. There is also no theorem
+here about learning a semantic sparse encoder.
+
+The retention promise alone has a simpler dictionary baseline. Since
+a>eta, thresholding each query coordinate at a recovers x_t exactly:
+target-zero coordinates are below a and target-one coordinates are
+above a. A sparse-key dictionary can then return its current value in
+O(d+log(N+1)+v) guarded-word operations, with O(N*(w+v+1)) state.
+It does not compute the complete exponential-attention function on all
+admissible queries. Thus exact rounded retention tests by themselves
+cannot establish an access or robustness advantage over dictionaries;
+the complete query function needs a separate reason to be useful.
+
+For example w=O(log(N)/log(log(N))), T0=O(w), d=polylog(N),
+eta=O(w), g=O(log(N)) and s=polylog(N) give a=O(log(N)),
+B=O(w*log(N)). Then state and preprocessing are N^(1+o(1))*(v+1)
+words/operations and complete reads and updates cost N^o(1)*(v+1),
+including polylogarithmic bit-operation factors. This statement admits
+every distinct raw key of weight at most w. Neither a specially selected
+codebook nor the earlier random-admission bound is required. It is a
+sparse classical feature baseline, not a new separation from it. In
+particular k=w in the older fixed-weight formula already permits all
+distinct weight-w keys; that endpoint is not a new identity either.
+Installing N distinct values additionally requires sum_{j<=w} C(d,j)>=N.
+For example d=ceil(log2(N))^3 and
+w=ceil(log2(N)/log2(log2(N))) satisfy this for sufficiently large N;
+an arbitrary smaller declared universe need not have N distinct keys.
+
+The finite costs need not all be enormous. At N=2^20,d=128,w=4,T0=8,
+the exact arithmetic resource bound is 16 subset cells per largest-key
+update, 303 cell lookups per read, and at most 358,020 proper-subset
+payload cells plus N independent full cells, or 1,406,596 payload cells.
+Tuple nodes, handles, sparse key storage, raw input scanning and scalar
+bit widths are additional. These are combinatorial counts, not bytes,
+measured memory, measured latency or an equal-cost learned-recall win.
+No million-slot state was allocated. The six large parameter examples in
+the preceding section exposed expensive constants for those examples;
+they did not prove that all sparse parameter choices were impractical.
+
+### Contemporary primary-method audit and exact controls
+
+The previously pending contemporary sources have now been read beyond
+their abstracts. The official ICLR 2026 version of
+[Gupta--Huang--Saha--Xu--Ye, *Subquadratic Algorithms and Hardness for Attention with Any Temperature*](https://proceedings.iclr.cc/paper_files/paper/2026/file/8a01099096c85890b1d1aff3c6b4ea56-Paper-Conference.pdf)
+gives a static approximate batch theorem at constant dimension d:
+Theorem 1.1 has time tilde-O(n^(2-1/d)*polylog(B_entry/epsilon)).
+Theorem 1.2 gives the corresponding constant input-rank r statement
+with an nd term. The range-searching and polynomial-feature construction
+in Section 3 and Appendix A has dimension-dependent feature costs;
+the constants cannot be treated as uniform for growing d. Its conditional
+hardness theorem concerns worst-case inputs, not every sparse promised
+class. These results neither assert the dynamic exact latest-value
+guarantee above nor establish that our specialization beats their best
+applicable specialization. The audit covers these theorem statements and
+construction, not every gradient or hardness extension in the paper.
+
+[S3-Attention, arXiv:2601.17702v2](https://arxiv.org/abs/2601.17702v2),
+Sections 3.3--3.6, Algorithm 1 and Appendix D.6--D.7, learns Top-k sparse
+autoencoder features, maintains CPU postings, retrieves text windows,
+fuses retrieval signals and reruns the model on a compressed context.
+Its constant GPU-memory claim is chunk-local; its CPU index grows with
+context length, the indexed layers and feature sparsity. Retained source
+text, posting hits, score initialization over the context, convolution,
+window selection and the final model pass must all be charged. This is
+not an exact all-independent-value sum with latest-value overwrite
+guarantees. Conversely our Boolean-key theorem does not prove superior
+learned semantic retrieval or end-to-end language-model performance.
+The different query specifications are a comparison boundary, not an
+advantage certificate.
+
+Reproduce the controls with
+
+    python3 -B scripts/run_timing_restart_checks.py
+    ./build.sh
+    python3 tests/test_smoke.py
+
+The new `capacity_frontier_baselines` report block checks 10,076 complete
+reads against independent direct biased dot-product sums, including
+scaled numerator and denominator. It installs every raw key of weight
+at most w in four finite universes (d,w)=(5,2),(6,3),(7,3),(8,4), including
+the empty key and all length strata. It checks 336 norm-one integer-noise
+queries at targets before and after their own value overwrites,
+duplicate/out-of-range/too-heavy admission rejection, twelve malformed
+queries, zero-sum live cells, deletion and reuse. Six prime affine-line
+families certify pair ownership, balanced load, the attained minimum
+maximal bound and exact kernel row sums. The four smaller families
+exhaust all 25,654 raw insertion proposals and the same proposals after
+one deletion, independently checking the replacement formula. The larger
+two use complete pair coverage plus the uniform proof, without claiming
+exhaustive proposal enumeration. A blocked support (0,1,9) in the
+24-key, d=18,w=3 jam is admitted by the full-subsets baseline as a 25th
+key, and both an old and the new value are retrieved after rounding.
+
+The certificates support the elementary proofs; they do not establish
+novelty. Preserve the earlier certificates and classify this workload's
+factorization, generic admission and retention result as a baseline.
+The active research goal remains unmet: the next candidate needs a
+useful primitive or a nonroutine lower bound beyond this stronger
+baseline, with explicit noise and query semantics. Merely replacing a
+codebook, changing the temperature or exploiting an uncharged resource
+does not qualify. No further neural training or contribution manuscript
+is justified by this iteration alone.

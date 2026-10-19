@@ -18,7 +18,7 @@
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "exact_signed_integer_query_exponential_attention_candidate_proved_with_generic_low_intersection_admission; full_value_mass_finite_precision_and_grid_retention_checked; classical_multilinear_and_subset_index_priority_and_useful_finite_cost_gap_unresolved"
+      "status": "generic_sparse_key_exponential_attention_classified_as_classical_all_subsets_baseline; low_intersection_admission_obstruction_and_stronger_generic_dynamic_costs_proved_and_checked; new_useful_advantage_unproved"
     },
     {
       "stage": 4,
@@ -2160,5 +2160,102 @@
     },
     "old_functions_and_certificate_blocks_preserved": true,
     "verification_scope": "Extended full exact checker, focused weighted control, core build and smoke tests passed. All 234 protected files, twenty-five prior non-main checker function ASTs, twenty-six historical iterations and all historical report blocks are preserved. Final note/checker hashes match the report. The new block checks 23986 full signed-integer raw queries against both direct dyadic dot-product sums and maintained-posting background correction, comparing normalized output and scaled numerator/denominator. Cases include five generic/code families plus precision, load-cap and 169-value complete-code controls; four admitted keys outside initial families, signed cancellations, atomic malformed queries/keys, overwrite/deletion/reuse and a load-only rejection. It checks 1356 exhaustive norm-one noise queries at four targets, four independent post-overwrite pure reads, every query-at-key operator row and an exact noncandidate value influence witness. Hypergeometric rejection bounds are checked on 144 complete current states and 5608 uniform proposals, and six large conceptual parameter cases certify integer admission/grid inequalities while exposing subset tables larger than capacity. The 264-bit payload control has preselected 791-bit guards and observed 521-bit signed intermediates. The verifier uses Python maps/sets and stores both comparison states; standalone finite-word/trie/linked-posting storage and runtime are supplied by the uniform written accounting, not measured hardware. Other proof checkers were not rerun because their sources/artifacts are unchanged. No new theorem beyond prior art, useful finite ML regime, strongest-method separation, encoder guarantee or publication readiness is established."
+  },
+  "twenty_eighth_iteration": {
+    "previous_turn_classification": "Progress: the signed-query exponential extension, full-value precision/retention theorem and exact load-sensitive posting comparator were checked and published, without a new strongest-method advantage.",
+    "record": "docs/associative_memory_timing.md, Capacity, admission, and the stronger all-subsets baseline",
+    "certificate_script": "scripts/run_timing_restart_checks.py",
+    "certificate_report": "results/research/timing_restart_checks.json",
+    "candidate_uniform_bound_proved": true,
+    "model_and_boundary": [
+      "Arbitrary distinct binary keys of weight at most w, including the empty key, with no low-intersection, prescribed-codebook or load-cap admission rule. Fixed global integer length bias a. Raw signed-integer queries have separately declared support T0 and l1 amplitude B. Every current independent dyadic value contributes to the exact biased exponential attention numerator and denominator.",
+      "Balanced tuple dictionaries, all live count/value-sum cells, sparse keys, per-slot subset handles, free-node metadata, exact output and preselected scalar/index word widths are charged. Full length-stratified support cells isolate current values, so the algorithm needs no duplicate independent-value cache. Python oracle reference values are verification state, not uncharged algorithm state.",
+      "Grid retention is for integer amplitude noise around the scaled target 2*a*x. It is not binary-key bit-flip/erasure correction or a learned encoder guarantee. All accepted updates preserve current-state exact invariants without a horizon. Raw admission rejects only malformed, too-heavy or duplicate keys when a slot is available.",
+      "Scaled-amplitude retention alone is solved more simply by coordinate thresholding at a, since a>eta, followed by a current-value dictionary lookup. This does not compute the complete all-admissible-query attention function, but prevents treating rounded retention tests alone as a dictionary separation."
+    ],
+    "construction_and_proof": [
+      "Classical all-subsets expansion grouped by key length computes every coefficient exactly on the common scale 2^(sum negative query magnitudes+a*w). Signed coefficients and cancellation are covered by explicit integer guards. All independent values remain at their unique full-support cells.",
+      "Mmax=min(N*2^w,N+sum over t=1..w and j<t of binom(d,j)); Q(T)=sum over t=0..w and j<=min(t,T) of binom(T,j). State is O(Mmax*(v+1)+N*2^w+N*w+d) guarded words. Complete raw read costs O(d+Q(T)*(w+log(Mmax+1)+v+1)); value overwrite O(2^w*(v+1)); raw admission O(d+2^w*(w+log(Mmax+1)+v+1)). Preprocessing, dictionary metadata and bit costs are explicit.",
+      "At a=eta+g+ceil(log2(8*(N+1))), integer l1 noise eta around 2*a*x yields a target/other score gap at least a-eta even for keys at Hamming distance one. The full off-target error is strictly below one quarter of grid spacing 2^-g for values in [-1,1], so nearest-grid rounding gives every current independent value.",
+      "With w=O(log(N)/log(log(N))), query support O(w), polylogarithmic dimension/precision and amplitude O(w*log(N)), the unrestricted sparse-key baseline has near-linear state/preprocessing and subpolynomial complete read/update cost. Installing N distinct keys additionally requires a large enough raw support universe; explicit asymptotic parameters are given.",
+      "Standard nested-floor Johnson counts provide necessary finite packing constraints only. The older materialized owner/payload table counts are recipe-specific, not universal memory lower bounds.",
+      "In q-1 disjoint copies of affine F_q^m, all affine lines form a balanced minimal maximal pair packing: every new weight-q insertion is blocked with half of declared slots and load allowance free. The classical Turan/local-minima graph bound is attained exactly. Deleting one line leaves exactly sum_{j=2}^q binom(q,j)*binom(q-2,q-j)*q^(m*(q-j)) admitted proposals, with uniform acceptance <=64*(q/n)*2^(-floor(q/2)). No intelligent-rekey lower bound or compact-dimension jam is asserted."
+    ],
+    "primary_prior_art": [
+      {
+        "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8391199/",
+        "scope": "Polato--Aiolli Section 2 explicitly reviews the all-subsets product feature map and its equivalence to the monotone-DNF kernel up to a constant. This establishes that the factorization is classical, not new."
+      },
+      {
+        "source": "https://arxiv.org/abs/2006.16236",
+        "scope": "Katharopoulos et al. Sections 3.2--3.3 and Equations 3--5,9--12 give normalized feature/value and count aggregation. The sparse Boolean specialization and canonical current-value deltas do not by themselves establish a new mechanism."
+      },
+      {
+        "source": "https://www.dml.cz/handle/10338.dmlcz/126092",
+        "scope": "Novak 1995 Theorems 1.1,2.1--2.3 and proofs, printed pages 368--369, explicitly combine a Turan partition and exact pair designs for minimum maximal quadruple packings. The affine-line admission obstruction transfers this classical construction; no new extremal-design priority is claimed."
+      },
+      {
+        "source": "https://proceedings.iclr.cc/paper_files/paper/2026/file/8a01099096c85890b1d1aff3c6b4ea56-Paper-Conference.pdf",
+        "scope": "Official Gupta--Huang--Saha--Xu--Ye ICLR 2026 Theorems 1.1--1.2, Section 3 and Appendix A were examined beyond the abstract. The static approximate batch guarantee assumes constant dimension or input rank, with dimension-dependent polynomial/range-searching costs. The worst-case hardness theorem does not exclude all sparse promised classes; this audit is not a claim of superiority or an exhaustive audit of every extension."
+      },
+      {
+        "source": "https://arxiv.org/abs/2601.17702v2",
+        "scope": "S3-Attention Sections 3.3--3.6, Algorithm 1 and Appendix D.6--D.7 were examined. Learned sparse features drive CPU postings and text-window retrieval/fusion followed by a model rerun. Constant chunk GPU memory excludes growing CPU index/source state. Posting hits, context-sized scoring/window work and final model compute must be charged. It is a different function, not an exact latest-value all-payload sum; no learned-model advantage is established by that distinction."
+      }
+    ],
+    "decision": "The generic sparse-key attention factorization, unrestricted valid-key admission and finite-grid retention are now classified as a stronger classical baseline. The older strict pair-admission rule can jam despite spare resources; classical extremal designs explain why. The full-subsets baseline admits the blocked key and preserves both old and new arbitrary values. This closes an avoidable assumption gap but does not satisfy the new-theorem goal. Finite combinatorial counts can be reasonable for very small key weight, so earlier expensive examples must not be generalized to all parameters. No measured ML speed/memory win, strongest-baseline separation or publication-worthy novelty is established. Continue only towards a useful primitive or nonroutine obstruction beyond this baseline; do not start training or write a contribution paper from these elementary combinations alone.",
+    "next_actions": [
+      "Treat unrestricted sparse-key all-subsets attention with explicit metadata, separate query support/amplitude budgets and full-leaf independent values as a required baseline. A new codebook, temperature rescaling or another familiar feature expansion is insufficient. The retention-only workload is also a threshold-plus-dictionary baseline; the full query function needs a separate useful consequence.",
+      "Select a useful extension of query/noise/update semantics that this and the posting/aggregate/kernel baselines do not already handle at the claimed complete costs, or pursue a nonroutine lower bound covering those methods. Prove a uniform improvement before designing a learned experiment; retain the full original impact and novelty criteria.",
+      "Any finite-cost comparison must charge payload sum bit widths, query guards, tuple nodes, handles, raw scanning, preprocessing, encoder cost and actual query error semantics. Do not infer semantic robustness from scaled-amplitude noise or a hardware win from operation counts."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "strongest_baseline_advantage_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "verification_commands": [
+      "python3 -B scripts/run_timing_restart_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py"
+    ],
+    "preservation": "All twenty-seven historical iterations, twenty-six prior non-main checker function ASTs, historical report blocks, 234 protected files, core kernels, manuscripts and learned-recall data are retained. Only the existing timing note/checker/report and research manifest change.",
+    "certificate_summary": {
+      "complete_raw_reads": 10076,
+      "exhaustive_integer_noise_grid_reads": 336,
+      "atomic_invalid_queries": 12,
+      "johnson_vs_simple_packing_integer_controls": 363,
+      "exhaustive_blocked_insertions": 25654,
+      "exhaustive_single_slot_replacement_proposals": 25654,
+      "relaxed_admission_witness": {
+        "old_active_keys": 24,
+        "new_active_keys": 25,
+        "previously_blocked_raw_support": [
+          0,
+          1,
+          9
+        ],
+        "generic_full_subset_baseline_admits_it": true,
+        "old_and_new_values_retained_by_grid_rounding": true
+      },
+      "finite_full_subset_resource_example": {
+        "capacity": 1048576,
+        "dimension": 128,
+        "max_key_weight": 4,
+        "query_support_budget": 8,
+        "subsets_changed_per_largest_key": 16,
+        "query_cell_lookups": 303,
+        "proper_subset_payload_cell_upper_bound": 358020,
+        "all_payload_cells_including_independent_values_upper_bound": 1406596,
+        "input_and_state_precision_and_all_dictionary_metadata_are_additional": true,
+        "no_million_slot_allocation_or_runtime_benchmark_performed": true
+      }
+    },
+    "certificate_case_count": 4,
+    "affine_jam_case_count": 6,
+    "old_functions_and_certificate_blocks_preserved": true,
+    "verification_scope": "The final full exact checker, core build and smoke tests passed. All 234 protected files, twenty-six prior non-main checker ASTs, twenty-seven historical iterations and all historical report blocks are unchanged; final note/checker hashes match the report. The new block checks 10076 complete biased exponential reads against independent direct sums, 336 integer-noise queries before/after target overwrites, twelve malformed queries, generic sparse-key admission, cancellation, deletion and reuse. Six affine-line jam families certify all pair coverage and exact kernel rows; four exhaust 25654 insertion/replacement proposals. The full-subsets index admits a previously blocked 25th key and rounds both old/new values correctly. Sixteen finite necessary-only packing choices and 363 small Johnson controls are recorded. A conceptual million-slot example gives 303 query lookups and at most 1406596 payload cells, excluding all separately charged metadata and precision; no such large state or hardware benchmark was run. The implementation is a correctness oracle, not the written balanced-tree word arena. The scalar retention promise alone is also solved by thresholding plus a dictionary. No new priority, strongest-method or ML advantage is established; no training was run."
   }
 }
