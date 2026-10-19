@@ -2348,6 +2348,392 @@ def spectral_omv_controls():
             "scope": "Exact bounded certificates for an explicit near-identity-kernel encoding of Boolean rectangle means and a raw-bit repetition-basin decoder. All Boolean payload assignments are exhausted for side 2 and 3; larger cases use stated deterministic payload profiles. Every Boolean rectangle query is exhausted for each listed configuration. All raw bit perturbations up to the basin radius are exhausted only for side <=3 and spectral_slack_bits=1. The uniform spectral/retention/reduction proofs are analytical. The OMv conjecture, arbitrary raw-query performance, small-radius hardness, novelty and an architectural advantage are not verified or claimed."}
 
 
+def subset_aggregate_controls():
+    """Independent Hamming reads versus subset sums and owner corrections."""
+    from math import comb, isqrt
+
+    class AggregateIndex:
+        # Exact tuple-map control, not a word-RAM benchmark. The written
+        # bound uses preallocated tries; the previous signature controls
+        # independently exercise that trie/free-list primitive.
+        def __init__(self, capacity, dimension, weight, level):
+            self.n, self.d, self.w, self.k = capacity, dimension, weight, level
+            self.keys = [None] * capacity
+            self.values = [(0, 0)] * capacity
+            self.handles = [()] * capacity
+            self.sums, self.owners = {}, {}
+            self.marks = [False] * capacity
+            self.entry_limit = capacity * sum(comb(weight, j) for j in range(level + 1))
+            self.queries = self.gates = self.candidate_occurrences = 0
+            self.candidate_visits = self.corrections = self.low_only = 0
+            self.bulk_low_only = self.subset_lookups = self.max_entries = 0
+            self.admitted = self.rejected = self.deletions = self.overwrites = 0
+
+        def support(self, key):
+            return tuple(i for i in range(self.d) if key & (1 << i))
+
+        def snapshot(self):
+            return (tuple(self.keys), tuple(self.values), tuple(self.handles),
+                    tuple(sorted((a, count, tuple(total))
+                                 for a, (count, total) in self.sums.items())),
+                    tuple(sorted(self.owners.items())))
+
+        def remove(self, slot):
+            key = self.keys[slot]
+            if key is None:
+                return
+            value = self.values[slot]
+            for a in self.handles[slot]:
+                count, total = self.sums[a]
+                count -= 1
+                total = [x - y for x, y in zip(total, value)]
+                if count:
+                    self.sums[a] = (count, total)
+                else:
+                    assert total == [0, 0]
+                    del self.sums[a]
+            for a in combinations(self.support(key), self.k):
+                assert self.owners.pop(a) == slot
+            self.keys[slot], self.values[slot], self.handles[slot] = None, (0, 0), ()
+            self.deletions += 1
+
+        def replace(self, slot, key, value):
+            before = self.snapshot()
+            valid = 0 <= key < (1 << self.d) and key.bit_count() == self.w
+            support = self.support(key) if valid else ()
+            if valid:
+                valid = all(a not in self.owners or self.owners[a] == slot
+                            for a in combinations(support, self.k))
+            brute_valid = (0 <= key < (1 << self.d) and key.bit_count() == self.w
+                           and all(other is None or i == slot
+                                   or (key & other).bit_count() < self.k
+                                   for i, other in enumerate(self.keys)))
+            assert valid == brute_valid
+            if not valid:
+                assert self.snapshot() == before
+                self.rejected += 1
+                return False
+            self.remove(slot)
+            handles = tuple(a for j in range(self.k) for a in combinations(support, j))
+            for a in handles:
+                count, total = self.sums.get(a, (0, [0, 0]))
+                self.sums[a] = (count + 1, [x + y for x, y in zip(total, value)])
+            for a in combinations(support, self.k):
+                assert a not in self.owners
+                self.owners[a] = slot
+            self.keys[slot], self.values[slot], self.handles[slot] = key, tuple(value), handles
+            self.admitted += 1
+            self.check_state()
+            return True
+
+        def overwrite(self, slot, value):
+            assert self.keys[slot] is not None
+            delta = [x - y for x, y in zip(value, self.values[slot])]
+            for a in self.handles[slot]:
+                count, total = self.sums[a]
+                self.sums[a] = (count, [x + y for x, y in zip(total, delta)])
+            self.values[slot] = tuple(value)
+            self.overwrites += 1
+            self.check_state()
+
+        def check_state(self):
+            expected, owners = {}, {}
+            for slot, key in enumerate(self.keys):
+                if key is None:
+                    assert self.handles[slot] == ()
+                    continue
+                support = self.support(key)
+                for j in range(self.k):
+                    for a in combinations(support, j):
+                        count, total = expected.get(a, (0, [0, 0]))
+                        expected[a] = (count + 1, [x + y for x, y in zip(total, self.values[slot])])
+                for a in combinations(support, self.k):
+                    assert a not in owners
+                    owners[a] = slot
+            assert self.sums == expected and self.owners == owners
+            assert len(self.sums) + len(self.owners) <= self.entry_limit
+            assert not any(self.marks)
+            self.max_entries = max(self.max_entries, len(self.sums) + len(self.owners))
+
+        def read(self, raw, radius):
+            self.queries += 1
+            self.last_totals = ((0, 0), 0)
+            support = self.support(raw)
+            size = len(support)
+            if abs(size - self.w) > radius:
+                self.gates += 1
+                return None
+            values = [max(0, radius + 1 - self.w - size + 2 * s)
+                      for s in range(self.k)]
+            coefficients = []
+            while values:
+                coefficients.append(values[0])
+                values = [y - x for x, y in zip(values, values[1:])]
+            polynomial = [sum(coefficient * comb(s, j)
+                              for j, coefficient in enumerate(coefficients))
+                          for s in range(self.w + 1)]
+            assert all(polynomial[s] == max(0, radius + 1 - self.w - size + 2 * s)
+                       for s in range(self.k))
+            numerator, denominator = [0, 0], 0
+            touched = []
+            for j, coefficient in enumerate(coefficients):
+                for a in combinations(support, j):
+                    self.subset_lookups += 1
+                    count, total = self.sums.get(a, (0, [0, 0]))
+                    denominator += coefficient * count
+                    numerator = [x + coefficient * y for x, y in zip(numerator, total)]
+            for a in combinations(support, self.k):
+                self.subset_lookups += 1
+                slot = self.owners.get(a)
+                if slot is not None:
+                    self.candidate_occurrences += 1
+                    if not self.marks[slot]:
+                        self.marks[slot] = True
+                        touched.append(slot)
+            for slot in touched:
+                key = self.keys[slot]
+                common = (raw & key).bit_count()
+                correction = max(0, radius + 1 - self.w - size + 2 * common) - polynomial[common]
+                denominator += correction
+                numerator = [x + correction * y for x, y in zip(numerator, self.values[slot])]
+                self.candidate_visits += 1
+                self.corrections += correction != 0
+                self.marks[slot] = False
+            assert all(not self.marks[slot] for slot in touched) and denominator >= 0
+            if not touched:
+                self.low_only += 1
+            self.last_totals = (tuple(numerator), denominator)
+            if denominator == 0:
+                assert numerator == [0, 0]
+                return None
+            return tuple(F(x, denominator) for x in numerator)
+
+        def oracle(self, raw, radius):
+            weights = [(slot, max(0, radius + 1 - (raw ^ key).bit_count()))
+                       for slot, key in enumerate(self.keys) if key is not None]
+            denominator = sum(weight for _, weight in weights)
+            numerator = tuple(sum(weight * self.values[slot][coordinate]
+                                  for slot, weight in weights) for coordinate in range(2))
+            self.oracle_totals = (numerator, denominator)
+            if not denominator:
+                return None
+            return tuple(F(value, denominator) for value in numerator)
+
+    cases = []
+    # Fano triples are not a one-hot polynomial codebook.
+    families = [(6, 2, 1, [3, 12, 48]),
+                (9, 4, 2, [sum(1 << i for i in a) for a in
+                           ((0, 1, 2, 3), (0, 4, 5, 6), (1, 4, 7, 8))]),
+                (7, 3, 2, [sum(1 << i for i in a) for a in
+                           ((0, 1, 2), (0, 3, 4), (0, 5, 6), (1, 3, 5),
+                            (1, 4, 6), (2, 3, 6), (2, 4, 5))])]
+    rs = {}
+    for prime, level in ((3, 2), (5, 2), (5, 3), (7, 2), (13, 2)):
+        keys = []
+        for coefficients in product(range(prime), repeat=level):
+            symbols = [sum(c * pow(a, j, prime) for j, c in enumerate(coefficients)) % prime
+                       for a in range(prime)]
+            keys.append(sum(1 << (a * prime + y) for a, y in enumerate(symbols)))
+        families.append((prime * prime, prime, level, keys))
+        rs[prime, level] = keys
+
+    complete_reads = dynamic_states = zero_sum_live_entries = 0
+    arbitrary_admitted_keys = parameter_bounds = spectral_rows = 0
+    pure_noise_queries = admitted_noise_queries = mixture_witnesses = 0
+    for dimension, weight, level, keys in families:
+        index = AggregateIndex(len(keys), dimension, weight, level)
+        for slot, key in enumerate(keys):
+            assert index.replace(slot, key, (2 * slot - 11, 17 - 3 * slot))
+        if dimension <= 9:
+            queries = list(range(1 << dimension))
+        else:
+            query_set = {0, (1 << dimension) - 1, *keys}
+            for size in range(dimension + 1):
+                query_set.add((1 << size) - 1)
+                query_set.add(((1 << size) - 1) << (dimension - size))
+            for key in keys:
+                for bit in range(min(dimension, 31)):
+                    query_set.add(key ^ (1 << bit))
+            if weight == 5:
+                query_set.update(sum(1 << (a * weight + symbol)
+                                     for a, symbol in enumerate(word))
+                                 for word in product(range(weight), repeat=weight))
+            queries = sorted(query_set)
+
+        def check(radii):
+            nonlocal complete_reads, dynamic_states, zero_sum_live_entries
+            index.check_state()
+            dynamic_states += 1
+            zero_sum_live_entries += sum(count > 0 and total == [0, 0]
+                                         for count, total in index.sums.values())
+            for radius in radii:
+                for raw in queries:
+                    before = index.candidate_visits
+                    assert index.read(raw, radius) == index.oracle(raw, radius)
+                    assert index.last_totals == index.oracle_totals
+                    # Oracle-only diagnostic, outside the candidate reader.
+                    if index.candidate_visits == before:
+                        index.bulk_low_only += sum(
+                            key is not None and (raw ^ key).bit_count() <= radius
+                            for key in index.keys) >= 3
+                    complete_reads += 1
+
+        check(range(2 * weight + 1) if dimension <= 9 else (0, weight, 2 * weight))
+        for slot in range(0, len(keys), 3):
+            index.overwrite(slot, (0, 0))
+        check((weight,))
+        # Nonzero independent values can cancel, leaving live zero sums.
+        for slot in range(len(keys)):
+            value = 0 if slot == len(keys) - 1 and len(keys) % 2 else (-1) ** slot
+            index.overwrite(slot, (value, -value))
+        assert index.sums[()][1] == [0, 0]
+        check((weight,))
+        for slot in range(1, len(keys), 2):
+            index.remove(slot)
+        check((weight,))
+        # Invalid weight, duplicate owner and a distinct high-overlap key
+        # must all reject without altering sums or current values.
+        assert not index.replace(0, 0, (99, -99))
+        if len(keys) > 2:
+            assert not index.replace(0, keys[2], (99, -99))
+        base_support = index.support(keys[2])
+        changed = tuple(base_support[:level]) + tuple(
+            i for i in range(dimension) if i not in base_support)[:weight - level]
+        if len(changed) == weight:
+            before = index.snapshot()
+            assert not index.replace(0, sum(1 << i for i in changed), (99, -99))
+            assert index.snapshot() == before
+        # The generic admission rule may accept keys outside the original
+        # codebook. Exhaust every weight-w proposal for one small slot.
+        if dimension <= 9:
+            original = set(keys)
+            for support in combinations(range(dimension), weight):
+                key = sum(1 << i for i in support)
+                accepted = index.replace(1, key, (23, -31))
+                arbitrary_admitted_keys += accepted and key not in original
+            check((weight,))
+            admitted_eta = min(1, weight - 2 * level + 1)
+            for slot, key in enumerate(index.keys):
+                if key is None or admitted_eta < 0:
+                    continue
+                for size in range(admitted_eta + 1):
+                    for bits in combinations(range(dimension), size):
+                        raw = key ^ sum(1 << bit for bit in bits)
+                        expected = tuple(F(x) for x in index.values[slot])
+                        assert index.read(raw, weight) == expected == index.oracle(raw, weight)
+                        admitted_noise_queries += 1
+        # Repeated arena-entry deletion/reuse, and cancellation with
+        # nonzero support, have no accumulated history parameter.
+        for iteration in range(12):
+            index.remove(0)
+            assert index.replace(0, keys[0], (iteration - 6, 6 - iteration))
+        for slot in range(len(keys)):
+            index.remove(slot)
+        assert index.sums == {} and index.owners == {}
+        check((weight,))
+        for slot, key in enumerate(keys):
+            assert index.replace(slot, key, ((-1) ** slot, -((-1) ** slot)))
+        check((weight,))
+        if dimension <= 25:
+            minimum = min((a ^ b).bit_count() for i, a in enumerate(keys) for b in keys[i + 1:])
+            radius = weight
+            eta = min(radius, minimum - radius - 1, 2)
+            if eta >= 0:
+                for slot, key in enumerate(keys):
+                    for size in range(eta + 1):
+                        for bits in combinations(range(dimension), size):
+                            raw = key ^ sum(1 << bit for bit in bits)
+                            assert index.read(raw, radius) == tuple(F(x) for x in index.values[slot])
+                            assert index.oracle(raw, radius) == tuple(F(x) for x in index.values[slot])
+                            pure_noise_queries += 1
+        cases.append({"capacity": len(keys), "raw_dimension": dimension,
+                      "weight": weight, "intersection_level": level,
+                      "queries": index.queries, "weight_gate_returns": index.gates,
+                      "subset_lookups": index.subset_lookups,
+                      "candidate_occurrences": index.candidate_occurrences,
+                      "deduplicated_candidate_visits": index.candidate_visits,
+                      "nonzero_owner_corrections": index.corrections,
+                      "reads_without_candidate_visits": index.low_only,
+                      "bulk_reads_without_candidate_visits": index.bulk_low_only,
+                      "maximum_live_subset_entries": index.max_entries,
+                      "subset_entry_capacity": index.entry_limit,
+                      "admitted_key_replacements": index.admitted,
+                      "atomic_invalid_rejections": index.rejected,
+                      "key_deletions": index.deletions, "payload_overwrites": index.overwrites})
+
+    # Exact full-code spectral row sums, independently computed from
+    # raw Hamming distances rather than a large Gram eigensolver.
+    for (prime, level), keys in rs.items():
+        predicted = 1 + F(sum(comb(prime, j) * (prime ** (level - j) - 1)
+                              for j in range(level)), 2 ** prime)
+        assert predicted < 1 + F(3 * len(keys), 2 ** prime)
+        for key in keys:
+            row = sum(F(1, 2 ** ((key ^ other).bit_count() // 2)) for other in keys)
+            assert row == predicted
+            spectral_rows += 1
+
+    # Exact 2- and 3-value blends among the linear polynomial keys.
+    for prime, count in ((5, 2), (7, 2), (13, 2), (13, 3)):
+        assert (prime - 1) % count == 0
+        agreement = 1 + (prime - 1) // count
+        assert agreement > count  # level=2, every other polynomial hits <=count rows.
+        keys = rs[prime, 2]
+        index = AggregateIndex(len(keys), prime * prime, prime, 2)
+        coefficients = list(product(range(prime), repeat=2))
+        chosen = [coefficients.index((0, slope)) for slope in range(count)]
+        for slot, key in enumerate(keys):
+            assert index.replace(slot, key, (slot * slot + 1, -3 * slot - 2))
+        symbols = [0] + [((a - 1) // ((prime - 1) // count)) * a % prime
+                         for a in range(1, prime)]
+        raw = sum(1 << (a * prime + symbol) for a, symbol in enumerate(symbols))
+        radius = 2 * (prime - agreement)
+        neighbors = [slot for slot, key in enumerate(keys) if (raw ^ key).bit_count() <= radius]
+        assert neighbors == chosen
+        expected = tuple(F(sum(index.values[slot][j] for slot in chosen), count) for j in range(2))
+        assert index.read(raw, radius) == expected == index.oracle(raw, radius)
+        if count == 2:
+            assert index.read(raw, prime) == expected == index.oracle(raw, prime)
+        index.overwrite(chosen[0], (-37, 41))
+        expected = tuple(F(sum(index.values[slot][j] for slot in chosen), count) for j in range(2))
+        assert index.read(raw, radius) == expected == index.oracle(raw, radius)
+        index.remove(chosen[-1])
+        expected = tuple(F(sum(index.values[slot][j] for slot in chosen[:-1]), count - 1)
+                         for j in range(2))
+        assert index.read(raw, radius) == expected == index.oracle(raw, radius)
+        mixture_witnesses += 1
+
+    parameter_examples = []
+    for prime in (127, 257, 521, 1031, 2053, 4093):
+        assert all(prime % divisor for divisor in range(2, isqrt(prime) + 1))
+        level = prime // (4 * (prime - 1).bit_length())
+        assert 2 <= level <= prime // 2
+        capacity = prime ** level
+        total = sum(comb(prime, j) for j in range(level + 1))
+        query = sum(comb(3 * prime, j) for j in range(level + 1))
+        assert total * level ** level <= (3 * prime) ** level
+        assert query * level ** level <= (9 * prime) ** level
+        assert capacity ** 4 <= 2 ** prime
+        parameter_examples.append({"prime": prime, "level": level,
+                                   "capacity_bits": capacity.bit_length(),
+                                   "key_subset_count_bits": total.bit_length(),
+                                   "query_subset_count_bits": query.bit_length()})
+        parameter_bounds += 1
+    assert arbitrary_admitted_keys > 0
+    assert sum(c['bulk_reads_without_candidate_visits'] for c in cases) > 0
+    assert sum(c['nonzero_owner_corrections'] for c in cases) > 0
+    return {"cases": cases, "complete_exact_reads": complete_reads,
+            "dynamic_snapshots": dynamic_states,
+            "zero_vector_sums_retained_with_positive_support": zero_sum_live_entries,
+            "admitted_keys_outside_initial_codebook": arbitrary_admitted_keys,
+            "exhaustive_small_pure_noise_reads": pure_noise_queries,
+            "post_admission_pure_noise_reads": admitted_noise_queries,
+            "exact_full_code_spectral_row_sums": spectral_rows,
+            "independent_two_or_three_value_mixture_witnesses": mixture_witnesses,
+            "integer_asymptotic_parameter_controls": parameter_bounds,
+            "parameter_bit_length_examples": parameter_examples,
+            "scope": "Exact tuple-map algorithm versus independent complete raw Hamming reads. Small dimensions exhaust all raw queries; larger cases exhaust stated one-hot queries for weight 5 and use systematic raw support/bit-flip controls. Dynamic admission is checked against all pair intersections, including proposals outside the initial codebook. Signed cancellations, atomic rejection, deletion/reuse, pure-noise reads, nontrivial independently overwritten/deleted mixtures, spectral row sums and exact parameter bounds are checked. The code is a bounded correctness control, not a finite-word arena implementation, runtime benchmark, learned encoder or novelty/strongest-baseline determination."}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -2372,6 +2758,7 @@ def main():
               "product_spectral_baseline": product_spectral_controls(),
               "compound_rebuild_cost": compound_rebuild_controls(),
               "spectral_mixture_hardness": spectral_omv_controls(),
+              "subset_aggregate_candidate": subset_aggregate_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,

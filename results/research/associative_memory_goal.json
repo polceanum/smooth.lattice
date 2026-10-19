@@ -18,7 +18,7 @@
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "near_identity_kernel_and_robust_individual_recall_do_not_imply_cheap_unrestricted_exact_mixtures_under_OMv; explicit_finite_word_occupancy_and_payload_reductions_checked; small_radius_spectral_tradeoff_and_original_advantage_goal_open"
+      "status": "candidate_exact_subset_aggregate_algorithm_proved_for_low_intersection_keys; deterministic_all_raw_hat_queries_and_certified_dynamic_admission_with_near_linear_storage_and_subpolynomial_ops_in_stated_regime; strongest_aggregation_prior_art_comparison_and_novelty_open"
     },
     {
       "stage": 4,
@@ -1852,5 +1852,73 @@
     "certificate_parameter_configurations": 30,
     "old_functions_and_certificate_blocks_preserved": true,
     "verification_scope": "Extended exact checker, core build and smoke tests passed. All 234 protected files, twenty-two prior non-main checker function ASTs, all twenty-three historical goal iterations and all historical report blocks are preserved. Final note/checker hashes match the report. New controls cover 30 parameter configurations, 13644 exact key-distance identities, 540 rational full kernel row bounds, 15024 active principal row bounds, 32736 complete rectangle prototype queries, 392160 scalar reads, 359424 finite-grid Boolean decisions and the same number of occupied-subset empty decisions, 540 pure recall rows and 29725 exhaustive small raw noise-basin queries. The controls do not exhaust arbitrary raw queries or certify OMv, novelty, small-radius hardness or a new architectural advantage. Other proof checkers were not rerun because their sources/artifacts are unchanged."
+  },
+  "twenty_fifth_iteration": {
+    "previous_turn_classification": "progress: explicit near-identity-kernel transfers of established OMv hardness were proved, checked and published with the large-radius and accuracy/occupancy boundaries; no architectural advantage established",
+    "record": "docs/associative_memory_timing.md, Exact mixture aggregation from low-intersection keys",
+    "certificate_script": "scripts/run_timing_restart_checks.py",
+    "certificate_report": "results/research/timing_restart_checks.json",
+    "candidate_uniform_bound_proved": true,
+    "model_and_hypothesis": "At most n active distinct raw binary keys in dimension d, each of exact weight w and pair intersection <k. Arbitrary independently overwritten signed fixed-grid vector values, exact truncated Hamming weighted means, full raw-bit queries. New key admission is certified by all size-k subset owners before mutation, rather than a free codebook or spectral promise.",
+    "construction_and_proof": {
+      "state": "For occurring coordinate subsets A of size <k keep current support count c_A and exact vector sum H_A. For size-k subsets keep the unique containing slot. Store raw keys, independent values, cached subset handles, fixed-capacity tuple dictionaries, owners, free lists, marks and cleared touched scratch.",
+      "query_identity": "For T=weight(z), g(s)=max(0,r+1-w-T+2s), let b_j=Delta^j g(0) and P(s)=sum_{j<k}b_j*binom(s,j). P(s)=g(s) for s<k. Summed subset aggregates contribute P(s_i) to each key; enumerate size-k query subsets to find every owner with s_i>=k and add exactly (g(s_i)-P(s_i))*V_i and the matching count correction once per owner. This gives the full numerator/denominator without a neighbor list, including large mixtures.",
+      "finite_costs": "F=sum_{j<=k}binom(w,j), Q_T=sum_{j<=k}binom(T,j), with early exact emptiness when |T-w|>r. Worst-case read O(d+wk+k^2+Q_T*(k*log(d+1)+d+v+1)), admitted key edit/deletion O(d+F*(k*log(d+1)+v+1)), and payload overwrite O(F*(v+1)) via handles. State O(n*(ceil(d/W)+v+1)+n*F*(k*log(d+1)+v+1)+d+wk) words, including arena capacity, raw keys and metadata. Preprocessing charges all allocations, raw loading and subset construction.",
+      "precision": "Signed cancellations are exact; entries are freed by support counts rather than zero vector sums. With G=r+w+T+2, scalar intermediates fit S+O(log(n+1)+log G+k+log F+log Q_T) bits; use the maximum allowed T upfront, and include pointer width. Rational output keeps a shared exact denominator and signed numerators. At polylogarithmic scalar precision bit costs preserve the subpolynomial factors; greater precision costs are separate. No stored counter, precision, forgetting error or parameter grows with horizon.",
+      "asymptotic_regime": "For w=Theta(log n), d=log^O(1)n, k=O(w/log w), r=O(w), the binomial-sum bound gives F,Q_T=exp(O(w*log(log(w)+2)/log(w)))=n^o(1). Storage/preprocessing are n^(1+o(1))*(v+1); every read, admitted edit and value overwrite is n^o(1)*(v+1) worst-case. Finite parameter tables can be extremely large, and some saved Q_T examples exceed n; no practical advantage or training inference is claimed.",
+      "uniform_retention": "Every admitted state has minimum distance >=2(w-k+1). At r=w and k<=w/2, every <=w-2k+1 arbitrary raw-bit perturbation of an active key returns its current independent value. The zero raw query simultaneously averages every active value through the cached total. The same separation gives ||K-I|| <=(n-1)*2^(-(w-k+1)); w>=4log2 n and k=o(log n) preserve near identity without a global admission test.",
+      "explicit_global_binding_family": "For prime p, degree-<k polynomials over F_p are one-hot encoded by (a,f(a)). Capacity n=p^k, weight p, dimension p^2 and pair intersection <=k-1. With k=floor(p/(4ceil(log2 p))) the parameter regime holds. Exact kernel row sum is 1+2^-p*sum_{j<k}binom(p,j)*(p^(k-j)-1)<1+3n2^-p<=1+3n^-3. Balanced piecewise queries over f+aX give exact independently changeable 2- and 3-value blends, with the uniform ell-neighbor condition and full n-value identity reads proved in the note. This is a classical Reed--Solomon witness, not a prime-specific discovery."
+    },
+    "primary_prior_art": [
+      {
+        "url": "https://thomasahle.com/papers/lasvegas.pdf",
+        "scope": "Hamming filter Sections 2--3 and Lemma 2 distance-profile terms revisited. Their analysis counts Hamming-ball intersections; no uniform transfer of the root spectral promise through data-dependent radial recursion has been proved. The full spectral comparison remains unresolved."
+      },
+      {
+        "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/vldb06.pdf",
+        "scope": "Arasu--Ganti--Kaushik, signature/candidate/verification framework and weighted subset enumeration are prior art already used by the preserved dictionary comparator. Do not claim new signatures or infer novelty from an extension of our own earlier radius restriction."
+      },
+      {
+        "url": "https://link.springer.com/article/10.1007/s10115-015-0871-2",
+        "scope": "Drzadzewski--Tompa, Sections 5--6, Algorithms 1--2 and query steps in Sections 6.1--6.2 read in the primary open-access PDF, pages 23--25; page 24 visually checked. Partial conjunction materialization, inclusion-exclusion rewriting, member retrieval and compensating aggregate differences are directly relevant prior components. A matching specialization or refinement may already yield the candidate bound; that comparison is unresolved."
+      },
+      {
+        "url": "https://people.csail.mit.edu/madhu/papers/1998/gs.pdf",
+        "scope": "Classical Reed--Solomon polynomial evaluation/low intersection and list-decoding baseline. The new candidate returns sums, not the full list of participating codewords; comparison with soft-decision/list-recovery algorithms is still required."
+      }
+    ],
+    "decision": "This is a positive candidate with a complete uniform mechanism for exact all-raw mixture queries, certified dynamic key admission and independent noisy retention in a stated high-dimensional class. It is not yet a new theorem beyond established aggregation/coding research or a strongest-baseline separation. Finish the priority and usefulness audit before treating it as a paper result. Preserve the full original goal and all prior branches.",
+    "next_actions": [
+      "Compare the exact finite-difference/correction bound against partial data-cube materialization, threshold/count aggregation, sparse set-family query algorithms and subset-signature methods. Resolve query rewriting, small-cell retrieval, dynamic updates, precision and metadata in the same parameter regime; a missing keyword result is not novelty evidence.",
+      "Audit Guruswami--Sudan/Koetter--Vardy and relevant range-counting algorithms for arbitrary raw multi-hot queries and weighted aggregation; do not compare only with list materialization or a dense implementation.",
+      "If the bound is known, classify it as a baseline and retain the model/certificates. If a genuine uniform gap survives, investigate a useful sharper finite-parameter tradeoff and matching obstruction before preparing a contribution manuscript. Do not run neural training, send messages or submit anything."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "strongest_baseline_advantage_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "verification_commands": [
+      "python3 -B scripts/run_timing_restart_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py"
+    ],
+    "preservation": "All twenty-four historical goal iterations, twenty-three prior non-main checker function ASTs, historical report blocks, other proof scripts/reports, core kernels, manuscripts and learned-recall artifacts are retained. Only the existing timing note/checker/report and research manifest change.",
+    "certificate_summary": {
+      "complete_exact_reads": 156800,
+      "dynamic_snapshots": 52,
+      "zero_vector_sums_retained_with_positive_support": 56,
+      "admitted_keys_outside_initial_codebook": 23,
+      "exhaustive_small_pure_noise_reads": 8342,
+      "post_admission_pure_noise_reads": 62,
+      "exact_full_code_spectral_row_sums": 377,
+      "independent_two_or_three_value_mixture_witnesses": 4,
+      "integer_asymptotic_parameter_controls": 6
+    },
+    "certificate_case_count": 8,
+    "old_functions_and_certificate_blocks_preserved": true,
+    "verification_scope": "Extended exact checker, core build and smoke tests passed. All 234 protected files, twenty-three prior non-main checker function ASTs, all twenty-four historical goal iterations and all historical report blocks are preserved. Final note/checker hashes match the report. New controls compare 156800 exact normalized reads and raw numerator/denominator pairs with a complete Hamming oracle across 52 dynamic snapshots and eight families; exercise 908 admitted replacements, 252 atomic rejections, 518 deletions, 523 overwrites, 56 live zero sums and 23 admitted keys outside the initial codebooks; check 8342 exhaustive small pure-noise reads and 62 post-admission noise reads, 377 exact code spectral row sums, four independently overwritten/deleted two- or three-value blends and six integer asymptotic parameter bounds. The tuple-map verifier is not a finite-word arena implementation or benchmark; the written proof supplies that accounting using the preserved trie primitive. Other proof checkers were not rerun because their sources/artifacts are unchanged. Novelty, strongest-aggregation separation, useful finite-size performance and learned-encoder advantage remain unverified."
   }
 }

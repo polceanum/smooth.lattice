@@ -2792,3 +2792,274 @@ OMv conjecture. The next positive theorem still needs a quantified advantage
 over applicable methods in an explicit radius/accuracy regime. This barrier
 is evidence against a broad shortcut, not completion of the original goal
 or a contribution manuscript.
+
+## Exact mixture aggregation from low-intersection keys
+
+The preceding conditional barrier does not rule out a useful structural
+restriction on the keys. This iteration gives a candidate deterministic
+tradeoff for that route. It extends the earlier unique-subset dictionary
+from isolated-neighbor queries to the complete scalar/vector aggregate,
+including queries matching many independently valued keys. The uniform
+algorithm and accounting below are proved; **novelty and an advantage over
+the strongest applicable aggregation methods remain unestablished**.
+
+The initial distance-profile audit did not close the full spectral class.
+Ahle's Hamming filters bound complete candidate work through intersections
+of Hamming balls, while the data-dependent ALRW/Wei recursion also changes
+centers and radii. The root spectral bound cannot simply be substituted for
+each local distance profile. This is not evidence that those methods fail.
+The restriction here is explicitly stronger than a bounded spectral norm.
+
+### Model and finite parameters
+
+There are at most n active distinct binary keys x_i in {0,1}^d. Each has
+exact weight w, and any two active keys share fewer than k one-coordinates,
+where 1<=k<=w. Values are arbitrary independently overwritable signed
+fixed-grid vectors of v words, with S input bits per scalar coordinate.
+For a fixed integer radius r>=0 the reader returns the exact weighted mean
+with weight max(0,r+1-dist(z,x_i)), or the canonical empty answer when the
+weight sum is zero. The query z is supplied as all d raw bits. Its support
+and popcount are computed and charged. Changing the encoder or the key
+class is not free.
+
+Define
+
+```text
+F = sum_{j=0}^k binom(w,j),
+Q_T = sum_{j=0}^k binom(T,j),  T=weight(z).
+```
+
+Take binomial coefficients with j greater than the upper argument as zero.
+A necessary condition for any neighbor is |T-w|<=r; otherwise return empty
+after reading the raw query. In particular only T<=w+r needs the following
+algorithm. It works for every r, with the displayed T-dependent cost; the
+subpolynomial consequence later assumes r=O(w).
+
+### The maintained subsets and the exact identity
+
+For each coordinate subset A of size less than k that occurs in an active
+key, maintain its support count c_A and vector sum H_A of current values
+over keys containing A. The empty subset holds the global count and sum.
+Maintain a separate dictionary for size-k subsets, mapping each to its
+unique containing slot. Uniqueness follows from the intersection hypothesis.
+Counts, not whether a signed vector sum vanishes, determine whether an
+entry is live. Do not discard a zero sum supported by active slots.
+
+For this query put
+
+```text
+g(s)=max(0,r+1-w-T+2*s),  0<=s<=w,
+b_j=sum_{h=0}^j (-1)^(j-h)*binom(j,h)*g(h),  0<=j<k,
+P(s)=sum_{j=0}^{k-1} b_j*binom(s,j).
+```
+
+Newton's finite-difference formula gives P(s)=g(s) for integer
+0<=s<k. The polynomial is allowed to have negative coefficients; signed
+exact arithmetic is essential. For s_i=|support(z) intersect support(x_i)|,
+the denominator and numerator are exactly
+
+```text
+den = sum_{j<k} b_j*sum_{A subset support(z), |A|=j} c_A
+      + sum_{i:s_i>=k} (g(s_i)-P(s_i)),
+num = sum_{j<k} b_j*sum_{A subset support(z), |A|=j} H_A
+      + sum_{i:s_i>=k} (g(s_i)-P(s_i))*V_i.
+```
+
+Indeed, a fixed key contributes binom(s_i,j) to its j-th subset sum.
+Summing first over subsets therefore gives P(s_i) for that key, which
+already equals the required g(s_i) when s_i<k. The correction restores
+the required coefficient for every other key. This is an identity over
+the current values, not a stochastic approximation or a rank restriction.
+The identity works for any integer score table g(0),...,g(w). The Hamming
+hat additionally gives the population gate T<=w+r; no subpolynomial claim
+for arbitrary dense softmax inputs follows from that identity alone. Any
+other score table must also pay its evaluation and coefficient bit costs.
+
+Enumerate all subsets of the query support of sizes 0 through k. Below
+order k fetch the maintained aggregates, treating absent entries as zero.
+At order k fetch unique owners and deduplicate them. Every key with
+s_i>=k occurs because some size-k subset of the shared support was queried;
+at most binom(T,k) candidate occurrences are generated. Read each distinct
+candidate's raw key to compute s_i and add its correction once. An n-slot
+mark array with an explicitly cleared touched list avoids horizon-dependent
+timestamps. Return num/den when den>0 and empty otherwise. Although
+intermediate counts can be signed, the identity proves the final den is
+nonnegative. No all-neighbor list is materialized.
+
+For a pure low-order query, exponentially many keys can contribute through
+the cached sums with no candidate visits. For a high-overlap query the
+candidate correction preserves dependence on individual values. Both parts
+are needed: the lower-order feature state alone need not have rank n.
+
+### Admission, updates, storage, and precision
+
+Exact tuple dictionaries can use the earlier preallocated binary trie,
+with one root per subset order. A j-tuple of sorted coordinate IDs has
+j*ceil(log2(d+1)) bits and is looked up in O(k*log(d+1)) worst-case steps.
+There are at most n*F live subset entries. Explicit raw keys, values, trie
+nodes, support counts, unique owners, per-slot subset handles, free lists,
+and query scratch space all fit in
+
+```text
+O(n*(ceil(d/W)+v+1) + n*F*(k*log(d+1)+v+1) + d+w*k) words.
+```
+
+Here W is RAM word width. Preallocate arenas for that capacity and recycle
+freed entries. Cached handles require O(n*F) additional words already in
+the bound. A scalar/vector overwrite changes every lower-order subset sum
+for that key by its exact old/new difference, at worst O(F*(v+1)) steps
+using those handles; no other independent value is altered. Deletion removes
+the old contribution, decrements counts, frees unsupported entries and
+unlinks size-k owners.
+
+For an inserted or replacement raw key, first check its exact weight and
+all its size-k subset owners. Ignore only the replacing slot's own entries.
+Another owner exists iff another key has intersection at least k, so this
+is a complete admission test. Reject before changing state. On acceptance,
+remove the old slot then install all new subsets and the new value. Deletion
+and admitted key replacement cost
+
+```text
+O(d + F*(k*log(d+1)+v+1)).
+```
+
+The d term conservatively charges scanning every raw input bit. Counts and
+the active-key table prevent stale sums after deletes, reuse or replacement.
+All operations are deterministic; there is no probabilistic horizon or
+forgetting assumption. Initial loading costs O(n) times the admitted-edit
+bound, plus zeroing the preallocated storage and storing all raw keys.
+
+Precompute binom(s,j) for 0<=s<=w, 0<=j<k and the query's coefficients
+and P(s) table in O(w*k+k^2) steps. The conservative complete read bound is
+
+```text
+O(d+w*k+k^2 + Q_T*(k*log(d+1)+d+v+1)).
+```
+
+It includes all subset lookups, raw candidate distances, vector arithmetic,
+deduplication and scratch cleanup. Fetching one aggregate reads v words;
+this cost is not hidden behind a constant-time vector operation.
+
+Put G=r+w+T+2. Then |b_j|<=2^j*G and
+|P(s)|<=G*2^k*sum_{j<k}binom(w,j). Summing at most Q_T dictionary
+terms each of count <=n bounds all intermediate integer magnitudes using
+S+O(log(n+1)+log G+k+log F+log Q_T) bits per scalar. Addresses must
+also cover the complete raw-key/payload arrays, arenas and scratch space;
+O(log(n+1)+log(d+1)+log(v+1)+log(F+1)+log(k+1)) bits suffice.
+Choose W to cover these bounds and charge multiword payloads through v.
+The final denominator is at most
+n*(r+1); storing the exact shared denominator and signed numerators does
+not require floating point. Input precision and these guard bits are fixed
+before execution, using T_max=min(d,w+r) in Q_T, and do not grow with the
+number of overwrites.
+
+### A uniform asymptotic regime and an explicit family
+
+If w=Theta(log n), d=log^O(1) n, k=O(w/log w), and r=O(w), then
+
+```text
+F,Q_T = exp(O(w*log(log(w)+2)/log(w))) = n^o(1).
+```
+
+Use the elementary binomial-sum bound with k<=w/2; bounded small parameter
+cases are handled directly. Storage and preprocessing are
+n^(1+o(1))*(v+1), and every admitted key edit, value overwrite and complete
+read costs n^o(1)*(v+1) worst-case. All d raw query coordinates are charged.
+This is an asymptotic statement with potentially large subset tables, not
+a practical latency or training result. For bit-operation costs the same
+subpolynomial factors apply at polylogarithmic scalar precision; larger
+precision must also pay the corresponding exact-integer arithmetic costs.
+The saved finite parameter examples include cases where Q_T exceeds n.
+
+Independent retention holds throughout the generic admitted class, not
+only for the codebook below. Its minimum pair distance is at least
+2*(w-k+1). With r=w and k<=w/2, every raw-bit perturbation of at most
+w-2*k+1 bits around any active key has that key as its sole neighbor.
+The target is inside radius w and every other key is at least w+1 away.
+The exact read is therefore its current arbitrary value. This invariant
+survives every admitted key edit and every value overwrite. Meanwhile the
+all-zero query at r=w has all active keys at weight one and returns their
+full mean through the empty-subset sum, with no owner candidates at all.
+The same minimum distance also gives, in every admitted state,
+||K-I||_2<=(n-1)*2^(-(w-k+1)). Thus choosing w>=4*log2 n and k=o(log n)
+preserves a near-identity kernel under the generic admission rule itself;
+the algorithm does not need to compute that norm to accept an edit.
+
+The class is nonempty and has substantial query binding. Let p be prime,
+take every polynomial f over F_p with degree <k, and encode it by the
+one-hot evaluation positions (a,f(a)), a in F_p. There are n=p^k keys,
+w=p, d=p^2, and distinct keys intersect in at most k-1 coordinates. For
+k=floor(p/(4*ceil(log2 p))) and sufficiently large p, log n=Theta(p),
+so the regime above applies. This is a classical Reed--Solomon codebook;
+admission can use either its polynomial constraints or the generic subset
+test. It is not a newly discovered prime-specific construction.
+
+Its spectral norm can also be calculated exactly. Translation by a codeword
+makes every kernel row sum identical. Expanding 2^(number of zero
+evaluations) over subsets and using independent evaluation constraints gives
+
+```text
+||K||_2 = 1+2^(-p)*sum_{j=0}^{k-1} binom(p,j)*(p^(k-j)-1)
+         < 1+3*n*2^(-p) <= 1+3*n^(-3).
+```
+
+The last inequality uses p>=4*log2 n in the selected regime. The symmetric
+off-diagonal row-sum bound gives the matching lower eigenvalue bound
+1-3*n*2^(-p); every active subset inherits these bounds. No large Gram
+matrix needs to be formed.
+
+For r=p, the stored key itself returns its independent value, and every
+further raw-bit perturbation of at most p-2*k+1 bits still has that key
+as its only possible inner key. This follows from the minimum binary
+distance 2*(p-k+1), and holds for arbitrary raw perturbations, not only
+valid one-hot symbol queries. More generally the pure basin has radius
+min(r,2*(p-k+1)-r-1) whenever that number is nonnegative.
+
+Nontrivial blends are also explicit. For an odd p with p+1>4*(k-1), take
+two codewords f and f+X. They agree at zero. Construct a one-hot query by
+using each word on half of the nonzero evaluation positions and their
+common value at zero. At r=p both have weight two; any other degree-<k
+polynomial agrees at at most 2*(k-1) queried positions and is outside.
+The exact read is their current two-value mean when both are active.
+For any fixed ell dividing p-1, the analogous balanced query over
+f+a*X for ell distinct a has exactly those ell neighbors if
+1+(p-1)/ell>ell*(k-1), at radius 2*(p-1)*(1-1/ell).
+Thus the architecture is not globally restricted to two values or two
+latent scalars. Pure reads on all n stored keys give an identity submatrix
+on their independent payloads.
+
+### Prior-art boundary and current decision
+
+Subset signatures and admission are already present in the earlier exact
+dictionary comparator, based on
+[Arasu--Ganti--Kaushik, Sections 3 and 7](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/vldb06.pdf).
+The new step relative to that comparator is exact aggregation of low-score
+keys and correction of high-score owners; it must not be described as a
+new subset index. Newton interpolation and inclusion--exclusion are classical.
+Partial aggregate materialization and compensating retrieval are also prior
+art: [Drzadzewski--Tompa, Sections 5--6](https://link.springer.com/article/10.1007/s10115-015-0871-2)
+was read through Algorithms 1--2 and the query steps in Sections 6.1--6.2
+(PDF pages 23--25). It materializes large conjunction cells, rewrites tag
+queries by inclusion--exclusion and retrieves members of smaller cells or
+compensating differences. These are directly relevant components. Its
+rewriting/member-retrieval costs must be reconciled with the threshold-score
+and dynamic bounds here; no separation from that framework is established.
+A matching specialization of that or other database/set-aggregation work
+would classify this theorem as
+a known consequence.
+
+Reed--Solomon list decoding is a stronger baseline than a scan or a product
+lookup for structured codeword queries; see
+[Guruswami--Sudan](https://people.csail.mit.edu/madhu/papers/1998/gs.pdf).
+List decoding alone is not an all-raw-bit aggregate guarantee, especially
+when a query has many matching values. Conversely, our identity is not a
+faster list decoder: it returns the specified sum and count, without
+reporting all participating codewords. Full soft-decision/list-recovery
+and range-aggregation comparisons remain necessary.
+
+The candidate gives a complete constructive mechanism for efficient reads,
+writes and independent retention in a more expressive regime than our own
+earlier unique-neighbor theorem. It does not solve the full spectral-only
+class, establish a learned encoder, or prove superiority over the strongest
+published aggregation method. Preserve it for the precise priority audit;
+do not start neural training or declare the original goal complete.
