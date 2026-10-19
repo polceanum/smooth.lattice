@@ -18,7 +18,7 @@
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "candidate_exact_subset_aggregate_algorithm_proved_for_low_intersection_keys; deterministic_all_raw_hat_queries_and_certified_dynamic_admission_with_near_linear_storage_and_subpolynomial_ops_in_stated_regime; strongest_aggregation_prior_art_comparison_and_novelty_open"
+      "status": "generic_low_intersection_aggregate_candidate_priority_open; stronger_classical_soft_interpolation_and_cached_affine_sum_comparator_proved_in_fixed_and_growing_polynomial_dimension; polynomial_example_alone_does_not_establish_advantage"
     },
     {
       "stage": 4,
@@ -1920,5 +1920,103 @@
     "certificate_case_count": 8,
     "old_functions_and_certificate_blocks_preserved": true,
     "verification_scope": "Extended exact checker, core build and smoke tests passed. All 234 protected files, twenty-three prior non-main checker function ASTs, all twenty-four historical goal iterations and all historical report blocks are preserved. Final note/checker hashes match the report. New controls compare 156800 exact normalized reads and raw numerator/denominator pairs with a complete Hamming oracle across 52 dynamic snapshots and eight families; exercise 908 admitted replacements, 252 atomic rejections, 518 deletions, 523 overwrites, 56 live zero sums and 23 admitted keys outside the initial codebooks; check 8342 exhaustive small pure-noise reads and 62 post-admission noise reads, 377 exact code spectral row sums, four independently overwritten/deleted two- or three-value blends and six integer asymptotic parameter bounds. The tuple-map verifier is not a finite-word arena implementation or benchmark; the written proof supplies that accounting using the preserved trie primitive. Other proof checkers were not rerun because their sources/artifacts are unchanged. Novelty, strongest-aggregation separation, useful finite-size performance and learned-encoder advantage remain unverified."
+  },
+  "twenty_sixth_iteration": {
+    "previous_turn_classification": "Positive generic subset-aggregate candidate was proved and exactly checked; a genuine aggregation-priority gap and useful strongest-baseline advantage were explicitly left open.",
+    "record": "docs/associative_memory_timing.md, A stronger coded comparator: soft interpolation and affine sums",
+    "certificate_script": "scripts/run_timing_restart_checks.py",
+    "certificate_report": "results/research/timing_restart_checks.json",
+    "derived_baseline_uniform_bound_proved": true,
+    "model_and_boundary": "Any active subset of the fixed degree-<k polynomial codebook over an odd prime field F_p, capacity n=p^k, raw one-hot key dimension p^2, exact radius-p truncated Hamming means with arbitrary independent signed values and full raw multi-hot queries. Raw codeword validation, duplicate rejection, key replacement, overwrites, deletion/reuse and all finite precision/initialization costs are charged. Outside-codebook low-intersection keys are not admitted.",
+    "construction_and_proof": {
+      "cached_affine_sums": "Store active counts and vector sums for every consistent j-point evaluation constraint j<=h, totaling C_h=sum binom(p,j)*p^j cells; each codeword changes A_h=sum binom(p,j) cells. Fixed direct cell ranks, coefficient addresses and ownership/active arrays avoid a random horizon or free address oracle. Values are retained independently and payload sums use signed integers, not finite-field arithmetic.",
+      "few_selected_bits": "For T<=6(k-1), use the finite-difference aggregate identity. Cached orders j<=h are direct sums; missing h<j<k cells are affine fibers of size p^(k-j), explicitly enumerated by their coefficient addresses. Size-k query constraints determine unique owners for exact residual correction. All raw input bits and value words are charged.",
+      "many_selected_bits": "For 6(k-1)<T<=2p, incremental weighted interpolation maintains three polynomials with distinct leading Y-degrees and total leading X-degree <=T. A least-weighted polynomial has degree <ceil(T/2), so every near codeword divides it and there are at most two. A verified polynomial-discriminant square root plus exact division finds all quadratic polynomial roots in O_k(T^2+p) field operations. Repeated row coordinates and arbitrary raw bit supports are included. T>2p is empty.",
+      "fixed_dimension_tradeoff": "For fixed k,h, state O_k,h((n+C_h)*(v+1)+p^2), read O_k,h(p^2+p^(k-h-1)*(v+1)), value overwrite/deletion O_k,h(p^h*(v+1)), raw key edit O_k,h(p^2+p^h*(v+1)). The simplification to linear state uses 2h<=k. At k=5,h=2 read/edit costs are n^(2/5)*(v+1); k=6,h=3 has scalar read n^(1/3) and write n^(1/2)*(v+1). Full raw loading and field/bit precision costs are separate and explicit.",
+      "growing_dimension_comparator": "For k=floor(p/(4ceil(log2 p))), h=k-1, F=sum_{j<k}binom(p,j), B=sum_{j<=k}binom(6(k-1),j)<=2^(6(k-1)), C_h<=n*F/p. Expanded read O(p^2+pk+k^2+B*(k^3+pk+v+1)), admitted edit O(p^2+k^3+pk+F*(k+v+1)); state and full initialization n^(1+o(1))*(v+1), reads/edits n^o(1)*(v+1). This matches the generic candidate polynomial witness regime without treating fixed-k constants as uniform. It restricts admission to polynomial keys.",
+      "retention_and_elementary_bounds": "The full pure-read family has n independent value coordinates and raw noise radius p-2k+1. Standard state distinguishability requires n*S bits. A legal complete-code scalar witness V_f=sum_a t(f(a)), where t is nonzero everywhere and has mean zero, makes every singleton raw bit change the zero-query output. Pairwise-independent evaluations prove Omega(p^2/W) exact raw input probes, matching the k=5/h=2 and k=6/h=3 scalar read costs up to word/precision factors. Raw admission has the corresponding every-bit validity bound. These are elementary bounds, not new lower-bound techniques; write optimality and v-factor optimality are unproved.",
+      "generic_algebra_priority": "Primary fast-intersection-transform Theorem 1 and Sections 2.1--2.3, Lemmas 3--5, give the same ranked up/down zeta moments and inverse Pascal algebra. Under pair intersection <k, every higher-order subset has one owner; grouping those full-transform tails is exactly our (g(s)-P(s))*V correction. The generic candidate is a compressed specialization plus unique-owner indexing. The published full-down-closure circuit bound alone is not the online compressed cost statement, but absence of an exact matching theorem is not evidence of publishability."
+    },
+    "primary_prior_art": [
+      {
+        "url": "https://www.site.uottawa.ca/~zhcheng/RS_soft_decision.pdf",
+        "scope": "Koetter--Vardy 2003 Section III, cost and score definitions, Theorem 3 and its factor proof, PDF pages 4--5; page 5 visually checked. Supplies the established soft-interpolation mechanism. Our explicit multiplicity-one, Y-degree-two calculation proves the particular threshold/cost; the complete dynamic aggregation bound is not attributed verbatim to the paper."
+      },
+      {
+        "url": "https://www.site.uottawa.ca/~zhcheng/efficient.pdf",
+        "scope": "Roth--Ruckenstein 2000 Sections V--VI, polynomial root reconstruction and complexity. Root recovery is prior art; our quadratic proof avoids assuming the general factorization cost or distinct-row input hypotheses of a hard-decision decoder."
+      },
+      {
+        "url": "https://link.springer.com/article/10.1007/s10115-015-0871-2",
+        "scope": "The preceding partial materialization/inclusion-exclusion audit remains relevant and unresolved for the generic dynamic class. This iteration does not infer novelty from unsuccessful searches or claim separation from that framework."
+      },
+      {
+        "url": "https://arxiv.org/abs/0809.2489",
+        "scope": "Bjorklund--Husfeldt--Kaski--Koivisto, fast intersection transform, Theorem 1, Sections 2.1--2.3 and Lemmas 3--5 read in the primary PDF pages 4--7. Exact ranked zeta moments and inverse Pascal mechanism match the candidate algebra; complete-down-closure circuit costs differ from the claimed compressed dynamic guarantee. New exact controls compare direct intersection classes, the full transform and unique-owner tail compression on non-polynomial families."
+      }
+    ],
+    "decision": "The polynomial witness alone does not establish a new advantage: classical soft interpolation plus cached evaluation sums gives a stronger comparator, including the same growing-k regime. The uniform proof and elementary input/retention bounds are useful baseline artifacts, not a publication-ready new theorem. The generic low-intersection admission class remains a candidate whose aggregation-priority comparison must be resolved. Keep the original substantive-advantage goal active; do not start neural training or write a contribution manuscript from this corollary alone. A closer algebraic audit also identifies the generic identity as a compressed application of the published fast intersection transform. Do not promote it as a new transform or treat an unstated compressed complexity as sufficient novelty; seek a substantive further improvement, application or obstruction.",
+    "next_actions": [
+      "Resolve whether unique-owner compression of the published fast intersection transform already gives the full generic dynamic bound by a routine specialization. Reconcile partial data-cube materialization and sparse subset-query methods in the same admitted class; do not treat the identity itself as new.",
+      "Either exhibit a matching published specialization and classify the generic candidate as a baseline, or identify a precise remaining theorem with a useful parameter range and a nontrivial proof mechanism. A change in wording or another favorable codebook is insufficient.",
+      "For any surviving candidate charge complete preprocessing, all independent values, raw admission, finite precision and strongest applicable full-query costs. Keep the proven spectral/large-radius obstructions and finite-size caveats. No further neural training, external messages or submissions.",
+      "As a concrete possible application rather than another codebook example, test the compressed identity for exact weights 2^(query/key intersection), with sparse raw binary queries, independently retained values and certified generic key admission. Determine whether this gives a substantive exponential-attention tradeoff beyond static kernel-feature sketches and sparse exact-plus-polynomial methods; include every dense low-score contribution, raw input/encoder cost and precision. Audit contemporary attention upper/lower bounds first. This is a proposed next investigation, not an established advantage or permission to run training."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "strongest_baseline_advantage_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "verification_commands": [
+      "python3 -B scripts/run_timing_restart_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py"
+    ],
+    "preservation": "All twenty-five historical iterations, twenty-four prior non-main checker function ASTs, historical report blocks and all other protected kernels, manuscripts, proof artifacts and learned-recall data are retained. Only the existing timing note/checker/report and research manifest change.",
+    "next_application_primary_sources_to_audit": [
+      {
+        "url": "https://arxiv.org/abs/2302.13214",
+        "title": "Fast Attention Requires Bounded Entries",
+        "status": "abstract identified; full theorem/hypothesis comparison still required"
+      },
+      {
+        "url": "https://arxiv.org/abs/2510.01643",
+        "title": "Support Basis: Fast Attention Beyond Bounded Entries",
+        "status": "primary preprint identified; full sparse exact plus polynomial decomposition and dynamic costs still require audit"
+      }
+    ],
+    "certificate_case_count": 10,
+    "certificate_summary": {
+      "exact_controls": {
+        "reads": 3994,
+        "low_reads": 2415,
+        "high_reads": 1506,
+        "empty_gates": 73,
+        "fiber_addresses_examined": 113246,
+        "interpolation_updates": 18240,
+        "verified_polynomial_roots": 2697,
+        "nonzero_corrections": 2864,
+        "overwrites": 357,
+        "deletions": 34,
+        "admissions": 2685,
+        "rejections": 50,
+        "live_zero_sums": 1175,
+        "high_two_neighbor_queries": 27
+      },
+      "polynomial_root_primitive_cases": 236,
+      "affine_fiber_primitive_cases": 15,
+      "distinct_direct_cell_addresses": 13446,
+      "all_bit_sensitivity_reads": 138,
+      "pure_current_value_noise_reads": 2056,
+      "atomic_invalid_or_duplicate_rejections": 50,
+      "large_exact_payload_guard_control_bits": 264,
+      "empty_state_raw_queries": 4,
+      "published_intersection_transform_equivalence_reads": 2112,
+      "growing_parameter_examples": 6
+    },
+    "old_functions_and_certificate_blocks_preserved": true,
+    "verification_scope": "Extended exact checker, core build and smoke tests passed. All 234 protected files, twenty-four prior non-main checker function ASTs, twenty-five historical iterations and all historical report blocks are preserved. Final note/checker hashes match the report. New coded controls check 3994 complete raw normalized reads and numerator/denominator pairs across ten fixed-codebook cases, 236 polynomial-root primitive cases, 15 independent affine-fiber cases, 13446 direct-cell addresses, 2056 pure current-value/noise reads, 138 every-bit sensitivity reads, 50 atomic invalid/duplicate rejections and six exact growing-parameter bounds. Counts also cover 357 overwrites, 34 deletions, 2685 admissions, four empty-state queries, signed zero sums and a 264-bit signed payload guard witness. Separately 2112 exhaustive non-polynomial query/radius cases compare direct intersection classes, the published full zeta/Pascal transform and compressed owner-tail sums. Sparse-map controls do not measure the finite-word dense-array memory or runtime; large capacities have only a stated sparse subset installed. The uniform written proof charges complete state, precision and loading. Other proof checkers were not rerun because their sources/artifacts are unchanged. No novelty, strongest-baseline separation, learned encoder or ML advantage is established."
   }
 }

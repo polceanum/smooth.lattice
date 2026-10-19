@@ -2083,11 +2083,305 @@
     ],
     "scope": "Exact tuple-map algorithm versus independent complete raw Hamming reads. Small dimensions exhaust all raw queries; larger cases exhaust stated one-hot queries for weight 5 and use systematic raw support/bit-flip controls. Dynamic admission is checked against all pair intersections, including proposals outside the initial codebook. Signed cancellations, atomic rejection, deletion/reuse, pure-noise reads, nontrivial independently overwritten/deleted mixtures, spectral row sums and exact parameter bounds are checked. The code is a bounded correctness control, not a finite-word arena implementation, runtime benchmark, learned encoder or novelty/strongest-baseline determination."
   },
+  "affine_coded_baseline": {
+    "cases": [
+      {
+        "prime": 3,
+        "polynomial_dimension": 2,
+        "cached_orders_through": 1,
+        "capacity": 9,
+        "raw_dimension": 9,
+        "linear_space_parameter_condition": true,
+        "complete_codebook_values_installed": true,
+        "occupied_values": 9,
+        "cache_cell_capacity": 10,
+        "cells_per_value_edit": 4,
+        "query_controls": {
+          "reads": 544,
+          "low_reads": 498,
+          "high_reads": 0,
+          "empty_gates": 46,
+          "fiber_addresses_examined": 0,
+          "nonzero_corrections": 985,
+          "high_two_neighbor_queries": 0
+        }
+      },
+      {
+        "prime": 5,
+        "polynomial_dimension": 2,
+        "cached_orders_through": 1,
+        "capacity": 25,
+        "raw_dimension": 25,
+        "linear_space_parameter_condition": true,
+        "complete_codebook_values_installed": true,
+        "occupied_values": 25,
+        "cache_cell_capacity": 26,
+        "cells_per_value_edit": 6,
+        "query_controls": {
+          "reads": 1455,
+          "low_reads": 665,
+          "high_reads": 788,
+          "empty_gates": 2,
+          "fiber_addresses_examined": 0,
+          "nonzero_corrections": 658,
+          "high_two_neighbor_queries": 4
+        }
+      },
+      {
+        "prime": 5,
+        "polynomial_dimension": 3,
+        "cached_orders_through": 1,
+        "capacity": 125,
+        "raw_dimension": 25,
+        "linear_space_parameter_condition": true,
+        "complete_codebook_values_installed": true,
+        "occupied_values": 125,
+        "cache_cell_capacity": 26,
+        "cells_per_value_edit": 6,
+        "query_controls": {
+          "reads": 155,
+          "low_reads": 151,
+          "high_reads": 0,
+          "empty_gates": 4,
+          "fiber_addresses_examined": 560,
+          "nonzero_corrections": 347,
+          "high_two_neighbor_queries": 0
+        }
+      },
+      {
+        "prime": 5,
+        "polynomial_dimension": 3,
+        "cached_orders_through": 2,
+        "capacity": 125,
+        "raw_dimension": 25,
+        "linear_space_parameter_condition": false,
+        "complete_codebook_values_installed": true,
+        "occupied_values": 125,
+        "cache_cell_capacity": 276,
+        "cells_per_value_edit": 16,
+        "query_controls": {
+          "reads": 155,
+          "low_reads": 151,
+          "high_reads": 0,
+          "empty_gates": 4,
+          "fiber_addresses_examined": 0,
+          "nonzero_corrections": 347,
+          "high_two_neighbor_queries": 0
+        }
+      },
+      {
+        "prime": 7,
+        "polynomial_dimension": 2,
+        "cached_orders_through": 1,
+        "capacity": 49,
+        "raw_dimension": 49,
+        "linear_space_parameter_condition": true,
+        "complete_codebook_values_installed": true,
+        "occupied_values": 49,
+        "cache_cell_capacity": 50,
+        "cells_per_value_edit": 8,
+        "query_controls": {
+          "reads": 378,
+          "low_reads": 127,
+          "high_reads": 249,
+          "empty_gates": 2,
+          "fiber_addresses_examined": 0,
+          "nonzero_corrections": 88,
+          "high_two_neighbor_queries": 6
+        }
+      },
+      {
+        "prime": 7,
+        "polynomial_dimension": 4,
+        "cached_orders_through": 3,
+        "capacity": 2401,
+        "raw_dimension": 49,
+        "linear_space_parameter_condition": false,
+        "complete_codebook_values_installed": false,
+        "occupied_values": 28,
+        "cache_cell_capacity": 13084,
+        "cells_per_value_edit": 64,
+        "query_controls": {
+          "reads": 145,
+          "low_reads": 141,
+          "high_reads": 0,
+          "empty_gates": 4,
+          "fiber_addresses_examined": 0,
+          "nonzero_corrections": 45,
+          "high_two_neighbor_queries": 0
+        }
+      },
+      {
+        "prime": 13,
+        "polynomial_dimension": 3,
+        "cached_orders_through": 1,
+        "capacity": 2197,
+        "raw_dimension": 169,
+        "linear_space_parameter_condition": true,
+        "complete_codebook_values_installed": true,
+        "occupied_values": 2197,
+        "cache_cell_capacity": 170,
+        "cells_per_value_edit": 14,
+        "query_controls": {
+          "reads": 338,
+          "low_reads": 102,
+          "high_reads": 234,
+          "empty_gates": 2,
+          "fiber_addresses_examined": 351,
+          "nonzero_corrections": 124,
+          "high_two_neighbor_queries": 7
+        }
+      },
+      {
+        "prime": 7,
+        "polynomial_dimension": 6,
+        "cached_orders_through": 3,
+        "capacity": 117649,
+        "raw_dimension": 49,
+        "linear_space_parameter_condition": true,
+        "complete_codebook_values_installed": false,
+        "occupied_values": 28,
+        "cache_cell_capacity": 13084,
+        "cells_per_value_edit": 64,
+        "query_controls": {
+          "reads": 141,
+          "low_reads": 137,
+          "high_reads": 0,
+          "empty_gates": 4,
+          "fiber_addresses_examined": 98973,
+          "nonzero_corrections": 41,
+          "high_two_neighbor_queries": 0
+        }
+      },
+      {
+        "prime": 17,
+        "polynomial_dimension": 5,
+        "cached_orders_through": 2,
+        "capacity": 1419857,
+        "raw_dimension": 289,
+        "linear_space_parameter_condition": true,
+        "complete_codebook_values_installed": false,
+        "occupied_values": 32,
+        "cache_cell_capacity": 39594,
+        "cells_per_value_edit": 154,
+        "query_controls": {
+          "reads": 335,
+          "low_reads": 329,
+          "high_reads": 4,
+          "empty_gates": 2,
+          "fiber_addresses_examined": 13362,
+          "nonzero_corrections": 225,
+          "high_two_neighbor_queries": 4
+        }
+      },
+      {
+        "prime": 29,
+        "polynomial_dimension": 5,
+        "cached_orders_through": 2,
+        "capacity": 20511149,
+        "raw_dimension": 841,
+        "linear_space_parameter_condition": true,
+        "complete_codebook_values_installed": false,
+        "occupied_values": 32,
+        "cache_cell_capacity": 342288,
+        "cells_per_value_edit": 436,
+        "query_controls": {
+          "reads": 338,
+          "low_reads": 106,
+          "high_reads": 230,
+          "empty_gates": 2,
+          "fiber_addresses_examined": 0,
+          "nonzero_corrections": 2,
+          "high_two_neighbor_queries": 6
+        }
+      }
+    ],
+    "exact_controls": {
+      "reads": 3994,
+      "low_reads": 2415,
+      "high_reads": 1506,
+      "empty_gates": 73,
+      "fiber_addresses_examined": 113246,
+      "interpolation_updates": 18240,
+      "verified_polynomial_roots": 2697,
+      "nonzero_corrections": 2864,
+      "overwrites": 357,
+      "deletions": 34,
+      "admissions": 2685,
+      "rejections": 50,
+      "live_zero_sums": 1175,
+      "high_two_neighbor_queries": 27
+    },
+    "polynomial_root_primitive_cases": 236,
+    "affine_fiber_primitive_cases": 15,
+    "distinct_direct_cell_addresses": 13446,
+    "all_bit_sensitivity_reads": 138,
+    "pure_current_value_noise_reads": 2056,
+    "atomic_invalid_or_duplicate_rejections": 50,
+    "large_exact_payload_guard_control_bits": 264,
+    "empty_state_raw_queries": 4,
+    "published_intersection_transform_equivalence_reads": 2112,
+    "intersection_transform_scope": "On three non-polynomial low-intersection families, exhaust all raw queries and three radii, checking the published full ranked up/down zeta moments and inverse Pascal distribution against direct intersection classes, then our low-order truncation plus exact unique-owner tail. This proves the algebraic equivalence, not that the published full-down-closure theorem already states the compressed dynamic bound or that the elementary compression is a novel contribution.",
+    "growing_dimension_parameter_bit_lengths": [
+      {
+        "prime": 127,
+        "polynomial_dimension": 4,
+        "capacity_bits": 28,
+        "cache_cell_capacity_bits": 40,
+        "cells_per_edit_bits": 19,
+        "low_query_subset_bound_bits": 12
+      },
+      {
+        "prime": 257,
+        "polynomial_dimension": 7,
+        "capacity_bits": 57,
+        "cache_cell_capacity_bits": 87,
+        "cells_per_edit_bits": 39,
+        "low_query_subset_bound_bits": 24
+      },
+      {
+        "prime": 521,
+        "polynomial_dimension": 13,
+        "capacity_bits": 118,
+        "cache_cell_capacity_bits": 188,
+        "cells_per_edit_bits": 80,
+        "low_query_subset_bound_bits": 47
+      },
+      {
+        "prime": 1031,
+        "polynomial_dimension": 23,
+        "capacity_bits": 231,
+        "cache_cell_capacity_bits": 371,
+        "cells_per_edit_bits": 150,
+        "low_query_subset_bound_bits": 85
+      },
+      {
+        "prime": 2053,
+        "polynomial_dimension": 42,
+        "capacity_bits": 463,
+        "cache_cell_capacity_bits": 738,
+        "cells_per_edit_bits": 287,
+        "low_query_subset_bound_bits": 159
+      },
+      {
+        "prime": 4093,
+        "polynomial_dimension": 85,
+        "capacity_bits": 1020,
+        "cache_cell_capacity_bits": 1595,
+        "cells_per_edit_bits": 587,
+        "low_query_subset_bound_bits": 326
+      }
+    ],
+    "general_space_bound": "For any 1<=h<k, cache C_h=sum_{j<=h}binom(p,j)*p^j cells and keep n=p^k independent value slots. State O_k,h((n+C_h)*(v+1)+p^2). The linear-space simplification additionally needs 2h<=k at fixed k. The h=k-1 controls also exercise the general, potentially superlinear fixed-k tradeoff.",
+    "uniform_bound": "For fixed k,h with 1<=h<k and 2h<=k, odd prime p>=k, n=p^k, raw dimension p^2 and radius p: state O_k,h(n*(v+1)), exact reads O_k,h(p^2+p^(k-h-1)*(v+1)), overwrites/deletes O_k,h(p^h*(v+1)), raw admitted rekeys O_k,h(p^2+p^h*(v+1)). Field/precision bit costs are additional; guard bits and initialization are charged in the note. For k=5,h=2 scalar reads/rekeys are n^(2/5) up to word/precision factors, with linear state.",
+    "growing_dimension_scope": "With k=floor(p/(4ceil(log2 p))) and h=k-1, keep exact C_h cells rather than the loose p^(2h) bound. This yields n^(1+o(1)) state/preprocessing, n^o(1) updates, and 2^O(k)*poly(p,k)*(v+1) complete raw reads. No implicit constant is treated as uniform in growing k; the note expands it. This is a codebook-specific comparator in the preceding generic candidate's asymptotic regime, not a novelty determination.",
+    "scope": "Exact sparse-map correctness control, not a direct-array implementation, hardware benchmark or novelty proof. All raw-query numerators/denominators are checked against independent Hamming scans. Small complete codebooks and sparsely occupied larger fixed codebooks are distinguished; larger capacities are conceptual. The construction uses established soft interpolation and affine evaluation constraints with partial cached sums. It restricts key admission to a known polynomial codebook, so does not settle the priority or usefulness of the generic low-intersection candidate. No neural training or strongest-baseline separation is claimed."
+  },
   "novelty_established": false,
   "strongest_baseline_advantage_established": false,
   "publication_ready": false,
   "source_sha256": {
-    "scripts/run_timing_restart_checks.py": "2a278a0535cad95cadc8a226e353efd2b23bcdfe911e36bfad678fe1c3098bff",
-    "docs/associative_memory_timing.md": "ada1253d07b067825d672871b447758adae8306a37d0c34edd7373dc5f7bd9fd"
+    "scripts/run_timing_restart_checks.py": "7fae7efa1e8cc6e72dcb768f60f42d3159f44455c798b13316716dd0b2541770",
+    "docs/associative_memory_timing.md": "df105b0594b8d7239960e3c7e521fd6678151ff0087141f84ae165007eddd970"
   }
 }

@@ -2734,6 +2734,641 @@ def subset_aggregate_controls():
             "scope": "Exact tuple-map algorithm versus independent complete raw Hamming reads. Small dimensions exhaust all raw queries; larger cases exhaust stated one-hot queries for weight 5 and use systematic raw support/bit-flip controls. Dynamic admission is checked against all pair intersections, including proposals outside the initial codebook. Signed cancellations, atomic rejection, deletion/reuse, pure-noise reads, nontrivial independently overwritten/deleted mixtures, spectral row sums and exact parameter bounds are checked. The code is a bounded correctness control, not a finite-word arena implementation, runtime benchmark, learned encoder or novelty/strongest-baseline determination."}
 
 
+def affine_coded_controls():
+    """Classical soft interpolation plus partial evaluation sums, not novelty."""
+    from math import comb
+
+    stats = dict(reads=0, low_reads=0, high_reads=0, empty_gates=0,
+                 fiber_addresses_examined=0, interpolation_updates=0,
+                 verified_polynomial_roots=0, nonzero_corrections=0,
+                 overwrites=0, deletions=0, admissions=0, rejections=0,
+                 live_zero_sums=0, high_two_neighbor_queries=0)
+
+    class Field:
+        def __init__(self, prime):
+            self.p = prime
+            self.inverse = [0] + [pow(a, -1, prime) for a in range(1, prime)]
+
+        def trim(self, a):
+            a = [x % self.p for x in a]
+            while a and a[-1] == 0:
+                a.pop()
+            return tuple(a)
+
+        def add(self, a, b):
+            return self.trim([(a[i] if i < len(a) else 0)
+                              + (b[i] if i < len(b) else 0)
+                              for i in range(max(len(a), len(b)))])
+
+        def scale(self, a, c):
+            return self.trim([x * c for x in a])
+
+        def mul(self, a, b):
+            if not a or not b:
+                return ()
+            out = [0] * (len(a) + len(b) - 1)
+            for i, x in enumerate(a):
+                for j, y in enumerate(b):
+                    out[i + j] += x * y
+            return self.trim(out)
+
+        def divide(self, a, b):
+            assert b
+            remainder = list(a)
+            out = [0] * max(0, len(a) - len(b) + 1)
+            while len(remainder) >= len(b):
+                shift = len(remainder) - len(b)
+                c = remainder[-1] * self.inverse[b[-1]] % self.p
+                out[shift] = c
+                for j, y in enumerate(b):
+                    remainder[shift + j] = (remainder[shift + j] - c * y) % self.p
+                while remainder and remainder[-1] == 0:
+                    remainder.pop()
+            return self.trim(out), tuple(remainder)
+
+        def evaluate(self, a, x):
+            total = 0
+            for c in reversed(a):
+                total = (total * x + c) % self.p
+            return total
+
+        def substitute(self, q, f):
+            total = ()
+            for a in reversed(q):
+                total = self.add(self.mul(total, f), a)
+            return total
+
+        def square_root(self, a):
+            if not a:
+                return ()
+            if (len(a) - 1) % 2:
+                return None
+            alpha = next((x for x in range(1, self.p)
+                          if x * x % self.p == a[-1]), None)
+            if alpha is None:
+                return None
+            m = (len(a) - 1) // 2
+            out = [0] * (m + 1)
+            out[m] = alpha
+            for j in range(1, m + 1):
+                exponent = 2 * m - j
+                known = sum(out[u] * out[exponent - u]
+                            for u in range(m - j + 1, m + 1)
+                            if m - j < exponent - u <= m)
+                out[m - j] = (a[exponent] - known) * self.inverse[2 * alpha % self.p] % self.p
+            out = self.trim(out)
+            return out if self.mul(out, out) == a else None
+
+        def roots(self, q, level):
+            c, b, a = q
+            answers = set()
+            if a:
+                disc = self.add(self.mul(b, b), self.scale(self.mul(a, c), -4))
+                root = self.square_root(disc)
+                numerators = [] if root is None else [self.add(self.scale(b, -1), root),
+                                                       self.add(self.scale(b, -1), self.scale(root, -1))]
+                divisor = self.scale(a, 2)
+            elif b:
+                numerators, divisor = [self.scale(c, -1)], b
+            else:
+                assert c  # Interpolation must never return the zero polynomial.
+                numerators, divisor = [], (1,)
+            for numerator in numerators:
+                f, remainder = self.divide(numerator, divisor)
+                if not remainder and len(f) <= level:
+                    assert not self.substitute(q, f)
+                    answers.add(f + (0,) * (level - len(f)))
+            assert len(answers) <= 2
+            stats['verified_polynomial_roots'] += len(answers)
+            return answers
+
+    def interpolate(points, level, field):
+        # Multiplicity one, Y degree <=2. Distinct leading Y positions
+        # make the weighted-degree argument and its quadratic cost explicit.
+        basis = [[(1,), (), ()], [(), (1,), ()], [(), (), (1,)]]
+
+        def leading(q):
+            return max((i + (level - 1) * j, j, i)
+                       for j, a in enumerate(q) for i, c in enumerate(a) if c)
+
+        for seen, (a, b) in enumerate(points, 1):
+            delta = [sum(field.evaluate(poly, a) * pow(b, j, field.p)
+                         for j, poly in enumerate(q)) % field.p for q in basis]
+            nonzero = [j for j in range(3) if delta[j]]
+            if nonzero:
+                pivot = min(nonzero, key=lambda j: leading(basis[j]))
+                old = basis[pivot]
+                old_leads = [leading(q) for q in basis]
+                for j in nonzero:
+                    if j != pivot:
+                        ratio = -delta[j] * field.inverse[delta[pivot]]
+                        basis[j] = [field.add(x, field.scale(y, ratio))
+                                    for x, y in zip(basis[j], old)]
+                        assert leading(basis[j]) == old_leads[j]
+                basis[pivot] = [field.mul(poly, (-a, 1)) for poly in old]
+                assert leading(basis[pivot]) == (old_leads[pivot][0] + 1,
+                                                 pivot, old_leads[pivot][2] + 1)
+                stats['interpolation_updates'] += 1
+            leads = [leading(q) for q in basis]
+            assert [item[1] for item in leads] == [0, 1, 2]
+            assert sum(item[2] for item in leads) <= seen
+        q = min(basis, key=leading)
+        assert all(sum(field.evaluate(poly, a) * pow(b, j, field.p)
+                       for j, poly in enumerate(q)) % field.p == 0 for a, b in points)
+        assert len(points) > 6 * (level - 1)
+        assert leading(q)[0] < (len(points) + 1) // 2
+        return q
+
+    def affine_fiber(points, level, field):
+        # RREF on the actual evaluation equations, including repeated rows.
+        matrix = [[pow(a, j, field.p) for j in range(level)] + [b] for a, b in points]
+        pivot_columns, row = [], 0
+        for col in range(level):
+            pivot = next((j for j in range(row, len(matrix)) if matrix[j][col]), None)
+            if pivot is None:
+                continue
+            matrix[row], matrix[pivot] = matrix[pivot], matrix[row]
+            matrix[row] = [x * field.inverse[matrix[row][col]] % field.p for x in matrix[row]]
+            for j in range(len(matrix)):
+                if j != row:
+                    c = matrix[j][col]
+                    matrix[j] = [(x - c * y) % field.p for x, y in zip(matrix[j], matrix[row])]
+            pivot_columns.append(col)
+            row += 1
+        if any(not any(line[:level]) and line[-1] for line in matrix):
+            return
+        free = [j for j in range(level) if j not in pivot_columns]
+        for assignment in product(range(field.p), repeat=len(free)):
+            f = [0] * level
+            for j, x in zip(free, assignment):
+                f[j] = x
+            for j, line in zip(pivot_columns, matrix):
+                f[j] = (line[-1] - sum(line[u] * f[u] for u in free)) % field.p
+            yield tuple(f)
+
+    class CodedIndex:
+        # Sparse dictionaries model exact occupied cells only. No timings or
+        # storage benchmark: the theorem allocates all stated direct arrays.
+        def __init__(self, prime, level, cached):
+            assert 1 <= cached < level <= prime
+            self.p, self.k, self.h = prime, level, cached
+            self.n, self.d = prime ** level, prime * prime
+            self.field = Field(prime)
+            self.slots, self.owners, self.cells = {}, {}, {}
+            self.last_totals = self.oracle_totals = None
+            self.last_neighbors = set()
+
+        def symbols(self, f):
+            return tuple(self.field.evaluate(f, a) for a in range(self.p))
+
+        def raw_key(self, f):
+            return sum(1 << (a * self.p + b) for a, b in enumerate(self.symbols(f)))
+
+        def support(self, raw):
+            assert 0 <= raw < 1 << self.d
+            return tuple((i // self.p, i % self.p) for i in range(self.d) if raw >> i & 1)
+
+        def address(self, points):
+            j = len(points)
+            if len({a for a, _ in points}) < j:
+                return None
+            offset = sum(comb(self.p, u) * self.p ** u for u in range(j))
+            rank = sum(comb(a, u + 1) for u, (a, _) in enumerate(points))
+            return offset + rank * self.p ** j + sum(b * self.p ** u
+                                                     for u, (_, b) in enumerate(points))
+
+        def descriptors(self, f):
+            points = tuple(enumerate(self.symbols(f)))
+            return (self.address(a) for j in range(self.h + 1) for a in combinations(points, j))
+
+        def snapshot(self):
+            return (tuple(sorted(self.slots.items())), tuple(sorted(self.owners.items())),
+                    tuple(sorted((a, count, tuple(total)) for a, (count, total) in self.cells.items())))
+
+        def remove(self, slot):
+            if slot not in self.slots:
+                return
+            f, value = self.slots.pop(slot)
+            assert self.owners.pop(f) == slot
+            for a in self.descriptors(f):
+                count, total = self.cells[a]
+                count -= 1
+                total = [x - y for x, y in zip(total, value)]
+                if count:
+                    self.cells[a] = count, total
+                else:
+                    assert total == [0, 0]
+                    del self.cells[a]
+            stats['deletions'] += 1
+
+        def replace(self, slot, raw, value):
+            assert 0 <= slot < self.n
+            before = self.snapshot()
+            points = self.support(raw) if 0 <= raw < 1 << self.d else ()
+            valid = len(points) == self.p and len({a for a, _ in points}) == self.p
+            f = next(affine_fiber(points[:self.k], self.k, self.field), None) if valid else None
+            valid = f is not None and self.raw_key(f) == raw
+            valid = valid and (f not in self.owners or self.owners[f] == slot)
+            brute_valid = (raw in {self.raw_key(poly) for poly in product(range(self.p), repeat=self.k)}
+                           if self.n <= 125 else f is not None and self.raw_key(f) == raw)
+            brute_valid = brute_valid and all(i == slot or self.raw_key(poly) != raw
+                                              for i, (poly, _) in self.slots.items())
+            assert bool(valid) == bool(brute_valid)
+            if not valid:
+                assert self.snapshot() == before
+                stats['rejections'] += 1
+                return False
+            self.remove(slot)
+            self.slots[slot], self.owners[f] = (f, tuple(value)), slot
+            for a in self.descriptors(f):
+                count, total = self.cells.get(a, (0, [0, 0]))
+                self.cells[a] = count + 1, [x + y for x, y in zip(total, value)]
+            stats['admissions'] += 1
+            return True
+
+        def overwrite(self, slot, value):
+            f, old = self.slots[slot]
+            delta = [x - y for x, y in zip(value, old)]
+            for a in self.descriptors(f):
+                count, total = self.cells[a]
+                self.cells[a] = count, [x + y for x, y in zip(total, delta)]
+            self.slots[slot] = f, tuple(value)
+            stats['overwrites'] += 1
+
+        def check_state(self):
+            expected = {}
+            for f, value in self.slots.values():
+                for a in self.descriptors(f):
+                    count, total = expected.get(a, (0, [0, 0]))
+                    expected[a] = count + 1, [x + y for x, y in zip(total, value)]
+            assert expected == self.cells
+            assert {f: slot for slot, (f, _) in self.slots.items()} == self.owners
+            stats['live_zero_sums'] += sum(count > 0 and total == [0, 0]
+                                          for count, total in self.cells.values())
+
+        def read(self, raw):
+            stats['reads'] += 1
+            points = self.support(raw)
+            size = len(points)
+            numerator, denominator = [0, 0], 0
+            if size > 2 * self.p:
+                stats['empty_gates'] += 1
+            elif size > 6 * (self.k - 1):
+                stats['high_reads'] += 1
+                q = interpolate(points, self.k, self.field)
+                candidates = self.field.roots(q, self.k)
+                self.last_neighbors = set()
+                for f in candidates:
+                    if f not in self.owners:
+                        continue
+                    weight = max(0, self.p + 1 - (raw ^ self.raw_key(f)).bit_count())
+                    if weight:
+                        self.last_neighbors.add(f)
+                    value = self.slots[self.owners[f]][1]
+                    denominator += weight
+                    numerator = [x + weight * y for x, y in zip(numerator, value)]
+                stats['high_two_neighbor_queries'] += len(self.last_neighbors) == 2
+            else:
+                stats['low_reads'] += 1
+                differences = [max(0, 1 - size + 2 * s) for s in range(self.k)]
+                coefficients = []
+                while differences:
+                    coefficients.append(differences[0])
+                    differences = [y - x for x, y in zip(differences, differences[1:])]
+                for j, c in enumerate(coefficients):
+                    if c == 0:
+                        continue
+                    for subset in combinations(points, j):
+                        if j <= self.h:
+                            address = self.address(subset)
+                            count, total = self.cells.get(address, (0, [0, 0]))
+                        else:
+                            count, total = 0, [0, 0]
+                            for f in affine_fiber(subset, self.k, self.field):
+                                stats['fiber_addresses_examined'] += 1
+                                if f in self.owners:
+                                    value = self.slots[self.owners[f]][1]
+                                    count += 1
+                                    total = [x + y for x, y in zip(total, value)]
+                        denominator += c * count
+                        numerator = [x + c * y for x, y in zip(numerator, total)]
+                candidates = set()
+                for subset in combinations(points, self.k):
+                    # Inconsistent repeated rows are rejected by the solver.
+                    for f in affine_fiber(subset, self.k, self.field):
+                        assert len({a for a, _ in subset}) == self.k
+                        candidates.add(f)
+                for f in candidates & self.owners.keys():
+                    overlap = (raw & self.raw_key(f)).bit_count()
+                    poly = sum(c * comb(overlap, j) for j, c in enumerate(coefficients))
+                    correction = max(0, 1 - size + 2 * overlap) - poly
+                    value = self.slots[self.owners[f]][1]
+                    denominator += correction
+                    numerator = [x + correction * y for x, y in zip(numerator, value)]
+                    stats['nonzero_corrections'] += correction != 0
+            assert denominator >= 0
+            self.last_totals = tuple(numerator), denominator
+            assert denominator or numerator == [0, 0]
+            return tuple(F(x, denominator) for x in numerator) if denominator else None
+
+        def oracle(self, raw):
+            weighted = [(value, max(0, self.p + 1 - (raw ^ self.raw_key(f)).bit_count()))
+                        for f, value in self.slots.values()]
+            denominator = sum(w for _, w in weighted)
+            numerator = tuple(sum(value[j] * w for value, w in weighted) for j in range(2))
+            self.oracle_totals = numerator, denominator
+            return tuple(F(x, denominator) for x in numerator) if denominator else None
+
+    primitive_roots = primitive_fibers = direct_addresses = 0
+    for prime in (3, 5, 7):
+        field = Field(prime)
+        all_f = list(product(range(prime), repeat=2))
+        # Nonconstant A and common factors test polynomial rather than
+        # pointwise division. Include nonsquares, repeated roots and linear Q.
+        for first, second in ((all_f[i], all_f[j]) for i in range(0, len(all_f), 3)
+                              for j in range(0, len(all_f), 5)):
+            factor = (1, 0, 1)
+            q = [field.mul(field.mul(first, second), factor),
+                 field.scale(field.mul(field.add(first, second), factor), -1), factor]
+            found = field.roots(q, 2)
+            brute = {f for f in all_f if not field.substitute(q, f)}
+            assert found == brute == {first, second}
+            primitive_roots += 1
+        for q in ([(), (1, 1), ()], [(1,), (), (1,)], [(0, 1), (), (1,)],
+                  [(1, 0, 1), (0, 1), (1,)], [(1,), (), ()]):
+            q = [field.trim(a) for a in q]
+            assert field.roots(q, 2) == {f for f in all_f if not field.substitute(q, f)}
+            primitive_roots += 1
+        for points in ((), ((0, 1),), ((0, 1), (0, 2)),
+                       ((0, 1), (1, 2)), ((0, 1), (1, 2), (2, 0))):
+            found = set(affine_fiber(points, 2, field))
+            assert found == {f for f in all_f if all(field.evaluate(f, a) == b for a, b in points)}
+            primitive_fibers += 1
+        sample = CodedIndex(prime, 2, 1)
+        addresses = [sample.address(tuple(zip(rows, values)))
+                     for j in range(2) for rows in combinations(range(prime), j)
+                     for values in product(range(prime), repeat=j)]
+        assert sorted(addresses) == list(range(1 + prime * prime))
+        direct_addresses += len(addresses)
+
+    # Two nonzero contributions cancel in an actually shared cached cell.
+    cancellation = CodedIndex(5, 2, 1)
+    for slot, f, value in ((0, (0, 0), (11, -17)), (1, (0, 1), (-11, 17))):
+        assert cancellation.replace(slot, cancellation.raw_key(f), value)
+    cancellation.check_state()
+    assert cancellation.cells[cancellation.address(((0, 0),))] == (2, [0, 0])
+    cancellation.remove(1)
+    cancellation.check_state()
+    assert cancellation.cells[cancellation.address(((0, 0),))] == (1, [11, -17])
+    for raw in (0, 1, cancellation.raw_key((0, 0))):
+        assert cancellation.read(raw) == cancellation.oracle(raw)
+        assert cancellation.last_totals == cancellation.oracle_totals
+    cancellation.overwrite(0, ((1 << 257) + 17, -(1 << 263) + 19))
+    for raw in (0, 1, cancellation.raw_key((0, 0))):
+        assert cancellation.read(raw) == cancellation.oracle(raw)
+        assert cancellation.last_totals == cancellation.oracle_totals
+
+    empty = CodedIndex(7, 2, 1)
+    for raw in (0, 1, empty.raw_key((0, 0)), (1 << empty.d) - 1):
+        assert empty.read(raw) is None and empty.oracle(raw) is None
+        assert empty.last_totals == empty.oracle_totals == ((0, 0), 0)
+
+    address_index = CodedIndex(5, 4, 2)
+    addresses = [address_index.address(tuple(zip(rows, values)))
+                 for j in range(3) for rows in combinations(range(5), j)
+                 for values in product(range(5), repeat=j)]
+    assert sorted(addresses) == list(range(1 + 25 + 250))
+    direct_addresses += len(addresses)
+
+    address_index = CodedIndex(7, 6, 3)
+    addresses = [address_index.address(tuple(zip(rows, values)))
+                 for j in range(4) for rows in combinations(range(7), j)
+                 for values in product(range(7), repeat=j)]
+    assert sorted(addresses) == list(range(sum(comb(7, j) * 7 ** j for j in range(4))))
+    direct_addresses += len(addresses)
+
+    cases, sensitivity_reads, pure_reads, atomic_rejections = [], 0, 0, 0
+    for prime, level, cached, complete in ((3, 2, 1, True), (5, 2, 1, True),
+                                           (5, 3, 1, True), (5, 3, 2, True), (7, 2, 1, True),
+                                           (7, 4, 3, False),
+                                           (13, 3, 1, True), (7, 6, 3, False), (17, 5, 2, False),
+                                           (29, 5, 2, False)):
+        index = CodedIndex(prime, level, cached)
+        field = index.field
+        polynomials = list(product(range(prime), repeat=level)) if complete else [
+            tuple([a, b] + [0] * (level - 2)) for a in range(4) for b in range(min(8, prime))]
+        initial_stats = stats.copy()
+        for slot, f in enumerate(polynomials):
+            assert index.replace(slot, index.raw_key(f), (slot * slot + 1, -3 * slot - 2))
+        index.check_state()
+
+        queries = {0, (1 << index.d) - 1}
+        if prime == 3:
+            queries.update(range(1 << index.d))
+        else:
+            # Raw multi-hot sets, not a predecoded sequence of symbols.
+            for size in range(1, min(2 * prime + 2, 16)):
+                for offset in range(6):
+                    coords = {(offset + 3 * j + j * j) % index.d for j in range(size)}
+                    queries.add(sum(1 << i for i in coords))
+            for f in polynomials[:4]:
+                raw = index.raw_key(f)
+                queries.add(raw)
+                queries.update(raw ^ (1 << j) for j in range(0, index.d, max(1, index.d // 7)))
+            first, second = polynomials[0], polynomials[1]
+            union = index.raw_key(first) | index.raw_key(second)
+            queries.add(union)
+            # Test both sides of the strict interpolation threshold, even
+            # when the low branch has a large fixed-k constant.
+            support = index.support(union)
+            for size in (6 * (level - 1), 6 * (level - 1) + 1, 2 * prime, 2 * prime + 1):
+                if size <= index.d:
+                    pairs = list(support[:size])
+                    for i in range(index.d):
+                        point = divmod(i, prime)
+                        if len(pairs) >= size:
+                            break
+                        if point not in pairs:
+                            pairs.append(point)
+                    queries.add(sum(1 << (a * prime + b) for a, b in pairs))
+        for raw in sorted(queries):
+            assert index.read(raw) == index.oracle(raw)
+            assert index.last_totals == index.oracle_totals
+
+        # Current arbitrary payloads, signed cancellation, latest overwrite,
+        # deletion/reuse, duplicate rejection and malformed raw admission.
+        index.overwrite(0, (11, -17))
+        index.overwrite(1, (-11, 17))
+        index.check_state()
+        invalid = [0, index.raw_key(polynomials[0]) ^ 1,
+                   index.raw_key(polynomials[1]), 1 << index.d]
+        # One-hot but not a degree-<k polynomial: change one evaluation.
+        if level < prime:
+            invalid.append(index.raw_key(polynomials[0]) ^ 1 ^ 2)
+        for raw in invalid:
+            before = index.snapshot()
+            assert not index.replace(0, raw, (23, 31))
+            assert index.snapshot() == before
+            atomic_rejections += 1
+        index.remove(1)
+        assert index.replace(1, index.raw_key(polynomials[1]), (0, 0))
+        index.check_state()
+        dynamic_queries = sorted(queries)[:12] + [index.raw_key(polynomials[0]),
+                                                index.raw_key(polynomials[0]) | index.raw_key(polynomials[1])]
+        for raw in dynamic_queries:
+            assert index.read(raw) == index.oracle(raw)
+            assert index.last_totals == index.oracle_totals
+        if prime > 6 * (level - 1):
+            raw = index.raw_key(polynomials[0]) | index.raw_key(polynomials[1])
+            assert index.read(raw) == index.oracle(raw)
+            assert index.last_totals == index.oracle_totals
+            assert len(index.last_neighbors) == 2
+            index.overwrite(1, (-37, 41))
+            assert index.read(raw) == index.oracle(raw)
+            assert index.last_totals == index.oracle_totals
+            index.remove(1)
+            assert index.read(raw) == index.oracle(raw)
+            assert index.last_totals == index.oracle_totals
+            assert len(index.last_neighbors) == 1
+            assert index.replace(1, index.raw_key(polynomials[1]), (-37, 41))
+        if prime > 2 * level - 2:
+            for slot in range(min(4, len(polynomials))):
+                f, value = index.slots[slot]
+                key = index.raw_key(f)
+                for radius in range(min(2, prime - 2 * level + 1) + 1):
+                    coords = range(index.d) if prime <= 5 else range(0, index.d, max(1, index.d // 8))
+                    for flips in combinations(coords, radius):
+                        raw = key ^ sum(1 << i for i in flips)
+                        assert index.read(raw) == tuple(F(x) for x in value) == index.oracle(raw)
+                        assert index.last_totals == index.oracle_totals
+                        pure_reads += 1
+        # Exact every-bit sensitivity at the zero query. This witness is
+        # complete-code only; pairwise-independent evaluations prove uniformity.
+        if complete and prime <= 7:
+            def label(y):
+                return 1 if y < prime - 1 else -(prime - 1)
+            for slot, (f, _) in list(index.slots.items()):
+                value = sum(label(y) for y in index.symbols(f))
+                index.overwrite(slot, (value, -value))
+            assert index.read(0) == (F(0), F(0)) == index.oracle(0)
+            assert index.last_totals == index.oracle_totals
+            sensitivity_reads += 1
+            for a in range(prime):
+                for y in range(prime):
+                    raw = 1 << (a * prime + y)
+                    assert index.read(raw) == (F(label(y)), F(-label(y))) == index.oracle(raw)
+                    assert index.last_totals == index.oracle_totals
+                    sensitivity_reads += 1
+        index.check_state()
+        # Replacing a key by a different valid raw codeword updates both
+        # inverse ownership and every cached aggregate, including row changes.
+        old_first, old_second = index.slots[0], index.slots[2]
+        index.remove(2)
+        assert index.replace(0, index.raw_key(old_second[0]), (101, -103))
+        assert index.replace(2, index.raw_key(old_first[0]), (-107, 109))
+        index.check_state()
+        for raw in (0, 1, index.raw_key(old_first[0]), index.raw_key(old_second[0])):
+            assert index.read(raw) == index.oracle(raw)
+            assert index.last_totals == index.oracle_totals
+        cases.append({"prime": prime, "polynomial_dimension": level, "cached_orders_through": cached,
+                      "capacity": prime ** level, "raw_dimension": index.d,
+                      "linear_space_parameter_condition": 2 * cached <= level,
+                      "complete_codebook_values_installed": complete,
+                      "occupied_values": len(index.slots),
+                      "cache_cell_capacity": sum(comb(prime, j) * prime ** j for j in range(cached + 1)),
+                      "cells_per_value_edit": sum(comb(prime, j) for j in range(cached + 1)),
+                      "query_controls": {name: stats[name] - initial_stats[name]
+                                         for name in ('reads', 'low_reads', 'high_reads', 'empty_gates',
+                                                      'fiber_addresses_examined', 'nonzero_corrections',
+                                                      'high_two_neighbor_queries')}})
+    assert stats['low_reads'] and stats['high_reads'] and stats['empty_gates']
+    assert stats['nonzero_corrections'] and stats['fiber_addresses_examined']
+    assert stats['high_two_neighbor_queries'] and stats['live_zero_sums']
+    growing_parameters = []
+    for prime in (127, 257, 521, 1031, 2053, 4093):
+        level = prime // (4 * (prime - 1).bit_length())
+        capacity = prime ** level
+        edit_cells = sum(comb(prime, j) for j in range(level))
+        cache_cells = sum(comb(prime, j) * prime ** j for j in range(level))
+        query_subsets = sum(comb(6 * (level - 1), j) for j in range(level + 1))
+        assert cache_cells * prime <= capacity * edit_cells
+        assert query_subsets <= 2 ** (6 * (level - 1))
+        assert capacity ** 4 <= 2 ** prime
+        growing_parameters.append({"prime": prime, "polynomial_dimension": level,
+                                   "capacity_bits": capacity.bit_length(),
+                                   "cache_cell_capacity_bits": cache_cells.bit_length(),
+                                   "cells_per_edit_bits": edit_cells.bit_length(),
+                                   "low_query_subset_bound_bits": query_subsets.bit_length()})
+
+    # Published ranked up/down zeta + Pascal inversion, independently
+    # compared to our truncated moments and unique-owner tail compression.
+    transform_reads = 0
+    for dimension, weight, level, supports in (
+            (6, 2, 1, [(0, 1), (2, 3), (4, 5)]),
+            (7, 3, 2, [(0, 1, 2), (0, 3, 4), (0, 5, 6), (1, 3, 5),
+                       (1, 4, 6), (2, 3, 6), (2, 4, 5)]),
+            (9, 4, 2, [(0, 1, 2, 3), (0, 4, 5, 6), (1, 4, 7, 8)])):
+        assert all(len(set(x) & set(y)) < level for x, y in combinations(supports, 2))
+        values = [(1, i * i - 3, (-1) ** i * (i + 2)) for i in range(len(supports))]
+        up, owners = {}, {}
+        for owner, support in enumerate(supports):
+            for j in range(weight + 1):
+                for subset in combinations(support, j):
+                    previous = up.get(subset, (0, 0, 0))
+                    up[subset] = tuple(x + y for x, y in zip(previous, values[owner]))
+                    if j == level:
+                        assert subset not in owners
+                        owners[subset] = owner
+        for raw in range(1 << dimension):
+            query = tuple(i for i in range(dimension) if raw >> i & 1)
+            overlaps = [len(set(query) & set(support)) for support in supports]
+            moments = [tuple(sum(up.get(subset, (0, 0, 0))[v]
+                                 for subset in combinations(query, j)) for v in range(3))
+                       for j in range(weight + 1)]
+            distribution = [tuple(sum((-1) ** (i + j) * comb(i, j) * moments[i][v]
+                                      for i in range(j, weight + 1)) for v in range(3))
+                            for j in range(weight + 1)]
+            assert distribution == [tuple(sum(value[v] for value, s in zip(values, overlaps) if s == j)
+                                          for v in range(3)) for j in range(weight + 1)]
+            candidates = {owners[a] for a in combinations(query, level) if a in owners}
+            assert candidates == {i for i, s in enumerate(overlaps) if s >= level}
+            for j in range(level, weight + 1):
+                assert moments[j] == tuple(sum(comb(overlaps[i], j) * values[i][v] for i in candidates)
+                                           for v in range(3))
+            for radius in (0, weight, 2 * weight):
+                g = [max(0, radius + 1 - weight - len(query) + 2 * s) for s in range(weight + 1)]
+                differences, coefficients = g[:], []
+                while differences:
+                    coefficients.append(differences[0])
+                    differences = [y - x for x, y in zip(differences, differences[1:])]
+                full = tuple(sum(g[j] * distribution[j][v] for j in range(weight + 1)) for v in range(3))
+                assert full == tuple(sum(coefficients[j] * moments[j][v] for j in range(weight + 1))
+                                     for v in range(3))
+                compressed = tuple(
+                    sum(coefficients[j] * moments[j][v] for j in range(level))
+                    + sum((g[overlaps[i]] - sum(coefficients[j] * comb(overlaps[i], j)
+                                               for j in range(level))) * values[i][v] for i in candidates)
+                    for v in range(3))
+                assert full == compressed
+                transform_reads += 1
+    return {"cases": cases, "exact_controls": stats,
+            "polynomial_root_primitive_cases": primitive_roots,
+            "affine_fiber_primitive_cases": primitive_fibers,
+            "distinct_direct_cell_addresses": direct_addresses,
+            "all_bit_sensitivity_reads": sensitivity_reads,
+            "pure_current_value_noise_reads": pure_reads,
+            "atomic_invalid_or_duplicate_rejections": atomic_rejections,
+            "large_exact_payload_guard_control_bits": 264,
+            "empty_state_raw_queries": 4,
+            "published_intersection_transform_equivalence_reads": transform_reads,
+            "intersection_transform_scope": "On three non-polynomial low-intersection families, exhaust all raw queries and three radii, checking the published full ranked up/down zeta moments and inverse Pascal distribution against direct intersection classes, then our low-order truncation plus exact unique-owner tail. This proves the algebraic equivalence, not that the published full-down-closure theorem already states the compressed dynamic bound or that the elementary compression is a novel contribution.",
+            "growing_dimension_parameter_bit_lengths": growing_parameters,
+            "general_space_bound": "For any 1<=h<k, cache C_h=sum_{j<=h}binom(p,j)*p^j cells and keep n=p^k independent value slots. State O_k,h((n+C_h)*(v+1)+p^2). The linear-space simplification additionally needs 2h<=k at fixed k. The h=k-1 controls also exercise the general, potentially superlinear fixed-k tradeoff.",
+            "uniform_bound": "For fixed k,h with 1<=h<k and 2h<=k, odd prime p>=k, n=p^k, raw dimension p^2 and radius p: state O_k,h(n*(v+1)), exact reads O_k,h(p^2+p^(k-h-1)*(v+1)), overwrites/deletes O_k,h(p^h*(v+1)), raw admitted rekeys O_k,h(p^2+p^h*(v+1)). Field/precision bit costs are additional; guard bits and initialization are charged in the note. For k=5,h=2 scalar reads/rekeys are n^(2/5) up to word/precision factors, with linear state.",
+            "growing_dimension_scope": "With k=floor(p/(4ceil(log2 p))) and h=k-1, keep exact C_h cells rather than the loose p^(2h) bound. This yields n^(1+o(1)) state/preprocessing, n^o(1) updates, and 2^O(k)*poly(p,k)*(v+1) complete raw reads. No implicit constant is treated as uniform in growing k; the note expands it. This is a codebook-specific comparator in the preceding generic candidate's asymptotic regime, not a novelty determination.",
+            "scope": "Exact sparse-map correctness control, not a direct-array implementation, hardware benchmark or novelty proof. All raw-query numerators/denominators are checked against independent Hamming scans. Small complete codebooks and sparsely occupied larger fixed codebooks are distinguished; larger capacities are conceptual. The construction uses established soft interpolation and affine evaluation constraints with partial cached sums. It restricts key admission to a known polynomial codebook, so does not settle the priority or usefulness of the generic low-intersection candidate. No neural training or strongest-baseline separation is claimed."}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -2759,6 +3394,7 @@ def main():
               "compound_rebuild_cost": compound_rebuild_controls(),
               "spectral_mixture_hardness": spectral_omv_controls(),
               "subset_aggregate_candidate": subset_aggregate_controls(),
+              "affine_coded_baseline": affine_coded_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,

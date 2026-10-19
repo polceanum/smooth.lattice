@@ -3063,3 +3063,345 @@ earlier unique-neighbor theorem. It does not solve the full spectral-only
 class, establish a learned encoder, or prove superiority over the strongest
 published aggregation method. Preserve it for the precise priority audit;
 do not start neural training or declare the original goal complete.
+
+## A stronger coded comparator: soft interpolation and affine sums
+
+The preceding Reed--Solomon witness needs a stronger comparator than either
+a scan or our own full subset table. Classical soft interpolation, combined
+with partial evaluation aggregates, gives the following deterministic bound.
+This is a derived baseline, not an established new contribution. It applies
+to a fixed polynomial codebook; the generic low-intersection admission class
+in the preceding theorem is strictly broader. Neither result establishes a
+learned-architecture advantage or completes the research goal.
+
+### Model and complete cost statement
+
+Fix integers k>=2 and 1<=h<k. Let p>=k be an odd prime,
+n=p^k, and let the allowed keys be all degree-<k polynomials over F_p,
+one-hot encoded by (a,f(a)) in d=p^2 raw bits. Keep any active subset of
+these n possible keys, each with its own arbitrary signed fixed-grid
+v-word value. A read accepts any raw d-bit vector z and returns the exact
+weighted numerator and count, or their rational mean, at fixed radius p:
+
+```text
+weight(f,z) = max(0,p+1-dist(x_f,z)).
+```
+
+Empty reads have a distinguished empty result. All value coordinates,
+occupancy, overwrites and deletions count. An inserted/replacement key is
+supplied as raw bits: scan it, check one-hot rows, interpolate from k rows,
+verify all p evaluations, then derive its coefficient address internally.
+Reject malformed, noncodeword or duplicate keys before mutation. Admission
+outside this fixed codebook is not supported. Coefficients are a lossless
+description of a validated codeword, not a supplied latent encoding or a
+compression of independent payloads.
+
+In an exact finite-word model with adequate guard/address bits, the bounds
+below count scalar word operations and field operations; field division,
+larger payload arithmetic and bit-level costs must also be charged. With
+fixed k,h, a precomputed field-inverse table and polylogarithmic precision,
+the corresponding bit costs differ by polylogarithmic factors:
+
+```text
+state:                  O_k,h((n+C_h)*(v+1) + p^2) words,
+complete raw read:      O_k,h(p^2 + p^(k-h-1)*(v+1)),
+value overwrite/delete: O_k,h(p^h*(v+1)),
+raw admitted key edit:  O_k,h(p^2 + p^h*(v+1)).
+```
+
+Here C_h=sum_{j<=h}binom(p,j)*p^j. For fixed k,h with 2h<=k, the
+state simplifies to O_k,h(n*(v+1)), since C_h=O_h(p^(2h)). Without
+that condition this fixed-k simplification is not asserted. Here n is
+codebook capacity, even if few keys are active. Dense tables of that
+capacity are charged. Initialize their zero state and metadata in
+O_k,h((n+C_h)*(v+1)+p^2) steps. Loading n arbitrary raw keys costs
+another O_k,h(n*(p^2+p^h*(v+1))) steps; there is no near-linear initial
+loading claim. Updates are worst-case, with no random rebuild, horizon
+counter or forgetting error. Optional external-slot ownership and duplicate
+checks use two n-entry inverse arrays and are included.
+
+For k=5,h=2, this is linear state and complete reads, raw admitted edits,
+overwrites and deletes in O(n^(2/5)*(v+1)) scalar operations, up to the
+stated bit/field costs. Full raw loading costs O(n^(7/5)*(v+1)). For
+k=6,h=3, scalar reads instead cost O(n^(1/3)), while value writes cost
+O(n^(1/2)*(v+1)); raw admission adds n^(1/3). These are different
+read/write tradeoffs. Constants depend strongly on k and are not uniform
+when k grows. In particular these bounds do not replace the preceding
+growing-k subpolynomial theorem by treating a fixed-k constant as uniform.
+An explicit growing-k comparison is given below; priority remains open.
+
+### Store short evaluation sums, enumerate the missing fibers
+
+For every consistent j-point evaluation constraint, 0<=j<=h, store its
+active support count and exact current value sum. There are
+
+```text
+C_h = sum_{j=0}^h binom(p,j)*p^j = O_h(p^(2h))
+```
+
+possible cells. A codeword contributes to
+A_h=sum_{j=0}^h binom(p,j)=O_h(p^h) cells. This proves the edit bounds;
+recompute its p symbols in O_k(p) time if needed. Keep support counts
+separately from signed sums: cancellation does not remove a live cell.
+No size-k owner table is required.
+
+Cells need no hash tables. For ordered distinct row IDs a_1<...<a_j,
+the colexicographic rank sum_{i=1}^j binom(a_i,i) lies in
+[0,binom(p,j)). Combine it with the base-p rank of their specified
+evaluation values and an order offset. This indexes exactly C_h cells.
+Precompute the O_h(p) binomial entries; all other metadata and arrays
+fit in the state bound. A polynomial's coefficient tuple likewise has a
+direct base-p address in [0,n). Deduplication uses fixed address marks and
+a cleared touched list, rather than counters that grow with time.
+
+Let T=weight(z), and let s_f count the selected pairs (a,f(a)) in z.
+Rows may contain zero, one or several selected symbols. Exactly
+
+```text
+dist(x_f,z) = p+T-2*s_f,       g_T(s)=max(0,1-T+2*s).
+```
+
+If T>2p the result is empty. Otherwise first consider T<=6(k-1).
+Use the preceding identity with b_j=Delta^j g_T(0), j<k, and
+P(s)=sum_{j<k}b_j*binom(s,j). Enumerate the query's j-subsets with
+nonzero coefficient. Inconsistent repeated evaluation rows contribute
+zero. At j<=h fetch the cached cell. At h<j<k, solve its j independent
+evaluation equations in k coefficients. Their solution is an affine fiber
+of exactly p^(k-j) polynomials. Enumerate it, fetch active values by direct
+address and sum them. Each missing cell therefore costs at most
+O_k(p^(k-h-1)*(v+1)); no free aggregate oracle is assumed.
+
+Every size-k subset of distinct rows specifies exactly one polynomial by
+interpolation. Find these addresses, deduplicate them, and for each active
+owner add (g_T(s_f)-P(s_f)) times its value and the matching count
+correction. This gives exactly the preceding Newton sum, including arbitrary
+large mixtures. There are at most sum_{j<=k}binom(6(k-1),j) subsets, a
+constant only for fixed k. Raw input scanning costs p^2; owner distance
+verification costs O_k(p) per candidate. This proves the low-T read bound.
+When T>=2k-1 all b_j with j<k vanish, so this branch needs only the owner
+interpolations, not the missing-fiber value scans.
+
+### The other branch has at most two algebraic candidates
+
+For T>6(k-1), build a nonzero Q(X,Y) of Y-degree at most two, vanishing
+at every selected point, with (1,k-1)-weighted degree <s_0=ceil(T/2).
+Here is an explicit quadratic-time construction, so the bound does not
+hide a large linear-system solve or a general polynomial factorizer.
+
+Start g_0=1,g_1=Y,g_2=Y^2. Order monomials by
+(X-degree+(k-1)*Y-degree,Y-degree). At each selected (a,b), evaluate all
+three discrepancies. If all vanish, continue. Otherwise choose the
+nonzero-discrepancy pivot with least leading monomial. Using its old value,
+subtract its appropriate field multiple from each other polynomial with
+nonzero discrepancy, then multiply the pivot by X-a. Prior zeros persist
+and the current point is now a zero of every polynomial.
+
+Inductively the three leading Y-degrees remain 0,1,2: subtracting a
+strictly smaller pivot cannot cancel another leading term. Multiplying the
+pivot increases its leading X-degree by one. Thus if these leading
+X-degrees are e_0,e_1,e_2, sum e_j<=T. If all three weighted degrees
+were >=s_0, their sum would give
+
+```text
+sum e_j >= 3*s_0-3*(k-1) > T,
+```
+
+a contradiction. Choose a polynomial of least weighted degree as Q.
+Its coefficient degrees are O_k(T); incremental evaluation and updates
+take O_k(T^2) field operations and O_k(T) scratch words, even with
+repeated a and different b. Selected identical pairs cannot repeat in
+a raw bit vector.
+
+For every near codeword, s_f>=s_0 and the univariate Q(X,f(X)) has
+degree <s_0 and at least s_0 distinct evaluation roots. It is therefore
+zero identically, so Y-f(X) divides Q. There can be at most two distinct
+polynomial roots. This is the classical interpolation/score mechanism of
+[Koetter--Vardy, Section III, Theorem 3](https://www.site.uottawa.ca/~zhcheng/RS_soft_decision.pdf),
+specialized here to multiplicity-one raw supports. The primary PDF's score,
+cost and factor argument were checked on pages 4--5; page 5 was visually
+inspected. The explicit three-polynomial calculation above supplies our
+particular threshold and cost rather than attributing the entire dynamic
+aggregate theorem to that paper.
+
+Root extraction is elementary over odd prime fields. Write Q=A*Y^2+B*Y+C.
+If A=0 use exact division -C/B when B!=0; a nonzero constant-in-Y
+polynomial has no roots. Otherwise form D=B^2-4*A*C. A polynomial
+root implies D=(2*A*f+B)^2. If D=0 use its zero square root; otherwise
+its degree must be even, and its leading coefficient must be a square.
+Find a leading square root by scanning F_p, then recover the remaining
+coefficients from highest to lowest by dividing by twice that leading
+coefficient. Verify the entire square. At most the two exact quotients
+(-B+H)/(2*A) and (-B-H)/(2*A) can be polynomial roots; retain only
+zero remainders, degree <k and verified substitutions. This costs
+O_k(T^2+p) field operations. Common X factors and repeated roots are
+allowed. General algebraic root reconstruction is established prior art;
+see [Roth--Ruckenstein, Section V, Proposition 5.2 and Section VI](https://www.site.uottawa.ca/~zhcheng/efficient.pdf).
+No general factorization guarantee is needed for this quadratic case.
+
+Finally check each candidate's actual raw distance, occupancy and current
+value, and form its exact weighted numerator/count. Since T<=2p this
+whole branch costs O_k(p^2+v+1). Combined with the low branch it proves
+the complete read bound. Payload arithmetic is over signed integers, not
+modulo p; the finite field is used only for key geometry.
+
+### Precision, retention, and elementary lower bounds
+
+For fixed k,h, low-branch subset counts and Newton coefficients depend
+only on k. Each affine cell has at most n members. All integer aggregate
+and correction magnitudes fit S+O_k(log(n+1)) bits per scalar if the
+input scalar has S bits; the final count is at most n*(p+1). Address
+width covers the full n-entry value/owner arrays and C_h cells, including
+v. Preselect this precision; it never grows with overwrite count. The
+output keeps a shared exact denominator rather than assuming a constant
+cost floating division. These observations justify the finite-word model
+and its stated polylogarithmic bit-cost qualification.
+
+Distinct keys still have distance at least 2(p-k+1). For p>2k-2, every
+raw perturbation of at most p-2k+1 bits around an active codeword returns
+its current independent value at radius p. The whole pure-read family
+contains an n-by-n identity. There is no global two-latent rank bound:
+low-T queries may combine many independent values through jointly
+constrained sums. For large enough p, high-T queries can also have two
+independently changeable neighbors, for example the union of two disjoint
+constant-codeword supports. The two-candidate bound is local to that
+query branch, not a restriction on stored capacity.
+
+An ordinary information bound requires n*S bits of state for n independent
+S-bit scalar values: their pure reads distinguish every assignment. It
+does not prove our write cost optimal. A separate exact-input bound matches
+scalar read scaling up to word/precision factors. Define t(y)=1 except
+t(p-1)=-(p-1), and store the legal scalar witness
+
+```text
+V_f = sum_{a in F_p} t(f(a)).
+```
+
+All n codewords are active. Evaluations at any two distinct rows are
+independent and uniform for k>=2. The zero query returns zero. The
+singleton raw query (a,y) selects exactly f(a)=y, all with weight two,
+and returns t(y), which is never zero. Thus changing any one input bit
+at the zero query changes the exact answer. Every deterministic exact
+reader must inspect every packed input word there, requiring
+Omega(p^2/W) word probes for W-bit words. The same conclusion holds for
+zero-error randomized readers by fixing their coins on this finite input
+family. The witness uses only O(log p) value bits. For k=5,h=2 and
+k=6,h=3 scalar precision O(polylog n), our respective O(p^2) upper
+bounds are therefore optimal up to word/precision factors for this
+particular raw-input model. No v-factor optimality or dynamic write
+lower bound follows. Exact raw admission has the analogous input bound:
+flipping any bit of a valid one-hot key makes a row invalid.
+
+These are elementary input and information bounds, not new lower-bound
+techniques. They explain why cost should be compared to raw dimension
+and retained value capacity, rather than a redundant dense matrix alone.
+
+### The same growing-k regime as the generic candidate
+
+The exact cell count also permits a stronger codebook comparator in the
+preceding theorem's regime. Take k=floor(p/(4*ceil(log2 p))), h=k-1,
+and sufficiently large p, so log n=Theta(p). In this paragraph expand
+all dependence on k. Define
+
+```text
+F = sum_{j<k}binom(p,j),
+B = sum_{j<=k}binom(6(k-1),j) <= 2^(6(k-1)).
+```
+
+Then C_h<=p^(k-1)*F=n*F/p. The usual binomial-sum estimate gives
+F=exp(O(k*log(p/k+2)))=n^o(1). Low-branch reads have at most B subsets
+and no missing affine fibers. Each subset lookup/address calculation
+costs O(k); each size-k owner interpolation costs O(k^3), its raw
+distance evaluation O(p*k), and its payload fetch O(v+1). Computing
+Newton coefficients and the P(s) table costs O(k^2+p*k). Hence a
+uniform conservative bound is
+
+```text
+read:  O(p^2+p*k+k^2 + B*(k^3+p*k+v+1)),
+edit:  O(p^2+k^3+p*k + F*(k+v+1)),
+state: O((n+n*F/p)*(v+1) + n*k + p*k + p^2) words.
+```
+
+The high branch still costs O(p^2+v+1): its coefficient degrees and
+quadratic-root checks are O(p), and k<=p. Whole-state allocation plus
+n raw insertions is n^(1+o(1))*(v+1). Guard widths follow the preceding
+generic Newton bound with this F and B, giving O(S+polylog n) bits;
+field and payload bit arithmetic remain charged. Thus reads and edits
+are n^o(1)*(v+1), while state and preprocessing are
+n^(1+o(1))*(v+1). More specifically the read subset factor is
+2^O(k)=n^O(1/log(log n)), compared with the full-subset count over
+O(p) selected points, whose elementary bound contains an additional
+log(log(log n)) in that exponent. These are asymptotic bounds with
+potentially very large finite constants, not measured speedups.
+
+This comparison uses the same raw dimension, codebook, radius, full
+independent values, spectral witness and noise retention as the generic
+candidate's polynomial example. Classical decoding plus cached evaluation
+sums already suffices there. It still does not admit arbitrary raw keys
+satisfying only the low-intersection condition. A claim for the generic
+class must therefore rest on that broader dynamic guarantee and a real
+aggregation-priority gap, not solely on the polynomial example.
+
+### The generic algebra is an intersection transform
+
+A closer algebraic predecessor is
+[Björklund--Husfeldt--Kaski--Koivisto, Theorem 1 and Sections 2.1--2.3](https://arxiv.org/abs/0809.2489).
+Its full intersection transform returns the weighted sum of sets with
+each possible query-intersection size. The ranked up/down zeta moments
+are exactly our y_j=sum_X binom(|X intersect z|,j)*V_X. Their inverse
+Pascal matrix recovers the intersection-size sums from these moments;
+contracting them against an arbitrary score g gives the equivalent
+finite-difference coefficients used here. The primary proof and Lemmas
+3--5 were read on PDF pages 4--7. Its Theorem 1 charges complete
+down-closures of the data and query families and gives an arithmetic
+circuit; that statement alone is not our online compressed bound.
+
+For low-intersection data, every occurring subset of size at least k has
+one owner. Consequently its high-order moments equal
+sum_{owners i:s_i>=k}binom(s_i,j)*V_i. Substituting this into the full
+transform and grouping each owner's tail gives exactly
+(g(s_i)-P(s_i))*V_i. The candidate is therefore a compressed application
+of the published intersection-transform algebra plus unique-owner subset
+indexing. The same identity holds for counts and signed vectors. The
+additional exact controls exhaust three non-polynomial families and three
+radii, comparing the full transform, direct intersection classes and this
+compressed tail.
+
+The potentially distinct statement is a compressed dynamic cost bound
+under low-intersection admission, not a new transform or interpolation
+identity. We have not identified a published theorem with exactly that
+full bound, but that absence is not evidence that this elementary
+specialization merits a paper. A substantive improvement, application or
+matching obstruction is still needed to justify continuing this candidate
+as a contribution rather than a baseline. Keep the partial-materialization
+comparison alongside this much closer algebraic reference.
+
+### Verification and decision
+
+The new `affine_coded_baseline` report block checks exact full numerators
+and denominators against independent raw Hamming scans. It exercises
+polynomial division/square roots (including repeated roots, common factors,
+nonsquares and no-root cases), incremental interpolation invariants,
+affine fibers with repeated/conflicting rows, dense cell address ranges,
+signed cancellations, invalid/duplicate admission, rekeys, overwrites,
+deletion/reuse, noise retention and the every-bit sensitivity witness.
+It also checks the full published intersection-transform algebra against
+the generic compressed tail, separately from the coded comparator.
+Complete small codebooks and sparsely occupied larger codebooks are
+reported separately. Larger capacities are conceptual, with no claim that
+their full arrays or all independent values were installed in the checker.
+The Python tuple maps are correctness controls, not finite-word storage
+measurements or runtime comparisons. The proof above accounts for the
+dense arrays and full initialization explicitly.
+
+This comparator substantially sharpens the benchmark for polynomial keys,
+including the preceding growing-k example. The earlier full-subset
+algorithm cannot claim a special advantage from that example alone.
+It does not refute the generic candidate:
+outside-codebook admitted keys need not have interpolation polynomials or
+affine fibers. The remaining research question is whether the generic
+low-intersection aggregation theorem gives a useful tradeoff beyond
+published aggregate-materialization/set-query methods, or whether a
+stronger generic construction or obstruction is needed. The composed
+fixed-k bounds above also need a dedicated priority check before any
+novelty claim. Preserve them as a baseline and proof artifact; publication,
+learned usefulness and the original advantage goal remain unestablished.
