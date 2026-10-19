@@ -70,13 +70,14 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Construct a planar realization of the high-complexity transversal-matroid input at colength O(M^alpha), alpha<4/3, preserving exponent-weight comparisons and commuting cyclic multiplication, or prove a quantitative obstruction. For polynomial graphs (x^n,y-G(x)), the classical grading-lattice argument now gives g<=3+C*n*((D-1)/h)^(1/3), where D<n is the graph degree and h is the gcd of its exponent offsets. A linear-overhead M^(4/3) realization in this class therefore requires D=Theta(n) and bounded h; one repeated offset, including a prime-power offset, gives only O(n) states uniformly. The irreducible-carrier theorem also excludes every fixed-degree carrier. Seek overlapping dependencies escaping both obstructions, in service of the unchanged spatial endpoint G_3(3m)>=G_2(m)^2. A successful linear-overhead realization would give spatial exponent 8/3. No bounded fan screen, classical lattice corollary or unverified novelty claim completes the goal.",
+  "next_proof_task": "Construct a nonlinear planar quotient family with a uniform power lower bound, in service of the unchanged transfer G_3(3m)>=G_2(m)^2. Retain the controlled realization of Eppstein\u2019s transversal input as one concrete test: it needs colength O(M^alpha), alpha<4/3, exponent-weight preservation and commuting cyclic multiplication. Any polynomial-graph realization at linear overhead must have degree Theta(n) and bounded intrinsic grading index. The new sharp additive classification rules out all affine q-linearized ideals even when their degrees grow: their maximum is binomial(log_q(n)+d-1,d-1), with small canonical weight sets and sparse bases. A single product already permits n planar states but remains below the generic scale; a useful family must exhibit quantitatively stronger overlapping non-additive dependencies and escape fixed-degree irreducible carriers. For cyclic-prefix uniform truncations, distinguish changes of parent representatives from cutoff exchanges and prove a uniform count or construction before expanding tests. No finite screen, classical corollary, additive-versus-multiplicative contrast or unverified novelty claim completes the goal.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
     "Retain the user's assumption that relevant Elizalde--Galvan published results agree with arXiv:2312.16353v1, pending the user's eventual check.",
     "Inspect the full proposed planar power-saving paper at https://math20.org/f/183/ before relying on any changed bound. Its asserted ordinary k-set improvement is not automatically a parametric-matroid theorem.",
-    "Compare the exact all-fields bound g(I)<=5*D*n for finite planar quotients containing an irreducible degree-D equation against prior curve-dependent counting results. The proof uses classical Bezout and state geometry; unsuccessful searches do not establish novelty."
+    "Compare the exact all-fields bound g(I)<=5*D*n for finite planar quotients containing an irreducible degree-D equation against prior curve-dependent counting results. The proof uses classical Bezout and state geometry; unsuccessful searches do not establish novelty.",
+    "Compare the exact all-global-order box classification, sharp composition maximum and canonical complete weight list for finite affine q-linearized ideals against additive-group and skew-polynomial-module literature. Frobenius elimination, distinct leading positions and specialized algorithms are established inputs; the restricted count has no novelty certificate and does not settle the unrestricted target."
   ],
   "primary_sources": [
     {
@@ -162,6 +163,21 @@
       "title": "Border bases for lattice ideals",
       "url": "https://arxiv.org/pdf/1608.08004",
       "scope": "Section 5, Propositions 5.1--5.3, previously compared in the older note and revisited for the planar orbit test. The full-parent lattice classification concerns complete residue diagrams; it is not a count for a rank-n restriction to n orbit points. No new lattice classification or novelty certificate is inferred."
+    },
+    {
+      "authors": "Kuijper--Trautmann",
+      "title": "Groebner Bases for Linearized Polynomials",
+      "url": "https://arxiv.org/pdf/1406.4600",
+      "version": "v1, 2014",
+      "scope": "Definitions 3 and 5, Proposition 7, Theorems 8, 11 and 12 with their reduction and distinct-leading-position arguments. The source concerns composition modules over finite fields. The note explains the elementary bridge to ordinary commutative polynomial ideals over arbitrary characteristic-p fields. No new module reduction or priority certificate is asserted."
+    },
+    {
+      "authors": "Horlemann-Trautmann--Kuijper",
+      "title": "A module minimization approach to Gabidulin decoding via interpolation",
+      "year": 2018,
+      "url": "https://dergipark.org.tr/en/download/article-file/388999",
+      "doi": "10.13069/jacodesmath.369863",
+      "scope": "Publication metadata, Definition 2.14, Proposition 2.16 and proof, Theorem 2.17 and proof, Proposition 3.8 and its field-operation proof. Established minimal-basis and interpolation algorithms in q-degree are credited; a new coding algorithm or priority claim is not inferred."
     }
   ],
   "verification": {
@@ -177,6 +193,11 @@
     "smoke": {
       "command": "python3 tests/test_smoke.py",
       "status": "passed"
+    },
+    "additive_research": {
+      "command": "python3 -B scripts/run_additive_initial_ideals_checks.py",
+      "status": "passed",
+      "report": "results/research/additive_initial_ideals_checks.json"
     }
   },
   "preservation": "Only the five listed public research files are updated in this continuation. Core kernels, prior research, old manuscripts and paused ML files remain unchanged. Source caches and raw logs stay ignored.",
@@ -184,15 +205,15 @@
   "intended_public_files": [
     "README.md",
     "docs/extremal_initial_ideals.md",
-    "scripts/run_extremal_initial_ideals_checks.py",
-    "results/research/extremal_initial_ideals_checks.json",
+    "scripts/run_additive_initial_ideals_checks.py",
+    "results/research/additive_initial_ideals_checks.json",
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "5cbbc3951c7a31b395d94777cf7bed49a73b6b82eab58b8640d23904a23fa37c",
-    "docs/extremal_initial_ideals.md": "bb8154b740fd165940c6073474d970d11cfe752ff790926328870f3abbf5dd1d",
-    "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
-    "results/research/extremal_initial_ideals_checks.json": "33d876343f415a84976c1fb7a2556143db08bea9b6b729541fc34313cb6b4d6b"
+    "README.md": "4438c6c2268cf23d59d6404b86b5ae1c347a67cd74816f99036e034fe6e08eb5",
+    "docs/extremal_initial_ideals.md": "be27b6da1099758a162ff3c8674d0d26bfc37046c1498607e5a3d180a3babe51",
+    "scripts/run_additive_initial_ideals_checks.py": "ca7f02304f61509c09790c1926c084c813b4a2c0c4a0fe3130898c60037eb563",
+    "results/research/additive_initial_ideals_checks.json": "3ac556382612e1f592da0e1f170c30af3100878d52c22e6791e45cd39215acfa"
   },
   "continuations": [
     {
@@ -436,6 +457,59 @@
       "goal_complete": false,
       "verification": {
         "research": "passed",
+        "build": "passed",
+        "smoke": "passed"
+      }
+    },
+    {
+      "title": "Sharp additive prime-power classification and its multiplicative boundary",
+      "recorded_on": "2026-10-19",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "Commit 6653d33 saved the finite-grading lattice bound and its uniform growing-degree obstruction.",
+      "progress_classification": "sharp_restricted_classification_via_classical_frobenius_reduction",
+      "uniform_proofs": [
+        "For any prime power q and every field of its characteristic, a proper finite ideal generated by affine q-linearized polynomials has length q^k. Every global initial ideal is (x_1^(q^a_1),...,x_d^(q^a_d)), sum a_i=k. Classical Frobenius head elimination preserves the ordinary ideal; the final distinct pure-variable heads are an ordinary Groebner basis by the product criterion.",
+        "The maximum number of initial ideals in this class is exactly binomial(k+d-1,d-1), over all fields or a sufficiently large finite extension. A generic k-dimensional F_q-linear point space realizes every allocation. Its relevant Moore determinants have distinct determinant monomials, giving a uniform nonvanishing proof.",
+        "Every realized allocation has the coefficient-independent canonical strict weight w_i=q^(k-a_i), with heads of weight q^k and all tails at most q^(k-1). The complete weight list has the composition cardinality. The universal reduced basis has at most d times that many polynomials and at most d*(k+2) times that many coefficient entries.",
+        "For m input generators of maximum q-degree M, one equal-weight Frobenius reduction gives k<=d*M. At canonical weights every intermediate q-degree is at most M+k. Head elimination and largest-tail-first reduction need at most (m+d)*d*(M+k+1) steps per weight. This yields a polynomial field-operation consequence for fixed d using established reduction, not a new specialized algorithm or field-element bit-cost claim.",
+        "The contrast (x^(q^k)-x-1,xy-1) has exactly q^k initial ideals and is reduced over an algebraic closure. One mixed relation escapes the additive logarithmic count but stays linear in quotient length and does not meet the unrestricted power-separation goal."
+      ],
+      "independent_controls": {
+        "additive_fixtures": 14,
+        "distinct_initial_bases": 85,
+        "weights_checked": 841,
+        "ordinary_s_pairs": 2349,
+        "frobenius_bases": [
+          2,
+          3,
+          4
+        ],
+        "dimensions": [
+          2,
+          3,
+          4
+        ],
+        "multiplicative_contrast_lengths_and_counts": [
+          [
+            8,
+            8
+          ],
+          [
+            9,
+            9
+          ]
+        ],
+        "checks": "Independent ordinary polynomial division and S-pairs, direct quotient-column Gaussian selection, exact finite extension arithmetic with all 255 nonzero inverses, generic composition Moore minors, full pure-q comparison chambers in dimensions two and three, all-composition sharpness in dimension four, affine and noncyclic nilpotent controls, sparse output and canonical reduction-step budgets.",
+        "growth_fit_used": false
+      },
+      "literature_boundary": "Frobenius reduction, distinct leading positions and module algorithms are established, with primary definitions and proofs inspected. The ordinary ideal bridge, composition count, generic sharpness and representative weights have a self-contained proof in the note, but their exact priority is unestablished. No new coding theorem, algorithmic priority or unrestricted extremal advance is claimed.",
+      "effect_on_next_action": "Construct a nonlinear planar quotient family with a uniform power lower bound, in service of the unchanged transfer G_3(3m)>=G_2(m)^2. Retain the controlled realization of Eppstein\u2019s transversal input as one concrete test: it needs colength O(M^alpha), alpha<4/3, exponent-weight preservation and commuting cyclic multiplication. Any polynomial-graph realization at linear overhead must have degree Theta(n) and bounded intrinsic grading index. The new sharp additive classification rules out all affine q-linearized ideals even when their degrees grow: their maximum is binomial(log_q(n)+d-1,d-1), with small canonical weight sets and sparse bases. A single product already permits n planar states but remains below the generic scale; a useful family must exhibit quantitatively stronger overlapping non-additive dependencies and escape fixed-degree irreducible carriers. For cyclic-prefix uniform truncations, distinguish changes of parent representatives from cutoff exchanges and prove a uniform count or construction before expanding tests. No finite screen, classical corollary, additive-versus-multiplicative contrast or unverified novelty claim completes the goal.",
+      "new_unrestricted_asymptotic": false,
+      "novelty_established": false,
+      "goal_complete": false,
+      "verification": {
+        "additive_research": "passed",
+        "existing_research": "passed",
         "build": "passed",
         "smoke": "passed"
       }

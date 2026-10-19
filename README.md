@@ -66,6 +66,11 @@ the power separation. A classical lattice-area argument also excludes
 the count linear. General polynomial graphs must escape this spacing
 constraint to produce a power gain. A suitable family with growing curve complexity,
 the unrestricted asymptotic target and publication significance remain open.
+The additive prime-power class is now classified separately: at length
+`n=q^k`, every initial ideal is a prime-power box and the sharp maximum
+is `binomial(k+d-1,d-1)`. The proof uses established Frobenius reduction;
+its sparse universal bases and complete weight list do not establish an
+unrestricted advance or a new algorithmic priority claim.
 
 Current research returns to the original occurrence-count and prime-exponent
 interleaving observations. The [face reconstruction study](docs/occurrence_reconstruction.md)
