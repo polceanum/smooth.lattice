@@ -33,13 +33,118 @@
     "interior_value_implications": 392,
     "binary_rail_gradient_counterexample": true
   },
+  "affine_sphere_projection": {
+    "cases": [
+      {
+        "keys": 6,
+        "dimension": 2,
+        "key_rank": 2,
+        "quadratic_jet_rank": 3,
+        "affine_jet_rank": 5,
+        "quadratic_value_trace": "2",
+        "affine_value_trace": "1369158052/545754119"
+      },
+      {
+        "keys": 6,
+        "dimension": 3,
+        "key_rank": 3,
+        "quadratic_jet_rank": 6,
+        "affine_jet_rank": 9,
+        "quadratic_value_trace": "352038/123025",
+        "affine_value_trace": "19639157/6651733"
+      },
+      {
+        "keys": 6,
+        "dimension": 5,
+        "key_rank": 2,
+        "quadratic_jet_rank": 9,
+        "affine_jet_rank": 14,
+        "quadratic_value_trace": "2",
+        "affine_value_trace": "1369158052/545754119"
+      },
+      {
+        "keys": 6,
+        "dimension": 4,
+        "key_rank": 4,
+        "quadratic_jet_rank": 10,
+        "affine_jet_rank": 13,
+        "quadratic_value_trace": "882558258945/255456351467",
+        "affine_value_trace": "1094757855978834765/316325531341041899"
+      },
+      {
+        "keys": 4,
+        "dimension": 3,
+        "key_rank": 2,
+        "quadratic_jet_rank": 5,
+        "affine_jet_rank": 8,
+        "quadratic_value_trace": "223153993755707068485022305949/192664221578586053569669508125",
+        "affine_value_trace": "2778553627865861486411808161/2218142736689877665491242937"
+      },
+      {
+        "keys": 4,
+        "dimension": 3,
+        "key_rank": 2,
+        "quadratic_jet_rank": 5,
+        "affine_jet_rank": 8,
+        "quadratic_value_trace": "664453574036798101966018097815221060561899090099199234574771861286636100743079671484644715502639434609755098684445015927998559848327468804339837684243293713002166501333233565233633192930119269861149/664453574036695179226076713847632575542371785474075459148083500115328580684578362166592126972798752880061913218862861736082199836004266523740559740575000780594380072432007681157754206468092766308125",
+        "affine_value_trace": "4891055302571845634095110618703056333269243699649912157175266631223404380669896298846226482081721069494951884478340195545214244937107417752027641355982314056738050387476561/4891055302570426417625726044563249929013035486833659139456277459478327559025397942049797566443533373325937347349326082453790023733551235344316390064101779128040637811654737"
+      },
+      {
+        "keys": 3,
+        "dimension": 3,
+        "key_rank": 1,
+        "quadratic_jet_rank": 3,
+        "affine_jet_rank": 3,
+        "quadratic_value_trace": "1",
+        "affine_value_trace": "1"
+      }
+    ],
+    "independent_sign_moments": 296,
+    "projected_Cauchy_controls": 592
+  },
+  "affine_sphere_differences": {
+    "two_angle_tangent_derivative_identities": 162,
+    "whole_cap_affine_states": 372,
+    "certified_affine_key_caps": 1920
+  },
+  "subspace_sum_counterexample": {
+    "source": "https://arxiv.org/html/2306.00945v2",
+    "statement_checked": "Lemma E.1(iii), also visually verified on PDF page 42",
+    "scope": "Counterexample to the unqualified subspace-sum inequality; no audit of consequences for the other results.",
+    "cases": [
+      {
+        "eta": "1/2",
+        "first_subspace_score": "0",
+        "second_subspace_score": "1/5",
+        "sum_score": "1",
+        "twice_individual_score_sum": "2/5",
+        "orthogonal_residual_rank": 1
+      },
+      {
+        "eta": "1/16",
+        "first_subspace_score": "0",
+        "second_subspace_score": "1/257",
+        "sum_score": "1",
+        "twice_individual_score_sum": "2/257",
+        "orthogonal_residual_rank": 1
+      },
+      {
+        "eta": "1/4294967296",
+        "first_subspace_score": "0",
+        "second_subspace_score": "1/18446744073709551617",
+        "sum_score": "1",
+        "twice_individual_score_sum": "2/18446744073709551617",
+        "orthogonal_residual_rank": 1
+      }
+    ]
+  },
   "novelty_established": false,
   "strongest_method_advantage_established": false,
   "source_sha256": {
-    "scripts/run_numerical_capacity_checks.py": "9373155bfef8447bf9cf90455999193a80109e225380cccc78f80a4dfac0550d",
+    "scripts/run_numerical_capacity_checks.py": "b5759dddd778fba02e3c7b3c4f58fa54cb49a2f5230f2e840020de094d9c1f30",
     "scripts/run_retention_tradeoff_checks.py": "31d91fa3363df1bb34549ddbbea683c0c170123d78c16e86c47a99acc513287a",
     "scripts/run_robust_reader_checks.py": "c8753ce51634d92ea6bc3a6ebeaf7708c46da357d6cf1302d9cb5b69b98c7827",
     "scripts/run_robust_frontier_checks.py": "8187680c28f0c82d817527df789b308d78b86c3c461913a2c81a83347b8586b1",
-    "docs/interleaving_research.md": "b2835fef589bc2d81e9d29a8ab3032d077c405c4b0e4765c7e0b35ecefa0be34"
+    "docs/interleaving_research.md": "8222fbcf6ff2038caec4be9c9b6ca2b457b7059e6675f7f42cc5e8b50edeb4ec"
   }
 }

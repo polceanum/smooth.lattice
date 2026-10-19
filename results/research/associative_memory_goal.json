@@ -13,12 +13,12 @@
     {
       "stage": 2,
       "task": "Audit primary theorems for sparse inverse/local correction and dynamic graphical inference; classify what is already a known corollary.",
-      "status": "classical_Hilbert_trace_and_gradient_regularization_prior_art_identified; exact_numerical_capacity_priority_unresolved"
+      "status": "augmented_projection_and_generalized_leverage_prior_art_audited; one_stated_subspace_sum_bound_has_exact_counterexample; capacity_application_priority_unresolved"
     },
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "matching_order_numerical_capacity_proved_for_affine_ball_and_quadratic_plus_bias_sphere_readers; architecture_advantage_unproved"
+      "status": "matching_order_numerical_capacity_proved_for_full_affine_quadratics_on_balls_and_sphere; linear_augmentation_not_an_escape; architecture_advantage_unproved"
     },
     {
       "stage": 4,
@@ -728,6 +728,79 @@
       "six_address_block_labelings": 64,
       "interior_clipping_implications": 392,
       "binary_rail_gradient_counterexample": true
+    },
+    "verification_commands": [
+      "python3 -B scripts/run_numerical_capacity_checks.py",
+      "python3 -B scripts/run_robust_frontier_checks.py",
+      "python3 -B scripts/run_affine_robust_checks.py",
+      "python3 -B scripts/run_robust_reader_checks.py",
+      "python3 -B scripts/run_regression_baseline_checks.py",
+      "python3 -B scripts/run_correlated_routing_checks.py",
+      "python3 -B scripts/run_shared_feature_retention_checks.py",
+      "python3 -B scripts/run_retention_geometry_checks.py",
+      "python3 -B scripts/run_retention_tradeoff_checks.py",
+      "python3 -B scripts/run_feature_dimension_checks.py",
+      "python3 -B scripts/run_structural_complexity_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py"
+    ]
+  },
+  "tenth_iteration": {
+    "previous_turn_classification": "progress: complete matching numerical-capacity bounds in two reader classes, exact certificates and primary comparison saved; full architecture/publication objective unachieved",
+    "record": "docs/interleaving_research.md, Associative-memory goal: affine numerical recall on the sphere",
+    "certificate_script": "scripts/run_numerical_capacity_checks.py",
+    "certificate_report": "results/research/numerical_capacity_checks.json",
+    "proved_results": {
+      "full_affine_sphere": "Fixed unit keys, all +/-a numerical assignments, continuous chord caps of radius 0<delta<=1 and error epsilon<a imply n <= (rank(sum u_i*u_i^T)+p)*[(a+epsilon)^2+4*epsilon^2/delta^2]/(a-epsilon)^2 for arbitrary affine-quadratic coefficients.",
+      "matching_order": "Together with the saved block construction, arbitrary values in [-1,1], fixed error 1/4 and 0<delta<=1/16 have capacity Theta(min(p^2,p/delta^2)) for full affine quadratics on both ambient balls and unit-sphere caps. Interior test values also cover clipping to [-1,1].",
+      "derivative_mechanism": "Two symmetric great-circle query pairs at t and 2t exactly extrapolate the tangent derivative. Their chord distances lie within delta and imply total tangent-gradient norm <=4*epsilon/delta without separate coefficient bounds.",
+      "projection_mechanism": "The sampled value/half-gradient range has quadratic value-projector trace <=key rank. Linear branches add at most p orthogonal residual directions; the bias is already the jet of q^T*I*q. A known projection and independent-sign argument gives the bound.",
+      "scope": "Numerical continuous-neighborhood recall only. Sign-only shattering, grid-only promises, state-dependent ratios, nonlinear routing and value-dependent encoders remain outside the theorem. No claim of a new architecture or strongest-baseline advantage."
+    },
+    "primary_sources": [
+      {
+        "url": "https://www.utstat.toronto.edu/keith/papers/leverage.pdf",
+        "scope": "Sections 1--3, augmented least-squares matrix, projection formula (3) and subset-trace identities inspected. The value/derivative projector has the established penalized-least-squares interpretation."
+      },
+      {
+        "url": "https://arxiv.org/html/2306.00945v2",
+        "scope": "Definition 2.6, Appendices A.2 and B.1--B.3, Lemma E.1 and proof inspected. Generalized leverage/stacked derivatives are prior art. Lemma E.1(iii), also visually verified on PDF page 42, has an exact two-dimensional counterexample; consequences for other results not audited."
+      }
+    ],
+    "prior_art_counterexample": {
+      "space_and_measurement": "Euclidean R^2 with scalar measurement L(x)=x_2; both coordinate measurements can be used with counting measure for aggregate nondegeneracy.",
+      "subspaces": "span((1,0)) and span((1,1/2))",
+      "individual_scores": [
+        "0",
+        "1/5"
+      ],
+      "sum_score": "1",
+      "twice_individual_score_sum": "2/5",
+      "proof_distinction": "The second space intersected with the orthogonal complement of the first is zero; its projected orthogonal residual is span((0,1)). The new proof uses the projected residual and does not adopt the invalid estimate.",
+      "novelty_inference": false
+    },
+    "decision": "Finish the affine numerical-capacity branch as a checked architecture restriction. Do not use further constant improvements, the classical projection machinery or ordinary Sobolev regression reformulations as the main contribution. Seek a substantive new constructive retention/access consequence under complete workload and strongest-baseline accounting.",
+    "next_actions": [
+      "Specify a concrete complete fresh-query/update workload before proposing another architecture. Require a candidate advantage beyond the applicable indexed, routed, kernel and regression data structure, including precision and metadata.",
+      "Treat linear branches and biases as covered by the numerical capacity obstruction; an escape must change a substantive hypothesis and charge the change.",
+      "Resolve exact priority of the capacity application if it becomes part of a contribution; a counterexample to one prior-art auxiliary estimate is not evidence that our application is new.",
+      "Keep the full original objective active; no neural training or contribution manuscript until a new constructive guarantee survives novelty and strongest-method gates."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "certificate_summary": {
+      "exact_value_derivative_projector_cases": 7,
+      "new_independent_sign_moments": 296,
+      "new_projected_Cauchy_controls": 592,
+      "two_angle_tangent_derivative_identities": 162,
+      "whole_cap_affine_states": 372,
+      "certified_affine_key_caps": 1920,
+      "subspace_sum_counterexamples": 3,
+      "prior_certificate_blocks_preserved": true
     },
     "verification_commands": [
       "python3 -B scripts/run_numerical_capacity_checks.py",

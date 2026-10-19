@@ -231,6 +231,158 @@ def clipping_controls():
     return {'interior_value_implications': checked, 'binary_rail_gradient_counterexample': True}
 
 
+def projector(a):
+    """Compute a column-space projector independently of a coefficient choice."""
+    gp, rank = pseudoinverse(multiply(transpose(a), a))
+    p = multiply(multiply(a, gp), transpose(a))
+    assert p == transpose(p) and multiply(p, p) == p
+    assert multiply(p, a) == a and trace(p) == rank
+    return p, rank
+
+
+def value_and_half_tangent_gradient(points, s, b, c):
+    values, derivatives = [], []
+    for u in points:
+        assert dot(u, u) == 1
+        values.append(evaluate(s, b, c, u))
+        v = [x+y/2 for x, y in zip(mv(s, u), b)]
+        radial = dot(u, v)
+        derivatives.extend(x-radial*y for x, y in zip(v, u))
+    return values+derivatives
+
+
+def sphere_jet_matrix(points, affine):
+    p, columns = len(points[0]), []
+    for i in range(p):
+        for j in range(i, p):
+            s = [[Q(0)]*p for _ in range(p)]
+            s[i][j] = s[j][i] = Q(1)
+            columns.append(value_and_half_tangent_gradient(points, s, [Q(0)]*p, Q(0)))
+    if affine:
+        for i in range(p):
+            b = [Q(int(i == j)) for j in range(p)]
+            columns.append(value_and_half_tangent_gradient(points, scaled(s, Q(0)), b, Q(0)))
+        columns.append(value_and_half_tangent_gradient(points, scaled(s, Q(0)), [Q(0)]*p, Q(1)))
+    return transpose(columns)
+
+
+def affine_sphere_projection_controls():
+    rng, cases, assignments, inequalities = random.Random(2047), [], 0, 0
+    points_list = [f for f in frames() if all(dot(u, u) == 1 for u in f)]
+    points_list.append([key(4, pair) for pair in pairs(4, 4)])
+    for bits in (4, 24):
+        parameters = [Q(j, 2**bits) for j in (-2, -1, 1, 2)]
+        points_list.append([[(1-t*t)/(1+t*t), 2*t/(1+t*t), Q(0)] for t in parameters])
+    points_list.append([[Q(1), Q(0), Q(0)]]*3)
+    for points in points_list:
+        n, p = len(points), len(points[0])
+        a0, a = sphere_jet_matrix(points, False), sphere_jet_matrix(points, True)
+        p0, rank0 = projector(a0)
+        proj, rank = projector(a)
+        difference = plus(proj, scaled(p0, Q(-1)))
+        assert multiply(proj, p0) == multiply(p0, proj) == p0
+        assert difference == transpose(difference) and multiply(difference, difference) == difference
+        assert all(0 <= difference[i][i] <= 1 for i in range(len(difference)))
+        # The constant jet is already the quadratic jet of the identity matrix.
+        assert trace(difference) == rank-rank0 <= p
+        _, key_rank = pseudoinverse(total([outer(u) for u in points]))
+        value_trace0 = sum(p0[i][i] for i in range(n))
+        value_trace = sum(proj[i][i] for i in range(n))
+        assert value_trace0 <= key_rank
+        assert value_trace <= value_trace0+rank-rank0 <= key_rank+p
+        states = []
+        for _ in range(2):
+            s, b = symmetric(p, rng), [Q(rng.randrange(-9, 10), 11) for _ in range(p)]
+            output = value_and_half_tangent_gradient(points, s, b, Q(2**32))
+            assert mv(proj, output) == output
+            states.append(output)
+        moment = Q(0)
+        for labels in product((-1, 1), repeat=n):
+            e = list(map(Q, labels))+[Q(0)]*(n*p)
+            dual2 = dot(e, mv(proj, e))
+            moment += dual2
+            for output in states:
+                assert dot(e, output)**2 <= dot(output, output)*dual2
+                inequalities += 1
+            assignments += 1
+        assert moment/2**n == value_trace
+        cases.append({'keys': n, 'dimension': p, 'key_rank': key_rank,
+                      'quadratic_jet_rank': rank0, 'affine_jet_rank': rank,
+                      'quadratic_value_trace': str(value_trace0),
+                      'affine_value_trace': str(value_trace)})
+    return {'cases': cases, 'independent_sign_moments': assignments,
+            'projected_Cauchy_controls': inequalities}
+
+
+def affine_sphere_difference_controls():
+    rng, count = random.Random(1729), 0
+    angles = [(Q(15, 17), Q(8, 17)), (Q(99, 101), Q(20, 101)),
+              (Q(255, 257), Q(32, 257))]
+    for u, (co, si), radial, bscale in product(unit_circle()[:6], angles,
+                                              (Q(-2**64), Q(0), Q(2**64)),
+                                              (Q(0), Q(1), Q(2**64))):
+        delta, w = 2*si, [-u[1], u[0]]
+        assert co*co+si*si == 1 and 0 < delta <= 1
+        base = symmetric(2, rng)
+        s = [[base[i][j]-radial*(i == j) for j in range(2)] for i in range(2)]
+        b = [Q(3, 5)*bscale, Q(4, 5)*bscale]
+        center = evaluate(s, b, radial, u)
+        raw, odd = [], []
+        for c, z in ((co, si), (2*co*co-1, 2*co*si)):
+            qs = [[c*x+side*z*y for x, y in zip(u, w)] for side in (1, -1)]
+            assert all(dot(q, q) == 1 and sum((x-y)**2 for x, y in zip(q, u)) <= delta**2 for q in qs)
+            values = [evaluate(s, b, radial, q) for q in qs]
+            raw.extend(values)
+            odd.append((values[0]-values[1])/(2*z))
+        weight = 2*(1+co)/(1+2*co)
+        derivative = dot([2*x+y for x, y in zip(mv(s, u), b)], w)
+        assert derivative == weight*odd[0]-(weight-1)*odd[1]
+        assert 2*weight+(weight-1)/co == 2+1/co <= 4
+        epsilon = max(abs(x-center) for x in raw)
+        assert derivative**2 <= (4*epsilon/delta)**2
+        count += 1
+    states = keys = 0
+    a, epsilon, delta = Q(1, 2), Q(1, 8), Q(1, 32)
+    for p in range(2, 7):
+        for labels, c in product(product((-1, 1), repeat=p), (Q(-2**64), Q(0), Q(2**64))):
+            b = [Q(j+1, 1000) for j in range(p)]
+            s = [[(a*labels[i]-b[i]-c)*(i == j) for j in range(p)] for i in range(p)]
+            # On the sphere the radial coefficient cancels the bias exactly.
+            norm = max(abs(a*labels[i]-b[i]) for i in range(p))
+            assert 2*norm*delta+norm*delta**2+sum(abs(x) for x in b)*delta < epsilon
+            points = [[Q(int(i == j)) for j in range(p)] for i in range(p)]
+            output = value_and_half_tangent_gradient(points, s, b, c)
+            assert output[:p] == [a*y for y in labels]
+            ell2 = (a+epsilon)**2+4*epsilon**2/delta**2
+            assert dot(output, output) <= p*ell2
+            assert p <= 2*p*ell2/(a-epsilon)**2
+            states, keys = states+1, keys+p
+    return {'two_angle_tangent_derivative_identities': count,
+            'whole_cap_affine_states': states, 'certified_affine_key_caps': keys}
+
+
+def subspace_sum_counterexample():
+    cases = []
+    # Scalar second-coordinate measurement, Euclidean norm, two one-dimensional spaces.
+    for eta in (Q(1, 2), Q(1, 16), Q(1, 2**32)):
+        p0, _ = projector([[Q(1)], [Q(0)]])
+        p1, _ = projector([[Q(1)], [eta]])
+        full, _ = projector([[Q(1), Q(1)], [Q(0), eta]])
+        k0, k1, combined = p0[1][1], p1[1][1], full[1][1]
+        assert k0 == 0 and k1 == eta*eta/(1+eta*eta) and combined == 1
+        assert combined > 2*(k0+k1)
+        difference = plus(full, scaled(p0, Q(-1)))
+        assert multiply(difference, difference) == difference and trace(difference) == 1
+        cases.append({'eta': str(eta), 'first_subspace_score': str(k0),
+                      'second_subspace_score': str(k1), 'sum_score': str(combined),
+                      'twice_individual_score_sum': str(2*(k0+k1)),
+                      'orthogonal_residual_rank': 1})
+    return {'source': 'https://arxiv.org/html/2306.00945v2',
+            'statement_checked': 'Lemma E.1(iii), also visually verified on PDF page 42',
+            'scope': 'Counterexample to the unqualified subspace-sum inequality; no audit of consequences for the other results.',
+            'cases': cases}
+
+
 def main():
     sources = ['scripts/run_numerical_capacity_checks.py', 'scripts/run_retention_tradeoff_checks.py',
                'scripts/run_robust_reader_checks.py', 'scripts/run_robust_frontier_checks.py',
@@ -239,10 +391,15 @@ def main():
               'scope': 'Uniform numerical recall with two-sided value error, not sign-only shattering or an architecture advantage. Exact identities support the written proof; novelty is unresolved.',
               'centered': centered_controls(), 'numerical': numerical_fixtures(),
               'sphere': spherical_controls(), 'clipping': clipping_controls(),
+              'affine_sphere_projection': affine_sphere_projection_controls(),
+              'affine_sphere_differences': affine_sphere_difference_controls(),
+              'subspace_sum_counterexample': subspace_sum_counterexample(),
               'novelty_established': False, 'strongest_method_advantage_established': False,
               'source_sha256': {p: sha256((ROOT/p).read_bytes()).hexdigest() for p in sources}}
     (ROOT/'results/research/numerical_capacity_checks.json').write_text(json.dumps(report, indent=2)+'\n')
-    print(json.dumps({k: v for k, v in report.items() if k in ('centered', 'numerical', 'sphere', 'clipping')}, sort_keys=True))
+    print(json.dumps({k: v for k, v in report.items() if k in (
+        'centered', 'numerical', 'sphere', 'clipping', 'affine_sphere_projection',
+        'affine_sphere_differences')}, sort_keys=True))
 
 
 if __name__ == '__main__':

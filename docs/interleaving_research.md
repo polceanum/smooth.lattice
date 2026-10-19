@@ -12787,3 +12787,200 @@ differences, radial-bias cancellation, explicit whole-ball numerical
 families, block counts and the clipping distinction. Finite controls
 support the uniform proofs; novelty and significance require the
 remaining literature and architecture comparisons.
+
+### Associative-memory goal: affine numerical recall on the sphere
+
+Previous turn classification: progress. Matching numerical-capacity
+bounds on full balls and for quadratic-plus-bias spherical readers were
+proved and saved. This pass closes the linear-term gap for normalized
+queries and audits the projection method against relevant prior art.
+The original architecture-advantage objective remains unachieved.
+
+#### The full affine spherical theorem
+
+Fix p>=2 unit keys u_1,...,u_n, independent of their stored values,
+and 0<delta<=1. For every y in {-1,+1}^n suppose an arbitrary
+affine quadratic f_y(q)=q^T*S_y*q+b_y^T*q+c_y has numerical error
+at most epsilon<a relative to a*y_i on every unit q with
+||q-u_i||<=delta. There are no coefficient or conditioning bounds.
+Then, with r_0=rank(sum_i u_i*u_i^T),
+
+    n <= (r_0+p)*[(a+epsilon)^2+4*epsilon^2/delta^2]
+                  /(a-epsilon)^2.
+
+In particular r_0<=p. The feature-dimension bound
+n<=p*(p+3)/2 can also be taken in the minimum: on unit queries
+the constant is absorbed by S_y+c_y*I, leaving a symmetric quadratic
+and a linear term. Clipping to [-1,1] remains covered for interior
+test values with a+epsilon<1, as in the preceding proof.
+
+For arbitrary bounded numerical values, accuracy 1/4 and
+0<delta<=1/16, choose the interior test values +/-1/2. Combining
+the upper theorem with the already verified block construction gives
+
+    n <= min(p*(p+3)/2, 2*p*(9+4/delta^2)),
+    maximum capacity = Theta(min(p^2,p/delta^2)).
+
+Thus the matching order now covers full affine quadratics on both
+full balls and spherical caps. This is still numerical recall on
+continuous neighborhoods; the weaker sign-only problem, grid-only
+promises and arbitrary nonlinear/routed readers remain different.
+
+#### Numerical accuracy controls the tangent derivative
+
+For a unit tangent w perpendicular to a key u, write
+A=u^T*S*w, B=b^T*w. Put s=delta/2 and c=sqrt(1-s^2).
+Use the symmetric unit queries at angles t and 2*t, where sin(t)=s:
+
+    q_small,+/- = c*u +/- s*w,
+    q_large,+/- = (2*c^2-1)*u +/- 2*c*s*w.
+
+Both pairs are within the cap; the larger pair has chord distance
+exactly 2*s=delta. Their normalized odd differences are
+
+    d_small=[f(q_small,+)-f(q_small,-)]/(2*s)=2*c*A+B,
+    d_large=[f(q_large,+)-f(q_large,-)]/(4*c*s)
+            =2*(2*c^2-1)*A+B.
+
+Numerical accuracy implies |d_small|<=2*epsilon/delta and
+|d_large|<=epsilon/(c*delta). With
+lambda=2*(1+c)/(1+2*c), exact extrapolation gives
+
+    2*A+B=lambda*d_small-(lambda-1)*d_large,
+    |2*A+B| <= [2*lambda+(lambda-1)/c]*epsilon/delta
+             =(2+1/c)*epsilon/delta <= 4*epsilon/delta.
+
+Here c>=sqrt(3)/2>1/2. Since w was arbitrary,
+||grad_sphere f(u)||<=4*epsilon/delta. This proof allows an
+unbounded linear term and an arbitrarily large radial coefficient
+canceling a bias; neither is bounded separately.
+
+#### A value-and-derivative projection counts the extra directions
+
+We use elementary finite-dimensional projection facts, rather than
+assuming separate norm bounds for canceling components. For any fixed
+linear function class form the sampling map
+
+    J(f)=(f(u_i))_i direct_sum ((1/2)*grad_sphere f(u_i))_i.
+
+Let C be its range, P_C its orthogonal projector, and R the selector
+of the first n (value) coordinates. Define d_C=Tr(R*P_C*R^T).
+If each sign assignment has a realizing f_y with
+||J(f_y)||^2<=n*L^2, then
+
+    n <= d_C*L^2/(a-epsilon)^2.
+
+Indeed let e_y=(y,0) in the sampling space. Accuracy gives
+n*(a-epsilon)<=<e_y,J(f_y)>. Membership in C and Cauchy--Schwarz
+bound this by sqrt(n)*L*||P_C*e_y||. Independent signs satisfy
+E||P_C*e_y||^2=d_C. Taking expectations and squaring proves the
+claim, including singular sampling maps and nonlinear value encoding.
+
+For the homogeneous quadratic class C_0, with f(q)=q^T*S*q,
+
+    ||J(f)||^2=sum_i [(u_i^T*S*u_i)^2
+                    +||(I-u_i*u_i^T)*S*u_i||^2]
+               =sum_i ||S*u_i||^2=Tr(S^2*G_0),
+    G_0=sum_i u_i*u_i^T.
+
+The i-th value coordinate obeys
+
+    |u_i^T*S*u_i|^2
+        <=(u_i^T*G_0^dagger*u_i)*Tr(S^2*G_0).
+
+This is the same weighted Frobenius inequality used previously. The
+squared coordinate norm on a subspace is the corresponding projector
+diagonal, so summing gives
+
+    d_C0 <= sum_i u_i^T*G_0^dagger*u_i = r_0.
+
+Now add the p linear functions. The constant jet is already the jet
+of q^T*I*q on the sphere. Write C=C_0+E and
+W=(I-P_C0)*E. Then C=C_0 orthogonal_direct_sum W, dim(W)<=p,
+and P_C=P_C0+P_W. Consequently
+
+    d_C <= d_C0+Tr(P_W) <= r_0+p.
+
+The orthogonal residual W need not lie in E. This distinction matters
+when the linear and quadratic parts nearly cancel. No conditioning
+or angle between these two spaces was assumed.
+
+Finally the center values have magnitude at most a+epsilon, and the
+tangent derivative bound gives
+
+    ||J(f_y)||^2 <= n*[(a+epsilon)^2+4*epsilon^2/delta^2].
+
+Insert this L^2 and the projection trace bound into the general
+claim to finish the theorem. All bounds concern the total realized
+function; large individual coefficients do not evade them.
+
+#### Primary comparison and an exact prior-art counterexample
+
+The sampling and leverage machinery is established. In
+[Knight, Sections 1--3](https://www.utstat.toronto.edu/keith/papers/leverage.pdf),
+the augmented least-squares matrix, projection formula (3), and
+subset-trace identities were inspected. Our projector on values plus
+half-gradients has this standard penalized-least-squares interpretation.
+The projection/rank facts alone are not a new architecture or theorem
+of publication significance.
+
+[CS4ML v2](https://arxiv.org/html/2306.00945v2), Definition 2.6,
+Appendices A.2 and B.1--B.3, and Lemma E.1 with its proof were
+inspected. They cover generalized leverage measurements and stacked
+value/derivative regression. However, Lemma E.1(iii)'s unqualified
+subspace-sum estimate fails in a two-dimensional example. Its exact
+statement and proof were also visually checked on PDF page 42.
+
+Take X=R^2 with its Euclidean norm, scalar measurement L(x)=x_2,
+F_1=span((1,0)), F_2=span((1,1/2)). Their squared measurement
+norms on unit vectors are 0 and 1/5, respectively; their sum is R^2
+and has measurement norm squared 1. Thus the claimed bound's two
+sides are 1 and 2/5. If aggregate nondegeneracy is desired, use both
+coordinate measurements with counting measure; their energy is
+exactly ||x||^2. The counterexample persists at the second coordinate.
+
+For these spaces F_2 intersect F_1-perpendicular is zero and cannot
+supply the complement used in that proof. The projected residual
+(I-P_F1)*F_2 is instead span((0,1)). Our rank argument uses that
+residual. We do not use the invalid sum estimate, infer novelty from
+this counterexample, or audit its consequences for the other results.
+
+#### Implication for the architecture search and full goal
+
+Adding an unrestricted linear branch or bias cannot restore quadratic
+numerical capacity at fixed positive noise and accuracy. The complete
+affine reader still has capacity only linear in p. The more general
+projection argument also limits a finite-dimensional fixed feature
+augmentation when the total value-and-derivative energy is bounded:
+adding m columns raises the value trace by at most m. It does not
+infer such an energy bound for arbitrary oscillatory or learned
+features; those require their own assumptions.
+
+This finishes the obvious affine extension of the numerical reader
+restriction. Do not make further constant improvements or ordinary
+Sobolev least-squares reformulations the main project contribution.
+The existing block-table construction and its indexed full-query
+baseline retain exactly the same storage, overwrite and precision
+accounting; no architecture advantage was obtained here.
+
+The exact priority of the capacity application remains unresolved.
+A publishable contribution still needs a substantive new consequence
+or constructive tradeoff on a complete query/update workload beyond
+the strongest applicable indexed, routed, kernel and regression
+baseline. The next architecture candidate must state such a workload
+before proposing an experiment. The full original goal stays active,
+with no additional training, messages or submissions.
+
+The existing command now includes the new independent controls:
+
+```bash
+python3 -B scripts/run_numerical_capacity_checks.py
+```
+
+The extension checks exact value/derivative projectors on seven key
+sets, including duplicate, embedded and thin configurations; 296
+independent-sign moments; 592 projected Cauchy controls; 162 two-angle
+identities with large linear/radial coefficients; 372 whole-cap affine
+states covering 1,920 key caps; and three subspace-sum counterexamples.
+Previously saved certificate blocks are retained. These exact finite
+controls support the uniform proof and its stated limitations.
