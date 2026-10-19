@@ -962,6 +962,191 @@ def fan_product_controls():
             "scope": "For every planar finite quotient the written construction squares its fan count at length 3m. Exact checks cover cyclic, noncyclic, local and possibly nonreduced point presentations. No planar superlinear-power lower family or novelty certificate is supplied."}
 
 
+def plane_curve_carrier_controls():
+    """Exact wall-by-wall checks of the irreducible-curve count proof."""
+    from run_structural_complexity_checks import univariate_product_mod, univariate_power_mod
+
+    def audit(n, p, curve, residue, label):
+        degree = max(sum(a) for a in curve)
+        ground, comparisons = tuple(hyperbolic_cross(n, 2)), tuple(hyperbolic_cross(n+1, 2))
+        columns = {a: residue(a) for a in ground}
+        require(all(sum(c*residue(a)[i] for a, c in curve.items()) % p == 0 for i in range(n)),
+                "the claimed carrier belongs to the quotient ideal")
+        cuts = sorted({Fraction(-(a[1]-b[1]), a[0]-b[0]) for a, b in combinations(comparisons, 2)
+                       if (a[0]-b[0])*(a[1]-b[1]) < 0})
+        samples = [(a+b)/2 for a, b in zip([Fraction(0)]+cuts, cuts)]
+        samples.append(cuts[-1]+1 if cuts else Fraction(1))
+        states, inverses = {}, {}
+
+        def relation(basis, a):
+            if basis not in inverses:
+                inverses[basis] = inverse_mod([[residue(b)[i] for b in basis] for i in range(n)], p)
+            inv = inverses[basis]
+            require(inv is not None, "every planar standard set is a quotient basis")
+            coefficients = [sum(x*y for x, y in zip(row, residue(a))) % p for row in inv]
+            poly = {a: 1}
+            poly.update({b: -c % p for b, c in zip(basis, coefficients) if c})
+            require(all(sum(c*residue(b)[i] for b, c in poly.items()) % p == 0 for i in range(n)),
+                    "the border or wall polynomial is an actual quotient relation")
+            return poly
+
+        for t in samples:
+            weight = (t.numerator, t.denominator)
+            basis = tuple(sorted(greedy(ground, columns, weight, p)))
+            require(len(basis) == n, "full planar quotient rank")
+            if basis in states:
+                continue
+            lower, upper = Fraction(0), None
+            for a in minimal_excluded_border(basis):
+                poly = relation(basis, a)
+                for b in poly:
+                    if b == a:
+                        continue
+                    dx, dy = a[0]-b[0], a[1]-b[1]
+                    if dx > 0:
+                        lower = max(lower, Fraction(-dy, dx))
+                    elif dx < 0:
+                        bound = Fraction(-dy, dx)
+                        upper = min(upper, bound) if upper is not None else bound
+                    else:
+                        require(dy > 0, "positive constant border comparison")
+            require(lower < t and (upper is None or t < upper), "strict complete cone witness")
+            moment = tuple(sum(a[i] for a in basis) for i in range(2))
+            require(max(moment) <= n*(n-1)//2, "universal downset moment budget")
+            states[basis] = {"weight": weight, "interval": (lower, upper), "moment": moment}
+        ordered = sorted(states, key=lambda b: states[b]["interval"][0])
+        require(states[ordered[0]]["interval"][0] == 0 and
+                states[ordered[-1]]["interval"][1] is None, "both endpoint sectors covered")
+        walls, budget = [], 0
+        for left, right in zip(ordered, ordered[1:]):
+            t = states[left]["interval"][1]
+            require(t == states[right]["interval"][0], "complete fan intervals meet without gaps")
+            a, b = t.denominator, t.numerator
+            before, after = states[left]["moment"], states[right]["moment"]
+            k, remainder = divmod(before[0]-after[0], a)
+            require(k > 0 and remainder == 0 and after[1]-before[1] == k*b,
+                    "the integral state jump has the claimed primitive direction")
+            require(max(a, b) <= n-1, "a wall direction comes from standard monomials")
+            budget += k*(a+b)
+            scores = {v: v[0]*b+v[1]*a for v in curve}
+            heads = [v for v in curve if scores[v] == max(scores.values())]
+            row = {"ratio_wx_wy": str(t), "primitive_direction": [a, -b], "state_jump_multiple": k}
+            if len(heads) > 1:
+                row["kind"] = "carrier_boundary"
+            elif min(a, b) < degree:
+                row["kind"] = "small_direction"
+            else:
+                r, s = heads[0]
+                require(r > 0 and s > 0, "a large direction cannot occur in a pure-head strip")
+                u = next(v for v in left if v not in right)
+                poly = relation(right, u)
+                height = u[0]*b+u[1]*a
+                require(all(v[0]*b+v[1]*a <= height for v in poly), "all lift terms lie below the wall height")
+                tied = [v for v in poly if v != u and v[0]*b+v[1]*a == height]
+                require(len(tied) == 1, "a large-direction fiber has only two carrier-standard monomials")
+                v = tied[0]
+                ell, rem = divmod(u[0]-v[0], a)
+                require(rem == 0 and 1 <= ell <= k and v[1]-u[1] == ell*b,
+                        "the exhibited exchange is part of the total monotone jump")
+                require(v[0] < r and u[1] < s and all(not (x >= r and y >= s) for x, y in poly),
+                        "the nonzero wall lift is reduced modulo the carrier")
+                poly_degree = max(sum(w) for w in poly)
+                require(n <= degree*poly_degree <= 3*degree*ell*max(a, b),
+                        "Bezout length and the uniform wall-degree bound")
+                row.update({"kind": "large_direction", "carrier_head": [r, s],
+                            "exchange_endpoints": [u, v], "exchange_multiple": ell,
+                            "relation_degree": poly_degree,
+                            "polynomial_relation_mod_p": [[x, y, c] for (x, y), c in sorted(poly.items())]})
+            walls.append(row)
+        require(budget <= n*(n-1), "all jumps share one global moment-variation budget")
+        kinds = {kind: sum(w["kind"] == kind for w in walls)
+                 for kind in ("carrier_boundary", "small_direction", "large_direction")}
+        require(kinds["carrier_boundary"] <= degree and
+                kinds["small_direction"] <= 2*(degree-1)*(n-1) and
+                kinds["large_direction"] <= 3*degree*(n-1) and len(states) <= 5*degree*n,
+                "the three uniform count estimates apply simultaneously")
+        return {"model": label, "characteristic": p, "quotient_length": n,
+                "carrier": [[i, j, c] for (i, j), c in sorted(curve.items())], "carrier_degree": degree,
+                "initial_ideal_count": len(states), "wall_kinds": kinds, "total_moment_variation": budget,
+                "bound_5_D_n": 5*degree*n, "complete_positive_fan": True,
+                "witnesses": [{"row_lengths": [sum(a[1] == j for a in basis)
+                                                for j in range(max(a[1] for a in basis)+1)],
+                               "strict_weight": states[basis]["weight"],
+                               "interval_wx_wy": [str(x) if x is not None else None
+                                                  for x in states[basis]["interval"]]}
+                              for basis in ordered], "walls": walls}
+
+    fixtures = []
+    for p in (5, 7, 101):
+        for n in (7, 12, 18):
+            modulus = [0]*n+[1]
+            mul = lambda a, b: tuple(v % p for v in univariate_product_mod(a, b, modulus))
+            x0, y0 = next((x, y) for x in range(p) for y in range(p)
+                          if (x*x*y+x*y*y+1) % p == 0 and (x*x+2*x*y) % p)
+            x, y = [x0, 1], [y0]+[0]*(n-1)
+            evaluate = lambda: tuple((a+b+(i == 0)) % p for i, (a, b) in
+                                    enumerate(zip(mul(mul(x, x), y), mul(x, mul(y, y)))))
+            for j in range(1, n):
+                y[j] = -evaluate()[j]*pow((x0*x0+2*x0*y0) % p, -1, p) % p
+            require(not any(evaluate()), "exact formal implicit-function lift on the cubic")
+            residue = lambda a: mul(univariate_power_mod(x, a[0], modulus),
+                                    univariate_power_mod(y, a[1], modulus))
+            f = audit(n, p, {(2, 1): 1, (1, 2): 1, (0, 0): 1}, residue, "smooth_cubic_local_jet")
+            f["local_parameter_images"] = {"x": x, "y": y}
+            fixtures.append(f)
+    for p in (2, 3, 101):
+        for n in (7, 12):
+            modulus = [0]*n+[1]
+            x, y = [1, 1], [(-1)**j % p for j in range(n)]
+            mul = lambda a, b: tuple(v % p for v in univariate_product_mod(a, b, modulus))
+            residue = lambda a: mul(univariate_power_mod(x, a[0], modulus),
+                                    univariate_power_mod(y, a[1], modulus))
+            f = audit(n, p, {(1, 1): 1, (0, 0): -1}, residue, "hyperbola_local_jet")
+            require(f["initial_ideal_count"] == n, "sharp linear lower family in every characteristic")
+            fixtures.append(f)
+    for p in (2, 101):
+        n, modulus = 7, [0]*7+[1]
+        residue = lambda a: tuple(v % p for v in univariate_power_mod([1, 1], sum(a), modulus))
+        f = audit(n, p, {(1, 0): 1, (0, 1): -1}, residue, "line_local_jet")
+        require(f["initial_ideal_count"] == 2, "degree-one carrier has at most two initials")
+        fixtures.append(f)
+    n, p, q, root = 7, 23, 11, 2
+    require(pow(root, q, p) == 1 and root != 1, "a primitive eleventh root in the verification field")
+    points = [(pow(root, j, p), pow(root, 7*j, p)) for j in range(n)]
+    residue = lambda a: tuple(pow(x, a[0], p)*pow(y, a[1], p) % p for x, y in points)
+    f = audit(n, p, {(0, 2): 1, (3, 0): -1}, residue, "seven_points_on_cyclic_orbit")
+    require(f["initial_ideal_count"] == 9, "generic-maximality hypothesis fails already in the plane")
+    ground = tuple(hyperbolic_cross(n, 2))
+    cuts = sorted({Fraction(-(a[1]-b[1]), a[0]-b[0]) for a, b in combinations(ground, 2)
+                   if (a[0]-b[0])*(a[1]-b[1]) < 0})
+    samples = [(a+b)/2 for a, b in zip([Fraction(0)]+cuts, cuts)]+[cuts[-1]+1]
+    generic = {tuple(sorted(sorted(ground, key=lambda a: (a[0]*t+a[1], a))[:n])) for t in samples}
+    require(len(generic) == 8, "independent generic corner-cut comparison")
+    for witness in f["witnesses"]:
+        t = Fraction(*witness["strict_weight"])
+        seen, basis = set(), []
+        for a in sorted(ground, key=lambda a: (a[0]*t+a[1], a)):
+            color = (a[0]+7*a[1]) % q
+            if color not in seen:
+                seen.add(color)
+                basis.append(a)
+            if len(basis) == n:
+                break
+        expected = [(i, j) for j, length in enumerate(witness["row_lengths"]) for i in range(length)]
+        require(sorted(basis) == sorted(expected), "cyclic color rule versus independent point elimination")
+    f.update({"points": points, "orbit_size": q, "generic_count": len(generic),
+              "positive_weight_fan_boundaries": [w["ratio_wx_wy"] for w in f["walls"]]})
+    fixtures.append(f)
+    require(sum(x["wall_kinds"]["large_direction"] for x in fixtures) > 0,
+            "the Bezout charging step is exercised, not only pure-head strip cases")
+    return {"fixtures": fixtures,
+            "basis_encoding": "row_lengths[j]=lambda means x^i*y^j, 0<=i<lambda, are standard; this is an exact compact partition witness",
+            "uniform_bound_proved_in_note": "g(I)<=5*D*n for an irreducible carrier",
+            "sharp_fixed_degree_order": "Theta_D(n) for D>=2, taking the maximum over carriers of degree at most D",
+            "new_unrestricted_asymptotic": False, "novelty_established": False,
+            "scope": "Exact complete fans and wall lifts test the written proof. Smooth cubic jets include characteristics smaller than quotient length. A finite cyclic count gain is not an asymptotic lower family."}
+
+
 def main():
     grid = grid_controls()
     rectangles, homogeneous = [], []
@@ -979,7 +1164,7 @@ def main():
     require(any(c["cone_counts"].get("three_generators_has_nonuniform_region", 0) > 0
                 for c in comparisons),
             "dependent-prefix regions are not confined to coordinate faces")
-    report = {"schema_version": 5, "status": "passed",
+    report = {"schema_version": 6, "status": "passed",
               "command": "python3 -B scripts/run_extremal_initial_ideals_checks.py",
               "grid_source_controls": grid, "rectangular_complete_intersections": rectangles,
               "homogeneous_controls": homogeneous,
@@ -992,6 +1177,7 @@ def main():
               "support_matching_obstruction": support_matching_obstruction_controls(),
               "pairwise_realizability_boundary": pairwise_realizability_controls(),
               "planar_fan_product": fan_product_controls(),
+              "plane_curve_carriers": plane_curve_carrier_controls(),
               "asymptotic_improvement_established": False, "novelty_established": False,
               "goal_complete": False,
               "scope": "Exhaustive finite primary-bound and candidate-family diagnostics. No polynomial separation, sharp unrestricted asymptotic, or algorithmic speedup is inferred.",

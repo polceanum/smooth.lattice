@@ -17,6 +17,9 @@ already have coherent dependencies that this reduction misses. Published
 conditions for individual neighboring ideals add a further constraint, but
 cannot by themselves count one fan. A quantitative count of interacting
 dependencies remains open; no new unrestricted asymptotic bound is established.
+The planar product transfer and a sharp fixed-degree carrier classification
+are now proved below. They constrain a lower construction without settling
+the unrestricted target or their own priority questions.
 
 ## Connection to the original observations
 
@@ -51,6 +54,7 @@ give a subclass; write their maximum as $F_d(n)\le G_d(n)$.
 | Generic corner cuts $C_d(n)=\Theta_d(n^{d-1}\log^{d-1}n)$ | The existing repository manuscript's result; its priority assessment is separate from the published upper bound above. |
 | $G_3(n)=O(n^{44/15}\log^{4/5}(n+1))$ | Existing repository lattice-shadow candidate, with a remaining classical-priority comparison. This does not complete the present goal. |
 | Binomial ideals: $g(I)=O_d(n^{d-1}\log^{(d-1)^2}(n+1))$ | Existing repository reduction using published binomial normal forms and Minkowski-sum bounds. In three variables this excludes a polynomial separation from the generic scale within this subclass. |
+| Planar ideals containing an irreducible degree-$D$ equation: $g(I)\le5Dn$; sharp order $\Theta_D(n)$ for the maximum over degrees at most fixed $D\ge2$ | Uniform proof and exact wall controls below; the precise priority comparison remains open. This does not bound all ideals by a constant times $n$. |
 
 The published upper bound and state-polyhedron framework are in
 [Babson, Onn and Thomas, *The Hilbert zonotope and a polynomial time algorithm
@@ -1020,15 +1024,198 @@ and the monomial exponent sizes must fit the same colength budget.
 Establishing such a realization or a quantitative obstruction is the next
 feasibility test. The transfer theorem does not assume it succeeds.
 
+## A degree-sensitive bound for an irreducible plane carrier
+
+Let $I\subset K[x,y]$ have colength $n\ge1$, and suppose
+$F\in I$ is irreducible of total degree $D\ge1$. Over every field,
+
+$$
+g(I)\le 5Dn. \tag{13}
+$$
+
+The hypothesis is scheme-theoretic: the equation $F$ belongs to the ideal.
+The argument allows nonreduced finite quotients and singular carriers.
+It does not assume an irreducible low-degree equation exists for every $I$.
+
+**The common variation budget.** Scan positive weights $(t,1)$ from
+$t=0$ to $t=\infty$. Finite strict weight representations cover all
+global monomial initial ideals. Across an actual wall $t=b/a$, with
+$a,b$ relatively prime positive integers, the standard-set moment changes by
+$(-Ka,Kb)$ for an integer $K>0$. Minimum basis cost is concave, so its
+$x$ derivative decreases; equality of the two costs gives the $y$ change.
+Each standard set is an $n$-element downset, whose coordinate moments are
+between 0 and $\binom n2$: its coordinate fibers have lengths $\ell_j$
+summing to $n$, and $\sum_j\binom{\ell_j}{2}\le\binom n2$.
+Therefore, summing over **one fixed ideal's** fan,
+
+$$
+\sum_{\text{walls}}K(a+b)\le n(n-1). \tag{14}
+$$
+
+Also $a,b\le n-1$: a primitive wall direction is the difference direction
+of exchanged standard monomials. This can be seen degree by degree in
+the weighted initial ideal at the wall. Its two refinements have the same
+number of standard monomials in each weighted degree.
+
+At most $D$ wall ratios can be ties for the leading monomial of $F$.
+Indeed, its positive-weight upper envelope has at most $D+1$ different
+$x$ exponents. Count these walls separately. There are at most
+$2(D-1)(n-1)$ remaining possible ratios with $a<D$ or $b<D$.
+
+**A large wall has a short polynomial lift.** Consider another wall with
+$a,b\ge D$, and let $x^r y^s$ be the unique leading monomial of $F$
+there. Both neighboring standard sets avoid its multiples. A pure head
+would put them in a strip of width at most $D$, incompatible with such a
+direction. Hence $r,s>0$ and $r+s\le D$.
+
+A line in direction $(a,-b)$ meets the monomials outside
+$(x^r y^s)$ in at most two points: at most one in the vertical strip
+$x<r$, and at most one in the horizontal strip $y<s$. A changed weighted
+degree thus exchanges
+
+$$
+u=(i+\ell a,j),\qquad v=(i,j+\ell b),\qquad
+0\le i<r,\quad0\le j<s,\quad\ell\ge1.
+$$
+
+As $t$ increases, the lower $x$ exponent wins. All changed weighted
+degrees move in this direction, so $K$ is the sum of their $\ell$ values.
+In particular, any exhibited exchange has $\ell\le K$.
+
+Reduce $x^u$ in the standard basis immediately after the wall, and put
+$g=x^u-\operatorname{NF}(x^u)\in I$. All its terms have wall weight
+at most $T=u\cdot(b/a,1)$. At least one tail term ties: otherwise
+$x^u$ would also be an initial monomial just before the wall. The
+two-point property makes that term $x^v$. Every term of $g$ avoids
+$x^r y^s$, so $g$ is nonzero and not divisible by $F$.
+
+The endpoint bounds give
+
+$$
+\frac{T}{b/a}=i+\ell a+j\frac ab\le(\ell+2)a,
+\qquad
+T=i\frac ba+j+\ell b\le(\ell+2)b.
+$$
+
+Every nonnegative exponent below that weight has total degree at most
+$T/\min(b/a,1)$. Consequently
+
+$$
+\deg g\le3\ell\max(a,b). \tag{15}
+$$
+
+**Bézout charges the wall.** Since $F$ is irreducible and does not divide
+$g$, the affine intersection quotient has length at most $D\deg g$.
+It surjects onto $K[x,y]/I$, hence
+
+$$
+n\le D\deg g\le3D\ell\max(a,b)\le3DK(a+b). \tag{16}
+$$
+
+This is the classical Bézout length bound; compare
+[Milne, *Elliptic Curves*, I.1.18](https://www.jmilne.org/math/Books/ectext6.pdf).
+For completeness, it also follows over $K$ directly: the coprime
+homogenizations of $F,g$ form a regular sequence in $K[X,Y,Z]$.
+The degree-$h$ quotient has dimension $D\deg g$ for large $h$, by its
+two multiplication exact sequences. Evaluation at $Z=1$ surjects that
+component onto the affine intersection quotient for large $h$. This
+proves the length inequality, including multiplicities and arbitrary
+characteristic, without assuming all points are rational.
+
+Equations (14)--(16) allow at most $3D(n-1)$ large walls. Including the
+other two types gives
+
+$$
+g(I)\le1+D+2(D-1)(n-1)+3D(n-1)\le5Dn,
+$$
+
+proving (13). The budget is shared by all walls; independently realizable
+pairs from different quotients would not satisfy this argument.
+
+### The fixed-degree order is sharp
+
+Let $B_D(n)$ be the maximum restricted to ideals containing some
+irreducible polynomial of degree at most $D$. For every fixed $D\ge2$,
+
+$$
+B_D(n)=\Theta_D(n). \tag{17}
+$$
+
+The lower family is $I=(xy-1,f(x))$, where $f$ is monic of degree $n$
+with nonzero constant coefficient. In $K[x,x^{-1}]/(f)$, any $n$
+consecutive Laurent powers form a basis. The cheapest $n$ monomials
+outside $(xy)$ always form such an interval. Every allocation
+$\{1,x,\ldots,x^a,y,\ldots,y^b\}$, $a+b=n-1$, occurs, for example
+at weights $(2b+1,2a+1)$. Thus $g(I)=n$ over every field. Distinct
+nonzero roots of $f$ also give reduced point examples over an infinite
+field. For $D=1$, the maximum is instead at most two, attained when
+$n\ge2$ by $(y-x,x^n)$; a linear equation has only two possible heads.
+
+The argument proves this restricted order. Its novelty and exact priority
+remain unestablished. It neither sharpens the unrestricted $G_2$ exponent
+nor completes the three-variable goal. It combines established state
+geometry and Bézout, and extends the earlier fixed-monomial-curve screening
+bound to arbitrary irreducible plane carriers.
+
+### What a finite arithmetic gain does and does not show
+
+The bounded arithmetic test refutes generic maximality already in the
+plane. For a primitive eleventh root $\zeta$, take the seven points
+
+$$
+(\zeta^j,\zeta^{7j}),\qquad0\le j<7.
+$$
+
+Their complete fan has nine initial ideals, versus eight generic planar
+corner cuts. The wall ratios $w_x/w_y$ are
+$1/6,1/4,1/2,2/3,1,2,4,6$. The rank rule is ordinary Vandermonde:
+monomials with the same $i+7j\pmod {11}$ have the same column, and
+any seven distinct classes are independent. Primality is not needed
+for that consecutive-row argument. Independent elimination on the
+seven points $(2^j,2^{7j})$ in $\mathbb F_{23}^2$ verifies the count.
+
+These points satisfy both $y^2=x^3$ and $xy^3=1$. A fixed-curve
+construction therefore cannot turn this finite gain into a power gain.
+For example, lift the orbit to size $11^k$ with an exponent $a_k$
+satisfying $3a_k+1\equiv0\pmod {11^k}$, and select $7^k$ points.
+The equation $xy^3=1$ remains, so (13) gives at most $20\,7^k$
+initial ideals. A proposed $9^k$ multiplication law cannot persist.
+This is a limitation of that particular fixed-curve lift, not a bound on
+every arithmetic family whose relations may grow with its parameters.
+
+The checker saves exact partition witnesses for eighteen fixtures. They
+include jets on $x^2y+xy^2+1=0$ in characteristics 5, 7 and 101 and
+lengths 7, 12 and 18, exercising the Bézout charging step. Its projective
+cubic is nonsingular when the characteristic is not 3: the $Z$ derivative
+forces $Z=0$, and at $XY(X+Y)=0$ a remaining derivative is nonzero.
+It is therefore geometrically irreducible. Hyperbola and line controls
+include smaller characteristics, and the cyclic point example is checked
+separately. Every complete cone interval, state jump and large-wall
+polynomial lift is replayed exactly. A partition row length $\lambda_j$
+encodes all $x^iy^j$, $0\le i<\lambda_j$, without losing basis data.
+
+In particular, a planar family with $g(I)\ge c n^{1+\epsilon}$ needs
+every irreducible equation in its ideal to have degree
+$\Omega(n^\epsilon)$. Applying the product construction to branches
+on a bounded-degree irreducible carrier gives only $O_D(N^2)$ initial
+ideals at spatial length $N$. A useful realization of the transversal
+lower construction must escape this whole class, not just change a few
+coefficients on one fixed curve.
+
 ## Next proof task and stopping rule
 
-The next task is to characterize coherent bases of the nonlinear rectangle
-family using its actual coefficients and multiplication relations. The
-filtration bound identifies the remaining quantitative window; the rational
-relation distinguishes the existing fixed surface from the family with free
-coefficients. A proposed count must handle one of these classes uniformly.
-The sparse minor witness $F_*$ is a rank control, not a newly selected
-extremal family. No larger fan enumeration is justified by that minor alone.
+The next lower-bound task is a planar quotient realization with controlled
+colength and growing carrier complexity, in service of the original spatial
+target. A fixed irreducible carrier is now excluded by (13), even though it
+can beat the generic finite count. The transversal construction remains a
+specific input to test; arbitrary vector representability still does not
+supply exponent weights or commuting multiplication.
+
+The nonlinear rectangle route remains available. Its filtration bound
+identifies a quantitative window, and the rational relation distinguishes
+the fixed surface from free-coefficient embeddings. A proposed count must
+handle a defined class uniformly. The sparse minor witness $F_*$ is a rank
+control, not an extremal family or a reason for larger fan enumeration.
 
 A useful outcome would be a uniform count or an explicit collection of
 distinct cones with a provable growth rate. Only a rate polynomially above the

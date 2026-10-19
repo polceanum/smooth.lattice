@@ -1,5 +1,5 @@
 {
-  "schema_version": 5,
+  "schema_version": 6,
   "status": "passed",
   "command": "python3 -B scripts/run_extremal_initial_ideals_checks.py",
   "grid_source_controls": {
@@ -28558,12 +28558,8420 @@
     "new_asymptotic_separation": false,
     "scope": "For every planar finite quotient the written construction squares its fan count at length 3m. Exact checks cover cyclic, noncyclic, local and possibly nonreduced point presentations. No planar superlinear-power lower family or novelty certificate is supplied."
   },
+  "plane_curve_carriers": {
+    "fixtures": [
+      {
+        "model": "smooth_cubic_local_jet",
+        "characteristic": 5,
+        "quotient_length": 7,
+        "carrier": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            1,
+            1
+          ]
+        ],
+        "carrier_degree": 3,
+        "initial_ideal_count": 8,
+        "wall_kinds": {
+          "carrier_boundary": 1,
+          "small_direction": 6,
+          "large_direction": 0
+        },
+        "total_moment_variation": 42,
+        "bound_5_D_n": 105,
+        "complete_positive_fan": true,
+        "witnesses": [
+          {
+            "row_lengths": [
+              7
+            ],
+            "strict_weight": [
+              1,
+              14
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/6"
+            ]
+          },
+          {
+            "row_lengths": [
+              6,
+              1
+            ],
+            "strict_weight": [
+              11,
+              60
+            ],
+            "interval_wx_wy": [
+              "1/6",
+              "1/4"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              2
+            ],
+            "strict_weight": [
+              15,
+              56
+            ],
+            "interval_wx_wy": [
+              "1/4",
+              "1/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              2,
+              1
+            ],
+            "strict_weight": [
+              15,
+              28
+            ],
+            "interval_wx_wy": [
+              "1/2",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              2,
+              1,
+              1
+            ],
+            "strict_weight": [
+              13,
+              12
+            ],
+            "interval_wx_wy": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              13,
+              6
+            ],
+            "interval_wx_wy": [
+              "2",
+              "4"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              9,
+              2
+            ],
+            "interval_wx_wy": [
+              "4",
+              "6"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              13,
+              2
+            ],
+            "interval_wx_wy": [
+              "6",
+              null
+            ]
+          }
+        ],
+        "walls": [
+          {
+            "ratio_wx_wy": "1/6",
+            "primitive_direction": [
+              6,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/4",
+            "primitive_direction": [
+              4,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/2",
+            "primitive_direction": [
+              2,
+              -1
+            ],
+            "state_jump_multiple": 2,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1",
+            "primitive_direction": [
+              1,
+              -1
+            ],
+            "state_jump_multiple": 3,
+            "kind": "carrier_boundary"
+          },
+          {
+            "ratio_wx_wy": "2",
+            "primitive_direction": [
+              1,
+              -2
+            ],
+            "state_jump_multiple": 2,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "4",
+            "primitive_direction": [
+              1,
+              -4
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "6",
+            "primitive_direction": [
+              1,
+              -6
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          }
+        ],
+        "local_parameter_images": {
+          "x": [
+            3,
+            1
+          ],
+          "y": [
+            3,
+            4,
+            3,
+            1,
+            0,
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "model": "smooth_cubic_local_jet",
+        "characteristic": 5,
+        "quotient_length": 12,
+        "carrier": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            1,
+            1
+          ]
+        ],
+        "carrier_degree": 3,
+        "initial_ideal_count": 14,
+        "wall_kinds": {
+          "carrier_boundary": 1,
+          "small_direction": 10,
+          "large_direction": 2
+        },
+        "total_moment_variation": 132,
+        "bound_5_D_n": 180,
+        "complete_positive_fan": true,
+        "witnesses": [
+          {
+            "row_lengths": [
+              12
+            ],
+            "strict_weight": [
+              1,
+              24
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/11"
+            ]
+          },
+          {
+            "row_lengths": [
+              11,
+              1
+            ],
+            "strict_weight": [
+              21,
+              220
+            ],
+            "interval_wx_wy": [
+              "1/11",
+              "1/9"
+            ]
+          },
+          {
+            "row_lengths": [
+              10,
+              2
+            ],
+            "strict_weight": [
+              17,
+              144
+            ],
+            "interval_wx_wy": [
+              "1/9",
+              "1/6"
+            ]
+          },
+          {
+            "row_lengths": [
+              8,
+              4
+            ],
+            "strict_weight": [
+              23,
+              132
+            ],
+            "interval_wx_wy": [
+              "1/6",
+              "1/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              8,
+              3,
+              1
+            ],
+            "strict_weight": [
+              23,
+              66
+            ],
+            "interval_wx_wy": [
+              "1/3",
+              "3/7"
+            ]
+          },
+          {
+            "row_lengths": [
+              7,
+              3,
+              1,
+              1
+            ],
+            "strict_weight": [
+              55,
+              126
+            ],
+            "interval_wx_wy": [
+              "3/7",
+              "1/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              5,
+              1,
+              1
+            ],
+            "strict_weight": [
+              23,
+              44
+            ],
+            "interval_wx_wy": [
+              "1/2",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              2,
+              2,
+              2,
+              2
+            ],
+            "strict_weight": [
+              23,
+              22
+            ],
+            "interval_wx_wy": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              21,
+              10
+            ],
+            "interval_wx_wy": [
+              "2",
+              "7/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              71,
+              30
+            ],
+            "interval_wx_wy": [
+              "7/3",
+              "3"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              19,
+              6
+            ],
+            "interval_wx_wy": [
+              "3",
+              "6"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              13,
+              2
+            ],
+            "interval_wx_wy": [
+              "6",
+              "9"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              19,
+              2
+            ],
+            "interval_wx_wy": [
+              "9",
+              "11"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              23,
+              2
+            ],
+            "interval_wx_wy": [
+              "11",
+              null
+            ]
+          }
+        ],
+        "walls": [
+          {
+            "ratio_wx_wy": "1/11",
+            "primitive_direction": [
+              11,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/9",
+            "primitive_direction": [
+              9,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/6",
+            "primitive_direction": [
+              6,
+              -1
+            ],
+            "state_jump_multiple": 2,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/3",
+            "primitive_direction": [
+              3,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "3/7",
+            "primitive_direction": [
+              7,
+              -3
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              2
+            ],
+            "exchange_endpoints": [
+              [
+                7,
+                0
+              ],
+              [
+                0,
+                3
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 7,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                1,
+                3
+              ],
+              [
+                0,
+                2,
+                3
+              ],
+              [
+                0,
+                3,
+                4
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                1,
+                4
+              ],
+              [
+                2,
+                0,
+                1
+              ],
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                3,
+                0,
+                3
+              ],
+              [
+                4,
+                0,
+                3
+              ],
+              [
+                5,
+                0,
+                2
+              ],
+              [
+                7,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "1/2",
+            "primitive_direction": [
+              2,
+              -1
+            ],
+            "state_jump_multiple": 2,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1",
+            "primitive_direction": [
+              1,
+              -1
+            ],
+            "state_jump_multiple": 10,
+            "kind": "carrier_boundary"
+          },
+          {
+            "ratio_wx_wy": "2",
+            "primitive_direction": [
+              1,
+              -2
+            ],
+            "state_jump_multiple": 2,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "7/3",
+            "primitive_direction": [
+              3,
+              -7
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              2,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                3,
+                0
+              ],
+              [
+                0,
+                7
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 7,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                4
+              ],
+              [
+                0,
+                2,
+                4
+              ],
+              [
+                0,
+                3,
+                2
+              ],
+              [
+                0,
+                4,
+                2
+              ],
+              [
+                0,
+                5,
+                3
+              ],
+              [
+                0,
+                7,
+                4
+              ],
+              [
+                1,
+                0,
+                2
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                2,
+                4
+              ],
+              [
+                2,
+                0,
+                2
+              ],
+              [
+                3,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "3",
+            "primitive_direction": [
+              1,
+              -3
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "6",
+            "primitive_direction": [
+              1,
+              -6
+            ],
+            "state_jump_multiple": 2,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "9",
+            "primitive_direction": [
+              1,
+              -9
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "11",
+            "primitive_direction": [
+              1,
+              -11
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          }
+        ],
+        "local_parameter_images": {
+          "x": [
+            3,
+            1
+          ],
+          "y": [
+            3,
+            4,
+            3,
+            1,
+            0,
+            2,
+            2,
+            4,
+            4,
+            0,
+            4,
+            1
+          ]
+        }
+      },
+      {
+        "model": "smooth_cubic_local_jet",
+        "characteristic": 5,
+        "quotient_length": 18,
+        "carrier": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            1,
+            1
+          ]
+        ],
+        "carrier_degree": 3,
+        "initial_ideal_count": 24,
+        "wall_kinds": {
+          "carrier_boundary": 1,
+          "small_direction": 20,
+          "large_direction": 2
+        },
+        "total_moment_variation": 306,
+        "bound_5_D_n": 270,
+        "complete_positive_fan": true,
+        "witnesses": [
+          {
+            "row_lengths": [
+              18
+            ],
+            "strict_weight": [
+              1,
+              36
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/17"
+            ]
+          },
+          {
+            "row_lengths": [
+              17,
+              1
+            ],
+            "strict_weight": [
+              33,
+              544
+            ],
+            "interval_wx_wy": [
+              "1/17",
+              "1/15"
+            ]
+          },
+          {
+            "row_lengths": [
+              16,
+              2
+            ],
+            "strict_weight": [
+              29,
+              420
+            ],
+            "interval_wx_wy": [
+              "1/15",
+              "1/13"
+            ]
+          },
+          {
+            "row_lengths": [
+              15,
+              3
+            ],
+            "strict_weight": [
+              25,
+              312
+            ],
+            "interval_wx_wy": [
+              "1/13",
+              "1/11"
+            ]
+          },
+          {
+            "row_lengths": [
+              14,
+              4
+            ],
+            "strict_weight": [
+              21,
+              220
+            ],
+            "interval_wx_wy": [
+              "1/11",
+              "1/9"
+            ]
+          },
+          {
+            "row_lengths": [
+              13,
+              5
+            ],
+            "strict_weight": [
+              35,
+              306
+            ],
+            "interval_wx_wy": [
+              "1/9",
+              "1/7"
+            ]
+          },
+          {
+            "row_lengths": [
+              12,
+              6
+            ],
+            "strict_weight": [
+              27,
+              182
+            ],
+            "interval_wx_wy": [
+              "1/7",
+              "2/11"
+            ]
+          },
+          {
+            "row_lengths": [
+              11,
+              6,
+              1
+            ],
+            "strict_weight": [
+              65,
+              352
+            ],
+            "interval_wx_wy": [
+              "2/11",
+              "1/4"
+            ]
+          },
+          {
+            "row_lengths": [
+              10,
+              7,
+              1
+            ],
+            "strict_weight": [
+              31,
+              120
+            ],
+            "interval_wx_wy": [
+              "1/4",
+              "1/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              9,
+              7,
+              1,
+              1
+            ],
+            "strict_weight": [
+              35,
+              102
+            ],
+            "interval_wx_wy": [
+              "1/3",
+              "1/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              9,
+              6,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              35,
+              68
+            ],
+            "interval_wx_wy": [
+              "1/2",
+              "5/8"
+            ]
+          },
+          {
+            "row_lengths": [
+              8,
+              6,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              111,
+              176
+            ],
+            "interval_wx_wy": [
+              "5/8",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              6,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1
+            ],
+            "strict_weight": [
+              35,
+              34
+            ],
+            "interval_wx_wy": [
+              "1",
+              "8/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              129,
+              80
+            ],
+            "interval_wx_wy": [
+              "8/5",
+              "2"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1
+            ],
+            "strict_weight": [
+              33,
+              16
+            ],
+            "interval_wx_wy": [
+              "2",
+              "3"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              31,
+              10
+            ],
+            "interval_wx_wy": [
+              "3",
+              "4"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              33,
+              8
+            ],
+            "interval_wx_wy": [
+              "4",
+              "11/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              67,
+              12
+            ],
+            "interval_wx_wy": [
+              "11/2",
+              "7"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              29,
+              4
+            ],
+            "interval_wx_wy": [
+              "7",
+              "9"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              19,
+              2
+            ],
+            "interval_wx_wy": [
+              "9",
+              "11"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              23,
+              2
+            ],
+            "interval_wx_wy": [
+              "11",
+              "13"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              27,
+              2
+            ],
+            "interval_wx_wy": [
+              "13",
+              "15"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              31,
+              2
+            ],
+            "interval_wx_wy": [
+              "15",
+              "17"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              35,
+              2
+            ],
+            "interval_wx_wy": [
+              "17",
+              null
+            ]
+          }
+        ],
+        "walls": [
+          {
+            "ratio_wx_wy": "1/17",
+            "primitive_direction": [
+              17,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/15",
+            "primitive_direction": [
+              15,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/13",
+            "primitive_direction": [
+              13,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/11",
+            "primitive_direction": [
+              11,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/9",
+            "primitive_direction": [
+              9,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/7",
+            "primitive_direction": [
+              7,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "2/11",
+            "primitive_direction": [
+              11,
+              -2
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/4",
+            "primitive_direction": [
+              4,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/3",
+            "primitive_direction": [
+              3,
+              -1
+            ],
+            "state_jump_multiple": 3,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/2",
+            "primitive_direction": [
+              2,
+              -1
+            ],
+            "state_jump_multiple": 3,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "5/8",
+            "primitive_direction": [
+              8,
+              -5
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              2
+            ],
+            "exchange_endpoints": [
+              [
+                8,
+                0
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 8,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                2,
+                2
+              ],
+              [
+                0,
+                3,
+                1
+              ],
+              [
+                0,
+                4,
+                1
+              ],
+              [
+                0,
+                5,
+                3
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                1,
+                4
+              ],
+              [
+                2,
+                0,
+                2
+              ],
+              [
+                2,
+                1,
+                4
+              ],
+              [
+                3,
+                0,
+                2
+              ],
+              [
+                3,
+                1,
+                3
+              ],
+              [
+                4,
+                0,
+                4
+              ],
+              [
+                4,
+                1,
+                4
+              ],
+              [
+                5,
+                1,
+                2
+              ],
+              [
+                6,
+                0,
+                3
+              ],
+              [
+                7,
+                0,
+                3
+              ],
+              [
+                8,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "1",
+            "primitive_direction": [
+              1,
+              -1
+            ],
+            "state_jump_multiple": 23,
+            "kind": "carrier_boundary"
+          },
+          {
+            "ratio_wx_wy": "8/5",
+            "primitive_direction": [
+              5,
+              -8
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              2,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                5,
+                0
+              ],
+              [
+                0,
+                8
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 8,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                0,
+                2,
+                4
+              ],
+              [
+                0,
+                3,
+                4
+              ],
+              [
+                0,
+                4,
+                3
+              ],
+              [
+                0,
+                6,
+                1
+              ],
+              [
+                0,
+                7,
+                1
+              ],
+              [
+                0,
+                8,
+                2
+              ],
+              [
+                1,
+                1,
+                3
+              ],
+              [
+                1,
+                2,
+                3
+              ],
+              [
+                1,
+                3,
+                1
+              ],
+              [
+                1,
+                4,
+                3
+              ],
+              [
+                1,
+                5,
+                4
+              ],
+              [
+                2,
+                0,
+                4
+              ],
+              [
+                3,
+                0,
+                2
+              ],
+              [
+                4,
+                0,
+                2
+              ],
+              [
+                5,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "2",
+            "primitive_direction": [
+              1,
+              -2
+            ],
+            "state_jump_multiple": 3,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "3",
+            "primitive_direction": [
+              1,
+              -3
+            ],
+            "state_jump_multiple": 3,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "4",
+            "primitive_direction": [
+              1,
+              -4
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "11/2",
+            "primitive_direction": [
+              2,
+              -11
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "7",
+            "primitive_direction": [
+              1,
+              -7
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "9",
+            "primitive_direction": [
+              1,
+              -9
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "11",
+            "primitive_direction": [
+              1,
+              -11
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "13",
+            "primitive_direction": [
+              1,
+              -13
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "15",
+            "primitive_direction": [
+              1,
+              -15
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "17",
+            "primitive_direction": [
+              1,
+              -17
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          }
+        ],
+        "local_parameter_images": {
+          "x": [
+            3,
+            1
+          ],
+          "y": [
+            3,
+            4,
+            3,
+            1,
+            0,
+            2,
+            2,
+            4,
+            4,
+            0,
+            4,
+            1,
+            0,
+            2,
+            0,
+            4,
+            3,
+            3
+          ]
+        }
+      },
+      {
+        "model": "smooth_cubic_local_jet",
+        "characteristic": 7,
+        "quotient_length": 7,
+        "carrier": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            1,
+            1
+          ]
+        ],
+        "carrier_degree": 3,
+        "initial_ideal_count": 8,
+        "wall_kinds": {
+          "carrier_boundary": 1,
+          "small_direction": 6,
+          "large_direction": 0
+        },
+        "total_moment_variation": 42,
+        "bound_5_D_n": 105,
+        "complete_positive_fan": true,
+        "witnesses": [
+          {
+            "row_lengths": [
+              7
+            ],
+            "strict_weight": [
+              1,
+              14
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/6"
+            ]
+          },
+          {
+            "row_lengths": [
+              6,
+              1
+            ],
+            "strict_weight": [
+              11,
+              60
+            ],
+            "interval_wx_wy": [
+              "1/6",
+              "1/4"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              2
+            ],
+            "strict_weight": [
+              15,
+              56
+            ],
+            "interval_wx_wy": [
+              "1/4",
+              "1/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              2,
+              1
+            ],
+            "strict_weight": [
+              15,
+              28
+            ],
+            "interval_wx_wy": [
+              "1/2",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              2,
+              1,
+              1
+            ],
+            "strict_weight": [
+              13,
+              12
+            ],
+            "interval_wx_wy": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              13,
+              6
+            ],
+            "interval_wx_wy": [
+              "2",
+              "4"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              9,
+              2
+            ],
+            "interval_wx_wy": [
+              "4",
+              "6"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              13,
+              2
+            ],
+            "interval_wx_wy": [
+              "6",
+              null
+            ]
+          }
+        ],
+        "walls": [
+          {
+            "ratio_wx_wy": "1/6",
+            "primitive_direction": [
+              6,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/4",
+            "primitive_direction": [
+              4,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/2",
+            "primitive_direction": [
+              2,
+              -1
+            ],
+            "state_jump_multiple": 2,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1",
+            "primitive_direction": [
+              1,
+              -1
+            ],
+            "state_jump_multiple": 3,
+            "kind": "carrier_boundary"
+          },
+          {
+            "ratio_wx_wy": "2",
+            "primitive_direction": [
+              1,
+              -2
+            ],
+            "state_jump_multiple": 2,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "4",
+            "primitive_direction": [
+              1,
+              -4
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "6",
+            "primitive_direction": [
+              1,
+              -6
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          }
+        ],
+        "local_parameter_images": {
+          "x": [
+            1,
+            1
+          ],
+          "y": [
+            2,
+            4,
+            0,
+            3,
+            0,
+            3,
+            1
+          ]
+        }
+      },
+      {
+        "model": "smooth_cubic_local_jet",
+        "characteristic": 7,
+        "quotient_length": 12,
+        "carrier": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            1,
+            1
+          ]
+        ],
+        "carrier_degree": 3,
+        "initial_ideal_count": 12,
+        "wall_kinds": {
+          "carrier_boundary": 1,
+          "small_direction": 10,
+          "large_direction": 0
+        },
+        "total_moment_variation": 132,
+        "bound_5_D_n": 180,
+        "complete_positive_fan": true,
+        "witnesses": [
+          {
+            "row_lengths": [
+              12
+            ],
+            "strict_weight": [
+              1,
+              24
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/11"
+            ]
+          },
+          {
+            "row_lengths": [
+              11,
+              1
+            ],
+            "strict_weight": [
+              21,
+              220
+            ],
+            "interval_wx_wy": [
+              "1/11",
+              "1/9"
+            ]
+          },
+          {
+            "row_lengths": [
+              10,
+              2
+            ],
+            "strict_weight": [
+              17,
+              144
+            ],
+            "interval_wx_wy": [
+              "1/9",
+              "1/7"
+            ]
+          },
+          {
+            "row_lengths": [
+              9,
+              3
+            ],
+            "strict_weight": [
+              13,
+              84
+            ],
+            "interval_wx_wy": [
+              "1/7",
+              "1/4"
+            ]
+          },
+          {
+            "row_lengths": [
+              7,
+              4,
+              1
+            ],
+            "strict_weight": [
+              23,
+              88
+            ],
+            "interval_wx_wy": [
+              "1/4",
+              "1/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              6,
+              4,
+              1,
+              1
+            ],
+            "strict_weight": [
+              23,
+              44
+            ],
+            "interval_wx_wy": [
+              "1/2",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              2,
+              2,
+              2,
+              1,
+              1
+            ],
+            "strict_weight": [
+              23,
+              22
+            ],
+            "interval_wx_wy": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              21,
+              10
+            ],
+            "interval_wx_wy": [
+              "2",
+              "4"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              17,
+              4
+            ],
+            "interval_wx_wy": [
+              "4",
+              "7"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              15,
+              2
+            ],
+            "interval_wx_wy": [
+              "7",
+              "9"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              19,
+              2
+            ],
+            "interval_wx_wy": [
+              "9",
+              "11"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              23,
+              2
+            ],
+            "interval_wx_wy": [
+              "11",
+              null
+            ]
+          }
+        ],
+        "walls": [
+          {
+            "ratio_wx_wy": "1/11",
+            "primitive_direction": [
+              11,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/9",
+            "primitive_direction": [
+              9,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/7",
+            "primitive_direction": [
+              7,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/4",
+            "primitive_direction": [
+              4,
+              -1
+            ],
+            "state_jump_multiple": 3,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/2",
+            "primitive_direction": [
+              2,
+              -1
+            ],
+            "state_jump_multiple": 3,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1",
+            "primitive_direction": [
+              1,
+              -1
+            ],
+            "state_jump_multiple": 12,
+            "kind": "carrier_boundary"
+          },
+          {
+            "ratio_wx_wy": "2",
+            "primitive_direction": [
+              1,
+              -2
+            ],
+            "state_jump_multiple": 3,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "4",
+            "primitive_direction": [
+              1,
+              -4
+            ],
+            "state_jump_multiple": 3,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "7",
+            "primitive_direction": [
+              1,
+              -7
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "9",
+            "primitive_direction": [
+              1,
+              -9
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "11",
+            "primitive_direction": [
+              1,
+              -11
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          }
+        ],
+        "local_parameter_images": {
+          "x": [
+            1,
+            1
+          ],
+          "y": [
+            2,
+            4,
+            0,
+            3,
+            0,
+            3,
+            1,
+            4,
+            3,
+            2,
+            5,
+            6
+          ]
+        }
+      },
+      {
+        "model": "smooth_cubic_local_jet",
+        "characteristic": 7,
+        "quotient_length": 18,
+        "carrier": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            1,
+            1
+          ]
+        ],
+        "carrier_degree": 3,
+        "initial_ideal_count": 22,
+        "wall_kinds": {
+          "carrier_boundary": 1,
+          "small_direction": 16,
+          "large_direction": 4
+        },
+        "total_moment_variation": 306,
+        "bound_5_D_n": 270,
+        "complete_positive_fan": true,
+        "witnesses": [
+          {
+            "row_lengths": [
+              18
+            ],
+            "strict_weight": [
+              1,
+              36
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/17"
+            ]
+          },
+          {
+            "row_lengths": [
+              17,
+              1
+            ],
+            "strict_weight": [
+              33,
+              544
+            ],
+            "interval_wx_wy": [
+              "1/17",
+              "1/15"
+            ]
+          },
+          {
+            "row_lengths": [
+              16,
+              2
+            ],
+            "strict_weight": [
+              29,
+              420
+            ],
+            "interval_wx_wy": [
+              "1/15",
+              "1/13"
+            ]
+          },
+          {
+            "row_lengths": [
+              15,
+              3
+            ],
+            "strict_weight": [
+              25,
+              312
+            ],
+            "interval_wx_wy": [
+              "1/13",
+              "1/11"
+            ]
+          },
+          {
+            "row_lengths": [
+              14,
+              4
+            ],
+            "strict_weight": [
+              21,
+              220
+            ],
+            "interval_wx_wy": [
+              "1/11",
+              "1/9"
+            ]
+          },
+          {
+            "row_lengths": [
+              13,
+              5
+            ],
+            "strict_weight": [
+              35,
+              306
+            ],
+            "interval_wx_wy": [
+              "1/9",
+              "1/7"
+            ]
+          },
+          {
+            "row_lengths": [
+              12,
+              6
+            ],
+            "strict_weight": [
+              27,
+              182
+            ],
+            "interval_wx_wy": [
+              "1/7",
+              "2/11"
+            ]
+          },
+          {
+            "row_lengths": [
+              11,
+              6,
+              1
+            ],
+            "strict_weight": [
+              65,
+              352
+            ],
+            "interval_wx_wy": [
+              "2/11",
+              "3/10"
+            ]
+          },
+          {
+            "row_lengths": [
+              10,
+              6,
+              1,
+              1
+            ],
+            "strict_weight": [
+              79,
+              260
+            ],
+            "interval_wx_wy": [
+              "3/10",
+              "1/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              8,
+              8,
+              1,
+              1
+            ],
+            "strict_weight": [
+              35,
+              68
+            ],
+            "interval_wx_wy": [
+              "1/2",
+              "4/7"
+            ]
+          },
+          {
+            "row_lengths": [
+              7,
+              7,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              97,
+              168
+            ],
+            "interval_wx_wy": [
+              "4/7",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              6,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "strict_weight": [
+              35,
+              34
+            ],
+            "interval_wx_wy": [
+              "1",
+              "7/4"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "strict_weight": [
+              127,
+              72
+            ],
+            "interval_wx_wy": [
+              "7/4",
+              "2"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              33,
+              16
+            ],
+            "interval_wx_wy": [
+              "2",
+              "10/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              101,
+              30
+            ],
+            "interval_wx_wy": [
+              "10/3",
+              "11/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              67,
+              12
+            ],
+            "interval_wx_wy": [
+              "11/2",
+              "7"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              29,
+              4
+            ],
+            "interval_wx_wy": [
+              "7",
+              "9"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              19,
+              2
+            ],
+            "interval_wx_wy": [
+              "9",
+              "11"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              23,
+              2
+            ],
+            "interval_wx_wy": [
+              "11",
+              "13"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              27,
+              2
+            ],
+            "interval_wx_wy": [
+              "13",
+              "15"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              31,
+              2
+            ],
+            "interval_wx_wy": [
+              "15",
+              "17"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              35,
+              2
+            ],
+            "interval_wx_wy": [
+              "17",
+              null
+            ]
+          }
+        ],
+        "walls": [
+          {
+            "ratio_wx_wy": "1/17",
+            "primitive_direction": [
+              17,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/15",
+            "primitive_direction": [
+              15,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/13",
+            "primitive_direction": [
+              13,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/11",
+            "primitive_direction": [
+              11,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/9",
+            "primitive_direction": [
+              9,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/7",
+            "primitive_direction": [
+              7,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "2/11",
+            "primitive_direction": [
+              11,
+              -2
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "3/10",
+            "primitive_direction": [
+              10,
+              -3
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              2
+            ],
+            "exchange_endpoints": [
+              [
+                10,
+                0
+              ],
+              [
+                0,
+                3
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 10,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                6
+              ],
+              [
+                0,
+                2,
+                4
+              ],
+              [
+                0,
+                3,
+                2
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                1,
+                4
+              ],
+              [
+                2,
+                0,
+                4
+              ],
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                3,
+                0,
+                1
+              ],
+              [
+                3,
+                1,
+                6
+              ],
+              [
+                4,
+                0,
+                5
+              ],
+              [
+                4,
+                1,
+                5
+              ],
+              [
+                5,
+                0,
+                1
+              ],
+              [
+                5,
+                1,
+                6
+              ],
+              [
+                6,
+                0,
+                6
+              ],
+              [
+                7,
+                0,
+                2
+              ],
+              [
+                8,
+                0,
+                1
+              ],
+              [
+                10,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "1/2",
+            "primitive_direction": [
+              2,
+              -1
+            ],
+            "state_jump_multiple": 2,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "4/7",
+            "primitive_direction": [
+              7,
+              -4
+            ],
+            "state_jump_multiple": 2,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              2
+            ],
+            "exchange_endpoints": [
+              [
+                7,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 7,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                0,
+                5
+              ],
+              [
+                0,
+                1,
+                4
+              ],
+              [
+                0,
+                2,
+                3
+              ],
+              [
+                0,
+                3,
+                2
+              ],
+              [
+                0,
+                4,
+                6
+              ],
+              [
+                1,
+                0,
+                5
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                2,
+                0,
+                5
+              ],
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                3,
+                1,
+                3
+              ],
+              [
+                4,
+                0,
+                6
+              ],
+              [
+                4,
+                1,
+                1
+              ],
+              [
+                5,
+                0,
+                2
+              ],
+              [
+                5,
+                1,
+                5
+              ],
+              [
+                6,
+                0,
+                4
+              ],
+              [
+                7,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "1",
+            "primitive_direction": [
+              1,
+              -1
+            ],
+            "state_jump_multiple": 21,
+            "kind": "carrier_boundary"
+          },
+          {
+            "ratio_wx_wy": "7/4",
+            "primitive_direction": [
+              4,
+              -7
+            ],
+            "state_jump_multiple": 2,
+            "kind": "large_direction",
+            "carrier_head": [
+              2,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                7
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 7,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                0,
+                6
+              ],
+              [
+                0,
+                1,
+                4
+              ],
+              [
+                0,
+                3,
+                6
+              ],
+              [
+                0,
+                4,
+                5
+              ],
+              [
+                0,
+                5,
+                3
+              ],
+              [
+                0,
+                6,
+                2
+              ],
+              [
+                0,
+                7,
+                6
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                2,
+                2
+              ],
+              [
+                1,
+                3,
+                5
+              ],
+              [
+                1,
+                4,
+                4
+              ],
+              [
+                1,
+                5,
+                3
+              ],
+              [
+                2,
+                0,
+                2
+              ],
+              [
+                3,
+                0,
+                4
+              ],
+              [
+                4,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "2",
+            "primitive_direction": [
+              1,
+              -2
+            ],
+            "state_jump_multiple": 2,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "10/3",
+            "primitive_direction": [
+              3,
+              -10
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              2,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                3,
+                0
+              ],
+              [
+                0,
+                10
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 10,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                1,
+                3
+              ],
+              [
+                0,
+                2,
+                3
+              ],
+              [
+                0,
+                3,
+                1
+              ],
+              [
+                0,
+                4,
+                2
+              ],
+              [
+                0,
+                5,
+                4
+              ],
+              [
+                0,
+                7,
+                3
+              ],
+              [
+                0,
+                8,
+                6
+              ],
+              [
+                0,
+                10,
+                5
+              ],
+              [
+                1,
+                0,
+                5
+              ],
+              [
+                1,
+                1,
+                3
+              ],
+              [
+                1,
+                2,
+                4
+              ],
+              [
+                1,
+                3,
+                5
+              ],
+              [
+                1,
+                4,
+                5
+              ],
+              [
+                1,
+                5,
+                3
+              ],
+              [
+                2,
+                0,
+                3
+              ],
+              [
+                3,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "11/2",
+            "primitive_direction": [
+              2,
+              -11
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "7",
+            "primitive_direction": [
+              1,
+              -7
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "9",
+            "primitive_direction": [
+              1,
+              -9
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "11",
+            "primitive_direction": [
+              1,
+              -11
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "13",
+            "primitive_direction": [
+              1,
+              -13
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "15",
+            "primitive_direction": [
+              1,
+              -15
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "17",
+            "primitive_direction": [
+              1,
+              -17
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          }
+        ],
+        "local_parameter_images": {
+          "x": [
+            1,
+            1
+          ],
+          "y": [
+            2,
+            4,
+            0,
+            3,
+            0,
+            3,
+            1,
+            4,
+            3,
+            2,
+            5,
+            6,
+            4,
+            0,
+            4,
+            6,
+            0,
+            3
+          ]
+        }
+      },
+      {
+        "model": "smooth_cubic_local_jet",
+        "characteristic": 101,
+        "quotient_length": 7,
+        "carrier": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            1,
+            1
+          ]
+        ],
+        "carrier_degree": 3,
+        "initial_ideal_count": 8,
+        "wall_kinds": {
+          "carrier_boundary": 1,
+          "small_direction": 6,
+          "large_direction": 0
+        },
+        "total_moment_variation": 42,
+        "bound_5_D_n": 105,
+        "complete_positive_fan": true,
+        "witnesses": [
+          {
+            "row_lengths": [
+              7
+            ],
+            "strict_weight": [
+              1,
+              14
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/6"
+            ]
+          },
+          {
+            "row_lengths": [
+              6,
+              1
+            ],
+            "strict_weight": [
+              11,
+              60
+            ],
+            "interval_wx_wy": [
+              "1/6",
+              "1/4"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              2
+            ],
+            "strict_weight": [
+              15,
+              56
+            ],
+            "interval_wx_wy": [
+              "1/4",
+              "1/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              2,
+              1
+            ],
+            "strict_weight": [
+              15,
+              28
+            ],
+            "interval_wx_wy": [
+              "1/2",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              2,
+              1,
+              1
+            ],
+            "strict_weight": [
+              13,
+              12
+            ],
+            "interval_wx_wy": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              13,
+              6
+            ],
+            "interval_wx_wy": [
+              "2",
+              "4"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              9,
+              2
+            ],
+            "interval_wx_wy": [
+              "4",
+              "6"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              13,
+              2
+            ],
+            "interval_wx_wy": [
+              "6",
+              null
+            ]
+          }
+        ],
+        "walls": [
+          {
+            "ratio_wx_wy": "1/6",
+            "primitive_direction": [
+              6,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/4",
+            "primitive_direction": [
+              4,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/2",
+            "primitive_direction": [
+              2,
+              -1
+            ],
+            "state_jump_multiple": 2,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1",
+            "primitive_direction": [
+              1,
+              -1
+            ],
+            "state_jump_multiple": 3,
+            "kind": "carrier_boundary"
+          },
+          {
+            "ratio_wx_wy": "2",
+            "primitive_direction": [
+              1,
+              -2
+            ],
+            "state_jump_multiple": 2,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "4",
+            "primitive_direction": [
+              1,
+              -4
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "6",
+            "primitive_direction": [
+              1,
+              -6
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          }
+        ],
+        "local_parameter_images": {
+          "x": [
+            5,
+            1
+          ],
+          "y": [
+            47,
+            76,
+            37,
+            45,
+            28,
+            1,
+            38
+          ]
+        }
+      },
+      {
+        "model": "smooth_cubic_local_jet",
+        "characteristic": 101,
+        "quotient_length": 12,
+        "carrier": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            1,
+            1
+          ]
+        ],
+        "carrier_degree": 3,
+        "initial_ideal_count": 16,
+        "wall_kinds": {
+          "carrier_boundary": 1,
+          "small_direction": 12,
+          "large_direction": 2
+        },
+        "total_moment_variation": 132,
+        "bound_5_D_n": 180,
+        "complete_positive_fan": true,
+        "witnesses": [
+          {
+            "row_lengths": [
+              12
+            ],
+            "strict_weight": [
+              1,
+              24
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/11"
+            ]
+          },
+          {
+            "row_lengths": [
+              11,
+              1
+            ],
+            "strict_weight": [
+              21,
+              220
+            ],
+            "interval_wx_wy": [
+              "1/11",
+              "1/9"
+            ]
+          },
+          {
+            "row_lengths": [
+              10,
+              2
+            ],
+            "strict_weight": [
+              17,
+              144
+            ],
+            "interval_wx_wy": [
+              "1/9",
+              "1/7"
+            ]
+          },
+          {
+            "row_lengths": [
+              9,
+              3
+            ],
+            "strict_weight": [
+              13,
+              84
+            ],
+            "interval_wx_wy": [
+              "1/7",
+              "1/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              8,
+              4
+            ],
+            "strict_weight": [
+              19,
+              90
+            ],
+            "interval_wx_wy": [
+              "1/5",
+              "2/7"
+            ]
+          },
+          {
+            "row_lengths": [
+              7,
+              4,
+              1
+            ],
+            "strict_weight": [
+              41,
+              140
+            ],
+            "interval_wx_wy": [
+              "2/7",
+              "1/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              6,
+              4,
+              1,
+              1
+            ],
+            "strict_weight": [
+              23,
+              44
+            ],
+            "interval_wx_wy": [
+              "1/2",
+              "4/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              4,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              89,
+              110
+            ],
+            "interval_wx_wy": [
+              "4/5",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              2,
+              2,
+              2,
+              1
+            ],
+            "strict_weight": [
+              23,
+              22
+            ],
+            "interval_wx_wy": [
+              "1",
+              "5/4"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              2,
+              2,
+              2,
+              1,
+              1
+            ],
+            "strict_weight": [
+              71,
+              56
+            ],
+            "interval_wx_wy": [
+              "5/4",
+              "2"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              21,
+              10
+            ],
+            "interval_wx_wy": [
+              "2",
+              "7/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              43,
+              12
+            ],
+            "interval_wx_wy": [
+              "7/2",
+              "5"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              21,
+              4
+            ],
+            "interval_wx_wy": [
+              "5",
+              "7"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              15,
+              2
+            ],
+            "interval_wx_wy": [
+              "7",
+              "9"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              19,
+              2
+            ],
+            "interval_wx_wy": [
+              "9",
+              "11"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              23,
+              2
+            ],
+            "interval_wx_wy": [
+              "11",
+              null
+            ]
+          }
+        ],
+        "walls": [
+          {
+            "ratio_wx_wy": "1/11",
+            "primitive_direction": [
+              11,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/9",
+            "primitive_direction": [
+              9,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/7",
+            "primitive_direction": [
+              7,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/5",
+            "primitive_direction": [
+              5,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "2/7",
+            "primitive_direction": [
+              7,
+              -2
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/2",
+            "primitive_direction": [
+              2,
+              -1
+            ],
+            "state_jump_multiple": 3,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "4/5",
+            "primitive_direction": [
+              5,
+              -4
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              2
+            ],
+            "exchange_endpoints": [
+              [
+                5,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 5,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                0,
+                68
+              ],
+              [
+                0,
+                1,
+                23
+              ],
+              [
+                0,
+                3,
+                98
+              ],
+              [
+                0,
+                4,
+                57
+              ],
+              [
+                1,
+                0,
+                21
+              ],
+              [
+                1,
+                1,
+                57
+              ],
+              [
+                2,
+                0,
+                57
+              ],
+              [
+                2,
+                1,
+                85
+              ],
+              [
+                3,
+                0,
+                17
+              ],
+              [
+                3,
+                1,
+                83
+              ],
+              [
+                4,
+                0,
+                24
+              ],
+              [
+                5,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "1",
+            "primitive_direction": [
+              1,
+              -1
+            ],
+            "state_jump_multiple": 3,
+            "kind": "carrier_boundary"
+          },
+          {
+            "ratio_wx_wy": "5/4",
+            "primitive_direction": [
+              4,
+              -5
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              2,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 5,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                0,
+                81
+              ],
+              [
+                0,
+                1,
+                21
+              ],
+              [
+                0,
+                2,
+                83
+              ],
+              [
+                0,
+                3,
+                88
+              ],
+              [
+                0,
+                4,
+                54
+              ],
+              [
+                0,
+                5,
+                75
+              ],
+              [
+                1,
+                0,
+                61
+              ],
+              [
+                1,
+                1,
+                74
+              ],
+              [
+                1,
+                2,
+                92
+              ],
+              [
+                1,
+                3,
+                46
+              ],
+              [
+                2,
+                0,
+                85
+              ],
+              [
+                3,
+                0,
+                80
+              ],
+              [
+                4,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "2",
+            "primitive_direction": [
+              1,
+              -2
+            ],
+            "state_jump_multiple": 3,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "7/2",
+            "primitive_direction": [
+              2,
+              -7
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "5",
+            "primitive_direction": [
+              1,
+              -5
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "7",
+            "primitive_direction": [
+              1,
+              -7
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "9",
+            "primitive_direction": [
+              1,
+              -9
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "11",
+            "primitive_direction": [
+              1,
+              -11
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          }
+        ],
+        "local_parameter_images": {
+          "x": [
+            5,
+            1
+          ],
+          "y": [
+            47,
+            76,
+            37,
+            45,
+            28,
+            1,
+            38,
+            36,
+            17,
+            85,
+            58,
+            73
+          ]
+        }
+      },
+      {
+        "model": "smooth_cubic_local_jet",
+        "characteristic": 101,
+        "quotient_length": 18,
+        "carrier": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            1,
+            1
+          ]
+        ],
+        "carrier_degree": 3,
+        "initial_ideal_count": 26,
+        "wall_kinds": {
+          "carrier_boundary": 1,
+          "small_direction": 22,
+          "large_direction": 2
+        },
+        "total_moment_variation": 306,
+        "bound_5_D_n": 270,
+        "complete_positive_fan": true,
+        "witnesses": [
+          {
+            "row_lengths": [
+              18
+            ],
+            "strict_weight": [
+              1,
+              36
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/17"
+            ]
+          },
+          {
+            "row_lengths": [
+              17,
+              1
+            ],
+            "strict_weight": [
+              33,
+              544
+            ],
+            "interval_wx_wy": [
+              "1/17",
+              "1/15"
+            ]
+          },
+          {
+            "row_lengths": [
+              16,
+              2
+            ],
+            "strict_weight": [
+              29,
+              420
+            ],
+            "interval_wx_wy": [
+              "1/15",
+              "1/13"
+            ]
+          },
+          {
+            "row_lengths": [
+              15,
+              3
+            ],
+            "strict_weight": [
+              25,
+              312
+            ],
+            "interval_wx_wy": [
+              "1/13",
+              "1/11"
+            ]
+          },
+          {
+            "row_lengths": [
+              14,
+              4
+            ],
+            "strict_weight": [
+              21,
+              220
+            ],
+            "interval_wx_wy": [
+              "1/11",
+              "1/9"
+            ]
+          },
+          {
+            "row_lengths": [
+              13,
+              5
+            ],
+            "strict_weight": [
+              35,
+              306
+            ],
+            "interval_wx_wy": [
+              "1/9",
+              "1/7"
+            ]
+          },
+          {
+            "row_lengths": [
+              12,
+              6
+            ],
+            "strict_weight": [
+              27,
+              182
+            ],
+            "interval_wx_wy": [
+              "1/7",
+              "2/11"
+            ]
+          },
+          {
+            "row_lengths": [
+              11,
+              6,
+              1
+            ],
+            "strict_weight": [
+              65,
+              352
+            ],
+            "interval_wx_wy": [
+              "2/11",
+              "1/4"
+            ]
+          },
+          {
+            "row_lengths": [
+              10,
+              7,
+              1
+            ],
+            "strict_weight": [
+              31,
+              120
+            ],
+            "interval_wx_wy": [
+              "1/4",
+              "1/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              9,
+              7,
+              1,
+              1
+            ],
+            "strict_weight": [
+              35,
+              102
+            ],
+            "interval_wx_wy": [
+              "1/3",
+              "1/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              8,
+              7,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              35,
+              68
+            ],
+            "interval_wx_wy": [
+              "1/2",
+              "2/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              8,
+              6,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              65,
+              96
+            ],
+            "interval_wx_wy": [
+              "2/3",
+              "6/7"
+            ]
+          },
+          {
+            "row_lengths": [
+              7,
+              6,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              181,
+              210
+            ],
+            "interval_wx_wy": [
+              "6/7",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              7,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1
+            ],
+            "strict_weight": [
+              35,
+              34
+            ],
+            "interval_wx_wy": [
+              "1",
+              "7/6"
+            ]
+          },
+          {
+            "row_lengths": [
+              6,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1
+            ],
+            "strict_weight": [
+              155,
+              132
+            ],
+            "interval_wx_wy": [
+              "7/6",
+              "3/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1
+            ],
+            "strict_weight": [
+              67,
+              44
+            ],
+            "interval_wx_wy": [
+              "3/2",
+              "2"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1
+            ],
+            "strict_weight": [
+              33,
+              16
+            ],
+            "interval_wx_wy": [
+              "2",
+              "3"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              31,
+              10
+            ],
+            "interval_wx_wy": [
+              "3",
+              "4"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              33,
+              8
+            ],
+            "interval_wx_wy": [
+              "4",
+              "11/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              67,
+              12
+            ],
+            "interval_wx_wy": [
+              "11/2",
+              "7"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              29,
+              4
+            ],
+            "interval_wx_wy": [
+              "7",
+              "9"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              19,
+              2
+            ],
+            "interval_wx_wy": [
+              "9",
+              "11"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              23,
+              2
+            ],
+            "interval_wx_wy": [
+              "11",
+              "13"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              27,
+              2
+            ],
+            "interval_wx_wy": [
+              "13",
+              "15"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              31,
+              2
+            ],
+            "interval_wx_wy": [
+              "15",
+              "17"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              35,
+              2
+            ],
+            "interval_wx_wy": [
+              "17",
+              null
+            ]
+          }
+        ],
+        "walls": [
+          {
+            "ratio_wx_wy": "1/17",
+            "primitive_direction": [
+              17,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/15",
+            "primitive_direction": [
+              15,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/13",
+            "primitive_direction": [
+              13,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/11",
+            "primitive_direction": [
+              11,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/9",
+            "primitive_direction": [
+              9,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/7",
+            "primitive_direction": [
+              7,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "2/11",
+            "primitive_direction": [
+              11,
+              -2
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/4",
+            "primitive_direction": [
+              4,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/3",
+            "primitive_direction": [
+              3,
+              -1
+            ],
+            "state_jump_multiple": 3,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/2",
+            "primitive_direction": [
+              2,
+              -1
+            ],
+            "state_jump_multiple": 4,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "2/3",
+            "primitive_direction": [
+              3,
+              -2
+            ],
+            "state_jump_multiple": 2,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "6/7",
+            "primitive_direction": [
+              7,
+              -6
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              2
+            ],
+            "exchange_endpoints": [
+              [
+                7,
+                0
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 7,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                0,
+                33
+              ],
+              [
+                0,
+                1,
+                31
+              ],
+              [
+                0,
+                2,
+                92
+              ],
+              [
+                0,
+                3,
+                40
+              ],
+              [
+                0,
+                4,
+                25
+              ],
+              [
+                0,
+                5,
+                46
+              ],
+              [
+                0,
+                6,
+                65
+              ],
+              [
+                1,
+                0,
+                69
+              ],
+              [
+                1,
+                1,
+                92
+              ],
+              [
+                2,
+                0,
+                56
+              ],
+              [
+                2,
+                1,
+                65
+              ],
+              [
+                3,
+                0,
+                62
+              ],
+              [
+                3,
+                1,
+                43
+              ],
+              [
+                4,
+                0,
+                19
+              ],
+              [
+                4,
+                1,
+                6
+              ],
+              [
+                5,
+                0,
+                46
+              ],
+              [
+                5,
+                1,
+                23
+              ],
+              [
+                6,
+                0,
+                88
+              ],
+              [
+                7,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "1",
+            "primitive_direction": [
+              1,
+              -1
+            ],
+            "state_jump_multiple": 10,
+            "kind": "carrier_boundary"
+          },
+          {
+            "ratio_wx_wy": "7/6",
+            "primitive_direction": [
+              6,
+              -7
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              2,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                6,
+                0
+              ],
+              [
+                0,
+                7
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 7,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                0,
+                96
+              ],
+              [
+                0,
+                1,
+                25
+              ],
+              [
+                0,
+                2,
+                96
+              ],
+              [
+                0,
+                3,
+                81
+              ],
+              [
+                0,
+                4,
+                43
+              ],
+              [
+                0,
+                5,
+                81
+              ],
+              [
+                0,
+                6,
+                68
+              ],
+              [
+                0,
+                7,
+                61
+              ],
+              [
+                1,
+                0,
+                92
+              ],
+              [
+                1,
+                1,
+                87
+              ],
+              [
+                1,
+                2,
+                17
+              ],
+              [
+                1,
+                3,
+                20
+              ],
+              [
+                1,
+                4,
+                15
+              ],
+              [
+                1,
+                5,
+                56
+              ],
+              [
+                2,
+                0,
+                64
+              ],
+              [
+                3,
+                0,
+                34
+              ],
+              [
+                4,
+                0,
+                3
+              ],
+              [
+                5,
+                0,
+                80
+              ],
+              [
+                6,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "3/2",
+            "primitive_direction": [
+              2,
+              -3
+            ],
+            "state_jump_multiple": 2,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "2",
+            "primitive_direction": [
+              1,
+              -2
+            ],
+            "state_jump_multiple": 4,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "3",
+            "primitive_direction": [
+              1,
+              -3
+            ],
+            "state_jump_multiple": 3,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "4",
+            "primitive_direction": [
+              1,
+              -4
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "11/2",
+            "primitive_direction": [
+              2,
+              -11
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "7",
+            "primitive_direction": [
+              1,
+              -7
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "9",
+            "primitive_direction": [
+              1,
+              -9
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "11",
+            "primitive_direction": [
+              1,
+              -11
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "13",
+            "primitive_direction": [
+              1,
+              -13
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "15",
+            "primitive_direction": [
+              1,
+              -15
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "17",
+            "primitive_direction": [
+              1,
+              -17
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          }
+        ],
+        "local_parameter_images": {
+          "x": [
+            5,
+            1
+          ],
+          "y": [
+            47,
+            76,
+            37,
+            45,
+            28,
+            1,
+            38,
+            36,
+            17,
+            85,
+            58,
+            73,
+            59,
+            16,
+            17,
+            95,
+            23,
+            51
+          ]
+        }
+      },
+      {
+        "model": "hyperbola_local_jet",
+        "characteristic": 2,
+        "quotient_length": 7,
+        "carrier": [
+          [
+            0,
+            0,
+            -1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "carrier_degree": 2,
+        "initial_ideal_count": 7,
+        "wall_kinds": {
+          "carrier_boundary": 0,
+          "small_direction": 2,
+          "large_direction": 4
+        },
+        "total_moment_variation": 42,
+        "bound_5_D_n": 70,
+        "complete_positive_fan": true,
+        "witnesses": [
+          {
+            "row_lengths": [
+              7
+            ],
+            "strict_weight": [
+              1,
+              14
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/6"
+            ]
+          },
+          {
+            "row_lengths": [
+              6,
+              1
+            ],
+            "strict_weight": [
+              11,
+              60
+            ],
+            "interval_wx_wy": [
+              "1/6",
+              "2/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              1,
+              1
+            ],
+            "strict_weight": [
+              29,
+              70
+            ],
+            "interval_wx_wy": [
+              "2/5",
+              "3/4"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              31,
+              40
+            ],
+            "interval_wx_wy": [
+              "3/4",
+              "4/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              41,
+              30
+            ],
+            "interval_wx_wy": [
+              "4/3",
+              "5/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              11,
+              4
+            ],
+            "interval_wx_wy": [
+              "5/2",
+              "6"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              13,
+              2
+            ],
+            "interval_wx_wy": [
+              "6",
+              null
+            ]
+          }
+        ],
+        "walls": [
+          {
+            "ratio_wx_wy": "1/6",
+            "primitive_direction": [
+              6,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "2/5",
+            "primitive_direction": [
+              5,
+              -2
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                5,
+                0
+              ],
+              [
+                0,
+                2
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 5,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                2,
+                0,
+                1
+              ],
+              [
+                3,
+                0,
+                1
+              ],
+              [
+                4,
+                0,
+                1
+              ],
+              [
+                5,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "3/4",
+            "primitive_direction": [
+              4,
+              -3
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                3
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 4,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                0,
+                3,
+                1
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                2,
+                0,
+                1
+              ],
+              [
+                3,
+                0,
+                1
+              ],
+              [
+                4,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "4/3",
+            "primitive_direction": [
+              3,
+              -4
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                3,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 4,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                0,
+                3,
+                1
+              ],
+              [
+                0,
+                4,
+                1
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                2,
+                0,
+                1
+              ],
+              [
+                3,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "5/2",
+            "primitive_direction": [
+              2,
+              -5
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                2,
+                0
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 5,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                0,
+                3,
+                1
+              ],
+              [
+                0,
+                4,
+                1
+              ],
+              [
+                0,
+                5,
+                1
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                2,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "6",
+            "primitive_direction": [
+              1,
+              -6
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          }
+        ]
+      },
+      {
+        "model": "hyperbola_local_jet",
+        "characteristic": 2,
+        "quotient_length": 12,
+        "carrier": [
+          [
+            0,
+            0,
+            -1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "carrier_degree": 2,
+        "initial_ideal_count": 12,
+        "wall_kinds": {
+          "carrier_boundary": 0,
+          "small_direction": 9,
+          "large_direction": 2
+        },
+        "total_moment_variation": 132,
+        "bound_5_D_n": 120,
+        "complete_positive_fan": true,
+        "witnesses": [
+          {
+            "row_lengths": [
+              12
+            ],
+            "strict_weight": [
+              1,
+              24
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/11"
+            ]
+          },
+          {
+            "row_lengths": [
+              11,
+              1
+            ],
+            "strict_weight": [
+              21,
+              220
+            ],
+            "interval_wx_wy": [
+              "1/11",
+              "1/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              10,
+              1,
+              1
+            ],
+            "strict_weight": [
+              19,
+              90
+            ],
+            "interval_wx_wy": [
+              "1/5",
+              "1/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              9,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              23,
+              66
+            ],
+            "interval_wx_wy": [
+              "1/3",
+              "1/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              8,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              23,
+              44
+            ],
+            "interval_wx_wy": [
+              "1/2",
+              "5/7"
+            ]
+          },
+          {
+            "row_lengths": [
+              7,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              111,
+              154
+            ],
+            "interval_wx_wy": [
+              "5/7",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              6,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              23,
+              22
+            ],
+            "interval_wx_wy": [
+              "1",
+              "7/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              99,
+              70
+            ],
+            "interval_wx_wy": [
+              "7/5",
+              "2"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              21,
+              10
+            ],
+            "interval_wx_wy": [
+              "2",
+              "3"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              19,
+              6
+            ],
+            "interval_wx_wy": [
+              "3",
+              "5"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              21,
+              4
+            ],
+            "interval_wx_wy": [
+              "5",
+              "11"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              23,
+              2
+            ],
+            "interval_wx_wy": [
+              "11",
+              null
+            ]
+          }
+        ],
+        "walls": [
+          {
+            "ratio_wx_wy": "1/11",
+            "primitive_direction": [
+              11,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/5",
+            "primitive_direction": [
+              5,
+              -1
+            ],
+            "state_jump_multiple": 2,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/3",
+            "primitive_direction": [
+              3,
+              -1
+            ],
+            "state_jump_multiple": 3,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/2",
+            "primitive_direction": [
+              2,
+              -1
+            ],
+            "state_jump_multiple": 4,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "5/7",
+            "primitive_direction": [
+              7,
+              -5
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                7,
+                0
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 7,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                5,
+                1
+              ],
+              [
+                3,
+                0,
+                1
+              ],
+              [
+                7,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "1",
+            "primitive_direction": [
+              1,
+              -1
+            ],
+            "state_jump_multiple": 6,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "7/5",
+            "primitive_direction": [
+              5,
+              -7
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                5,
+                0
+              ],
+              [
+                0,
+                7
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 7,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                3,
+                1
+              ],
+              [
+                0,
+                7,
+                1
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                5,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "2",
+            "primitive_direction": [
+              1,
+              -2
+            ],
+            "state_jump_multiple": 4,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "3",
+            "primitive_direction": [
+              1,
+              -3
+            ],
+            "state_jump_multiple": 3,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "5",
+            "primitive_direction": [
+              1,
+              -5
+            ],
+            "state_jump_multiple": 2,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "11",
+            "primitive_direction": [
+              1,
+              -11
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          }
+        ]
+      },
+      {
+        "model": "hyperbola_local_jet",
+        "characteristic": 3,
+        "quotient_length": 7,
+        "carrier": [
+          [
+            0,
+            0,
+            -1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "carrier_degree": 2,
+        "initial_ideal_count": 7,
+        "wall_kinds": {
+          "carrier_boundary": 0,
+          "small_direction": 2,
+          "large_direction": 4
+        },
+        "total_moment_variation": 42,
+        "bound_5_D_n": 70,
+        "complete_positive_fan": true,
+        "witnesses": [
+          {
+            "row_lengths": [
+              7
+            ],
+            "strict_weight": [
+              1,
+              14
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/6"
+            ]
+          },
+          {
+            "row_lengths": [
+              6,
+              1
+            ],
+            "strict_weight": [
+              11,
+              60
+            ],
+            "interval_wx_wy": [
+              "1/6",
+              "2/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              1,
+              1
+            ],
+            "strict_weight": [
+              29,
+              70
+            ],
+            "interval_wx_wy": [
+              "2/5",
+              "3/4"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              31,
+              40
+            ],
+            "interval_wx_wy": [
+              "3/4",
+              "4/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              41,
+              30
+            ],
+            "interval_wx_wy": [
+              "4/3",
+              "5/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              11,
+              4
+            ],
+            "interval_wx_wy": [
+              "5/2",
+              "6"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              13,
+              2
+            ],
+            "interval_wx_wy": [
+              "6",
+              null
+            ]
+          }
+        ],
+        "walls": [
+          {
+            "ratio_wx_wy": "1/6",
+            "primitive_direction": [
+              6,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "2/5",
+            "primitive_direction": [
+              5,
+              -2
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                5,
+                0
+              ],
+              [
+                0,
+                2
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 5,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                2
+              ],
+              [
+                1,
+                0,
+                2
+              ],
+              [
+                2,
+                0,
+                1
+              ],
+              [
+                4,
+                0,
+                2
+              ],
+              [
+                5,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "3/4",
+            "primitive_direction": [
+              4,
+              -3
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                3
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 4,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                0,
+                3,
+                2
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                3,
+                0,
+                2
+              ],
+              [
+                4,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "4/3",
+            "primitive_direction": [
+              3,
+              -4
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                3,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 4,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                0,
+                3,
+                1
+              ],
+              [
+                0,
+                4,
+                2
+              ],
+              [
+                2,
+                0,
+                2
+              ],
+              [
+                3,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "5/2",
+            "primitive_direction": [
+              2,
+              -5
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                2,
+                0
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 5,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                2
+              ],
+              [
+                0,
+                4,
+                1
+              ],
+              [
+                0,
+                5,
+                2
+              ],
+              [
+                1,
+                0,
+                2
+              ],
+              [
+                2,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "6",
+            "primitive_direction": [
+              1,
+              -6
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          }
+        ]
+      },
+      {
+        "model": "hyperbola_local_jet",
+        "characteristic": 3,
+        "quotient_length": 12,
+        "carrier": [
+          [
+            0,
+            0,
+            -1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "carrier_degree": 2,
+        "initial_ideal_count": 12,
+        "wall_kinds": {
+          "carrier_boundary": 0,
+          "small_direction": 9,
+          "large_direction": 2
+        },
+        "total_moment_variation": 132,
+        "bound_5_D_n": 120,
+        "complete_positive_fan": true,
+        "witnesses": [
+          {
+            "row_lengths": [
+              12
+            ],
+            "strict_weight": [
+              1,
+              24
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/11"
+            ]
+          },
+          {
+            "row_lengths": [
+              11,
+              1
+            ],
+            "strict_weight": [
+              21,
+              220
+            ],
+            "interval_wx_wy": [
+              "1/11",
+              "1/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              10,
+              1,
+              1
+            ],
+            "strict_weight": [
+              19,
+              90
+            ],
+            "interval_wx_wy": [
+              "1/5",
+              "1/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              9,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              23,
+              66
+            ],
+            "interval_wx_wy": [
+              "1/3",
+              "1/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              8,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              23,
+              44
+            ],
+            "interval_wx_wy": [
+              "1/2",
+              "5/7"
+            ]
+          },
+          {
+            "row_lengths": [
+              7,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              111,
+              154
+            ],
+            "interval_wx_wy": [
+              "5/7",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              6,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              23,
+              22
+            ],
+            "interval_wx_wy": [
+              "1",
+              "7/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              99,
+              70
+            ],
+            "interval_wx_wy": [
+              "7/5",
+              "2"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              21,
+              10
+            ],
+            "interval_wx_wy": [
+              "2",
+              "3"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              19,
+              6
+            ],
+            "interval_wx_wy": [
+              "3",
+              "5"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              21,
+              4
+            ],
+            "interval_wx_wy": [
+              "5",
+              "11"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              23,
+              2
+            ],
+            "interval_wx_wy": [
+              "11",
+              null
+            ]
+          }
+        ],
+        "walls": [
+          {
+            "ratio_wx_wy": "1/11",
+            "primitive_direction": [
+              11,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/5",
+            "primitive_direction": [
+              5,
+              -1
+            ],
+            "state_jump_multiple": 2,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/3",
+            "primitive_direction": [
+              3,
+              -1
+            ],
+            "state_jump_multiple": 3,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/2",
+            "primitive_direction": [
+              2,
+              -1
+            ],
+            "state_jump_multiple": 4,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "5/7",
+            "primitive_direction": [
+              7,
+              -5
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                7,
+                0
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 7,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                2,
+                2
+              ],
+              [
+                0,
+                5,
+                1
+              ],
+              [
+                4,
+                0,
+                2
+              ],
+              [
+                7,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "1",
+            "primitive_direction": [
+              1,
+              -1
+            ],
+            "state_jump_multiple": 6,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "7/5",
+            "primitive_direction": [
+              5,
+              -7
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                5,
+                0
+              ],
+              [
+                0,
+                7
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 7,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                4,
+                2
+              ],
+              [
+                0,
+                7,
+                1
+              ],
+              [
+                2,
+                0,
+                2
+              ],
+              [
+                5,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "2",
+            "primitive_direction": [
+              1,
+              -2
+            ],
+            "state_jump_multiple": 4,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "3",
+            "primitive_direction": [
+              1,
+              -3
+            ],
+            "state_jump_multiple": 3,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "5",
+            "primitive_direction": [
+              1,
+              -5
+            ],
+            "state_jump_multiple": 2,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "11",
+            "primitive_direction": [
+              1,
+              -11
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          }
+        ]
+      },
+      {
+        "model": "hyperbola_local_jet",
+        "characteristic": 101,
+        "quotient_length": 7,
+        "carrier": [
+          [
+            0,
+            0,
+            -1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "carrier_degree": 2,
+        "initial_ideal_count": 7,
+        "wall_kinds": {
+          "carrier_boundary": 0,
+          "small_direction": 2,
+          "large_direction": 4
+        },
+        "total_moment_variation": 42,
+        "bound_5_D_n": 70,
+        "complete_positive_fan": true,
+        "witnesses": [
+          {
+            "row_lengths": [
+              7
+            ],
+            "strict_weight": [
+              1,
+              14
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/6"
+            ]
+          },
+          {
+            "row_lengths": [
+              6,
+              1
+            ],
+            "strict_weight": [
+              11,
+              60
+            ],
+            "interval_wx_wy": [
+              "1/6",
+              "2/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              1,
+              1
+            ],
+            "strict_weight": [
+              29,
+              70
+            ],
+            "interval_wx_wy": [
+              "2/5",
+              "3/4"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              31,
+              40
+            ],
+            "interval_wx_wy": [
+              "3/4",
+              "4/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              41,
+              30
+            ],
+            "interval_wx_wy": [
+              "4/3",
+              "5/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              11,
+              4
+            ],
+            "interval_wx_wy": [
+              "5/2",
+              "6"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              13,
+              2
+            ],
+            "interval_wx_wy": [
+              "6",
+              null
+            ]
+          }
+        ],
+        "walls": [
+          {
+            "ratio_wx_wy": "1/6",
+            "primitive_direction": [
+              6,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "2/5",
+            "primitive_direction": [
+              5,
+              -2
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                5,
+                0
+              ],
+              [
+                0,
+                2
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 5,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                0,
+                80
+              ],
+              [
+                0,
+                1,
+                7
+              ],
+              [
+                0,
+                2,
+                100
+              ],
+              [
+                1,
+                0,
+                35
+              ],
+              [
+                2,
+                0,
+                66
+              ],
+              [
+                3,
+                0,
+                21
+              ],
+              [
+                4,
+                0,
+                94
+              ],
+              [
+                5,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "3/4",
+            "primitive_direction": [
+              4,
+              -3
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                3
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 4,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                0,
+                35
+              ],
+              [
+                0,
+                1,
+                80
+              ],
+              [
+                0,
+                2,
+                7
+              ],
+              [
+                0,
+                3,
+                100
+              ],
+              [
+                1,
+                0,
+                66
+              ],
+              [
+                2,
+                0,
+                21
+              ],
+              [
+                3,
+                0,
+                94
+              ],
+              [
+                4,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "4/3",
+            "primitive_direction": [
+              3,
+              -4
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                3,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 4,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                0,
+                66
+              ],
+              [
+                0,
+                1,
+                35
+              ],
+              [
+                0,
+                2,
+                80
+              ],
+              [
+                0,
+                3,
+                7
+              ],
+              [
+                0,
+                4,
+                100
+              ],
+              [
+                1,
+                0,
+                21
+              ],
+              [
+                2,
+                0,
+                94
+              ],
+              [
+                3,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "5/2",
+            "primitive_direction": [
+              2,
+              -5
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                2,
+                0
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 5,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                0,
+                21
+              ],
+              [
+                0,
+                1,
+                66
+              ],
+              [
+                0,
+                2,
+                35
+              ],
+              [
+                0,
+                3,
+                80
+              ],
+              [
+                0,
+                4,
+                7
+              ],
+              [
+                0,
+                5,
+                100
+              ],
+              [
+                1,
+                0,
+                94
+              ],
+              [
+                2,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "6",
+            "primitive_direction": [
+              1,
+              -6
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          }
+        ]
+      },
+      {
+        "model": "hyperbola_local_jet",
+        "characteristic": 101,
+        "quotient_length": 12,
+        "carrier": [
+          [
+            0,
+            0,
+            -1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "carrier_degree": 2,
+        "initial_ideal_count": 12,
+        "wall_kinds": {
+          "carrier_boundary": 0,
+          "small_direction": 9,
+          "large_direction": 2
+        },
+        "total_moment_variation": 132,
+        "bound_5_D_n": 120,
+        "complete_positive_fan": true,
+        "witnesses": [
+          {
+            "row_lengths": [
+              12
+            ],
+            "strict_weight": [
+              1,
+              24
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/11"
+            ]
+          },
+          {
+            "row_lengths": [
+              11,
+              1
+            ],
+            "strict_weight": [
+              21,
+              220
+            ],
+            "interval_wx_wy": [
+              "1/11",
+              "1/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              10,
+              1,
+              1
+            ],
+            "strict_weight": [
+              19,
+              90
+            ],
+            "interval_wx_wy": [
+              "1/5",
+              "1/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              9,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              23,
+              66
+            ],
+            "interval_wx_wy": [
+              "1/3",
+              "1/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              8,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              23,
+              44
+            ],
+            "interval_wx_wy": [
+              "1/2",
+              "5/7"
+            ]
+          },
+          {
+            "row_lengths": [
+              7,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              111,
+              154
+            ],
+            "interval_wx_wy": [
+              "5/7",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              6,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              23,
+              22
+            ],
+            "interval_wx_wy": [
+              "1",
+              "7/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              99,
+              70
+            ],
+            "interval_wx_wy": [
+              "7/5",
+              "2"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              21,
+              10
+            ],
+            "interval_wx_wy": [
+              "2",
+              "3"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              19,
+              6
+            ],
+            "interval_wx_wy": [
+              "3",
+              "5"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              21,
+              4
+            ],
+            "interval_wx_wy": [
+              "5",
+              "11"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              23,
+              2
+            ],
+            "interval_wx_wy": [
+              "11",
+              null
+            ]
+          }
+        ],
+        "walls": [
+          {
+            "ratio_wx_wy": "1/11",
+            "primitive_direction": [
+              11,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/5",
+            "primitive_direction": [
+              5,
+              -1
+            ],
+            "state_jump_multiple": 2,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/3",
+            "primitive_direction": [
+              3,
+              -1
+            ],
+            "state_jump_multiple": 3,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/2",
+            "primitive_direction": [
+              2,
+              -1
+            ],
+            "state_jump_multiple": 4,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "5/7",
+            "primitive_direction": [
+              7,
+              -5
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                7,
+                0
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 7,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                0,
+                16
+              ],
+              [
+                0,
+                1,
+                91
+              ],
+              [
+                0,
+                2,
+                83
+              ],
+              [
+                0,
+                3,
+                66
+              ],
+              [
+                0,
+                4,
+                89
+              ],
+              [
+                0,
+                5,
+                1
+              ],
+              [
+                1,
+                0,
+                15
+              ],
+              [
+                2,
+                0,
+                16
+              ],
+              [
+                3,
+                0,
+                91
+              ],
+              [
+                4,
+                0,
+                83
+              ],
+              [
+                5,
+                0,
+                66
+              ],
+              [
+                6,
+                0,
+                89
+              ],
+              [
+                7,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "1",
+            "primitive_direction": [
+              1,
+              -1
+            ],
+            "state_jump_multiple": 6,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "7/5",
+            "primitive_direction": [
+              5,
+              -7
+            ],
+            "state_jump_multiple": 1,
+            "kind": "large_direction",
+            "carrier_head": [
+              1,
+              1
+            ],
+            "exchange_endpoints": [
+              [
+                5,
+                0
+              ],
+              [
+                0,
+                7
+              ]
+            ],
+            "exchange_multiple": 1,
+            "relation_degree": 7,
+            "polynomial_relation_mod_p": [
+              [
+                0,
+                0,
+                16
+              ],
+              [
+                0,
+                1,
+                15
+              ],
+              [
+                0,
+                2,
+                16
+              ],
+              [
+                0,
+                3,
+                91
+              ],
+              [
+                0,
+                4,
+                83
+              ],
+              [
+                0,
+                5,
+                66
+              ],
+              [
+                0,
+                6,
+                89
+              ],
+              [
+                0,
+                7,
+                1
+              ],
+              [
+                1,
+                0,
+                91
+              ],
+              [
+                2,
+                0,
+                83
+              ],
+              [
+                3,
+                0,
+                66
+              ],
+              [
+                4,
+                0,
+                89
+              ],
+              [
+                5,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "ratio_wx_wy": "2",
+            "primitive_direction": [
+              1,
+              -2
+            ],
+            "state_jump_multiple": 4,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "3",
+            "primitive_direction": [
+              1,
+              -3
+            ],
+            "state_jump_multiple": 3,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "5",
+            "primitive_direction": [
+              1,
+              -5
+            ],
+            "state_jump_multiple": 2,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "11",
+            "primitive_direction": [
+              1,
+              -11
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          }
+        ]
+      },
+      {
+        "model": "line_local_jet",
+        "characteristic": 2,
+        "quotient_length": 7,
+        "carrier": [
+          [
+            0,
+            1,
+            -1
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ],
+        "carrier_degree": 1,
+        "initial_ideal_count": 2,
+        "wall_kinds": {
+          "carrier_boundary": 1,
+          "small_direction": 0,
+          "large_direction": 0
+        },
+        "total_moment_variation": 42,
+        "bound_5_D_n": 35,
+        "complete_positive_fan": true,
+        "witnesses": [
+          {
+            "row_lengths": [
+              7
+            ],
+            "strict_weight": [
+              1,
+              14
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              13,
+              12
+            ],
+            "interval_wx_wy": [
+              "1",
+              null
+            ]
+          }
+        ],
+        "walls": [
+          {
+            "ratio_wx_wy": "1",
+            "primitive_direction": [
+              1,
+              -1
+            ],
+            "state_jump_multiple": 21,
+            "kind": "carrier_boundary"
+          }
+        ]
+      },
+      {
+        "model": "line_local_jet",
+        "characteristic": 101,
+        "quotient_length": 7,
+        "carrier": [
+          [
+            0,
+            1,
+            -1
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ],
+        "carrier_degree": 1,
+        "initial_ideal_count": 2,
+        "wall_kinds": {
+          "carrier_boundary": 1,
+          "small_direction": 0,
+          "large_direction": 0
+        },
+        "total_moment_variation": 42,
+        "bound_5_D_n": 35,
+        "complete_positive_fan": true,
+        "witnesses": [
+          {
+            "row_lengths": [
+              7
+            ],
+            "strict_weight": [
+              1,
+              14
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              13,
+              12
+            ],
+            "interval_wx_wy": [
+              "1",
+              null
+            ]
+          }
+        ],
+        "walls": [
+          {
+            "ratio_wx_wy": "1",
+            "primitive_direction": [
+              1,
+              -1
+            ],
+            "state_jump_multiple": 21,
+            "kind": "carrier_boundary"
+          }
+        ]
+      },
+      {
+        "model": "seven_points_on_cyclic_orbit",
+        "characteristic": 23,
+        "quotient_length": 7,
+        "carrier": [
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            3,
+            0,
+            -1
+          ]
+        ],
+        "carrier_degree": 3,
+        "initial_ideal_count": 9,
+        "wall_kinds": {
+          "carrier_boundary": 1,
+          "small_direction": 7,
+          "large_direction": 0
+        },
+        "total_moment_variation": 42,
+        "bound_5_D_n": 105,
+        "complete_positive_fan": true,
+        "witnesses": [
+          {
+            "row_lengths": [
+              7
+            ],
+            "strict_weight": [
+              1,
+              14
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/6"
+            ]
+          },
+          {
+            "row_lengths": [
+              6,
+              1
+            ],
+            "strict_weight": [
+              11,
+              60
+            ],
+            "interval_wx_wy": [
+              "1/6",
+              "1/4"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              2
+            ],
+            "strict_weight": [
+              15,
+              56
+            ],
+            "interval_wx_wy": [
+              "1/4",
+              "1/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              3
+            ],
+            "strict_weight": [
+              15,
+              28
+            ],
+            "interval_wx_wy": [
+              "1/2",
+              "2/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              3,
+              1
+            ],
+            "strict_weight": [
+              29,
+              42
+            ],
+            "interval_wx_wy": [
+              "2/3",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              2,
+              1,
+              1
+            ],
+            "strict_weight": [
+              13,
+              12
+            ],
+            "interval_wx_wy": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              13,
+              6
+            ],
+            "interval_wx_wy": [
+              "2",
+              "4"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              9,
+              2
+            ],
+            "interval_wx_wy": [
+              "4",
+              "6"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              13,
+              2
+            ],
+            "interval_wx_wy": [
+              "6",
+              null
+            ]
+          }
+        ],
+        "walls": [
+          {
+            "ratio_wx_wy": "1/6",
+            "primitive_direction": [
+              6,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/4",
+            "primitive_direction": [
+              4,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "1/2",
+            "primitive_direction": [
+              2,
+              -1
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "2/3",
+            "primitive_direction": [
+              3,
+              -2
+            ],
+            "state_jump_multiple": 1,
+            "kind": "carrier_boundary"
+          },
+          {
+            "ratio_wx_wy": "1",
+            "primitive_direction": [
+              1,
+              -1
+            ],
+            "state_jump_multiple": 2,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "2",
+            "primitive_direction": [
+              1,
+              -2
+            ],
+            "state_jump_multiple": 2,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "4",
+            "primitive_direction": [
+              1,
+              -4
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          },
+          {
+            "ratio_wx_wy": "6",
+            "primitive_direction": [
+              1,
+              -6
+            ],
+            "state_jump_multiple": 1,
+            "kind": "small_direction"
+          }
+        ],
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            13
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            8,
+            12
+          ],
+          [
+            16,
+            18
+          ],
+          [
+            9,
+            4
+          ],
+          [
+            18,
+            6
+          ]
+        ],
+        "orbit_size": 11,
+        "generic_count": 8,
+        "positive_weight_fan_boundaries": [
+          "1/6",
+          "1/4",
+          "1/2",
+          "2/3",
+          "1",
+          "2",
+          "4",
+          "6"
+        ]
+      }
+    ],
+    "basis_encoding": "row_lengths[j]=lambda means x^i*y^j, 0<=i<lambda, are standard; this is an exact compact partition witness",
+    "uniform_bound_proved_in_note": "g(I)<=5*D*n for an irreducible carrier",
+    "sharp_fixed_degree_order": "Theta_D(n) for D>=2, taking the maximum over carriers of degree at most D",
+    "new_unrestricted_asymptotic": false,
+    "novelty_established": false,
+    "scope": "Exact complete fans and wall lifts test the written proof. Smooth cubic jets include characteristics smaller than quotient length. A finite cyclic count gain is not an asymptotic lower family."
+  },
   "asymptotic_improvement_established": false,
   "novelty_established": false,
   "goal_complete": false,
   "scope": "Exhaustive finite primary-bound and candidate-family diagnostics. No polynomial separation, sharp unrestricted asymptotic, or algorithmic speedup is inferred.",
   "source_sha256": {
-    "scripts/run_extremal_initial_ideals_checks.py": "816d40545ae20172e3c4977f9c339439b418cb9702e1981d4440274f4de49f18",
+    "scripts/run_extremal_initial_ideals_checks.py": "84ca813dcd9e685499aa4c4a237cf36334715fb7aee3dfc91237b7b3d237f965",
     "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1"
   }

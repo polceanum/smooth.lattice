@@ -70,12 +70,13 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Pursue a quantitative planar counting theorem in service of the unchanged three-variable target. The proved common-coordinate construction gives G_3(3m)>=G_2(m)^2 with an exact all-order initial-ideal formula, and an additive universal-basis construction. A planar family with m^(1+epsilon) initial ideals would meet the three-variable power-separation part at exponent 2+2epsilon. Audit the strongest current planar bound and the exact fibre-product priority boundary, then prove or refute a proposed uniform planar mechanism before enlarging experiments. The transfer alone, finite checks and generic n log n planar examples do not complete the original goal. A specific input is Eppstein\u2019s transversal-matroid lower construction with Theta(M) elements/rank and Omega(M^(4/3)) parametric bases. Test a planar quotient realization preserving its exponent-weight comparisons with length O(M^alpha), alpha<4/3, or prove an obstruction. Linear overhead would combine with the transfer to give the spatial power 8/3; neither commuting multiplication nor this size bound has been established.",
+  "next_proof_task": "Construct a planar realization of the high-complexity transversal-matroid input at colength O(M^alpha), alpha<4/3, preserving exponent-weight comparisons and commuting cyclic multiplication, or prove a quantitative obstruction. The irreducible-carrier theorem now forces any planar power-gain family to have every irreducible equation in its ideal grow in degree: g(I)<=5*D*n. Fixed-degree curves, including the seven-point cyclic finite gain and its fixed-curve prime-power lifts, cannot supply the separation. The already proved product transfer keeps the original spatial endpoint: linear overhead for the M^(4/3) input would yield spatial exponent 8/3. Audit exact priority of the carrier bound and strongest current planar results; no finite search, fixed-curve retuning or unverified novelty claim can complete the goal.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
     "Retain the user's assumption that relevant Elizalde--Galvan published results agree with arXiv:2312.16353v1, pending the user's eventual check.",
-    "Inspect the full proposed planar power-saving paper at https://math20.org/f/183/ before relying on any changed bound. Its asserted ordinary k-set improvement is not automatically a parametric-matroid theorem."
+    "Inspect the full proposed planar power-saving paper at https://math20.org/f/183/ before relying on any changed bound. Its asserted ordinary k-set improvement is not automatically a parametric-matroid theorem.",
+    "Compare the exact all-fields bound g(I)<=5*D*n for finite planar quotients containing an irreducible degree-D equation against prior curve-dependent counting results. The proof uses classical Bezout and state geometry; unsuccessful searches do not establish novelty."
   ],
   "primary_sources": [
     {
@@ -149,6 +150,18 @@
       "title": "Geometric lower bounds for parametric matroid optimization",
       "url": "https://ics.uci.edu/~eppstein/pubs/Epp-DCG-98.pdf",
       "scope": "Section 4, especially Theorems 5 and 7, Corollaries 1--2 and their constructions, already compared in the earlier research note and revisited here. The lower examples are transversal matroids from convex chains. They do not provide cyclic commuting quotient matrices, exponent-weight assignments within the universal monomial ground, or a colength overhead bound."
+    },
+    {
+      "authors": "Milne",
+      "title": "Elliptic Curves",
+      "url": "https://www.jmilne.org/math/Books/ectext6.pdf",
+      "scope": "Chapter I, Theorem 1.18 (Bezout) and Remark 1.21. Classical intersection multiplicity and the implication from nonsingular projective plane curve to geometric irreducibility. The note also gives a characteristic-free Hilbert-series proof of the affine length inequality. No new intersection theorem is claimed."
+    },
+    {
+      "authors": "Boffi--Logar",
+      "title": "Border bases for lattice ideals",
+      "url": "https://arxiv.org/pdf/1608.08004",
+      "scope": "Section 5, Propositions 5.1--5.3, previously compared in the older note and revisited for the planar orbit test. The full-parent lattice classification concerns complete residue diagrams; it is not a count for a rank-n restriction to n orbit points. No new lattice classification or novelty certificate is inferred."
     }
   ],
   "verification": {
@@ -176,10 +189,10 @@
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "fafea7cf6355da9048d14d05a5aa76e8b9c4b7c495cf615c18ee7641d6320a5a",
-    "docs/extremal_initial_ideals.md": "e1ec7480e91da6ec4b6e6eb2d886d7b412fb166306463caeb2b15e3ebb2a7f1b",
-    "scripts/run_extremal_initial_ideals_checks.py": "816d40545ae20172e3c4977f9c339439b418cb9702e1981d4440274f4de49f18",
-    "results/research/extremal_initial_ideals_checks.json": "b4bd977a01340e4da715c0160e53064e29402a81bc7a7c9dc24532573f0ed02f"
+    "README.md": "a0b36fe1aa71f95829bf25b96857800123b2a1a4e36f4ab10ad139bfce33b604",
+    "docs/extremal_initial_ideals.md": "77a1854eebcde05c72524eb1641f92f80717a85dfbb10174c927a703a688e02c",
+    "scripts/run_extremal_initial_ideals_checks.py": "84ca813dcd9e685499aa4c4a237cf36334715fb7aee3dfc91237b7b3d237f965",
+    "results/research/extremal_initial_ideals_checks.json": "3c0bc95d381099af712f3d775313c09dc2eec31b89d70a42f64589b2f835c27e"
   },
   "continuations": [
     {
@@ -365,6 +378,28 @@
         "spatial_initial_ideals_checked": 96,
         "spatial_S_pairs_reduced": 1939,
         "independent_point_replays": 13,
+        "research": "passed",
+        "build": "passed",
+        "smoke": "passed"
+      }
+    },
+    {
+      "recorded_on": "2026-10-19",
+      "progress_classification": "uniform_irreducible_carrier_bound_and_exact_planar_arithmetic_counterexample",
+      "uniform_theorem": "If I in K[x,y] has length n and contains an irreducible degree-D polynomial F, then g(I)<=5*D*n over every field. Wall moment changes share a global n*(n-1) variation budget. Except at at most D carrier-head boundaries and O(D*n) small slopes, a wall exchange has a nonzero polynomial lift g not divisible by F, degree at most 3*ell*max(a,b). Bezout gives n<=D*deg(g), charging each remaining wall to the shared budget.",
+      "sharp_restricted_order": "The maximum over carriers of degree at most fixed D>=2 is Theta_D(n), witnessed by (xy-1,f(x)) with deg(f)=n and f(0)!=0, which has exactly n initial ideals over every field. Degree one has at most two. This is a restricted classification, not the unrestricted G_2 or G_3 goal.",
+      "finite_counterexample": "Seven consecutive points (zeta^j,zeta^(7*j)) from an 11-cycle have nine planar initial ideals versus eight generic corner cuts. Ordinary Vandermonde proves the rank rule, and independent point elimination in characteristic 23 verifies it. The points lie on the fixed cusp y^2=x^3 and on xy^3=1; this finite gain does not imply an asymptotic power gain.",
+      "effect_on_next_action": "Construct a planar realization of the high-complexity transversal-matroid input at colength O(M^alpha), alpha<4/3, preserving exponent-weight comparisons and commuting cyclic multiplication, or prove a quantitative obstruction. The irreducible-carrier theorem now forces any planar power-gain family to have every irreducible equation in its ideal grow in degree: g(I)<=5*D*n. Fixed-degree curves, including the seven-point cyclic finite gain and its fixed-curve prime-power lifts, cannot supply the separation. The already proved product transfer keeps the original spatial endpoint: linear overhead for the M^(4/3) input would yield spatial exponent 8/3. Audit exact priority of the carrier bound and strongest current planar results; no finite search, fixed-curve retuning or unverified novelty claim can complete the goal.",
+      "fixed_curve_lift_obstruction": "For q=11^k and 3*a_k+1=0 mod q, any 7^k selected orbit points still lie on xy^3=1. The new bound gives at most 20*7^k initials, so a 9^k multiplication law cannot persist.",
+      "verification": "Eighteen complete finite planar fans, including smooth cubic jets in characteristics 5,7,101 and lengths 7,12,18, hyperbola jets in characteristics 2,3,101, line controls and the cyclic point example. Every cone interval and monotone state jump is exact; large walls include explicit quotient-polynomial lifts and degree/Bezout checks.",
+      "literature_boundary": "Bezout, state geometry and the fixed positive monomial-curve bounds are credited established inputs. The exact general carrier-dependent count has a written proof but its priority is unverified. The finite orbit example is not an asserted prime-specific or paper-level result.",
+      "new_unrestricted_asymptotic_bound": false,
+      "novelty_established": false,
+      "goal_complete": false,
+      "checks_summary": {
+        "complete_planar_fans": 18,
+        "initial_bases": 208,
+        "large_wall_polynomial_lifts": 30,
         "research": "passed",
         "build": "passed",
         "smoke": "passed"
