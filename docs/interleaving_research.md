@@ -2371,9 +2371,8 @@ volume typo; our reference uses the primary Wagner record, volume 29.
 The anonymous manuscript at `paper/corner_cut_growth/main.tex` now states
 the actual advance directly, cites Wagner's upper theorem and Remond's
 independent attribution, separates the inspected Elizalde--Galvan preprint
-from the journal citation, and records the research origins and assistance
-in a concise acknowledgement. It does not invent
-an author, affiliation, independent review or acceptance. Earlier draft
+from the journal citation. It does not invent an author, affiliation,
+independent review or acceptance. Earlier draft
 status statements in this chronological notebook are retained as history.
 The final contribution and submission assessment remains an open task;
 the changes here complete the consolidated internal assessment, not that
@@ -3456,7 +3455,7 @@ not rely on the isolated checks as proof.
 | A useful consequence for an existing problem | The main theorem determines the mean coordinate-slice completion multiplicity raised in Wagner's discussion. The ordered theorem quantifies the established strict finite-ordering class, and the prime-height theorem gives a sharp size budget that realizes every such pattern. Known polytope/model correspondences are credited, not claimed as new applications. |
 | Arithmetic information for any prime application | The prime-height proof uses the published unconditional Dusart interval, exact anchoring and the collision property of the integer certificate. Its matching axis lower bound makes the worst-case order optimal. No new prime-gap estimate or fixed-prime speedup is claimed. |
 | Reproducible supporting evidence | The three existing research scripts save exact witnesses, commands and source hashes. They check determinants and modular ranks, both affine patches, strict tie handling, exact compression LPs, independent scalar orders, published finite counts and the flag-control counterexample. The saved reports state their finite scope. |
-| An honest complete manuscript | The TeX source contains every new proof and all supporting lemmas, exact prior-art attribution, defined counting parameters, limitations and an acknowledgement of the project's origins and assistance. Its PDF is compiled and rendered for layout review; the publication record contains its exact hashes. |
+| An honest complete manuscript | The TeX source contains every new proof and all supporting lemmas, exact prior-art attribution, defined counting parameters and limitations. Its PDF is compiled and rendered for layout review; the publication record contains its exact hashes. |
 | Preserve the original toolkit and separate structural findings | The CLI, C++ kernels, build and smoke sources, and separate Mobius manuscript are unchanged. Existing side results do not substitute for the quantitative objective. |
 | Observe the final-version assumption and communication constraint | Both Elizalde--Galvan versions remain linked, with the final-version check explicitly deferred under the user's assumption. No email, author query, message to another task or journal submission has been sent. |
 | Save only reviewed public artifacts on main | The publication review checks an explicit file list, source hashes, anonymous PDF metadata and private-file exclusions before committing and verifying the main-branch push. Source-paper PDFs, correspondence and local reading records are excluded. |
@@ -9273,10 +9272,9 @@ following complete arguments:
    proof of the established minimal-generator packing estimate.
 
 The paper states exactly which inputs are existing results, includes a
-version-aware priority appendix and an acknowledgement of the project's
-origins and assistance, and
-avoids claims of sharp growth, a new enumeration algorithm, prime
-distribution or an ML performance consequence. It is a complete working
+version-aware priority appendix, and avoids claims of sharp growth, a new
+enumeration algorithm, prime distribution or an ML performance consequence.
+It is a complete working
 paper for internal human review. Independent human refereeing and external
 submission have not occurred; neither is introduced as an extra condition
 on the user's research goal. The unresolved gate is the defensible novelty

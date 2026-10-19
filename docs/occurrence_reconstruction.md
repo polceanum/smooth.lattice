@@ -1353,8 +1353,7 @@ records theorem dependencies, source-reading scopes, verification and
 publication limits. The current assessment is a plausible focused
 specialist paper for mathematical review. Evidence of a practical
 unranking advantage or a prime-distribution consequence has not been
-obtained. The draft acknowledges the original observations, research guidance
-and assistance, and makes no claim of independent referee approval,
+obtained. The draft makes no claim of independent referee approval,
 acceptance or settled authorship.
 
 The goal remains active for a final internal proof-to-claim and priority

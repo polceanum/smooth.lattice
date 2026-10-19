@@ -16,12 +16,6 @@ Given P and a 1-based rank N, return the exponent vector of the N-th P-smooth nu
 
 It is not intended to replace general `y`-smooth counting/listing algorithms, and it is not a prime-generation or factoring algorithm.
 
-The project began with its originator's observations of fractal exponent
-sequences and complementary two-prime interleavings, and develops under their
-continuing research guidance. Mathematical development, implementation and
-literature comparison use substantial AI assistance, described briefly in
-the manuscripts.
-
 ## Current contents
 
 Core kernels:

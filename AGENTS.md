@@ -9,15 +9,6 @@ or messages to other tasks. The user stated this explicitly on 2026-10-17.
 Research and publication work does not authorize contacting anyone.
 Existing correspondence drafts are for local inspection only and must not be sent.
 
-## Research attribution
-
-Credit the project originator's initial smooth-number and interleaving
-observations and continuing research guidance. Keep a concise, factual
-disclosure of substantial AI assistance in mathematical development,
-computation, literature comparison and drafting. Avoid repetitive tool branding
-or framing the human contribution as merely prompting an automated project.
-Do not imply independent human verification that has not occurred.
-
 ## Public repository privacy
 
 Before committing or pushing, review an explicit file list. Never publish
