@@ -3850,11 +3850,146 @@
     },
     "scope": "The k=2 cache is ordinary univariate kernel aggregation plus the published sparse-residual template. The displayed recall family is also solved more cheaply by a checked dictionary, with full Euclidean rather than sparse-only noise. A conditional classical spectral-transfer lemma opens a distinct value-dependent mixture route, with exact controls but without a maintained dynamic architecture claim. These are stronger baseline evidence and workload gates, not a new contribution or completion of the active goal."
   },
+  "active_mask_sampling_boundary": {
+    "sparse_key_mask_hardness": {
+      "cases": [
+        {
+          "boolean_side": 1,
+          "raw_dimension": 6,
+          "full_cartesian_capacity": 9,
+          "matrix_masks": 2,
+          "complete_queries": 8,
+          "yes_queries": 1,
+          "no_queries": 7,
+          "integer_score_step": 12,
+          "maximum_raw_query_coordinate": 24,
+          "minimum_active_density": "1/9",
+          "all_keys_support": 2,
+          "squared_key_norm": "1/2",
+          "scalar_error_one_quarter_still_decides": true
+        },
+        {
+          "boolean_side": 2,
+          "raw_dimension": 10,
+          "full_cartesian_capacity": 25,
+          "matrix_masks": 16,
+          "complete_queries": 256,
+          "yes_queries": 95,
+          "no_queries": 161,
+          "integer_score_step": 16,
+          "maximum_raw_query_coordinate": 32,
+          "minimum_active_density": "1/9",
+          "all_keys_support": 2,
+          "squared_key_norm": "1/2",
+          "scalar_error_one_quarter_still_decides": true
+        },
+        {
+          "boolean_side": 3,
+          "raw_dimension": 14,
+          "full_cartesian_capacity": 49,
+          "matrix_masks": 512,
+          "complete_queries": 32768,
+          "yes_queries": 19759,
+          "no_queries": 13009,
+          "integer_score_step": 18,
+          "maximum_raw_query_coordinate": 36,
+          "minimum_active_density": "1/9",
+          "all_keys_support": 2,
+          "squared_key_norm": "1/2",
+          "scalar_error_one_quarter_still_decides": true
+        }
+      ],
+      "total_boolean_queries": 33032,
+      "independent_raw_dot_product_checks": 2900,
+      "scope": "The elementary sentinel reduction gives a constant-error bounded-word OuMv corollary, with weight-two norm-bounded keys, integer raw queries of logarithmic amplitude and constant-density nonempty masks. It verifies the construction and numeric gap, not the conjecture or novelty. No key edits or online value changes are needed in the reduction."
+    },
+    "finite_conditioned_product_laws": {
+      "side": 2,
+      "raw_fraction_bits": 4,
+      "value_fraction_bits": 4,
+      "accuracy_bits": 4,
+      "declared_query_coordinate_bound": 2,
+      "preselected_maximum_fractional_precision": 25,
+      "preselected_intermediate_guard_bits": 198,
+      "controls": {
+        "plans": 1308,
+        "empty_plans": 81,
+        "nonempty_law_checks": 1227,
+        "proposal_cell_checks": 4908,
+        "max_precision": 25,
+        "max_intermediate_bits": 67,
+        "max_zeta_exponent": 8,
+        "admitted": 36,
+        "rejected_keys": 3,
+        "overwrites": 4,
+        "deletes": 32
+      },
+      "atomic_invalid_queries": 3,
+      "scope": "Plans form only O(m) finite CDF tables. Verification independently enumerates all active cells to check the conditional law and true exponential mean; that enumeration is not part of the sampling algorithm. Density and full-score-spread determine a dyadic acceptance lower bound, charged proposal count and extra precision. Raw admission, canonical overwrite, deletion and zero-value reuse are checked. Conditional Hoeffding/horizon analysis is reused from the preceding fresh-sampling proof; no stochastic accuracy simulation or native arena claim."
+    },
+    "independent_retention_controls": [
+      {
+        "log2_capacity": 4,
+        "value_fraction_bits": 8,
+        "query_scale": 68,
+        "euclidean_noise_radius": "1/4",
+        "independent_nearest_grid_recall_follows": true
+      },
+      {
+        "log2_capacity": 16,
+        "value_fraction_bits": 8,
+        "query_scale": 116,
+        "euclidean_noise_radius": "1/4",
+        "independent_nearest_grid_recall_follows": true
+      },
+      {
+        "log2_capacity": 32,
+        "value_fraction_bits": 8,
+        "query_scale": 180,
+        "euclidean_noise_radius": "1/4",
+        "independent_nearest_grid_recall_follows": true
+      },
+      {
+        "log2_capacity": 64,
+        "value_fraction_bits": 8,
+        "query_scale": 308,
+        "euclidean_noise_radius": "1/4",
+        "independent_nearest_grid_recall_follows": true
+      }
+    ],
+    "rare_conditioning_precision_witness": {
+      "side": 2,
+      "active_edges": [
+        [
+          1,
+          0
+        ]
+      ],
+      "active_density": "1/4",
+      "raw_physical_query": [
+        16,
+        0,
+        0,
+        16
+      ],
+      "key_nonzero_amplitude": "1/2",
+      "naive_fractional_cdf_bits": 8,
+      "naive_conditional_normalizer_is_zero": true,
+      "exact_conditional_output": [
+        1,
+        -1
+      ],
+      "corrected_maximum_precision": 43,
+      "dyadic_acceptance_lower_bound_exponent": 26,
+      "scope": "A constant-density mask can select an extremely rare product event. Marginal CDF rounding that is adequate without conditioning can erase all active mass. The corrected precision preserves the conditional law, but its charged rejection bound is expensive; a complete scan is the appropriate finite fallback."
+    },
+    "scope": "Classical conditioning, concentration and an OuMv sentinel transfer define a useful baseline boundary: bounded density alone does not keep masked product attention easy when raw logit spread grows logarithmically. They do not establish a novel theorem beyond published methods or complete the research goal."
+  },
   "novelty_established": false,
   "strongest_baseline_advantage_established": false,
   "publication_ready": false,
   "source_sha256": {
-    "scripts/run_timing_restart_checks.py": "e8d8969741a57cbcb0845e114487cdf7125aa9477b9937d32af2f4c2cbcc3491",
-    "docs/associative_memory_timing.md": "cb5d1ed24e771790d7b7779779cf507828f220f3e2b89fd524e8082a08ddb9ba"
+    "scripts/run_timing_restart_checks.py": "8f1e9e37a316529c0da30c9d366b1a95b45e932514ff68c5ac25017e0ec0a783",
+    "docs/associative_memory_timing.md": "bcc14554b1f8658ad607725668735d3283cbfc90cdeaa7291f5702ebb9c77efc"
   }
 }

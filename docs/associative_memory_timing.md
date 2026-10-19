@@ -5199,3 +5199,261 @@ failure model before pursuing dynamic spectral maintenance. The classical
 transfer and its adaptive fixed-sample obstruction are supporting results,
 not a contribution-paper result.
 The original impact, novelty and strongest-method gates remain open.
+
+## Active masks: conditioning costs and a sparse-key obstruction
+
+The preceding iteration was progress: the stronger dictionary and fresh
+product-sampling comparisons ruled out the displayed examples as novelty
+evidence. This pass checks the proposed extension from a complete product
+table to an arbitrary active subset. It gives a bounded-word conditioning
+baseline, an exact precision counterexample, and a constant-error OuMv
+corollary even for two-coordinate keys and a dense active mask. These are
+supporting comparisons, not a new published-method advantage or a completed
+paper result. They make arbitrary masking a poor next target without an
+additional structural or logit-range restriction.
+
+### Model and a classical conditioned-product baseline
+
+Fix side m, capacity C=m^2 and raw dimension d=2m. The permitted key at
+address (a,b) is (e_a+e_{m+b})/2, so its support is two, its squared
+Euclidean norm is 1/2, and distinct supports intersect in at most one
+coordinate. Every active address has its own arbitrary v-coordinate value
+U_ab/2^g in [-1,1]. Values are not factorized or inferred from keys.
+The active set E is any subset of the grid. A read accepts the full raw
+d-coordinate signed query q and returns
+
+    sum_{(a,b) in E} exp((q_a+q_{m+b})/2)*V_ab
+      / sum_{(a,b) in E} exp((q_a+q_{m+b})/2).
+
+Empty E has a distinguished empty result. All inputs lie on a declared
+grid 1/R, R=2^s, with |q_i|<=Q for fixed integer Q>=1. Keys are supplied
+as raw vectors: validate their length, numeric grid, exactly two nonzero
+coordinates of amplitude 1/2, one in each half, and duplicate occupancy
+before deriving their address. The fixed key codebook can then be
+reconstructed from that address. This lossless compression is standard
+product-key structure, not a free semantic encoder. Admission costs O(d+v),
+canonical handle-based value overwrite O(v), and deletion O(v) if the
+vacated payload is cleared. Every independent current value is stored.
+
+Let P be the product of the two full-half softmax distributions. Condition
+P on E to obtain exactly the required read law. For n=|E|>0 put
+
+    rho=n/C,
+    Delta=(max q_left-min q_left+max q_right-min q_right)/2.
+
+Every full-grid pair has probability at least exp(-Delta)/C. Hence the
+acceptance mass z=P(E) is at least rho*exp(-Delta). Density alone does not
+bound z when query spread grows. The following dyadic bound is computed
+without evaluating an exponentially small number:
+
+    b=ceil(log2(C/n))+ceil(3 Delta/2),   zeta=2^-b <= z.
+
+This uses e^2<8. Both extrema, n and b are computed from the current raw
+query and mask count. No weighted normalizer over C pairs is computed.
+
+For epsilon=2^-p, p>=2, form stable half exponentials and cumulative
+tables at
+
+    Pbits=p+b+ceil(log2(4096m))
+
+fractional bits. Use the finite integer exp routine proved above, including
+its negative-score clipping. Each half has unnormalized denominator at
+least one. Its exponent-rounding L1 error is at most m*2^-Pbits; after
+normalization this is at most 4m*2^-Pbits. Flooring cumulative probabilities
+on the same dyadic grid adds at most 2m*2^-Pbits. Thus the full product
+law P_hat differs from P in L1 by at most
+
+    eta0 <=12m*2^-Pbits < epsilon*zeta/256.
+
+In particular z_hat=P_hat(E)>=z-eta0>=zeta/2. Restricting both laws to E
+and normalizing gives
+
+    ||P(.|E)-P_hat(.|E)||_1
+       <= 2*eta0/(z-eta0) < epsilon/64.
+
+The numerator/value bound follows for every bounded independent assignment.
+This is the ordinary conditioning inequality; no new sampling theorem is
+claimed. It explains why the unconditioned precision from the previous
+complete-table result cannot simply be reused.
+
+Draw fresh pairs from the two finite CDFs using Pbits fair bits for each
+half and binary searches. Reject inactive addresses, then average K
+accepted values. The accepted draws are IID from P_hat(.|E), conditional
+on the current snapshot. Expected proposal count is at most 2K/zeta.
+For a declared H-read horizon, taking
+
+    K>=8*epsilon^-2*log(2vH/delta_fail)
+
+gives total failure probability at most delta_fail by conditional Hoeffding
+and a union bound. Queries, occupancies and values may depend on all prior
+reads; they must be fixed before the fresh randomness of their own read.
+Add the conditioning error and, if desired, a reserved final output
+rounding error. Stored values have no horizon-dependent drift. Statistical
+read success over an infinite horizon does not follow from a fixed K.
+
+The algorithm has O(m) table setup plus all charged exp and bounded-integer
+arithmetic. Expected proposal work is O(K*zeta^-1*log m), accepted payload
+work O(Kv), and fresh random-bit cost O(K*zeta^-1*Pbits). Binary-search
+comparisons use the declared precision. The rejection loop needs only an
+accepted-sample counter bounded by K; no unbounded attempt counter is
+required. Runtime can have a long tail and is explicitly an expected bound.
+A complete stable scan is a fallback when the bound is unhelpful. With
+only the declared dense mask, that scan pays C mask probes as well as all
+active value/exp work; an O(n) active-list scan would require additional
+indices and maintenance. No hidden sparse enumeration is assumed.
+
+Persistent state includes C*v signed g+2-bit value units, C occupancy bits,
+the active count and declared parameters. Slots have canonical grid
+addresses, so no independent per-slot key array is needed after raw
+validation. Query workspace includes two O(m) CDF/weight arrays, raw
+input, parameter arithmetic, random-bit scratch and v accumulators of
+g+ceil(log2(K+1))+O(1) bits. Construction writes/zeros these arrays and
+pays every raw admission. Input projections or learned encoders are
+additional. These are logical data-structure bounds, not a native arena
+or a machine-speed measurement.
+
+For fixed s,Q,p,g,m, Pbits is at most
+p+ceil(log2 C)+3Q+ceil(log2(4096m)). The exp routine uses O(Pbits) rounded
+recurrence terms after clipping; integer intermediates have O(Pbits+s+
+log(Q+1)+log m+g) bits. A conservative explicit guard is selected before
+any query from these declared bounds. There is no exact rational power
+whose denominator silently grows with polynomial degree. Current-value
+overwrites change only their stored bounded integers. The exact-arithmetic
+enclosure used by the checker is a separate verification oracle.
+
+If n=Theta(C), scalar/value width and epsilon are fixed, H and v are
+polynomially bounded, and Delta=o(log n), then zeta^-1=n^o(1). The above
+baseline has expected read cost n^(1/2+o(1)), including full raw input and
+finite-word query setup. This is classical rejection and concentration;
+it is an upper-bound regime, not a new optimality claim.
+
+### Constant mask density does not prevent complete precision failure
+
+Take side two, only active edge (1,0), and raw physical query
+(16,0,0,16). Let t=exp(8). The two half distributions are
+(t,1)/(1+t) and (1,t)/(1+t). With eight fractional CDF bits, the first
+right probability floors to zero because t>256. The only active edge
+therefore receives exactly zero approximate mass. Its true complete
+conditional output, for value (1,-1), is (1,-1), despite mask density
+1/4. This is not fixed by the unconditioned law's small absolute error.
+
+The corrected construction uses b=26 and Pbits=43 in this example and
+passes an independent rational-enclosure check. Its conservative rejection
+bound is nevertheless expensive. Scanning the four-slot table is the
+appropriate finite fallback. Extra precision repairs correctness; it does
+not manufacture a useful speed claim.
+
+### A dense-mask OuMv corollary with logarithmic raw logits
+
+Here is a stronger obstruction to extending cheap complete-product reads
+to arbitrary masks at every temperature. Given a Boolean m-by-m matrix M,
+use a grid of side 2m+1. Occupy its M-edges in the first m-by-m block,
+every edge in the disjoint second m-by-m block, and the last diagonal
+address (2m,2m). Give every ordinary edge scalar value one and the last
+address value zero. The latter is an always-present reference entry.
+The active count n is between m^2+1 and 2m^2+1, capacity is (2m+1)^2,
+and active density is at least 1/9. All keys are of the permitted form;
+the raw dimension is 4m+2. There is no empty-result test.
+
+For Boolean query vectors u,v choose the even integer
+
+    L=2*ceil(log2(16*(2m^2+1))).
+
+The first query half is (2L*u, zero^m, 3L/2) and the second is
+(2L*v, zero^m, 3L/2). Every coordinate is an integer and has magnitude
+at most 2L=O(log n). Ordinary scores are 0,L,2L; the reference score
+is 3L/2. Let t=exp(L/2)>2^(L/2)>=16*(2m^2+1).
+
+If u^T M v is false, all ordinary scores are at most L. Their total
+weight is at most (n-1)*t^2, so the output is below (n-1)/t<1/16.
+If it is true, at least one ordinary weight is t^4. The output is at
+least t^4/(t^4+t^3)=t/(t+1)>15/16. Thus any additive-error-1/4
+answer decides the Boolean bilinear query by comparison with 1/2.
+True exponentials need not be output exactly; fixed eight-bit output
+precision is already more than adequate. Query spread is Theta(log n),
+but query Euclidean norm is not bounded by a constant. Do not transfer
+the obstruction to a fixed-norm or fixed-logit promise.
+
+[Henzinger et al., Definition 2.6, Theorem 2.7 and Corollary 2.8](https://arxiv.org/html/1511.06773v1#S2.SS2)
+rules out fixed-power savings for these Boolean queries after polynomial
+preprocessing, conditional on OMv. In the bounded-word model of that
+consequence, a hypothetical polynomial-preprocessing reader with cost
+O(d+n^(1-epsilon0)), epsilon0>0, would give query time
+O(m+m^(2-2epsilon0)), contradicting Corollary 2.8. The reduction pays
+O(d) for the complete raw query and polynomial time for all key/value
+installation. Auxiliary indices may be any polynomial size. It needs
+neither online mask edits nor online value changes, so making their
+cost small does not remove the obstruction. Infinite-information real
+words are not within this bounded-word conclusion.
+
+The same interpretation for expected or amortized costs requires the
+usual explicit amplification/capping argument, rather than substituting
+an expectation as a worst-case bound. Constant independent copies reduce
+the Boolean error below 1/12, and a cap at twelve times a uniform expected
+online bound adds failure at most 1/12. An expected-polynomial preprocessing
+phase can be capped separately, adding another 1/12. For an amortized
+online sequence use Theorem 2.7, logarithmic amplification for m answers,
+and a cap on the complete m-query online computation. Polylogarithmic
+amplification preserves a fixed-power improvement. These statements assume
+the proposed uniform expected/total bounds, not a favorable sampled run.
+
+Every active key can still have independent retention. For a target key
+x_t, q=beta*x_t+e with ||e||_2<=1/4 has self/other score gap at least
+beta/4-1/2, since key norms are at most one and overlap is at most one.
+Choose beta=4*ceil(log2(32*C*2^g)). Using e^(1/2)<2 and e>2 bounds
+worst-case output-to-target error by 4C/2^(beta/4)<2^-g/2. Nearest-grid
+recall is exact for all bounded independent grid values. At this scale a
+thresholded two-coordinate support plus exact noise-ball check already
+allows ordinary dictionary retrieval. This is supporting geometry and
+classical softmax concentration, not a new capacity claim. Fast individual
+recall therefore coexists with difficult general mixture queries here too.
+
+### Prior art and research decision
+
+The underlying Boolean query is the classical path R(x) AND E(x,y) AND
+S(y). [Berkholz--Keppeler--Schweikardt, Theorem 3.4 and Section 5](https://arxiv.org/html/1702.06370)
+already gives its dynamic Boolean-query hardness in the non-q-hierarchical
+framework. The logit/reference construction transfers that obstruction to
+a nonempty normalized numerical read. It is not a new Boolean hardness
+conjecture, and the reduction alone does not meet the publication gate.
+The newer [Wang--Hu, Theorem 1 and Section 4](https://arxiv.org/html/2607.23881)
+studies aggregation over annotated conjunctive queries, including ordered
+sum-product settings. Its update and output semantics differ, but that
+difference is not evidence that the structural idea is new.
+
+[van den Brand--Song--Zhou, Definition 5.8 and Lemma 5.9](https://arxiv.org/html/2304.02207)
+already studies normalized dynamic attention and a hinted-MV obstruction.
+Its interface updates matrices and queries an output entry; it is not
+directly our constant-error raw-query sparse-key statement. Both definitions
+and conjectures must be matched before a priority or separation claim.
+The older near-identity result in this note concerns a piecewise-linear
+radius kernel and an empty-result alternative. The present positive
+softmax/reference gap checks additional restrictions; it does not turn
+the elementary transfer into a new general lower bound.
+
+The existing command `python3 -B scripts/run_timing_restart_checks.py`
+adds `active_mask_sampling_boundary`. It exhausts all Boolean matrices
+of sides one through three and all Boolean query pairs: 33,032 complete
+decisions, with rational true-exp enclosures of the constant gap and 2900
+independent raw dot products, norms and overlap checks. It also checks
+1308 finite conditioned plans, including 81 empty states, 1227 nonempty
+conditional laws, 4908 proposal-cell mappings, canonical overwrites,
+deletion/reuse, three malformed queries and three atomic raw-key rejections.
+At its declared small parameters the precision cap is 25 fractional bits,
+the preselected intermediate guard is 198 bits and the observed maximum is
+67. These figures concern the bounded correctness oracle, not a native
+machine-word throughput result. The rare-event witness separately checks
+the corrected 43-bit plan. Four symbolic capacity/grid controls certify
+the retention inequality without allocating those large states.
+
+The result is a useful baseline boundary: sublogarithmic spread and
+constant density admit a cheap classical sampler, while logarithmic spread
+already permits a conditional hard family despite two-sparse keys and
+constant density. The two sides do not prove a sharp constant threshold
+or a new strongest-method advantage. An unrestricted masked extension
+would run into this established obstruction, so park that as a route to
+a generic fast theorem. A next constructive candidate must exploit a
+substantive mask structure, precision regime or additional arithmetic
+property and survive existing weighted-range and database-sampling methods.
+Preserve this boundary without a new contribution-paper or training claim.
+The original research goal remains active and unachieved.

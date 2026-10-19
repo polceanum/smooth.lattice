@@ -5691,6 +5691,305 @@ def exponential_comparator_controls():
             'scope': 'The k=2 cache is ordinary univariate kernel aggregation plus the published sparse-residual template. The displayed recall family is also solved more cheaply by a checked dictionary, with full Euclidean rather than sparse-only noise. A conditional classical spectral-transfer lemma opens a distinct value-dependent mixture route, with exact controls but without a maintained dynamic architecture claim. These are stronger baseline evidence and workload gates, not a new contribution or completion of the active goal.'}
 
 
+def active_mask_sampling_controls():
+    """Finite conditioning controls and a sparse-key constant-error barrier."""
+    from math import comb, factorial
+    from bisect import bisect_right
+
+    def clog(n):
+        return (max(1, n) - 1).bit_length()
+
+    def nearest(n, d):
+        q, r = divmod(n, d)
+        return q + (2 * r >= d)
+
+    @lru_cache(maxsize=None)
+    def exp_interval(score, precision=72):
+        u, term, total, j = abs(score), F(1), F(1), 0
+        while True:
+            next_term = term * u / (j + 1)
+            if j + 2 > u:
+                tail = next_term / (1 - u / (j + 2))
+                lo, hi = (total, total + tail) if score >= 0 else (1 / (total + tail), 1 / total)
+                if hi - lo <= F(1, 2 ** precision):
+                    return lo, hi
+            j += 1; term = next_term; total += term
+
+    hardness_cases, total_boolean_queries, raw_dot_checks = [], 0, 0
+    for m in (1, 2, 3):
+        side, dimension = 2 * m + 1, 4 * m + 2
+        capacity = side * side
+        level = 2 * clog(16 * (2 * m * m + 1))
+        threshold = 1 << (level // 2)
+        tlo, thi = exp_interval(F(level, 2), 96)
+        powers_lo, powers_hi = [tlo ** j for j in range(5)], [thi ** j for j in range(5)]
+        queries = negative = positive = 0
+        for mask in range(1 << (m * m)):
+            edges = [(a, b) for a, b in product(range(m), repeat=2) if mask & (1 << (a * m + b))]
+            active = edges + [(a, b) for a, b in product(range(m, 2 * m), repeat=2)] + [(2 * m, 2 * m)]
+            n = len(active)
+            assert F(n, capacity) >= F(1, 9)
+            assert (n - 1) * 16 < threshold
+            for left, right in product(product((0, 1), repeat=m), repeat=2):
+                counts = [m * m, 0, 0]
+                for a, b in edges:
+                    counts[left[a] + right[b]] += 1
+                truth = any(left[a] and right[b] for a, b in edges)
+                assert truth == (counts[2] > 0)
+                low_num = sum(counts[j] * powers_lo[2 * j] for j in range(3))
+                high_num = sum(counts[j] * powers_hi[2 * j] for j in range(3))
+                lo, hi = low_num / (high_num + powers_hi[3]), high_num / (low_num + powers_lo[3])
+                if truth:
+                    assert lo > F(15, 16) and lo - F(1, 4) > F(1, 2)
+                    positive += 1
+                else:
+                    assert hi < F(1, 16) and hi + F(1, 4) < F(1, 2)
+                    negative += 1
+                # Independent raw vectors for a representative matrix catalog.
+                if mask in (0, 1, (1 << (m * m)) - 1):
+                    query = tuple(2 * level * x for x in left) + (0,) * m + (3 * level // 2,)
+                    query += tuple(2 * level * x for x in right) + (0,) * m + (3 * level // 2,)
+                    assert len(query) == dimension and max(query) <= 2 * level
+                    actual_counts, sentinel = [0, 0, 0], 0
+                    supports = []
+                    for a, b in active:
+                        raw = [F(0)] * dimension
+                        raw[a] = raw[side + b] = F(1, 2)
+                        assert sum(x * x for x in raw) == F(1, 2)
+                        score = sum(x * q for x, q in zip(raw, query))
+                        if (a, b) == (2 * m, 2 * m):
+                            assert score == F(3 * level, 2)
+                            sentinel += 1
+                        else:
+                            assert score.denominator == 1 and score % level == 0
+                            actual_counts[int(score // level)] += 1
+                        supports.append({a, side + b})
+                        raw_dot_checks += 1
+                    assert actual_counts == counts and sentinel == 1
+                    assert all(len(a & b) <= 1 for a, b in combinations(supports, 2))
+                queries += 1
+        total_boolean_queries += queries
+        hardness_cases.append(dict(boolean_side=m, raw_dimension=dimension, full_cartesian_capacity=capacity,
+                                   matrix_masks=1 << (m * m), complete_queries=queries, yes_queries=positive,
+                                   no_queries=negative, integer_score_step=level, maximum_raw_query_coordinate=2 * level,
+                                   minimum_active_density='1/9', all_keys_support=2, squared_key_norm='1/2',
+                                   scalar_error_one_quarter_still_decides=True))
+
+    class MaskedProduct:
+        def __init__(self, m=2, query_bound=2):
+            self.m, self.r, self.p, self.g, self.q = m, 16, 4, 4, query_bound
+            self.active, self.values, self.n = [False] * (m * m), [(0, 0)] * (m * m), 0
+            self.max_precision = self.p + clog(m * m) + 3 * query_bound + clog(4096 * m)
+            self.word_bits = 6 * self.max_precision + 8 + clog(m * m) + clog(query_bound + 1) + self.g + 32
+            self.stats = dict(plans=0, empty_plans=0, nonempty_law_checks=0, proposal_cell_checks=0,
+                              max_precision=0, max_intermediate_bits=0, max_zeta_exponent=0,
+                              admitted=0, rejected_keys=0, overwrites=0, deletes=0)
+
+        def guard(self, *values):
+            bits = max(abs(x).bit_length() + 1 for x in values)
+            self.stats['max_intermediate_bits'] = max(self.stats['max_intermediate_bits'], bits)
+            assert bits <= self.word_bits
+
+        def snapshot(self):
+            return tuple(self.active), tuple(self.values), self.n
+
+        def raw_key(self, a, b):
+            return tuple(self.r // 2 if i in (a, self.m + b) else 0 for i in range(2 * self.m))
+
+        def admit(self, raw, value):
+            assert len(value) == 2 and all(type(x) is int and abs(x) <= 1 << self.g for x in value)
+            valid = len(raw) == 2 * self.m and all(type(x) is int and x in (0, self.r // 2) for x in raw)
+            support = [i for i, x in enumerate(raw) if x] if valid else []
+            valid = valid and len(support) == 2 and support[0] < self.m <= support[1]
+            slot = support[0] * self.m + support[1] - self.m if valid else None
+            if not valid or self.active[slot]:
+                self.stats['rejected_keys'] += 1
+                return None
+            self.active[slot], self.values[slot] = True, tuple(value)
+            self.n += 1; self.stats['admitted'] += 1
+            return slot
+
+        def overwrite(self, slot, value):
+            assert self.active[slot] and len(value) == 2 and all(type(x) is int and abs(x) <= 1 << self.g for x in value)
+            self.values[slot] = tuple(value); self.stats['overwrites'] += 1
+
+        def remove(self, slot):
+            assert self.active[slot]
+            self.active[slot], self.values[slot] = False, (0, 0)
+            self.n -= 1; self.stats['deletes'] += 1
+
+        def exponential(self, score, precision):
+            assert score <= 0
+            if score == 0:
+                return 1 << precision
+            if score < -(precision + 2):
+                return 0
+            h = max(1, min(self.q, precision + 2))
+            cap = 1 << ((3 * h + 1) // 2)
+            terms = max(6 * h, 2 * (precision + 8))
+            frac = precision + clog(32 * (terms + 2) * cap)
+            term, total, u = 1 << frac, 1 << frac, -score
+            for j in range(1, terms + 1):
+                self.guard(term * u.numerator, u.denominator * j)
+                term = nearest(term * u.numerator, u.denominator * j)
+                total += term; self.guard(total)
+            self.guard(1 << (precision + frac))
+            value = nearest(1 << (precision + frac), total)
+            lo, hi = exp_interval(score)  # Verification-only; not sampler state.
+            assert F(value - 1, 1 << precision) <= lo and hi <= F(value + 1, 1 << precision)
+            return value
+
+        def plan(self, query):
+            if len(query) != 2 * self.m or any(type(x) is not int or abs(x) > self.q * self.r for x in query):
+                raise ValueError('raw query violates dimension/grid/coordinate bound')
+            self.stats['plans'] += 1
+            if not self.n:
+                self.stats['empty_plans'] += 1
+                return None
+            left, right = query[:self.m], query[self.m:]
+            spread = F(max(left) - min(left) + max(right) - min(right), 2 * self.r)
+            exponent = clog((self.m * self.m + self.n - 1) // self.n)
+            exponent += (3 * spread.numerator + 2 * spread.denominator - 1) // (2 * spread.denominator)
+            precision = self.p + exponent + clog(4096 * self.m)
+            assert precision <= self.max_precision
+            tables = []
+            for half in (left, right):
+                shift, total, prefix = max(half), 0, []
+                for raw in half:
+                    total += self.exponential(F(raw - shift, 2 * self.r), precision)
+                    prefix.append(total)
+                assert total >= 1 << precision
+                for value in prefix:
+                    self.guard(value << precision)
+                tables.append(tuple((value << precision) // total for value in prefix))
+                assert tables[-1][-1] == 1 << precision
+            self.stats['max_precision'] = max(self.stats['max_precision'], precision)
+            self.stats['max_zeta_exponent'] = max(self.stats['max_zeta_exponent'], exponent)
+            return precision, exponent, tuple(tables)
+
+        def proposal(self, plan, left_bits, right_bits):
+            precision, _, tables = plan
+            assert 0 <= left_bits < 1 << precision and 0 <= right_bits < 1 << precision
+            a, b = bisect_right(tables[0], left_bits), bisect_right(tables[1], right_bits)
+            slot = a * self.m + b
+            return slot if self.active[slot] else None
+
+    index, reference = MaskedProduct(), {}
+
+    def verify(query):
+        plan = index.plan(query)
+        if not reference:
+            assert plan is None
+            return
+        precision, exponent, tables = plan
+        widths = [tuple(x - y for x, y in zip(table, (0,) + table[:-1])) for table in tables]
+        denominator, numerator = 0, [0, 0]
+        lo_den, hi_den, lo_num, hi_num = F(0), F(0), [F(0), F(0)], [F(0), F(0)]
+        for a, b in product(range(index.m), repeat=2):
+            slot, mass = a * index.m + b, widths[0][a] * widths[1][b]
+            if mass:
+                sample = index.proposal(plan, 0 if a == 0 else tables[0][a - 1], 0 if b == 0 else tables[1][b - 1])
+                assert sample == (slot if slot in reference else None)
+                index.stats['proposal_cell_checks'] += 1
+            if slot not in reference:
+                continue
+            raw, values = reference[slot]
+            score = F(sum(x * y for x, y in zip(raw, query)), index.r * index.r)
+            lo, hi = exp_interval(score)
+            lo_den += lo; hi_den += hi
+            denominator += mass
+            numerator = [x + mass * v for x, v in zip(numerator, values)]
+            for j, value in enumerate(values):
+                lo_num[j] += min(lo * value, hi * value)
+                hi_num[j] += max(lo * value, hi * value)
+        assert denominator > 0 and F(denominator, 1 << (2 * precision)) >= F(1, 1 << (exponent + 1))
+        index.guard(denominator, *numerator)
+        for j, value in enumerate(numerator):
+            answer = F(value, denominator * (1 << index.g))
+            endpoints = [x / y / (1 << index.g) for x in (lo_num[j], hi_num[j]) for y in (lo_den, hi_den)]
+            tolerance = F(1, 1 << (index.p + 4))
+            assert answer - tolerance <= min(endpoints) and max(endpoints) <= answer + tolerance
+        assert tuple(index.active) == tuple(i in reference for i in range(index.m * index.m))
+        assert all(index.values[i] == reference[i][1] for i in reference)
+        index.stats['nonempty_law_checks'] += 1
+
+    queries = [tuple(x * index.r for x in q) for q in product((-2, 0, 2), repeat=4)]
+    for mask in range(16):
+        for slot in list(reference):
+            index.remove(slot); reference.pop(slot)
+        for slot in range(4):
+            if mask & (1 << slot):
+                raw, value = index.raw_key(slot // 2, slot % 2), (5 * slot - 8, 8 - 5 * slot)
+                assert index.admit(raw, value) == slot
+                reference[slot] = raw, value
+        for query in queries:
+            verify(query)
+    assert len(reference) == 4
+    for slot in range(4):
+        index.overwrite(slot, (16 - slot, slot - 16))
+        reference[slot] = reference[slot][0], index.values[slot]
+        verify(queries[-1])
+        index.remove(slot); reference.pop(slot); verify(queries[0])
+        raw = index.raw_key(slot // 2, slot % 2)
+        assert index.admit(raw, (0, 0)) == slot
+        reference[slot] = raw, (0, 0); verify(queries[-1])
+    before = index.snapshot()
+    assert index.admit(reference[0][0], (0, 0)) is None
+    assert index.admit((8, 8, 0, 0), (0, 0)) is None
+    assert index.admit((7, 0, 8, 0), (0, 0)) is None
+    assert index.snapshot() == before
+    invalid_queries = 0
+    for query in ((), (33, 0, 0, 0), (0.5, 0, 0, 0)):
+        try:
+            index.plan(query)
+            assert False
+        except ValueError:
+            invalid_queries += 1
+        assert index.snapshot() == before
+    saved_index, saved_reference = index, reference
+    index, reference = MaskedProduct(query_bound=16), {}
+    raw, value = index.raw_key(1, 0), (16, -16)
+    assert index.admit(raw, value) == 2
+    reference[2] = raw, value
+    rare_query = (16 * index.r, 0, 0, 16 * index.r)
+    verify(rare_query)
+    exp8_lo, _ = exp_interval(F(8))
+    assert exp8_lo > 256
+    # The right half's first probability is below 2^-8, so an eight-bit
+    # cumulative floor deletes the only active edge's mass entirely.
+    assert (256 / (1 + exp8_lo)).numerator // (256 / (1 + exp8_lo)).denominator == 0
+    rare_conditioning = {'side': 2, 'active_edges': [[1, 0]], 'active_density': '1/4',
+                         'raw_physical_query': [16, 0, 0, 16], 'key_nonzero_amplitude': '1/2',
+                         'naive_fractional_cdf_bits': 8, 'naive_conditional_normalizer_is_zero': True,
+                         'exact_conditional_output': [1, -1],
+                         'corrected_maximum_precision': index.stats['max_precision'],
+                         'dyadic_acceptance_lower_bound_exponent': index.stats['max_zeta_exponent'],
+                         'scope': 'A constant-density mask can select an extremely rare product event. Marginal CDF rounding that is adequate without conditioning can erase all active mass. The corrected precision preserves the conditional law, but its charged rejection bound is expensive; a complete scan is the appropriate finite fallback.'}
+    index, reference = saved_index, saved_reference
+    retention_certificates = []
+    for log_capacity in (4, 16, 32, 64):
+        capacity, grid_bits = 1 << log_capacity, 8
+        beta = 4 * clog(32 * capacity * (1 << grid_bits))
+        # e^(beta/4)>2^(beta/4), e^(1/2)<2. Noise radius1/4,
+        # key norm<=1 and pair overlap<=1 give gap>=beta/4-1/2.
+        assert F(4 * capacity, 1 << (beta // 4)) < F(1, 1 << (grid_bits + 1))
+        retention_certificates.append(dict(log2_capacity=log_capacity, value_fraction_bits=grid_bits,
+                                           query_scale=beta, euclidean_noise_radius='1/4',
+                                           independent_nearest_grid_recall_follows=True))
+    return {'sparse_key_mask_hardness': {'cases': hardness_cases, 'total_boolean_queries': total_boolean_queries,
+                                        'independent_raw_dot_product_checks': raw_dot_checks,
+                                        'scope': 'The elementary sentinel reduction gives a constant-error bounded-word OuMv corollary, with weight-two norm-bounded keys, integer raw queries of logarithmic amplitude and constant-density nonempty masks. It verifies the construction and numeric gap, not the conjecture or novelty. No key edits or online value changes are needed in the reduction.'},
+            'finite_conditioned_product_laws': {'side': index.m, 'raw_fraction_bits': 4, 'value_fraction_bits': index.g,
+                                               'accuracy_bits': index.p, 'declared_query_coordinate_bound': index.q,
+                                               'preselected_maximum_fractional_precision': index.max_precision,
+                                               'preselected_intermediate_guard_bits': index.word_bits,
+                                               'controls': index.stats, 'atomic_invalid_queries': invalid_queries,
+                                               'scope': 'Plans form only O(m) finite CDF tables. Verification independently enumerates all active cells to check the conditional law and true exponential mean; that enumeration is not part of the sampling algorithm. Density and full-score-spread determine a dyadic acceptance lower bound, charged proposal count and extra precision. Raw admission, canonical overwrite, deletion and zero-value reuse are checked. Conditional Hoeffding/horizon analysis is reused from the preceding fresh-sampling proof; no stochastic accuracy simulation or native arena claim.'},
+            'independent_retention_controls': retention_certificates,
+            'rare_conditioning_precision_witness': rare_conditioning,
+            'scope': 'Classical conditioning, concentration and an OuMv sentinel transfer define a useful baseline boundary: bounded density alone does not keep masked product attention easy when raw logit spread grows logarithmically. They do not establish a novel theorem beyond published methods or complete the research goal.'}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -5722,6 +6021,7 @@ def main():
               "continuous_amplitude_baseline": continuous_amplitude_controls(),
               "hybrid_fixed_point_candidate": hybrid_moment_controls(),
               "exponential_aggregation_comparators": exponential_comparator_controls(),
+              "active_mask_sampling_boundary": active_mask_sampling_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,
