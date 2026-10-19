@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "command": "python3 -B scripts/run_numerical_capacity_checks.py",
+  "scope": "Uniform numerical recall with two-sided value error, not sign-only shattering or an architecture advantage. Exact identities support the written proof; novelty is unresolved.",
+  "centered": {
+    "frames": 8,
+    "centered_ranks": [
+      2,
+      3,
+      1,
+      2,
+      0,
+      2,
+      2,
+      2
+    ],
+    "sign_assignments": 264,
+    "weighted_Cauchy_controls": 792,
+    "ambient_central_difference_identities": 399
+  },
+  "numerical": {
+    "whole_ball_states": 248,
+    "certified_key_balls": 1280,
+    "fixed_accuracy_capacity_counts": 18,
+    "block_lower_error": "1145/6144"
+  },
+  "sphere": {
+    "weighted_sign_moment_assignments": 192,
+    "spherical_odd_difference_and_radial_shift_controls": 54,
+    "six_address_block_labelings": 64
+  },
+  "clipping": {
+    "interior_value_implications": 392,
+    "binary_rail_gradient_counterexample": true
+  },
+  "novelty_established": false,
+  "strongest_method_advantage_established": false,
+  "source_sha256": {
+    "scripts/run_numerical_capacity_checks.py": "9373155bfef8447bf9cf90455999193a80109e225380cccc78f80a4dfac0550d",
+    "scripts/run_retention_tradeoff_checks.py": "31d91fa3363df1bb34549ddbbea683c0c170123d78c16e86c47a99acc513287a",
+    "scripts/run_robust_reader_checks.py": "c8753ce51634d92ea6bc3a6ebeaf7708c46da357d6cf1302d9cb5b69b98c7827",
+    "scripts/run_robust_frontier_checks.py": "8187680c28f0c82d817527df789b308d78b86c3c461913a2c81a83347b8586b1",
+    "docs/interleaving_research.md": "b2835fef589bc2d81e9d29a8ab3032d077c405c4b0e4765c7e0b35ecefa0be34"
+  }
+}

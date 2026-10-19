@@ -13,12 +13,12 @@
     {
       "stage": 2,
       "task": "Audit primary theorems for sparse inverse/local correction and dynamic graphical inference; classify what is already a known corollary.",
-      "status": "fixed_problem_error_bound_and_sphere_KL_quantifiers_checked; uniform_geometry_priority_and_sharp_capacity_audit_pending"
+      "status": "classical_Hilbert_trace_and_gradient_regularization_prior_art_identified; exact_numerical_capacity_priority_unresolved"
     },
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "standard_quadratic_block_capacity_lower_bound_and_indexed_baseline_accounted; target_direct_sharp_capacity_before_new_architecture_claim"
+      "status": "matching_order_numerical_capacity_proved_for_affine_ball_and_quadratic_plus_bias_sphere_readers; architecture_advantage_unproved"
     },
     {
       "stage": 4,
@@ -647,6 +647,90 @@
       "problem_dependent_constant_controls": 12
     },
     "verification_commands": [
+      "python3 -B scripts/run_robust_frontier_checks.py",
+      "python3 -B scripts/run_affine_robust_checks.py",
+      "python3 -B scripts/run_robust_reader_checks.py",
+      "python3 -B scripts/run_regression_baseline_checks.py",
+      "python3 -B scripts/run_correlated_routing_checks.py",
+      "python3 -B scripts/run_shared_feature_retention_checks.py",
+      "python3 -B scripts/run_retention_geometry_checks.py",
+      "python3 -B scripts/run_retention_tradeoff_checks.py",
+      "python3 -B scripts/run_feature_dimension_checks.py",
+      "python3 -B scripts/run_structural_complexity_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py"
+    ]
+  },
+  "ninth_iteration": {
+    "previous_turn_classification": "progress: standard capacity benchmark, opposed-cap counterfamily and instance-dependent constant audit saved; full goal unachieved",
+    "record": "docs/interleaving_research.md, Associative-memory goal: sharp order for robust numerical quadratic recall",
+    "certificate_script": "scripts/run_numerical_capacity_checks.py",
+    "certificate_report": "results/research/numerical_capacity_checks.json",
+    "model": {
+      "promise": "Fixed keys/encoder independent of stored labels; every independent +/-a value assignment has two-sided error <=epsilon<a throughout the continuous radius-delta neighborhood. Arbitrary state encoding and coefficients; no state-norm or conditioning restriction.",
+      "full_ball": "Affine quadratics q^T*S*q+b^T*q+c, keys in the unit ball, all ambient Euclidean perturbations.",
+      "sphere": "Unit keys and unit chord neighborhoods, quadratic plus bias q^T*S*q+c; no separate linear term.",
+      "clipping": "Clipping to [-1,1] is covered by interior test targets when a+epsilon<1. Endpoint-only binary clipping does not imply a raw-gradient bound.",
+      "precision_and_updates": "Algebraic upper bounds retain the continuous query promise; state precision alone cannot evade them. Grid-only promises and evaluation roundoff need an explicit audit. Lower tables use bounded dyadic values, a fixed rational scale and canonical point overwrite with no horizon accumulation."
+    },
+    "proved_results": {
+      "affine_full_ball": "(n-1)^2/n <= Lambda*epsilon^2/[delta^2*(a-epsilon)^2], where Lambda=1/4 sum ||u_i-mu||^2*leverage_i+3 Tr(G)/(4n)<=rank(G)+1. Consequently n<=2+(p+1)*epsilon^2/[delta^2*(a-epsilon)^2].",
+      "sphere_without_linear_term": "n<=rank(sum u_i*u_i^T)*[(a+epsilon)^2+4*epsilon^2/(3*delta^2)]/(a-epsilon)^2 for 0<delta<=1.",
+      "sharp_order_at_fixed_accuracy": "For arbitrary values in [-1,1], error 1/4 and 0<delta<=1/16, both stated numerical reader classes have maximum capacity Theta(min(p^2,p/delta^2)). The standard block lower bound has error <=1145/6144 and explicit value-word/index costs.",
+      "mechanism": "Numerical central differences bound empirical gradient energy; weighted Frobenius Cauchy and exact independent-sign moments remove coefficient and condition-number assumptions. The final Hilbert/Rademacher method is classical.",
+      "limits": "No new access/storage/retention advantage over an indexed or routed table, no claim for general affine sphere readers, sign-only realization, state-dependent ratios, adaptive encoders or arbitrary networks."
+    },
+    "primary_sources": [
+      {
+        "url": "https://jmlr.csail.mit.edu/papers/volume3/bartlett02a/bartlett02a.pdf",
+        "scope": "Lemma 22 and its displayed Hilbert trace proof, with the surrounding kernel-margin theorem, inspected. Independent-sign norm bound is classical."
+      },
+      {
+        "url": "https://doi.org/10.1109/TNN.2008.2000442",
+        "scope": "Publisher abstract inspected; full journal proof not accessed. Gradient/Q-norm complexity is established methodological prior art."
+      },
+      {
+        "url": "https://repositorio.ufmg.br/bitstream/1843/BUOS-8CTH6W/1/douglas_alexandre_gomes_vieira.pdf",
+        "scope": "Author thesis Chapter 4 Sections 4.1--4.4, Q-norm, gradient penalty and linear SVM comparison inspected. Exact coverage of the present capacity statement unresolved."
+      },
+      {
+        "url": "https://doi.org/10.1016/S0305-0548(99)00134-3",
+        "scope": "Primary abstract and available definition/algorithm excerpts inspected; full proof not audited. Zero-set distance robustness is sign separation, unlike two-sided numerical recall."
+      },
+      {
+        "url": "https://arxiv.org/html/2607.10034v1",
+        "scope": "Appendix B.10 noisy-margin definitions, B.62 displayed argument and B.63--B.65 inspected. Isotropic-value decoding and equation (78) noise ceiling depend on load/dimension/Lipschitz assumptions; no independent audit of all proofs or adaptive-query extension adopted."
+      }
+    ],
+    "decision": "Preserve the complete matching-order numerical-capacity proofs and clipping/domain distinctions. Audit their exact priority and seek a constructive consequence beyond the strongest applicable indexed, routed, kernel and regression baseline; the full original architecture and publication objective remains unchanged.",
+    "next_actions": [
+      "Audit the exact empirical-gradient and geometry-dependent capacity theorem against prior Q-norm, kernel and robust-recall results; do not claim novelty for the classical signed-sum step.",
+      "Determine whether a richer full-dimensional reader has a new uniform retention/access tradeoff on complete fresh-query and update workloads. Standard block/quartic tables and endpoint-only clipping do not constitute a strongest-baseline advantage.",
+      "Retain the distinction between numerical recall and sign-only capacity, continuous neighborhoods and finite grids, and general affine versus quadratic-plus-bias sphere readers.",
+      "Keep the original goal active with all acceptance criteria; no new neural training or contribution manuscript before novelty and advantage gates pass."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "certificate_summary": {
+      "centered_frames": 8,
+      "centered_sign_assignments": 264,
+      "weighted_Cauchy_controls": 792,
+      "ambient_central_difference_identities": 399,
+      "whole_ball_numerical_states": 248,
+      "certified_key_balls": 1280,
+      "fixed_accuracy_capacity_counts": 18,
+      "spherical_weighted_sign_moments": 192,
+      "spherical_odd_difference_and_radial_shift_controls": 54,
+      "six_address_block_labelings": 64,
+      "interior_clipping_implications": 392,
+      "binary_rail_gradient_counterexample": true
+    },
+    "verification_commands": [
+      "python3 -B scripts/run_numerical_capacity_checks.py",
       "python3 -B scripts/run_robust_frontier_checks.py",
       "python3 -B scripts/run_affine_robust_checks.py",
       "python3 -B scripts/run_robust_reader_checks.py",

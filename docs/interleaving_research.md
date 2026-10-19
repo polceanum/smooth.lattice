@@ -12525,3 +12525,265 @@ and twelve fixed-problem constant controls. Rational neighborhood
 probes check the formulas independently of the whole-neighborhood
 proofs; they do not establish those proofs by sampling or settle
 priority.
+
+### Associative-memory goal: sharp order for robust numerical quadratic recall
+
+Previous turn classification: progress. The standard block lower bound,
+opposed-cap counterfamily and fixed-problem constant audit changed the
+next proof target. Here we close the capacity-order gap for numerical
+recall in two reader classes. This is a supporting theorem with unresolved
+priority, not completion of the architecture/strongest-baseline goal.
+
+#### Specify the value guarantee before bounding capacity
+
+Fix p>=2 keys u_1,...,u_n of Euclidean norm at most 1, independently
+of their stored values. Fix a>epsilon>=0 and delta>0. For every
+y in {-1,+1}^n suppose some affine quadratic
+
+    f_y(q)=q^T*S_y*q+b_y^T*q+c_y, S_y symmetric,
+
+satisfies |f_y(q)-a*y_i|<=epsilon on the entire radius-delta ball
+around u_i. Encoding the values into the coefficients may be arbitrary,
+nonlinear and computationally expensive. There is no coefficient norm
+or precision assumption. Then, writing r for the affine dimension of
+the keys, we prove
+
+    (n-1)^2/n <= (r+1)*epsilon^2/[delta^2*(a-epsilon)^2],
+    n <= 2+(p+1)*epsilon^2/[delta^2*(a-epsilon)^2].
+
+The first displayed bound also holds with the smaller geometry quantity
+Lambda defined below in place of r+1. These statements require two-sided
+numerical accuracy. Merely assigning the correct sign is a weaker
+promise, and the earlier sign-only bounds are not replaced by this one.
+
+Clipping to [-1,1] is covered when a+epsilon<1: a clipped value within
+epsilon of either +/-a lies strictly inside the clipping interval,
+so the raw value must equal it. A memory supporting every value in
+[-1,1] can be tested on these interior values. Clipping only binary
+endpoints has a different behavior. For example f(q)=8*q_1, at keys
+e_1,-e_1 and radius 1/4, clips to the correct +/-1 exactly, although
+its gradient is nonzero. The gradient bound below cannot be inferred
+from that endpoint-only promise.
+
+#### Full-ball proof: local accuracy bounds an empirical gradient norm
+
+For any unit direction w, exact quadratic central differences give
+
+    f_y(u_i+delta*w)-f_y(u_i-delta*w)
+        =2*delta*<2*S_y*u_i+b_y,w>.
+
+Both values are within epsilon of the same target. Therefore
+
+    ||2*S_y*u_i+b_y||_2 <= K, K=epsilon/delta.
+
+This step uses numerical accuracy, not a global Lipschitz or weight
+bound. Center the keys and define
+
+    mu=(1/n)*sum_i u_i, x_i=u_i-mu,
+    G=sum_i x_i*x_i^T, r=rank(G),
+    t_y=2*S_y*mu+b_y, ell_i=x_i^T*G^dagger*x_i.
+
+The pseudoinverse acts only on the span of the centered keys; no
+conditioning assumption is needed. We have sum ell_i=r,
+||x_i||<=2 and Tr(G)<=n. Since sum x_i=0, the gradient bounds imply
+
+    E_y := 4*Tr(S_y^2*G)+n*||t_y||^2
+          =sum_i ||2*S_y*u_i+b_y||^2 <= n*K^2.
+
+Choose independent uniform signs y_i, put bar_y=(1/n)*sum_i y_i,
+z_i=y_i-bar_y, and set
+
+    M_y=sum_i z_i*x_i*x_i^T, v_y=sum_i z_i*x_i.
+
+The constant coefficient vanishes in this centered sum. Weighted
+Frobenius Cauchy--Schwarz gives the deterministic identity and bound
+
+    sum_i z_i*f_y(u_i)=Tr(S_y*M_y)+<t_y,v_y>,
+    |sum_i z_i*f_y(u_i)|^2 <= E_y*D_y,
+    D_y=(1/4)*Tr(G^dagger*M_y^2)+||v_y||^2/n.
+
+For clarity, use the direct-sum pairs
+(2*S_y*G^(1/2),sqrt(n)*t_y) and
+((1/2)*M_y*(G^dagger)^(1/2),v_y/sqrt(n)). Their inner product is
+the displayed sum because M_y is supported on the range of G.
+
+The independent-sign second moment can be computed exactly:
+
+    E D_y = Lambda
+          =(1/4)*sum_i ||x_i||^2*ell_i+3*Tr(G)/(4*n)
+          <= r+1.
+
+Indeed M_y=sum_i y_i*(x_i*x_i^T-G/n), so its squared-matrix moment
+has trace against G^dagger equal to
+sum_i ||x_i||^2*ell_i-Tr(G)/n. Also E||v_y||^2=Tr(G).
+This explains the positive 3/4 coefficient; dropping the centering
+correction would give a different expression.
+
+Numerical accuracy gives a lower bound for each assignment, even
+though f_y may depend arbitrarily on all signs:
+
+    sum_i z_i*f_y(u_i)
+        >=(a-epsilon)*n*(1-bar_y^2).
+
+Here z_i has the same sign as y_i and sum |z_i|=n*(1-bar_y^2).
+Taking expectations, using E[n*(1-bar_y^2)]=n-1, and applying
+Cauchy--Schwarz once more yields
+
+    (a-epsilon)*(n-1) <= sqrt(n)*K*sqrt(Lambda).
+
+Squaring proves (n-1)^2/n<=Lambda*K^2/(a-epsilon)^2. Finally
+(n-1)^2/n=n-2+1/n>n-2, which proves the simpler stated upper
+bound. Singular, nearly singular and translated key sets are included.
+
+#### Sphere-only proof for a quadratic plus bias
+
+Now require unit keys and only unit queries at chord distance at most
+delta, where 0<delta<=1. Consider readers q^T*S_y*q+c_y, with no
+linear term in these coordinates. Absorb the bias into
+T_y=S_y+c_y*I. On all queried points the same reader is q^T*T_y*q.
+For every binary assignment assume the same numerical accuracy
+|q^T*T_y*q-a*y_i|<=epsilon. If r_0 is the linear rank of the unit
+keys, then
+
+    n <= r_0*[(a+epsilon)^2+4*epsilon^2/(3*delta^2)]
+             /(a-epsilon)^2.
+
+To prove it, fix a unit tangent direction w perpendicular to u_i.
+Choose sin(t)=delta/2, cos(t)=sqrt(1-delta^2/4), and use the two
+unit queries q_+=cos(t)*u_i+sin(t)*w and
+q_-=cos(t)*u_i-sin(t)*w. Their chord distances to u_i are at most
+delta. The exact odd-part identity gives
+
+    f_y(q_+)-f_y(q_-)=4*cos(t)*sin(t)*u_i^T*T_y*w,
+    ||(I-u_i*u_i^T)*T_y*u_i||
+        <=epsilon/[delta*sqrt(1-delta^2/4)]
+        <=2*epsilon/(sqrt(3)*delta).
+
+The radial component is f_y(u_i), whose magnitude is at most
+a+epsilon. Hence ||T_y*u_i||^2<=L^2, where
+L^2=(a+epsilon)^2+4*epsilon^2/(3*delta^2).
+
+Put G_0=sum_i u_i*u_i^T and M_0=sum_i y_i*u_i*u_i^T.
+The same weighted Frobenius inequality, without centering, gives
+
+    n*(a-epsilon) <= |Tr(T_y*M_0)|
+        <=sqrt(n)*L*sqrt(Tr(G_0^dagger*M_0^2)).
+
+Since every key has norm 1, independence gives
+E Tr(G_0^dagger*M_0^2)=sum_i u_i^T*G_0^dagger*u_i=r_0.
+Taking expectations and squaring proves the result.
+
+This argument does not include a separate linear term on the sphere.
+Nor does it include a state-dependent rational denominator, routing,
+arbitrary nonlinear encoders or iterative retrieval. These cases
+remain distinct mathematical targets. The full-ball theorem above
+does include all linear terms and biases.
+
+#### Matching the order at a fixed numerical accuracy
+
+For arbitrary values in [-1,1], fix error tolerance 1/4 and take
+0<delta<=1/16. In the previous block construction choose
+
+    r_block=min(p,1+floor(1/(256*delta^2))).
+
+The same whole-ball expansion now bounds the error by
+
+    35/192+25/6144=1145/6144<1/4.
+
+It retains at least
+p*min(p-1,floor(1/(256*delta^2)))/4 independent values, which is
+Omega(min(p^2,p/delta^2)) with absolute constants.
+The upper theorems use interior test values +/-1/2 and epsilon=1/4,
+so they cover both raw readers and clipping to [-1,1]. Together with
+the elementary feature-dimension bound, they give:
+
+| Numerical reader and query domain | Upper bound | Capacity order |
+| --- | --- | --- |
+| Affine quadratic, full balls | min((p+1)*(p+2)/2, 2+(p+1)/delta^2) | Theta(min(p^2,p/delta^2)) |
+| Quadratic plus bias, unit-sphere caps | min(p*(p+1)/2, p*(9+4/(3*delta^2))) | Theta(min(p^2,p/delta^2)) |
+
+The capacity order is for the stated fixed accuracy and noise range,
+maximized over fixed key sets, with independent bounded numerical
+values. It is not a theorem about the weaker sign-only model, a
+precise optimal constant, arbitrary transformer architectures or a
+general upper bound for affine-quadratic sphere readers.
+
+The lower construction keeps the identity encoder in R^p and actual
+cross-coordinate pair values. As previously accounted, it stores one
+finite-precision word per independent scalar value, plus implicit
+block/pair metadata; a given-address overwrite changes one value
+word. Complete quadratic queries cost O(p+N*value_width), with
+precision and initialization charged. Its indexed-table baseline
+evaluates the same full function and gives cheaper exact local
+recall. The theorem therefore does not by itself yield an algorithm
+beating that baseline. Upper bounds allow arbitrary real states,
+under the continuous-neighborhood promise, so restricting state
+precision alone cannot evade them. A promise only on a finite query
+grid is different and needs its own interpolation/rounding audit;
+we do not infer a continuous guarantee from such a grid. Lower bounds
+use ordinary bounded dyadic values and a common fixed rational scale.
+Bounded evaluation roundoff must be added to the numerical tolerance.
+Any overwrite procedure promising all independent current values on
+the fixed keys inherits the snapshot bound at every horizon. Adapting
+the keys or encoder to the stored labels changes the model.
+
+#### Primary comparison, remaining novelty audit and next action
+
+The weighted norm and independent-sign method are classical.
+[Bartlett--Mendelson, Lemma 22 and its proof](https://jmlr.csail.mit.edu/papers/volume3/bartlett02a/bartlett02a.pdf)
+give the Hilbert feature trace bound underlying the final step.
+Those pages and the surrounding kernel-margin theorem were inspected.
+Our gradient-to-empirical-norm reduction and exact centered moment
+identify the relevant geometry; they should not be presented as a
+new general Rademacher inequality.
+
+Gradient-based complexity control is also established. The publisher
+abstract of [Vieira et al., the Q-norm/minimum-gradient paper](https://doi.org/10.1109/TNN.2008.2000442)
+was inspected; the full journal proof was not accessed. In the author's
+[2006 thesis, Chapter 4, Sections 4.1--4.4](https://repositorio.ufmg.br/bitstream/1843/BUOS-8CTH6W/1/douglas_alexandre_gomes_vieira.pdf),
+the quadratic-form complexity and gradient regularizer, including its
+linear SVM comparison, were inspected. These are close methodological
+prior art. Exact equivalence to, or coverage of, the two capacity
+statements above remains to be established, rather than inferred from
+titles or a keyword search.
+
+[Falk--Karlov's robust quadratic separation paper](https://doi.org/10.1016/S0305-0548(99)00134-3)
+defines robustness by distance to the zero set. The primary abstract
+and available definition/algorithm excerpts were inspected; its full
+proof was not audited. That sign-separation objective differs from
+two-sided numerical recall, and the present theorem does not settle
+its all-label robust capacity.
+
+A current transformer comparison is
+[MLPs are Hebbians, Appendix B.10](https://arxiv.org/html/2607.10034v1).
+The noisy-margin definitions, Theorem B.62's displayed argument and
+Corollaries B.63--B.65 were inspected. Their isotropic-value decoding
+guarantee and sufficient noise ceiling in equation (78) depend on
+fact count, dimension and a kernel Lipschitz constant. They are not
+an arbitrary-value, fixed-radius numerical-retention guarantee.
+The concentration argument needs its conditional-independence scope
+retained; no uniform adaptive-query extension or independent audit
+of the entire paper is being claimed here.
+
+This pass proves a structurally sharper numerical-capacity statement
+and explains the role of the extra value promise. Publication novelty
+and an advantage over the strongest applicable architecture remain
+unestablished. The next work is to audit the precise empirical-gradient
+capacity result against this prior art, and determine whether it can
+support a new constructive retention/access tradeoff on complete
+queries that an indexed or routed baseline cannot already match.
+Keep the original goal active. No training or outreach was performed.
+
+Reproduce the exact checks with:
+
+```bash
+python3 -B scripts/run_numerical_capacity_checks.py
+```
+
+They independently verify rational pseudoinverses through all Penrose
+identities, centered sign moments and weighted Cauchy inequalities on
+singular and arbitrarily thin fixtures, ambient and spherical central
+differences, radial-bias cancellation, explicit whole-ball numerical
+families, block counts and the clipping distinction. Finite controls
+support the uniform proofs; novelty and significance require the
+remaining literature and architecture comparisons.
