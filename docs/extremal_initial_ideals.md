@@ -835,6 +835,191 @@ The example uses parallel walls and does not rule out using arrow maps
 *together with* global state geometry. No larger local fan search or new
 standalone arrow-map search is justified by the source comparison alone.
 
+## An exact product construction reduces a lower bound to the plane
+
+There is a uniform way to turn a planar counting improvement into the
+requested three-variable separation. It constructs one quotient realizing
+all combinations, rather than collecting pairs from different ideals.
+
+Let $J_i\subset K[x,t]$, $1\le i\le r$, have finite positive colength
+$m_i$. Suppose a common monic $f(x)\in K[x]$ of degree $q$ belongs
+to every $J_i$. In $K[x,y_1,\ldots,y_r]$ put
+
+$$
+H=\left(f(x),\ y_i y_j\ (i<j),\ y_i J_i(x,y_i)\ (1\le i\le r)\right).
+\tag{5}
+$$
+
+Then, over **every field**,
+
+$$
+\operatorname{length}(H)=q+\sum_i m_i,\qquad
+g(H)=\prod_i g(J_i). \tag{6}
+$$
+
+More precisely, for every global monomial order $\prec$,
+
+$$
+\operatorname{in}_\prec H=
+\left(x^q,\ y_i y_j\ (i<j),\
+       y_i\operatorname{in}_{\prec_i}J_i(x,y_i)\ (1\le i\le r)\right),
+\tag{7}
+$$
+
+where $\prec_i$ is the restriction to $K[x,y_i]$.
+
+**Proof of length and (7).** Set $C=K[x]/(f)$. Modulo $f$ and
+the cross products, each polynomial has a unique expression as a constant
+in $C$ plus terms belonging separately to $y_i C[y_i]$. Because
+$f\in J_i$, imposing the remaining relations replaces the $i$-th
+summand by a vector-space copy of $y_i(K[x,t]/J_i)$. Hence
+
+$$
+K[x,y_1,\ldots,y_r]/H\simeq
+C\ \oplus\ \bigoplus_i y_i(K[x,t]/J_i)
+\quad\text{as vector spaces}.
+\tag{8}
+$$
+
+This proves the length, without assuming that $x$ generates any branch.
+For a chosen order let $D_i$ be its branch standard set. The right side
+of (7) is contained in $\operatorname{in}_\prec H$, since multiplication
+by $y_i$ preserves leading monomials. Its standard set is
+
+$$
+\{1,x,\ldots,x^{q-1}\}\ \sqcup\
+\bigsqcup_i y_i D_i(x,y_i).
+\tag{9}
+$$
+
+Its cardinality is $q+\sum_i m_i$, equal to the quotient length.
+Inclusion of the two finite-colength monomial ideals is therefore equality.
+
+It remains to prove that all branch combinations occur. Choose a positive
+rational weight $(a_i,b_i)$ realizing each specified planar initial ideal;
+only its finite Gröbner-basis comparisons need to be represented. Normalize
+its first coordinate to 1. The single positive weight
+
+$$
+(w_x,w_{y_1},\ldots,w_{y_r})=(1,b_1/a_1,\ldots,b_r/a_r)
+$$
+
+realizes every branch simultaneously. Different branch tuples give different
+sets (9). This proves (6), as well as a product description of the positive
+fan in the independent ratios $w_{y_i}/w_x$.
+
+For any length-$m$ planar quotient, the characteristic polynomial of
+multiplication by $x$ supplies a monic $f\in J$ of degree exactly $m$.
+Take $r=d-1$ identical branches in (5). Thus the unrestricted extremal
+functions satisfy
+
+$$
+G_d(dm)\ \ge\ G_2(m)^{d-1},\qquad
+G_3(3m)\ \ge\ G_2(m)^2. \tag{10}
+$$
+
+The maximum can be taken over fields, since the construction uses the same
+field as each chosen planar quotient. In particular, a realizable planar
+family with $g(J_m)\ge c m^{1+\epsilon}$ would yield
+$g(H_m)\ge c'\operatorname{length}(H_m)^{2+2\epsilon}$ in three
+variables. Conversely, a bound $G_3(n)\le n^{2+o(1)}$ would force
+$G_2(m)\le m^{1+o(1)}$. This is a quantitative link, **not** a proof
+of either premise. Applying (10) only to the generic planar scale
+$m\log m$ recovers the generic three-variable order, not a power gain.
+
+There is also an explicit universal-basis consequence. If $U_i$ is a
+universal Gröbner basis of $J_i$, then
+
+$$
+\{f\}\ \cup\ \{y_i y_j:i<j\}\ \cup\ \bigcup_i y_i U_i
+\tag{11}
+$$
+
+is a universal Gröbner basis of $H$: for each order its leading monomials
+generate (7). Its size is at most
+$1+\binom r2+\sum_i|U_i|$. Thus the number of initial ideals multiplies
+while this explicit universal generating set grows additively. No new
+algorithmic operation bound is inferred.
+
+The transfer also holds for arbitrary reduced rational point sets; a
+separating first coordinate is unnecessary. Pass to an infinite field
+extension if needed. Field extension preserves every monomial initial ideal.
+Translate the second coordinate by a constant so that every $b_j\ne0$.
+Translation also preserves all global initial ideals: a translated monomial
+is itself plus proper divisors, so every polynomial keeps its leading
+monomial.
+
+Choose $m$ distinct elements $A'\subset K$ containing every first
+coordinate $a_j$, padding with extra elements if some first coordinates
+repeat. Now take $f=\prod_{a\in A'}(x-a)$. It is squarefree, has degree
+$m$, and belongs to the translated point ideal. The spatial construction
+is the ideal of the $3m$ distinct points
+
+$$
+(a,0,0)\ (a\in A'),\quad(a_j,b_j,0),\quad(a_j,0,b_j).
+$$
+
+Each generator vanishes there, and equality follows from the proved length.
+Thus the same all-fields extremal comparison holds for the point subclass:
+
+$$
+F_d(dm)\ge F_2(m)^{d-1},\qquad F_3(3m)\ge F_2(m)^2.
+\tag{12}
+$$
+
+Over any fixed infinite field the point construction stays in that field.
+No smoothing of a nonreduced quotient is used for this assertion.
+
+### Verification and the remaining novelty boundary
+
+The checker uses ten planar fixtures over characteristics 2, 3 and 101,
+including a shared coordinate that is not cyclic. For every combination
+of their complete planar fans, it compares full-ground selection by
+commuting quotient matrices with polynomial S-pair reduction for the lifted
+generators. The spatial lengths are 9 and 12. Reduced nine- and twelve-point
+cases are checked independently by point evaluation. The latter has repeated
+first coordinates in its planar input and uses an added axis root; it also
+checks translation invariance across every planar comparison interval.
+The displayed product counts
+are checks of the uniform proof, not a fitted asymptotic family.
+
+Fibre-product presentations and initial ideals have substantial prior art.
+[Conca--Römer's preprint, published in 2010](https://arxiv.org/pdf/0707.0678),
+Section 1 and Theorem 1.2, studies standard graded fibre products over
+$K$ in disjoint variable sets and generic initial ideals for reverse lexicographic
+order in characteristic zero. Here the augmented branches are glued over
+$K[x]/(f)$, and (7) concerns all orders in fixed coordinates. The inspected
+result does not state (10); this comparison does not establish novelty of
+the elementary construction or its counting consequence. The precise
+fibre-product priority comparison remains open.
+
+The next lower-bound task can therefore focus on a power improvement in
+the planar problem, while retaining the original three-variable endpoint.
+The published planar upper bound from Babson--Onn--Thomas is $O(m^{4/3})$;
+the present audit has not certified the strongest current planar bound.
+No planar power-gain family, new unrestricted exponent, or paper-level
+significance is established by (10) alone.
+
+There is a specific existing lower construction to test, rather than an
+arbitrary search for planar examples. [Eppstein, Theorems 5 and 7 and
+Corollaries 1--2](https://ics.uci.edu/~eppstein/pubs/Epp-DCG-98.pdf),
+uses transversal matroids from convex chains to obtain
+$\Omega(M^{4/3})$ parametric bases with $\Theta(M)$ elements and rank.
+The earlier note already distinguished this from a quotient-algebra
+construction. Equations (5)--(10) now supply the spatial product **if**
+a planar realization with controlled cost can be found.
+
+Specifically, a realization of those weighted matroids by a length
+$L=O(M^\alpha)$ planar quotient, preserving the witnessed exponent-weight
+comparisons, would give a spatial family with at least
+$\Omega(L^{8/(3\alpha)})$ initial ideals. To beat the quadratic power
+requires $\alpha<4/3$; linear overhead would give power $8/3$.
+Neither representation by arbitrary vectors nor a large abstract matroid
+fan supplies this: multiplication must commute on a cyclic quotient,
+and the monomial exponent sizes must fit the same colength budget.
+Establishing such a realization or a quantitative obstruction is the next
+feasibility test. The transfer theorem does not assume it succeeds.
+
 ## Next proof task and stopping rule
 
 The next task is to characterize coherent bases of the nonlinear rectangle

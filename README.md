@@ -55,7 +55,11 @@ generators. Published constraints on neighboring ideals do not supply that
 count: an explicit connected family has exponentially many individually
 realizable candidate vertices, while one ideal realizes at most two of them.
 A count of simultaneous interacting dependencies remains necessary. The
-unrestricted asymptotic target and publication significance are still open.
+new product construction gives `G_3(3m) >= G_2(m)^2`: any planar power
+lower bound above the generic scale would yield the sought three-variable
+separation. Its quotient length and all-order fan formula are proved and
+checked independently. Such a planar lower family, the unrestricted
+asymptotic target and publication significance are still open.
 
 Current research returns to the original occurrence-count and prime-exponent
 interleaving observations. The [face reconstruction study](docs/occurrence_reconstruction.md)

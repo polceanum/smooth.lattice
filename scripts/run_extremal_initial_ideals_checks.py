@@ -751,6 +751,217 @@ def pairwise_realizability_controls():
             "scope": "Realizability of each pair is strictly weaker than realizability in one fan. The shell obstruction is an elementary state-polytope control, not a claimed new theorem. The nonstandard-grading example is published by Maclagan--Silversmith."}
 
 
+def fan_product_controls():
+    """Check the all-field planar-to-spatial transfer by two methods.
+
+    Full-ground quotient-matrix selection is compared with Buchberger's
+    criterion on the actual lifted polynomial generators. No new search
+    family or fitted growth law is used.
+    """
+    from run_structural_complexity_checks import matvec, univariate_product_mod
+
+    def normal_form(poly, generators, weight, p):
+        poly = {a: c % p for a, c in poly.items() if c % p}
+        remainder = {}
+        leading = [(max(g, key=lambda a: (dot(weight, a), a)), g) for g in generators]
+        while poly:
+            a = max(poly, key=lambda b: (dot(weight, b), b))
+            for b, g in leading:
+                if all(x >= y for x, y in zip(a, b)):
+                    factor = poly[a]*pow(g[b], -1, p) % p
+                    shift = tuple(x-y for x, y in zip(a, b))
+                    for c, value in g.items():
+                        target = tuple(x+y for x, y in zip(c, shift))
+                        value = (poly.get(target, 0)-factor*value) % p
+                        if value:
+                            poly[target] = value
+                        else:
+                            poly.pop(target, None)
+                    break
+            else:
+                remainder[a] = poly.pop(a)
+        return remainder
+
+    def buchberger(generators, weight, p):
+        heads = [max(g, key=lambda a: (dot(weight, a), a)) for g in generators]
+        for i, j in combinations(range(len(generators)), 2):
+            common = tuple(max(a, b) for a, b in zip(heads[i], heads[j]))
+            poly = {}
+            for h, sign in ((i, 1), (j, -1)):
+                shift = tuple(a-b for a, b in zip(common, heads[h]))
+                scale = sign*pow(generators[h][heads[h]], -1, p)
+                for a, value in generators[h].items():
+                    target = tuple(x+y for x, y in zip(a, shift))
+                    poly[target] = (poly.get(target, 0)+scale*value) % p
+            require(not normal_form(poly, generators, weight, p), "all polynomial S-pairs reduce to zero")
+        return heads, comb(len(generators), 2)
+
+    fixtures = []
+    for p in (2, 3, 101):
+        for kind, modulus, image in (
+                ("local_cyclic", [0, 0, 0, 0, 1], [0, 1, 2, 3]),
+                ("possibly_repeated_points", [-6, 11, -6, 1], [0, 1, 1]),
+                ("noncyclic_shared_coordinate", None, None),
+                ("nonseparating_reduced_points", [24, -50, 35, -10, 1], None)):
+            if kind == "nonseparating_reduced_points":
+                if p != 101:
+                    continue
+                m = 4
+                branch_points = [(1, 4), (1, 5), (2, 4), (3, 6)]
+                reference = [(0, 0), (1, 0), (2, 0), (0, 1)]
+                evaluation = lambda a: tuple(prod(pow(c, e, p) for c, e in zip(point, a)) % p
+                                             for point in branch_points)
+                inv = inverse_mod([[evaluation(a)[i] for a in reference] for i in range(m)], p)
+                require(inv is not None, "nonseparating point reference basis")
+                matrices = [tuple(tuple(sum(x*y for x, y in zip(row, evaluation(
+                    tuple(x+(axis == d) for d, x in enumerate(a))))) % p for row in inv)
+                    for a in reference) for axis in range(2)]
+            elif modulus is not None:
+                m = len(modulus)-1
+                coordinates = [tuple(int(i == j) for i in range(m)) for j in range(m)]
+                matrices = [tuple(tuple(c % p for c in univariate_product_mod(g, column, modulus))
+                                  for column in coordinates) for g in ([0, 1], image)]
+            else:
+                m, modulus = 4, [0, 0, 0, 0, 1]
+                # J=(x^2,y^2-x-xy), reference basis 1,x,y,xy.
+                matrices = [((0, 1, 0, 0), (0, 0, 0, 0), (0, 0, 0, 1), (0, 0, 0, 0)),
+                            ((0, 0, 1, 0), (0, 0, 0, 1), (0, 1, 0, 1), (0, 0, 0, 0))]
+            apply = lambda matrix, vector: tuple(c % p for c in matvec(matrix, vector))
+            unit = (1,)+(0,)*(m-1)
+
+            def branch_residue(a):
+                vector = unit
+                for matrix, power in zip(matrices, a):
+                    for _ in range(power):
+                        vector = apply(matrix, vector)
+                return vector
+
+            require(all(apply(matrices[0], column) == apply(matrices[1], matrices[0][j])
+                        for j, column in enumerate(matrices[1])), "planar multiplication commutes")
+            for j in range(m):
+                v = tuple(int(h == j) for h in range(m))
+                total = [0]*m
+                for c in modulus:
+                    total = [(a+c*b) % p for a, b in zip(total, v)]
+                    v = apply(matrices[0], v)
+                require(not any(total), "the common monic annihilator has degree m")
+            ground = tuple(hyperbolic_cross(m, 2))
+            comparisons = tuple(hyperbolic_cross(m+1, 2))
+            columns = {a: branch_residue(a) for a in ground}
+            cuts = sorted({Fraction(-(a[1]-b[1]), a[0]-b[0])
+                           for a, b in combinations(comparisons, 2)
+                           if (a[0]-b[0])*(a[1]-b[1]) < 0})
+            samples = [(a+b)/2 for a, b in zip([Fraction(0)]+cuts, cuts)]
+            samples.append(cuts[-1]+1 if cuts else Fraction(1))
+            states = {}
+            translation_checks = 0
+            for t in samples:
+                weight = integer_weight((t, Fraction(1)))
+                basis = tuple(sorted(greedy(ground, columns, weight, p)))
+                require(len(basis) == m, "full rank on the planar universal ground")
+                if kind == "nonseparating_reduced_points":
+                    original_columns = {a: tuple(pow(x, a[0], p)*pow(y-4, a[1], p) % p
+                                                for x, y in branch_points) for a in ground}
+                    require(greedy(ground, original_columns, weight, p) == set(basis),
+                            "translation preserves every planar initial ideal")
+                    translation_checks += 1
+                states.setdefault(basis, weight)
+            plane_data, plane_pairs = [], 0
+            for basis, weight in sorted(states.items()):
+                inv = inverse_mod([[branch_residue(a)[i] for a in basis] for i in range(m)], p)
+                require(inv is not None, "planar basis invertible")
+                gb = []
+                for a in minimal_excluded_border(basis):
+                    column = branch_residue(a)
+                    coefficients = [sum(x*y for x, y in zip(row, column)) % p for row in inv]
+                    poly = {a: 1}
+                    poly.update({b: -c % p for b, c in zip(basis, coefficients) if c})
+                    require(all(dot(weight, a) > dot(weight, b) for b in poly if b != a),
+                            "strict planar reduced-basis comparisons")
+                    gb.append(poly)
+                _, pairs = buchberger(gb, weight, p)
+                plane_pairs += pairs
+                plane_data.append((basis, weight, gb))
+
+            n = 3*m
+            lifted_ground = tuple(hyperbolic_cross(n, 3))
+            pure_columns = [branch_residue((a, 0)) for a in range(m)]
+            spatial_matrices = []
+            for axis in range(3):
+                matrix = []
+                for block in range(3):
+                    for j in range(m):
+                        vector = [0]*n
+                        if axis == 0:
+                            if block == 0:
+                                if j < m-1:
+                                    vector[j+1] = 1
+                                else:
+                                    vector[:m] = [-c % p for c in modulus[:-1]]
+                            else:
+                                vector[block*m:(block+1)*m] = matrices[0][j]
+                        elif block == 0:
+                            vector[axis*m:(axis+1)*m] = pure_columns[j]
+                        elif block == axis:
+                            vector[block*m:(block+1)*m] = matrices[1][j]
+                        matrix.append(tuple(vector))
+                spatial_matrices.append(tuple(matrix))
+            for u, v in combinations(range(3), 2):
+                for j in range(n):
+                    require(apply(spatial_matrices[u], spatial_matrices[v][j]) ==
+                            apply(spatial_matrices[v], spatial_matrices[u][j]),
+                            "spatial multiplication commutes on every reference vector")
+            spatial_columns = {}
+            for a in lifted_ground:
+                vector = (1,)+(0,)*(n-1)
+                for matrix, power in zip(spatial_matrices, a):
+                    for _ in range(power):
+                        vector = apply(matrix, vector)
+                spatial_columns[a] = vector
+            witnesses, spatial_pairs, point_checks = [], 0, 0
+            for left, right in product(plane_data, repeat=2):
+                d1, (x1, y1), g1 = left
+                d2, (x2, y2), g2 = right
+                weight = (x1*x2, y1*x2, y2*x1)
+                expected = ({(a, 0, 0) for a in range(m)} |
+                            {(a, b+1, 0) for a, b in d1} | {(a, 0, b+1) for a, b in d2})
+                actual = greedy(lifted_ground, spatial_columns, weight, p)
+                require(actual == expected and len(actual) == n, "all products of branch bases by direct elimination")
+                if kind in ("possibly_repeated_points", "nonseparating_reduced_points") and p == 101:
+                    branch_points = ([(t, t+t*t) for t in (1, 2, 3)] if m == 3 else
+                                     [(1, 4), (1, 5), (2, 4), (3, 6)])
+                    points = [(t, 0, 0) for t in range(1, m+1)]
+                    points += [(x, y, 0) for x, y in branch_points]
+                    points += [(x, 0, y) for x, y in branch_points]
+                    point_columns = {a: tuple(prod(pow(c, e, p) for c, e in zip(point, a)) % p
+                                              for point in points) for a in lifted_ground}
+                    require(len(set(points)) == n and
+                            greedy(lifted_ground, point_columns, weight, p) == expected,
+                            "independent reduced point-evaluation replay")
+                    point_checks += 1
+                gb = [{(a, 0, 0): c % p for a, c in enumerate(modulus) if c % p}, {(0, 1, 1): 1}]
+                gb += [{(a, b+1, 0): c for (a, b), c in g.items()} for g in g1]
+                gb += [{(a, 0, b+1): c for (a, b), c in g.items()} for g in g2]
+                heads, pairs = buchberger(gb, weight, p)
+                spatial_pairs += pairs
+                standard = {a for a in lifted_ground if not any(all(x >= y for x, y in zip(a, b)) for b in heads)}
+                require(standard == expected, "Buchberger initial ideal versus quotient-matrix prediction")
+                witnesses.append({"branch_bases": [d1, d2], "strict_weight": weight,
+                                  "spatial_basis": sorted(actual)})
+            require(len({tuple(w["spatial_basis"]) for w in witnesses}) == len(states)**2,
+                    "different branch pairs give different spatial initial ideals")
+            fixtures.append({"kind": kind, "characteristic": p, "plane_length": m,
+                             "common_annihilator_low_to_high": modulus, "spatial_length": n,
+                             "plane_initial_ideals": len(states), "spatial_initial_ideals": len(states)**2,
+                             "plane_comparison_intervals_exhausted": len(samples),
+                             "translation_invariance_checks": translation_checks,
+                             "plane_s_pairs": plane_pairs, "spatial_s_pairs": spatial_pairs,
+                             "independent_reduced_point_evaluation_checks": point_checks,
+                             "all_spatial_multiplication_commutators_checked": True, "witnesses": witnesses})
+    return {"fixtures": fixtures, "uniform_proof_in_note": True, "new_asymptotic_separation": False,
+            "scope": "For every planar finite quotient the written construction squares its fan count at length 3m. Exact checks cover cyclic, noncyclic, local and possibly nonreduced point presentations. No planar superlinear-power lower family or novelty certificate is supplied."}
+
+
 def main():
     grid = grid_controls()
     rectangles, homogeneous = [], []
@@ -768,7 +979,7 @@ def main():
     require(any(c["cone_counts"].get("three_generators_has_nonuniform_region", 0) > 0
                 for c in comparisons),
             "dependent-prefix regions are not confined to coordinate faces")
-    report = {"schema_version": 4, "status": "passed",
+    report = {"schema_version": 5, "status": "passed",
               "command": "python3 -B scripts/run_extremal_initial_ideals_checks.py",
               "grid_source_controls": grid, "rectangular_complete_intersections": rectangles,
               "homogeneous_controls": homogeneous,
@@ -780,6 +991,7 @@ def main():
               "generic_diagonal_graph": generic_diagonal_graph_controls(),
               "support_matching_obstruction": support_matching_obstruction_controls(),
               "pairwise_realizability_boundary": pairwise_realizability_controls(),
+              "planar_fan_product": fan_product_controls(),
               "asymptotic_improvement_established": False, "novelty_established": False,
               "goal_complete": False,
               "scope": "Exhaustive finite primary-bound and candidate-family diagnostics. No polynomial separation, sharp unrestricted asymptotic, or algorithmic speedup is inferred.",

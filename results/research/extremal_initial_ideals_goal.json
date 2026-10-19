@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Derive a quantitative bound on simultaneous coherent basis changes using the common quotient and global state geometry, or construct an infinite realizable family with a proved growth rate. Published T-graph arrow-map constraints concern individual pairs and do not supply this count: an explicit connected shell graph has exponentially many individually realizable vertices but at most two can occur in one fan. The published generic-uniformity theorem also requires the standard grading; its positive nonstandard variants fail even after removing loops and coloops. Do not enlarge finite fan sizes without a discriminating quantitative hypothesis or lower the original success criterion.",
+  "next_proof_task": "Pursue a quantitative planar counting theorem in service of the unchanged three-variable target. The proved common-coordinate construction gives G_3(3m)>=G_2(m)^2 with an exact all-order initial-ideal formula, and an additive universal-basis construction. A planar family with m^(1+epsilon) initial ideals would meet the three-variable power-separation part at exponent 2+2epsilon. Audit the strongest current planar bound and the exact fibre-product priority boundary, then prove or refute a proposed uniform planar mechanism before enlarging experiments. The transfer alone, finite checks and generic n log n planar examples do not complete the original goal. A specific input is Eppstein\u2019s transversal-matroid lower construction with Theta(M) elements/rank and Omega(M^(4/3)) parametric bases. Test a planar quotient realization preserving its exponent-weight comparisons with length O(M^alpha), alpha<4/3, or prove an obstruction. Linear overhead would combine with the transfer to give the spatial power 8/3; neither commuting multiplication nor this size bound has been established.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -136,6 +136,19 @@
       "url": "https://arxiv.org/pdf/1911.03569v3",
       "version": "v3, 2021",
       "scope": "Introduction, Remark 3.11, Theorem 5.11 and Section 4 setup. Its announced future uniformity result is broader than the later published theorem; necklace classification concerns a particular edge family, not one three-variable fan."
+    },
+    {
+      "authors": "Conca--Roemer",
+      "title": "Generic initial ideals and fibre products",
+      "url": "https://arxiv.org/pdf/0707.0678",
+      "published_url": "https://doi.org/10.18910/6096",
+      "scope": "Preprint Section 1 and the statement of Theorem 1.2; publication metadata checked. Standard graded fibre products over the field in disjoint variable sets and generic reverse-lexicographic initial ideals in characteristic zero. This is related prior art, not an inspected statement of the common-coordinate all-order counting transfer. Its exact priority remains open."
+    },
+    {
+      "authors": "Eppstein",
+      "title": "Geometric lower bounds for parametric matroid optimization",
+      "url": "https://ics.uci.edu/~eppstein/pubs/Epp-DCG-98.pdf",
+      "scope": "Section 4, especially Theorems 5 and 7, Corollaries 1--2 and their constructions, already compared in the earlier research note and revisited here. The lower examples are transversal matroids from convex chains. They do not provide cyclic commuting quotient matrices, exponent-weight assignments within the universal monomial ground, or a colength overhead bound."
     }
   ],
   "verification": {
@@ -163,10 +176,10 @@
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "c188a0783db57b987940e761e23b35c6bd6417754e2e7c46173eabd9d4fea0bc",
-    "docs/extremal_initial_ideals.md": "40cb4431860cf176750f99d27e0116f0aea24e57b1fbac61dd656f18b098d99f",
-    "scripts/run_extremal_initial_ideals_checks.py": "4336a4a322dbb4465bb6cdbb3a0b34fb87a4313a8ed276c9a0fcfd12cf746209",
-    "results/research/extremal_initial_ideals_checks.json": "606f93aa257c531c95b3e2870e1e55a1d141f4c95da7f7835e2b108bc64d7a71"
+    "README.md": "fafea7cf6355da9048d14d05a5aa76e8b9c4b7c495cf615c18ee7641d6320a5a",
+    "docs/extremal_initial_ideals.md": "e1ec7480e91da6ec4b6e6eb2d886d7b412fb166306463caeb2b15e3ebb2a7f1b",
+    "scripts/run_extremal_initial_ideals_checks.py": "816d40545ae20172e3c4977f9c339439b418cb9702e1981d4440274f4de49f18",
+    "results/research/extremal_initial_ideals_checks.json": "b4bd977a01340e4da715c0160e53064e29402a81bc7a7c9dc24532573f0ed02f"
   },
   "continuations": [
     {
@@ -325,6 +338,33 @@
           101
         ],
         "exchange_field_cases": 2715,
+        "research": "passed",
+        "build": "passed",
+        "smoke": "passed"
+      }
+    },
+    {
+      "recorded_on": "2026-10-19",
+      "progress_classification": "uniform_realizable_planar_to_spatial_fan_product",
+      "uniform_theorem": "For planar ideals J_i with common monic f(x) in every J_i, H=(f, y_i*y_j for i<j, y_i*J_i(x,y_i)) has length deg(f)+sum length(J_i). For every global order, in(H)=(x^deg(f), y_i*y_j, y_i*in(J_i)). Every branch fan combination is realized by independently normalizing its positive x weight to one, so g(H)=product g(J_i), over every field.",
+      "extremal_consequence": "Cayley--Hamilton supplies a degree-m f for any length-m planar quotient. With d-1 copies, G_d(d*m)>=G_2(m)^(d-1); in particular G_3(3m)>=G_2(m)^2. A planar m^(1+epsilon) lower family would yield the original spatial power separation. No such planar family is established.",
+      "further_consequences": [
+        "The positive fan is a product in the independent ratios w_yi/w_x.",
+        "The explicit universal Groebner basis has at most 1+binom(r,2)+sum |U(J_i)| elements.",
+        "The same extremal transfer holds for arbitrary reduced rational point sets: F_d(d*m)>=F_2(m)^(d-1). After an infinite extension if necessary, translate the second coordinate away from zero and choose a squarefree degree-m x annihilator by padding distinct axis roots. No separating first coordinate or smoothing is assumed."
+      ],
+      "verification": "Ten fixtures in characteristics 2, 3 and 101: local and nonlocal cyclic models, a noncyclic shared coordinate, and reduced input points with repeated first coordinates. Every pair of complete planar initial ideals is independently checked by full-ground commuting quotient matrices and Buchberger S-pair reduction. Reduced nine- and twelve-point realizations are also checked by direct evaluation; the latter checks translation invariance and axis-root padding. Older fan sizes are unchanged.",
+      "literature_boundary": "Fibre products and generic initial ideals have established literature. The inspected Conca--Roemer theorem concerns a different operation over the field and generic reverse-lexicographic coordinates; absence of the transfer from that statement does not certify novelty. The strongest current planar count remains to be audited.",
+      "effect_on_next_action": "Pursue a quantitative planar counting theorem in service of the unchanged three-variable target. The proved common-coordinate construction gives G_3(3m)>=G_2(m)^2 with an exact all-order initial-ideal formula, and an additive universal-basis construction. A planar family with m^(1+epsilon) initial ideals would meet the three-variable power-separation part at exponent 2+2epsilon. Audit the strongest current planar bound and the exact fibre-product priority boundary, then prove or refute a proposed uniform planar mechanism before enlarging experiments. The transfer alone, finite checks and generic n log n planar examples do not complete the original goal. A specific input is Eppstein\u2019s transversal-matroid lower construction with Theta(M) elements/rank and Omega(M^(4/3)) parametric bases. Test a planar quotient realization preserving its exponent-weight comparisons with length O(M^alpha), alpha<4/3, or prove an obstruction. Linear overhead would combine with the transfer to give the spatial power 8/3; neither commuting multiplication nor this size bound has been established.",
+      "new_asymptotic_bound": false,
+      "novelty_established": false,
+      "goal_complete": false,
+      "existing_lower_construction_gate": "Eppstein Theorems 5 and 7 and Corollaries 1--2 provide a transversal-matroid input with Omega(M^(4/3)) breakpoints. A planar realization at colength O(M^alpha) preserving exponent weights would give the spatial exponent 8/(3alpha), so alpha<4/3 is required. No such realization or overhead guarantee is claimed.",
+      "checks_summary": {
+        "planar_fixtures": 10,
+        "spatial_initial_ideals_checked": 96,
+        "spatial_S_pairs_reduced": 1939,
+        "independent_point_replays": 13,
         "research": "passed",
         "build": "passed",
         "smoke": "passed"
