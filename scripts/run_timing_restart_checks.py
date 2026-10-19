@@ -1001,6 +1001,254 @@ def sparse_shell_controls():
             "scope": "Exact distributional and Jensen/Rayleigh controls; no sampled keys, numerical eigenvalues, training, performance benchmark or novelty inference. The written proof supplies the uniform theorem."}
 
 
+def compact_timing_attack_controls():
+    from math import comb
+
+    # The written monotonicity proof extends the rational base comparison
+    # to all a>=16; bounded exact checks do not substitute for that proof.
+    packing_controls = 0
+    for a in range(16, 129):
+        universe = comb(8 * a, 4 * a)
+        ball = sum(comb(8 * a, j) for j in range(2 * a + 1))
+        assert universe * (8 * a + 1) >= 2 ** (8 * a)
+        assert ball <= F(65536, 729) ** a
+        greedy_bound = F(729, 256) ** a / (8 * a + 1)
+        assert greedy_bound > 2 ** a + 1
+        assert F(729, 512) * F(8 * a + 1, 8 * a + 9) > 1
+        packing_controls += 1
+
+    intersection_controls = factorial_controls = 0
+    for copies in range(1, 5):
+        for width in range(1, 33):
+            dimension = 16 * (2 ** copies - 1) * width * width
+            probabilities = [F(comb(width, i) * comb(dimension - width, width - i),
+                               comb(dimension, width)) for i in range(width + 1)]
+            assert sum(probabilities) == 1
+            exponential = sum(p * 2 ** (copies * i) for i, p in enumerate(probabilities))
+            assert exponential <= F(16, 15)
+            expansion = F(0)
+            for level in range(width + 1):
+                exact = F(comb(width, level) ** 2, comb(dimension, level))
+                moment = sum(p * comb(i, level) for i, p in enumerate(probabilities)
+                             if i >= level)
+                assert moment == exact
+                assert exact <= comb(width, level) * F(width, dimension) ** level
+                expansion += exact * (2 ** copies - 1) ** level
+                factorial_controls += 1
+            assert expansion == exponential
+            G = 2 ** (copies * width)
+            second_moment = 1 + (1 - F(1, G)) * exponential
+            assert F(1, second_moment) >= F(15, 31)
+            intersection_controls += 1
+
+    # Enumerate every subset assignment and every mask in small games.
+    # These games test the averaging/Cauchy--Schwarz step exactly; their
+    # dimensions deliberately differ from the asymptotic construction.
+    averaging_games = subset_assignments = mask_games = 0
+    for width, dimension in ((1, 4), (2, 5)):
+        blocks = [sum(1 << j for j in indices)
+                  for indices in combinations(range(dimension), width)]
+        G = 2 ** width
+        positive = first = second = 0
+        best = 0
+        for assignment in product(blocks, repeat=G):
+            hits = 0
+            for mask in range(1 << dimension):
+                W = sum(mask & block == 0 for block in assignment)
+                first += W
+                second += W * W
+                positive += W > 0
+                hits += W > 0
+                mask_games += 1
+            best = max(best, hits)
+            subset_assignments += 1
+        total = len(blocks) ** G * 2 ** dimension
+        expected_overlap = sum(2 ** (left & right).bit_count()
+                               for left in blocks for right in blocks)
+        exponential = F(expected_overlap, len(blocks) ** 2)
+        expected_square = 1 + (1 - F(1, G)) * exponential
+        assert F(first, total) == 1
+        assert F(second, total) == expected_square
+        assert F(positive, total) >= 1 / expected_square
+        assert F(best, 2 ** dimension) >= F(positive, total)
+        averaging_games += 1
+
+    # A separately built, small complete raw-key geometry. It is not a
+    # sampled large witness, a novelty claim or an implementation benchmark.
+    local_words = (0b00001111, 0b00110011, 0b01010101)
+    blocks = (tuple(range(8)), tuple(range(6)) + (8, 9), tuple(range(2, 10)))
+    private_dimension, coarse_dimension = 10, 18
+    dimension, radius = private_dimension + coarse_dimension, 1
+    keys, queries = [], []
+    for cluster, block in enumerate(blocks):
+        coarse = ((1 << 6) - 1) << (6 * cluster)
+        words = [coarse | (sum(((z >> j) & 1) << position for j, position in enumerate(block))
+                           << coarse_dimension) for z in local_words]
+        queries.append(words[0])
+        keys.extend(words[1:])
+    assert len(set(keys + queries)) == len(keys) + len(queries)
+    assert {x.bit_count() for x in keys + queries} == {10}
+    distances = [[(x ^ y).bit_count() for y in keys] for x in keys]
+    assert all(distance % 2 == 0 for row in distances for distance in row)
+    row_bound = max(sum(F(1, 2 ** (distance // 2)) for distance in row)
+                    for row in distances)
+    assert row_bound < 3
+    assert all((x ^ q).bit_count() > radius for x in keys for q in queries)
+    masks_checked = collapses = preserved_collisions = completed_reads = 0
+    for mask in range(1 << private_dimension):
+        labels = [j % 4 for j in range(coarse_dimension)] + [
+            ((mask >> j) & 1) | ((j % 2) << 1) for j in range(private_dimension)]
+        family_masks = covering_masks(labels, radius)
+        coefficients = tuple((3 * j + 1) % 8 for j in range(dimension))
+        raw_times, compressed_times = [], []
+        collapsed = []
+        for cluster, (q, block) in enumerate(zip(queries, blocks)):
+            raw = sum((x ^ q) & projection == 0 for projection in family_masks for x in keys)
+            q_hash = xor_covering_hashes(q, labels, coefficients, radius)
+            key_hashes = [xor_covering_hashes(x, labels, coefficients, radius) for x in keys]
+            compressed = sum(h == q_hash[u] for u in range(3) for values in key_hashes
+                             for h in (values[u],))
+            assert compressed >= raw
+            if all(mask & (1 << j) == 0 for j in block):
+                assert all((keys[2 * cluster + i] ^ q) & family_masks[0] == 0 for i in range(2))
+                assert all(key_hashes[2 * cluster + i][0] == q_hash[0] for i in range(2))
+                assert raw >= 2 and compressed >= 2
+                collapsed.append(cluster)
+                collapses += 1
+                preserved_collisions += 2
+            raw_times.append(raw)
+            compressed_times.append(compressed)
+            completed_reads += 1
+        # Observe complete times, repeat their maximum: every later answer
+        # is still bottom. Candidate visits provide a deterministic clock.
+        if collapsed:
+            selected_raw = max(range(len(queries)), key=raw_times.__getitem__)
+            selected_compressed = max(range(len(queries)), key=compressed_times.__getitem__)
+            assert raw_times[selected_raw] >= 2
+            assert compressed_times[selected_compressed] >= 2
+        masks_checked += 1
+    assert collapses > 0
+    # A separate conditional-distribution check: the distinguished mask
+    # vanishes on local coordinates but is one at the flipped auxiliary
+    # coordinate. Coefficients remain independent after that conditioning.
+    conditional_seeds = conditional_means = 0
+    for bits in (1, 2, 3):
+        M = 2 ** bits
+        compressed_sum = raw_sum = seeds = 0
+        for local_labels in product((0, 2), repeat=3):
+            for auxiliary_label in (1, 3):
+                labels = local_labels + (auxiliary_label,)
+                projections = covering_masks(labels, 1)
+                q, local_keys = 8, (3, 5)
+                raw_count = sum((x ^ q) & projection == 0
+                                for projection in projections for x in local_keys)
+                assert all((x ^ q) & projections[0] != 0 for x in local_keys)
+                for coefficients in product(range(M), repeat=4):
+                    q_hash = xor_covering_hashes(q, labels, coefficients, 1)
+                    point_hashes = [xor_covering_hashes(x, labels, coefficients, 1)
+                                    for x in local_keys]
+                    compressed_sum += sum(values[u] == q_hash[u]
+                                          for u in range(3) for values in point_hashes)
+                    raw_sum += raw_count
+                    seeds += 1
+        raw_mean, compressed_mean = F(raw_sum, seeds), F(compressed_sum, seeds)
+        assert raw_mean == F(1, 2)
+        assert compressed_mean == F(6, M) + (1 - F(1, M)) * raw_mean
+        assert compressed_mean <= 2 * 3
+        conditional_seeds += seeds
+        conditional_means += 1
+
+    # This exhausts the raw distinguished-table algebra behind the fresh
+    # weight-preserving query cube. Classification from actual whole-query
+    # RAM time is justified by the separate written Markov/union proof.
+    cube_seeds = cube_queries = classification_coordinates = 0
+    local_keys, local_query = (0b0101, 0b1001), 0b0011
+    auxiliary_width, local_dimension = 6, 4
+    auxiliary_base = (1 << 3) - 1
+    q_base = local_query | (auxiliary_base << local_dimension)
+    cube_keys = [x | (auxiliary_base << local_dimension) for x in local_keys]
+    for copies in (1, 2):
+        for auxiliary_masks in product(range(1 << auxiliary_width), repeat=copies):
+            projections = [mask << local_dimension for mask in auxiliary_masks]
+            good = []
+            for j in range(auxiliary_width):
+                q = q_base ^ (1 << (local_dimension + j))
+                all_copies_collide = all(all((x ^ q) & projection == 0 for x in cube_keys)
+                                         for projection in projections)
+                assert all_copies_collide == all(mask & (1 << j) == 0 for mask in auxiliary_masks)
+                if all_copies_collide:
+                    good.append(j)
+                classification_coordinates += 1
+            zero_half = [j for j in good if not auxiliary_base & (1 << j)]
+            one_half = [j for j in good if auxiliary_base & (1 << j)]
+            pairs = list(zip(zero_half, one_half))
+            seen = {q_base} | {q_base ^ (1 << (local_dimension + j))
+                               for j in range(auxiliary_width)}
+            for subset in range(1, 1 << len(pairs)):
+                q = q_base
+                for j, (zero, one) in enumerate(pairs):
+                    if subset & (1 << j):
+                        q ^= (1 << (local_dimension + zero)) | (1 << (local_dimension + one))
+                assert q not in seen
+                seen.add(q)
+                assert q.bit_count() == q_base.bit_count() == cube_keys[0].bit_count()
+                assert all((x ^ q).bit_count() > 1 for x in cube_keys)
+                assert all(all((x ^ q) & projection == 0 for x in cube_keys)
+                           for projection in projections)
+                cube_queries += 1
+            cube_seeds += 1
+
+    # B_s here is an abstract, supplied reader-cost constant, not a measured
+    # or asserted constant of a production implementation.
+    fresh_parameter_controls = 0
+    fresh_witnesses = []
+    for copies in range(1, 9):
+        for reader_constant in (1, 16, 256):
+            witness = None
+            for k in range(16, 513, 2):
+                t, L = (8 * copies + 1) * k, 8 * k
+                U = D = 16 * (2 ** copies - 1) * L * L
+                dimension = 8 * t + D + U
+                H, m = 2 ** (k // 2 + 1) - 1, 2 ** k
+                mu = F(U, 2 ** (copies + 1))
+                epsilon = F(8 * reader_constant * U * dimension * H, m) + F(8, mu)
+                if mu / 2 >= 2 * t + 1 and epsilon <= F(1, 8):
+                    assert F(15, 31) - epsilon > F(1, 3)
+                    n, G = 2 ** t, 2 ** (copies * L)
+                    assert n == G * m
+                    assert G * (U + 2) <= n * n
+                    assert 2 ** (2 * t + 1) - 1 >= n * n
+                    witness = {"permanent_families": copies, "abstract_reader_constant": reader_constant,
+                               "even_k": k, "log2_n": t, "dimension_with_auxiliary_block": dimension,
+                               "classification_error_bound": str(epsilon),
+                               "slow_fresh_query_success_probability_lower_bound": str(F(15, 31) - epsilon)}
+                    fresh_parameter_controls += 1
+                    break
+            assert witness is not None
+            fresh_witnesses.append(witness)
+    return {"uniform_code_packing_parameter_controls": packing_controls,
+            "exact_intersection_exponential_moments": intersection_controls,
+            "factorial_moment_identities_and_bounds": factorial_controls,
+            "exhaustive_averaging_games": averaging_games,
+            "exhaustive_subset_assignments": subset_assignments,
+            "exhaustive_subset_mask_games": mask_games,
+            "constant_weight_empty_answer_witness": {
+                "keys": keys, "queries": queries, "radius": radius,
+                "dimension": dimension, "kernel_row_sum_bound": str(row_bound),
+                "private_masks_checked": masks_checked,
+                "completed_reads_with_identical_empty_outputs": completed_reads,
+                "cluster_mask_collapse_events": collapses,
+                "raw_collisions_preserved_by_xor_compression": preserved_collisions},
+            "conditional_mask_coefficient_joint_seeds": conditional_seeds,
+            "conditional_compressed_candidate_mean_controls": conditional_means,
+            "fresh_query_cube_auxiliary_seed_families": cube_seeds,
+            "fresh_query_cube_coordinate_classifications": classification_coordinates,
+            "fresh_distinct_weight_preserving_colliding_queries": cube_queries,
+            "fresh_query_probability_parameter_controls": fresh_parameter_controls,
+            "fresh_query_parameter_witnesses": fresh_witnesses,
+            "scope": "Exact rational packing/moment controls, exhaustive finite averaging games, a constant-weight geometry, conditional seed distributions and fresh-query cube algebra support the written proofs. Whole-RAM-time classification follows from the written expectation/Markov argument, not an empirical timing experiment. No full-index lower bound, neural model or novelty determination."}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -1019,6 +1267,7 @@ def main():
               "xor_covering": xor_covering_controls(),
               "direct_buckets": direct_bucket_memory_controls(),
               "sparse_shell": sparse_shell_controls(),
+              "compact_timing_attack": compact_timing_attack_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,

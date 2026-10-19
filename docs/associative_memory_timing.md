@@ -1424,3 +1424,315 @@ does **not** establish novelty of the XOR/direct-bucket theorem, superiority
 to optimal exact-range structures, or a publication-ready ML result. The
 next decision remains a full same-workload prior-art comparison; supporting
 coding and probability lemmas do not replace that gate.
+
+## Timing attacks with bounded kernel norm and identical answers
+
+### A closer published reduction and the exact attack boundary
+
+The [July 2016 version of Ahle--Aumuller--Pagh](https://arxiv.org/abs/1605.02673v2),
+Appendix G (PDF pages 20--21, printed pages 19--20), already discusses
+Indyk's repeated-neighbor-search/deletion reduction and a stronger
+list-of-points range algorithm. It scans selected lists and removes each
+reported inner neighbor from every list, obtaining the stated expected
+O(n^rho_q+t*n^rho_u) bound and using the optimal Euclidean hashing
+tradeoff. The latter display was visually checked. Its Definition 1 allows
+each inner point to be reported with constant probability. It does not
+give the present all-seed exact weighted output with private-operation-time
+feedback. Nevertheless, range enumeration and deletion are existing
+techniques; a different output definition is insufficient for novelty.
+The full finite-word, timing-adaptive optimal-Las-Vegas comparison remains
+open in this record. This appendix substantially narrows the comparison;
+it is not evidence that a stronger complete comparator does not exist.
+
+[Kapralov--Makarov--Sohler, March 2024 version](https://arxiv.org/html/2402.09707v2),
+Section 2, explicitly raises possible adaptive runtime inflation of
+Las Vegas LSH and says investigation of such adversaries is outside its
+scope. Its proved attack concerns false negatives of Monte Carlo LSH.
+The later [Andoni--Haris--Kelman--Onak preprint](https://arxiv.org/html/2601.00272v1),
+Section 2, describes Las Vegas runtime vulnerability while citing that
+paper. Thus the vulnerability itself is already in the literature. The
+earlier paper is not a proof of the compact, constant-norm construction
+below. These two source statements must not be collapsed into a claim
+that we discovered the issue or that the earlier paper proves this theorem.
+
+### A uniform obstruction for permanent covering families
+
+Fix an integer s>=1. Consider s independent copies of the earlier covering
+family, whose coordinate labels are uniform in F_2^(r+1). Keep these
+families permanently installed, without timing padding, refreshes, or a
+timeout/fallback rule. A complete family reader visits all selected bucket
+entries and verifies the original keys. It can use raw projections or the
+previous XOR compression. Selecting the fastest of the s complete readers
+or running them in a fixed fair race does not evade the result. This is a
+restriction on this reader, not on all geometric indexes: extra geometric
+certificates, different indexes and algorithms are outside the obstruction.
+
+For every even k>=16 there is a fixed dataset and a fixed list of raw
+queries, chosen independently of the installed labels, with
+
+```text
+t=(8*s+1)*k, n=2^t, m=2^k, L=8*k, G=2^(s*L)=n/m,
+r=k/2, H=2^(r+1)-1, c=2*(8*s+1), so r=log2(n)/c,
+D=16*(2^s-1)*L^2, d=8*t+D=O_s(log^2 n).
+```
+
+The n keys are distinct and have a common Hamming weight, as do all G
+queries, with the same weight as the keys. Their kernel matrix satisfies
+||K||_2<3. Every listed query has no radius-r neighbor, so every canonical
+answer is exactly bottom, for arbitrary independently stored payloads.
+Nevertheless, with probability at least 15/31 over the installed covering
+labels, at least one listed query forces every complete family reader to
+visit at least m distinct keys. This remains true for every choice of the
+XOR compression coefficients. Thus m>(H^2)/4 visits are needed on that
+query even though the expected candidate count of each fixed query in
+each compressed family is at most 4H. The bad query depends on the labels;
+the dataset and the finite query list do not.
+
+An adversary can submit all G listed queries, observe their completed RAM
+times and repeat a query of maximum observed time. Deterministic read-only
+queries under the same installed seed reproduce that time. On the event
+above each subsequent query costs at least m word operations, while all
+answers remain bottom. The adversary neither inspects memory nor receives
+a varying answer. Its offline dataset/query-list construction and G probes
+are explicit costs. This is not an efficient polylogarithmic-probe attack.
+This initial attack also assumes no result memoization. Caching the probed
+answers defeats its repetition step; the following extension removes that
+particular limitation.
+
+### Proof of the geometry and existence assertions
+
+First, for every integer a>=16 there is a constant-weight binary code of
+length 8a, weight 4a, minimum distance at least 2a and at least 2^a+1
+words. A greedy packing proof suffices. There are at least
+2^(8a)/(8a+1) weight-4a words. A forbidden Hamming ball of radius 2a-1
+has at most
+
+```text
+V <= sum_{j=0}^{2a} binom(8a,j)
+  <= 3^(2a)*(1+1/3)^(8a) = (65536/729)^a
+```
+
+words, including words of other weights. The second inequality follows
+because (1/3)^j >= (1/3)^(2a) in this sum. The greedy algorithm therefore
+selects at least (729/256)^a/(8a+1) words. This bound exceeds 2^a+1 at
+a=16 by an exact rational comparison. Its ratio to 2^a is increasing for
+a>=16, since (729/512)*(8a+1)/(8a+9)>1, while 1+2^(-a) decreases.
+This proves the uniform claim without a numerical entropy approximation.
+
+Use that code with a=k for local words z_0,z_1,...,z_m. Use it with a=t
+for at least G distinct coarse identifiers y_1,...,y_G. These identifiers
+have weight 4t and pairwise distance at least 2t. For each cluster j choose
+an L-subset B_j of [D], and embed the local words in its coordinates,
+using increasing coordinate order. Define
+
+```text
+x_(j,i) = (y_j, embed_(B_j)(z_i)), i=1,...,m,
+q_j     = (y_j, embed_(B_j)(z_0)).
+```
+
+Every word has weight 4t+4k. Within a cluster the distinct words are at
+distance at least 2k. Between clusters the coarse identifier alone supplies
+distance at least 2t. In particular every q_j is outside every inner ball.
+For any choice of the B_j, the kernel's maximum row sum is bounded by
+
+```text
+1 + (m-1)*2^(-k) + (n-m)*2^(-t) < 3.
+```
+
+The norm bound follows from symmetry and the row-sum bound, with no
+random-geometric assumption. The arbitrary payloads need no special
+encoding and remain stored once as before. The attack concerns reads;
+there are no hidden deletion or key-admission operations.
+
+To choose the B_j, temporarily sample them independently and uniformly
+among L-subsets. In each installed family, consider its table indexed by
+one fixed nonzero vector u. For each coordinate its mask bit is fair,
+independently across coordinates and families. Let E_j be the event that
+all s mask vectors vanish on B_j. Then Pr(E_j)=2^(-sL)=1/G. On E_j, all
+m keys in cluster j collide with q_j in that table of every family. This
+is equality of the raw projections and hence survives all XOR compression.
+
+For two independent L-subsets let I be their intersection size. For
+0<=ell<=L, the exact factorial moment is
+
+```text
+E binom(I,ell) = binom(L,ell)^2/binom(D,ell)
+               <= binom(L,ell)*(L/D)^ell.
+```
+
+Expand 2^(sI)=(1+(2^s-1))^I. The chosen D gives
+
+```text
+E[2^(sI)] <= (1+1/(16L))^L <= 16/15,
+Pr(E_j intersect E_j') <= (16/15)*G^(-2), j!=j'.
+```
+
+For the last inequality in the first line, bound each binomial coefficient
+by L^ell and sum the geometric series. Writing W=sum_j 1_(E_j) gives
+E W=1 and E W^2<31/15. Cauchy--Schwarz applied to W*1_(W>0) yields
+Pr(W>0)>=15/31. This probability currently averages over both the subsets
+and the private masks. Consequently at least one fixed choice of all B_j
+has mask-event probability at least 15/31. This is an existence proof of a
+seed-independent dataset, not an efficient deterministic codebook/subset
+construction. Once such a dataset is fixed the preceding geometry remains
+valid for every mask and query.
+
+### Fresh queries: answer memoization does not repair the reader
+
+There is a stronger version for the XOR/direct-bucket reader with its
+specified random XOR coefficients, and a fixed
+fair race that stops when one of the s families finishes. Permit a cache
+of previously answered queries. On a cache miss, the algorithm still uses
+the specified complete reader, rather than a geometric certificate or a
+precomputed region of answers. Cache lookups must have the usual bounded
+word cost. All adversarial queries in this extension are distinct, so
+memoization of previously answered inputs never supplies an answer.
+
+Append an auxiliary block of U=D coordinates, equal in every key and base
+query, with half its bits zero and half one. Let d'=8t+D+U. Pairwise key
+distances, the norm bound, the collapse events E_j and their second-moment
+proof are unchanged. The keys and base queries still have one common
+weight. All query modifications below are confined to this auxiliary
+block, so they cannot reduce distance to any key: these coordinates
+initially agree with every key.
+
+For the fixed implementation choose B_s>=1 such that, for each family f,
+the completed fair-race RAM time, including cache lookup, is at most
+
+```text
+B_s*d'*(H+C_f(q)+1),
+```
+
+where C_f(q) is that family's full compressed candidate count. Such a
+constant exists for a fixed s under the preceding word-cost reader and
+fixed round-robin simulation. It is an implementation constant, not a
+measured performance parameter. Let mu=U/2^(s+1), and choose even k large
+enough that
+
+```text
+mu/2 >= 2t+1,
+epsilon = 8*B_s*U*d'*H/m + 8/mu <= 1/8.
+```
+
+For each fixed s and B_s these inequalities hold for all sufficiently
+large k: mu grows quadratically, while U*d'*H/m is a polynomial in k times
+2^(-k/2). This is a uniform asymptotic extension, not a claim that the
+original k=16 endpoint meets these extra inequalities.
+
+Conditional on E_j, call an auxiliary coordinate good if its distinguished
+mask bit is zero in every family. The good coordinates in each initial-bit
+half have independent binomial counts of mean mu. Chebyshev and a union
+bound show that both counts are at least mu/2 except with probability
+8/mu. The adversary need not observe these masks. It tests the U single-bit
+modifications of q_j, and calls a coordinate good when the completed time
+is at least m/2. A truly good coordinate preserves all m collisions in
+every family and necessarily passes this timing test.
+
+For a coordinate that is not good, consider the first family whose
+distinguished mask bit there is one. Its distinguished table now has no
+raw collisions with its own cluster. For every other nonzero table vector,
+the mask bits on a local difference remain fair and independent after
+conditioning on E_j, giving own-cluster raw collision probability at most
+2^(-2k). Other clusters have at least 2t unconstrained coarse differences,
+giving raw collision probability at most 2^(-2t) in every table. The XOR
+coefficients are independent of all these mask events, so compression
+adds at most 1/M collision probability per point/table. With M>=n,
+
+```text
+E[C_f(q_j with that bit flipped) | E_j, that family's bit is one]
+  <= H*n/M + (H-1)*m*2^(-2k) + H*n*2^(-2t)
+  <= H*(1+1/m+1/n) <= 2H.
+```
+
+Selecting the first broken family adds no condition on its other local or
+coarse mask bits or on its XOR coefficients. The time bound therefore gives
+expected fair-race time at most 4*B_s*d'*H. Markov's inequality bounds a
+false timing classification by 8*B_s*d'*H/m. Union bound over U tests,
+and add the two small-half events. Conditional on each E_j, all
+classifications are correct and both halves are large with probability
+at least 1-epsilon. No independence between these tests is assumed.
+The tests themselves are fixed single-bit inputs; the argument never
+conditions a fixed-input expectation on surviving earlier timing tests.
+
+As in the preceding existence proof, average over subsets and masks. Since
+sum_j Pr(E_j)=1, a union bound on the bad classifications/counts loses at
+most epsilon, even though the cluster events are dependent. Hence there
+exists a fixed subset assignment for which, with probability at least
+15/31-epsilon>1/3 over labels and XOR coefficients, some collapsed cluster
+has correctly classified large
+halves. All auxiliary labels and compression coefficients remain private.
+
+For each cluster in order the adversary queries its base and U single-bit
+tests. If there are enough purported good coordinates in both halves,
+pair 2t+1 coordinates from the zero half with 2t+1 from the one half.
+It tries the distinct nonempty subsets of these pairs, flipping both bits
+of each chosen pair. These queries preserve the common Hamming weight and
+are distinct from the base and single-bit tests. Abandon this cluster on
+the first completed time below m/2. Count every trial of time at least
+m/2, and stop upon collecting n^2 such trials in total. A truly good
+cluster supplies at least 2^(2t+1)-1>=n^2 distinct trials, all of time at
+least m. If an incorrectly classified cluster passes many tests, those
+tests already contribute the required expensive queries; it need not be
+identified as incorrect in advance.
+
+Different coarse identifiers ensure that queries from different clusters
+are distinct. There are at most G*(U+1) base/single-bit tests, at most G
+failed trials and n^2 successful trials. Thus at most
+
+```text
+Q_* = n^2 + G*(U+2) = (1+o_s(1))*n^2
+```
+
+distinct queries are used. With probability greater than 1/3 the total
+work is at least n^2*m/2, giving expectation at least n^2*m/6. All answers
+are bottom. An exact cache of prior answers cannot eliminate these
+cache-miss reads. The classification queries can have weight one above or
+below the common weight; every generated subset query has exactly the
+keys' weight. Thus a simple total-weight rejection does not remove the
+expensive generated reads. This still excludes more powerful geometric
+certificates and precomputation of unasked queries, and does not claim an
+attack on every possible indexing architecture.
+
+### What advantage follows, and what does not
+
+For fixed s and Q=n^2, the probing phase G=n/m is negligible compared with
+Q. The unwrapped reader has expected total work at least
+(15/31)*(Q-G)*m under the described adversary. By contrast, the previously
+proved protected construction, applied to the same fixed dataset, has
+expected total work
+
+```text
+O_s(n*(d+H)+Q*(d+H*(D_h+1)))
+```
+
+on these empty-output queries, including its initialization, refreshes,
+fresh random bits, direct heads and candidate checks. The O_s number of
+protected copies is chosen by its theorem; it need not equal the s
+permanent families attacked here. Raw keys and independently stored
+values, if loaded, add the previously specified common input cost; choose
+v=O(1) here or keep that cost explicit. For D_h=O(d) the ratio is at least
+Omega_s(n^(1/(2*(8*s+1)))/log^2 n). This is a polynomial comparison
+against the specified permanent-family reader, not a comparison with the
+strongest geometric index. The existing all-prefix upper bound supplies
+the corresponding runtime-confidence statement for the protected reader.
+
+The s=1 case already gives d=Theta(log^2 n), ||K||_2<3 and a slow read
+with Omega(H^2) visits. Allowing every fixed s shows that simply installing
+a small fixed bank of permanent families is not a universal cure as the
+approximation parameter grows. The geometry changes with s and c=16s+2;
+this is not an impossibility for an arbitrary constant number depending
+on c, nor a matching lower bound on our protected copy count.
+For the fresh-query extension replace d by d' in the protected bound and
+use Q_* instead of Q. Its same polynomial comparison now survives exact
+memoization of previously answered queries. Both constructions retain the
+same asymptotic storage order for fixed s; the protected number of families
+can have a different constant.
+
+This supplies a concrete obstruction within the promised geometric regime
+and rules out an answer-only explanation of robustness. Its ingredients
+are elementary coding, collision and second-moment arguments. Priority
+for this exact combination is unresolved, and the adversary uses many
+probes. It neither establishes a new general indexing lower bound nor
+finishes the original impact/publication goal. The decisive next gate is
+still the optimal complete-range/timing comparison, not neural training
+or a manuscript claiming a result beyond the evidence.

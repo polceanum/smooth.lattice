@@ -18,7 +18,7 @@
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "compact_sparse_key_spectral_regime_and_dimension_necessity_proved_as_supporting_lemmas; ALRW_dynamic_and_candidate_cost_proofs_audited; complete_range_precision_timing_priority_gate_open"
+      "status": "compact_constant_kernel_timing_attack_with_fresh_queries_proved_for_fixed_permanent_covering_bank; published_range_reduction_and_runtime_attack_boundary_audited; strongest_complete_range_precision_timing_priority_gate_open"
     },
     {
       "stage": 4,
@@ -1428,5 +1428,104 @@
     },
     "old_functions_and_certificate_blocks_preserved": true,
     "verification_scope": "Extended exact checker, build and smoke tests passed. All 234 protected files, sixteen prior function ASTs, seventeen prior goal iterations and historical certificate blocks are unchanged. Other proof checkers were not rerun because their sources/artifacts are preserved. No sampled-key experiment, eigenvalue approximation, performance benchmark or learned-model claim."
+  },
+  "nineteenth_iteration": {
+    "previous_turn_classification": "progress: compact sparse-shell feasibility and dimension-order lemmas saved; stronger dynamic optimal-hashing comparator audited; original publication goal unachieved",
+    "record": "docs/associative_memory_timing.md, Timing attacks with bounded kernel norm and identical answers",
+    "certificate_script": "scripts/run_timing_restart_checks.py",
+    "certificate_report": "results/research/timing_restart_checks.json",
+    "primary_source_audit": [
+      {
+        "url": "https://arxiv.org/abs/1605.02673v2",
+        "version": "22-page July 21, 2016 preprint",
+        "scope": "Definition 1 and complete Appendix G inspected, including visual verification of PDF page 21 (printed page 20). A list-of-points range/deletion reduction with stated O(n^rho_q+t*n^rho_u) expected work and optimal Euclidean tradeoffs already exists. Per-point constant-probability reporting differs from an all-seed exact canonical weighted read; that difference alone does not establish novelty."
+      },
+      {
+        "url": "https://arxiv.org/html/2402.09707v2",
+        "scope": "Section 2 explicitly discusses possible timing-adaptive runtime inflation for Las Vegas LSH and leaves analysis of such adversaries outside the paper scope. Its proved attacks find Monte Carlo false negatives. Do not attribute our compact constant-kernel theorem to this paper or claim the vulnerability itself is new."
+      },
+      {
+        "url": "https://arxiv.org/html/2601.00272v1",
+        "scope": "Section 2 describes Las Vegas runtime vulnerability while citing Kapralov et al. The older primary paper explicitly excludes that attack analysis. Record both statements precisely; do not infer a theorem from a related-work characterization."
+      }
+    ],
+    "uniform_restricted_obstruction": {
+      "model": "s>=1 independent covering families with iid uniform coordinate labels, permanently installed, unpadded, deterministic read-only complete bucket readers with no refresh or timeout/fallback. Raw projections or XOR compression; all raw keys and independently replaceable payloads retained.",
+      "parameters": "For every fixed s>=1 and even k>=16: t=(8s+1)k, n=2^t, m=2^k, L=8k, G=2^(sL)=n/m, r=k/2, H=2^(r+1)-1, c=16s+2, D=16(2^s-1)L^2, d=8t+D=O_s(log^2 n).",
+      "geometry": "There exists a fixed seed-independent dataset of n distinct common-weight keys and G queries of the same weight, with kernel norm <3. Every listed query has no inner neighbor and returns the identical canonical empty answer for arbitrary payloads.",
+      "attack_probability_and_work": "With probability >=15/31 over the permanent labels, at least one listed query has >=m distinct colliding keys in one table of every family, for every XOR coefficient assignment. Probe all G queries, then repeat a maximum-time query. Every later read costs >=m>H^2/4 on this event. Neither seed inspection nor varying output is needed.",
+      "uniform_proof": "Elementary constant-weight greedy code packing supplies identifiers/local codewords. A maximum-row-sum argument gives norm <3. For independent L-subsets, factorial moments bound E[2^(sI)]<=16/15. A second-moment averaging argument fixes a seed-independent subset assignment with the claimed mask-event probability.",
+      "comparison": "Each fixed query has <=4H expected candidates per compressed family. For Q=n^2 and v=O(1), permanent-reader expected work is >=(15/31)(Q-G)m, while the existing protected theorem gives O_s(n(d+H)+Q(d+H(D_h+1))). For D_h=O(d) the ratio is Omega_s(n^(1/(2(8s+1)))/log^2 n). Initialization and common raw input/value storage remain charged.",
+      "limits": "Algorithm-class obstruction only; not a lower bound for all indexes or the strongest published method. G=n/m probes and nonconstructive codebook/subset existence are explicit. The geometry changes with s and c=16s+2; no impossibility for arbitrary c-dependent constant copy counts and no matching optimality claim. Runtime vulnerability was already raised in published work; priority for this exact combination remains unresolved.",
+      "memoization_limit": "The elementary probe-and-repeat version is defeated by result caching; its stated reader scope excludes memoization. The stronger fresh-query extension below removes that limitation under the specified fair-race reader."
+    },
+    "decision": "The uniform obstruction now includes a fresh-query extension that survives exact result memoization within the specified fair-race reader. This is a complete restricted proof with exact controls, not completion of the original strongest-baseline and publication goal. Keep that goal active.",
+    "next_actions": [
+      "Complete the strongest Las Vegas full-range comparison using the published list-of-points reduction, handling coarse lists, one-sided dimensional-reduction false positives, exact weights, word precision and adaptive key/timing feedback.",
+      "Audit prior timing attacks and robust data-structure conversions against the uniform compact constant-kernel obstruction and the existing horizon-free protected theorem; related-work statements and unsuccessful searches do not establish priority.",
+      "Determine whether the resulting complete workload has a substantive new storage/access/retention frontier over all applicable published methods. Do not promote the permanent-family comparison into a general lower bound.",
+      "Preserve the original publication bar. No neural training, outreach, submission or claimed-contribution manuscript before novelty and strongest-baseline gates pass."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "verification_commands": [
+      "python3 -B scripts/run_timing_restart_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py"
+    ],
+    "preservation": "All eighteen prior goal iterations, seventeen prior non-main checker functions, historical certificate blocks, other proof scripts/reports, kernels, manuscripts and learned-recall artifacts are preserved. Only the existing timing note/checker/report and research manifest change.",
+    "fresh_query_extension": {
+      "model": "XOR/direct-bucket families with iid random covering labels and the specified random XOR coefficients. Fixed fair race stops at the first complete family; bounded exact memoization of previously answered queries is allowed. Cache misses still execute the complete reader; arbitrary geometric certificates or precomputed regions of unasked answers are outside the comparison.",
+      "geometry": "Append U=D common auxiliary coordinates, half zero and half one. d_prime=8t+D+U=O_s(log^2 n); pairwise key distances and kernel norm <3 are unchanged. Generated subset queries preserve the keys common weight and remain outside every inner ball.",
+      "cost_parameter": "For a fixed implementation constant B_s>=1, whole-query RAM time is <=B_s*d_prime*(H+C_f(q)+1) for every family f, including cache lookup and fixed-race simulation.",
+      "uniform_parameter_conditions": "mu=U/2^(s+1). Choose even k large enough that mu/2>=2t+1 and epsilon=8*B_s*U*d_prime*H/m+8/mu<=1/8. For every fixed s,B_s these hold for all sufficiently large k; k=16 is not asserted for this extension.",
+      "classification_proof": "Conditional on cluster collapse, a good auxiliary coordinate has distinguished mask bit zero in every family. True-good single flips cost >=m. For a false coordinate, the first broken family has expected compressed candidate count <=2H, including raw within-cluster/other-cluster occurrences and independent XOR noise. Markov at time threshold m/2 and a union bound over U fixed tests cost at most 8*B_s*U*d_prime*H/m. Chebyshev bounds insufficient good coordinates in the zero/one halves by 8/mu. No survival-conditioned fixed-query expectation or test independence is assumed.",
+      "fresh_attack": "For each cluster test base and U single flips, pair classified zero/one positions, enumerate distinct nonempty subsets of 2t+1 pairs, abandon on the first time below m/2, and stop after n^2 expensive trials overall. Any truly good cluster supplies all needed trials. Incorrectly classified clusters either contribute expensive distinct trials or consume one additional failed trial. Different coarse IDs prevent cross-cluster duplicates.",
+      "probability_and_cost": "Averaging fixes a seed-independent dataset where, with probability >=15/31-epsilon>1/3 over labels and XOR coefficients, n^2 distinct expensive trials are obtained within Q_star=n^2+G*(U+2) total distinct queries. Expected total work is >=n^2*m/6. Every answer remains empty; memoization of previous queries cannot help.",
+      "protected_comparison": "Existing protected upper bound applies with d_prime and Q_star. The polynomial permanent-reader comparison and same asymptotic fixed-s storage order survive result caching, including initialization. The protected family count can have a different constant.",
+      "limits": "Not a lower bound against arbitrary indexes or strongest published methods, and not yet an established novelty claim. The adversary uses many probes and a nonconstructively selected codebook/subset geometry; raw values/input and all index costs remain charged. A practical learned architecture advantage is unproved."
+    },
+    "certificate_summary": {
+      "uniform_code_packing_parameter_controls": 113,
+      "exact_intersection_exponential_moments": 128,
+      "factorial_moment_identities_and_bounds": 2240,
+      "exhaustive_averaging_games": 2,
+      "exhaustive_subset_assignments": 10016,
+      "exhaustive_subset_mask_games": 320256,
+      "conditional_mask_coefficient_joint_seeds": 69888,
+      "conditional_compressed_candidate_mean_controls": 3,
+      "fresh_query_cube_auxiliary_seed_families": 4160,
+      "fresh_query_cube_coordinate_classifications": 24960,
+      "fresh_distinct_weight_preserving_colliding_queries": 1658,
+      "fresh_query_probability_parameter_controls": 24,
+      "constant_weight_empty_answer_witness": {
+        "keys": [
+          13369407,
+          22282303,
+          13373376,
+          72617920,
+          53735424,
+          89387008
+        ],
+        "queries": [
+          3932223,
+          3936192,
+          15986688
+        ],
+        "radius": 1,
+        "dimension": 14046252320,
+        "kernel_row_sum_bound": "163/128",
+        "private_masks_checked": 1024,
+        "completed_reads_with_identical_empty_outputs": 3072,
+        "cluster_mask_collapse_events": 12,
+        "raw_collisions_preserved_by_xor_compression": 24
+      }
+    },
+    "old_functions_and_certificate_blocks_preserved": true,
+    "verification_scope": "Extended exact checker, build and smoke tests passed. All 234 protected files, seventeen prior non-main function ASTs, eighteen prior goal iterations and historical certificate blocks are preserved. Source hashes match the final note/checker. Other proof checkers were not rerun because their sources/artifacts are unchanged. No production timing experiment, neural training or novelty claim."
   }
 }
