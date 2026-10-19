@@ -15,8 +15,11 @@ uniform local bounds and exact distinctions between coefficient classes.
 Generic torus-grid graphs reduce to ordinary cuts, while local rectangles
 already have coherent dependencies that this reduction misses. Published
 conditions for individual neighboring ideals add a further constraint, but
-cannot by themselves count one fan. A quantitative three-variable count
-remains open. The new [dyadic planar proof](planar_dyadic_bound.md) establishes
+cannot by themselves count one fan. The sharp three-variable count
+remains open. A [rational-shadow theorem](rational_shadow_bound.md) now
+gives $G_3(n)=O(n^{23/8}\log^{3/8}(n+1))$, with a uniform proof and
+an output-cardinality consequence. It does not complete the sharp target
+or certify current novelty. The [dyadic planar proof](planar_dyadic_bound.md) establishes
 $G_2(n)=\Theta(n\log(n+1))$ over all fields, with a general hyperbolic-weight
 matroid bound and a smaller planar universal-basis cardinality bound.
 Its exact priority remains under audit. It closes the planar power-gain
@@ -62,6 +65,7 @@ give a subclass; write their maximum as $F_d(n)\le G_d(n)$.
 | $G_2(n)=\Theta(n\log(n+1))$; every planar ideal has $g(I)\le1+4n\lceil\log_2n\rceil$ | [Complete dyadic proof](planar_dyadic_bound.md), all fields and all finite planar ideals, with the known generic corner-cut lower bound. The current-priority audit is incomplete. The three-variable endpoint remains open. |
 | Generic corner cuts $C_d(n)=\Theta_d(n^{d-1}\log^{d-1}n)$ | The existing repository manuscript's result; its priority assessment is separate from the published upper bound above. |
 | $G_3(n)=O(n^{44/15}\log^{4/5}(n+1))$ | Existing repository lattice-shadow candidate, with a remaining classical-priority comparison. This does not complete the present goal. |
+| $G_3(n)=O(n^{23/8}\log^{3/8}(n+1))$; $\lvert\mathcal U(I)\rvert=O(n^{85/24}\log^{3/8}(n+1))$ | [Complete rational-shadow proof](rational_shadow_bound.md), all fields and finite quotients, with independently checked arithmetic projections and vertex visibility. Stronger than the older repository candidate; current priority and the sharp endpoint remain open. |
 | Binomial ideals: $g(I)=O_d(n^{d-1}\log^{(d-1)^2}(n+1))$ | Existing repository reduction using published binomial normal forms and Minkowski-sum bounds. In three variables this excludes a polynomial separation from the generic scale within this subclass. |
 | Planar ideals containing an irreducible degree-$D$ equation: $g(I)\le5Dn$; sharp order $\Theta_D(n)$ for the maximum over degrees at most fixed $D\ge2$ | Uniform proof and exact wall controls below; the precise priority comparison remains open. This does not bound all ideals by a constant times $n$. |
 
@@ -1607,16 +1611,26 @@ realization. The common-coordinate product of a fixed number of planar
 branches has at most the generic power and logarithmic scale. This is
 a uniform obstruction to the route, not a lack of suitable small examples.
 
-The dyadic proof uses a one-parameter exchange path whose two integer
-coordinates are monotone along each token. A spatial extension must
-replace that mechanism for a two-parameter normal fan; projecting to a
-single line does not count all its cells. A useful next step is a
-uniform spatial analogue using multiplication compatibility, or a
-realizable family with genuinely three-variable dependencies. The
-sharp planar theorem and its universal-basis consequence merit their
-own priority assessment, while the unchanged three-variable goal stays
-active. The affine $q$-linearized classification also rules out that
-additive class in dimension three.
+The [rational-shadow proof](rational_shadow_bound.md) now extends that
+mechanism: every linear functional on a convex token path has at most
+two monotone phases. Projected dyadic covers have only logarithmically
+many distinct boundary lines, and their internal lattice budgets sum
+to a single logarithm. The resulting height-dependent bound controls
+all rational shadows. Short integer relations then make every vertex
+with bounded incident facet normals visible in a finite set of these
+shadows. This yields the stronger uniform three-variable upper bound
+above, without assuming a single line counts all spatial cells.
+
+The next proof must close more of the remaining power gap, not merely
+prepare another manuscript or enumerate more examples. One concrete
+upper route is to improve the charge for vertices incident to large
+facet normals by using the common quotient and its commuting
+multiplication; the current $O(n^4/h)$ surface charge uses no such
+structure. Another is to prove fewer arithmetic projection directions
+suffice. A lower route still requires genuinely three-variable
+dependencies. The exact planar and rational-shadow priority comparisons
+remain necessary. The affine $q$-linearized classification excludes that
+additive class as a power-gain construction in dimension three.
 
 The nonlinear rectangle route remains available. Its filtration bound
 identifies a quantitative window, and the rational relation distinguishes
@@ -1656,6 +1670,7 @@ From the repository root:
 python3 -B scripts/run_extremal_initial_ideals_checks.py
 python3 -B scripts/run_additive_initial_ideals_checks.py
 python3 -B scripts/run_planar_dyadic_bound_checks.py
+python3 -B scripts/run_rational_shadow_bound_checks.py
 ./build.sh
 python3 tests/test_smoke.py
 ```

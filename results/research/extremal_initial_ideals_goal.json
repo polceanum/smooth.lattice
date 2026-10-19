@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Work directly in three variables, preserving the original G_3 endpoint. The uniform planar theorem G_2(n)=Theta(n*log(n+1)) closes every planar power-amplification construction, including Eppstein realizations with colength O(M^alpha), alpha<4/3. First seek a two-parameter analogue of the dyadic exchange budgets or a uniform count for realizable local rectangle quotients with genuinely three-variable dependencies. A one-parameter projection does not count all spatial fan cells: token coordinates are no longer individually monotone for arbitrary projected objectives, and their intercepts need not remain integral. Any extension must resolve these obstacles explicitly rather than multiply planar counts. Use the existing exact rectangle and coefficient-rank witnesses as controls, not an asymptotic lower family; do not replace ranks by support matching or fit finite counts. In parallel with a consequential spatial proof, compare the sharp unrestricted planar bound and its universal-basis consequence against current primary literature. The complete planar proof is progress, while novelty, an honest paper and the three-variable goal remain unestablished.",
+  "next_proof_task": "Keep the original sharp or polynomially separated G_3 endpoint. The new rational-shadow theorem gives G_3(n)=O(n^(23/8)*log(n+1)^(3/8)) and universal reduced-basis cardinality O(n^(85/24)*log(n+1)^(3/8)), but the remaining power gap and current priority are unresolved. Seek an O(n^2*polylog(n)) upper theorem or a realizable genuinely three-variable power lower family. On the upper route, improve the current O(n^4/h) charge for vertices incident to large facet normals by exploiting the common quotient and commuting multiplication, or prove a quantitatively smaller arithmetic projection cover. The existing proof already sums all primitive kernel vectors up to height O(sqrt(h)); merely repeating its balances or a larger finite screen is not a new mechanism. Retain nonlinear local rectangles as exact rank controls, and require a uniform dependency count before extending their experiments. Audit the precise priority of the sharp planar count, height-dependent rational-shadow theorem and spatial consequence against current primary literature; the old unavailable lattice application is not a prerequisite for this proof. Do not mark the goal complete for another nonsharp exponent improvement, a draft, elementary ingredient, isolated example or an unverified novelty claim.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -78,7 +78,8 @@
     "Inspect the full proposed planar power-saving paper at https://math20.org/f/183/ before relying on any changed bound. Its asserted ordinary k-set improvement is not automatically a parametric-matroid theorem.",
     "Compare the exact all-fields bound g(I)<=5*D*n for finite planar quotients containing an irreducible degree-D equation against prior curve-dependent counting results. The proof uses classical Bezout and state geometry; unsuccessful searches do not establish novelty.",
     "Compare the exact all-global-order box classification, sharp composition maximum and canonical complete weight list for finite affine q-linearized ideals against additive-group and skew-polynomial-module literature. Frobenius elimination, distinct leading positions and specialized algorithms are established inputs; the restricted count has no novelty certificate and does not settle the unrestricted target.",
-    "Audit the exact hyperbolic integer-weight matroid bound and its application G_2(n)=Theta(n*log(n+1)), including the O(n^(3/2)*log(n+1)) universal reduced-basis cardinality. Classical token paths and lattice-chain counting are attributed; the matching generic lower bound is published. The inspected historical planar O(n^(4/3)) statements and the 2025 general multi-parameter arrangement bound do not establish current novelty. This proof does not depend on the unresolved 1975 McMullen application."
+    "Audit the exact hyperbolic integer-weight matroid bound and its application G_2(n)=Theta(n*log(n+1)), including the O(n^(3/2)*log(n+1)) universal reduced-basis cardinality. Classical token paths and lattice-chain counting are attributed; the matching generic lower bound is published. The inspected historical planar O(n^(4/3)) statements and the 2025 general multi-parameter arrangement bound do not establish current novelty. This proof does not depend on the unresolved 1975 McMullen application.",
+    "Compare the exact general matroid shadow bound O_d(log(H+1)*(1+r+(r^2*H*Delta)^(1/3))), with normalized rank-two integer projection height Delta, and the derived G_3 upper bound with the strongest current primary statements. Greedy convex token paths, integer lattice covolumes, lattice triangle charging and short-relation pigeonhole are classical. The explicit dyadic weighted sum and short-normal vertex incidence have self-contained proofs but no priority certificate. The 2022 Small Shadows principal statements concern selected monotone paths; the 2025 unrestricted multi-parameter arrangement bound does not state the new height dependence. Those scoped comparisons are not proof of novelty."
   ],
   "primary_sources": [
     {
@@ -192,6 +193,13 @@
       "title": "Multi-parametric matroids -- Applications to interdiction and weight set decomposition",
       "url": "https://arxiv.org/html/2503.08178v1",
       "scope": "Corollary 3.4 gives O(m^(2p)) cells for p-parameter matroids on m ground elements via comparison arrangements. The stated result does not give the hyperbolic integer-weight bound; this limited comparison is not a novelty certificate."
+    },
+    {
+      "authors": "Alexander E. Black",
+      "title": "Small Shadows of Lattice Polytopes",
+      "url": "https://arxiv.org/pdf/2204.09129",
+      "version": "v1, 2022",
+      "scope": "Introductory results numbered 1.1--1.7 and Corollary 2.2 inspected. They control selected coherent paths and monotone diameter, not every rational shadow by normalized projection height or the full vertex incidence bound. This is a limited statement comparison, not a complete priority audit or an asserted identity with later published versions."
     }
   ],
   "verification": {
@@ -224,24 +232,39 @@
       "rank_two_quadrant_sweeps": 3252,
       "finite_point_subsets": 526,
       "finite_point_initial_bases": 810
+    },
+    "rational_shadow_research": {
+      "command": "python3 -B scripts/run_rational_shadow_bound_checks.py",
+      "status": "passed",
+      "report": "results/research/rational_shadow_bound_checks.json",
+      "source_hashes_verified": true,
+      "matroid_and_quotient_models": 17,
+      "quadrant_sweeps": 340,
+      "interval_states": 936,
+      "independent_full_basis_hulls": 40,
+      "short_integer_vectors": 1330,
+      "strict_vertex_visibility_certificates": 28,
+      "oblique_lattice_direction_cases": 15,
+      "weighted_dyadic_pair_sums": 60,
+      "projected_ground_cover_checks": 1464
     }
   },
-  "preservation": "Only the six listed public research files are updated in this continuation. All core kernels, older checks and reports, manuscripts and paused ML files remain byte-identical to the baseline. Source caches, exploratory probes and raw build logs remain ignored.",
+  "preservation": "Only the six listed public research files are updated in this continuation. The planar proof and all its checks, every other earlier research script and report, all core kernels, manuscripts and paused ML files are byte-identical to the baseline. Private exploration, source caches and raw verification logs stay ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
     "docs/extremal_initial_ideals.md",
-    "docs/planar_dyadic_bound.md",
-    "scripts/run_planar_dyadic_bound_checks.py",
-    "results/research/planar_dyadic_bound_checks.json",
+    "docs/rational_shadow_bound.md",
+    "scripts/run_rational_shadow_bound_checks.py",
+    "results/research/rational_shadow_bound_checks.json",
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "09388c742f49b8ed9fbad294098dc87ff944713983a6c0229289b7b457d87ed0",
-    "docs/extremal_initial_ideals.md": "673862b6c18598f9a5efb2479c77052f3aade5b1d024c6585d23d4b86b1a1920",
-    "docs/planar_dyadic_bound.md": "03c3e44166b2e95caaaedf042b2d79d345f7a1e056c46e134dfcd67b313aca45",
-    "scripts/run_planar_dyadic_bound_checks.py": "27642dbe7cf5c21e0eacb671b644bd00b97e758422d341cffa82c16df0b224bc",
-    "results/research/planar_dyadic_bound_checks.json": "f1ade39520754487f16cf86a858cb8ff759eefa962da4689efcf0535cea82cb9"
+    "README.md": "9bbc8ed8e23f51bcacb4fc81f5ecccb76f6f9ad21bbaca80c547107a9968e7be",
+    "docs/extremal_initial_ideals.md": "9534d2a7d788306880abfb349bd60ba167f9e2f43a3599acda70efd05a9e54ef",
+    "docs/rational_shadow_bound.md": "239bafafac1d8fcf2bdac3661b4a4da7b57c0e22e1c2e3d7d0713eb1ac7b4de6",
+    "scripts/run_rational_shadow_bound_checks.py": "b292ce76d1b8d6aa812fff56afad56346c274fc65df9c2d1179318547b5c1a68",
+    "results/research/rational_shadow_bound_checks.json": "d042e618a451e0ac174904078d13d91f5d15e02a17261364001349a7d7a0a7a7"
   },
   "continuations": [
     {
@@ -579,7 +602,49 @@
         "smoke": "passed",
         "prior_research_sources_and_reports": "unchanged"
       }
+    },
+    {
+      "title": "Height-dependent rational shadows and a stronger uniform spatial upper bound",
+      "recorded_on": "2026-10-19",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "Commit ab57b05 saved a complete sharp planar-order proof, exact controls and the obstruction to every planar power-amplification route.",
+      "progress_classification": "complete_uniform_spatial_upper_proof_and_general_rational_shadow_theorem; current_novelty_unverified; sharp_endpoint_open",
+      "uniform_proofs": [
+        "A rank-r matroid with nonnegative integer d-coordinate weights in product(a_i+1)<=H has at most O_d(log(H+1)*(1+r+(r^2*H*Delta)^(1/3))) projected basis profiles for every rational rank-two projection of normalized integer height Delta. Repeated weights, degenerate crossings and arbitrary matroids are allowed; tied bases are not all counted.",
+        "Each projected greedy token path makes every linear functional monotone in at most two phases. The dyadic projected boxes admit parallelogram covers with only O_d(log(H+1)) distinct boundary lines. Their per-token absolute variation is bounded despite label reentry. A lattice triangle estimate counts internal wall directions, and the weighted box budgets sum to O_d(H^(1/3)*log(H+1)).",
+        "Every vertex of a three-dimensional lattice polytope whose incident primitive facet normals have infinity norm at most h is visible in a rational shadow with primitive kernel of height at most ceil(3*sqrt(h)). Sum three independent incident normals to get a strict integer objective and apply the elementary short-relation pigeonhole argument. At most 6*S/h remaining vertices are charged to long-normal facet areas.",
+        "For an arbitrary colength-n three-variable quotient, the universal residue-matroid profile polytope lies in a box of side O(n^2). Cube regularization, the rational-shadow theorem and the finite short-kernel cover give g(I)=O(n*h^(5/3)*log(n+1)+n^4/h). Taking h=n^(9/8)/log(n+1)^(3/8) yields G_3(n)=O(n^(23/8)*log(n+1)^(3/8)) over every field, including nonreduced ideals.",
+        "The established O(n^(2/3)) bound on minimal generators of a three-variable staircase gives universal reduced-basis cardinality O(n^(85/24)*log(n+1)^(3/8)). This counts polynomials, not coefficient storage, arithmetic operations or smooth-number unranking speed."
+      ],
+      "independent_controls": {
+        "command": "python3 -B scripts/run_rational_shadow_bound_checks.py",
+        "status": "passed",
+        "report": "results/research/rational_shadow_bound_checks.json",
+        "source_hashes_verified": true,
+        "matroid_and_quotient_models": 17,
+        "quadrant_sweeps": 340,
+        "interval_states": 936,
+        "independent_full_basis_hulls": 40,
+        "short_integer_vectors": 1330,
+        "strict_vertex_visibility_certificates": 28,
+        "oblique_lattice_direction_cases": 15,
+        "weighted_dyadic_pair_sums": 60,
+        "projected_ground_cover_checks": 1464
+      },
+      "literature_boundary": "The precise primary comparisons and elementary inputs are attributed in docs/rational_shadow_bound.md. The complete proof is independent of the uninspected portion of the 1975 McMullen application. The strongest-current-bound and novelty gates remain false; neither search absence nor this independence establishes priority.",
+      "effect_on_next_action": "Keep the original sharp or polynomially separated G_3 endpoint. The new rational-shadow theorem gives G_3(n)=O(n^(23/8)*log(n+1)^(3/8)) and universal reduced-basis cardinality O(n^(85/24)*log(n+1)^(3/8)), but the remaining power gap and current priority are unresolved. Seek an O(n^2*polylog(n)) upper theorem or a realizable genuinely three-variable power lower family. On the upper route, improve the current O(n^4/h) charge for vertices incident to large facet normals by exploiting the common quotient and commuting multiplication, or prove a quantitatively smaller arithmetic projection cover. The existing proof already sums all primitive kernel vectors up to height O(sqrt(h)); merely repeating its balances or a larger finite screen is not a new mechanism. Retain nonlinear local rectangles as exact rank controls, and require a uniform dependency count before extending their experiments. Audit the precise priority of the sharp planar count, height-dependent rational-shadow theorem and spatial consequence against current primary literature; the old unavailable lattice application is not a prerequisite for this proof. Do not mark the goal complete for another nonsharp exponent improvement, a draft, elementary ingredient, isolated example or an unverified novelty claim.",
+      "uniform_unrestricted_upper_improvement": true,
+      "sharp_or_separated_endpoint_achieved": false,
+      "current_strongest_bound_certified": false,
+      "novelty_established": false,
+      "goal_complete": false,
+      "verification": {
+        "new_research": "passed",
+        "build": "passed",
+        "smoke": "passed",
+        "all_prior_research_sources_and_reports": "unchanged"
+      }
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "Sharp unrestricted planar order; no new three-variable endpoint or verified novelty."
+  "asymptotic_improvement_scope_this_iteration": "Uniform unrestricted three-variable upper bound via height-dependent rational matroid shadows; sharp growth and novelty remain unestablished."
 }

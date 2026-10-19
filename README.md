@@ -62,8 +62,13 @@ bound `O(n^(3/2) log(n+1))`. Its exact priority remains under audit.
 Consequently the proved product construction `G_3(3m) >= G_2(m)^2`
 cannot give a power separation through planar branches. Further
 degree-sensitive and grading-sensitive bounds are retained as sharper
-restricted comparisons. The three-variable target and publication
-assessment remain open.
+restricted comparisons. A [rational-shadow extension](docs/rational_shadow_bound.md)
+now gives the all-field upper bound `G_3(n) = O(n^(23/8) log(n+1)^(3/8))`
+and universal-basis cardinality `O(n^(85/24) log(n+1)^(3/8))`.
+It bounds rational matroid shadows by their normalized integer height,
+then uses short integer relations to cover vertices with bounded facet
+normals. This is a uniform upper-bound improvement; sharp growth,
+current novelty and the goal's publication assessment remain open.
 The additive prime-power class is now classified separately: at length
 `n=q^k`, every initial ideal is a prime-power box and the sharp maximum
 is `binomial(k+d-1,d-1)`. The proof uses established Frobenius reduction;
