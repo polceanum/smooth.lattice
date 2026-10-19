@@ -214,6 +214,206 @@ def canonical_lookup_controls():
             "scope": "Exact finite reduction controls, with no ANN index, timing benchmark, learned encoder or dynamic performance claim."}
 
 
+def covering_masks(labels, radius):
+    return tuple(sum((((label & u).bit_count() & 1) << j)
+                     for j, label in enumerate(labels))
+                 for u in range(1, 2 ** (radius + 1)))
+
+
+def covering_memory_controls():
+    families = cover_checks = collision_expectations = 0
+    for radius, dimension in ((1, 3), (1, 4), (2, 3), (2, 4)):
+        alphabet = 2 ** (radius + 1)
+        H = alphabet - 1
+        sums = [0] * (1 << dimension)
+        count = 0
+        for labels in product(range(alphabet), repeat=dimension):
+            masks = covering_masks(labels, radius)
+            assert len(masks) == H  # Indexed masks retain multiplicity.
+            count += 1
+            for difference in range(1 << dimension):
+                collisions = sum((difference & mask) == 0 for mask in masks)
+                sums[difference] += collisions
+                if difference.bit_count() <= radius:
+                    assert collisions >= 1
+                    cover_checks += 1
+        for difference, total in enumerate(sums):
+            assert F(total, count) == F(H, 2 ** difference.bit_count())
+            collision_expectations += 1
+        families += count
+
+    # Three copies share the raw keys. Removal must precede shared-key edits.
+    # Python buckets certify membership only; the proof costs balanced trees.
+    snapshots = reads = mean_reads = empty_reads = payload_writes = key_edits = touches = 0
+    witness = None
+    for scenario in range(8):
+        d, radius, outer, capacity, scale = 8, 1, 2, 4, 16
+        keys = [0, 1, 254, 255]
+        payloads = [(16, 0, -16), (-16, 16, 0), (0, -16, 16), (8, 8, -8)]
+        copies = []
+        for copy in range(3):
+            labels = ([0] * d if scenario == copy == 0 else
+                      [((scenario + 1) * (j + 3) + copy * (j * j + 1)) % 4
+                       for j in range(d)])
+            masks = covering_masks(labels, radius)
+            tables = [{} for _ in masks]
+            for i, key in enumerate(keys):
+                for mask, table in zip(masks, tables):
+                    table.setdefault(key & mask, set()).add(i)
+            copies.append((masks, tables))
+
+        def edit_key(i, new):
+            nonlocal touches
+            old = keys[i]
+            if old is not None:
+                for masks, tables in copies:
+                    for mask, table in zip(masks, tables):
+                        signature = old & mask
+                        table[signature].remove(i)
+                        if not table[signature]:
+                            del table[signature]
+                        touches += 1
+            keys[i] = new
+            if new is not None:
+                for masks, tables in copies:
+                    for mask, table in zip(masks, tables):
+                        table.setdefault(new & mask, set()).add(i)
+                        touches += 1
+
+        def query(copy, q):
+            masks, tables = copy
+            candidates, visits = set(), 0
+            for mask, table in zip(masks, tables):
+                bucket = table.get(q & mask, ())
+                visits += len(bucket)
+                candidates.update(bucket)
+            result = tuple((i, (keys[i] ^ q).bit_count()) for i in sorted(candidates)
+                           if (keys[i] ^ q).bit_count() <= radius)
+            return result, visits
+
+        def blend(neighbors):
+            if not neighbors:
+                return None
+            weights = [(i, radius + 1 - distance) for i, distance in neighbors]
+            denominator = scale * sum(a for _, a in weights)
+            return tuple(F(sum(a * payloads[i][j] for i, a in weights), denominator)
+                         for j in range(3))
+
+        observed_visits = 0
+        for step in range(32):
+            # Correctness is tested even with unprotected body-cost feedback.
+            # No expected-time guarantee is asserted for this unwrapped oracle.
+            i = (step + observed_visits) % capacity
+            if step % 4 == 0:
+                before = repr(copies)
+                payloads[i] = tuple(((step + 7) * (j + 2) % 33) - 16 for j in range(3))
+                assert repr(copies) == before
+                payload_writes += 1
+            elif step % 4 == 2:
+                edit_key(i, None)
+                key_edits += 1
+            else:
+                center = 0 if i < 2 else 255
+                options = [center] + [center ^ (1 << j) for j in range(d)]
+                options = [x for x in options if all(k == i or value != x
+                                                   for k, value in enumerate(keys))]
+                edit_key(i, options[(step + observed_visits) % len(options)])
+                key_edits += 1
+            snapshots += 1
+            for q in range(1 << d):
+                direct = tuple((j, (key ^ q).bit_count()) for j, key in enumerate(keys)
+                               if key is not None and (key ^ q).bit_count() <= radius)
+                density = sum(key is not None and (key ^ q).bit_count() <= outer for key in keys)
+                assert density <= 2
+                expected = blend(direct)
+                mean_reads += len(direct) > 1
+                empty_reads += not direct
+                for copy in copies:
+                    actual, visits = query(copy, q)
+                    assert actual == direct and blend(actual) == expected
+                    reads += 1
+                    if copy is copies[0] and q == (step * 73) % 256:
+                        observed_visits = visits
+                if witness is None and len(direct) == 2 and expected not in (
+                        tuple(F(z, scale) for z in payloads[j]) for j, _ in direct):
+                    witness = {"dimension": d, "query": q,
+                               "present_keys": [None if key is None else key for key in keys],
+                               "neighbors_and_distances": direct,
+                               "payload_numerators": payloads,
+                               "payload_scale": scale, "exact_output": [str(x) for x in expected]}
+    assert witness is not None
+    # A changed projection proves why deleting by the new key is unsafe.
+    masks = covering_masks([1, 2, 3], 1)
+    assert any((0 & mask) != (1 & mask) for mask in masks)
+    return {"exhaustive_label_families": families,
+            "all_seed_cover_controls": cover_checks,
+            "exact_collision_expectations": collision_expectations,
+            "dynamic_snapshots": snapshots, "complete_copy_reads": reads,
+            "multiple_neighbor_queries": mean_reads, "empty_queries": empty_reads,
+            "payload_only_overwrites": payload_writes, "slot_key_or_occupancy_edits": key_edits,
+            "indexed_entry_insertions_and_deletions": touches,
+            "full_neighborhood_mixture_witness": witness,
+            "shared_key_delete_before_mutate_control": True,
+            "scope": "Known covering-family algebra and dynamic exact-operator controls; bucket oracle is not a balanced-tree benchmark or an implementation of the timed wrapper.",
+            "novelty_established": False}
+
+
+def all_prefix_restart_controls():
+    mgf_cases = 0
+    envelope_records = []
+    for m in range(2, 7):
+        z = F(m - 1, m)
+        beta = z * (1 - z ** m)
+        assert beta == sum(z ** a for a in range(1, m + 1)) / m
+        assert z ** m >= F(1, 4) and beta <= F(3, 4)
+        for counts in compositions(m, m):
+            if any(sum(counts[:s]) > s for s in range(1, m + 1)):
+                continue
+            assert sum(F(c, m) * z ** (a + 1) for a, c in enumerate(counts)) <= beta
+            mgf_cases += 1
+        envelope_records.append({"inverse_fresh_hazard": m, "z": str(z), "beta": str(beta)})
+    confidence_games = []
+    for alphabet, copies, bad_size in ((2, 1, 1), (4, 1, 1), (4, 2, 2)):
+        seeds = list(product(range(alphabet), repeat=copies))
+        full = (1 << len(seeds)) - 1
+        bad_masks = [sum(1 << i for i, seed in enumerate(seeds)
+                         if all(s in subset for s in seed))
+                     for subset in combinations(range(alphabet), bad_size)]
+        p = F(bad_size, alphabet) ** copies
+        m = 1 / p
+        assert m.denominator == 1
+        m = int(m)
+        z, horizon = 1 - p, 16
+        beta = z * (1 - z ** m)
+        for delta in (F(1, 4), F(1, 8), F(1, 16)):
+            @lru_cache(None)
+            def crossing_probability(t, belief, failures):
+                if delta * z ** t >= beta ** failures:
+                    return F(1)
+                if t == horizon:
+                    return F(0)
+                size, best = belief.bit_count(), F(0)
+                for bad in bad_masks:
+                    count = (belief & bad).bit_count()
+                    good = belief & ~bad
+                    value = F(count, size) * crossing_probability(t + 1, full, failures + 1)
+                    if good:
+                        value += F(good.bit_count(), size) * crossing_probability(t + 1, good, failures)
+                    best = max(best, value)
+                return best
+
+            probability = crossing_probability(0, full, 0)
+            assert probability <= delta
+            confidence_games.append({"seed_alphabet": alphabet, "copies": copies,
+                                     "bad_set_size": bad_size, "horizon": horizon,
+                                     "delta": str(delta),
+                                     "optimal_probability_of_any_prefix_crossing": str(probability),
+                                     "belief_time_failure_states": crossing_probability.cache_info().currsize})
+    return {"extremal_cdf_mgf_controls": mgf_cases, "exact_envelopes": envelope_records,
+            "optimal_all_prefix_confidence_games": confidence_games,
+            "scope": "Exact bounded checks of the classical exponential-supermartingale argument; finite games do not prove novelty or replace the all-prefix analytical proof."}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -224,6 +424,8 @@ def main():
               "rebuilding": rebuilding_controls(),
               "backlog": backlog_controls(),
               "canonical_lookup": canonical_lookup_controls(),
+              "covering_memory": covering_memory_controls(),
+              "all_prefix_restart": all_prefix_restart_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,

@@ -293,10 +293,9 @@ could improve the budget.
   ideas. Their use here is not by itself a new result, and this abstract RAM
   proof does not supply their hardware protections.
 * [Beimel et al., Dynamic Algorithms Against an Adaptive Adversary](https://arxiv.org/abs/2111.03980):
-  the primary abstract identifies a broader existing generic robustness
-  reduction and a blinking-adversary refresh model. Only that abstract was
-  inspected in this pass. Its exact theorem/model comparison remains pending;
-  neither equivalence nor a gap is established by the abstract.
+  the later audit below reads Theorems 3.1/3.7 and the blinking-adversary
+  definition beyond the abstract. Restarting fixed-length phases to obtain
+  horizon-independent resource parameters is already explicit prior art.
 
 An unsuccessful keyword search is not evidence that the conversion is new.
 Further exact comparisons are needed with adaptive runtime conversions,
@@ -351,3 +350,278 @@ the sharp renewal example, setup-count independence, and the need to retain
 the phase-length logarithm in a first-moment-only backlog argument. They are
 not an ANN implementation, a performance benchmark, a formal proof assistant,
 or evidence of novelty.
+
+## Concrete instantiation: exact local attention with synchronous key edits
+
+The next pass replaces the unspecified index parameters with a complete
+construction. This is a **candidate guarantee**, not an established new
+algorithm or paper result. In particular, Pagh's original covering-hash
+paper already combines query timeouts, independent copies and a brute-force
+fallback. Neither that combination nor the covering family is our invention.
+The precise remaining priority question concerns the *whole* dynamic,
+timing-adaptive, all-prefix resource guarantee stated here.
+
+Let n>=2 be a fixed slot capacity, 1<=r<=t<=d, and 1<=s<=n. A present slot i
+stores an arbitrary raw key x_i in {0,1}^d and an independent v-vector of
+fixed-grid values V_i=z_i/2^S, |z_i[j]|<=2^S. The promise is that, at every
+operation boundary, every radius-t Hamming ball contains at most s present
+slots. Multiplicities count as separate slots. This promise is not verified
+for free; the theorem provides no learned encoder that enforces it.
+
+For an arbitrary raw query q, define N_r(q)={i:dist(q,x_i)<=r}. The requested
+*complete* reader is
+
+```text
+a_i(q) = r+1-dist(q,x_i),
+F(q) = sum_{i in N_r(q)} a_i(q)*V_i / sum_{i in N_r(q)} a_i(q),
+```
+
+or bottom if N_r(q) is empty. All nearby slots contribute. Returning just an
+arbitrary approximate neighbor does not implement this function. If keys have
+pairwise distance >2*r, a query within r of a stored key returns its current
+value exactly. Without that extra separation, the specified answer is the
+local mixture, not a promise to retrieve one arbitrarily designated neighbor.
+
+Use a fixed word width w large enough for addresses, r-bit parameters, and
+S+O(log(s*(r+1)+1)) bit accumulators. For example a sufficiently large
+constant times log(n*H*(d+v+1)+2)+S+log(s*(r+1)+2) suffices for the chosen
+logarithmic number of copies, where
+H=2^(r+1)-1 and mu=ceil(d/w). Set ell=ceil(log2(n+1)). All storage bounds
+below are words of this explicitly charged width; multiply by w for bits.
+The bounds use ordinary multiword comparisons/bit operations and conservatively
+charge O(d) for a Hamming-distance calculation. They do not assume a free
+whole-vector comparison, free popcount, or unlimited-precision arithmetic.
+
+### Known covering family and exact base reader
+
+Draw independent uniform (r+1)-bit labels m_j for j in [d]. For every nonzero
+u in F_2^(r+1), use mask A_u[j]=<m_j,u> over F_2 and projection
+h_u(x)=x AND A_u. The H tables are indexed by u; repeated masks may occur
+and are charged with multiplicity. For every seed, every difference support
+of size <=r has a nonzero orthogonal u. Thus every radius-r neighbor collides
+in some table, simultaneously for all pairs of raw keys/queries.
+
+For every *fixed* pair at Hamming distance D, every nonzero u independently
+across coordinates has collision probability 2^(-D). Consequently
+
+```text
+E[number of colliding table positions] = H*2^(-D).
+```
+
+These are Pagh's established covering and collision calculations. The equality
+counts table positions with multiplicity, rather than distinct masks.
+
+Each table is a deterministic balanced search tree of IDs, ordered by
+(h_u(x_i),i). Store the full raw keys once in a shared canonical table;
+tree comparisons obtain projected chunks from these keys and the current
+mask, costing O(mu) per comparison. There is no stored copy of the d-bit
+projection at every tree node. An exact equal-range query costs
+O((mu+1)*ell) plus candidate visits. Enumerate all H tables, deduplicate IDs
+in query scratch, verify full distances, and return the sorted list of all
+IDs/distances within r. Complete enumeration certifies an empty answer too.
+An ordinary Monte Carlo LSH index cannot certify absence merely by failing
+to find a collision.
+
+Generate masks in reflected Gray-code order from the r+1 packed bit planes.
+Only O((r+1)*mu) seed/basis words and a current mu-word mask are needed;
+there are O(H*mu) XOR/control operations, with O(H) total Gray-code control
+work by its recursive traversal. All trees together contain at most n*H
+nodes of O(1) metadata words each. Query scratch has at most n IDs/marks;
+initialize its marks once and clear only touched entries after completion
+or abortion. Clearing costs at most a constant times work already performed.
+Scratch is restored before another copy is queried.
+
+For a fixed legal history and a fixed next query, at most s keys are within
+t. Their collision visits are at most H*s. Every other key has integer
+distance >=t+1, so expected far visits are at most H*n*2^(-t-1). The uniform
+base index-query expectation is therefore bounded by a sufficiently
+large constant C times
+
+```text
+T0 = C*H*[(mu+1)*ell + (d+ell)*(s+n*2^(-t-1))].
+```
+
+Take an integer upper bound, rounding upward. This includes deduplication,
+distance checks, mask generation, sorted output IDs, and scratch cleanup.
+The expectation is over the private covering seed. Tree shapes may depend
+on the fixed update history, but their worst-case height bound does not.
+
+After one copy produces the exact list, form F in a common output stage in
+A0=O(s*v) word operations. Return the integer numerator vector and the
+common denominator 2^S*sum_i a_i. Their bit bounds were included in w.
+Exact sums make the answer independent of enumeration order/private seeds;
+floating accumulation with seed-dependent rounding would not establish this.
+Only this final stage accesses payloads: at most s*v value words, including
+arbitrary independent current values, are used.
+
+### Key edits have bounded cost, so no update queues are needed
+
+Updates are supplied a slot ID; queries are supplied the full raw q, without
+a target ID. An insertion, deletion or key replacement has deterministic
+worst-case index cost
+
+```text
+W = O(H*(mu+1)*ell)
+```
+
+per copy, by changing one entry in every relevant table. For shared raw-key
+storage, ordering matters: remove the old ID from *every copy's* trees before
+changing its raw key, then insert it into every copy using the new key.
+There are no queries during this synchronous operation. Mutating the shared
+key first would invalidate the comparisons used to find the old entries.
+No paused copy observes overwritten key storage, and no hidden snapshots are
+needed. Empty slots and duplicate keys use explicit occupancy/ID metadata.
+
+Payload overwrite alone writes O(v) current-table words and never changes
+the covering indexes. A key move with a simultaneous payload replacement
+pays both costs. All updates preserve the stated density promise; checking
+that promise is separate work. If writes instead name a unique existing raw
+key, an ordinary deterministic balanced dictionary resolves its ID in
+O((mu+1)*ell) time with O(n) metadata words, which must be added. In particular,
+a raw-key-named payload overwrite costs O((mu+1)*ell+v), not O(v).
+Duplicate keys require the explicit slot semantics used above. Ordinary
+key-edit timings are padded to the deterministic bound, and
+value-edit timings to O(v), so neither reveals a private index seed.
+
+A complete index build/reset has a deterministic padded upper bound
+
+```text
+R = O(n*W + H*mu + d*(r+1)),
+M = O(n*H + (r+1)*mu + n) private index/workspace words,
+F0 = O(n*d) deterministic fallback for all IDs/distances.
+```
+
+The d*(r+1) term charges generation of fresh unbiased seed bits. The
+unbounded-horizon theorem consumes fresh independent bits at every rebuild;
+a single finite pseudorandom-generator seed is not covered. Raw-key,
+payload, occupancy and common scratch storage is O(n*(mu+v)+n) words;
+initial loading/initialization I is paid. There are no build retries or
+expected-space substitutions in this instantiation. M is a worst-case bound
+throughout arbitrary key histories of capacity n. Since H>=r+1 and s>=1,
+R+F0=O(n*T0). The reference fallback computes the same complete list, and
+the common output stage computes the same F on either path.
+
+### Dynamic timing-adaptive bound
+
+Use k independent indexes. A query runs each in turn for at most 2*T0 body
+steps; allow another 2*T0 steps for restoring touched scratch. On completion
+use its exact list, and pad the index portion of an ordinary response to
+4*k*T0. If all copies time out, use the reference fallback and rebuild every
+index before accepting the next operation. Padding includes unused copies;
+no parallel hardware or uncharged waiting is assumed. All raw reference
+data and payloads survive a reset.
+
+On an epoch's hypothetical all-ordinary transcript, canonical outputs and
+fixed operation-type timing budgets make the entire key/value/query history
+independent of its fresh seeds. Markov and independence between copies give
+per-position all-copy timeout probability <=p=2^(-k). A union bound gives
+Pr(first timeout within a queries)<=a*p, despite arbitrarily many intervening
+synchronous key/value edits. Independence is between families, not masks
+within a family. The earlier epoch lemma is applied in *query*
+counts, not by pretending surviving seeds remain independent of the transcript.
+
+For deterministic prescribed numbers Q queries, J key edits and P payload
+overwrites (in an adaptive order), the expected total work is at most
+
+```text
+I + k*R + O(k*W*J + v*P)
+  + Q*[4*k*T0 + A0 + 2*p*(k*R+F0)].
+```
+
+Choose A=max(2,ceil((R+F0)/T0)) and k=4*ceil(log2(2*A)). Then k=O(log(n+1))
+and p*(k*R+F0)<=T0. Thus queries cost O(T0*log(n+1)+s*v) in expectation
+after initial setup, key edits O(W*log(n+1)), and independent value overwrites
+O(v). The total persistent/workspace bound is
+
+```text
+O(n*(mu+v) + log(n+1)*[n*H+(r+1)*mu]) words.
+```
+
+For t=ceil(log2 n), r=floor(t/c)>=1 with fixed c>1, H=O(n^(1/c)). For
+bounded s, this is sublinear index-query work in n, up to logarithms and
+the explicitly charged full-input dimension, with a superlinear index.
+More generally require n^(1/c)*(s+1)*log(n+1)=o(n) for the displayed query
+index work to beat a full O(n*d) scan in the usual d>=log n regime. The
+output term s*v remains. This is a specified locality/density workload,
+not unrestricted softmax attention or a semantic learning guarantee.
+
+### A bound for all prefixes, including a client-chosen stopping point
+
+The synchronous instantiation also admits a stronger cost statement than
+the earlier general conversion's fixed-horizon expected bound. It uses
+classical exponential-supermartingale reasoning, not a new probability tool.
+Let m=1/p=2^k, z=1-1/m, and beta=z*(1-z^m). A positive integer epoch query
+length tau with Pr(tau<=a)<=a/m stochastically dominates a uniform integer
+in {1,...,m}; an epoch that never times out has tau=infinity. Therefore
+
+```text
+E[z^tau | history before epoch] <= (1/m)*sum_{a=1}^m z^a = beta.
+```
+
+If S_j is the cumulative number of queries at timeout j, then
+L_j=z^(S_j)*beta^(-j) is a nonnegative supermartingale starting at one.
+Stop it at its first crossing of 1/delta or at a deterministic epoch count.
+Its stopped expectation is <=1, so crossing probability is <=delta.
+Letting that count increase proves the same bound for any crossing. Thus,
+with probability at least 1-delta, *simultaneously for every operation prefix*
+with Q completed queries, its timeout count N satisfies
+
+```text
+N*log(1/beta) <= Q*log(1/z) + log(1/delta).
+```
+
+For m>=2, (1-1/m)^m>=1/4, so beta<=3/4;
+log(1/z)<=2/m and log(4/3)>=1/4. A convenient looser bound is
+N<=8*p*Q+4*log(1/delta). Combining with the deterministic cost per normal
+operation, fallback and rebuild proves the simultaneous all-prefix bound
+
+```text
+work <= I+k*R + O(k*W*J+v*P)
+        + Q*(4*k*T0+A0+8*p*(k*R+F0))
+        + 4*(k*R+F0)*log(1/delta).
+```
+
+Here Q,J,P are the realized counts in each prefix, so the client can choose
+when to stop based on earlier answers/timings. The algorithm, storage, word
+precision and number of copies do not depend on a horizon or delta. The
+confidence statement concerns compute cost: all answers are correct for
+every seed. It does not promise a small worst-case latency for an individual
+fallback, or turn the earlier general expected bound into an arbitrary
+stopping-time theorem without this separate argument.
+
+### Prior-art audit and current decision
+
+* [Pagh's SODA 2016 author paper](https://www.rasmuspagh.net/papers/coveringLSH.pdf),
+  Section 3, Lemma 3.2, Theorem 3.1 and Section 3.1 were inspected; PDF pages
+  5--6 visually checked. It already supplies the covering family, collision
+  expectation, all-neighbor extension, timeouts, independent copies and
+  brute-force fallback. No exponent or covering-family novelty is claimed.
+  Its 2018 journal version and the faster fcLSH implementation must still be
+  compared before declaring a priority boundary for the complete guarantee.
+* [Beimel et al.](https://arxiv.org/abs/2111.03980), Theorems 3.1/3.7, their
+  algorithms/proofs and the blinking-adversary definition were inspected;
+  PDF page 11 visually checked. The generic reduction concerns approximate
+  scalar estimates and uses a private median. Fixed-length phase restart is
+  already explicit. Blinking adversaries receive outputs only after refresh;
+  this differs from the ordinary-answer-and-timing transcript used here.
+  These differences alone are not proof that our conversion is new.
+* [Feng et al., ICML 2025 proceedings](https://proceedings.mlr.press/v267/feng25c.html),
+  Definitions/Assumptions 1.1--1.3, Theorems 1.5/1.6 and Appendix C's
+  Theorem C.1 were inspected; PDF page 4 visually checked. The search
+  guarantee returns a valid point/subset, not necessarily the complete exact
+  neighborhood needed by F. The inspected update theorem deletes returned
+  points. Do not silently replace it by an arbitrary-key-replacement theorem,
+  or claim its scalar-regression guarantees solve the present workload.
+  Its phase restart observations also prevent novelty claims based solely on
+  having parameters independent of an indefinitely long stream.
+
+The direct base-index construction and complete cost proof now remove the
+previous unspecified M_L/dynamic-index hypothesis for this workload. The
+all-prefix bound removes a horizon from the cost confidence statement.
+However, the construction is built from established indexing and probability
+ingredients. **A substantive new advantage over the strongest applicable
+published guarantee remains unestablished.** In particular, neither a comparison
+only with sqrt(Q)-copy search, nor the absence of an identical keyword result,
+is a defensible novelty/impact argument. The next gate is the complete
+same-workload comparison with later covering/range indexes and timing-adaptive
+conversions. No neural experiment or contribution manuscript follows yet.

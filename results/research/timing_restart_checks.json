@@ -243,11 +243,188 @@
     "independent_payload_overwrites": 24,
     "scope": "Exact finite reduction controls, with no ANN index, timing benchmark, learned encoder or dynamic performance claim."
   },
+  "covering_memory": {
+    "exhaustive_label_families": 4928,
+    "all_seed_cover_controls": 50176,
+    "exact_collision_expectations": 48,
+    "dynamic_snapshots": 256,
+    "complete_copy_reads": 196608,
+    "multiple_neighbor_queries": 644,
+    "empty_queries": 58917,
+    "payload_only_overwrites": 64,
+    "slot_key_or_occupancy_edits": 192,
+    "indexed_entry_insertions_and_deletions": 2385,
+    "full_neighborhood_mixture_witness": {
+      "dimension": 8,
+      "query": 0,
+      "present_keys": [
+        0,
+        1,
+        254,
+        255
+      ],
+      "neighbors_and_distances": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "payload_numerators": [
+        [
+          -2,
+          5,
+          12
+        ],
+        [
+          -12,
+          -10,
+          -8
+        ],
+        [
+          0,
+          -16,
+          16
+        ],
+        [
+          8,
+          8,
+          -8
+        ]
+      ],
+      "payload_scale": 16,
+      "exact_output": [
+        "-5/12",
+        "13/24",
+        "1/2"
+      ]
+    },
+    "shared_key_delete_before_mutate_control": true,
+    "scope": "Known covering-family algebra and dynamic exact-operator controls; bucket oracle is not a balanced-tree benchmark or an implementation of the timed wrapper.",
+    "novelty_established": false
+  },
+  "all_prefix_restart": {
+    "extremal_cdf_mgf_controls": 195,
+    "exact_envelopes": [
+      {
+        "inverse_fresh_hazard": 2,
+        "z": "1/2",
+        "beta": "3/8"
+      },
+      {
+        "inverse_fresh_hazard": 3,
+        "z": "2/3",
+        "beta": "38/81"
+      },
+      {
+        "inverse_fresh_hazard": 4,
+        "z": "3/4",
+        "beta": "525/1024"
+      },
+      {
+        "inverse_fresh_hazard": 5,
+        "z": "4/5",
+        "beta": "8404/15625"
+      },
+      {
+        "inverse_fresh_hazard": 6,
+        "z": "5/6",
+        "beta": "155155/279936"
+      }
+    ],
+    "optimal_all_prefix_confidence_games": [
+      {
+        "seed_alphabet": 2,
+        "copies": 1,
+        "bad_set_size": 1,
+        "horizon": 16,
+        "delta": "1/4",
+        "optimal_probability_of_any_prefix_crossing": "721/8192",
+        "belief_time_failure_states": 343
+      },
+      {
+        "seed_alphabet": 2,
+        "copies": 1,
+        "bad_set_size": 1,
+        "horizon": 16,
+        "delta": "1/8",
+        "optimal_probability_of_any_prefix_crossing": "35/2048",
+        "belief_time_failure_states": 367
+      },
+      {
+        "seed_alphabet": 2,
+        "copies": 1,
+        "bad_set_size": 1,
+        "horizon": 16,
+        "delta": "1/16",
+        "optimal_probability_of_any_prefix_crossing": "9/4096",
+        "belief_time_failure_states": 385
+      },
+      {
+        "seed_alphabet": 4,
+        "copies": 1,
+        "bad_set_size": 1,
+        "horizon": 16,
+        "delta": "1/4",
+        "optimal_probability_of_any_prefix_crossing": "13217/262144",
+        "belief_time_failure_states": 1225
+      },
+      {
+        "seed_alphabet": 4,
+        "copies": 1,
+        "bad_set_size": 1,
+        "horizon": 16,
+        "delta": "1/8",
+        "optimal_probability_of_any_prefix_crossing": "5825/1048576",
+        "belief_time_failure_states": 1391
+      },
+      {
+        "seed_alphabet": 4,
+        "copies": 1,
+        "bad_set_size": 1,
+        "horizon": 16,
+        "delta": "1/16",
+        "optimal_probability_of_any_prefix_crossing": "1101/2097152",
+        "belief_time_failure_states": 1542
+      },
+      {
+        "seed_alphabet": 4,
+        "copies": 2,
+        "bad_set_size": 2,
+        "horizon": 16,
+        "delta": "1/4",
+        "optimal_probability_of_any_prefix_crossing": "33477/1048576",
+        "belief_time_failure_states": 4582
+      },
+      {
+        "seed_alphabet": 4,
+        "copies": 2,
+        "bad_set_size": 2,
+        "horizon": 16,
+        "delta": "1/8",
+        "optimal_probability_of_any_prefix_crossing": "17397/4194304",
+        "belief_time_failure_states": 5214
+      },
+      {
+        "seed_alphabet": 4,
+        "copies": 2,
+        "bad_set_size": 2,
+        "horizon": 16,
+        "delta": "1/16",
+        "optimal_probability_of_any_prefix_crossing": "1753/4194304",
+        "belief_time_failure_states": 5783
+      }
+    ],
+    "scope": "Exact bounded checks of the classical exponential-supermartingale argument; finite games do not prove novelty or replace the all-prefix analytical proof."
+  },
   "novelty_established": false,
   "strongest_baseline_advantage_established": false,
   "publication_ready": false,
   "source_sha256": {
-    "scripts/run_timing_restart_checks.py": "5e4a7ec51e401d6d759093569aaa3028510ebdc6b1dbe195ecfaaf9d5bbf8540",
-    "docs/associative_memory_timing.md": "fd6a683215e87ac9675b5169b2d7016a90f20972d25643aa499aed31ad4a96c8"
+    "scripts/run_timing_restart_checks.py": "d76890f2e55912f0687157b6abd9bad27763f09f246f8806ff11b6414891e139",
+    "docs/associative_memory_timing.md": "eab8429d51e621df2ce4fc30cdc70bac67ec0baf94b14bd0cbcf0219ce6a0601"
   }
 }
