@@ -1147,6 +1147,155 @@ def plane_curve_carrier_controls():
             "scope": "Exact complete fans and wall lifts test the written proof. Smooth cubic jets include characteristics smaller than quotient length. A finite cyclic count gain is not an asymptotic lower family."}
 
 
+def finite_grading_controls():
+    """Complete planar fans for the classical relative-lattice bound."""
+    fixtures = []
+
+    def audit(n, p, residue, generators, label, q=None, h=None, degree=None):
+        ground = tuple(hyperbolic_cross(n, 2))
+        comparisons = tuple(hyperbolic_cross(n+1, 2))
+        columns = {a: residue(a) for a in ground}
+        differences = []
+        for polynomial in generators:
+            require(all(sum(c*residue(a)[i] for a, c in polynomial.items()) % p == 0
+                        for i in range(n)), "a grading generator is an exact quotient relation")
+            head = next(iter(polynomial))
+            differences.extend(tuple(a[i]-head[i] for i in range(2)) for a in polynomial if a != head)
+        index = 0
+        for a, b in combinations(differences, 2):
+            index = gcd(index, abs(a[0]*b[1]-a[1]*b[0]))
+        lattice_rank = 2 if index else int(any(any(a) for a in differences))
+        if h is not None:
+            require(index == h, "support differences of the displayed reduced lex basis give its exact index")
+        cuts = sorted({Fraction(-(a[1]-b[1]), a[0]-b[0]) for a, b in combinations(comparisons, 2)
+                       if (a[0]-b[0])*(a[1]-b[1]) < 0})
+        samples = [(a+b)/2 for a, b in zip([Fraction(0)]+cuts, cuts)]
+        samples.append(cuts[-1]+1 if cuts else Fraction(1))
+        states = {}
+        target_histogram = [sum(k % h == c for k in range(n)) for c in range(h)] if h else None
+        for t in samples:
+            weight = (t.numerator, t.denominator)
+            basis = tuple(sorted(greedy(ground, columns, weight, p)))
+            require(len(basis) == n, "graded complete fan has full quotient rank")
+            if basis in states:
+                continue
+            inv = inverse_mod([[residue(b)[i] for b in basis] for i in range(n)], p)
+            require(inv is not None, "independent inverse verifies each graded basis")
+            lower, upper = Fraction(0), None
+            for a in minimal_excluded_border(basis):
+                coefficients = [sum(x*y for x, y in zip(row, residue(a))) % p for row in inv]
+                for b, coefficient in zip(basis, coefficients):
+                    if not coefficient:
+                        continue
+                    dx, dy = a[0]-b[0], a[1]-b[1]
+                    if dx > 0:
+                        lower = max(lower, Fraction(-dy, dx))
+                    elif dx < 0:
+                        bound = Fraction(-dy, dx)
+                        upper = min(upper, bound) if upper is not None else bound
+                    else:
+                        require(dy > 0, "valid vertical graded border comparison")
+            require(lower < t and (upper is None or t < upper), "strict complete graded fan cone")
+            moment = tuple(sum(a[i] for a in basis) for i in range(2))
+            if h:
+                histogram = [sum((a+q*b) % h == c for a, b in basis) for c in range(h)]
+                require(histogram == target_histogram, "basis has the quotient's fixed dimensions in every finite grade")
+                for (a, b), column in columns.items():
+                    require(all(not value or (k-a-q*b) % h == 0 for k, value in enumerate(column)),
+                            "each residue column lies entirely in its claimed group degree")
+            if degree is not None:
+                if t < Fraction(1, degree):
+                    require(basis == tuple((i, 0) for i in range(n)), "the unique pure-x sector")
+                else:
+                    require(all(a < degree for a, b in basis), "all remaining bases lie in the degree-D strip")
+                    require(moment[0] <= n*(degree-1)//2 and moment[1] <= n*(n-1)//2,
+                            "the two strip moment bounds hold simultaneously")
+            states[basis] = {"moment": moment, "strict_weight": weight, "interval": (lower, upper)}
+        ordered = sorted(states, key=lambda b: states[b]["interval"][0])
+        require(states[ordered[0]]["interval"][0] == 0 and states[ordered[-1]]["interval"][1] is None,
+                "both graded fan endpoint sectors covered")
+        require(all(states[a]["interval"][1] == states[b]["interval"][0]
+                    for a, b in zip(ordered, ordered[1:])), "graded fan coverage has no gaps")
+        moments = [states[b]["moment"] for b in ordered]
+        anchor = moments[0]
+        if h:
+            require(all((a+q*b-anchor[0]-q*anchor[1]) % h == 0 for a, b in moments),
+                    "every moment lies in the same index-h affine lattice")
+        if lattice_rank < 2:
+            require(len(states) <= lattice_rank+1, "free grading lowers the state dimension")
+            if q is not None:
+                require(len({a+q*b for a, b in moments}) == 1, "the free grade puts all moments on a line")
+        polygon = hull2(moments)
+        require(len(polygon) == len(states), "every distinct state moment is an exposed polygon vertex")
+        twice_area = abs(sum(a[0]*b[1]-a[1]*b[0] for a, b in zip(polygon, polygon[1:]+polygon[:1])))
+        if h:
+            require(twice_area % h == 0, "relative twice-area is integral in the grading lattice")
+        strip_twice_area = None
+        if degree is not None:
+            strip_polygon = hull2([states[b]["moment"] for b in ordered if all(a < degree for a, j in b)])
+            strip_twice_area = abs(sum(a[0]*b[1]-a[1]*b[0]
+                                      for a, b in zip(strip_polygon, strip_polygon[1:]+strip_polygon[:1])))
+            require(2*strip_twice_area <= n*n*(degree-1)*(n-1), "strip polygon obeys the shared box area bound")
+            if h:
+                require(strip_twice_area % h == 0, "strip area uses the same grading lattice")
+        return {"model": label, "characteristic": p, "quotient_length": n,
+                "generators": [[[a, b, c] for (a, b), c in sorted(f.items())] for f in generators],
+                "universal_grading_lattice_rank": lattice_rank,
+                "finite_lattice_index": index if lattice_rank == 2 else None,
+                "grading_degrees_x_y": [1, q] if q is not None else None,
+                "graded_quotient_dimensions": target_histogram,
+                "initial_ideal_count": len(states), "twice_state_polygon_area": twice_area,
+                "twice_relative_area": twice_area//h if h else None,
+                "twice_strip_polygon_area": strip_twice_area,
+                "complete_positive_fan": True, "comparison_intervals": len(samples),
+                "witnesses": [{"row_lengths": [sum(a[1] == j for a in basis)
+                                                for j in range(max(a[1] for a in basis)+1)],
+                               "moment": states[basis]["moment"],
+                               "strict_weight": states[basis]["strict_weight"],
+                               "interval_wx_wy": [str(t) if t is not None else None
+                                                  for t in states[basis]["interval"]]}
+                              for basis in ordered]}
+
+    def hull2(points):
+        points = sorted(set(points))
+        def turn(a, b, c):
+            return (b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0])
+        chains = []
+        for sequence in (points, list(reversed(points))):
+            chain = []
+            for a in sequence:
+                while len(chain) >= 2 and turn(chain[-2], chain[-1], a) <= 0:
+                    chain.pop()
+                chain.append(a)
+            chains.extend(chain[:-1])
+        return chains if len(points) > 1 else points
+
+    models = ((7, (1, 4)), (12, (1, 5)), (12, (1, 3, 5)),
+              (12, (1, 3, 4)), (18, (1, 4, 7)), (18, (1, 4, 5)))
+    for p in (2, 3, 101):
+        for n, support in models+((7, (2,)),):
+            powers = [[1]+[0]*(n-1)]
+            for j in range(n-1):
+                powers.append([sum(powers[-1][k-d] for d in support if k >= d) % p for k in range(n)])
+            residue = lambda a: tuple([0]*min(a[0], n)+powers[a[1]][:max(n-a[0], 0)]) if a[1] < n else (0,)*n
+            q, h = support[0], 0
+            for d in support:
+                h = gcd(h, d-q)
+            f = {(0, 1): 1, **{(d, 0): -1 for d in support}}
+            fixture = audit(n, p, residue, [{(n, 0): 1}, f], "truncated_polynomial_graph",
+                            q=q, h=h, degree=max(support))
+            fixture["polynomial_support"] = list(support)
+            fixtures.append(fixture)
+        n, cells = 6, tuple(product(range(3), range(2)))
+        residue = lambda a: tuple(int(a == b) for b in cells)
+        fixtures.append(audit(n, p, residue, [{(3, 0): 1}, {(0, 2): 1}], "monomial_control"))
+    return {"fixtures": fixtures, "uses_classical_lattice_vertex_bound": True,
+            "uniform_graph_bound_in_note": "g((x^n,y-G(x))) <= 3+C*n*((D-1)/h)^(1/3) for nonmonomial G of degree D<n and exact grading index h",
+            "one_offset_consequence": "g((x^n,y-x-c*x^D))=O(n) uniformly in 2<=D<n, nonzero c and the field",
+            "new_unrestricted_asymptotic": False, "novelty_established": False,
+            "scope": "Exact complete fans check intrinsic lattice index, homogeneous residue columns, fixed dimensions in every finite grade, the affine moment coset and strip budgets. No fitted growth rate or novel lattice theorem is claimed."}
+
+
 def main():
     grid = grid_controls()
     rectangles, homogeneous = [], []
@@ -1164,7 +1313,7 @@ def main():
     require(any(c["cone_counts"].get("three_generators_has_nonuniform_region", 0) > 0
                 for c in comparisons),
             "dependent-prefix regions are not confined to coordinate faces")
-    report = {"schema_version": 6, "status": "passed",
+    report = {"schema_version": 7, "status": "passed",
               "command": "python3 -B scripts/run_extremal_initial_ideals_checks.py",
               "grid_source_controls": grid, "rectangular_complete_intersections": rectangles,
               "homogeneous_controls": homogeneous,
@@ -1178,6 +1327,7 @@ def main():
               "pairwise_realizability_boundary": pairwise_realizability_controls(),
               "planar_fan_product": fan_product_controls(),
               "plane_curve_carriers": plane_curve_carrier_controls(),
+              "finite_gradings": finite_grading_controls(),
               "asymptotic_improvement_established": False, "novelty_established": False,
               "goal_complete": False,
               "scope": "Exhaustive finite primary-bound and candidate-family diagnostics. No polynomial separation, sharp unrestricted asymptotic, or algorithmic speedup is inferred.",

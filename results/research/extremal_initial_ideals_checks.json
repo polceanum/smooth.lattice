@@ -1,5 +1,5 @@
 {
-  "schema_version": 6,
+  "schema_version": 7,
   "status": "passed",
   "command": "python3 -B scripts/run_extremal_initial_ideals_checks.py",
   "grid_source_controls": {
@@ -36966,12 +36966,4950 @@
     "novelty_established": false,
     "scope": "Exact complete fans and wall lifts test the written proof. Smooth cubic jets include characteristics smaller than quotient length. A finite cyclic count gain is not an asymptotic lower family."
   },
+  "finite_gradings": {
+    "fixtures": [
+      {
+        "model": "truncated_polynomial_graph",
+        "characteristic": 2,
+        "quotient_length": 7,
+        "generators": [
+          [
+            [
+              7,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              -1
+            ],
+            [
+              4,
+              0,
+              -1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 2,
+        "finite_lattice_index": 3,
+        "grading_degrees_x_y": [
+          1,
+          1
+        ],
+        "graded_quotient_dimensions": [
+          3,
+          2,
+          2
+        ],
+        "initial_ideal_count": 4,
+        "twice_state_polygon_area": 243,
+        "twice_relative_area": 81,
+        "twice_strip_polygon_area": 54,
+        "complete_positive_fan": true,
+        "comparison_intervals": 36,
+        "witnesses": [
+          {
+            "row_lengths": [
+              7
+            ],
+            "moment": [
+              21,
+              0
+            ],
+            "strict_weight": [
+              1,
+              14
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/4"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              3
+            ],
+            "moment": [
+              9,
+              3
+            ],
+            "strict_weight": [
+              15,
+              56
+            ],
+            "interval_wx_wy": [
+              "1/4",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              1
+            ],
+            "moment": [
+              3,
+              9
+            ],
+            "strict_weight": [
+              13,
+              12
+            ],
+            "interval_wx_wy": [
+              "1",
+              "4"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              0,
+              21
+            ],
+            "strict_weight": [
+              9,
+              2
+            ],
+            "interval_wx_wy": [
+              "4",
+              null
+            ]
+          }
+        ],
+        "polynomial_support": [
+          1,
+          4
+        ]
+      },
+      {
+        "model": "truncated_polynomial_graph",
+        "characteristic": 2,
+        "quotient_length": 12,
+        "generators": [
+          [
+            [
+              12,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              -1
+            ],
+            [
+              5,
+              0,
+              -1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 2,
+        "finite_lattice_index": 4,
+        "grading_degrees_x_y": [
+          1,
+          1
+        ],
+        "graded_quotient_dimensions": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "initial_ideal_count": 6,
+        "twice_state_polygon_area": 2936,
+        "twice_relative_area": 734,
+        "twice_strip_polygon_area": 560,
+        "complete_positive_fan": true,
+        "comparison_intervals": 92,
+        "witnesses": [
+          {
+            "row_lengths": [
+              12
+            ],
+            "moment": [
+              66,
+              0
+            ],
+            "strict_weight": [
+              1,
+              24
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              5,
+              2
+            ],
+            "moment": [
+              21,
+              9
+            ],
+            "strict_weight": [
+              19,
+              90
+            ],
+            "interval_wx_wy": [
+              "1/5",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              3,
+              2,
+              2,
+              1,
+              1
+            ],
+            "moment": [
+              8,
+              22
+            ],
+            "strict_weight": [
+              23,
+              22
+            ],
+            "interval_wx_wy": [
+              "1",
+              "3"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              4,
+              34
+            ],
+            "strict_weight": [
+              19,
+              6
+            ],
+            "interval_wx_wy": [
+              "3",
+              "5"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              3,
+              39
+            ],
+            "strict_weight": [
+              21,
+              4
+            ],
+            "interval_wx_wy": [
+              "5",
+              "9"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              0,
+              66
+            ],
+            "strict_weight": [
+              19,
+              2
+            ],
+            "interval_wx_wy": [
+              "9",
+              null
+            ]
+          }
+        ],
+        "polynomial_support": [
+          1,
+          5
+        ]
+      },
+      {
+        "model": "truncated_polynomial_graph",
+        "characteristic": 2,
+        "quotient_length": 12,
+        "generators": [
+          [
+            [
+              12,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              -1
+            ],
+            [
+              3,
+              0,
+              -1
+            ],
+            [
+              5,
+              0,
+              -1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 2,
+        "finite_lattice_index": 2,
+        "grading_degrees_x_y": [
+          1,
+          1
+        ],
+        "graded_quotient_dimensions": [
+          6,
+          6
+        ],
+        "initial_ideal_count": 9,
+        "twice_state_polygon_area": 2958,
+        "twice_relative_area": 1479,
+        "twice_strip_polygon_area": 582,
+        "complete_positive_fan": true,
+        "comparison_intervals": 92,
+        "witnesses": [
+          {
+            "row_lengths": [
+              12
+            ],
+            "moment": [
+              66,
+              0
+            ],
+            "strict_weight": [
+              1,
+              24
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              5,
+              2
+            ],
+            "moment": [
+              21,
+              9
+            ],
+            "strict_weight": [
+              19,
+              90
+            ],
+            "interval_wx_wy": [
+              "1/5",
+              "1/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              4,
+              2,
+              1
+            ],
+            "moment": [
+              17,
+              11
+            ],
+            "strict_weight": [
+              23,
+              44
+            ],
+            "interval_wx_wy": [
+              "1/2",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              3,
+              3,
+              1,
+              1
+            ],
+            "moment": [
+              12,
+              16
+            ],
+            "strict_weight": [
+              23,
+              22
+            ],
+            "interval_wx_wy": [
+              "1",
+              "5/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              3,
+              3,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              9,
+              21
+            ],
+            "strict_weight": [
+              71,
+              42
+            ],
+            "interval_wx_wy": [
+              "5/3",
+              "3"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              3,
+              39
+            ],
+            "strict_weight": [
+              19,
+              6
+            ],
+            "interval_wx_wy": [
+              "3",
+              "7"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              2,
+              46
+            ],
+            "strict_weight": [
+              15,
+              2
+            ],
+            "interval_wx_wy": [
+              "7",
+              "9"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              1,
+              55
+            ],
+            "strict_weight": [
+              19,
+              2
+            ],
+            "interval_wx_wy": [
+              "9",
+              "11"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              0,
+              66
+            ],
+            "strict_weight": [
+              23,
+              2
+            ],
+            "interval_wx_wy": [
+              "11",
+              null
+            ]
+          }
+        ],
+        "polynomial_support": [
+          1,
+          3,
+          5
+        ]
+      },
+      {
+        "model": "truncated_polynomial_graph",
+        "characteristic": 2,
+        "quotient_length": 12,
+        "generators": [
+          [
+            [
+              12,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              -1
+            ],
+            [
+              3,
+              0,
+              -1
+            ],
+            [
+              4,
+              0,
+              -1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 2,
+        "finite_lattice_index": 1,
+        "grading_degrees_x_y": [
+          1,
+          1
+        ],
+        "graded_quotient_dimensions": [
+          12
+        ],
+        "initial_ideal_count": 9,
+        "twice_state_polygon_area": 2850,
+        "twice_relative_area": 2850,
+        "twice_strip_polygon_area": 474,
+        "complete_positive_fan": true,
+        "comparison_intervals": 92,
+        "witnesses": [
+          {
+            "row_lengths": [
+              12
+            ],
+            "moment": [
+              66,
+              0
+            ],
+            "strict_weight": [
+              1,
+              24
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/4"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              4,
+              4
+            ],
+            "moment": [
+              18,
+              12
+            ],
+            "strict_weight": [
+              23,
+              88
+            ],
+            "interval_wx_wy": [
+              "1/4",
+              "1/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              4,
+              3,
+              1
+            ],
+            "moment": [
+              15,
+              13
+            ],
+            "strict_weight": [
+              23,
+              66
+            ],
+            "interval_wx_wy": [
+              "1/3",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              4,
+              2,
+              2
+            ],
+            "moment": [
+              14,
+              14
+            ],
+            "strict_weight": [
+              23,
+              22
+            ],
+            "interval_wx_wy": [
+              "1",
+              "4/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              3,
+              2,
+              2,
+              1,
+              1
+            ],
+            "moment": [
+              8,
+              22
+            ],
+            "strict_weight": [
+              65,
+              48
+            ],
+            "interval_wx_wy": [
+              "4/3",
+              "3"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              3,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              7,
+              25
+            ],
+            "strict_weight": [
+              19,
+              6
+            ],
+            "interval_wx_wy": [
+              "3",
+              "7/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              3,
+              39
+            ],
+            "strict_weight": [
+              43,
+              12
+            ],
+            "interval_wx_wy": [
+              "7/2",
+              "8"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              1,
+              55
+            ],
+            "strict_weight": [
+              17,
+              2
+            ],
+            "interval_wx_wy": [
+              "8",
+              "11"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              0,
+              66
+            ],
+            "strict_weight": [
+              23,
+              2
+            ],
+            "interval_wx_wy": [
+              "11",
+              null
+            ]
+          }
+        ],
+        "polynomial_support": [
+          1,
+          3,
+          4
+        ]
+      },
+      {
+        "model": "truncated_polynomial_graph",
+        "characteristic": 2,
+        "quotient_length": 18,
+        "generators": [
+          [
+            [
+              18,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              -1
+            ],
+            [
+              4,
+              0,
+              -1
+            ],
+            [
+              7,
+              0,
+              -1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 2,
+        "finite_lattice_index": 3,
+        "grading_degrees_x_y": [
+          1,
+          1
+        ],
+        "graded_quotient_dimensions": [
+          6,
+          6,
+          6
+        ],
+        "initial_ideal_count": 10,
+        "twice_state_polygon_area": 17589,
+        "twice_relative_area": 5863,
+        "twice_strip_polygon_area": 3819,
+        "complete_positive_fan": true,
+        "comparison_intervals": 204,
+        "witnesses": [
+          {
+            "row_lengths": [
+              18
+            ],
+            "moment": [
+              153,
+              0
+            ],
+            "strict_weight": [
+              1,
+              36
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/7"
+            ]
+          },
+          {
+            "row_lengths": [
+              7,
+              7,
+              4
+            ],
+            "moment": [
+              48,
+              15
+            ],
+            "strict_weight": [
+              27,
+              182
+            ],
+            "interval_wx_wy": [
+              "1/7",
+              "2/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              7,
+              5,
+              4,
+              2
+            ],
+            "moment": [
+              38,
+              19
+            ],
+            "strict_weight": [
+              69,
+              170
+            ],
+            "interval_wx_wy": [
+              "2/5",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              3,
+              3,
+              3,
+              2,
+              2
+            ],
+            "moment": [
+              21,
+              36
+            ],
+            "strict_weight": [
+              35,
+              34
+            ],
+            "interval_wx_wy": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              3,
+              3,
+              3,
+              2,
+              2,
+              2
+            ],
+            "moment": [
+              15,
+              48
+            ],
+            "strict_weight": [
+              33,
+              16
+            ],
+            "interval_wx_wy": [
+              "2",
+              "5/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              3,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1
+            ],
+            "moment": [
+              11,
+              58
+            ],
+            "strict_weight": [
+              71,
+              28
+            ],
+            "interval_wx_wy": [
+              "5/2",
+              "4"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              8,
+              70
+            ],
+            "strict_weight": [
+              33,
+              8
+            ],
+            "interval_wx_wy": [
+              "4",
+              "11/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              6,
+              81
+            ],
+            "strict_weight": [
+              67,
+              12
+            ],
+            "interval_wx_wy": [
+              "11/2",
+              "10"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              2,
+              121
+            ],
+            "strict_weight": [
+              21,
+              2
+            ],
+            "interval_wx_wy": [
+              "10",
+              "16"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              0,
+              153
+            ],
+            "strict_weight": [
+              33,
+              2
+            ],
+            "interval_wx_wy": [
+              "16",
+              null
+            ]
+          }
+        ],
+        "polynomial_support": [
+          1,
+          4,
+          7
+        ]
+      },
+      {
+        "model": "truncated_polynomial_graph",
+        "characteristic": 2,
+        "quotient_length": 18,
+        "generators": [
+          [
+            [
+              18,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              -1
+            ],
+            [
+              4,
+              0,
+              -1
+            ],
+            [
+              5,
+              0,
+              -1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 2,
+        "finite_lattice_index": 1,
+        "grading_degrees_x_y": [
+          1,
+          1
+        ],
+        "graded_quotient_dimensions": [
+          18
+        ],
+        "initial_ideal_count": 6,
+        "twice_state_polygon_area": 16800,
+        "twice_relative_area": 16800,
+        "twice_strip_polygon_area": 2112,
+        "complete_positive_fan": true,
+        "comparison_intervals": 204,
+        "witnesses": [
+          {
+            "row_lengths": [
+              18
+            ],
+            "moment": [
+              153,
+              0
+            ],
+            "strict_weight": [
+              1,
+              36
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              5,
+              5,
+              3
+            ],
+            "moment": [
+              33,
+              24
+            ],
+            "strict_weight": [
+              29,
+              140
+            ],
+            "interval_wx_wy": [
+              "1/5",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              4,
+              4,
+              2,
+              2,
+              1,
+              1
+            ],
+            "moment": [
+              20,
+              37
+            ],
+            "strict_weight": [
+              35,
+              34
+            ],
+            "interval_wx_wy": [
+              "1",
+              "7/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              3,
+              3,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              11,
+              58
+            ],
+            "strict_weight": [
+              71,
+              30
+            ],
+            "interval_wx_wy": [
+              "7/3",
+              "5"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              5,
+              88
+            ],
+            "strict_weight": [
+              31,
+              6
+            ],
+            "interval_wx_wy": [
+              "5",
+              "13"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              0,
+              153
+            ],
+            "strict_weight": [
+              27,
+              2
+            ],
+            "interval_wx_wy": [
+              "13",
+              null
+            ]
+          }
+        ],
+        "polynomial_support": [
+          1,
+          4,
+          5
+        ]
+      },
+      {
+        "model": "truncated_polynomial_graph",
+        "characteristic": 2,
+        "quotient_length": 7,
+        "generators": [
+          [
+            [
+              7,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              2,
+              0,
+              -1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 1,
+        "finite_lattice_index": null,
+        "grading_degrees_x_y": [
+          1,
+          2
+        ],
+        "graded_quotient_dimensions": null,
+        "initial_ideal_count": 2,
+        "twice_state_polygon_area": 0,
+        "twice_relative_area": null,
+        "twice_strip_polygon_area": 0,
+        "complete_positive_fan": true,
+        "comparison_intervals": 36,
+        "witnesses": [
+          {
+            "row_lengths": [
+              7
+            ],
+            "moment": [
+              21,
+              0
+            ],
+            "strict_weight": [
+              1,
+              14
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              1
+            ],
+            "moment": [
+              3,
+              9
+            ],
+            "strict_weight": [
+              15,
+              28
+            ],
+            "interval_wx_wy": [
+              "1/2",
+              null
+            ]
+          }
+        ],
+        "polynomial_support": [
+          2
+        ]
+      },
+      {
+        "model": "monomial_control",
+        "characteristic": 2,
+        "quotient_length": 6,
+        "generators": [
+          [
+            [
+              3,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              2,
+              1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 0,
+        "finite_lattice_index": null,
+        "grading_degrees_x_y": null,
+        "graded_quotient_dimensions": null,
+        "initial_ideal_count": 1,
+        "twice_state_polygon_area": 0,
+        "twice_relative_area": null,
+        "twice_strip_polygon_area": null,
+        "complete_positive_fan": true,
+        "comparison_intervals": 24,
+        "witnesses": [
+          {
+            "row_lengths": [
+              3,
+              3
+            ],
+            "moment": [
+              6,
+              3
+            ],
+            "strict_weight": [
+              1,
+              12
+            ],
+            "interval_wx_wy": [
+              "0",
+              null
+            ]
+          }
+        ]
+      },
+      {
+        "model": "truncated_polynomial_graph",
+        "characteristic": 3,
+        "quotient_length": 7,
+        "generators": [
+          [
+            [
+              7,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              -1
+            ],
+            [
+              4,
+              0,
+              -1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 2,
+        "finite_lattice_index": 3,
+        "grading_degrees_x_y": [
+          1,
+          1
+        ],
+        "graded_quotient_dimensions": [
+          3,
+          2,
+          2
+        ],
+        "initial_ideal_count": 4,
+        "twice_state_polygon_area": 243,
+        "twice_relative_area": 81,
+        "twice_strip_polygon_area": 54,
+        "complete_positive_fan": true,
+        "comparison_intervals": 36,
+        "witnesses": [
+          {
+            "row_lengths": [
+              7
+            ],
+            "moment": [
+              21,
+              0
+            ],
+            "strict_weight": [
+              1,
+              14
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/4"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              3
+            ],
+            "moment": [
+              9,
+              3
+            ],
+            "strict_weight": [
+              15,
+              56
+            ],
+            "interval_wx_wy": [
+              "1/4",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              1
+            ],
+            "moment": [
+              3,
+              9
+            ],
+            "strict_weight": [
+              13,
+              12
+            ],
+            "interval_wx_wy": [
+              "1",
+              "4"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              0,
+              21
+            ],
+            "strict_weight": [
+              9,
+              2
+            ],
+            "interval_wx_wy": [
+              "4",
+              null
+            ]
+          }
+        ],
+        "polynomial_support": [
+          1,
+          4
+        ]
+      },
+      {
+        "model": "truncated_polynomial_graph",
+        "characteristic": 3,
+        "quotient_length": 12,
+        "generators": [
+          [
+            [
+              12,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              -1
+            ],
+            [
+              5,
+              0,
+              -1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 2,
+        "finite_lattice_index": 4,
+        "grading_degrees_x_y": [
+          1,
+          1
+        ],
+        "graded_quotient_dimensions": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "initial_ideal_count": 6,
+        "twice_state_polygon_area": 2936,
+        "twice_relative_area": 734,
+        "twice_strip_polygon_area": 560,
+        "complete_positive_fan": true,
+        "comparison_intervals": 92,
+        "witnesses": [
+          {
+            "row_lengths": [
+              12
+            ],
+            "moment": [
+              66,
+              0
+            ],
+            "strict_weight": [
+              1,
+              24
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              5,
+              2
+            ],
+            "moment": [
+              21,
+              9
+            ],
+            "strict_weight": [
+              19,
+              90
+            ],
+            "interval_wx_wy": [
+              "1/5",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              3,
+              2,
+              2,
+              1,
+              1
+            ],
+            "moment": [
+              8,
+              22
+            ],
+            "strict_weight": [
+              23,
+              22
+            ],
+            "interval_wx_wy": [
+              "1",
+              "3"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              4,
+              34
+            ],
+            "strict_weight": [
+              19,
+              6
+            ],
+            "interval_wx_wy": [
+              "3",
+              "5"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              3,
+              39
+            ],
+            "strict_weight": [
+              21,
+              4
+            ],
+            "interval_wx_wy": [
+              "5",
+              "9"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              0,
+              66
+            ],
+            "strict_weight": [
+              19,
+              2
+            ],
+            "interval_wx_wy": [
+              "9",
+              null
+            ]
+          }
+        ],
+        "polynomial_support": [
+          1,
+          5
+        ]
+      },
+      {
+        "model": "truncated_polynomial_graph",
+        "characteristic": 3,
+        "quotient_length": 12,
+        "generators": [
+          [
+            [
+              12,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              -1
+            ],
+            [
+              3,
+              0,
+              -1
+            ],
+            [
+              5,
+              0,
+              -1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 2,
+        "finite_lattice_index": 2,
+        "grading_degrees_x_y": [
+          1,
+          1
+        ],
+        "graded_quotient_dimensions": [
+          6,
+          6
+        ],
+        "initial_ideal_count": 10,
+        "twice_state_polygon_area": 2968,
+        "twice_relative_area": 1484,
+        "twice_strip_polygon_area": 592,
+        "complete_positive_fan": true,
+        "comparison_intervals": 92,
+        "witnesses": [
+          {
+            "row_lengths": [
+              12
+            ],
+            "moment": [
+              66,
+              0
+            ],
+            "strict_weight": [
+              1,
+              24
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              5,
+              2
+            ],
+            "moment": [
+              21,
+              9
+            ],
+            "strict_weight": [
+              19,
+              90
+            ],
+            "interval_wx_wy": [
+              "1/5",
+              "1/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              4,
+              2,
+              1
+            ],
+            "moment": [
+              17,
+              11
+            ],
+            "strict_weight": [
+              23,
+              44
+            ],
+            "interval_wx_wy": [
+              "1/2",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              4,
+              2,
+              1,
+              1
+            ],
+            "moment": [
+              13,
+              15
+            ],
+            "strict_weight": [
+              23,
+              22
+            ],
+            "interval_wx_wy": [
+              "1",
+              "5/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              3,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              7,
+              25
+            ],
+            "strict_weight": [
+              71,
+              42
+            ],
+            "interval_wx_wy": [
+              "5/3",
+              "3"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              5,
+              31
+            ],
+            "strict_weight": [
+              19,
+              6
+            ],
+            "interval_wx_wy": [
+              "3",
+              "4"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              3,
+              39
+            ],
+            "strict_weight": [
+              17,
+              4
+            ],
+            "interval_wx_wy": [
+              "4",
+              "7"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              2,
+              46
+            ],
+            "strict_weight": [
+              15,
+              2
+            ],
+            "interval_wx_wy": [
+              "7",
+              "9"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              1,
+              55
+            ],
+            "strict_weight": [
+              19,
+              2
+            ],
+            "interval_wx_wy": [
+              "9",
+              "11"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              0,
+              66
+            ],
+            "strict_weight": [
+              23,
+              2
+            ],
+            "interval_wx_wy": [
+              "11",
+              null
+            ]
+          }
+        ],
+        "polynomial_support": [
+          1,
+          3,
+          5
+        ]
+      },
+      {
+        "model": "truncated_polynomial_graph",
+        "characteristic": 3,
+        "quotient_length": 12,
+        "generators": [
+          [
+            [
+              12,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              -1
+            ],
+            [
+              3,
+              0,
+              -1
+            ],
+            [
+              4,
+              0,
+              -1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 2,
+        "finite_lattice_index": 1,
+        "grading_degrees_x_y": [
+          1,
+          1
+        ],
+        "graded_quotient_dimensions": [
+          12
+        ],
+        "initial_ideal_count": 6,
+        "twice_state_polygon_area": 2799,
+        "twice_relative_area": 2799,
+        "twice_strip_polygon_area": 423,
+        "complete_positive_fan": true,
+        "comparison_intervals": 92,
+        "witnesses": [
+          {
+            "row_lengths": [
+              12
+            ],
+            "moment": [
+              66,
+              0
+            ],
+            "strict_weight": [
+              1,
+              24
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/4"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              4,
+              4
+            ],
+            "moment": [
+              18,
+              12
+            ],
+            "strict_weight": [
+              23,
+              88
+            ],
+            "interval_wx_wy": [
+              "1/4",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              3,
+              2,
+              2,
+              1,
+              1
+            ],
+            "moment": [
+              8,
+              22
+            ],
+            "strict_weight": [
+              23,
+              22
+            ],
+            "interval_wx_wy": [
+              "1",
+              "5/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              6,
+              27
+            ],
+            "strict_weight": [
+              31,
+              12
+            ],
+            "interval_wx_wy": [
+              "5/2",
+              "4"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1
+            ],
+            "moment": [
+              5,
+              31
+            ],
+            "strict_weight": [
+              17,
+              4
+            ],
+            "interval_wx_wy": [
+              "4",
+              "7"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              0,
+              66
+            ],
+            "strict_weight": [
+              15,
+              2
+            ],
+            "interval_wx_wy": [
+              "7",
+              null
+            ]
+          }
+        ],
+        "polynomial_support": [
+          1,
+          3,
+          4
+        ]
+      },
+      {
+        "model": "truncated_polynomial_graph",
+        "characteristic": 3,
+        "quotient_length": 18,
+        "generators": [
+          [
+            [
+              18,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              -1
+            ],
+            [
+              4,
+              0,
+              -1
+            ],
+            [
+              7,
+              0,
+              -1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 2,
+        "finite_lattice_index": 3,
+        "grading_degrees_x_y": [
+          1,
+          1
+        ],
+        "graded_quotient_dimensions": [
+          6,
+          6,
+          6
+        ],
+        "initial_ideal_count": 7,
+        "twice_state_polygon_area": 17430,
+        "twice_relative_area": 5810,
+        "twice_strip_polygon_area": 3660,
+        "complete_positive_fan": true,
+        "comparison_intervals": 204,
+        "witnesses": [
+          {
+            "row_lengths": [
+              18
+            ],
+            "moment": [
+              153,
+              0
+            ],
+            "strict_weight": [
+              1,
+              36
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/7"
+            ]
+          },
+          {
+            "row_lengths": [
+              7,
+              7,
+              4
+            ],
+            "moment": [
+              48,
+              15
+            ],
+            "strict_weight": [
+              27,
+              182
+            ],
+            "interval_wx_wy": [
+              "1/7",
+              "2/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              7,
+              5,
+              4,
+              2
+            ],
+            "moment": [
+              38,
+              19
+            ],
+            "strict_weight": [
+              69,
+              170
+            ],
+            "interval_wx_wy": [
+              "2/5",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              4,
+              3,
+              3,
+              2,
+              2
+            ],
+            "moment": [
+              20,
+              37
+            ],
+            "strict_weight": [
+              35,
+              34
+            ],
+            "interval_wx_wy": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              3,
+              3,
+              3,
+              2,
+              2,
+              1,
+              1
+            ],
+            "moment": [
+              14,
+              49
+            ],
+            "strict_weight": [
+              33,
+              16
+            ],
+            "interval_wx_wy": [
+              "2",
+              "4"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1
+            ],
+            "moment": [
+              8,
+              73
+            ],
+            "strict_weight": [
+              33,
+              8
+            ],
+            "interval_wx_wy": [
+              "4",
+              "10"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              0,
+              153
+            ],
+            "strict_weight": [
+              21,
+              2
+            ],
+            "interval_wx_wy": [
+              "10",
+              null
+            ]
+          }
+        ],
+        "polynomial_support": [
+          1,
+          4,
+          7
+        ]
+      },
+      {
+        "model": "truncated_polynomial_graph",
+        "characteristic": 3,
+        "quotient_length": 18,
+        "generators": [
+          [
+            [
+              18,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              -1
+            ],
+            [
+              4,
+              0,
+              -1
+            ],
+            [
+              5,
+              0,
+              -1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 2,
+        "finite_lattice_index": 1,
+        "grading_degrees_x_y": [
+          1,
+          1
+        ],
+        "graded_quotient_dimensions": [
+          18
+        ],
+        "initial_ideal_count": 13,
+        "twice_state_polygon_area": 16909,
+        "twice_relative_area": 16909,
+        "twice_strip_polygon_area": 2221,
+        "complete_positive_fan": true,
+        "comparison_intervals": 204,
+        "witnesses": [
+          {
+            "row_lengths": [
+              18
+            ],
+            "moment": [
+              153,
+              0
+            ],
+            "strict_weight": [
+              1,
+              36
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              5,
+              5,
+              3
+            ],
+            "moment": [
+              33,
+              24
+            ],
+            "strict_weight": [
+              29,
+              140
+            ],
+            "interval_wx_wy": [
+              "1/5",
+              "1/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              5,
+              4,
+              3,
+              1
+            ],
+            "moment": [
+              29,
+              26
+            ],
+            "strict_weight": [
+              35,
+              68
+            ],
+            "interval_wx_wy": [
+              "1/2",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              4,
+              4,
+              2,
+              2,
+              1
+            ],
+            "moment": [
+              24,
+              31
+            ],
+            "strict_weight": [
+              35,
+              34
+            ],
+            "interval_wx_wy": [
+              "1",
+              "4/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              4,
+              3,
+              2,
+              2,
+              1,
+              1
+            ],
+            "moment": [
+              21,
+              35
+            ],
+            "strict_weight": [
+              89,
+              66
+            ],
+            "interval_wx_wy": [
+              "4/3",
+              "5/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              4,
+              3,
+              2,
+              2,
+              2,
+              1
+            ],
+            "moment": [
+              18,
+              40
+            ],
+            "strict_weight": [
+              101,
+              60
+            ],
+            "interval_wx_wy": [
+              "5/3",
+              "2"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              16,
+              44
+            ],
+            "strict_weight": [
+              33,
+              16
+            ],
+            "interval_wx_wy": [
+              "2",
+              "5/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              3,
+              3,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              12,
+              54
+            ],
+            "strict_weight": [
+              71,
+              28
+            ],
+            "interval_wx_wy": [
+              "5/2",
+              "4"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              8,
+              70
+            ],
+            "strict_weight": [
+              33,
+              8
+            ],
+            "interval_wx_wy": [
+              "4",
+              "11/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              6,
+              81
+            ],
+            "strict_weight": [
+              67,
+              12
+            ],
+            "interval_wx_wy": [
+              "11/2",
+              "7"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              5,
+              88
+            ],
+            "strict_weight": [
+              29,
+              4
+            ],
+            "interval_wx_wy": [
+              "7",
+              "9"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              4,
+              97
+            ],
+            "strict_weight": [
+              19,
+              2
+            ],
+            "interval_wx_wy": [
+              "9",
+              "14"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              0,
+              153
+            ],
+            "strict_weight": [
+              29,
+              2
+            ],
+            "interval_wx_wy": [
+              "14",
+              null
+            ]
+          }
+        ],
+        "polynomial_support": [
+          1,
+          4,
+          5
+        ]
+      },
+      {
+        "model": "truncated_polynomial_graph",
+        "characteristic": 3,
+        "quotient_length": 7,
+        "generators": [
+          [
+            [
+              7,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              2,
+              0,
+              -1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 1,
+        "finite_lattice_index": null,
+        "grading_degrees_x_y": [
+          1,
+          2
+        ],
+        "graded_quotient_dimensions": null,
+        "initial_ideal_count": 2,
+        "twice_state_polygon_area": 0,
+        "twice_relative_area": null,
+        "twice_strip_polygon_area": 0,
+        "complete_positive_fan": true,
+        "comparison_intervals": 36,
+        "witnesses": [
+          {
+            "row_lengths": [
+              7
+            ],
+            "moment": [
+              21,
+              0
+            ],
+            "strict_weight": [
+              1,
+              14
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              1
+            ],
+            "moment": [
+              3,
+              9
+            ],
+            "strict_weight": [
+              15,
+              28
+            ],
+            "interval_wx_wy": [
+              "1/2",
+              null
+            ]
+          }
+        ],
+        "polynomial_support": [
+          2
+        ]
+      },
+      {
+        "model": "monomial_control",
+        "characteristic": 3,
+        "quotient_length": 6,
+        "generators": [
+          [
+            [
+              3,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              2,
+              1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 0,
+        "finite_lattice_index": null,
+        "grading_degrees_x_y": null,
+        "graded_quotient_dimensions": null,
+        "initial_ideal_count": 1,
+        "twice_state_polygon_area": 0,
+        "twice_relative_area": null,
+        "twice_strip_polygon_area": null,
+        "complete_positive_fan": true,
+        "comparison_intervals": 24,
+        "witnesses": [
+          {
+            "row_lengths": [
+              3,
+              3
+            ],
+            "moment": [
+              6,
+              3
+            ],
+            "strict_weight": [
+              1,
+              12
+            ],
+            "interval_wx_wy": [
+              "0",
+              null
+            ]
+          }
+        ]
+      },
+      {
+        "model": "truncated_polynomial_graph",
+        "characteristic": 101,
+        "quotient_length": 7,
+        "generators": [
+          [
+            [
+              7,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              -1
+            ],
+            [
+              4,
+              0,
+              -1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 2,
+        "finite_lattice_index": 3,
+        "grading_degrees_x_y": [
+          1,
+          1
+        ],
+        "graded_quotient_dimensions": [
+          3,
+          2,
+          2
+        ],
+        "initial_ideal_count": 4,
+        "twice_state_polygon_area": 243,
+        "twice_relative_area": 81,
+        "twice_strip_polygon_area": 54,
+        "complete_positive_fan": true,
+        "comparison_intervals": 36,
+        "witnesses": [
+          {
+            "row_lengths": [
+              7
+            ],
+            "moment": [
+              21,
+              0
+            ],
+            "strict_weight": [
+              1,
+              14
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/4"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              3
+            ],
+            "moment": [
+              9,
+              3
+            ],
+            "strict_weight": [
+              15,
+              56
+            ],
+            "interval_wx_wy": [
+              "1/4",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              1
+            ],
+            "moment": [
+              3,
+              9
+            ],
+            "strict_weight": [
+              13,
+              12
+            ],
+            "interval_wx_wy": [
+              "1",
+              "4"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              0,
+              21
+            ],
+            "strict_weight": [
+              9,
+              2
+            ],
+            "interval_wx_wy": [
+              "4",
+              null
+            ]
+          }
+        ],
+        "polynomial_support": [
+          1,
+          4
+        ]
+      },
+      {
+        "model": "truncated_polynomial_graph",
+        "characteristic": 101,
+        "quotient_length": 12,
+        "generators": [
+          [
+            [
+              12,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              -1
+            ],
+            [
+              5,
+              0,
+              -1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 2,
+        "finite_lattice_index": 4,
+        "grading_degrees_x_y": [
+          1,
+          1
+        ],
+        "graded_quotient_dimensions": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "initial_ideal_count": 6,
+        "twice_state_polygon_area": 2936,
+        "twice_relative_area": 734,
+        "twice_strip_polygon_area": 560,
+        "complete_positive_fan": true,
+        "comparison_intervals": 92,
+        "witnesses": [
+          {
+            "row_lengths": [
+              12
+            ],
+            "moment": [
+              66,
+              0
+            ],
+            "strict_weight": [
+              1,
+              24
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              5,
+              2
+            ],
+            "moment": [
+              21,
+              9
+            ],
+            "strict_weight": [
+              19,
+              90
+            ],
+            "interval_wx_wy": [
+              "1/5",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              3,
+              2,
+              2,
+              1,
+              1
+            ],
+            "moment": [
+              8,
+              22
+            ],
+            "strict_weight": [
+              23,
+              22
+            ],
+            "interval_wx_wy": [
+              "1",
+              "3"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              4,
+              34
+            ],
+            "strict_weight": [
+              19,
+              6
+            ],
+            "interval_wx_wy": [
+              "3",
+              "5"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              3,
+              39
+            ],
+            "strict_weight": [
+              21,
+              4
+            ],
+            "interval_wx_wy": [
+              "5",
+              "9"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              0,
+              66
+            ],
+            "strict_weight": [
+              19,
+              2
+            ],
+            "interval_wx_wy": [
+              "9",
+              null
+            ]
+          }
+        ],
+        "polynomial_support": [
+          1,
+          5
+        ]
+      },
+      {
+        "model": "truncated_polynomial_graph",
+        "characteristic": 101,
+        "quotient_length": 12,
+        "generators": [
+          [
+            [
+              12,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              -1
+            ],
+            [
+              3,
+              0,
+              -1
+            ],
+            [
+              5,
+              0,
+              -1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 2,
+        "finite_lattice_index": 2,
+        "grading_degrees_x_y": [
+          1,
+          1
+        ],
+        "graded_quotient_dimensions": [
+          6,
+          6
+        ],
+        "initial_ideal_count": 10,
+        "twice_state_polygon_area": 2982,
+        "twice_relative_area": 1491,
+        "twice_strip_polygon_area": 606,
+        "complete_positive_fan": true,
+        "comparison_intervals": 92,
+        "witnesses": [
+          {
+            "row_lengths": [
+              12
+            ],
+            "moment": [
+              66,
+              0
+            ],
+            "strict_weight": [
+              1,
+              24
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              5,
+              2
+            ],
+            "moment": [
+              21,
+              9
+            ],
+            "strict_weight": [
+              19,
+              90
+            ],
+            "interval_wx_wy": [
+              "1/5",
+              "1/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              4,
+              2,
+              1
+            ],
+            "moment": [
+              17,
+              11
+            ],
+            "strict_weight": [
+              23,
+              44
+            ],
+            "interval_wx_wy": [
+              "1/2",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              3,
+              2,
+              2,
+              1
+            ],
+            "moment": [
+              11,
+              17
+            ],
+            "strict_weight": [
+              23,
+              22
+            ],
+            "interval_wx_wy": [
+              "1",
+              "5/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              3,
+              2,
+              2,
+              1,
+              1
+            ],
+            "moment": [
+              8,
+              22
+            ],
+            "strict_weight": [
+              71,
+              42
+            ],
+            "interval_wx_wy": [
+              "5/3",
+              "3"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              4,
+              34
+            ],
+            "strict_weight": [
+              19,
+              6
+            ],
+            "interval_wx_wy": [
+              "3",
+              "5"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              3,
+              39
+            ],
+            "strict_weight": [
+              21,
+              4
+            ],
+            "interval_wx_wy": [
+              "5",
+              "7"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              2,
+              46
+            ],
+            "strict_weight": [
+              15,
+              2
+            ],
+            "interval_wx_wy": [
+              "7",
+              "9"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              1,
+              55
+            ],
+            "strict_weight": [
+              19,
+              2
+            ],
+            "interval_wx_wy": [
+              "9",
+              "11"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              0,
+              66
+            ],
+            "strict_weight": [
+              23,
+              2
+            ],
+            "interval_wx_wy": [
+              "11",
+              null
+            ]
+          }
+        ],
+        "polynomial_support": [
+          1,
+          3,
+          5
+        ]
+      },
+      {
+        "model": "truncated_polynomial_graph",
+        "characteristic": 101,
+        "quotient_length": 12,
+        "generators": [
+          [
+            [
+              12,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              -1
+            ],
+            [
+              3,
+              0,
+              -1
+            ],
+            [
+              4,
+              0,
+              -1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 2,
+        "finite_lattice_index": 1,
+        "grading_degrees_x_y": [
+          1,
+          1
+        ],
+        "graded_quotient_dimensions": [
+          12
+        ],
+        "initial_ideal_count": 11,
+        "twice_state_polygon_area": 2868,
+        "twice_relative_area": 2868,
+        "twice_strip_polygon_area": 492,
+        "complete_positive_fan": true,
+        "comparison_intervals": 92,
+        "witnesses": [
+          {
+            "row_lengths": [
+              12
+            ],
+            "moment": [
+              66,
+              0
+            ],
+            "strict_weight": [
+              1,
+              24
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/4"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              4,
+              4
+            ],
+            "moment": [
+              18,
+              12
+            ],
+            "strict_weight": [
+              23,
+              88
+            ],
+            "interval_wx_wy": [
+              "1/4",
+              "1/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              4,
+              3,
+              1
+            ],
+            "moment": [
+              15,
+              13
+            ],
+            "strict_weight": [
+              23,
+              66
+            ],
+            "interval_wx_wy": [
+              "1/3",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              3,
+              2,
+              2,
+              1
+            ],
+            "moment": [
+              11,
+              17
+            ],
+            "strict_weight": [
+              23,
+              22
+            ],
+            "interval_wx_wy": [
+              "1",
+              "5/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              3,
+              2,
+              2,
+              1,
+              1
+            ],
+            "moment": [
+              8,
+              22
+            ],
+            "strict_weight": [
+              71,
+              42
+            ],
+            "interval_wx_wy": [
+              "5/3",
+              "5/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              6,
+              27
+            ],
+            "strict_weight": [
+              31,
+              12
+            ],
+            "interval_wx_wy": [
+              "5/2",
+              "7/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              4,
+              34
+            ],
+            "strict_weight": [
+              43,
+              12
+            ],
+            "interval_wx_wy": [
+              "7/2",
+              "5"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              3,
+              39
+            ],
+            "strict_weight": [
+              21,
+              4
+            ],
+            "interval_wx_wy": [
+              "5",
+              "7"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              2,
+              46
+            ],
+            "strict_weight": [
+              15,
+              2
+            ],
+            "interval_wx_wy": [
+              "7",
+              "9"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              1,
+              55
+            ],
+            "strict_weight": [
+              19,
+              2
+            ],
+            "interval_wx_wy": [
+              "9",
+              "11"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              0,
+              66
+            ],
+            "strict_weight": [
+              23,
+              2
+            ],
+            "interval_wx_wy": [
+              "11",
+              null
+            ]
+          }
+        ],
+        "polynomial_support": [
+          1,
+          3,
+          4
+        ]
+      },
+      {
+        "model": "truncated_polynomial_graph",
+        "characteristic": 101,
+        "quotient_length": 18,
+        "generators": [
+          [
+            [
+              18,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              -1
+            ],
+            [
+              4,
+              0,
+              -1
+            ],
+            [
+              7,
+              0,
+              -1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 2,
+        "finite_lattice_index": 3,
+        "grading_degrees_x_y": [
+          1,
+          1
+        ],
+        "graded_quotient_dimensions": [
+          6,
+          6,
+          6
+        ],
+        "initial_ideal_count": 12,
+        "twice_state_polygon_area": 17637,
+        "twice_relative_area": 5879,
+        "twice_strip_polygon_area": 3867,
+        "complete_positive_fan": true,
+        "comparison_intervals": 204,
+        "witnesses": [
+          {
+            "row_lengths": [
+              18
+            ],
+            "moment": [
+              153,
+              0
+            ],
+            "strict_weight": [
+              1,
+              36
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/7"
+            ]
+          },
+          {
+            "row_lengths": [
+              7,
+              7,
+              4
+            ],
+            "moment": [
+              48,
+              15
+            ],
+            "strict_weight": [
+              27,
+              182
+            ],
+            "interval_wx_wy": [
+              "1/7",
+              "2/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              7,
+              5,
+              4,
+              2
+            ],
+            "moment": [
+              38,
+              19
+            ],
+            "strict_weight": [
+              69,
+              170
+            ],
+            "interval_wx_wy": [
+              "2/5",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              4,
+              3,
+              3,
+              2,
+              1,
+              1
+            ],
+            "moment": [
+              19,
+              38
+            ],
+            "strict_weight": [
+              35,
+              34
+            ],
+            "interval_wx_wy": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              16,
+              44
+            ],
+            "strict_weight": [
+              33,
+              16
+            ],
+            "interval_wx_wy": [
+              "2",
+              "5/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              3,
+              3,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              12,
+              54
+            ],
+            "strict_weight": [
+              71,
+              28
+            ],
+            "interval_wx_wy": [
+              "5/2",
+              "4"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              8,
+              70
+            ],
+            "strict_weight": [
+              33,
+              8
+            ],
+            "interval_wx_wy": [
+              "4",
+              "11/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              6,
+              81
+            ],
+            "strict_weight": [
+              67,
+              12
+            ],
+            "interval_wx_wy": [
+              "11/2",
+              "7"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              5,
+              88
+            ],
+            "strict_weight": [
+              29,
+              4
+            ],
+            "interval_wx_wy": [
+              "7",
+              "10"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              3,
+              108
+            ],
+            "strict_weight": [
+              21,
+              2
+            ],
+            "interval_wx_wy": [
+              "10",
+              "13"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              2,
+              121
+            ],
+            "strict_weight": [
+              27,
+              2
+            ],
+            "interval_wx_wy": [
+              "13",
+              "16"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              0,
+              153
+            ],
+            "strict_weight": [
+              33,
+              2
+            ],
+            "interval_wx_wy": [
+              "16",
+              null
+            ]
+          }
+        ],
+        "polynomial_support": [
+          1,
+          4,
+          7
+        ]
+      },
+      {
+        "model": "truncated_polynomial_graph",
+        "characteristic": 101,
+        "quotient_length": 18,
+        "generators": [
+          [
+            [
+              18,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              -1
+            ],
+            [
+              4,
+              0,
+              -1
+            ],
+            [
+              5,
+              0,
+              -1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 2,
+        "finite_lattice_index": 1,
+        "grading_degrees_x_y": [
+          1,
+          1
+        ],
+        "graded_quotient_dimensions": [
+          18
+        ],
+        "initial_ideal_count": 16,
+        "twice_state_polygon_area": 16937,
+        "twice_relative_area": 16937,
+        "twice_strip_polygon_area": 2249,
+        "complete_positive_fan": true,
+        "comparison_intervals": 204,
+        "witnesses": [
+          {
+            "row_lengths": [
+              18
+            ],
+            "moment": [
+              153,
+              0
+            ],
+            "strict_weight": [
+              1,
+              36
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/5"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              5,
+              5,
+              3
+            ],
+            "moment": [
+              33,
+              24
+            ],
+            "strict_weight": [
+              29,
+              140
+            ],
+            "interval_wx_wy": [
+              "1/5",
+              "1/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              5,
+              4,
+              3,
+              1
+            ],
+            "moment": [
+              29,
+              26
+            ],
+            "strict_weight": [
+              35,
+              68
+            ],
+            "interval_wx_wy": [
+              "1/2",
+              "1"
+            ]
+          },
+          {
+            "row_lengths": [
+              5,
+              4,
+              3,
+              3,
+              2,
+              1
+            ],
+            "moment": [
+              23,
+              32
+            ],
+            "strict_weight": [
+              35,
+              34
+            ],
+            "interval_wx_wy": [
+              "1",
+              "3/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              4,
+              3,
+              3,
+              2,
+              1,
+              1
+            ],
+            "moment": [
+              19,
+              38
+            ],
+            "strict_weight": [
+              67,
+              44
+            ],
+            "interval_wx_wy": [
+              "3/2",
+              "2"
+            ]
+          },
+          {
+            "row_lengths": [
+              4,
+              3,
+              3,
+              2,
+              2,
+              2,
+              1,
+              1
+            ],
+            "moment": [
+              15,
+              46
+            ],
+            "strict_weight": [
+              33,
+              16
+            ],
+            "interval_wx_wy": [
+              "2",
+              "8/3"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              3,
+              3,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              12,
+              54
+            ],
+            "strict_weight": [
+              65,
+              24
+            ],
+            "interval_wx_wy": [
+              "8/3",
+              "7/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              3,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              10,
+              61
+            ],
+            "strict_weight": [
+              71,
+              20
+            ],
+            "interval_wx_wy": [
+              "7/2",
+              "9/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              3,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              8,
+              70
+            ],
+            "strict_weight": [
+              55,
+              12
+            ],
+            "interval_wx_wy": [
+              "9/2",
+              "11/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              6,
+              81
+            ],
+            "strict_weight": [
+              67,
+              12
+            ],
+            "interval_wx_wy": [
+              "11/2",
+              "7"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              5,
+              88
+            ],
+            "strict_weight": [
+              29,
+              4
+            ],
+            "interval_wx_wy": [
+              "7",
+              "9"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              4,
+              97
+            ],
+            "strict_weight": [
+              19,
+              2
+            ],
+            "interval_wx_wy": [
+              "9",
+              "11"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              3,
+              108
+            ],
+            "strict_weight": [
+              23,
+              2
+            ],
+            "interval_wx_wy": [
+              "11",
+              "13"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              2,
+              121
+            ],
+            "strict_weight": [
+              27,
+              2
+            ],
+            "interval_wx_wy": [
+              "13",
+              "15"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              1,
+              136
+            ],
+            "strict_weight": [
+              31,
+              2
+            ],
+            "interval_wx_wy": [
+              "15",
+              "17"
+            ]
+          },
+          {
+            "row_lengths": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "moment": [
+              0,
+              153
+            ],
+            "strict_weight": [
+              35,
+              2
+            ],
+            "interval_wx_wy": [
+              "17",
+              null
+            ]
+          }
+        ],
+        "polynomial_support": [
+          1,
+          4,
+          5
+        ]
+      },
+      {
+        "model": "truncated_polynomial_graph",
+        "characteristic": 101,
+        "quotient_length": 7,
+        "generators": [
+          [
+            [
+              7,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              2,
+              0,
+              -1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 1,
+        "finite_lattice_index": null,
+        "grading_degrees_x_y": [
+          1,
+          2
+        ],
+        "graded_quotient_dimensions": null,
+        "initial_ideal_count": 2,
+        "twice_state_polygon_area": 0,
+        "twice_relative_area": null,
+        "twice_strip_polygon_area": 0,
+        "complete_positive_fan": true,
+        "comparison_intervals": 36,
+        "witnesses": [
+          {
+            "row_lengths": [
+              7
+            ],
+            "moment": [
+              21,
+              0
+            ],
+            "strict_weight": [
+              1,
+              14
+            ],
+            "interval_wx_wy": [
+              "0",
+              "1/2"
+            ]
+          },
+          {
+            "row_lengths": [
+              2,
+              2,
+              2,
+              1
+            ],
+            "moment": [
+              3,
+              9
+            ],
+            "strict_weight": [
+              15,
+              28
+            ],
+            "interval_wx_wy": [
+              "1/2",
+              null
+            ]
+          }
+        ],
+        "polynomial_support": [
+          2
+        ]
+      },
+      {
+        "model": "monomial_control",
+        "characteristic": 101,
+        "quotient_length": 6,
+        "generators": [
+          [
+            [
+              3,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              2,
+              1
+            ]
+          ]
+        ],
+        "universal_grading_lattice_rank": 0,
+        "finite_lattice_index": null,
+        "grading_degrees_x_y": null,
+        "graded_quotient_dimensions": null,
+        "initial_ideal_count": 1,
+        "twice_state_polygon_area": 0,
+        "twice_relative_area": null,
+        "twice_strip_polygon_area": null,
+        "complete_positive_fan": true,
+        "comparison_intervals": 24,
+        "witnesses": [
+          {
+            "row_lengths": [
+              3,
+              3
+            ],
+            "moment": [
+              6,
+              3
+            ],
+            "strict_weight": [
+              1,
+              12
+            ],
+            "interval_wx_wy": [
+              "0",
+              null
+            ]
+          }
+        ]
+      }
+    ],
+    "uses_classical_lattice_vertex_bound": true,
+    "uniform_graph_bound_in_note": "g((x^n,y-G(x))) <= 3+C*n*((D-1)/h)^(1/3) for nonmonomial G of degree D<n and exact grading index h",
+    "one_offset_consequence": "g((x^n,y-x-c*x^D))=O(n) uniformly in 2<=D<n, nonzero c and the field",
+    "new_unrestricted_asymptotic": false,
+    "novelty_established": false,
+    "scope": "Exact complete fans check intrinsic lattice index, homogeneous residue columns, fixed dimensions in every finite grade, the affine moment coset and strip budgets. No fitted growth rate or novel lattice theorem is claimed."
+  },
   "asymptotic_improvement_established": false,
   "novelty_established": false,
   "goal_complete": false,
   "scope": "Exhaustive finite primary-bound and candidate-family diagnostics. No polynomial separation, sharp unrestricted asymptotic, or algorithmic speedup is inferred.",
   "source_sha256": {
-    "scripts/run_extremal_initial_ideals_checks.py": "84ca813dcd9e685499aa4c4a237cf36334715fb7aee3dfc91237b7b3d237f965",
+    "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
     "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1"
   }

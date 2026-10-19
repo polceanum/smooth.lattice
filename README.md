@@ -61,7 +61,10 @@ separation. Its quotient length and all-order fan formula are proved and
 checked independently. A further uniform bound gives at most `5Dn`
 initial ideals when a planar ideal contains an irreducible degree-`D`
 equation. Fixed-degree carriers have sharp linear growth and cannot supply
-the power separation. A suitable family with growing curve complexity,
+the power separation. A classical lattice-area argument also excludes
+`(x^n, y-x-c*x^D)` uniformly as `D` grows: its finite grading keeps
+the count linear. General polynomial graphs must escape this spacing
+constraint to produce a power gain. A suitable family with growing curve complexity,
 the unrestricted asymptotic target and publication significance remain open.
 
 Current research returns to the original occurrence-count and prime-exponent
