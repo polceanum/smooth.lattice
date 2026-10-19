@@ -37,11 +37,17 @@ five initial ideals, a necessary integer weight height $\Theta(n^2)$,
 and a necessary projection radius $\Theta(n)$, while exactly two planes
 cover its cones. It rules out two individual-cone shortcuts without
 excluding a stronger aggregate projection bound.
-The [weighted-incidence reduction](weighted_facet_incidence.md) now
-isolates the missing aggregate budget. Three planes cover all boundary
-cells, and an explicit local family rules out a power saving in the
-large-normal surface-area tail. The required stronger incidence bound
-has not been established.
+The [weighted-incidence reduction](weighted_facet_incidence.md) gives
+three-plane boundary coverage, but its proposed cubic incidence budget
+is now disproved. Finite quotients of a three-pole rational curve have
+exactly $\binom{n+1}{2}$ initial ideals and weighted incidence
+$\Theta(n^4)$, even for radical rational point ideals and with interior
+cells alone counted. The classical incidence order is therefore sharp;
+a stronger count requires more than a power saving in that moment.
+A nine-cone quotient also keeps the sharp individual certificate and
+radius exponents in a wholly interior cell. A selected shadow cover or
+a threshold-dependent cell count remains possible; neither has yet
+closed the main extremal gap.
 
 ## Connection to the original observations
 
@@ -1660,19 +1666,61 @@ its incidence multiplicities globally, instead of improving those
 individual-cone exponents. The unrestricted upper and lower targets
 are unchanged.
 
-The next aggregate estimate is now formulated explicitly. Write
-$T(I)=\sum_w\|w\|_\infty d(w)$ over strictly positive primitive fan
-rays, with $d(w)$ their incident-cell counts. The
-[complete reduction](weighted_facet_incidence.md) gives
-$g(I)=O(n^{5/3}\log(n+1)+nh^{5/3}\log(n+1)+T(I)/h)$.
-The current classical estimate is $T(I)=O(n^4)$. A theorem
-$T(I)=O(n^3)$ would yield the conditional exponent $9/4$; it remains
-unproved and would not alone establish sharp growth. In a local
-all-field family of length $4k$, a facet normal $(1,k,k^2)$ and
-quartic facet area coexist with four initial ideals and $T=4k^2$.
-At normal threshold $k^2/2$, exactly eight vertices are charged.
-This rules out a blanket surface-tail saving at the relevant large
-heights, but preserves the possibility of a stronger incidence theorem.
+The attempted aggregate estimate is now closed by a realizable
+counterexample. Write $T(I)=\sum_w\|w\|_\infty d(w)$ over positive
+primitive fan rays. The reduction
+$g(I)=O(n^{5/3}\log(n+1)+nh^{5/3}\log(n+1)+T(I)/h)$ is valid,
+but its classical $T=O(n^4)$ input cannot have a uniform power saving.
+For every monic $F$ of degree $n$ with $F(0)F(1)\ne0$,
+
+$$
+I_F=(xy-1,\ (x-1)z-1,\ F(x))
+$$
+
+has the same positive fan as choosing the $n-1$ cheapest points on
+three coordinate axes. Partial fractions prove that every pure-axis
+allocation of size $n-1$, together with $1$, is a basis. Thus
+$g(I_F)=\binom{n+1}{2}$ and the fan has $(n-1)^2$ interior rays.
+A uniform coprime-triple count proves $T(I_F)=\Theta(n^4)$ along
+$n\equiv3\pmod6$. The construction works over every field with
+$F=t^n-t+1$, and with radical rational points by using a split $F$
+over $\mathbb Q$. This refutes $T=O(n^3)$ and every uniform power
+saving over the classical quartic incidence exponent. The quotient residue
+matroid differs from a simpler uniform-axis matroid with the same
+positive fan; confusing those two objects would miss the realization.
+
+At $h=n^2/32$ the family has $\Theta(n^2)$ wholly interior bad cells,
+so the order $n^4/h$ is sharp at that threshold. This does not exclude
+a better tail estimate at the smaller threshold used in the existing
+upper bound. That threshold dependence, or a smaller selected family
+of shadows, is the next upper route. Multiplication compatibility
+alone cannot make the proposed full moment cubic. A fixed three-pole
+curve already supplies the obstruction; no new larger search framework
+or standalone paper is warranted by it.
+
+Every plane meets at most $2n-1$ positive cells of this family, by a
+decreasing type-rank potential for the three axis streams. Any selected
+plane cover consequently needs $\Omega(n)$ members, even with real
+coefficients. A polylogarithmic cover for all quotients is false.
+For $k$ distinct primitive integer kernels the elementary height count
+gives $\sum\|q\|_1^{1/3}=\Omega(k^{10/9})$. Thus the present rational
+shadow envelope, summed separately over every plane in any cover of
+this family, has budget at least $\Omega(n^{19/9}\log(n+1))$.
+That envelope alone cannot reach a sharp $n^2$ power up to logarithms;
+the positive traces here have only linear size. The next route must use
+quotient-sensitive trace bounds, overlap accounting, a threshold-specific
+tail estimate or a different global argument. This is a limitation of
+the stated proof budget, not a lower bound on arbitrary enumeration
+algorithms or unranking.
+
+The separate nine-cone all-field quotient has a fully interior cell
+whose exact minimum integer height is $(n+1)^2/4-2$ and exact minimum
+kernel height $(n-1)/2$. Boundary removal therefore cannot restore a
+smaller uniform individual radius. The Sabariego--Santos comparison was
+expanded to its local-star Hilbert-basis bound; it concerns the star at
+the ordinary-degree ray, rather than all positive rays. The strongest
+current unrestricted counting comparison and the main endpoint remain
+open.
 
 The nonlinear rectangle route remains available. Its filtration bound
 identifies a quantitative window, and the rational relation distinguishes
@@ -1715,6 +1763,7 @@ python3 -B scripts/run_planar_dyadic_bound_checks.py
 python3 -B scripts/run_rational_shadow_bound_checks.py
 python3 -B scripts/run_initial_cone_height_checks.py
 python3 -B scripts/run_weighted_facet_incidence_checks.py
+python3 -B scripts/run_algebraic_incidence_controls.py
 ./build.sh
 python3 tests/test_smoke.py
 ```

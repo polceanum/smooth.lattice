@@ -76,7 +76,14 @@ must control those planes collectively.
 A [weighted-facet reduction](docs/weighted_facet_incidence.md) now
 isolates that aggregate question and covers all boundary cells with
 three planes. A local four-cone family shows that even the large-normal
-surface-area tail can be quartic; a stronger incidence bound remains open.
+surface-area tail can be quartic. A three-pole rational curve now gives
+actual finite quotients with quartic weighted incidence and only
+`binomial(n+1,2)` initial ideals, disproving the proposed cubic budget.
+This family also needs at least linearly many projection planes to cover
+its fan, ruling out a universal polylogarithmic cover. The count needs a
+different aggregate estimate. A nine-cone quotient
+also retains the difficult weight and projection exponents in an entirely
+interior cell.
 The additive prime-power class is now classified separately: at length
 `n=q^k`, every initial ideal is a prime-power box and the sharp maximum
 is `binomial(k+d-1,d-1)`. The proof uses established Frobenius reduction;

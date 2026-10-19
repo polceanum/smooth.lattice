@@ -263,8 +263,18 @@ primitive normal height. Three fixed rational planes cover all cells
 touching the positive-weight boundary. An exact local quotient shows
 that the remaining large-normal surface area can still be quartic,
 even for normal heights proportional to $n^2$. A stronger count must
-therefore improve weighted vertex incidence rather than assume a
-smaller surface-area tail.
+therefore retain more information than that surface-area tail.
+The subsequent three-pole curve construction proves that weighted
+vertex incidence itself can be quartic for genuine finite quotients,
+even radical point ideals. The proposed cubic moment is false.
+Every shadow of that family's positive fan meets only linearly many
+cells, so any plane cover needs linearly many members. Summing the
+current arithmetic envelope over integer kernels in such a cover
+has budget at least $\Omega(n^{19/9}\log(n+1))$. That is a limit of
+the stated proof budget, not a lower bound on actual shadow sizes
+or on other algorithms. A sharp count needs quotient-sensitive
+shadows, overlap accounting, threshold-specific tails or another
+global argument.
 
 The [five-cone quotient construction](initial_cone_height.md) shows that
 the square-root radius cannot be improved uniformly, even for actual

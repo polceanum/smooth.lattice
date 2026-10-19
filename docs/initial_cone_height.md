@@ -304,3 +304,108 @@ complete five-cone fans over $\mathbb F_{101}$, 55,415 primitive kernel checks a
 subcritical integer weights. Two-plane cover objectives are checked
 against the quotient's Gaussian basis oracle as well as the cone
 inequalities. The all-parameter assertions depend on the proofs above.
+
+## The hard cone can be entirely interior
+
+Boundary coverage does not remove the worst individual-cone obstruction.
+For every $k\ge3$, change only the last relation of (1), putting
+
+$$
+\widetilde I_k=(xy-y^2,\ y^{k+1}-x^k,\ x^{k+1}-x^k,\ z-y^k).
+\tag{10}
+$$
+
+Its length is again $n=2k+1$ over every field: the same three
+relations in $x,y$ have the reference basis (3), and $z=y^k$.
+Consider the standard set
+
+$$
+\widetilde D_k=\{1,x,\ldots,x^k,y,\ldots,y^{k-1},z\}.
+$$
+
+Its reduced basis has heads $xy,y^k,x^{k+1},xz,yz,z^2$, with respective
+tails $y^2,z,x^k,x^k,x^k,x^k$. These reductions follow from (10);
+their heads generate the complement of $\widetilde D_k$, which has
+length $n$. Consequently strict selection of these heads gives this
+initial ideal. The first, second and fifth comparisons are necessary,
+and imply all the others. Its full open cone is exactly
+
+$$
+\widetilde C_k=\{s>t,\ kt>u,\ u>ks-t\}. \tag{11}
+$$
+
+The assumption $k\ge3$ ensures $y^2$ is standard and the first
+comparison is necessary. Positivity follows from (11): it gives
+$kt>ks-t$, hence $t>k(s-t)>0$, and $u>(k-1)t>0$.
+The slack matrix and its inverse columns are
+
+$$
+\widetilde V_k=\begin{pmatrix}1&-1&0\\0&k&-1\\-k&1&1\end{pmatrix},
+\qquad\det\widetilde V_k=1,
+$$
+
+$$
+\widetilde r_1=(k+1,k,k^2),\quad
+\widetilde r_2=(1,1,k-1),\quad
+\widetilde r_3=(1,1,k). \tag{12}
+$$
+
+All three rays are strictly positive. Thus the closed simplex cell
+meets no coordinate boundary, even at a vertex. Positive integer
+slacks once more give the exact minimum certificate:
+
+$$
+\widetilde w_k=(k+3,k+2,k^2+2k-1),\qquad
+\min_{w\in\widetilde C_k\cap\mathbb Z^3}\|w\|_\infty
+ =k^2+2k-1=\frac{(n+1)^2}{4}-2. \tag{13}
+$$
+
+The minimum primitive kernel height of a plane meeting this cone is
+exactly $k$. For the upper bound use
+$q=(k,k-1,-2)$ and $\widetilde w_k$ from (13).
+For the lower bound suppose $Q=\|q\|_\infty\le k-1$.
+If $q_3=0$, the interval $1<s/t<1+1/k$ excludes such an integer
+relation, as in the proof of (9). Otherwise orient $q$ so that
+$q_3=-c$, $c\ge1$. Then
+
+$$
+c(k-1)s<cu=q_1s+q_2t<2Qs\le2(k-1)s,
+$$
+
+so $c=1$. Set $a=s-t>0$ and $S=q_1+q_2\in\mathbb Z$.
+The two remaining inequalities are
+
+$$
+(k-1)t+ka<q_1a+St<kt.
+$$
+
+If $S\ge k$, the upper inequality forces $q_1<0$ and hence
+$q_2\ge k+1$. If $S\le k-1$, the lower inequality forces $q_1>k$.
+Both contradict $Q\le k-1$. This proves the lower bound.
+
+For completeness this quotient has exactly nine initial ideals.
+For $1\le j<k$, its $Y_j$ class from the earlier calculation chooses
+$y^j$ or $x^{j-1}y$ according as $s>t$ or $s<t$.
+The $Y_k$ class also has representative $z$, and the final class $E$
+has minimum cost
+
+$$
+\min\{ks,(k+1)t,s+u,t+u,2u\}.
+$$
+
+When $s>t$, the possible $(Y_k,E)$ representatives are
+$(y^k,x^k)$, $(y^k,y^{k+1})$, $(z,x^k)$, $(z,yz)$, $(z,z^2)$.
+When $s<t$, they are $(x^{k-1}y,x^k)$, $(z,x^k)$, $(z,xz)$,
+$(z,z^2)$. Each occurs on an open positive region, by choosing $u$
+on the indicated side of the thresholds and $s/t$ sufficiently close
+to, or sufficiently far from, one as required. The two lists give
+distinct standard sets since $k\ge3$. Tie-breaking gives no additional
+initial ideal. Only the cone (11) is entirely interior.
+
+Hence even after boundary cells are covered, the quadratic integer
+certificate exponent and linear projection-radius exponent persist
+for an actual finite quotient with constant fan size. This does not
+refute a smaller adaptively selected cover or a cubic weighted-incidence
+budget. It is a further obstruction to replacing those aggregate
+questions by a uniform radius bound on the remaining cells.
+The exact replay is in `scripts/run_algebraic_incidence_controls.py`.
