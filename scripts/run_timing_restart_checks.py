@@ -2007,6 +2007,152 @@ def product_spectral_controls():
             "scope": "Exact Walsh/tensor algebra and a preallocated-array product decoder checked against direct raw Hamming reads, independent current payloads and full pure-basin perturbation controls. Large-radius boundary cases test correctness, not the subpolynomial regime. This is a classical product-indexing baseline consequence, not a new ML architecture, benchmark or novelty determination."}
 
 
+def compound_rebuild_controls():
+    """Exact finite controls for the random-reset supporting lemma."""
+    geometric_moments = conditional_copy_products = 0
+    for fallback, slot, copies in product((0, 1, 3, 11), (1, 2, 7), (1, 2, 5, 9)):
+        scale = fallback + 2 * copies * slot
+        gamma = 1 + F(1, 16 * scale)
+        v = gamma ** slot
+        assert v < 2
+        worst = v / (2 - v)
+        assert v <= 1 / (1 - F(slot, 16 * scale))
+        assert worst <= 1 / (1 - F(slot, 8 * scale))
+        assert (1 - F(slot, 8 * scale)) ** copies >= 1 - F(copies * slot, 8 * scale)
+        assert gamma ** fallback <= 1 / (1 - F(fallback, 16 * scale))
+        assert ((1 - F(fallback, 16 * scale))
+                * (1 - F(copies * slot, 8 * scale))) >= F(15, 16)
+        assert gamma ** fallback * worst ** copies <= F(16, 15)
+        for acceptance in (F(1, 2), F(2, 3), F(3, 4), F(1)):
+            # Closed infinite geometric sum; no discarded tail probability.
+            moment = acceptance * v / (1 - (1 - acceptance) * v)
+            assert moment <= worst
+            assert gamma ** fallback * moment ** copies <= F(16, 15)
+            assert moment ** copies <= F(16, 15)  # Initial installation.
+            geometric_moments += 1
+        # Different conditional laws for successive copies are bounded by
+        # tower conditioning, without an IID copy-count assumption.
+        moment_product = F(1)
+        for i in range(copies):
+            acceptance = (F(1, 2), F(2, 3), F(3, 4))[i % 3]
+            moment_product *= acceptance * v / (1 - (1 - acceptance) * v)
+        assert gamma ** fallback * moment_product <= F(16, 15)
+        conditional_copy_products += 1
+
+    cdf_laws = defective_laws = transforms = 0
+    for denominator in range(2, 7):
+        for numerator in range(1, denominator + 1):
+            a = F(numerator, denominator)
+            z = 1 / (1 + 4 * a)
+            h = int(1 / (2 * a))
+            assert (1 + 4 * a) ** (h + 1) > 3
+            # The last atom is tau=infinity. The finite atoms are 1..m.
+            for counts in compositions(denominator, denominator + 1):
+                if any(sum(counts[:s]) > numerator * s
+                       for s in range(1, denominator + 1)):
+                    continue
+                probabilities = [F(x, denominator) for x in counts[:-1]]
+                transform = sum(p * z ** (i + 1) for i, p in enumerate(probabilities))
+                q = sum(probabilities[:h])
+                assert q <= F(1, 2)
+                assert transform <= q + (1 - q) * z ** (h + 1)
+                assert transform < F(2, 3)
+                assert F(16, 15) * transform < 1
+                cdf_laws += 1
+                defective_laws += bool(counts[-1])
+                transforms += 1
+
+    # Marginal moment bounds do NOT imply a joint contraction if reset work
+    # depends on the trigger. Here K*beta<1 but E[gamma^W*z^tau]>1.
+    marginal_cost = F(5, 2)
+    epoch_transform = F(3, 8)
+    joint_transform = F(9, 8)
+    assert marginal_cost * epoch_transform == F(15, 16) < 1
+    assert joint_transform > 1
+    assert sum(F(1, 2) * 2 ** cost * F(1, 2) ** tau
+               for tau, cost in ((1, 2), (2, 0))) == joint_transform
+
+    # With a bound conditional on each trigger, dependence is allowed.
+    # Two possible mark laws: P(W=2)=1/4 or 3/4, otherwise W=1.
+    # Gamma=2, z=1/2, tau uniform on 1..4: K=7/2, beta=15/64.
+    gamma, z, reset_moment, beta = F(2), F(1, 2), F(7, 2), F(15, 64)
+    assert reset_moment * beta == F(105, 128) < 1
+    dependent_joint_laws = 0
+    for choices in product((F(1, 4), F(3, 4)), repeat=4):
+        joint = sum(z ** tau * ((1 - p) * gamma + p * gamma ** 2) / 4
+                    for tau, p in enumerate(choices, 1))
+        assert joint <= reset_moment * beta
+        dependent_joint_laws += 1
+
+    # Optimize a finite timing observer's probability of crossing the
+    # compound boundary. It may select any singleton bad-seed query,
+    # repeat queries, and adapt after observing all reset durations.
+    # Four uniform installed seeds give P(tau<=s)<=s/4 for every policy.
+    # The rebuild mark depends on tau parity, so marks and epochs are not
+    # independent. Fresh accepted seeds remain uniform for either mark.
+    initial_moment = F(3)  # Initial W=1 or 2 with probability 1/2 each.
+    optimized_games = []
+    posterior_states = 0
+    positive_crossing_games = 0
+    for delta in (F(1, 4), F(1, 2), F(3, 4)):
+        @lru_cache(None)
+        def crossing(remaining, belief, elapsed, cost, epoch_age):
+            if delta * gamma ** cost * z ** elapsed >= initial_moment:
+                return F(1)
+            if remaining == 0:
+                return F(0)
+            size = belief.bit_count()
+            best = F(0)
+            for query in range(4):
+                hit = bool(belief & (1 << query))
+                probability = F(int(hit), size)
+                value = F(0)
+                if hit:
+                    p_high = F(3, 4) if (epoch_age + 1) % 2 else F(1, 4)
+                    value += probability * sum(
+                        p * crossing(remaining - 1, 15, elapsed + 1,
+                                     cost + work, 0)
+                        for work, p in ((1, 1 - p_high), (2, p_high)))
+                survivors = belief & ~(1 << query)
+                if probability < 1:
+                    value += (1 - probability) * crossing(
+                        remaining - 1, survivors, elapsed + 1, cost, epoch_age + 1)
+                best = max(best, value)
+            return best
+
+        for horizon in (2, 4, 6, 8):
+            probability = sum(crossing(horizon, 15, 0, work, 0) / 2
+                              for work in (1, 2))
+            assert probability <= delta
+            positive_crossing_games += probability > 0
+            optimized_games.append({"horizon": horizon, "delta": str(delta),
+                                    "maximum_crossing_probability": str(probability)})
+        posterior_states += crossing.cache_info().currsize
+    assert positive_crossing_games > 0
+
+    # A build count has an unbounded tail even with a fixed known mean.
+    geometric_tail_witnesses = []
+    for threshold in (3, 5, 9, 17):
+        tail = F(1, 2 ** (threshold - 1))
+        assert tail > 0 and threshold > 2
+        geometric_tail_witnesses.append({"mean_trials": 2, "threshold": threshold,
+                                         "probability_at_least_threshold": str(tail)})
+    return {"exact_geometric_moments": geometric_moments,
+            "conditional_copy_products": conditional_copy_products,
+            "admissible_epoch_cdf_laws": cdf_laws,
+            "laws_including_infinite_epoch_mass": defective_laws,
+            "exact_epoch_transforms": transforms,
+            "dependent_duration_cost_laws": dependent_joint_laws,
+            "marginal_moments_counterexample": {
+                "marginal_product": str(marginal_cost * epoch_transform),
+                "actual_joint_moment": str(joint_transform)},
+            "optimized_adaptive_crossing_games": optimized_games,
+            "adaptive_posterior_states": posterior_states,
+            "positive_crossing_games": positive_crossing_games,
+            "unbounded_geometric_build_tail_witnesses": geometric_tail_witnesses,
+            "scope": "Exact finite controls for the written uniform compound-supermartingale proof. Finite timing games use bounded two-point rebuild marks, with trigger-dependent laws and fresh uniform seeds; actual unbounded geometric trial counts are checked by their closed infinite generating function. No novelty, architecture advantage or exhaustive infinite-adversary computation is claimed."}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -2029,6 +2175,7 @@ def main():
               "full_range_baseline": full_range_baseline_controls(),
               "sparse_signature_baseline": sparse_signature_controls(),
               "product_spectral_baseline": product_spectral_controls(),
+              "compound_rebuild_cost": compound_rebuild_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,

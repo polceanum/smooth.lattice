@@ -1944,11 +1944,15 @@ The earlier generic static timing conversion applies in the same arithmetic
 model, with full-data fallback and fixed query budget based on
 T=n^(rho_q+o(1))+K*n^(rho_u+o(1)). Construction plus fallback is polynomial
 in n, so O(log n) independent copies suffice. It gives horizon-independent
-storage and expected amortized geometry work O(T*log n); the already
-proved all-prefix confidence bound applies as well. Initialization includes
-all copies and raw input loading. This application has no new conversion
-lemma. Geometry and unfinished-query cleanup are padded; exact payload
-aggregation after the geometric result is complete costs O(s(q)*v).
+storage and expected amortized geometry work O(T*log n). An all-prefix
+confidence statement additionally needs the random-rebuild argument in
+"Random rebuilds require a compound cost bound" below: the earlier
+deterministically bounded rebuild argument alone does not justify it.
+Initialization includes all copies and raw input loading. The compound
+argument supplies this missing supporting lemma; it does not establish a
+new conversion beyond prior art. Geometry and unfinished-query cleanup
+are padded; exact payload aggregation after the geometric result is
+complete costs O(s(q)*v).
 Only its true canonical neighbor set determines that operation count.
 Pure payload writes cost O(v) and do not alter any filter, so they preserve
 this static-key statement with one shared current payload array.
@@ -2400,3 +2404,198 @@ not supply the missing novelty argument. The original goal remains
 unachieved. A useful new result must address genuinely more general
 interactions or prove a substantive new tradeoff against these product
 methods, with all raw-input, value, admission and precision costs included.
+
+## Random rebuilds require a compound cost bound
+
+The preceding comparisons remove several tempting example-based novelty
+claims. This iteration instead repairs a gap in the general cost argument.
+The earlier concrete covering index has a deterministically bounded rebuild
+and its all-prefix proof remains valid. The complete-range arithmetic
+baseline uses a random number of capped construction attempts. Its expected
+rebuild cost cannot be substituted for a deterministic reset bound in that
+proof. Even a single geometric build count G with success probability 1/2
+has mean 2 but Pr(G>=m)=2^(-(m-1)) for every positive integer m. Bounding
+the number of rebuilds does not bound the work of those rebuilds.
+
+The following supporting lemma supplies the missing argument. Its tools
+are classical exponential supermartingales and Ville's inequality; see
+[Howard--Ramdas--McAuliffe--Sekhon, Time-uniform Chernoff bounds via
+nonnegative supermartingales](https://arxiv.org/abs/1808.03204v7), particularly
+Section 2.3, Lemma 1. No new probability inequality or strongest-baseline
+advantage is claimed.
+
+### A compound epoch lemma, allowing dependent durations and costs
+
+An epoch starts just after the initial installation or a reset. Let tau_j
+be its number of operations through the next reset, a positive integer or
+infinity. Write T_0=0 and T_j=sum_{i=1}^j tau_i. Let W_0 be initial randomized build
+work and W_j the fallback and rebuild work at reset j. A reset following
+the last requested operation is included in that operation's cost. Ordinary
+work through Q completed operations is at most I+A*Q, where I is the
+deterministic raw-input/reference initialization cost. Thus
+
+```text
+Cost_Q <= I+A*Q+W_0+sum_{j=1}^{N_Q} W_j,  N_Q=max{j:T_j<=Q}.
+```
+
+The boundary history consists of the logical state and the observations
+available to the client, including earlier reset times and build durations.
+It does not reveal the newly installed private seed. The proof needs two
+different conditional statements. For fixed eta,theta>0 and K,K_0,beta>0:
+
+```text
+E[exp(eta*W_0)] <= K_0;
+E[exp(-theta*tau_j) | preceding boundary history] <= beta;
+E[exp(eta*W_j) | complete triggering history before the new build] <= K;
+K*beta <= 1.
+```
+
+The third bound is uniform in the triggering operation, dataset, tau_j
+and any old private state. It is stronger than an unconditional bound on
+W_j and allows W_j and tau_j to be dependent. If an epoch never ends,
+define its next process value as zero. For finite epochs, conditioning first
+on the triggering history and then on the preceding boundary gives
+
+```text
+E[exp(eta*W_j-theta*tau_j) | preceding boundary] <= K*beta <= 1.
+```
+
+Using only the two marginal moments would be false. For a uniform choice
+between (tau,W)=(1,2) and (2,0), take exp(eta)=2 and exp(-theta)=1/2.
+The marginal product is (5/2)*(3/8)=15/16<1, but the actual joint moment
+is 9/8>1. This is why the cost bound must survive conditioning on the
+trigger, rather than merely hold at the preceding boundary.
+
+Consequently
+
+```text
+M_j = exp(eta*(W_0+sum_{i=1}^j W_i)-theta*T_j)/K_0
+```
+
+is a nonnegative supermartingale with E[M_0]<=1 in the boundary filtration.
+For 0<delta<1, apply Ville's inequality (or stop at its first crossing of 1/delta and a
+deterministic epoch bound, then let that bound increase). With probability
+at least 1-delta, simultaneously at every finite boundary j,
+
+```text
+W_0+sum_{i=1}^j W_i <= (theta*T_j+log(K_0/delta))/eta.
+```
+
+Since T_{N_Q}<=Q, the same event gives, simultaneously for all Q>=0,
+
+```text
+Cost_Q <= I+A*Q+(theta*Q+log(K_0/delta))/eta.
+```
+
+This includes Q chosen from previous answers and times, without replacing
+an expected cost by a pathwise cost. No independence between epochs or
+between their durations and rebuild costs is asserted. Correctness is still
+for every seed; delta concerns total work. A long single-operation stall
+remains possible.
+
+### Explicit constants for capped Las Vegas construction attempts
+
+Assume the established fresh-epoch bound
+Pr(tau_j<=s | preceding boundary history)<=a*s for every integer s>=1,
+with a>0. This is an epoch CDF condition, not a per-operation hazard bound
+conditional on surviving earlier queries. The all-ordinary counterfactual
+path and canonical padded outputs give this condition in the conversions
+above. The installed seed must remain independent of the observed number
+of rejected build slots. Fresh IID trials from the same snapshot, with
+successful and failed attempts padded to the same slot length, supply that
+property. Merely bounding their acceptance probabilities would not supply
+it.
+
+Let S>=1 be an integer upper bound on each padded construction attempt,
+including rejected-attempt cleanup and fresh-randomness generation. Each
+of k>=1 copies accepts a fresh attempt with probability at least 1/2.
+Let Gamma_j be the sum of their trial counts, and let F>=0 be a deterministic
+integer bound for fallback and the remaining reset overhead. Require
+
+```text
+W_0 <= S*Gamma_0,   W_j <= F+S*Gamma_j.
+C=F+2*k*S,   gamma=1+1/(16*C),   z=1/(1+4*a).
+```
+
+Trial counts can depend on the current dataset. Uniform conditional success
+probability >=1/2 gives domination by a geometric count G on {1,2,...}.
+Writing v=gamma^S<2, its exact generating function gives
+E[gamma^(S*G)]=v/(2-v). Sequential conditioning over copies therefore bounds
+each reset's conditional exponential moment by
+gamma^F*(v/(2-v))^k. To see that this is <=16/15 using explicit constants,
+the geometric series and Bernoulli inequality give
+
+```text
+gamma^S <= 1/(1-S/(16*C));
+v/(2-v) <= 1/(1-S/(8*C));
+(1-S/(8*C))^k >= 1-k*S/(8*C);
+gamma^F <= 1/(1-F/(16*C));
+(1-F/(16*C))*(1-k*S/(8*C)) >= 15/16.
+```
+
+All denominators are positive since C=F+2*k*S. The same 16/15 bound covers
+initial construction, which has no fallback F. It holds after conditioning
+on the entire preceding trigger; hence it can be combined with tau_j even
+when the operation that caused the reset also affects construction cost.
+
+For the epoch transform put h=floor(1/(2*a)), possibly zero. With
+q=Pr(tau_j<=h | boundary)<=1/2 and z^infinity=0,
+
+```text
+E[z^tau_j | boundary] <= q+(1-q)*z^(h+1)
+                         <= 1/2+(1/2)*z^(h+1) < 2/3.
+```
+
+Indeed (1+4*a)^(h+1)>=1+4*a*(h+1)>3. This proof works for every a>0;
+neither 1/a nor the expected epoch duration has to be an integer. The
+compound lemma applies with eta=log(gamma), theta=log(1+4*a),
+K=K_0=16/15 and beta=2/3, because K*beta=32/45<1. Thus with probability
+at least 1-delta, for every prefix Q,
+
+```text
+Cost_Q <= I+A*Q
+          + (Q*log(1+4*a)+log(16/(15*delta)))/log(1+1/(16*C))
+       <= I+Q*(A+68*a*C)+17*C*log(16/(15*delta)).
+```
+
+The second line uses 1/log(1+1/(16*C))<=16*C+1<=17*C and
+log(1+4*a)<=4*a. For a=0, all epochs have infinite duration almost surely;
+the initial-build moment bound alone gives the same last line with a=0.
+An additional output-dependent canonical cost, such as s(q)*v for exact
+payload aggregation, is added at its realized sum over the prefix.
+
+### Consequence, limitations, and the next gate
+
+For the generic dynamic conversion take a=p+1/L and
+A=D+k*(G+B), retaining its self-contained queued updates, maximum phase
+space cap, and safe-build assumptions. For the generic static conversion
+take a=(2*T/B)^k and A=k*B. S is the actual padded attempt bound; it is
+not the expected total reset cost R. When all attempt cleanup is included
+in S=O(R), C=O(F+k*R). Choosing the previous logarithmic number of copies
+makes a*C small enough for the stated amortized bounds, now with an
+all-prefix confidence term O((F+k*R)*log(1/delta)). Initialization is charged
+by this random-cost bound too, rather than inserting its expectation as
+a deterministic additive term. No storage slot, precision parameter or
+algorithmic counter depends on Q or delta; the unbounded sums above are
+analysis variables only. Bounded arenas are reused on each attempt.
+
+This closes the confidence gap for the complete-range arithmetic baseline
+under its already stated caps. It strengthens that comparator, so it does
+not create a separation for our covering memory. It also does not compile
+the optimal filters into a finite-word implementation or establish an
+adaptive-key guarantee for them. The abstract timing observation is the
+completed RAM-step count, not memory access leakage or hardware time.
+
+The exact controls cover geometric generating functions, admissible epoch
+CDFs including infinite epochs, dependent duration/cost laws, and finite
+adaptive timing games. They are verification controls for the written
+uniform proof, not a replacement for it. The general martingale framework,
+padding, rerandomization and queue bounds already have prior art. A novel
+generic compiler tradeoff would require a separate comparison with the
+specific timing constructions of Bethea--Reiter and Braun--Jana--Boneh,
+the deamortization theorem of Bernstein--Forster--Henzinger, and adaptive
+search guarantees discussed earlier. No such separation has been proved.
+The original goal and publication gate remain open. Further work should
+resolve that generic comparison or the full nonproduct spectral workload,
+rather than counting more favorable special examples as progress toward
+a new architecture.

@@ -18,7 +18,7 @@
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "well_conditioned_full_rank_high_overlap_product_family_solved_by_classical_product_decoding_with_finite_word_admission_and_overwrites; neither_overlap_nor_rank_identifies_a_new_frontier; full_nonproduct_spectral_class_open"
+      "status": "generic_timing_cost_proof_repaired_for_random_rebuilds_with_uniform_compound_epoch_bound; product_and_signature_comparisons_preserved; full_nonproduct_spectral_class_and_strongest_baseline_separation_open"
     },
     {
       "stage": 4,
@@ -1741,5 +1741,60 @@
     },
     "old_functions_and_certificate_blocks_preserved": true,
     "verification_scope": "Extended exact checker, build and smoke tests passed. All 234 protected files, twenty prior non-main function ASTs, twenty-one prior goal iterations and historical certificate blocks are preserved. Final note/checker hashes match the report. Other proof checkers were not rerun because their sources/artifacts are unchanged. Product controls include exact eigenvalues and distances, preallocated heap enumeration, dynamic admission and owner moves, complete independent-value reads, a four-value mixture within the fast regime, and exhaustive small pure-basin perturbations. No large Gram matrix, performance experiment, learned architecture advantage or novelty inference."
+  },
+  "twenty_third_iteration": {
+    "previous_turn_classification": "progress: high-overlap full-rank product family audited against classical exact product decoding; that family does not establish a new frontier; original goal remains unachieved",
+    "record": "docs/associative_memory_timing.md, Random rebuilds require a compound cost bound",
+    "certificate_script": "scripts/run_timing_restart_checks.py",
+    "certificate_report": "results/research/timing_restart_checks.json",
+    "corrected_gap": "The earlier concrete covering all-prefix proof assumes deterministically bounded rebuild work and remains valid. Applying that proof to the complete-range arithmetic baseline with a random number of capped construction attempts required an additional argument. Replacing total random construction cost by its expectation in an all-prefix confidence statement is invalid. The baseline application is explicitly corrected in place and justified by the new supporting compound-cost lemma.",
+    "supporting_theorem": {
+      "model": "Sequential completed-operation RAM-step observations and canonical outputs; fresh accepted private seeds remain independent of observed rejected-slot counts. Boundary histories include earlier reset costs and logical state but exclude the newly installed private seed. Rejected and accepted attempts are padded and cleanup/randomness costs are included.",
+      "generic_lemma": "If E exp(eta*W_0)<=K_0, E exp(-theta*tau_j)|boundary<=beta, and E exp(eta*W_j)|complete pre-build trigger<=K uniformly, with K*beta<=1, then exp(eta*(W_0+sum W_j)-theta*T_j)/K_0 is a nonnegative supermartingale. With probability >=1-delta, simultaneously every prefix Q has Cost_Q<=I+A*Q+(theta*Q+log(K_0/delta))/eta. Duration and reset cost may be dependent. Infinite epochs kill the next process value.",
+      "explicit_geometric_corollary": "For epoch CDF <=a*s, per-copy attempt acceptance >=1/2, k copies, padded attempt bound S>=1 and fallback/reset overhead F>=0, let C=F+2*k*S and gamma=1+1/(16*C). Reset and initial moment bounds are <=16/15. With z=1/(1+4*a), E z^tau<2/3. The product <=32/45 yields Cost_Q<=I+Q*(A+68*a*C)+17*C*log(16/(15*delta)) simultaneously for all Q. For a=0 only initial random construction remains. Canonical output-dependent work is added at its realized sum.",
+      "conditioning_requirement": "The reset moment must hold after conditioning on the triggering history, not merely at the preceding boundary. Exact correlated witness: uniform (tau,W)=(1,2),(2,0), gamma=2,z=1/2 gives marginal product 15/16<1 but joint moment 9/8>1.",
+      "conversion_application": "Dynamic a=p+1/L, A=D+k*(G+B); static a=(2*T/B)^k, A=k*B. When actual attempt cleanup is included in S=O(R), C=O(F+k*R), giving the claimed horizon-independent amortized coefficient and O((F+k*R)*log(1/delta)) confidence term. Algorithm parameters, storage arenas and counters do not depend on Q or delta.",
+      "limits": "This is a supporting application of classical probability, not an established new martingale theorem or generic compiler separation. It strengthens the complete-range arithmetic comparator rather than creating a covering-memory advantage. Finite-word compilation and an adaptive-key guarantee for optimal filters remain unproved."
+    },
+    "primary_prior_art": [
+      {
+        "url": "https://arxiv.org/abs/1808.03204v7",
+        "scope": "Howard--Ramdas--McAuliffe--Sekhon, Probability Surveys 2020; versioned primary Section 2.3 Lemma 1 inspected. Ville maximal inequality and exponential nonnegative supermartingale line-crossing bounds are existing mathematics. The present compound accounting lemma is a self-contained supporting specialization, not a novelty claim."
+      }
+    ],
+    "decision": "Repair the general proof before pursuing significance. No new ML advantage, strongest-method separation or publication-ready theorem has been established. Continue the unchanged original goal through a formal generic compiler comparison or a genuinely nonproduct spectral workload, rather than another favorable example.",
+    "next_actions": [
+      "Compare the complete generic timing conversion, including random reconstruction, phase space, changing canonical bindings and completed operation timings, with timing rerandomization/padding and generic deamortization/adaptive-search prior art. Identify a specific missing guarantee before claiming a new compiler.",
+      "Resolve whether the full spectral promise admits stronger distance-sensitive or recursive filter/dictionary access bounds, including raw queries, exact independent-value aggregation, admissibility and finite-word costs. A special counterexample to one baseline does not establish a separation.",
+      "Keep the original acceptance criteria and no-training gate. Further proof work must establish usefulness and a quantified advantage beyond the strongest applicable methods. No outreach or manuscript contribution claim is authorized by this repair."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "verification_commands": [
+      "python3 -B scripts/run_timing_restart_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py"
+    ],
+    "preservation": "All twenty-two historical goal iterations, twenty-one prior non-main checker function ASTs, historical certificate blocks, other proof scripts/reports, kernels, manuscripts and learned-recall artifacts are retained. Only the existing timing note/checker/report and research manifest change.",
+    "certificate_summary": {
+      "exact_geometric_moments": 192,
+      "conditional_copy_products": 48,
+      "admissible_epoch_cdf_laws": 6330,
+      "laws_including_infinite_epoch_mass": 3322,
+      "exact_epoch_transforms": 6330,
+      "dependent_duration_cost_laws": 16,
+      "marginal_moments_counterexample": {
+        "marginal_product": "15/16",
+        "actual_joint_moment": "9/8"
+      },
+      "adaptive_posterior_states": 6498,
+      "positive_crossing_games": 12
+    },
+    "old_functions_and_certificate_blocks_preserved": true,
+    "verification_scope": "Extended exact checker, core build and smoke tests passed. All 234 protected files, twenty-one prior non-main checker function ASTs, all twenty-two historical goal iterations and all historical report blocks are preserved. Final note/checker hashes match the report. Exact new controls include 192 infinite geometric generating-function evaluations, 48 conditional-copy products, 6330 admissible epoch laws (3322 with infinite-epoch mass), 16 dependent duration/cost laws and 12 optimized adaptive crossing games over 6498 posterior states. The correlated marginal-moment counterexample is recorded exactly. Other proof scripts were not rerun because their sources/artifacts are unchanged. This verifies supporting accounting, not novelty or an ML advantage."
   }
 }
