@@ -419,6 +419,154 @@ def coherent_specialization_controls():
             "scope": "For r=2a,s=2b,F=x+y+t*x^a*y^b, t nonzero, the note proves one coherent standard set in every field whenever a,b>=1. For a>=4,b>=3 it contains a monomial universally excluded by the fixed rational probe. This distinguishes actual initial ideals, not just arbitrary column subsets; it does not compare total fan counts."}
 
 
+def uniform_prefix_comparison(fan):
+    """Test entire state cones against the cheaper ordinary-cut model."""
+    r, s = fan["rectangle"]
+    prime, n = fan["characteristic"], r*s
+    coefficients = {(i, j): c for i, j, c in fan["polynomial_terms"]}
+    ground, columns, _ = rectangle_model(r, s, coefficients, prime)
+    active = [e for e in ground if any(columns[e])]
+    counts, counterexamples = {}, {}
+    for cone in fan["witnesses"]:
+        basis = frozenset(map(tuple, cone["basis"]))
+        three_generators = all(tuple(int(i == j) for i in range(3)) in basis for j in range(3))
+        polygon = [tuple(map(Fraction, p)) for p in cone["cone_polygon"]]
+        bad = next(((p, a, b) for p in polygon for a in sorted(basis) for b in active
+                    if b not in basis and dot(p, b) < dot(p, a)), None)
+        label = ("three_generators" if three_generators else "coordinate_face")
+        label += "_has_nonuniform_region" if bad else "_equals_uniform_cut_cone"
+        counts[label] = counts.get(label, 0) + 1
+        if bad and label not in counterexamples:
+            vertex, included, skipped = bad
+            raw = cone["strict_weight"]
+            interior = tuple(Fraction(x, sum(raw)) for x in raw)
+            f = dot(vertex, skipped) - dot(vertex, included)
+            g = dot(interior, skipped) - dot(interior, included)
+            k = max(1, int(g // (-f)) + 1)
+            limit = k + len(active)*(len(active)-1)//2 + 1
+            while True:
+                weight = integer_weight(tuple((k*x+y)/(k+1) for x, y in zip(vertex, interior)))
+                scores = [dot(weight, e) for e in active]
+                if len(set(scores)) == len(scores) and dot(weight, skipped) < dot(weight, included):
+                    break
+                k += 1
+                require(k <= limit, "generic interior witness avoids finitely many comparison walls")
+            prefix = sorted(active, key=lambda e: dot(weight, e))[:n]
+            actual = frozenset(greedy(ground, columns, weight, prime))
+            rank = len(greedy(prefix, columns, weight, prime))
+            require(actual == basis and rank < n, "coherent basis rejects a dependent nonzero prefix")
+            counterexamples[label] = {"strict_weight": weight, "basis": sorted(basis),
+                                      "first_n_nonzero_monomials": prefix, "prefix_rank": rank,
+                                      "cheaper_skipped_monomial": skipped, "more_expensive_basis_monomial": included}
+    return {"rectangle": [r, s], "length": n, "cone_counts": counts,
+            "counterexamples": counterexamples,
+            "scope": "A nonuniform label means some strict weights in that cone reject the first n nonzero monomials. Equality labels are checked on every polygon vertex and hence on the whole cone. No total ordinary-cut count or asymptotic growth is inferred."}
+
+
+def coherent_skip_controls():
+    """Check the uniform socle-pair obstruction inside actual weight prefixes."""
+    fixtures = []
+    for q in range(3, 9):
+        prime = 101
+        cells = tuple(product(range(q), repeat=2))
+        index = {p: i for i, p in enumerate(cells)}
+        polynomial = {(i, j): (i+1)**2 + 3*(j+1) + 5*i*j for i, j in cells if i or j}
+        powers = [{(0, 0): 1}]
+        for _ in range(2*q-2):
+            following = {}
+            for (i, j), c in powers[-1].items():
+                for (k, l), d in polynomial.items():
+                    if i+k < q and j+l < q:
+                        p = (i+k, j+l)
+                        following[p] = (following.get(p, 0) + c*d) % prime
+            powers.append({p: c for p, c in following.items() if c})
+
+        def residue(exponent):
+            _, b, c = exponent
+            column = [0]*len(cells)
+            for (i, j), value in powers[c].items():
+                if j+b < q:
+                    column[index[(i, j+b)]] = value
+            return tuple(column)
+
+        nonzero = [(0, b, c) for b in range(q) for c in range(2*q-1-b)]
+        columns = {e: residue(e) for e in nonzero}
+        require(all(any(c) for c in columns.values()), "nonzero yz monomials have the proved exact support range")
+        weight = (4*q*q, 2*q-1, 1)
+        ordered = sorted(nonzero, key=lambda e: dot(weight, e))
+        require(len({dot(weight, e) for e in ordered}) == len(ordered), "separated yz rows")
+        prefix = ordered[:q*q]
+        u, v = (0, 0, 2*q-2), (0, 1, 2*q-3)
+        require(u in prefix and v in prefix, "both socle columns occur in the first n nonzero terms")
+        b = polynomial[(0, 1)]
+        require(all((x-2*b*y) % prime == 0 for x, y in zip(columns[u], columns[v])),
+                "socle-pair dependence in the actual prefix")
+        rank = len(greedy(prefix, columns, weight, prime))
+        basis = frozenset(greedy(nonzero, columns, weight, prime))
+        require(rank < q*q and len(basis) == q*q and max(dot(weight, e) for e in basis) < weight[0],
+                "full coherent basis is obtained before any x monomial")
+        require(all(tuple(x-(i == j) for i, x in enumerate(e)) in basis
+                    for e in basis for j in range(3) if e[j]), "actual basis is a downset")
+        fixtures.append({"square_side": q, "length": q*q, "characteristic": prime,
+                         "weight": weight, "first_n_nonzero_monomials": prefix,
+                         "prefix_rank": rank, "actual_basis": sorted(basis),
+                         "parallel_pair": [u, v], "pair_relation_coefficients": [1, -2*b]})
+    return {"fixtures": fixtures,
+            "uniform_scope": "Every q>=3 and every F with nonzero x and y linear coefficients over characteristic zero, or characteristic greater than 2q-2, has this coherent-prefix obstruction. Finite controls use the fixed coefficient rule modulo 101.",
+            "scope": "A growing family of genuine dependent prefixes, not an inference from an arbitrary column circuit. This does not establish growing fan counts; the linear F control has at most five cones."}
+
+
+def generic_diagonal_graph_controls():
+    """Direct determinant polynomials, independent of Gaussian elimination."""
+    fixtures = []
+    for r, s, blocks, prime in ((2, 2, 3, 0), (2, 3, 2, 7)):
+        n = r*s
+        chars = tuple(product(range(r), range(s)))
+        rows = chars
+        if prime:
+            zr, zs = 6, 2
+            fourier = [[pow(zr, i*a, prime)*pow(zs, j*b, prime) % prime
+                        for a, b in chars] for i, j in rows]
+        else:
+            fourier = [[(-1)**(i*a+j*b) for a, b in chars] for i, j in rows]
+        candidates = [(a, b, c) for c in range(blocks) for a, b in chars]
+        char_index = {p: i for i, p in enumerate(chars)}
+        signed_permutations = [(perm, (-1)**sum(perm[i] > perm[j] for i in range(n) for j in range(i+1, n)))
+                               for perm in permutations(range(n))]
+        ledger, samples = [], []
+        for selected in combinations(candidates, n):
+            coefficients = {}
+            for perm, sign in signed_permutations:
+                exponent = tuple(selected[perm[i]][2] for i in range(n))
+                coefficient = sign
+                for i in range(n):
+                    coefficient *= fourier[i][char_index[selected[perm[i]][:2]]]
+                coefficients[exponent] = coefficients.get(exponent, 0) + coefficient
+            coefficients = {e: (c % prime if prime else c) for e, c in coefficients.items()
+                            if (c % prime if prime else c)}
+            require(coefficients, "every chosen maximal determinant is a nonzero generic polynomial")
+            monomial = min(coefficients)
+            witness = {"columns": selected, "parameter_exponents": monomial,
+                       "nonzero_coefficient": coefficients[monomial]}
+            ledger.append(witness)
+            if len(samples) < 3:
+                samples.append(witness)
+        require(len(ledger) == comb(len(candidates), n), "exhaust all tested maximal minors")
+        zero_small_minors = sum(fourier[i][a]*fourier[j][b] == fourier[i][b]*fourier[j][a]
+                                if not prime else
+                                (fourier[i][a]*fourier[j][b]-fourier[i][b]*fourier[j][a]) % prime == 0
+                                for i, j in combinations(range(n), 2) for a, b in combinations(range(n), 2))
+        require(zero_small_minors > 0, "the Fourier matrix need not have all smaller minors nonzero")
+        fixtures.append({"group_orders": [r, s], "size": n, "blocks": blocks,
+                         "base_characteristic": prime, "fourier_matrix": fourier,
+                         "zero_two_by_two_minors": zero_small_minors,
+                         "maximal_generic_minors_checked": len(ledger),
+                         "coefficient_witness_sha256": hashlib.sha256(json.dumps(ledger, sort_keys=True).encode()).hexdigest(),
+                         "sample_coefficient_witnesses": samples})
+    return {"fixtures": fixtures,
+            "scope": "For finite abelian character tables the note proves the generic diagonal-power full-rank property by transitive row matroids and classical matroid partition. Here determinant polynomials are expanded directly in row parameters, not evaluated at random parameters. No statement about finite-field scalar specialization, conditioning or algorithmic speed is inferred."}
+
+
 def support_matching_obstruction_controls():
     """Replay an infinite-family identity, independently of fan traversal."""
     fixtures = []
@@ -493,13 +641,20 @@ def main():
     small_characteristic = rectangle_fan(2, 2, {(1, 0): 1, (0, 1): 1}, 2)
     require(small_characteristic["initial_ideal_count"] == 3,
             "small characteristic can collapse homogeneous cones")
-    report = {"schema_version": 2, "status": "passed",
+    comparisons = [uniform_prefix_comparison(fan) for fan in rectangles]
+    require(any(c["cone_counts"].get("three_generators_has_nonuniform_region", 0) > 0
+                for c in comparisons),
+            "dependent-prefix regions are not confined to coordinate faces")
+    report = {"schema_version": 3, "status": "passed",
               "command": "python3 -B scripts/run_extremal_initial_ideals_checks.py",
               "grid_source_controls": grid, "rectangular_complete_intersections": rectangles,
               "homogeneous_controls": homogeneous,
               "small_characteristic_control": small_characteristic,
               "rational_probe_specialization": rational_probe_controls(),
               "coherent_specialization": coherent_specialization_controls(),
+              "ordinary_cut_comparisons": comparisons,
+              "coherent_skip_obstruction": coherent_skip_controls(),
+              "generic_diagonal_graph": generic_diagonal_graph_controls(),
               "support_matching_obstruction": support_matching_obstruction_controls(),
               "asymptotic_improvement_established": False, "novelty_established": False,
               "goal_complete": False,

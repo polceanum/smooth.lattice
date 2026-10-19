@@ -10,12 +10,12 @@ advance; they must be supported by the eventual theorem and its comparison with
 existing work.
 
 The [goal record](../results/research/extremal_initial_ideals_goal.json) preserves
-the acceptance criteria. The first iteration closes one source-access gap,
-gives complete finite fans for a proposed family, and proves an obstruction to
-a rank shortcut. The continuation below gives a uniform filtration bound for
-local algebras and an exact distinction between the fixed coefficient probe and
-a generic nonlinear embedding. Neither iteration establishes a new asymptotic
-bound for the unrestricted extremal problem.
+the acceptance criteria. Current results include a primary-source comparison,
+uniform local bounds and exact distinctions between coefficient classes.
+Generic torus-grid graphs reduce to ordinary cuts, while local rectangles
+already have coherent dependencies that this reduction misses. A quantitative
+count of their interactions remains open; no new unrestricted asymptotic
+bound is established.
 
 ## Connection to the original observations
 
@@ -515,6 +515,206 @@ It does not enumerate the full fans of these larger examples.
 This is a uniform diagnostic distinction, not a comparison of total fan sizes
 or a claim that either family achieves polynomial amplification.
 
+## Generic graphs over torus grids reduce to ordinary cuts
+
+There is a broad comparison family where exact rank is tractable. It is
+different from the local nilpotent rectangles above.
+
+Let $G=C_r\times C_s$, $n=rs$. Work over a field $K$ of characteristic
+not dividing $n$, containing the required roots of unity. Index the torus
+grid by $g\in G$, and let $\chi_{a,b}(g)$ be its characters,
+$0\le a<r,0\le b<s$. Give each grid point an independent indeterminate
+$\lambda_g$. The $n$ points
+
+$$
+(\zeta_r^i,\zeta_s^j,\lambda_{i,j})
+$$
+
+are rational over $L=K(\lambda_g:g\in G)$. Their algebra has length $n$,
+with $x^r=y^s=1$, and $z=F(x,y)$ for the unique interpolating polynomial
+of separate degrees below $r,s$.
+
+**Generic rank claim.** Every $n$ distinct columns
+
+$$
+v_{a,b,c}(g)=\chi_{a,b}(g)\lambda_g^c,\qquad
+0\le a<r,\quad0\le b<s,\quad c\ge0,
+$$
+
+are independent over $L$. This holds for composite $r,s$ as well.
+
+Here is a proof using established matroid theory. Group the chosen columns by
+their exponent $c$, with $k_c$ columns in a block. Their character columns
+are independent because the full character table is invertible. The row
+matroid of that block has rank $k_c$ and is transitive under translation
+of $G$: translating rows merely rescales character columns. Translating
+any one of its row bases uniformly over $G$ gives a distribution in which
+each row belongs to the basis with probability $k_c/n$. Intersecting these
+bases with a row subset $T$ proves
+
+$$
+\operatorname{rank}_c(T)\ge k_c|T|/n.
+$$
+
+Thus $\sum_c\operatorname{rank}_c(T)\ge |T|$ for every $T$.
+The classical matroid partition theorem supplies disjoint row bases $R_c$
+covering all $n$ rows. One primary statement is Theorem 2 in
+[Cunningham, *The Coming of the Matroids*](https://www.math.uwaterloo.ca/~whcunnin/coming.of.matroids.pdf);
+the original result is Edmonds's matroid partition theorem.
+The density condition is established terminology, not a new invariant:
+see [Devriendt--Mulas, Theorem 1.1 and its proof, published 2026](https://ajc.maths.uq.edu.au/pdf/94/ajc_v94_p145.pdf).
+
+Expand the selected determinant as a polynomial in the independent row
+parameters. The coefficient of $\prod_c\prod_{g\in R_c}\lambda_g^c$
+is, up to sign, the product of the nonzero character minors on $R_c$.
+Different row partitions give different parameter monomials, so this
+coefficient cannot cancel with another partition. The determinant is
+nonzero, proving the claim. This argument does not assume that every smaller
+minor of a composite Fourier matrix is nonzero.
+
+Every monomial outside
+
+$$
+S_{r,s}=\{(a,b,c):0\le a<r,\ 0\le b<s,\ c\ge0\}
+$$
+
+has the same residue as a cheaper monomial obtained by reducing $a,b$
+modulo $r,s$. The first $n$ monomials of $S_{r,s}$ in a positive
+weight order are independent by the claim. Hence they are exactly the
+standard set. The entire initial-ideal count is therefore the number of
+ordinary $n$-element positive halfspace cuts of $S_{r,s}$.
+
+Only $E=S_{r,s}\cap V_n^3$ is needed: the divisors of any selected monomial
+are also selected. Thus $n\le |E|\le n(1+\log n)^2$. For a particular
+length, the finitely many nonzero determinant conditions can also be
+specialized over an infinite field. The proof does not guarantee a simultaneous
+scalar specialization in a given small finite field.
+
+The checker independently expands all 495 tested maximal determinant
+polynomials for $C_2\times C_2$ with three $z$-blocks, over the integers,
+and all 924 for $C_2\times C_3$ with two blocks in characteristic 7.
+Both underlying Fourier matrices have zero $2\times2$ minors. Sample exact
+coefficient witnesses and digests of the full witness ledgers are recorded. These are
+applications of classical partition theory; priority of the combined
+formulation is unestablished.
+
+## Why the generic cut route is a demanding lower bound target
+
+More generally, suppose an algebraic family has its standard sets equal to
+ordinary positive-weight $n$-cuts of a configuration $E\subset V_n^3$.
+A polynomial gain here would yield a polynomial gain for the classical
+three-dimensional $k$-set problem, as follows.
+
+Write $N=|E|$. If $N\ge2n$, add $N-2n$ points with all coordinates
+negative. Every positive cut selecting $n$ original points selects these
+extra points too. The new configuration has $M=2(N-n)$ points, and the
+selected sets have size $M/2$. If $N<2n$, add $2n-N$ points with all
+coordinates greater than $n$; they are outside every relevant positive
+cut, whose original points have coordinates at most $n-1$. Now $M=2n$
+and the selected sets again have size $M/2$.
+
+In both cases $N\le M\le2N$ and distinct cuts remain distinct. Choose one
+strict separating certificate for each of the finitely many cuts and perturb
+the points sufficiently little to obtain general position while preserving
+every certificate. This is the standard strict-separation perturbation,
+also given in [Wagner's thesis, Observation 2.4](https://ti.inf.ethz.ch/ew/research/phdtheses/wagner03.pdf).
+
+Consequently, $n^{2+\epsilon}$ such algebraic standard sets, with
+$N=O(n\log^2 n)$, would yield $M^{2+\epsilon-o(1)}$ balanced strict
+halfspace subsets of an $M$-point configuration in three dimensions.
+Wagner's equation (2.7) records the lower construction
+$N k^{d-2}\exp(\Omega(\sqrt{\log k}))$. The later
+[Kovács--Tóth paper, introduction and Theorem 2](https://arxiv.org/pdf/1704.00229v2)
+constructs the corresponding rate for dense halving configurations. These
+benchmarks have only a subpolynomial factor above the quadratic scale in
+dimension three.
+
+This is a reason to treat a uniform-cut construction as a difficult geometric
+research route, not a reason to regard the full algebraic goal as settled or
+equivalent to that problem. The broader current-priority audit is still open.
+A [September 2026 proposed planar upper-bound improvement](https://math20.org/f/183/)
+surfaced during the search, but its full proof was not accessible for inspection.
+No improved bound or transfer to general parametric matroid projections is assumed.
+
+## Coherent rank defects persist throughout the local family
+
+Removing zero monomials does not make the local rectangle family a uniform
+cut problem. There is an infinite obstruction inside actual cheapest
+prefixes, stronger than a circuit on an arbitrary column subset.
+
+Let $q\ge3$, $F=\alpha x+\beta y+\text{higher terms}$, with
+$\alpha\beta\ne0$, in $K[x,y]/(x^q,y^q)$. Assume characteristic zero,
+or characteristic greater than $2q-2$. The nonzero monomials in the
+$y,z$ face are exactly
+
+$$
+y^b z^c,\qquad 0\le b<q,\quad0\le c\le2q-2-b.
+$$
+
+For the forward direction, the lowest homogeneous part
+$y^b(\alpha x+\beta y)^c$ has a surviving nonzero term. In the other
+direction, total degree exceeds the last nonzero degree of the rectangle.
+
+At weights $(X,Y,Z)=(4q^2,2q-1,1)$, all of one $y$-row precedes the
+next, and the first $q^2$ nonzero monomials occur before any monomial
+containing $x$. The first two rows contain $4q-3\le q^2$ terms, so the
+prefix includes both $z^{2q-2}$ and $y z^{2q-3}$. Their residues lie
+in the one-dimensional socle and satisfy
+
+$$
+z^{2q-2}=2\beta\, y z^{2q-3}\ne0.
+$$
+
+Indeed their coefficients on $x^{q-1}y^{q-1}$ are
+$\binom{2q-2}{q-1}\alpha^{q-1}\beta^{q-1}$ and
+$\binom{2q-3}{q-1}\alpha^{q-1}\beta^{q-2}$, respectively. Thus that
+first-$n$ nonzero prefix has rank below $n=q^2$.
+
+There is nevertheless a full $y,z$ basis before the first $x$ term.
+To see this, put $f(y)=F(0,y)$. Since
+$F-f(y)=xU(x,y)$ with $U(0,0)=\alpha\ne0$, the finite implicit
+coordinate change gives
+
+$$
+K[y,z]/(y^q,(z-f(y))^q)\simeq K[x,y]/(x^q,y^q).
+$$
+
+The monomials $y^i z^j$, $0\le i,j<q$, are a basis and have weight
+at most $2q(q-1)<X$. The genuine greedy standard set must therefore
+reject at least one of the first $n$ nonzero terms. Small generic weight
+perturbations preserve this failure and give strict coherent witnesses.
+
+The checker verifies prefixes of lengths 9, 16, 25, 36, 49, and 64; their
+ranks are respectively 8, 15, 22, 32, 43, and 55 for the fixed rule modulo 101.
+The theorem is uniform in $F$ with the stated hypotheses. It is not a
+count amplification theorem: even $F=x+y$ has this defect, while its
+entire fan has only five cones.
+
+## Existing fans already contain interior dependent prefixes
+
+For each saved state cone, compare all its polygon vertices with every
+inequality saying that each basis monomial is cheaper than every excluded
+nonzero monomial. If all hold, the cone equals an ordinary-cut cone.
+A violated inequality supplies a strict interior witness where the first
+$n$ nonzero terms are dependent. This checks whole cones, rather than just
+the originally saved sample weight.
+
+| Length | Existing complete fan count | Cones containing a nonuniform region | Such cones with $x,y,z$ all standard |
+|---|---:|---:|---:|
+| 4 | 6 | 0 | 0 |
+| 6 | 12 | 0 | 0 |
+| 9 | 26 | 4 | 2 |
+| 12 | 54 | 6 | 4 |
+
+For example, the length-9 counterexamples include an initial standard set
+containing all three generators, while a cheaper nonzero monomial is
+dependent on the earlier columns. The exact weights, bases and prefix
+vectors are in the report. Thus dependent regions cannot be assigned only
+to coordinate-face bases. These counts do not say that whole nonuniform
+cones have no ordinary-cut weights, or that the total fan is larger than
+the ordinary-cut fan. No larger fan enumeration is needed to reject the
+face-confinement claim.
+
 ## Next proof task and stopping rule
 
 The next task is to characterize coherent bases of the nonlinear rectangle
@@ -530,6 +730,13 @@ distinct cones with a provable growth rate. Only a rate polynomially above the
 generic scale, with a further general consequence, meets the lower-family
 endpoint of this goal. An upper bound excluding that rate would close the
 route and justify a different construction.
+
+The new comparisons isolate the missing mechanism: a quantitative count of
+coherent basis changes caused by overlapping algebraic dependencies in
+interior weight regions. Generic torus-grid graphs lead back to ordinary
+cuts. Nonzero-prefix rank defects are real in local algebras, but their
+existence or size does not imply a large fan. The next proof must count their
+interactions, or bound them strongly enough to close the local route.
 
 Increasing the finite cases, fitting a curve to four counts, or replacing
 coefficient rank by support matching cannot serve as that proof. The source

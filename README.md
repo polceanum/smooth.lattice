@@ -47,12 +47,12 @@ results/    selected certified examples and benchmark summaries
 The active [extremal initial-ideal goal](docs/extremal_initial_ideals.md)
 targets sharp growth, or a polynomial separation from the generic scale with
 a general consequence, for finite algebras in three variables. It develops the
-exponent-lattice connection behind the original interleavings. The initial
-source audit, exact family probes and a uniform obstruction to a rank shortcut
-are saved; no new asymptotic advance is established in that iteration.
-The continuation proves a local Hilbert-function bound and identifies a fixed
-rational relation in the probe, with a uniform coherent distinction from another
-embedding. These restrict the next proof attempt; the unrestricted goal remains open.
+exponent-lattice connection behind the original interleavings. Uniform local
+bounds and exact coefficient comparisons delimit the candidate families.
+Generic torus-grid graphs reduce to ordinary geometric cuts; local rectangles
+have genuine coherent rank defects, including in cones using all three
+generators. A count of interacting dependencies remains necessary. The
+unrestricted asymptotic target and publication significance are still open.
 
 Current research returns to the original occurrence-count and prime-exponent
 interleaving observations. The [face reconstruction study](docs/occurrence_reconstruction.md)

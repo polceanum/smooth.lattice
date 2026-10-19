@@ -70,11 +70,12 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Prove an asymptotic coherent-basis count for a specified coefficient class of the nonlinear rectangle family, or a structural upper bound excluding polynomial amplification. Use the filtration budget and explicit rational specialization; do not assume generic coefficients have more cones, infer count from support matching, or increase finite cases without a proof mechanism. Continue the unrestricted G_3 target and current-priority audit with the original success bar intact.",
+  "next_proof_task": "Count coherent basis changes caused by overlapping nongeneric dependencies in interior weight regions, or bound them enough to close the nonlinear rectangle route. Generic torus-grid graphs reduce to the classical k-set problem; ordinary-prefix rank defects alone can occur with only five total cones. Do not fit an exponent, expand fan sizes without a discriminating hypothesis, or replace the original sharp/asymptotic-separation success criterion with these screening results.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
-    "Retain the user's assumption that relevant Elizalde--Galvan published results agree with arXiv:2312.16353v1, pending the user's eventual check."
+    "Retain the user's assumption that relevant Elizalde--Galvan published results agree with arXiv:2312.16353v1, pending the user's eventual check.",
+    "Inspect the full proposed planar power-saving paper at https://math20.org/f/183/ before relying on any changed bound. Its asserted ordinary k-set improvement is not automatically a parametric-matroid theorem."
   ],
   "primary_sources": [
     {
@@ -93,6 +94,26 @@
       "authors": "Dimitrova, He, Robbiano and Stigler",
       "url": "https://arxiv.org/pdf/1704.03680v2",
       "scope": "Theorem 4.8, proof and Corollary 4.11 for reflected complements and equal fans."
+    },
+    {
+      "authors": "Cunningham; theorem credited to Edmonds",
+      "url": "https://www.math.uwaterloo.ca/~whcunnin/coming.of.matroids.pdf",
+      "scope": "Theorem 2, the matroid partition rank criterion, used as a classical published input."
+    },
+    {
+      "authors": "Devriendt and Mulas",
+      "url": "https://ajc.maths.uq.edu.au/pdf/94/ajc_v94_p145.pdf",
+      "scope": "Theorem 1.1 and proof; transitive-basis averaging is standard uniform density. Theorem 2.7 and Corollary 4.9 also inspected; no new density invariant is claimed."
+    },
+    {
+      "authors": "Wagner",
+      "url": "https://ti.inf.ethz.ch/ew/research/phdtheses/wagner03.pdf",
+      "scope": "Chapter 2, equation (2.7) and Observation 2.4 for dated k-set benchmarks and strict-separation perturbation."
+    },
+    {
+      "authors": "Kovacs and Toth",
+      "url": "https://arxiv.org/pdf/1704.00229v2",
+      "scope": "Introduction, Theorem 2 and higher-dimensional construction; supports a dated lower-bound comparison, not a complete 2026 priority certificate."
     }
   ],
   "verification": {
@@ -120,10 +141,10 @@
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "ab0cc107b7bd2107699147885fa555ce9b9132de03024a9522cd04083593d9ce",
-    "docs/extremal_initial_ideals.md": "70d1957cbe3eaaa6fe249f4845fe72f9949deee49a9dcf79f8dcd1e47f08b086",
-    "scripts/run_extremal_initial_ideals_checks.py": "187264633b178439b99ab9182194a69d7cc3240ff7150bc18f3b50be287d3259",
-    "results/research/extremal_initial_ideals_checks.json": "1ac68208d0862184d8fd617aa8b8e9a4c79a5fd91733bfc52aba0c4ea8250bf7"
+    "README.md": "6053c630df67e10d1aecc019c72a32917f0ba504ed3b0731f9a020155e682e52",
+    "docs/extremal_initial_ideals.md": "fa00d8a24439d23eaa234d79aca1a5d27a4969989e04b90521edc18357002ff6",
+    "scripts/run_extremal_initial_ideals_checks.py": "27c52f7843fe5aee6b0f1a932a693463e18c26b92c09a2363274dda05e463fe0",
+    "results/research/extremal_initial_ideals_checks.json": "3958883235407d14c9a6ed82627bd5822e236861991341e78be4178b2b9f9e9b"
   },
   "continuations": [
     {
@@ -179,6 +200,81 @@
       },
       "priority_and_significance": "The filtration estimate combines an elementary determinant argument with classical lattice vertex geometry. The other identities and one-cone construction are diagnostics. No novelty, sharpness, polynomial lower separation or unrestricted asymptotic advance is established.",
       "effect_on_next_action": "A count proof must distinguish the fixed rational surface from free-coefficient embeddings. The square family has at most a quarter-power window above the generic scale. Neither a larger matrix rank nor the one-cone witness establishes a larger fan.",
+      "goal_complete": false
+    },
+    {
+      "title": "Generic graph rank and coherent nongeneric dependencies",
+      "recorded_on": "2026-10-19",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "Commit a2323c9 supplied uniform local moment bounds and a coherent distinction between coefficient embeddings.",
+      "uniform_proofs": [
+        "For a finite abelian character table over a splitting field whose characteristic does not divide the group order, every maximal selection of character columns multiplied by independent row parameters to distinct nonnegative block powers has a nonzero generic determinant. Proof: transitive row matroids are uniformly dense; classical matroid partition gives a coefficient which cannot cancel.",
+        "For generic graph values above an r by s torus grid, all n=rs distinct canonical monomials with x exponent below r and y exponent below s are independent. Its initial standard sets are exactly ordinary positive n-cuts of the canonical exponent strip.",
+        "Any uniform-cut route on at most n*(1+log n)^2 exponent points yielding n^(2+epsilon) standard sets would yield M^(2+epsilon-o(1)) balanced strict halfspace subsets of a general-position three-dimensional configuration. The padding proof keeps M between N and 2N.",
+        "For every q>=3 and every local square graph with nonzero x and y linear coefficients, in characteristic zero or characteristic greater than 2q-2, a prescribed positive-weight first-n nonzero prefix is dependent: z^(2q-2)=2*beta*y*z^(2q-3) is a nonzero parallel pair inside it."
+      ],
+      "independent_controls": {
+        "generic_determinant_polynomials": [
+          {
+            "group_orders": [
+              2,
+              2
+            ],
+            "blocks": 3,
+            "base_characteristic": 0,
+            "maximal_minors": 495
+          },
+          {
+            "group_orders": [
+              2,
+              3
+            ],
+            "blocks": 2,
+            "base_characteristic": 7,
+            "maximal_minors": 924
+          }
+        ],
+        "method": "Direct permutation expansion in formal row parameters; the base Fourier matrices have zero smaller minors. No random scalar evaluation is used.",
+        "local_coherent_prefix_lengths": [
+          9,
+          16,
+          25,
+          36,
+          49,
+          64
+        ],
+        "local_prefix_ranks_mod_101": [
+          8,
+          15,
+          22,
+          32,
+          43,
+          55
+        ],
+        "existing_fan_counts": [
+          6,
+          12,
+          26,
+          54
+        ],
+        "cones_with_some_nonuniform_weights": [
+          0,
+          0,
+          4,
+          6
+        ],
+        "such_cones_using_all_three_generators": [
+          0,
+          0,
+          2,
+          4
+        ],
+        "mandatory_fan_sizes_unchanged": true,
+        "all_previous_report_fields_and_exact_witnesses_preserved": true
+      },
+      "literature_boundary": "Uniform density and matroid partition are credited published inputs. The geometric padding comparison concerns only families already reducible to ordinary cuts. Wagner equation (2.7) and the 2019 Kovacs--Toth construction are dated benchmarks, not a certification of the latest global bound. A 2026 proposed planar improvement remains an uninspected source lead.",
+      "effect_on_next_action": "Avoid generic torus-grid graph searches as an easy route to polynomial amplification. The local algebra family is not covered by that uniform-cut reduction, and the saved small fans already refute confinement of rank defects to coordinate-face bases. A quantitative theorem about overlapping coherent dependencies in interior weight regions is still needed.",
+      "claim_limit": "No polynomial fan-count separation, new unrestricted asymptotic, algorithmic speedup, novelty certificate or paper-level significance is established.",
       "goal_complete": false
     }
   ]
