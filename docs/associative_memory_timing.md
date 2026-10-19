@@ -2185,3 +2185,218 @@ filters and dictionaries. The existing variance identity, XOR batch
 factorization and timing obstruction remain valid records. Their
 ingredients or a favorable synthetic outer-density example do not
 establish the original publication goal.
+
+## High overlap and full rank still admit classical product decoding
+
+The previous iteration was **progress**: a finite-word signature baseline
+removed the compact sparse examples from the novelty case. The next test
+must genuinely violate that dictionary's restriction, rather than add
+constant coordinates that an index can simply remove. The family below
+does so, has a uniformly well-conditioned full-rank kernel, and nevertheless
+admits cheap exact product decoding. This is another baseline/stress-test
+consequence of established ideas, not a new architecture or paper claim.
+
+### Product indexing is already a strong comparator
+
+[Babenko--Lempitsky, The Inverted Multi-Index](https://www.robots.ox.ac.uk/~vilem/cvpr2012.pdf),
+Section 3, describes ordered Cartesian-cell traversal by a multi-sequence
+algorithm. Its discussion on PDF page 5 explicitly considers more than
+two dimension groups; that page was visually checked. Thus increasing
+the number of product factors is not itself a new indexing principle.
+Their database application also uses approximate quantization. We use the
+exact product-codebook part, not an approximation guarantee for arbitrary
+raw database vectors.
+
+[Lample et al., Large Memory Layers with Product Keys](https://arxiv.org/html/1907.05242v2),
+Sections 3.1--3.2, already combines exact product-key access with a full
+independent value table. Its two subqueries are vectors, not the two scalar
+latents of the earlier failed prototype. The main research note retains
+that distinction. The construction below is a fixed binary codebook with
+many factors; it supplies no trained-model comparison or new optimization
+method. Its specific kernel conditioning and radius-count calculations
+are derived here as diagnostics, rather than attributed to those papers.
+
+### A spectral family that defeats the unique-subset hypothesis
+
+For any integer p>=2 let
+
+```text
+n=2^p, L=ceil(log2(4p)), d=2pL, theta=2^(-L).
+```
+
+Encode a logical binary word a in p blocks. Its j-th block is
+(a_j repeated L times, (1-a_j) repeated L times). Write x(a) for the
+resulting raw binary key. Every key has weight t=pL, no coordinate is
+constant across the full codebook, and
+
+```text
+dist(x(a),x(b))=2L*dist(a,b),
+K_ab=2^(-dist(x(a),x(b))/2)=theta^(dist(a,b)),
+K = [[1,theta],[theta,1]] tensor ... tensor [[1,theta],[theta,1]].
+```
+
+The eigenvalues are (1+theta)^(p-h)*(1-theta)^h, h=0,...,p, with the
+usual binomial multiplicities. Since p*theta<=1/4, Bernoulli's inequality
+and a binomial/geometric-series bound give
+
+```text
+3/4 <= (1-theta)^p <= lambda_min(K)
+    <= lambda_max(K) = (1+theta)^p <= 1/(1-p*theta) <= 4/3.
+```
+
+In particular K has rank n and condition number at most 16/9. Any active
+subset inherits these eigenvalue bounds by the Rayleigh quotient; no
+per-update spectral computation is necessary within this fixed codebook.
+This K is the exponential kernel used in our promise, not automatically
+the matrix of truncated weighted reads considered below.
+
+Two logical words differing in one bit have support intersection t-L.
+Any unique-subset dictionary from the preceding section must consequently
+choose ell>t-L. Its radius condition r<=t-ell then forces r<L. Thus for
+r>=L there is **no** ell satisfying that lemma's two hypotheses. The graph
+joining distance-2L keys is the connected p-dimensional hypercube, with
+n vertices. Merging all nearest pairs therefore does not give bounded-size
+components. These observations rule out two simple explanations of this
+example; they are not lower bounds against other dictionaries or clustering
+algorithms. The product structure remains explicit.
+
+### Complete raw-query decoding by a finite-word heap
+
+For a completely arbitrary raw query q, count its ones u_j,v_j in the two
+halves of block j. The two possible block distances are
+
+```text
+d_j(0)=L+u_j-v_j, d_j(1)=L-u_j+v_j,
+m_j=min(d_j(0),d_j(1)), Delta_j=|d_j(0)-d_j(1)|=2*(L-m_j).
+```
+
+Choose a favored bit b_j realizing m_j, breaking ties consistently, and
+put M=sum_j m_j. For every codeword a,
+
+```text
+dist(q,x(a)) = M + sum_{j:a_j!=b_j} Delta_j.
+```
+
+If M>r the exact answer is empty. Otherwise sort the p nonnegative
+penalties and enumerate their subset sums up to r-M. A simple heap has
+one root, the empty subset. A subset whose greatest chosen sorted index
+is j has children obtained by adjoining i>j. Each subset has exactly one
+parent, and a child's cost never decreases. Push a child only if its
+distance is at most r; stop the child loop once the sorted penalty is
+too large. No visited-set hash or growing timestamp is needed.
+
+Every codeword within radius r appears exactly once: all its ancestors
+also satisfy the budget. Conversely no pushed codeword lies outside the
+radius. Let Z(q,r) be their number in the entire fixed codebook, including
+currently unoccupied addresses. There are Z-1 accepted child insertions
+and at most one unsuccessful boundary check per emitted node. A binary
+heap therefore takes O(Z*log(Z+1)) word operations after sorting. Logical
+addresses are p-bit words; adjoining a coordinate is one XOR. The sorting
+cost O(p log p) is absorbed by d. Complete exact geometric work is
+
+```text
+O(d + Z(q,r)*log(Z(q,r)+1)).
+```
+
+For occupied addresses fetch their independent current payloads and add
+the exact weight r+1-distance to the numerator/denominator. If S(q,r)
+addresses are occupied, this costs an additional O(S(q,r)*v). Empty
+addresses still count in Z; no active-output-sensitive bound is claimed
+for them. All raw coordinates are processed to determine the block scores.
+The input is not a supplied address and has no learned low-dimensional
+encoder hidden outside the accounting.
+
+### A uniform subpolynomial bound at the earlier radius scale
+
+Assume M<=r. A block with Delta_j<L has m_j>L/2, so there are at most
+floor(2r/L) such blocks. Flipping a bit in any other block costs at least
+L, so a valid subset flips at most floor(r/L) of those other blocks.
+Consequently, with binomial sums truncated at p if necessary,
+
+```text
+Z(q,r) <= min(n, 2^floor(2r/L) * sum_{i=0}^{floor(r/L)} binom(p,i)).
+```
+
+For every fixed c>1 and all r<=p/c this is n^o(1), uniformly over all raw
+queries. For J=floor(r/L)>=1, the usual generating-function bound gives
+sum_{i<=J} binom(p,i)<=(e*p/J)^J; here J<p/2. The function
+x*log(e*p/x) increases for x<=p, so replacing J by p/(cL), and using
+e<3, yields
+
+```text
+log2(Z(q,r))/p <= (2+log2(3cL))/(cL) -> 0.
+```
+
+When J=0 the same upper bound follows directly. This is an analytical
+uniform bound, not a sampled-query estimate. The code has
+d=Theta(log n*log log n), a particularly strong kernel bound, large
+overlaps, and n independent addresses, yet an existing product-decoding
+principle gives subpolynomial complete geometric reads. The finite count
+Z and payload work, rather than this asymptotic notation alone, determine
+practical costs.
+
+### Admission, overwrites, raw storage and horizon
+
+Use a declared capacity n for the fixed codebook. Keep an owner array
+indexed by its p-bit address, an address per occupied user slot, the raw
+key bits, and the independent value array. To admit a raw key, check that
+every block has exactly one of the two allowed patterns and decode its
+address. Reject a duplicate belonging to another slot before mutation.
+On success unlink the old address, install the new owner and store the
+raw input. Deletion and payload replacement are explicit operations.
+Any active subset is automatically spectrally admissible by the preceding
+principal-submatrix argument.
+
+The complete finite-word bounds are
+
+```text
+space O(n*(ceil(d/w)+v+1)+d) words, including a capacity-n heap,
+initial work O(n*d+n*v), including generation/loading of all supplied keys,
+worst-case key admission/replacement/deletion O(d), plus O(v) for new values,
+payload-only write O(v),
+complete read O(d+Z*log(Z+1)+S*v).
+```
+
+Preallocate the heap and reset its length; do not clear n entries for
+each query. All address, distance, ownership and fixed-grid accumulator
+guard bits fit the declared word width and have no horizon-dependent
+counter. Changing a logical key can move any slot to any unoccupied valid
+codeword. Rejected keys leave state unchanged. Changing the codebook
+patterns, training a semantic encoder or learning the block layout is
+not included in this bound and is not assumed free. The guarantee is
+restricted to this explicit codebook, not all spectrally admissible keys.
+
+### Independent retention and the limits of the conclusion
+
+Independent stored values are not merely formal parameters. For every
+0<=r<=p, put h=max(0,r-L+1). From x(a) flip one physical bit in each of
+h distinct blocks to obtain q_a. Then dist(q_a,x(a))=h, while for b!=a
+
+```text
+dist(q_a,x(b)) >= h+2*(L-1).
+```
+
+Every query within eta=min(r,L-2) further bit flips of q_a has x(a) as
+its only possible radius-r codeword. If a is occupied it returns that
+slot's exact current value; if it is absent the answer is empty. For
+r<L-1 this follows from h=0; otherwise the target is at most r-1 away
+and every other codeword is at least r+1 away after the extra flips.
+In particular the complete read family contains an identity submatrix
+on n addresses, so its dependence on arbitrary values has rank n too.
+The pure-recall basin has radius O(log log n), not Theta(log n).
+
+At the stored key itself, r>=2L includes neighboring logical addresses
+and yields a genuine mixture of independent values. Do not call that
+mixture the individually stored value. The explicit q_a basins are what
+justify the independent-retention statement. All claims remain exact
+through arbitrary admitted updates; no implicit forgetting is used.
+
+This example separates the spectral condition from the previous
+unique-subset restriction without relying on common-coordinate padding
+or a rank-two value bottleneck. Nevertheless a classical product index
+already has stronger asymptotic geometric/storage costs than our covering
+bound here. Full rank, good conditioning and high overlap therefore do
+not supply the missing novelty argument. The original goal remains
+unachieved. A useful new result must address genuinely more general
+interactions or prove a substantive new tradeoff against these product
+methods, with all raw-input, value, admission and precision costs included.

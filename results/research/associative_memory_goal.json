@@ -18,7 +18,7 @@
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "finite_word_exact_subset_signature_baseline_asymptotically_dominates_compact_random_shell_witness_with_efficient_admission_and_overwrites; no_novel_frontier_from_that_example; full_spectral_only_class_open"
+      "status": "well_conditioned_full_rank_high_overlap_product_family_solved_by_classical_product_decoding_with_finite_word_admission_and_overwrites; neither_overlap_nor_rank_identifies_a_new_frontier; full_nonproduct_spectral_class_open"
     },
     {
       "stage": 4,
@@ -1664,5 +1664,82 @@
     },
     "old_functions_and_certificate_blocks_preserved": true,
     "verification_scope": "Extended exact checker, build and smoke tests passed. All 234 protected files, nineteen prior non-main function ASTs, twenty prior goal iterations and historical certificate blocks are preserved. Final note/checker hashes match the report. Other proof checkers were not rerun because their sources/artifacts are unchanged. New controls use a preallocated finite trie and exhaustive raw Hamming oracle; the written proof supplies uniform parameter bounds. No practical performance, new architecture, neural training or novelty claim."
+  },
+  "twenty_second_iteration": {
+    "previous_turn_classification": "progress: exact finite-word subset-signature comparator and admission proof verified and published; compact random-shell examples removed as evidence of a new frontier; full original goal unachieved",
+    "record": "docs/associative_memory_timing.md, High overlap and full rank still admit classical product decoding",
+    "certificate_script": "scripts/run_timing_restart_checks.py",
+    "certificate_report": "results/research/timing_restart_checks.json",
+    "primary_prior_art": [
+      {
+        "url": "https://www.robots.ox.ac.uk/~vilem/cvpr2012.pdf",
+        "scope": "Babenko--Lempitsky 2012, Section 3: ordered Cartesian-cell traversal by a multi-sequence algorithm; PDF page 5 visually checked for the explicit discussion of higher-order indices with more than two dimension groups. Exact centroid traversal is relevant; approximate quantization of arbitrary raw vectors and empirical performance are not imported into the fixed binary-code proof."
+      },
+      {
+        "url": "https://arxiv.org/html/1907.05242v2",
+        "scope": "Lample et al. 2019 Sections 3.1--3.2: exact product-key access and independent value table. Two subqueries are vectors rather than the failed prototype two scalar latents. Many-factor product structure is not itself a new architecture. The fixed binary conditioning/radius derivation is a diagnostic baseline consequence, not a claimed theorem or experiment of that paper."
+      }
+    ],
+    "high_overlap_spectral_diagnostic": {
+      "parameters": "p>=2, capacity n=2^p, L=ceil(log2(4p)), d=2pL. Logical bit a_j is encoded as L copies of a_j followed by L copies of 1-a_j. All keys have weight t=pL and no coordinate is constant across the full codebook.",
+      "kernel_and_rank": "dist(x(a),x(b))=2L*Hamming(a,b). The promised kernel is the p-fold tensor power of [[1,theta],[theta,1]], theta=2^(-L). Its eigenvalues are (1+theta)^(p-h)*(1-theta)^h; all lie in [3/4,4/3], giving rank n and condition number <=16/9. Every nonempty active principal submatrix inherits those bounds.",
+      "failure_of_the_previous_signature_hypothesis": "Adjacent logical words share t-L coordinates. A unique-subset level must satisfy ell>t-L, while its decoding radius requires ell<=t-r. No level exists for r>=L. The distance-2L graph is the connected p-cube, so merging every nearest pair does not yield bounded-size components. These facts are not lower bounds for all dictionaries or clustering methods.",
+      "scope": "The exponential Gram matrix is not automatically the truncated-read matrix. Full rank of the latter is justified separately by explicit pure query prototypes. No generic learned encoder, arbitrary raw-key admissibility or new architectural contribution is claimed."
+    },
+    "classical_product_decoder_consequence": {
+      "raw_query_factorization": "For each raw 2L-bit block count u_j,v_j. Its two distances are L+u_j-v_j and L-u_j+v_j. With minimum m_j, favored bit b_j and penalty Delta_j=2(L-m_j), full distance to address a is M+sum_{a_j!=b_j}Delta_j, M=sum m_j. All raw bits are processed.",
+      "complete_enumeration": "If M>r return empty. Sort nonnegative penalties and use a preallocated binary heap of subsets, each parent dropping the largest chosen sorted index. Push only children within the radius and break the child loop at the first too-large sorted penalty. Each valid address has exactly one parent; all ancestors remain valid. Z ambient codewords are emitted exactly once, with Z-1 insertions and at most one failed child test per emitted node.",
+      "full_cost": "Space O(n*(ceil(d/w)+v+1)+d) words, including explicit raw keys, independent values, owner/slot metadata and capacity-n heap. Initialization O(n*d+n*v), including raw generation/loading. Valid-key admission/replacement/deletion O(d), plus O(v) for supplied values. Pure value overwrite O(v). Complete read O(d+Z*log(Z+1)+S*v), with Z counting all ambient near addresses, including empty ones, and S the occupied count. No active-output-sensitive shortcut or per-query O(n) clearing is assumed.",
+      "uniform_volume_proof": "Blocks with Delta<L have m>L/2, so there are at most floor(2r/L). Among other blocks at most floor(r/L) can be flipped. Thus Z<=min(n,2^floor(2r/L)*sum_{i<=floor(r/L)}binom(p,i)). For every fixed c>1 and r<=p/c, log2(Z)/p <=(2+log2(3cL))/(cL)->0 using the standard binomial-sum bound. Complete geometry cost is n^o(1) uniformly over all raw queries.",
+      "dynamic_admission": "Check the full raw codeword format, decode its p-bit address and reject another slot duplicate before mutation. On success unlink the old owner and install the new one. Every active subset remains spectrally bounded without a global matrix test. Keys may move to any unoccupied codeword. The codebook/layout remains fixed; changing it or learning a semantic encoder is not included or assumed free. Word counters depend on capacity/precision, not horizon.",
+      "independent_retention": "For every 0<=r<=p use h=max(0,r-L+1) one-bit block corruptions of x(a) to define q_a. Its target distance is h and every other codeword is >=h+2(L-1) away. Every further perturbation of radius eta=min(r,L-2) leaves a as the only possible inner address. Reads return its exact current arbitrary value when occupied and empty otherwise. This yields an identity submatrix on n addresses, proving full value dependence separately from exponential Gram rank. The basin is around engineered query prototypes and has O(log log n) radius, not Theta(log n). At stored keys, r>=2L instead yields genuine mixtures."
+    },
+    "decision": "High overlap, absence of constant coordinates, full kernel rank and uniformly good conditioning still do not identify a new access/storage/retention frontier: this explicit family is handled more cheaply by classical product decoding in a finite-word model. Preserve it as a stress test and prior-art boundary, not a contribution. The full spectral-only class and original strongest-baseline publication goal remain open.",
+    "next_actions": [
+      "Move from showcase families to a formal full-workload separation or a general reduction for the genuinely nonproduct spectral class. A new example should justify an actual gap against costed product/set-filter/dictionary baselines rather than merely violate one sufficient condition.",
+      "Audit whether distance-sensitive or recursive filtering bounds already match the general spectral guarantee, including changing-key admission, raw inputs, independent values and finite precision. An unproved stronger-baseline extension is not novelty evidence.",
+      "Only if a complete generic tradeoff survives that comparison, finish the priority audit for XOR batch compression, its covariance theorem and the all-time timing conversion. Do not infer mathematical impact from rank or conditioning in isolation.",
+      "Keep the original goal and acceptance criteria unchanged. No neural training, outreach, submissions or claimed-contribution manuscript before the strongest-baseline, novelty and usefulness gates pass."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "verification_commands": [
+      "python3 -B scripts/run_timing_restart_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py"
+    ],
+    "preservation": "All twenty-one prior goal iterations, twenty previous non-main checker functions, historical certificate blocks, other proof scripts/reports, kernels, manuscripts and learned-recall artifacts are preserved. Only the existing timing note/checker/report and research manifest change.",
+    "certificate_summary": {
+      "exact_tensor_kernel_eigenvalues": 510,
+      "encoded_pair_distance_identities": 87380,
+      "coordinates_verified_nonconstant": 332,
+      "complete_raw_or_block_profile_reads": 207887,
+      "ambient_addresses_enumerated_exactly_once": 290998,
+      "independent_value_mixtures": 48508,
+      "empty_address_visits_charged": 7936,
+      "fast_regime_mixture_controls": 2,
+      "fast_regime_four_independent_value_controls": 1,
+      "heap_child_tests": 330738,
+      "maximum_heap_entries_in_controls": 4,
+      "dynamic_snapshots": 49,
+      "admitted_key_replacements": 12,
+      "atomic_invalid_key_rejections": 12,
+      "key_deletions": 12,
+      "invalid_format_rejections": 6,
+      "duplicate_owner_rejections": 6,
+      "existing_key_address_moves": 7,
+      "empty_slot_key_insertions": 5,
+      "payload_only_writes": 14,
+      "pure_recall_identity_rows": 128,
+      "exhaustive_pure_basin_perturbation_queries": 31072,
+      "integer_volume_parameter_controls": 532,
+      "unique_subset_level_obstruction_controls": 408
+    },
+    "old_functions_and_certificate_blocks_preserved": true,
+    "verification_scope": "Extended exact checker, build and smoke tests passed. All 234 protected files, twenty prior non-main function ASTs, twenty-one prior goal iterations and historical certificate blocks are preserved. Final note/checker hashes match the report. Other proof checkers were not rerun because their sources/artifacts are unchanged. Product controls include exact eigenvalues and distances, preallocated heap enumeration, dynamic admission and owner moves, complete independent-value reads, a four-value mixture within the fast regime, and exhaustive small pure-basin perturbations. No large Gram matrix, performance experiment, learned architecture advantage or novelty inference."
   }
 }

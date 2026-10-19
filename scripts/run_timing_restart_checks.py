@@ -1682,6 +1682,331 @@ def sparse_signature_controls():
             "scope": "Exact preallocated-trie oracle checks dynamic admission, atomic rejection, raw verification, scratch cleanup and independent weighted payloads against exhaustive Hamming reads. Integer controls support the written random-shell/asymptotic proof. This is a known signature-dictionary baseline consequence, not a new architecture, optimal implementation, performance benchmark or novelty claim."}
 
 
+def product_spectral_controls():
+    from math import comb
+
+    class ProductMemory:
+        """Exact fixed-codebook oracle with a capacity-bounded array heap."""
+        def __init__(self, factors):
+            self.p = factors
+            self.L = (4 * factors - 1).bit_length()
+            self.d, self.n = 2 * factors * self.L, 2 ** factors
+            self.owner = list(range(self.n))
+            self.address = list(range(self.n))
+            self.raw = [self.encode(a) for a in range(self.n)]
+            self.values = [(3 * slot - 19, 23 - 2 * slot) for slot in range(self.n)]
+            self.heap = [None] * self.n
+            self.size = 0
+
+        def encode(self, address):
+            key, block = 0, (1 << self.L) - 1
+            for j in range(self.p):
+                half = 0 if address & (1 << j) else self.L
+                key |= block << (2 * j * self.L + half)
+            return key
+
+        def decode(self, raw):
+            if not 0 <= raw < 1 << self.d:
+                return None
+            block, address = (1 << self.L) - 1, 0
+            for j in range(self.p):
+                first = (raw >> (2 * j * self.L)) & block
+                second = (raw >> ((2 * j + 1) * self.L)) & block
+                if first == block and second == 0:
+                    address |= 1 << j
+                elif first != 0 or second != block:
+                    return None
+            return address
+
+        def replace(self, slot, raw):
+            address = None if raw is None else self.decode(raw)
+            if raw is not None and (address is None or
+                                    self.owner[address] not in (None, slot)):
+                return False
+            old = self.address[slot]
+            if old is not None:
+                self.owner[old] = None
+            if address is not None:
+                self.owner[address] = slot
+            self.address[slot], self.raw[slot] = address, raw
+            return True
+
+        def geometry(self):
+            return repr((self.owner, self.address, self.raw))
+
+        def validate(self):
+            assert self.size == 0 and all(item is None for item in self.heap)
+            expected = [None] * self.n
+            for slot, raw in enumerate(self.raw):
+                if raw is not None:
+                    a = self.decode(raw)
+                    assert a is not None and expected[a] is None
+                    expected[a] = slot
+                    assert self.address[slot] == a
+                else:
+                    assert self.address[slot] is None
+            assert self.owner == expected
+
+        def push(self, item):
+            assert self.size < self.n
+            index = self.size
+            self.size += 1
+            while index:
+                parent = (index - 1) // 2
+                if self.heap[parent] <= item:
+                    break
+                self.heap[index] = self.heap[parent]
+                index = parent
+            self.heap[index] = item
+
+        def pop(self):
+            item = self.heap[0]
+            self.size -= 1
+            tail = self.heap[self.size]
+            self.heap[self.size] = None
+            if self.size:
+                index = 0
+                while 2 * index + 1 < self.size:
+                    child = 2 * index + 1
+                    if child + 1 < self.size and self.heap[child + 1] < self.heap[child]:
+                        child += 1
+                    if tail <= self.heap[child]:
+                        break
+                    self.heap[index] = self.heap[child]
+                    index = child
+                self.heap[index] = tail
+            return item
+
+        def read(self, query, radius):
+            assert self.size == 0
+            block, base, favored, penalties = (1 << self.L) - 1, 0, 0, []
+            for j in range(self.p):
+                u = ((query >> (2 * j * self.L)) & block).bit_count()
+                v = ((query >> ((2 * j + 1) * self.L)) & block).bit_count()
+                d0, d1 = self.L + u - v, self.L - u + v
+                base += min(d0, d1)
+                if d1 < d0:
+                    favored |= 1 << j
+                penalties.append((abs(d0 - d1), j))
+            if base > radius:
+                return (0, (0, 0)), (), (0, 0)
+            penalties.sort()
+            self.push((base, favored, -1))
+            denominator, numerator, emitted, child_tests, peak = 0, [0, 0], [], 0, 1
+            while self.size:
+                distance, a, last = self.pop()
+                # Oracle-only crosscheck, separate from the heap-cost proof.
+                assert distance == (query ^ self.encode(a)).bit_count() <= radius
+                emitted.append(a)
+                slot = self.owner[a]
+                if slot is not None:
+                    weight = radius + 1 - distance
+                    denominator += weight
+                    for j in range(2):
+                        numerator[j] += weight * self.values[slot][j]
+                for j in range(last + 1, self.p):
+                    penalty, coordinate = penalties[j]
+                    child_tests += 1
+                    if distance + penalty > radius:
+                        break
+                    self.push((distance + penalty, a ^ (1 << coordinate), j))
+                    peak = max(peak, self.size)
+            assert len(emitted) == len(set(emitted))
+            assert child_tests <= 2 * len(emitted) and peak <= len(emitted)
+            return (denominator, tuple(numerator)), tuple(emitted), (child_tests, peak)
+
+    spectral_controls = pair_distances = varying_coordinates = 0
+    for p in range(1, 9):
+        model = ProductMemory(p)
+        theta = F(1, 2 ** model.L)
+        spectrum = [theta ** a.bit_count() for a in range(model.n)]
+        width = 1
+        while width < model.n:
+            for start in range(0, model.n, 2 * width):
+                for offset in range(width):
+                    left, right = spectrum[start + offset], spectrum[start + offset + width]
+                    spectrum[start + offset] = left + right
+                    spectrum[start + offset + width] = left - right
+            width *= 2
+        assert theta * p <= F(1, 4)
+        for a, value in enumerate(spectrum):
+            assert value == (1 + theta) ** (p - a.bit_count()) * (1 - theta) ** a.bit_count()
+            assert F(3, 4) <= value <= F(4, 3)
+            spectral_controls += 1
+        assert max(spectrum) / min(spectrum) <= F(16, 9)
+        assert {key.bit_count() for key in model.raw} == {p * model.L}
+        for bit in range(model.d):
+            assert sum((key >> bit) & 1 for key in model.raw) == model.n // 2
+            varying_coordinates += 1
+        for a, b in product(range(model.n), repeat=2):
+            assert (model.raw[a] ^ model.raw[b]).bit_count() == 2 * model.L * (a ^ b).bit_count()
+            pair_distances += 1
+
+    reads = emitted_addresses = mixtures = empty_address_visits = child_tests = 0
+    snapshots = admitted = rejected = deletions = value_writes = 0
+    format_rejections = duplicate_rejections = moved_keys = inserted_keys = 0
+    peak_heap = pure_basins = perturbation_queries = 0
+
+    def verify(model, query, radius):
+        nonlocal reads, emitted_addresses, mixtures, empty_address_visits, child_tests, peak_heap
+        active = [(slot, (raw ^ query).bit_count()) for slot, raw in enumerate(model.raw)
+                  if raw is not None and (raw ^ query).bit_count() <= radius]
+        reference = (sum(radius + 1 - distance for slot, distance in active),
+                     tuple(sum((radius + 1 - distance) * model.values[slot][j]
+                               for slot, distance in active) for j in range(2)))
+        answer, emitted, counts = model.read(query, radius)
+        assert answer == reference
+        ambient = [a for a in range(model.n) if (model.encode(a) ^ query).bit_count() <= radius]
+        assert sorted(emitted) == ambient
+        bound = min(model.n, 2 ** min(model.p, (2 * radius) // model.L) *
+                    sum(comb(model.p, j) for j in range(min(model.p, radius // model.L) + 1)))
+        assert len(emitted) <= bound
+        reads += 1
+        emitted_addresses += len(emitted)
+        mixtures += len(active) > 1
+        empty_address_visits += sum(model.owner[a] is None for a in emitted)
+        child_tests += counts[0]
+        peak_heap = max(peak_heap, counts[1])
+        return answer
+
+    for p in (1, 2):
+        model = ProductMemory(p)
+        for step in range(24):
+            slot = step % model.n
+            if step % 4 == 0:
+                slot = (step // 4) % model.n
+                before = model.geometry()
+                model.values[slot] = (5 * step - 31, 47 - 3 * step)
+                assert model.geometry() == before
+                value_writes += 1
+            elif step % 4 == 1:
+                assert model.replace(slot, None)
+                deletions += 1
+            elif step % 4 == 2:
+                slot = (step // 4) % model.n
+                old = model.address[slot]
+                a = next((a for a, owner in enumerate(model.owner) if owner is None), old)
+                if a is not None:
+                    assert model.replace(slot, model.encode(a))
+                    inserted_keys += old is None
+                    moved_keys += old is not None and old != a
+                    admitted += 1
+            else:
+                duplicate = next((a for a, owner in enumerate(model.owner)
+                                  if owner is not None and owner != slot), None)
+                if (step // 4) % 2 and duplicate is not None:
+                    raw = model.encode(duplicate)
+                    duplicate_rejections += 1
+                else:
+                    raw = model.encode(0) ^ 1
+                    format_rejections += 1
+                before, values = model.geometry(), repr(model.values)
+                assert not model.replace(slot, raw)
+                assert model.geometry() == before and repr(model.values) == values
+                rejected += 1
+            model.validate()
+            snapshots += 1
+            radius = (step // 4) % (model.d + 1)
+            for query in range(1 << model.d):
+                verify(model, query, radius)
+
+    # Exhaust every block-count profile in a third-factor example. Larger
+    # radii deliberately exercise ties/mixtures; the subpolynomial theorem
+    # only claims its stated r<=p/c regime.
+    model = ProductMemory(3)
+    for profile in product(range(model.L + 1), repeat=2 * model.p):
+        query = sum(((1 << count) - 1) << (j * model.L) for j, count in enumerate(profile))
+        for radius in (0, model.p, 2 * model.L, model.d // 2, model.d):
+            verify(model, query, radius)
+
+    # Identity submatrix and every perturbation in the proved pure basin,
+    # checked directly rather than inferred from the exponential Gram rank.
+    for p in range(1, 5):
+        model = ProductMemory(p)
+        for radius in range(p + 1):
+            h, eta = max(0, radius - model.L + 1), min(radius, model.L - 2)
+            fixed_flip = sum(1 << (2 * j * model.L) for j in range(h))
+            for a, raw in enumerate(model.raw):
+                center = raw ^ fixed_flip
+                assert (center ^ raw).bit_count() == h
+                for b, other in enumerate(model.raw):
+                    if b != a:
+                        assert (center ^ other).bit_count() >= h + 2 * (model.L - 1)
+                pure_basins += 1
+                for weight in range(eta + 1):
+                    for positions in combinations(range(model.d), weight):
+                        query = center ^ sum(1 << j for j in positions)
+                        answer = verify(model, query, radius)
+                        assert answer[0] > 0
+                        assert answer[1] == tuple(answer[0] * v for v in model.values[a])
+                        perturbation_queries += 1
+
+    # Actual mixtures inside the fast r<=p/c regime, beyond the exhaustive
+    # small-dimension boundary cases. No large Gram matrix is constructed.
+    model = ProductMemory(16)
+    model.values[0], model.values[3] = (-71, 29), (113, -47)
+    value_writes += 2
+    midpoint_one = model.encode(0) ^ ((1 << model.L) - 1)
+    first = verify(model, midpoint_one, 8)
+    assert first == (6, tuple(3 * (model.values[0][j] + model.values[1][j]) for j in range(2)))
+    midpoint_two = midpoint_one ^ (((1 << model.L) - 1) << (2 * model.L))
+    second = verify(model, midpoint_two, 12)
+    assert second == (4, tuple(sum(model.values[a][j] for a in range(4)) for j in range(2)))
+    fast_mixture_controls, fast_four_value_controls = 2, 1
+    model.validate()
+    snapshots += 1
+
+    parameter_controls = overlap_obstructions = 0
+    records = []
+    for p in list(range(2, 129)) + [256, 512, 1024, 4096, 16384, 65536]:
+        L = (4 * p - 1).bit_length()
+        assert 4 * p <= 2 ** L
+        for c in (2, 3, 4, 8):
+            radius, t = p // c, p * L
+            J, weak = radius // L, (2 * radius) // L
+            term = total = 1
+            for j in range(1, J + 1):
+                term = term * (p - j + 1) // j
+                total += term
+            candidate_bound = min(2 ** p, 2 ** weak * total)
+            if J:
+                assert total * J ** J <= (3 * p) ** J
+            if radius >= L:
+                assert not (t - L + 1 <= t - radius)
+                overlap_obstructions += 1
+            parameter_controls += 1
+            if c == 2 and p in (16, 32, 64, 256, 1024, 65536):
+                records.append({"log2_capacity": p, "block_half_length": L,
+                                "raw_dimension": 2 * p * L, "radius": radius,
+                                "kernel_eigenvalue_lower_bound": "3/4",
+                                "kernel_eigenvalue_upper_bound": "4/3",
+                                "worst_ambient_neighbor_count_log2_upper": candidate_bound.bit_length(),
+                                "unique_subset_level_impossible": radius >= L,
+                                "pure_recall_basin_radius": min(radius, L - 2)})
+    assert mixtures and empty_address_visits and pure_basins and overlap_obstructions
+    assert inserted_keys and moved_keys and format_rejections and duplicate_rejections
+    return {"exact_tensor_kernel_eigenvalues": spectral_controls,
+            "encoded_pair_distance_identities": pair_distances,
+            "coordinates_verified_nonconstant": varying_coordinates,
+            "complete_raw_or_block_profile_reads": reads,
+            "ambient_addresses_enumerated_exactly_once": emitted_addresses,
+            "independent_value_mixtures": mixtures, "empty_address_visits_charged": empty_address_visits,
+            "fast_regime_mixture_controls": fast_mixture_controls,
+            "fast_regime_four_independent_value_controls": fast_four_value_controls,
+            "heap_child_tests": child_tests, "maximum_heap_entries_in_controls": peak_heap,
+            "dynamic_snapshots": snapshots, "admitted_key_replacements": admitted,
+            "atomic_invalid_key_rejections": rejected, "key_deletions": deletions,
+            "invalid_format_rejections": format_rejections,
+            "duplicate_owner_rejections": duplicate_rejections,
+            "existing_key_address_moves": moved_keys, "empty_slot_key_insertions": inserted_keys,
+            "payload_only_writes": value_writes, "pure_recall_identity_rows": pure_basins,
+            "exhaustive_pure_basin_perturbation_queries": perturbation_queries,
+            "integer_volume_parameter_controls": parameter_controls,
+            "unique_subset_level_obstruction_controls": overlap_obstructions,
+            "finite_parameter_witnesses": records,
+            "scope": "Exact Walsh/tensor algebra and a preallocated-array product decoder checked against direct raw Hamming reads, independent current payloads and full pure-basin perturbation controls. Large-radius boundary cases test correctness, not the subpolynomial regime. This is a classical product-indexing baseline consequence, not a new ML architecture, benchmark or novelty determination."}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -1703,6 +2028,7 @@ def main():
               "compact_timing_attack": compact_timing_attack_controls(),
               "full_range_baseline": full_range_baseline_controls(),
               "sparse_signature_baseline": sparse_signature_controls(),
+              "product_spectral_baseline": product_spectral_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,
