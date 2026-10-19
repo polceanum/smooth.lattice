@@ -3471,9 +3471,8 @@ method or an unranking improvement.
 **Publication judgment:** the manuscript can be put before referees with
 the stated contribution and explicit literature boundary. Journal
 acceptance, independent verification and broader recognition have not
-occurred and are not promised. The anonymity and assistance disclosure
-are intentional. Actual external submission is not authorized by the
-standing prohibition on outbound messages.
+occurred and are not promised. Actual external submission is not authorized
+by the standing prohibition on outbound messages.
 
 The final validation state and the requirement-by-requirement audit are
 recorded in `results/research/quantitative_goal.json` and
