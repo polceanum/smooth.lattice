@@ -5886,3 +5886,243 @@ boundary, then seek a substantive architecture advantage that survives
 coding samplers and tractable circuits as well as product mixtures.
 Nonuniform key/mask normalization and all independent payload costs remain
 mandatory gates. The original goal remains active and unachieved.
+
+## Prefix conditioning and the shared-information boundary
+
+The previous turn made progress: it proved the code-mass bound and checked
+why broad affine mixtures do not by themselves supply individual recall.
+The proposed sparse-exception prefix mechanism now has an exact primary
+comparison. It is established weighted-trie machinery, including source
+probability updates. A finite-word corollary makes its useful regime explicit;
+a three-slot reduction shows why the same claim cannot be made for arbitrary
+latent generators. Separately, the code lemma yields a stronger coupling and
+shared-information consequence. Priority and an architectural separation
+remain unestablished.
+
+### The prefix recurrence is already in the primary sampler
+
+[Shi--Bieber--Sutton, Sections 2.1--2.4](https://proceedings.mlr.press/v119/shi20a/shi20a.pdf)
+distinguishes random-choice traces from outputs. Its output-without-replacement
+guarantee uses trace injectivity. More decisively,
+[Supplement, Appendix D](https://proceedings.mlr.press/v119/shi20a/shi20a-supp.pdf)
+already recomputes a node's remaining fraction by summing child fractions
+weighted by their edge probabilities, then updates its ancestors after a
+local probability change. Appendix C separately handles exhausted nodes
+under floating-point arithmetic. Thus neither a weighted-child recurrence
+nor allowing the source probabilities to change is a new gap.
+
+The following resource statement is a finite dyadic specialization and
+ordinary extension to nonnegative leaf multipliers. It is not claimed as
+a new sampling algorithm. Do not build a larger sampler framework on the
+previously assumed interface difference.
+
+Fix binary address length D, N=2^D original value slots, and a sequential
+current-query distribution Q. At prefix u of length i, suppose its next-bit
+probability is supplied exactly as a_i(q,u)/R, with R=2^f, 0<=a_i<=R.
+Let evaluating one such current-query conditional cost C_cond, including
+all input/context work and its model state. These output-prefix conditionals
+are an explicit promise; efficient latent sampling alone does not give them.
+Keep all N*v independent values on their declared grid. Define key weights
+w(x)=U_x/2^g, with 0<=w<=2^b, equal to one except at at most s addresses.
+Deletions are weights zero. Reinstatement restores one. The requested read
+uses the complete law Q_w(x)=Q(x)*w(x)/Z, where Z=sum_x Q(x)*w(x).
+Z=0 has a distinguished empty result.
+
+Construct the binary trie of exception addresses. It has S<=1+s*D nodes;
+missing child subtrees contain no exceptions and have conditional mean
+weight one. For a trie node u of depth i, let Z(u) be its conditional mean
+weight under the current query. At a modified leaf Z(u)=w(u), and
+
+    Z(u)=(1-a_i/R)*Z(u0)+(a_i/R)*Z(u1).
+
+This is a sum of nonnegative quantities. Compute it bottom-up once per
+query. During a draw, choose child j with probability proportional to
+its original next-bit probability times Z(uj). On reaching a missing
+subtree, resume the original sequential generator. Multiplying conditional
+probabilities telescopes to Q(x)*w(x)/Z at every leaf. This proves the
+complete law, including zero branches; it does not average already
+normalized component outputs.
+
+For exact finite arithmetic store
+
+    T(u)=2^(g+f*(D-i))*Z(u).
+
+A modified leaf stores U_x; a missing subtree stores 2^(g+f*(D-i)).
+The recurrence becomes
+
+    T(u)=(R-a_i)*T(u0)+a_i*T(u1).
+
+All integers are nonnegative, and their values are at most
+2^(b+g+f*(D-i)). A signed-word guard b+g+f*D+3 bits covers the masses
+and products; index/address words and the conditional oracle's workspace
+are additionally charged. Normalizer precision is linear in D*f+g+b,
+not constant by assumption. Small positive remaining mass is never
+obtained by subtracting a rounded almost-one probability from one.
+The contract concerns the declared dyadic law; it is not an error guarantee
+relative to an unquantized real law under arbitrary rare conditioning.
+
+At a cached node draw an exact uniform integer below T(u) and compare it
+with its left child mass. For a positive integer t, using ceil(log2 t)
+fair bits and rejecting integers at least t needs fewer than two trials
+in expectation. This is bounded local random-integer rejection, not
+whole-address rejection with probability Z. Missing subtrees can use the
+original f-bit choices. Runtime is expected because of the random-integer
+primitive; a worst-case constant number of fair bits is not asserted.
+
+Pointer-trie setup takes O(S) node work and at most O(S) conditional
+calls, plus full raw query input and arithmetic costs. K draws need
+O(K*D) node/conditional work and K*v payload probes. Query workspace
+includes O(S*(b+g+f*D+log(S+1))) bits for the mass/index records, original
+conditional model state and workspace, D address bits and the value
+accumulators. The independent value table, all metadata, construction,
+parameter bits and final division are not removed. Conditional evaluations
+for a changed query must be recomputed; the preceding query's masses
+cannot be reused without justification.
+
+A pointer trie with a declared exception cap s_max supports a raw weight
+edit on its D-node path and prunes paths on restoration. An arena/free-list
+can reuse at most 1+s_max*D nodes without storing edit history. Persistent
+index memory includes every pointer, exception key and multiplier; initializing
+that arena is charged. For original-value precision g_v, a conservative
+persistent bill is N*v*(g_v+2) bits plus
+O(s_max*D*log(s_max*D+2)+s_max*(D+b+g)) index/multiplier bits and the
+conditional model's complete parameters/state. Query accumulators add
+O(v*(g_v+log(K+1)+p)) bits to the workspace above. Canonical slot handles
+need no separate arbitrary-key dictionary; raw addresses still pay validation.
+The exact reference checker reconstructs prefix maps from current exceptions
+and is not a native arena/timing implementation. Original value overwrites
+touch their own retained units. Statistical
+read accuracy uses the earlier fresh-sample finite-H conditional-Hoeffding
+argument, with all K, random bits and accumulator precision charged.
+There is no all-time fixed-sample success claim.
+
+A concrete boundary case deletes address zero in one binary coordinate
+whose remaining base mass is 2^-80. The exact scaled root is the positive
+integer four at g=2, and the conditional output is address one with
+probability one. An almost-one probability rounded to 53 fractional bits
+would erase the complement. The finite recurrence uses 80-bit conditional
+parameters and an 82-bit observed operand, so this does not establish a
+native single-word speed claim. Restoring a multiplier and changing the
+query are checked separately.
+
+### One deleted output can make a general latent generator hard
+
+A cheap unrestricted generator is not a substitute for the prefix promise.
+Here is a bounded-error inference transfer with only three output slots.
+Given a Boolean circuit F on n>=3 bits, a query program first selects a
+reference event with probability r=2^(-2n). On that event output slot 2.
+Otherwise draw a uniform n-bit assignment and output slot 1 if F is true,
+slot 0 otherwise. All these random choices use exactly 3n fair bits.
+Store values V(1)=1, V(2)=0 and set only slot 0's key weight to zero;
+the other two key weights are one. This memory and edit have constant size.
+
+If F has no satisfying assignment, the complete normalized output is zero.
+If it has at least one, its target mass is at least (1-r)*2^-n, so the
+output is at least
+
+    (2^(2n)-1)/(2^(2n)-1+2^n) >=63/71>7/8.
+
+The reference mass is always positive. An additive-error-1/4 answer decides
+satisfiability by threshold one-half. Thus a uniform polynomial-query-size
+reader for all such programs, including all query construction/preprocessing
+and only polynomial circuit-independent setup, would imply NP subset BPP.
+The same interpretation for expected costs requires uniform bounds and
+amplification/capping; no sampled runtime is substituted for such a bound.
+Exponential advice or preprocessing is not excluded for free.
+
+This is a classical probabilistic-inference reduction, not a new complexity
+conjecture. [Cooper's inference-hardness article](https://doi.org/10.1016/0004-3702(90)90060-D)
+is relevant foundational prior art; its abstract does not by itself establish
+priority for every restriction of this transfer. The elementary construction
+checks three slots, one zeroed multiplier, a positive normalizer and a constant
+numerical gap. It does not obstruct the supplied tractable output-prefix
+conditionals above, nor the existing affine/circuit special cases.
+
+### From code coverage to a latent decoder and information bound
+
+The preceding code theorem controls the number of product components.
+It also implies a structural statement for their shared latent variable.
+Let Y have distribution P supported on a finite distance-two code C of
+size M>=2. Let (Z,X) have a joint law whose marginal X distribution Q
+satisfies TV(P,Q)=eta, and whose X coordinates are independent conditional
+on the finite latent Z. There exists a coupling preserving this original
+(Z,X) law and the target Y marginal, with Markov chain Z-X-Y, and a
+deterministic decoder d(Z) in C such that
+
+    Pr[Y != d(Z)] <= eta+Q(C complement) <= 2*eta.
+
+To prove it, choose a coordinatewise product mode m_z for each conditional
+law of X. Set d(z)=m_z if that mode belongs to C, and to a fixed codeword
+otherwise. The uniform-box lemma proved above gives
+Pr[X in C and X != d(Z)]<=Q(C complement)=a.
+Choose a maximal coupling of X~Q and Y~P through a channel Y given X,
+independent of Z given X. Its mismatch probability is eta. Every off-code
+X must change, since Y lies in C; therefore changes of on-code X have
+probability eta-a. Decode errors for Y occur only in the preceding on-code
+error event, changed on-code values, or off-code X. Their total is at most
+a+(eta-a)+a=eta+a. This also proves the Markov and marginal requirements;
+no efficient algorithm for evaluating the coupling is presumed.
+
+With all logarithms base two, define
+
+    e_star=min(2*eta,1-1/M),
+    F_M(e)=h_2(e)+e*log2(M-1).
+
+Fano's elementary argument gives H(Y|Z)<=F_M(e_star): condition on the
+indicator of a decoding error, then on at most M-1 alternative codewords.
+The function increases up to 1-1/M, where it reaches log2 M. Data processing
+for Z-X-Y therefore yields
+
+    H(Z) >= I_Q(X;Z) >= H(P)-F_M(e_star).        (information bound)
+
+The entropy bound concerns a discrete shared latent, or its explicitly
+quantized finite-bit representation. The factorization must hold conditional
+on that representation; quantizing a continuous latent does not automatically
+preserve conditional independence. Latent coordinate count by itself is
+not an information budget. A B-bit latent has H(Z)<=B. For uniform parity
+on D>=2 bits and eta<=1/10, the displayed bound implies
+
+    I_Q(X;Z), H(Z) >= (4/5)*(D-1)-1 bits.
+
+This extends the coverage statement to nonuniform mixture weights: arbitrarily
+many mostly unused component labels do not create the necessary shared
+information. At eta=0 it recovers H(P). In contrast, parity's total
+correlation is only one bit, so a total-correlation count alone misses this
+particular shared-information requirement. This is a query-distribution
+statement, not a new compression bound for the N independent stored values
+or a claim that coding samplers cannot meet it.
+
+[Xu--Liu--Chen, Section III, Definition 1 and coding theorems](https://arxiv.org/pdf/1301.2237)
+already defines the multivariate common-information problem using conditional
+independence and I(X;Z). [Yu--Tan, Theorems 2--3](https://arxiv.org/pdf/1709.02168)
+studies approximate source simulation and an asymptotic total-variation
+strong converse. Their regimes and the finite code-specific coupling must
+be matched carefully. The present proof is explicit, but a different error
+formula or one-shot interface is not evidence of novelty. Efficient coding
+and tractable-circuit samplers remain essential architectural comparators.
+The information corollary alone does not complete the original goal.
+
+### Verification and decision
+
+The existing checker adds `prefix_conditioning_boundary` and
+`code_latent_coupling_boundary`. The prefix controls check 4392 current-query
+plans, 244 empty states, 55248 independently computed conditional leaf
+entries, 22538 positive-leaf ticket boundaries, 9582 current-weight
+assignments/restorations, the 2^-80 witness and 256 local random-integer
+controls. Complete leaf enumeration is a verification oracle, not sampler
+state. All 256 Boolean truth tables on three inputs and their 512 random
+traces verify the three-slot gap; the uniform reduction is a separate proof.
+The coupling controls use 276 exact rational cases with nonuniform targets,
+2576 target-coordinate checks, exact latent and target marginals, zero-TV
+cases and decoder error at most eta+Q(C complement). Five symbolic controls
+record the shared-bit inequality without floating-point entropy tests.
+
+The precise primary comparison closes the prefix recurrence as a novelty
+route: the local-update mechanism is already in UniqueRandomizer's supplement.
+Keep the finite resource statement and generator obstruction as baseline
+boundaries. The code coupling/information statement is a stronger supporting
+theorem whose wider priority and substantive architecture consequence still
+need work. A publication claim requires that gap and a complete advantage
+over coding/circuit methods, with all independent values retained. No neural
+training, native performance claim or contribution manuscript is justified
+yet. The full original goal remains active and unachieved.

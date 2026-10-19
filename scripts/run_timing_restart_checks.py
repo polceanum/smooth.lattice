@@ -6476,6 +6476,255 @@ def affine_generator_memory_controls():
             'scope': 'Exact finite dyadic ancestral sampling agrees with the complete systematic affine-fiber mixture, preserving every independent original value and its current overwrite. Hyperplane/fiber cardinality limits individual mean recall. Positive key weights reintroduce normalization/rare conditioning. The parity mixture-size bound does not beat efficient parity circuits, coding samplers, or other strongest methods. These are classical comparator gates, not a new architecture separation, trained model, softmax approximation, arbitrary active-mask sampler or native benchmark.'}
 
 
+def prefix_conditioning_controls():
+    """Exact prefix weighting, many-to-one obstruction and code coupling.
+
+    These are correctness/priority controls, not a new sampler framework.
+    """
+    def plan(dimension, f, weight_bits, overrides, query):
+        unit = 1 << f
+        assert len(query) == dimension and all(len(row) == 2 and all(type(x) is int and 0 <= x <= unit for x in row) for row in query)
+        nodes = set()
+        for address, weight in overrides.items():
+            assert type(address) is int and 0 <= address < 1 << dimension
+            assert type(weight) is int and 0 <= weight <= 2 << weight_bits and weight != 1 << weight_bits
+            node = (1 << dimension) | address
+            while node:
+                nodes.add(node); node >>= 1
+        assert len(nodes) <= 1 + len(overrides) * dimension
+        cache, max_bits = {}, f + 2
+        def visit(node, depth, parity):
+            nonlocal max_bits
+            if node not in nodes:
+                value = 1 << (weight_bits + f * (dimension - depth))
+                max_bits = max(max_bits, value.bit_length() + 1)
+                return value
+            if depth == dimension:
+                value = overrides[node - (1 << dimension)]
+                max_bits = max(max_bits, value.bit_length() + 1)
+                return value
+            probability = query[depth][parity]
+            left = (unit - probability) * visit(node << 1, depth + 1, parity)
+            right = probability * visit((node << 1) | 1, depth + 1, parity ^ 1)
+            cache[node] = (left, right)
+            max_bits = max(max_bits, left.bit_length() + 1, right.bit_length() + 1, (left + right).bit_length() + 1)
+            assert max_bits <= 1 + weight_bits + f * dimension + 3
+            return left + right
+        normalizer = visit(1, 0, 0)
+        return normalizer, cache, len(nodes), max_bits
+
+    def draw(dimension, f, query, normalizer, cache, ticket):
+        if not normalizer:
+            return None
+        node, parity, address = 1, 0, 0
+        for depth in range(dimension):
+            if node in cache:
+                left, right = cache[node]
+            else:
+                probability = query[depth][parity]
+                left, right = (1 << f) - probability, probability
+            number = ticket(left, right, depth)
+            assert 0 <= number < left + right
+            bit = int(number >= left)
+            address = (address << 1) | bit
+            node = (node << 1) | bit; parity ^= bit
+        return address
+
+    plans = empty = positive_leaf_checks = conditional_entries = maximum_nodes = maximum_bits = updates = 0
+    for dimension in range(1, 5):
+        capacity, weight_bits, f = 1 << dimension, 2, 2
+        values = [((5 * i + 3) % 33 - 16, (7 * i + 1) % 33 - 16) for i in range(capacity)]
+        configurations = set()
+        if dimension <= 2:
+            configurations.update(product((0, 4, 8), repeat=capacity))
+        else:
+            configurations.add((4,) * capacity)
+            for count in (1, 2):
+                for addresses in combinations(range(capacity), count):
+                    for weights in product((0, 8), repeat=count):
+                        row = [4] * capacity
+                        for address, weight in zip(addresses, weights):
+                            row[address] = weight
+                        configurations.add(tuple(row))
+        queries = [tuple(row for _ in range(dimension)) for row in [(0, 0), (4, 4), (2, 2), (0, 4), (1, 3)]]
+        queries.append(tuple((i % 5, (i + 2) % 5) for i in range(dimension)))
+        overrides = {}
+        for weights in sorted(configurations):
+            for address, weight in enumerate(weights):
+                if weight == 4:
+                    overrides.pop(address, None)
+                else:
+                    overrides[address] = weight
+                updates += 1
+            assert all(overrides.get(i, 4) == w for i, w in enumerate(weights))
+            for query in queries:
+                z, cache, node_count, bit_count = plan(dimension, f, weight_bits, overrides, query)
+                maximum_nodes = max(maximum_nodes, node_count); maximum_bits = max(maximum_bits, bit_count)
+                raw_masses = []
+                for address in range(capacity):
+                    parity, probability = 0, 1
+                    for depth in range(dimension):
+                        bit = (address >> (dimension - 1 - depth)) & 1
+                        p = query[depth][parity]
+                        probability *= p if bit else 4 - p
+                        parity ^= bit
+                    raw_masses.append(probability * weights[address])
+                assert z == sum(raw_masses)
+                plans += 1
+                if not z:
+                    assert draw(dimension, f, query, z, cache, lambda *_: 0) is None
+                    empty += 1; continue
+                law = []
+                for address in range(capacity):
+                    node, parity, probability = 1, 0, F(1)
+                    for depth in range(dimension):
+                        bit = (address >> (dimension - 1 - depth)) & 1
+                        if node in cache:
+                            left, right = cache[node]
+                        else:
+                            p = query[depth][parity]; left, right = 4 - p, p
+                        if probability:
+                            assert left + right > 0
+                            probability *= F(right if bit else left, left + right)
+                        node = (node << 1) | bit; parity ^= bit
+                    assert probability == F(raw_masses[address], z)
+                    law.append(probability); conditional_entries += 1
+                    if probability:
+                        def boundary_ticket(left, right, depth):
+                            return left if (address >> (dimension - 1 - depth)) & 1 else 0
+                        assert draw(dimension, f, query, z, cache, boundary_ticket) == address
+                        positive_leaf_checks += 1
+                assert sum(law) == 1
+                assert [sum(p * v[c] for p, v in zip(law, values)) for c in range(2)] == [F(sum(m * v[c] for m, v in zip(raw_masses, values)), z) for c in range(2)]
+        overrides.clear()
+        assert plan(dimension, f, weight_bits, overrides, queries[2])[2] == 0
+    # Whole-address acceptance can be 2^-80, while the exact surviving root
+    # mass remains a positive bounded integer in the declared scaled units.
+    rare_f, rare_weight_bits = 80, 2
+    rare_query = ((1, 1),)
+    rare_z, rare_cache, _, rare_bits = plan(1, rare_f, rare_weight_bits, {0: 0}, rare_query)
+    assert rare_z == 4 and F(rare_z, 4 * (1 << rare_f)) == F(1, 1 << rare_f)
+    assert draw(1, rare_f, rare_query, rare_z, rare_cache, lambda *_: 0) == 1
+    assert (1 - F(1, 1 << rare_f)) * (1 << 53) > (1 << 53) - F(1, 2)
+    uniform_integer_controls = 0
+    for total in range(1, 257):
+        bits = (total - 1).bit_length()
+        assert F(1 << bits, total) < 2
+        assert sum(number < total for number in range(1 << bits)) == total
+        uniform_integer_controls += 1
+
+    # Three fixed output slots. Truth tables are bounded certificates for
+    # the uniform circuit reduction, not an algorithm for solving SAT.
+    hardness_cases, minimum_yes = [], F(1)
+    for truth_table in range(256):
+        counts = [0, 0, 0]
+        for reference_bits in range(64):
+            for assignment in range(8):
+                slot = 2 if reference_bits == 0 else int(bool(truth_table & (1 << assignment)))
+                counts[slot] += 1
+        assert sum(counts) == 512 and counts[2] == 8
+        output = F(counts[1], counts[1] + counts[2])
+        truth = truth_table != 0
+        assert (output > F(7, 8)) if truth else output == 0
+        assert (output - F(1, 4) > F(1, 2)) if truth else output + F(1, 4) < F(1, 2)
+        if truth:
+            minimum_yes = min(minimum_yes, output)
+        hardness_cases.append((truth, str(output)))
+    assert minimum_yes == F(63, 71)
+    return {'finite_prefix_weighting': {'plans': plans, 'empty_states': empty,
+                                        'independent_conditional_entries': conditional_entries,
+                                        'positive_leaf_ticket_checks': positive_leaf_checks,
+                                        'current_weight_assignments_and_restorations': updates,
+                                        'maximum_live_prefixes': maximum_nodes,
+                                        'maximum_observed_scaled_signed_bits': maximum_bits,
+                                        'scope': 'Reference prefix maps and complete leaf probability oracles check the positive dyadic recurrence, current-query changes and weight restoration. They are not an arena/native timing implementation. Conditional probabilities depend on prefix parity in the bounded catalog, so they need not be coordinate independent.'},
+            'rare_mass_control': {'base_remaining_mass': str(F(1, 1 << rare_f)),
+                                  'conditional_probability_bits': rare_f,
+                                  'positive_scaled_root_integer': rare_z,
+                                  'observed_scaled_signed_bits': rare_bits,
+                                  'expected_uniform_integer_draws_below_two_controls': uniform_integer_controls},
+            'many_to_one_conditioning_barrier': {'output_slots': 3, 'zeroed_slot_weights': 1,
+                                                'boolean_inputs': 3, 'truth_tables': len(hardness_cases),
+                                                'random_traces_per_table': 512,
+                                                'always_positive_reference_normalizer': True,
+                                                'minimum_yes_output': str(minimum_yes), 'no_output': '0',
+                                                'additive_error_one_quarter_still_decides': True,
+                                                'scope': 'An elementary SAT/probabilistic-inference transfer. It checks the finite construction, not NP not contained in BPP, novelty, or an obstruction for supplied tractable output-prefix conditionals.'},
+            'scope': 'Positive prefix recurrence and source-local updates are close established UniqueRandomizer/weighted-trie machinery. Finite word accounting and the three-slot inference transfer delimit a generic sampler interface; they do not prove a new strongest-method memory architecture or complete the goal.'}
+
+
+def code_latent_coupling_controls():
+    """Exact maximal-coupling/decoder certificates for the code-mass lemma."""
+    cases = decoded_targets = 0
+    for dimension in (2, 3, 4):
+        addresses = list(product((0, 1), repeat=dimension))
+        for code_kind in ('parity', 'repetition'):
+            code = [i for i, x in enumerate(addresses) if (sum(x) % 2 == 0 if code_kind == 'parity' else len(set(x)) == 1)]
+            denominator = sum(range(1, len(code) + 1))
+            target = [F(code.index(i) + 1, denominator) if i in code else F(0) for i in range(len(addresses))]
+            catalog = []
+            for j in range(10):
+                parameters = tuple((j * (i + 1) + i) % 5 for i in range(dimension))
+                law = []
+                for x in addresses:
+                    numerator = 1
+                    for bit, p in zip(x, parameters):
+                        numerator *= p if bit else 4 - p
+                    law.append(F(numerator, 4 ** dimension))
+                mode = addresses.index(tuple(int(p > 2) for p in parameters))
+                catalog.append((law, mode))
+            # Include the exact two-codeword distribution, so delta=0 is
+            # exercised without dividing by a zero coupling residual.
+            if code_kind == 'repetition':
+                for point in (code[0], code[1]):
+                    catalog.append(([F(int(i == point)) for i in range(len(addresses))], point))
+            pairs = [(i, (i + 3) % len(catalog)) for i in range(len(catalog))]
+            if code_kind == 'repetition':
+                pairs.append((len(catalog) - 2, len(catalog) - 1))
+            for i, j in pairs:
+                for mixture_weight in (F(0), F(1, 3), F(1, 2), F(1)):
+                    components, modes = [catalog[i][0], catalog[j][0]], [catalog[i][1], catalog[j][1]]
+                    alpha = [mixture_weight, 1 - mixture_weight]
+                    source = [sum(a * law[x] for a, law in zip(alpha, components)) for x in range(len(addresses))]
+                    delta = sum(abs(p - q) for p, q in zip(target, source)) / 2
+                    outside = sum(source[x] for x in range(len(addresses)) if x not in code)
+                    decoder = [mode if mode in code else code[0] for mode in modes]
+                    common = [min(p, q) for p, q in zip(target, source)]
+                    residual_source = [q - a for q, a in zip(source, common)]
+                    residual_target = [p - a for p, a in zip(target, common)]
+                    assert sum(residual_source) == sum(residual_target) == delta
+                    # Y | X does not depend on Z. This constructs the Markov
+                    # chain Z-X-Y used for data processing in the proof.
+                    coupled = [[F(0) for _ in addresses] for _ in alpha]
+                    for x, q in enumerate(source):
+                        if not q:
+                            continue
+                        for z in range(2):
+                            latent_given_x = alpha[z] * components[z][x] / q
+                            coupled[z][x] += latent_given_x * common[x]
+                            if delta:
+                                for y in range(len(addresses)):
+                                    coupled[z][y] += latent_given_x * residual_source[x] * residual_target[y] / delta
+                    assert [sum(row) for row in coupled] == alpha
+                    assert [sum(coupled[z][y] for z in range(2)) for y in range(len(addresses))] == target
+                    error = sum(coupled[z][y] for z in range(2) for y in range(len(addresses)) if y != decoder[z])
+                    assert error <= delta + outside <= 2 * delta
+                    cases += 1; decoded_targets += len(addresses)
+    symbolic_bits = []
+    for dimension in (16, 32, 64, 128, 256):
+        # TV<=1/10, binary entropy<=1 and log(M-1)<=log(M).
+        bound = F(4, 5) * (dimension - 1) - 1
+        assert bound > 0
+        symbolic_bits.append({'parity_coordinates': dimension, 'log2_codewords': dimension - 1,
+                              'assumed_TV_at_most': '1/10',
+                              'mutual_information_and_discrete_shared_entropy_lower_bound_bits': str(bound)})
+    return {'maximal_coupling_cases': cases, 'target_coordinate_checks': decoded_targets,
+            'exact_source_latent_marginals_checked': True, 'exact_target_code_marginals_checked': True,
+            'decoder_error_at_most_TV_plus_source_off_code_mass': True,
+            'symbolic_finite_shared_bit_controls': symbolic_bits,
+            'scope': 'The code-mode lemma yields a target/source/latent Markov coupling with decoding error at most 2*TV, hence a Fano/data-processing common-information lower bound. Exact rational controls verify the coupling and decoder, not a numerical entropy oracle. Wyner/common-randomness and approximate source-simulation prior art must be matched; no novelty or memory-state-capacity separation is claimed.'}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -6510,6 +6759,8 @@ def main():
               "active_mask_sampling_boundary": active_mask_sampling_controls(),
               "finite_radon_attention_boundary": finite_radon_attention_controls(),
               "affine_generator_memory_boundary": affine_generator_memory_controls(),
+              "prefix_conditioning_boundary": prefix_conditioning_controls(),
+              "code_latent_coupling_boundary": code_latent_coupling_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,
