@@ -6879,6 +6879,341 @@ def common_information_audit_controls():
             'scope': 'The product-code lower bound and an explicit uniform/point mixture pin down the leading parity shared-information rate. Austin Proposition 8.1 already supplies the exact DTC/common-information framework, and the entropy dual is a standard averaging specialization. This is a sharpness/priority audit, not a new strongest-method memory architecture, access lower bound or paper-ready novelty claim.'}
 
 
+def symbolic_kernel_memory_controls():
+    """Exact symbolic-cache, removable-zero and additive-rectangle controls."""
+    from math import comb
+
+    def add(a, b):
+        result = [0] * max(len(a), len(b))
+        for i, value in enumerate(a):
+            result[i] += value
+        for i, value in enumerate(b):
+            result[i] += value
+        while len(result) > 1 and not result[-1]:
+            result.pop()
+        return result
+
+    def scale(a, value):
+        return tuple(value * x for x in a)
+
+    def mul(a, b):
+        result = [0] * (len(a) + len(b) - 1)
+        for i, x in enumerate(a):
+            for j, y in enumerate(b):
+                result[i + j] += x * y
+        return tuple(add(result, (0,)))
+
+    def power(a, n):
+        result = (1,)
+        for _ in range(n):
+            result = mul(result, a)
+        return result
+
+    def taylor(a, point, order):
+        return sum(F(a[k]) * comb(k, order) * point ** (k - order) for k in range(order, len(a)))
+
+    def distance(x, y):
+        return (x ^ y).bit_count()
+
+    row_sets = rectangle_classes = saturation_cases = 0
+    for dimension in range(1, 5):
+        count = 1 << dimension
+        distances = [[distance(x, y) for y in range(count)] for x in range(count)]
+        for mask in range(1, 1 << count):
+            rows = [x for x in range(count) if mask >> x & 1]
+            first = rows[0]
+            classes = {}
+            for y in range(count):
+                signature = tuple(distances[x][y] - distances[first][y] for x in rows[1:])
+                classes.setdefault(signature, []).append(y)
+            # Each additive rectangle with this row set lies in one class.
+            assert max(len(rows) * len(columns) for columns in classes.values()) <= count
+            rectangle_classes += len(classes)
+            saturation_cases += sum(len(rows) * len(columns) == count for columns in classes.values())
+            row_sets += 1
+    # Coordinate freedom need not split into disjoint coordinate sets.
+    rows, columns = (0, 3), (1, 2)
+    assert all(distance(x, y) == 1 for x in rows for y in columns)
+
+    cache_snapshots = normalized_reads = zero_normalizers = removable_zero_reads = overwrites = coefficient_checks = 0
+    maximum_state_signed_bits = 0
+    for dimension in range(1, 5):
+        left_bits, right_bits = dimension // 2, dimension - dimension // 2
+        left_count, right_count, count = 1 << left_bits, 1 << right_bits, 1 << dimension
+        for left_order, right_order in ((0, 0), (1, 1), (2, 3)):
+            left_factor, right_factor = power((-1, 1), left_order), power((-1, 2), right_order)
+            common_factor = mul(left_factor, right_factor)
+            values = [[(5 * x + 3) % 33 - 16, (7 * x + 1) % 33 - 16] for x in range(count)]
+            weights = [1] * count
+            states = [[[0] for _ in range(3)] for _ in range(count)]
+
+            def update(address, weight, value):
+                nonlocal overwrites
+                old = [weights[address]] + [weights[address] * v for v in values[address]]
+                new = [weight] + [weight * v for v in value]
+                delta = [b - a for a, b in zip(old, new)]
+                xleft, xright = divmod(address, right_count)
+                for qright in range(right_count):
+                    gate = xleft * right_count + qright
+                    polynomial = (0,) * distance(qright, xright) + right_factor
+                    for coordinate in range(3):
+                        states[gate][coordinate] = add(states[gate][coordinate], scale(polynomial, delta[coordinate]))
+                weights[address], values[address] = weight, list(value)
+                overwrites += 1
+
+            # Initialize through the actual column-update invariant.
+            weights = [0] * count
+            for address in range(count):
+                update(address, 1, values[address])
+            operations = [(None, None, None)]
+            operations += [(x, 0, values[x][:]) for x in range(count)]
+            operations += [(x, 1 + x % 4, [((11 * x + 4) % 33) - 16, 16 - (3 * x % 33)]) for x in range(count)]
+            operations += [(x, 1, [-values[x][0], values[x][1]]) for x in range(count)]
+            for address, weight, value in operations:
+                if address is not None:
+                    update(address, weight, value)
+                for xleft in range(left_count):
+                    for qright in range(right_count):
+                        gate = xleft * right_count + qright
+                        for coordinate in range(3):
+                            expected = [0] * (right_bits + 1)
+                            for xright in range(right_count):
+                                x = xleft * right_count + xright
+                                expected[distance(qright, xright)] += weights[x] * (1 if coordinate == 0 else values[x][coordinate - 1])
+                            assert tuple(add(states[gate][coordinate], (0,))) == mul(right_factor, expected)
+                            bound = count * sum(abs(c) for c in right_factor) * 4 * 16
+                            assert all(abs(c) <= bound for c in states[gate][coordinate])
+                            maximum_state_signed_bits = max(maximum_state_signed_bits, max(abs(c).bit_length() + 1 for c in states[gate][coordinate]))
+                            coefficient_checks += 1
+                cache_snapshots += 1
+                for query in range(count):
+                    qleft, qright = divmod(query, right_count)
+                    raw = [[0] for _ in range(3)]
+                    direct = [[0] * (dimension + 1) for _ in range(3)]
+                    for xleft in range(left_count):
+                        gate = xleft * right_count + qright
+                        polynomial = (0,) * distance(qleft, xleft) + left_factor
+                        for coordinate in range(3):
+                            raw[coordinate] = add(raw[coordinate], mul(polynomial, states[gate][coordinate]))
+                    for x in range(count):
+                        h = distance(query, x)
+                        direct[0][h] += weights[x]
+                        for coordinate in range(2):
+                            direct[coordinate + 1][h] += weights[x] * values[x][coordinate]
+                    assert all(tuple(add(raw[c], (0,))) == mul(common_factor, direct[c]) for c in range(3))
+                    for temperature in (F(1, 16), F(1, 4), F(1, 2), F(1)):
+                        mass = sum(w * temperature ** distance(query, x) for x, w in enumerate(weights))
+                        if not mass:
+                            assert not any(weights) and all(not any(p) for p in raw)
+                            zero_normalizers += 1
+                            continue
+                        order = next(j for j in range(len(common_factor)) if taylor(common_factor, temperature, j))
+                        denominator = taylor(raw[0], temperature, order)
+                        assert denominator != 0
+                        answer = [taylor(raw[c], temperature, order) / denominator for c in (1, 2)]
+                        expected = [sum(w * value[c] * temperature ** distance(query, x) for x, (w, value) in enumerate(zip(weights, values))) / mass for c in range(2)]
+                        assert answer == expected
+                        normalized_reads += 1
+                        removable_zero_reads += int(order > 0)
+                # Values are retained even when their active weights vanish.
+                assert len(values) == count and all(len(value) == 2 for value in values)
+
+    retention_cases = 0
+    for dimension in (1, 2, 4, 8, 16, 64):
+        for maximum_weight in (1, 3, 16):
+            for epsilon in (F(1, 2), F(1, 4), F(1, 16)):
+                base = 1
+                while base < 4 * maximum_weight * dimension / epsilon:
+                    base <<= 1
+                center_mass = base ** dimension
+                off_mass = maximum_weight * ((base + 1) ** dimension - center_mass)
+                assert F(2 * off_mass, center_mass + off_mass) <= epsilon
+                retention_cases += 1
+    flow_cases = prefix_counts = pulled_edits = 0
+    for inputs in (1, 2, 3):
+        assignments, count = 1 << inputs, 1 << (inputs + 1)
+        for truth_table in range(1 << assignments):
+            def transform(z):
+                bit, x = z >> inputs, z & (assignments - 1)
+                return ((bit ^ ((truth_table >> x) & 1)) << inputs) | x
+            assert sorted(transform(z) for z in range(count)) == list(range(count))
+            assert all(transform(transform(z)) == z for z in range(count))
+            for latent_bit_probability in (F(0), F(1, 4), F(1, 2), F(1)):
+                latent = [(latent_bit_probability if z >> inputs else 1 - latent_bit_probability) / assignments for z in range(count)]
+                output = [latent[transform(x)] for x in range(count)]
+                for point in (0, count // 2, count - 1):
+                    for multiplier in (0, 2):
+                        weighted_output = [p * (multiplier if x == point else 1) for x, p in enumerate(output)]
+                        preimage = transform(point)
+                        weighted_latent = [p * (multiplier if z == preimage else 1) for z, p in enumerate(latent)]
+                        assert sum(weighted_output) == sum(weighted_latent)
+                        assert [weighted_latent[transform(x)] for x in range(count)] == weighted_output
+                        pulled_edits += 1
+                if latent_bit_probability == 0:
+                    assert sum(output[assignments:]) == F(truth_table.bit_count(), assignments)
+                    prefix_counts += 1
+                flow_cases += 1
+    # A square-width signed basis, verified over Z[t] after clearing t.
+    zero, one, variable = (0,), (1,), (0, 1)
+    basis = [[one, zero, zero, variable],
+             [zero, one, zero, one],
+             [zero, zero, one, (0, 0, 1)],
+             [zero, zero, zero, variable]]
+    barred_inverse_times_kernel = [
+        [(0, 1, 0, -1), zero, zero, (0, -1, 0, 1)],
+        [zero, zero, (0, -1, 0, 1), (-1, 0, 1)],
+        [(0, 0, 1, 0, -1), zero, (0, 1, 0, -1), zero],
+        [(0, 0, 1), variable, variable, one]]
+
+    def transpose(matrix):
+        return [list(row) for row in zip(*matrix)]
+
+    def kron(a, b):
+        return [[mul(a[i // len(b)][j // len(b[0])], b[i % len(b)][j % len(b[0])]) for j in range(len(a[0]) * len(b[0]))] for i in range(len(a) * len(b))]
+
+    def matrix_product(a, b):
+        return [[tuple(add_many(mul(x, y) for x, y in zip(row, column))) for column in zip(*b)] for row in a]
+
+    def add_many(polynomials):
+        result = (0,)
+        for polynomial in polynomials:
+            result = add(result, polynomial)
+        return result
+
+    cleared_product = matrix_product(basis, barred_inverse_times_kernel)
+    assert cleared_product == [[(0,) * (distance(x, y) + 1) + (1,) for y in range(4)] for x in range(4)]
+    row_degrees = [sum(any(p) for p in row) for row in basis]
+    column_degrees = [sum(any(p) for p in column) for column in zip(*barred_inverse_times_kernel)]
+    assert row_degrees == [2, 2, 2, 1] and column_degrees == [3, 1, 3, 3]
+    degree_product = 1
+    for a, b in zip(row_degrees, column_degrees):
+        degree_product *= a * b
+    assert degree_product == 216 < 256 and 216 ** 25 < 2 ** 194
+    balanced_a = kron(basis, transpose(barred_inverse_times_kernel))
+    balanced_b = kron(barred_inverse_times_kernel, transpose(basis))
+    assert matrix_product(balanced_a, balanced_b) == [[(0,) * (distance(x, y) + 2) + (1,) for y in range(16)] for x in range(16)]
+    assert len(balanced_a[0]) == len(balanced_b) == 16
+    balanced_rows = [sum(any(p) for p in row) for row in balanced_a]
+    balanced_columns = [sum(any(p) for p in column) for column in zip(*balanced_b)]
+    for degrees in (balanced_rows, balanced_columns):
+        value = 1
+        for degree in degrees:
+            value *= degree
+        assert value == 216 ** 4
+
+    def xor_counts(left, right):
+        count = len(left)
+        def transform(values):
+            result = values[:]
+            step = 1
+            while step < count:
+                for start in range(0, count, step * 2):
+                    for i in range(start, start + step):
+                        a, b = result[i], result[i + step]
+                        result[i], result[i + step] = a + b, a - b
+                step *= 2
+            return result
+        a, b = transform(left), transform(right)
+        raw = transform([x * y for x, y in zip(a, b)])
+        assert all(x % count == 0 for x in raw)
+        result = [x // count for x in raw]
+        assert result == [sum(left[x] * right[x ^ shift] for x in range(count)) for shift in range(count)]
+        return result
+
+    repair_cases = repair_fragments = correlation_checks = repaired_entries = signed_fragment_reads = 0
+    for dimension in (3, 4, 5):
+        count = 1 << dimension
+        bad_sets = [{0}, {count - 1}]
+        if dimension > 3:
+            bad_sets.append({0, 1})
+        for bad_rows in bad_sets:
+            for bad_columns in bad_sets:
+                epsilon = F(max(len(bad_rows), len(bad_columns)), count)
+                assert epsilon <= F(1, 8)
+                fragments, stack = [], [(set(range(count)), set(range(count)))]
+                while stack:
+                    rows, columns = stack.pop()
+                    if not rows or not columns:
+                        continue
+                    row_counts = xor_counts([int(i in rows) for i in range(count)], [int(i in bad_rows) for i in range(count)])
+                    column_counts = xor_counts([int(i in columns) for i in range(count)], [int(i in bad_columns) for i in range(count)])
+                    correlation_checks += 2
+                    shift = min(range(count), key=lambda h: len(columns) * row_counts[h] + len(rows) * column_counts[h])
+                    assert row_counts[shift] <= 2 * epsilon * len(rows)
+                    assert column_counts[shift] <= 2 * epsilon * len(columns)
+                    good_rows = {x for x in rows if x ^ shift not in bad_rows}
+                    good_columns = {y for y in columns if y ^ shift not in bad_columns}
+                    assert good_rows and good_columns
+                    fragments.append((good_rows, good_columns, shift))
+                    stack.append((rows - good_rows, columns))
+                    stack.append((good_rows, columns - good_columns))
+                for x in range(count):
+                    for y in range(count):
+                        covering = [(a, b, h) for a, b, h in fragments if x in a and y in b]
+                        assert len(covering) == 1
+                        assert distance(x ^ covering[0][2], y ^ covering[0][2]) == distance(x, y)
+                        repaired_entries += 1
+                if dimension == 4:
+                    weights = [i % 4 for i in range(count)]
+                    values = [(7 * i + 1) % 17 - 8 for i in range(count)]
+                    fragment_states = []
+                    for rows, columns, shift in fragments:
+                        state = [[(0,), (0,)] for _ in range(count)]
+                        for gate in range(count):
+                            for x in columns:
+                                coefficient = balanced_b[gate][x ^ shift]
+                                state[gate][0] = add(state[gate][0], scale(coefficient, weights[x]))
+                                state[gate][1] = add(state[gate][1], scale(coefficient, weights[x] * values[x]))
+                        fragment_states.append(state)
+                    for query in range(count):
+                        numerator = denominator = (0,)
+                        for (rows, columns, shift), state in zip(fragments, fragment_states):
+                            if query not in rows:
+                                continue
+                            for gate, coefficient in enumerate(balanced_a[query ^ shift]):
+                                numerator = add(numerator, mul(coefficient, state[gate][1]))
+                                denominator = add(denominator, mul(coefficient, state[gate][0]))
+                        for temperature in (F(1, 4), F(1, 2), F(1)):
+                            answer = taylor(numerator, temperature, 0) / taylor(denominator, temperature, 0)
+                            mass = sum(w * temperature ** distance(query, x) for x, w in enumerate(weights))
+                            assert answer == sum(w * v * temperature ** distance(query, x) for x, (w, v) in enumerate(zip(weights, values))) / mass
+                            signed_fragment_reads += 1
+                repair_cases += 1
+                repair_fragments += len(fragments)
+    return {'additive_rectangle_row_sets': row_sets,
+            'additive_rectangle_classes': rectangle_classes,
+            'maximum_volume_saturation_cases': saturation_cases,
+            'overlapping_coordinate_freedom_control': True,
+            'symbolic_cache_snapshots': cache_snapshots,
+            'current_value_or_weight_overwrites_including_initialization': overwrites,
+            'independent_state_coefficient_checks': coefficient_checks,
+            'normalized_dyadic_temperature_reads': normalized_reads,
+            'zero_normalizer_controls': zero_normalizers,
+            'removable_common_zero_reads': removable_zero_reads,
+            'maximum_observed_state_signed_bits': maximum_state_signed_bits,
+            'all_original_value_slots_retained': True,
+            'exact_retention_controls': retention_cases,
+            'reversible_flow_laws': flow_cases,
+            'reversible_prefix_count_controls': prefix_counts,
+            'pulled_sparse_output_edits': pulled_edits,
+            'square_width_signed_block': {'matrix_entries_verified_over_integer_polynomials': 16,
+                                           'middle_width': 4,
+                                           'row_degrees': row_degrees,
+                                           'column_degrees': column_degrees,
+                                           'outer_degree_product': degree_product,
+                                           'split_threshold_product': 256,
+                                           'balanced_four_bit_block_middle_width': 16,
+                                           'balanced_matrix_entries_verified': 256,
+                                           'geometric_degree_exponent': 'log2(216)/16 < 97/200 < 1/2',
+                                           'strict_rational_exponent_guard': '216^25 < 2^194'},
+            'deterministic_xor_hole_repair': {'cases': repair_cases,
+                                              'fragments': repair_fragments,
+                                              'FWHT_correlations_checked_against_direct_counts': correlation_checks,
+                                              'exactly_once_repaired_matrix_entries': repaired_entries,
+                                              'normalized_signed_fragment_reads': signed_fragment_reads},
+            'scope': 'Exact bounded controls support a rational-polynomial cache compiler, common-zero removal, the classical split Hamming baseline, a four-words-derived monotone-polynomial degree barrier and the known flow/trace-trie transfer. They do not implement a published optimal-degree circuit, establish priority, cover arbitrary positive numerical factors or nonlinear/value-dependent states, or prove an advantage beyond the strongest published methods. No neural training or native benchmark is run.'}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -6916,6 +7251,7 @@ def main():
               "prefix_conditioning_boundary": prefix_conditioning_controls(),
               "code_latent_coupling_boundary": code_latent_coupling_controls(),
               "common_information_priority_boundary": common_information_audit_controls(),
+              "symbolic_kernel_memory_boundary": symbolic_kernel_memory_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,

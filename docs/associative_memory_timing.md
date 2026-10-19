@@ -6276,3 +6276,374 @@ compare exact integer products after clearing coefficient denominators.
 No floating-point entropy optimizer, exhaustive search for novelty, native
 benchmark, additional neural training or contribution manuscript is used.
 The proofs are uniform; bounded certificates check the constructions.
+
+## Latent inverses and symbolic kernels: a complete-cost comparator
+
+The previous iteration made progress by matching the parity information
+rate and identifying its access limitation. Two more precise comparisons
+now change the positive search. Invertible latent maps transfer sparse
+output edits to the established trace trie. Low-depth algebraic circuits
+also already give fast online linear data structures. A symbolic cache
+compiler below accounts for temperature, normalizers, removable zeros,
+independent values and finite precision. A matching square-root barrier
+for nonnegative polynomial factors is a four-words corollary. These are
+supporting theorems and comparators, with priority and an advantage over
+the strongest applicable methods still unestablished.
+
+### The latent inverse is another established sampling interface
+
+[Tran et al., Section 3.1, Equation 4](https://proceedings.neurips.cc/paper/2019/file/e046ede63264b10130007afca077877f-Paper.pdf)
+already gives the preimage-sum law and its singleton simplification for
+a discrete bijection. [UniqueRandomizer, Theorem 1](https://proceedings.mlr.press/v119/shi20a/shi20a.pdf)
+explicitly identifies trace injectivity, while its
+[Supplement, Appendix D](https://proceedings.mlr.press/v119/shi20a/shi20a-supp.pdf)
+supplies the positive weighted-child update. Thus an invertible coordinate
+change followed by that trie is not a new sampling mechanism.
+
+Concretely, let F_q be a D-bit bijection, with charged forward/inverse
+costs C_f,C_inv, and let latent law R_q have exact dyadic prefix
+conditionals. For s exceptional output multipliers w(x), pull each
+exception back to z=F_q^(-1)(x). The existing positive trie has at most
+1+sD latent prefixes and samples R_q(z)*w(F_q(z))/Z exactly. Push the
+result through F_q and read its original current value. In addition to
+all preceding finite trie costs, every changed query pays all s inverse
+calls and its trie rebuild; every draw pays C_f. Original values remain
+at output addresses. A finite-fiber version must enumerate and charge
+every preimage. A sampled right inverse is not such an enumeration.
+[SurVAE, Section 3 and Appendix B](https://arxiv.org/pdf/2007.02731)
+distinguishes generative surjections with likelihood lower bounds from
+the stated exact inference-surjection case; it supplies no blanket exact
+marginal-inference promise for arbitrary many-to-one generators.
+
+The inverse promise can be useful even when output-prefix probabilities
+are hard. For any Boolean circuit F on n bits, the reversible map
+(x,t)->(t XOR F(x),x) has a cheap inverse. Fix latent t=0 and draw x
+uniformly. An output point's mass is obtained by that inverse, but its
+first-bit-one marginal is #SAT(F)/2^n. This is an elementary exact-counting
+transfer, not a new hardness result. One output point and a whole output
+prefix are different edit sets. This closes the plain inverse/trie
+composition as the proposed novelty route.
+
+### Specify a dynamic joint kernel before invoking a circuit bound
+
+Let N=2^D original addresses be the binary D-tuples. Retain every
+independent V_x in [-1,1]^v on grid 2^-g, including currently inactive
+addresses. Each current key weight is an integer a_x in {0,...,U}; a
+common dyadic weight denominator would cancel. A query supplies a raw
+binary center q and a temperature t=j/2^f in (0,1]. Its complete read is
+
+    sum_x a_x*t^h(q,x)*V_x / sum_x a_x*t^h(q,x),
+
+where h is Hamming distance. This is a particular high-dimensional query
+language, not arbitrary real softmax queries. Arbitrary active subsets
+and point weights induce joint, potentially cross-coordinate constraints.
+All-zero a has a distinguished empty result. Otherwise the denominator
+is positive. Values and weights can be overwritten at canonical addresses;
+raw addresses pay D-bit validation. A query observes one sequential
+snapshot. No query-dependent feature compiler or encoder is free.
+
+Write K_D(t)[q,x]=t^h(q,x). Suppose a supplied exact rational-function
+factorization is K_b(t)=A(t)B(t) for a fixed block length b, with G
+middle gates. Let r be the maximum number of nonzero polynomials/rational
+functions in a row of A, and u the maximum in a column of B. These
+outer degrees, rather than just total wire count, govern reads and
+updates. Every base coefficient and support list is part of the supplied
+finite description and is charged.
+
+Choose nonzero common denominators d_A(t),d_B(t) so that
+bar_A=d_A*A and bar_B=d_B*B have integer polynomial entries. Constant
+rational coefficient denominators can be included in d_A,d_B. For
+D=mb, tensor the barred factors. The invariant is
+
+    S_z(t)=sum_x bar_B_tensor[z,x](t)*a_x*(1, 2^g*V_x).
+
+It is a vector of v+1 integer polynomials for each middle index z.
+An overwrite changes the original value/weight and the affected column
+of these polynomial coefficients. A query contracts its row of
+bar_A_tensor against S. The resulting v+1 polynomials are
+
+    (d_A*d_B)^m * K_D(t) * (a, a*2^g*V).
+
+The same scalar multiplies numerator and denominator. Tensor padding by
+fewer than b additional binary coordinates changes degrees and support
+counts by a fixed factor and is charged. This proves the normalized
+read invariant without discarding any independent values.
+
+### Remove common zeros instead of silently excluding temperatures
+
+Clearing denominators can create a zero at a valid query temperature.
+Let e be the multiplicity of t_0 in Delta(t)=(d_A*d_B)^m. Evaluate the
+coefficient of h^e in each contracted polynomial at t=t_0+h. It equals
+the first nonzero Taylor coefficient of Delta times the desired kernel
+contraction at t_0. The denominator coefficient is nonzero whenever
+some a_x>0, since K_D(t_0) is strictly positive. Their ratio, with the
+2^-g value scaling, is the exact answer. This works for repeated roots,
+signed factors and arbitrary zero numerators. Empty memory is checked
+separately. At a nonroot e=0 and ordinary evaluation suffices.
+
+No real differentiation oracle is needed: for P in Z[t],
+
+    [h^j] P(t_0+h)=sum_(k>=j) P_k*binom(k,j)*t_0^(k-j).
+
+The degree of the tensor polynomials is O(D), with constants depending
+on the supplied fixed base. Their coefficient l1 norms are at most
+C^D for a base-dependent C. Thus every current state coefficient has
+magnitude at most N*C^D*U*2^g. Its signed width is
+O(D+g+log(U+1)) bits. The bound depends on current values, not the
+number of past overwrites. An extra constant guard handles intermediate
+replacement arithmetic. State precision does not drift with the horizon.
+
+After substituting t_0=j/2^f, Taylor coefficients can be represented
+exactly with common denominator 2^O(fD). All evaluated products, sums
+and indices fit O(D*(f+1)+g+log(U+1)) bits, with base-dependent constants.
+The final division and any requested rounding are charged. These are
+bit bounds, not constant native-word claims. Polynomial operations may
+use ordinary quadratic algorithms; each read and update has a polynomial
+factor in D,f,g,log(U+1),v multiplying r^m and u^m, respectively.
+
+More explicitly, put L=O(D), G_0=O(D+g+log(U+1)), and
+G_1=O(D*(f+1)+g+log(U+1)), with base-dependent constants. A conservative
+schoolbook bit bound is O((v+1)*(D+1)^3*r^m*G_1^2) per read and
+O((v+1)*(D+1)^3*u^m*G_0^2) per overwrite, plus raw input/output.
+Rounding to p bits instead adds the final long-division/output cost in
+G_1+p bits. These deliberately include polynomial support generation,
+Taylor evaluation and coefficient arithmetic rather than an arithmetic
+oracle. Query workspace can use O((v+1)*(D+1)^2*G_1) bits.
+
+Persistent space includes all N independent values and weights,
+G^m*(v+1)*O(D) bounded integer coefficients, the complete base circuit,
+all gate/address indices and any support enumeration metadata. Global
+nonzeros are generated from the finite block lists; forming their
+polynomial coefficients is charged. Setup includes zeroing these states
+and installing the complete initial table. A large middle width or an
+expensive base circuit cannot be hidden in an operation count.
+With M=G^m, a conservative persistent bit bound is
+O(N*(v*(g+2)+log(U+1))+M*(v+1)*(D+1)*G_0+M*D), plus the supplied
+base description and polynomial-size coefficient/index tables. Setup
+pays zero-initialization of that storage and N column installations at
+the stated overwrite cost. This is not a claim of near-linear space for
+an arbitrary fast circuit.
+
+### Classical upper bounds and a precise positivity barrier
+
+The ordinary split construction uses middle index (x_left,q_right).
+Its state is the right-half distance histogram for each such index.
+An update touches 2^ceil(D/2) states and a read uses 2^floor(D/2), with
+the above polynomial and precision costs. It has N middle states and
+keeps the original table. This is a standard tensor split, not a new
+architecture.
+
+For a lower bound, restrict A(t),B(t) to polynomials with nonnegative
+real coefficients and require the formal identity A(t)B(t)=K_D(t).
+Allow any finite middle width. Each nonzero rank-one term is supported
+on a rectangle Q_z times X_z. Positivity and the monomial target entries
+force every nonzero factor entry to be a monomial. Its exponents make
+h(q,x) a sum of a row function and a column function on that rectangle:
+
+    h(q,x)-h(q,x')+h(q',x')-h(q',x)=0.
+
+[Ahlswede--Cai--Zhang, Theorem 1, Equation 2.3](https://www.math.uni-bielefeld.de/ahlswede/homepage/public/62.pdf)
+already studies this four-words property. With binary Hamming distance
+and allowed difference set {0}, its one-coordinate maximum area is two;
+the theorem gives |Q_z|*|X_z|<=2^D=N. This exact geometry is established
+prior art. An independent check uses h(q,x)=|q|+|x|-2*q.dot(x): the two
+real difference spans are orthogonal. Their dimensions sum to at most D,
+and a binary set in an affine r-plane has at most 2^r points. Rectangles
+need not vary disjoint sets of coordinates; {00,11} times {01,10} is
+a small counterexample to that stronger, false restriction.
+
+The rectangles cover all N^2 entries. If their side lengths are a_z,b_z,
+then for every positive lambda,
+
+    sum_z (lambda*a_z+lambda^-1*b_z)
+      >=2*sum_z sqrt(a_z*b_z)
+      >=(2/sqrt(N))*sum_z a_z*b_z >=2*N^(3/2).
+
+If every query row has at most tau_q incident gates and every input
+column at most tau_u, the left side is at most
+N*(lambda*tau_q+lambda^-1*tau_u). Optimizing lambda proves
+
+    tau_q*tau_u>=N.
+
+Also nnz(A)+nnz(B)>=2*N^(3/2). The split attains the balanced exponent.
+This is a nonnegative-polynomial factorization corollary, not a lower
+bound for positive numerical factors at one temperature, arbitrary
+analytic functions, signed caches, nonlinear/value-dependent structures,
+deeper circuits, sketches, dictionaries or approximate reads.
+
+### Stronger signed comparators are already published
+
+[Alman--Guan--Padaki](https://arxiv.org/pdf/2211.05217)
+gives size O(N^1.446) depth-two circuits for powers of any fixed 2-by-2
+matrix. [Alman--Li, Theorems 6.1--6.3](https://arxiv.org/pdf/2509.14489)
+relates size to maximum outer degree using a bitransitive symmetry and
+hole fixing. The matrix [[1,t],[t,1]] over Q(t) has the required simultaneous
+row/column flip. Hence their results imply degree
+O(N^(0.446+epsilon)) for any fixed positive epsilon. This is a field
+operation statement; coefficient evaluation, construction, middle width
+and word sizes are not supplied for free. A mere wire count would not
+by itself justify a worst-case read/write bound.
+
+Fix a finite block circuit witnessing that degree, then apply the compiler
+above to its tensor powers. After pruning unused middle gates, its width
+is at most its input count times its degree. Thus an existential signed
+comparator has read/write exponent at most 0.446+epsilon and middle-state
+exponent at most 1.446+epsilon, with the explicitly charged polynomial
+precision and coefficient factors. Its base circuit may be enormous;
+the verifier does not implement that optimal-degree circuit. This lift
+does not improve the published exponent or establish a new separation
+from those algebraic methods.
+
+[Ye, Theorem 1.3 and Appendix B.1](https://arxiv.org/pdf/2603.15565)
+already turns bounded-degree circuits into deterministic online subset
+and partial-match structures. That is close prior art for the transfer
+itself. We must compare actual weighted/normalized semantics, width,
+precision and construction; dividing two maintained linear sums alone
+is not a research contribution. The four-words corollary likewise does
+not establish novelty by using a different vocabulary.
+
+### An explicit square-width candidate changes the space question
+
+A bounded basis search produced the following candidate, now checked
+over integer polynomials rather than inferred from a modular example.
+For the two-bit kernel K_2(t), let
+
+    A = [1 0 0 t  ; 0 1 0 1 ; 0 0 1 t^2 ; 0 0 0 t],
+
+    bar_B = [t-t^3     0   0       t^3-t ;
+             0         0   t^3-t   t^2-1 ;
+             t^2-t^4   0   t-t^3   0     ;
+             t^2       t   t       1     ].
+
+Direct multiplication gives A*bar_B=t*K_2(t). The middle width is four,
+equal to the input dimension. The formal row degrees of A are (2,2,2,1),
+and the column degrees of bar_B are (3,1,3,3). Their combined product is
+216<256, the corresponding split threshold. In particular,
+216^25<2^194 proves the rational guard
+
+    gamma_0=log2(216)/16 < 97/200 < 1/2.
+
+Because K_2 is symmetric, form the balanced four-bit factorization
+
+    L=A tensor bar_B^T,    R=bar_B tensor A^T,
+    L*R=t^2*K_4(t).
+
+It has sixteen middle gates. Each side's product of its sixteen outer
+degrees is 216^4, and each individual degree is between one and six.
+For D=4m, tensor it m times. Under a uniform row or column index, the
+log degrees are sums of independent bounded block contributions, with
+mean gamma_0*D. For any fixed slack delta>0, Hoeffding bounds the fraction
+of rows or columns above degree 2^((gamma_0+delta)*D) by
+
+    e_D <= exp(-8*delta^2*D/(log2(6))^2).
+
+Delete those outer rows/columns to obtain a broken copy. Crucially, its
+middle width is still at most N, not merely at most the wire count.
+The hole-fixing argument preserves this distinction: each masked and
+translated fragment is another copy with at most N middle gates.
+The relevant symmetry is the simultaneous XOR shift of both addresses;
+it preserves Hamming distance and needs no parameter-dependent scaling.
+
+Here is a deterministic implementation of the required shifts. For current
+row/column sets S,T and bad outer sets H_r,H_c, compute all XOR
+correlations c_r(h)=|S intersect (H_r XOR h)| and
+c_c(h)=|T intersect (H_c XOR h)|. Choose h minimizing
+|T|*c_r(h)+|S|*c_c(h). Its average is at most 2*e_D*|S|*|T|, so
+each retained-side loss is at most fraction 2*e_D. Emit the good-good
+rectangle of this shifted copy, then recurse on bad-rows times all-columns
+and good-rows times bad-columns. These rectangles are disjoint and cover
+S times T exactly. This is an explicit version of the established
+hole-fixing mechanism, not a new symmetry theorem.
+
+All correlations are computed by integer Walsh--Hadamard transforms in
+O(N*D) arithmetic operations per recursive node, with O(D)-bit counting
+words. For sufficiently large D, 2*e_D<=exp(-c_delta*D). Along any
+recursive path, each step shrinks either the row count or the column
+count by this factor. The path length, and hence the total number of
+fragments, is bounded by a constant depending only on delta. Thus the
+construction uses O_delta(N) middle states and membership-mask bits,
+and its setup can find all masks and shifts in N*poly(D) bit operations
+with that constant. Small D can use a fully charged scan fallback.
+Pad the carrier by at most three bits with inactive, zero-weight dummy
+addresses; its size grows by at most eight and the original query is
+padded by zero bits. This preserves the original read and charges the
+extra transform states. Degree
+cutoffs can use a rational upper approximation to gamma_0, verified by
+integer powers, so construction needs no logarithm-comparison oracle.
+For example, choose rational gamma_+>gamma_0 and
+delta=kappa-gamma_+ in (0,1/8). Using log2(6)<3, the conservative
+cutoff D_0=ceil(9/delta^2) and overhead
+C_delta=2^(ceil(12/delta^2)+10) cover the recursive fragment count
+and the small-dimension fallback. These are explicit upper bounds,
+not feasible-size estimates.
+
+Applying the finite polynomial compiler gives the following candidate
+uniform resource theorem: for every fixed kappa>gamma_0, the specified
+dynamic normalized Hamming memory has exact read and overwrite cost
+
+    O_kappa(N^kappa * poly(D,f,g,log(U+1),v)),
+
+with O_kappa(N) middle polynomial records and
+O_kappa(N*(v+1)*(D+1)*(D+g+log(U+1))) state bits, in addition to the
+explicit original table, fixed description and index/mask storage.
+The constants are computable but can be extremely large as kappa
+approaches gamma_0. Setup uses N times a polynomial in the declared
+bit parameters: for each fragment its masked/permuted input is transformed
+by R tensor powers using the ordinary blockwise Yates algorithm. These
+are square sixteen-by-sixteen polynomial blocks, so no N^kappa-per-slot
+initialization is required. The common scalar is t^(2m), nonzero throughout
+the specified positive-temperature domain. Exact updates have no horizon
+dependent precision loss. No native speed or feasible crossover is claimed.
+
+This point has a slower exponent than the published 0.446 field-operation
+bound, but controls middle-state count directly. It is not justified to
+claim a space improvement merely because those papers emphasize wires:
+their actual constructions, width tradeoffs and related narrow-circuit
+work must be audited. The explicit block and the uniform resource proof
+are a concrete candidate; priority, strongest-method separation and
+publication significance remain open. The known hole-fixing and online
+circuit mechanisms themselves are not new contributions.
+
+### Retention, certificates and the next actual gap
+
+At a currently active queried address a_q>=1, with all weights at most U
+and 0<epsilon<=1, set t=1/B where B is a power of two and
+B>=4*U*D/epsilon. The self
+mass is at least B^D in scaled integer units, while all other mass is
+at most U*((B+1)^D-B^D). Since D/B<=1/4,
+(1+1/B)^D<=1/(1-D/B)<=1+2D/B. Thus the total other/self ratio is at
+most epsilon/2, and the normalized mean differs from V_q by at most
+epsilon in every coordinate for every independent assignment in [-1,1].
+The required temperature precision is O(log(D*U/epsilon)). A fixed
+temperature bounded away from zero would lose this uniform self-recall
+guarantee as D grows. This is a finite-grid retention lemma, not a new
+coding-capacity result or a guarantee for inactive-address recall.
+
+The checker partitions columns by their full distance-difference vectors
+for all 65808 nonempty row sets through D=4, checking 1024118 additive
+rectangle classes. It verifies 282 split-cache snapshots, 360 installations
+or value/weight overwrites, 9450 independent coefficient checks, 12240
+normalized reads including 4080 removable-zero cases, 360 empty states,
+all original value slots, and 54 exact recall inequalities. Reversible-flow
+controls cover 1104 laws, 276 first-bit counting identities and 6624
+pulled output edits. The cache tests use D=1,...,4, two value coordinates,
+temperatures {1/16,1/4,1/2,1}, and clearing factors 1, (t-1)*(2t-1),
+or (t-1)^2*(2t-1)^3. Coefficients and exact rational normalized outputs
+are compared with direct full sums. The square-width certificate checks
+all 16 entries of A*bar_B and all 256 balanced-block entries as integer
+polynomials, including the strict integer exponent guard. Twenty-two
+small XOR-repair instances produce 106 fragments and cover 11776 matrix
+entries exactly once; 212 FWHT correlation arrays are checked independently
+and 432 normalized signed-fragment reads agree with full sums. These
+repair instances check the mechanism, not the asymptotic concentration
+cutoff at impractically large dimension. Small tests support the algebraic
+proofs; they do not replace them or certify priority.
+
+The plain inverse/trie transfer is closed as novelty. For symbolic kernels,
+the complete-cost model is now concrete. The explicit square-width block
+and linear-state resource point merit a precise width/degree/precision
+priority audit against the strongest signed constructions. The positivity
+barrier is a known four-words consequence; the generic compiler and the
+published exponent alone do not complete the goal. No neural training,
+native speed claim or new contribution manuscript is justified. The goal
+remains active and unachieved.
