@@ -50,6 +50,9 @@ a general consequence, for finite algebras in three variables. It develops the
 exponent-lattice connection behind the original interleavings. The initial
 source audit, exact family probes and a uniform obstruction to a rank shortcut
 are saved; no new asymptotic advance is established in that iteration.
+The continuation proves a local Hilbert-function bound and identifies a fixed
+rational relation in the probe, with a uniform coherent distinction from another
+embedding. These restrict the next proof attempt; the unrestricted goal remains open.
 
 Current research returns to the original occurrence-count and prime-exponent
 interleaving observations. The [face reconstruction study](docs/occurrence_reconstruction.md)

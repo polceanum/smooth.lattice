@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Characterize coherent bases of the nonlinear rectangle family using actual coefficients. Prove a uniform count or a collection of cones with a justified growth rate, or close the route with a uniform obstruction. Do not expand the search merely to gather larger examples.",
+  "next_proof_task": "Prove an asymptotic coherent-basis count for a specified coefficient class of the nonlinear rectangle family, or a structural upper bound excluding polynomial amplification. Use the filtration budget and explicit rational specialization; do not assume generic coefficients have more cones, infer count from support matching, or increase finite cases without a proof mechanism. Continue the unrestricted G_3 target and current-priority audit with the original success bar intact.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -110,7 +110,7 @@
       "status": "passed"
     }
   },
-  "preservation": "Only README.md plus four new public research files are intended for this iteration. No core kernels, earlier research files or manuscripts are changed. Private source caches remain ignored.",
+  "preservation": "Only the five listed public research files are updated in this continuation. Core kernels, prior research, old manuscripts and paused ML files remain unchanged. Source caches and raw logs stay ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
@@ -120,9 +120,66 @@
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "7917e3f3303898b32c4f6b735f713ceb6f2053691c9d0efafcdbddcac5a6e831",
-    "docs/extremal_initial_ideals.md": "5f22df106e288976b2f4b8e6431eae0bea30709a347e9a51d6cd595fcf15ff74",
-    "scripts/run_extremal_initial_ideals_checks.py": "9bd845027baa8df411787860f28234d6e33ce43809db7d70dc36a131204481f0",
-    "results/research/extremal_initial_ideals_checks.json": "d0a3f23bc540089d446670d1c86a93ac51544e28dcb1d0f3dd8ba7b83d52a0d1"
-  }
+    "README.md": "ab0cc107b7bd2107699147885fa555ce9b9132de03024a9522cd04083593d9ce",
+    "docs/extremal_initial_ideals.md": "70d1957cbe3eaaa6fe249f4845fe72f9949deee49a9dcf79f8dcd1e47f08b086",
+    "scripts/run_extremal_initial_ideals_checks.py": "187264633b178439b99ab9182194a69d7cc3240ff7150bc18f3b50be287d3259",
+    "results/research/extremal_initial_ideals_checks.json": "1ac68208d0862184d8fd617aa8b8e9a4c79a5fd91733bfc52aba0c4ea8250bf7"
+  },
+  "continuations": [
+    {
+      "title": "Local filtration bounds and a coherent coefficient distinction",
+      "recorded_on": "2026-10-19",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "Commit f2c280c saved the active goal, source comparison and exact family diagnostics.",
+      "uniform_proofs": [
+        "For every monomial basis of a finite algebra supported at one rational point, total degree is at most S=sum_j j*dim(m^j/m^(j+1)). Classical state geometry gives g(I)=O_d((1+S)^(d(d-1)/(d+1))).",
+        "For every nonlinear rectangle A_(r,s,F), n=rs, the coordinate moment budgets imply g(I)=O(n^(3/2)*sqrt((r-1)*(s-1)*(r+s-2))). Square rectangles therefore have g(I)=O(n^(9/4)), uniformly over all fields.",
+        "The fixed coefficient rule satisfies D*(z+4)-N=0 with D=(1-x)^3*(1-y)^2. Its universal leading monomial x^3*y^2*z is excluded in every initial standard set.",
+        "For every r>=8,s>=6, a 23-column ground subset is dependent for the fixed rule but has a unit minor for F=x+y+x^4*y^3. This proves genuine specialization relative to free coefficients.",
+        "For every a,b>=1,t nonzero, the embedding F=x+y+t*x^a*y^b in a 2a by 2b rectangle has an explicit coherent standard basis at weight (2,2,3). For a>=4,b>=3 it contains x^3*y^2*z, distinguishing actual initial ideals from the fixed probe."
+      ],
+      "independent_controls": {
+        "all_previous_fan_counts_preserved": true,
+        "moment_budgets": "Every saved basis, plus all independent determinant bases in the length-4 exhaustive control.",
+        "rank_specialization_rectangles": [
+          [
+            8,
+            6
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            12,
+            8
+          ]
+        ],
+        "ranks_mod_101": [
+          [
+            22,
+            23
+          ],
+          [
+            22,
+            23
+          ],
+          [
+            22,
+            23
+          ]
+        ],
+        "unit_minor": "Integer entrywise block-triangular verification; determinant 1, or t^12 with a parameter.",
+        "coherent_basis_lengths": [
+          48,
+          60,
+          64
+        ],
+        "coherence_controls": "Six relations replayed, strict leading inequalities and direct greedy residue ranks on the complete ground; no larger complete fans are enumerated."
+      },
+      "priority_and_significance": "The filtration estimate combines an elementary determinant argument with classical lattice vertex geometry. The other identities and one-cone construction are diagnostics. No novelty, sharpness, polynomial lower separation or unrestricted asymptotic advance is established.",
+      "effect_on_next_action": "A count proof must distinguish the fixed rational surface from free-coefficient embeddings. The square family has at most a quarter-power window above the generic scale. Neither a larger matrix rank nor the one-cone witness establishes a larger fan.",
+      "goal_complete": false
+    }
+  ]
 }

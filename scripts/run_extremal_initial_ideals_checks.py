@@ -226,6 +226,15 @@ def rectangle_fan(r, s, coefficients, prime, exhaustive_control=False):
                                  for a, b in combinations(active, 2)
                                  if min(x - y for x, y in zip(a, b)) < 0 < max(x - y for x, y in zip(a, b))})
     n = r * s
+    x_budget = n * (r - 1) // 2
+    y_budget = n * (s - 1) // 2
+    degree_budget = x_budget + y_budget
+
+    def check_moment_budget(basis):
+        moment = [sum(a[i] for a in basis) for i in range(3)]
+        require(moment[0] <= x_budget and moment[1] <= y_budget and
+                sum(moment) <= degree_budget, "uniform determinant/filtration moment bounds")
+
     pending = [(1, n + 1, (n + 1)**2)]
     visited = {}
     while pending:
@@ -238,6 +247,7 @@ def rectangle_fan(r, s, coefficients, prime, exhaustive_control=False):
         require(all(dot(z, weight) > 0 for z in normals), "strict reduced-border leading terms")
         require(all(tuple(x - (i == j) for i, x in enumerate(a)) in basis
                     for a in basis for j in range(3) if a[j]), "every visited basis is a downset")
+        check_moment_budget(basis)
         visited[basis] = (polygon, weight)
         pending.extend(adjacent_weights(polygon, normals, comparison_normals))
     require(sum(area2(poly) for poly, _ in visited.values()) == 1,
@@ -258,6 +268,7 @@ def rectangle_fan(r, s, coefficients, prime, exhaustive_control=False):
                 determinant += term
             independent += 1
             if determinant % prime:
+                check_moment_budget(candidate)
                 all_bases.append(candidate)
         for w in weights:
             values = [(sum(dot(w, a) for a in b), frozenset(b)) for b in all_bases]
@@ -276,7 +287,136 @@ def rectangle_fan(r, s, coefficients, prime, exhaustive_control=False):
             "initial_ideal_count": len(visited), "active_ground_monomials": len(active),
             "all_multiplication_commutators_checked": True, "reference_basis_cyclicity_checked": True,
             "positive_fan_exhaustive": True, "normalized_double_area": "1",
+            "state_moment_bounds": {"x": x_budget, "y": y_budget, "total_degree": degree_budget,
+                                    "all_visited_bases_checked": True,
+                                    "every_determinant_basis_checked_when_exhaustive": exhaustive_control},
             "independent_determinants_checked": independent, "witnesses": witnesses}
+
+
+def rational_probe_controls():
+    """A uniform hidden relation distinguishes the fixed probe from generic F."""
+    d = {(i, j): (-1)**(i+j) * comb(3, i) * comb(2, j)
+         for i in range(4) for j in range(3)}
+    numerator = {(0, 0): 4, (1, 0): -5, (2, 0): 3,
+                 (0, 1): -1, (1, 1): 4, (2, 1): -5}
+    constant_part = {p: 4*d.get(p, 0) - numerator.get(p, 0) for p in set(d) | set(numerator)}
+    constant_part = {p: c for p, c in constant_part.items() if c}
+    require(len(d) == 12 and len(constant_part) == 11, "fixed relation has 23 monomials")
+    exponents = tuple(sorted([(i, j, 0) for i, j in constant_part] +
+                             [(i, j, 1) for i, j in d]))
+    relation = {**{(i, j, 0): c for (i, j), c in constant_part.items()},
+                **{(i, j, 1): c for (i, j), c in d.items()}}
+    fixtures = []
+    for r, s in ((8, 6), (9, 7), (12, 8)):
+        cells = tuple(product(range(r), range(s)))
+        fixed_f = {(i, j): (i+1)**2 + 3*(j+1) + 5*i*j for i, j in cells if i or j}
+        generic_witness_f = {(1, 0): 1, (0, 1): 1, (4, 3): 1}
+
+        def column(exponent, polynomial):
+            a, b, c = exponent
+            require(c in (0, 1), "relation-control columns need at most one z factor")
+            return tuple(int((i, j) == (a, b)) if c == 0 else polynomial.get((i-a, j-b), 0)
+                         for i, j in cells)
+
+        fixed_columns = {e: column(e, fixed_f) for e in exponents}
+        alternative_columns = {e: column(e, generic_witness_f) for e in exponents}
+        require(all(sum(relation[e] * fixed_columns[e][k] for e in exponents) == 0
+                    for k in range(len(cells))), "fixed rational-function relation over the integers")
+        require(any(sum(relation[e] * alternative_columns[e][k] for e in exponents)
+                    for k in range(len(cells))), "the relation is not an identity for arbitrary F")
+        require(all(prod(a+1 for a in e) <= r*s for e in exponents),
+                "all diagnostic columns belong to the universal monomial ground")
+
+        # On these 23 rows the alternative columns form [I, B; 0, I].
+        # The unit determinant is checked entrywise over the integers, not
+        # inferred from modular rank. Replacing x^4*y^3 by t*x^4*y^3 gives t^12.
+        low = sorted(constant_part)
+        high = [(i+4, j+3) for i, j in sorted(d)]
+        ordered_columns = [(i, j, 0) for i, j in low] + [(i, j, 1) for i, j in sorted(d)]
+        chosen_rows = low + high
+        require(len(set(chosen_rows)) == 23, "disjoint low and shifted rectangular rows")
+        selected = [[alternative_columns[e][cells.index(p)] for e in ordered_columns] for p in chosen_rows]
+        for i, row in enumerate(selected):
+            for j, entry in enumerate(row):
+                if i >= 11 or j < 11:
+                    require(entry == int(i == j), "explicit unit triangular minor over every field")
+        prime = 101
+        fixed_mod = {e: tuple(v % prime for v in c) for e, c in fixed_columns.items()}
+        alternative_mod = {e: tuple(v % prime for v in c) for e, c in alternative_columns.items()}
+        fixed_rank = len(greedy(exponents, fixed_mod, (1, 37, 1369), prime))
+        alternative_rank = len(greedy(exponents, alternative_mod, (1, 37, 1369), prime))
+        require(fixed_rank == 22 and alternative_rank == 23, "coefficient choice changes actual rank")
+        fixtures.append({"rectangle": [r, s], "length": r*s, "fixed_probe_rank_mod_101": fixed_rank,
+                         "alternative_rank_over_every_field": 23, "alternative_rank_mod_101": alternative_rank,
+                         "explicit_minor_determinant": 1, "minor_rows": chosen_rows,
+                         "minor_columns": ordered_columns, "unit_triangular_minor": selected})
+    return {"relation": [[*e, c] for e, c in sorted(relation.items())],
+            "denominator": [[i, j, c] for (i, j), c in sorted(d.items())],
+            "numerator": [[i, j, c] for (i, j), c in sorted(numerator.items())],
+            "generic_witness_F": [[1, 0, 1], [0, 1, 1], [4, 3, 1]],
+            "fixtures": fixtures, "uniform_rank_separation_proved_in_note": True,
+            "scope": "For every r>=8,s>=6 the fixed coefficient rule has a nontrivial relation on 23 ground columns, whereas a unit minor proves that a generic polynomial F has rank 23 there. This establishes specialization of the probe, not monotonicity of fan counts or an asymptotic lower bound."}
+
+
+def coherent_specialization_controls():
+    """A written all-parameter Groebner basis, checked by direct column ranks."""
+    fixtures = []
+    for a, b in ((4, 3), (5, 3), (4, 4)):
+        r, s, prime = 2*a, 2*b, 101
+        cells = tuple(product(range(r), range(s)))
+        index = {p: i for i, p in enumerate(cells)}
+        polynomial = {(1, 0): 1, (0, 1): 1, (a, b): 1}
+        powers = [{(0, 0): 1}]
+        for _ in range(r+s-2):
+            following = {}
+            for (i, j), c in powers[-1].items():
+                for (k, l), d in polynomial.items():
+                    if i+k < r and j+l < s:
+                        p = (i+k, j+l)
+                        following[p] = (following.get(p, 0) + c*d) % prime
+            powers.append({p: c for p, c in following.items() if c})
+
+        def residue(exponent):
+            i, j, k = exponent
+            column = [0] * len(cells)
+            if k < len(powers):
+                for (u, v), c in powers[k].items():
+                    if i+u < r and j+v < s:
+                        column[index[(i+u, j+v)]] = c
+            return tuple(column)
+
+        expected = frozenset([(i, j, 0) for i, j in cells if i < a or j < b] +
+                             [(i, j, 1) for i in range(a) for j in range(b)])
+        leading = [(r, 0, 0), (0, s, 0), (a, b, 0), (a, 0, 1), (0, b, 1), (0, 0, 2)]
+        require(set(minimal_excluded_border(sorted(expected))) == set(leading), "six explicit monomial generators")
+        relations = [
+            {(r, 0, 0): 1}, {(0, s, 0): 1},
+            {(a, b, 0): 1, (0, 0, 1): -1, (1, 0, 0): 1, (0, 1, 0): 1},
+            {(a, 0, 1): 1, (a+1, 0, 0): -1, (a, 1, 0): -1},
+            {(0, b, 1): 1, (1, b, 0): -1, (0, b+1, 0): -1},
+            {(0, 0, 2): 1, (1, 0, 1): -2, (0, 1, 1): -2,
+             (2, 0, 0): 1, (1, 1, 0): 2, (0, 2, 0): 1}
+        ]
+        weight = (2, 2, 3)
+        for head, relation in zip(leading, relations):
+            require(all(sum(c * residue(e)[i] for e, c in relation.items()) % prime == 0
+                        for i in range(len(cells))), "explicit relation has zero residue")
+            require(all(dot(weight, head) > dot(weight, e) for e in relation if e != head),
+                    "uniform strict weight for the six heads")
+        ground = tuple(hyperbolic_cross(r*s, 3))
+        columns = {e: residue(e) for e in ground}
+        actual = frozenset(greedy(ground, columns, weight, prime))
+        require(len(expected) == r*s and actual == expected, "direct greedy rank versus proved standard set")
+        require((3, 2, 1) in expected, "fixed-probe universal head becomes standard in the other embedding")
+        fixtures.append({"half_sides": [a, b], "rectangle": [r, s], "length": r*s,
+                         "F_terms": [[*p, c] for p, c in sorted(polynomial.items())],
+                         "strict_weight": weight, "basis": sorted(expected),
+                         "leading_monomials": leading, "relations": [[[*e, c] for e, c in sorted(f.items())]
+                                                                        for f in relations],
+                         "direct_greedy_rank_checked": True, "characteristic_for_check": prime,
+                         "all_parameter_proof_valid_over_every_field": True})
+    return {"fixtures": fixtures,
+            "scope": "For r=2a,s=2b,F=x+y+t*x^a*y^b, t nonzero, the note proves one coherent standard set in every field whenever a,b>=1. For a>=4,b>=3 it contains a monomial universally excluded by the fixed rational probe. This distinguishes actual initial ideals, not just arbitrary column subsets; it does not compare total fan counts."}
 
 
 def support_matching_obstruction_controls():
@@ -353,11 +493,13 @@ def main():
     small_characteristic = rectangle_fan(2, 2, {(1, 0): 1, (0, 1): 1}, 2)
     require(small_characteristic["initial_ideal_count"] == 3,
             "small characteristic can collapse homogeneous cones")
-    report = {"schema_version": 1, "status": "passed",
+    report = {"schema_version": 2, "status": "passed",
               "command": "python3 -B scripts/run_extremal_initial_ideals_checks.py",
               "grid_source_controls": grid, "rectangular_complete_intersections": rectangles,
               "homogeneous_controls": homogeneous,
               "small_characteristic_control": small_characteristic,
+              "rational_probe_specialization": rational_probe_controls(),
+              "coherent_specialization": coherent_specialization_controls(),
               "support_matching_obstruction": support_matching_obstruction_controls(),
               "asymptotic_improvement_established": False, "novelty_established": False,
               "goal_complete": False,

@@ -10,9 +10,12 @@ advance; they must be supported by the eventual theorem and its comparison with
 existing work.
 
 The [goal record](../results/research/extremal_initial_ideals_goal.json) preserves
-the acceptance criteria. The present iteration closes one source-access gap,
+the acceptance criteria. The first iteration closes one source-access gap,
 gives complete finite fans for a proposed family, and proves an obstruction to
-a rank shortcut. It establishes no new asymptotic bound for the extremal problem.
+a rank shortcut. The continuation below gives a uniform filtration bound for
+local algebras and an exact distinction between the fixed coefficient probe and
+a generic nonlinear embedding. Neither iteration establishes a new asymptotic
+bound for the unrestricted extremal problem.
 
 ## Connection to the original observations
 
@@ -294,15 +297,239 @@ ground set. It does not show these three columns are simultaneously standard,
 give a fan lower bound, or resolve the extremal counting target. No novelty
 claim is attached to this diagnostic identity.
 
+## A uniform bound from the local Hilbert function
+
+Let $A=K[x_1,\ldots,x_d]/I$ have length $n$, with radical
+$(x_1,\ldots,x_d)$. Thus it is local and supported at the origin, over any
+field. Write
+
+$$
+h_j=\dim_K\mathfrak m^j/\mathfrak m^{j+1},\qquad
+S=\sum_{j\ge0}j h_j,\qquad \mathfrak m=(x_1,\ldots,x_d)A.
+$$
+
+For **every monomial vector-space basis** $D$ of $A$, not only initial
+standard bases,
+
+$$
+\sum_{a\in D}|a|\le S. \tag{2}
+$$
+
+Choose a basis adapted to the descending filtration by powers of
+$\mathfrak m$, assigning grade $j$ to the $h_j$ basis vectors in that
+quotient. A monomial of total degree $k$ lies in $\mathfrak m^k$, so its
+column has zero entries in rows of grade below $k$. A nonzero determinant of
+the columns indexed by $D$ has a nonzero permutation term. Each matched row
+therefore has grade at least the degree of its column. Summing proves (2).
+No graded homogeneity of $I$ is assumed.
+
+Every initial standard basis gives a distinct exposed moment vertex, so the
+state-polyhedron reduction and the classical lattice vertex bound used in
+[Babson--Onn--Thomas, Corollary 2.5 and its proof](https://arxiv.org/pdf/math/0207135)
+give
+
+$$
+g(I)=O_d\big((1+S)^{d(d-1)/(d+1)}\big). \tag{3}
+$$
+
+Indeed, the basis moments lie in the nonnegative simplex with total coordinate
+sum at most $S$. Add the unit cube to their convex hull if necessary to
+handle smaller affine dimension. Its volume is $O_d((1+S)^d)$; the Minkowski
+sum preserves at least the original number of vertices.
+
+The proof covers a local algebra supported at any $K$-rational point after
+translation. Translation preserves leading monomials under every global
+monomial order: each translated monomial expands into itself and its proper
+divisors. The leading coefficient is unchanged. This does not extend (2) to
+an algebra supported at several different points.
+
+For three variables, a family with $S=O(n^{4/3})$ has $g(I)=O(n^2)$.
+Consequently a local family with $g(I)\ge c n^{2+\epsilon}$ needs
+$S=\Omega(n^{4/3+2\epsilon/3})$. If $\mathfrak m^L=0$, then
+$S\le n(L-1)$, so it also needs
+$L=\Omega(n^{1/3+2\epsilon/3})$. These are necessary conditions, not lower
+constructions. In particular, short nilpotent filtrations cannot provide the
+requested polynomial separation. A long filtration does not ensure one.
+
+The determinant argument is elementary and (3) applies established geometry.
+This is a screening bound, with no novelty or sharpness claim.
+
+## The quantitative window for nonlinear rectangles
+
+For $A_{r,s,F}$, the local Hilbert function is that of
+$K[x,y]/(x^r,y^s)$, independently of $F$. In particular,
+
+$$
+S=\frac{rs(r+s-2)}2.
+$$
+
+There are stronger separate coordinate bounds. A residue of $x^a y^b z^c$
+in the rectangular reference basis only uses cells $(i,j)$ with
+$i\ge a$, $j\ge b$, and $i+j\ge a+b+c$. Applying the same determinant
+matching gives, for every monomial basis moment $\mu$,
+
+$$
+0\le\mu_x\le A_0=\frac{rs(r-1)}2,\quad
+0\le\mu_y\le B_0=\frac{rs(s-1)}2,\quad
+\mu_x+\mu_y+\mu_z\le A_0+B_0.
+$$
+
+The containing box, enlarged by the unit cube, has volume
+$O(A_0 B_0(A_0+B_0))$. The three-dimensional lattice vertex bound yields
+the uniform all-field estimate
+
+$$
+g(I)=O\!\left(n^{3/2}
+       \sqrt{(r-1)(s-1)(r+s-2)}\right)
+     =O\!\left(n^2\sqrt{r+s}\right),\qquad n=rs. \tag{4}
+$$
+
+For $r=s=q$, (4) is $O(n^{9/4})$. This narrows the possible gain over
+the generic $n^2\log^2 n$ scale to at most a quarter in the power of $n$
+within square rectangles. It does not rule out such a gain or prove one.
+For $F=x+y$, the stronger five-cone argument above applies.
+
+The exact checker now verifies the three moment budgets for every saved
+standard basis and for every independent determinant basis in the length-4
+exhaustive control, including bases that are not downsets. This tests the
+scope of the determinant lemma rather than just the displayed fan counts.
+
+## The fixed probe lies on a special rational surface
+
+The coefficients chosen for the finite probe are not algebraically
+independent. Over the integer formal power series ring,
+
+$$
+\begin{aligned}
+D&=(1-x)^3(1-y)^2,\\
+N&=(1+x)(1-y)+3(1-x)^2+5xy(1-x),\\
+F+4&=N/D.
+\end{aligned}
+$$
+
+The last equality follows by summing the three elementary series for
+$(i+1)^2$, $j+1$, and $ij$. Reduction modulo $(x^r,y^s)$ gives the
+chosen polynomial $F$ at every rectangle size, in every characteristic.
+Therefore every fixed-probe ideal contains the same polynomial
+
+$$
+h=D(z+4)-N. \tag{5}
+$$
+
+Its unique coordinatewise largest monomial is $x^3y^2z$, with coefficient
+$-1$. Thus (5) has that leading monomial for every global monomial order.
+The fixed probe lies on a single surface with an order-independent initial
+monomial, even as its quotient length grows.
+
+This specialization changes actual rank on the admissible ground set. Over
+the integers, $D$ has 12 terms and $4D-N$ has 11, the constant term being
+zero. Let $E$ be the set of these 23 exponent vectors in $h$. For every
+$r\ge8,s\ge6$, all of $E$ belong to $V_{rs}^3$, since the largest
+divisor count among them is 24. Equation (5) makes their rank at most 22 in
+the fixed probe, over every field.
+
+For contrast, set
+
+$$
+F_*=x+y+t x^4y^3,\qquad t\ne0.
+$$
+
+Use the same 23 monomial columns. Select the 11 rows in the support of
+$4D-N$, followed by the 12 rows $(4+i,3+j)$, $0\le i\le3,0\le j\le2$.
+The selected matrix, with constant-in-$z$ columns first, is
+
+$$
+\begin{pmatrix}
+\operatorname{Id}_{11}&B\\
+0&t\operatorname{Id}_{12}
+\end{pmatrix}.
+$$
+
+The lower shifted rectangle is disjoint from all low rows and from the
+linear contributions of $F_*$. Its determinant is $t^{12}$. Thus these
+23 columns have full rank over every field when $t\ne0$. The corresponding
+minor is consequently a nonzero polynomial in the coefficients of a general
+$F$: over their rational function field the rank is 23.
+
+The checker verifies (5) by integer convolution, checks the unit triangular
+minor entrywise at $t=1$, and independently computes ranks modulo 101 at
+rectangles $8\times6$, $9\times7$, and $12\times8$. They are respectively
+22 and 23 in each case. This is a uniform rank distinction, supported by exact
+finite witnesses, rather than a rank guess from a random specialization.
+
+The earlier counts remain valid for their stated coefficient choice. This
+distinction does not imply that a generic embedding has more cones: enlarging
+the set of feasible bases need not increase the number of vertices of their
+moment hull. The relation alone also does not exclude a large fan for the
+fixed surface. An asymptotic argument must specify which coefficient class it
+uses and prove its coherent-basis count.
+
+### A coherent distinction between the embeddings
+
+The difference is visible in actual initial ideals, as well as in arbitrary
+column subsets. Let $a,b\ge1$, $t\ne0$, and set
+
+$$
+I_*=(x^{2a},y^{2b},z-x-y-tx^ay^b).
+$$
+
+Its length is $4ab$. Write $\alpha=z-x-y$. Besides the two pure powers,
+the following four polynomials belong to $I_*$:
+
+$$
+x^ay^b-t^{-1}\alpha,\qquad
+x^a\alpha,\qquad y^b\alpha,\qquad \alpha^2.
+$$
+
+Indeed $\alpha=tx^ay^b$, so the last three vanish by the pure powers.
+For every positive weight $(X,Y,Z)$ satisfying
+
+$$
+\max(X,Y)<Z<aX+bY,
+$$
+
+their respective leading monomials are $x^ay^b,x^az,y^bz,z^2$.
+Together with $x^{2a},y^{2b}$ they generate a monomial ideal $J$.
+Its standard set is
+
+$$
+\begin{aligned}
+D_*={}&\{x^iy^j:0\le i<2a,\ 0\le j<2b,\ i<a\text{ or }j<b\}\\
+ &{}\cup\{x^iy^jz:0\le i<a,\ 0\le j<b\}.
+\end{aligned}
+$$
+
+It has $3ab+ab=4ab$ elements. Since $J\subseteq\operatorname{in}(I_*)$
+and both quotients have the same length, equality follows. This proves a
+Gröbner basis throughout the displayed cone, in every field. The integer
+weight $(2,2,3)$ lies in it for every $a,b\ge1$.
+
+If $a\ge4,b\ge3$, $D_*$ contains $x^3y^2z$. Equation (5) excludes
+that monomial from every initial standard set of the fixed rational probe at
+the same rectangle $r=2a,s=2b$. Thus these two embeddings of the same abstract
+algebra have different collections of initial ideals. The checker verifies
+the six relations, their strict leading inequalities, and the entire selected
+basis by independent greedy residue ranks at $(a,b)=(4,3),(5,3),(4,4)$.
+It does not enumerate the full fans of these larger examples.
+
+This is a uniform diagnostic distinction, not a comparison of total fan sizes
+or a claim that either family achieves polynomial amplification.
+
 ## Next proof task and stopping rule
 
 The next task is to characterize coherent bases of the nonlinear rectangle
-family using its actual coefficients and multiplication relations. A useful
-outcome would be a uniform count or an explicit collection of distinct cones
-with a provable growth rate. Only a rate polynomially above the generic scale,
-with a further general consequence, meets the lower-family endpoint of this
-goal. An upper bound that excludes that rate would close this route and justify
-a different construction.
+family using its actual coefficients and multiplication relations. The
+filtration bound identifies the remaining quantitative window; the rational
+relation distinguishes the existing fixed surface from the family with free
+coefficients. A proposed count must handle one of these classes uniformly.
+The sparse minor witness $F_*$ is a rank control, not a newly selected
+extremal family. No larger fan enumeration is justified by that minor alone.
+
+A useful outcome would be a uniform count or an explicit collection of
+distinct cones with a provable growth rate. Only a rate polynomially above the
+generic scale, with a further general consequence, meets the lower-family
+endpoint of this goal. An upper bound excluding that rate would close the
+route and justify a different construction.
 
 Increasing the finite cases, fitting a curve to four counts, or replacing
 coefficient rank by support matching cannot serve as that proof. The source
