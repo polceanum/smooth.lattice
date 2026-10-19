@@ -11154,3 +11154,267 @@ and compare against dictionaries, sampling, kernel regression and signed
 attention on the identical workload. No new publishable advantage has
 yet passed that gate. The goal stays active; its success criteria do not
 weaken to accommodate these supporting results.
+
+### Associative-memory goal: local correction with shared features
+
+Previous turn classification: progress. The address-geometry proofs,
+literature decisions and exact certificates changed the next construction
+to investigate. They did not achieve the active goal. This iteration first
+tests routed retrieval, then removes an unnecessary limitation of the
+earlier local-correction model. The full novelty, usefulness and publication
+criteria remain in force; no additional neural training is authorized by
+these supporting results.
+
+#### Routed sparse retrieval is already a strong baseline
+
+For the Euclidean simplex projection sparsemax, a score gap of at least
+one makes the output exactly one-hot. Perturbing all scores by at most
+eta preserves this conclusion if the original gap is at least 1+2*eta.
+Keeping latest values in a table then gives exact, history-independent
+retention in that query neighborhood, with ordinary point replacements.
+This is an established margin/projection consequence, not our result.
+
+Factorized access does not make this a new architecture theorem:
+[Correia et al., Section 4.1](https://arxiv.org/html/2007.01919v2)
+already evaluates structured sparsemax through a top-k oracle, and
+certifies the full solution when the restricted solution has support
+strictly below k. Those definitions, the support certificate, Section 4.2
+and Appendix A's displayed forward/backward formulas were inspected.
+Combining that primitive with known product-key top-k search is a known
+construction route. Its active support can be the whole table in the
+worst case. A sparse output is not a proof that finding its support is
+cheap, nor an improvement over an appropriately indexed dictionary.
+
+[Nonparametric Modern Hopfield Models, Section 3.2](https://arxiv.org/html/2404.03900v2)
+also studies masked/sparse retrieval. Its displayed construction, three
+mask examples and the target-in-mask premise were inspected, not its
+entire proof chain. Searching for the mask must be counted; assuming
+the target is included does not supply an arbitrary-query routing theorem.
+[U-Hop+, Section 3.1 and Algorithm 1](https://arxiv.org/html/2410.23126v2)
+was checked as well: its displayed O(1/T) rate concerns feature-map
+optimization iterations. We must not read this as a sublinear online
+lookup-time bound. No claim about these papers' empirical results is
+adopted here. The simple routed-lookup proposal is parked as a sufficient
+contribution; richer binding semantics and total-cost comparisons remain.
+
+#### A conditional model that separates local and shared overlap
+
+The previous positive-address bound does not justify excluding every
+dense Gram matrix. Dense overlap may come from a small shared component
+that can be handled separately. Let an encoded key have features
+f_i=(b_i,u_i), with B in R^(n*m), U in R^(n*r). The rows b_i have at most
+k nonzeros; u_i can use all r shared coordinates. The value matrix V has
+width v, entries bounded by R, and independently replaceable rows. There
+is no low-rank assumption on V or on a binding table formed by its rows.
+
+Use n fixed-capacity slots. Inactive slots have b_i=u_i=V_i=0. Set
+
+    G0 = B*B^T + diag(inactive),  A = I-G0,
+    P = sum_{j=0}^L A^j.
+
+Assume ||A||_infinity<=rho<1. Let C be P rounded entrywise to a fixed
+dyadic grid, with symmetric rounding and error at most eta per supported
+entry. Graph distance is measured in the off-diagonal support of G0.
+If each radius-L ball has at most b vertices, then
+
+    ||G0*C-I||_infinity <= e_L,
+    e_L = rho^(L+1) + (1+rho)*b*eta.
+
+This follows from G0*P-I=-A^(L+1), the graph support of the powers, and
+||G0||_infinity<=1+rho. Assume C is positive definite and ||C||_infinity<=K.
+These are genuine conditions: for instance, symmetry and
+b*eta < (1-rho^(L+1))/(1+rho) ensure positivity, and one may take
+K=1/(1-rho)+b*eta. An inactive slot retains its isolated unit diagonal
+exactly; its coefficient, value and shared-feature contributions vanish.
+
+Define the following current quantities:
+
+    Z=C*V,  X=C*U,  H=I+U^T*X,  t=U^T*Z,  h=H^(-1)*t,
+    S0=B^T*Z,  Y=B^T*X.
+
+A query encoded as (b_q,u_q), with b_q supported on k_q coordinates,
+reads
+
+    read(q) = b_q^T*S0 + (u_q^T-b_q^T*Y)*h.
+
+The state is represented by these cached quantities; it is not required
+to materialize the dense vector of interpolation coefficients
+d=Z-X*h. In fact
+
+    B^T*d = S0-Y*h,  U^T*d = h.
+
+The second identity follows from U^T*X=H-I. Thus the displayed reader is
+exactly f_q^T*[B^T*d;U^T*d]. Its effective query coefficients may be signed.
+It does not preserve the convex-average interpretation of attention.
+
+#### Uniform retention and a precisely scoped robustness bound
+
+Suppose, uniformly over admissible key edits,
+
+    ||u_i||_2 <= M,   H >= c*n*I  for a fixed c>0.
+
+The inequality is in the positive-semidefinite order; it is stronger than
+mere invertibility. Degenerate shared directions or arbitrary insertions
+are not silently admitted. Since
+
+    ||Z||_max <= K*R,   ||t_column||_2 <= n*M*K*R,
+    ||h_column||_2 <= M*K*R/c,
+
+we have ||V-U*h||_max <= Gamma*R, with
+
+    Gamma = 1 + M^2*K/c.
+
+Here ||.||_max is the maximum absolute entry, not a matrix row-sum norm.
+For the active keys, use G=G0+U*U^T. Direct multiplication gives the
+residual identity
+
+    G*d - V = (G0*C-I)*(V-U*h).
+
+For inactive slots d_i=0, so the ghost diagonal has no effect on the
+actual feature reads. Consequently every active key has maximum value
+error at most e_L*Gamma*R, independently of overwrite horizon. This bound
+depends on the current local geometry and shared conditioning, not on
+the contraction constant of the full, generally dense Gram matrix.
+
+It also yields a conditional query-neighborhood statement. Suppose each
+private feature coordinate occurs in at most h0 key rows and |B_ij|<=J.
+Then ||S0_column||_infinity<=h0*J*K*R and each row of Y has Euclidean norm
+at most h0*J*K*M. If the encoded query differs from an active key by
+delta_b in l1 norm and delta_u in Euclidean norm, its error relative to
+that key's latest value is at most
+
+    R*[e_L*Gamma + h0*J*K*Gamma*delta_b + M*K*delta_u/c].
+
+This follows by subtracting the two displayed read expressions and
+applying the bounds on S0, Y and h. It is a guarantee in **encoded feature
+space**. No raw-input semantic encoder or dimension-independent routing
+margin is supplied by this lemma. Those costs and hypotheses cannot be
+removed when proposing a model. The parameters r, c, M and K also count;
+holding them fixed is not a theorem for arbitrary key sets.
+
+#### Why key edits need not invalidate every cached row
+
+An edit to B_i changes G0 only on row/column i, including the ghost
+diagonal when occupancy changes. The matrix-power difference identity
+from the first iteration shows that C changes only inside the square
+indexed by the radius-L ball S of i in the union of the old/new local
+overlap graphs. Rounding preserves that support statement. Editing U_i
+or V_i in the same operation then changes X=C*U and Z=C*V only in S.
+
+For each j in S, replace its old row contribution by its new contribution
+in H, t, Y and S0:
+
+    H <- H + sum_j (u'_j^T*x'_j - u_j^T*x_j),
+    t <- t + sum_j (u'_j^T*z'_j - u_j^T*z_j),
+    Y <- Y + sum_j (b'_j^T*x'_j - b_j^T*x_j),
+    S0 <- S0 + sum_j (b'_j^T*z'_j - b_j^T*z_j).
+
+Row vectors are used in these outer products. Recompute h from the new
+r-by-r H and t. The sums include unchanged u_j or b_j whenever x_j or
+z_j changes. Updating only the edited key's outer product is incorrect.
+All caches remain the exact functions of the *current* rounded C, keys
+and latest values above. Retuning the global polynomial or changing all
+encoder parameters is outside this one-row-edit guarantee.
+
+In scalar operations, with degree at most Delta and union-ball bound b,
+a conservative key-edit bound is
+
+    O(b^2*[L*(Delta+1)+r+v] + k*b*(r+v)
+      + b*r*(r+v) + r^3 + r^2*v),
+
+plus incidence discovery and encoder evaluation. It allows recomputing
+at most b polynomial columns and their supported row products. Value-only
+replacement is cheaper: X, H and Y stay fixed; symmetry of C gives
+delta_t=X_i^T*delta_V_i. Its cost is O(k*b*v+r^2*v), plus the value cache
+write. The reader costs O(k_q*(r+v)+r*v), plus obtaining its encoded query.
+These are algebraic operation bounds, not machine-word or measured time.
+
+All caches must be charged: latest V and Z use 2*n*v scalars; S0 uses
+m*v; U and X use 2*n*r; Y uses m*r; H and its optional inverse use
+O(r^2); t and h use O(r*v). The sparse C needs O(n*b) coefficients and
+indices; B and incidence lists need O(n*k), with slot masks and any raw
+keys/codebooks/encoder parameters added separately. Preprocessing C,
+all row products and the small solve is charged, too. In particular this
+does not compress independent values below the dictionary information
+bound. A bounded degree alone can make b exponential in L; a small
+update cost needs an actual ball-growth or depth bound.
+
+#### Finite precision without accumulation over the stream
+
+Assume B, U and V lie on fixed dyadic grids, with bounded coefficient
+ranges. Use a fixed dyadic scale for C and keep Z, X, H, t, Y and S0 as
+exact integer numerators at their known product scales. The row-difference
+updates above replace current canonical contributions. Their bit lengths
+are therefore bounded by the current sums, not by the number of edits.
+For example, if the scales of C,U,V are D,E,Q respectively, then
+
+    |Z_numerator| <= D*Q*K*R,
+    |X_numerator| <= D*E*K*M,
+    |H_numerator| <= D*E^2*(1+n*M^2*K),
+    |t_numerator| <= D*E*Q*n*M*K*R.
+
+Use ceiling integer bounds where needed. The h0,J bounds similarly
+bound numerators for Y and S0. Invert or solve the small current H with
+exact rational arithmetic, rather than accumulating rounded inverse
+updates. Clearing denominators and the determinant bound give bit
+length O(r*[log(n)+log(r)+input_scale_bits+coefficient_bits+range_bits])
+for this solve. Its bit-operation cost must multiply the scalar-operation
+accounting; it is not an unlimited-precision unit-cost claim. Rounded
+floating-point cache updates do not inherit the history-independent
+guarantee without a separate numerical analysis.
+Forming P exactly before rounding also uses temporary integers with bit
+length growing linearly in L and the input grid precision (plus degree
+and range terms). Their arithmetic must be charged when repairing columns.
+
+#### What this advances, and what remains unproved
+
+The static identities are classical Woodbury/Schur-complement algebra.
+[WISKI, Section 4 and Appendix A.2--A.3](https://arxiv.org/html/2103.01454v1)
+already combines sparse interpolation, cached sufficient quantities and
+Woodbury updates. Its displayed formulas and update arguments were
+inspected in this iteration, beyond the earlier abstract check. Its
+constant-time-in-data-count statement retains inducing-dimension costs
+and O(m^2) caches; its accumulating-observation posterior is not a
+latest-value overwrite specification. This difference is not evidence
+that our conditional extension is new: dynamic regression, sparse inverse
+approximation, latent-variable inference and local graph-filter methods
+still require an exact theorem comparison. We have not established a
+strongest-baseline separation. In particular B=I reduces to ordinary
+table storage plus small regression summaries.
+
+There is also close numerical-linear-algebra prior art:
+[Zheng--Xi--Saad, Sections 3.1--3.2](https://arxiv.org/html/2002.00917v1)
+already combines a power expansion with a low-rank Schur correction.
+Its displayed inverse formula (22), Theorem 3 and telescoping proof were
+inspected. The static power-plus-low-rank construction is therefore
+occupied. Whether the fully counted dynamic repair and maximum-coordinate
+retention guarantee above is a useful extension still requires a complete
+comparison; a different application name or error statement alone is
+insufficient evidence of a substantive gap.
+
+The concrete advance is an explicit, precision-accounted retention and
+encoded-query bound allowing shared dense overlap, with local repair
+under key insert/delete/replace. This invalidates an overly broad rejection
+of dense-address models based only on full-Gram contraction. It does not
+turn the supporting algebra into a new paper or establish raw-input
+robustness. An encoder realizing the promises for a useful binding
+workload, together with a better full tradeoff than existing methods,
+remains necessary for the active goal.
+
+Reproduce the exact controls with
+
+```bash
+python3 -B scripts/run_shared_feature_retention_checks.py
+```
+
+The report `results/research/shared_feature_retention_checks.json` checks
+n=9,27 slots, r=1,3 shared dimensions and L=0,2,4, including 108 key edits
+with concurrent value changes and 36 value-only overwrites. Sparse-column
+recomputation and local integer cache repairs
+are compared with full current reconstruction. A small independent dense
+inverse checks the Woodbury solve; direct feature reads check the implicit
+state. The depth-four controls certify a worst-case value error below
+one tenth under their stated promises and test encoded perturbations.
+These are exact proof controls with dense oracles, not runtime or neural
+benchmarks. Small r controls do not establish a high-dimensional end-to-end
+architecture; the displayed proof quantifies the dependence on arbitrary r.

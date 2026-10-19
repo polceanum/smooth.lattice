@@ -13,12 +13,12 @@
     {
       "stage": 2,
       "task": "Audit primary theorems for sparse inverse/local correction and dynamic graphical inference; classify what is already a known corollary.",
-      "status": "primary_audit_excludes_several_elementary_geometry_and_signed_reader_candidates; full_tradeoff_comparison_continues"
+      "status": "stronger_primary_audit_of_structured_sparse_retrieval_and_online_interpolation; dynamic_local_shared_theorem_comparison_pending"
     },
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "positive_local_encoder_and_standalone_mub_duals_parked; richer_reader_with_robustness_access_guarantee_pending"
+      "status": "conditional_local_shared_model_proved; raw_input_encoder_and_same_workload_separation_pending"
     },
     {
       "stage": 4,
@@ -242,5 +242,82 @@
       "python3 -B scripts/run_structural_complexity_checks.py"
     ],
     "preservation": "Core kernels, both manuscripts, learned-recall artifacts, previous goal and all historical certificate bodies unchanged; only research-note provenance hashes refreshed in existing reports."
+  },
+  "third_iteration": {
+    "previous_turn_classification": "progress: geometry bounds, known-construction exclusions and exact controls were saved; full objective unachieved",
+    "record": "docs/interleaving_research.md, Associative-memory goal: local correction with shared features",
+    "certificate_script": "scripts/run_shared_feature_retention_checks.py",
+    "certificate_report": "results/research/shared_feature_retention_checks.json",
+    "routed_reader_decision": "Generic margin-based sparsemax lookup and a structured top-k oracle are established methods, not a sufficient contribution. Count support search and compare against indexed dictionaries.",
+    "conditional_theorem": {
+      "model": "Encoded features (b_i,u_i), sparse local B and arbitrary r-dimensional shared U; independent latest V rows, fixed slot capacity and explicit inactive ghosts.",
+      "conditions": [
+        "Uniform local contraction ||I-G0||_infinity<=rho<1",
+        "Fixed-depth symmetrically rounded polynomial C, positive definite with bounded infinity norm K",
+        "Shared rows ||u_i||_2<=M and H=I+U^T*C*U >= c*n*I",
+        "Explicit local/union-ball support and incidence bounds",
+        "One-row key/value/occupancy edits; global encoder and polynomial parameters fixed"
+      ],
+      "guarantee": "Maximum active-key value error <= [rho^(L+1)+(1+rho)*b*eta]*(1+M^2*K/c)*R, uniformly in overwrite horizon; explicit encoded-feature perturbation bound.",
+      "representation": "Maintain latest V, C, Z=C*V, X=C*U, H, t, S0=B^T*Z, Y=B^T*X and small h=H^-1*t. Dense interpolation coefficients are implicit.",
+      "key_edits": "C changes only in a union radius-L ball square. Replace every affected row contribution in X,Z,H,t,Y,S0 and recompute the small current solve.",
+      "value_edit_cost": "O(k*b*v+r^2*v) scalar operations plus encoder/value-cache costs; all matrix sizes and bit lengths charged.",
+      "query_cost": "O(k_q*(r+v)+r*v) scalar operations plus encoding/routing; no raw-input semantic margin is assumed for free.",
+      "precision": "Canonical integer numerators on fixed grids; exact rational small solves with current-state bit bounds, not accumulated rounded inverse updates.",
+      "limitation": "Encoded-space conditional extension of classical identities; no value-table compression, end-to-end high-dimensional semantic encoder, strongest-baseline superiority or novelty established."
+    },
+    "primary_sources": [
+      {
+        "url": "https://arxiv.org/html/2007.01919v2",
+        "scope": "Sections 4.1/4.2, support optimality certificate and Appendix A displayed sparsemax forward/Jacobian formulas inspected; structured top-k plus sparse normalization is prior art."
+      },
+      {
+        "url": "https://arxiv.org/html/2404.03900v2",
+        "scope": "Section 3.2 displayed sparse construction, three masks and target-in-mask premise inspected. Support search must be counted; full proof chain and experiments not audited."
+      },
+      {
+        "url": "https://arxiv.org/html/2410.23126v2",
+        "scope": "Section 3.1 and Algorithm 1 inspected. Displayed sublinear O(1/T) convergence is an optimization-iteration claim, not a sublinear online retrieval-time guarantee. No full theorem audit claimed."
+      },
+      {
+        "url": "https://arxiv.org/html/2103.01454v1",
+        "scope": "WISKI Section 4 and Appendix A.2/A.3 displayed Woodbury/cache/update formulas inspected beyond the earlier abstract check. Inducing-dimension costs and O(m^2) caches remain; accumulating-observation semantics do not alone prove latest-value retention. Exact dynamic theorem comparison remains."
+      },
+      {
+        "url": "https://arxiv.org/html/2002.00917v1",
+        "scope": "PSLR Sections 3.1/3.2, formula (22), Theorem 3 and its telescoping proof inspected. Static power expansion plus low-rank correction is established. Full dynamic repair/error/bit-cost theorem comparison remains required."
+      }
+    ],
+    "next_actions": [
+      "Audit dynamic sparse-plus-low-rank inverse maintenance and local graphical inference for exactly the proved current-state, error-norm and finite-precision guarantees; do not treat a combination of known identities as novel.",
+      "Construct an explicitly costed high-dimensional binding encoder whose raw-query neighborhoods and allowed key edits satisfy the local/shared conditions without a low-rank restriction on values.",
+      "Seek a substantive full-tradeoff separation against the strongest same-workload dictionary, sparse attention and online kernel/regression method; B=I plus small summaries is not enough.",
+      "Do not run neural training or prepare a new contribution manuscript until both the encoder and novelty/accounting gates pass."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "certificate_summary": {
+      "cases": 9,
+      "local_and_shared_key_edits": 108,
+      "value_only_overwrites": 36,
+      "shared_dimensions_checked": [
+        1,
+        3
+      ],
+      "depth_four_uniform_bounds_below_one_tenth": 3
+    },
+    "verification_commands": [
+      "python3 -B scripts/run_shared_feature_retention_checks.py",
+      "python3 -B scripts/run_retention_geometry_checks.py",
+      "python3 -B scripts/run_retention_tradeoff_checks.py",
+      "python3 -B scripts/run_feature_dimension_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py",
+      "python3 -B scripts/run_structural_complexity_checks.py"
+    ]
   }
 }
