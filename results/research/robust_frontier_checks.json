@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "command": "python3 -B scripts/run_robust_frontier_checks.py",
+  "scope": "Exact standard block-table lower bounds and counterfamilies for uniform constants/gap powers; no new architecture, sharp capacity or novelty claim.",
+  "blocks": {
+    "configurations": 5,
+    "value_assignments": 148,
+    "exact_key_reads_and_gradient_norm_checks": 1656,
+    "noisy_queries_and_indexed_baseline_checks": 6224,
+    "capacity_count_controls": 28,
+    "point_overwrites_and_zero_clears": 96,
+    "uniform_error_bound": "195/512"
+  },
+  "opposed_spherical_caps": [
+    {
+      "t": "1/2",
+      "radius": "1/8",
+      "gap_over_coefficient_size_and_radius_fourth": "16384/55",
+      "gap_over_coefficient_size_and_radius_squared": "256/55"
+    },
+    {
+      "t": "1/4",
+      "radius": "1/16",
+      "gap_over_coefficient_size_and_radius_fourth": "262144/799",
+      "gap_over_coefficient_size_and_radius_squared": "1024/799"
+    },
+    {
+      "t": "1/8",
+      "radius": "1/32",
+      "gap_over_coefficient_size_and_radius_fourth": "4194304/12415",
+      "gap_over_coefficient_size_and_radius_squared": "4096/12415"
+    },
+    {
+      "t": "1/16",
+      "radius": "1/64",
+      "gap_over_coefficient_size_and_radius_fourth": "67108864/197119",
+      "gap_over_coefficient_size_and_radius_squared": "16384/197119"
+    },
+    {
+      "t": "1/32",
+      "radius": "1/128",
+      "gap_over_coefficient_size_and_radius_fourth": "1073741824/3147775",
+      "gap_over_coefficient_size_and_radius_squared": "65536/3147775"
+    },
+    {
+      "t": "1/64",
+      "radius": "1/256",
+      "gap_over_coefficient_size_and_radius_fourth": "17179869184/50339839",
+      "gap_over_coefficient_size_and_radius_squared": "262144/50339839"
+    },
+    {
+      "t": "1/128",
+      "radius": "1/512",
+      "gap_over_coefficient_size_and_radius_fourth": "274877906944/805339135",
+      "gap_over_coefficient_size_and_radius_squared": "1048576/805339135"
+    },
+    {
+      "t": "1/256",
+      "radius": "1/1024",
+      "gap_over_coefficient_size_and_radius_fourth": "4398046511104/12885032959",
+      "gap_over_coefficient_size_and_radius_squared": "4194304/12885032959"
+    }
+  ],
+  "problem_dependent_constants": [
+    {
+      "epsilon": "1/2",
+      "sphere_point": [
+        "4/5",
+        "3/5",
+        "0"
+      ],
+      "necessary_spherical_KL_constant_fourth_power": "225/2048",
+      "necessary_half_error_bound_constant_squared": "2",
+      "necessary_quarter_error_bound_constant_fourth_power": "2"
+    },
+    {
+      "epsilon": "1/2",
+      "sphere_point": [
+        "99/101",
+        "20/101",
+        "0"
+      ],
+      "necessary_spherical_KL_constant_fourth_power": "510050/96059601",
+      "necessary_half_error_bound_constant_squared": "2",
+      "necessary_quarter_error_bound_constant_fourth_power": "2"
+    },
+    {
+      "epsilon": "1/2",
+      "sphere_point": [
+        "9999/10001",
+        "200/10001",
+        "0"
+      ],
+      "necessary_spherical_KL_constant_fourth_power": "500100005000/9996000599960001",
+      "necessary_half_error_bound_constant_squared": "2",
+      "necessary_quarter_error_bound_constant_fourth_power": "2"
+    },
+    {
+      "epsilon": "1/16",
+      "sphere_point": [
+        "4/5",
+        "3/5",
+        "0"
+      ],
+      "necessary_spherical_KL_constant_fourth_power": "225/256",
+      "necessary_half_error_bound_constant_squared": "16",
+      "necessary_quarter_error_bound_constant_fourth_power": "16"
+    },
+    {
+      "epsilon": "1/16",
+      "sphere_point": [
+        "99/101",
+        "20/101",
+        "0"
+      ],
+      "necessary_spherical_KL_constant_fourth_power": "4080400/96059601",
+      "necessary_half_error_bound_constant_squared": "16",
+      "necessary_quarter_error_bound_constant_fourth_power": "16"
+    },
+    {
+      "epsilon": "1/16",
+      "sphere_point": [
+        "9999/10001",
+        "200/10001",
+        "0"
+      ],
+      "necessary_spherical_KL_constant_fourth_power": "4000800040000/9996000599960001",
+      "necessary_half_error_bound_constant_squared": "16",
+      "necessary_quarter_error_bound_constant_fourth_power": "16"
+    },
+    {
+      "epsilon": "1/65536",
+      "sphere_point": [
+        "4/5",
+        "3/5",
+        "0"
+      ],
+      "necessary_spherical_KL_constant_fourth_power": "3600",
+      "necessary_half_error_bound_constant_squared": "65536",
+      "necessary_quarter_error_bound_constant_fourth_power": "65536"
+    },
+    {
+      "epsilon": "1/65536",
+      "sphere_point": [
+        "99/101",
+        "20/101",
+        "0"
+      ],
+      "necessary_spherical_KL_constant_fourth_power": "16713318400/96059601",
+      "necessary_half_error_bound_constant_squared": "65536",
+      "necessary_quarter_error_bound_constant_fourth_power": "65536"
+    },
+    {
+      "epsilon": "1/65536",
+      "sphere_point": [
+        "9999/10001",
+        "200/10001",
+        "0"
+      ],
+      "necessary_spherical_KL_constant_fourth_power": "16387276963840000/9996000599960001",
+      "necessary_half_error_bound_constant_squared": "65536",
+      "necessary_quarter_error_bound_constant_fourth_power": "65536"
+    },
+    {
+      "epsilon": "1/18446744073709551616",
+      "sphere_point": [
+        "4/5",
+        "3/5",
+        "0"
+      ],
+      "necessary_spherical_KL_constant_fourth_power": "1013309916158361600",
+      "necessary_half_error_bound_constant_squared": "18446744073709551616",
+      "necessary_quarter_error_bound_constant_fourth_power": "18446744073709551616"
+    },
+    {
+      "epsilon": "1/18446744073709551616",
+      "sphere_point": [
+        "99/101",
+        "20/101",
+        "0"
+      ],
+      "necessary_spherical_KL_constant_fourth_power": "4704380907397778400870400/96059601",
+      "necessary_half_error_bound_constant_squared": "18446744073709551616",
+      "necessary_quarter_error_bound_constant_fourth_power": "18446744073709551616"
+    },
+    {
+      "epsilon": "1/18446744073709551616",
+      "sphere_point": [
+        "9999/10001",
+        "200/10001",
+        "0"
+      ],
+      "necessary_spherical_KL_constant_fourth_power": "4612608401747933565854679040000/9996000599960001",
+      "necessary_half_error_bound_constant_squared": "18446744073709551616",
+      "necessary_quarter_error_bound_constant_fourth_power": "18446744073709551616"
+    }
+  ],
+  "new_theorem_beyond_prior_art_established": false,
+  "strongest_method_advantage_established": false,
+  "source_sha256": {
+    "scripts/run_robust_frontier_checks.py": "8187680c28f0c82d817527df789b308d78b86c3c461913a2c81a83347b8586b1",
+    "docs/interleaving_research.md": "70b6a98c5834544cf7d566135e40fe4cb1b375ddf8b90d00bb351dd333970640"
+  }
+}

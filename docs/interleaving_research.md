@@ -12288,3 +12288,240 @@ sets with linear terms/biases, the affine lifted sign-sum identity and
 the explicit spherical/full-ball counterexample. These finite controls
 support the proofs; they do not establish priority or verify the uniform
 theorem merely by sampling query neighborhoods.
+
+### Associative-memory goal: the capacity frontier and uniform constants
+
+Previous turn classification: progress. The direct homogeneous prior art
+and the affine/full-ball and sphere-only proofs are preserved. This pass
+checks whether optimization error bounds supply the missing uniform
+guarantee, and establishes a constructive capacity benchmark. The full
+architecture, novelty and publication objective remains unachieved.
+
+#### Fixed-problem exponents do not give uniform memory guarantees
+
+[Gao--Liu--Chen--Yuan, Theorem 2.1](https://arxiv.org/html/1611.08781v2)
+states a sphere-constrained quadratic gradient inequality with exponent
+3/4. Its preliminary equations (14)--(15), theorem, displayed proof
+cases and Example 2.1 were inspected. The constants and neighborhood
+are for the specified problem; the proof uses nonzero singular values.
+Example 2.1 already exhibits quartic flatness on a circle. This is
+relevant prior art, not a coefficient-uniform capacity bound. We have
+not independently verified every proof case.
+
+[Jiang--Li, Definition 1.1 and Theorem 3.13](https://arxiv.org/html/1911.11955v2)
+give a global error bound to the optimizer set of a fixed quadratic
+problem on the unit ball. The exponent is 1/4 in the specified ill case
+and 1/2 otherwise; the multiplicative constant is problem dependent.
+The definitions, main statement and displayed proof structure were
+inspected, without independently auditing every supporting lemma.
+Distance to global optimizers differs from our opposed classification
+caps. An exponent alone does not resolve the comparison.
+
+The absence of uniform constants is visible without relying on either
+paper's proof. For 0<epsilon<=1/2 consider on the two-dimensional unit
+ball
+
+    f_epsilon(x)=epsilon*x_1^2+x_2^2.
+
+The coefficient matrix has operator norm 1 and spectral width at least
+1/2. The optimizer set is {0}. At x=e_1 the distance to that set is 1
+and the objective gap is epsilon. Consequently any global bound
+dist(x,{0})<=tau*f_epsilon(x)^(1/2) requires
+tau>=epsilon^(-1/2). Even weakening the exponent to 1/4 requires
+tau>=epsilon^(-1/4). These examples are not in the paper's ill case;
+the latter calculation simply shows that weakening an exponent does
+not by itself make its constant uniform.
+
+Similarly, on the unit sphere in three dimensions put
+
+    F_epsilon(x)=epsilon*x_2^2+x_3^2, x_star=e_1.
+
+Its coefficient operator norm and spectral width are both 1. For a
+unit q=(a,b,0), a>0, b>0, elementary tangent projection gives
+
+    F_epsilon(q)=epsilon*b^2,
+    ||grad_sphere F_epsilon(q)||^2=4*epsilon^2*a^2*b^2,
+    (F_epsilon(q)^(3/4)/||grad_sphere F_epsilon(q)||)^4
+        =b^2/(16*epsilon*a^4).
+
+In any fixed positive neighborhood of e_1 choose such a q with fixed
+b>0. The displayed ratio diverges as epsilon tends to zero. Hence a
+tangent-gradient inequality of this form cannot have both a common
+constant and a common positive neighborhood over this coefficient-
+normalized family. Fixed-instance gradient inequalities remain
+compatible with the example. Neither comparison proves novelty of
+our earlier geometric estimates.
+
+#### A spherical counterfamily prevents a quadratic center-gap bound
+
+The previous sphere proof used a very weak twelfth power of the noise
+radius. Improving that proof directly to a second power is impossible
+for an arbitrary given classifier. Here is a uniform, explicit example;
+it is related to the established quartic flatness phenomenon, not a
+standalone novelty claim.
+
+For p>=2 and 0<t<=1 define
+
+    a=(1-t^2)/(1+t^2), s=2*t/(1+t^2), d=1-a,
+    delta=t/4, u=e_1, v=(a,s,0,...,0),
+    f_t(q)=(q_1-a)^2-d^2/4.
+
+Its quadratic spectral width is 1 and its linear coefficient norm is
+2*a, so D=1+2*a. The center values are 3*d^2/4 and -d^2/4,
+respectively, with gap g=d^2.
+
+For any unit q with ||q-u||<=delta, q_1>=1-delta^2/2 and
+delta^2/2<=d/32. Therefore
+
+    f_t(q)>=(31*d/32)^2-d^2/4=705*d^2/1024>0.
+
+For a unit q with ||q-v||<=delta, decompose
+e_1=a*v+(e_1-a*v), where the second summand has norm s.
+The identity <v,q-v>=-||q-v||^2/2 gives
+
+    |q_1-a|<=delta^2/2+s*delta<=9*d/32,
+    f_t(q)<=-175*d^2/1024<0.
+
+Thus the strict opposite signs hold on both entire spherical caps.
+Nevertheless
+
+    g/(D*delta^4)=1024/[(1+t^2)*(3-t^2)]
+                lies between 256 and 1024/3.
+
+In particular g/D is of order delta^4. No uniform positive lower
+bound g>=c*D*delta^r for r<4 can hold for every such classifier.
+This does not prove a universal fourth-power lower bound, nor does
+it prove a fourth-power capacity obstruction. The same labeling may
+have another, much better classifier: for these two keys a separating
+linear form suffices. A poor witness is not a bound on the best
+witness for each labeling.
+
+#### A standard quadratic table retains order min(p^2,p/delta^2) labels
+
+Before pursuing sharper upper bounds, record a constructive lower
+bound with all labels independent. This is an ordinary matrix-unit
+binding table; no new architecture or efficient factorization is
+being claimed.
+
+Partition p>=2 coordinates into consecutive blocks of size at most
+r, using as many full blocks as possible, where 2<=r<=p. For every
+unordered pair i<j in one block store an arbitrary V_ij in [-1,1].
+There are N such pairs. Set
+
+    u_ij=(3*e_i+4*e_j)/5,
+    S_ii=0, S_ij=S_ji=(25/24)*V_ij within a block,
+    S_ij=0 otherwise, R(q)=q^T*S*q.
+
+Then R(u_ij)=V_ij exactly. The encoder is the identity on R^p and
+the values have no low-rank restriction. The prescribed keys are
+special two-coordinate codewords; this is not a claim about arbitrary
+learned keys or a conditioned nonlinear encoder.
+
+The maximum absolute row sum gives
+
+    ||S||_op<=(25/24)*(r-1).
+
+At each stored key, the two corresponding coordinates of S*u_ij
+have total squared magnitude at most (25/24)^2. Each of the other
+at most r-2 coordinates has magnitude at most (25/24)*(7/5).
+It follows that
+
+    ||S*u_ij||_2<=(35/24)*sqrt(r-1).
+
+For every full Euclidean perturbation ||h||_2<=delta, expansion now
+proves, uniformly over all bounded value assignments,
+
+    |R(u_ij+h)-V_ij|
+        <=(35/12)*delta*sqrt(r-1)+(25/24)*delta^2*(r-1).
+
+If delta^2*(r-1)<=1/64, the right side is at most
+
+    35/96+25/1536=195/512<1/2.
+
+Clipping R to [-1,1] cannot increase its error. For vector values the
+same guarantee holds coordinatewise, charging every value coordinate.
+The statement covers the full ambient ball and hence also its unit-
+sphere restriction.
+
+For 0<delta<=1/8 choose r=min(p,1+floor(1/(64*delta^2))). Counting
+the full blocks gives
+
+    N>=p*(r-1)/4
+      =(p/4)*min(p-1,floor(1/(64*delta^2))),
+    N<=p*(r-1)/2.
+
+Indeed floor(p/r)>=p/(2*r), and each full block contributes
+r*(r-1)/2 pairs. The remainder can only increase the lower bound.
+This establishes capacity Omega(min(p^2,p/delta^2)) throughout the
+stated regime, with explicit constants and a uniform proof rather
+than extrapolation from finite examples.
+
+#### Storage, overwrites, precision and a matching indexed baseline
+
+Store the N independent V entries once, with the common scale 25/24
+implicit. The block layout and pair addresses require p,r and a fixed
+indexing rule, not a learned dense codebook. A word-address model must
+pay at least log_2(N) address bits. Initializing arbitrary contents
+costs Omega(N) value writes. Given an address, replacing its scalar
+value takes one value-word write; zero-clear retains the address and
+does not delete a key or renormalize a query. Canonical replacement
+has no accumulation with the stream horizon.
+
+The complete quadratic query costs O(p+N) scalar work, or O(p+N*v)
+for value width v. With bounded dyadic value and query coordinates,
+exact evaluation uses O(value_bits+2*query_bits+log(N)) arithmetic
+bits, plus fixed rational constants. These arithmetic costs are not
+free real-number operations. Other finite-precision implementations
+must charge their own rounding error within the slack below 1/2.
+
+A table with the same layout evaluates exactly the same quadratic
+function on every fresh query for exactly the same asymptotic cost.
+For local codeword recall it does better: since delta<=1/8, the two
+intended coordinate magnitudes are at least 3/5-delta>delta, while
+every other coordinate magnitude is at most delta. Scanning q for
+its two largest magnitudes identifies the pair, then a direct lookup
+returns the latest value exactly in O(p+v) work. Both tables use the
+same independent values and implicit metadata. This construction
+therefore supplies a capacity benchmark, not a strongest-baseline
+memory, access or retention advantage.
+
+#### Consequence for the active research direction
+
+For the all-binary-label robust affine-quadratic model, the currently
+proved bounds leave the following window (p>=2, 0<delta<=1/8):
+
+| Neighborhood | Constructive lower capacity | Current upper capacity |
+| --- | --- | --- |
+| Full Euclidean ball | Omega(min(p^2,p/delta^2)) | O(min(p^2,p/delta^4)) |
+| Unit-sphere cap | Omega(min(p^2,p/delta^2)) | O(min(p^2,p/delta^24)) |
+
+The constants in the upper bounds, especially the sphere bound, remain
+very large. This table is not a claim that the displayed powers are
+sharp or absent from the literature. The general norm/margin step is
+already known. A gap estimate for every possible witness and optimal
+robust shattering capacity are different targets; the cap counterfamily
+cannot substitute for a capacity lower bound.
+
+The next mathematical target is a direct, substantially sharper
+capacity theorem, or a construction disproving the natural candidate
+order min(p^2,p/delta^2), with a primary-source priority audit. Merely
+improving an intermediate constant or rediscovering the block table
+does not complete the goal. Any proposed architecture must additionally
+beat the strongest indexed, routed, kernel or regression method on the
+same complete workload, including fresh queries, precision and updates.
+No such advantage, publishable novelty or new neural result is claimed
+in this pass. The full goal remains active; no training was launched.
+
+Reproduce the new exact controls with:
+
+```bash
+python3 -B scripts/run_robust_frontier_checks.py
+```
+
+The report records 148 value assignments, 1,656 exact key/gradient
+checks, 6,224 noisy-query and indexed-baseline controls, 28 capacity
+counts, 96 point replacements/zero-clears, eight opposed-cap scales
+and twelve fixed-problem constant controls. Rational neighborhood
+probes check the formulas independently of the whole-neighborhood
+proofs; they do not establish those proofs by sampling or settle
+priority.

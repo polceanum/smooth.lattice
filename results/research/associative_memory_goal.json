@@ -13,12 +13,12 @@
     {
       "stage": 2,
       "task": "Audit primary theorems for sparse inverse/local correction and dynamic graphical inference; classify what is already a known corollary.",
-      "status": "direct_homogeneous_eigenvector_prior_art_matched; affine_and_spherical_gap_priority_audit_pending"
+      "status": "fixed_problem_error_bound_and_sphere_KL_quantifiers_checked; uniform_geometry_priority_and_sharp_capacity_audit_pending"
     },
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "full_affine_quadratic_robust_capacity_proofs_on_balls_and_sphere; no_new_strongest_method_architecture_advantage"
+      "status": "standard_quadratic_block_capacity_lower_bound_and_indexed_baseline_accounted; target_direct_sharp_capacity_before_new_architecture_claim"
     },
     {
       "stage": 4,
@@ -600,6 +600,65 @@
       "./build.sh",
       "python3 tests/test_smoke.py",
       "python3 -B scripts/run_structural_complexity_checks.py"
+    ]
+  },
+  "eighth_iteration": {
+    "previous_turn_classification": "progress: direct homogeneous prior art and complete affine/full-ball and sphere-only proofs saved; full objective unachieved",
+    "record": "docs/interleaving_research.md, Associative-memory goal: the capacity frontier and uniform constants",
+    "certificate_script": "scripts/run_robust_frontier_checks.py",
+    "certificate_report": "results/research/robust_frontier_checks.json",
+    "primary_sources": [
+      {
+        "url": "https://arxiv.org/html/1611.08781v2",
+        "scope": "Theorem 2.1, tangent-gradient formulation (14)--(15), displayed proof cases and Example 2.1 inspected. Fixed-problem constants/neighborhood, not a coefficient-uniform robust-capacity theorem. Every proof case not independently verified."
+      },
+      {
+        "url": "https://arxiv.org/html/1911.11955v2",
+        "scope": "Definitions 1.1--1.2, Theorem 3.13 and displayed proof structure inspected. Fixed-problem optimizer-set error bounds on the ball; constants depend on the instance. Every supporting lemma not independently audited."
+      }
+    ],
+    "proved_controls": {
+      "nonuniform_constants": "Explicit coefficient-normalized p=2 ball and p=3 spherical families force diverging error-bound or tangent-gradient constants. A fixed exponent cannot be imported as a uniform constant and positive neighborhood.",
+      "opposed_spherical_caps": "An explicit affine-quadratic classifier has strict opposite signs on two entire radius-delta unit caps with center gap/(spectral_width+linear_norm)=Theta(delta^4). A universal second-power witness-gap bound is impossible; no sharp capacity conclusion follows.",
+      "standard_block_capacity": "For p>=2 and 0<delta<=1/8, ordinary block matrix-unit binding tables retain independent bounded values with error <=195/512 throughout full query balls, at N>=p*min(p-1,floor(1/(64*delta^2)))/4 addresses.",
+      "full_accounting": "N value entries and implicit block/pair metadata, one-word given-address scalar overwrite, no horizon accumulation, O(p+N*value_width) complete quadratic read with charged arithmetic precision. Two-largest-coordinate routing gives exact local recall in O(p+value_width) and the same table evaluates all fresh quadratic queries identically.",
+      "capacity_frontier": "Known construction gives Omega(min(p^2,p/delta^2)); current proved upper bounds are O(min(p^2,p/delta^4)) on balls and O(min(p^2,p/delta^24)) on sphere caps. No sharpness or novelty claimed."
+    },
+    "decision": "Preserve the standard lower construction and uniform-constant countercontrols. Do not optimize a poor witness-gap exponent as a proxy for sharp capacity, or claim a new architecture against a matching table. Seek a direct structural capacity theorem with a precise primary-source novelty boundary and the full original architecture advantage gate.",
+    "next_actions": [
+      "Prove a direct sharper robust-capacity theorem or disprove candidate order min(p^2,p/delta^2); do not confuse an arbitrary classifier witness with the best classifier for a labeling.",
+      "Compare the exact robust-shattering model with primary quadratic-separator, adversarial-dimension, margin and matrix-discrepancy guarantees; unsuccessful keyword search is not evidence of novelty.",
+      "Retain full-dimensional query and binding semantics and compare complete fresh-query/update workloads with the strongest indexed, routed, kernel and regression baseline, charging all precision and metadata.",
+      "Keep the full goal active and its success criteria unchanged; no contribution manuscript or training until a substantive new guarantee passes the gates."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "certificate_summary": {
+      "value_assignments": 148,
+      "exact_key_reads_and_gradient_norm_checks": 1656,
+      "noisy_queries_and_indexed_baseline_checks": 6224,
+      "capacity_count_controls": 28,
+      "point_overwrites_and_zero_clears": 96,
+      "opposed_spherical_cap_scales": 8,
+      "problem_dependent_constant_controls": 12
+    },
+    "verification_commands": [
+      "python3 -B scripts/run_robust_frontier_checks.py",
+      "python3 -B scripts/run_affine_robust_checks.py",
+      "python3 -B scripts/run_robust_reader_checks.py",
+      "python3 -B scripts/run_regression_baseline_checks.py",
+      "python3 -B scripts/run_correlated_routing_checks.py",
+      "python3 -B scripts/run_shared_feature_retention_checks.py",
+      "python3 -B scripts/run_retention_geometry_checks.py",
+      "python3 -B scripts/run_retention_tradeoff_checks.py",
+      "python3 -B scripts/run_feature_dimension_checks.py",
+      "python3 -B scripts/run_structural_complexity_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py"
     ]
   }
 }
