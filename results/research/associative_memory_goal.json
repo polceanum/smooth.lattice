@@ -18,7 +18,7 @@
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "generic_timing_cost_proof_repaired_for_random_rebuilds_with_uniform_compound_epoch_bound; product_and_signature_comparisons_preserved; full_nonproduct_spectral_class_and_strongest_baseline_separation_open"
+      "status": "near_identity_kernel_and_robust_individual_recall_do_not_imply_cheap_unrestricted_exact_mixtures_under_OMv; explicit_finite_word_occupancy_and_payload_reductions_checked; small_radius_spectral_tradeoff_and_original_advantage_goal_open"
     },
     {
       "stage": 4,
@@ -1796,5 +1796,61 @@
     },
     "old_functions_and_certificate_blocks_preserved": true,
     "verification_scope": "Extended exact checker, core build and smoke tests passed. All 234 protected files, twenty-one prior non-main checker function ASTs, all twenty-two historical goal iterations and all historical report blocks are preserved. Final note/checker hashes match the report. Exact new controls include 192 infinite geometric generating-function evaluations, 48 conditional-copy products, 6330 admissible epoch laws (3322 with infinite-epoch mass), 16 dependent duration/cost laws and 12 optimized adaptive crossing games over 6498 posterior states. The correlated marginal-moment counterexample is recorded exactly. Other proof scripts were not rerun because their sources/artifacts are unchanged. This verifies supporting accounting, not novelty or an ML advantage."
+  },
+  "twenty_fourth_iteration": {
+    "previous_turn_classification": "progress: corrected a random-rebuild confidence gap with a uniform compound-cost supporting lemma, exact dependent-cost controls and privacy-reviewed publication; no strongest-method advantage or novelty established",
+    "record": "docs/associative_memory_timing.md, Near-identity keys do not make all exact mixture queries cheap",
+    "certificate_script": "scripts/run_timing_restart_checks.py",
+    "certificate_report": "results/research/timing_restart_checks.json",
+    "primary_prior_art": [
+      {
+        "url": "https://arxiv.org/html/1511.06773v1#S2.SS2",
+        "scope": "Henzinger--Krinninger--Nanongkai--Saranurak, Definition 2.6, Theorem 2.7 and Corollary 2.8 inspected: OMv implies the stated fixed-power online uMv/OuMv barriers even with polynomial preprocessing. This record supplies an explicit geometric transfer to the current memory promises, not a new hardness conjecture or a novelty claim."
+      }
+    ],
+    "geometric_reduction": {
+      "parameters": "m>=2, n=m^2, a>=1 repetition, b>=1 spectral slack bits, t=ceil(log2 n), L=t+b, tag weight w=tL, d=4am+2w, r_0=2a(m-1)+w, fixed r=r_0+a-1=d/2-a-1.",
+      "raw_keys_and_queries": "Key (i,j) contains repeated row/column unit vectors, zero padding, and a dual-rail L-fold repeated binary tag i*m+j. Every tag has weight w and pair distance >=2L. Full supplied query q(u,v) contains a repeats of u, its bitwise complement, v and its complement, plus zero tag coordinates. Every raw bit is charged.",
+      "spectral_proof": "Every off-diagonal kernel entry is <=2^-L; each absolute off-diagonal row sum is <2^-b. All eigenvalues of K and every active principal submatrix lie in [1-2^-b,1+2^-b], giving full active rank and condition number <=(1+2^-b)/(1-2^-b). Inverse-polynomial closeness to identity still uses O(log^2 n) tag bits.",
+      "payload_reduction": "With all n slots occupied, distance is r_0 exactly on the Boolean rectangle u_i=v_j=1 and at least r_0+2a elsewhere. The truncated weight is a on the rectangle and zero elsewhere. The normalized scalar read is u^T V v/(|u||v|). For Boolean values, exact output or additive error <1/(2n) decides Boolean uMv; a fixed grid with O(log n) fractional bits suffices.",
+      "occupancy_reduction": "Occupy exactly M_ij=1 slots with value 1. The read is empty iff the Boolean product is false and is 1 otherwise. Every occupied principal submatrix retains the near-identity promise. Canonical emptiness therefore has the same obstruction without inverse-polynomial numerical accuracy; if empty is encoded as numeric zero the gap is 0 versus 1. A guarantee allowed to misreport emptiness differs from this claim.",
+      "retention": "Every pure prototype q(e_i,e_j) and every further <=a-1 raw-bit perturbation has the target as its only possible inner key, with all others at least r+2 away. Reads return that independently overwritable current value or empty when inactive. A repetition-majority decoder and explicit full-distance basin check allow classical O(d) individual lookup; no cheap dense-mixture query follows.",
+      "accounting_and_hardness": "For fixed a>=2 and b=O(log n), full raw query construction is O(sqrt(n)+log^2 n); raw-key loading O(n*d) and all auxiliary preprocessing count and are polynomial. Word width O(log n) suffices. A uniform O(d+n^(1-epsilon)) query bound would contradict the cited OMv consequence. The proof also treats uniform expected total online cost using a fixed m-query horizon and Markov cutoff; expected-polynomial preprocessing can be capped separately. This is conditional fixed-power hardness, not an unconditional Omega(n) bound.",
+      "essential_boundaries": "The constructed radius is Theta(a*sqrt(n)+log^2 n), outside r=floor(log2(n)/c). No small-radius lower bound or optimality of the covering exponent follows. All-occupied normalized rectangle reads at constant additive error retain the ordinary sampling baseline; arbitrary occupancy and canonical emptiness are different. No universal hardware, neural-learning or retention-beyond-declared-basins claim."
+    },
+    "decision": "The full spectral promise, arbitrarily good conditioning, full independent value dependence and robust individual recall do not justify an unrestricted fast exact-mixture architecture. The large-radius barrier is a supporting corollary of existing complexity research, not the original goal or a publishable new advantage. Keep the small-radius positive tradeoff and strongest-baseline comparison open rather than broadening the theorem through these insufficient promises.",
+    "next_actions": [
+      "Audit full distance-profile bounds of optimal Las Vegas filtering against the complete small-radius spectral workload; a crude outer-ball population bound is not a proof that the stronger comparator fails. Include raw queries, independent values, arbitrary occupied subsets, admission, metadata and finite-word costs.",
+      "Seek a substantive storage/read/write advantage in an explicit useful radius/accuracy regime, or a formal generic timing-conversion gap beyond the known components. Do not treat this large-radius conditional barrier as a lower bound for the earlier small-radius result.",
+      "Keep the original objective and acceptance criteria unchanged, including the publication/novelty gates and no-training instruction. No outreach, submission or claimed-contribution manuscript follows from this diagnostic reduction."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "verification_commands": [
+      "python3 -B scripts/run_timing_restart_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py"
+    ],
+    "preservation": "All twenty-three historical goal iterations, twenty-two prior non-main checker function ASTs, historical report blocks, other proof scripts/reports, core kernels, manuscripts and learned-recall artifacts are retained. Only the existing timing note/checker/report and research manifest change.",
+    "certificate_summary": {
+      "raw_key_pair_distance_identities": 13644,
+      "exact_kernel_off_diagonal_row_bounds": 540,
+      "complete_rectangle_prototype_queries": 32736,
+      "independent_payload_assignments": 3288,
+      "complete_exact_scalar_reads": 392160,
+      "finite_grid_boolean_decisions": 359424,
+      "occupied_subset_empty_decisions": 359424,
+      "active_principal_kernel_row_bounds": 15024,
+      "independent_pure_recall_rows": 540,
+      "exhaustive_small_raw_basin_queries": 29725,
+      "invalid_basin_certificates_rejected": 120
+    },
+    "certificate_parameter_configurations": 30,
+    "old_functions_and_certificate_blocks_preserved": true,
+    "verification_scope": "Extended exact checker, core build and smoke tests passed. All 234 protected files, twenty-two prior non-main checker function ASTs, all twenty-three historical goal iterations and all historical report blocks are preserved. Final note/checker hashes match the report. New controls cover 30 parameter configurations, 13644 exact key-distance identities, 540 rational full kernel row bounds, 15024 active principal row bounds, 32736 complete rectangle prototype queries, 392160 scalar reads, 359424 finite-grid Boolean decisions and the same number of occupied-subset empty decisions, 540 pure recall rows and 29725 exhaustive small raw noise-basin queries. The controls do not exhaust arbitrary raw queries or certify OMv, novelty, small-radius hardness or a new architectural advantage. Other proof checkers were not rerun because their sources/artifacts are unchanged."
   }
 }

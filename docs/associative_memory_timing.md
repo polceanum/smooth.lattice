@@ -2599,3 +2599,196 @@ The original goal and publication gate remain open. Further work should
 resolve that generic comparison or the full nonproduct spectral workload,
 rather than counting more favorable special examples as progress toward
 a new architecture.
+
+## Near-identity keys do not make all exact mixture queries cheap
+
+The preceding turn repaired random-rebuild accounting; it did not establish
+a new access advantage. A broader claim would be that the spectral promise
+itself, perhaps with excellent conditioning and robust individual recall,
+makes every rich memory query cheap. The following explicit reduction rules
+out a fixed-power query saving for that unrestricted claim, conditional on
+the OMv conjecture. It concerns the actual scalar weighted-mean output,
+not the cost of materializing an entire neighbor list.
+
+The source of the hardness is existing mathematics:
+[Henzinger--Krinninger--Nanongkai--Saranurak, version 1, Definition 2.6,
+Theorem 2.7 and Corollary 2.8](https://arxiv.org/html/1511.06773v1#S2.SS2)
+give the polynomial-preprocessing OuMv/uMv consequences of the OMv
+conjecture. The construction below transfers that established obstruction
+to our spectral and retention promises. This is a diagnostic corollary;
+neither a new conditional-complexity conjecture nor publication novelty is
+claimed. The earlier bilinear barrier in the main research record did not
+verify these additional geometric promises.
+
+### Fixed binary keys, including every tag and input bit
+
+Choose m>=2, n=m^2, integers a>=1 and b>=1, and put
+
+```text
+t=ceil(log2(n)),  L=t+b,  w=t*L,
+d=4*a*m+2*w,  r_0=2*a*(m-1)+w,  r=r_0+a-1=d/2-a-1.
+```
+
+Here w denotes tag weight, not RAM word width. Let e_i be the i-th unit
+vector of length m. Repetition z^[a] repeats each bit a times. Assign slot
+(i,j), with 0<=i,j<m, the t-bit binary label i*m+j. Replace each label bit
+z by (z^L,(1-z)^L); the resulting tag T_ij has length 2*w, weight w, and
+distinct tags have distance at least 2*L. Define the explicit raw key
+
+```text
+x_ij = (e_i^[a], 0^(a*m), e_j^[a], 0^(a*m), T_ij).
+```
+
+All n keys have weight 2*a+w. The tag does not depend on the stored value.
+All stored values V_ij can vary independently, including arbitrary Boolean
+matrices. No low-rank factorization of V, hidden learned encoder, free
+query address or compressed value representation is assumed.
+
+For distinct slots, dist(x_ij,x_kl)>=2*L, and therefore their kernel entry
+2^(-dist/2)<=2^(-L). Each off-diagonal row sum is at most
+(n-1)*2^(-L)<2^(-b). The symmetric matrix K-I consequently has operator
+norm <2^(-b), by the maximum absolute row-sum bound. Thus every eigenvalue
+of K, and of every nonempty active principal submatrix, lies in
+
+```text
+[1-2^(-b), 1+2^(-b)],
+condition number <= (1+2^(-b))/(1-2^(-b)).
+```
+
+This gives rank n and a kernel arbitrarily close to the identity. Taking
+b=O(log n) still uses only O(log^2 n) tag bits per key. Neither estimating
+the norm numerically nor charging a global spectral test at each value
+overwrite is needed: every subset of this fixed codebook satisfies the
+promise by construction.
+
+### The exact operator contains Boolean rectangle queries
+
+For arbitrary Boolean u,v in {0,1}^m, form and supply the full raw query
+
+```text
+q(u,v)=(u^[a], (1-u)^[a], v^[a], (1-v)^[a], 0^(2*w)).
+```
+
+Its distance to a key is exactly
+
+```text
+dist(q(u,v),x_ij)=2*a*m+2*a+w-2*a*(u_i+v_j).
+```
+
+When u_i=v_j=1 this is r_0; all other keys are at least r_0+2*a away.
+For our fixed radius r, the weight max(0,r+1-dist) is therefore exactly a
+on the selected rectangle and zero elsewhere. If both vectors are nonempty,
+the complete scalar read is
+
+```text
+F(q(u,v),V) = (sum_{i,j} u_i*V_ij*v_j)/(|u|*|v|).
+```
+
+If either vector is empty the canonical output is empty and the corresponding
+Boolean product is zero. For Boolean V and nonempty vectors, the output is
+zero exactly when the Boolean product u^T*V*v is zero; otherwise it is at
+least 1/n. This remains true even if the algorithm preaggregates values or
+never enumerates any matching slots. Exact rational output uses numerator
+and denominator of O(log n) bits. Alternatively, additive error strictly
+below 1/(2*n), with comparison at 1/(2*n), suffices. A fixed binary grid
+with O(log n) fractional bits provides that accuracy; no infinite-precision
+real arithmetic is involved.
+
+There is also a stronger occupancy version. Occupy exactly those codewords
+with M_ij=1 and give every occupied slot value 1. For a nonempty selected
+rectangle the read is 1 if u^T*M*v is true and empty otherwise. Every active
+principal kernel retains the same near-identity bounds. Thus deciding the
+canonical empty/nonempty flag already has the conditional obstruction,
+without inverse-polynomial numerical accuracy or a required neighbor list.
+If the interface encodes an empty read numerically as zero, the gap is
+0 versus 1, so additive error <1/2 suffices. For an interface with an empty
+sentinel, this statement requires preserving that sentinel; an approximation
+allowed to misreport emptiness is a different guarantee. The matrix-dependent
+occupancy is installed during polynomial preprocessing; the reduction needs
+no online key edits at all.
+
+Take a to be a fixed constant >=2 and b=O(log n). Then d=O(sqrt(n)+log^2 n),
+and constructing each raw query costs O(d). Materializing the raw key table
+costs O(n*d), which is polynomial and is included in preprocessing, together
+with loading every value. Word width O(log n) suffices for polynomial
+addresses, distances and exact accumulators. The algorithm may compress the
+fixed keys or use any other polynomial-size auxiliary index; that freedom
+does not avoid the reduction.
+
+Suppose a reader for this full promise had polynomial preprocessing and
+worst-case read cost O(d+n^(1-epsilon)) for any fixed epsilon>0. Applying it
+to this family and forming the raw queries would give uMv time
+O(m+m^(2-2*epsilon)+log^2 m), a fixed-power improvement on m^2. This
+contradicts the cited OMv consequence. For an always-correct randomized
+reader with a uniform expected total online cost, take m query pairs:
+the same substitution gives expected total
+O(m^2+m^(3-2*epsilon)+m*log^2 m). Capping the entire online computation at
+three times its uniform expected bound gives a bounded-time OuMv algorithm
+with error probability at most 1/3 by Markov's inequality, again contradicting
+the conjecture. This also rules out that uniform amortized claim. The result
+also allows expected-polynomial preprocessing: cap preprocessing and online
+work separately at six times their respective uniform expected bounds and
+union-bound the two failure events by 1/3. The online horizon here is the
+fixed m query pairs, so no expected-stopping-time substitution is involved.
+The conclusion is conditional and excludes a fixed-power improvement, not
+logarithmic savings or all sublinear functions. All one-time setup belongs
+to preprocessing; the expected online bound covers the complete sequence
+after that setup.
+
+### Robust individual retention coexists with that obstruction
+
+For the pure prototype q(e_i,e_j), the target distance is r_0 and every
+other slot is at least r_0+2*a away. Every additional raw-bit perturbation
+of at most a-1 bits leaves the target at distance <=r and all others at
+distance >=r+2. The read is exactly its current independent value, or empty
+if the slot is inactive. This holds through arbitrary latest-value overwrites
+and deletions. It proves full dependence on all n values separately from
+the rank of K. It is a basin around a specified query prototype; it does
+not claim q(e_i,e_j) equals the stored key.
+
+A classical decoder can certify these basins in O(d): for each coordinate
+of u and v, combine its a direct and a complemented repetitions, then
+majority-decode. At most a-1 errors cannot change any decoded bit. Require
+one-hot decoded vectors and explicitly verify the full raw distance to their
+prototype is <=a-1. The check includes tag bits. If it passes, ordinary
+lookup returns the exact current value; otherwise the decoder makes no
+claim and a complete reader can fall back. Thus fast robust individual
+recall is compatible with the conditional difficulty of rich mixture reads.
+Taking a=log^O(1) n permits a growing noise basin with only polylogarithmic
+extra raw-input work; the same fixed-power hardness consequence survives.
+This encoding/decoder is classical redundancy and lookup, not a new memory
+architecture advantage.
+
+### The radius and accuracy boundaries are essential
+
+Here r=d/2-a-1=Theta(a*sqrt(n)+log^2 n). This is outside the earlier
+r=floor(log2(n)/c) regime. The reduction does not refute that covering
+guarantee, give a lower bound in its small-radius regime, or establish that
+its n^(1/c) exponent is optimal. It prevents dropping the radius restriction
+and replacing the missing proof by an appeal to conditioning or retention.
+
+Accuracy and occupancy must be distinguished. The all-occupied payload
+version needs inverse-polynomial accuracy; the occupancy version needs the
+canonical empty/nonempty semantics, or the constant numerical gap described
+above. For all-occupied, unperturbed rectangle prototypes and values in [-1,1],
+sampling independent uniform selected coordinates I,J and averaging V_IJ
+gives the normalized answer to constant additive accuracy with
+O(epsilon^(-2)*log(1/delta)) samples, after
+O(d) validation/sampler construction. Values reside in an ordinary table
+and overwrite in constant time per scalar. This is the existing bounded-
+variable sampling baseline already recorded in the main research note;
+the payload reduction does not rule it out. With an arbitrary occupied
+subset, the selected rectangle may have only one occupied slot. Uniform
+rectangle sampling then has no comparable constant-sample guarantee for
+emptiness. The all-occupied baseline is not a full-raw-query or
+noise-basin sampling theorem, nor a simultaneous infinite-horizon error
+guarantee.
+
+The exact checker verifies the raw geometry, rational kernel row bounds,
+complete weighted means, Boolean decisions after finite-grid rounding,
+occupied-subset empty decisions and principal kernel row bounds,
+independent values and exhaustive small noise basins. It cannot verify the
+OMv conjecture. The next positive theorem still needs a quantified advantage
+over applicable methods in an explicit radius/accuracy regime. This barrier
+is evidence against a broad shortcut, not completion of the original goal
+or a contribution manuscript.

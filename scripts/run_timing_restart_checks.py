@@ -2153,6 +2153,201 @@ def compound_rebuild_controls():
             "scope": "Exact finite controls for the written uniform compound-supermartingale proof. Finite timing games use bounded two-point rebuild marks, with trigger-dependent laws and fresh uniform seeds; actual unbounded geometric trial counts are checked by their closed infinite generating function. No novelty, architecture advantage or exhaustive infinite-adversary computation is claimed."}
 
 
+def spectral_omv_controls():
+    """Check the geometric reduction, not the conditional OMv conjecture."""
+    pair_distances = kernel_rows = rectangle_queries = exact_reads = 0
+    rounded_decisions = independent_payload_assignments = 0
+    occupancy_decisions = active_principal_rows = 0
+    pure_rows = basin_queries = rejected_basin_certificates = 0
+    configurations = []
+
+    def pack(bits):
+        return sum(bit << i for i, bit in enumerate(bits))
+
+    for m, repeats, slack_bits in product(range(2, 7), (1, 2, 3), (1, 3)):
+        capacity = m * m
+        label_bits = (capacity - 1).bit_length()
+        tag_repeats = label_bits + slack_bits
+        tag_weight = label_bits * tag_repeats
+        dimension = 4 * repeats * m + 2 * tag_weight
+        inner_distance = 2 * repeats * (m - 1) + tag_weight
+        radius = inner_distance + repeats - 1
+        assert radius == dimension // 2 - repeats - 1
+        eta = repeats - 1
+
+        def repeated(mask):
+            return [((mask >> i) & 1) for i in range(m) for _ in range(repeats)]
+
+        def query(left, right):
+            u, v = repeated(left), repeated(right)
+            return pack(u + [1 - bit for bit in u] + v + [1 - bit for bit in v]
+                        + [0] * (2 * tag_weight))
+
+        keys = []
+        for i, j in product(range(m), repeat=2):
+            label = i * m + j
+            tag = [value for bit in range(label_bits)
+                   for value in ([((label >> bit) & 1)] * tag_repeats
+                                 + [1 - ((label >> bit) & 1)] * tag_repeats)]
+            assert len(tag) == 2 * tag_weight and sum(tag) == tag_weight
+            bits = (repeated(1 << i) + [0] * (repeats * m)
+                    + repeated(1 << j) + [0] * (repeats * m) + tag)
+            assert len(bits) == dimension
+            key = pack(bits)
+            assert key.bit_count() == 2 * repeats + tag_weight
+            keys.append(key)
+        off_diagonal_kernel = []
+        for index, key in enumerate(keys):
+            row_sum = F(0)
+            kernel_row = []
+            i, j = divmod(index, m)
+            for other, other_key in enumerate(keys):
+                k, ell = divmod(other, m)
+                distance = (key ^ other_key).bit_count()
+                expected = (2 * repeats * ((i != k) + (j != ell))
+                            + 2 * tag_repeats * (index ^ other).bit_count())
+                assert distance == expected
+                pair_distances += 1
+                if other != index:
+                    assert distance >= 2 * tag_repeats and distance % 2 == 0
+                    entry = F(1, 2 ** (distance // 2))
+                    row_sum += entry
+                    kernel_row.append(entry)
+                else:
+                    kernel_row.append(F(0))
+            assert row_sum <= F(capacity - 1, 2 ** tag_repeats)
+            assert row_sum < F(1, 2 ** slack_bits)
+            kernel_rows += 1
+            off_diagonal_kernel.append(kernel_row)
+
+        if m <= 3:
+            payloads = [tuple((mask >> k) & 1 for k in range(capacity))
+                        for mask in range(1 << capacity)]
+        else:
+            payloads = [tuple(0 for _ in keys), tuple(1 for _ in keys),
+                        tuple(int(i == j) for i, j in product(range(m), repeat=2)),
+                        tuple((i + j) % 2 for i, j in product(range(m), repeat=2)),
+                        tuple((i * 3 + j * 5) % 2 for i, j in product(range(m), repeat=2))]
+        payloads.append(tuple((k % 3) - 1 for k in range(capacity)))
+        independent_payload_assignments += len(payloads)
+        for occupancy in payloads:
+            if not all(value in (0, 1) for value in occupancy):
+                continue
+            for index, active in enumerate(occupancy):
+                if active:
+                    assert sum(entry for entry, occupied
+                               in zip(off_diagonal_kernel[index], occupancy)
+                               if occupied) < F(1, 2 ** slack_bits)
+                    active_principal_rows += 1
+        grid = F(1, 1 << (4 * capacity - 1).bit_length())
+        assert grid <= F(1, 4 * capacity)
+        for left, right in product(range(1 << m), repeat=2):
+            q = query(left, right)
+            assert q.bit_count() == 2 * repeats * m
+            distances = [(q ^ key).bit_count() for key in keys]
+            weights = [max(0, radius + 1 - distance) for distance in distances]
+            selected = [i * m + j for i, j in product(range(m), repeat=2)
+                        if (left & (1 << i)) and (right & (1 << j))]
+            assert [k for k, weight in enumerate(weights) if weight] == selected
+            for index, distance in enumerate(distances):
+                i, j = divmod(index, m)
+                expected = (2 * repeats * m + 2 * repeats + tag_weight
+                            - 2 * repeats * (((left >> i) & 1) + ((right >> j) & 1)))
+                assert distance == expected
+                assert weights[index] == (repeats if index in selected else 0)
+            denominator = sum(weights)
+            assert len(selected) == left.bit_count() * right.bit_count()
+            assert denominator == repeats * len(selected)
+            rectangle_queries += 1
+            for payload in payloads:
+                numerator = sum(weight * value for weight, value in zip(weights, payload))
+                direct = sum(payload[i * m + j]
+                             for i in range(m) if left & (1 << i)
+                             for j in range(m) if right & (1 << j))
+                actual = F(numerator, denominator) if denominator else None
+                expected = F(direct, len(selected)) if selected else None
+                assert actual == expected
+                exact_reads += 1
+                if all(value in (0, 1) for value in payload):
+                    # The same Boolean assignment can encode occupancy
+                    # instead of payload. All active payloads are then 1.
+                    active_weights = [weight for weight, occupied
+                                      in zip(weights, payload) if occupied]
+                    active_total = sum(active_weights)
+                    occupied_read = F(active_total, active_total) if active_total else None
+                    assert occupied_read == (F(1) if direct > 0 else None)
+                    occupancy_decisions += 1
+                    if actual is None:
+                        assert direct == 0
+                    else:
+                        scaled = actual / grid
+                        rounded = ((scaled + F(1, 2)).numerator
+                                   // (scaled + F(1, 2)).denominator) * grid
+                        assert abs(rounded - actual) <= grid / 2
+                        assert (rounded > F(1, 2 * capacity)) == (direct > 0)
+                    rounded_decisions += 1
+
+        # Certify a pure prototype's full raw Hamming basin using a
+        # classical repetition decoder and an explicit final distance test.
+        def certify_basin(raw):
+            masks = []
+            for offset in (0, 2 * repeats * m):
+                mask = 0
+                for i in range(m):
+                    ones = sum((raw >> (offset + i * repeats + k)) & 1
+                               for k in range(repeats))
+                    ones += sum(1 - ((raw >> (offset + repeats * m + i * repeats + k)) & 1)
+                                for k in range(repeats))
+                    if ones > repeats:
+                        mask |= 1 << i
+                masks.append(mask)
+            if any(mask.bit_count() != 1 for mask in masks):
+                return None
+            prototype = query(*masks)
+            if (raw ^ prototype).bit_count() > eta:
+                return None
+            return ((masks[0].bit_length() - 1) * m
+                    + masks[1].bit_length() - 1)
+
+        for index in range(capacity):
+            i, j = divmod(index, m)
+            q = query(1 << i, 1 << j)
+            assert certify_basin(q) == index
+            assert [k for k, key in enumerate(keys)
+                    if (q ^ key).bit_count() <= radius] == [index]
+            pure_rows += 1
+            if m <= 3 and slack_bits == 1:
+                for size in range(eta + 1):
+                    for changed in combinations(range(dimension), size):
+                        raw = q ^ sum(1 << bit for bit in changed)
+                        assert certify_basin(raw) == index
+                        neighbors = [k for k, key in enumerate(keys)
+                                     if (raw ^ key).bit_count() <= radius]
+                        assert neighbors == [index]
+                        basin_queries += 1
+        for raw in (0, query(0, 0), query(3, 1), query(1, 3)):
+            assert certify_basin(raw) is None
+            rejected_basin_certificates += 1
+        configurations.append({"side": m, "capacity": capacity,
+                               "repetition": repeats, "spectral_slack_bits": slack_bits,
+                               "raw_dimension": dimension, "fixed_radius": radius,
+                               "pure_basin_radius": eta})
+
+    return {"parameter_configurations": configurations,
+            "raw_key_pair_distance_identities": pair_distances,
+            "exact_kernel_off_diagonal_row_bounds": kernel_rows,
+            "complete_rectangle_prototype_queries": rectangle_queries,
+            "independent_payload_assignments": independent_payload_assignments,
+            "complete_exact_scalar_reads": exact_reads,
+            "finite_grid_boolean_decisions": rounded_decisions,
+            "occupied_subset_empty_decisions": occupancy_decisions,
+            "active_principal_kernel_row_bounds": active_principal_rows,
+            "independent_pure_recall_rows": pure_rows,
+            "exhaustive_small_raw_basin_queries": basin_queries,
+            "invalid_basin_certificates_rejected": rejected_basin_certificates,
+            "scope": "Exact bounded certificates for an explicit near-identity-kernel encoding of Boolean rectangle means and a raw-bit repetition-basin decoder. All Boolean payload assignments are exhausted for side 2 and 3; larger cases use stated deterministic payload profiles. Every Boolean rectangle query is exhausted for each listed configuration. All raw bit perturbations up to the basin radius are exhausted only for side <=3 and spectral_slack_bits=1. The uniform spectral/retention/reduction proofs are analytical. The OMv conjecture, arbitrary raw-query performance, small-radius hardness, novelty and an architectural advantage are not verified or claimed."}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -2176,6 +2371,7 @@ def main():
               "sparse_signature_baseline": sparse_signature_controls(),
               "product_spectral_baseline": product_spectral_controls(),
               "compound_rebuild_cost": compound_rebuild_controls(),
+              "spectral_mixture_hardness": spectral_omv_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,
