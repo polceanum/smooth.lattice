@@ -2650,9 +2650,9 @@
   "publication_ready": false,
   "scope": "Finite exact controls support the uniform proofs; no prime-distribution or unranking speedup claim.",
   "source_sha256": {
-    "scripts/run_face_reconstruction_checks.py": "eeb07ee4a8bd4020749517bbef664c313187a9d767172f2ed5890c8539eef820",
+    "scripts/run_face_reconstruction_checks.py": "a68a6b2f55a90b7f0b537a409ea5de2ba34be087ed52ea3db0c99751827e3d6c",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
-    "docs/occurrence_reconstruction.md": "ca8b1e535a4bd7e7c5ea619332cd10412fa9a6cd3c6974c493c4f3efed2cf4cf"
+    "docs/occurrence_reconstruction.md": "c94c46bd36b125994e4d5fc199ae7ec045f149d21c263eaccdaa5f35f52fa78e"
   },
   "sharp_interaction_hierarchy": {
     "nonconstant_weight_moment_cases": 1128,
@@ -2955,5 +2955,1047 @@
     },
     "uniform_result": "R(n)=(log(n)+0.5*log(log(n)))/log(3*sqrt(3)/2)+O(1), for both independent positive weights and actual prime bases.",
     "scope": "Finite exact moment, strict-boundary, orbit and parameter controls. The uniform asymptotic theorem rests on the written proof and Stirling estimates, not a numerical fit. The finite upper bound is sufficient, not the exact minimum R(n). No novelty or unranking speedup is certified."
+  },
+  "sparse_prefix_cones": {
+    "small_exact_thresholds": [
+      {
+        "support": 2,
+        "minimum_first_tied_rank": 2,
+        "central_integer_weights": [
+          1,
+          1
+        ],
+        "height": 1
+      },
+      {
+        "support": 3,
+        "minimum_first_tied_rank": 5,
+        "central_integer_weights": [
+          100,
+          49,
+          51
+        ],
+        "height": 100
+      },
+      {
+        "support": 4,
+        "minimum_first_tied_rank": 10,
+        "central_integer_weights": [
+          100,
+          103,
+          101,
+          102
+        ],
+        "height": 203
+      }
+    ],
+    "integer_grid_cone_comparisons": 19551,
+    "independent_dense_constraint_identities": 3,
+    "invalid_realization_rejected": true,
+    "boundary_crossing_boxes_rejected": 3,
+    "prime_interval_certificates": [
+      {
+        "primes": [
+          2,
+          3,
+          5
+        ],
+        "prefix_length": 4,
+        "support_cutoff": 2,
+        "all_constraints": 6,
+        "retained_constraints": 6,
+        "removed_constraints": 0,
+        "box_preserves_prefix": true
+      },
+      {
+        "primes": [
+          2,
+          3,
+          5
+        ],
+        "prefix_length": 8,
+        "support_cutoff": 3,
+        "all_constraints": 10,
+        "retained_constraints": 10,
+        "removed_constraints": 0,
+        "box_preserves_prefix": true
+      },
+      {
+        "primes": [
+          2,
+          3,
+          5
+        ],
+        "prefix_length": 16,
+        "support_cutoff": 3,
+        "all_constraints": 16,
+        "retained_constraints": 16,
+        "removed_constraints": 0,
+        "box_preserves_prefix": true
+      },
+      {
+        "primes": [
+          2,
+          3,
+          5
+        ],
+        "prefix_length": 32,
+        "support_cutoff": 3,
+        "all_constraints": 20,
+        "retained_constraints": 20,
+        "removed_constraints": 0,
+        "box_preserves_prefix": true
+      },
+      {
+        "primes": [
+          101,
+          103,
+          107
+        ],
+        "prefix_length": 4,
+        "support_cutoff": 2,
+        "all_constraints": 8,
+        "retained_constraints": 7,
+        "removed_constraints": 1,
+        "box_preserves_prefix": true
+      },
+      {
+        "primes": [
+          101,
+          103,
+          107
+        ],
+        "prefix_length": 8,
+        "support_cutoff": 3,
+        "all_constraints": 11,
+        "retained_constraints": 11,
+        "removed_constraints": 0,
+        "box_preserves_prefix": true
+      },
+      {
+        "primes": [
+          101,
+          103,
+          107
+        ],
+        "prefix_length": 16,
+        "support_cutoff": 3,
+        "all_constraints": 16,
+        "retained_constraints": 16,
+        "removed_constraints": 0,
+        "box_preserves_prefix": true
+      },
+      {
+        "primes": [
+          101,
+          103,
+          107
+        ],
+        "prefix_length": 32,
+        "support_cutoff": 3,
+        "all_constraints": 21,
+        "retained_constraints": 21,
+        "removed_constraints": 0,
+        "box_preserves_prefix": true
+      },
+      {
+        "primes": [
+          2,
+          3,
+          5,
+          7
+        ],
+        "prefix_length": 4,
+        "support_cutoff": 2,
+        "all_constraints": 8,
+        "retained_constraints": 8,
+        "removed_constraints": 0,
+        "box_preserves_prefix": true
+      },
+      {
+        "primes": [
+          2,
+          3,
+          5,
+          7
+        ],
+        "prefix_length": 8,
+        "support_cutoff": 3,
+        "all_constraints": 17,
+        "retained_constraints": 17,
+        "removed_constraints": 0,
+        "box_preserves_prefix": true
+      },
+      {
+        "primes": [
+          2,
+          3,
+          5,
+          7
+        ],
+        "prefix_length": 16,
+        "support_cutoff": 4,
+        "all_constraints": 21,
+        "retained_constraints": 21,
+        "removed_constraints": 0,
+        "box_preserves_prefix": true
+      },
+      {
+        "primes": [
+          2,
+          3,
+          5,
+          7
+        ],
+        "prefix_length": 32,
+        "support_cutoff": 4,
+        "all_constraints": 37,
+        "retained_constraints": 37,
+        "removed_constraints": 0,
+        "box_preserves_prefix": true
+      },
+      {
+        "primes": [
+          167,
+          173,
+          179,
+          181,
+          191
+        ],
+        "prefix_length": 4,
+        "support_cutoff": 2,
+        "all_constraints": 12,
+        "retained_constraints": 11,
+        "removed_constraints": 1,
+        "box_preserves_prefix": true
+      },
+      {
+        "primes": [
+          167,
+          173,
+          179,
+          181,
+          191
+        ],
+        "prefix_length": 8,
+        "support_cutoff": 3,
+        "all_constraints": 22,
+        "retained_constraints": 19,
+        "removed_constraints": 3,
+        "box_preserves_prefix": true
+      },
+      {
+        "primes": [
+          167,
+          173,
+          179,
+          181,
+          191
+        ],
+        "prefix_length": 16,
+        "support_cutoff": 5,
+        "all_constraints": 32,
+        "retained_constraints": 32,
+        "removed_constraints": 0,
+        "box_preserves_prefix": true
+      },
+      {
+        "primes": [
+          167,
+          173,
+          179,
+          181,
+          191
+        ],
+        "prefix_length": 32,
+        "support_cutoff": 5,
+        "all_constraints": 46,
+        "retained_constraints": 46,
+        "removed_constraints": 0,
+        "box_preserves_prefix": true
+      }
+    ],
+    "published_antichain_full_support_controls": [
+      {
+        "primes": [
+          168323,
+          106937,
+          130069,
+          138373
+        ],
+        "known_chain_length": 10,
+        "retained_previous_monomial": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "next_candidate": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "normal": [
+          1,
+          1,
+          -1,
+          -1
+        ]
+      },
+      {
+        "primes": [
+          168323,
+          106937,
+          130069,
+          138389
+        ],
+        "known_chain_length": 10,
+        "retained_previous_monomial": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "next_candidate": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "normal": [
+          -1,
+          -1,
+          1,
+          1
+        ]
+      }
+    ],
+    "prescribed_size_corner_cut_padding": [
+      {
+        "padding_coordinates": 1,
+        "corner_cut_size": 11,
+        "wall_support": 4,
+        "central_integer_weights": [
+          800,
+          824,
+          808,
+          816,
+          1524
+        ],
+        "normal": [
+          1,
+          1,
+          -1,
+          -1,
+          0
+        ]
+      },
+      {
+        "padding_coordinates": 3,
+        "corner_cut_size": 13,
+        "wall_support": 4,
+        "central_integer_weights": [
+          1600,
+          1648,
+          1616,
+          1632,
+          3148,
+          3048,
+          2948
+        ],
+        "normal": [
+          1,
+          1,
+          -1,
+          -1,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "padding_coordinates": 7,
+        "corner_cut_size": 17,
+        "wall_support": 4,
+        "central_integer_weights": [
+          3200,
+          3296,
+          3232,
+          3264,
+          6396,
+          6296,
+          6196,
+          6096,
+          5996,
+          5896,
+          5796
+        ],
+        "normal": [
+          1,
+          1,
+          -1,
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "arbitrary_quotient_boundary": {
+      "buchberger_reductions_checked": 780,
+      "witnesses": [
+        {
+          "quotient_length": 2,
+          "half_support": 1,
+          "padding": 0,
+          "facet_support": 2,
+          "normal": [
+            1,
+            -1,
+            0
+          ],
+          "monomial_generator_count": 4,
+          "monomial_generators_sha256": "d44a6a687969046f31c1e043c7b3b732187e1d5777bd6f7ae99c75e5c8e72a0a",
+          "explicit_small_generators": null,
+          "socle_relation_exponents": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "quotient_length": 3,
+          "half_support": 1,
+          "padding": 1,
+          "facet_support": 2,
+          "normal": [
+            1,
+            -1,
+            0
+          ],
+          "monomial_generator_count": 6,
+          "monomial_generators_sha256": "d5662cd17e3234a0b725ae2269e21b2c0845f1840008cccb2c6c4484463a4e01",
+          "explicit_small_generators": null,
+          "socle_relation_exponents": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "quotient_length": 4,
+          "half_support": 1,
+          "padding": 2,
+          "facet_support": 2,
+          "normal": [
+            1,
+            -1,
+            0
+          ],
+          "monomial_generator_count": 6,
+          "monomial_generators_sha256": "226bc5b2e0279bdf7d38b33000ce488f95f35537678b97d13b91ed61c169c211",
+          "explicit_small_generators": null,
+          "socle_relation_exponents": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "quotient_length": 6,
+          "half_support": 2,
+          "padding": 0,
+          "facet_support": 4,
+          "normal": [
+            1,
+            1,
+            -1,
+            -1,
+            0
+          ],
+          "monomial_generator_count": 9,
+          "monomial_generators_sha256": "3d6d711ecc2a75d710117196aa7d1332a31be2180f8e8f3f5e4b37be4ce1a2e5",
+          "explicit_small_generators": [
+            [
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              0,
+              2,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "socle_relation_exponents": [
+            [
+              1,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "quotient_length": 7,
+          "half_support": 2,
+          "padding": 1,
+          "facet_support": 4,
+          "normal": [
+            1,
+            1,
+            -1,
+            -1,
+            0
+          ],
+          "monomial_generator_count": 13,
+          "monomial_generators_sha256": "9467d31b945c7b31dbaf6c4e00f111cca1e10b3bb8f8bb651fa68844773c1878",
+          "explicit_small_generators": null,
+          "socle_relation_exponents": [
+            [
+              1,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "quotient_length": 14,
+          "half_support": 3,
+          "padding": 0,
+          "facet_support": 6,
+          "normal": [
+            1,
+            1,
+            1,
+            -1,
+            -1,
+            -1,
+            0
+          ],
+          "monomial_generator_count": 16,
+          "monomial_generators_sha256": "ec9e8d9fd8cb8222f189e8fad91e96db16bb810cc9de93b0ab72582db4b3d607",
+          "explicit_small_generators": null,
+          "socle_relation_exponents": [
+            [
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "quotient_length": 15,
+          "half_support": 3,
+          "padding": 1,
+          "facet_support": 6,
+          "normal": [
+            1,
+            1,
+            1,
+            -1,
+            -1,
+            -1,
+            0
+          ],
+          "monomial_generator_count": 22,
+          "monomial_generators_sha256": "420ec59b589ac50ec5abeeef168da9e5e9638903f58b85d6f6cf1c18f5bbbe4e",
+          "explicit_small_generators": null,
+          "socle_relation_exponents": [
+            [
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "quotient_length": 30,
+          "half_support": 4,
+          "padding": 0,
+          "facet_support": 8,
+          "normal": [
+            1,
+            1,
+            1,
+            1,
+            -1,
+            -1,
+            -1,
+            -1,
+            0
+          ],
+          "monomial_generator_count": 25,
+          "monomial_generators_sha256": "931b4e9b3594424870cdacf1aaf242008cd3b9ba8b677c09bda172fe8120ff49",
+          "explicit_small_generators": null,
+          "socle_relation_exponents": [
+            [
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "quotient_length": 31,
+          "half_support": 4,
+          "padding": 1,
+          "facet_support": 8,
+          "normal": [
+            1,
+            1,
+            1,
+            1,
+            -1,
+            -1,
+            -1,
+            -1,
+            0
+          ],
+          "monomial_generator_count": 33,
+          "monomial_generators_sha256": "bc4e044022e511567cf7e7368ee61fad3c02448ea6430bc9fe4f323235ee8332",
+          "explicit_small_generators": null,
+          "socle_relation_exponents": [
+            [
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "quotient_length": 62,
+          "half_support": 5,
+          "padding": 0,
+          "facet_support": 10,
+          "normal": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            0
+          ],
+          "monomial_generator_count": 36,
+          "monomial_generators_sha256": "27b8942c744e7bfc652f580188274b83d1aee99d5d2856a8e2cd9ea5948e96a9",
+          "explicit_small_generators": null,
+          "socle_relation_exponents": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "quotient_length": 70,
+          "half_support": 5,
+          "padding": 8,
+          "facet_support": 10,
+          "normal": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            0
+          ],
+          "monomial_generator_count": 46,
+          "monomial_generators_sha256": "5ff284651752c3c386ea626c01edbc0495b9e15e0bf024f499a7dcb83c0be899",
+          "explicit_small_generators": null,
+          "socle_relation_exponents": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "quotient_length": 126,
+          "half_support": 6,
+          "padding": 0,
+          "facet_support": 12,
+          "normal": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            0
+          ],
+          "monomial_generator_count": 49,
+          "monomial_generators_sha256": "ff960f7318fbe930557ea96729dd64651e6e76926e682d22c5acac943b85b208",
+          "explicit_small_generators": null,
+          "socle_relation_exponents": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "quotient_length": 127,
+          "half_support": 6,
+          "padding": 1,
+          "facet_support": 12,
+          "normal": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            0
+          ],
+          "monomial_generator_count": 61,
+          "monomial_generators_sha256": "d9c5ac6f0c2d8fcb31a02e1d347eb1f1465d8b18797299648d4aae2cf6492ffe",
+          "explicit_small_generators": null,
+          "socle_relation_exponents": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "quotient_length": 254,
+          "half_support": 7,
+          "padding": 0,
+          "facet_support": 14,
+          "normal": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            0
+          ],
+          "monomial_generator_count": 64,
+          "monomial_generators_sha256": "658e09c4385e0b16178399ae7a2667264f7bd5885d2e0d5bb5a17ffaaf1d766b",
+          "explicit_small_generators": null,
+          "socle_relation_exponents": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0
+            ]
+          ]
+        }
+      ],
+      "scope": "The exact monomial-plus-one-binomial presentations have two initial ideals. These are a boundary on extending the free-lattice theorem to arbitrary quotients, not a new universal Groebner-basis algorithm."
+    },
+    "scope": "Exact prefix-cone certificates replay a strict rational center and use rigorous interval signs, validated against exact prime products. This is separate from the CLI rank auditor and adds no certified fast-unranking range. Uniform sharp arity and exact inversion rest on the written proof; novelty remains unresolved."
   }
 }

@@ -1052,3 +1052,249 @@ remain unestablished. The next gate is a theorem-level priority comparison
 of the composition halfspace estimate and the sharp dimension law, followed
 by a manuscript decision that states exactly what is new. Preserve the
 zero-mask results, earlier manuscripts, core kernels and paused ML research.
+
+## Sparse ordering certificates and the exact interaction parameter
+
+The fourth iteration was progress: it proved a sharp uniform law and saved
+exact controls, while leaving priority and a certificate consequence open.
+This continuation gives that consequence and compares the published
+constraint reductions directly. Numerical prime values are not extra input
+in the face-information parameter: primes specify the realizing class of
+the exponent patterns. Arithmetic access to supplied primes is a different
+problem, for which the core toolkit remains unchanged.
+
+For a realizable ordered prefix W=(a_1,...,a_n), let C(W) be the open cone
+of positive weights realizing precisely that strict prefix. Its familiar
+finite description consists of positivity and
+
+    w.(a_(j+1)-a_j)>0,                   1<=j<n,
+    w.(b-a_n)>0,                        b in min(N^d\W). (SC1)
+
+The minimal excluded border is finite: every excluded point dominates a
+border point. This cone description, monomial frontiers and finite-weight
+realization are established background, not new constructions here.
+The support of an oriented comparison normal counts coordinates with a
+nonzero coefficient after common factors have been canceled.
+
+**Lemma 15 (small interaction thresholds).** The parameter of Theorem 13
+satisfies J(2)=2, J(3)=5 and J(4)=10.
+
+For support three, a nonbinary normal has V(z)>=12 and first tied rank
+at least 6 by Lemma 2. A binary normal splits one coordinate against two.
+The box gives three strict points below T. One of the two weights is
+strictly smaller than T/2 at a generic wall, so its pure square supplies
+another point outside the box. This gives first rank at least 5.
+
+For support four, a nonbinary normal has V(z)>=24. In the binary case
+the box gives seven strict points. For a two-against-two split, each pair
+has a member of weight below T/2, supplying two additional pure squares.
+For a one-against-three split, at least two weights are below T/2 and
+the smallest is below T/3; their two squares and one cube supply three
+additional points. Equality of two weights, or all three in the last
+group, would give a second independent relation, excluded at a generic
+crossing. Thus the first rank is at least 10. The support-two bound is
+immediate. Upper witnesses are the walls
+
+    (1,1),                 height 1,   first rank 2;
+    (100,49,51),           height 100, first rank 5;
+    (100,103,101,102),     height 203, first rank 10.
+
+At the displayed height each has only the intended tied pair. Generic
+perturbation within the wall preserves the strict comparisons to that
+height and removes other relations. A sufficient degree simplex verifies
+the counts directly. These small observations refine the finite cutoff;
+no separate novelty claim for them is needed.
+
+Define B'_s=max(B_s,J(s)) for s=2,3,4, and B'_s=B_s otherwise, and put
+
+    r_cert(n)=max{s>=2:B'_s<=n},    n>=2;
+    r_cert(1)=0.                                         (SC2)
+
+**Theorem 16 (delete dense constraints).** For any nonempty realizable
+strict prefix W, retain positivity in (SC1) and delete every other
+inequality whose normal has support greater than r_cert(n). The remaining
+strict inequalities define exactly C(W).
+
+**Proof.** The cone has a strict interior point by the realizability
+assumption. Its closure is therefore the full-dimensional polyhedral cone
+defined by the non-strict versions of (SC1). Every facet not on a coordinate
+boundary has a relative interior point with positive weights and just one
+independent rational relation. Crossing that facet changes the prefix.
+The primitive normal z has support s and its lowest tied pair occurs
+by rank n. Theorems 13--14 and Lemma 15 give B'_s<=n. Thus every such
+facet normal has support at most r_cert(n). Coordinate facets are retained
+by positivity. Every facet has a defining inequality among the original
+finite list, so every facet remains represented after deletion.
+
+For completeness, polyhedral duality expresses every other valid normal
+as a nonnegative combination of the facet normals. This follows by
+separating that normal from their cone if no such expression exists.
+The combination is nonzero because the original inequality is strict at
+the interior point. Strict positivity of all the facet inequalities
+therefore implies every removed inequality strictly. This also addresses
+points on intersections of redundant supporting hyperplanes. QED.
+
+This is a concrete interval certificate for smooth-number ordering.
+Generate W at exact positive rational weights, replay through n+1 to
+check strict internal and boundary comparisons, and form its border.
+For a rational box w_i in [l_i,u_i] with l_i>0, check only the retained
+normals using
+
+    min_(w in box) w.z = sum_(z_i>=0) z_i l_i
+                           +sum_(z_i<0) z_i u_i > 0.   (SC3)
+
+If these tests pass, every weight in the box has the same prefix. In
+particular a box of rigorous prime-log bounds certifies its exponent
+ordering. The realization check is essential: arbitrary impossible words
+cannot invoke deletion of their high-support constraints. This procedure
+still reads or generates the whole n-term word and its border, with at
+most O(nd+d) displayed constraints before filtering. It assumes no free
+face or placement oracle and claims no new running-time bound. It is a
+research prefix certificate, separate from the CLI's independent rank
+auditor and its `rank_certified` output.
+
+For example W=(0,e_1,e_2,e_3) has n=4 and r_cert=2. Its three-coordinate
+border comparison is implied by two retained comparisons:
+
+    (1,1,-1) = (2,0,-1)+(-1,1,0).
+
+Thus 2w_1>w_3 and w_2>w_1 imply w_1+w_2>w_3. This exact conic identity
+also gives a small independent check of the general facet argument.
+
+**Corollary 17 (one exact parameter for faces and facets).** For n>=2 set
+
+    kappa(n)=max{s>=2:J(s)<=n}.
+
+Then R_all(n)=R_prime(n)=kappa(n). It is also the largest support of a
+positive-weight facet of an ordered-prefix cone of length n, over all
+ambient dimensions. Any finite linear inequality description of all
+such cones sometimes needs that many coordinates in a single normal.
+Consequently the sharp law (SH6) describes optimal linear interaction
+arity as well as face reconstruction.
+
+For the upper bounds, any first changing wall or positive-weight cone
+facet has support s with J(s)<=n, exactly as above. For the lower bounds,
+take a generic wall attaining J(s)<=n. The two sides differ by this rank;
+all proper-face words agree through any prescribed finite length after a
+sufficiently small perturbation. Their simultaneous prime realizations
+therefore give R_prime(n)>=s. The crossing also supplies a genuine
+prefix-cone facet. A finite inequality description of a full-dimensional
+cone must contain a normal parallel to each facet normal; replacing it
+by normals of smaller support cannot define that facet. This proves the
+claimed equalities and optimality.
+
+There is a further consequence for the state fans of sufficiently generic
+n-point ideals. Use the published identification with the corner-cut
+polyhedron, for example [Babson--Onn--Thomas, Section 5](https://arxiv.org/pdf/math/0207135).
+The genericity condition is that every n-element subset of
+V_n={v:product_i(v_i+1)<=n} is a quotient basis. The largest support of a
+positive-weight state-fan wall, over all ambient dimensions and such
+configurations, is also exactly kappa(n).
+
+The upper bound follows by refining a corner-cut cone by its internal
+ordered-prefix cones. To obtain a cut boundary at any prescribed n>=J(s),
+start with the generic s-coordinate wall at height T and first rank J(s).
+Append n-J(s) new coordinate weights in
+
+    (max(T/2,T-min_i w_i),T).
+
+Each new coordinate contributes precisely its unit vector below T: its
+square, its sums with old nonzero points and its sums with other new
+coordinates lie above T. Choose the weights generically while keeping
+the original relation. The first tied rank becomes exactly n, and its
+normal still has support s. The two n-point cut sums differ by v-u, so
+their common positive-weight facet has that support. The published
+generic-configuration identification transfers this statement to the
+state fan. This is a quantitative consequence of the free lattice; the
+state-polyhedron correspondence itself is prior art.
+
+## A boundary on extending the law to arbitrary quotient algebras
+
+The genericity in the last consequence cannot be dropped. For a length-n
+ideal, define A(n) to be the largest support of a noncoordinate state-fan
+facet meeting the positive weight cone, uniformly in ambient dimension.
+The following elementary boundary uses the established general framework;
+it is not asserted as a separate new universal-basis theorem.
+
+**Proposition 18.** For n>=2,
+
+    2 floor(log_2(n+2))-2 <= A(n) <= 2 floor(log_2 n).  (SC4)
+
+The upper bound is an immediate support consequence of the published
+Hilbert-zonotope refinement, [Babson--Onn--Thomas, proof of Proposition 3.2
+and Theorem 3.5](https://arxiv.org/pdf/math/0207135). Its directions are
+differences of two members of V_n. Each member has at most floor(log_2 n)
+nonzero coordinates. A state-fan facet must lie in one of the refining
+zonotope's wall hyperplanes, giving the sum of those support bounds.
+
+For the lower bound put k=floor(log_2(n+2))-1, and introduce disjoint
+squarefree monomials U=x_1...x_k and V=y_1...y_k. Let
+
+    l=n-(2^(k+1)-2),
+    S=divisors(U) union divisors(V) union {t,t^2,...,t^l}.
+
+Let J be the monomial ideal of the complement of S, and I=J+(U-V).
+There are |S|=n+1 monomials before the relation. Every variable annihilates
+both U and V modulo J, so the ideal generated by their difference there
+is one-dimensional. The quotient by I therefore has length n.
+
+For either leading choice of U-V, the monomial generators of J together
+with this binomial form a Groebner basis. Indeed every nontrivial
+Buchberger pair reduces to a nonconstant monomial multiple of the other
+socle monomial, hence lies in J. Thus there are exactly two initial
+ideals, J+(U) and J+(V). Their positive-weight cones meet at
+
+    sum_i w_(x_i)=sum_i w_(y_i),
+
+whose normal has support 2k. Both sides contain positive weights; the
+padding variable does not enter this wall. This proves the lower bound.
+For example a length-6 quotient already has a four-coordinate wall,
+whereas a free-lattice wall with that support cannot first occur before
+rank 10. The missing monomials explain the difference. In particular
+the arbitrary-quotient scale is 2 log_2 n+O(1), rather than (SH6).
+
+## Direct primary comparison and fifth-iteration decision
+
+The supplied [Vasiliev--Pavlov paper](https://doi.org/10.1134/S0361768809020030)
+was rechecked in Sections 5--6, Propositions 4--7, equations (11)--(16),
+and Figures 7--8, including the rendered formulas. Proposition 5 keeps
+comparisons with D_k, a subset of the known full chain. Its retained
+normals can still have full support. Proposition 7 uses the chain's front
+and earlier multiplication comparisons; that is different input from
+separately supplied face words. At a primitive coprime wall the two
+monomials have no common factor to cancel. These reductions do not
+directly yield a support/rank cutoff or (SH6). They remain credited as
+the finite-cone and frontier machinery underlying (SC1), not dismissed
+because their statements use different wording. This closes the direct
+comparison with those named reductions, not every possible deduction
+from finite-ordering theory.
+
+The Hilbert-zonotope proof and generic-configuration identification above
+were checked in the primary preprint. The general support upper bound in
+(SC4) is credited as a direct consequence. It cannot alone give the
+smaller free-lattice law, and the socle example explains why the general
+model must retain larger supports. The new candidate is the sharp
+free-lattice interaction law and its optimal certificate and generic-fan
+consequences, not generic point interpolation or the general algorithm.
+
+Exact controls now include the small J(s) witnesses; complete integer
+grids comparing full and sparse cones with both accepted and rejected
+weights; explicit conic identities; rejection of unrealizable words and
+boxes crossing real walls; and prime-log interval certificates checked
+against independent exact product and pointer generators. Padding
+witnesses check prescribed-size cut boundaries. Every nontrivial
+Buchberger pair in the listed socle-quotient fixtures is checked for both
+leading choices. These support the written general arguments; no tests
+prove novelty or a running-time improvement. Earlier checks are retained.
+
+This is progress toward the full goal: there is now an ordering certificate
+consequence and a precise connection to a broader established mathematical
+object, together with a counterexample to an overbroad extension. The
+publication case is more coherent, but its novelty and significance are
+still under assessment. A focused paper would center on the sharp
+interaction law and these consequences. It should credit the composition
+moment tools, cone machinery, prime realization and state-fan framework,
+and should not imply that a new fast unranking algorithm or a theorem for
+all finite quotient algebras has been obtained. The remaining priority
+gate concerns the composition halfspace estimate, the sharp free-lattice
+law and subsequent uses of the cited framework. The goal remains active.

@@ -15,7 +15,8 @@ import json
 from math import comb, factorial, gcd, isqrt, prod
 from pathlib import Path
 
-from run_interleaving_research import exact_prefix, occurrence_transform, pointer_values
+from run_interleaving_research import (exact_prefix, minimal_excluded_border,
+                                       occurrence_transform, pointer_values)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -980,6 +981,261 @@ def sharp_interaction_controls(existing_witnesses):
             "scope": "Finite exact moment, strict-boundary, orbit and parameter controls. The uniform asymptotic theorem rests on the written proof and Stirling estimates, not a numerical fit. The finite upper bound is sufficient, not the exact minimum R(n). No novelty or unranking speedup is certified."}
 
 
+def refined_support_cutoff(n):
+    """Use the proved small thresholds J(2)=2, J(3)=5, J(4)=10 as well."""
+    if n == 1:
+        return 0
+    exact_small = {2: 2, 3: 5, 4: 10}
+    return max(s for s in range(2, n.bit_length() + 1)
+               if max(support_rank_threshold(s), exact_small.get(s, 0)) <= n)
+
+
+def prefix_cone_constraints(word):
+    """Standard strict prefix inequalities, with oriented primitive normals.
+
+    Sparse deletion requires a previously checked strict realization. Use
+    prefix_interval_certificate to enforce that prerequisite for a new word.
+    """
+    word = [tuple(x) for x in word]
+    border = minimal_excluded_border(word)
+    d = len(word[0])
+    if word[0] != (0,) * d:
+        raise ValueError("the word must start with the zero vector")
+    def primitive(z):
+        g = 0
+        for x in z:
+            g = gcd(g, abs(x))
+        if not g:
+            raise ValueError("a strict comparison cannot have zero normal")
+        return tuple(x // g for x in z)
+    positivity = {tuple(int(i == j) for j in range(d)) for i in range(d)}
+    normals = set(positivity)
+    normals.update(primitive(tuple(b - a for a, b in zip(x, y)))
+                   for x, y in zip(word, word[1:]))
+    normals.update(primitive(tuple(b - a for a, b in zip(word[-1], x))) for x in border)
+    cutoff = min(d, refined_support_cutoff(len(word)))
+    retained = sorted(z for z in normals if z in positivity or sum(x != 0 for x in z) <= cutoff)
+    return {"all_normals": sorted(normals), "retained_normals": retained,
+            "removed_normals": sorted(normals.difference(retained)),
+            "support_cutoff": cutoff, "minimal_border": border}
+
+
+def prefix_interval_certificate(word, center, bounds):
+    """Research-only interval certificate, separate from the CLI rank auditor.
+
+    An exact integer center is replayed through n+1 points to establish that
+    the proposed word has a nonempty strict realization cone. Arbitrary
+    unrealizable words cannot use the sparse-constraint deletion theorem.
+    """
+    word = [tuple(x) for x in word]
+    center = tuple(center)
+    if not word or len(center) != len(word[0]) or len(bounds) != len(center):
+        raise ValueError("word, center and box dimensions must match")
+    if any(not isinstance(x, int) or x <= 0 for x in center):
+        raise ValueError("an exact positive integer center is required")
+    n = len(word)
+    replay, scores = weighted_prefix(center, n + 1)
+    if replay[:n] != word or len(set(scores[:n])) != n or scores[n - 1] >= scores[n]:
+        raise ValueError("the supplied center does not realize the word strictly")
+    bounds = [tuple(map(Fraction, pair)) for pair in bounds]
+    if any(lo <= 0 or lo > hi for lo, hi in bounds):
+        raise ValueError("positive rational interval endpoints are required")
+    result = prefix_cone_constraints(word)
+    margins = [sum(z[i] * bounds[i][0 if z[i] >= 0 else 1] for i in range(len(center)))
+               for z in result["retained_normals"]]
+    result["box_preserves_prefix"] = all(x > 0 for x in margins)
+    result["minimum_retained_margin"] = min(margins)
+    result["center_replayed_exactly"] = True
+    return result
+
+
+def quotient_fan_boundary_controls():
+    """Buchberger controls for the socle-binomial boundary example."""
+    witnesses, reductions = [], 0
+    for n in (2, 3, 4, 6, 7, 14, 15, 30, 31, 62, 70, 126, 127, 254):
+        k = (n + 2).bit_length() - 2
+        base_length = 2 ** (k + 1) - 2
+        padding, d = n - base_length, 2 * k + 1
+        zero = (0,) * d
+        u = (1,) * k + (0,) * (k + 1)
+        v = (0,) * k + (1,) * k + (0,)
+        staircase = set()
+        for bits in product((0, 1), repeat=k):
+            staircase.add(tuple(bits) + (0,) * (k + 1))
+            staircase.add((0,) * k + tuple(bits) + (0,))
+        staircase.update((0,) * (d - 1) + (j,) for j in range(1, padding + 1))
+        require(len(staircase) == n + 1 and u in staircase and v in staircase,
+                "quotient length before the one socle relation")
+        generators = minimal_excluded_border(sorted(staircase))
+        for top in (u, v):
+            for i in range(d):
+                child = tuple(x + (i == j) for j, x in enumerate(top))
+                require(child not in staircase, "both relation monomials are in the socle")
+        for lead, tail in ((u, v), (v, u)):
+            standard = staircase.difference({lead})
+            require(len(standard) == n, "standard staircase length")
+            minimal_excluded_border(sorted(standard))  # validates divisor closure
+            for g in generators:
+                # S(g,lead-tail) is, up to sign, this single monomial.
+                lcm = tuple(max(a, b) for a, b in zip(g, lead))
+                remainder = tuple(a - b + c for a, b, c in zip(lcm, lead, tail))
+                require(remainder not in staircase and
+                        any(all(a <= b for a, b in zip(h, remainder)) for h in generators),
+                        "every nontrivial Buchberger pair reduces by the monomial ideal")
+                reductions += 1
+        normal = tuple(a - b for a, b in zip(u, v))
+        left, right = [2] * d, [2] * d
+        left[2 * k - 1] -= 1
+        right[2 * k - 1] += 1
+        require(dot(normal, left) > 0 > dot(normal, right), "positive weights cross the sole fan wall")
+        require(sum(x != 0 for x in normal) == 2 * k <= 2 * (n.bit_length() - 1),
+                "general quotient support bracket")
+        witnesses.append({"quotient_length": n, "half_support": k, "padding": padding,
+                          "facet_support": 2*k, "normal": normal,
+                          "monomial_generator_count": len(generators),
+                          "monomial_generators_sha256": hashlib.sha256(
+                              json.dumps(generators, separators=(",", ":")).encode()).hexdigest(),
+                          "explicit_small_generators": generators if n == 6 else None,
+                          "socle_relation_exponents": [u, v]})
+    return {"buchberger_reductions_checked": reductions, "witnesses": witnesses,
+            "scope": "The exact monomial-plus-one-binomial presentations have two initial ideals. These are a boundary on extending the free-lattice theorem to arbitrary quotients, not a new universal Groebner-basis algorithm."}
+
+
+def sparse_cone_controls():
+    small_thresholds = []
+    for weights, u, v, target in (((1, 1), (1, 0), (0, 1), 2),
+                                 ((100, 49, 51), (1, 0, 0), (0, 1, 1), 5),
+                                 ((100, 103, 101, 102), (1, 1, 0, 0), (0, 0, 1, 1), 10)):
+        height = dot(weights, u)
+        degree_limit = height // min(weights)
+        points = list(degree_points(len(weights), degree_limit))
+        require(dot(weights, v) == height, "small-support wall")
+        require({x for x in points if dot(weights, x) == height} == {u, v},
+                "only the target pair ties at the relevant height")
+        rank = 1 + sum(dot(weights, x) < height for x in points)
+        require(rank == target, "exact small-support threshold witness")
+        small_thresholds.append({"support": len(weights), "minimum_first_tied_rank": target,
+                                 "central_integer_weights": weights, "height": height})
+
+    grid_cases = removed = 0
+    for d in (3, 4, 5):
+        word = [(0,) * d] + [tuple(int(i == j) for i in range(d)) for j in range(3)]
+        center = (10, 12, 14) + (100,) * (d - 3)
+        result = prefix_interval_certificate(word, center,
+                                             [(Fraction(x) - Fraction(1, 4), Fraction(x) + Fraction(1, 4))
+                                              for x in center])
+        require(result["box_preserves_prefix"] and result["support_cutoff"] == 2,
+                "successful interval certificate with a removed dense constraint")
+        target = (1, 1, -1) + (0,) * (d - 3)
+        a = (2, 0, -1) + (0,) * (d - 3)
+        b = (-1, 1, 0) + (0,) * (d - 3)
+        require(result["removed_normals"] == [target] and
+                a in result["retained_normals"] and b in result["retained_normals"] and
+                tuple(x + y for x, y in zip(a, b)) == target, "independent exact conic identity")
+        removed += 1
+        accepted = rejected = 0
+        for weights in product(range(1, 8), repeat=d):
+            full = all(dot(z, weights) > 0 for z in result["all_normals"])
+            sparse = all(dot(z, weights) > 0 for z in result["retained_normals"])
+            require(full == sparse, "full and sparse cones agree on complete listed integer grid")
+            accepted += full
+            rejected += not full
+            grid_cases += 1
+        require(accepted > 0 and rejected > 0, "both outcomes occur in every cone grid")
+        bad = [(Fraction(x) - Fraction(1, 4), Fraction(x) + Fraction(1, 4)) for x in center]
+        bad[2] = (Fraction(14), Fraction(25))
+        require(not prefix_interval_certificate(word, center, bad)["box_preserves_prefix"],
+                "box crossing a real boundary is rejected")
+    invalid = [(0, 0), (1, 0), (0, 1), (1, 1)]
+    try:
+        prefix_interval_certificate(invalid, (10, 12), [(10, 10), (12, 12)])
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("an unrealizable prefix cannot invoke sparse deletion")
+
+    antichain_controls = []
+    for primes in ((168323, 106937, 130069, 138373), (168323, 106937, 130069, 138389)):
+        prefix = exact_prefix(primes, 11)
+        chain = [x for _, x in prefix[:10]]
+        previous, candidate = chain[-1], prefix[10][1]
+        maximal = [x for x in chain if not any(x != y and all(a <= b for a, b in zip(x, y))
+                                             for y in chain)]
+        normal = tuple(a - b for a, b in zip(candidate, previous))
+        require(previous in maximal and sum(x != 0 for x in normal) == 4 and
+                all(min(a, b) == 0 for a, b in zip(previous, candidate)),
+                "published antichain reduction retains the coprime full-support comparison")
+        antichain_controls.append({"primes": primes, "known_chain_length": 10,
+                                   "retained_previous_monomial": previous,
+                                   "next_candidate": candidate, "normal": normal})
+
+    padding_controls = []
+    for padding in (1, 3, 7):
+        original, height = (100, 103, 101, 102), 203
+        scale = 4 * (padding + 1)
+        center = tuple(scale * w for w in original) + tuple(
+            scale * height - 100 * j for j in range(1, padding + 1))
+        d = len(center)
+        u, v = (1, 1, 0, 0) + (0,) * padding, (0, 0, 1, 1) + (0,) * padding
+        points = list(degree_points(d, 2))
+        require(3 * min(center) > scale * height, "padded corner-cut degree cutoff")
+        below = {x for x in points if dot(x, center) < scale * height}
+        require({x for x in points if dot(x, center) == scale * height} == {u, v} and
+                len(below) + 1 == 10 + padding, "one isolated point per padding coordinate")
+        left, right = list(center), list(center)
+        left[3] -= 1
+        right[3] += 1
+        n = 10 + padding
+        a, sa = weighted_prefix(left, n + 1)
+        b, sb = weighted_prefix(right, n + 1)
+        require(set(a[:n]) == below.union({v}) and set(b[:n]) == below.union({u}) and
+                sa[n - 1] < sa[n] and sb[n - 1] < sb[n], "opposite strict corner-cut sets")
+        sums_a = tuple(sum(x[j] for x in a[:n]) for j in range(d))
+        sums_b = tuple(sum(x[j] for x in b[:n]) for j in range(d))
+        require(tuple(x - y for x, y in zip(sums_a, sums_b)) ==
+                tuple(x - y for x, y in zip(v, u)), "state-polyhedron edge normal retains support")
+        padding_controls.append({"padding_coordinates": padding, "corner_cut_size": n,
+                                 "wall_support": 4, "central_integer_weights": center,
+                                 "normal": tuple(x - y for x, y in zip(u, v))})
+
+    def log_interval(n):
+        def unit(x):
+            z = (x - 1) / (x + 1)
+            lower = 2 * sum((z ** (2*j + 1) / (2*j + 1) for j in range(48)), Fraction(0))
+            return lower, lower + 2 * z ** 97 / (97 * (1 - z*z))
+        k = n.bit_length() - 1
+        a, b = unit(Fraction(n, 1 << k))
+        c, e = unit(Fraction(2))
+        return a + k*c, b + k*e
+
+    prime_certificates = []
+    for primes in ((2, 3, 5), (101, 103, 107), (2, 3, 5, 7), (167, 173, 179, 181, 191)):
+        bounds = [log_interval(p) for p in primes]
+        center = tuple(int((lo + hi) * 10 ** 40 / 2) for lo, hi in bounds)
+        for n in (4, 8, 16, 32):
+            word, _ = weighted_prefix(center, n)
+            result = prefix_interval_certificate(word, center, bounds)
+            require(result["box_preserves_prefix"], "rigorous prime-log interval certificate")
+            exact = exact_prefix(primes, n)
+            require(word == [x for _, x in exact] and [v for v, _ in exact] == pointer_values(primes, n),
+                    "independent exact prime product validation")
+            prime_certificates.append({"primes": primes, "prefix_length": n,
+                                       "support_cutoff": result["support_cutoff"],
+                                       "all_constraints": len(result["all_normals"]),
+                                       "retained_constraints": len(result["retained_normals"]),
+                                       "removed_constraints": len(result["removed_normals"]),
+                                       "box_preserves_prefix": True})
+    return {"small_exact_thresholds": small_thresholds,
+            "integer_grid_cone_comparisons": grid_cases,
+            "independent_dense_constraint_identities": removed,
+            "invalid_realization_rejected": True, "boundary_crossing_boxes_rejected": 3,
+            "prime_interval_certificates": prime_certificates,
+            "published_antichain_full_support_controls": antichain_controls,
+            "prescribed_size_corner_cut_padding": padding_controls,
+            "arbitrary_quotient_boundary": quotient_fan_boundary_controls(),
+            "scope": "Exact prefix-cone certificates replay a strict rational center and use rigorous interval signs, validated against exact prime products. This is separate from the CLI rank auditor and adds no certified fast-unranking range. Uniform sharp arity and exact inversion rest on the written proof; novelty remains unresolved."}
+
+
 def main():
     report = {"schema_version": 1, "status": "passed",
               "command": "python3 -B scripts/run_face_reconstruction_checks.py",
@@ -998,6 +1254,7 @@ def main():
                                           "docs/occurrence_reconstruction.md")}}
     report["sharp_interaction_hierarchy"] = sharp_interaction_controls(
         report["proper_face_obstructions"]["witnesses"])
+    report["sparse_prefix_cones"] = sparse_cone_controls()
     path = ROOT / "results/research/face_reconstruction_checks.json"
     path.write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps({"status": report["status"],

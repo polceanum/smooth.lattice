@@ -72,6 +72,12 @@ determines the worst-case required face dimension up to a bounded additive
 error: `(log n + 0.5 log log n) / log(3 sqrt(3)/2) + O(1)`, including for
 prime bases. A uniform composition-layer moment bound explains the sharp
 interaction-rank scale. Priority and publication significance remain open.
+The [certificate continuation](docs/occurrence_reconstruction.md#sparse-ordering-certificates-and-the-exact-interaction-parameter)
+turns the law into sparse linear certificates for realizable prefixes and
+identifies the same optimal support parameter in generic point-ideal state
+fans. An explicit finite quotient shows why the sharper bound does not
+extend to arbitrary ideals. Research interval checks preserve the core
+CLI and its independent rank auditor.
 
 The [mathematical research note](docs/interleaving_research.md) targets general
 structure and certification for fixed-prime rank/unrank. It separates known
