@@ -4417,3 +4417,352 @@ proofs and controls. The active goal still requires a new useful tradeoff
 beyond these methods, or a nonroutine obstruction with a useful consequence;
 this classical specialization and elementary counterexample do not meet
 the publication gate.
+
+## Fixed-width hybrid moments: a resource theorem with open priority
+
+The next candidate replaces a single high-degree global approximation by
+low-support-degree moments and complete corrections for keys sharing many
+query coordinates. The sparse-plus-low-rank residual identity is already
+published in Scatterbrain. The result below specifies a deterministic
+finite-precision specialization, including admission, indefinite overwrite,
+an accuracy certificate and a finite resource point. Its novelty and an
+advantage over the strongest applicable method remain unestablished.
+There is no new architecture or contribution-paper claim at this stage.
+
+### Model and the two read paths
+
+Fix capacity N, dimension d, exact key weight w, threshold 2<=k<=w<=d,
+query support bound T, positive rational bounds A,Q, and integers p>=2,
+g>=0 and s>=1. All key/query coordinates are on the grid 1/R, R=2^s.
+Every nonzero key coordinate has absolute value at most A; every query
+coordinate has absolute value at most Q. Distinct current key supports
+intersect in fewer than k coordinates. A key's independent value is an
+arbitrary vector V_i=U_i/2^g with integer coordinates |U_ij|<=2^g.
+The required read is the complete normalized exponential sum over every
+current key, not just selected candidates. Empty state returns no value.
+The query may have support greater than w, subject to its bound T.
+
+Maintain raw sparse keys, every U_i, coordinate loads, and a unique-owner
+index for every k-subset of every key support. A proposed raw key is
+validated before mutation; an existing slot's own subsets are ignored
+when checking its replacement. This permits sign/amplitude changes and
+new supports outside the initial family. The support condition excludes
+two current keys with the same support, even if their amplitudes differ.
+Any optional minimum-amplitude condition used for retention must also be
+checked on raw admission. Changing these declared bounds requires a
+charged rebuild; there is no automatic precision adjustment.
+
+For a query let H be the sum of loads of its nonzero coordinates, let n
+be the active count, and let n0 count zero-overlap keys. If n>=2H, then
+n0>=n-H>=H. In particular the number of nonzero low-overlap keys and the
+number of high-overlap candidates are each at most n0. Each zero-overlap
+weight is exactly one, so the true denominator Z is at least n0. This is
+the warm certificate, computed from maintained loads. It does not assume
+that small signed scores are positive. When n<2H, the cold path scans the
+current n bindings, subtracts their maximum score and evaluates all
+weights explicitly. Both paths read every independent value's contribution.
+They have different, explicitly charged costs.
+
+### Uniform finite-precision construction and proof
+
+Write epsilon=2^-p, B=(k-1)AQ, h=max(1,ceil(B)) and
+C=2^ceil(3B/2). Since e^2<8, C>=exp(B). Choose m>=h satisfying
+
+    C h^m 2^(p+3) <= m!,       L=m-1.
+
+Taylor's remainder gives |exp(t)-P_L(t)|<=epsilon/8 for |t|<=B,
+where P_L(t)=sum_{j=0}^L t^j/j!. A choice L=O(h+p) suffices: after
+a constant multiple of h, successive factorial ratios decay geometrically.
+The integer inequality, rather than this asymptotic assertion, selects L.
+
+For a multi-index alpha with 1<=|supp(alpha)|<k and |alpha|<=L, set
+z=x/A, f_alpha(x)=z^alpha and c_alpha(q)=(Aq)^alpha/alpha!.
+The base weight is 1+sum_alpha c_alpha(q)f_alpha(x). If a key shares
+fewer than k query coordinates, the multinomial theorem makes this base
+exactly P_L(q dot x). For the other keys the base can be inaccurate;
+their complete contributions will be replaced, including the constant.
+
+Define the key feature canonically using nearest rounding, with ties
+toward positive infinity: round each z coordinate to b fractional bits,
+form its powers by repeated rounded multiplication, and multiply powers
+in increasing coordinate order. Take
+
+    b = ceil(log2(32 L C / epsilon)).
+
+Every intermediate normalized power has magnitude at most one. Telescoping
+the root, power and product errors gives
+|phi_alpha/2^b-f_alpha|<=2L 2^-b. No exact degree-L rational power is
+stored or used by the algorithm. Input conversion uses the declared raw
+precision; subsequent products use b-bit fractional operands. Thus cached
+precision avoids a factor L times the input precision. Raw keys and
+conversion intermediates still pay for the input precision.
+
+Let Dsmall=binom(L+k-1,k-1) and K=binom(T,k), with K=0 for T<k.
+Choose coefficient fractional precision
+
+    c >= ceil(log2(16 Dsmall / epsilon)),
+    b+c >= p+ceil(log2(8 max(1,K))).
+
+For each query coordinate compute the coefficients (Aq_a)^j/j! by the
+recurrence t_0=1, t_j=round(t_{j-1} A q_a/j), using working precision
+
+    c + ceil(log2(64 k (2C+2)^k (L+1))).
+
+Multiply these terms in coordinate order at that working precision and
+round the final coefficient to c bits. The recurrence's propagated error
+is at most L C times half a working unit: each propagated product is
+bounded by a term of exp(|Aq_a|). In a product of fewer than k factors,
+each true factor and each intermediate absolute product is at most C;
+the crude bound k(2C+2)^k covers propagation and product-rounding errors.
+The displayed guard therefore makes final coefficient error at most 2^-c.
+All required operations are integer multiply/divide/round at declared
+widths; high-degree exact rational coefficients occur only in verification.
+
+For a low-overlap key, sum_alpha |c_alpha|<=exp(sum |q_a x_a|)<=C.
+There are at most Dsmall relevant monomials and |phi_alpha/2^b|<=1.
+Feature quantization contributes at most epsilon/16, coefficient
+quantization at most epsilon/16, and the Taylor remainder at most
+epsilon/8. Its complete weight error is consequently at most epsilon/4.
+Zero-overlap keys retain exactly weight one.
+
+Cache integer sums of phi_alpha and phi_alpha U_ij, together with the
+unscaled sum_i U_i and n. Query aggregation uses fractional scale b+c.
+Lookup all query k-subsets, deduplicate their owners with bounded scratch
+space, and obtain exactly the high-overlap keys, at most min(n,K).
+For each owner recompute its canonical phi from its raw key and subtract
+its identical quantized base from numerator and denominator. Charge this
+feature recomputation and subtraction. Crucially, remove all candidate
+bases before rounding the remaining scalar denominator and each numerator
+to o=p+4 fractional bits. Then add each candidate's true exponential
+approximation at scale o. Evaluating candidate exponentials at b+c bits
+is unnecessary. No missing value is replaced by a latent summary.
+
+On the warm path the low-overlap errors are at most epsilon*n0/4,
+the candidate evaluation errors at most epsilon*n0/16, and the final
+scalar rounding errors at most epsilon/32. The numerator bound is stated
+in physical value units; |V_ij|<=1 makes it no larger. Since n0>=1 and
+Z>=n0, each complete numerator/denominator error is at most epsilon*Z/2.
+The computed denominator is positive, and each normalized output error
+is at most epsilon/(1-epsilon/2)<2epsilon. This conclusion concerns the
+full normalized function. At coarse accuracy it need not define a convex
+combination of nonnegative approximate weights.
+
+For the cold path use D=p+ceil(log2(8n)) fractional bits for exp(score-max).
+The maximum shifted weight is one and the exact denominator is at least
+one. Absolute error below 2^-D per weight gives numerator/denominator
+error at most epsilon/8 and normalized error less than epsilon/2.
+Thus the same <2epsilon guarantee holds for every valid read at every
+state size, including the explicitly charged cold scans.
+
+Scalar exp is not a unit-cost oracle. At desired absolute precision
+2^-D, return zero if the rational score is below -(D+2); e>2 bounds this
+tail by a quarter of a final unit. Otherwise let h_exp be the ceiling of
+the remaining absolute score bound, at least one, and put
+
+    E=2^ceil(3 h_exp/2),   J=max(6 h_exp,2(D+8)),
+    f=D+ceil(log2(32(J+2)E)).
+
+Compute sum_{j=0}^J |score|^j/j! by rounded recurrence at f fractional
+bits. For a negative score take the reciprocal of this sum before final
+rounding. With r=J+1, Taylor's remainder is at most
+exp(h_exp)(e h_exp/r)^r < 2^(-3r/4) < 2^(-D-8), using r>=6h_exp,
+r>=2(D+8) and r!>=(r/e)^r. Every recurrence-rounding error contributes
+at most E times half a working unit to the complete sum, so accumulated
+rounding is below 2^-D/64. The sum and exact exp(abs(score)) are at least
+one, making reciprocal error no larger. Final rounding gives error below
+2^-D. This is O(J) charged fixed-width arithmetic steps, with temporary
+precision O(f+log(E)+raw score bits). The checker preselects guards for
+both warm exponentials and the larger-precision cold path.
+
+All state uses exact canonical current-value sums. Overwrite recomputes
+phi from the stored raw key and applies phi*(U_new-U_old), never a rounded
+update to an accumulated real. A support block's usage count, rather than
+its possibly cancelling moment, controls its lifetime. Deletion, rekeying
+and slot reuse preserve the same invariant. No monotonically growing
+epoch counter, unbounded error budget or finite operation horizon is used.
+Counters and owner IDs are bounded by declared capacity. This proves
+indefinite retention of the representation, independently of any separate
+semantic key-separation promise.
+
+### Storage, input, update and access accounting
+
+For s0 supported coordinates define
+F(s0)=1+sum_{j=1}^{min(k-1,s0,L)} binom(s0,j)binom(L,j).
+Group monomials into blocks indexed by their coordinate support. A size-j
+block has binom(L,j) features; the number of active blocks is at most
+M_j=min(binom(d,j),N binom(w,j)). Its load is at most
+
+    ell_j=min(N,floor(binom(d-j,k-j)/binom(w-j,k-j))).
+
+This follows by counting disjoint k-subset extensions of that j-subset.
+Each denominator/payload cell needs at most
+b+g+ceil(log2(ell_j+1))+2 signed bits. The constant value sum needs
+g+ceil(log2(N+1))+2. Count all (v+1) cells in every block. Also count
+independent N*v values, sparse N*w raw amplitudes and coordinates,
+N*binom(w,k) owner records, block keys and usage counts, active/free-slot
+metadata and at most N*sum_{j<k}binom(w,j) cached block handles. These
+handles address blocks, not individual monomials. Sparse dictionaries can
+use deterministic balanced trees; their key comparisons and logarithmic
+lookup costs are additional. For k=2 a dense coordinate-by-power layout
+and a dense pair-owner array remove those dictionary costs and handles.
+
+A warm read pays for the entire raw query input, T*L coefficient powers,
+F(T) feature generation and (v+1) aggregate-cell products, query-subset
+lookups and deduplication, and for each candidate w*L key powers,
+O(k F(w)) base reconstruction, v value products and one scalar exp.
+In particular candidate subtraction is not merely K*v work. Each value
+overwrite pays w*L feature reconstruction and F(w)*v exact moment
+products; raw rekeying additionally pays input validation, k-subset owner
+changes and block allocation/removal. A cold read pays its scan of n
+sparse keys and every current value, plus stable exponentials. For k=2,
+H<=T floor((d-1)/(w-1)), so the cold active count is less than twice
+this bound. For general k no smaller cold bound is implicit.
+Construction pays array allocation/zeroing and all admissions, including
+N*d if raw keys are supplied densely. Projection, sparse-coordinate
+selection, encoder parameters and any learned semantic geometry are
+additional costs. Arithmetic costs use the declared operand widths;
+none of these counts assumes that an arbitrarily large integer is a
+single machine word. The Python oracle deliberately favors independent
+correctness checks; it is not an implementation of the packed layout.
+
+### A finite resource and retention point
+
+Take N=1031^2=1,062,961, d=8*1031=8,248, w=8, k=2, T=16,
+A=3/8, Q=12, p=14, g=8 and raw fractional precision s=16.
+The certificate gives L=24, b=31, c=23, coefficient work precision 51,
+F(w)=193, F(T)=385, K=120 and maximum coordinate load 1178.
+Cached payloads require 52 signed bits and constant sums 31; 64-bit and
+32-bit arrays respectively suffice. Preselected arithmetic guards are
+90 bits for read accumulators, 116 for key conversion/products, 122 for
+coefficients and 219 for exp temporaries. Thus 128-bit arithmetic for
+reads/key/coefficient work and 256-bit exp temporaries suffice at these
+fixed parameters. This is a bounded-word construction statement, not a
+claim about native instruction availability or a measured implementation.
+
+One sequential arena at value width 64 has 413,469,275 persistent bytes
+and reserves 45,904 more bytes for operation input, output and arithmetic.
+The persistent arrays include all 16-bit independent values, 16-bit
+coordinates/amplitudes, 34,010,628 32-bit pair owners, 64-bit moment cells,
+32-bit loads/free slots, active bits and constant sums. Workspace includes
+the full d-coordinate raw input, query/key powers, candidate IDs, old/new
+key buffers, value/delta buffers, separate base/candidate/output buffers,
+256-bit scalar temporaries, parameter storage and 2048 alignment bytes
+for at most 32 arrays. A caller retaining past outputs, executable/runtime
+memory and concurrency/batching are outside this sequential arena model.
+No million-key state or native packed arena was installed.
+
+For an explicit populated family use the usual graphs y=a*x+b over
+F_1031, restricted to eight evaluation coordinates. The primality check
+and positive rational series certificates are recorded. Pairwise overlap
+is at most one and every coordinate has load 1031. This shortened
+Reed--Solomon/DeVore construction is classical, not a new codebook.
+Future valid edits need only satisfy the raw pair-owner condition.
+Require nonzero amplitudes to have absolute value at least 11/32 for
+the following retention statement. Their norms are at most 9/8. The
+self-score gap is at least 8(11/32)^2-(3/8)^2=103/128, including signed
+coordinates. For q=29*x_target+e with ||e||_2<=1/4 the score gap is at
+least 2915/128. Query support<=16 is separately required and
+||q||_infinity<=89/8<12. The first 80 positive exp-series terms certify
+exp(2915/128)>16*N*2^8. Hence off-target weight ratio is below 2^-8/16,
+and exact attention is within 2^-8/8 of every target value coordinate.
+The hybrid's error is below 2^-13=2^-8/32. Their sum is less than half
+a value-grid step, giving exact nearest-grid recall for all independent
+bounded grid assignments after arbitrary valid edits. This is a uniform
+noise-ball proof; the finite tests sample only specific noise axes.
+
+At full family size the warm condition holds for all admitted queries.
+For a positive query with exactly 16 nonzero coordinates, a faithful
+background-plus-posting reader visits at least
+16*1031-7*binom(16,2)=15,656 distinct keys: the total incidence is
+16*1031, there are at most 120 multiple-overlap owners, and each removes
+at most seven duplicates. With positive key amplitudes every such score
+has a nonzero correction. This method loads at least 31,312 logical
+value bytes per value coordinate, compared with at most 385*8+120*2=3320
+for the hybrid. These are logical scalar payload accesses, not physical
+bandwidth, all-operation traffic or a lower bound for all data structures.
+
+The storage comparison must include the posting index. A complete
+posting arena with implicit edge IDs, 32-bit doubly linked next/previous
+edges, coordinate heads, raw sparse keys/values, free/active metadata,
+constant sums, input, sorting and arithmetic workspace uses 242,635,563
+bytes under the same sequential array model. If this baseline must also
+certify the same pair-admission API, add the pair-owner array for
+378,678,075 bytes. The hybrid uses about 1.70 or 1.09 times these totals,
+respectively. Raw sparse key/value arrays alone occupy 170,073,760 bytes;
+comparing only against those would omit necessary posting metadata.
+A hybrid value overwrite changes 192 cached payload moments per value
+coordinate, versus one independent-value update and a constant-sum
+update for the posting reader. Worst-case cold scans contain at most
+37,695 keys. State, preprocessing, exponentials, candidate arithmetic and
+writes therefore matter alongside reads. This is neither an equal-memory
+or equal-training comparison nor a measured speedup.
+
+### Primary-source boundary and present decision
+
+[Chen et al., Scatterbrain, Section 4.2, Equations 1--2 and Appendix C](https://arxiv.org/abs/2110.15343)
+already subtract the low-rank estimate on selected entries, replace it
+by the true exponential, and normalize the aggregate plus residuals.
+That section explicitly permits alternative sparse and low-rank
+subcomponents. Our moments and unique-owner correction fit that template;
+using deterministic discovery is not enough to claim a new hybrid.
+Theorem 2's unit-sphere random-feature/LSH statement bounds per-entry
+unnormalized expectation and variance. It is not this uniform dynamic
+finite-precision guarantee, but this scope difference does not prove an
+advantage or a normalized-output lower bound against Scatterbrain.
+
+[Dass et al., ViTALiTy, Sections II.C and III](https://arxiv.org/abs/2211.05109)
+already combines first-order Taylor attention and sparse strong
+interactions. Its training procedure uses both and drops the sparse
+component for inference; that is different from the complete residual
+and arbitrary-value guarantee here. It supplies further mechanism prior
+art, without a separation following from different workloads.
+
+[Aliakbarpour et al., Support Basis, Definitions B.3--B.4 and Theorem I.5](https://arxiv.org/abs/2510.01643)
+is a relevant support-sensitive approximation comparator. Its total
+large-entry-support hypotheses and multithreshold precision/runtime
+factors must be instantiated, including the epsilon2*exp(3B_entry^2)
+error and epsilon2^-4 time dependence. The earlier audit remains open;
+this candidate does not establish that the method cannot specialize to
+the same promise. Classical per-coordinate exponential aggregation and
+dynamic KDE also remain serious alternatives at matched accuracy.
+
+[Ghriss--Chakraborty, KATA, Sections 3.1--3.3 and Appendix C.6](https://arxiv.org/abs/2607.17419)
+explicitly measures pairwise kernel interference and includes DeVore
+polynomial dictionaries in Theorem 6. That geometry is therefore also
+direct contemporary architecture prior art. Equation 10 and Theorem 7
+use independent isotropic random values for a power-SNR capacity model
+(or orthogonal values when the value dimension permits). The paper
+states that assumption. It does not assert the uniform numerical recall
+of every bounded independent assignment proved above. A comparison of
+its packing capacity alone with all-value storage would change the
+specification, not show that KATA's stated result is false. This audit
+covers those mathematical constructions and capacity assumptions, not
+the entire empirical model or an executable performance comparison.
+
+The existing command `python3 -B scripts/run_timing_restart_checks.py`
+now emits `hybrid_fixed_point_candidate`. Three small grid cases check
+291 complete reads (including three empty-state reads), signed
+corrections, cancellation, raw admission outside the starting families,
+amplitude/support rekeying, overwrite/deletion/reuse, twelve invalid
+queries and influence of a noncandidate zero-overlap value. A repeated
+case with 80 rather than four raw fractional bits retains the same
+cached feature/coefficient widths while paying larger transient widths.
+The additional 64-key installed subfamily uses the full advertised
+capacity's fixed parameters and checks 76 retention reads before/after
+target overwrite, with exact rational exp enclosures. Its observed
+maxima are 42 state bits, 71 read bits, 63 key bits, 107 coefficient bits
+and 158 exp bits, below the preselected full-capacity guards. These are
+small exact controls supporting the uniform proof, not a large model,
+an encoder guarantee or a numerical hardware benchmark.
+
+The positive outcome is a complete fixed-width resource/retention
+theorem and an explicit read-versus-write/storage tradeoff. The hybrid
+mechanism is established prior art, and the narrower finite-precision
+contribution has not passed priority or strongest-comparator gates.
+Do not train or label this publication-ready. Next compare the same
+one-coordinate exponential aggregates, arbitrary bounded values,
+amplitude grid, accuracy and edit API across the strongest applicable
+methods, including their write costs. If that specialization supplies
+the same tradeoff, classify this as a known implementation theorem and
+move to a mechanism with a substantive additional consequence. The
+active research goal remains unachieved.

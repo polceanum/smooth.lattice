@@ -3338,11 +3338,280 @@
     },
     "scope": "Classical sparse monomial/Taylor feature attention with dyadic raw amplitudes, exact canonical current-value deltas, all independent values separately stored, explicit word guards and a uniform relative-exp remainder bound. Independent scalar-dot polynomial sums certify every full numerator/denominator, and rational exp-weight enclosures certify a small retention example. Seven conceptual packing/gap controls support the asymptotic nontrivial-noise family but do not allocate those states or certify a learned encoder. The feature mechanisms are prior art; no strongest-method, novelty, ML latency or publication certificate is claimed."
   },
+  "hybrid_fixed_point_candidate": {
+    "cases": [
+      {
+        "threshold": 2,
+        "dimension": 56,
+        "weight": 3,
+        "initial_keys": 56,
+        "input_fractional_bits": 4,
+        "parameters": {
+          "degree": 6,
+          "key_fraction_bits": 17,
+          "coefficient_fraction_bits": 15,
+          "coefficient_work_bits": 30,
+          "key_feature_count": 19,
+          "query_feature_bound": 49,
+          "moment_product_fraction_bits": 32,
+          "output_fraction_bits": 12,
+          "candidate_bound": 28,
+          "load_bounds": {
+            "1": 27
+          },
+          "small_exp_bound": 2,
+          "small_score_bound": "1/2",
+          "full_score_bound": "3/2",
+          "state_payload_bits": {
+            "1": 31
+          },
+          "total_value_bits": 16,
+          "read_accumulator_bits": 54,
+          "key_temporary_bits": 61,
+          "coefficient_temporary_bits": 68,
+          "exponential_temporary_bits": 59
+        },
+        "controls": {
+          "reads": 97,
+          "warm_reads": 93,
+          "cold_reads": 3,
+          "candidate_visits": 179,
+          "negative_corrections": 93,
+          "overwrites": 4,
+          "admitted": 60,
+          "rejected": 2,
+          "deletes": 59,
+          "live_zero_moments": 0,
+          "max_state_bits": 25,
+          "max_read_bits": 41,
+          "max_key_bits": 36,
+          "max_coefficient_bits": 61,
+          "max_exponential_bits": 44,
+          "coefficient_error_checks": 1470,
+          "feature_error_checks": 7128,
+          "true_exp_enclosure_checks": 96
+        }
+      },
+      {
+        "threshold": 3,
+        "dimension": 64,
+        "weight": 4,
+        "initial_keys": 112,
+        "input_fractional_bits": 4,
+        "parameters": {
+          "degree": 7,
+          "key_fraction_bits": 18,
+          "coefficient_fraction_bits": 18,
+          "coefficient_work_bits": 39,
+          "key_feature_count": 155,
+          "query_feature_bound": 645,
+          "moment_product_fraction_bits": 36,
+          "output_fraction_bits": 12,
+          "candidate_bound": 56,
+          "load_bounds": {
+            "1": 224,
+            "2": 31
+          },
+          "small_exp_bound": 4,
+          "small_score_bound": "1",
+          "full_score_bound": "2",
+          "state_payload_bits": {
+            "1": 35,
+            "2": 32
+          },
+          "total_value_bits": 17,
+          "read_accumulator_bits": 65,
+          "key_temporary_bits": 63,
+          "coefficient_temporary_bits": 88,
+          "exponential_temporary_bits": 62
+        },
+        "controls": {
+          "reads": 97,
+          "warm_reads": 93,
+          "cold_reads": 3,
+          "candidate_visits": 53,
+          "negative_corrections": 29,
+          "overwrites": 4,
+          "admitted": 116,
+          "rejected": 2,
+          "deletes": 115,
+          "live_zero_moments": 20,
+          "max_state_bits": 26,
+          "max_read_bits": 46,
+          "max_key_bits": 38,
+          "max_coefficient_bits": 79,
+          "max_exponential_bits": 45,
+          "coefficient_error_checks": 7063,
+          "feature_error_checks": 121352,
+          "true_exp_enclosure_checks": 96
+        }
+      },
+      {
+        "threshold": 2,
+        "dimension": 56,
+        "weight": 3,
+        "initial_keys": 56,
+        "input_fractional_bits": 80,
+        "parameters": {
+          "degree": 6,
+          "key_fraction_bits": 17,
+          "coefficient_fraction_bits": 15,
+          "coefficient_work_bits": 30,
+          "key_feature_count": 19,
+          "query_feature_bound": 49,
+          "moment_product_fraction_bits": 32,
+          "output_fraction_bits": 12,
+          "candidate_bound": 28,
+          "load_bounds": {
+            "1": 27
+          },
+          "small_exp_bound": 2,
+          "small_score_bound": "1/2",
+          "full_score_bound": "3/2",
+          "state_payload_bits": {
+            "1": 31
+          },
+          "total_value_bits": 16,
+          "read_accumulator_bits": 54,
+          "key_temporary_bits": 213,
+          "coefficient_temporary_bits": 119,
+          "exponential_temporary_bits": 211
+        },
+        "controls": {
+          "reads": 97,
+          "warm_reads": 93,
+          "cold_reads": 3,
+          "candidate_visits": 179,
+          "negative_corrections": 93,
+          "overwrites": 4,
+          "admitted": 60,
+          "rejected": 2,
+          "deletes": 59,
+          "live_zero_moments": 0,
+          "max_state_bits": 25,
+          "max_read_bits": 41,
+          "max_key_bits": 97,
+          "max_coefficient_bits": 109,
+          "max_exponential_bits": 186,
+          "coefficient_error_checks": 1470,
+          "feature_error_checks": 7128,
+          "true_exp_enclosure_checks": 96
+        }
+      }
+    ],
+    "total_complete_reads": 367,
+    "atomic_invalid_queries": 12,
+    "finite_width_installed_retention": {
+      "actually_installed_keys": 64,
+      "declared_capacity": 1062961,
+      "dimension": 8248,
+      "noise_queries_before_and_after_target_overwrites": 76,
+      "query_axis_noise_radius": "1/4",
+      "full_ball_guarantee_comes_from_uniform_proof": true,
+      "minimum_key_amplitude_enforced_on_raw_admission": "11/32",
+      "parameters": {
+        "degree": 24,
+        "key_fraction_bits": 31,
+        "coefficient_fraction_bits": 23,
+        "coefficient_work_bits": 51,
+        "key_feature_count": 193,
+        "query_feature_bound": 385,
+        "moment_product_fraction_bits": 54,
+        "output_fraction_bits": 18,
+        "candidate_bound": 120,
+        "load_bounds": {
+          "1": 1178
+        },
+        "small_exp_bound": 128,
+        "small_score_bound": "9/2",
+        "full_score_bound": "36",
+        "state_payload_bits": {
+          "1": 52
+        },
+        "total_value_bits": 31,
+        "read_accumulator_bits": 90,
+        "key_temporary_bits": 116,
+        "coefficient_temporary_bits": 122,
+        "exponential_temporary_bits": 219
+      },
+      "controls": {
+        "reads": 76,
+        "warm_reads": 76,
+        "cold_reads": 0,
+        "candidate_visits": 76,
+        "negative_corrections": 0,
+        "overwrites": 2,
+        "admitted": 64,
+        "rejected": 1,
+        "deletes": 0,
+        "live_zero_moments": 0,
+        "max_state_bits": 42,
+        "max_read_bits": 71,
+        "max_key_bits": 63,
+        "max_coefficient_bits": 107,
+        "max_exponential_bits": 158,
+        "coefficient_error_checks": 14784,
+        "feature_error_checks": 36864,
+        "true_exp_enclosure_checks": 76
+      }
+    },
+    "generic_admissions_outside_initial_family": 6,
+    "noncandidate_payload_influence_witnesses": 3,
+    "finite_packed_layout_accounting": {
+      "capacity": 1062961,
+      "dimension": 8248,
+      "weight": 8,
+      "query_support_bound": 16,
+      "parameters": {
+        "degree": 24,
+        "key_fraction_bits": 31,
+        "coefficient_fraction_bits": 23,
+        "coefficient_work_bits": 51,
+        "key_feature_count": 193,
+        "query_feature_bound": 385,
+        "moment_product_fraction_bits": 54,
+        "output_fraction_bits": 18,
+        "candidate_bound": 120,
+        "load_bounds": {
+          "1": 1178
+        },
+        "small_exp_bound": 128,
+        "small_score_bound": "9/2",
+        "full_score_bound": "36",
+        "state_payload_bits": {
+          "1": 52
+        },
+        "total_value_bits": 31,
+        "read_accumulator_bits": 90,
+        "key_temporary_bits": 116,
+        "coefficient_temporary_bits": 122,
+        "exponential_temporary_bits": 219
+      },
+      "persistent_array_bytes_at_value_width_64": 413469275,
+      "reserved_operation_input_output_and_arithmetic_workspace_bytes": 45904,
+      "packed_arena_byte_upper_bound_at_value_width_64": 413515179,
+      "sparse_key_value_bytes_at_value_width_64": 170073760,
+      "posting_arena_bytes_with_doubly_linked_edges_and_workspace": 242635563,
+      "posting_arena_bytes_if_same_pair_admission_certification_is_required": 378678075,
+      "hybrid_payload_bytes_per_value_coordinate_upper_bound": 3320,
+      "posting_payload_bytes_per_value_coordinate_lower_bound_on_full_line_family": 31312,
+      "retention_grid_fractional_bits": 8,
+      "retention_scale": 29,
+      "retention_euclidean_noise_radius": "1/4",
+      "retention_score_gap": "2915/128",
+      "retention_query_support_is_separately_required": true,
+      "geometry": "All degree-one graphs at eight evaluation points over F_1031. Pairwise overlap<=1; every coordinate has load1031. The usual polynomial construction is prior art. Generic pair-owner admission need not restrict future keys to that codebook.",
+      "write_payload_moment_updates_per_value_overwrite": 192,
+      "maximum_cold_scan_active_keys": 37695,
+      "scope": "Arithmetic accounting for one packed arena with 16-bit independent values/coordinates/amplitudes, 32-bit owners/free slots, 64-bit moment cells, full raw operation input, powers, candidate IDs, separate base/candidate/output buffers, scalar temporaries, parameter storage and 2048 bytes of alignment allowance for at most 32 arrays. The posting comparator includes 32-bit next/previous edge links, coordinate heads, free/active metadata, raw input, sorting IDs, arithmetic and output workspace; pair certification is also shown separately. A caller retaining past outputs, executable/runtime memory and a concurrent/batched implementation are outside these sequential data-structure arena counts. Construction, encoder and arithmetic operation costs remain additional to byte capacity. No large state or arena implementation, hardware benchmark, encoder or neural training was run. Posting figures count logical payload loads for one faithful method, not physical bandwidth, a speedup, an equal-memory result or a lower bound for all published hybrids or sketches."
+    },
+    "scope": "Quantized support-truncated polynomial moments plus complete high-overlap residuals in the existing Scatterbrain sparse-plus-low-rank template. The warm path certifies a large exact zero-score background; the cold path scans the explicitly charged smaller/current state. Independent per-key quantized formulas and rational true-exp enclosures verify full outputs. Cached integer widths are independent of input-precision times degree; scalar exponential evaluation is finite fixed-point and separately guarded. This is a candidate cost/precision theorem, not established novelty, strongest-method advantage, measured speed or publication readiness."
+  },
   "novelty_established": false,
   "strongest_baseline_advantage_established": false,
   "publication_ready": false,
   "source_sha256": {
-    "scripts/run_timing_restart_checks.py": "b8dff2d7d676c334c6f866e466d23aabbd607ecee8231d4fae8175c7507b11d6",
-    "docs/associative_memory_timing.md": "323dfa3d89f75a18c397aabfd0b8792c624535ea20de5a083c6e7fc303d9a286"
+    "scripts/run_timing_restart_checks.py": "f37ce3618571a5f50d0b9197c51e17714db7b72eadfed11e820e7ebc0f064308",
+    "docs/associative_memory_timing.md": "790355700b1775293ec78f1e7d247c44667f7b9fa4d1d927c7aa7882c6040eb3"
   }
 }

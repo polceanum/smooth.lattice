@@ -4506,6 +4506,625 @@ def continuous_amplitude_controls():
             'scope': 'Classical sparse monomial/Taylor feature attention with dyadic raw amplitudes, exact canonical current-value deltas, all independent values separately stored, explicit word guards and a uniform relative-exp remainder bound. Independent scalar-dot polynomial sums certify every full numerator/denominator, and rational exp-weight enclosures certify a small retention example. Seven conceptual packing/gap controls support the asymptotic nontrivial-noise family but do not allocate those states or certify a learned encoder. The feature mechanisms are prior art; no strongest-method, novelty, ML latency or publication certificate is claimed.'}
 
 
+def hybrid_moment_controls():
+    """Bounded fixed-point moments with complete overlap corrections."""
+    from math import comb, factorial
+
+    def ceilf(x):
+        return -(-x.numerator // x.denominator)
+
+    def clog(x):
+        return (max(1, x) - 1).bit_length()
+
+    def nearest(n, d):
+        q, r = divmod(n, d)
+        return q + (2 * r >= d)
+
+    def quant(x, bits):
+        return nearest(x.numerator << bits, x.denominator)
+
+    def mul(x, y, bits):
+        return nearest(x * y, 1 << bits)
+
+    def parameters(n, d, w, k, t, amplitude, query_bound, accuracy, value_bits, input_bits):
+        small = (k - 1) * amplitude * query_bound
+        h = max(1, ceilf(small))
+        cap = 1 << ceilf(F(3, 2) * small)
+        m = 1
+        while m < h or cap * h ** m * 2 ** (accuracy + 3) > factorial(m):
+            m += 1
+        level = m - 1
+        fk = sum(comb(w, j) * comb(level, j) for j in range(1, min(k - 1, level) + 1))
+        fq = sum(comb(t, j) * comb(level, j) for j in range(1, min(k - 1, t, level) + 1))
+        candidate_bound = comb(t, k) if t >= k else 0
+        b = clog(32 * level * cap * 2 ** accuracy)
+        c = max(clog(16 * comb(level + k - 1, k - 1) * 2 ** accuracy),
+                accuracy + clog(8 * max(1, candidate_bound)) - b)
+        work = c + clog(64 * k * (2 * cap + 2) ** k * (level + 1))
+        loads = {j: min(n, comb(d - j, k - j) // comb(w - j, k - j)) for j in range(1, k)}
+        largest_load = max(loads.values(), default=n)
+        big = w * amplitude * query_bound
+        expcap = 1 << ceilf(F(3, 2) * big)
+        bound = n + (fq * largest_load + candidate_bound * (fk + 1)) * (cap + 1)
+        output_scale = accuracy + 4
+        final_bound = n + fq * largest_load * (cap + 1) + candidate_bound * (expcap + 2)
+        read_bits = max(b + c + value_bits + clog(bound + 1) + 2,
+                        output_scale + value_bits + clog(final_bound + 2) + 2,
+                        accuracy + clog(8 * max(1, n)) + value_bits + clog(n + 1) + 3)
+        coefficient_bits = max(2 * work + 2 * clog(cap + 2) + 4,
+                               work + clog(cap + 2) + input_bits + clog(ceilf(query_bound) + 2)
+                               + amplitude.numerator.bit_length() + 4,
+                               input_bits + amplitude.denominator.bit_length() + clog(level + 1) + 4)
+        key_bits = 2 * b + 2 * input_bits + amplitude.numerator.bit_length() + amplitude.denominator.bit_length() + 16
+        cold_scale = accuracy + clog(8 * max(1, n))
+        def exp_guard(scale, radius):
+            h_exp = max(1, ceilf(radius))
+            exp_bound = 1 << ceilf(F(3, 2) * h_exp)
+            terms = max(6 * h_exp, 2 * (scale + 8))
+            frac = scale + clog(32 * (terms + 2) * exp_bound)
+            score_bits = 2 * input_bits + clog(2 * ceilf(big) + 2) + 3
+            return max(frac + clog(exp_bound + 2) + score_bits + 5, scale + frac + 3)
+        exponential_bits = max(exp_guard(output_scale, big),
+                               exp_guard(cold_scale, min(2 * big, F(cold_scale + 2))))
+        return dict(degree=level, key_fraction_bits=b, coefficient_fraction_bits=c,
+                    coefficient_work_bits=work, key_feature_count=fk + 1, query_feature_bound=fq + 1,
+                    moment_product_fraction_bits=b + c, output_fraction_bits=output_scale,
+                    candidate_bound=candidate_bound, load_bounds=loads, small_exp_bound=cap,
+                    small_score_bound=str(small), full_score_bound=str(big),
+                    state_payload_bits={j: b + value_bits + clog(v + 1) + 2 for j, v in loads.items()},
+                    total_value_bits=value_bits + clog(n + 1) + 2, read_accumulator_bits=read_bits,
+                    key_temporary_bits=key_bits, coefficient_temporary_bits=coefficient_bits,
+                    exponential_temporary_bits=exponential_bits)
+
+    interval_cache = {}
+
+    def exp_interval(score, precision):
+        cache_key = score, precision
+        if cache_key in interval_cache:
+            return interval_cache[cache_key]
+        u, term, total, j = abs(score), F(1), F(1), 0
+        while True:
+            next_term = term * u / (j + 1)
+            if j + 2 > u:
+                tail = next_term / (1 - u / (j + 2))
+                lo, hi = (total, total + tail) if score >= 0 else (1 / (total + tail), 1 / total)
+                if hi - lo <= F(1, 2 ** precision):
+                    interval_cache[cache_key] = lo, hi
+                    return lo, hi
+            j += 1
+            term = next_term
+            total += term
+
+    class Hybrid:
+        def __init__(self, n, d, w, k, t, amplitude=F(1, 2), query_bound=F(1), accuracy=8, value_bits=7, input_bits=4,
+                     minimum_amplitude=F(0)):
+            self.n, self.d, self.w, self.k, self.t = n, d, w, k, t
+            self.a, self.q, self.p, self.g, self.s = amplitude, query_bound, accuracy, value_bits, input_bits
+            self.minimum_amplitude = minimum_amplitude
+            self.r = 1 << input_bits
+            self.par = parameters(n, d, w, k, t, amplitude, query_bound, accuracy, value_bits, input_bits)
+            self.l, self.b, self.c = self.par['degree'], self.par['key_fraction_bits'], self.par['coefficient_fraction_bits']
+            self.work = self.par['coefficient_work_bits']
+            self.keys, self.values, self.cells, self.owners = {}, {}, {}, {}
+            self.loads, self.total = [0] * d, (0, 0)
+            self.stats = dict(reads=0, warm_reads=0, cold_reads=0, candidate_visits=0, negative_corrections=0,
+                              overwrites=0, admitted=0, rejected=0, deletes=0, live_zero_moments=0,
+                              max_state_bits=0, max_read_bits=0, max_key_bits=0, max_coefficient_bits=0,
+                              max_exponential_bits=0, coefficient_error_checks=0, feature_error_checks=0,
+                              true_exp_enclosure_checks=0)
+
+        def guard(self, kind, limit, *values):
+            bits = max(abs(v).bit_length() + 1 for v in values)
+            self.stats['max_' + kind + '_bits'] = max(self.stats['max_' + kind + '_bits'], bits)
+            assert bits <= limit, (kind, bits, limit)
+
+        def support(self, raw):
+            return tuple(a for a, value in enumerate(raw) if value)
+
+        def powers(self, raw):
+            result = {}
+            for a in self.support(raw):
+                exact = F(raw[a], self.r) / self.a
+                self.guard('key', self.par['key_temporary_bits'], exact.numerator << self.b, exact.denominator)
+                root = quant(exact, self.b)
+                row = [1 << self.b]
+                for j in range(1, self.l + 1):
+                    self.guard('key', self.par['key_temporary_bits'], row[-1] * root)
+                    row.append(mul(row[-1], root, self.b))
+                assert all(abs(x) <= 1 << self.b for x in row)
+                result[a] = row
+            return result
+
+        def alphas(self, support):
+            for size in range(1, min(self.k - 1, len(support), self.l) + 1):
+                for subset in combinations(support, size):
+                    for total in range(size, self.l + 1):
+                        for extra in compositions(total - size, size):
+                            yield tuple((a, x + 1) for a, x in zip(subset, extra))
+
+        def feature(self, alpha, powers):
+            result = 1 << self.b
+            for a, exponent in alpha:
+                self.guard('key', self.par['key_temporary_bits'], result * powers[a][exponent])
+                result = mul(result, powers[a][exponent], self.b)
+            return result
+
+        def coefficients(self, raw):
+            result = {}
+            for a in self.support(raw):
+                t = self.a * F(raw[a], self.r)
+                self.guard('coefficient', self.par['coefficient_temporary_bits'], t.numerator, t.denominator)
+                row = [1 << self.work]
+                for j in range(1, self.l + 1):
+                    self.guard('coefficient', self.par['coefficient_temporary_bits'], row[-1] * t.numerator)
+                    row.append(nearest(row[-1] * t.numerator, t.denominator * j))
+                result[a] = row
+            return result
+
+        def coefficient(self, alpha, powers):
+            result = 1 << self.work
+            for a, exponent in alpha:
+                self.guard('coefficient', self.par['coefficient_temporary_bits'], result * powers[a][exponent])
+                result = mul(result, powers[a][exponent], self.work)
+            return nearest(result, 1 << (self.work - self.c))
+
+        def exponential(self, score, scale, radius):
+            # All operations are fixed-point except parsing the exact raw score.
+            if score == 0:
+                return 1 << scale
+            if score < -(scale + 2):
+                return 0
+            h = max(1, ceilf(radius))
+            assert abs(score) <= h
+            bound = 1 << ceilf(F(3, 2) * h)
+            terms = max(6 * h, 2 * (scale + 8))
+            frac = scale + clog(32 * (terms + 2) * bound)
+            term, total, u = 1 << frac, 1 << frac, abs(score)
+            for j in range(1, terms + 1):
+                self.guard('exponential', self.par['exponential_temporary_bits'], term * u.numerator)
+                term = nearest(term * u.numerator, u.denominator * j)
+                total += term
+                self.guard('exponential', self.par['exponential_temporary_bits'], total)
+            if score > 0:
+                value = nearest(total, 1 << (frac - scale))
+            else:
+                self.guard('exponential', self.par['exponential_temporary_bits'], 1 << (scale + frac))
+                value = nearest(1 << (scale + frac), total)
+            lo, hi = exp_interval(score, scale + 6)  # Verification-only enclosure.
+            assert F(value, 1 << scale) - F(1, 1 << scale) <= lo
+            assert hi <= F(value, 1 << scale) + F(1, 1 << scale)
+            return value
+
+        def snapshot(self):
+            return dict(self.keys), dict(self.values), dict(self.cells), dict(self.owners), tuple(self.loads), self.total
+
+        def remove(self, slot):
+            if slot not in self.keys:
+                return
+            raw, old = self.keys[slot], self.values[slot]
+            support, powers = self.support(raw), self.powers(raw)
+            for alpha in self.alphas(support):
+                feature = self.feature(alpha, powers)
+                count, moment, sums = self.cells[alpha]
+                count -= 1; moment -= feature
+                sums = tuple(x - feature * y for x, y in zip(sums, old))
+                self.guard('state', self.par['state_payload_bits'][len(alpha)], moment, *sums)
+                if count:
+                    self.cells[alpha] = count, moment, sums
+                else:
+                    assert moment == 0 and sums == (0, 0)
+                    del self.cells[alpha]
+            for subset in combinations(support, self.k):
+                assert self.owners.pop(subset) == slot
+            for a in support:
+                self.loads[a] -= 1
+            self.total = tuple(x - y for x, y in zip(self.total, old))
+            self.guard('state', self.par['total_value_bits'], *self.total)
+            del self.keys[slot]; del self.values[slot]
+            self.stats['deletes'] += 1
+
+        def replace(self, slot, raw, value):
+            assert 0 <= slot < self.n and len(value) == 2 and all(type(x) is int and abs(x) <= 2 ** self.g for x in value)
+            valid = (len(raw) == self.d and all(type(x) is int for x in raw)
+                     and sum(x != 0 for x in raw) == self.w
+                     and all(abs(x) <= self.a * self.r and (not x or abs(x) >= self.minimum_amplitude * self.r)
+                             for x in raw))
+            support = self.support(raw) if valid else ()
+            if valid:
+                valid = all(subset not in self.owners or self.owners[subset] == slot
+                            for subset in combinations(support, self.k))
+            if not valid:
+                self.stats['rejected'] += 1
+                return False
+            self.remove(slot)
+            powers = self.powers(raw)
+            for alpha in self.alphas(support):
+                feature = self.feature(alpha, powers)
+                count, moment, sums = self.cells.get(alpha, (0, 0, (0, 0)))
+                sums = tuple(x + feature * y for x, y in zip(sums, value))
+                self.guard('state', self.par['state_payload_bits'][len(alpha)], moment + feature, *sums)
+                self.cells[alpha] = count + 1, moment + feature, sums
+            for subset in combinations(support, self.k):
+                self.owners[subset] = slot
+            for a in support:
+                self.loads[a] += 1
+            self.keys[slot], self.values[slot] = tuple(raw), tuple(value)
+            self.total = tuple(x + y for x, y in zip(self.total, value))
+            self.guard('state', self.par['total_value_bits'], *self.total)
+            self.stats['admitted'] += 1
+            return True
+
+        def overwrite(self, slot, value):
+            assert len(value) == 2 and all(type(x) is int and abs(x) <= 2 ** self.g for x in value)
+            delta = tuple(x - y for x, y in zip(value, self.values[slot]))
+            powers = self.powers(self.keys[slot])
+            for alpha in self.alphas(self.support(self.keys[slot])):
+                feature = self.feature(alpha, powers)
+                count, moment, sums = self.cells[alpha]
+                sums = tuple(x + feature * y for x, y in zip(sums, delta))
+                self.guard('state', self.par['state_payload_bits'][len(alpha)], moment, *sums)
+                self.cells[alpha] = count, moment, sums
+            self.total = tuple(x + y for x, y in zip(self.total, delta))
+            self.guard('state', self.par['total_value_bits'], *self.total)
+            self.values[slot] = tuple(value)
+            self.stats['overwrites'] += 1
+
+        def check(self, reference):
+            assert self.keys == {i: raw for i, (raw, _) in reference.items()}
+            assert self.values == {i: value for i, (_, value) in reference.items()}
+            expected, owners, loads, total = {}, {}, [0] * self.d, (0, 0)
+            for slot, (raw, value) in reference.items():
+                support, powers = self.support(raw), self.powers(raw)
+                total = tuple(x + y for x, y in zip(total, value))
+                for a in support:
+                    loads[a] += 1
+                for subset in combinations(support, self.k):
+                    assert subset not in owners
+                    owners[subset] = slot
+                for alpha in self.alphas(support):
+                    feature = self.feature(alpha, powers)
+                    exact = F(1)
+                    for a, exponent in alpha:
+                        exact *= (F(raw[a], self.r) / self.a) ** exponent
+                    assert abs(F(feature, 1 << self.b) - exact) <= F(2 * self.l, 1 << self.b)
+                    self.stats['feature_error_checks'] += 1
+                    count, moment, sums = expected.get(alpha, (0, 0, (0, 0)))
+                    expected[alpha] = count + 1, moment + feature, tuple(x + feature * y for x, y in zip(sums, value))
+            assert self.cells == expected and self.owners == owners and self.loads == loads and self.total == total
+            for alpha, (count, moment, sums) in self.cells.items():
+                assert count <= self.par['load_bounds'][len(alpha)]
+                self.guard('state', self.par['state_payload_bits'][len(alpha)], moment, *sums)
+                self.stats['live_zero_moments'] += moment == 0
+            self.guard('state', self.par['total_value_bits'], *self.total)
+
+        def score(self, raw, query):
+            return F(sum(x * y for x, y in zip(raw, query)), self.r ** 2)
+
+        def read(self, raw):
+            if (len(raw) != self.d or any(type(x) is not int for x in raw)
+                    or sum(x != 0 for x in raw) > self.t or any(abs(x) > self.q * self.r for x in raw)):
+                raise ValueError('query violates declared raw grid/support/amplitude bounds')
+            self.stats['reads'] += 1
+            if not self.keys:
+                self.last = dict(mode='empty', numerator=(0, 0), denominator=0, scale=0, candidates=(), shift=F(0))
+                return None
+            support = self.support(raw)
+            hits = sum(self.loads[a] for a in support)
+            if len(self.keys) < 2 * hits:
+                scores = {i: self.score(key, raw) for i, key in self.keys.items()}
+                shift = max(scores.values())
+                scale = self.p + clog(8 * len(self.keys))
+                radius = min(2 * self.w * self.a * self.q, F(scale + 2))
+                numerator, denominator = [0, 0], 0
+                for i, score in scores.items():
+                    weight = self.exponential(score - shift, scale, radius)
+                    denominator += weight
+                    numerator = [x + weight * y for x, y in zip(numerator, self.values[i])]
+                    self.guard('read', self.par['read_accumulator_bits'], denominator, *numerator)
+                self.last = dict(mode='cold', numerator=tuple(numerator), denominator=denominator,
+                                 scale=scale, candidates=(), shift=shift)
+                self.stats['cold_reads'] += 1
+            else:
+                scale, powers = self.b + self.c, self.coefficients(raw)
+                numerator, denominator = [x << scale for x in self.total], len(self.keys) << scale
+                for alpha in self.alphas(support):
+                    coefficient = self.coefficient(alpha, powers)
+                    exact = F(1)
+                    for a, exponent in alpha:
+                        exact *= (self.a * F(raw[a], self.r)) ** exponent / factorial(exponent)
+                    assert abs(F(coefficient, 1 << self.c) - exact) <= F(1, 1 << self.c)
+                    self.stats['coefficient_error_checks'] += 1
+                    _, moment, sums = self.cells.get(alpha, (0, 0, (0, 0)))
+                    denominator += coefficient * moment
+                    numerator = [x + coefficient * y for x, y in zip(numerator, sums)]
+                    self.guard('read', self.par['read_accumulator_bits'], denominator, *numerator)
+                candidates = sorted({self.owners[a] for a in combinations(support, self.k) if a in self.owners})
+                outscale = self.par['output_fraction_bits']
+                assert outscale <= scale
+                divisor = 1 << (scale - outscale)
+                candidate_numerator, candidate_denominator = [0, 0], 0
+                for slot in candidates:
+                    key = self.keys[slot]
+                    overlap = tuple(a for a in support if key[a])
+                    keypowers = self.powers(key)
+                    base = 1 << scale
+                    for alpha in self.alphas(overlap):
+                        base += self.coefficient(alpha, powers) * self.feature(alpha, keypowers)
+                    weight = self.exponential(self.score(key, raw), outscale, self.w * self.a * self.q)
+                    self.stats['negative_corrections'] += weight < nearest(base, divisor)
+                    denominator -= base
+                    numerator = [x - base * y for x, y in zip(numerator, self.values[slot])]
+                    candidate_denominator += weight
+                    candidate_numerator = [x + weight * y for x, y in zip(candidate_numerator, self.values[slot])]
+                    self.guard('read', self.par['read_accumulator_bits'], denominator, *numerator)
+                    self.guard('read', self.par['read_accumulator_bits'], candidate_denominator, *candidate_numerator)
+                denominator = nearest(denominator, divisor) + candidate_denominator
+                numerator = [nearest(x, divisor) + y for x, y in zip(numerator, candidate_numerator)]
+                self.guard('read', self.par['read_accumulator_bits'], denominator, *numerator)
+                self.last = dict(mode='warm', numerator=tuple(numerator), denominator=denominator,
+                                 scale=outscale, candidates=tuple(candidates), shift=F(0))
+                self.stats['warm_reads'] += 1
+                self.stats['candidate_visits'] += len(candidates)
+            assert denominator > 0
+            return tuple(F(x, denominator) for x in numerator)
+
+    def verify(index, reference, query, true_enclosure=True):
+        result = index.read(query)
+        if not reference:
+            assert result is None
+            return result
+        mode, scale = index.last['mode'], index.last['scale']
+        numerator, denominator = [0, 0], 0
+        low_numerator, low_denominator = [0, 0], 0
+        qsupport = tuple(a for a, x in enumerate(query) if x)
+        powers = index.coefficients(query) if mode == 'warm' else None
+        candidates = []
+        lower, upper, zlo, zhi = [F(0), F(0)], [F(0), F(0)], F(0), F(0)
+        for slot, (key, value) in reference.items():
+            score = index.score(key, query)
+            overlap = tuple(a for a in qsupport if key[a])
+            if mode == 'cold':
+                weight = index.exponential(score - index.last['shift'], scale,
+                                           min(2 * index.w * index.a * index.q, F(scale + 2)))
+            elif len(overlap) >= index.k:
+                candidates.append(slot)
+                weight = index.exponential(score, scale, index.w * index.a * index.q)
+            else:
+                weight = 1 << (index.b + index.c)
+                kpowers = index.powers(key)
+                # Per-key expansion independent of aggregate cells and owners.
+                for total in range(1, index.l + 1):
+                    if overlap:
+                        for exponents in compositions(total, len(overlap)):
+                            alpha = tuple((a, e) for a, e in zip(overlap, exponents) if e)
+                            weight += index.coefficient(alpha, powers) * index.feature(alpha, kpowers)
+            if mode == 'warm' and len(overlap) < index.k:
+                low_denominator += weight
+                low_numerator = [x + weight * y for x, y in zip(low_numerator, value)]
+            else:
+                denominator += weight
+                numerator = [x + weight * y for x, y in zip(numerator, value)]
+            if true_enclosure:
+                lo, hi = exp_interval(score - index.last['shift'], index.p + clog(len(reference) + 1) + 12)
+                zlo += lo; zhi += hi
+                for j, v in enumerate(value):
+                    lower[j] += min(lo * v, hi * v)
+                    upper[j] += max(lo * v, hi * v)
+        if mode == 'warm':
+            divisor = 1 << (index.b + index.c - scale)
+            denominator += nearest(low_denominator, divisor)
+            numerator = [x + nearest(y, divisor) for x, y in zip(numerator, low_numerator)]
+        assert index.last['numerator'] == tuple(numerator) and index.last['denominator'] == denominator
+        assert mode != 'warm' or index.last['candidates'] == tuple(sorted(candidates))
+        if true_enclosure:
+            tolerance = F(2 ** (index.g + 1), 2 ** index.p - 1)
+            for j, answer in enumerate(result):
+                endpoints = [x / y for x in (lower[j], upper[j]) for y in (zlo, zhi)]
+                assert answer - tolerance <= min(endpoints) and max(endpoints) <= answer + tolerance
+            index.stats['true_exp_enclosure_checks'] += 1
+        return result
+
+    cases, outside_admissions, noncandidate_influence, invalid_queries = [], 0, 0, 0
+    for threshold, input_bits in ((2, 4), (3, 4), (2, 80)):
+        groups = 8
+        if threshold == 2:
+            local = [(0, 1, 3), (0, 2, 6), (0, 4, 5), (1, 2, 4), (1, 5, 6), (2, 3, 5), (3, 4, 6)]
+            base_d, weight = 7, 3
+        else:
+            local = [tuple(x for x in range(8) if (x & normal).bit_count() % 2 == parity)
+                     for normal in range(1, 8) for parity in range(2)]
+            base_d, weight = 8, 4
+        supports = [tuple(g * base_d + a for a in key) for g in range(groups) for key in local]
+        index = Hybrid(2 * len(supports), groups * base_d, weight, threshold, 8, input_bits=input_bits)
+        reference = {}
+        for slot, support in enumerate(supports):
+            raw = [0] * index.d
+            for j, a in enumerate(support):
+                raw[a] = (index.r // 2 - (slot + j) % 3) * (-1 if (slot + j) % 4 == 0 else 1)
+            value = slot % 31 - 15, 15 - slot % 31
+            assert index.replace(slot, tuple(raw), value)
+            reference[slot] = tuple(raw), value
+            if slot in (0, 3):
+                verify(index, reference, tuple(index.r if a in support else 0 for a in range(index.d)))
+        index.check(reference)
+        queries = [tuple(x * index.r for x in small) + (0,) * (index.d - 4)
+                   for small in product((-1, 0, 1), repeat=4)]
+        for slot in range(4):
+            q = [0] * index.d
+            for j, a in enumerate(supports[slot]):
+                q[a] = index.r * (-1 if j % 2 else 1)
+            queries.append(tuple(q))
+        fractional = [0] * index.d
+        fractional[0], fractional[1] = index.r // 3 + 1, -index.r // 5 - 1
+        queries.append(tuple(fractional))
+        for q in queries:
+            verify(index, reference, q)
+        for slot in range(3):
+            value = 31 - slot, -31 + slot
+            index.overwrite(slot, value); reference[slot] = reference[slot][0], value
+            index.check(reference)
+            verify(index, reference, queries[-1])
+        q = queries[-1]
+        outside = len(local) * (groups - 1)
+        assert not any(reference[outside][0][a] and q[a] for a in range(index.d))
+        before = verify(index, reference, q)
+        old = reference[outside][1]
+        value = old[0] + 1, old[1] - 1
+        index.overwrite(outside, value); reference[outside] = reference[outside][0], value
+        after = verify(index, reference, q)
+        assert before != after
+        noncandidate_influence += 1
+        raw = [0] * index.d
+        for g in range(weight):
+            raw[g * base_d] = index.r // 2
+        slot = len(supports)
+        assert index.replace(slot, tuple(raw), (37, -37))
+        reference[slot] = tuple(raw), (37, -37)
+        outside_admissions += 1
+        index.check(reference)
+        verify(index, reference, tuple(index.r if x else 0 for x in raw))
+        changed = list(reference[0][0])
+        changed[index.support(changed)[0]] *= -1
+        assert index.replace(0, tuple(changed), reference[0][1])
+        reference[0] = tuple(changed), reference[0][1]
+        index.check(reference)
+        changed = [0] * index.d
+        for g in range(weight):
+            changed[g * base_d + 1] = index.r // 2
+        assert index.replace(0, tuple(changed), reference[0][1])
+        reference[0] = tuple(changed), reference[0][1]
+        outside_admissions += 1
+        index.check(reference)
+        verify(index, reference, queries[-1])
+        before = index.snapshot()
+        assert not index.replace(0, reference[1][0], (1, -1))
+        assert not index.replace(0, (index.r,) * weight + (0,) * (index.d - weight), (1, -1))
+        assert index.snapshot() == before
+        for invalid in ((), (index.r + 1,) + (0,) * (index.d - 1), (0.5,) + (0,) * (index.d - 1),
+                        (1,) * 9 + (0,) * (index.d - 9)):
+            before = index.snapshot()
+            try:
+                index.read(invalid)
+                assert False
+            except ValueError:
+                pass
+            assert index.snapshot() == before
+            invalid_queries += 1
+        for slot in list(reference):
+            index.remove(slot); reference.pop(slot)
+        index.check(reference)
+        assert verify(index, reference, (0,) * index.d) is None
+        assert index.replace(0, tuple(raw), (0, 0))
+        reference[0] = tuple(raw), (0, 0)
+        verify(index, reference, tuple(index.r if x else 0 for x in raw))
+        index.check(reference)
+        cases.append({'threshold': threshold, 'dimension': index.d, 'weight': weight,
+                      'initial_keys': len(supports), 'input_fractional_bits': input_bits,
+                      'parameters': index.par, 'controls': dict(index.stats)})
+    assert sum(c['controls']['negative_corrections'] for c in cases) > 0
+    assert sum(c['controls']['cold_reads'] for c in cases) > 0
+    assert sum(c['controls']['warm_reads'] for c in cases) > 0
+    assert sum(c['controls']['live_zero_moments'] for c in cases) > 0
+    # Exercise the advertised scalar widths on a small, actually installed
+    # subfamily at the large capacity's fixed parameters, not a large model.
+    declared_n, declared_d = 1031 ** 2, 8 * 1031
+    retention = Hybrid(declared_n, declared_d, 8, 2, 16, amplitude=F(3, 8), query_bound=F(12),
+                       accuracy=14, value_bits=8, input_bits=16, minimum_amplitude=F(11, 32))
+    reference = {}
+    for slope in range(16):
+        for intercept in range(4):
+            slot = 4 * slope + intercept
+            raw = [0] * declared_d
+            for j in range(8):
+                a = j * 1031 + (slope * j + intercept) % 1031
+                raw[a] = 11 * retention.r // 32 + ((17 * slot + 13 * j) % (retention.r // 32 + 1))
+            value = 3 * slot - 128, 128 - 3 * slot
+            assert retention.replace(slot, tuple(raw), value)
+            reference[slot] = tuple(raw), value
+    retention.check(reference)
+    too_small = list(reference[0][0])
+    too_small[retention.support(too_small)[0]] = 11 * retention.r // 32 - 1
+    before = retention.snapshot()
+    assert not retention.replace(0, tuple(too_small), reference[0][1])
+    assert retention.snapshot() == before
+    retention_reads = 0
+    for slot in (0, 4):
+        for phase in range(2):
+            if phase:
+                value = 243 - slot, -197 + slot
+                retention.overwrite(slot, value)
+                reference[slot] = reference[slot][0], value
+                retention.check(reference)
+            center = tuple(29 * x for x in reference[slot][0])
+            coordinates = retention.support(reference[slot][0]) + (declared_d - 1,)
+            for a in (-1,) + coordinates:
+                for delta in ((0,) if a < 0 else (-retention.r // 4, retention.r // 4)):
+                    query = list(center)
+                    if a >= 0:
+                        query[a] += delta
+                    answer = verify(retention, reference, tuple(query))
+                    assert retention.last['mode'] == 'warm'
+                    assert tuple(round(x) for x in answer) == reference[slot][1]
+                    retention_reads += 1
+    assert retention.stats['max_state_bits'] <= 64 and retention.stats['max_read_bits'] <= 128
+    assert retention.stats['max_key_bits'] <= 128 and retention.stats['max_coefficient_bits'] <= 128
+    assert retention.stats['max_exponential_bits'] <= 256
+    finite_retention = {'actually_installed_keys': len(reference), 'declared_capacity': declared_n,
+                        'dimension': declared_d, 'noise_queries_before_and_after_target_overwrites': retention_reads,
+                        'query_axis_noise_radius': '1/4', 'full_ball_guarantee_comes_from_uniform_proof': True,
+                        'minimum_key_amplitude_enforced_on_raw_admission': '11/32',
+                        'parameters': retention.par, 'controls': dict(retention.stats)}
+    # Explicit finite regime; no million-value state is allocated.
+    prime = 1031
+    assert all(prime % j for j in range(2, 33))
+    n, d, w, t, g, accuracy = prime ** 2, 8 * prime, 8, 16, 8, 14
+    par = parameters(n, d, w, 2, t, F(3, 8), F(12), accuracy, g, 16)
+    assert par['state_payload_bits'][1] <= 64 and par['read_accumulator_bits'] <= 128
+    assert par['exponential_temporary_bits'] <= 256
+    assert par['key_temporary_bits'] <= 128 and par['coefficient_temporary_bits'] <= 128
+    assert n >= 2 * t * par['load_bounds'][1]
+    score_gap = F(29) * (w * F(11, 32) ** 2 - F(3, 8) ** 2) - 2 * F(9, 8) * F(1, 4)
+    exp_lower = sum(score_gap ** j / factorial(j) for j in range(80))
+    assert exp_lower > 16 * n * 2 ** g
+    assert F(29) * F(3, 8) + F(1, 4) <= 12
+    rows, kmax = par['query_feature_bound'], par['candidate_bound']
+    posting_rows = t * prime - (w - 1) * kmax
+    hybrid_payload = rows * 8 + kmax * 2
+    v = 64
+    state_bytes = n * v * 2 + d * par['degree'] * (v + 1) * 8
+    state_bytes += comb(d, 2) * 4 + n * w * 4 + n * 4 + (n + 7) // 8 + d * 4 + v * 4
+    workspace_bytes = d * 4 + t * (par['degree'] + 1) * 8 + w * (par['degree'] + 1) * 8
+    workspace_bytes += t * 2 + kmax * 4 + 4 * w * 4 + 8 * v + 3 * (v + 1) * 16
+    workspace_bytes += 16 * 32 + 16 * 16 + 128 * 8 + 2048
+    posting_persistent = n * (v * 2 + w * 4) + n * w * 8 + d * 4 + n * 4 + (n + 7) // 8 + v * 4
+    posting_workspace = d * 4 + t * 2 + t * par['load_bounds'][1] * 4 + 2 * (v + 1) * 16
+    posting_workspace += 16 * 32 + 16 * 16 + 128 * 8 + 2048
+    finite = {'capacity': n, 'dimension': d, 'weight': w, 'query_support_bound': t,
+              'parameters': par, 'persistent_array_bytes_at_value_width_64': state_bytes,
+              'reserved_operation_input_output_and_arithmetic_workspace_bytes': workspace_bytes,
+              'packed_arena_byte_upper_bound_at_value_width_64': state_bytes + workspace_bytes,
+              'sparse_key_value_bytes_at_value_width_64': n * (v * 2 + w * 4),
+              'posting_arena_bytes_with_doubly_linked_edges_and_workspace': posting_persistent + posting_workspace,
+              'posting_arena_bytes_if_same_pair_admission_certification_is_required':
+                  posting_persistent + posting_workspace + comb(d, 2) * 4,
+              'hybrid_payload_bytes_per_value_coordinate_upper_bound': hybrid_payload,
+              'posting_payload_bytes_per_value_coordinate_lower_bound_on_full_line_family': posting_rows * 2,
+              'retention_grid_fractional_bits': g, 'retention_scale': 29,
+              'retention_euclidean_noise_radius': '1/4', 'retention_score_gap': str(score_gap),
+              'retention_query_support_is_separately_required': True,
+              'geometry': 'All degree-one graphs at eight evaluation points over F_1031. Pairwise overlap<=1; every coordinate has load1031. The usual polynomial construction is prior art. Generic pair-owner admission need not restrict future keys to that codebook.',
+              'write_payload_moment_updates_per_value_overwrite': w * par['degree'],
+              'maximum_cold_scan_active_keys': 2 * t * par['load_bounds'][1] - 1,
+              'scope': 'Arithmetic accounting for one packed arena with 16-bit independent values/coordinates/amplitudes, 32-bit owners/free slots, 64-bit moment cells, full raw operation input, powers, candidate IDs, separate base/candidate/output buffers, scalar temporaries, parameter storage and 2048 bytes of alignment allowance for at most 32 arrays. The posting comparator includes 32-bit next/previous edge links, coordinate heads, free/active metadata, raw input, sorting IDs, arithmetic and output workspace; pair certification is also shown separately. A caller retaining past outputs, executable/runtime memory and a concurrent/batched implementation are outside these sequential data-structure arena counts. Construction, encoder and arithmetic operation costs remain additional to byte capacity. No large state or arena implementation, hardware benchmark, encoder or neural training was run. Posting figures count logical payload loads for one faithful method, not physical bandwidth, a speedup, an equal-memory result or a lower bound for all published hybrids or sketches.'}
+    return {'cases': cases, 'total_complete_reads': sum(c['controls']['reads'] for c in cases) + retention.stats['reads'],
+            'atomic_invalid_queries': invalid_queries,
+            'finite_width_installed_retention': finite_retention,
+            'generic_admissions_outside_initial_family': outside_admissions,
+            'noncandidate_payload_influence_witnesses': noncandidate_influence,
+            'finite_packed_layout_accounting': finite,
+            'scope': 'Quantized support-truncated polynomial moments plus complete high-overlap residuals in the existing Scatterbrain sparse-plus-low-rank template. The warm path certifies a large exact zero-score background; the cold path scans the explicitly charged smaller/current state. Independent per-key quantized formulas and rational true-exp enclosures verify full outputs. Cached integer widths are independent of input-precision times degree; scalar exponential evaluation is finite fixed-point and separately guarded. This is a candidate cost/precision theorem, not established novelty, strongest-method advantage, measured speed or publication readiness.'}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -4535,6 +5154,7 @@ def main():
               "weighted_exponential_candidate": weighted_exponential_controls(),
               "capacity_frontier_baselines": capacity_frontier_controls(),
               "continuous_amplitude_baseline": continuous_amplitude_controls(),
+              "hybrid_fixed_point_candidate": hybrid_moment_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,
