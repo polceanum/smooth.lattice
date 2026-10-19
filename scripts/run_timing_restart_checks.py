@@ -5990,6 +5990,274 @@ def active_mask_sampling_controls():
             'scope': 'Classical conditioning, concentration and an OuMv sentinel transfer define a useful baseline boundary: bounded density alone does not keep masked product attention easy when raw logit spread grows logarithmically. They do not establish a novel theorem beyond published methods or complete the research goal.'}
 
 
+def finite_radon_attention_controls():
+    """Exact characteristic-two Radon/transpose and complete-mask controls.
+
+    Classical Fourier-slice machinery; not a new transform, retention
+    compression, strongest-method advantage, or trained model.
+    """
+    class Radon:
+        def __init__(self, s, dimension, polynomial):
+            self.s, self.dimension, self.q = s, dimension, 1 << s
+            assert s >= 1 and dimension >= 1 and polynomial.bit_length() == s + 1
+
+            def remainder(a, b):
+                while a and a.bit_length() >= b.bit_length():
+                    a ^= b << (a.bit_length() - b.bit_length())
+                return a
+
+            for degree in range(1, s // 2 + 1):
+                assert all(remainder(polynomial, f) for f in range(1 << degree, 1 << (degree + 1))), 'reducible field polynomial'
+
+            def multiply(a, b):
+                result = 0
+                while b:
+                    if b & 1:
+                        result ^= a
+                    b >>= 1; a <<= 1
+                    if a & self.q:
+                        a ^= polynomial
+                return result
+
+            self.mul = [[multiply(a, b) for b in range(self.q)] for a in range(self.q)]
+            self.points = [tuple((i >> (s * j)) & (self.q - 1) for j in range(dimension))
+                           for i in range(self.q ** dimension)]
+            self.directions = [a for a in self.points if any(a) and next(x for x in a if x) == 1]
+            assert len(self.directions) == (len(self.points) - 1) // (self.q - 1)
+
+            def trace(a):
+                total, x = 0, a
+                for _ in range(s):
+                    total ^= x; x = self.mul[x][x]
+                assert total in (0, 1)
+                return total
+
+            self.dual = [sum(trace(self.mul[a][1 << j]) << j for j in range(s)) for a in range(self.q)]
+            assert sorted(self.dual) == list(range(self.q))
+            self.permutation = [sum(self.dual[x] << (s * j) for j, x in enumerate(k)) for k in self.points]
+            self.slices = [tuple(sum(self.mul[t][a[j]] << (s * j) for j in range(dimension))
+                                 for t in range(self.q)) for a in self.directions]
+            visits = [0] * len(self.points)
+            for line in self.slices:
+                for k in line:
+                    visits[k] += 1
+            assert visits[0] == len(self.directions) and all(v == 1 for v in visits[1:])
+            self.types = len(self.directions) * self.q
+            self.max_bits = 0
+
+        def transform(self, values, permutation, guard, stats):
+            data, stride = list(values), 1
+            while stride < len(data):
+                for start in range(0, len(data), 2 * stride):
+                    for j in range(start, start + stride):
+                        a, b = data[j], data[j + stride]
+                        data[j], data[j + stride] = a + b, a - b
+                        stats['add_subtracts'] += 2
+                        self.max_bits = max(self.max_bits, abs(a + b).bit_length() + 1, abs(a - b).bit_length() + 1)
+                        assert self.max_bits <= guard
+                stride *= 2
+            return [data[i] for i in permutation]
+
+        def forward(self, values, payload_bits=12):
+            assert len(values) == len(self.points) and all(type(x) is int and abs(x) < 1 << payload_bits for x in values)
+            guard = payload_bits + self.s * self.dimension + self.s + 5
+            stats = {'add_subtracts': 0, 'exact_divisions': 0}
+            spectrum = self.transform(values, self.permutation, guard, stats)
+            answer = []
+            for line in self.slices:
+                bins = self.transform([spectrum[i] for i in line], self.dual, guard, stats)
+                assert all(x % self.q == 0 for x in bins)
+                answer.extend(x // self.q for x in bins)
+                stats['exact_divisions'] += self.q
+            expected = len(self.points) * self.s * self.dimension + self.types * self.s
+            assert stats['add_subtracts'] == expected
+            return answer, stats
+
+        def transpose(self, values, payload_bits=12):
+            assert len(values) == self.types and all(type(x) is int and abs(x) < 1 << payload_bits for x in values)
+            guard = payload_bits + self.s * self.dimension + self.s + 5
+            stats = {'add_subtracts': 0, 'scatter_adds': 0, 'exact_divisions': 0}
+            spectrum = [0] * len(self.points)
+            for j, line in enumerate(self.slices):
+                values_hat = self.transform(values[j * self.q:(j + 1) * self.q], self.dual, guard, stats)
+                for i, value in zip(line, values_hat):
+                    spectrum[i] += value; stats['scatter_adds'] += 1
+                    self.max_bits = max(self.max_bits, abs(spectrum[i]).bit_length() + 1)
+                    assert self.max_bits <= guard
+            answer = self.transform(spectrum, self.permutation, guard, stats)
+            assert all(x % self.q == 0 for x in answer)
+            stats['exact_divisions'] = len(answer)
+            return [x // self.q for x in answer], stats
+
+    def explicit_rows(operator):
+        # Independent dense incidence oracle, never part of fast operator state.
+        rows = []
+        for a in operator.directions:
+            bins = [[] for _ in range(operator.q)]
+            for i, x in enumerate(operator.points):
+                value = 0
+                for u, v in zip(a, x):
+                    value ^= operator.mul[u][v]
+                bins[value].append(i)
+            rows.extend(bins)
+        return rows
+
+    cases, basis_columns, basis_rows, integer_outputs = [], 0, 0, 0
+    choices = [(1, d, 3) for d in range(1, 6)] + [(2, d, 7) for d in range(1, 4)]
+    choices += [(3, 1, 11), (3, 2, 11), (3, 3, 11), (4, 2, 19)]
+    for s, dimension, polynomial in choices:
+        operator = Radon(s, dimension, polynomial)
+        rows = explicit_rows(operator)
+        n, b = len(operator.points), operator.types
+        values = [(37 * i + 11) % 2001 - 1000 for i in range(n)]
+        covector = [(29 * i + 19) % 2001 - 1000 for i in range(b)]
+        actual, forward_stats = operator.forward(values)
+        expected = [sum(values[i] for i in row) for row in rows]
+        assert actual == expected
+        back, transpose_stats = operator.transpose(covector)
+        expected_back = [sum(covector[j] for j, row in enumerate(rows) if i in row) for i in range(n)]
+        assert back == expected_back and sum(a * c for a, c in zip(actual, covector)) == sum(v * z for v, z in zip(values, back))
+        integer_outputs += n + b
+        if n <= 64:
+            for i in range(n):
+                unit = [int(j == i) for j in range(n)]
+                assert operator.forward(unit)[0] == [int(i in row) for row in rows]
+                basis_columns += 1
+            for j in range(b):
+                unit = [int(k == j) for k in range(b)]
+                assert operator.transpose(unit)[0] == [int(i in rows[j]) for i in range(n)]
+                basis_rows += 1
+        a_count = len(operator.directions)
+        off_diagonal = (operator.q ** (dimension - 1) - 1) // (operator.q - 1)
+        gram = operator.transpose(actual, payload_bits=20)[0]
+        assert gram == [operator.q ** (dimension - 1) * v + off_diagonal * sum(values) for v in values]
+        for i in range(n):
+            assert sum(int(i in row) for row in rows) == a_count
+        cases.append({'q': operator.q, 'ambient_dimension': dimension, 'irreducible_polynomial_bits': polynomial,
+                      'profiles': n, 'types': b, 'direct_state_additions': a_count * n,
+                      'forward_add_subtracts': forward_stats['add_subtracts'],
+                      'forward_exact_divisions': forward_stats['exact_divisions'],
+                      'transpose_add_subtracts': transpose_stats['add_subtracts'],
+                      'transpose_scatter_adds': transpose_stats['scatter_adds'],
+                      'observed_maximum_signed_bits': operator.max_bits,
+                      'gram_and_independent_profile_invertibility_checked': True,
+                      'basis_operator_checks': n <= 64,
+                      'nontrivial_trace_dual_permutation': operator.dual != list(range(operator.q))})
+
+    malformed_polynomials = 0
+    for s, polynomial in [(2, 5), (3, 9), (4, 21)]:
+        try:
+            Radon(s, 2, polynomial)
+            assert False
+        except AssertionError as error:
+            assert str(error) == 'reducible field polynomial'
+            malformed_polynomials += 1
+
+    attention_cases = []
+    for s, dimension, polynomial in [(1, 2, 3), (2, 2, 7), (2, 3, 7)]:
+        operator = Radon(s, dimension, polynomial)
+        rows = explicit_rows(operator)
+        capacity, types, r, v, scale = len(operator.points), operator.types, 3, 2, 8
+        distant, recent = capacity + 1, 2 * types
+        length = distant + recent
+        profiles = [j % capacity for j in range(distant)]
+        routing = [j % types for j in range(recent)]
+        psi = [[1 + ((profiles[j] if j < distant else j) + 2 * t) % 5 for t in range(r)] for j in range(length)]
+        phi = [[1 + (3 * j + t) % 7 for t in range(r)] for j in range(length)]
+        payload = [[(j * (c + 3) + 2 * c) % 17 - 8 for c in range(v)] for j in range(length)]
+        states = [[psi[j][t] * x for t in range(r) for x in payload[j] + [scale]] for j in range(length)]
+        profiles_table = [[sum(states[j][c] for j in range(distant) if profiles[j] == x)
+                           for c in range(r * (v + 1))] for x in range(capacity)]
+        type_table = [[0] * (r * (v + 1)) for _ in range(types)]
+        for c in range(r * (v + 1)):
+            transformed, _ = operator.forward([row[c] for row in profiles_table])
+            for i, x in enumerate(transformed):
+                type_table[i][c] = x
+        prefix = [0] * (r * (v + 1))
+        mask_entries = 0
+        for i in range(length):
+            if i == distant:
+                prefix = [0] * len(prefix)
+            prefix = [a + b for a, b in zip(prefix, states[i])]
+            combined = prefix if i < distant else [a + b for a, b in zip(prefix, type_table[routing[i - distant]])]
+            output = [sum(phi[i][t] * combined[t * (v + 1) + c] for t in range(r)) for c in range(v + 1)]
+            selected = [j for j in range(length) if (j <= i if i < distant else
+                        (profiles[j] in rows[routing[i - distant]] if j < distant else j <= i))]
+            weights = [sum(a * b for a, b in zip(phi[i], psi[j])) for j in selected]
+            denominator = sum(weights)
+            assert denominator > 0
+            direct = [F(sum(w * payload[j][c] for j, w in zip(selected, weights)), scale * denominator) for c in range(v)]
+            assert [F(x, output[-1]) for x in output[:-1]] == direct
+            mask_entries += len(selected)
+        # Equal feature vectors and opposite independent payload changes at
+        # duplicate profiles cancel in every pooled/type summary.
+        assert profiles[0] == profiles[-1] and psi[0] == psi[distant - 1]
+        assert all(psi[0][t] - psi[distant - 1][t] == 0 for t in range(r))
+        opposite_changes = [[0] * (r * (v + 1)) for _ in range(capacity)]
+        for j, sign in [(0, 1), (distant - 1, -1)]:
+            for t in range(r):
+                opposite_changes[profiles[j]][t * (v + 1)] += sign * psi[j][t]
+        assert all(x == 0 for row in opposite_changes for x in row)
+        # Actual current-value overwrite: update its raw payload and profile,
+        # touch every incident cached type, then independently replay all types.
+        slot = distant // 2
+        previous = states[slot][:]
+        payload[slot] = [scale, -scale]
+        states[slot] = [psi[slot][t] * x for t in range(r) for x in payload[slot] + [scale]]
+        delta = [a - b for a, b in zip(states[slot], previous)]
+        profiles_table[profiles[slot]] = [a + b for a, b in zip(profiles_table[profiles[slot]], delta)]
+        touched = 0
+        for i, row in enumerate(rows):
+            if profiles[slot] in row:
+                type_table[i] = [a + b for a, b in zip(type_table[i], delta)]
+                touched += 1
+        assert touched == len(operator.directions)
+        for c in range(r * (v + 1)):
+            replayed, _ = operator.forward([row[c] for row in profiles_table])
+            assert replayed == [row[c] for row in type_table]
+        attention_cases.append({'q': operator.q, 'ambient_dimension': dimension, 'tokens': length,
+                                'query_feature_dimension': r, 'value_width': v,
+                                'complete_normalized_rows_checked': length,
+                                'explicit_mask_entries_checked': mask_entries,
+                                'original_independent_payloads_retained': True,
+                                'overwrite_incident_type_updates': touched,
+                                'duplicate_profile_summary_collision_checked': True})
+    prime_slice_cases = []
+    for q, dimension in [(3, 2), (3, 3), (5, 2)]:
+        # Verification-only exact arithmetic in Z[z]/(1+...+z^(q-1)).
+        # This quadratic DFT oracle does not implement the fast prime FFT.
+        points = list(product(range(q), repeat=dimension))
+        directions = [a for a in points if any(a) and next(x for x in a if x) == 1]
+        values = [(11 * i + 7) % 31 - 15 for i in range(len(points))]
+        def reduce(coefficients):
+            return tuple(c - coefficients[-1] for c in coefficients[:-1])
+        spectrum = {}
+        for k in points:
+            coefficients = [0] * q
+            for x, value in zip(points, values):
+                coefficients[sum(a * b for a, b in zip(k, x)) % q] += value
+            spectrum[k] = reduce(coefficients)
+        checked = 0
+        for a in directions:
+            for b in range(q):
+                coefficients = [0] * q
+                for frequency in range(q):
+                    k = tuple(frequency * x % q for x in a)
+                    for exponent, value in enumerate(spectrum[k]):
+                        coefficients[(exponent - frequency * b) % q] += value
+                answer = reduce(coefficients)
+                expected = sum(value for x, value in zip(points, values) if sum(u * v for u, v in zip(a, x)) % q == b)
+                assert answer == (q * expected,) + (0,) * (q - 2)
+                checked += 1
+        prime_slice_cases.append({'prime': q, 'ambient_dimension': dimension, 'profiles': len(points),
+                                  'exact_cyclotomic_output_checks': checked,
+                                  'oracle_is_quadratic_not_a_fast_fft_implementation': True})
+    return {'operator_cases': cases, 'complete_basis_columns': basis_columns, 'complete_basis_rows': basis_rows,
+            'signed_integer_outputs': integer_outputs, 'reducible_field_polynomial_rejections': malformed_polynomials,
+            'complete_attention_cases': attention_cases, 'prime_field_slice_controls': prime_slice_cases,
+            'scope': 'Classical trace Fourier-slice/Walsh specialization exactly matches finite-field incidence multiplication and its transpose. Finite basis and signed controls, Gram identities and complete causal normalized finite-feature reads are checked. This is not a new Radon transform, softmax kernel approximation guarantee, learned-selector speedup, native benchmark or strongest-published-method separation. Characteristic-two geometry is an explicit field extension of the prime-field SMat presentation. All independent original payloads must remain charged; pooled summaries alone collide on duplicate profiles.'}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -6022,6 +6290,7 @@ def main():
               "hybrid_fixed_point_candidate": hybrid_moment_controls(),
               "exponential_aggregation_comparators": exponential_comparator_controls(),
               "active_mask_sampling_boundary": active_mask_sampling_controls(),
+              "finite_radon_attention_boundary": finite_radon_attention_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,

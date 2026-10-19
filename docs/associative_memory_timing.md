@@ -5457,3 +5457,212 @@ substantive mask structure, precision regime or additional arithmetic
 property and survive existing weighted-range and database-sampling methods.
 Preserve this boundary without a new contribution-paper or training claim.
 The original research goal remains active and unachieved.
+
+## Structured-mask priority gate and a fast Radon comparator
+
+The preceding turn made progress: it established a conditional obstruction
+and a finite-precision failure for arbitrary active masks. The interval-mask
+suggestion does not yet supply a new positive theorem. This audit instead
+identifies a concrete faster comparator for finite-field structured attention.
+Its transform is classical. Its architectural consequence is worth checking,
+but it is not a strongest-method separation or a completed contribution.
+
+### Close the routine interval and circuit route first
+
+For a row mask represented by I disjoint intervals, build a binary tree of
+the m right-coordinate weights. Every interval is a disjoint union of at
+most 2*ceil(log2 m)+2 tree nodes. Pair these nodes with their row indices.
+There are L=O(I log m) disjoint components. In exact arithmetic, component
+(a,J) has mass exp(q_a/2)*sum_{b in J}exp(q_{m+b}/2). Sample a component
+proportionally to this mass, then descend its weighted tree. The resulting
+probability of every allowed pair is exactly its normalized exponential
+weight. Setup is O(m+I log m), followed by logarithmic categorical/tree
+search and the independent payload accesses. This avoids rejection based
+on the mask's mass. It is ordinary weighted range sampling, not a new
+factorization theorem. Updating interval endpoints, validating raw keys,
+storing every value and maintaining any index remain additional costs.
+
+[Afshani--Wei, ESA 2017, introduction and weighted one-dimensional result](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ESA.2017.3)
+uses static real weights and a real-RAM sampling oracle; its optimal range
+query bound is stronger than a basic tree once preprocessing is available.
+Our weights change per query, so rebuilding is charged. This interface
+difference does not make the elementary construction novel.
+[Afshani--Phillips, SoCG 2019, Lemmas 2--3 and Theorem 13](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.SoCG.2019.4)
+already uses range maxima, weight grouping and controlled removal of rare
+mass. Locally scaled positive trees need a finite-precision proof; that
+implementation task alone is not a substantive new tradeoff.
+Likewise, more general sum/product factorizations must be compared with
+[tractable probabilistic circuits](https://yoojungchoi.github.io/files/ProbCirc20.pdf),
+not only with a dense attention implementation. Do not build a larger
+interval-search framework on an unestablished novelty claim.
+
+### The attention tabulation is a finite Radon operator
+
+[SMat-Attention, Section 3 and Appendix E](https://arxiv.org/html/2609.36062)
+pools distant states by finite-field point, then sums them over affine
+hyperplanes. Its Algorithm 2 enumerates every incidence. With ambient
+dimension D=d-1, prime field size q, P=q^D profiles, and
+A=(P-1)/(q-1) normalized directions, this costs A*P state additions.
+Its kernel has a finite nonnegative feature map; its softmax coverage
+requires a separate approximation. Learned type selection has an additional
+cost which is not removed by accelerating the table.
+
+Write C_(a,b),x=1[a dot x=b], where the first nonzero coordinate of a
+is one and b ranges over the field. There are B=q*A types. For a scalar
+profile array F, the required operation is
+
+    U(a,b) = sum_{x: a dot x=b} F(x) = (C F)(a,b).
+
+This is a finite Radon transform. Fourier-slice methods are established:
+[Jabs--Schneider, Section 3.1](https://pmc.ncbi.nlm.nih.gov/articles/PMC12045828/)
+derives the multidimensional prime-grid transform; earlier
+[Chandra--Svalbe](https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/iet-cvi.2013.0101)
+studies exact integer-field transforms for image data. Their torus and
+number-theoretic implementations must not be confused with extension-field
+arithmetic. The following elementary derivation makes our operator explicit;
+it claims no new Fourier or Radon identity.
+
+For any nontrivial additive character chi of F_q define
+
+    F_hat(k) = sum_x F(x)*chi(k dot x).
+
+For every normalized a, the one-dimensional Fourier transform of U(a,.)
+at frequency t is exactly F_hat(t*a): interchange the two finite sums.
+An inverse length-q transform therefore recovers that direction's q bins.
+Every nonzero frequency k occurs in exactly one such slice: normalize k
+by its first nonzero coordinate. The zero frequency occurs A times.
+A multidimensional FFT followed by all slice inverses uses
+O(P*D*log q+B*log q) scalar arithmetic operations and O(P+B) scalar
+workspace, plus all field addressing and transform constants. For prime q
+this is an algebraic FFT bound with the appropriate roots supplied; it is
+not a fixed-word exact-integer implementation or a root-construction bound.
+The checker verifies the prime identity using exact cyclotomic arithmetic,
+not a fast prime FFT benchmark.
+
+### A fully integer specialization over characteristic two
+
+For a bounded-bit realization use q=2^s and F_q=F_2[z]/f(z), with a
+verified irreducible degree-s polynomial. This changes the prime-field
+choice in the SMat presentation; it does not use arithmetic modulo 2^s.
+Set chi(u)=(-1)^Tr(u). The trace pairing is nondegenerate. In a polynomial
+basis, the frequency label k needs the binary dual-coordinate permutation
+whose jth bit is Tr(k*z^j). An ordinary binary Walsh transform followed
+by this permutation computes the trace-character transform. Omitting this
+permutation is generally wrong for extension fields.
+
+Compute a length-P Walsh transform of F. For each normalized a, gather
+its q frequencies t*a, apply the length-q trace Walsh transform, then
+divide every result by q. Character orthogonality proves that every division
+is exact and returns C F, for every signed integer input. The addition/
+subtraction count is exactly
+
+    P*D*s + B*s.
+
+There are B divisions by the power of two q and O(D*B) field-address
+operations. This is not addition-only incidence enumeration: intermediate
+signs and cancellation are essential. If input magnitudes are below 2^h,
+all forward intermediates fit in h+D*s+s+5 signed bits.
+
+The transpose is equally explicit. Transform each input row group g(a,.),
+scatter its q frequency entries to t*a, adding the A contributions at zero,
+then apply the length-P trace Walsh transform and divide by q. This gives
+C^T g by the same identity, or by transposing the exact factorization.
+It uses the same P*D*s+B*s additions/subtractions, B scatter additions,
+and P exact divisions. The same h+D*s+s+5 bit guard suffices: before the
+last transform, the sum of absolute coefficient bounds is at most
+B*q*2^h <=2*P*q*2^h. Integer-grid cotangents are covered. A real-valued
+chain rule gives an algebraic backward algorithm; a fixed-bit bound for
+all normalized training gradients is a separate claim, not established here.
+
+Field arithmetic, labels and setup are not free. One conservative scheme
+stores the q^2-entry multiplication table, a trace-dual table, P point
+labels/permutation entries and B slice indices. Its index memory is
+O((D*P+B)*log P+q^2*log q) bits. Polynomial multiplication constructs the
+field table in O(q^2*s^2) bit work. Trial polynomial factors up to degree
+floor(s/2) verify irreducibility in O(sqrt(q)*poly(s)) work. An irreducible
+polynomial can also be found by testing all degree-s candidates, still
+within O(q^2*poly(s)) conservative setup. For D>=2 this is within
+O(P*poly(log q)); the D=1 incidence operator is simply the identity and
+requires no field transform. State workspace for w scalar lanes is
+O((P+B)*w*(h+D*s+s+5)) bits in addition to those indices. The verifier's
+explicit dense incidence rows are a separate oracle, never fast state.
+
+### Consequence, costs that remain, and retention
+
+For the hard-routing attention construction, apply this operator separately
+to the r*(v+1) augmented state lanes, then perform the unchanged complete
+query contraction and normalization. The transpose supplies the corresponding
+linear stage of the backward pass. For fixed d>=3, choosing a power-of-two
+field q=Theta(T^(1/d)) gives P=Theta(T^(1-1/d)) and B=Theta(P). The
+transform term is O(P*log T*r*(v+1)), which is o(T*r*(v+1)). Along with
+pooling, causal linear attention and fixed routing, the scalar arithmetic
+bound becomes O(T*r*(v+1)), excluding feature evaluation and raw label
+processing. All dimension, field, index, bit and payload costs above remain.
+This improves the incidence-enumeration term of the inspected attention
+algorithm when d>3. It does not improve classical Radon algorithms.
+For d=2 use the identity operator; d=1 is ordinary causal attention.
+
+The causal-mask VC argument also extends to this field choice. Proper
+hyperplanes over any finite field have VC dimension D: the standard basis
+is shattered by normals selecting its complement, with sum(x_i)=1 for the
+all-included trace; affine dependence rules out shattering D+1 points.
+In the two-block causal mask, nested recent prefixes permit at most one
+recent landmark. With one recent landmark, D+1 distant landmarks would
+contradict that hyperplane bound. With none, an affine dependence yields
+incomparable all-but-one traces that distant prefixes cannot all realize.
+Thus VC<=D+1. Schedule each basis-witness hyperplane before and after a
+recent landmark to shatter D+1 keys, giving equality. Both causal triangles
+already supply Theta(T^2) mask entries. This is the existing incidence/
+prefix argument, not a new VC theorem.
+
+The replacement does not accelerate the learned selector's O(T*B) scoring,
+prove a softmax approximation, change profile collisions, or certify an
+end-to-end hardware gain. It also does not turn pooled states into lossless
+storage of every token. Two tokens with the same profile and key features,
+whose independent values change by opposite amounts, leave F and U
+unchanged. The exact checker includes this collision. Keep all original
+independent values, features and profile labels in the memory bill if
+individual retention or subsequent overwrites are required.
+
+For a fixed distant memory of N tokens, storing every current value and
+feature costs O(N*v*(g+2)+N*r*(f+1)+N*D*s) bits for bounded dyadic inputs,
+in addition to the caches and addressing above. A validated value overwrite
+changes O(r*v) raw contribution units, its profile, and A incident cached
+types: O(A*r*v) state work, not constant work. A rekey can change two such
+profile contributions and pays the full raw input/validation cost. Batched
+reconstruction uses the transform; the faster rebuild does not prove a
+new online overwrite tradeoff. Point retrieval from retained originals is
+ordinary dictionary retrieval and must not be called a retention advantage.
+
+For finite-precision forward outputs, take feature coordinates in [0,1]
+on grid 2^-f and independent values in [-1,1] on grid 2^-g. Raw augmented
+contributions have a common grid 2^-(f+g); profile sums add at most log N
+bits. Query contractions add f+ceil(log2 r) more bits. The transform guard
+above and p additional bits for the final division suffice for error at
+most 2^-p whenever the integer normalizer is positive. No exponential-size
+real register or uncharged tiny-denominator precision is used: bounded
+integer division rounds the final ratio directly. Current-value overwrites
+are exact and have no operation-horizon drift at fixed capacity. This is
+not an infinite-capacity constant-word streaming statement.
+
+### Exact controls and the next research gate
+
+`python3 -B scripts/run_timing_restart_checks.py` adds
+`finite_radon_attention_boundary`. Twelve characteristic-two cases cover
+fields 2,4,8,16 and dimensions through five. They check 218 complete basis
+columns, 302 complete transpose basis rows, 2144 signed outputs, the Gram
+identity C^T C=q^(D-1)I+((q^(D-1)-1)/(q-1))*J, and three reducible-polynomial
+rejections. Three small prime-field cyclotomic oracles check 81 slice outputs.
+Three full causal finite-feature examples compare 307 normalized rows with
+explicit masks, including all original independent payloads, actual cached
+overwrite updates and duplicate-profile collisions. These are exact
+correctness controls; the operation counts are arithmetic counts, not timings.
+
+This changes the next action. Do not pursue the routine interval construction
+as a new theorem. Audit whether an architectural extension of the fast
+Radon comparator can give a substantive new memory/access/retention result,
+including learned selection and all original values. Check other fast
+structured-attention and finite-geometry methods before claiming priority.
+The current result is a concrete improvement to one stated tabulation bound
+using existing mathematics, not a separation beyond the strongest applicable
+published methods. It leaves the full original goal active and unachieved.
