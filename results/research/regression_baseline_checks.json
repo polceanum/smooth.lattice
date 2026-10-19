@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "command": "python3 -B scripts/run_regression_baseline_checks.py",
+  "scope": "Exact regression-baseline and cache-reconstruction controls; no runtime or novelty claim.",
+  "cases": [
+    {
+      "n": 6,
+      "shared_dimension": 1,
+      "depth": 0,
+      "insertions": 3,
+      "deletions": 3,
+      "key_replacements": 12,
+      "value_only_overwrites": 8,
+      "max_repair_ball": 1,
+      "max_filter_row_support": 1,
+      "persistent_product_scalars_avoided": 18,
+      "all_current_caches_and_query_coefficients_equal": true
+    },
+    {
+      "n": 6,
+      "shared_dimension": 1,
+      "depth": 2,
+      "insertions": 3,
+      "deletions": 3,
+      "key_replacements": 12,
+      "value_only_overwrites": 8,
+      "max_repair_ball": 6,
+      "max_filter_row_support": 6,
+      "persistent_product_scalars_avoided": 18,
+      "all_current_caches_and_query_coefficients_equal": true
+    },
+    {
+      "n": 6,
+      "shared_dimension": 1,
+      "depth": 4,
+      "insertions": 3,
+      "deletions": 3,
+      "key_replacements": 12,
+      "value_only_overwrites": 8,
+      "max_repair_ball": 6,
+      "max_filter_row_support": 6,
+      "persistent_product_scalars_avoided": 18,
+      "all_current_caches_and_query_coefficients_equal": true
+    },
+    {
+      "n": 12,
+      "shared_dimension": 3,
+      "depth": 0,
+      "insertions": 3,
+      "deletions": 3,
+      "key_replacements": 12,
+      "value_only_overwrites": 8,
+      "max_repair_ball": 1,
+      "max_filter_row_support": 1,
+      "persistent_product_scalars_avoided": 60,
+      "all_current_caches_and_query_coefficients_equal": true
+    },
+    {
+      "n": 12,
+      "shared_dimension": 3,
+      "depth": 2,
+      "insertions": 3,
+      "deletions": 3,
+      "key_replacements": 12,
+      "value_only_overwrites": 8,
+      "max_repair_ball": 9,
+      "max_filter_row_support": 7,
+      "persistent_product_scalars_avoided": 60,
+      "all_current_caches_and_query_coefficients_equal": true
+    },
+    {
+      "n": 12,
+      "shared_dimension": 3,
+      "depth": 4,
+      "insertions": 3,
+      "deletions": 3,
+      "key_replacements": 12,
+      "value_only_overwrites": 8,
+      "max_repair_ball": 12,
+      "max_filter_row_support": 9,
+      "persistent_product_scalars_avoided": 60,
+      "all_current_caches_and_query_coefficients_equal": true
+    }
+  ],
+  "conditioning_controls": [
+    {
+      "n": 2,
+      "shared_dimension": 1,
+      "c": "3/2",
+      "trace_bound_saturated": true
+    },
+    {
+      "n": 4,
+      "shared_dimension": 1,
+      "c": "5/4",
+      "trace_bound_saturated": true
+    },
+    {
+      "n": 4,
+      "shared_dimension": 2,
+      "c": "3/4",
+      "trace_bound_saturated": true
+    },
+    {
+      "n": 8,
+      "shared_dimension": 2,
+      "c": "5/8",
+      "trace_bound_saturated": true
+    },
+    {
+      "n": 8,
+      "shared_dimension": 4,
+      "c": "3/8",
+      "trace_bound_saturated": true
+    },
+    {
+      "n": 16,
+      "shared_dimension": 4,
+      "c": "5/16",
+      "trace_bound_saturated": true
+    },
+    {
+      "n": 16,
+      "shared_dimension": 8,
+      "c": "3/16",
+      "trace_bound_saturated": true
+    },
+    {
+      "n": 32,
+      "shared_dimension": 8,
+      "c": "5/32",
+      "trace_bound_saturated": true
+    }
+  ],
+  "summary": {
+    "cases": 6,
+    "key_edits": 108,
+    "value_only_overwrites": 48,
+    "independent_dense_surrogate_solves": 12,
+    "conditioning_equality_controls": 8
+  },
+  "new_architecture_advantage_established": false,
+  "source_sha256": {
+    "scripts/run_regression_baseline_checks.py": "3ca2230e41bdfd833e05648a6f48842146f089e3ea97afcaaa5ff4998e473461",
+    "scripts/run_shared_feature_retention_checks.py": "55d3a3312284e0bc1f49963b6ee068a71a0dc482d8eb769ecb3f2e4fae97d0a0",
+    "scripts/run_retention_tradeoff_checks.py": "31d91fa3363df1bb34549ddbbea683c0c170123d78c16e86c47a99acc513287a",
+    "docs/interleaving_research.md": "b9a01576cd957aa65e45645a225faf468252b256022225f4670a30b72666fba9"
+  }
+}

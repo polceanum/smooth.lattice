@@ -11635,3 +11635,193 @@ The report `results/research/correlated_routing_checks.json` records
 counterexamples and 192 dictionary replacements/matching reads. All
 arithmetic is rational. The checker uses dense oracles and is not a
 runtime benchmark, a novelty proof or a new neural training run.
+
+### Associative-memory goal: regression equivalence and the dimension audit
+
+Previous turn classification: progress. The signed-support lemma survived
+its exact checks, but indexing, fusion and sampling defeated its use as
+a general access-cost separation. This iteration tests the remaining
+local/shared construction against an explicitly specified regression
+baseline. The original research goal and publication gates remain intact.
+
+#### The reader is an ordinary weighted regression and residual decoder
+
+Keep the notation and all hypotheses of the local/shared section. For
+each current value column v, consider the strictly convex objective
+
+    J(h) = (v-U*h)^T*C*(v-U*h)/2 + h^T*h/2.
+
+Here C is the current symmetric positive-definite rounded local inverse
+approximation; it need not be diagonal or entrywise nonnegative. The
+normal equations give exactly
+
+    h = (I+U^T*C*U)^(-1)*U^T*C*v,
+    d = C*(v-U*h),
+    read(b_q,u_q) = b_q^T*B^T*d + u_q^T*h.
+
+The Hessian is I+U^T*C*U>0, so these equations identify the unique
+minimizer, not merely a stationary point. Substituting d gives precisely
+the earlier reader. Equivalently, Woodbury gives
+
+    d = (C^(-1)+U*U^T)^(-1)*v.
+
+These equalities hold for every value assignment and encoded query.
+The local/shared retention and encoded-perturbation bounds therefore
+apply without change to this regression baseline. Current values are
+replaceable responses, not accumulating independent observations. There
+is no statistical assumption on v in this equivalence.
+
+For fixed C, replacing v_i changes U^T*C*v by
+(C*U)_i^T*delta_v_i. This explicitly resolves the apparent distinction
+between accumulating-observation caches and latest-response overwrites:
+subtracting the old contribution and adding the new one implements the
+same current normal equations. When a key edit changes C, every affected
+row contribution must also be repaired, exactly as in the prior lemma.
+The equivalence does not excuse omitting those changes.
+
+#### A baseline family that includes the candidate's full cache choice
+
+One baseline maintains the same C, current B,U,V and the four aggregates
+
+    H=I+U^T*C*U,  t=U^T*C*V,
+    Y=B^T*C*U,    S0=B^T*C*V.
+
+It solves the small current system for h, and uses the displayed reader.
+It may store X=C*U and Z=C*V, giving exactly the earlier algorithm and
+its costs. Thus the current architecture has no separation from this
+baseline family on any of the specified inputs, errors or horizons.
+This is a constructive equivalence, not a lower bound against every
+future extension or proof that every dynamic guarantee is published.
+
+A second baseline omits persistent X and Z. For every affected row j in
+the union repair ball S, reconstruct
+
+    x_j = sum_l C_jl*u_l,  z_j = sum_l C_jl*V_l
+
+from its sparse C row. Subtract the old row's outer-product contributions
+to H,t,Y,S0 and add the new contributions. Outside S these products and
+the input rows stay unchanged, so all aggregates remain canonical
+functions of the current state. Reconstructing both versions costs
+O(b^2*(r+v)) scalar operations when |S|<=b and every filter row has at
+most b nonzeros. This fits within the earlier conservative key-edit
+bound; it does not turn an exponential-size ball into a small one.
+
+The second variant saves exactly n*(r+v) persistent scalar entries.
+Local old products and input rows require O(b*(k+r+v)) temporary entries,
+in addition to local polynomial-repair storage and the small solve. It
+retains all keys, values, C coefficients/indices, incidence lists and
+the four aggregates. Value-only updates reconstruct x_i at O(b*r) cost;
+their total bound becomes
+
+    O(b*r + k*b*v + r^2*v),
+
+with H's inverse cached while keys stay fixed. The original cached
+variant avoids the added b*r term. Query costs are identical. These are
+two explicit storage/time choices, not uniform dominance in every
+parameter regime. Preprocessing, encoder work, integer bit lengths and
+small-solve costs remain charged as before. Exact canonical integer
+sums give the same horizon-independent precision guarantee to either
+baseline; renaming the aggregates does not change numerical behavior.
+
+#### Shared-dimension dependence cannot be held constant for free
+
+There is a further constraint on the earlier retention theorem's
+parameters. For symmetric C>0, ||C||_infinity<=K implies C<=K*I. If
+||u_i||_2<=M and H>=c*n*I, taking traces yields
+
+    c*n*r <= tr(H) = r+tr(U^T*C*U) <= r+K*n*M^2,
+    r*(c*n-1) <= K*n*M^2.
+
+When c*n>1, r<=K*n*M^2/(c*n-1). Consequently M,K,c cannot all stay
+fixed as both capacity and shared dimension grow without bound. The
+conditional theorem remains valid for arbitrary finite r with its
+stated parameters. It does not give a dimension-free guarantee by
+suppressing their dependence on r. In particular, if c scales as 1/r
+with M,K fixed, its stated Gamma=1+M^2*K/c scales as r. Holding the
+stated error bound fixed can then require a larger polynomial depth
+and repair ball. This concerns that sufficient bound; it is not a
+universal capacity or error lower bound for other readers.
+
+The constraint is attained by C=I and rows of U consisting of m copies
+of each of the r standard basis vectors. Then n=m*r, M=K=1 and
+H=(1+m)*I, so c=(1+m)/(m*r) and both trace inequalities are equalities.
+This elementary control prevents small-r examples being reported as
+dimension-independent architecture results.
+
+#### Additional primary comparisons and their limits
+
+[Malioutov--Johnson--Willsky, Section 3.2 and Appendix A](https://www.jmlr.org/papers/volume7/malioutov06a/malioutov06a.pdf)
+already interprets inverse powers as weighted graph walks and proves
+equivalent walk-summability criteria. The Neumann expansion, Proposition
+1 and its displayed proof were inspected. Our norm contraction implies
+convergence of the absolute power series. Local inverse expansion is
+therefore established inference machinery. This comparison does not
+assert their paper contains our complete dynamic cache/bit-cost bound.
+
+[Liu--Chandrasekaran--Anandkumar--Willsky, Sections III--IV](https://arxiv.org/html/1105.1853v1)
+already combines inference on a remaining graph with a small feedback
+solve. Figure 4, Theorems 1/2 and their displayed block-matrix proofs
+were inspected. The tree case is exact; approximate feedback inference
+has exact means when its loopy inference converges. This occupies the
+broad local-plus-global correction idea. It is not a direct reduction
+of our model: a positive Gaussian block precision eliminates to a
+*subtracted* positive-semidefinite term, while our covariance correction
+is C^(-1)+U*U^T. Its batch inference bounds also do not alone certify
+our dynamic costs or rounded finite-precision bound.
+
+[van den Brand--Nanongkai--Saranurak, Theorems 4.1--4.2](https://arxiv.org/html/1905.05067v1)
+provides general dynamic inverse tradeoffs for column/row and
+entry/entry updates and queries, with field-operation accounting. The
+statements and transformation-maintenance reduction were inspected;
+the entire fast-algorithm proof was not audited. Its general inputs,
+exact inverse queries and algebraic model differ from our local,
+approximate reader. It cannot establish our finite-word costs, and
+its general-case exponents are not a lower bound on our structured
+inputs. Comparing only against those exponents would not establish
+superiority over the strongest applicable structured method.
+
+The earlier WISKI and Schur-preconditioner comparisons remain in force.
+These readings do not establish that every part of the fully costed
+dynamic statement is already published. They do establish that an
+architectural claim based on regression, local inverse expansion and
+a small global solve has not identified a substantive mathematical
+gap. The explicit regression baseline above closes the claimed
+architecture distinction on the present workload, regardless of the
+remaining bibliographic question about the combined dynamic bound.
+
+#### Decision and the next admissible problem
+
+Park the current local/shared construction as a proposed main
+contribution, while retaining its conditional theorem and certificates
+as tools. Neither this baseline equivalence nor the trace inequality
+is offered as a publishable theorem. No strongest-method advantage,
+useful semantic encoder or defensible publication claim has emerged.
+
+Before another architecture construction, specify an independent
+mathematical query target and an admissible dynamic key/query class.
+Exact stored-key recall already has a dictionary baseline; the prior
+matching averages already have indexed and sampling baselines; the
+present interpolation reader already has the regression baseline above.
+A new candidate must improve a quantified tradeoff for the *same*
+target and assumptions, allowing the baseline useful indexing, fused
+evaluation and auxiliary summaries. Finite-precision, randomized-query
+and horizon quantifiers must agree. Improving only a dense or
+head-by-head implementation does not pass this gate. A raw-input
+encoder theorem or a genuinely stronger dynamic solver theorem remains
+a possible route, not an established open problem or promised paper.
+Do not add training runs or enlarge a search framework on the strength
+of the present identities.
+
+Reproduce the new baseline controls with:
+
+```bash
+python3 -B scripts/run_regression_baseline_checks.py
+```
+
+The report `results/research/regression_baseline_checks.json` checks six
+instances, 108 key edits, 48 value replacements, 12 independent dense
+surrogate solves and eight trace-equality controls. A baseline retaining
+neither full X nor Z is compared with the earlier full reconstruction,
+the regression normal equations and the direct feature decoder. The
+checker uses dense rational oracles; it makes no runtime, novelty,
+architecture-superiority or new neural-training claim.

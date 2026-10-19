@@ -13,12 +13,12 @@
     {
       "stage": 2,
       "task": "Audit primary theorems for sparse inverse/local correction and dynamic graphical inference; classify what is already a known corollary.",
-      "status": "stronger_primary_audit_of_structured_sparse_retrieval_and_online_interpolation; dynamic_local_shared_theorem_comparison_pending"
+      "status": "primary_walk_sum_feedback_and_dynamic_inverse_comparison_recorded; exact_regression_baseline_equivalence_proved"
     },
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "explicit_correlated_raw_query_family_tested; indexed_join_baseline_matches_or_improves_it; useful_separation_pending"
+      "status": "local_shared_reader_parked_as_architecture_contribution; independent_raw_query_target_and_useful_separation_still_required"
     },
     {
       "stage": 4,
@@ -382,6 +382,69 @@
       "dictionary_point_overwrites_and_matching_reads": 192
     },
     "verification_commands": [
+      "python3 -B scripts/run_correlated_routing_checks.py",
+      "python3 -B scripts/run_shared_feature_retention_checks.py",
+      "python3 -B scripts/run_retention_geometry_checks.py",
+      "python3 -B scripts/run_retention_tradeoff_checks.py",
+      "python3 -B scripts/run_feature_dimension_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py",
+      "python3 -B scripts/run_structural_complexity_checks.py"
+    ]
+  },
+  "fifth_iteration": {
+    "previous_turn_classification": "progress: signed support bound and exact stronger-baseline escapes saved; full objective unachieved",
+    "record": "docs/interleaving_research.md, Associative-memory goal: regression equivalence and the dimension audit",
+    "certificate_script": "scripts/run_regression_baseline_checks.py",
+    "certificate_report": "results/research/regression_baseline_checks.json",
+    "baseline_equivalence": {
+      "objective": "For each value column v, minimize ((v-U*h)^T*C*(v-U*h)+h^T*h)/2 with current symmetric C>0.",
+      "unique_solution": "h=(I+U^T*C*U)^-1*U^T*C*v; d=C*(v-U*h)=(C^-1+U*U^T)^-1*v.",
+      "reader": "b_q^T*B^T*d+u_q^T*h exactly equals the local/shared reader for all values and encoded queries.",
+      "dynamic_baseline": "Ordinary canonical regression aggregates H,t,Y,S0; caching X=C*U and Z=C*V reproduces all earlier costs. Reconstructing affected sparse rows instead saves n*(r+v) persistent scalars at an explicit O(b*r) extra value-only cost.",
+      "scope": "Constructive equality on the present workload, not a universal lower bound or assertion that every combined dynamic/precision theorem has already been published."
+    },
+    "dimension_audit": {
+      "inequality": "r*(c*n-1)<=K*n*M^2 follows by tracing H=I+U^T*C*U>=c*n*I and C<=K*I.",
+      "consequence": "M,K,c cannot remain fixed while both capacity and shared dimension grow without bound. Scaling c as 1/r makes the stated sufficient Gamma bound grow with r.",
+      "limitation": "Elementary parameter constraint, not a universal memory-capacity or error lower bound."
+    },
+    "primary_sources": [
+      {
+        "url": "https://www.jmlr.org/papers/volume7/malioutov06a/malioutov06a.pdf",
+        "scope": "Section 3.2 Neumann/walk expansion, Proposition 1 and Appendix A displayed proof inspected. Does not alone imply complete dynamic bit-cost accounting."
+      },
+      {
+        "url": "https://arxiv.org/html/1105.1853v1",
+        "scope": "Figure 4 and Theorems 1/2 with displayed block proofs inspected. Local inference plus feedback solve is established; Gaussian marginal Schur sign, convergence and batch-resource model prevent an automatic identification with our model."
+      },
+      {
+        "url": "https://arxiv.org/html/1905.05067v1",
+        "scope": "Theorems 4.1/4.2 and transformation-maintenance reduction inspected, not entire fast-algorithm proof. Exact general dynamic inverse field costs do not establish finite-word guarantees or lower bounds on structured inputs."
+      }
+    ],
+    "decision": "Park the current local/shared construction as a main architecture contribution: its reader and retention guarantee are reproduced by the explicit regression baseline. Preserve supporting lemmas; full dynamic-theorem priority remains unestablished. No publishable strongest-method separation found.",
+    "next_actions": [
+      "Specify an independent mathematical query target and an admissible raw key/query/edit class before building another architecture; stored-key recall, matching means and current interpolation already have explicit strong baselines.",
+      "Require a quantified advantage on that same target allowing arbitrary permitted indexes, algebraic fusion, cached summaries and matching randomized/horizon quantifiers.",
+      "Investigate an encoder theorem or a stronger dynamic-solver tradeoff only after establishing its exact applicable primary baseline and a substantive proof gap.",
+      "Do not run additional neural training, enlarge a search framework or write a contribution manuscript from the present known identities."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "certificate_summary": {
+      "cases": 6,
+      "key_edits": 108,
+      "value_only_overwrites": 48,
+      "independent_dense_surrogate_solves": 12,
+      "conditioning_equality_controls": 8
+    },
+    "verification_commands": [
+      "python3 -B scripts/run_regression_baseline_checks.py",
       "python3 -B scripts/run_correlated_routing_checks.py",
       "python3 -B scripts/run_shared_feature_retention_checks.py",
       "python3 -B scripts/run_retention_geometry_checks.py",
