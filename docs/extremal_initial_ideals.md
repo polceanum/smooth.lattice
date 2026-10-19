@@ -15,11 +15,14 @@ uniform local bounds and exact distinctions between coefficient classes.
 Generic torus-grid graphs reduce to ordinary cuts, while local rectangles
 already have coherent dependencies that this reduction misses. Published
 conditions for individual neighboring ideals add a further constraint, but
-cannot by themselves count one fan. A quantitative count of interacting
-dependencies remains open; no new unrestricted asymptotic bound is established.
-The planar product transfer and a sharp fixed-degree carrier classification
-are now proved below. They constrain a lower construction without settling
-the unrestricted target or their own priority questions.
+cannot by themselves count one fan. A quantitative three-variable count
+remains open. The new [dyadic planar proof](planar_dyadic_bound.md) establishes
+$G_2(n)=\Theta(n\log(n+1))$ over all fields, with a general hyperbolic-weight
+matroid bound and a smaller planar universal-basis cardinality bound.
+Its exact priority remains under audit. It closes the planar power-gain
+route: the proved product transfer cannot yield a spatial power separation
+from planar branches. The fixed-degree carrier classification below remains
+a sharper restricted comparison.
 Finite gradings give a further classical obstruction: repeated exponent
 spacings can keep the count linear even when the carrier degree grows.
 A sharper Frobenius obstruction classifies the additive prime-power class:
@@ -56,6 +59,7 @@ give a subclass; write their maximum as $F_d(n)\le G_d(n)$.
 | Comparison | Status and scope |
 |---|---|
 | $G_d(n)=O_d(n^{2d(d-1)/(d+1)})$, hence $G_3(n)=O(n^3)$ | Published: Babson--Onn--Thomas, Corollary 2.5, all finite quotients. |
+| $G_2(n)=\Theta(n\log(n+1))$; every planar ideal has $g(I)\le1+4n\lceil\log_2n\rceil$ | [Complete dyadic proof](planar_dyadic_bound.md), all fields and all finite planar ideals, with the known generic corner-cut lower bound. The current-priority audit is incomplete. The three-variable endpoint remains open. |
 | Generic corner cuts $C_d(n)=\Theta_d(n^{d-1}\log^{d-1}n)$ | The existing repository manuscript's result; its priority assessment is separate from the published upper bound above. |
 | $G_3(n)=O(n^{44/15}\log^{4/5}(n+1))$ | Existing repository lattice-shadow candidate, with a remaining classical-priority comparison. This does not complete the present goal. |
 | Binomial ideals: $g(I)=O_d(n^{d-1}\log^{(d-1)^2}(n+1))$ | Existing repository reduction using published binomial normal forms and Minkowski-sum bounds. In three variables this excludes a polynomial separation from the generic scale within this subclass. |
@@ -1002,12 +1006,12 @@ result does not state (10); this comparison does not establish novelty of
 the elementary construction or its counting consequence. The precise
 fibre-product priority comparison remains open.
 
-The next lower-bound task can therefore focus on a power improvement in
-the planar problem, while retaining the original three-variable endpoint.
-The published planar upper bound from Babson--Onn--Thomas is $O(m^{4/3})$;
-the present audit has not certified the strongest current planar bound.
-No planar power-gain family, new unrestricted exponent, or paper-level
-significance is established by (10) alone.
+This initially suggested focusing on a planar power improvement while
+retaining the three-variable endpoint. The later
+[dyadic planar theorem](planar_dyadic_bound.md) now rules out such a
+power improvement entirely. The transfer remains valid, but planar
+branches cannot yield the intended spatial power separation. The
+following proposed realization is retained to make the obstruction precise.
 
 There is a specific existing lower construction to test, rather than an
 arbitrary search for planar examples. [Eppstein, Theorems 5 and 7 and
@@ -1026,8 +1030,10 @@ requires $\alpha<4/3$; linear overhead would give power $8/3$.
 Neither representation by arbitrary vectors nor a large abstract matroid
 fan supplies this: multiplication must commute on a cyclic quotient,
 and the monomial exponent sizes must fit the same colength budget.
-Establishing such a realization or a quantitative obstruction is the next
-feasibility test. The transfer theorem does not assume it succeeds.
+The later planar theorem supplies that quantitative obstruction:
+$L=\Omega(M^{4/3}/\log(M+1))$ is necessary. In particular no fixed
+$\alpha<4/3$ can work. Arbitrary representability or coefficient tuning
+cannot remove this colength cost.
 
 ## A degree-sensitive bound for an irreducible plane carrier
 
@@ -1199,18 +1205,19 @@ separately. Every complete cone interval, state jump and large-wall
 polynomial lift is replayed exactly. A partition row length $\lambda_j$
 encodes all $x^iy^j$, $0\le i<\lambda_j$, without losing basis data.
 
-In particular, a planar family with $g(I)\ge c n^{1+\epsilon}$ needs
+Before the dyadic theorem, this gave a necessary condition: a planar
+family with $g(I)\ge c n^{1+\epsilon}$ would need
 every irreducible equation in its ideal to have degree
 $\Omega(n^\epsilon)$. Applying the product construction to branches
 on a bounded-degree irreducible carrier gives only $O_D(N^2)$ initial
-ideals at spatial length $N$. A useful realization of the transversal
-lower construction must escape this whole class, not just change a few
-coefficients on one fixed curve.
+ideals at spatial length $N$. The later dyadic theorem rules out the
+planar power gain entirely, including families escaping fixed carriers.
 
 ## Growing degree can retain a finite grading
 
-Increasing the carrier degree is necessary for a planar power gain, but is
-not sufficient. A finite grading puts all basis moments in a coarser lattice.
+The following historical obstruction is sharper for some growing-degree
+families than the general dyadic bound. A finite grading puts all basis
+moments in a coarser lattice.
 The following is an application of classical state geometry and the lattice
 polygon vertex bound, not a claimed new lattice theorem. The underlying
 framework and vertex estimate are the ones used by
@@ -1339,8 +1346,9 @@ $$
 In particular, realizing $\Omega(M^{4/3})$ parametric bases at colength
 $n=\Theta(M)$ in this class would require $D=\Theta(n)$ and bounded
 $h$. A growing degree with a growing proportional spacing does not
-satisfy this condition. This is a necessary condition, not a realization
-theorem or an impossibility result for all planar ideals.
+satisfy this condition. This was a necessary condition, not a realization
+theorem. The later dyadic argument supplies the unrestricted planar
+obstruction independently of this lattice calculation.
 
 ### Exact controls and what they decide
 
@@ -1592,25 +1600,23 @@ route; it does not improve the unrestricted extremal exponent.
 
 ## Next proof task and stopping rule
 
-The next lower-bound task is a planar quotient realization with controlled
-colength and growing carrier complexity, in service of the original spatial
-target. A fixed irreducible carrier is now excluded by (13), even though it
-can beat the generic finite count. The transversal construction remains a
-specific input to test; arbitrary vector representability still does not
-supply exponent weights or commuting multiplication.
-For polynomial-graph realizations, (21) now imposes an additional
-quantitative requirement: a linear-overhead realization of the
-$M^{4/3}$ input must span degree proportional to the colength with
-bounded intrinsic grading index. A repeated single exponent offset is
-excluded uniformly, including prime-power offsets. The next proof must
-handle overlapping dependencies that escape this grading obstruction;
-more tests within the excluded family cannot supply the lower bound.
-The stronger classification (22)--(24) excludes all affine
-$q$-linearized ideals as a power-gain construction, including ones
-whose coefficient-dependent carrier degree grows. Their small
-universal weight set and sparse bases are consequences of Frobenius
-structure, with the classical priority boundary explicit. A useful
-next lower construction must escape this additive class as well.
+The next task is now directly three-dimensional. The
+[dyadic planar bound](planar_dyadic_bound.md) excludes every planar
+$n^{1+\epsilon}$ family, including the proposed low-overhead transversal
+realization. The common-coordinate product of a fixed number of planar
+branches has at most the generic power and logarithmic scale. This is
+a uniform obstruction to the route, not a lack of suitable small examples.
+
+The dyadic proof uses a one-parameter exchange path whose two integer
+coordinates are monotone along each token. A spatial extension must
+replace that mechanism for a two-parameter normal fan; projecting to a
+single line does not count all its cells. A useful next step is a
+uniform spatial analogue using multiplication compatibility, or a
+realizable family with genuinely three-variable dependencies. The
+sharp planar theorem and its universal-basis consequence merit their
+own priority assessment, while the unchanged three-variable goal stays
+active. The affine $q$-linearized classification also rules out that
+additive class in dimension three.
 
 The nonlinear rectangle route remains available. Its filtration bound
 identifies a quantitative window, and the rational relation distinguishes
@@ -1649,6 +1655,7 @@ From the repository root:
 ```bash
 python3 -B scripts/run_extremal_initial_ideals_checks.py
 python3 -B scripts/run_additive_initial_ideals_checks.py
+python3 -B scripts/run_planar_dyadic_bound_checks.py
 ./build.sh
 python3 tests/test_smoke.py
 ```

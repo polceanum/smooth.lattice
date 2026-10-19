@@ -5,7 +5,7 @@
   "status": "active",
   "objective": "Achieve a substantial mathematical advance connected to the smooth-number exponent-lattice observations, with resolving a recognized quantitative problem as the success criterion rather than producing another manuscript. The concrete first target is the worst-case number G_3(n) of distinct monomial initial ideals of a length-n polynomial quotient in three variables, over all fields. Determine its sharp asymptotic growth, or prove an infinite realizable family with a polynomially larger number of orderings than the generic corner-cut scale, together with a consequential general theorem. Explain what algebraic dependencies add to the prime/smooth lattice geometry. First audit the strongest relevant primary literature and the repository's unfinished lattice-shadow work; distinguish a genuinely new theorem from a classical geometric corollary before using it. Success requires a complete uniform proof that settles this extremal question or a substantial recognized part of it, a rigorous consequence for algebraic or geometric complexity beyond restating the count, independently implemented reproducible supporting checks, and an honestly attributed paper. A draft, a bounded priority review, isolated examples, a minor refinement, or an unverified novelty claim cannot complete this goal. If this target is already settled or a route fails, record the evidence and choose a comparably consequential problem still directly linked to the original mathematics; do not silently lower the success criterion. Preserve all existing manuscripts, core smooth-number kernels and auditor, previous research, and the paused ML work. Never send emails, messages to people or other tasks, author queries, or submissions. Publish only explicitly privacy-reviewed research files to the already authorized main branch.",
   "goal_complete": false,
-  "asymptotic_improvement_established_this_iteration": false,
+  "asymptotic_improvement_established_this_iteration": true,
   "novelty_established_this_iteration": false,
   "note": "docs/extremal_initial_ideals.md",
   "relationship_to_previous_work": "New active objective with a higher completion bar. Previous goal records, lattice-shadow candidate, manuscripts and paused ML results are preserved as historical research.",
@@ -70,14 +70,15 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Construct a nonlinear planar quotient family with a uniform power lower bound, in service of the unchanged transfer G_3(3m)>=G_2(m)^2. Retain the controlled realization of Eppstein\u2019s transversal input as one concrete test: it needs colength O(M^alpha), alpha<4/3, exponent-weight preservation and commuting cyclic multiplication. Any polynomial-graph realization at linear overhead must have degree Theta(n) and bounded intrinsic grading index. The new sharp additive classification rules out all affine q-linearized ideals even when their degrees grow: their maximum is binomial(log_q(n)+d-1,d-1), with small canonical weight sets and sparse bases. A single product already permits n planar states but remains below the generic scale; a useful family must exhibit quantitatively stronger overlapping non-additive dependencies and escape fixed-degree irreducible carriers. For cyclic-prefix uniform truncations, distinguish changes of parent representatives from cutoff exchanges and prove a uniform count or construction before expanding tests. No finite screen, classical corollary, additive-versus-multiplicative contrast or unverified novelty claim completes the goal.",
+  "next_proof_task": "Work directly in three variables, preserving the original G_3 endpoint. The uniform planar theorem G_2(n)=Theta(n*log(n+1)) closes every planar power-amplification construction, including Eppstein realizations with colength O(M^alpha), alpha<4/3. First seek a two-parameter analogue of the dyadic exchange budgets or a uniform count for realizable local rectangle quotients with genuinely three-variable dependencies. A one-parameter projection does not count all spatial fan cells: token coordinates are no longer individually monotone for arbitrary projected objectives, and their intercepts need not remain integral. Any extension must resolve these obstacles explicitly rather than multiply planar counts. Use the existing exact rectangle and coefficient-rank witnesses as controls, not an asymptotic lower family; do not replace ranks by support matching or fit finite counts. In parallel with a consequential spatial proof, compare the sharp unrestricted planar bound and its universal-basis consequence against current primary literature. The complete planar proof is progress, while novelty, an honest paper and the three-variable goal remain unestablished.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
     "Retain the user's assumption that relevant Elizalde--Galvan published results agree with arXiv:2312.16353v1, pending the user's eventual check.",
     "Inspect the full proposed planar power-saving paper at https://math20.org/f/183/ before relying on any changed bound. Its asserted ordinary k-set improvement is not automatically a parametric-matroid theorem.",
     "Compare the exact all-fields bound g(I)<=5*D*n for finite planar quotients containing an irreducible degree-D equation against prior curve-dependent counting results. The proof uses classical Bezout and state geometry; unsuccessful searches do not establish novelty.",
-    "Compare the exact all-global-order box classification, sharp composition maximum and canonical complete weight list for finite affine q-linearized ideals against additive-group and skew-polynomial-module literature. Frobenius elimination, distinct leading positions and specialized algorithms are established inputs; the restricted count has no novelty certificate and does not settle the unrestricted target."
+    "Compare the exact all-global-order box classification, sharp composition maximum and canonical complete weight list for finite affine q-linearized ideals against additive-group and skew-polynomial-module literature. Frobenius elimination, distinct leading positions and specialized algorithms are established inputs; the restricted count has no novelty certificate and does not settle the unrestricted target.",
+    "Audit the exact hyperbolic integer-weight matroid bound and its application G_2(n)=Theta(n*log(n+1)), including the O(n^(3/2)*log(n+1)) universal reduced-basis cardinality. Classical token paths and lattice-chain counting are attributed; the matching generic lower bound is published. The inspected historical planar O(n^(4/3)) statements and the 2025 general multi-parameter arrangement bound do not establish current novelty. This proof does not depend on the unresolved 1975 McMullen application."
   ],
   "primary_sources": [
     {
@@ -178,6 +179,19 @@
       "url": "https://dergipark.org.tr/en/download/article-file/388999",
       "doi": "10.13069/jacodesmath.369863",
       "scope": "Publication metadata, Definition 2.14, Proposition 2.16 and proof, Theorem 2.17 and proof, Proposition 3.8 and its field-operation proof. Established minimal-basis and interpolation algorithms in q-degree are credited; a new coding algorithm or priority claim is not inferred."
+    },
+    {
+      "authors": "Corteel--Remond--Schaeffer--Thomas; primary restatement by Elizalde--Galvan",
+      "title": "The Number of Plane Corner Cuts",
+      "published_url": "https://doi.org/10.1006/aama.1999.0646",
+      "primary_restatement": "https://arxiv.org/html/2312.16353v1",
+      "scope": "Theorem 2.3 of the preprint gives the known Theta(n*log(n)) planar generic corner-cut count. Combined with the self-contained dyadic matroid upper proof, it gives the unrestricted planar order; the lower bound is not new."
+    },
+    {
+      "authors": "Hausbrandt--Ruzika",
+      "title": "Multi-parametric matroids -- Applications to interdiction and weight set decomposition",
+      "url": "https://arxiv.org/html/2503.08178v1",
+      "scope": "Corollary 3.4 gives O(m^(2p)) cells for p-parameter matroids on m ground elements via comparison arrangements. The stated result does not give the hyperbolic integer-weight bound; this limited comparison is not a novelty certificate."
     }
   ],
   "verification": {
@@ -198,22 +212,36 @@
       "command": "python3 -B scripts/run_additive_initial_ideals_checks.py",
       "status": "passed",
       "report": "results/research/additive_initial_ideals_checks.json"
+    },
+    "planar_dyadic_research": {
+      "command": "python3 -B scripts/run_planar_dyadic_bound_checks.py",
+      "status": "passed",
+      "report": "results/research/planar_dyadic_bound_checks.json",
+      "source_hashes_verified": true,
+      "quadrant_fixtures": 108,
+      "fixture_states": 314,
+      "rank_two_matroids": 813,
+      "rank_two_quadrant_sweeps": 3252,
+      "finite_point_subsets": 526,
+      "finite_point_initial_bases": 810
     }
   },
-  "preservation": "Only the five listed public research files are updated in this continuation. Core kernels, prior research, old manuscripts and paused ML files remain unchanged. Source caches and raw logs stay ignored.",
+  "preservation": "Only the six listed public research files are updated in this continuation. All core kernels, older checks and reports, manuscripts and paused ML files remain byte-identical to the baseline. Source caches, exploratory probes and raw build logs remain ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
     "docs/extremal_initial_ideals.md",
-    "scripts/run_additive_initial_ideals_checks.py",
-    "results/research/additive_initial_ideals_checks.json",
+    "docs/planar_dyadic_bound.md",
+    "scripts/run_planar_dyadic_bound_checks.py",
+    "results/research/planar_dyadic_bound_checks.json",
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "4438c6c2268cf23d59d6404b86b5ae1c347a67cd74816f99036e034fe6e08eb5",
-    "docs/extremal_initial_ideals.md": "be27b6da1099758a162ff3c8674d0d26bfc37046c1498607e5a3d180a3babe51",
-    "scripts/run_additive_initial_ideals_checks.py": "ca7f02304f61509c09790c1926c084c813b4a2c0c4a0fe3130898c60037eb563",
-    "results/research/additive_initial_ideals_checks.json": "3ac556382612e1f592da0e1f170c30af3100878d52c22e6791e45cd39215acfa"
+    "README.md": "09388c742f49b8ed9fbad294098dc87ff944713983a6c0229289b7b457d87ed0",
+    "docs/extremal_initial_ideals.md": "673862b6c18598f9a5efb2479c77052f3aade5b1d024c6585d23d4b86b1a1920",
+    "docs/planar_dyadic_bound.md": "03c3e44166b2e95caaaedf042b2d79d345f7a1e056c46e134dfcd67b313aca45",
+    "scripts/run_planar_dyadic_bound_checks.py": "27642dbe7cf5c21e0eacb671b644bd00b97e758422d341cffa82c16df0b224bc",
+    "results/research/planar_dyadic_bound_checks.json": "f1ade39520754487f16cf86a858cb8ff759eefa962da4689efcf0535cea82cb9"
   },
   "continuations": [
     {
@@ -513,6 +541,45 @@
         "build": "passed",
         "smoke": "passed"
       }
+    },
+    {
+      "title": "A sharp unrestricted planar count from dyadic matroid exchanges",
+      "recorded_on": "2026-10-19",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "Commit b1d510a saved the sharp additive prime-power box classification and its multiplicative boundary.",
+      "progress_classification": "complete_uniform_planar_proof_with_independent_exact_controls; current_priority_unestablished; spatial_goal_open",
+      "uniform_proofs": [
+        "For every rank-r matroid with nonnegative integer weights (x,y) satisfying (x+1)*(y+1)<=H, each open-quadrant parametric profile has at most 1+ceil(log2(H))*(r+3*(r^2*H)^(1/3)) canonical states. Repeated weights and nonrepresentable matroids are allowed. Degenerate tied optima are not all counted.",
+        "Adjacent greedy swaps give r tokens with monotone coordinates. Cross-dyadic-block swaps are bounded by r*ceil(log2(H)); within each block the coordinate budgets have product at most r^2*H. The elementary primitive-direction estimate K^3<=27*A*B bounds the number of distinct walls. The proof covers simultaneous crossings and all four open quadrants.",
+        "Applying the universal ground and residue-matroid dictionary gives g(I)<=1+4*n*ceil(log2(n)) for every planar colength-n ideal over every field. The published generic corner-cut lower bound gives F_2(n)=Theta(n*log(n+1)) and G_2(n)=Theta(n*log(n+1)). Generic ideals need not maximize the count at each finite n.",
+        "A planar staircase has at most sqrt(2*n)+1 minimal initial generators, so the union of all reduced Groebner bases has O(n^(3/2)*log(n+1)) polynomials. This is an output-cardinality theorem, not a field-operation or bit-complexity bound.",
+        "Preserving Omega(M^(4/3)) parametric bases in a planar quotient requires colength Omega(M^(4/3)/log(M+1)). Thus the prior low-overhead Eppstein route is impossible. Any fixed number of common-coordinate planar branches remains at most at the generic spatial power and logarithmic scale."
+      ],
+      "independent_controls": {
+        "command": "python3 -B scripts/run_planar_dyadic_bound_checks.py",
+        "status": "passed",
+        "report": "results/research/planar_dyadic_bound_checks.json",
+        "source_hashes_verified": true,
+        "quadrant_fixtures": 108,
+        "fixture_states": 314,
+        "rank_two_matroids": 813,
+        "rank_two_quadrant_sweeps": 3252,
+        "finite_point_subsets": 526,
+        "finite_point_initial_bases": 810
+      },
+      "literature_boundary": "The greedy token method, universal monomial ground, state dictionary, elementary lattice-chain estimate and generic corner-cut lower order are established inputs. The exact dyadic application and sharp unrestricted planar theorem have a complete self-contained proof, but current priority is not certified. No dependence on the inaccessible 1975 lattice application or author contact is required.",
+      "effect_on_next_action": "Work directly in three variables, preserving the original G_3 endpoint. The uniform planar theorem G_2(n)=Theta(n*log(n+1)) closes every planar power-amplification construction, including Eppstein realizations with colength O(M^alpha), alpha<4/3. First seek a two-parameter analogue of the dyadic exchange budgets or a uniform count for realizable local rectangle quotients with genuinely three-variable dependencies. A one-parameter projection does not count all spatial fan cells: token coordinates are no longer individually monotone for arbitrary projected objectives, and their intercepts need not remain integral. Any extension must resolve these obstacles explicitly rather than multiply planar counts. Use the existing exact rectangle and coefficient-rank witnesses as controls, not an asymptotic lower family; do not replace ranks by support matching or fit finite counts. In parallel with a consequential spatial proof, compare the sharp unrestricted planar bound and its universal-basis consequence against current primary literature. The complete planar proof is progress, while novelty, an honest paper and the three-variable goal remain unestablished.",
+      "planar_asymptotic_order_proved": true,
+      "new_spatial_endpoint": false,
+      "novelty_established": false,
+      "goal_complete": false,
+      "verification": {
+        "new_research": "passed",
+        "build": "passed",
+        "smoke": "passed",
+        "prior_research_sources_and_reports": "unchanged"
+      }
     }
-  ]
+  ],
+  "asymptotic_improvement_scope_this_iteration": "Sharp unrestricted planar order; no new three-variable endpoint or verified novelty."
 }

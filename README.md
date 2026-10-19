@@ -54,18 +54,16 @@ have genuine coherent rank defects, including in cones using all three
 generators. Published constraints on neighboring ideals do not supply that
 count: an explicit connected family has exponentially many individually
 realizable candidate vertices, while one ideal realizes at most two of them.
-A count of simultaneous interacting dependencies remains necessary. The
-new product construction gives `G_3(3m) >= G_2(m)^2`: any planar power
-lower bound above the generic scale would yield the sought three-variable
-separation. Its quotient length and all-order fan formula are proved and
-checked independently. A further uniform bound gives at most `5Dn`
-initial ideals when a planar ideal contains an irreducible degree-`D`
-equation. Fixed-degree carriers have sharp linear growth and cannot supply
-the power separation. A classical lattice-area argument also excludes
-`(x^n, y-x-c*x^D)` uniformly as `D` grows: its finite grading keeps
-the count linear. General polynomial graphs must escape this spacing
-constraint to produce a power gain. A suitable family with growing curve complexity,
-the unrestricted asymptotic target and publication significance remain open.
+A count of simultaneous interacting dependencies remains necessary in
+three variables. The [dyadic planar proof](docs/planar_dyadic_bound.md)
+now gives `G_2(n) = Theta(n log(n+1))` for all fields and finite planar
+ideals, with a general matroid profile bound and a planar universal-basis
+bound `O(n^(3/2) log(n+1))`. Its exact priority remains under audit.
+Consequently the proved product construction `G_3(3m) >= G_2(m)^2`
+cannot give a power separation through planar branches. Further
+degree-sensitive and grading-sensitive bounds are retained as sharper
+restricted comparisons. The three-variable target and publication
+assessment remain open.
 The additive prime-power class is now classified separately: at length
 `n=q^k`, every initial ideal is a prime-power box and the sharp maximum
 is `binomial(k+d-1,d-1)`. The proof uses established Frobenius reduction;
