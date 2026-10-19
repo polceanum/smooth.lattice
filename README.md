@@ -16,6 +16,12 @@ Given P and a 1-based rank N, return the exponent vector of the N-th P-smooth nu
 
 It is not intended to replace general `y`-smooth counting/listing algorithms, and it is not a prime-generation or factoring algorithm.
 
+The project began with its originator's observations of fractal exponent
+sequences and complementary two-prime interleavings, and develops under their
+continuing research guidance. Mathematical development, implementation and
+literature comparison use substantial AI assistance, described briefly in
+the manuscripts.
+
 ## Current contents
 
 Core kernels:
@@ -149,8 +155,8 @@ no unresolved logical step. The earlier cumulative construction is preserved
 in the note. The count also gives order log n for the mean number of
 completions of a coordinate slice, addressing Wagner's suggested route. The
 [anonymous mathematical manuscript](paper/corner_cut_growth/main.tex) gives
-the complete proof, explicit constants, source comparisons and an
-AI-assistance disclosure separately from the earlier structural note. It also
+the complete proof, explicit constants and source comparisons separately
+from the earlier structural note. It also
 proves the same growth order for complete ordered prefixes and a sharp
 worst-case prime-size bound: for fixed dimension and lower prime bound,
 O(n)-bit primes realize every admissible n-term pattern, and some patterns

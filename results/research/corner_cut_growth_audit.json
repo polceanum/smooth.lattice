@@ -431,13 +431,13 @@
     "author_metadata": "Left blank; no authorship or affiliation invented.",
     "pdf": "output/pdf/corner_cut_growth.pdf",
     "pdf_pages": 15,
-    "tex_sha256": "eb0b8a277e55df556c7b0730a03e59514daad7c9dfc17c685ba2db29452dd73b",
-    "pdf_sha256": "6bed65ecd3ba7aba7868fe700017f15e54109804aa0df1aa9af6da9712b61be3",
-    "visual_review": "All fifteen final page layouts inspected in rendered contact sheets; new flag paragraph and final validation/reference pages also inspected individually. No clipping, overlap or unreadable formulas.",
+    "tex_sha256": "1919bcc162bbab63ff5ed1533f496767685d90a30389a9a8c5ced2a90eaa8d92",
+    "pdf_sha256": "2c83d0c9463af1e7fa30ba76812b6b7e9621878e0bc533bb8af42cd061a1101b",
+    "visual_review": "All fifteen page layouts inspected after the attribution revision, including the acknowledgement on page 13 at full reading size. No clipping, overlap or unreadable formulas.",
     "latex_log_check": "No errors, warnings, overfull or underfull boxes, or undefined references in the final pass.",
-    "pdf_structure_check": "Fifteen pages, blank author metadata, complete theorem statements and resolved references; no unresolved citations in extracted text.",
+    "pdf_structure_check": "Fifteen pages, blank author metadata, complete theorem statements and resolved references; no embedded files or unresolved citations.",
     "pdf_build_command": "latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=results/local/corner-cut-latex paper/corner_cut_growth/main.tex",
-    "assistance_disclosure": "OpenAI Codex proposed and developed the quantitative argument, carried out the literature comparison, and produced the checks and draft during an investigation prompted by the project owner. No independent referee assessment or acceptance claimed.",
+    "assistance_disclosure": "This work began with the project originator's smooth-number and interleaving observations and continues under their research guidance. Proof development, literature comparison, verification code and drafting used substantial AI assistance (OpenAI Codex). Full proofs and reproducible checks support independent assessment.",
     "version_citations": "Inspected Elizalde--Galvan arXiv v1 and the uninspected journal version are cited separately. Wagner's upper theorem is also located as thesis Theorem 3.15.",
     "review_limit": "Internal mathematical review only; no independent referee assessment or journal acceptance claimed.",
     "full_source_comparison": "Vasiliev--Pavlov (2009) full paper now read and cited; exact strict-prefix class distinguished from finite local admissibility; 32 published values independently reproduced."
@@ -1038,5 +1038,25 @@
   "novelty_established_scope": "A defensible research novelty position for the main matching pointwise lower count, established by the completed relevant primary comparison and full proof. This does not assert independent priority adjudication or independent first-discovery claims for every supporting consequence.",
   "independent_referee_assessment": false,
   "journal_acceptance": false,
-  "journal_submission_sent": false
+  "journal_submission_sent": false,
+  "attribution_revision": {
+    "date": "2026-10-19",
+    "scope": "Editorial attribution only: credit the human originator's observations and continuing research guidance, retain one concise factual assistance disclosure, and remove repetitive emphasis from project summaries.",
+    "acknowledgement": "This work began with the project originator's smooth-number and interleaving observations and continues under their research guidance. Proof development, literature comparison, verification code and drafting used substantial AI assistance (OpenAI Codex). Full proofs and reproducible checks support independent assessment.",
+    "mathematical_content": "Every byte outside the attribution paragraphs and the pyramidal submission-readiness sentence was compared against the preceding TeX sources and preserved. No theorem, proof, reference or computational claim changed.",
+    "verification": "All three TeX sources compiled successfully with latexmk. The two public PDFs retain 15 and 8 pages respectively; all page layouts and the changed acknowledgement pages were inspected. Build and smoke tests passed. Research computations were not rerun for this prose-only revision.",
+    "independent_referee_assessment": false,
+    "previous_artifact_sha256": {
+      "paper/corner_cut_growth/main.tex": "eb0b8a277e55df556c7b0730a03e59514daad7c9dfc17c685ba2db29452dd73b",
+      "output/pdf/corner_cut_growth.pdf": "6bed65ecd3ba7aba7868fe700017f15e54109804aa0df1aa9af6da9712b61be3"
+    },
+    "current_artifact_sha256": {
+      "paper/corner_cut_growth/main.tex": "1919bcc162bbab63ff5ed1533f496767685d90a30389a9a8c5ced2a90eaa8d92",
+      "output/pdf/corner_cut_growth.pdf": "2c83d0c9463af1e7fa30ba76812b6b7e9621878e0bc533bb8af42cd061a1101b"
+    },
+    "pdf_pages": 15,
+    "acknowledgement_pages": [
+      13
+    ]
+  }
 }

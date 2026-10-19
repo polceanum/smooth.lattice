@@ -179,16 +179,17 @@
     "internal_assessment_complete": true,
     "ready_for_independent_review": true,
     "originality_case": "Defensible within the documented primary corpus; globally unconfirmed.",
-    "significance": "A sharp, uniform growing-dimension interaction law with exact reconstruction and validity-cone consequences. A credible focused contribution in combinatorial geometry/computational algebra, with no demonstrated practical unranking speedup or major prime-theoretic implication."
+    "significance": "A sharp, uniform growing-dimension interaction law with exact reconstruction and validity-cone consequences. A credible focused contribution in combinatorial geometry/computational algebra, with no demonstrated practical unranking speedup or major prime-theoretic implication.",
+    "research_origins_and_assistance": "This work began with the project originator's smooth-number and interleaving observations and continues under their research guidance. Proof development, literature comparison, verification code and drafting used substantial AI assistance (OpenAI Codex). Full proofs and reproducible checks support independent assessment."
   },
   "remaining_internal_work": [],
   "preservation": "All 235 tracked files outside the selected eight, including core kernels, auditor, older manuscripts and paused ML, are byte-preserved. All 25 previous non-main checker functions and historical research blocks are preserved.",
   "artifact_sha256": {
-    "paper/interleaving_support/main.tex": "ddaaef78def09f0494d1303b0e2a17917965c4231b55fcd33cf6d60a1c0c1ce4",
-    "output/pdf/interleaving_support.pdf": "381109fe767fbb26735a4a08a04b68928a5dce564d9bf539c897fb08c251f5a1",
+    "paper/interleaving_support/main.tex": "cc2a315f7dc517e91b5a9c589df219dc9eb789bc1f83875888e78eaaf12ba078",
+    "output/pdf/interleaving_support.pdf": "38b734c02587213ffc3a53c3d2b112f82cc17f6e317a3ec038694636c319650b",
     "scripts/run_face_reconstruction_checks.py": "1be3ce38b53b46be6bccde9ffa4954fbc0e50b018ce2b3cc1733b41acdee08ba",
     "results/research/face_reconstruction_checks.json": "dd9e3afef12d341c952ecf0a5207d7d853424d6e90523e5cfa1a5ed9af42ec2c",
-    "docs/occurrence_reconstruction.md": "5a6e8a8b8e7355d31adc359a12b869bebbe2e946415b54cb0b7555e37ced0b07"
+    "docs/occurrence_reconstruction.md": "7f17cc75468d6f0845a7656605bdcf88c68d33dbe2b0b60d7265c7a821d5ef06"
   },
   "ready_for_independent_review": true,
   "proof_audit": {
@@ -260,5 +261,25 @@
     "results/research/face_reconstruction_checks.json",
     "results/research/interleaving_support_audit.json",
     "results/research/occurrence_reconstruction_goal.json"
-  ]
+  ],
+  "attribution_revision": {
+    "date": "2026-10-19",
+    "scope": "Editorial attribution only: credit the human originator's observations and continuing research guidance, retain one concise factual assistance disclosure, and remove repetitive emphasis from project summaries.",
+    "acknowledgement": "This work began with the project originator's smooth-number and interleaving observations and continues under their research guidance. Proof development, literature comparison, verification code and drafting used substantial AI assistance (OpenAI Codex). Full proofs and reproducible checks support independent assessment.",
+    "mathematical_content": "Every byte outside the attribution paragraphs and the pyramidal submission-readiness sentence was compared against the preceding TeX sources and preserved. No theorem, proof, reference or computational claim changed.",
+    "verification": "All three TeX sources compiled successfully with latexmk. The two public PDFs retain 15 and 8 pages respectively; all page layouts and the changed acknowledgement pages were inspected. Build and smoke tests passed. Research computations were not rerun for this prose-only revision.",
+    "independent_referee_assessment": false,
+    "previous_artifact_sha256": {
+      "paper/interleaving_support/main.tex": "ddaaef78def09f0494d1303b0e2a17917965c4231b55fcd33cf6d60a1c0c1ce4",
+      "output/pdf/interleaving_support.pdf": "381109fe767fbb26735a4a08a04b68928a5dce564d9bf539c897fb08c251f5a1"
+    },
+    "current_artifact_sha256": {
+      "paper/interleaving_support/main.tex": "cc2a315f7dc517e91b5a9c589df219dc9eb789bc1f83875888e78eaaf12ba078",
+      "output/pdf/interleaving_support.pdf": "38b734c02587213ffc3a53c3d2b112f82cc17f6e317a3ec038694636c319650b"
+    },
+    "pdf_pages": 8,
+    "acknowledgement_pages": [
+      8
+    ]
+  }
 }
