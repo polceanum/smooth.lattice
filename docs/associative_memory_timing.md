@@ -4094,3 +4094,326 @@ baseline, with explicit noise and query semantics. Merely replacing a
 codebook, changing the temperature or exploiting an uncharged resource
 does not qualify. No further neural training or contribution manuscript
 is justified by this iteration alone.
+
+## Continuous amplitudes: a sparse polynomial baseline and its limits
+
+The preceding turn removed an unnecessary admission restriction for
+Boolean keys, but did not establish novelty. Here the key coordinates
+may have arbitrary signed amplitudes on a declared finite grid. A
+uniform polynomial approximation still permits sparse reads and canonical
+overwrites without a fixed small latent dimension. Its sparse feature
+counts give an asymptotic tradeoff with robust retention. The underlying
+construction is classical polynomial attention, so this is a stronger
+baseline and feasibility result, not completion of the active goal.
+
+### Uniform approximation and complete dynamic accounting
+
+Fix capacity N, dimension d, key support bound w, query support bound T0,
+integer H>=1 and accuracy epsilon=2^-p<1. Raw keys and queries use the
+declared grid 1/R, with R a power of two. Require ||x_i||_2<=1,
+|supp(x_i)|<=w, ||q||_2<=H and |supp(q)|<=T0. Distinct numeric keys are
+admitted, even if their supports agree; duplicates are rejected. Every
+value is an independent v-vector on a declared dyadic grid with magnitude
+at most M. The target function is the complete attention mean with weights
+exp(<q,x_i>). A transformer scaling factor can be included in q, with its
+cost and norm bound charged. There is no omitted zero-score background.
+
+Choose m=L+1>=H such that
+
+    9^H * H^m / m! <= epsilon,
+    P_L(t)=sum_{j=0}^L t^j/j!.
+
+For |t|<=H, Taylor's remainder and exp(2H)<9^H give
+
+    |P_L(t)-exp(t)| <= exp(H)*H^m/m! <= epsilon*exp(t).
+
+In particular P_L is positive throughout the score range. The degree
+can be O(H+log(1/epsilon)): m!>=(m/e)^m, e<3 and
+m>=max(6H,4H+p) suffice. Selecting the first m>=H passing the displayed
+integer test is deterministic; it is not a guessed floating tolerance.
+
+For a multi-index alpha with |alpha|<=L, the multinomial theorem gives
+
+    P_L(<q,x>)=sum_{|alpha|<=L} q^alpha*x^alpha/alpha!.
+
+If x has s nonzero coordinates, exactly F_s=C(L+s,s) such monomials are
+nonzero, including the constant. Store only populated feature cells.
+Queries can additionally skip every monomial involving more than w
+coordinates: no stored key can activate it. For query support T, enumerate
+only j<=min(w,T,L) coordinates and positive powers of total degree <=L.
+There are C(T,j)*C(L,j) choices at support size j, so the actual query
+feature count is Q(T)=sum_{j<=min(w,T,L)} C(T,j)*C(L,j), rather than the
+larger unpruned F_T. The checker exercises T>w against the direct oracle.
+For raw integer grid coordinates X=R*x and Q=R*q, use the integers
+
+    Phi_alpha(X)=R^(L-|alpha|)*product_a X_a^alpha_a,
+    Psi_alpha(Q)=(L!/alpha!)*R^(L-|alpha|)*product_a Q_a^alpha_a.
+
+Here alpha! divides L!. Their inner product is
+R^(2L)*L!*P_L(<q,x>). A cell maintains a usage count, the sum of its Phi
+values and the sum of Phi times each current value-grid unit. Querying
+only nonzero Psi features returns the exact polynomial numerator and
+denominator on this common integer scale. Signed coefficients may cancel;
+the denominator is nevertheless positive for every nonempty active state.
+
+Retain the independent current values explicitly in this construction.
+Unlike the Boolean full-support cells, these moments do not isolate a
+value: several keys can share the same support. Each slot also retains
+its sparse raw key and cached pairs of (feature handle,Phi). An overwrite
+reads its own old value, forms the canonical delta and changes its moments.
+Deletion subtracts the current contribution and frees only zero-usage
+cells. Neither a zero moment nor a zero value sum implies an empty cell.
+Replacement validates the complete raw key, support, norm and numeric
+duplicate status before mutation. These exact current-state operations
+have no accumulated rounding error or history horizon.
+
+Let F_w=C(L+w,w), Q(T)=sum_{j<=min(w,T,L)} C(T,j)*C(L,j) and
+
+    Mmax=min(N*F_w,C(d+L,L)),
+    Lambda=log(Mmax+N+1).
+
+Balanced ordered dictionaries for sparse multi-indices and raw keys give
+the following conservative guarded-word bounds:
+
+    state: O(Mmax*(v+2)+N*(F_w+w+v+1)+d+L);
+    complete raw read: O(d+Q(T)*(L+T+Lambda+v+1));
+    value overwrite: O(F_w*(v+1));
+    raw replacement: O(d+F_w*(L+w+Lambda+v+1)).
+
+The stored keys and independent values also permit direct scalar-dot
+polynomial evaluation in O(d+n*(w+L+v+1)) operations at n active slots;
+a complete implementation can choose this fallback when cheaper.
+Deletion has the replacement bound without the raw scan. Nodes can be
+transplanted during dictionary deletion to preserve surviving cached
+handles. The state includes per-handle Phi values, all moment vectors,
+usage counts, independent values, sparse keys, dictionaries, pointers and
+slot/free-node metadata. Building costs allocation plus every insertion.
+Scratch for coordinate powers, factorials and the output is
+O((w+T0)*L+v+1) words. No claim of constant cost independent of degree,
+sparsity, raw dimension, precision or value width is intended.
+
+If value grid units require s bits, scalar partial sums fit in
+
+    s+2*L*log2(R)+log2(L!)+L*log2(H)
+      +ceil(log2(N+1))+ceil(log2(Q(T0)+1))+O(1)
+
+bits: |Phi|<=R^L and |Psi|<=L!*R^L*H^L, with at most Q(T0) signed
+terms and N keys per moment. Choose the word width also to encode sparse
+feature tuples in O(min(L,max(w,T0))*(log(d+1)+log(L+1))) bits, full raw
+sparse keys including amplitudes, and every arena address. This is a
+wide-word model; a bit implementation additionally charges arithmetic on
+these widths. The certificate bounds Python integers against guards
+chosen before the reads. Its tuple maps and dense raw test inputs are a
+correctness oracle, not the written sparse-key arena or a runtime benchmark.
+
+For each active weight, the relative error is at most epsilon. Summing
+both numerator and denominator then gives coordinatewise attention error
+at most 2*M*epsilon/(1-epsilon), for arbitrary independent signed values.
+This is uniform over every valid state and query, including adaptively
+chosen queries and arbitrarily many valid edits. It is not an estimate
+based on the tested query distribution. Non-dyadic real inputs require
+quantization accounting: when both original and quantized inputs satisfy
+the norm bounds, key/query Euclidean errors sigma_x,sigma_q perturb a
+score by at most H*sigma_x+sigma_q. Integrating the softmax derivative
+bounds the additional output error by 2*M*(H*sigma_x+sigma_q). Support
+selection and the encoder's cost or stability require their own argument.
+
+### Retention without treating amplitude jitter as bit correction
+
+Suppose the current key family also satisfies, for all distinct t,i,
+
+    ||x_t||_2^2 - <x_t,x_i> >= gamma > 0.
+
+At q=beta*x_t+e, with ||e||_2<=beta*gamma/4, a target/other score gap
+is at least beta*gamma-2*||e||_2>=beta*gamma/2. The target's total
+off-target weight ratio is at most (N-1)*exp(-beta*gamma/2). For actual
+values in [-1,1] on grid delta=2^-g, a concrete sufficient choice at
+gamma>=1/32 is
+
+    beta=64*(g+ceil(log2(16*(N+1)))),
+    H=2*beta,  epsilon=2^(-(g+6)).
+
+The exact exponential mean is within delta/8 of the target value, and
+the polynomial approximation adds less than delta/16. Nearest-grid
+rounding therefore recovers every current independent value. Validity
+still requires the separately declared support bound on q; a Euclidean
+noise bound alone does not imply sparsity.
+
+There is a generic support-based way to enforce the score-gap promise.
+Take weight-w supports with pairwise intersection <k<=w/16. Choose a
+power of two R0 with 2*sqrt(w)<=R0<4*sqrt(w); each nonzero amplitude may
+vary arbitrarily on a declared finer grid within absolute range
+[1/R0,2/R0], with either sign. Then
+
+    ||x_i||_2<=1,
+    ||x_t||_2^2-<x_t,x_i> >= (w-4*(k-1))/R0^2 >= 1/32.
+
+Unique k-subset owners certify admission from the full raw support before
+mutation, as in the earlier signature baseline. Maintaining these owners
+adds N*C(w,k) handles/entries, tuple widths and the corresponding
+generation/dictionary work per raw key edit; value-only overwrites leave
+them unchanged. Thus this retention promise is not silently verified for
+free. The generic polynomial index itself accepts all norm-bounded keys,
+but cannot promise separated retention for an arbitrary such family.
+
+This noise guarantee allows erasing a constant fraction of a sufficiently
+large key's nonzero coordinates. Erasing ell coordinates costs at most
+2*beta*sqrt(ell)/R0 in Euclidean query noise, so any
+ell<=gamma^2*R0^2/64 fits the stated basin. Here ell can be Theta(w),
+and erasure does not increase support. This is stronger than the preceding
+Boolean baseline's tiny scaled-amplitude perturbation promise. It does
+not establish superiority to classical coding/signature decoders for
+retention alone; the complete attention function is the additional task.
+
+For asymptotic feasibility put m=log2(N),
+
+    w=ceil(64*m/floor(log2(m+2))),  d=w^4,  k=floor(w/16).
+
+For sufficiently large N, a fresh independent uniform weight-w support
+is rejected in any current state of at most N keys with probability at
+most N*C(w,k)^2/C(d,k)<=N^-2. Indeed
+C(w,k)^2/C(d,k)<=(e^2*w^2/(k*d))^k=N^(-12+o(1)).
+This gives existence and a conditional per-proposal guarantee, not a
+semantic encoder or a license to change a user-specified support. Atomic
+rejection remains possible for a proposed raw key. The certificate checks
+the exact integer inequality at seven specified conceptual parameters.
+
+With T0=O(w), g=O(log(N)), log2(R),s=polylog(N), and v polynomially
+bounded in N,
+the retention choices above have L=O(log(N)). Stars-and-bars gives
+
+    log(F_w),log(Q(T0))
+      =O(log(N)*log(log(log(N)))/log(log(N)))=o(log(N)).
+
+Hence total state and initialization are N^(1+o(1))*(v+1), while complete
+reads, value overwrites and admitted raw key edits cost N^o(1)*(v+1),
+including their polylogarithmic word widths and bit-operation factors.
+The retained subclass's signature work is also subpolynomial since
+C(w,k)<=2^w=N^o(1). Every independent value remains stored. This explains
+how a sparse high-dimensional feature reader can avoid a fixed small-rank
+bottleneck; it does not beat the same sparse polynomial-feature method.
+
+The finite constants are a serious limitation of this particular bound.
+At relative error 2^-16, the certified Taylor choices for score radii
+H=1,4,32 have degrees 9,23,147. For weight-four keys the feature counts
+are respectively 715,17,550,20,811,575; for support-eight queries, after
+key-support pruning, they are 14,605,726,295,1,336,382,685. These are
+arithmetic counts, not measured runtime. Better approximation or local
+scaling might reduce them, but would need a complete comparison and proof.
+The conceptual
+packing parameters likewise do not certify a useful finite model size.
+
+The difficulty is not solely a conservative Taylor remainder. Here is a
+finite certificate for every fixed scalar polynomial on a particular
+uniform relative-error task. Suppose P has degree <m and approximates
+exp(t) within relative error epsilon at t_j=-H+j*log(a), j=0,...,m,
+where a>1 and a^m<exp(2H). Its m-th finite difference is zero, whereas
+the exponential's difference is exp(-H)*(a-1)^m. The error difference is
+bounded by epsilon*exp(-H)*(a+1)^m. Thus necessarily
+
+    epsilon >= ((a-1)/(a+1))^m.
+
+Take H=64,a=10,m=55,epsilon=2^-16. The opposite inequality holds
+exactly, 2^16*9^55>11^55. Also the first 129 nonnegative terms of the
+exp(128) series already exceed 10^55, so all nodes lie in [-64,64].
+Every uniform relative approximant on that real interval therefore has
+degree at least 55. Any nonzero leading coefficient at degree D>=55
+activates at least
+
+    sum_{j=1}^4 C(8,j)*C(D-1,j-1) >= 1,817,936
+
+top-degree monomials at query support eight and key weight four. All
+these support patterns can already occur in the 70 positive keys with
+four coordinates equal to 1/2 in eight dimensions. Hence the full
+monomial recipe can have more query features than 2^20 independent
+values even after pruning and changing polynomial coefficients. This is
+a restriction on that fixed uniform polynomial/feature recipe, not a
+general memory/query lower bound. A direct scan, sketches, alternate
+representations or a polynomial adapted to a smaller score range remain
+possible. The nodes are real, so this is not a finite-grid-only lower
+bound. General approximation-degree bounds are existing research; see
+[Aggarwal--Alman, CCC 2022](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CCC.2022.22).
+The elementary finite-difference witness is not claimed as new priority.
+
+### Prior art changes the novelty assessment
+
+[Alman--Song, Lemmas 3.2--3.6](https://arxiv.org/abs/2302.13214)
+already reduce exponential attention to polynomial feature products and
+control relative-weight normalization. Evaluating only nonzero monomials
+is the ordinary sparse specialization of that mechanism. The recent
+[Heinsen--Kozachkov, Sections 2.3--2.5, Equations 7--11](https://arxiv.org/abs/2602.00294)
+explicitly groups symmetric Taylor tensors into the nonredundant
+multinomial basis and aggregates feature/value state. Degree, norm,
+accuracy and finite precision must be matched when using its fixed-cost
+claims. Our integer scaling, dynamic deltas and sparse counts do not by
+themselves constitute a new factorization or a separation from a faithful
+sparse implementation of these methods.
+
+[Liang--Song--Xu--Yin--Zhuo, Theorem 1.2 and Definition 2.7](https://arxiv.org/abs/2208.03915)
+is a relevant dynamic KDE comparator, including adaptive queries. Its
+cost(f) factor cannot be suppressed: for the Gaussian kernel the paper
+states cost(f)=f_KDE^(-(1+o(1))/4). The epsilon^-2 dependence, density
+parameters, signed value-weight reduction, finite precision and any
+simultaneous update/query guarantee must be instantiated in our model.
+The audit examined those main statements and the kernel-cost definition,
+not every extension. The paper is not excluded by a mismatch in its
+scalar KDE interface, and no superiority over it has been proved.
+
+[Xie et al., *Scaling Attention via Feature Sparsity*, Sections 3.1--3.2](https://arxiv.org/abs/2603.22300v2)
+already uses sparse high-dimensional queries and keys with learned
+continuous amplitudes. Thus that architectural premise is prior art.
+Its feature-overlap cost is an important comparator, including Top-k
+selection and all independent dense values. There is a specific
+mathematical accounting gap in Appendix C.5, printed page 18: it infers
+sparsity of the softmax matrix from sparse queries and keys. For finite
+unmasked scores every softmax entry is positive. For example two queries
+(1,0), two keys (0,1),(0,-1), and scalar values 2,6 have no feature-overlap
+events, but both complete outputs equal 4, with four positive attention
+entries. Omitting zero-score interactions changes the function.
+
+The earlier background-plus-posting identity repairs that issue exactly:
+keep sum_i V_i and n, then add only (exp(score_i)-1) corrections for
+keys with overlapping supports. It applies to real amplitudes too, with
+an explicitly algebraic exp operation or charged finite-precision
+evaluation. Its complete cost contains input/value work and posting
+events. Appendix C.1 initializes full zero score tiles, and Appendix B.2
+also acknowledges substantial P@V work. The C.5 reasoning alone does
+not justify removing that work. This counterexample does not audit the
+reported experiments or establish a defect in executable code. The
+[official repository](https://github.com/YannX1e/Sparse-Feature-Attention)
+listed its code release as pending when inspected; no implementation
+benchmark or author contact was attempted. The background repair itself
+is elementary and is not a new contribution claim.
+
+### Reproducible evidence and decision
+
+The existing command
+
+    python3 -B scripts/run_timing_restart_checks.py
+
+now emits `continuous_amplitude_baseline`. Four finite cases check 199
+complete polynomial reads against independently maintained raw bindings
+and direct scalar-dot-product polynomial sums, comparing scaled
+numerator, denominator and output. They include distinct amplitudes on
+identical supports, signed moment cancellation, overwrite/deletion/reuse,
+malformed or duplicate raw keys, thirteen atomic invalid queries and
+7,540 never-activated query monomials skipped when T>w.
+A 40-bit fractional-coordinate/80-bit value-unit case uses preselected
+1,049-bit guards and observes at most 988-bit intermediates. Twenty
+queries before and after target overwrites have rational enclosures of
+the true exponential attention inside the target's rounding interval.
+These small tests support the uniform proof; they do not test a learned
+encoder or install the asymptotic key families. All earlier checks remain.
+The scalar approximation obstruction is supported by exact degree-0
+through degree-54 finite-difference cancellations, the geometric-sequence
+difference, the rational positive-series bound and the integer monomial
+count. It does not depend on a floating approximation to exp or log.
+
+The outcome is a more realistic baseline, a nontrivial-noise retention
+regime and a concrete correction to a contemporary complexity argument.
+The sparse polynomial method is established, and the shown finite costs
+do not justify training or a new architecture advantage. Preserve the
+proofs and controls. The active goal still requires a new useful tradeoff
+beyond these methods, or a nonroutine obstruction with a useful consequence;
+this classical specialization and elementary counterexample do not meet
+the publication gate.

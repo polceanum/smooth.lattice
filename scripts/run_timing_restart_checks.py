@@ -4184,6 +4184,328 @@ def capacity_frontier_controls():
             'scope': 'Exact oracle checks for the classical length-stratified all-subsets kernel with a fixed length bias and separate raw-query support/amplitude budgets. Arbitrary distinct keys of weight <=w are admitted; no low-intersection rule or independent value-cache duplicate is used. Full cells isolate each current value. Standard packing/Johnson bounds, affine-geometry minimal-maximal families and exact rekey acceptance counts audit the older admission promise. These are known kernel/design mechanisms, not a novelty or ML-advantage certificate. Fixed-grid amplitude jitter is distinct from binary-key erasure correction. Large finite resource counts are arithmetic bounds, not allocated memory or measured runtime.'}
 
 
+def continuous_amplitude_controls():
+    """Finite-grid sparse Taylor baseline, with exact integer certificates."""
+    from math import comb, factorial
+
+    def degree(radius, accuracy_bits):
+        m = 1
+        while m < radius or 9 ** radius * radius ** m * 2 ** accuracy_bits > factorial(m):
+            m += 1
+        return m - 1
+
+    class SparsePolynomial:
+        def __init__(self, capacity, dimension, weight, query_support, radius, grid=2, accuracy=8, value_bits=4):
+            self.n, self.d, self.w, self.t = capacity, dimension, weight, query_support
+            self.h, self.r, self.p, self.g = radius, grid, accuracy, value_bits
+            self.l = degree(radius, accuracy)
+            self.factorials = [factorial(j) for j in range(self.l + 1)]
+            self.scale = self.factorials[-1] * grid ** (2 * self.l)
+            self.fq = sum(comb(query_support, j) * comb(self.l, j)
+                          for j in range(min(weight, query_support, self.l) + 1))
+            self.guard = (value_bits + 2 * self.l * grid.bit_length() + self.factorials[-1].bit_length()
+                          + self.l * max(1, radius).bit_length() + (capacity + 1).bit_length()
+                          + self.fq.bit_length() + 8)
+            self.keys, self.values, self.handles, self.cells = {}, {}, {}, {}
+            self.stats = dict(reads=0, lookups=0, admitted=0, rejected=0, overwrites=0, deletes=0,
+                              signed_features=0, live_cancelled_moments=0, max_cells=0, max_bits=0,
+                              pruned_query_monomials=0)
+
+        def guarded(self, *values):
+            bits = max(abs(v).bit_length() + 1 for v in values)
+            self.stats['max_bits'] = max(bits, self.stats['max_bits'])
+            assert bits <= self.guard
+
+        def features(self, raw, query=False):
+            active = [(a, x) for a, x in enumerate(raw) if x]
+            powers = [[x ** j for j in range(self.l + 1)] for _, x in active]
+            limit = min(len(active), self.w if query else len(active), self.l)
+            if query:
+                self.stats['pruned_query_monomials'] += (comb(self.l + len(active), len(active))
+                                                        - sum(comb(len(active), j) * comb(self.l, j)
+                                                              for j in range(limit + 1)))
+            constant = self.r ** self.l * (self.factorials[-1] if query else 1)
+            self.guarded(constant)
+            yield (), constant
+            for size in range(1, limit + 1):
+                for selected in combinations(range(len(active)), size):
+                    for total in range(size, self.l + 1):
+                        for extra in compositions(total - size, size):
+                            exponents = tuple(x + 1 for x in extra)
+                            alpha = tuple((active[j][0], exponent) for j, exponent in zip(selected, exponents))
+                            value = self.r ** (self.l - total)
+                            divisor = 1
+                            for j, exponent in zip(selected, exponents):
+                                value *= powers[j][exponent]
+                                divisor *= self.factorials[exponent]
+                            if query:
+                                assert self.factorials[-1] % divisor == 0
+                                value *= self.factorials[-1] // divisor
+                            self.guarded(value)
+                            self.stats['signed_features'] += value < 0
+                            yield alpha, value
+
+        def snapshot(self):
+            return (dict(self.keys), dict(self.values), dict(self.handles), dict(self.cells))
+
+        def remove(self, slot):
+            if slot not in self.keys:
+                return
+            old = self.values.pop(slot)
+            for alpha, feature in self.handles.pop(slot):
+                count, moment, sums = self.cells[alpha]
+                count -= 1
+                moment -= feature
+                sums = tuple(x - feature * y for x, y in zip(sums, old))
+                self.guarded(moment, *sums)
+                if count:
+                    self.cells[alpha] = count, moment, sums
+                else:
+                    assert moment == 0 and sums == (0, 0)
+                    del self.cells[alpha]
+            del self.keys[slot]
+            self.stats['deletes'] += 1
+
+        def replace(self, slot, raw, value):
+            assert 0 <= slot < self.n and all(type(x) is int and abs(x) <= 2 ** self.g for x in value)
+            valid = (len(raw) == self.d and all(type(x) is int for x in raw)
+                     and sum(x != 0 for x in raw) <= self.w and sum(x * x for x in raw) <= self.r ** 2
+                     and all(i == slot or key != raw for i, key in self.keys.items()))
+            if not valid:
+                self.stats['rejected'] += 1
+                return False
+            handles = tuple(self.features(raw))
+            assert len(handles) == comb(self.l + sum(x != 0 for x in raw), sum(x != 0 for x in raw))
+            self.remove(slot)
+            self.keys[slot], self.values[slot], self.handles[slot] = tuple(raw), tuple(value), handles
+            for alpha, feature in handles:
+                count, moment, sums = self.cells.get(alpha, (0, 0, (0, 0)))
+                moment += feature
+                sums = tuple(x + feature * y for x, y in zip(sums, value))
+                self.guarded(moment, *sums)
+                self.cells[alpha] = count + 1, moment, sums
+            self.stats['admitted'] += 1
+            self.stats['max_cells'] = max(self.stats['max_cells'], len(self.cells))
+            return True
+
+        def overwrite(self, slot, value):
+            assert all(type(x) is int and abs(x) <= 2 ** self.g for x in value)
+            delta = tuple(x - y for x, y in zip(value, self.values[slot]))
+            for alpha, feature in self.handles[slot]:
+                count, moment, sums = self.cells[alpha]
+                sums = tuple(x + feature * y for x, y in zip(sums, delta))
+                self.guarded(moment, *sums)
+                self.cells[alpha] = count, moment, sums
+            self.values[slot] = tuple(value)
+            self.stats['overwrites'] += 1
+
+        def check(self, reference):
+            assert self.keys == {slot: raw for slot, (raw, _) in reference.items()}
+            assert self.values == {slot: value for slot, (_, value) in reference.items()}
+            expected = {}
+            for slot, (raw, value) in reference.items():
+                for alpha, feature in self.features(raw):
+                    count, moment, sums = expected.get(alpha, (0, 0, (0, 0)))
+                    expected[alpha] = (count + 1, moment + feature,
+                                       tuple(x + feature * y for x, y in zip(sums, value)))
+            assert self.cells == expected
+            assert len(self.cells) <= len(self.keys) * comb(self.l + self.w, self.w)
+            self.stats['live_cancelled_moments'] += sum(c > 0 and m == 0 for c, m, _ in self.cells.values())
+
+        def read(self, raw):
+            if (len(raw) != self.d or any(type(x) is not int for x in raw)
+                    or sum(x != 0 for x in raw) > self.t
+                    or sum(x * x for x in raw) > (self.h * self.r) ** 2):
+                raise ValueError('raw query exceeds declared grid/support/norm bounds')
+            numerator, denominator = [0, 0], 0
+            for alpha, feature in self.features(raw, query=True):
+                _, moment, sums = self.cells.get(alpha, (0, 0, (0, 0)))
+                denominator += feature * moment
+                numerator = [x + feature * y for x, y in zip(numerator, sums)]
+                self.guarded(denominator, *numerator)
+                self.stats['lookups'] += 1
+            assert denominator > 0 if self.keys else denominator == 0 and numerator == [0, 0]
+            self.stats['reads'] += 1
+            self.last = tuple(numerator), denominator
+            return tuple(F(x, denominator) for x in numerator) if denominator else None
+
+    def direct_weight(index, raw, query):
+        dot = sum(x * y for x, y in zip(raw, query))
+        assert abs(dot) <= index.h * index.r ** 2
+        # Powers of the scalar dot product: no monomial cells are consulted.
+        weight = sum(index.factorials[-1] // index.factorials[j]
+                     * dot ** j * index.r ** (2 * (index.l - j)) for j in range(index.l + 1))
+        assert weight > 0
+        return weight
+
+    def verify(index, reference, query):
+        result = index.read(query)
+        numerator, denominator = [0, 0], 0
+        for raw, value in reference.values():
+            weight = direct_weight(index, raw, query)
+            denominator += weight
+            numerator = [x + weight * y for x, y in zip(numerator, value)]
+        assert index.last == (tuple(numerator), denominator)
+        assert result == (tuple(F(x, denominator) for x in numerator) if denominator else None)
+        return result
+
+    cases, retention_reads, invalid_queries = [], 0, 0
+    for dimension, weight, support, radius, grid, value_bits in (
+            (3, 2, 3, 1, 2, 4), (4, 2, 3, 2, 2, 4), (1, 1, 1, 9, 2, 4), (2, 2, 2, 2, 2 ** 40, 80)):
+        index = SparsePolynomial(12, dimension, weight, support, radius, grid=grid, value_bits=value_bits)
+        reference = {}
+        if dimension >= 3:
+            cores = [(0, 0, 0), (1, 0, 0), (2, 0, 0), (-1, 0, 0),
+                     (0, 1, -1), (0, -1, 1), (1, 1, 0), (-1, 1, 0)]
+            keys = [key + (0,) * (dimension - 3) for key in cores]
+        elif dimension == 2:
+            keys = [(grid - 1, 1), (grid // 2, grid // 3), (0, 0), (-grid // 2, grid // 3)]
+        else:
+            keys = [(2,), (-2,)]
+        for slot, key in enumerate(keys):
+            value = ((2 ** 78 + slot, -2 ** 77 - slot) if value_bits == 80 else (slot - 4, 4 - slot))
+            assert index.replace(slot, key, value)
+            reference[slot] = tuple(key), tuple(value)
+        index.check(reference)
+        queries = [q for q in product((-1, 0, 1), repeat=dimension)
+                   if sum(x != 0 for x in q) <= support and sum(x * x for x in q) <= (grid * radius) ** 2]
+        queries.extend(tuple((grid if j == a else 0) for j in range(dimension)) for a in range(dimension))
+        if dimension == 2:
+            queries.extend(((grid // 3, -grid // 5), (-grid, 0), (0, 2 * grid)))
+        for q in queries:
+            verify(index, reference, q)
+        for slot in range(min(3, len(keys))):
+            value = ((2 ** 79 - 1 - slot, -2 ** 78 + slot) if value_bits == 80 else (7 - slot, -7 + slot))
+            index.overwrite(slot, value)
+            reference[slot] = reference[slot][0], value
+            index.check(reference)
+            for q in queries[:5]:
+                verify(index, reference, q)
+        if dimension == 1:
+            epsilon = F(1, 2 ** index.p)
+            for slot in (0, 1):
+                for phase in range(2):
+                    if phase:
+                        index.overwrite(slot, (-11 + slot, 11 - slot))
+                        reference[slot] = reference[slot][0], (-11 + slot, 11 - slot)
+                    for noise in (-2, -1, 0, 1, 2):
+                        q = (8 * index.keys[slot][0] + noise,)
+                        result = verify(index, reference, q)
+                        # Each true exp weight is in [P/(1+eps),P/(1-eps)].
+                        low, high = [F(0), F(0)], [F(0), F(0)]
+                        zlow = zhigh = F(0)
+                        for other, key in index.keys.items():
+                            pweight = direct_weight(index, key, q)
+                            wl, wu = F(pweight, 1 + epsilon), F(pweight, 1 - epsilon)
+                            zlow += wl; zhigh += wu
+                            for j, value in enumerate(index.values[other]):
+                                low[j] += min(wl * value, wu * value)
+                                high[j] += max(wl * value, wu * value)
+                        for j, target in enumerate(index.values[slot]):
+                            endpoints = [a / b for a in (low[j], high[j]) for b in (zlow, zhigh)]
+                            assert min(endpoints) > target - F(1, 2)
+                            assert max(endpoints) < target + F(1, 2)
+                        assert tuple(round(x) for x in result) == index.values[slot]
+                        retention_reads += 1
+            # Distinct amplitudes with identical supports are valid admissions.
+            assert index.replace(2, (1,), (13, -13))
+            reference[2] = (1,), (13, -13)
+            verify(index, reference, (3,))
+            index.check(reference)
+        before = index.snapshot()
+        assert not index.replace(0, index.keys[1], (1, -1))
+        assert not index.replace(0, (grid + 1,) + (0,) * (dimension - 1), (1, -1))
+        if dimension > weight:
+            assert not index.replace(0, (1,) * (weight + 1) + (0,) * (dimension - weight - 1), (1, -1))
+        assert index.snapshot() == before
+        invalid = [(), (grid * radius + 1,) + (0,) * (dimension - 1), (0.5,) + (0,) * (dimension - 1)]
+        if dimension > support:
+            invalid.append((1,) * (support + 1) + (0,) * (dimension - support - 1))
+        for raw in invalid:
+            before = index.snapshot()
+            try:
+                index.read(raw)
+                assert False
+            except ValueError:
+                pass
+            assert index.snapshot() == before
+            invalid_queries += 1
+        for slot in list(index.keys):
+            index.remove(slot)
+            reference.pop(slot)
+        index.check(reference)
+        assert verify(index, reference, (0,) * dimension) is None
+        assert index.replace(0, (0,) * dimension, (0, 0))
+        reference[0] = (0,) * dimension, (0, 0)
+        assert verify(index, reference, (0,) * dimension) == (F(0), F(0))
+        cases.append({'dimension': dimension, 'key_support_bound': weight, 'query_support_bound': support,
+                      'query_l2_radius': radius, 'grid_denominator': index.r, 'relative_error_bits': index.p,
+                      'value_unit_bits': index.g,
+                      'polynomial_degree': index.l, 'preselected_guard_bits': index.guard,
+                      'controls': dict(index.stats)})
+    assert sum(c['controls']['signed_features'] for c in cases) > 0
+    assert sum(c['controls']['live_cancelled_moments'] for c in cases) > 0
+    assert sum(c['controls']['pruned_query_monomials'] for c in cases) > 0
+    resource = []
+    for radius in (1, 2, 4, 8, 16, 32):
+        level = degree(radius, 16)
+        resource.append({'score_radius': radius, 'relative_error_bits': 16, 'degree': level,
+                         'features_per_weight_4_key': comb(level + 4, 4),
+                         'unpruned_features_per_support_8_query': comb(level + 8, 8),
+                         'query_features_after_weight_4_key_support_pruning':
+                             sum(comb(8, j) * comb(level, j) for j in range(min(4, level) + 1))})
+    # Finite-difference witness for any uniform scalar polynomial, not
+    # just this Taylor selection. Nodes -64+j*log(10) lie in [-64,64].
+    steps, ratio, radius, precision = 55, 10, 64, 16
+    exp_lower = sum(F((2 * radius) ** j, factorial(j)) for j in range(2 * radius + 1))
+    assert exp_lower > ratio ** steps
+    assert (ratio - 1) ** steps * 2 ** precision > (ratio + 1) ** steps
+    for power in range(steps):
+        assert sum((-1) ** (steps - j) * comb(steps, j) * j ** power for j in range(steps + 1)) == 0
+    assert sum((-1) ** (steps - j) * comb(steps, j) * ratio ** j
+               for j in range(steps + 1)) == (ratio - 1) ** steps
+    leading_features = sum(comb(8, j) * comb(steps - 1, j - 1) for j in range(1, 5))
+    assert leading_features == 1817936 > 2 ** 20
+    catalog = list(combinations(range(8), 4))
+    assert all(any(set(a) <= set(key) for key in catalog)
+               for j in range(1, 5) for a in combinations(range(8), j))
+    obstruction = {'score_radius': radius, 'relative_error_bits': precision,
+                   'minimum_possible_degree_lower_bound': steps, 'geometric_node_ratio': ratio,
+                   'rational_positive_exp_series_terms': 2 * radius + 1,
+                   'annihilated_monomial_degrees': steps,
+                   'leading_degree_query_monomials_with_weight_4_keys_support_8_query': leading_features,
+                   'small_positive_catalog_activating_all_these_support_patterns': len(catalog),
+                   'scope': 'Any single scalar polynomial uniformly approximating exp on the entire real score interval [-64,64] with relative error <=2^-16 has degree >=55. Its nonzero leading coefficient yields at least 1817936 potentially active top-degree monomials even after key-support pruning. This is a feature-recipe cost obstruction, not a general query lower bound, a finite-grid-only obstruction, or a bound against local/query-adaptive approximation, alternate representations, direct scanning or sketches.'}
+    existence = []
+    for m in (16, 32, 64, 128, 256, 512, 1024):
+        logarithm = (m + 2).bit_length() - 1
+        weight = (64 * m + logarithm - 1) // logarithm
+        threshold, dimension, capacity = weight // 16, weight ** 4, 2 ** m
+        assert capacity ** 3 * comb(weight, threshold) ** 2 <= comb(dimension, threshold)
+        # R is a power of two with 2*sqrt(w)<=R<4*sqrt(w).
+        grid = 1 << (1 + ((weight - 1).bit_length() + 1) // 2)
+        assert 4 * weight <= grid ** 2 < 16 * weight
+        gap = F(weight - 4 * (threshold - 1), grid ** 2)
+        assert gap >= F(1, 32)
+        existence.append({'log2_capacity': m, 'key_weight': weight, 'raw_dimension': dimension,
+                          'intersection_threshold': threshold, 'amplitude_grid_scale': grid,
+                          'self_score_gap_lower_bound': str(gap),
+                          'uniform_fresh_proposal_rejection_at_most_inverse_capacity_squared': True})
+    # Sparse feature scores do not make finite, unmasked softmax weights sparse.
+    zero_score = {'queries': [[1, 0], [1, 0]], 'keys': [[0, 1], [0, -1]],
+                  'values': [2, 6], 'coordinate_overlap_events': 0,
+                  'exact_outputs': ['4', '4'], 'positive_attention_entries': 4}
+    assert all(sum(x * y for x, y in zip(q, k)) == 0 for q in zero_score['queries'] for k in zero_score['keys'])
+    assert sum(zero_score['values']) == 2 * 4
+    return {'finite_cases': cases, 'complete_polynomial_raw_reads': sum(c['controls']['reads'] for c in cases),
+            'exp_interval_certified_retention_reads': retention_reads,
+            'atomic_invalid_queries': invalid_queries,
+            'finite_degree_resource_counts': resource, 'uniform_parameter_integer_controls': existence,
+            'uniform_scalar_polynomial_obstruction': obstruction,
+            'zero_score_softmax_witness': zero_score,
+            'scope': 'Classical sparse monomial/Taylor feature attention with dyadic raw amplitudes, exact canonical current-value deltas, all independent values separately stored, explicit word guards and a uniform relative-exp remainder bound. Independent scalar-dot polynomial sums certify every full numerator/denominator, and rational exp-weight enclosures certify a small retention example. Seven conceptual packing/gap controls support the asymptotic nontrivial-noise family but do not allocate those states or certify a learned encoder. The feature mechanisms are prior art; no strongest-method, novelty, ML latency or publication certificate is claimed.'}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -4212,6 +4534,7 @@ def main():
               "affine_coded_baseline": affine_coded_controls(),
               "weighted_exponential_candidate": weighted_exponential_controls(),
               "capacity_frontier_baselines": capacity_frontier_controls(),
+              "continuous_amplitude_baseline": continuous_amplitude_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,

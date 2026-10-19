@@ -18,7 +18,7 @@
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "generic_sparse_key_exponential_attention_classified_as_classical_all_subsets_baseline; low_intersection_admission_obstruction_and_stronger_generic_dynamic_costs_proved_and_checked; new_useful_advantage_unproved"
+      "status": "continuous_amplitude_sparse_polynomial_baseline_proved_with_uniform_relative_error_finite_precision_generic_numeric_admission_and_separated_retention; contemporary_sparse_feature_and_taylor_primary_methods_audited; no_new_strongest_method_advantage"
     },
     {
       "stage": 4,
@@ -2257,5 +2257,265 @@
     "affine_jam_case_count": 6,
     "old_functions_and_certificate_blocks_preserved": true,
     "verification_scope": "The final full exact checker, core build and smoke tests passed. All 234 protected files, twenty-six prior non-main checker ASTs, twenty-seven historical iterations and all historical report blocks are unchanged; final note/checker hashes match the report. The new block checks 10076 complete biased exponential reads against independent direct sums, 336 integer-noise queries before/after target overwrites, twelve malformed queries, generic sparse-key admission, cancellation, deletion and reuse. Six affine-line jam families certify all pair coverage and exact kernel rows; four exhaust 25654 insertion/replacement proposals. The full-subsets index admits a previously blocked 25th key and rounds both old/new values correctly. Sixteen finite necessary-only packing choices and 363 small Johnson controls are recorded. A conceptual million-slot example gives 303 query lookups and at most 1406596 payload cells, excluding all separately charged metadata and precision; no such large state or hardware benchmark was run. The implementation is a correctness oracle, not the written balanced-tree word arena. The scalar retention promise alone is also solved by thresholding plus a dictionary. No new priority, strongest-method or ML advantage is established; no training was run."
+  },
+  "twenty_ninth_iteration": {
+    "previous_turn_classification": "Progress: unrestricted Boolean-key subset attention and a minimal-maximal admission obstruction were proved, checked and published. The stronger classical baseline and threshold-plus-dictionary retention comparator changed the next target to nonbinary amplitudes and a meaningful noise model.",
+    "record": "docs/associative_memory_timing.md, Continuous amplitudes: a sparse polynomial baseline and its limits",
+    "certificate_script": "scripts/run_timing_restart_checks.py",
+    "certificate_report": "results/research/timing_restart_checks.json",
+    "candidate_uniform_bound_proved": true,
+    "model_and_boundary": [
+      "Full exponential attention over all independent current vector values, with signed dyadic keys and queries on a declared grid 1/R. Keys have Euclidean norm at most one and support at most w; queries have norm at most integer H and support at most T0. The polynomial index admits every valid distinct numeric key, including different amplitudes on identical supports. The exact polynomial output uniformly approximates the full exponential output.",
+      "Choose L+1=m>=H with 9^H*H^m/m!<=epsilon. Taylor remainder and Cauchy--Schwarz give a uniform relative weight error epsilon and normalized coordinate error at most 2*M*epsilon/(1-epsilon). No sampled-query or finite-horizon correctness assumption is used.",
+      "Independent values remain explicitly stored; real-amplitude moments do not isolate them. All populated moment cells, usage counts, scalar feature values cached per handle, raw sparse keys, dictionaries, metadata, preprocessing and integer bit widths are charged. Canonical exact current-value deltas prevent horizon-dependent drift.",
+      "Separated retention requires a current self-score gap gamma, a separately valid sparse noisy query, and charged promise maintenance. It does not hold for every norm-bounded key set accepted by the generic polynomial index. A low-intersection support index and amplitude bounds can enforce the gap; its state and raw edit costs are additional. A random-support existence guarantee is not a semantic encoder."
+    ],
+    "construction_and_proof": [
+      "For multi-index alpha, Phi=R^(L-|alpha|)*X^alpha and Psi=(L!/alpha!)*R^(L-|alpha|)*Q^alpha. These are integers and their dot product is R^(2L)*L!*P_L(q dot x). Exact maintained Phi and Phi*V sums compute the complete polynomial numerator and denominator without enumerating values. Usage counts govern cell lifetime despite signed cancellations.",
+      "Let F_w=binom(L+w,w), Q(T)=sum_{j<=min(w,T,L)} binom(T,j)*binom(L,j), Mmax=min(N*F_w,binom(d+L,L)) and Lambda=log(Mmax+N+1). Query generation directly omits support>w, which no key activates. State O(Mmax*(v+2)+N*(F_w+w+v+1)+d+L); raw read O(d+Q(T)*(L+T+Lambda+v+1)); overwrite O(F_w*(v+1)); raw replacement O(d+F_w*(L+w+Lambda+v+1)). A direct scalar-dot polynomial fallback costs O(d+n*(w+L+v+1)) at n active slots. Full tuples/addresses fit declared words.",
+      "Scalar partial sums fit s+2*L*log2(R)+log2(L!)+L*log2(H)+ceil(log2(N+1))+ceil(log2(Q(T0)+1))+O(1) bits. Bit-operation costs, the input grid, any real-input quantization error, and encoder/support selection work remain explicit.",
+      "If norm-squared(x_t)-dot(x_t,x_i)>=gamma, q=beta*x_t+e with norm(e)<=beta*gamma/4 has target score gap at least beta*gamma/2. For gamma>=1/32, beta=64*(g+ceil(log2(16*(N+1)))) and epsilon=2^(-(g+6)) permit exact nearest-grid recovery for all independent values in [-1,1]. Sparse noise support is a separate hypothesis. Constant-fraction erasures of sufficiently large supports fit this basin; classical code/signature retention comparators still apply.",
+      "Weight-w supports with intersection<k<=w/16, nonzero absolute amplitudes in [1/R0,2/R0] and power-of-two 2*sqrt(w)<=R0<4*sqrt(w) have norm<=1 and self-score gap>=1/32. Unique k-subset owners enforce this support promise from raw keys. At m=log2(N), w=ceil(64*m/floor(log2(m+2))), d=w^4, k=floor(w/16), conditional uniform-proposal rejection is at most N^-2 for sufficiently large N by the explicit binomial bound.",
+      "For query support O(w), logarithmic value-grid accuracy and polylogarithmic coordinate precision, L=O(log(N)) and the sparse feature counts are N^o(1). State/preprocessing are N^(1+o(1))*(v+1), and complete reads/writes are N^o(1)*(v+1), including the signature and polylogarithmic bit costs. This is a specialization of classical sparse polynomial attention, not an established separation from it. The bit-cost statement assumes polylogarithmic coordinate/value bit precision and polynomially bounded value width, including address widths.",
+      "A finite zero-overlap example has two queries (1,0), keys (0,1),(0,-1) and values 2,6. Every score is zero, every softmax weight is positive and both outputs are four. Sparse scores alone cannot justify treating the normalized matrix as sparse; the existing total-background plus exp(score)-1 posting correction handles it exactly for continuous amplitudes as well.",
+      "An exact finite-difference argument rules out degree<55 for any single scalar polynomial uniformly approximating exp on the entire real interval [-64,64] at relative error 2^-16. Nodes -64+j*log(10) are certified inside the interval by a rational positive exp-series bound, and 2^16*9^55>11^55 contradicts the degree-54 difference identity. Any nonzero leading term at degree>=55 activates at least 1817936 top-degree monomials at query support eight and key weight four. This limits the full fixed uniform monomial recipe, not arbitrary representations, direct scanning, finite-grid-only methods, sketches or local/query-adaptive approximations."
+    ],
+    "primary_prior_art": [
+      {
+        "source": "https://arxiv.org/abs/2302.13214",
+        "scope": "Alman--Song Lemmas 3.2--3.6 already construct polynomial feature products for attention and bound relative-weight normalization. Nonzero-monomial evaluation is a faithful sparse specialization, not a new feature factorization."
+      },
+      {
+        "source": "https://arxiv.org/abs/2602.00294",
+        "scope": "Heinsen--Kozachkov Sections 2.3--2.5 and Equations 7--11 explicitly group symmetric Taylor tensors into the multinomial basis and aggregate feature/value state. The minimal-basis product on PDF page 5 was visually checked. Their finite degree/norm/accuracy regime must be matched; sparse canonical deltas alone do not establish novelty."
+      },
+      {
+        "source": "https://arxiv.org/abs/2208.03915",
+        "scope": "Liang--Song--Xu--Yin--Zhuo v2 Theorem 1.2, Definition 2.7 and adaptive-query statement were examined. The Gaussian kernel-cost factor is inverse-density to exponent (1+o(1))/4; its displayed definition on PDF page 7 was visually checked. A signed-value/finite-precision reduction and complete matched density/accuracy costs remain needed before any comparative claim. This audit is not exhaustive or evidence that KDE methods cannot match the promise."
+      },
+      {
+        "source": "https://arxiv.org/abs/2603.22300v2",
+        "scope": "Xie et al. already proposes learned sparse queries/keys with continuous amplitudes. Sections 3.1--3.2 and Appendices B.2,C.1,C.5 were examined. The C.5 implication from sparse Q/K to sparse softmax P is false for finite unmasked scores, as the exact zero-score witness shows; PDF page 18 was visually checked. This is a gap in the stated accounting argument, not a reproduced implementation failure or a refutation of reported speed measurements."
+      },
+      {
+        "source": "https://github.com/YannX1e/Sparse-Feature-Attention",
+        "scope": "The official repository listed the code release as pending when inspected. No executable implementation was benchmarked and no author query or outbound message was sent."
+      },
+      {
+        "source": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CCC.2022.22",
+        "scope": "Aggarwal--Alman CCC 2022 is established approximation-degree prior art, identified from its official abstract/problem statement. No claim of a new general degree bound or an equivalence between its absolute-error formulation and this finite relative-error witness is made."
+      }
+    ],
+    "decision": "The continuous-amplitude model has a fully specified sparse polynomial baseline with uniform approximation, exact finite-word accounting, canonical overwrite and a nontrivial separated-noise retention family. This removes the need to assume Boolean amplitudes while preserving high-dimensional queries and every independent value. Published polynomial-attention methods already supply the mechanism, so a strongest-method or publication-worthy novelty claim does not follow. Certified finite feature counts grow rapidly even at moderate score radius; no practical benefit or learned encoder is proved. The contemporary sparse-feature comparison also needs the positive zero-score background; the counterexample corrects the mathematical cost argument but is elementary and not itself the requested theorem. Preserve these results and seek an improvement beyond this baseline, without training or a contribution-paper claim. Query generation now also prunes support>w before enumeration. A rigorous finite-difference degree obstruction shows that merely changing the coefficients of a single global polynomial does not remove the illustrated direct-monomial cost barrier. This is a recipe-specific diagnostic, not a new general data-structure lower bound.",
+    "next_actions": [
+      "Seek a new approximation/access mechanism beyond the full fixed uniform monomial recipe, whose finite cost barrier now has an exact degree witness. Investigate local/query-adaptive score scaling or another representation with charged state and updates; compare existing local-scaling, kernel-sketch and load-sensitive posting methods at matched temperature/accuracy. Changing global polynomial coefficients alone is insufficient for the illustrated regime.",
+      "A candidate for continuous amplitudes must preserve binding dimension, every independent value, actual noise semantics, finite precision, valid-key edit/admission costs and indefinite canonical overwrite. Charge any local geometric structures or updated basis. Avoid a fixed-rank surrogate or a retention-only dictionary comparison.",
+      "Keep the strongest baseline audit open, including the precise signed-value dynamic KDE reduction. The identified softmax-support accounting error does not establish that the entire published architecture or measured implementation is inferior. No further neural training or outbound contacts.",
+      "Concrete candidate to audit next: low-support-degree continuous-amplitude moment caches plus unique-subset discovery and correction of high-overlap keys. Quantize each key-only monomial deterministically to fixed-point before aggregation, so current-state canonical deltas can use bounded-width sums independent of the input-bit-count times polynomial degree. Prove the additional feature/coefficient error, candidate subtraction cost, complete memory/read/write costs and retention before experiments. Compare existing sparse-exact/polynomial hybrids, including Vitality, and the older Boolean weighted-subset construction; no novelty or favorable finite regime is yet established for this candidate."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "strongest_baseline_advantage_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "verification_commands": [
+      "python3 -B scripts/run_timing_restart_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py"
+    ],
+    "preservation": "All twenty-eight historical iterations, twenty-seven prior non-main checker ASTs, historical certificate blocks and 234 protected files remain unchanged. Only the existing timing note/checker/report and research manifest change.",
+    "certificate_summary": {
+      "complete_polynomial_raw_reads": 199,
+      "exp_interval_certified_retention_reads": 20,
+      "atomic_invalid_queries": 13,
+      "finite_degree_resource_counts": [
+        {
+          "score_radius": 1,
+          "relative_error_bits": 16,
+          "degree": 9,
+          "features_per_weight_4_key": 715,
+          "unpruned_features_per_support_8_query": 24310,
+          "query_features_after_weight_4_key_support_pruning": 14605
+        },
+        {
+          "score_radius": 2,
+          "relative_error_bits": 16,
+          "degree": 13,
+          "features_per_weight_4_key": 2380,
+          "unpruned_features_per_support_8_query": 203490,
+          "query_features_after_weight_4_key_support_pruning": 68355
+        },
+        {
+          "score_radius": 4,
+          "relative_error_bits": 16,
+          "degree": 23,
+          "features_per_weight_4_key": 17550,
+          "unpruned_features_per_support_8_query": 7888725,
+          "query_features_after_weight_4_key_support_pruning": 726295
+        },
+        {
+          "score_radius": 8,
+          "relative_error_bits": 16,
+          "degree": 40,
+          "features_per_weight_4_key": 135751,
+          "unpruned_features_per_support_8_query": 377348994,
+          "query_features_after_weight_4_key_support_pruning": 6972741
+        },
+        {
+          "score_radius": 16,
+          "relative_error_bits": 16,
+          "degree": 76,
+          "features_per_weight_4_key": 1581580,
+          "unpruned_features_per_support_8_query": 43595145594,
+          "query_features_after_weight_4_key_support_pruning": 93825459
+        },
+        {
+          "score_radius": 32,
+          "relative_error_bits": 16,
+          "degree": 147,
+          "features_per_weight_4_key": 20811575,
+          "unpruned_features_per_support_8_query": 6876747915675,
+          "query_features_after_weight_4_key_support_pruning": 1336382685
+        }
+      ],
+      "uniform_parameter_integer_controls": [
+        {
+          "log2_capacity": 16,
+          "key_weight": 256,
+          "raw_dimension": 4294967296,
+          "intersection_threshold": 16,
+          "amplitude_grid_scale": 32,
+          "self_score_gap_lower_bound": "49/256",
+          "uniform_fresh_proposal_rejection_at_most_inverse_capacity_squared": true
+        },
+        {
+          "log2_capacity": 32,
+          "key_weight": 410,
+          "raw_dimension": 28257610000,
+          "intersection_threshold": 25,
+          "amplitude_grid_scale": 64,
+          "self_score_gap_lower_bound": "157/2048",
+          "uniform_fresh_proposal_rejection_at_most_inverse_capacity_squared": true
+        },
+        {
+          "log2_capacity": 64,
+          "key_weight": 683,
+          "raw_dimension": 217611987121,
+          "intersection_threshold": 42,
+          "amplitude_grid_scale": 64,
+          "self_score_gap_lower_bound": "519/4096",
+          "uniform_fresh_proposal_rejection_at_most_inverse_capacity_squared": true
+        },
+        {
+          "log2_capacity": 128,
+          "key_weight": 1171,
+          "raw_dimension": 1880301880081,
+          "intersection_threshold": 73,
+          "amplitude_grid_scale": 128,
+          "self_score_gap_lower_bound": "883/16384",
+          "uniform_fresh_proposal_rejection_at_most_inverse_capacity_squared": true
+        },
+        {
+          "log2_capacity": 256,
+          "key_weight": 2048,
+          "raw_dimension": 17592186044416,
+          "intersection_threshold": 128,
+          "amplitude_grid_scale": 128,
+          "self_score_gap_lower_bound": "385/4096",
+          "uniform_fresh_proposal_rejection_at_most_inverse_capacity_squared": true
+        },
+        {
+          "log2_capacity": 512,
+          "key_weight": 3641,
+          "raw_dimension": 175744893848161,
+          "intersection_threshold": 227,
+          "amplitude_grid_scale": 128,
+          "self_score_gap_lower_bound": "2737/16384",
+          "uniform_fresh_proposal_rejection_at_most_inverse_capacity_squared": true
+        },
+        {
+          "log2_capacity": 1024,
+          "key_weight": 6554,
+          "raw_dimension": 1845124808567056,
+          "intersection_threshold": 409,
+          "amplitude_grid_scale": 256,
+          "self_score_gap_lower_bound": "2461/32768",
+          "uniform_fresh_proposal_rejection_at_most_inverse_capacity_squared": true
+        }
+      ],
+      "uniform_scalar_polynomial_obstruction": {
+        "score_radius": 64,
+        "relative_error_bits": 16,
+        "minimum_possible_degree_lower_bound": 55,
+        "geometric_node_ratio": 10,
+        "rational_positive_exp_series_terms": 129,
+        "annihilated_monomial_degrees": 55,
+        "leading_degree_query_monomials_with_weight_4_keys_support_8_query": 1817936,
+        "small_positive_catalog_activating_all_these_support_patterns": 70,
+        "scope": "Any single scalar polynomial uniformly approximating exp on the entire real score interval [-64,64] with relative error <=2^-16 has degree >=55. Its nonzero leading coefficient yields at least 1817936 potentially active top-degree monomials even after key-support pruning. This is a feature-recipe cost obstruction, not a general query lower bound, a finite-grid-only obstruction, or a bound against local/query-adaptive approximation, alternate representations, direct scanning or sketches."
+      },
+      "zero_score_softmax_witness": {
+        "queries": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "keys": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            -1
+          ]
+        ],
+        "values": [
+          2,
+          6
+        ],
+        "coordinate_overlap_events": 0,
+        "exact_outputs": [
+          "4",
+          "4"
+        ],
+        "positive_attention_entries": 4
+      },
+      "never_activated_query_monomials_pruned": 7540
+    },
+    "certificate_case_count": 4,
+    "large_precision_control": {
+      "dimension": 2,
+      "key_support_bound": 2,
+      "query_support_bound": 2,
+      "query_l2_radius": 2,
+      "grid_denominator": 1099511627776,
+      "relative_error_bits": 8,
+      "value_unit_bits": 80,
+      "polynomial_degree": 11,
+      "preselected_guard_bits": 1049,
+      "controls": {
+        "reads": 31,
+        "lookups": 1032,
+        "admitted": 5,
+        "rejected": 2,
+        "overwrites": 3,
+        "deletes": 4,
+        "signed_features": 618,
+        "live_cancelled_moments": 0,
+        "max_cells": 78,
+        "max_bits": 988,
+        "pruned_query_monomials": 0
+      }
+    },
+    "old_functions_and_certificate_blocks_preserved": true,
+    "verification_scope": "Final full exact checker, core build and smoke tests passed. All 234 protected files, twenty-seven prior non-main checker ASTs, twenty-eight historical iterations and every historical report block are unchanged; final note/checker hashes match the report. Four finite grid cases check 199 full polynomial outputs, scaled numerators and denominators against independently maintained raw bindings and direct scalar-dot sums. They include query support greater than key support with 7540 never-activated monomials skipped, duplicate/norm/support key rejection, thirteen malformed queries, signed moment cancellation and canonical overwrite/deletion/reuse. Twenty reads before/after target overwrite use rational enclosures of true exponential weights to certify rounded retention. The 40-bit fractional-coordinate and 80-bit value-unit case has preselected 1049-bit guards and observed 988-bit intermediates. Seven conceptual integer cases certify support-packing rejection and self-score-gap bounds without allocating those states. A finite-difference certificate annihilates degrees zero through 54, checks the geometric sequence and a positive rational exp-series bound, and proves the stated degree-55 uniform relative-approximation obstruction; its 1817936 top-degree monomial count is a feature-recipe limitation, not a general query lower bound. The exact zero-score witness disproves an implication in the SFA complexity argument without reproducing or judging its executable experiments. No neural training, encoder guarantee, new priority, strongest-method advantage or publication readiness is established."
   }
 }

@@ -3076,11 +3076,273 @@
     },
     "scope": "Exact oracle checks for the classical length-stratified all-subsets kernel with a fixed length bias and separate raw-query support/amplitude budgets. Arbitrary distinct keys of weight <=w are admitted; no low-intersection rule or independent value-cache duplicate is used. Full cells isolate each current value. Standard packing/Johnson bounds, affine-geometry minimal-maximal families and exact rekey acceptance counts audit the older admission promise. These are known kernel/design mechanisms, not a novelty or ML-advantage certificate. Fixed-grid amplitude jitter is distinct from binary-key erasure correction. Large finite resource counts are arithmetic bounds, not allocated memory or measured runtime."
   },
+  "continuous_amplitude_baseline": {
+    "finite_cases": [
+      {
+        "dimension": 3,
+        "key_support_bound": 2,
+        "query_support_bound": 3,
+        "query_l2_radius": 1,
+        "grid_denominator": 2,
+        "relative_error_bits": 8,
+        "value_unit_bits": 4,
+        "polynomial_degree": 6,
+        "preselected_guard_bits": 63,
+        "controls": {
+          "reads": 47,
+          "lookups": 1487,
+          "admitted": 9,
+          "rejected": 3,
+          "overwrites": 3,
+          "deletes": 8,
+          "signed_features": 744,
+          "live_cancelled_moments": 72,
+          "max_cells": 49,
+          "max_bits": 28,
+          "pruned_query_monomials": 280
+        }
+      },
+      {
+        "dimension": 4,
+        "key_support_bound": 2,
+        "query_support_bound": 3,
+        "query_l2_radius": 2,
+        "grid_denominator": 2,
+        "relative_error_bits": 8,
+        "value_unit_bits": 4,
+        "polynomial_degree": 11,
+        "preselected_guard_bits": 116,
+        "controls": {
+          "reads": 86,
+          "lookups": 11009,
+          "admitted": 9,
+          "rejected": 3,
+          "overwrites": 3,
+          "deletes": 8,
+          "signed_features": 5112,
+          "live_cancelled_moments": 264,
+          "max_cells": 144,
+          "max_bits": 53,
+          "pruned_query_monomials": 7260
+        }
+      },
+      {
+        "dimension": 1,
+        "key_support_bound": 1,
+        "query_support_bound": 1,
+        "query_l2_radius": 9,
+        "grid_denominator": 2,
+        "relative_error_bits": 8,
+        "value_unit_bits": 4,
+        "polynomial_degree": 41,
+        "preselected_guard_bits": 515,
+        "controls": {
+          "reads": 35,
+          "lookups": 1265,
+          "admitted": 4,
+          "rejected": 2,
+          "overwrites": 4,
+          "deletes": 3,
+          "signed_features": 378,
+          "live_cancelled_moments": 63,
+          "max_cells": 42,
+          "max_bits": 264,
+          "pruned_query_monomials": 0
+        }
+      },
+      {
+        "dimension": 2,
+        "key_support_bound": 2,
+        "query_support_bound": 2,
+        "query_l2_radius": 2,
+        "grid_denominator": 1099511627776,
+        "relative_error_bits": 8,
+        "value_unit_bits": 80,
+        "polynomial_degree": 11,
+        "preselected_guard_bits": 1049,
+        "controls": {
+          "reads": 31,
+          "lookups": 1032,
+          "admitted": 5,
+          "rejected": 2,
+          "overwrites": 3,
+          "deletes": 4,
+          "signed_features": 618,
+          "live_cancelled_moments": 0,
+          "max_cells": 78,
+          "max_bits": 988,
+          "pruned_query_monomials": 0
+        }
+      }
+    ],
+    "complete_polynomial_raw_reads": 199,
+    "exp_interval_certified_retention_reads": 20,
+    "atomic_invalid_queries": 13,
+    "finite_degree_resource_counts": [
+      {
+        "score_radius": 1,
+        "relative_error_bits": 16,
+        "degree": 9,
+        "features_per_weight_4_key": 715,
+        "unpruned_features_per_support_8_query": 24310,
+        "query_features_after_weight_4_key_support_pruning": 14605
+      },
+      {
+        "score_radius": 2,
+        "relative_error_bits": 16,
+        "degree": 13,
+        "features_per_weight_4_key": 2380,
+        "unpruned_features_per_support_8_query": 203490,
+        "query_features_after_weight_4_key_support_pruning": 68355
+      },
+      {
+        "score_radius": 4,
+        "relative_error_bits": 16,
+        "degree": 23,
+        "features_per_weight_4_key": 17550,
+        "unpruned_features_per_support_8_query": 7888725,
+        "query_features_after_weight_4_key_support_pruning": 726295
+      },
+      {
+        "score_radius": 8,
+        "relative_error_bits": 16,
+        "degree": 40,
+        "features_per_weight_4_key": 135751,
+        "unpruned_features_per_support_8_query": 377348994,
+        "query_features_after_weight_4_key_support_pruning": 6972741
+      },
+      {
+        "score_radius": 16,
+        "relative_error_bits": 16,
+        "degree": 76,
+        "features_per_weight_4_key": 1581580,
+        "unpruned_features_per_support_8_query": 43595145594,
+        "query_features_after_weight_4_key_support_pruning": 93825459
+      },
+      {
+        "score_radius": 32,
+        "relative_error_bits": 16,
+        "degree": 147,
+        "features_per_weight_4_key": 20811575,
+        "unpruned_features_per_support_8_query": 6876747915675,
+        "query_features_after_weight_4_key_support_pruning": 1336382685
+      }
+    ],
+    "uniform_parameter_integer_controls": [
+      {
+        "log2_capacity": 16,
+        "key_weight": 256,
+        "raw_dimension": 4294967296,
+        "intersection_threshold": 16,
+        "amplitude_grid_scale": 32,
+        "self_score_gap_lower_bound": "49/256",
+        "uniform_fresh_proposal_rejection_at_most_inverse_capacity_squared": true
+      },
+      {
+        "log2_capacity": 32,
+        "key_weight": 410,
+        "raw_dimension": 28257610000,
+        "intersection_threshold": 25,
+        "amplitude_grid_scale": 64,
+        "self_score_gap_lower_bound": "157/2048",
+        "uniform_fresh_proposal_rejection_at_most_inverse_capacity_squared": true
+      },
+      {
+        "log2_capacity": 64,
+        "key_weight": 683,
+        "raw_dimension": 217611987121,
+        "intersection_threshold": 42,
+        "amplitude_grid_scale": 64,
+        "self_score_gap_lower_bound": "519/4096",
+        "uniform_fresh_proposal_rejection_at_most_inverse_capacity_squared": true
+      },
+      {
+        "log2_capacity": 128,
+        "key_weight": 1171,
+        "raw_dimension": 1880301880081,
+        "intersection_threshold": 73,
+        "amplitude_grid_scale": 128,
+        "self_score_gap_lower_bound": "883/16384",
+        "uniform_fresh_proposal_rejection_at_most_inverse_capacity_squared": true
+      },
+      {
+        "log2_capacity": 256,
+        "key_weight": 2048,
+        "raw_dimension": 17592186044416,
+        "intersection_threshold": 128,
+        "amplitude_grid_scale": 128,
+        "self_score_gap_lower_bound": "385/4096",
+        "uniform_fresh_proposal_rejection_at_most_inverse_capacity_squared": true
+      },
+      {
+        "log2_capacity": 512,
+        "key_weight": 3641,
+        "raw_dimension": 175744893848161,
+        "intersection_threshold": 227,
+        "amplitude_grid_scale": 128,
+        "self_score_gap_lower_bound": "2737/16384",
+        "uniform_fresh_proposal_rejection_at_most_inverse_capacity_squared": true
+      },
+      {
+        "log2_capacity": 1024,
+        "key_weight": 6554,
+        "raw_dimension": 1845124808567056,
+        "intersection_threshold": 409,
+        "amplitude_grid_scale": 256,
+        "self_score_gap_lower_bound": "2461/32768",
+        "uniform_fresh_proposal_rejection_at_most_inverse_capacity_squared": true
+      }
+    ],
+    "uniform_scalar_polynomial_obstruction": {
+      "score_radius": 64,
+      "relative_error_bits": 16,
+      "minimum_possible_degree_lower_bound": 55,
+      "geometric_node_ratio": 10,
+      "rational_positive_exp_series_terms": 129,
+      "annihilated_monomial_degrees": 55,
+      "leading_degree_query_monomials_with_weight_4_keys_support_8_query": 1817936,
+      "small_positive_catalog_activating_all_these_support_patterns": 70,
+      "scope": "Any single scalar polynomial uniformly approximating exp on the entire real score interval [-64,64] with relative error <=2^-16 has degree >=55. Its nonzero leading coefficient yields at least 1817936 potentially active top-degree monomials even after key-support pruning. This is a feature-recipe cost obstruction, not a general query lower bound, a finite-grid-only obstruction, or a bound against local/query-adaptive approximation, alternate representations, direct scanning or sketches."
+    },
+    "zero_score_softmax_witness": {
+      "queries": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "keys": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          -1
+        ]
+      ],
+      "values": [
+        2,
+        6
+      ],
+      "coordinate_overlap_events": 0,
+      "exact_outputs": [
+        "4",
+        "4"
+      ],
+      "positive_attention_entries": 4
+    },
+    "scope": "Classical sparse monomial/Taylor feature attention with dyadic raw amplitudes, exact canonical current-value deltas, all independent values separately stored, explicit word guards and a uniform relative-exp remainder bound. Independent scalar-dot polynomial sums certify every full numerator/denominator, and rational exp-weight enclosures certify a small retention example. Seven conceptual packing/gap controls support the asymptotic nontrivial-noise family but do not allocate those states or certify a learned encoder. The feature mechanisms are prior art; no strongest-method, novelty, ML latency or publication certificate is claimed."
+  },
   "novelty_established": false,
   "strongest_baseline_advantage_established": false,
   "publication_ready": false,
   "source_sha256": {
-    "scripts/run_timing_restart_checks.py": "5db8a6a6f5dd8648b74487eb334f4130e1e3846243ffd1f8366be7aebb364f71",
-    "docs/associative_memory_timing.md": "fc9f33cf8f2148ce1cdd33ab659c584a08110587004fd82175effb2ce039cd2a"
+    "scripts/run_timing_restart_checks.py": "b8dff2d7d676c334c6f866e466d23aabbd607ecee8231d4fae8175c7507b11d6",
+    "docs/associative_memory_timing.md": "323dfa3d89f75a18c397aabfd0b8792c624535ea20de5a083c6e7fc303d9a286"
   }
 }
