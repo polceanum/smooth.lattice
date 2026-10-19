@@ -18,7 +18,7 @@
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "complete_dynamic_full_key_local_attention_instantiation_and_all_prefix_cost_proof_recorded; original_covering_paper_already_has_timeout_copy_fallback; complete_guarantee_priority_and_strongest_baseline_advantage_unestablished"
+      "status": "spectral_covering_variance_and_constant_family_timing_adaptive_construction_recorded; published_fcLSH_factorization_retained; optimal_Las_Vegas_same_workload_priority_and_impact_gate_open"
     },
     {
       "stage": 4,
@@ -1219,6 +1219,80 @@
     ],
     "preservation": "All fourteen prior iterations, existing six timing-checker functions, historical certificate blocks and all other research, kernels, manuscripts and learned-recall artifacts are preserved. Only this note, its existing checker/report and the active research manifest are changed.",
     "verification_scope": "Extended exact checker, build and smoke tests passed. Existing six timing-checker functions and eleven historical report fields preserved; all other proof scripts/reports and protected files are unchanged and were not rerun.",
+    "old_functions_and_certificate_blocks_preserved": true
+  },
+  "sixteenth_iteration": {
+    "previous_turn_classification": "progress: concrete dynamic local-memory instantiation and all-prefix proof recorded; full objective remains unachieved",
+    "record": "docs/associative_memory_timing.md, Spectral concentration and constant-family robustification",
+    "certificate_script": "scripts/run_timing_restart_checks.py",
+    "certificate_report": "results/research/timing_restart_checks.json",
+    "candidate_claim": {
+      "spectral_second_moment": "For K_ij=2^(-Hamming(x_i,x_j)/2), lambda=||K||_2, mu=sum_i 2^(-Hamming(q,x_i)) and v_i=sqrt(p_i), a whole indexed H-table covering family satisfies E C=H*mu and Var C=H*(v^T K v-mu^2)<=H*lambda^2/4. The last bound is sharp with repeated keys. Distinct masks are pairwise, not mutually, independent.",
+      "tail": "For a supplied A>=max(1,lambda), Pr(C>2*H*A)<=1/(4*H). An independent shared-coefficient dyadic universal fingerprint of b=ceil(log2(4*n*H^2)) bits adds at most 1/(4*H) probability of any extra collision. No independence of compressed-table counts is assumed.",
+      "known_factorization": "The O(d+H*log H) Hadamard computation is the published Pham--Pagh fcLSH algorithm. A b+1-bit modular transform computes the desired b-bit fingerprints exactly; omitting that extra bit is incorrect. No standalone arithmetic novelty claim.",
+      "dynamic_costs": "One family has W_f=O(d+H*log(H+1)+H*ell) worst-case key edit; T_f=O(W_f+H*A*(D_h+1)) fast query; R_f=O(n*W_f+d*(b+r+1)+H) worst-case padded rebuild; F_0=O(n*D_h) fallback. All payload words, raw keys, table entries, labels, coefficients, scratch, fresh bits and finite word width are charged. Full Hamming verification can conservatively use D_h=O(d).",
+      "complete_function": "Retains the exact weighted blend of every current radius-r neighbor, arbitrary raw high-dimensional binary queries, independent current vector payloads, and synchronous arbitrary slot-key edits. Queries and key edits may depend on completed answers and abstract RAM operation times; the index state and access trace stay private.",
+      "copy_choice": "L_c=max(2,ceil((R_f+F_0)/T_f)); l is the smallest positive integer with (2H)^l>=2L_c; k=4l. Then p=(2H)^(-k) and p*(k*R_f+F_0)<=T_f. All-prefix renewal/martingale proof from the previous iteration applies to integer reciprocal (2H)^k.",
+      "useful_regime": "For fixed c>1, t=ceil(log2 n), r=floor(t/c)>=1 and bounded overlap Delta at distance 2t, A=Delta+2, s<=Delta+1, H=Theta_c(n^(1/c)), R_f+F_0=O(n*T_f), and k=O_c(1). Space O(n*(ceil(d/w)+v)+k*(n*H+d)) words; query O(k*T_f+s*v), key edit O(k*W_f), vector overwrite O(v). A constant-family result is not asserted for fixed r as n grows.",
+      "classification": "Complete analytical candidate strengthening our preceding first-moment bound. Novelty and substantive superiority over the strongest applicable published method remain unestablished; improvement over our own construction does not complete the goal.",
+      "promise_generalization": "The spectral theorem is not restricted to bounded overlap. An explicit n=2B block-pair family has lambda<3 and at most two inner neighbors, but overlap degree and an outer-ball density n/2. Its dimension Theta(n log n), full raw storage and specialized-index alternatives are explicit; it is not an algorithmic lower-bound witness."
+    },
+    "primary_audit": [
+      {
+        "url": "https://arxiv.org/abs/1507.03225v3",
+        "scope": "16-page January 2016 preprint linked by the author publication list to the 2018 journal article. Targeted covering/collision/representation passages, Lemma 3.3, Theorem 3.5 and Section 3.1 repetition/fallback inspected. Journal body not independently compared; no exact version identity asserted."
+      },
+      {
+        "url": "https://arxiv.org/abs/1602.02620v2",
+        "scope": "14-page fcLSH v2, Section 3, Algorithm 2, Lemma 3, Equation (5) and exact all-neighbor/output-size discussion inspected; PDF page 7 visually checked. Factorization and all-neighbor enumeration are existing algorithms."
+      },
+      {
+        "url": "https://arxiv.org/html/2601.00272v1",
+        "scope": "Theorems 1.2/1.5, Definitions 1.1/3.1 and update discussion rechecked. Fair/density, stronger data-dependent exponent and for-all baselines retained. Complete-function, word/space-unit, transcript and adaptive-key comparison is still required."
+      },
+      {
+        "url": "https://proceedings.mlr.press/v267/feng25c.html",
+        "scope": "Existing bounded-overlap search assumption recognized; previous audit of exact output/update definitions retained. No novelty attributed to that hypothesis."
+      },
+      {
+        "url": "https://arxiv.org/abs/1807.07527",
+        "scope": "Theorem 4 and Hamming embedding statement rechecked; stronger data-dependent Las Vegas exponents prevent claiming a globally better exponent. Full same-workload dynamic exact-range proof audit remains open."
+      }
+    ],
+    "decision": "Keep this spectral and constant-family construction as the next candidate. Audit optimal Las Vegas exact-range and timing-adaptive guarantees against the complete theorem before claiming a paper or running experiments. If the entire result is a known corollary or only a modest change without a useful strongest-baseline consequence, retain it as a baseline and pursue a structural improvement.",
+    "next_actions": [
+      "Audit the strongest Las Vegas range-search/filter constructions and timing-adaptive rekeying conversions against the complete spectral-tail, arbitrary-key-edit and exact weighted-neighborhood theorem.",
+      "Match full space units, raw values, preprocessing, distance verification, output work and allowed word operations; preserve stronger exponents and fair/for-all baselines in the comparison.",
+      "Decide whether constant-factor robustification under the explicit spectral or bounded-overlap promise yields a new substantive consequence; no novelty inference from unsuccessful keyword searches.",
+      "Keep the full original objective, no-outreach instruction and pre-training novelty/accounting gates unchanged."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "verification_commands": [
+      "python3 -B scripts/run_timing_restart_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py"
+    ],
+    "preservation": "All fifteen prior iterations, nine previous timing-checker functions, historical report blocks, other proof scripts/reports, kernels, manuscripts and learned-recall artifacts are preserved. Only the existing timing note/checker/report and active research manifest change.",
+    "certificate_summary": {
+      "pairwise_mask_independence_controls": 72,
+      "exhaustive_covering_label_families": 25152,
+      "exact_mean_variance_and_tail_controls": 100,
+      "nonzero_tail_controls": 68,
+      "direct_dot_vs_modular_FHT_values": 430896,
+      "complete_exact_weighted_reads": 94480,
+      "reads_with_extra_fingerprint_collisions": 58410,
+      "shared_fingerprint_union_bound_controls": 5576,
+      "universal_binary_projection_pairs": 465,
+      "integer_copy_choice_controls": 582,
+      "strict_spectral_promise_examples": 5,
+      "scope": "Bounded independent algebra/algorithm controls support the uniform written proof. No production dynamic index benchmark, neural training, novelty inference, strongest-baseline separation or publication-readiness claim."
+    },
+    "verification_scope": "Extended checker, build and smoke tests passed. All 234 protected file hashes, nine prior function ASTs, fifteen prior iterations and historical report blocks are unchanged. Other proof scripts/reports were not rerun because their sources and artifacts are preserved. No production ANN implementation or performance benchmark is claimed.",
     "old_functions_and_certificate_blocks_preserved": true
   }
 }

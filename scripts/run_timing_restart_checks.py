@@ -414,6 +414,258 @@ def all_prefix_restart_controls():
             "scope": "Exact bounded checks of the classical exponential-supermartingale argument; finite games do not prove novelty or replace the all-prefix analytical proof."}
 
 
+def covering_spectral_controls():
+    from collections import Counter
+
+    independence_checks = 0
+    for radius, dimension in product((1, 2), (1, 2, 3)):
+        alphabet = 2 ** (radius + 1)
+        families = [covering_masks(labels, radius)
+                    for labels in product(range(alphabet), repeat=dimension)]
+        for u, v in combinations(range(alphabet - 1), 2):
+            counts = Counter((masks[u], masks[v]) for masks in families)
+            assert len(counts) == 4 ** dimension
+            assert set(counts.values()) == {len(families) // (4 ** dimension)}
+            independence_checks += 1
+    # Pairwise independent does not mean mutually independent.
+    triples = [covering_masks((label,), 1) for label in range(4)]
+    assert all(a ^ b == c for a, b, c in triples)
+    assert F(triples.count((0, 0, 0)), 4) == F(1, 4) != F(1, 8)
+
+    simplex_keys = tuple(sum(((v & j).bit_count() % 2) << (j - 1)
+                             for j in range(1, 8)) for v in range(8))
+    cases = [(3, 1, (0, 1, 7), tuple(range(8))),
+             (3, 2, (0, 3, 5, 6), tuple(range(8))),
+             (4, 2, (0, 3, 12, 15), tuple(range(16))),
+             (6, 1, (0, 3, 60, 63), tuple(range(64))),
+             (7, 1, simplex_keys, (0, 1, 3, 127))]
+    records = []
+    moment_checks = label_families = nonzero_tails = 0
+    for dimension, radius, keys, queries in cases:
+        H = 2 ** (radius + 1) - 1
+        # Rounding odd half-distances upward gives a rational upper bound
+        # on each row sum of K_ij=2^(-distance(x_i,x_j)/2).
+        A = max(sum(F(1, 2 ** ((x ^ y).bit_count() // 2)) for y in keys)
+                for x in keys)
+        cutoff = (2 * H * A).numerator // (2 * H * A).denominator
+        per_query = []
+        for q in queries:
+            supports = [x ^ q for x in keys]
+            one_mask = [sum((s & mask) == 0 for s in supports)
+                        for mask in range(1 << dimension)]
+            mu = sum(F(1, 2 ** s.bit_count()) for s in supports)
+            second = sum(F(1, 2 ** (a | b).bit_count())
+                         for a in supports for b in supports)
+            assert mu <= A and second <= A * mu
+            assert 0 <= second - mu * mu <= A * A / 4
+            per_query.append((q, one_mask, mu, second))
+        sums = [0] * len(queries)
+        squares = [0] * len(queries)
+        tails = [0] * len(queries)
+        count = 0
+        for labels in product(range(H + 1), repeat=dimension):
+            masks = covering_masks(labels, radius)
+            count += 1
+            for j, (_, one_mask, _, _) in enumerate(per_query):
+                C = sum(one_mask[mask] for mask in masks)
+                sums[j] += C
+                squares[j] += C * C
+                tails[j] += C > cutoff
+        label_families += count
+        for j, (q, _, mu, second) in enumerate(per_query):
+            mean = F(sums[j], count)
+            variance = F(squares[j], count) - mean * mean
+            assert mean == H * mu
+            assert variance == H * (second - mu * mu)
+            assert variance <= H * A * A / 4
+            tail = F(tails[j], count)
+            assert tail <= F(1, 4 * H)
+            moment_checks += 1
+            if tail:
+                nonzero_tails += 1
+                if sum(record['dimension'] == dimension for record in records) < 2:
+                    records.append({"dimension": dimension, "radius": radius,
+                                    "keys": list(keys), "query": q,
+                                    "rational_kernel_norm_upper_bound": str(A),
+                                    "mean": str(mean), "variance": str(variance),
+                                    "probability_C_exceeds_2HA": str(tail),
+                                    "chebyshev_bound": str(F(1, 4 * H))})
+    assert nonzero_tails
+    # Multiplicity is charged: omitting the spectral factor would be false.
+    n, H = 8, 3
+    visits = [sum(n for mask in covering_masks((label,), 1) if not mask)
+              for label in range(4)]
+    mean = F(sum(visits), 4)
+    variance = F(sum(c * c for c in visits), 4) - mean * mean
+    assert mean == F(H * n, 2)
+    assert variance == F(H * n * n, 4) > F(H, 4)
+    return {"pairwise_mask_independence_controls": independence_checks,
+            "all_label_families": label_families,
+            "exact_mean_variance_and_tail_controls": moment_checks,
+            "nonzero_tail_control_count": nonzero_tails,
+            "nonzero_tail_witnesses": records,
+            "mutual_independence_negative_control": {"three_zero_masks": "1/4",
+                                                       "incorrect_product": "1/8"},
+            "sharp_spectral_variance_witness": {"dimension": 1, "radius": 1,
+                                               "eight_identical_keys": 0, "query": 1,
+                                               "kernel_norm": 8, "mean": str(mean),
+                                               "variance": str(variance),
+                                               "ratio_to_H_lambda_squared_over_4": "1"},
+            "scope": "Exact finite controls of the analytical spectral second-moment proof; no numerical eigenvalue approximation or novelty inference."}
+
+
+def dyadic_covering_hashes(x, labels, coefficients, radius, bits, extra_bit=True):
+    modulus = 2 ** (bits + int(extra_bit))
+    size = 2 ** (radius + 1)
+    values = [0] * size
+    for j, (label, coefficient) in enumerate(zip(labels, coefficients)):
+        if (x >> j) & 1:
+            values[label] = (values[label] + coefficient) % modulus
+    total = sum(values) % modulus
+    width = 1
+    while width < size:
+        for start in range(0, size, 2 * width):
+            for j in range(start, start + width):
+                a, b = values[j], values[j + width]
+                values[j] = (a + b) % modulus
+                values[j + width] = (a - b) % modulus
+        width *= 2
+    differences = [(total - value) % modulus for value in values[1:]]
+    assert all(value % 2 == 0 for value in differences)
+    return tuple(value // 2 for value in differences)
+
+
+def covering_fingerprint_controls():
+    hash_values = exact_reads = false_hit_reads = union_controls = 0
+    cases = [(1, 1, 1), (2, 1, 1), (2, 1, 3), (2, 1, 4),
+             (2, 2, 2), (3, 1, 1), (3, 1, 2), (3, 2, 1)]
+    for dimension, radius, bits in cases:
+        modulus, H = 2 ** bits, 2 ** (radius + 1) - 1
+        keys = ((0, 1, 5, 7) if dimension == 3 else (0, (1 << dimension) - 1))
+        payloads = tuple((i - 2, 2 * i + 1) for i in range(len(keys)))
+        for labels in product(range(H + 1), repeat=dimension):
+            masks = covering_masks(labels, radius)
+            noise = [0] * (1 << dimension)
+            coefficient_count = 0
+            for coefficients in product(range(modulus), repeat=dimension):
+                coefficient_count += 1
+                fingerprints = [dyadic_covering_hashes(x, labels, coefficients,
+                                                       radius, bits)
+                                for x in range(1 << dimension)]
+                for x, actual in enumerate(fingerprints):
+                    direct = tuple(sum(coefficient for j, coefficient in enumerate(coefficients)
+                                       if ((x & mask) >> j) & 1) % modulus
+                                   for mask in masks)
+                    assert actual == direct
+                    hash_values += H
+                for q in range(1 << dimension):
+                    candidates = set()
+                    extra_collision = False
+                    for u, mask in enumerate(masks):
+                        for i, key in enumerate(keys):
+                            if fingerprints[q][u] == fingerprints[key][u]:
+                                candidates.add(i)
+                                extra_collision |= (q & mask) != (key & mask)
+                    noise[q] += extra_collision
+                    false_hit_reads += extra_collision
+                    neighbors = {i for i in candidates if (keys[i] ^ q).bit_count() <= radius}
+                    reference = {i for i, key in enumerate(keys) if (key ^ q).bit_count() <= radius}
+                    assert neighbors == reference
+
+                    def blend(indices):
+                        weights = [(i, radius + 1 - (keys[i] ^ q).bit_count()) for i in indices]
+                        return (sum(weight for _, weight in weights),
+                                tuple(sum(weight * payloads[i][j] for i, weight in weights)
+                                      for j in range(2)))
+
+                    assert blend(neighbors) == blend(reference)
+                    exact_reads += 1
+            for count in noise:
+                assert F(count, coefficient_count) <= F(len(keys) * H, modulus)
+                union_controls += 1
+    universal_pairs = coefficient_seeds = 0
+    for dimension, bits in product(range(1, 5), range(1, 4)):
+        modulus = 2 ** bits
+        pairs = list(combinations(range(1 << dimension), 2))
+        collision_counts = [0] * len(pairs)
+        seeds = 0
+        for coefficients in product(range(modulus), repeat=dimension):
+            values = [sum(coefficient for j, coefficient in enumerate(coefficients)
+                          if (x >> j) & 1) % modulus for x in range(1 << dimension)]
+            for j, (x, y) in enumerate(pairs):
+                collision_counts[j] += values[x] == values[y]
+            seeds += 1
+        assert set(collision_counts) == {seeds // modulus}
+        universal_pairs += len(pairs)
+        coefficient_seeds += seeds
+    good = dyadic_covering_hashes(1, (1,), (1,), 1, 1)
+    wrong = dyadic_covering_hashes(1, (1,), (1,), 1, 1, extra_bit=False)
+    assert good == (1, 0, 1) and wrong == (0, 0, 0)
+    return {"direct_dot_product_vs_modular_FHT_hash_values": hash_values,
+            "complete_exact_weighted_reads": exact_reads,
+            "reads_with_extra_fingerprint_collisions": false_hit_reads,
+            "shared_coefficient_union_bound_controls": union_controls,
+            "universal_binary_projection_pairs": universal_pairs,
+            "universal_hash_coefficient_seeds": coefficient_seeds,
+            "missing_extra_bit_negative_control": {"correct": list(good),
+                                                    "incorrect": list(wrong)},
+            "scope": "Finite fingerprints/FHT and complete-function controls, not a production balanced-tree index, benchmark, learned block or claim that compressed tables are independent."}
+
+
+def constant_family_controls():
+    controls = 0
+    for H in (3, 7, 15, 63, 255, 1023):
+        for cost_ratio in list(range(2, 65)) + [2 ** j for j in range(7, 41)]:
+            level = 1
+            while (2 * H) ** level < 2 * cost_ratio:
+                level += 1
+            copies = 4 * level
+            reciprocal_failure = (2 * H) ** copies
+            assert level <= cost_ratio
+            assert reciprocal_failure >= copies * cost_ratio
+            controls += 1
+    records = []
+    for c in (2, 3, 4, 8):
+        witnesses = []
+        for exponent in range(c, 41):
+            n, radius = 2 ** exponent, exponent // c
+            H = 2 ** (radius + 1) - 1
+            cost_ratio = 4 * n
+            level = 1
+            while (2 * H) ** level < 2 * cost_ratio:
+                level += 1
+            copies = 4 * level
+            assert (2 * H) ** copies >= copies * cost_ratio
+            witnesses.append({"log2_n": exponent, "radius": radius, "copies": copies})
+        records.append({"fixed_c": c, "largest_copy_count_in_controls": max(w['copies'] for w in witnesses),
+                        "copy_counts_by_log2_n": {str(w['log2_n']): w['copies'] for w in witnesses}})
+    spectral_examples = []
+    for B in (2, 4, 8, 16, 32):
+        n = 2 * B
+        t = (n - 1).bit_length()
+        dimension = B * t + 1
+        keys = tuple((((1 << t) - 1) << (i * t)) | (z << (B * t))
+                     for i in range(B) for z in range(2))
+        degrees = [sum((x ^ y).bit_count() <= 2 * t for y in keys) - 1 for x in keys]
+        row_bounds = [sum(F(1, 2 ** ((x ^ y).bit_count() // 2)) for y in keys) for x in keys]
+        assert set(degrees) == {B}
+        assert max(row_bounds) < 3
+        assert sum(x.bit_count() <= t for x in keys) == B
+        radius = t // 2
+        assert 1 <= radius < t
+        assert min((keys[2 * i + z] ^ keys[2 * j + zz]).bit_count()
+                   for i, j in combinations(range(B), 2) for z, zz in product(range(2), repeat=2)) > 2 * radius
+        assert all(sum((x ^ q).bit_count() <= radius for x in keys) == 2 for q in keys)
+        spectral_examples.append({"capacity": n, "dimension": dimension, "outer_radius": t,
+                                  "overlap_degree": B, "zero_query_outer_density": B,
+                                  "rational_row_norm_upper_bound": str(max(row_bounds)),
+                                  "inner_radius": radius, "inner_neighbor_count_at_each_key": 2})
+    return {"integer_copy_choice_controls": controls,
+            "polynomial_family_parameter_controls": records,
+            "spectral_promise_beyond_bounded_overlap": spectral_examples,
+            "scope": "Exact parameter arithmetic at an illustrative reset/base cost ratio 4*n, not measured costs or a proof of a practical speedup."}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -426,6 +678,9 @@ def main():
               "canonical_lookup": canonical_lookup_controls(),
               "covering_memory": covering_memory_controls(),
               "all_prefix_restart": all_prefix_restart_controls(),
+              "covering_spectral": covering_spectral_controls(),
+              "covering_fingerprints": covering_fingerprint_controls(),
+              "constant_families": constant_family_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,

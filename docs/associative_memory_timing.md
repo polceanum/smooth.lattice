@@ -625,3 +625,320 @@ only with sqrt(Q)-copy search, nor the absence of an identical keyword result,
 is a defensible novelty/impact argument. The next gate is the complete
 same-workload comparison with later covering/range indexes and timing-adaptive
 conversions. No neural experiment or contribution manuscript follows yet.
+
+## Spectral concentration and constant-family robustification
+
+This next iteration strengthens our preceding construction. Its mathematical
+claim is stated below with a proof; **priority, a substantive advantage over
+the strongest applicable index, and publication readiness remain open**.
+The improvement over our own preceding bound is not evidence of such an
+advantage. The published fast hash factorization is explicitly retained.
+
+### The base family has more than a first-moment guarantee
+
+Let x_1,...,x_a be the occupied keys, a<=n, with slot multiplicities retained.
+Define the positive semidefinite matrix
+
+```text
+K_ij = 2^(-dist(x_i,x_j)/2), lambda = ||K||_2.
+```
+
+For no occupied keys take lambda=0. Otherwise lambda>=1. Fix any raw binary
+query q, let S_i be its difference support from x_i, p_i=2^(-|S_i|),
+mu=sum_i p_i, and v_i=sqrt(p_i). Use the indexed covering family from above,
+H=2^(r+1)-1, with independent uniform coordinate labels m_j in F_2^(r+1).
+Let X_u be the number of colliding slots in table u and C=sum_{u!=0} X_u,
+counting repeated table/slot visits. Then, exactly,
+
+```text
+E C = H*mu,
+Var C = H*(v^T K v - mu^2),
+mu <= lambda,
+Var C <= H*lambda^2/4.
+```
+
+For the proof, each nonzero u gives independent fair mask bits, so E X_u=mu.
+For two slots i,j, a simultaneous collision requires the mask to vanish on
+S_i union S_j. Since
+
+```text
+|S_i union S_j| = (|S_i|+|S_j|+dist(x_i,x_j))/2,
+```
+
+we have E X_u^2=v^T K v. Distinct nonzero u,u' are linearly independent over
+F_2. Their mask bits are uniform independent pairs in every coordinate,
+and the coordinate labels are independent. Thus the entire two masks,
+and hence X_u and X_u', are independent. This is pairwise independence;
+the whole family is not mutually independent. For example, the masks for
+u,u',u+u' always have bitwise XOR zero. Adding pairwise covariances proves
+the exact variance identity, even when a realized seed repeats some masks.
+
+To bound mu, use unit vectors phi(0)=(1,0), phi(1)=(1/sqrt(2),1/sqrt(2)),
+and their d-fold tensor products Phi(x). Their inner products equal
+2^(-dist(x,y)/2). If B has rows Phi(x_i), then K=B B^T and
+
+```text
+mu = ||B Phi(q)||^2 <= ||B||^2 = lambda,
+v^T K v <= lambda*mu,
+lambda*mu-mu^2 <= lambda^2/4.
+```
+
+This exponentially large feature space is only a proof device: it is never
+computed or stored. The tensor Gram argument is standard linear algebra,
+not a new tensor-factorization algorithm. For any supplied upper bound
+A>=max(1,lambda), Chebyshev now gives
+
+```text
+Pr(C > 2*H*A) <= 1/(4*H).
+```
+
+The variance inequality is sharp: take eight identical one-bit keys, q=1,
+r=1. Then lambda=8, mu=4, H=3 and Var C=48=H*lambda^2/4.
+It would be false to omit the spectral factor or assume independence of
+all H tables. This is an unconditional finite-space statement for every
+fixed dataset/query; applying it to a posterior seed law after observing
+times would still be invalid.
+
+The bound allows a spectral promise instead of a hard distance partition.
+A simpler sufficient promise, directly comparable to the bounded-overlap
+assumption in Feng et al., is that each key has at most Delta other keys
+at distance <=2*t. With t=ceil(log2 n), each row of K sums to at most
+
+```text
+Delta+1+n*2^(-t) <= Delta+2.
+```
+
+The spectral norm is at most the maximum row sum. Thus A=Delta+2 works,
+and every radius-t ball has at most Delta+1 occupied slots: any two keys
+in that ball are at distance <=2*t. This is a stronger promise than just
+the previous global ball-density bound, and is charged as a hypothesis.
+The spectral lemma itself does not require that overlap promise. A bound
+s on the radius-r neighborhood size is a separate output/aggregation cost;
+without an additional promise one can use s<=min(n,2^r*A).
+
+The spectral promise is strictly broader. For n=2B keys, let
+t=ceil(log2 n), d=B*t+1. Key x_(i,z) has ones in block i of t coordinates,
+zeros in the other blocks, and final bit z in {0,1}. Between blocks,
+distances are 2t or 2t+1; within a block they are 1. Its Gram matrix is
+the tensor product of the B-by-B matrix with diagonal 1/off-diagonal
+2^(-t), and [[1,1/sqrt(2)],[1/sqrt(2),1]]. Consequently
+
+```text
+lambda=(1+(B-1)*2^(-t))*(1+1/sqrt(2)) < 3.
+```
+
+Yet each key has B other keys within distance 2t, and the radius-t ball
+about zero contains B keys. For 1<=r<t a query can meet only one block's
+two keys, so s<=2 and reads can be genuine weighted mixtures. Thus the
+new condition is not a restatement of constant ball density/overlap.
+This example has d=Theta(n log n) and charges all those raw bits; its known
+block structure also permits specialized indexes. It witnesses different
+promises, not a separation from all indexing algorithms or a learned-model
+benefit.
+
+### Retain the published fast factorization, with finite fingerprints
+
+[Pham--Pagh's fcLSH](https://arxiv.org/abs/1602.02620v2), Section 3,
+Algorithm 2, Equation (5) and Lemma 3, already compute the family's
+universal fingerprints in O(d+H*log(H+1)) arithmetic operations using
+a fast Hadamard transform. Those sections and PDF pages 6--7 were
+inspected, with page 7 visually checked. Their modulus is prime. We use
+the same factorization below with a finite dyadic modulus; this arithmetic
+adaptation is not proposed as a separate novelty claim.
+We always use independent coordinate labels, including when d<=H+1;
+the paper's optional column-permutation variant is not being substituted
+for this distribution.
+
+Set b=ceil(log2(4*n*H^2)). Choose independent uniform b-bit coefficients
+c_j. The fingerprint in table u is
+
+```text
+g_u(x) = sum_j c_j*x_j*a_u[j] mod 2^b.
+```
+
+For any two distinct binary projections, a differing coordinate has
+coefficient +1 or -1, which is invertible modulo 2^b. Conditioning on
+the other coefficients proves collision probability exactly 2^(-b).
+This needs no prime search, rejection sampling or unlimited precision.
+Conditional on all covering masks, a union bound over at most n*H
+unequal query/slot projections gives
+
+```text
+Pr(any additional fingerprint collision) <= n*H/2^b <= 1/(4*H).
+```
+
+The coefficients are shared across tables. Do not infer independence of
+compressed-table counts from the earlier independence of the masks.
+Instead combine this union bound with the uncompressed variance bound:
+the total fingerprint candidate count is at most 2*H*A except with
+probability at most 1/(2*H). Fingerprint collisions affect work only;
+full Hamming verification and deduplication still return the exact
+complete neighborhood for every seed.
+
+The transform can be done with only b+1 working bits. Aggregate
+T_l=sum_{j:m_j=l} c_j*x_j modulo 2^(b+1), take its Hadamard transform
+HT at that modulus, and put S=sum_l T_l modulo the same modulus. Then
+
+```text
+g_u(x) = ((S-(HT)_u) mod 2^(b+1))/2,  u!=0.
+```
+
+The representative in parentheses is even. The integer identity before
+reduction is twice the desired sum, so reducing before dividing retains
+the required low b bits. Using only b bits during the transform is wrong:
+for a one-bit vector and coefficient 1 it can turn fingerprint 1 into 0.
+The checker compares this modular transform with independently computed
+direct projected dot products and enumerates extra fingerprint collisions.
+
+### Concrete dynamic costs and the number of families
+
+Use deterministic balanced trees of (fingerprint,slot ID), with one-word
+comparisons, instead of projected full-key comparisons. Store raw keys and
+payloads once. Cache fingerprints in the tree entries and maintain
+slot/table handles, charging their O(n*H) words. Before changing a
+raw key, remove its old entries in every family; then insert its new
+fingerprints. No asynchronous query runs during a key edit. Pure payload
+overwrite by supplied slot ID costs O(v); insertion also pays for its
+v payload words. An update named by a raw key instead of an ID additionally
+pays for a deterministic exact-key dictionary, as in the preceding section.
+
+Here w is word width, mu_w=ceil(d/w), ell=ceil(log2(n+1)), and D_h is the
+worst-case cost of verifying one full Hamming distance. A conservative
+ordinary word RAM can take D_h=O(d); O(mu_w) requires explicitly including
+word population count as an allowed primitive. Fix w large enough for
+addresses, b+1 bits, labels, and the exact payload numerators/denominators
+S+O(log(s*(r+1)+1)) bits. Otherwise pay multiword arithmetic costs.
+The quantities below include fixed simulation/padding constants and can
+be rounded up to integers:
+
+```text
+W_f = O(d+H*log(H+1)+H*ell),             worst-case per-family key edit,
+T_f = O(d+H*log(H+1)+H*ell+H*A*(D_h+1)), fast complete candidate search,
+R_f = O(n*W_f+d*(b+r+1)+H),             worst-case padded family rebuild,
+F_0 = O(n*D_h),                         exact fallback neighbor scan,
+common aggregation = O(s*v).
+```
+
+R_f explicitly charges every fresh random bit, including d*b coefficient
+bits and d*(r+1) label bits, and clearing abandoned state. All transforms
+operate on bounded words. Labels and coefficients take O(d) words per
+family; no full H*d mask array is stored. Tree entries, raw arrays,
+marks, touched-ID lists, transform buffers and answer lists are included:
+
+```text
+space = O(n*(mu_w+v)+k*(n*H+d)) words, plus word width w bits per word;
+initial work = I+k*R_f, with I charging raw key/value initialization.
+```
+
+Range iteration starts with O(ell) tree search and O(1) amortized work
+per entry. A reusable n-entry mark array and touched list deduplicate slots
+without clearing all n entries at each query. On abort, clear only touched
+marks; reserve this cleanup in the query budget. A complete search stores
+distances/IDs, then forms the exact commutative weighted sums in common
+storage. The answer is the same numerator vector and denominator for all
+seeds, with no seed-dependent ordering or random valid-neighbor output.
+All successful reads have the same padded index time, key edits are padded
+to their worst-case budget, and rebuilds are padded to R_f.
+
+Choose k independent complete families, pad their trials, and scan/reset
+all families only when every trial times out. The previous canonical
+no-timeout-branch and first-timeout-CDF proof applies with
+
+```text
+p=(2*H)^(-k),  Pr(first timeout within a queries)<=a*p.
+```
+
+This covers key edits depending on earlier completed-operation times:
+along the all-normal branch, the entire logical history is independent of
+the fresh seed, and fixed-seed updates produce exactly the index for its
+current keys. There is no conditional-hazard independence claim.
+
+An explicit non-circular choice is
+
+```text
+L_c=max(2,ceil((R_f+F_0)/T_f)),
+l = smallest positive integer with (2*H)^l >= 2*L_c,
+k=4*l.
+```
+
+For H>=3, l<=ceil(log2(2*L_c))<=L_c. Hence
+(2*H)^k >= (2*L_c)^4 >= k*L_c and p*(k*R_f+F_0)<=T_f.
+The preceding all-prefix proof uses only integer m=1/p, so it applies to
+m=(2*H)^k, even though m need not be a power of two. With probability
+at least 1-delta, simultaneously at every completed-operation prefix,
+
+```text
+work <= I+k*R_f + O(k*W_f*J+v*P)
+        + Q*O(k*T_f+s*v+8*p*(k*R_f+F_0))
+        + 4*(k*R_f+F_0)*log(1/delta).
+```
+
+As before, Q,J,P count queries, key edits and fixed-width vector writes in
+that prefix; v*P charges those P writes. Insertions
+pay their vector-write term as well. Exact answers hold for every seed;
+only this compute bound is probabilistic. True fresh random bits, private
+internals and the abstract timing model are assumptions; a fixed finite
+PRNG or actual-CPU constant-time guarantee is not supplied.
+
+For fixed c>1, t=ceil(log2 n), r=floor(t/c)>=1, H=Theta_c(n^(1/c)),
+and D_h=O(d), we have R_f+F_0=O(n*T_f). Therefore k=O_c(1), rather than
+the O(log n) families in our previous first-moment conversion. This does
+not say k is constant for fixed r as n grows. Under bounded overlap,
+A=Delta+2 and s=Delta+1; the resulting bounds become
+
+```text
+query O_c(d+H*log n+H*(Delta+2)*(d+1)+(Delta+1)*v),
+key edit O_c(d+H*log n), vector overwrite O(v),
+space O_c(n*(mu_w+v)+n*H+d) words.
+```
+
+These are expected amortized query costs at deterministic horizons, with
+the separate all-prefix confidence statement above. An individual timeout
+still costs a complete scan and rebuild. If d>=log n and
+H*(Delta+1)=o(n), the index-search bound is sublinear relative to scanning
+all n raw d-bit keys in the conservative verification model. The v payload
+cost and superlinear index storage are still explicit. No free retained
+value compression, attention approximation, learned geometric promise,
+or general transformer speedup follows.
+
+### What this changes, and what the priority gate still needs
+
+| Source/guarantee | What has been checked | Boundary for this candidate |
+|---|---|---|
+| [Pagh's author-linked preprint v3](https://arxiv.org/abs/1507.03225v3), 16 pages, January 2016 | Targeted construction/collision and representation passages in Sections 3/6, Lemma 3.3 and Theorem 3.5; covering, first moment and faster representations. Earlier SODA timeout/copy/fallback ingredients are recorded above | These are prior art. The author's publication list links this preprint to the 2018 journal article; the journal body was not separately compared. No exact journal/preprint identity is asserted. |
+| [fcLSH v2](https://arxiv.org/abs/1602.02620v2), 14 pages | Section 3/Algorithm 2/Lemma 3/Eq. (5), plus all-neighbor/output-size discussion | The O(d+H log H) factorization and complete-neighbor retrieval are prior art. Our stronger candidate is the spectral second moment and its constant-family timing-adaptive consequence, not those algorithms. |
+| [Andoni--Haris--Kelman--Onak v1](https://arxiv.org/html/2601.00272v1), Theorems 1.2/1.5 and Definitions 1.1/3.1 | Fair/density method already uses O(n^(1+rho) log(nQ)) stated space and O(d*(n^rho+density ratio)*log(nQ)) stated query time; for-all Hamming uses the stronger exponent rho=1/(2c-1). Formal game and update paragraph inspected | Do not compare only against its sqrt(Q) constructions or ignore its better exponent. Its returned point, oblivious-key-update and formal answer transcript guarantees differ; a complete exact-operator timing/adaptive-key tradeoff comparison remains open. Space units/raw storage and word costs must be reconciled before comparing formulas. |
+| [Feng et al. 2025](https://proceedings.mlr.press/v267/feng25c.html), Assumption 1.3 and Appendix C | Bounded overlap and adaptive search are existing research topics; the inspected update theorem deletes returned points | The overlap hypothesis is not our discovery. A different output/update specification is not itself an impact claim. |
+| [Ahle](https://thomasahle.com/papers/lasvegas.pdf) and [Wei](https://arxiv.org/abs/1807.07527) | Established Las Vegas near-neighbor guarantees, including stronger data-dependent exponents | Complete exact-range, dynamic-key, finite-word and transcript costs must be matched. This record does not establish exponent superiority or a general lower bound against them. |
+
+The spectral identity/inequality, modular arithmetic and repetition proof
+have now been derived explicitly and checked on exact finite controls.
+The potentially useful advance is a robustification whose overhead matches
+the underlying fast covering index up to a c-dependent constant in the
+stated regime. **We have not established that this guarantee is new or
+that it beats the strongest same-workload published construction.**
+In particular, the identities use elementary covariance/frame bounds;
+neither unsuccessful searches nor a logarithm removed from our own earlier
+construction makes a paper. The next decision requires auditing optimal
+Las Vegas range-search constructions and timing-adaptive transformations
+against this full statement, then either identifying a substantive gap
+or classifying the whole result as a baseline. No training or claimed-
+contribution manuscript is warranted on the current evidence.
+
+Reproduce the extended certificates and unchanged core checks with:
+
+```sh
+python3 -B scripts/run_timing_restart_checks.py
+./build.sh
+python3 tests/test_smoke.py
+```
+
+The new controls enumerate 25,152 covering-label families, verify 100 exact
+mean/variance/tail identities, and compare 430,896 modular-transform hash
+values with direct projected sums. All 94,480 complete weighted reads agree
+with direct Hamming scans, including 58,410 reads with extra
+fingerprint collisions. The report also retains sharpness/extra-bit/false-
+independence negative controls and 582 integer copy-choice checks. These are
+finite supporting certificates, not a production index or empirical speedup;
+the uniform assertion rests on the proof above. Historical certificate blocks
+and the other research artifacts are preserved.
