@@ -800,6 +800,186 @@ def finite_recovery_controls():
             "scope": "Uniform proof establishes the observation bound. Quadratic tests execute the full placement-statistic decoder at that clock using an exact formula. Multigenerator tests exercise adversarial accurate snapshots against independent full-box orders. Separate successful raw-mask controls use smaller clocks with directly certified actual height errors, not the conservative uniform clock. No enormous raw mask is read, and no arbitrary-input promise recognizer or faster unranking claim is made."}
 
 
+def support_rank_threshold(s):
+    """Sufficient lower bound on the first tied rank of an s-support wall.
+
+    The box, strict cyclic and fourth-moment bounds are combined. The
+    uniform arguments, including constant weights, are in Theorems 11-14.
+    """
+    if not isinstance(s, int) or s < 2:
+        raise ValueError("mixed comparisons require at least two coordinates")
+    q, strict_degree = s // 2, (s - 1) // 2
+    degree_count = comb(s + q - 1, q)
+    cyclic_count = comb(s + strict_degree, strict_degree)
+    return max(2 ** (s - 1), 1 + (cyclic_count + s - 1) // s,
+               1 + (degree_count + 47) // 48)
+
+
+def sharp_face_dimension_bound(n):
+    """Uniform sufficient face dimension; this is not the exact finite R(n)."""
+    if not isinstance(n, int) or n < 1:
+        raise ValueError("a positive integer rank is required")
+    if n == 1:
+        return 0
+    return max(s for s in range(2, n.bit_length() + 1) if support_rank_threshold(s) <= n)
+
+
+def odd_support_obstruction_controls():
+    witnesses, checked_faces = [], 0
+    for s in (3, 5, 7, 9):
+        a, b = s // 2, (s + 1) // 2
+        limit = max(64, comb(s + b, b))
+        base, face_length = 8 * limit + 9, 64
+        scale = base ** (s + 1)
+        z = (1,) * a + (-1,) * b
+        central = [scale * (b if i < a else a) + base ** i for i in range(s - 1)]
+        central.append(scale * a + sum(z[i] * base ** i for i in range(s - 1)))
+        u, v = (1,) * a + (0,) * b, (0,) * a + (1,) * b
+        height = dot(u, central)
+        require(height == dot(v, central) and (b + 1) * min(central) > height,
+                "odd-support wall and rigorous degree cutoff")
+        candidates = list(degree_points(s, b))
+        require(len(candidates) == comb(s + b, b), "odd-support stars and bars")
+        require({p for p in candidates if dot(p, central) == height} == {u, v},
+                "only the target pair ties at the relevant height")
+        first = 1 + sum(dot(p, central) < height for p in candidates)
+        denominator = 4 * limit + 1
+        left, right = [denominator * w for w in central], [denominator * w for w in central]
+        left[-1] -= 1
+        right[-1] += 1
+        wl, sl = weighted_prefix(left, len(candidates))
+        wr, sr = weighted_prefix(right, len(candidates))
+        require(sl == pointer_scores(left, len(candidates)) and
+                sr == pointer_scores(right, len(candidates)), "independent odd-support pointer")
+        require(len(set(sl)) == len(sl) and len(set(sr)) == len(sr), "strict odd-support prefixes")
+        difference = next(i for i, (x, y) in enumerate(zip(wl, wr), 1) if x != y)
+        require(difference == first and {wl[first - 1], wr[first - 1]} == {u, v},
+                "exact first odd-support change")
+        require(support_rank_threshold(s) <= first <= len(candidates), "odd-support rank bracket")
+        for size in range(1, s):
+            for face in combinations(range(s), size):
+                x, sx = weighted_prefix(tuple(left[i] for i in face), face_length)
+                y, sy = weighted_prefix(tuple(right[i] for i in face), face_length)
+                require(x == y and len(set(sx)) == face_length and len(set(sy)) == face_length,
+                        "all proper odd-support faces agree strictly")
+                checked_faces += 1
+        witnesses.append({"dimension": s, "central_integer_weights": central,
+                          "minus_integer_weights": left, "plus_integer_weights": right,
+                          "proper_face_prefix_length": face_length,
+                          "first_full_difference": first,
+                          "upper_bound_on_first_difference": len(candidates),
+                          "switched_vectors": [u, v]})
+    return {"proper_faces_checked": checked_faces, "witnesses": witnesses,
+            "scope": "Exact rational fixtures for odd support. Arbitrary face lengths and prime realizations use the separate uniform argument, not an extrapolation from these cases."}
+
+
+def sharp_interaction_controls(existing_witnesses):
+    moment_cases = constant_cases = composition_scores = orbit_cases = 0
+    dimensions = []
+    for s in range(2, 11):
+        q = s // 2
+        points = [x for x in degree_points(s, q) if sum(x) == q]
+        all_points = list(degree_points(s, q))
+        strict_points = set(degree_points(s, (s - 1) // 2))
+        require(len(points) == comb(s + q - 1, q), "exact-degree stars and bars")
+        if s <= 6:
+            fixtures = list(product(range(1, 4), repeat=s))
+        else:
+            fixtures = [(1,) * s, tuple(range(1, s + 1)),
+                        (s ** 3,) + (1,) * (s - 1),
+                        (s ** 2, s ** 2) + (1,) * (s - 2),
+                        tuple(1 + i % 2 for i in range(s)),
+                        tuple(2 ** i for i in range(s))]
+            fixtures += [tuple((i - j) ** 2 + 1 for i in range(s)) for j in range(s)]
+        u = [Fraction(1)]
+        for k in range(1, 5):
+            u.append(u[-1] * Fraction(q - k + 1, s + k - 1))
+        r = u[1]
+        for weights in fixtures:
+            total = sum(weights)
+            beta = tuple(s * w - total for w in weights)
+            values = [dot(x, beta) for x in points]
+            composition_scores += len(points)
+            a2, a4 = sum(b*b for b in beta), sum(b**4 for b in beta)
+            second = (r + u[2]) * a2
+            fourth = ((r + 7*u[2] + 12*u[3] + 6*u[4]) * a4 +
+                      (3*u[2] + 6*u[3] + 3*u[4]) * a2*a2)
+            require(sum(values) == 0, "centroid exact, without sampling")
+            require(Fraction(sum(v*v for v in values), len(points)) == second,
+                    "second moment versus complete enumeration")
+            require(Fraction(sum(v**4 for v in values), len(points)) == fourth,
+                    "fourth moment versus complete enumeration")
+            require(fourth <= 12 * second*second, "uniform kurtosis bound")
+            if a2:
+                require(48 * sum(v < 0 for v in values) >= len(points) and
+                        48 * sum(v > 0 for v in values) >= len(points),
+                        "both strict centroid halfspaces have positive depth")
+                moment_cases += 1
+            else:
+                constant_cases += 1
+            below = sum(2 * dot(x, weights) < total for x in all_points)
+            require(48 * below >= len(points), "strict simplex count, including equal weights")
+            require(s * below >= len(strict_points), "strict cyclic count")
+            # Check every distinct cyclic orbit once for selected contrasting
+            # fixtures, separately from the moment and halfspace counts.
+            if weights in (fixtures[0], fixtures[1], fixtures[-1]):
+                unseen = set(strict_points)
+                while unseen:
+                    x = min(unseen)
+                    orbit = {x[j:] + x[:j] for j in range(s)}
+                    scores = [dot(y, weights) for y in orbit]
+                    require(s * sum(scores) == len(orbit) * sum(x) * total,
+                            "cyclic orbit average")
+                    require(2 * min(scores) < total, "a strict point in each cyclic orbit")
+                    unseen.difference_update(orbit)
+                    orbit_cases += 1
+        dimensions.append({"dimension": s, "exact_degree": q,
+                           "exact_degree_points": len(points), "weight_cases": len(fixtures)})
+
+    envelope_cases = 0
+    for s in range(2, 2049):
+        q = s // 2
+        r = Fraction(q, s)
+        t = Fraction(q * (q - 1), s * (s + 1))
+        kappa = 10 + 18*r + 9*r*r
+        require(Fraction(1, 3) <= r <= Fraction(1, 2) and 0 <= t <= r*r,
+                "uniform moment-parameter regime")
+        require(r + kappa*t <= 12 * (r + t) ** 2, "exact rational moment envelope")
+        require(6*r + 15*r*r - 10 < 0 and 2*r + 6*r*r + 3*r**3 - 1 > 0,
+                "two polynomial steps of uniform envelope proof")
+        envelope_cases += 1
+
+    for witness in existing_witnesses:
+        require(support_rank_threshold(witness["dimension"]) <= witness["first_full_difference"],
+                "new threshold versus independently counted old wall fixture")
+
+    brackets = []
+    for exponent in (3, 6, 12, 30, 100, 1000):
+        n = 10 ** exponent
+        upper = sharp_face_dimension_bound(n)
+        k = 1
+        while comb(3 * (k + 1), k + 1) <= n:
+            k += 1
+        lower = 2 * k
+        require(comb(3*k, k) <= n < comb(3*(k+1), k+1), "exact lower witness budget")
+        require(lower <= upper <= n.bit_length(), "rigorous finite face-dimension bracket")
+        require(all(support_rank_threshold(s) > n
+                    for s in range(upper + 1, n.bit_length() + 1)), "all omitted supports excluded")
+        brackets.append({"rank": "10^" + str(exponent), "prime_obstruction_lower_bound": lower,
+                         "new_sufficient_face_dimension": upper,
+                         "previous_sufficient_face_dimension": n.bit_length()})
+    return {"nonconstant_weight_moment_cases": moment_cases,
+            "constant_weight_boundary_cases": constant_cases,
+            "composition_scores_checked": composition_scores,
+            "distinct_cyclic_orbits_checked": orbit_cases,
+            "exact_rational_envelope_cases": envelope_cases,
+            "old_wall_fixtures_checked": len(existing_witnesses),
+            "dimension_families": dimensions, "finite_dimension_brackets": brackets,
+            "odd_support_obstructions": odd_support_obstruction_controls(),
+            "uniform_result": "R(n)=(log(n)+0.5*log(log(n)))/log(3*sqrt(3)/2)+O(1), for both independent positive weights and actual prime bases.",
+            "scope": "Finite exact moment, strict-boundary, orbit and parameter controls. The uniform asymptotic theorem rests on the written proof and Stirling estimates, not a numerical fit. The finite upper bound is sufficient, not the exact minimum R(n). No novelty or unranking speedup is certified."}
+
+
 def main():
     report = {"schema_version": 1, "status": "passed",
               "command": "python3 -B scripts/run_face_reconstruction_checks.py",
@@ -816,6 +996,8 @@ def main():
                                 for p in ("scripts/run_face_reconstruction_checks.py",
                                           "scripts/run_interleaving_research.py",
                                           "docs/occurrence_reconstruction.md")}}
+    report["sharp_interaction_hierarchy"] = sharp_interaction_controls(
+        report["proper_face_obstructions"]["witnesses"])
     path = ROOT / "results/research/face_reconstruction_checks.json"
     path.write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps({"status": report["status"],

@@ -67,6 +67,11 @@ a Diophantine separation promise, including generator identification and
 all observation costs. Its bound is polynomial in numerical rank for fixed
 class parameters but can be enormous. This is a finite-information result;
 priority, practical recovery and an unranking advantage remain unresolved.
+The [sharp dimension continuation](docs/occurrence_reconstruction.md#a-sharp-dimension-threshold-for-finite-interleaving)
+determines the worst-case required face dimension up to a bounded additive
+error: `(log n + 0.5 log log n) / log(3 sqrt(3)/2) + O(1)`, including for
+prime bases. A uniform composition-layer moment bound explains the sharp
+interaction-rank scale. Priority and publication significance remain open.
 
 The [mathematical research note](docs/interleaving_research.md) targets general
 structure and certification for fixed-prime rank/unrank. It separates known

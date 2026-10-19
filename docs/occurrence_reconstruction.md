@@ -829,3 +829,226 @@ against existing ordinal-reconstruction results, seek a substantially sharper
 bound or a matching obstruction, and finish the face-hierarchy priority
 comparison before choosing a manuscript contribution. Preserve all earlier
 research and the paused ML work.
+
+## A sharp dimension threshold for finite interleaving
+
+This fourth iteration resolves the first iteration's open leading-constant
+question, and also the next logarithmic term, up to a bounded additive error.
+The earlier sections retain the historical proofs and their assessments.
+The result concerns face words, not the different finite zero-mask input
+of Theorem 10, and needs no Diophantine separation constants.
+
+Put gamma=3 sqrt(3)/2. All logarithms in this section are natural. For s>=2 set
+
+    q=floor(s/2),     D_s=binomial(s+q-1,q),
+    p=floor((s-1)/2),
+    B_s=max(2^(s-1),
+            1+ceil(binomial(s+p,p)/s),
+            1+ceil(D_s/48)).                            (SH1)
+
+The constant 48 is a convenient sufficient constant, not an optimum.
+
+**Theorem 11 (strict halfspaces of a composition layer).** Let X be uniform
+on the nonnegative integer vectors of dimension s and total degree q. If
+beta is a nonzero real vector with sum_i beta_i=0 and Y=beta.X, then
+
+    E[Y^4]<=12 E[Y^2]^2,
+    Pr(Y<0)>=1/48,    Pr(Y>0)>=1/48.                   (SH2)
+
+**Proof.** Write (q)_j for a falling factorial and s^(j) for a rising
+factorial, and let u_j=(q)_j/s^(j). Products with j>q are zero. The elementary
+factorial-moment identity for the uniform composition distribution is
+
+    E[product_i (X_i)_(a_i)]
+      = (q)_(sum a_i) product_i(a_i!)/s^(sum a_i).
+
+Indeed, the generating function for the numerator sum is
+product_i(a_i!) t^(sum a_i)/(1-t)^(s+sum a_i); take its coefficient of t^q
+and divide by binomial(s+q-1,q). This gives the identity without invoking
+any distributional approximation. Expanding powers, using sum beta_i=0,
+and putting A=sum beta_i^2, C=sum beta_i^4, gives
+
+    E[Y^2]=(u_1+u_2) A,
+    E[Y^4]=(u_1+7u_2+12u_3+6u_4) C
+             +(3u_2+6u_3+3u_4) A^2.                  (SH3)
+
+Here A>0 and C<=A^2. Set r=q/s and t=u_2. For s>=2,
+
+    1/3<=r<=1/2,    0<=t<=r^2,
+    u_3<=rt,       u_4<=r^2 t.
+
+Thus E[Y^4]/A^2 <= r+(10+18r+9r^2)t. To verify that this is at most
+12(r+t)^2, subtract it from that expression. Its derivative with respect
+to t is at most 6r+15r^2-10<0 throughout the specified interval. Its
+minimum is therefore at t=r^2, where it equals
+
+    r(2r+6r^2+3r^3-1)>0.
+
+The last polynomial is increasing and positive at r=1/3. This proves the
+moment bound. Put sigma^2=E[Y^2]>0. Interpolation, or two applications of
+Holder's inequality, gives
+
+    E[abs(Y)] >= sigma^3/sqrt(E[Y^4]) >= sigma/sqrt(12).
+
+Since E[Y]=0, E[Y_-]=E[abs(Y)]/2. Cauchy--Schwarz gives
+E[Y_-]<=sigma sqrt(Pr(Y<0)), proving the negative bound. Apply the same
+argument to -Y for the positive bound. QED.
+
+The factorial moments and the moment method are standard tools. Their
+derivation here makes the particular uniform constant and the strict
+inequalities checkable; no separate novelty claim for that machinery is made.
+
+**Lemma 12 (lattice points preceding a full-support comparison).** Let
+w_1,...,w_s>0, T>0 and sum_i w_i<=2T. Then
+
+    #{x in Z_>=0^s : w.x<T} >= D_s/48.                 (SH4)
+
+If the w_i are not all equal, center them by beta_i=w_i-(sum_j w_j)/s.
+Theorem 11 supplies at least D_s/48 degree-q points strictly below
+their mean q sum_i w_i/s, which is at most T. If all weights equal w,
+the degree-q layer is strictly below T unless qw=T. In that exceptional
+case s=2q; the degree-(q-1) layer is below T and has size
+
+    binomial(s+q-2,q-1) = D_s q/(s+q-1) >= D_s/3.
+
+This also proves (SH4) in the constant case, which must not be inferred
+from a zero-variance moment argument.
+
+A useful additional bound follows by taking all vectors of degree at most
+p=floor((s-1)/2). In each orbit under cyclic coordinate permutations,
+the average height is degree times sum_i w_i/s, strictly below T. Every
+orbit therefore supplies a strict point below T. Its size is at most s,
+so the number of strict points is at least ceil(binomial(s+p,p)/s).
+
+For a primitive mixed-sign normal z with support size s, the lowest tied
+pair u=z_+, v=z_- at height T satisfies sum_(i in support) w_i<=2T.
+Together with Lemma 2, these strict counts imply that its first tied rank
+at a generic crossing is at least B_s. This charges the rank before either
+member of the tied pair; it does not count the later member as the first.
+
+**Theorem 13 (sharp order of the interaction rank).** Let J(s) be the least
+first tied rank among positive-weight comparisons with primitive normal of
+support s and no second independent relation at the crossing. Uniformly as
+s grows,
+
+    J(s)=Theta(gamma^s/sqrt(s)).                        (SH5)
+
+The upper-bound constructions can be perturbed to agree for any prescribed
+finite length on every proper coordinate face while differing in the full
+word. They can also be realized by distinct prime bases, sharing their
+first s-1 labeled bases, using the already established prime approximation.
+
+**Proof.** The lower bound follows from (SH4) and Stirling's formula:
+
+    log D_s=s log(gamma)-(1/2)log(s)+O(1).
+
+For the upper bound, put a=floor(s/2), b=ceil(s/2), and use a positive
+coordinates versus b negative coordinates in z, all with absolute
+coefficient one. Start with weight b/a in the first group and weight 1
+in the second group. Their common height is b. Choose a generic point on
+this wall within eta<1/(s+1) of these weights. Its common height is at
+most b+a eta, while every vector of degree at least b+1 has height at
+least (b+1)(1-eta)>b+a eta. Thus the first tied rank is at most
+binomial(s+b,b)=Theta(gamma^s/sqrt(s)). The wall can be chosen so that
+its only rational relation is generated by z; every proper face is then
+independent. The finite strict inequalities specifying any prescribed
+proper-face prefixes survive a sufficiently small perturbation of the
+last weight to either side. The only full tie at the relevant height is
+u,v, so the full words change there. Apply the simultaneous Bertrand-based
+prime realization from Theorem 5 to these finite inequalities. This uses
+no new prime-distribution theorem. QED.
+
+**Theorem 14 (face dimension to bounded additive error).** Let R_all(n)
+be the least face dimension sufficient uniformly in ambient dimension to
+determine an n-term full word from the labeled n-term words of all faces
+of at most that dimension. The weights are positive and rationally
+independent, as in Theorem 4. Define R_prime(n) in the same way restricted
+to distinct prime bases. Then both functions satisfy
+
+    R(n)=[log n+(1/2)log log n]/log(3 sqrt(3)/2)+O(1). (SH6)
+
+One explicit sufficient dimension for n>=2 is
+
+    r_sharp(n)=max{s>=2 : B_s<=n},                     (SH7)
+
+capped by the ambient dimension. The set is finite because B_s>=2^(s-1).
+This bound is sufficient; it is not asserted to equal the exact finite R(n).
+
+**Proof.** Repeat the common-face cone path of Theorem 4. A crossing that
+changes the first n vectors has lowest tied rank at most n. Lemma 12 and
+Lemma 2 force B_s<=n for its support size s. Its face of size s would
+therefore be among the supplied data if faces through r_sharp(n) were
+given. The crossing changes that face's n-term word, a contradiction.
+This proves the sufficient dimension for both weight and prime inputs.
+
+Since D_s=Theta(gamma^s/sqrt(s)), a possible crossing satisfies
+
+    s log gamma-(1/2)log s <= log n+O(1).
+
+The existing bound s=O(log n) now gives
+s <= [log n+(1/2)log log n]/log gamma+O(1). For the reverse inequality,
+Theorem 5 supplies prime obstructions of dimension 2k whenever
+binomial(3k,k)<=n, with agreement through M=n on every proper face.
+Stirling's formula gives log binomial(3k,k)=2k log gamma-(1/2)log k+O(1).
+Taking k=floor([log n+(1/2)log log n]/(2 log gamma)-C) for a sufficiently
+large fixed C proves the required lower bound. Consequently
+R_prime(n)<=R_all(n) are squeezed to within a bounded additive error of
+the same expression. QED.
+
+This improves the previous Theta(log n) statement to a sharp first and
+second logarithmic term. In base-two units the leading coefficient is
+approximately 0.726, rather than the earlier sufficient coefficient 1.
+It explains how many-coordinate interactions can first appear in a finite
+smooth-number word. It does not make requesting all faces inexpensive:
+their number can still be sum_(j<=r) binomial(d,j), each with n vectors.
+No faster random-access algorithm or improved prime-gap bound follows.
+
+## Fourth-iteration primary comparison and publication gate
+
+[Wagner, Chapter 3, Observations 3.13--3.14 and Theorem 3.15](https://ti.inf.ethz.ch/ew/research/phdtheses/wagner03.pdf)
+bound simplex volumes and encode cuts using a full set of difference
+directions with dimension-dependent factors. Those arguments remain
+credited. They do not directly supply the present constant-fraction count
+from one full-support comparison when dimension grows. A complete priority
+comparison must still include subsequent uses of the encoding argument.
+
+[Maclagan, Section 3 and Lemma 4.1](https://arxiv.org/pdf/math/9809134)
+and [Christian--Conder--Slinko, Theorem 3](https://www.math.auckland.ac.nz/~slinko/Research/isipta17.pdf)
+provide the Boolean flip and determining-comparison framework. These
+inspected statements use subsets, whose coordinates are 0 or 1. Here
+repeated powers contribute enough additional points to change the
+interaction-rank scale from 2^s to gamma^s/sqrt(s). Their general methods
+are not excluded as a possible route to the same conclusion.
+
+[Alon--Huang--Sudakov, introduction](https://arxiv.org/pdf/1104.1753)
+credits averaging and partition methods for nonnegative subset sums.
+The uniform objects here are weak compositions with repeated coordinates,
+not subsets. Neither averaging nor a moment argument is introduced as new;
+the candidate contribution is the sharp ordinary-prefix information law.
+
+[Cheng--Basu, Theorem 2.4 and its definitions](https://arxiv.org/pdf/2603.00286)
+concern mixed-integer centerpoints under a linear-radius cube condition.
+Those specific hypotheses do not give this thin composition-layer estimate
+directly. Our centroid q/s is generally not an integer point. The present
+lemma therefore does not prove Oertel's integer-centerpoint conjecture.
+Only the stated definitions, theorem and introductory comparison were
+inspected; no full audit of that paper is claimed. The older full
+Vasiliev--Pavlov reading is preserved in the original research note; its
+reduced constraints still need a direct comparison with this dimension law.
+
+The checker adds complete small composition-layer moment and strict-count
+controls, exact rational envelope checks, independent cyclic orbits and
+odd-support rational obstructions in dimensions 3,5,7,9. The latter check
+every proper face through 64 terms and the first full change by heap,
+independent pointer merge and a sufficient degree simplex. They complement
+the retained even-support witnesses. Finite rank brackets use exact
+binomial integers, not a fitted asymptotic curve. The uniform proof, rather
+than these tests, establishes (SH5)--(SH6).
+
+The mathematical candidate is now substantially sharper and has a coherent
+structural consequence for finite interleaving. This supports continuing
+the full goal, not declaring it finished. Novelty and publication significance
+remain unestablished. The next gate is a theorem-level priority comparison
+of the composition halfspace estimate and the sharp dimension law, followed
+by a manuscript decision that states exactly what is new. Preserve the
+zero-mask results, earlier manuscripts, core kernels and paused ML research.

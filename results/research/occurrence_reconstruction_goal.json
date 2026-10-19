@@ -231,5 +231,124 @@
       "Continue the full original mathematics goal; preserve previous manuscripts, core kernels and the paused ML track. No author contact or outbound messages."
     ],
     "decision": "Continue. Uniform finite reconstruction is proved under explicit promises, but novelty, useful strength and honest publication assessment still require work. The goal remains active and is not achieved by this iteration alone."
+  },
+  "fourth_iteration": {
+    "previous_turn_classification": "Progress: the third iteration proved and verified finite zero-mask reconstruction under explicit numerical promises, preserved earlier work, and pushed the reviewed five-file change. Priority and useful quantitative strength remained open.",
+    "record": "docs/occurrence_reconstruction.md, A sharp dimension threshold for finite interleaving",
+    "checker": "scripts/run_face_reconstruction_checks.py",
+    "report": "results/research/face_reconstruction_checks.json",
+    "uniform_proof_supplied": true,
+    "results": [
+      "A fourth-moment calculation for uniform degree-floor(s/2) weak compositions proves E[Y^4]<=12 E[Y^2]^2 for centered nonzero linear forms; both strict halfspaces have mass at least 1/48. Factorial moments and the moment method are derived and credited as standard tools.",
+      "For positive weights with sum at most 2T, at least binomial(s+floor(s/2)-1,floor(s/2))/48 nonnegative integer points lie strictly below height T. The equal-weight, zero-variance case is handled separately. A cyclic-orbit bound improves some finite thresholds.",
+      "The minimum first rank of a generic comparison wall involving s coordinates is Theta((3*sqrt(3)/2)^s/sqrt(s)). Balanced full-support walls give matching upper bounds in both parities, arbitrary finite agreement on proper faces and simultaneous prime realizations.",
+      "The worst-case face dimension needed for n-term reconstruction is (log n+0.5 log log n)/log(3*sqrt(3)/2)+O(1), for both independent positive weights and actual prime bases, uniformly over ambient dimension. This sharpens the earlier Theta(log n) result to bounded additive error.",
+      "The new result concerns labeled coordinate-face prefixes and requires no Diophantine calibration. It does not reduce the number of requested faces, provide a faster unranking kernel or replace the distinct single-mask input assumptions."
+    ],
+    "primary_comparison": [
+      {
+        "source": "https://ti.inf.ethz.ch/ew/research/phdtheses/wagner03.pdf",
+        "scope": "Chapter 3 Observations 3.13-3.14 and Theorem 3.15 rechecked: simplex-volume and full-difference-matrix encoding have dimension-dependent factors. Subsequent uses of that framework still require a complete priority comparison."
+      },
+      {
+        "source": "https://arxiv.org/pdf/math/9809134",
+        "scope": "Section 3 and Lemma 4.1 inspected: primitive/flippable pairs, central complement symmetry and coherent wall crossings are established Boolean machinery. Their subset domain omits repeated powers; no new flip framework is claimed."
+      },
+      {
+        "source": "https://www.math.auckland.ac.nz/~slinko/Research/isipta17.pdf",
+        "scope": "Theorem 3 and its proof inspected: minimal determining subset comparisons are flippable. This is credited; its implications for the quantitative ordinary-prefix dimension law still need a complete comparison."
+      },
+      {
+        "source": "https://arxiv.org/pdf/1104.1753",
+        "scope": "Introduction inspected for subset-sum averaging and partition arguments. Standard averaging and nonnegative-sum methods are prior art. The uniform weak-composition halfspace estimate needs further priority comparison."
+      },
+      {
+        "source": "https://arxiv.org/pdf/2603.00286",
+        "scope": "Cheng-Basu definitions, introduction and Theorem 2.4 inspected. A linear-radius cube condition and an integer centerpoint differ from the thin composition layer and its generally noninteger centroid. No Oertel-conjecture advance or full-paper audit is claimed."
+      }
+    ],
+    "verification_complete": true,
+    "privacy_review_complete": true,
+    "verification_commands": [
+      "python3 -B scripts/run_face_reconstruction_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py"
+    ],
+    "certificate_summary": {
+      "nonconstant_weight_moment_cases": 1128,
+      "constant_weight_boundary_cases": 19,
+      "composition_scores_checked": 90547,
+      "distinct_cyclic_orbits_checked": 720,
+      "exact_rational_envelope_cases": 2047,
+      "old_wall_fixtures_checked": 5,
+      "odd_support_proper_faces_checked": 672,
+      "odd_support_first_differences": [
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          24
+        ],
+        [
+          7,
+          131
+        ],
+        [
+          9,
+          755
+        ]
+      ],
+      "exact_dimension_brackets": [
+        {
+          "rank": "10^3",
+          "prime_obstruction_lower_bound": 8,
+          "new_sufficient_face_dimension": 10,
+          "previous_sufficient_face_dimension": 10
+        },
+        {
+          "rank": "10^6",
+          "prime_obstruction_lower_bound": 16,
+          "new_sufficient_face_dimension": 20,
+          "previous_sufficient_face_dimension": 20
+        },
+        {
+          "rank": "10^12",
+          "prime_obstruction_lower_bound": 30,
+          "new_sufficient_face_dimension": 35,
+          "previous_sufficient_face_dimension": 40
+        },
+        {
+          "rank": "10^30",
+          "prime_obstruction_lower_bound": 74,
+          "new_sufficient_face_dimension": 79,
+          "previous_sufficient_face_dimension": 100
+        },
+        {
+          "rank": "10^100",
+          "prime_obstruction_lower_bound": 244,
+          "new_sufficient_face_dimension": 249,
+          "previous_sufficient_face_dimension": 333
+        },
+        {
+          "rank": "10^1000",
+          "prime_obstruction_lower_bound": 2416,
+          "new_sufficient_face_dimension": 2421,
+          "previous_sufficient_face_dimension": 3322
+        }
+      ]
+    },
+    "verification_scope": "Complete exact small composition layers test second/fourth moments, strict signs and constant-weight boundaries. Rational envelope inequalities and cyclic orbits support the uniform proof. Odd-support rational fixtures add independent heap, pointer, degree-cutoff and all-proper-face checks. Exact binomial brackets are not a numerical fit to the asserted asymptotic. Exact replay, build and smoke passed. All fifteen earlier non-main checker functions, old certificate blocks, original note prefix, historical goal entries and 235 other tracked files are preserved. The explicit five-file public set was reviewed; proof and primary-priority limits remain stated.",
+    "novelty_established": false,
+    "publication_ready": false,
+    "impact_assessment": "The candidate now gives a sharp first and second logarithmic term with bounded additive uncertainty, and a matching interaction-rank scale. This is a coherent structural strengthening of the original interleaving question, but primary priority and publication significance remain unresolved. No practical access advantage follows merely from the face-information bound.",
+    "next_actions": [
+      "Audit prior weak-composition halfspace and moment bounds and subsequent uses of the monomial-order/corner-cut framework. Establish which exact quantitative statement, if any, is new; do not infer novelty from absent keywords.",
+      "Complete the direct comparison with Vasiliev-Pavlov reduced strict-prefix constraints and the Boolean determining-comparison literature for the new bounded-error dimension law.",
+      "Assess a coherent paper around the sharp interaction-rank and face-dimension law only if a genuine gap and a useful consequence survive the comparison. Keep single-stream rigidity and finite-mask recovery as separately scoped results.",
+      "Continue the full original goal. Preserve previous research, core kernels and paused ML work. Never contact authors or send outbound messages."
+    ],
+    "decision": "Continue: a materially sharper uniform structural theorem is proved internally, but the full novelty, usefulness and publication audit remains incomplete. Do not mark the goal complete."
   }
 }

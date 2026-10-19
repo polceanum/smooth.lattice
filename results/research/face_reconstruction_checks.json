@@ -2650,8 +2650,310 @@
   "publication_ready": false,
   "scope": "Finite exact controls support the uniform proofs; no prime-distribution or unranking speedup claim.",
   "source_sha256": {
-    "scripts/run_face_reconstruction_checks.py": "f127a281af4e0557577797c5003101a97e007ec21baf241a55e19eb67d7d5ce2",
+    "scripts/run_face_reconstruction_checks.py": "eeb07ee4a8bd4020749517bbef664c313187a9d767172f2ed5890c8539eef820",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
-    "docs/occurrence_reconstruction.md": "77f3b221dad29e343f3b331969c5767809c6a21724d694687cb463ef54854b9c"
+    "docs/occurrence_reconstruction.md": "ca8b1e535a4bd7e7c5ea619332cd10412fa9a6cd3c6974c493c4f3efed2cf4cf"
+  },
+  "sharp_interaction_hierarchy": {
+    "nonconstant_weight_moment_cases": 1128,
+    "constant_weight_boundary_cases": 19,
+    "composition_scores_checked": 90547,
+    "distinct_cyclic_orbits_checked": 720,
+    "exact_rational_envelope_cases": 2047,
+    "old_wall_fixtures_checked": 5,
+    "dimension_families": [
+      {
+        "dimension": 2,
+        "exact_degree": 1,
+        "exact_degree_points": 2,
+        "weight_cases": 9
+      },
+      {
+        "dimension": 3,
+        "exact_degree": 1,
+        "exact_degree_points": 3,
+        "weight_cases": 27
+      },
+      {
+        "dimension": 4,
+        "exact_degree": 2,
+        "exact_degree_points": 10,
+        "weight_cases": 81
+      },
+      {
+        "dimension": 5,
+        "exact_degree": 2,
+        "exact_degree_points": 15,
+        "weight_cases": 243
+      },
+      {
+        "dimension": 6,
+        "exact_degree": 3,
+        "exact_degree_points": 56,
+        "weight_cases": 729
+      },
+      {
+        "dimension": 7,
+        "exact_degree": 3,
+        "exact_degree_points": 84,
+        "weight_cases": 13
+      },
+      {
+        "dimension": 8,
+        "exact_degree": 4,
+        "exact_degree_points": 330,
+        "weight_cases": 14
+      },
+      {
+        "dimension": 9,
+        "exact_degree": 4,
+        "exact_degree_points": 495,
+        "weight_cases": 15
+      },
+      {
+        "dimension": 10,
+        "exact_degree": 5,
+        "exact_degree_points": 2002,
+        "weight_cases": 16
+      }
+    ],
+    "finite_dimension_brackets": [
+      {
+        "rank": "10^3",
+        "prime_obstruction_lower_bound": 8,
+        "new_sufficient_face_dimension": 10,
+        "previous_sufficient_face_dimension": 10
+      },
+      {
+        "rank": "10^6",
+        "prime_obstruction_lower_bound": 16,
+        "new_sufficient_face_dimension": 20,
+        "previous_sufficient_face_dimension": 20
+      },
+      {
+        "rank": "10^12",
+        "prime_obstruction_lower_bound": 30,
+        "new_sufficient_face_dimension": 35,
+        "previous_sufficient_face_dimension": 40
+      },
+      {
+        "rank": "10^30",
+        "prime_obstruction_lower_bound": 74,
+        "new_sufficient_face_dimension": 79,
+        "previous_sufficient_face_dimension": 100
+      },
+      {
+        "rank": "10^100",
+        "prime_obstruction_lower_bound": 244,
+        "new_sufficient_face_dimension": 249,
+        "previous_sufficient_face_dimension": 333
+      },
+      {
+        "rank": "10^1000",
+        "prime_obstruction_lower_bound": 2416,
+        "new_sufficient_face_dimension": 2421,
+        "previous_sufficient_face_dimension": 3322
+      }
+    ],
+    "odd_support_obstructions": {
+      "proper_faces_checked": 672,
+      "witnesses": [
+        {
+          "dimension": 3,
+          "central_integer_weights": [
+            147360432963,
+            73680217002,
+            73680215961
+          ],
+          "minus_integer_weights": [
+            37871631271491,
+            18935815769514,
+            18935815501976
+          ],
+          "plus_integer_weights": [
+            37871631271491,
+            18935815769514,
+            18935815501978
+          ],
+          "proper_face_prefix_length": 64,
+          "first_full_difference": 5,
+          "upper_bound_on_first_difference": 10,
+          "switched_vectors": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "dimension": 5,
+          "central_integer_weights": [
+            59999494925457364,
+            59999494925457884,
+            39999663283909683,
+            39999663425059003,
+            39999663141946562
+          ],
+          "minus_integer_weights": [
+            15419870195842542548,
+            15419870195842676188,
+            10279913463964788531,
+            10279913500240163771,
+            10279913427480266433
+          ],
+          "plus_integer_weights": [
+            15419870195842542548,
+            15419870195842676188,
+            10279913463964788531,
+            10279913500240163771,
+            10279913427480266435
+          ],
+          "proper_face_prefix_length": 64,
+          "first_full_difference": 24,
+          "upper_bound_on_first_difference": 56,
+          "switched_vectors": [
+            [
+              1,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "dimension": 7,
+          "central_integer_weights": [
+            9698747606651326663980435205,
+            9698747606651326663980437853,
+            9698747606651326663987452405,
+            7274060704988495016573891852,
+            7274060704988544239095200804,
+            7274060705118934698042614652,
+            7274060704858006038236618155
+          ],
+          "minus_integer_weights": [
+            12812045588386402523118154905805,
+            12812045588386402523118158403813,
+            12812045588386402523127424627005,
+            9609034191289801916894111136492,
+            9609034191289866939844760262084,
+            9609034191462112736114293955292,
+            9609034191117425976510572582754
+          ],
+          "plus_integer_weights": [
+            12812045588386402523118154905805,
+            12812045588386402523118158403813,
+            12812045588386402523127424627005,
+            9609034191289801916894111136492,
+            9609034191289866939844760262084,
+            9609034191462112736114293955292,
+            9609034191117425976510572582756
+          ],
+          "proper_face_prefix_length": 64,
+          "first_full_difference": 131,
+          "upper_bound_on_first_difference": 330,
+          "switched_vectors": [
+            [
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "dimension": 9,
+          "central_integer_weights": [
+            5584063988052599215008792114734649658203126,
+            5584063988052599215008792114734649658219150,
+            5584063988052599215008792114734649915003750,
+            5584063988052599215008792114738764888218750,
+            4467251190442079372007033757734280726953125,
+            4467251190442079372008090485427750986328125,
+            4467251190442079388942151773288657470703125,
+            4467251190442350757274289744315069580078125,
+            4467251190441807969803602698176955355582276
+          ],
+          "minus_integer_weights": [
+            44722768480313267113005416046909809112548836134,
+            44722768480313267113005416046909809112677172350,
+            44722768480313267113005416046909811169265033750,
+            44722768480313267113005416046942767989743968750,
+            35778214784250613690404333365693854342167578125,
+            35778214784250613690412796697790857649501953125,
+            35778214784250613826037693552268857682861328125,
+            35778214784252787215009786562219392266845703125,
+            35778214784248440030157054009699235442858448483
+          ],
+          "plus_integer_weights": [
+            44722768480313267113005416046909809112548836134,
+            44722768480313267113005416046909809112677172350,
+            44722768480313267113005416046909811169265033750,
+            44722768480313267113005416046942767989743968750,
+            35778214784250613690404333365693854342167578125,
+            35778214784250613690412796697790857649501953125,
+            35778214784250613826037693552268857682861328125,
+            35778214784252787215009786562219392266845703125,
+            35778214784248440030157054009699235442858448485
+          ],
+          "proper_face_prefix_length": 64,
+          "first_full_difference": 755,
+          "upper_bound_on_first_difference": 2002,
+          "switched_vectors": [
+            [
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          ]
+        }
+      ],
+      "scope": "Exact rational fixtures for odd support. Arbitrary face lengths and prime realizations use the separate uniform argument, not an extrapolation from these cases."
+    },
+    "uniform_result": "R(n)=(log(n)+0.5*log(log(n)))/log(3*sqrt(3)/2)+O(1), for both independent positive weights and actual prime bases.",
+    "scope": "Finite exact moment, strict-boundary, orbit and parameter controls. The uniform asymptotic theorem rests on the written proof and Stirling estimates, not a numerical fit. The finite upper bound is sufficient, not the exact minimum R(n). No novelty or unranking speedup is certified."
   }
 }
