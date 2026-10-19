@@ -84,6 +84,14 @@ its fan, ruling out a universal polylogarithmic cover. The count needs a
 different aggregate estimate. A nine-cone quotient
 also retains the difficult weight and projection exponents in an entirely
 interior cell.
+A [nested-matroid construction](docs/nested_jet_matroids.md) supplies
+explicit non-binomial finite quotients with an exact monomial rank rule,
+including an infinite family of embedding dimension three. It replaces
+coefficient searches by a classical scheduling oracle on a realizable
+exponent lattice. The proof also gives a curvilinear family with exactly
+the generic positive fan and an infinite family of non-corner-cut standard
+sets. No new spatial counting exponent or priority claim follows yet;
+the next task is a uniform count of the interacting nested constraints.
 The additive prime-power class is now classified separately: at length
 `n=q^k`, every initial ideal is a prime-power box and the sharp maximum
 is `binomial(k+d-1,d-1)`. The proof uses established Frobenius reduction;

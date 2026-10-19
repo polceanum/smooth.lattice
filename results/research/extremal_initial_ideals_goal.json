@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Preserve the original sharp-growth or polynomial-separation endpoint. The full weighted incidence moment cannot have a power saving: genuine three-pole curve quotients, even radical rational point ideals, have T=Theta(n^4) and only binomial(n+1,2) initial ideals. This remains true with only wholly interior incident cells counted. At h=n^2/32 there are Theta(n^2) interior bad cells, so no O(n^(4-epsilon)/h) bound can hold uniformly over all thresholds. The current good-cell shadow argument may instead be combined with a threshold-specific count B_I(h) of bad cells at a smaller h; a bound O(n^2*log(n+1)^2) near h=n^(3/5) would give the generic-scale upper count, but is not proved. Another route needs quotient-sensitive trace bounds or overlap accounting. Every plane sees at most 2*n-1 cells of the new family, so any universal selected-plane cover needs Omega(n) members; a polylogarithmic cover is false even with real coefficients. Summing the existing arithmetic envelope over distinct primitive integer kernels of any such cover incurs budget Omega(n^(19/9)*log(n+1)), so that envelope alone cannot prove the generic n^2 power up to logarithms. Do not spend another iteration merely refining its constants or asserting a smaller full moment. The separate nine-cone example retains quadratic integer height and linear kernel radius in an entirely interior cell, excluding a uniform individual-radius shortcut after boundary removal. Pursue a new global count of simultaneous dependencies or a genuinely non-binomial lower family, continue the strongest-current-primary-bound audit, and do not treat these route obstructions as goal completion or a standalone publication claim.",
+  "next_proof_task": "Preserve the original sharp-growth or polynomial-separation endpoint. Use the explicit characteristic-zero family in docs/nested_jet_matroids.md as a constructive test of simultaneous dependencies: ambient truncation L, positive additive valuations m, exact rank rule v_i<=L-r+i-1, and true quotient length n=L-max_k(k-nu_m(k)). The family includes non-binomial quotients of embedding dimension three at every length n=L-2 for m=(3,4,5), L>=10. Prove a uniform bound on its exposed monomial profiles in terms of the true length, or a power-separated lower construction, before extending the finite fan screen. Determine whether nested scheduling constraints add asymptotic complexity to the generic exponent-lattice fan; do not infer a bound for all Schubert matroids or all quotients from this special multiplicative realization. Compare the exact construction with ordered Hermite-Birkhoff interpolation, Schubert/lattice-path matroids, parametric scheduling and generic-jet literature. The interpolation and rank classes are classical, and their use does not establish novelty. Retain the previous obstructions: full weighted incidence can be quartic, any plane cover can need linearly many members, and individual difficult cones retain quadratic certificate height. Do not return to those disproved shortcuts, fit finite counts, or treat this new realization theorem, a draft, minor refinement or an unverified priority claim as goal completion. Continue the strongest-current-primary-bound audit and preserve every original success criterion.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -83,7 +83,8 @@
     "Compare the explicit all-field five-cone family, its exact (n+1)^2/4 integer certificate height, exact floor(k/2)+1 kernel radius and optimal two-plane cover against current primary literature. Cofactor upper bounds, positive-weight representation and symbolic Groebner walks are established inputs; no novelty or extremal endpoint is claimed.",
     "Complete the precise comparison with van der Hoeven--Lecerf heterogeneous quasi-reduction before claiming a new dyadic weight-cover principle. Distinguish its versioned source and monomial reduction regions from a cover of all Groebner cones.",
     "Assess priority of the boundary-plane reduction, weighted interior-facet incidence formulation and exact local surface-tail example. The next unconditional count requires a stronger incidence theorem, not an unproved area or aspect bound. Classical ingredients and the binomial subclass boundary remain credited.",
-    "Compare the exact three-pole curve fan, coefficient-independent pure-axis basis classification, quartic incidence sharpness and linear all-plane trace bound with existing curve-interpolation and Groebner-fan literature. Partial fractions, Vandermonde interpolation, primitive normal calculations and the elementary coprime sieve are classical. The proof-budget obstruction is scoped to separately summing the current arithmetic shadow envelope; no universal enumeration lower bound or novelty certificate is claimed."
+    "Compare the exact three-pole curve fan, coefficient-independent pure-axis basis classification, quartic incidence sharpness and linear all-plane trace bound with existing curve-interpolation and Groebner-fan literature. Partial fractions, Vandermonde interpolation, primitive normal calculations and the elementary coprime sieve are classical. The proof-budget obstruction is scoped to separately summing the current arithmetic shadow envelope; no universal enumeration lower bound or novelty certificate is claimed.",
+    "Compare the exact multiplicative realization and exposed-profile counts in docs/nested_jet_matroids.md with generic-jet and ordered interpolation constructions, parametric scheduling, and Schubert/lattice-path matroid optimization. Classical poisedness and the nested rank rule are not new; ordinary matrix representations do not automatically imply a cyclic polynomial quotient. No asymptotic bound for this family or the unrestricted spatial target has yet been established."
   ],
   "primary_sources": [
     {
@@ -230,6 +231,21 @@
       "url": "https://arxiv.org/pdf/0705.3631",
       "version": "arXiv:0705.3631v1",
       "scope": "Section 3 and Lemmas 4.2--4.3, Corollary 4.4 with proofs: coherent diagrams minimize total degree first, so their Hilbert-basis count describes the star at the ordinary-degree ray. It does not state an all-ray weighted-incidence bound or cover arbitrary non-binomial quotients. This expands the earlier repository lattice-ideal comparison; it is not a complete current-priority audit."
+    },
+    {
+      "authors": "Atkinson and Sharma",
+      "url": "https://homepage.math.uiowa.edu/~atkinson/papers/HB_interp.pdf",
+      "scope": "1969 definitions, Theorem 2 and proof inspected. Classical conservative Hermite-Birkhoff poisedness includes the monotone one-condition-per-node special case used here; the note supplies its elementary Rolle proof."
+    },
+    {
+      "authors": "Gessel",
+      "url": "https://arxiv.org/html/1609.05988v1#S2.SS1",
+      "scope": "Theorem 2.1.1 and equation (2.1.1), with formal-series assumptions, supply classical Lagrange inversion for explicit triangular generators."
+    },
+    {
+      "authors": "Benedetti-Velasquez and Knauer",
+      "url": "https://link.springer.com/article/10.1007/s00493-024-00085-4",
+      "scope": "Section 2.1 and Remark 3 inspected for classical Schubert/lattice-path matroids and generic matrix representations. Their matroid quotients are distinguished from polynomial quotients with commuting multiplication."
     }
   ],
   "verification": {
@@ -852,8 +868,50 @@
         "smoke": "passed",
         "manuscripts_core_and_paused_ML": "unchanged"
       }
+    },
+    {
+      "title": "Explicit multiplicative realizations of nested monomial rank constraints",
+      "recorded_on": "2026-10-20",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "ada0da1 established quartic incidence sharpness and the linear projection-cover obstruction for actual quotients; 7877a60 completed the user-requested removal of stale credits references. The latter is editorial progress, not a mathematical counting advance.",
+      "progress_classification": "uniform_constructive_realization_with_exact_length_and_rank_rules_and_independent_full_fan_controls; spatial_count_and_priority_open",
+      "uniform_proofs": [
+        "For every ambient truncation L and positive integer valuation vector m, take B=max(L,2), C=L*(1+B+B^2), lambda_i=C*m_i+B^(i-1), and map x_i to t^(m_i)*exp(lambda_i*t) modulo t^L over Q. On all nonzero monomials, the integer nodes lambda.u are distinct and ordered compatibly with m.u. Ordered Hermite-Birkhoff interpolation gives independence exactly when sorted valuations satisfy v_i<=L-r+i-1. The proof supplies the elementary classical Rolle induction, and treats arbitrary subsets rather than choosing coefficients separately for each basis.",
+        "The resulting residue matroid has rank(S)=min(|S|,min_{0<=k<=L}(L-k+number of valuations in S below k)). The actual polynomial quotient length is L-max_{0<=k<=L}(k-nu_m(k)); ambient truncation and quotient length must not be confused. The image subalgebra is cyclic with commuting multiplication, not just an ordinary linear matroid representation.",
+        "For m=(3,4,5) and every L>=10, the quotient has length L-2, embedding dimension three and more nonzero monomial residue lines than rank. It is non-binomial. Thus the construction is not restricted to embedding dimension one or independent socle pairs.",
+        "For m=(1,a,b), explicit triangular polynomial generators follow from classical Lagrange inversion. For m=(1,1,1), every n-element monomial downset is a basis, and the positive fan is exactly the generic corner-cut fan despite the additional dependencies.",
+        "For every q>=2, the same fixed quotient with L=2*q and m=(1,1,q) has E times {0,1} as an initial standard set for every q-element planar corner cut E. Each such product includes a midpoint while excluding both endpoints, so it is not a corner cut. This is an infinite realizable structural separation, not the required spatial power separation."
+      ],
+      "independent_controls": {
+        "command": "python3 -B scripts/run_nested_jet_checks.py",
+        "report": "results/research/nested_jet_checks.json",
+        "exhaustive_subset_ranks": 3968,
+        "permutation_determinants": 35,
+        "complete_positive_fans": 8,
+        "initial_ideals_checked": 122,
+        "ordinary_s_pairs": 380,
+        "exchange_inequalities": 8307,
+        "commuting_multiplication_checks": 288,
+        "all_downset_matrix_bases": 181,
+        "non_corner_cut_product_bases": 22,
+        "checks": "Rational Gaussian elimination against the combinatorial rank formula on every subset of five small full valuation grounds; separate permutation determinants; truncated polynomial products versus exponential columns and closed polynomial generators; image length and maximal-ideal-square rank; non-binomial residue-line counts; complete rational fan traversal checked by both border polynomials and nested basis exchanges, with ordinary S-pairs on the small and embedding-dimension-three fixtures; independent complete comparison arrangements in two cases."
+      },
+      "literature_boundary": "Atkinson--Sharma (1969), definitions, Theorem 2 and proof include the ordered monotone interpolation special case. Gessel Theorem 2.1.1 supplies the classical coefficient formula. Benedetti-Velasquez--Knauer Section 2.1 and Remark 3 identify Schubert/nested matroids and ordinary matrix representations. A matroid quotient in the last source is not a finite polynomial quotient. The exact multiplicative realization and its quantitative consequences have no novelty certificate; no search absence is used as evidence. The earlier lattice-shadow proof and the unresolved 1975 application comparison remain preserved.",
+      "effect_on_next_action": "Preserve the original sharp-growth or polynomial-separation endpoint. Use the explicit characteristic-zero family in docs/nested_jet_matroids.md as a constructive test of simultaneous dependencies: ambient truncation L, positive additive valuations m, exact rank rule v_i<=L-r+i-1, and true quotient length n=L-max_k(k-nu_m(k)). The family includes non-binomial quotients of embedding dimension three at every length n=L-2 for m=(3,4,5), L>=10. Prove a uniform bound on its exposed monomial profiles in terms of the true length, or a power-separated lower construction, before extending the finite fan screen. Determine whether nested scheduling constraints add asymptotic complexity to the generic exponent-lattice fan; do not infer a bound for all Schubert matroids or all quotients from this special multiplicative realization. Compare the exact construction with ordered Hermite-Birkhoff interpolation, Schubert/lattice-path matroids, parametric scheduling and generic-jet literature. The interpolation and rank classes are classical, and their use does not establish novelty. Retain the previous obstructions: full weighted incidence can be quartic, any plane cover can need linearly many members, and individual difficult cones retain quadratic certificate height. Do not return to those disproved shortcuts, fit finite counts, or treat this new realization theorem, a draft, minor refinement or an unverified priority claim as goal completion. Continue the strongest-current-primary-bound audit and preserve every original success criterion.",
+      "new_unrestricted_counting_exponent": false,
+      "explicit_nonbinomial_realization": true,
+      "embedding_dimension_three_infinite_family": true,
+      "sharp_or_separated_endpoint_achieved": false,
+      "novelty_established": false,
+      "goal_complete": false,
+      "verification": {
+        "new_research": "passed",
+        "build": "passed",
+        "smoke": "passed",
+        "prior_manuscripts_research_core_and_paused_ML": "byte-unchanged outside the reviewed public list; objective, success criteria and all prior continuations preserved"
+      }
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "No new unconditional counting exponent. A uniform all-field large-normal surface-area obstruction and a boundary/interior incidence reduction identify the precise next quantitative budget.",
-  "previous_goal_turn_classification": "progress: f883917 saved the boundary-plane reduction, weighted-incidence formulation and quartic surface-tail obstruction; d205701 completed the requested editorial cleanup. The target and previously proved results remain intact."
+  "asymptotic_improvement_scope_this_iteration": "No new unconditional counting exponent. An explicit characteristic-zero multiplicative realization gives exact monomial ranks and lengths, including an infinite non-binomial embedding-dimension-three family. Its spatial exposed-profile growth and novelty remain open.",
+  "previous_goal_turn_classification": "progress: ada0da1 saved uniform actual-quotient incidence and cover obstructions; the intervening 7877a60 credits cleanup is preserved as a separate editorial change."
 }
