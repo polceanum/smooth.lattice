@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "command": "python3 -B scripts/run_robust_reader_checks.py",
+  "scope": "Exact finite controls for the uniform cap-capacity proof; no novelty, runtime or strongest-method claim.",
+  "quadratic_capacity_bound": "n <= p*(2/delta^2-1)^2 for fixed unit keys robustly realizing every binary assignment on full Euclidean radius-delta balls.",
+  "normalization": {
+    "mixed_two_eigenvalue_geometries": 32,
+    "whole_ball_normalization_checks_including_rescalings": 720
+  },
+  "rademacher": {
+    "frames": 3,
+    "sign_assignments": 320,
+    "mean_squared_frobenius_norm_equals_key_count": true
+  },
+  "binding": {
+    "exhaustive_label_assignments": 74,
+    "noisy_query_controls": 4454,
+    "point_replacements_including_zero_clears": 96,
+    "fixed_radius": "1/10",
+    "uniform_value_error_bound": "243/1225",
+    "indexed_top_two_baseline_matches_all_tested_key_neighborhoods": true
+  },
+  "new_theorem_beyond_prior_art_established": false,
+  "strongest_method_advantage_established": false,
+  "source_sha256": {
+    "scripts/run_robust_reader_checks.py": "c8753ce51634d92ea6bc3a6ebeaf7708c46da357d6cf1302d9cb5b69b98c7827",
+    "docs/interleaving_research.md": "14f270c40285828993e86599939efcf266a696e1cb122239f44b792531731ebe"
+  }
+}

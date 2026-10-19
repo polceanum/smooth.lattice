@@ -11825,3 +11825,223 @@ neither full X nor Z is compared with the earlier full reconstruction,
 the regression normal equations and the direct feature decoder. The
 checker uses dense rational oracles; it makes no runtime, novelty,
 architecture-superiority or new neural-training claim.
+
+### Associative-memory goal: robust recall beyond a bounded-output assumption
+
+Previous turn classification: progress. The exact regression baseline and
+dimension audit changed which constructions remain worth investigating.
+This iteration checks deletion prior art and proves a fixed-key robust
+capacity bound that also applies after output clipping. It does not
+establish the strongest-method advantage required by the active goal.
+
+#### Deletion promises need an explicit counterfactual
+
+[Exact Record Omission in Delta Attention, Theorem 1](https://arxiv.org/html/2609.06872v1)
+already writes the difference between two affine recurrent trajectories
+as a transported boundary difference plus accumulated forcing from
+changed later updates. The statement, proof and write-rule corollary
+were inspected. Subtracting the transported receipt is exact precisely
+when the forcing sum vanishes. The paper explicitly does not give a
+lower bound on every deletion algorithm. We must distinguish frozen
+external writes from a model whose later write inputs depend on the
+deleted history. Our local current-state constructions do not prove
+counterfactual deletion for an entire contextual model.
+
+[Forgetful Attention, Sections 3.1--3.4 and 4](https://arxiv.org/html/2607.12204v1)
+already uses incremental/decremental support-vector optimization for
+context-memory deletion. Its displayed objective, fixed-C deletion
+definition and maintained-versus-batched distinction were inspected.
+Returning to the retained-data optimizer is its exact-deletion target;
+it is not a promise that every retained query prediction stays unchanged.
+Its exact maintained path and approximate training path have different
+claims. A new decay, erase or small regression mechanism alone would
+not establish a new deletion theorem. We have not replicated either
+paper's model experiments or audited all implementation details.
+
+#### A homogeneous quadratic reader cannot robustly realize too many labels
+
+Fix unit keys u_1,...,u_n in real p-dimensional Euclidean space and
+0<delta<1. Suppose that for **every** sign assignment sigma in {+1,-1}^n
+there is a symmetric matrix S_sigma such that
+
+    sigma_i * x^T*S_sigma*x > 0
+    whenever ||x-u_i||_2 <= delta, for every i.
+
+Then
+
+    n <= p*(2/delta^2-1)^2.
+
+No bound on S_sigma or its precision is assumed. The matrix can be
+obtained by an arbitrary nonlinear encoding of all labels. This is a
+bound on robustly realizing independent labels at the fixed keys, not
+merely on a particular update rule. For fixed delta its order is linear
+in p, despite the quadratic number of matrix parameters.
+
+Proof. Write r=delta^2. For a mixed-sign assignment, S has a negative
+eigenvalue -a and a positive eigenvalue b, where a,b>0 are the extreme
+magnitudes. For a positive key u, perturb by delta times a unit
+eigenvector of -a, choosing its sign so the cross term is nonpositive.
+The quadratic value at that point is
+
+    u^T*S*u - 2*a*delta*|<u,w_negative>| - a*r > 0.
+
+Consequently u^T*S*u>a*r. For a negative key the corresponding
+perturbation toward a b-eigenvector gives u^T*S*u<-b*r. Since unit-key
+values lie between -a and b, existence of both signs also implies
+a>b*r and b>a*r.
+
+Normalize and shift on the unit sphere:
+
+    T = S/(a+b) - [(a-b)*r/(2*(a+b))]*I,
+    gamma=r/2,  B=1-r/2.
+
+At every key, sigma_i*u_i^T*T*u_i>gamma. Also
+
+    ||T||_op = max(a,b)*(1+r)/(a+b)-r/2 <= B,
+
+because max(a,b)/(a+b)<1/(1+r). For either constant sign assignment
+use T=+gamma*I or -gamma*I instead. Thus for every assignment we have
+a matrix T of operator norm at most B and margin at least gamma.
+
+Set P_i=u_i*u_i^T and X_sigma=sum_i sigma_i*P_i. For independent
+uniform signs, E||X_sigma||_F^2=n. The margin and trace Cauchy--Schwarz
+give, for each assignment,
+
+    gamma*n <= tr(T_sigma*X_sigma)
+             <= sqrt(p)*B*||X_sigma||_F.
+
+Take expectations and use E||X||_F<=sqrt(n); then
+n<=p*B^2/gamma^2, which is the displayed bound. The argument also
+works for Hermitian matrices and complex unit keys, using phases to
+choose the eigenvector perturbation. Exact rational controls below
+cover the real cases; the complex extension follows from the same
+spectral and trace identities.
+
+For clipped recall within error epsilon<1 of every binary label,
+the signs must be correct throughout each ball, so the same bound
+applies. It also covers a quadratic numerator divided by a denominator
+that is strictly positive on the balls. A subsequent monotone scalar
+decoder with a fixed decision threshold preserves that classification
+reduction when its threshold can be absorbed into a quadratic form.
+
+The domain and reader restrictions matter. The result is for a fixed
+homogeneous quadratic form in the prescribed query coordinates. It
+does not cover arbitrary nonlinear feature maps, query-dependent
+routing, sums of separate quadratic ratios, affine-quadratic terms,
+iterative attractor dynamics or complete networks containing such
+operations. In particular it is not a lower bound on an entire
+published transformer architecture. It bounds fixed-center robust
+realizability, not general adversarial-PAC sample complexity.
+
+The last trace/margin step is established machinery:
+[Gyurik--van Vreumingen--Dunjko, Proposition 5 and Appendix A.3](https://arxiv.org/html/2105.05566v3)
+already bounds fat-shattering by observable Frobenius norm and margin;
+those displayed arguments were inspected previously. The present
+geometric step obtains a bounded-norm margin representative from
+full input-ball robustness, rather than assuming an output-norm bound.
+Its precise priority remains to be established. An unsuccessful search
+for this formulation is not evidence that it is new.
+
+#### An explicit nonlinear reader escapes the quadratic restriction
+
+For each unordered coordinate pair i<j, keep an independently replaceable
+value V_ij in [-1,1]. There are N=p*(p-1)/2 such bindings. Define
+
+    Q_V(q) = [sum_{i<j} V_ij*q_i^2*q_j^2]
+             /[sum_{i<j} q_i^2*q_j^2].
+
+Its numerator and denominator are quartic; equivalently, square the
+p input coordinates and apply a quadratic pair reader. Use the fixed
+unit key u_ij=(3*e_i+4*e_j)/5. At this key Q_V=V_ij for every assignment
+of values. These are arbitrary independent bindings, not a low-rank
+assumption on V. General queries can use all p coordinates.
+However, the Jacobian of coordinate squaring has rank two at these
+two-sparse keys, although it has rank p at dense queries. This code
+does not supply a uniformly conditioned p-direction semantic encoder
+or a theorem for arbitrary learned keys. Its special local geometry
+must not be hidden behind the dimension of the ambient query vector.
+
+For every real q with ||q-u_ij||_2<=delta=1/10, write t for the squared
+mass outside coordinates i,j. Then t<=delta^2, the target pair mass
+is at least (3/5-delta)^2*(4/5-delta)^2, and all other pair masses sum
+to at most (1+delta)^2*delta^2+delta^4/2. The latter follows from
+||q||_2<=1+delta and sum_{a<b outside}q_a^2*q_b^2<=t^2/2. Therefore
+
+    |Q_V(q)-V_ij| <= 243/1225 < 1/5.
+
+The denominator is positive in every such ball. This proves a fixed
+noise-radius, all-assignment guarantee for N quadratic-in-p bindings.
+At sufficiently large p it exceeds the preceding linear-in-p upper
+bound for homogeneous quadratic readers. This is an explicit reader-
+class separation, not a statement that higher-order memories or the
+benefits of nonlinear features are new.
+
+The representation is just an indexed binding table. It needs N value
+words, plus an implicit pair-index formula; no N-by-p explicit codebook
+is required. Indices need O(log(N)) bits; word-operation claims require
+words large enough for those indices and the chosen value precision.
+An overwrite or a clear-to-zero replaces one value word. Clearing
+a value retains its address in the denominator: it is not removal of a
+key followed by renormalization. Dense exact reads cost O(p^2*v) scalar
+operations for value width v, with O(p) squaring work. On fixed bounded
+rational grids, exact products and sums have current-state bit lengths
+O(value_bits+4*query_bits+log(N)); overwrite history does not enter.
+The N independent value words are still charged. This is not a storage
+compression below the independent-value information bound.
+
+The strongest baseline prevents an architectural-superiority claim.
+On each key neighborhood, the largest two coordinate magnitudes identify
+the pair: both target magnitudes are at least 1/2, all other magnitudes
+are at most 1/10. A linear scan and one indexed value read return the
+latest label **exactly** at O(p+v) cost. On arbitrary queries, the same
+table directly evaluates Q_V with exactly the same formula and costs
+as this reader. Thus the complete specified query function has no
+separation from the indexed-table baseline. The neighborhood shortcut
+alone does not compute Q_V exactly on general queries.
+
+#### Prior-art and continuation decision
+
+Higher interaction order increasing associative-memory capacity is
+established. [Krotov--Hopfield, Section 2](https://arxiv.org/html/1606.01164v1)
+already studies higher-order interactions, their capacity scaling and
+iterative binary-state updates. The displayed model, update and capacity
+formulas were inspected. Its pattern-recovery criterion differs from
+independent scalar labels on Euclidean balls; we have not established
+that this distinction makes the present bound new. Its architecture and
+the prior product-key/dictionary baselines remain part of the comparison.
+
+[Arriaga--Vempala, *Robust Concepts and Random Projection*](https://doi.org/10.1007/s10994-006-6265-7)
+uses Euclidean input-ball robustness and a unit-ball data support in
+Definition 1. After the author's PostScript failed to render, the
+author-uploaded journal text was retrieved; Definition 1 and Section
+4.3's Theorem 9 with its proof were inspected. The latter learns robust
+balls of radius at most one by random projection. It does not state
+the arbitrary indefinite-quadratic fixed-key capacity bound above.
+This checks an important model comparison; it does not settle priority
+across that paper's other results or the broader robust-learning literature.
+
+The candidate worth auditing is the precise robust-capacity theorem,
+including clipping and no a priori weight bound, and whether a sharper
+noise-radius dependence or broader reader theorem is known or feasible.
+The general message that nonlinear features can increase capacity is
+already occupied. Do not market the pair table as a new architecture,
+infer a practical advantage from an asymptotic class separation, or
+claim a paper from these elementary constructions. In particular the
+active goal's strongest-applicable-method criterion remains unmet.
+Continue the exact prior-art and structural proof work before any
+additional architecture experiment, training run or manuscript.
+
+Reproduce finite proof controls with:
+
+```bash
+python3 -B scripts/run_robust_reader_checks.py
+```
+
+The report `results/research/robust_reader_checks.json` records 720
+whole-ball normalization checks using exact distance to quadratic zero
+lines, including very large and small reader rescalings; 320 exact sign
+assignments for the trace identity; 74 exhaustive pair-label assignments
+and 4,454 rational noisy queries; and 96 replacements/zero-clears. The
+whole-ball theorem is proved above; finite probes alone do not prove it.
+The checker also verifies the indexed top-two escape on every tested
+key neighborhood. No neural or runtime experiment was run.

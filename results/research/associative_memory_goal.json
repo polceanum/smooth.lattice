@@ -13,12 +13,12 @@
     {
       "stage": 2,
       "task": "Audit primary theorems for sparse inverse/local correction and dynamic graphical inference; classify what is already a known corollary.",
-      "status": "primary_walk_sum_feedback_and_dynamic_inverse_comparison_recorded; exact_regression_baseline_equivalence_proved"
+      "status": "unlearning_counterfactuals_and_robust_reader_prior_art_audited; precise_robust_capacity_priority_pending"
     },
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "local_shared_reader_parked_as_architecture_contribution; independent_raw_query_target_and_useful_separation_still_required"
+      "status": "robust_quadratic_vs_quartic_class_separation_proved; indexed_binding_table_matches_construction; strongest_method_advantage_pending"
     },
     {
       "stage": 4,
@@ -444,6 +444,82 @@
       "conditioning_equality_controls": 8
     },
     "verification_commands": [
+      "python3 -B scripts/run_regression_baseline_checks.py",
+      "python3 -B scripts/run_correlated_routing_checks.py",
+      "python3 -B scripts/run_shared_feature_retention_checks.py",
+      "python3 -B scripts/run_retention_geometry_checks.py",
+      "python3 -B scripts/run_retention_tradeoff_checks.py",
+      "python3 -B scripts/run_feature_dimension_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py",
+      "python3 -B scripts/run_structural_complexity_checks.py"
+    ]
+  },
+  "sixth_iteration": {
+    "previous_turn_classification": "progress: exact regression equivalence, smaller-cache baseline and dimension constraint saved; full objective unachieved",
+    "record": "docs/interleaving_research.md, Associative-memory goal: robust recall beyond a bounded-output assumption",
+    "certificate_script": "scripts/run_robust_reader_checks.py",
+    "certificate_report": "results/research/robust_reader_checks.json",
+    "proved_capacity_bound": {
+      "model": "Fixed unit keys in R^p; every binary assignment has some homogeneous quadratic form with strictly correct signs throughout every full Euclidean radius-delta ball, 0<delta<1.",
+      "bound": "n<=p*(2/delta^2-1)^2 without an a priori weight bound; includes clipping and a strictly positive quadratic normalization denominator.",
+      "mechanism": "Extreme-eigenvector perturbations yield a bounded-norm margin representative; an exact trace/Rademacher argument gives the capacity bound.",
+      "scope_limits": "Fixed homogeneous quadratic reader in prescribed query coordinates. Not arbitrary nonlinear feature maps, general affine quadratics, multiple separate ratio heads, routing, attractor dynamics, full networks or general adversarial-PAC complexity.",
+      "novelty": "Norm/margin step is established; precise geometric normalization and robust-capacity priority are unestablished."
+    },
+    "explicit_escape_and_baseline": {
+      "reader": "Q_V(q)=sum_{i<j} V_ij*q_i^2*q_j^2 / sum_{i<j} q_i^2*q_j^2.",
+      "guarantee": "N=p*(p-1)/2 independently replaceable values, keys (3*e_i+4*e_j)/5; radius 1/10 gives error <=243/1225<1/5 for all assignments in [-1,1].",
+      "costs": "N value words with implicit pair indexing and explicit precision; dense exact reads O(p^2*v), single-value overwrite/zero-clear one word; no independent-value compression.",
+      "clear_scope": "Zeroing a value retains its address and denominator weight. It does not remove the key and renormalize.",
+      "stronger_baseline": "Top two coordinate magnitudes identify each noisy key in O(p) and indexed values give exact local recall. Direct table evaluation equals the complete quartic query function at identical cost.",
+      "decision": "Reader-class capacity separation, not a new indexed architecture or strongest-applicable-method advantage.",
+      "encoder_limitation": "Coordinate squaring has rank-two Jacobian at the two-sparse code keys, although dense queries can use all p coordinates. No uniformly conditioned p-direction semantic encoder or arbitrary learned-key guarantee is supplied."
+    },
+    "primary_sources": [
+      {
+        "url": "https://arxiv.org/html/2609.06872v1",
+        "scope": "Theorem 1, proof and write-rule corollary inspected. Transport plus forcing already distinguishes frozen writes from changed suffix updates; not a lower bound on all deletion methods."
+      },
+      {
+        "url": "https://arxiv.org/html/2607.12204v1",
+        "scope": "Displayed support-vector objective, fixed-C deletion reference and maintained-versus-batched distinction inspected. Retrained-optimizer equivalence differs from preserving retained predictions; experiments not replicated."
+      },
+      {
+        "url": "https://arxiv.org/html/2105.05566v3",
+        "scope": "Proposition 5 and Appendix A.3 norm/margin argument previously inspected. This known part is not a new contribution."
+      },
+      {
+        "url": "https://arxiv.org/html/1606.01164v1",
+        "scope": "Section 2 displayed higher-order energy, iterative update and capacity formulas inspected. Higher interaction order increasing memory capacity is prior art; exact independent-label input-ball comparison remains."
+      },
+      {
+        "url": "https://doi.org/10.1007/s10994-006-6265-7",
+        "scope": "Author-uploaded journal text retrieved after unsupported PostScript. Definition 1 and Section 4.3 Theorem 9/proof inspected: Euclidean input-ball model and random-projection learning of bounded-radius balls, not the full indefinite-quadratic capacity statement. Broader priority remains unestablished."
+      }
+    ],
+    "decision": "Preserve the full robust-capacity proof and explicit indexed escape. Investigate its precise prior-art and possible sharper or broader theorem before any new architecture work. No publishable novelty or strongest-method separation established.",
+    "next_actions": [
+      "Continue the exact fixed-center, unit-key, full-input-ball capacity comparison against primary robust-shattering and quantum-classifier results, using the now-inspected Arriaga--Vempala model and ball theorem as a boundary; do not identify fixed-key capacity with general adversarial-PAC dimension.",
+      "Determine whether the noise-radius dependence can be sharpened or a broader practically relevant reader class treated, without assuming the global output bound that clipping removes.",
+      "Require any constructive architectural improvement to beat the same-workload indexed table, sparse attention and regression baselines, with all precision and query costs; the quartic pair table does not.",
+      "Keep the full goal active and unchanged; no training, new contribution manuscript or expanded search framework based only on the reader-class separation."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "certificate_summary": {
+      "whole_ball_normalization_checks_including_rescalings": 720,
+      "rademacher_sign_assignments": 320,
+      "exhaustive_pair_label_assignments": 74,
+      "noisy_queries": 4454,
+      "point_replacements_including_zero_clears": 96
+    },
+    "verification_commands": [
+      "python3 -B scripts/run_robust_reader_checks.py",
       "python3 -B scripts/run_regression_baseline_checks.py",
       "python3 -B scripts/run_correlated_routing_checks.py",
       "python3 -B scripts/run_shared_feature_retention_checks.py",
