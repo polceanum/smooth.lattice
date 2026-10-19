@@ -4769,11 +4769,27 @@
     ],
     "scope": "The code-mode lemma yields a target/source/latent Markov coupling with decoding error at most 2*TV, hence a Fano/data-processing common-information lower bound. Exact rational controls verify the coupling and decoder, not a numerical entropy oracle. Wyner/common-randomness and approximate source-simulation prior art must be matched; no novelty or memory-state-capacity separation is claimed."
   },
+  "common_information_priority_boundary": {
+    "noisy_parity_witnesses": 45,
+    "exact_entropy_and_DTC_identities": 180,
+    "finite_fair_random_traces": 8928,
+    "two_block_parity_controls": 15,
+    "exact_product_entropy_dual_controls": 7750,
+    "entropy_verification": "Rational coefficients of prime logarithms; equality by canonical prime exponents and inequalities by exact integer-product comparison. No floating entropy solver or novelty oracle.",
+    "uniform_rate_bracket": {
+      "TV_range": "0<=eta<=1/2",
+      "information_and_shared_entropy_lower": "(1-2*eta)*(D-1)-1",
+      "shared_entropy_upper": "(1-2*eta)*(D-1)+h2(2*eta)",
+      "information_upper": "(1-2*eta)*D-1+h2(eta)",
+      "coarse_additive_bracket_bits": 2
+    },
+    "scope": "The product-code lower bound and an explicit uniform/point mixture pin down the leading parity shared-information rate. Austin Proposition 8.1 already supplies the exact DTC/common-information framework, and the entropy dual is a standard averaging specialization. This is a sharpness/priority audit, not a new strongest-method memory architecture, access lower bound or paper-ready novelty claim."
+  },
   "novelty_established": false,
   "strongest_baseline_advantage_established": false,
   "publication_ready": false,
   "source_sha256": {
-    "scripts/run_timing_restart_checks.py": "1abba4e3ee098cec664aa7b5ab101d499418e71c1fe4eaeacc0f1f83dec45257",
-    "docs/associative_memory_timing.md": "faa52746303cc04119a4247ca15ea23bd6de4205a3f4e4f18a98abbfb98a7dcf"
+    "scripts/run_timing_restart_checks.py": "9e831a203e0c3ff50916f2eec64d0adc6ebaef4ea314eff3445a647e533f097b",
+    "docs/associative_memory_timing.md": "443428ece33c0ca424326220c1d737edcf00617e692512a3c33c7025bacc7f1c"
   }
 }

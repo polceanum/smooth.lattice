@@ -6725,6 +6725,160 @@ def code_latent_coupling_controls():
             'scope': 'The code-mode lemma yields a target/source/latent Markov coupling with decoding error at most 2*TV, hence a Fano/data-processing common-information lower bound. Exact rational controls verify the coupling and decoder, not a numerical entropy oracle. Wyner/common-randomness and approximate source-simulation prior art must be matched; no novelty or memory-state-capacity separation is claimed.'}
 
 
+def common_information_audit_controls():
+    """Exact entropy identities and dual controls, without floating logs.
+
+    Rational linear combinations of prime logarithms are checked through
+    integer products. These bounded controls do not certify novelty.
+    """
+    from math import lcm
+
+    def log_form(number):
+        number = F(number)
+        assert number > 0
+        result = {}
+        for value, sign in ((number.numerator, 1), (number.denominator, -1)):
+            prime = 2
+            while prime * prime <= value:
+                while value % prime == 0:
+                    result[prime] = result.get(prime, F(0)) + sign
+                    value //= prime
+                prime += 1
+            if value > 1:
+                result[value] = result.get(value, F(0)) + sign
+        return {p: v for p, v in result.items() if v}
+
+    def combine(*terms):
+        result = {}
+        for scale, form in terms:
+            for prime, coefficient in form.items():
+                result[prime] = result.get(prime, F(0)) + scale * coefficient
+        return {p: v for p, v in result.items() if v}
+
+    def entropy(law):
+        assert all(p >= 0 for p in law) and sum(law) == 1
+        return combine(*[(-p, log_form(p)) for p in law if p])
+
+    def nonnegative(form):
+        denominator = 1
+        for coefficient in form.values():
+            denominator = lcm(denominator, coefficient.denominator)
+        left = right = 1
+        for prime, coefficient in form.items():
+            exponent = int(coefficient * denominator)
+            if exponent > 0:
+                left *= prime ** exponent
+            else:
+                right *= prime ** (-exponent)
+        return left >= right
+
+    one = log_form(2)
+    noisy_cases = entropy_identities = random_traces = grouped_cases = dual_cases = 0
+    for dimension in range(2, 7):
+        addresses = list(product((0, 1), repeat=dimension))
+        count, code = len(addresses), [i for i, x in enumerate(addresses) if sum(x) % 2 == 0]
+        size = len(code)
+        target = [F(int(i in code), size) for i in range(count)]
+        # Every coordinate is determined by the others on the exact code.
+        for coordinate in range(dimension):
+            predictions = {}
+            for i in code:
+                x = addresses[i]
+                rest = x[:coordinate] + x[coordinate + 1:]
+                assert predictions.setdefault(rest, x[coordinate]) == x[coordinate]
+        assert entropy(target) == combine((dimension - 1, one))
+        for numerator in range(9):
+            eta = F(numerator, 16)
+            alpha = [2 * eta] + [(1 - 2 * eta) / size] * size
+            components = [[F(1, count)] * count] + [[F(int(i == point)) for i in range(count)] for point in code]
+            source = [sum(a * law[i] for a, law in zip(alpha, components)) for i in range(count)]
+            assert sum(abs(p - q) for p, q in zip(target, source)) / 2 == eta
+            for law in components:
+                marginals = [sum(p for p, x in zip(law, addresses) if x[j]) for j in range(dimension)]
+                for x, p in zip(addresses, law):
+                    value = F(1)
+                    for bit, marginal in zip(x, marginals):
+                        value *= marginal if bit else 1 - marginal
+                    assert value == p
+            h_eta, h_twice = entropy([eta, 1 - eta]), entropy([2 * eta, 1 - 2 * eta])
+            h_source, h_latent = entropy(source), entropy(alpha)
+            joint = [a * p for a, law in zip(alpha, components) for p in law]
+            information = combine((1, h_source), (1, h_latent), (-1, entropy(joint)))
+            assert h_source == combine((dimension - 1, one), (1, h_eta))
+            assert h_latent == combine(((1 - 2 * eta) * (dimension - 1), one), (1, h_twice))
+            assert information == combine(((1 - 2 * eta) * dimension - 1, one), (1, h_eta))
+            conditional_sum = {}
+            for coordinate in range(dimension):
+                groups = {}
+                for x, probability in zip(addresses, source):
+                    groups.setdefault(x[:coordinate] + x[coordinate + 1:], [F(0), F(0)])[x[coordinate]] += probability
+                conditional = combine(*[(sum(row), entropy([p / sum(row) for p in row])) for row in groups.values()])
+                assert conditional == h_eta
+                conditional_sum = combine((1, conditional_sum), (1, conditional))
+            assert combine((1, h_source), (-1, conditional_sum)) == combine((dimension - 1, one), (1 - dimension, h_eta))
+            entropy_identities += 4
+            # Three fair gate bits implement 2*eta=numerator/8. Always
+            # draw D address bits; one is unused on the deterministic branch.
+            observed = [0] * count
+            latent_counts = [0] * (size + 1)
+            code_indices = {point: j + 1 for j, point in enumerate(code)}
+            for gate in range(8):
+                for x in addresses:
+                    y = x if gate < numerator else x[:-1] + (sum(x[:-1]) % 2,)
+                    point = addresses.index(y)
+                    observed[point] += 1
+                    latent_counts[0 if gate < numerator else code_indices[point]] += 1
+                    random_traces += 1
+            assert [F(v, 8 * count) for v in observed] == source
+            assert [F(v, 8 * count) for v in latent_counts] == alpha
+            noisy_cases += 1
+
+        for cut in range(1, dimension):
+            # Condition only two coordinate blocks on their shared parity.
+            # This is a different model from D independent coordinates.
+            block_components = []
+            for shared_parity in (0, 1):
+                law = [F(int(sum(x[:cut]) % 2 == shared_parity and sum(x[cut:]) % 2 == shared_parity), 1 << (dimension - 2)) for x in addresses]
+                left = [sum(p for p, x in zip(law, addresses) if x[:cut] == a) for a in product((0, 1), repeat=cut)]
+                right = [sum(p for p, x in zip(law, addresses) if x[cut:] == b) for b in product((0, 1), repeat=dimension - cut)]
+                assert [a * b for a in left for b in right] == law
+                block_components.append(law)
+            assert [(a + b) / 2 for a, b in zip(*block_components)] == target
+            joint = [p / 2 for law in block_components for p in law]
+            assert combine((1, entropy(target)), (1, one), (-1, entropy(joint))) == one
+            grouped_cases += 1
+
+    # The product mode lemma gives H(R)<=lambda*a+beta for each R,
+    # a=R(off-code), beta=log2(1+(N-1)*2^(-lambda/2)).
+    for dimension in range(2, 5):
+        addresses = list(product((0, 1), repeat=dimension))
+        for parameters in product(range(5), repeat=dimension):
+            law = []
+            for x in addresses:
+                probability = F(1)
+                for bit, p in zip(x, parameters):
+                    probability *= F(p if bit else 4 - p, 4)
+                law.append(probability)
+            for kind in ('parity', 'repetition'):
+                outside = sum(p for p, x in zip(law, addresses) if (sum(x) % 2 != 0 if kind == 'parity' else len(set(x)) != 1))
+                for penalty in (0, 2, 4, 8, 16):
+                    beta = log_form(1 + F(len(addresses) - 1, 1 << (penalty // 2)))
+                    assert nonnegative(combine((penalty * outside, one), (1, beta), (-1, entropy(law))))
+                    dual_cases += 1
+    return {'noisy_parity_witnesses': noisy_cases,
+            'exact_entropy_and_DTC_identities': entropy_identities,
+            'finite_fair_random_traces': random_traces,
+            'two_block_parity_controls': grouped_cases,
+            'exact_product_entropy_dual_controls': dual_cases,
+            'entropy_verification': 'Rational coefficients of prime logarithms; equality by canonical prime exponents and inequalities by exact integer-product comparison. No floating entropy solver or novelty oracle.',
+            'uniform_rate_bracket': {'TV_range': '0<=eta<=1/2',
+                                     'information_and_shared_entropy_lower': '(1-2*eta)*(D-1)-1',
+                                     'shared_entropy_upper': '(1-2*eta)*(D-1)+h2(2*eta)',
+                                     'information_upper': '(1-2*eta)*D-1+h2(eta)',
+                                     'coarse_additive_bracket_bits': 2},
+            'scope': 'The product-code lower bound and an explicit uniform/point mixture pin down the leading parity shared-information rate. Austin Proposition 8.1 already supplies the exact DTC/common-information framework, and the entropy dual is a standard averaging specialization. This is a sharpness/priority audit, not a new strongest-method memory architecture, access lower bound or paper-ready novelty claim.'}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -6761,6 +6915,7 @@ def main():
               "affine_generator_memory_boundary": affine_generator_memory_controls(),
               "prefix_conditioning_boundary": prefix_conditioning_controls(),
               "code_latent_coupling_boundary": code_latent_coupling_controls(),
+              "common_information_priority_boundary": common_information_audit_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,

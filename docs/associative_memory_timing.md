@@ -6126,3 +6126,153 @@ need work. A publication claim requires that gap and a complete advantage
 over coding/circuit methods, with all independent values retained. No neural
 training, native performance claim or contribution manuscript is justified
 yet. The full original goal remains active and unachieved.
+
+## Common-information priority, sharpness, and the access boundary
+
+The previous iteration made progress by proving the code coupling and
+closing the prefix recurrence as a novelty route. A closer primary audit
+now identifies an established exact information bound. An explicit upper
+construction also shows that the parity lower bound's coefficient is
+already sharp. These findings limit the use of this branch: it supplies
+representation comparators, not the requested new memory architecture.
+
+### Match the actual multivariate prior-art model
+
+For a finite vector X=(X_1,...,X_D), define dual total correlation by
+
+    DTC(X)=H(X)-sum_i H(X_i | X without coordinate i).
+
+[Austin, Proposition 8.1](https://www.kybernetika.cz/content/2020/3/459/paper.pdf)
+proves DTC(X)<=I(X;Z) for a product mixture conditional on Z, and a more
+general inequality allowing nonproduct components. Its Examples 4.11
+and 8.2 use a uniform sum-zero constraint and distinguish transportation
+distance from total variation. Consequently, the exact parity information
+obstruction is established prior art, not a new consequence of choosing
+entropy instead of component count. The transportation approximation in
+that paper is not silently substituted for the TV requirement here.
+
+There is also a short direct proof of the needed specialization. Conditional
+independence gives H(X|Z)=sum_i H(X_i|Z). Conditioning reduces entropy, so
+H(X_i|X_without_i)>=H(X_i|X_without_i,Z)=H(X_i|Z). Subtraction proves
+DTC(X)<=I(X;Z). If X is supported on any distance-two code, every coordinate
+is determined by the others. Thus DTC(X)=H(X), and the reverse bound
+I(X;Z)<=H(X) forces equality at zero approximation error.
+
+[Braun--Jain--Lee--Pokutta, Proposition 5.2 and Lemma 5.7](https://eccc.weizmann.ac.il/report/2013/158/revision/3/download)
+use entropy dual witnesses and witness-size-dependent perturbation bounds
+for matrix common information. Their Example 2.4 already uses a one-bit
+parity seed for two blocks. Those are two-party conditional products;
+our D independent-coordinate requirement is stronger. Grouping all even
+parity coordinates into two nonempty blocks admits a shared block-parity
+bit, while the coordinatewise model needs D-1 bits at zero error. Neither
+a matrix flattening nor an interface difference establishes a new theorem.
+
+The following genuine multivariate dual inequality follows by ordinary
+averaging, without flattening. For any real function L on the complete
+finite alphabet and a product mixture Q=sum_z alpha_z R_z,
+
+    I_Q(X;Z) >= H(Q)-E_Q L - sup_product_R [H(R)-E_R L].
+
+Indeed, bound H(R_z)-E_(R_z)L for each component and average. No claim
+that an infimum is attained, or that this witness is optimal, is needed.
+This is the same entropy-dual mechanism in a multivariate formulation;
+its elementary extension is not being claimed as a contribution.
+
+For example, let the complete alphabet have N points, C be a distance-two
+code, and a=R(C complement). The proved product-mode lemma implies
+
+    H(R)<=F_N(min(2a,1-1/N)),
+    F_N(e)=h2(e)+e*log2(N-1).
+
+If the mode is in C, its error probability is at most 2a and the usual
+mode/error entropy bound applies. If it is outside C, a>=1/2 and the
+display just uses H(R)<=log2 N. For every lambda>=0, the binary log-sum
+bound therefore gives
+
+    H(R)<=lambda*a+log2(1+(N-1)*2^(-lambda/2)).
+
+Taking L=lambda*1_(C complement) yields an explicit robust dual lower
+bound on I_Q(X;Z). The earlier target-codeword coupling can give a better
+finite estimate, but that is not a priority certificate. Exact code support,
+all-coordinate independence, perturbation norm, latent entropy and mutual
+information must still be compared in their respective models.
+
+### The parity coefficient is sharp, to a bounded additive gap
+
+Let P_D be uniform on the M=2^(D-1) even-parity words, U_D uniform on
+all binary D-tuples, D>=2, and 0<=eta<=1/2. Define
+
+    Q_eta=(1-2*eta)*P_D+2*eta*U_D.
+
+Then TV(P_D,Q_eta)=eta exactly. Here is a finite product decomposition:
+one uniform product component has weight 2*eta; each even codeword is
+a deterministic product component of weight (1-2*eta)/M. Components
+with weight zero can be omitted. For its latent Z,
+
+    H(Z)=h2(2*eta)+(1-2*eta)*(D-1),
+    H(Q_eta)=D-1+h2(eta),
+    H_Q(X|Z)=2*eta*D,
+    I_Q(X;Z)=(1-2*eta)*D-1+h2(eta).
+
+These identities follow from the two equiprobable parity classes and
+the conditional point/uniform laws, not a numerical entropy fit.
+Let C_D(eta) be the infimum of I_Q(X;Z) over all finite coordinate-product
+mixtures Q within TV eta of P_D; let G_D(eta) use H(Z) instead. The
+previous lower bound and this explicit witness give, with
+L=(1-2*eta)*(D-1)-1,
+
+    max(0,L) <= C_D(eta) <= (1-2*eta)*D-1+h2(eta),
+    max(0,L) <= G_D(eta) <= (1-2*eta)*(D-1)+h2(2*eta).
+
+For the lower bound use h2<=1, log2(M-1)<=D-1 and the capped Fano
+bound already proved; the cap only weakens this coarse estimate. Both
+upper bounds are at most L+2. Thus, for every fixed eta in [0,1/2],
+both infima divided by D tend to 1-2*eta as D tends to infinity. This
+is a matching-rate corollary with at most two bits in the coarse bracket,
+not an exact finite-dimensional formula or a novelty claim. A uniform
+improvement of that leading coefficient is impossible. The exact DTC
+of this witness is (D-1)*(1-h2(eta)). For fixed 0<eta<1/2 and sufficiently
+large D, the coupling gives a stronger estimate than merely inserting
+this witness into DTC.
+
+### An information requirement is not a memory-access lower bound
+
+The witness does not require a table of its M+1 mixture components.
+For eta on a declared f-bit dyadic grid, sample the gate of probability
+2*eta using at most f fair bits. On the uniform branch draw D fair
+bits. Otherwise draw D-1 fair bits and append their parity. This uses
+O(D+f) bit operations, O(D+f) workspace and a D-bit latent label representation,
+including the declared gate precision. The coordinate-product representation
+has exponentially many labels but a short procedural description.
+At eta=0 this is the earlier exact parity/coding comparator.
+
+Attach every independent current grid value V(x) to its original address.
+A generated address still needs only its v original payload probes; a
+canonical overwrite still changes those v units. All N*v value units,
+input/address validation, random bits, accumulators, query generator and
+finite-horizon sampling error remain charged as in the preceding affine
+construction. Shared generator entropy is not independent value retention,
+nor time to inspect a stored component table that need not exist.
+
+This rules out using the code representation bound alone as the desired
+access advantage over coding or tractable circuits. Stop improving parity
+constants as a proposed architecture result. Preserve the uniform code
+lemma, coupling and rate witness as comparators; a positive result needs
+an actual dynamic query/update workload and a better complete cost than
+those methods. General output conditioning is still subject to the
+three-slot inference obstruction. The original goal remains active.
+
+### Exact verification and decision
+
+`common_information_priority_boundary` checks 45 mixtures on D=2,...,6,
+with eta=0,1/16,...,1/2: conditional products, TV, 180 entropy/information
+and DTC identities, and 8928 finite random streams. It also checks 15
+two-block parity factorizations and 7750 product-entropy dual inequalities
+on quarter-grid product marginals in D=2,...,4, parity/repetition codes,
+and lambda in {0,2,4,8,16}.
+Entropy expressions are rational linear combinations of logarithms of
+primes. Equalities use canonical prime exponents; inequality controls
+compare exact integer products after clearing coefficient denominators.
+No floating-point entropy optimizer, exhaustive search for novelty, native
+benchmark, additional neural training or contribution manuscript is used.
+The proofs are uniform; bounded certificates check the constructions.
