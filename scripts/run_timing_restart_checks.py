@@ -5125,6 +5125,572 @@ def hybrid_moment_controls():
             'scope': 'Quantized support-truncated polynomial moments plus complete high-overlap residuals in the existing Scatterbrain sparse-plus-low-rank template. The warm path certifies a large exact zero-score background; the cold path scans the explicitly charged smaller/current state. Independent per-key quantized formulas and rational true-exp enclosures verify full outputs. Cached integer widths are independent of input-precision times degree; scalar exponential evaluation is finite fixed-point and separately guarded. This is a candidate cost/precision theorem, not established novelty, strongest-method advantage, measured speed or publication readiness.'}
 
 
+def exponential_comparator_controls():
+    """Classical coordinate sums and a stronger full-noise recall comparator."""
+    from math import comb, factorial, isqrt
+
+    def nearest(n, d):
+        q, r = divmod(n, d)
+        return q + (2 * r >= d)
+
+    def clog(n):
+        return (max(1, n) - 1).bit_length()
+
+    @lru_cache(maxsize=None)
+    def exp_interval(score, precision=64):
+        u, term, total, j = abs(score), F(1), F(1), 0
+        while True:
+            next_term = term * u / (j + 1)
+            if j + 2 > u:
+                tail = next_term / (1 - u / (j + 2))
+                lo, hi = (total, total + tail) if score >= 0 else (1 / (total + tail), 1 / total)
+                if hi - lo <= F(1, 2 ** precision):
+                    return lo, hi
+            j += 1
+            term = next_term
+            total += term
+
+    coordinate_cases = []
+    for input_bits in (4, 80):
+        r, d, level, b, c, work = 1 << input_bits, 56, 6, 17, 15, 30
+        reference, groups, moments = {}, {}, {}
+        stats = dict(reads=0, snapshots=0, group_deltas=0, moment_deltas=0,
+                     candidate_visits=0, cancelled_live_groups=0, noncandidate_influence=0)
+
+        def features(u):
+            root = nearest(2 * u * (1 << b), r)
+            values = [1 << b]
+            for j in range(level):
+                values.append(nearest(values[-1] * root, 1 << b))
+            return values[1:]
+
+        def change(slot, new):
+            old = reference.pop(slot, None)
+            for record, sign in ((old, -1), (new, 1)):
+                if record is None:
+                    continue
+                raw, value = record
+                for a, u in enumerate(raw):
+                    if not u:
+                        continue
+                    key = a, u
+                    previous = groups.get(key, (0, 0, 0))
+                    current = tuple(x + sign * y for x, y in zip(previous, (1,) + value))
+                    if current[0]:
+                        groups[key] = current
+                    else:
+                        assert current == (0, 0, 0)
+                        groups.pop(key)
+                    stats['group_deltas'] += 1
+                    for j, phi in enumerate(features(u), 1):
+                        key = a, j
+                        previous = moments.get(key, (0, 0, 0, 0))
+                        current = tuple(x + sign * y for x, y in zip(previous, (1, phi) + tuple(phi * v for v in value)))
+                        if current[0]:
+                            moments[key] = current
+                        else:
+                            assert current == (0, 0, 0, 0)
+                            moments.pop(key)
+                        stats['moment_deltas'] += 1
+            if new is not None:
+                reference[slot] = new
+
+        def check():
+            expected_groups, expected_moments = {}, {}
+            for raw, value in reference.values():
+                for a, u in enumerate(raw):
+                    if not u:
+                        continue
+                    key = a, u
+                    previous = expected_groups.get(key, (0, 0, 0))
+                    expected_groups[key] = tuple(x + y for x, y in zip(previous, (1,) + value))
+            for (a, u), (count, v0, v1) in expected_groups.items():
+                for j, phi in enumerate(features(u), 1):
+                    key = a, j
+                    previous = expected_moments.get(key, (0, 0, 0, 0))
+                    expected_moments[key] = tuple(x + y for x, y in zip(previous, (count, count * phi, phi * v0, phi * v1)))
+            assert groups == expected_groups and moments == expected_moments
+            stats['cancelled_live_groups'] += sum(v[0] > 0 and v[1:] == (0, 0) for v in groups.values())
+            stats['snapshots'] += 1
+
+        def read(query):
+            coefficients = {}
+            for a, q in enumerate(query):
+                if not q:
+                    continue
+                row = [1 << work]
+                for j in range(1, level + 1):
+                    row.append(nearest(row[-1] * q, 2 * r * j))
+                    coefficients[a, j] = nearest(row[-1], 1 << (work - c))
+            total = (len(reference),) + tuple(sum(v[j] for _, v in reference.values()) for j in range(2))
+            cached = [x << (b + c) for x in total]
+            grouped = list(cached)
+            direct_low, symbolic = [0, 0, 0], {}
+            for (a, j), coefficient in coefficients.items():
+                cell = moments.get((a, j), (0, 0, 0, 0))
+                cached = [x + coefficient * y for x, y in zip(cached, cell[1:])]
+            for (a, u), (count, v0, v1) in groups.items():
+                univariate = sum(coefficients.get((a, j), 0) * phi for j, phi in enumerate(features(u), 1))
+                grouped = [x + univariate * y for x, y in zip(grouped, (count, v0, v1))]
+            assert cached == grouped
+            for raw, value in reference.values():
+                overlap = [a for a, u in enumerate(raw) if u and query[a]]
+                base = (1 << (b + c)) + sum(coefficients[a, j] * phi for a in overlap
+                                                        for j, phi in enumerate(features(raw[a]), 1))
+                vector = (base,) + tuple(base * v for v in value)
+                if len(overlap) >= 2:
+                    cached = [x - y for x, y in zip(cached, vector)]
+                    grouped = [x - y for x, y in zip(grouped, vector)]
+                    score = F(sum(x * q for x, q in zip(raw, query)), r * r)
+                    previous = symbolic.get(score, (0, 0, 0))
+                    symbolic[score] = tuple(x + y for x, y in zip(previous, (1,) + value))
+                    stats['candidate_visits'] += 1
+                else:
+                    direct_low = [x + y for x, y in zip(direct_low, vector)]
+            assert cached == grouped == direct_low
+            # With the same exponential primitive all three complete expressions
+            # are identical, including final low-subtotal rounding and candidates.
+            rounded = tuple(nearest(x, 1 << (b + c - 12)) for x in cached)
+            stats['reads'] += 1
+            return rounded, tuple(sorted((str(s), v) for s, v in symbolic.items()))
+
+        local = [(0, 1, 3), (0, 2, 6), (0, 4, 5), (1, 2, 4), (1, 5, 6), (2, 3, 5), (3, 4, 6)]
+        for slot in range(56):
+            raw = [0] * d
+            for a in local[slot % 7]:
+                raw[(slot // 7) * 7 + a] = r // 2
+            value = (-1 if slot % 2 else 1, 1 if slot % 2 else -1)
+            change(slot, (tuple(raw), value))
+        check()
+        queries = [tuple(q * r for q in small) + (0,) * (d - 4) for small in product((-1, 0, 1), repeat=4)]
+        queries.append((r // 3 + 1, -r // 5 - 1) + (0,) * (d - 2))
+        for query in queries:
+            read(query)
+        for phase in range(4):
+            raw, value = reference[phase]
+            changed = list(raw)
+            a = next(a for a, u in enumerate(raw) if u)
+            changed[a] = -r // 2 + phase + 1
+            change(phase, (tuple(changed), (11 + phase, -11 - phase)))
+            check()
+            for query in queries[-2:]:
+                read(query)
+        query = queries[-1]
+        before = read(query)
+        raw, value = reference[49]
+        assert all(not (u and q) for u, q in zip(raw, query))
+        change(49, (raw, (value[0] + 1, value[1] - 1)))
+        assert read(query) != before
+        stats['noncandidate_influence'] += 1
+        for slot in list(reference):
+            change(slot, None)
+        check()
+        assert not groups and not moments
+        assert read((0,) * d) == ((0, 0, 0), ())
+        coordinate_cases.append(dict(input_fractional_bits=input_bits, degree=level, key_fraction_bits=b,
+                                     coefficient_fraction_bits=c, coefficient_work_bits=work, controls=stats))
+
+    capacity, dimension, weight, r = 1031 ** 2, 8248, 8, 1 << 16
+    load, beta, eta, minimum, amplitude = (dimension - 1) // (weight - 1), 29, F(1, 4), F(11, 32), F(3, 8)
+    high_distractors = weight * (load - 1)
+    self_exponent = beta * weight * minimum ** 2
+    self_exp_lower = sum(self_exponent ** j / factorial(j) for j in range(80))
+    # e^(2 eta * 9/8)<2 and e^(beta*A^2)<128, certified by e^2<8.
+    mass_bracket = capacity - 1 + 127 * high_distractors
+    output_error_bound = 4 * mass_bracket / self_exp_lower
+    assert 2 * eta * F(9, 8) < F(2, 3)
+    assert beta * amplitude ** 2 < F(14, 3)
+    assert output_error_bound < F(1, 2 ** 16)
+    assert beta * minimum - eta > 1 and eta < 1
+    coefficient_mass = sum(F(9, 2) ** j / factorial(j) for j in range(1, 25))
+    _, mistaken_bound = exp_interval(F(33, 8))
+    assert coefficient_mass > mistaken_bound and coefficient_mass < 128
+
+    class RecallDictionary:
+        def __init__(self):
+            self.keys, self.values, self.owners, self.loads = {}, {}, {}, [0] * dimension
+            self.stats = dict(reads=0, fast_reads=0, full_scans=0, empty_reads=0, value_overwrites=0,
+                              admitted=0, rejected=0, deletes=0, dense_noise_fast_reads=0,
+                              true_exp_enclosure_checks=0, max_distance_bits=0, max_exponential_bits=0)
+
+        def snapshot(self):
+            return dict(self.keys), dict(self.values), dict(self.owners), tuple(self.loads)
+
+        def remove(self, slot):
+            if slot not in self.keys:
+                return
+            coordinates = tuple(a for a, _ in self.keys[slot])
+            for pair in combinations(coordinates, 2):
+                assert self.owners.pop(pair) == slot
+            for a in coordinates:
+                self.loads[a] -= 1
+            del self.keys[slot]; del self.values[slot]
+            self.stats['deletes'] += 1
+
+        def replace(self, slot, raw, value):
+            assert 0 <= slot < capacity and len(value) == 2 and all(type(v) is int and abs(v) <= 256 for v in value)
+            valid = len(raw) == dimension and all(type(u) is int and (not u or minimum * r <= abs(u) <= amplitude * r) for u in raw)
+            sparse = tuple((a, u) for a, u in enumerate(raw) if u) if valid else ()
+            valid = valid and len(sparse) == weight
+            coordinates = tuple(a for a, _ in sparse)
+            if valid:
+                valid = all(pair not in self.owners or self.owners[pair] == slot for pair in combinations(coordinates, 2))
+            if not valid:
+                self.stats['rejected'] += 1
+                return False
+            self.remove(slot)
+            self.keys[slot], self.values[slot] = sparse, tuple(value)
+            for pair in combinations(coordinates, 2):
+                self.owners[pair] = slot
+            for a in coordinates:
+                self.loads[a] += 1
+            self.stats['admitted'] += 1
+            return True
+
+        def overwrite(self, slot, value):
+            assert len(value) == 2 and all(type(v) is int and abs(v) <= 256 for v in value)
+            self.values[slot] = tuple(value)
+            self.stats['value_overwrites'] += 1
+
+        def score(self, slot, query):
+            return F(sum(u * query[a] for a, u in self.keys[slot]), r * r)
+
+        def exponential(self, score, scale):
+            assert score <= 0
+            if score == 0:
+                return 1 << scale
+            if score < -(scale + 2):
+                return 0
+            h = min(72, scale + 2)
+            cap = 1 << ((3 * h + 1) // 2)
+            terms = max(6 * h, 2 * (scale + 8))
+            frac = scale + clog(32 * (terms + 2) * cap)
+            u, term, total = -score, 1 << frac, 1 << frac
+            for j in range(1, terms + 1):
+                product = term * u.numerator
+                self.stats['max_exponential_bits'] = max(self.stats['max_exponential_bits'], product.bit_length() + 1)
+                term = nearest(product, u.denominator * j)
+                total += term
+            reciprocal_numerator = 1 << (scale + frac)
+            self.stats['max_exponential_bits'] = max(self.stats['max_exponential_bits'], reciprocal_numerator.bit_length() + 1, total.bit_length() + 1)
+            assert self.stats['max_exponential_bits'] <= 219
+            return nearest(reciprocal_numerator, total)
+
+        def read(self, query):
+            if len(query) != dimension or any(type(q) is not int or abs(q) > 12 * r for q in query):
+                raise ValueError('raw query violates declared grid, dimension or coordinate bound')
+            self.stats['reads'] += 1
+            self.last = 'empty', None
+            if not self.keys:
+                self.stats['empty_reads'] += 1
+                return None
+            heavy, squared = [], 0
+            for a, q in enumerate(query):
+                squared += q * q
+                if abs(q) > r and len(heavy) <= weight:
+                    heavy.append(a)
+            if len(heavy) == weight:
+                slot = self.owners.get(tuple(heavy[:2]))
+                if slot is not None and tuple(a for a, _ in self.keys[slot]) == tuple(heavy):
+                    cross = sum(u * query[a] for a, u in self.keys[slot])
+                    key_squared = sum(u * u for _, u in self.keys[slot])
+                    distance = squared - 2 * beta * cross + beta * beta * key_squared
+                    self.stats['max_distance_bits'] = max(self.stats['max_distance_bits'], squared.bit_length() + 1,
+                                                         (2 * beta * cross).bit_length() + 1, (beta * beta * key_squared).bit_length() + 1)
+                    assert 0 <= distance and self.stats['max_distance_bits'] <= 64
+                    if distance <= (r // 4) ** 2:
+                        self.last = 'fast', slot
+                        self.stats['fast_reads'] += 1
+                        self.stats['dense_noise_fast_reads'] += sum(q != 0 for q in query) > 16
+                        return tuple(F(v) for v in self.values[slot])
+            self.last = 'scan', None
+            self.stats['full_scans'] += 1
+            # Two score passes; no n-length score array is required.
+            shift = max(self.score(slot, query) for slot in self.keys)
+            scale = 14 + clog(8 * len(self.keys))
+            denominator, numerator = 0, [0, 0]
+            for slot in self.keys:
+                kernel = self.exponential(self.score(slot, query) - shift, scale)
+                denominator += kernel
+                numerator = [x + kernel * v for x, v in zip(numerator, self.values[slot])]
+                assert max(abs(x).bit_length() + 1 for x in [denominator] + numerator) <= 128
+            return tuple(F(x, denominator) for x in numerator)
+
+    index, reference = RecallDictionary(), {}
+
+    def verify(query, expect=None):
+        answer = index.read(query)
+        if expect is not None:
+            assert index.last[0] == expect
+        if not reference:
+            assert answer is None
+            return
+        scores = {i: F(sum(x * q for x, q in zip(raw, query)), r * r) for i, (raw, _) in reference.items()}
+        shift = max(scores.values())
+        lo_num, hi_num, lo_den, hi_den = [F(0), F(0)], [F(0), F(0)], F(0), F(0)
+        for slot, score in scores.items():
+            lo, hi = exp_interval(score - shift)
+            lo_den += lo; hi_den += hi
+            for j, v in enumerate(reference[slot][1]):
+                lo_num[j] += min(lo * v, hi * v)
+                hi_num[j] += max(lo * v, hi * v)
+        tolerance = F(1, 2 ** (16 if index.last[0] == 'fast' else 13))
+        for j, value in enumerate(answer):
+            endpoints = [x / y / 256 for x in (lo_num[j], hi_num[j]) for y in (lo_den, hi_den)]
+            assert F(value, 256) - tolerance <= min(endpoints) and max(endpoints) <= F(value, 256) + tolerance
+        index.stats['true_exp_enclosure_checks'] += 1
+
+    for slope in range(16):
+        for intercept in range(4):
+            slot, raw = 4 * slope + intercept, [0] * dimension
+            for j in range(weight):
+                raw[j * 1031 + (slope * j + intercept) % 1031] = 11 * r // 32 + (17 * slot + 13 * j) % (r // 32 + 1)
+            value = 3 * slot - 128, 128 - 3 * slot
+            assert index.replace(slot, tuple(raw), value)
+            reference[slot] = tuple(raw), value
+    outside = [0] * dimension
+    for a in range(80, 88):
+        outside[a] = (1 if a % 2 else -1) * (3 * r // 8)
+    assert index.replace(64, tuple(outside), (251, -239))
+    reference[64] = tuple(outside), (251, -239)
+    step = isqrt((r // 4) ** 2 // dimension)
+    for slot in (0, 4, 64):
+        for phase in range(2):
+            if phase:
+                index.overwrite(slot, (243 - slot, -181 - slot))
+                reference[slot] = reference[slot][0], index.values[slot]
+            center = tuple(beta * u for u in reference[slot][0])
+            coordinates = tuple(a for a, u in enumerate(reference[slot][0]) if u) + (dimension - 1,)
+            verify(center, 'fast')
+            for a in coordinates:
+                for delta in (-r // 4, r // 4):
+                    query = list(center); query[a] += delta
+                    verify(tuple(query), 'fast')
+            for pattern in (0, 1, 2):
+                noise = tuple(step * (1 if pattern == 0 or pattern == 2 and a % 2 else -1) for a in range(dimension))
+                assert sum(u * u for u in noise) <= (r // 4) ** 2
+                verify(tuple(x + y for x, y in zip(center, noise)), 'fast')
+    # Own amplitude edits and outside-codebook keys remain within the same API.
+    changed = list(reference[0][0]); changed[next(a for a, u in enumerate(changed) if u)] *= -1
+    assert index.replace(0, tuple(changed), reference[0][1])
+    reference[0] = tuple(changed), reference[0][1]
+    verify(tuple(beta * u + step for u in changed), 'fast')
+    center = tuple(beta * u for u in reference[4][0])
+    query = list(center); query[next(a for a, u in enumerate(reference[4][0]) if u)] += r // 4 + 1
+    verify(tuple(query), 'scan')
+    verify((0,) * dimension, 'scan')
+    verify((step,) * dimension, 'scan')
+    verify((2 * r,) + (0,) * (dimension - 1), 'scan')
+    before = index.snapshot()
+    assert not index.replace(0, reference[4][0], (0, 0))
+    invalid = list(reference[0][0]); invalid[next(a for a, u in enumerate(invalid) if u)] = 11 * r // 32 - 1
+    assert not index.replace(0, tuple(invalid), (0, 0))
+    assert before == index.snapshot()
+    rejected_queries = 0
+    for query in ((), (12 * r + 1,) + (0,) * (dimension - 1), (0.5,) + (0,) * (dimension - 1)):
+        try:
+            index.read(query)
+            assert False
+        except ValueError:
+            rejected_queries += 1
+        assert before == index.snapshot()
+    for slot in list(reference):
+        index.remove(slot); reference.pop(slot)
+    verify((0,) * dimension, 'empty')
+    assert index.replace(0, tuple(outside), (0, 0))
+    reference[0] = tuple(outside), (0, 0)
+    verify(tuple(beta * u for u in outside), 'fast')
+
+    lam_lo, lam_hi = exp_interval(F(3, 2))
+    assert 4 < lam_lo < lam_hi < 5
+    # A four-key dyadic witness with six private padding coordinates per key.
+    supports = [pair + tuple(range(4 + 6 * j, 10 + 6 * j)) for j, pair in enumerate(((0, 1), (0, 2), (1, 3), (2, 3)))]
+    assert all(len(set(x) & set(y)) <= 1 for x, y in combinations(supports, 2))
+    contrast = (1, -1, -1, 1)
+    unary_cancellations = []
+    for query_support in ((), (0,), (1,)):
+        symbolic = {}
+        for support, v in zip(supports, contrast):
+            score = F(3, 2) * len(set(support) & set(query_support))
+            symbolic[score] = symbolic.get(score, 0) + v
+        assert all(v == 0 for v in symbolic.values())
+        unary_cancellations.append(tuple((str(k), v) for k, v in sorted(symbolic.items())))
+    interaction_lower = ((lam_lo - 1) / (lam_lo + 1)) ** 2
+    top_one_error_lower = 2 * (1 - (lam_hi / (lam_hi + 1)) ** 2)
+    assert interaction_lower > F(9, 25) and top_one_error_lower > F(11, 18)
+    probabilities = (F(16, 25), F(4, 25), F(4, 25), F(1, 25))
+    duality_checks = 0
+    for approximation in ((F(1), F(0), F(0), F(0)), (F(1, 4),) * 4, (F(1, 2), F(1, 2), F(0), F(0))):
+        error = max(abs(sum((p - q) * v for p, q, v in zip(probabilities, approximation, values)))
+                    for values in product((-1, 1), repeat=4))
+        assert error == sum(abs(p - q) for p, q in zip(probabilities, approximation))
+        duality_checks += 1
+
+    def laplacian(weights):
+        m = len(weights)
+        matrix = [[F(0) for _ in range(2 * m)] for _ in range(2 * m)]
+        for i, row in enumerate(weights):
+            for j, edge in enumerate(row):
+                matrix[i][i] += edge; matrix[m + j][m + j] += edge
+                matrix[i][m + j] -= edge; matrix[m + j][i] -= edge
+        return matrix
+
+    def psd(matrix):
+        matrix = [list(row) for row in matrix]
+        for a in range(len(matrix)):
+            pivot = matrix[a][a]
+            if pivot < 0:
+                return False
+            if not pivot:
+                if any(matrix[a][j] for j in range(a + 1, len(matrix))):
+                    return False
+                continue
+            for i in range(a + 1, len(matrix)):
+                for j in range(a + 1, len(matrix)):
+                    matrix[i][j] -= matrix[i][a] * matrix[a][j] / pivot
+        return True
+
+    # An actually smaller rational spectral surrogate, independently PSD-checked.
+    dense_graph = [[F(1) for _ in range(4)] for _ in range(4)]
+    sparse_graph = [[F(4, 3) if i != j else F(0) for j in range(4)] for i in range(4)]
+    original_lap, sparse_lap, delta = laplacian(dense_graph), laplacian(sparse_graph), F(1, 3)
+    for sign in (-1, 1):
+        certificate = [[delta * original_lap[i][j] + sign * (sparse_lap[i][j] - original_lap[i][j])
+                        for j in range(8)] for i in range(8)]
+        assert psd(certificate)
+    def simplex(m):
+        return [tuple(F(u, sum(raw)) for u in raw) for raw in product((0, 1, 2), repeat=m) if sum(raw)]
+
+    spectral_checks = 0
+    for left, right in product(simplex(4), repeat=2):
+        error = sum(left[i] * (sparse_graph[i][j] - 1) * right[j] for i in range(4) for j in range(4))
+        assert error ** 2 <= 16 * delta ** 2 * sum(x * x for x in left) * sum(x * x for x in right)
+        spectral_checks += 1
+    heavy_light_checks = 0
+    m, h = 3, F(3, 2)
+    matrices = [tuple(tuple(F(((3 * i + j + phase) % 5) - 2, 2) for j in range(m)) for i in range(m))
+                for phase in range(3)]
+    for matrix in matrices:
+        # These signed controls use valid scaled spectral approximants, without
+        # claiming compression for every small matrix or a dynamic algorithm.
+        surrogate = [[(1 + delta) * max(F(0), matrix[i][j]) - (1 - delta) * max(F(0), -matrix[i][j])
+                      for j in range(m)] for i in range(m)]
+        for left, right in product(simplex(m), repeat=2):
+            left_heavy, right_heavy = {i for i, x in enumerate(left) if x > h / m}, {j for j, x in enumerate(right) if x > h / m}
+            exact, approximation = F(0), F(0)
+            for i, j in product(range(m), repeat=2):
+                exact += left[i] * matrix[i][j] * right[j]
+                approximation += left[i] * (matrix[i][j] if i in left_heavy or j in right_heavy else surrogate[i][j]) * right[j]
+            left_light = [x if i not in left_heavy else F(0) for i, x in enumerate(left)]
+            right_light = [x if j not in right_heavy else F(0) for j, x in enumerate(right)]
+            assert abs(exact - approximation) <= delta * h
+            assert (exact - approximation) ** 2 <= delta ** 2 * m ** 2 * sum(x * x for x in left_light) * sum(x * x for x in right_light)
+            assert len(left_heavy) < m / h and len(right_heavy) < m / h
+            heavy_light_checks += 1
+    asymptotic_balances = []
+    for j in range(1, 5):
+        m, h_integer = 2 ** (6 * j), 2 ** (2 * j - 2)
+        assert m * m // h_integer == 64 * m * h_integer * h_integer
+        asymptotic_balances.append(dict(side=m, capacity=m * m, threshold=h_integer,
+                                         exact_heavy_term=m * m // h_integer,
+                                         sparsifier_leading_term_without_polylogs=64 * m * h_integer * h_integer))
+    spectral_transfer = {'actual_compression_control_vertices': 8, 'original_edges': 16, 'surrogate_edges': 12,
+                         'relative_spectral_error': '1/3', 'exact_psd_certificates': 2,
+                         'complete_simplex_pair_controls': spectral_checks, 'signed_heavy_light_controls': heavy_light_checks,
+                         'symbolic_balance_controls_at_error_one_eighth': asymptotic_balances,
+                         'scope': 'Uniform algebraic transfer: supplied valid relative spectral approximants of the positive and negative payload graphs imply bilinear-read error <=delta*m*||p||2*||t||2 for independent bounded values. Exact heavy row/column scans at probability threshold h/m reduce the remaining error to delta*h and cost to O(m^2/h+S). This is a conditional classical-sparsification consequence, not a maintained dynamic or finite-arena algorithm, a finite runtime advantage, a novelty claim or the goal result. All payloads remain stored; fixed full Cartesian addresses are assumed. Adaptive updates, horizon, sparse active sets, finite grid weights and strongest method comparison require further work.'}
+    fixed_sample_attacks = []
+    for side in (4, 8, 16):
+        sampled = {(2 * a, 2 * b) for a in range(side // 2) for b in range(side // 2) if (a + b) % 2 == 0}
+        payload = [[0 for _ in range(side)] for _ in range(side)]
+        untouched = 0
+        for a, b in product(range(side // 2), repeat=2):
+            block = {(2 * a + i, 2 * b + j) for i, j in product(range(2), repeat=2)}
+            if block & sampled:
+                continue
+            untouched += 1
+            for i, j in product(range(2), repeat=2):
+                payload[2 * a + i][2 * b + j] = 1 if i == j else -1
+        assert len(sampled) == side * side // 8 and untouched == side * side // 8
+        assert all(payload[i][j] == 0 for i, j in sampled)
+        assert all(sum(row) == 0 for row in payload)
+        assert all(sum(payload[i][j] for i in range(side)) == 0 for j in range(side))
+        output_lower = F(4 * untouched, side * side) * ((lam_lo - 1) / (lam_lo + 1)) ** 2
+        assert output_lower > F(9, 50)
+        fixed_sample_attacks.append({'side': side, 'sampled_entries': len(sampled), 'untouched_two_by_two_blocks': untouched,
+                                     'sampled_values_and_all_row_column_sums_match_zero_matrix': True,
+                                     'dense_dyadic_logit_query_complete_output_above': '9/50',
+                                     'any_indistinguishable_reader_worst_case_error_above': '9/100'})
+    from bisect import bisect_right
+    cdf_cases, enumerated_draws, laws = 0, 0, []
+    for side in (2, 3, 5):
+        for raw in product((0, 1, 2), repeat=side):
+            total = sum(raw)
+            if not total:
+                continue
+            truth = tuple(F(x, total) for x in raw)
+            for bits in (3, 5, 7):
+                cumulative, cuts = 0, []
+                for value in raw:
+                    cumulative += value
+                    cuts.append((cumulative << bits) // total)
+                assert cuts[-1] == 1 << bits
+                counts = [0] * side
+                for draw in range(1 << bits):
+                    counts[bisect_right(cuts, draw)] += 1
+                    enumerated_draws += 1
+                law = tuple(F(x, 1 << bits) for x in counts)
+                assert sum(law) == 1 and sum(abs(x - y) for x, y in zip(law, truth)) <= F(2 * side, 1 << bits)
+                if len(laws) < 20:
+                    laws.append((truth, law))
+                cdf_cases += 1
+    product_law_checks = 0
+    for (left, approx_left), (right, approx_right) in product(laws, repeat=2):
+        error = sum(abs(x * y - a * b) for x, a in zip(left, approx_left) for y, b in zip(right, approx_right))
+        assert error <= sum(abs(x - a) for x, a in zip(left, approx_left)) + sum(abs(y - b) for y, b in zip(right, approx_right))
+        product_law_checks += 1
+    binomial_tail = F(2 * sum(comb(32, j) for j in range(8)), 2 ** 32)
+    _, exp4_hi = exp_interval(F(4))
+    assert binomial_tail <= 2 / exp4_hi
+    fresh_sampling = {'dyadic_cdf_cases': cdf_cases, 'all_fair_bit_draws_enumerated': enumerated_draws,
+                       'complete_product_law_checks': product_law_checks,
+                       'exact_binomial_tail_at_32_samples_and_error_half': str(binomial_tail),
+                       'finite_horizon_samples_suffice': 'K>=8*epsilon^-2*log(2*v*H/rho)',
+                       'scope': 'Classical fresh product-pair sampling gives the complete bounded-value mixture after charged query setup, finite CDF rounding and exact integer averaging. Conditional Hoeffding and a declared finite-horizon union bound allow adaptive values/queries chosen before each read draws new independent bits. It is stronger than the provisional spectral route in that probability model, with O(v) overwrites; no fixed-K infinite-horizon guarantee, changed active-set sampler, new theorem or ML advantage is claimed.'}
+    value_width = 64
+    persistent = capacity * value_width * 2 + capacity * weight * 4 + comb(dimension, 2) * 4
+    persistent += capacity * 4 + (capacity + 7) // 8 + dimension * 4
+    workspace = dimension * 4 + (weight + 1) * 2 + 4 * weight * 4 + 8 * value_width + (value_width + 1) * 16
+    workspace += 16 * 32 + 16 * 16 + 128 * 8 + 2048
+    return {'coordinate_aggregation_equivalence': coordinate_cases,
+            'coefficient_mass_proof_clarification': {'support_size': 1, 'degree': 24, 'amplitude_bound': '3/8',
+                                                    'query_coordinate': 12, 'actual_key_coordinate': '11/32',
+                                                    'correct_mass_upper_bound': 128,
+                                                    'scope': 'Coefficients use A*q, so their unweighted absolute sum is bounded by exp(A*sum|q|), not necessarily exp(sum|q*x|). The displayed intermediate estimate in the preceding note needs this clarification; its final C bound and all selected precisions remain valid.'},
+            'recall_dictionary': {'declared_capacity': capacity, 'dimension': dimension, 'maximum_coordinate_load': load,
+                                  'maximum_high_score_distractors': high_distractors, 'self_score_before_noise': str(self_exponent),
+                                  'positive_exp_series_terms': 80, 'positive_exp_lower_numerator': self_exp_lower.numerator,
+                                  'positive_exp_lower_denominator': self_exp_lower.denominator,
+                                  'uniform_complete_softmax_error_below': '1/65536', 'noise_radius': '1/4',
+                                  'query_support_restriction': None, 'heavy_coordinate_threshold': 1,
+                                  'dense_noise_grid_units': step, 'controls': dict(index.stats), 'atomic_invalid_queries': rejected_queries,
+                                  'persistent_array_bytes_at_value_width_64': persistent, 'operation_workspace_bytes': workspace,
+                                  'sequential_arena_bytes_at_value_width_64': persistent + workspace,
+                                  'scope': 'A checked classical dictionary shortcut is uniformly more accurate than required on the entire exhibited recall noise ball, including dense noise. It keeps every independent value, raw pair-admission state and all metadata. Outside the certified ball it pays a complete finite-precision scan, so this is not a dominance theorem over the hybrid for all mixture queries. The Python oracle installs only 65 keys, not the declared capacity or a packed arena.'},
+            'spectral_value_transfer': spectral_transfer,
+            'fresh_product_sampling_baseline': fresh_sampling,
+            'fixed_sample_adaptive_attack': {'cases': fixed_sample_attacks,
+                                             'scope': 'After a fixed entry sample is exposed, disjoint unsampled checkerboard blocks keep every sampled entry and every row/column sum zero while a dense product query with even logits 4, odd logits 0 and A=3/8 has output >9/50. The probabilities are below 2/m, so a heavy rule h>=2 reads no exact rows or columns. This invalidates uniform guarantees for readers using only that exposed sample and those sums under adaptive value edits; it does not refute oblivious-sequence matrix concentration or value-dependent/adaptively refreshed sketches, and is not a general data-structure lower bound.'},
+            'mixture_gate': {'dimension': 28, 'key_weight': 8, 'key_nonzero_amplitude': '3/8', 'query_nonzero_amplitude': 4,
+                             'key_supports': supports, 'independent_scalar_value_contrast': contrast,
+                             'zero_and_unary_query_exact_numerators': unary_cancellations,
+                             'joint_query_complete_output_above': '9/25',
+                             'worst_case_top_one_all_value_error_above': '11/18',
+                             'finite_l1_duality_checks': duality_checks,
+                             'scope': 'Elementary exact witness against mean/unary-output reconstruction and a one-value answer at the same accuracy. Standard univariate sums plus one residual candidate already handle it; it is not an algorithmic separation or a new hard family.'},
+            'scope': 'The k=2 cache is ordinary univariate kernel aggregation plus the published sparse-residual template. The displayed recall family is also solved more cheaply by a checked dictionary, with full Euclidean rather than sparse-only noise. A conditional classical spectral-transfer lemma opens a distinct value-dependent mixture route, with exact controls but without a maintained dynamic architecture claim. These are stronger baseline evidence and workload gates, not a new contribution or completion of the active goal.'}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -5155,6 +5721,7 @@ def main():
               "capacity_frontier_baselines": capacity_frontier_controls(),
               "continuous_amplitude_baseline": continuous_amplitude_controls(),
               "hybrid_fixed_point_candidate": hybrid_moment_controls(),
+              "exponential_aggregation_comparators": exponential_comparator_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,

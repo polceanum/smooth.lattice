@@ -4766,3 +4766,436 @@ methods, including their write costs. If that specialization supplies
 the same tradeoff, classify this as a known implementation theorem and
 move to a mechanism with a substantive additional consequence. The
 active research goal remains unachieved.
+
+## Stronger comparators and a value-dependent mixture route
+
+The preceding iteration was progress: it supplied a fixed-width proof
+and exact controls, while leaving novelty and the strongest comparison
+open. This pass resolves two comparisons against that construction.
+At k=2 its aggregation is exactly a classical collection of univariate
+kernel sums. Its entire displayed recall noise ball also admits a cheaper
+checked dictionary shortcut at stricter numerical accuracy. These facts
+remove both mechanisms as current novelty evidence. A separate conditional
+spectral transfer below opens a route to genuine joint mixtures; it is
+not yet a new dynamic architecture or a publication claim.
+
+### Clarification of the coefficient-mass proof
+
+One intermediate expression in the preceding proof needs correction.
+Since c_alpha=(Aq)^alpha/alpha!, its unweighted absolute sum on a low
+overlap support is bounded by
+
+    sum_alpha |c_alpha| <= exp(A sum_{a in overlap}|q_a|) <= C.
+
+The first exponential need not be exp(sum |q_a*x_a|); that smaller
+quantity bounds coefficients multiplied by their exact key features.
+For A=3/8, q=12, x=11/32 and L=24, the unweighted nonconstant
+coefficient sum exceeds exp(33/8), as rational enclosures confirm, but is
+below C=128. The final bound actually used for feature error, and every
+chosen precision and accuracy conclusion, therefore remains valid.
+The append-only clarification preserves the historical record and replaces
+that intermediate justification. All previous certificates are unchanged.
+
+### Exact equivalence to ordinary coordinate aggregation
+
+For k=2 let J_i be the query/key coordinate overlap. In an algebraic
+model with charged exp evaluation define
+
+    E_a(t) = sum_{i:a in supp(x_i)} (exp(t*x_ia)-1) (1,V_i),
+    B_i(q) = 1 + sum_{a in J_i} (exp(q_a*x_ia)-1).
+
+Start with (n,sum_i V_i), add E_a(q_a) for every query coordinate, and
+for each |J_i|>=2 owner add (exp(q dot x_i)-B_i(q))*(1,V_i).
+This is an exact identity for the complete numerator and denominator.
+For zero or one overlap B_i already equals the true weight. The owner
+set and deduplication are exactly those of the preceding hybrid.
+
+There are two classical implementations. Group equal raw amplitudes u
+at each coordinate a, maintaining their usage and sum of independent
+values. A value overwrite touches one bucket per key coordinate, not L
+features. A read visits the active amplitude buckets at the queried
+coordinates and evaluates their univariate kernels. Count all bucket
+keys, usage, value sums, dictionaries, input bits and kernel evaluations;
+there can be as many as N*w active buckets. Independent per-key values
+remain necessary for overwrite and are retained.
+
+Alternatively, for any fixed separated univariate approximation
+F(t,u)=sum_j psi_j(t)*phi_j(u), cache
+
+    M_aj = sum_{i:a in supp(x_i)} phi_j(x_ia)*(1,U_i).
+
+This has exactly the preceding k=2 moment state, read arithmetic and
+L-per-coordinate write amplification when the same canonical rounded
+features and coefficients are chosen. Grouping first gives the identical
+integer M_aj by distributivity. Subtracting identical candidate bases
+before final rounding makes the complete expressions identical for any
+shared scalar-exp primitive, including its precision choices. This is an
+exact equivalence, not a comparison of incompatible error theorems.
+
+Low-rank aggregation of kernel sums is established numerical mathematics;
+see [Fong--Darve, Section 2, Equations 4--6](https://mc.stanford.edu/cgi-bin/images/f/fa/Darve_bbfmm_2009.pdf)
+and [Kunis--Melzer, Sections 2--3](https://arxiv.org/html/1606.03255).
+The latter treats discrete Laplace transforms with signed coefficients.
+For positive query t, exp(t*u)=exp(t*A)*exp(-t*(A-u)); for negative t
+use exp(|t|*A)*exp(-|t|*(A+u)). The prefactor and its accuracy
+amplification must be charged when importing those estimates. Neither
+paper's batch runtime is being asserted as a dynamic overwrite theorem;
+the specific bounded canonical update rule follows from the displayed
+fixed-feature sums. Together with Scatterbrain's explicit residual
+template this classifies the mechanism as a standard specialization.
+Higher k blocks similarly aggregate ordinary multivariate kernels; this
+equivalence alone does not classify every possible new cost theorem.
+
+### The recall regime has a stronger dictionary comparator
+
+Keep the preceding finite parameters, minimum amplitude a=11/32 and
+M=9/8 as an upper bound on key norm. Let ell=1178 be the maximum
+coordinate load. For q=beta*x_t+e, beta=29 and ||e||_2<=eta=1/4,
+the target score is at least beta*w*a^2-eta*M. Every other key sharing
+no target coordinate scores at most eta*M. Every key sharing one scores
+at most beta*A^2+eta*M. There are at most
+
+    H0 = w*(ell-1) = 9416
+
+such high-score distractors, since pair-owner admission excludes two
+shared target coordinates. Thus, uniformly over every admitted state
+with n<=N and all amplitude signs,
+
+    off-target mass / target mass
+      <= exp(2 eta M-beta*w*a^2)
+         * ((N-1)+H0*(exp(beta*A^2)-1)).
+
+This uses support loads rather than pretending all N distractors attain
+the largest score. Here 2etaM=9/16<2/3 and beta*A^2=261/64<14/3.
+The elementary inequality e^(2/3)<2 gives exp(2etaM)<2 and
+exp(beta*A^2)<128. Put
+
+    S80 = sum_{j=0}^{79} (3509/128)^j/j!,
+    K0  = (N-1)+127*9416.
+
+The integer/rational certificate proves S80>4*K0*2^16. For any bounded
+independent value assignment, returning V_t therefore differs from the
+complete softmax output by at most
+
+    2*off/(target+off) < 4*K0/S80 < 2^-16.
+
+This is stricter than the hybrid's <2^-13 guarantee at the same p=14,
+and it holds on the full Euclidean noise ball, without the support<=16
+restriction. No random-value assumption or omitted independent payload
+is involved. The exponential concentration mechanism is classical;
+[Ramsauer et al., Theorem 5 and Appendix Theorem A9](https://arxiv.org/html/2008.02217)
+already bounds retrieval error through softmax separation. Our elementary
+load count instantiates a stronger comparator, not a new capacity result
+or an assertion about Hopfield fixed-point convergence.
+
+The target is found and checked cheaply. Threshold raw query coordinates
+at absolute value one. Since beta*a-eta>1 and eta<1, the heavy support
+is exactly the target's eight coordinates throughout the ball, including
+dense noise. If there are eight heavy coordinates, look up their first
+pair, compare its owner's support, and verify
+sum_a(q_a-beta*x_ta)^2<=1/16 in exact raw-grid arithmetic. Return its
+current value only if that check succeeds. The full query scan is paid;
+the support list is capped at w+1 entries. The squared norm, cross term
+and key norm suffice to check distance without storing a dense key.
+
+For all other valid queries, a complete stable finite-precision scan is
+an honest fallback. It uses two score passes, the previously proved exp
+routine and p+ceil(log2(8n)) fractional bits. Empty state returns no
+value. Consequently this is a complete approximate reader, with fast
+recall cost O(d+w+v), a single independent-value overwrite of cost O(v),
+and a potentially expensive O(d+n*(w+v+Exp)) fallback. Pair-admission
+checks, raw key edits/deletions and all metadata remain charged exactly
+as before. It does not dominate the hybrid on all mixture queries.
+
+At value width 64, removing the moment cells and constant value sums
+leaves 310,533,979 persistent bytes, including independent values, sparse
+keys, the full pair-owner array, loads, free slots and occupancy. A
+38,530-byte operation arena reserves dense raw input, capped support,
+key/value buffers, output, 256-bit exp scratch, parameters and alignment.
+The total is 310,572,509 bytes in the same sequential packed-array model,
+versus 413,515,179 for the hybrid. Squared-distance work fits signed
+64 bits; fallback output work fits 128 and exp temporaries fit 256.
+Construction and raw-input validation still count. No large state or
+native arena was installed. The comparison concerns the complete
+exhibited recall family, not a general strongest-method separation.
+
+### A gate that distinguishes joint mixtures from lookup
+
+For a fixed value-independent approximate weight vector p_hat and true
+probabilities p, the worst error over independent scalar values in [-1,1]
+is exactly ||p-p_hat||_1. The triangle inequality gives the upper bound;
+choosing each value to be the sign of p_i-p_hat_i attains it. The allowed
+value grids contain those endpoints. In particular returning one value
+has worst-case error 2(1-p_t). Average random-value SNR is a different
+guarantee. This elementary duality applies to value-independent linear
+readers; it must not exclude algorithms whose summary or approximation
+depends on the current values.
+
+An exact small gate uses weight-eight keys with principal supports
+{0,1},{0,2},{1,3},{2,3}, padding each with six distinct private coordinates.
+Give all nonzero key coordinates amplitude 3/8 and use query amplitude
+4 on coordinates zero and one. With r0=exp(3/2), weights are
+(r0^2,r0,r0,1). Values (1,-1,-1,1) have zero mean and zero numerator
+for either single-coordinate query, yet their joint complete output is
+((r0-1)/(r0+1))^2>9/25. Exact rational enclosures show 4<r0<5.
+The largest probability is below 25/36, so a one-value reader has
+worst-case all-value error above 11/18. Neither mean nor unary-output
+reconstruction supplies the required interaction. The standard coordinate
+hybrid with one residual candidate already handles this witness; it is
+a specification gate, not a hard-family or novelty claim.
+
+### A conditional transfer for value-dependent spectral summaries
+
+The dictionary comparison motivates testing a different summary mechanism.
+Consider N=m^2 full Cartesian addresses, whose keys are A*(e_a+e_{m+b})
+in raw dimension 2m. For an arbitrary dense query, let p and t be the
+separately normalized exponentials on its two coordinate halves. A full
+attention read is p^T V_j t in value coordinate j, where every entry of
+V_j is independently chosen in [-1,1]. Both probability vectors have
+m coordinates; this is not two scalar latent variables. The address
+geometry is standard product-key structure, already present in
+[Lample et al., Sections 3.1--3.2](https://arxiv.org/html/1907.05242v2).
+Their top-k query specification must not be confused with this complete
+mixture. Fixed full Cartesian addresses are an explicit restriction here;
+arbitrary active subsets or learned raw-key edits are not supplied for free.
+
+For each current V_j, form two nonnegative weighted bipartite graphs
+with edge weights max(V_jab,0) and max(-V_jab,0). Suppose their supplied
+approximations satisfy (1-delta)L <= L_hat <= (1+delta)L for every
+quadratic vector. These graphs depend on current values. For a graph,
+u=(p,0), z=(0,t) have u^T L z=-p^T W t. Relative spectral error gives
+
+    |u^T(L_hat-L)z| <= delta*sqrt((u^T L u)*(z^T L z)).
+
+To prove it, restrict to the range of L, conjugate the error by
+L^(-1/2), and apply its operator-norm bound delta; both matrices vanish
+on the kernel. Sum this estimate for the positive and negative graphs
+and use Cauchy--Schwarz across the two terms. Their combined degrees
+are bounded by m because |V_jab|<=1. The complete signed read error is
+therefore at most
+
+    delta*m*||p||_2*||t||_2.
+
+This holds uniformly over all queries for each valid pair of current
+spectral summaries. It does not require a small fixed rank of V_j, and
+does not discard its independently stored entries. It is a consequence
+of classical spectral sparsification, not yet a new result beyond it.
+
+There is also a uniform query strategy without a diffuseness promise.
+Fix 1<=h<=m. Read all rows with p_a>h/m and all remaining entries in
+columns with t_b>h/m exactly, avoiding double counting. Each heavy set
+has fewer than m/h coordinates, so this costs O(m^2/h) payloads per
+value coordinate. Zero those heavy coordinates in p,t and use the
+spectral graphs only on the light-light block. Each remaining squared
+norm is at most h/m, so its error is at most delta*h. If a supplied
+graph summary has S(m,delta) edges, read cost is
+
+    O(m + v*(m^2/h+S(m,delta))),  with error <=delta*h,
+
+plus all arithmetic/input costs. Store every m^2*v independent value,
+two graph summaries per value coordinate and all their indices, weights,
+working state and construction costs. An overwrite changes a constant
+number of nonnegative graph edges per value coordinate; the full dynamic
+maintenance cost of those changes is additional, not O(v) by assumption.
+
+For orientation only, substituting S=O_tilde(m*delta^-2) and
+delta=epsilon/h gives O_tilde(m^2/h+m*h^2/epsilon^2). Balancing at
+h=(m*epsilon^2)^(1/3), when that lies in [1,m], gives the conditional
+read exponent O_tilde(N^(5/6)*epsilon^(-2/3)) per value coordinate.
+Polylogarithmic factors, precision, graph workspace, update time and
+construction are not removed. This is no finite runtime claim or
+separation from existing matrix/sketch methods. The checker records
+exact powers balancing the two leading terms, not a hardware benchmark.
+
+Finite input probabilities can be computed with stable exponentials,
+clipping after maximum-score subtraction. At D fractional bits the
+unnormalized total L1 rounding error is at most m*2^-D while each
+denominator is at least one. Taking D=O(log(m/epsilon)) makes query
+normalization/product error an explicitly small part of epsilon; its
+remaining budget goes to delta*h. If graph weights are supplied on a
+declared common dyadic grid with bounded magnitudes, all contractions
+are bounded integer sums, with precision depending on that grid, D,
+edge count and weight magnitude. Producing and maintaining such graph
+weights and bounding their workspace is a remaining construction gate,
+not an automatic consequence of an algebraic spectral inequality.
+
+[Abraham--Durfee--Koutis--Krinninger--Peng, Theorem 4.1](https://arxiv.org/html/1604.02094)
+is an actual dynamic comparator: spectral size depends on delta^-2,
+log W and polylogarithmic graph parameters; maintenance is amortized.
+Section 2.2 assumes an oblivious update adversary. Theorem 5.14 treats
+restarting for arbitrary operation counts, but an all-time fixed failure
+budget and bounded state need an explicit audit. Uniformity over query
+vectors at a valid state does not establish robustness to adaptive value
+updates. [Bernstein et al., Theorem 3](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ICALP.2022.20)
+allows adaptive updates but states a polylogarithmic-factor spectral
+approximation, not the 1+-delta bound used here. These inspected statements
+cannot silently be combined to claim precise adaptive maintenance. More
+recent primary work and matrix bilinear-query baselines must be checked.
+Neither this transfer nor its heavy-coordinate split establishes novelty.
+
+### A still simpler sampling baseline and its adaptive boundary
+
+For bounded signed entries, relative Laplacian preservation is stronger
+than the transfer actually needs. An additive matrix approximation
+||V_hat-V||_2<=delta*m gives the same light-light error delta*h directly.
+Ordinary entry sampling already supplies such a baseline for a fixed
+matrix or a declared oblivious sequence of matrices. Retain each entry
+independently with probability pi, and scale a retained value by 1/pi.
+Each centered entry summand has norm at most 1/pi and the rectangular
+variance parameter is at most m/pi. The rectangular Bernstein inequality
+in [Tropp, Theorem 1.6](https://arxiv.org/html/1004.4389) consequently gives,
+for 0<delta<=1,
+
+    Pr(||V_hat-V||_2>delta*m)
+      <= 2m*exp(-3*delta^2*m*pi/8).
+
+For an oblivious sequence of T+1 states and v coordinates, a union bound
+adds log(2m*(T+1)*v/rho) to the sampling requirement for failure budget
+rho. If the requisite pi exceeds one, retain the complete matrix.
+Otherwise expected sample size is O(m*delta^-2*log(2m*(T+1)*v/rho));
+sample-size tails or an explicit allocation cap must also be paid.
+Choose a dyadic pi above the requirement to keep inverse probabilities
+and scaled grid values bounded integers. This is the classical entrywise
+sparsification mechanism; see also [Achlioptas--Karnin--Liberty](https://arxiv.org/abs/1311.4643).
+No new concentration result or matrix-sketch frontier is claimed.
+
+The fixed mask is shared by value coordinates. Keep the full raw value
+table and a list of sampled addresses; reads gather current sampled
+values from that table. A value overwrite then costs O(v), with no
+dynamic graph maintenance. Exact row/column sums, if wanted, also take
+O(v) work. Fixed-feature moments and the provisional graph route must
+be compared against this stronger alternative. It has the same
+heavy/light read tradeoff under its stated oblivious finite-horizon
+probability model, without the graph's update overhead. It does not
+supply adaptive value-update correctness or an all-time fixed failure
+budget merely because its spectral event is uniform over queries.
+
+The distinction has an exact adversarial witness. For even m, divide
+the matrix into disjoint 2-by-2 blocks. Given an exposed sample S, put
+the checkerboard [[1,-1],[-1,1]] on every block untouched by S and zero
+on all other blocks. Every sampled entry and every row/column sum is
+zero, just as in the all-zero matrix. At least m^2/4-|S| blocks are
+untouched. Use dyadic query logit 4 on even coordinates, zero on odd
+coordinates in each half, and key amplitude 3/8. With r0=exp(3/2), all
+query probabilities are below 2/m, so a heavy threshold h>=2 scans no
+exact rows or columns. Each untouched block contributes
+4/m^2*((r0-1)/(r0+1))^2. If |S|<=m^2/8, the complete output is above
+9/50, although the sampled state and all row/column sums match zero.
+
+Any reader restricted to those observations returns the same result on
+these two value tables, so one has error above 9/100. The raw values
+may all remain stored; the restriction concerns which cells the read
+actually accesses. This is a supporting indistinguishability argument,
+not a lower bound for general adaptive sketches or value-dependent
+indices. It does not refute a concentration theorem for matrices chosen
+independently of the mask. It explicitly identifies the extra assumption
+that training-dependent or adversarial edits would need addressed.
+
+### Fresh product sampling also handles adaptive updates
+
+The exposed-mask obstruction is not a reason to assume expensive dynamic
+spectral maintenance is necessary. For full Cartesian addresses, draw
+a from p and b from t freshly on every sample and fetch V_ab. The
+sample expectation is exactly the required full mixture p^T V t.
+This is the expectation-based attention mechanism already explicit in
+[Haris, Section 2.1](https://arxiv.org/html/2411.04013), specialized to
+a product distribution that can be sampled without a nearest-neighbor
+index. The earlier [research record](interleaving_research.md) already
+proves the conditional bounded-value concentration and horizon argument
+for fresh pair sampling; that baseline applies here too.
+
+For a declared finite horizon H, choose
+
+    K >= 8*epsilon^-2*log(2*v*H/rho).
+
+Conditional on the complete previous history, the current query and
+values may be chosen adaptively before the K fresh draws. Hoeffding's
+bound at sampling error epsilon/2 is 2v*exp(-K*epsilon^2/8).
+Conditioning and a union bound over H reads therefore give total failure
+at most rho. The fixed-mask checkerboard attack does not apply to these
+new independent draws. No fixed-K all-reads-success guarantee over an
+infinite horizon follows, and a value/query cannot be selected after
+seeing the fresh randomness of its own read.
+
+Finite precision does not require an arbitrary-real sampling oracle.
+First compute stable exponentials at D fractional bits, with
+m*2^-D<=epsilon/128 in each half and denominator at least one. Their
+normalized L1 error is at most 2*m*2^-D/(1-m*2^-D). For the resulting
+rational distribution, quantize its cumulative probabilities by
+floor(2^B*CDF_i), keeping the final endpoint exactly 2^B, with
+2m*2^-B<=epsilon/128. The induced dyadic distribution has L1 error
+at most 2m*2^-B. Across both halves the product-distribution error is
+below epsilon/8 for 0<epsilon<=1. Exactly B fresh fair bits and a binary
+search in each cumulative table give a pair with this dyadic law.
+The sample-average expectation then differs from the required complete
+output by less than epsilon/8. Add the epsilon/2 sampling budget above;
+integer averaging can keep its exact rational result or pay a separately
+reserved final-rounding error.
+
+This uses O(m) setup plus the charged scalar-exp arithmetic and
+O(K*(log m+v)) sample/read work. Store every N*v raw value coordinate,
+the validated product-address metadata, two O(m) cumulative tables,
+and v bounded accumulators of g+ceil(log2(K+1))+O(1) bits for g-bit
+value units. Each value overwrite costs O(v). Both query tables and
+their arithmetic have O(log(m/epsilon)) fractional precision in addition
+to charged raw input and parameter bits. Raw Cartesian-key validation
+and construction still count. The same K samples serve all v output
+coordinates. If this is more expensive than a complete scan, use that
+scan instead. Large inverse-square accuracy costs can therefore eliminate
+its benefit at a finite operating point; this is not a hardware claim.
+
+Consequently neither the conditional spectral exponent nor adaptation
+alone supplies the missing advantage: the finite-horizon fresh sampler
+is a stronger baseline for the full Cartesian workload. A worthwhile
+new theorem must improve its accuracy/cost/horizon tradeoff, or address
+a broader raw-key/active-set geometry where exact cheap sampling is
+unavailable, while preserving every independent value and all costs.
+The conditional spectral lemma remains a valid supporting comparison,
+not the chosen architecture or an established practical improvement.
+
+### Verification and decision
+
+The command `python3 -B scripts/run_timing_restart_checks.py` adds
+`exponential_aggregation_comparators`. Two grid cases at four and 80
+raw fractional bits compare cached, amplitude-grouped and direct per-key
+low sums for 186 reads, including candidate symbolic exponentials and
+identical final rounding. Canonical mutations, live cancelled buckets,
+background-value influence and clearing/reuse are checked. The dictionary
+oracle installs only 65 keys but uses the full capacity's declared
+parameters: 139 reads include 134 fast recalls, four full scans and one
+empty read, with target overwrites, a signed key outside the codebook,
+amplitude editing, just-outside-ball rejection, dense noise and three
+invalid queries. Independent rational exp enclosures check all 138
+nonempty outputs. These finite controls support the uniform theorem;
+they do not replace it or test a trained encoder.
+
+Spectral controls certify both PSD inequalities exactly for K_4,4
+replaced by its twelve off-matching edges of weight 4/3 at delta=1/3.
+They check 6400 pairs of normalized query vectors. Another 2028 signed
+matrix/query cases check the heavy/light transfer, including zero values
+and zeroed light blocks. Those signed controls use valid scaled graph
+approximants and do not claim compression for each small matrix. No
+dynamic sparsifier, native arena or neural training was run.
+Three further exact masks at sides 4,8,16 check the adaptive checkerboard
+witness, zero sampled/row/column state and the positive dense-query
+response. No probabilistic simulation substitutes for the uniform bound.
+Fresh-sampler controls enumerate all fair-bit draws for 828 dyadic CDF
+cases, check 400 complete product laws, and verify an exact 32-sample
+binomial tail against the classical concentration estimate. These check
+finite sampling/rounding mechanics; the adaptive finite-horizon statement
+follows from the written conditional proof, not a finite history search.
+
+The k=2 moment hybrid is now a baseline rather than the candidate novelty
+claim. Its recall family is too easy to establish the desired advantage,
+although its complete mixture guarantee remains valid with the coefficient
+clarification above. Preserve it and the stronger comparator. The next
+target is a better precision/access/horizon tradeoff for complete joint
+mixtures, or a broader raw-key/active-set geometry where cheap exact
+sampling is unavailable. Every independent value and all actual costs
+remain required. The finite-horizon fresh product sampler handles adaptive
+updates too, so that property alone is insufficient. Compare both
+deterministic summaries and fresh sampling at the same accuracy and
+failure model before pursuing dynamic spectral maintenance. The classical
+transfer and its adaptive fixed-sample obstruction are supporting results,
+not a contribution-paper result.
+The original impact, novelty and strongest-method gates remain open.

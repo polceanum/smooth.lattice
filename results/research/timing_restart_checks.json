@@ -3607,11 +3607,254 @@
     },
     "scope": "Quantized support-truncated polynomial moments plus complete high-overlap residuals in the existing Scatterbrain sparse-plus-low-rank template. The warm path certifies a large exact zero-score background; the cold path scans the explicitly charged smaller/current state. Independent per-key quantized formulas and rational true-exp enclosures verify full outputs. Cached integer widths are independent of input-precision times degree; scalar exponential evaluation is finite fixed-point and separately guarded. This is a candidate cost/precision theorem, not established novelty, strongest-method advantage, measured speed or publication readiness."
   },
+  "exponential_aggregation_comparators": {
+    "coordinate_aggregation_equivalence": [
+      {
+        "input_fractional_bits": 4,
+        "degree": 6,
+        "key_fraction_bits": 17,
+        "coefficient_fraction_bits": 15,
+        "coefficient_work_bits": 30,
+        "controls": {
+          "reads": 93,
+          "snapshots": 6,
+          "group_deltas": 366,
+          "moment_deltas": 2196,
+          "candidate_visits": 191,
+          "cancelled_live_groups": 1,
+          "noncandidate_influence": 1
+        }
+      },
+      {
+        "input_fractional_bits": 80,
+        "degree": 6,
+        "key_fraction_bits": 17,
+        "coefficient_fraction_bits": 15,
+        "coefficient_work_bits": 30,
+        "controls": {
+          "reads": 93,
+          "snapshots": 6,
+          "group_deltas": 366,
+          "moment_deltas": 2196,
+          "candidate_visits": 191,
+          "cancelled_live_groups": 1,
+          "noncandidate_influence": 1
+        }
+      }
+    ],
+    "coefficient_mass_proof_clarification": {
+      "support_size": 1,
+      "degree": 24,
+      "amplitude_bound": "3/8",
+      "query_coordinate": 12,
+      "actual_key_coordinate": "11/32",
+      "correct_mass_upper_bound": 128,
+      "scope": "Coefficients use A*q, so their unweighted absolute sum is bounded by exp(A*sum|q|), not necessarily exp(sum|q*x|). The displayed intermediate estimate in the preceding note needs this clarification; its final C bound and all selected precisions remain valid."
+    },
+    "recall_dictionary": {
+      "declared_capacity": 1062961,
+      "dimension": 8248,
+      "maximum_coordinate_load": 1178,
+      "maximum_high_score_distractors": 9416,
+      "self_score_before_noise": "3509/128",
+      "positive_exp_series_terms": 80,
+      "positive_exp_lower_numerator": 1295557271155830681335111553329507771277815803257188199818430977706401489453738365895103217204876706774739373241170508264743888695241063189385941935395948722203131042428283658486790700641347843264026293413569859625849448518607748453182069819195234179975687265773309714565031525744137447,
+      "positive_exp_lower_denominator": 1609461327361338150688164884619774390647136173560064796416186764735853216153593244473303978325719897666094492296383218282507765569502548577678354422650774667904645794173043527065142901480889014623437243725784191252737676141315984889285401932539239461814272000000000000000000,
+      "uniform_complete_softmax_error_below": "1/65536",
+      "noise_radius": "1/4",
+      "query_support_restriction": null,
+      "heavy_coordinate_threshold": 1,
+      "dense_noise_grid_units": 180,
+      "controls": {
+        "reads": 139,
+        "fast_reads": 134,
+        "full_scans": 4,
+        "empty_reads": 1,
+        "value_overwrites": 3,
+        "admitted": 67,
+        "rejected": 2,
+        "deletes": 66,
+        "dense_noise_fast_reads": 19,
+        "true_exp_enclosure_checks": 138,
+        "max_distance_bits": 44,
+        "max_exponential_bits": 145
+      },
+      "atomic_invalid_queries": 3,
+      "persistent_array_bytes_at_value_width_64": 310533979,
+      "operation_workspace_bytes": 38530,
+      "sequential_arena_bytes_at_value_width_64": 310572509,
+      "scope": "A checked classical dictionary shortcut is uniformly more accurate than required on the entire exhibited recall noise ball, including dense noise. It keeps every independent value, raw pair-admission state and all metadata. Outside the certified ball it pays a complete finite-precision scan, so this is not a dominance theorem over the hybrid for all mixture queries. The Python oracle installs only 65 keys, not the declared capacity or a packed arena."
+    },
+    "spectral_value_transfer": {
+      "actual_compression_control_vertices": 8,
+      "original_edges": 16,
+      "surrogate_edges": 12,
+      "relative_spectral_error": "1/3",
+      "exact_psd_certificates": 2,
+      "complete_simplex_pair_controls": 6400,
+      "signed_heavy_light_controls": 2028,
+      "symbolic_balance_controls_at_error_one_eighth": [
+        {
+          "side": 64,
+          "capacity": 4096,
+          "threshold": 1,
+          "exact_heavy_term": 4096,
+          "sparsifier_leading_term_without_polylogs": 4096
+        },
+        {
+          "side": 4096,
+          "capacity": 16777216,
+          "threshold": 4,
+          "exact_heavy_term": 4194304,
+          "sparsifier_leading_term_without_polylogs": 4194304
+        },
+        {
+          "side": 262144,
+          "capacity": 68719476736,
+          "threshold": 16,
+          "exact_heavy_term": 4294967296,
+          "sparsifier_leading_term_without_polylogs": 4294967296
+        },
+        {
+          "side": 16777216,
+          "capacity": 281474976710656,
+          "threshold": 64,
+          "exact_heavy_term": 4398046511104,
+          "sparsifier_leading_term_without_polylogs": 4398046511104
+        }
+      ],
+      "scope": "Uniform algebraic transfer: supplied valid relative spectral approximants of the positive and negative payload graphs imply bilinear-read error <=delta*m*||p||2*||t||2 for independent bounded values. Exact heavy row/column scans at probability threshold h/m reduce the remaining error to delta*h and cost to O(m^2/h+S). This is a conditional classical-sparsification consequence, not a maintained dynamic or finite-arena algorithm, a finite runtime advantage, a novelty claim or the goal result. All payloads remain stored; fixed full Cartesian addresses are assumed. Adaptive updates, horizon, sparse active sets, finite grid weights and strongest method comparison require further work."
+    },
+    "fresh_product_sampling_baseline": {
+      "dyadic_cdf_cases": 828,
+      "all_fair_bit_draws_enumerated": 46368,
+      "complete_product_law_checks": 400,
+      "exact_binomial_tail_at_32_samples_and_error_half": "4514873/2147483648",
+      "finite_horizon_samples_suffice": "K>=8*epsilon^-2*log(2*v*H/rho)",
+      "scope": "Classical fresh product-pair sampling gives the complete bounded-value mixture after charged query setup, finite CDF rounding and exact integer averaging. Conditional Hoeffding and a declared finite-horizon union bound allow adaptive values/queries chosen before each read draws new independent bits. It is stronger than the provisional spectral route in that probability model, with O(v) overwrites; no fixed-K infinite-horizon guarantee, changed active-set sampler, new theorem or ML advantage is claimed."
+    },
+    "fixed_sample_adaptive_attack": {
+      "cases": [
+        {
+          "side": 4,
+          "sampled_entries": 2,
+          "untouched_two_by_two_blocks": 2,
+          "sampled_values_and_all_row_column_sums_match_zero_matrix": true,
+          "dense_dyadic_logit_query_complete_output_above": "9/50",
+          "any_indistinguishable_reader_worst_case_error_above": "9/100"
+        },
+        {
+          "side": 8,
+          "sampled_entries": 8,
+          "untouched_two_by_two_blocks": 8,
+          "sampled_values_and_all_row_column_sums_match_zero_matrix": true,
+          "dense_dyadic_logit_query_complete_output_above": "9/50",
+          "any_indistinguishable_reader_worst_case_error_above": "9/100"
+        },
+        {
+          "side": 16,
+          "sampled_entries": 32,
+          "untouched_two_by_two_blocks": 32,
+          "sampled_values_and_all_row_column_sums_match_zero_matrix": true,
+          "dense_dyadic_logit_query_complete_output_above": "9/50",
+          "any_indistinguishable_reader_worst_case_error_above": "9/100"
+        }
+      ],
+      "scope": "After a fixed entry sample is exposed, disjoint unsampled checkerboard blocks keep every sampled entry and every row/column sum zero while a dense product query with even logits 4, odd logits 0 and A=3/8 has output >9/50. The probabilities are below 2/m, so a heavy rule h>=2 reads no exact rows or columns. This invalidates uniform guarantees for readers using only that exposed sample and those sums under adaptive value edits; it does not refute oblivious-sequence matrix concentration or value-dependent/adaptively refreshed sketches, and is not a general data-structure lower bound."
+    },
+    "mixture_gate": {
+      "dimension": 28,
+      "key_weight": 8,
+      "key_nonzero_amplitude": "3/8",
+      "query_nonzero_amplitude": 4,
+      "key_supports": [
+        [
+          0,
+          1,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        [
+          0,
+          2,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        [
+          1,
+          3,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21
+        ],
+        [
+          2,
+          3,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27
+        ]
+      ],
+      "independent_scalar_value_contrast": [
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "zero_and_unary_query_exact_numerators": [
+        [
+          [
+            "0",
+            0
+          ]
+        ],
+        [
+          [
+            "0",
+            0
+          ],
+          [
+            "3/2",
+            0
+          ]
+        ],
+        [
+          [
+            "0",
+            0
+          ],
+          [
+            "3/2",
+            0
+          ]
+        ]
+      ],
+      "joint_query_complete_output_above": "9/25",
+      "worst_case_top_one_all_value_error_above": "11/18",
+      "finite_l1_duality_checks": 3,
+      "scope": "Elementary exact witness against mean/unary-output reconstruction and a one-value answer at the same accuracy. Standard univariate sums plus one residual candidate already handle it; it is not an algorithmic separation or a new hard family."
+    },
+    "scope": "The k=2 cache is ordinary univariate kernel aggregation plus the published sparse-residual template. The displayed recall family is also solved more cheaply by a checked dictionary, with full Euclidean rather than sparse-only noise. A conditional classical spectral-transfer lemma opens a distinct value-dependent mixture route, with exact controls but without a maintained dynamic architecture claim. These are stronger baseline evidence and workload gates, not a new contribution or completion of the active goal."
+  },
   "novelty_established": false,
   "strongest_baseline_advantage_established": false,
   "publication_ready": false,
   "source_sha256": {
-    "scripts/run_timing_restart_checks.py": "f37ce3618571a5f50d0b9197c51e17714db7b72eadfed11e820e7ebc0f064308",
-    "docs/associative_memory_timing.md": "790355700b1775293ec78f1e7d247c44667f7b9fa4d1d927c7aa7882c6040eb3"
+    "scripts/run_timing_restart_checks.py": "e8d8969741a57cbcb0845e114487cdf7125aa9477b9937d32af2f4c2cbcc3491",
+    "docs/associative_memory_timing.md": "cb5d1ed24e771790d7b7779779cf507828f220f3e2b89fd524e8082a08ddb9ba"
   }
 }
