@@ -1204,3 +1204,223 @@ edits, 256 independent payload writes and 32,256 budgeted reads, including
 abort cleanup and nontrivial mixtures. It does not implement the complete
 timing wrapper or measure hardware performance. All earlier certificate
 blocks, manuscripts, core kernels and learned-recall results are preserved.
+
+## Stronger comparator audit and a compact sparse-key regime
+
+The preceding goal turn was **progress**: it saved the XOR/direct-bucket
+proof and independent checks. The full original publication goal remains
+unachieved. This iteration addresses two concrete gaps: the strongest
+data-dependent comparator and whether the spectral promise has a useful
+regime in moderate dimension. The probability and coding arguments below
+are supporting lemmas built from classical tools, not separate novelty
+claims or grounds to declare the goal complete.
+
+### What the optimal hashing paper already supplies
+
+The [ALRW full author version](https://www.mit.edu/~andoni/papers/tradeoffs-full.pdf)
+is 63 pages, dated March 21, 2017. Theorem 1.1 and the paragraph after the
+Hamming/ell_1 tradeoff explicitly include insertion/deletion support using
+dynamization, with logarithmic losses in space/query time and update
+exponent rho_u. Thus a claim that this comparator is inherently static
+would be wrong. The nominal Hamming tradeoff is
+
+```text
+c*sqrt(rho_q)+(c-1)*sqrt(rho_u) >= sqrt(2*c-1),
+rho_q=rho_u=1/(2*c-1) in the balanced case.
+```
+
+Sections 4.2--4.4 and Lemma 4.13 were inspected in detail. Its proof
+separately counts visited nodes and tested level-K point occurrences,
+including multiplicities. So it is also wrong to dismiss this bound as
+counting only tree navigation. However, exact range enumeration still
+needs care: the query may stop at an acceptable outer neighbor; some
+earlier base cases store just one point. As recorded above, Wei already
+changes those representatives into complete lists to continue past false
+positives. Full lists remove a correctness obstacle but do not by themselves
+prove that scanning them has the first-answer running time.
+
+Here is the accounting a complete comparison must supply. Separate the
+root query's points at distance at most the outer threshold from all other
+points. If each point is stored in at most B_p expected leaf occurrences,
+all visited near occurrences contribute at most sum_near B_p. If expected
+far occurrences are at most B_far and navigation costs B_nav, a complete
+verified range read costs
+
+```text
+O(B_nav + D_h*(B_far + sum_near B_p) + s*v).
+```
+
+No independence of occurrences is needed for this elementary upper bound.
+Claim 4.12 gives the relevant expected replication bound; Lemma 4.13 gives
+the navigation and candidate recurrences. A fully justified extension
+would have to handle all of the following before plugging in their optimal
+exponents:
+
+* Each visited coarse base case must either certify all its points are
+  within the root outer threshold or charge the other scanned points to
+  B_far. A valid-neighbor representative alone is not such a certificate.
+  For a local ball B(o,R), testing ||q-o||<=R+r_1 first is safe for inner
+  search; if r_1+2R<=r_2, all its points are then within local r_2.
+  Radial rounding and threshold propagation must connect this local
+  assertion back to the original Hamming distance.
+* The one-sided dimensional reductions used by Wei can introduce false
+  positives. A first-hit bound does not automatically bound all replicated
+  false positives in a full read. Their expected multiplicity and the
+  precision/rounding costs belong in B_far and B_p.
+* The dynamization, build/rebuild space, private operation times, accepted
+  seed law and canonical full outputs need matching. Supporting updates
+  nominally does not by itself prove the present timing-adaptive theorem;
+  differing formal guarantees are also not evidence of novelty.
+
+For orientation only, if these steps yielded B_nav+B_far=n^(rho_q+o(1))
+and B_p=n^(rho_u+o(1)), the complete cost would be
+O(D_h*[n^(rho_q+o(1))+k_outer*n^(rho_u+o(1))]+s*v), where k_outer counts
+root outer neighbors. This is a **conditional accounting consequence**, not
+an established full-range/finite-word theorem of ALRW or Wei. Under bounded
+k_outer its balanced exponent would be polynomially better than 1/c;
+for c=2, 1/3 replaces 1/2. We therefore retain this as a serious comparator,
+not just the published sqrt(Q)-copy robust search alternatives. The remaining
+full-workload proof is explicit rather than an inferred nonexistence result.
+
+### A uniform sparse-shell feasibility theorem
+
+Take an even integer t>=16, n=2^t and d=16*t^2. Independently choose each
+key's support S_i uniformly among all t-subsets of [d], initially allowing
+repetitions. Define K_ij=2^(-dist(x_i,x_j)/2) as before. With probability at
+least
+
+```text
+1 - delta_pair(t) - n^(-2),
+delta_pair(t)=n^2*(3/(8*t))^(t/2),
+```
+
+all distinct slots have distance greater than t and ||K||_2<=3. This is a
+single dataset event and hence supports the previous bounds for **every
+raw query**, including adaptively chosen queries. No query-net union bound
+or random-query assumption is used. For t=16, delta_pair=6561/2^24;
+it decreases by more than a factor of three when t increases by two.
+
+For a proof, conditional on any one support S_i, its intersections
+I_j=|S_i intersect S_j| with the other keys are independent hypergeometric
+variables. Their factorial moments satisfy, for 0<=l<=t,
+
+```text
+E binom(I_j,l) = binom(t,l)^2/binom(d,l)
+              <= binom(t,l)/(16*t)^l.
+```
+
+Expanding z^I=(1+(z-1))^I and summing gives
+
+```text
+E[2^I] <= (1+1/(16*t))^t <= 16/15 < 3/2,
+E[4^I] <= (1+3/(16*t))^t <= 16/13 < 2.
+```
+
+The last bounds follow by bounding binomial coefficients by t^l/l! and
+then the exponential series by the corresponding geometric series.
+With l=t/2, the same factorial moment and binom(t,l)<=(e*t/l)^l give
+Pr(I>=t/2)<=(3/(8*t))^(t/2), since e<3. A union bound over pairs yields
+delta_pair. Off this event every pair has distance 2t-2I>t, and duplicates
+are excluded as well.
+
+It remains to control row sums without assuming the entire matrix has
+independent entries. Put Y_j=2^(I_j) if I_j<t/2 and zero otherwise.
+Conditional on S_i, the Y_j are independent, bounded by sqrt(n), have
+mean below 3/2 and second moment below 2. The usual bounded-variable
+exponential-moment calculation gives
+
+```text
+Pr(sum_{j!=i} Y_j > 2*n | S_i)
+  <= exp(-n/(16+(4/3)*sqrt(n))).
+```
+
+For completeness, a centered variable Z with |Z|<=L obeys
+E exp(aZ)<=exp(a^2*E[Z^2]/(2*(1-aL/3))) for 0<a<3/L, by expanding the
+series and using k!>=2*3^(k-2). Multiplying these bounds for independent
+variables and choosing the exponential parameter proves Bernstein's bound
+with deviation n/2, variance sum at most 2n, and L=sqrt(n), giving the
+displayed exponent. This is an application of a classical concentration
+argument, not a new concentration inequality.
+
+Union bounding over n rows costs at most n^(-2): the exponent
+3n/(48+4sqrt(n)) is at least 3t for even t>=16, and e>2. Its value at t=16
+satisfies this, and when t increases by two the exponent at least doubles.
+On the complement of both bad events, K_ij=2^(I_j)/n off the diagonal,
+so every row sums to at most 1+2n/n=3. The maximum-row-sum bound completes
+the spectral proof. Rows themselves were never assumed independent.
+
+This is substantially more compact than the earlier disjoint-block witness:
+d=Theta(log^2 n), while the radius-t ball centered at zero contains **all n
+keys**, and every key has n-1 others within distance 2t. Thus both the global
+outer-density and bounded-overlap promises can fail maximally while this
+spectral promise holds with high probability. The zero query has mu=1
+exactly. It also admits a trivial weight-based pruning rule, so this query
+or dataset is not a lower-bound witness against every other index.
+
+### The dimension order is necessary within this model
+
+For any n=2^t binary keys of common weight t in dimension d, repetitions
+allowed, let f_j be the number using coordinate j. Then
+
+```text
+(1/n^2)*sum_ij |S_i intersect S_j| = sum_j f_j^2/n^2 >= t^2/d.
+```
+
+The Rayleigh quotient of K at the all-ones vector, followed by Jensen,
+therefore gives
+
+```text
+||K||_2 >= (1/n)*sum_ij K_ij
+        = (1/n^2)*sum_ij 2^(|S_i intersect S_j|)
+        >= 2^(t^2/d).
+```
+
+Consequently ||K||_2<=A for a fixed A>1 requires
+d>=t^2/log2(A). The order Theta(log^2 n) is thus both sufficient and
+necessary for bounded norm in this particular n=2^t, weight-t model.
+This is an elementary Rayleigh/Cauchy--Schwarz/Jensen consequence. It is
+not a dimension lower bound for arbitrary codes, encoders, attention
+architectures or associative memories.
+
+### Retention, mixtures, probability and the full cost
+
+For the unpaired keys on the good event, any r<=t/2 Hamming ball contains
+at most one key, so arbitrary independent fixed-grid payloads are recalled
+exactly throughout each key's radius-r ball, with no overwrite interference.
+This is noisy raw-vector lookup, not a supplied target ID.
+
+There is also a two-neighbor version with the specified exact mixture
+semantics. Replace each center x_i by (x_i,0) and (x_i,1). The key matrix
+becomes K tensor [[1,1/sqrt(2)],[1/sqrt(2),1]], whose norm is below 6.
+The total capacity is N=2n and dimension d+1=Theta(log^2 N). For
+1<=r<=t/2, a query meets at most one center's pair, so s<=2. At the key
+(x_i,0) the weights of the pair are r+1 and r, yielding a genuine weighted
+blend of independently replaceable vector payloads. Do not call that blend
+the individual value at the first key. Each raw vector is still retained
+explicitly. All N keys lie within distance ceil(log2 N)=t+1 of zero.
+
+For fixed c>=2 and r=floor(log2(N)/c), the preceding direct-bucket theorem
+therefore has A=6, s=2, H=Theta_c(N^(1/c)), and in its stated word model
+
+```text
+space O_c(N*(ceil(d/w)+v)+N*H+d) words,
+worst-case key edit O_c(d+H), vector write O(v),
+expected amortized read O_c(d+H*(D_h+1)+v),
+initial work I+O_c(N*(d+H)) including fresh index bits and cleared heads.
+```
+
+The already proved all-prefix cost confidence statement applies conditional
+on the supplied geometry. Geometry failure and index-runtime failure are
+different probability spaces; their probabilities may be union bounded.
+The dataset theorem treats raw keys as input. Generating random supports,
+loading all raw bits/values, or verifying a proposed pool is not free.
+An unbounded sequence of fresh random replacements is not certified by
+this one-draw probability bound: future key edits must still preserve the
+stated geometry, or pay for an admission/verification rule. No learned
+encoder or semantic accuracy result is supplied.
+
+The compact feasibility/dimension theorem closes a model-regime gap. It
+does **not** establish novelty of the XOR/direct-bucket theorem, superiority
+to optimal exact-range structures, or a publication-ready ML result. The
+next decision remains a full same-workload prior-art comparison; supporting
+coding and probability lemmas do not replace that gate.

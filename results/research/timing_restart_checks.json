@@ -877,11 +877,67 @@
     "payload_only_writes": 256,
     "scope": "Bounded intrusive-list oracle checks deletion handles, raw-key edits, independent payloads and abort cleanup. Selected seeds are correctness controls, not a runtime-distribution experiment or production implementation."
   },
+  "sparse_shell": {
+    "exact_hypergeometric_exponential_moments": 128,
+    "factorial_moment_identities_and_bounds": 2144,
+    "overlap_tail_controls": 32,
+    "uniform_failure_bound_parameter_controls": 57,
+    "probability_witnesses": [
+      {
+        "log2_n": 16,
+        "dimension": 4096,
+        "kernel_norm_upper_bound": 3,
+        "outer_zero_query_density": "65536",
+        "pair_failure_bound": "6561/16777216",
+        "row_failure_bound": "1/4294967296",
+        "combined_failure_bound": "1679617/4294967296"
+      },
+      {
+        "log2_n": 24,
+        "dimension": 9216,
+        "kernel_norm_upper_bound": 3,
+        "outer_zero_query_density": "16777216",
+        "pair_failure_bound": "1/16777216",
+        "row_failure_bound": "1/281474976710656",
+        "combined_failure_bound": "16777217/281474976710656"
+      },
+      {
+        "log2_n": 32,
+        "dimension": 16384,
+        "kernel_norm_upper_bound": 3,
+        "outer_zero_query_density": "4294967296",
+        "pair_failure_bound": "43046721/18446744073709551616",
+        "row_failure_bound": "1/18446744073709551616",
+        "combined_failure_bound": "21523361/9223372036854775808"
+      },
+      {
+        "log2_n": 64,
+        "dimension": 65536,
+        "kernel_norm_upper_bound": 3,
+        "outer_zero_query_density": "18446744073709551616",
+        "pair_failure_bound": "1853020188851841/1461501637330902918203684832716283019655932542976",
+        "row_failure_bound": "1/340282366920938463463374607431768211456",
+        "combined_failure_bound": "1853024483819137/1461501637330902918203684832716283019655932542976"
+      },
+      {
+        "log2_n": 128,
+        "dimension": 262144,
+        "kernel_norm_upper_bound": 3,
+        "outer_zero_query_density": "340282366920938463463374607431768211456",
+        "pair_failure_bound": "3433683820292512484657849089281/39402006196394479212279040100143613805079739270465446667948293404245721771497210611414266254884915640806627990306816",
+        "row_failure_bound": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+        "combined_failure_bound": "340282370354622283755887092089617300737/39402006196394479212279040100143613805079739270465446667948293404245721771497210611414266254884915640806627990306816"
+      }
+    ],
+    "constant_weight_dimension_necessity_controls": 30198,
+    "dimension_necessity_equality_controls": 3,
+    "scope": "Exact distributional and Jensen/Rayleigh controls; no sampled keys, numerical eigenvalues, training, performance benchmark or novelty inference. The written proof supplies the uniform theorem."
+  },
   "novelty_established": false,
   "strongest_baseline_advantage_established": false,
   "publication_ready": false,
   "source_sha256": {
-    "scripts/run_timing_restart_checks.py": "ad156d46733b31c3768f10f83b6593913fe041534bc1fdbcf317737ae4422bc2",
-    "docs/associative_memory_timing.md": "51429cc821658c3ff1d45df2ac9e74d538d7391f947f654c39144d6014d200a9"
+    "scripts/run_timing_restart_checks.py": "9e95f5cdbe6df1b272c4afd56a9fd8e4d3ceb0e137ba74fa142e3908e6d00089",
+    "docs/associative_memory_timing.md": "b0403bdd9e7a0277b98815670f35ea5ca50a780a4af03ef05c50ecd1dfc76c7f"
   }
 }

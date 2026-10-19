@@ -18,7 +18,7 @@
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "linear_time_XOR_covering_signatures_and_shared_coefficient_spectral_tail_recorded; direct_buckets_remove_comparison_tree_key_edit_factor; full_priority_and_strongest_baseline_gate_open"
+      "status": "compact_sparse_key_spectral_regime_and_dimension_necessity_proved_as_supporting_lemmas; ALRW_dynamic_and_candidate_cost_proofs_audited; complete_range_precision_timing_priority_gate_open"
     },
     {
       "stage": 4,
@@ -1370,5 +1370,63 @@
     "preservation": "All sixteen prior iterations, thirteen previous checker functions, historical report blocks, other proof scripts/reports, kernels, manuscripts and learned-recall artifacts are unchanged. Only the existing timing note/checker/report and active research manifest change.",
     "old_functions_and_certificate_blocks_preserved": true,
     "verification_scope": "Extended exact checker, build and smoke tests passed. All 234 protected files, thirteen prior function ASTs, sixteen prior goal iterations and historical report blocks are preserved. Other proof checkers were not rerun because their sources/artifacts are unchanged. No performance or production timing-wrapper claim."
+  },
+  "eighteenth_iteration": {
+    "previous_turn_classification": "progress: XOR batch-signature/direct-bucket theorem, exact shared-coefficient moments and dynamic-list checks saved and published; original full objective unachieved",
+    "record": "docs/associative_memory_timing.md, Stronger comparator audit and a compact sparse-key regime",
+    "certificate_script": "scripts/run_timing_restart_checks.py",
+    "certificate_report": "results/research/timing_restart_checks.json",
+    "primary_comparator_evidence": {
+      "source": "https://www.mit.edu/~andoni/papers/tradeoffs-full.pdf",
+      "version": "63-page full author version dated March 21, 2017",
+      "scope": "Theorem 1.1, update paragraph following the Hamming tradeoff, Sections 4.2--4.4, Claim 4.12 and Lemma 4.13 inspected. Dynamic insert/delete support and multiplicity-aware candidate counting are already explicit. Do not call this comparator inherently static or navigation-only.",
+      "conditional_complete_range_accounting": "If expected navigation cost is B_nav, far occurrences B_far and per-near-point leaf replication B_p, full verified read cost is O(B_nav+D_h*(B_far+sum_near B_p)+s*v). Plugging in optimal published exponents requires proof for all coarse base cases, radial threshold propagation, one-sided-dimensional-reduction false positives and finite-word/timing-adaptive updates. That full extension is not established in this record.",
+      "consequence_for_priority": "The nominal balanced Hamming exponent 1/(2c-1), with published dynamization, is a serious comparator. Under a justified bounded-outer-density full-range extension it could beat the current 1/c construction polynomially. Different output semantics alone are not evidence of novelty.",
+      "pdf_pages_visually_checked": [
+        6,
+        36
+      ]
+    },
+    "supporting_regime_theorem": {
+      "distribution": "Even t>=16, n=2^t independent uniform weight-t supports in dimension d=16*t^2, sampled with replacement as an input distribution.",
+      "uniform_dataset_event": "With probability >=1-n^2*(3/(8t))^(t/2)-n^(-2), all distinct slots have distance >t and K_ij=2^(-Hamming(x_i,x_j)/2) has spectral norm <=3. This dataset event implies the existing index bounds for every raw query; no random-query assumption or query-net union bound.",
+      "proof": "Hypergeometric factorial moments imply E[2^I]<=16/15 and E[4^I]<=16/13. Exclude overlaps I>=t/2 by a pair union bound, truncate 2^I at sqrt(n), and apply a conditional independent-row Bernstein calculation. Rows are not assumed jointly independent.",
+      "compactness_and_density": "d=Theta(log^2 n), yet all n keys lie in the radius-log2(n) ball at zero and the distance-2*log2(n) overlap graph is complete. The spectral hypothesis can therefore hold where bounded outer density and overlap fail maximally. The zero query also has a simple weight-pruning rule, so it is not a lower-bound witness against all indexes.",
+      "necessary_dimension_order": "For any n=2^t common-weight-t keys in dimension d, ||K||_2 >= (1/n^2)*sum_ij 2^(|S_i intersect S_j|) >= 2^(t^2/d) by Rayleigh, Cauchy--Schwarz and Jensen. Thus bounded norm requires d=Omega(t^2) within this particular model; no general architecture/encoder dimension lower bound is claimed.",
+      "two_neighbor_extension": "Appending both auxiliary symbols 0 and 1 to every center gives total capacity N=2n, dimension d+1, kernel norm <6 and at most two radius-r neighbors for 1<=r<=t/2. The exact operator returns the specified weighted blend of independent current payloads. Reading at one paired key need not return that key individual value.",
+      "full_memory_consequence": "For fixed c>=2, r=floor(log2(N)/c), H=Theta_c(N^(1/c)), the existing construction has O_c(N*(ceil(d/w)+v)+N*H+d) words, worst-case key edit O_c(d+H), vector write O(v), expected amortized read O_c(d+H*(D_h+1)+v), and initial I+O_c(N*(d+H)) work. Existing all-prefix runtime bound remains separate from the one-draw geometry probability.",
+      "limits": "Classical supporting coding/probability consequences, not a separate novelty or impact claim. Raw storage, input generation/loading, admission checks and future key geometry are charged. One random draw does not certify unbounded independent resampling. No learned encoder, arbitrary-value compression, performance benchmark or neural training."
+    },
+    "decision": "The compact regime strengthens feasibility of the spectral construction. The stronger comparator audit rules out static/dynamic and first-hit-only shortcuts to a novelty claim. Keep the full original goal active; a complete strongest-baseline separation and publishable novelty remain unestablished.",
+    "next_actions": [
+      "Prove or refute the optimal Las Vegas full-range candidate bound for every coarse base case and one-sided dimensional reduction; include all multiplicities and original-distance verification rather than substituting the first-answer theorem.",
+      "Match the resulting dynamization, preprocessing, phase-space, raw values, word precision and observed-operation-time guarantees with the complete current theorem.",
+      "Audit fast covering/XOR-tabulation implementations and binary batch-factorization prior art beyond keyword matches. Do not infer novelty from an absent search result.",
+      "If the strongest complete baseline dominates the bounded-overlap case, preserve it as a baseline and seek a substantive spectral/access frontier. Supporting regime lemmas and small exact controls do not complete the goal.",
+      "No neural training, outreach, submissions or claimed-contribution manuscript until the original novelty and strongest-baseline gates pass."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "verification_commands": [
+      "python3 -B scripts/run_timing_restart_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py"
+    ],
+    "preservation": "All seventeen prior goal iterations, sixteen previous checker functions, historical report blocks, other proof scripts/reports, kernels, manuscripts and learned-recall artifacts are preserved. Only the existing timing note/checker/report and active research manifest change.",
+    "certificate_summary": {
+      "exact_hypergeometric_exponential_moments": 128,
+      "factorial_moment_identities_and_bounds": 2144,
+      "overlap_tail_controls": 32,
+      "uniform_failure_bound_parameter_controls": 57,
+      "constant_weight_dimension_necessity_controls": 30198,
+      "dimension_necessity_equality_controls": 3,
+      "scope": "Exact distributional and Jensen/Rayleigh controls; no sampled keys, numerical eigenvalues, training, performance benchmark or novelty inference. The written proof supplies the uniform theorem."
+    },
+    "old_functions_and_certificate_blocks_preserved": true,
+    "verification_scope": "Extended exact checker, build and smoke tests passed. All 234 protected files, sixteen prior function ASTs, seventeen prior goal iterations and historical certificate blocks are unchanged. Other proof checkers were not rerun because their sources/artifacts are preserved. No sampled-key experiment, eigenvalue approximation, performance benchmark or learned-model claim."
   }
 }

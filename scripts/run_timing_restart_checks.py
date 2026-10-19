@@ -925,6 +925,82 @@ def direct_bucket_memory_controls():
             "scope": "Bounded intrusive-list oracle checks deletion handles, raw-key edits, independent payloads and abort cleanup. Selected seeds are correctness controls, not a runtime-distribution experiment or production implementation."}
 
 
+def sparse_shell_controls():
+    from math import comb
+
+    overlap_moments = factorial_moments = tails = 0
+    for weight in range(1, 65):
+        dimension = 16 * weight * weight
+        probabilities = [F(comb(weight, i) * comb(dimension - weight, weight - i),
+                           comb(dimension, weight)) for i in range(weight + 1)]
+        assert sum(probabilities) == 1
+        assert sum(p * 2 ** i for i, p in enumerate(probabilities)) <= F(16, 15)
+        assert sum(p * 4 ** i for i, p in enumerate(probabilities)) <= F(16, 13)
+        overlap_moments += 2
+        for level in range(weight + 1):
+            moment = sum(p * comb(i, level) for i, p in enumerate(probabilities)
+                         if i >= level)
+            exact = F(comb(weight, level) ** 2, comb(dimension, level))
+            assert moment == exact
+            assert exact <= F(comb(weight, level), (16 * weight) ** level)
+            factorial_moments += 1
+        if weight % 2 == 0:
+            probability = sum(probabilities[weight // 2:])
+            assert probability <= F(3, 8 * weight) ** (weight // 2)
+            tails += 1
+    probability_controls = 0
+    records = []
+    for weight in range(16, 129, 2):
+        n, root_n = 2 ** weight, 2 ** (weight // 2)
+        bad_pair_bound = n * n * F(3, 8 * weight) ** (weight // 2)
+        next_bound = (4 * n) ** 2 * F(3, 8 * (weight + 2)) ** ((weight + 2) // 2)
+        assert next_bound / bad_pair_bound < F(6, weight + 2) <= F(1, 3)
+        bernstein_exponent = F(3 * n, 48 + 4 * root_n)
+        next_exponent = F(3 * 4 * n, 48 + 8 * root_n)
+        assert next_exponent >= 2 * bernstein_exponent
+        assert bernstein_exponent >= 3 * weight
+        assert bad_pair_bound <= F(6561, 2 ** 24) < F(1, 2048)
+        probability_controls += 1
+        if weight in (16, 24, 32, 64, 128):
+            records.append({"log2_n": weight, "dimension": 16 * weight * weight,
+                            "kernel_norm_upper_bound": 3,
+                            "outer_zero_query_density": str(n),
+                            "pair_failure_bound": str(bad_pair_bound),
+                            "row_failure_bound": str(F(1, n * n)),
+                            "combined_failure_bound": str(bad_pair_bound + F(1, n * n))})
+    necessity_controls = sharpness_controls = 0
+    configurations = ([(1, d) for d in range(2, 5)] +
+                      [(2, d) for d in range(2, 6)] +
+                      [(3, d) for d in range(3, 6)] +
+                      [(4, d) for d in range(4, 6)])
+    for weight, dimension in configurations:
+        n = 2 ** weight
+        supports = [sum(1 << j for j in coordinates)
+                    for coordinates in combinations(range(dimension), weight)]
+        for multiplicities in compositions(n, len(supports)):
+            keys = [support for support, count in zip(supports, multiplicities)
+                    for _ in range(count)]
+            frequencies = [sum((x >> j) & 1 for x in keys) for j in range(dimension)]
+            overlap_sum = sum((x & y).bit_count() for x in keys for y in keys)
+            assert overlap_sum == sum(f * f for f in frequencies)
+            assert dimension * overlap_sum >= n * n * weight * weight
+            rayleigh = F(sum(2 ** (x & y).bit_count() for x in keys for y in keys), n * n)
+            # Exact integer-power comparison of R >= 2^(weight^2/dimension).
+            assert rayleigh ** dimension >= 2 ** (weight * weight)
+            if dimension == weight:
+                assert rayleigh == n and rayleigh ** dimension == 2 ** (weight * weight)
+                sharpness_controls += 1
+            necessity_controls += 1
+    return {"exact_hypergeometric_exponential_moments": overlap_moments,
+            "factorial_moment_identities_and_bounds": factorial_moments,
+            "overlap_tail_controls": tails,
+            "uniform_failure_bound_parameter_controls": probability_controls,
+            "probability_witnesses": records,
+            "constant_weight_dimension_necessity_controls": necessity_controls,
+            "dimension_necessity_equality_controls": sharpness_controls,
+            "scope": "Exact distributional and Jensen/Rayleigh controls; no sampled keys, numerical eigenvalues, training, performance benchmark or novelty inference. The written proof supplies the uniform theorem."}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -942,6 +1018,7 @@ def main():
               "constant_families": constant_family_controls(),
               "xor_covering": xor_covering_controls(),
               "direct_buckets": direct_bucket_memory_controls(),
+              "sparse_shell": sparse_shell_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,
