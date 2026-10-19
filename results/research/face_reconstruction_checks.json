@@ -1,0 +1,730 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "command": "python3 -B scripts/run_face_reconstruction_checks.py",
+  "sparse_difference": {
+    "exponent_pairs": 91680,
+    "occurrence_entries": 3584,
+    "fixtures": [
+      {
+        "generators": [
+          2,
+          3
+        ],
+        "prefix_length": 256,
+        "maximum_difference_box": 504,
+        "maximum_difference_support": 2
+      },
+      {
+        "generators": [
+          2,
+          3,
+          5
+        ],
+        "prefix_length": 256,
+        "maximum_difference_box": 384,
+        "maximum_difference_support": 3
+      },
+      {
+        "generators": [
+          2,
+          3,
+          5,
+          7
+        ],
+        "prefix_length": 128,
+        "maximum_difference_box": 180,
+        "maximum_difference_support": 4
+      },
+      {
+        "generators": [
+          2,
+          3,
+          5,
+          7,
+          11,
+          13
+        ],
+        "prefix_length": 64,
+        "maximum_difference_box": 64,
+        "maximum_difference_support": 5
+      },
+      {
+        "generators": [
+          101,
+          113,
+          127,
+          139,
+          149,
+          157,
+          163,
+          167
+        ],
+        "prefix_length": 128,
+        "maximum_difference_box": 64,
+        "maximum_difference_support": 6
+      },
+      {
+        "generators": [
+          4,
+          9,
+          25
+        ],
+        "prefix_length": 128,
+        "maximum_difference_box": 192,
+        "maximum_difference_support": 3
+      }
+    ]
+  },
+  "wall_boxes": {
+    "primitive_wall_boxes": 1470,
+    "box_points": 70808,
+    "cases_by_dimension": {
+      "2": 3,
+      "3": 30,
+      "4": 207,
+      "5": 1230
+    },
+    "known_planar_threshold_cases": 255,
+    "planar_attribution": "Adams-Watters, OEIS A163823; not a new threshold formula"
+  },
+  "face_reconstruction": {
+    "weight_prefix_cases": 3244,
+    "distinct_face_data_classes": 2358,
+    "repeated_face_data_controls": 886,
+    "families": [
+      {
+        "dimension": 3,
+        "coarse_weight_vectors": 125,
+        "prefix_lengths": [
+          2,
+          3
+        ]
+      },
+      {
+        "dimension": 4,
+        "coarse_weight_vectors": 256,
+        "prefix_lengths": [
+          2,
+          3,
+          4,
+          7
+        ]
+      },
+      {
+        "dimension": 5,
+        "coarse_weight_vectors": 243,
+        "prefix_lengths": [
+          2,
+          3,
+          4,
+          7,
+          8,
+          15
+        ]
+      },
+      {
+        "dimension": 6,
+        "coarse_weight_vectors": 64,
+        "prefix_lengths": [
+          2,
+          3,
+          4,
+          7,
+          8,
+          15,
+          16,
+          31
+        ]
+      }
+    ],
+    "scope": "Exhaustive listed integer grids with explicit strict tie refinement; not all chambers"
+  },
+  "proper_face_obstructions": {
+    "proper_faces_checked": 1354,
+    "proper_face_entries": 86656,
+    "witnesses": [
+      {
+        "dimension": 2,
+        "proper_face_prefix_length": 64,
+        "central_integer_weights": [
+          141420762,
+          141420762
+        ],
+        "minus_integer_weights": [
+          36345135834,
+          36345135833
+        ],
+        "plus_integer_weights": [
+          36345135834,
+          36345135835
+        ],
+        "first_full_difference": 2,
+        "upper_bound_on_first_difference": 3,
+        "switched_vectors": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "dimension": 4,
+        "proper_face_prefix_length": 64,
+        "central_integer_weights": [
+          38387392786602,
+          38387392787122,
+          38387393058042,
+          38387392515682
+        ],
+        "minus_integer_weights": [
+          9865559946156714,
+          9865559946290354,
+          9865560015916794,
+          9865559876530273
+        ],
+        "plus_integer_weights": [
+          9865559946156714,
+          9865559946290354,
+          9865560015916794,
+          9865559876530275
+        ],
+        "first_full_difference": 10,
+        "upper_bound_on_first_difference": 15,
+        "switched_vectors": [
+          [
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "dimension": 6,
+        "proper_face_prefix_length": 64,
+        "central_integer_weights": [
+          67925021317677235162,
+          67925021317677235842,
+          67925021317677698922,
+          67925021317993056402,
+          67925021532751500282,
+          67925021102287613242
+        ],
+        "minus_integer_weights": [
+          22890732184057228249594,
+          22890732184057228478754,
+          22890732184057384536714,
+          22890732184163660007474,
+          22890732256537255595034,
+          22890732111470925662553
+        ],
+        "plus_integer_weights": [
+          22890732184057228249594,
+          22890732184057228478754,
+          22890732184057384536714,
+          22890732184163660007474,
+          22890732256537255595034,
+          22890732111470925662555
+        ],
+        "first_full_difference": 53,
+        "upper_bound_on_first_difference": 84,
+        "switched_vectors": [
+          [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "dimension": 8,
+        "proper_face_prefix_length": 64,
+        "central_integer_weights": [
+          244416145091043012544965789715330,
+          244416145091043012544965789719298,
+          244416145091043012544965805468290,
+          244416145091043012545028313217538,
+          244416145091043012793121569982850,
+          244416145091043997475257671506178,
+          244416145094952200873444617595010,
+          244416145087132839038101839036418
+        ],
+        "minus_integer_weights": [
+          484188383425356207851577229426068730,
+          484188383425356207851577229433929338,
+          484188383425356207851577260632682490,
+          484188383425356207851701088483942778,
+          484188383425356208343173830136025850,
+          484188383425358158998485447253738618,
+          484188383433100309930293787455714810,
+          484188383417610154134479743131144057
+        ],
+        "plus_integer_weights": [
+          484188383425356207851577229426068730,
+          484188383425356207851577229433929338,
+          484188383425356207851577260632682490,
+          484188383425356207851701088483942778,
+          484188383425356208343173830136025850,
+          484188383425358158998485447253738618,
+          484188383433100309930293787455714810,
+          484188383417610154134479743131144059
+        ],
+        "first_full_difference": 297,
+        "upper_bound_on_first_difference": 495,
+        "switched_vectors": [
+          [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "dimension": 10,
+        "proper_face_prefix_length": 64,
+        "central_integer_weights": [
+          1544855456023604138521812548276408399447368262818,
+          1544855456023604138521812548276408399447368286850,
+          1544855456023604138521812548276408399447945847906,
+          1544855456023604138521812548276408413328470706754,
+          1544855456023604138521812548276742003982403400738,
+          1544855456023604138521812556293926189946837918210,
+          1544855456023604138522005233281467473201596322786,
+          1544855456023604143152611274861127934810333497794,
+          1544855456023715430507608558841001777590860465058,
+          1544855456023492841905025118104852240103928301218
+        ],
+        "minus_integer_weights": [
+          18558348593211556516062534142444494102561234941232634,
+          18558348593211556516062534142444494102561235229929050,
+          18558348593211556516062534142444494102568173470894778,
+          18558348593211556516062534142444494269314918600235802,
+          18558348593211556516062534142448501693840612053065594,
+          18558348593211556516062534238758935319831363911456730,
+          18558348593211556516064848867410268755570776625628218,
+          18558348593211556571692319244906729880876536308999322,
+          18558348593212893466687901617356954354199006766741754,
+          18558348593210219509805066743793589960368490682531833
+        ],
+        "plus_integer_weights": [
+          18558348593211556516062534142444494102561234941232634,
+          18558348593211556516062534142444494102561235229929050,
+          18558348593211556516062534142444494102568173470894778,
+          18558348593211556516062534142444494269314918600235802,
+          18558348593211556516062534142448501693840612053065594,
+          18558348593211556516062534238758935319831363911456730,
+          18558348593211556516064848867410268755570776625628218,
+          18558348593211556571692319244906729880876536308999322,
+          18558348593212893466687901617356954354199006766741754,
+          18558348593210219509805066743793589960368490682531835
+        ],
+        "first_full_difference": 1737,
+        "upper_bound_on_first_difference": 3003,
+        "switched_vectors": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      }
+    ],
+    "scope": "Exact rational-weight fixtures. The uniform prime realization uses the separate proof, not these as prime data."
+  },
+  "four_prime_obstruction": {
+    "minus_prime_bases": [
+      168323,
+      106937,
+      130069,
+      138373
+    ],
+    "plus_prime_bases": [
+      168323,
+      106937,
+      130069,
+      138389
+    ],
+    "first_full_exponent_difference": 10,
+    "proper_faces": [
+      {
+        "coordinates": [
+          0
+        ],
+        "prefix_length": 1000,
+        "exponent_word_sha256": "682f5c1bce46d008f335356ffc92db7e7d8aa1d97af057d0ddf36a6b44143571"
+      },
+      {
+        "coordinates": [
+          1
+        ],
+        "prefix_length": 1000,
+        "exponent_word_sha256": "682f5c1bce46d008f335356ffc92db7e7d8aa1d97af057d0ddf36a6b44143571"
+      },
+      {
+        "coordinates": [
+          2
+        ],
+        "prefix_length": 1000,
+        "exponent_word_sha256": "682f5c1bce46d008f335356ffc92db7e7d8aa1d97af057d0ddf36a6b44143571"
+      },
+      {
+        "coordinates": [
+          3
+        ],
+        "prefix_length": 1000,
+        "exponent_word_sha256": "682f5c1bce46d008f335356ffc92db7e7d8aa1d97af057d0ddf36a6b44143571"
+      },
+      {
+        "coordinates": [
+          0,
+          1
+        ],
+        "prefix_length": 1000,
+        "exponent_word_sha256": "2487bc3b6887d13a764065481936ecb4a1fbadb302e7f332d9a006dc47969b54"
+      },
+      {
+        "coordinates": [
+          0,
+          2
+        ],
+        "prefix_length": 1000,
+        "exponent_word_sha256": "a229301512f5438b0403c1388c2b0b2c3c7cf85d66abd34b7e046a215905388d"
+      },
+      {
+        "coordinates": [
+          0,
+          3
+        ],
+        "prefix_length": 1000,
+        "exponent_word_sha256": "a229301512f5438b0403c1388c2b0b2c3c7cf85d66abd34b7e046a215905388d"
+      },
+      {
+        "coordinates": [
+          1,
+          2
+        ],
+        "prefix_length": 1000,
+        "exponent_word_sha256": "c0122bf9d67004c17fc89a40c28473f5819c4d6acbd8739d66ba8339295f4b29"
+      },
+      {
+        "coordinates": [
+          1,
+          3
+        ],
+        "prefix_length": 1000,
+        "exponent_word_sha256": "c0122bf9d67004c17fc89a40c28473f5819c4d6acbd8739d66ba8339295f4b29"
+      },
+      {
+        "coordinates": [
+          2,
+          3
+        ],
+        "prefix_length": 1000,
+        "exponent_word_sha256": "c0122bf9d67004c17fc89a40c28473f5819c4d6acbd8739d66ba8339295f4b29"
+      },
+      {
+        "coordinates": [
+          0,
+          1,
+          2
+        ],
+        "prefix_length": 1000,
+        "exponent_word_sha256": "b69c3918c5bdced89924e6ada5b22cb22ccf19975fe7881a2a637ff199c75934"
+      },
+      {
+        "coordinates": [
+          0,
+          1,
+          3
+        ],
+        "prefix_length": 1000,
+        "exponent_word_sha256": "3c203ffb18cd15dab5ec471f9b91a12f97240b1d3cf92ba3a5c86b5177c60fbb"
+      },
+      {
+        "coordinates": [
+          0,
+          2,
+          3
+        ],
+        "prefix_length": 1000,
+        "exponent_word_sha256": "2feeb2773d9934264d6063d7049cf8d866cea8d7d927351915b1f842bb71fbd4"
+      },
+      {
+        "coordinates": [
+          1,
+          2,
+          3
+        ],
+        "prefix_length": 1000,
+        "exponent_word_sha256": "c4a3d91b86748b5e637827bb153554d6dc05df2ccfe37cf0895c6e85bb584e1f"
+      }
+    ],
+    "minus_first_eleven": [
+      [
+        1,
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      [
+        106937,
+        [
+          0,
+          1,
+          0,
+          0
+        ]
+      ],
+      [
+        130069,
+        [
+          0,
+          0,
+          1,
+          0
+        ]
+      ],
+      [
+        138373,
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      [
+        168323,
+        [
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      [
+        11435521969,
+        [
+          0,
+          2,
+          0,
+          0
+        ]
+      ],
+      [
+        13909188653,
+        [
+          0,
+          1,
+          1,
+          0
+        ]
+      ],
+      [
+        14797193501,
+        [
+          0,
+          1,
+          0,
+          1
+        ]
+      ],
+      [
+        16917944761,
+        [
+          0,
+          0,
+          2,
+          0
+        ]
+      ],
+      [
+        17998037737,
+        [
+          0,
+          0,
+          1,
+          1
+        ]
+      ],
+      [
+        17999956651,
+        [
+          1,
+          1,
+          0,
+          0
+        ]
+      ]
+    ],
+    "plus_first_eleven": [
+      [
+        1,
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      [
+        106937,
+        [
+          0,
+          1,
+          0,
+          0
+        ]
+      ],
+      [
+        130069,
+        [
+          0,
+          0,
+          1,
+          0
+        ]
+      ],
+      [
+        138389,
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      [
+        168323,
+        [
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      [
+        11435521969,
+        [
+          0,
+          2,
+          0,
+          0
+        ]
+      ],
+      [
+        13909188653,
+        [
+          0,
+          1,
+          1,
+          0
+        ]
+      ],
+      [
+        14798904493,
+        [
+          0,
+          1,
+          0,
+          1
+        ]
+      ],
+      [
+        16917944761,
+        [
+          0,
+          0,
+          2,
+          0
+        ]
+      ],
+      [
+        17999956651,
+        [
+          1,
+          1,
+          0,
+          0
+        ]
+      ],
+      [
+        18000118841,
+        [
+          0,
+          0,
+          1,
+          1
+        ]
+      ]
+    ],
+    "scope": "Exponent patterns agree; the numerical products are different inputs. A finite witness, not the uniform proof."
+  },
+  "novelty_established": false,
+  "publication_ready": false,
+  "scope": "Finite exact controls support the uniform proofs; no prime-distribution or unranking speedup claim.",
+  "source_sha256": {
+    "scripts/run_face_reconstruction_checks.py": "7b94cd10d9be4be6821af8b93b8977622f25a4dabff02f5d0202a8088748a16f",
+    "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
+    "docs/occurrence_reconstruction.md": "8e66ac703f3c6826f7b3ab11d744eb7f38d665dd60f1eec1482bf347354af311"
+  }
+}

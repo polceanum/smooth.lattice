@@ -44,6 +44,17 @@ paper/      quantitative manuscript and separate research notes
 results/    selected certified examples and benchmark summaries
 ```
 
+Current research returns to the original occurrence-count and prime-exponent
+interleaving observations. The [face reconstruction study](docs/occurrence_reconstruction.md)
+proves that face prefixes involving O(log n) coordinates determine an n-term
+full prefix, and that logarithmic dimension is necessary in the worst case,
+including for prime bases. Exact checks include two four-prime systems whose
+proper faces agree through 1,000 terms while their full words differ at rank 10.
+Novelty and publication significance of this new study remain unresolved.
+The [goal record](results/research/occurrence_reconstruction_goal.json) states
+the next proof and primary-literature gates. The separate ML track is paused;
+its results are preserved without a claimed ML advantage.
+
 The [mathematical research note](docs/interleaving_research.md) targets general
 structure and certification for fixed-prime rank/unrank. It separates known
 signature-sequence theory, general occurrence-transform laws, a restricted

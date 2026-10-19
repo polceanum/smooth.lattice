@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "title": "General mathematics from occurrence and smooth-exponent interleaving",
+  "status": "active",
+  "objective": "Develop the original smooth-number exponent-stream and occurrence-count observations into a substantive general mathematical result. Explain higher-dimensional behavior with a structural or quantitative theorem and a concrete consequence for fixed-prime ordering or random access. Require a complete uniform proof, reproducible verification, primary prior-art comparison and an honest publication assessment beyond the existing manuscripts. Isolated patterns, known corollaries or a plan alone do not complete the goal.",
+  "scope": "Fixed-prime smooth-number ordering and exponent streams; general positive-weight mathematics where it explains those observations. No prime-generation, factoring or ML architecture objective.",
+  "goal_complete": false,
+  "novelty_established": false,
+  "publication_ready": false,
+  "first_iteration": {
+    "record": "docs/occurrence_reconstruction.md",
+    "checker": "scripts/run_face_reconstruction_checks.py",
+    "report": "results/research/face_reconstruction_checks.json",
+    "uniform_proof_supplied": true,
+    "results": [
+      "The ordinary occurrence partner of one exponent stream is the rank on the remaining coordinate face; its two-pass return is preserved established background.",
+      "For distinct exponent vectors a,b with later rank j, product_i(1+abs(a_i-b_i))<=2(j-1). Their difference therefore involves at most floor(log2(2j-2)) coordinates.",
+      "Signs of primitive mixed-sign comparison vectors z with product_i(1+abs(z_i))<=2n determine the full n-term prefix. The argument charges the first rank affected when crossing a comparison wall.",
+      "The n-term prefixes on all coordinate faces of dimension at most 1+floor(log2 n) determine the full n-term prefix. This is uniqueness under a joint-realizability promise, not a face-compatibility criterion or a running-time improvement.",
+      "For every k and every finite M, two 2k-prime systems can have identical M-term words on all proper faces and differ in the full word by rank binomial(3k,k). The first 2k-1 prime bases can be shared. The prime realization uses established Bertrand-based finite approximation.",
+      "The worst-case face dimension required for n-term reconstruction is Theta(log n), uniformly in ambient dimension. Upper and lower leading constants differ; exact thresholds remain open in this study.",
+      "A four-prime witness agrees on every proper face through 1000 terms and differs at rank 10. Exact rational lower-bound fixtures in dimensions 2,4,6,8,10 support the general argument without substituting for its proof."
+    ],
+    "primary_comparison": [
+      {
+        "source": "https://ti.inf.ethz.ch/ew/research/phdtheses/wagner03.pdf",
+        "scope": "Chapter 3 divisor-box, product-ground and difference-matrix arguments are established. The dimension-independent comparison bound and face hierarchy require a precise full comparison."
+      },
+      {
+        "source": "https://arxiv.org/abs/math/9809134",
+        "scope": "Maclagan Section 3 and Lemma 4.1 establish primitive/flippable pairs, complement symmetry and coherent comparison walls on the Boolean domain. The lower construction's Boolean core is known machinery."
+      },
+      {
+        "source": "https://www.math.auckland.ac.nz/~slinko/Research/isipta17.pdf",
+        "scope": "Section 3 and Theorem 3 concern central pairs and comparisons determining coherent subset orders. The implication, if any, for ordinary monomial prefix face dimension is unresolved."
+      },
+      {
+        "source": "https://www3.risc.jku.at/research/theorema/Groebner-Bases-Bibliography/gbbib_files/publication_455.pdf",
+        "scope": "Vietri Property 2.6 and Proposition 6.2 are established fixed-degree and finite prime-realization results. No new prime-realization principle is claimed."
+      },
+      {
+        "source": "https://doi.org/10.1134/S0361768809020030",
+        "scope": "The previous full-paper audit credits Sections 5-6, Propositions 4-7 for feasible cones, reduced comparisons and strict-prefix enumeration. Their implication for the new dimension bound still needs theorem-level comparison."
+      },
+      {
+        "source": "https://oeis.org/A163823",
+        "scope": "Adams-Watters's planar threshold is credited and checked, not presented as new."
+      }
+    ],
+    "decision": "Continue the original mathematical track. The logarithmic reconstruction hierarchy is proved internally but its novelty and significance are not yet established. Preserve it as a candidate and supporting mechanism; do not declare the goal achieved or begin a contribution manuscript from these checks alone.",
+    "next_actions": [
+      "Compare the complete finite-ordering and coherent Boolean-order arguments at theorem level, including Vasiliev-Pavlov and citation descendants, to decide whether the hierarchy is already stated or directly implied.",
+      "Study the minimum rank at which a comparison involving k coordinates can affect the word. A sharp threshold or substantially tighter dimension bound would strengthen the current logarithmic-order result; test conjectures before broad computation.",
+      "Determine whether the actual occurrence and zero-mask encodings reduce the face-data bill or permit a useful reconstruction/certification algorithm. Charge the number and length of faces, arithmetic precision and any enumeration; uniqueness alone is not an algorithmic advantage.",
+      "Pursue a paper only after a genuine gap and a useful general consequence survive the primary comparison. If this package is a known corollary, credit it and use it to select the next arithmetic or sequence question."
+    ],
+    "verification_complete": true,
+    "privacy_review_complete": true,
+    "certificate_summary": {
+      "exponent_pairs": 91680,
+      "occurrence_entries": 3584,
+      "primitive_wall_boxes": 1470,
+      "wall_box_points": 70808,
+      "known_planar_thresholds": 255,
+      "weight_prefix_cases": 3244,
+      "repeated_face_data_controls": 886,
+      "rational_obstruction_proper_faces": 1354,
+      "rational_obstruction_first_differences": [
+        [
+          2,
+          2
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          6,
+          53
+        ],
+        [
+          8,
+          297
+        ],
+        [
+          10,
+          1737
+        ]
+      ],
+      "prime_obstruction_proper_faces": 14,
+      "prime_obstruction_face_prefix_length": 1000,
+      "prime_obstruction_first_full_difference": 10
+    }
+  },
+  "policies": [
+    "Preserve core kernels, previous manuscripts and research artifacts, including the separately paused ML track.",
+    "Never send emails, author queries, messages to others or journal submissions.",
+    "Publish only an explicit privacy-reviewed research file list on the already authorized main branch.",
+    "Keep exploratory probes, machine-specific metadata and private audit records under ignored results/local or results/private.",
+    "The documented Elizalde-Galvan final-version working assumption remains in force; it supplies no novelty evidence."
+  ]
+}
