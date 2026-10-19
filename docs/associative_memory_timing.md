@@ -1736,3 +1736,239 @@ probes. It neither establishes a new general indexing lower bound nor
 finishes the original impact/publication goal. The decisive next gate is
 still the optimal complete-range/timing comparison, not neural training
 or a manuscript claiming a result beyond the evidence.
+
+## Complete-range baseline in an arithmetic model
+
+The previous iteration was **progress**: the compact timing obstruction,
+including its fresh-query/cache-resistant extension, was proved and checked.
+It compares specified permanent readers. This iteration addresses the
+stronger complete-range comparator instead of extending that restricted
+lower bound. The argument below is a derived baseline consequence of
+published methods and elementary accounting, not a new contribution claim.
+
+### Statement and model boundary
+
+Fix c>1, binary raw keys in dimension d=log^(O(1)) n, and integer radius
+1<=r<=d. Define k_out(q)=#{i:dist(x_i,q)<=c*r} and s(q) as the number of
+inner neighbors. For fixed nonnegative rho_q,rho_u satisfying
+
+```text
+c*sqrt(rho_q)+(c-1)*sqrt(rho_u) >= sqrt(2*c-1),
+```
+
+the published Las Vegas filtering/recursion methods yield a **static-key,
+pointwise expected arithmetic-model baseline** for the same complete exact
+weighted operator. Its geometric preprocessing and space are
+n^(1+rho_u+o(1)); its query work is
+
+```text
+n^(rho_q+o(1)) + k_out(q)*n^(rho_u+o(1)) + O(s(q)*v).
+```
+
+Polylogarithmic factors, original-distance checks and projection work are
+absorbed in n^o(1). Raw keys and values are stored once in addition to the
+geometric index: O(n*ceil(d/w)+n*v) finite words. Payloads may change at
+cost O(v), without rebuilding any geometric index. Keys are fixed in this
+statement. No two-coordinate query representation or supplied target ID
+is assumed. Every inner neighbor is retained, original Hamming distances
+are checked, and the numerator/denominator of the specified weighted mean
+are accumulated exactly. A word width covering the S-bit payloads and
+log(n*(r+1)) guard bits suffices for this aggregation.
+
+**Geometry here uses the exact-real arithmetic model of the underlying
+construction**, including rotations, square roots and filter comparisons.
+Geometric cells are not asserted to fit finite words. Finite payload bits
+are counted separately. This is not a finite-word implementation theorem,
+an adaptive-key theorem or a new fastest-index claim. In particular, it
+cannot be compared literally with our finite-word storage bound without
+compiling that geometric representation. It does remove the complete-output
+objection to this strong baseline in its native cost model.
+
+### Published components used, with their roles kept separate
+
+The [ALRW full version](https://www.mit.edu/~andoni/papers/tradeoffs-full.pdf),
+Figure 5 and Section 4.2, supplies the radial recursion and its thresholds;
+Claim 4.12 bounds per-point leaf replication; Lemma 4.13 separately bounds
+navigation and point occurrences. Figure 5 (PDF page 29) was visually
+checked. These are the components used below, rather than a black-box
+assumption that first-answer time also bounds enumeration.
+
+[Wei v1](https://arxiv.org/abs/1807.07527v1), Lemma 18, Section 6.2.1 and
+Appendix A, supplies one-sided orthogonal reductions, Las Vegas spherical
+filters and the complete-list modification at representative leaves.
+Section A.3 calibrates the far-filter ratio with rho_q, while the final
+right-hand side in Proposition 25 prints rho_u. Our asymmetric calculation
+uses the displayed ratio G(cr)/G(r) and its proof, not that inconsistent
+right-hand side. The balanced comparison below has rho_q=rho_u and does
+not depend on this notational discrepancy. The previously audited
+range-reporting Appendix G is a closely related enumeration precedent.
+
+### Full traversal before dimension reduction
+
+Replace every representative terminal node by its full point list, and
+traverse every selected branch rather than stop after the first acceptable
+point. This retains all inner pairs because the Las Vegas filters cover
+every such pair. Keep raw slot IDs, mark and later clear reported IDs to
+deduplicate, verify the original distance and then fetch the current
+payload. Scratch cleanup is linear in touched IDs; no unbounded timestamp
+counter is needed. A failed radius test never suppresses another point.
+
+For a fixed root query classify a point as outer if its root distance is
+at most r_2, and far otherwise. Each outer point is scanned at most as
+often as it is stored. The per-point replication induction still bounds
+its expected full-list occurrences by n^(rho_u+o(1)): at an early terminal
+node a processed point now contributes one copy, just as at a level-K
+terminal; cluster duplication and filtering steps are unchanged. Summing
+over the outer points gives k_out*n^(rho_u+o(1)).
+
+For the other points, the radial map has an important **outer pullback**
+property. If rounded radii are R_1,R_2>0 and their rounding displacement is
+at most h=delta*r_1 per point, radial projection gives
+
+```text
+projected_distance^2
+  = (R_1/R_2)*(rounded_distance^2-(R_1-R_2)^2).
+```
+
+The constructor uses this formula with outer threshold r_2-2h and inner
+threshold r_1+2h. Thus projected distance at most the projected outer
+threshold implies rounded distance at most r_2-2h, and original distance
+at most r_2 by the triangle inequality. Original inner distance at most
+r_1 implies projected distance at most the projected inner threshold.
+In eligible annuli |R_1-R_2|<=r_1+2h; the parameter separation r_2>r_1+4h
+keeps the outer radicand positive. The published fixed-c, small-delta
+regime meets this condition.
+
+Consequently a root-far point stays outside the local outer threshold
+along every query path that also contains that point. At a coarse
+spherical leaf, r_2>=2R certifies every point in that leaf as local outer.
+At a coarse ball leaf require the safe query test ||q-o||<=R+r_1 before
+scanning; r_1+2R<=r_2 then gives the same certificate. Root-far points
+cannot contribute at these leaves. This explicit ball test may prune
+extra work and preserves all inner pairs. A zero-radius data child is a
+single geometric location; test that location directly. A query at the
+ball center has known distance to each annulus, so retain only annuli
+whose distance interval can meet the inner radius. In these degenerate
+cases, any scanned points satisfy the same local outer certificate; a
+singular radial division is unnecessary.
+
+The navigation recurrence A in Lemma 4.13 already counts all selected
+branches. Its far-point recurrence B can likewise count only root-far
+occurrences, normalized by the total node population. When r_star=r_2,
+these points are local far by the pullback just proved, so the calibrated
+G(r_2)/G(r_1) bound applies. For a pseudorandom remainder, the small-cap
+density bound controls all points, hence also this subset. The cluster
+term and the terminal bound B(u,K)<=1 remain upper bounds. No early
+return is used in these recurrences. They give expected navigation and
+root-far occurrences n^(rho_q+o(1)). This proves the displayed
+full-traversal accounting on the preprocessed low-dimensional sphere.
+
+### One-sided projections without an unjustified independence step
+
+For completeness, the following construction handles our polylogarithmic
+binary dimension with one orthogonal reduction, rather than copying a
+first-hit false-positive bound. Choose e=(log log n)^(-1/2), a constant
+integer J>rho_u+6, delta_proj=n^(-J), and block dimension
+B=Theta(e^(-2)*log(1/delta_proj))=Theta(log n*log log n). Pad the dimension
+to a multiple of B and split a random rotation into a blocks P_i. Apply
+g_i=sqrt(a)*P_i. If the original dimension is below B, pad to B and use
+the single identity block instead.
+
+For every vector z, (1/a)*sum_i ||g_i z||^2=||z||^2, so each inner pair
+has a projected inner pair in at least one block for every rotation.
+For each fixed nonzero z and block, Lemma 18 bounds distortion exceeding
+e by delta_proj. A root-far original pair has squared distance greater
+than c*r. Its projected distance exceeds (1-e)*sqrt(c*r) unless that
+block underestimates the pair. Union over n points and a blocks bounds
+the probability of **any** such underestimation for a fixed query by
+n*a*delta_proj. The bad event is allowed to correlate with the entire
+subsequent index.
+
+Each scaled projected point or query has norm at most U=sqrt(a*d), where
+d now includes zero padding. Lift a point z to
+(z,sqrt(R^2-||z||^2)) with R^2=U^2*(1+1/e). This map is noncontracting,
+and for z,z' in that ball its squared distance expands by at most 1+e.
+Indeed the added coordinate difference is
+(||z||^2-||z'||^2)/(sqrt(R^2-||z||^2)+sqrt(R^2-||z'||^2)); Cauchy--Schwarz
+bounds its square by e*||z-z'||^2. Its radius normalized by sqrt(r) is
+polylogarithmic. The low-dimensional spherical construction therefore
+applies with inner radius sqrt((1+e)*r), outer radius (1-e)*sqrt(c*r),
+and squared ratio c*(1-e)^2/(1+e)=c-o(1). This changes the desired
+exponents only by o(1). Lifting cannot introduce additional contractions
+of far projected pairs. The dimension and normalized radius remain in
+the required regime: replacing the original fixed polylogarithmic starting
+radius by another fixed power of log n changes only the constant in the
+O(log log n) radius-depth calculation. If a=1 was the identity block, there is no projection
+underestimation event at all.
+
+Build all block indexes in an attempt. Impose construction-peak geometric
+space cap M equal to a constant multiple of a uniform expected peak bound.
+Such a bound has the same exponent: allocated cells are charged to
+construction work, whose expected exponent matches index space. Raw input
+and values are retained separately. Also cap total work at a constant
+multiple of the uniform expected preprocessing bound.
+Abort and independently retry the entire attempt on overflow. Markov
+and a union bound give acceptance probability alpha>=1/2. All completed
+attempts still cover every inner pair; a space/time cap never certifies
+an incomplete index. Attempts may be padded to fixed slots as in the
+earlier safe-build lemma, so the retry count does not expose the accepted
+seed. Expected construction work changes by only a constant factor.
+
+On an accepted attempt, all false-point occurrences together are bounded
+by M. Therefore their expected contribution under the accepted law is at
+most
+
+```text
+M*Pr(any projected underestimation)/alpha
+  <= M*n*a*delta_proj/alpha.
+```
+
+This is valid even with arbitrarily correlated projection error and
+replication. For sufficiently large n, M<=n^(rho_u+2) and a<=n, so the
+chosen J makes it negligible. The extra logarithm in 1/delta_proj changes
+B only by a constant factor. The choice of J precedes the random attempt;
+there is no circular selection based on its realized space.
+
+For good original-far pairs use the spherical far-occurrence bound,
+conditional on the rotation. For original outer points use the uniform
+per-point storage bound, also conditional on the rotation. Restricting
+these nonnegative quantities to accepted attempts and dividing by alpha
+costs at most a constant. Projection work and the a block indexes cost
+polylogarithmic factors. This proves the stated complete-query baseline
+without multiplying two dependent expectations.
+
+### Timing protection, changing values, and the resulting decision
+
+Suppose k_out(q)<=K for every allowed raw query, for a supplied bound K.
+The earlier generic static timing conversion applies in the same arithmetic
+model, with full-data fallback and fixed query budget based on
+T=n^(rho_q+o(1))+K*n^(rho_u+o(1)). Construction plus fallback is polynomial
+in n, so O(log n) independent copies suffice. It gives horizon-independent
+storage and expected amortized geometry work O(T*log n); the already
+proved all-prefix confidence bound applies as well. Initialization includes
+all copies and raw input loading. This application has no new conversion
+lemma. Geometry and unfinished-query cleanup are padded; exact payload
+aggregation after the geometric result is complete costs O(s(q)*v).
+Only its true canonical neighbor set determines that operation count.
+Pure payload writes cost O(v) and do not alter any filter, so they preserve
+this static-key statement with one shared current payload array.
+
+In particular for K=O(1), the balanced choice rho_q=rho_u=1/(2c-1) gives
+smaller read and geometric-space exponents than 1/c, even after the
+logarithmic timing-conversion overhead. **In this arithmetic model the
+bounded-outer-density/static-key case is not an advantage for our current
+construction.** Exact full outputs and the ability to change values do
+not rescue that claim. The finite-word implementation still needs a
+separate bit-cost proof; that remaining accounting issue alone is not a
+reason to claim a new mathematical frontier.
+
+Key deletion can physically unlink full-list memberships using stored
+handles, at expected n^(rho_u+o(1)) cost for a fixed externally specified
+history. The published dynamization is also relevant to insertions, but
+this static proof is not a burst-cost/deamortization or adaptive-key
+theorem. A complete dynamic comparison must include rebuilding slots,
+phase-max space and the observation of every key-edit time. Likewise the
+spectral promise alone permits unbounded outer density; this baseline's
+k_out term has not been eliminated under that promise. Those are the
+remaining precise research questions. No learned experiment or new paper
+claim is justified by the baseline consequence proved here.

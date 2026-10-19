@@ -18,7 +18,7 @@
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "compact_constant_kernel_timing_attack_with_fresh_queries_proved_for_fixed_permanent_covering_bank; published_range_reduction_and_runtime_attack_boundary_audited; strongest_complete_range_precision_timing_priority_gate_open"
+      "status": "complete_exact_range_baseline_derived_from_optimal_Las_Vegas_filtering_in_its_arithmetic_model; bounded_outer_density_static_key_advantage_ruled_out_in_that_model; spectral_only_and_fully_dynamic_finite_word_frontiers_open"
     },
     {
       "stage": 4,
@@ -1527,5 +1527,71 @@
     },
     "old_functions_and_certificate_blocks_preserved": true,
     "verification_scope": "Extended exact checker, build and smoke tests passed. All 234 protected files, seventeen prior non-main function ASTs, eighteen prior goal iterations and historical certificate blocks are preserved. Source hashes match the final note/checker. Other proof checkers were not rerun because their sources/artifacts are unchanged. No production timing experiment, neural training or novelty claim."
+  },
+  "twentieth_iteration": {
+    "previous_turn_classification": "progress: compact constant-kernel timing obstruction and fresh-query/cache-resistant extension proved, independently checked, privacy-reviewed and published; original strongest-baseline publication objective unachieved",
+    "record": "docs/associative_memory_timing.md, Complete-range baseline in an arithmetic model",
+    "certificate_script": "scripts/run_timing_restart_checks.py",
+    "certificate_report": "results/research/timing_restart_checks.json",
+    "primary_source_evidence": [
+      {
+        "url": "https://www.mit.edu/~andoni/papers/tradeoffs-full.pdf",
+        "scope": "Figure 5, Section 4.2, Claim 4.12 and Lemma 4.13 rechecked against complete traversal. PDF page 29 visually checked. Coarse representative leaves have outer-distance certificates after a safe ball-query prune. The radial map uses inner r1+2h and outer r2-2h; the latter gives deterministic outer pullback. Navigation and far-point recurrences do not require early return once far/outer occurrences are separated."
+      },
+      {
+        "url": "https://arxiv.org/abs/1807.07527v1",
+        "scope": "Lemma 18, Section 6.2.1 and Appendix A rechecked. Orthogonal block reductions preserve every inner pair in at least one block. Appendix A already supplies Las Vegas covering filters and full lists at representative leaves. Section A.3 calibrates the far G(cr)/G(r) ratio using rho_q, whereas the final RHS in Proposition 25 prints rho_u. Our asymmetric derivation uses the ratio and proof; the balanced comparison does not depend on this notational discrepancy."
+      }
+    ],
+    "derived_stronger_baseline": {
+      "status": "derived baseline consequence of published constructions and elementary accounting, not a new contribution claim",
+      "model": "Static binary raw keys in dimension d=log^(O(1)) n, integer 1<=r<=d and fixed c>1. Geometric preprocessing/filter comparisons use exact-real arithmetic cells as in the underlying construction. Raw keys and independent finite-grid payloads are counted separately in finite words; payloads may change without geometric rebuilding.",
+      "tradeoff": "For fixed nonnegative rho_q,rho_u with c*sqrt(rho_q)+(c-1)*sqrt(rho_u)>=sqrt(2c-1), geometric space/preprocessing n^(1+rho_u+o(1)), full read n^(rho_q+o(1))+k_out(q)*n^(rho_u+o(1))+O(s(q)*v). Polylogarithmic projection and original-distance verification costs are absorbed in n^o(1). Additional raw storage O(n*ceil(d/w)+n*v); payload writes O(v).",
+      "complete_semantics": "Traverse all selected branches, keep full lists, deduplicate raw IDs with cleared scratch, verify every reported original Hamming distance and form the same exact weighted numerator/denominator. All inner pairs are covered for every accepted seed; a first valid outer neighbor does not terminate the range read.",
+      "coarse_and_radial_proof": "Inner threshold r1+2h and outer threshold r2-2h in Project give inner preservation and outer pullback by the exact squared radial identity and two rounding displacements. Coarse sphere leaves r2>=2R and ball leaves r1+2R<=r2 with the safe query prune certify all scanned points as local outer. Center/zero-radius cases use direct distance tests, avoiding singular projection. Thus root-far points stay local far and cannot contribute at coarse leaves.",
+      "full_list_accounting": "The per-point membership induction remains n^(rho_u+o(1)) when early terminals store full lists. All original outer points are charged to those memberships. The existing all-branch navigation recurrence and far-occurrence recurrence give n^(rho_q+o(1)); the pseudorandom remainder bound applies to any far subset.",
+      "dependent_projection_errors": "Use one orthogonal block reduction with e=(log log n)^(-1/2), constant J>rho_u+6, delta=n^(-J), B=Theta(log n*log log n), then a noncontracting spherical lift with squared inner expansion <=1+e. Root-far underestimation probability for a fixed query is <=n*a*delta. Cap construction-peak geometric space at M=O(uniform expected peak), using the matching preprocessing exponent to bound charged allocations; retain raw inputs/values separately, cap construction work and retry whole attempts with acceptance alpha>=1/2. Bad occurrences are <=M, hence expected bad occurrences under the accepted law <=M*n*a*delta/alpha, regardless of dependence between distortion and replication. With M<=n^(rho_u+2), a<=n this is negligible. Delta is chosen before the realized index, avoiding circularity.",
+      "static_timing_and_values": "For a supplied uniform outer-density bound K on allowed raw queries, apply the existing generic static timing conversion in the same arithmetic model with O(log n) copies and full-data fallback. Geometry read work is O(log n) times n^(rho_q+o(1))+K*n^(rho_u+o(1)); storage has no horizon dependence and the earlier all-prefix confidence bound applies. One current payload array supports independent O(v) writes; canonical exact aggregation after geometry resolution costs O(s(q)*v). Initialization includes all copies and input loading.",
+      "consequence": "For K=O(1), balanced rho=1/(2c-1) improves on our 1/c read and geometric-space exponents even after timing-conversion logarithms. Complete weighted outputs and changing values do not supply a new advantage in this arithmetic-model/static-key regime.",
+      "limits": "This does not compile geometric cells into finite words, measure an optimal LSF implementation or prove adaptive key-update/deamortized costs. The spectral promise alone permits unbounded outer density; eliminating the k_out term under that promise remains unresolved. Remaining precision bookkeeping alone is not evidence of a new mathematical frontier."
+    },
+    "decision": "Remove the first-answer-versus-complete-output shortcut from the novelty case. The bounded-outer-density/static-key arithmetic-model route is already dominated by a derived stronger baseline. Keep the full original goal active and focus only on a substantive spectral-only or fully dynamic access/storage frontier after all costs and priority are matched.",
+    "next_actions": [
+      "Determine whether optimal filtering/range-reporting analysis already implies a comparable or stronger all-query bound under the spectral kernel promise without a bounded outer-density assumption. Use full distance-dependent collision profiles rather than only a coarse k_out upper bound.",
+      "Complete the dynamic-key comparison, including physical full-list deletion handles, rebuilding bursts, insertions, phase-max space, accepted seed laws and every observed update time. Do not infer an adaptive theorem from nominal published dynamization.",
+      "Compile relevant geometric guarantees to finite precision or identify an explicit algebraic model in which the claimed substantive tradeoff survives. Treat missing bit accounting as an open proof task, not an automatic advantage.",
+      "Retain the original impact and publication bar. No neural training, outreach, submissions or manuscript claiming novelty until a real strongest-baseline separation and priority boundary survive."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "verification_commands": [
+      "python3 -B scripts/run_timing_restart_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py"
+    ],
+    "preservation": "All nineteen prior goal iterations, eighteen previous non-main checker functions, historical certificate blocks, other proof scripts/reports, core kernels, manuscripts and learned-recall artifacts are preserved. Only the existing timing note/checker/report and research manifest change.",
+    "certificate_summary": {
+      "correlated_bad_replication_counterexamples": 31,
+      "accepted_seed_conditioning_controls": 501,
+      "exact_radial_projection_identities": 43200,
+      "eligible_radial_annulus_controls": 36400,
+      "radial_inner_preservation_controls": 15684,
+      "radial_outer_pullback_controls": 31198,
+      "coarse_ball_outer_certificates": 110,
+      "coarse_sphere_outer_certificates": 300,
+      "degenerate_center_controls": 357,
+      "one_sided_orthogonal_block_controls": 324,
+      "strict_contraction_witnesses": 192,
+      "lifting_squared_distance_bound_controls": 22140,
+      "complete_exact_weighted_list_reads": 4672,
+      "verified_far_point_occurrences": 7104,
+      "multiple_neighbor_mixtures": 4672
+    },
+    "old_functions_and_certificate_blocks_preserved": true,
+    "verification_scope": "Extended exact checker, build and smoke tests passed. All 234 protected files, eighteen prior non-main function ASTs, nineteen prior goal iterations and historical certificate blocks are preserved. Source hashes match the final note/checker. Other proof checkers were not rerun because their sources/artifacts are unchanged. The controls are exact finite algebra/boundary checks, not an optimal LSF implementation, finite-word compilation, adaptive-key theorem, performance experiment or novelty determination."
   }
 }

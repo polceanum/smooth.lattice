@@ -1249,6 +1249,174 @@ def compact_timing_attack_controls():
             "scope": "Exact rational packing/moment controls, exhaustive finite averaging games, a constant-weight geometry, conditional seed distributions and fresh-query cube algebra support the written proofs. Whole-RAM-time classification follows from the written expectation/Markov argument, not an empirical timing experiment. No full-index lower bound, neural model or novelty determination."}
 
 
+def full_range_baseline_controls():
+    # Correlation defeats multiplying a false-projection probability by an
+    # unconditional expected replication count. A deterministic cap works.
+    correlated_controls = acceptance_controls = 0
+    correlation_witnesses = []
+    for seeds in range(2, 33):
+        delta = F(1, seeds)
+        replication = [seeds * seeds] + [0] * (seeds - 1)
+        bad = [True] + [False] * (seeds - 1)
+        actual = sum(F(r, seeds) for r, event in zip(replication, bad) if event)
+        product_of_means = delta * F(sum(replication), seeds)
+        cap_bound = delta * max(replication)
+        assert actual == seeds and product_of_means == 1
+        assert actual == cap_bound and actual > product_of_means
+        correlation_witnesses.append({"equally_likely_seeds": seeds,
+                                      "bad_event_probability": str(delta),
+                                      "actual_bad_replication_mean": str(actual),
+                                      "incorrect_product_of_means": str(product_of_means),
+                                      "valid_cap_bound": str(cap_bound)})
+        correlated_controls += 1
+        # Every accepted subset of this finite seed space, including sets
+        # correlated with the bad event, obeys the conditioning bound.
+        if seeds <= 8:
+            for accepted in range(1, 1 << seeds):
+                count = accepted.bit_count()
+                alpha = F(count, seeds)
+                conditional_bad_work = sum(F(replication[i], count) for i in range(seeds)
+                                           if accepted & (1 << i) and bad[i])
+                assert conditional_bad_work <= cap_bound / alpha
+                acceptance_controls += 1
+
+    # All identities/comparisons use squared rational distances. No floating
+    # eigenvalues, Gaussian sampling or numerical root tests are involved.
+    directions = ((F(1), F(0)), (F(3, 5), F(4, 5)),
+                  (F(0), F(1)), (F(-3, 5), F(4, 5)), (F(-1), F(0)))
+    radial_identities = inner_controls = outer_controls = eligible = 0
+    for r1 in (F(1), F(2)):
+        for delta in (F(1, 16), F(1, 8), F(1, 4)):
+            h = delta * r1
+            for r2 in (2 * r1 + 2 * h, 3 * r1):
+                assert r2 > r1 + 4 * h
+                for rp, rq in product((F(j, 4) for j in range(1, 13)), repeat=2):
+                    R1 = h * (-((-rp) // h))
+                    R2 = h * (-((-rq) // h))
+                    assert 0 <= R1 - rp < h and 0 <= R2 - rq < h
+                    for up, uq in product(directions, repeat=2):
+                        original = sum((rp * x - rq * y) ** 2 for x, y in zip(up, uq))
+                        rounded = sum((R1 * x - R2 * y) ** 2 for x, y in zip(up, uq))
+                        projected = sum((R1 * x - R1 * y) ** 2 for x, y in zip(up, uq))
+                        assert projected == R1 / R2 * (rounded - (R1 - R2) ** 2)
+                        radial_identities += 1
+                        if abs(R1 - R2) > r1 + 2 * h:
+                            assert original > r1 * r1
+                            continue
+                        eligible += 1
+                        inner_threshold = R1 / R2 * ((r1 + 2 * h) ** 2 - (R1 - R2) ** 2)
+                        outer_threshold = R1 / R2 * ((r2 - 2 * h) ** 2 - (R1 - R2) ** 2)
+                        assert outer_threshold > 0
+                        if original <= r1 * r1:
+                            assert projected <= inner_threshold
+                            inner_controls += 1
+                        if projected <= outer_threshold:
+                            assert original <= r2 * r2
+                            outer_controls += 1
+
+    coarse_ball_controls = coarse_sphere_controls = center_controls = 0
+    for r1 in (F(1, 2), F(1), F(2)):
+        for R in (F(0), F(1, 2), F(1), F(2)):
+            r2 = r1 + 2 * R
+            for rq in (F(j, 4) for j in range(17)):
+                if rq <= R + r1:
+                    assert rq + R <= r2
+                    coarse_ball_controls += 1
+                for rp in (F(j, 4) for j in range(17)):
+                    # At q=o, only annuli meeting the inner distance interval
+                    # need enumeration. At R=0 the data location is o.
+                    if rq == 0 and rp <= r1:
+                        assert rp <= r2
+                        center_controls += 1
+                    if R == 0 and rq <= r1:
+                        assert rq <= r2
+                        center_controls += 1
+            for up, uq in product(directions, repeat=2):
+                distance = sum((R * x - R * y) ** 2 for x, y in zip(up, uq))
+                assert distance <= (2 * R) ** 2
+                coarse_sphere_controls += 1
+
+    # Rational rotations followed by two orthogonal blocks: test all raw
+    # differences of binary vectors in four dimensions, including zero.
+    projection_controls = projection_contractions = lifting_controls = 0
+    rotation_blocks = [((F(1), F(0)), (F(0), F(1))),
+                       ((F(3, 5), F(4, 5)), (F(-4, 5), F(3, 5)))]
+    for block1, block2 in product(rotation_blocks, repeat=2):
+        for z in product((-1, 0, 1), repeat=4):
+            transformed = [sum(row[j] * z[j] for j in range(2)) for row in block1]
+            transformed += [sum(row[j] * z[2 + j] for j in range(2)) for row in block2]
+            norm = sum(v * v for v in z)
+            scaled_squares = (2 * sum(v * v for v in transformed[:2]),
+                              2 * sum(v * v for v in transformed[2:]))
+            assert sum(scaled_squares) == 2 * norm
+            assert min(scaled_squares) <= norm
+            projection_contractions += min(scaled_squares) < norm
+            projection_controls += 1
+    for dimension in range(1, 5):
+        points = list(product((-1, 0, 1), repeat=dimension))
+        U2 = F(dimension)
+        for x, y in product(points, repeat=2):
+            dx = sum(F(a - b) ** 2 for a, b in zip(x, y))
+            norm_difference = sum(a * a - b * b for a, b in zip(x, y))
+            assert norm_difference ** 2 <= 4 * U2 * dx
+            for e in (F(1, 2), F(1, 4), F(1, 8)):
+                R2 = U2 * (1 + 1 / e)
+                # The denominator of the squared added-coordinate difference
+                # is at least 4*(R^2-U^2); this is its rational upper bound.
+                added_coordinate_bound = F(norm_difference ** 2, 4 * (R2 - U2))
+                assert added_coordinate_bound <= e * dx
+                lifting_controls += 1
+
+    # An abstract complete-list accounting check with covering projections.
+    # It retains all returned occurrences before deduplication; a first-hit
+    # count is intentionally not substituted for an enumeration count.
+    complete_reads = far_occurrence_controls = nontrivial_mixtures = 0
+    for dimension in range(2, 5):
+        keys = tuple(range(1 << dimension))
+        payloads = [(3 * i - 7, 11 - 2 * i) for i in keys]
+        radius, outer_radius = 1, 2
+        for labels in product(range(4), repeat=dimension):
+            projections = covering_masks(labels, radius)
+            for q in range(1 << dimension):
+                occurrences = [i for projection in projections for i in keys
+                               if (i ^ q) & projection == 0]
+                near = [i for i in occurrences if (i ^ q).bit_count() <= outer_radius]
+                far = [i for i in occurrences if (i ^ q).bit_count() > outer_radius]
+                assert len(occurrences) == len(near) + len(far)
+                outer = [i for i in keys if (i ^ q).bit_count() <= outer_radius]
+                assert len(near) <= len(projections) * len(outer)
+                inner = sorted({i for i in occurrences if (i ^ q).bit_count() <= radius})
+                oracle = [i for i in keys if (i ^ q).bit_count() <= radius]
+                assert inner == oracle
+                denominator = sum(radius + 1 - (i ^ q).bit_count() for i in inner)
+                numerator = tuple(sum((radius + 1 - (i ^ q).bit_count()) * payloads[i][j]
+                                      for i in inner) for j in range(2))
+                assert denominator == dimension + 2
+                assert numerator == tuple(2 * payloads[q][j] +
+                                          sum(payloads[q ^ (1 << k)][j] for k in range(dimension))
+                                          for j in range(2))
+                nontrivial_mixtures += len(inner) > 1
+                complete_reads += 1
+                far_occurrence_controls += len(far)
+    return {"correlated_bad_replication_counterexamples": correlated_controls,
+            "correlation_witnesses": correlation_witnesses[:4],
+            "accepted_seed_conditioning_controls": acceptance_controls,
+            "exact_radial_projection_identities": radial_identities,
+            "eligible_radial_annulus_controls": eligible,
+            "radial_inner_preservation_controls": inner_controls,
+            "radial_outer_pullback_controls": outer_controls,
+            "coarse_ball_outer_certificates": coarse_ball_controls,
+            "coarse_sphere_outer_certificates": coarse_sphere_controls,
+            "degenerate_center_controls": center_controls,
+            "one_sided_orthogonal_block_controls": projection_controls,
+            "strict_contraction_witnesses": projection_contractions,
+            "lifting_squared_distance_bound_controls": lifting_controls,
+            "complete_exact_weighted_list_reads": complete_reads,
+            "verified_far_point_occurrences": far_occurrence_controls,
+            "multiple_neighbor_mixtures": nontrivial_mixtures,
+            "scope": "Exact algebraic boundary checks support the written full-range arithmetic-model baseline derivation. No optimal LSF implementation, Gaussian experiment, finite-word compilation, adaptive-key theorem, measured performance or novelty claim."}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -1268,6 +1436,7 @@ def main():
               "direct_buckets": direct_bucket_memory_controls(),
               "sparse_shell": sparse_shell_controls(),
               "compact_timing_attack": compact_timing_attack_controls(),
+              "full_range_baseline": full_range_baseline_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,
