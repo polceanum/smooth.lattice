@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "title": "Interaction support manuscript: proof, primary comparison and publication assessment",
-  "status": "anonymous_review_draft",
+  "status": "internally_checked_review_manuscript",
   "manuscript": "paper/interleaving_support/main.tex",
   "pdf": "output/pdf/interleaving_support.pdf",
   "research_note": "docs/occurrence_reconstruction.md",
   "checker": "scripts/run_face_reconstruction_checks.py",
   "report": "results/research/face_reconstruction_checks.json",
-  "goal_complete": false,
+  "goal_complete": true,
   "novelty_established": false,
   "publication_ready": false,
   "main_candidate_contribution": "The sharp generic comparison interaction rank J(s)=Theta((3*sqrt(3)/2)^s/sqrt(s)), the resulting bounded-error face-dimension law, and their exact sparse-certificate/generic-state-fan interpretation.",
@@ -111,12 +111,34 @@
       "source": "https://arxiv.org/pdf/1406.6508",
       "inspected": "Section 4.2 equation (3), Appendix A and historical attribution.",
       "classification": "One row with alpha_i=1 is exactly the auxiliary uniform-composition distribution and moment identity. These are not new claims; the 1962 original is not represented as directly read."
+    },
+    {
+      "source": "https://doi.org/10.1023/A:1021236722756",
+      "inspected": "Vietri (2002), Proposition 6.2 and its proof, Corollary 6.3; prior fixed-degree scope preserved in the older note.",
+      "classification": "Finite strict product comparisons can be realized with primes using Bertrand and scaling. Explicitly credited in Lemma 6; no novelty claim for this bridge."
+    },
+    {
+      "source": "https://ftp.gwdg.de/pub/misc/EMIS/journals/BAG/vol.44/no.2/3.html",
+      "inspected": "Muller (2003), Section 5; Theorems 5.2 and 5.6 and their edge-geometry argument, including rendered pages 332-333.",
+      "classification": "Known affine-span conditions for exchanged points. Two generic exchange points satisfy the condition independently of their difference support; it does not itself supply the sharp rank count."
+    },
+    {
+      "source": "https://arxiv.org/pdf/0808.3055v1",
+      "inspected": "Definitions 1 and 5-7; Theorems 2-7 statements; Section 3.1 greedy construction; Section 3.3 volume/mean argument, equations 2-4 and following asymptotic paragraph.",
+      "classification": "Established weighted-average degree selection and bounds depending on geometric mean. The inspected objective and approximation are distinct from the first full-support comparison rank; no statistical efficiency advantage is inferred."
+    },
+    {
+      "source": "https://arxiv.org/pdf/1812.09527v3",
+      "inspected": "Theorem 4 and Corollary 5; Sections 3-4 and the explicit three-dimensional counterexample.",
+      "classification": "Distinct-sum lattice saturation, rather than the support of generic facet normals. Shared corner-cut geometry is credited; no exhaustive implication claim."
     }
   ],
   "priority_assessment": {
     "bounded_named_statement_comparison_complete": true,
     "candidate_gap": "The inspected generic-state framework supplies a general support baseline, but no inspected statement gives the sharp free-lattice interaction scale or its exact face/facet parameter. The uniform composition count and balanced-wall argument supply the quantitative step.",
-    "limitations": "This is a scoped research assessment, not proof that no prior derivation exists. Empty keyword results and citation counts are not used as novelty evidence. Final internal proof-to-claim and priority judgment remains pending."
+    "limitations": "This is a completed bounded primary-source assessment. Global priority is not independently established; an uninspected derivation could change the assessment. Empty searches, citation counts and finite tests are not novelty evidence.",
+    "concrete_source_leads_resolved": true,
+    "internal_originality_decision": "Retain the sharp support/rank law and its exact face/certificate/generic-state interpretation as the proposed contribution. No inspected named theorem supplies that law; the added quantitative count and matching obstruction are explicit."
   },
   "verification": {
     "research_replay": "passed",
@@ -138,10 +160,12 @@
     "new_uniform_probability_controls": 276,
     "new_mixed_factorial_controls": 912,
     "new_borel_transfers": 26,
-    "scope": "Compilation and finite checks support presentation and delicate finite steps. Uniform theorems rest on the written proof; tests do not establish novelty, external correctness review or a speedup."
+    "scope": "Exact replay, build, smoke, compilation and final visual inspection passed. The uniform proof was separately checked in the note; computation does not prove global novelty or external referee validation.",
+    "singleton_prefix_controls": 6,
+    "one_coordinate_prefix_controls": 15
   },
   "publication_assessment": {
-    "current_decision": "Plausible focused specialist paper for mathematical review; final internal readiness assessment pending.",
+    "current_decision": "Retain as a focused specialist-paper result; the complete anonymous manuscript is internally ready for independent mathematical review.",
     "mathematical_use": "A sharp growing-dimension structural law, sparse validity certificates and an optimal generic-state-fan interpretation connected to the original exponent observations.",
     "limits": [
       "No demonstrated practical random-access improvement.",
@@ -151,18 +175,90 @@
     ],
     "assistance_disclosed": true,
     "authorship_settled": false,
-    "contact_or_submission_authorized": false
+    "contact_or_submission_authorized": false,
+    "internal_assessment_complete": true,
+    "ready_for_independent_review": true,
+    "originality_case": "Defensible within the documented primary corpus; globally unconfirmed.",
+    "significance": "A sharp, uniform growing-dimension interaction law with exact reconstruction and validity-cone consequences. A credible focused contribution in combinatorial geometry/computational algebra, with no demonstrated practical unranking speedup or major prime-theoretic implication."
   },
-  "remaining_internal_work": [
-    "Final consolidated proof-to-claim audit against the original full objective.",
-    "Final bounded priority/publication decision, resolving any concrete new source lead before a completion claim."
-  ],
-  "preservation": "Previous manuscripts, core kernels, rank auditor, earlier research and paused ML track are preserved.",
+  "remaining_internal_work": [],
+  "preservation": "All 235 tracked files outside the selected eight, including core kernels, auditor, older manuscripts and paused ML, are byte-preserved. All 25 previous non-main checker functions and historical research blocks are preserved.",
   "artifact_sha256": {
-    "paper/interleaving_support/main.tex": "f1b252fb408d11b710d7cd0c83c5d492d23afa959ebddd18e0c38bf694eff303",
-    "output/pdf/interleaving_support.pdf": "83f7351bc48d9b738d1222e4b1385cada0d659fbdbe7b582587c675b1605029a",
-    "scripts/run_face_reconstruction_checks.py": "a72b06c73dfee01cf3a8c27733acc743b0077cc9b0b85309509fb9d0e81668e8",
-    "results/research/face_reconstruction_checks.json": "3b563fd1b71856a46f7187563e9c252eb24a3d5db49bdf8b81ec609aa0896822",
-    "docs/occurrence_reconstruction.md": "21558abd9b97f75efabf42bc86739d9f213abe97077888e975a197466d68333b"
-  }
+    "paper/interleaving_support/main.tex": "ddaaef78def09f0494d1303b0e2a17917965c4231b55fcd33cf6d60a1c0c1ce4",
+    "output/pdf/interleaving_support.pdf": "381109fe767fbb26735a4a08a04b68928a5dce564d9bf539c897fb08c251f5a1",
+    "scripts/run_face_reconstruction_checks.py": "1be3ce38b53b46be6bccde9ffa4954fbc0e50b018ce2b3cc1733b41acdee08ba",
+    "results/research/face_reconstruction_checks.json": "dd9e3afef12d341c952ecf0a5207d7d853424d6e90523e5cfa1a5ed9af42ec2c",
+    "docs/occurrence_reconstruction.md": "5a6e8a8b8e7355d31adc359a12b869bebbe2e946415b54cb0b7555e37ced0b07"
+  },
+  "ready_for_independent_review": true,
+  "proof_audit": {
+    "complete_uniform_argument_checked_internally": true,
+    "record": "docs/occurrence_reconstruction.md, Consolidated proof audit and publication decision",
+    "clarifications": [
+      "Facet-maximum theorems require n>=2; n=1 has no positive-weight facet.",
+      "Algebraic statements work over C, with minimizing normal cones and explicit codimension-one wall terminology.",
+      "The reconstruction path avoids countably many multiple rational-wall intersections; its prefix-relevant arrangement is finite.",
+      "Vietri Proposition 6.2 is now cited directly for the established prime-realization principle."
+    ],
+    "unresolved_internal_proof_gaps": [],
+    "scope": "Mathematical argument checked internally; no mechanized proof or independent referee confirmation is claimed."
+  },
+  "completion_requirements": [
+    {
+      "requirement": "original_observations",
+      "assessment": "satisfied",
+      "authoritative_evidence": "The manuscript introduction proves the complementary-face rank identity and lattice-translation deletion law, credits known duality, and connects them to the finite face-information problem. Exact occurrence and prime-stream controls are preserved."
+    },
+    {
+      "requirement": "substantive_uniform_result",
+      "assessment": "satisfied",
+      "authoritative_evidence": "Manuscript Lemmas 2-4 and Theorems 5, 7 and 1 give uniform lower and upper bounds, both parities, exact face-parameter equality, finite prime transfer and the second logarithmic term. The complete proofs were checked step by step, including strict and zero-variance cases."
+    },
+    {
+      "requirement": "beyond_previous_manuscripts",
+      "assessment": "satisfied",
+      "authoritative_evidence": "The older corner-cut manuscript counts prefixes and cuts for each fixed dimension; the older pyramidal manuscript studies containment/Mobius structure. Both are byte-preserved. The new result optimizes the support/rank relation over growing dimension and has a different quantitative statement and proof."
+    },
+    {
+      "requirement": "useful_fixed_prime_ordering_consequence",
+      "assessment": "satisfied",
+      "authoritative_evidence": "Theorem 8 supplies exact support bounds for a realizable prefix cone and box certificates containing rigorous prime-log intervals. The checker validates 16 prime-prefix certificates against independent exact product and pointer generators. This reads the prefix and border; no speedup is claimed."
+    },
+    {
+      "requirement": "general_mathematical_consequence",
+      "assessment": "satisfied",
+      "authoritative_evidence": "Corollary 9 identifies the same exact parameter for sufficiently generic point-ideal state fans over C. Published identification is credited; padding proves optimality at every prescribed size. Proposition 10 delimits the arbitrary-quotient extension."
+    },
+    {
+      "requirement": "reproducible_verification",
+      "assessment": "satisfied",
+      "authoritative_evidence": "The research replay, core build and smoke passed at the current sources. Previous certificates are preserved; 21 additional boundary cases pass. Terminal and desktop LaTeX compilation succeeded; all eight final PDF pages were rendered and inspected."
+    },
+    {
+      "requirement": "primary_comparison_and_honest_originality",
+      "assessment": "satisfied",
+      "authoritative_evidence": "Thirteen named primary comparisons and exact reading scopes are recorded. Standard tools and direct published corollaries are excluded from the claimed delta. The inspected statements leave a defensible scoped originality case, not an assertion of globally established priority."
+    },
+    {
+      "requirement": "honest_paper_assessment",
+      "assessment": "satisfied",
+      "authoritative_evidence": "The final internal decision is to retain a focused specialist-paper contribution and provide the complete anonymous manuscript for independent review. Significance is structural and quantitative. Authorship, submission, acceptance and independent priority/correctness adjudication are not claimed."
+    },
+    {
+      "requirement": "preservation_privacy_and_no_contact",
+      "assessment": "satisfied",
+      "authoritative_evidence": "All 235 other tracked files, 25 prior checker functions, old report blocks, the entire earlier note prefix and six historical goal iterations are preserved. Only the listed eight research files are selected for publication; private source caches and audit records remain ignored. No messages, outreach or submission were performed."
+    }
+  ],
+  "completion_decision": "The requested research deliverable is achieved: complete general proof, useful ordering consequence, reproducible evidence, preserved work and a completed honest primary/publication assessment. Independent authorship, submission and acceptance decisions are not represented as achieved or authorized.",
+  "public_file_list": [
+    "README.md",
+    "docs/occurrence_reconstruction.md",
+    "paper/interleaving_support/main.tex",
+    "output/pdf/interleaving_support.pdf",
+    "scripts/run_face_reconstruction_checks.py",
+    "results/research/face_reconstruction_checks.json",
+    "results/research/interleaving_support_audit.json",
+    "results/research/occurrence_reconstruction_goal.json"
+  ]
 }

@@ -1361,3 +1361,114 @@ assessment of this consolidated draft. Further unrelated theorem searches
 are not needed for that decision. Preserve the older manuscripts, all
 research branches and the core rank auditor; no contact or submission is
 authorized.
+
+## Consolidated proof audit and publication decision
+
+The preceding goal turn completed remote and preservation verification of
+the eight-page review draft. This was publication-artifact progress, not
+an additional theorem. The present audit checks the complete research
+objective rather than treating a compiled manuscript as sufficient.
+
+### Proof-to-claim review
+
+| Claim in the focused manuscript | Checked mechanism and boundary |
+| --- | --- |
+| Lemma 2: divisor-box rank lower bound | Primitive wall normals have an odd coordinate, so box complementation has no fixed lattice point. Exactly the two coprime endpoints tie at the lowest height. |
+| Lemmas 3--4: a constant fraction of a composition layer is strictly below the threshold | The mixed factorial identities, fourth-moment expansion and polynomial envelope hold uniformly for floor(s/2)/s in [1/3,1/2]. Strict signs are essential; equal weights are handled by the previous degree layer rather than a zero-variance argument. |
+| Theorem 5: J(s)=Theta((3 sqrt(3)/2)^s/sqrt(s)) | The lower count holds for arbitrary coefficient magnitudes. The balanced upper construction covers both parities; eta<1/(s+1) rigorously excludes degree ceil(s/2)+1 and higher. A generic point on the wall has no proper-face rational relation. |
+| Lemma 6: prime realization | A finite strict-inequality pattern survives normalized prime-log error log(2)/L. Distinct target coordinates give disjoint prime intervals; common target coordinates can share their selected primes. This is credited to Vietri's established finite realization principle. |
+| Theorem 7: exact face parameter | Prefix and border inequalities give finite open convex cones. A generic path avoids intersections of the countably many rational hyperplanes; only finitely many vectors with coordinates at most n can affect the requested prefix. Restriction to a wall's support cannot increase its first tied rank. Prime lower obstructions are finite and may depend on n. |
+| Theorem 1: the second logarithmic term | Both rank bounds have the factor 1/sqrt(s). Stirling inversion retains +(1/2) log log n with bounded additive error; using even dimensions in the lower construction loses only O(1). |
+| Theorem 8: sparse validity inequalities | A strict realization gives a full-dimensional cone. Each positive facet has the support cutoff; coordinate facets are retained separately. Every omitted valid normal is a nonzero nonnegative combination of retained facet normals. This does not establish feasibility of arbitrary proposed words. |
+| Corollary 9: optimal generic-state-fan support | Work over C, use the published generic-point identification, and pad a J(s)-wall by isolated new unit vectors. Each added weight is greater than h/2 and h-min(w_i), excluding all mixed sums below h. The first tied rank becomes precisely n. |
+| Proposition 10: arbitrary-quotient boundary | The upper bound is explicitly a Hilbert-zonotope consequence. In the socle-binomial construction the relation removes exactly one quotient dimension; all nontrivial S-pairs reduce into the monomial ideal for either leading choice. The example demonstrates why genericity matters. |
+
+Two presentation defects were corrected. The facet-maximum statements now
+require n>=2: at n=1 the word is zero and there are no positive-weight
+facets. The algebraic section fixes its coefficient field, uses minimizing
+normal cones and defines a state-fan facet as a wall between full-dimensional
+positive-weight regions.
+The path argument now explicitly separates countable generic avoidance
+from the finite arrangement relevant to a fixed prefix. Exact controls
+also cover singleton prefixes in six dimensions and all listed one-variable
+prefixes, whose cones have only coordinate boundaries.
+
+### Closing the named primary comparisons
+
+The existing full-paper comparisons remain in the audit. The focused
+manuscript now also cites [Vietri, Proposition 6.2](https://doi.org/10.1023/A:1021236722756)
+explicitly; the earlier note already credited this result. No novelty
+claim is made for realizing finite strict comparisons with prime bases.
+
+Three concrete citation leads were checked against their relevant primary
+statements:
+
+* [Muller, 2003](https://ftp.gwdg.de/pub/misc/EMIS/journals/BAG/vol.44/no.2/3.html),
+  Section 5, especially Theorems 5.2 and 5.6 and the latter's proof,
+  constrains the affine span of a cut's exchanged points. At our generic
+  wall only two points are exchanged. Their affine span has dimension
+  one regardless of the number of coordinates in their difference.
+  Thus the inspected condition does not itself give the needed
+  support/rank count. The geometry and adjacency viewpoint are credited.
+* [Berstein--Maruri-Aguilar--Onn--Riccomagno--Wynn, arXiv:0808.3055v1](https://arxiv.org/abs/0808.3055),
+  Definitions 1 and 5--7, Theorems 2--7, the greedy algorithm in Section
+  3.1, and the volume/mean argument in Section 3.3 were inspected.
+  This work uses corner-cut/state geometry for weighted-average degree
+  minimization and gives a geometric-mean-dependent bound with additive
+  error one. It is a relevant application of the established framework,
+  with a different objective from a first full-support tie. Neither
+  greedy selection nor that approximation is a contribution of this
+  project. The paper's approximate and rigorous statements are kept
+  distinct.
+* [Lemmens, arXiv:1812.09527v3](https://arxiv.org/abs/1812.09527),
+  Theorem 4, Corollary 5 and Sections 3--4, studies whether lattice
+  points of distinct-sum convex hulls admit distinct-point decompositions.
+  Its two-dimensional result and three-dimensional counterexample concern
+  lattice saturation, not the support of generic comparison normals.
+  The shared corner-cut object is credited; this is not evidence that
+  every possible implication of the paper has been excluded.
+
+This closes the bounded comparison with the named statements and concrete
+leads. It does not prove that no prior derivation exists. The source
+ledger lists exactly what was inspected; failed keyword searches and
+citation counts are not novelty evidence. The standard distribution,
+moment method, cone duality, prime bridge, recognition algorithms and
+state-polyhedron correspondence are all excluded from the claimed delta.
+
+### Assessment against the original objective
+
+There is now a complete uniform quantitative theorem beyond the older
+fixed-dimension manuscripts, with matching growing-dimension bounds and
+the second logarithmic term. Its relation to the original observation is
+explicit: occurrence counting gives a complementary-face rank, deletion
+is a lattice translation, and neither fact fixes how higher-dimensional
+faces interleave. The sharp hierarchy measures exactly how much labeled
+coordinate information can be required. It applies to prime-log orders
+as well as general positive weights.
+
+The useful consequence is a mathematically exact support limit for
+prefix-validity constraints, together with rigorous box certificates and
+the optimal generic-state-fan parameter. This is a structural consequence
+for fixed-prime ordering. It reads a whole prefix and border and does
+not give a faster fixed-prime unranking algorithm. The manuscript supplies
+both sides of the information barrier; isolated computational patterns
+are not the asserted contribution.
+
+The internal decision is **retain as a focused specialist-paper result
+and make the manuscript available for independent mathematical review**.
+The inspected sources leave a defensible, explicitly scoped originality
+case for the sharp interaction law and its consequences. The work does
+not justify a claim of a major breakthrough in prime theory or a practical
+algorithmic advantage. Actual publication, independent confirmation of
+priority and correctness, authorship and submission decisions remain
+unsettled. They are not represented as accomplished by internal tests.
+No contact or submission is authorized or performed.
+
+The [audit](../results/research/interleaving_support_audit.json) records a
+requirement-by-requirement completion review, exact verification results
+and this publication decision. The [goal record](../results/research/occurrence_reconstruction_goal.json)
+retains all six earlier iterations. Core kernels, the independent rank
+auditor, earlier manuscripts, earlier research and the paused ML track
+are preserved. Future research can address exact finite thresholds,
+constructive face recovery or actual unranking applications, but none of
+those unproved extensions is claimed by this result.

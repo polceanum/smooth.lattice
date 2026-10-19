@@ -50,9 +50,10 @@ proves that face prefixes involving O(log n) coordinates determine an n-term
 full prefix, and that logarithmic dimension is necessary in the worst case,
 including for prime bases. Exact checks include two four-prime systems whose
 proper faces agree through 1,000 terms while their full words differ at rank 10.
-Novelty and publication significance of this new study remain unresolved.
-The [goal record](results/research/occurrence_reconstruction_goal.json) states
-the next proof and primary-literature gates. The separate ML track is paused;
+The [manuscript audit](results/research/interleaving_support_audit.json) records
+the proof review, bounded primary-literature comparison and publication assessment.
+The [goal record](results/research/occurrence_reconstruction_goal.json) preserves
+the research milestones. The separate ML track is paused;
 its results are preserved without a claimed ML advantage.
 The [single-stream continuation](docs/occurrence_reconstruction.md#one-exponent-stream-determines-the-normalized-ordering)
 also proves normalized-weight recovery from one infinite exponent stream or
@@ -82,8 +83,10 @@ An anonymous [review manuscript](paper/interleaving_support/main.tex) and
 [PDF](output/pdf/interleaving_support.pdf) now collect the sharp law,
 sparse certificates and generic-state-fan consequence with complete proofs.
 The [audit](results/research/interleaving_support_audit.json) states the
-primary-source boundaries and provisional publication assessment. This is
-a working draft; novelty and submission readiness remain under review.
+primary-source boundaries and final internal publication assessment. The
+sharp interaction law and its consequences support a focused specialist
+paper for independent review. Global priority, acceptance, authorship and
+submission are not settled; no practical unranking speedup is claimed.
 
 The [mathematical research note](docs/interleaving_research.md) targets general
 structure and certification for fixed-prime rank/unrank. It separates known

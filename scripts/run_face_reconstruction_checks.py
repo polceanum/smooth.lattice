@@ -1293,6 +1293,32 @@ def primary_toolkit_comparison_controls():
             "scope": "Positive primary-source identification: the auxiliary distribution and factorial moments are established Dirichlet-multinomial specializations; both differing corner cuts obey the published Borel-fixed condition in the same coordinate order. These tests do not establish novelty of the sharp support law."}
 
 
+def prefix_boundary_convention_controls():
+    """Check the empty positive-facet cases separately from global maxima."""
+    singleton_cases = one_coordinate_cases = 0
+    for d in range(1, 7):
+        word = [(0,) * d]
+        center = tuple(range(2, d + 2))
+        result = prefix_interval_certificate(word, center,
+                                             [(Fraction(1, 100), Fraction(10**6))] * d)
+        positivity = {tuple(int(i == j) for j in range(d)) for i in range(d)}
+        require(result["support_cutoff"] == 0 and result["box_preserves_prefix"] and
+                set(result["all_normals"]) == set(result["retained_normals"]) == positivity,
+                "a singleton prefix has only coordinate boundaries, no positive facet")
+        singleton_cases += 1
+    for n in range(2, 17):
+        word = [(j,) for j in range(n)]
+        result = prefix_interval_certificate(word, (7,), [(Fraction(1, 100), Fraction(10**6))])
+        require(result["box_preserves_prefix"] and result["all_normals"] == [(1,)] and
+                result["retained_normals"] == [(1,)],
+                "one ambient coordinate has no positive facet at any listed prefix length")
+        one_coordinate_cases += 1
+    return {"singleton_prefix_cases": singleton_cases,
+            "one_coordinate_prefix_cases": one_coordinate_cases,
+            "global_facet_maximum_statements_require_n_at_least": 2,
+            "scope": "The n=1 reconstruction parameter is zero, but no positive-weight facet exists. Global facet maxima are stated for n>=2; a one-dimensional ambient cone can still have no positive facet."}
+
+
 def main():
     report = {"schema_version": 1, "status": "passed",
               "command": "python3 -B scripts/run_face_reconstruction_checks.py",
@@ -1313,6 +1339,7 @@ def main():
         report["proper_face_obstructions"]["witnesses"])
     report["sparse_prefix_cones"] = sparse_cone_controls()
     report["primary_toolkit_comparison"] = primary_toolkit_comparison_controls()
+    report["prefix_boundary_conventions"] = prefix_boundary_convention_controls()
     path = ROOT / "results/research/face_reconstruction_checks.json"
     path.write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps({"status": report["status"],

@@ -1,6 +1,7 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,amsthm}
+\usepackage{needspace}
 \usepackage[margin=27mm]{geometry}
 \usepackage[hidelinks]{hyperref}
 \hypersetup{pdftitle={Interaction support in smooth-number orders and corner-cut fans},
@@ -48,7 +49,7 @@ claims.
 \end{abstract}
 
 \section{The question and its relation to exponent streams}
-Let \(w\in\RR_{>0}^d\) have rationally independent coordinates.
+Let \(d,n\geq1\), and let \(w\in\RR_{>0}^d\) have rationally independent coordinates.
 Write \(W_n(w)\) for the first \(n\) vectors of \(\NN^d\), in increasing
 order of \(w\cdot x\), with the zero vector at rank \(1\).
 For distinct primes \(p_1,\ldots,p_d\), taking \(w_i=\log p_i\)
@@ -287,9 +288,10 @@ persist for large \(L\). Choose the target vectors with distinct
 coordinates; their intervals become disjoint, giving distinct
 bases. Shared coordinates use the same intervals and primes.
 \end{proof}
-Finite prime realization is an established principle; the lemma
-records the elementary version used here. It gives no new
-prime-distribution estimate.
+Finite prime realization is established in
+\cite[Proposition 6.2]{V02}; the lemma records the elementary
+version used here, including shared coordinates for the two
+perturbations. It gives no new prime-distribution estimate.
 
 \section{Exact inversion and reconstruction}
 A finite prefix's weight region is an open polyhedral cone.
@@ -314,7 +316,9 @@ face-prefix cones is open and convex. Join the weights by a
 generic path inside it. A finite arrangement suffices: every point
 that can appear or first tie by rank \(n\) has every coordinate
 at most \(n\), since larger values give too many smaller pure powers.
-The path can avoid intersections of distinct comparison walls.
+The path can avoid the countably many intersections of distinct
+rational comparison hyperplanes. The finite relevant arrangement
+then detects every prefix change.
 
 If the full prefix changes, a wall with primitive normal \(z\)
 has its lowest tied rank at most \(n\). Restricting to its support
@@ -350,7 +354,7 @@ for a sufficiently large fixed \(C\) proves the matching lower bound.
 
 \section{Sparse validity cones and interval certificates}
 \begin{theorem}\label{thm:cone}
-Every positive-weight facet of a realizable length-\(n\) prefix
+For \(n\geq2\), every positive-weight facet of a realizable length-\(n\) prefix
 cone has support at most \(\kappa(n)\). Some cone needs this support.
 The same bound is sufficient for a finite linear inequality
 description, retaining coordinate positivity separately.
@@ -405,7 +409,10 @@ the whole prefix and border. It makes no running-time claim
 against the published recognition algorithms.
 
 \section{Generic state fans and the quotient boundary}
-For a length-\(n\) ideal, the state polyhedron and its normal fan
+Work over \(\mathbb C\) in the algebraic statements; normal cones
+use minimization. A state-fan
+facet means a codimension-one wall between full-dimensional
+positive-weight regions. For a length-\(n\) ideal, the state polyhedron and its normal fan
 encode its initial ideals. The published framework
 \cite{OS99,BOT03} identifies the state polyhedron of a sufficiently
 generic \(n\)-point configuration with the corner-cut polyhedron
@@ -419,7 +426,7 @@ A precise sufficient genericity condition is that every
 This identification is prior art.
 
 \begin{corollary}\label{cor:generic}
-The maximum support of a state-fan facet meeting the positive
+For \(n\geq2\), the maximum support of a state-fan facet meeting the positive
 weight cone, over all ambient dimensions and sufficiently
 generic \(n\)-point configurations, equals \(\kappa(n)\).
 \end{corollary}
@@ -441,6 +448,9 @@ giving a positive-weight facet with support \(s\).
 The published generic-configuration identification transfers it
 to the state fan.
 \end{proof}
+For \(n=1\) the prefix is the zero vector and there is no
+positive-weight facet in either setting; no maximum over an
+empty family of facets is required.
 
 The corresponding statement for arbitrary quotient algebras has
 a different scale. Let \(A(n)\) be the maximum support of a
@@ -505,6 +515,17 @@ Boolean flips and minimal determining comparisons
 \cite{M99,CCS} are credited; repeated powers are indispensable
 to the lattice count here.
 
+The edge conditions of \cite[Section 5]{Mu03} constrain the affine
+span of exchanged cut points. Our generic wall exchanges only
+two points, so that condition alone supplies no support/rank
+count. The weighted-average degree bounds and greedy model
+selection of \cite[Theorems 2--7]{B08} use the same established
+geometry but a different objective. The lattice-point
+decomposition question in \cite[Theorem 4, Corollary 5 and
+Section 4]{L21} is also distinct from facet-normal support.
+These are theorem-level comparisons with the inspected results,
+not claims that no other derivation exists.
+
 The candidate contribution is the sharp support/rank law,
 its exact face/facet interpretation, and the generic-state
 consequence, rather than those frameworks or the moment method.
@@ -533,6 +554,7 @@ The single-stream rigidity and conditional finite-mask results
 are preserved separately in the research note and are not
 needed for the main theorem.
 
+\Needspace{7\baselineskip}
 \paragraph{Reproducibility.}
 From the repository root run
 \begin{quote}\ttfamily\small
@@ -591,5 +613,21 @@ Journal of Integer Sequences 7 (2004), Article 04.1.6.
 selection functions, and parasequences},
 Journal of Integer Sequences 25 (2022), Article 22.2.1.
 \href{https://cs.uwaterloo.ca/journals/JIS/VOL25/Kimberling/kimber16.pdf}{inspected article}.
+\bibitem{V02} A. Vietri,
+\emph{Combinatorial aspects of total weight orders over monomials
+of fixed degree}, Order 19 (2002), 239--263.
+\href{https://doi.org/10.1023/A:1021236722756}{doi:10.1023/A:1021236722756},
+Proposition 6.2.
+\bibitem{Mu03} I. M\"uller, \emph{Corner cuts and their polytopes},
+Beitr\"age zur Algebra und Geometrie 44 (2003), 323--333.
+\href{https://ftp.gwdg.de/pub/misc/EMIS/journals/BAG/vol.44/no.2/3.html}{inspected article}.
+\bibitem{B08} Y. Berstein, H. Maruri-Aguilar, S. Onn,
+E. Riccomagno and H. Wynn,
+\emph{Minimal average degree aberration and the state polytope
+for experimental designs}. Inspected preprint:
+\href{https://arxiv.org/abs/0808.3055}{arXiv:0808.3055v1} (2008).
+\bibitem{L21} A. Lemmens, \emph{Convexity of distinct sum sets}.
+Inspected preprint:
+\href{https://arxiv.org/abs/1812.09527}{arXiv:1812.09527v3} (2021).
 \end{thebibliography}
 \end{document}
