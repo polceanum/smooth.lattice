@@ -7,7 +7,9 @@ No training, external dependencies or network access.
 """
 from fractions import Fraction as Q
 from hashlib import sha256
-from itertools import combinations, permutations, product
+from itertools import combinations, combinations_with_replacement, permutations, product
+from bisect import bisect_right
+from math import comb
 import json
 from pathlib import Path
 import random
@@ -127,6 +129,215 @@ def rounded(x):
     return y.numerator//y.denominator
 
 
+def prefix_join_setup(a, b, lengths):
+    """Integer query weights; no value-dependent preprocessing or real oracle."""
+    assert len(a) == len(lengths)
+    assert all(isinstance(x, int) and x >= 0 for x in (*a, *b))
+    assert all(0 <= k <= len(b) for k in lengths)
+    column_cdf, running = [], 0
+    for weight in b:
+        running += weight
+        column_cdf.append(running)
+    row_cdf, running = [], 0
+    for weight, length in zip(a, lengths):
+        running += weight*(column_cdf[length-1] if length else 0)
+        row_cdf.append(running)
+    return row_cdf, column_cdf
+
+
+def prefix_join_sample(row_cdf, column_cdf, lengths, row_ticket, column_ticket):
+    """Tickets are fresh uniform integers in their respective CDF ranges."""
+    assert 0 <= row_ticket < row_cdf[-1]
+    i = bisect_right(row_cdf, row_ticket)
+    length = lengths[i]
+    assert 0 <= column_ticket < column_cdf[length-1]
+    j = bisect_right(column_cdf, column_ticket, hi=length)
+    return i, j
+
+
+def explicit_join_oracle(a, b, lengths):
+    """Independent enumeration of join completions, for certification only.
+
+    A production indexed-join baseline replaces these sums by prefix sums.
+    This deliberately slow oracle is not a runtime baseline or benchmark.
+    """
+    weights = {(i, j): a[i]*b[j]
+               for i, length in enumerate(lengths) for j in range(length)}
+    total = sum(weights.values())
+    if not total:
+        return total, {}
+    return total, {edge: Q(weight, total) for edge, weight in weights.items()}
+
+
+def prefix_join_distribution(a, b, lengths):
+    row_cdf, column_cdf = prefix_join_setup(a, b, lengths)
+    total = row_cdf[-1]
+    assert total
+    result = {}
+    previous = 0
+    for i, row_total in enumerate(row_cdf):
+        row_mass = row_total-previous
+        previous = row_total
+        for j in range(lengths[i]):
+            conditional = Q(b[j], column_cdf[lengths[i]-1]) if row_mass else Q(0)
+            result[i, j] = Q(row_mass, total)*conditional
+    return result
+
+
+def check_weighted_prefix_join():
+    cases = zero_mass = row_tickets = child_tickets = 0
+    # Zero weights, empty rows/columns, rectangular grids and every monotone
+    # prefix mask of these sizes. Exhaustion concerns finite controls only.
+    for m, n in ((1, 1), (2, 2), (2, 3), (3, 3)):
+        for lengths in combinations_with_replacement(range(n+1), m):
+            for a in product(range(3), repeat=m):
+                for b in product(range(3), repeat=n):
+                    total, oracle = explicit_join_oracle(a, b, lengths)
+                    rows, columns = prefix_join_setup(a, b, lengths)
+                    assert rows[-1] == total
+                    if not total:
+                        zero_mass += 1
+                        continue
+                    assert prefix_join_distribution(a, b, lengths) == oracle
+                    # Exhaust all row tickets and all conditional child tickets
+                    # independently; do not confuse the two random ranges.
+                    counts = [0]*m
+                    for ticket in range(total):
+                        i = bisect_right(rows, ticket)
+                        counts[i] += 1
+                        assert ticket < sum(sum(a[r]*b[j] for j in range(lengths[r]))
+                                            for r in range(i+1))
+                        row_tickets += 1
+                    for i, count in enumerate(counts):
+                        assert count == sum(a[i]*b[j] for j in range(lengths[i]))
+                        if not count:
+                            continue
+                        child_counts = [0]*n
+                        row_ticket = rows[i]-count
+                        for ticket in range(columns[lengths[i]-1]):
+                            ii, j = prefix_join_sample(rows, columns, lengths, row_ticket, ticket)
+                            assert ii == i and j < lengths[i]
+                            child_counts[j] += 1
+                            child_tickets += 1
+                        for j in range(lengths[i]):
+                            assert child_counts[j] == b[j]
+                            assert Q(count, total)*Q(child_counts[j], sum(child_counts)) == oracle[i, j]
+                    cases += 1
+
+    rng = random.Random(720418)
+    overwrites = point_reads = fresh_histories = 0
+    for lengths in ((2, 2), (1, 2, 3), (0, 2, 3), (1, 1, 2), (0, 1, 3, 3)):
+        m, n = len(lengths), max(lengths)
+        edges = [(i, j) for i, length in enumerate(lengths) for j in range(length)]
+        offsets = [0]
+        for length in lengths:
+            offsets.append(offsets[-1]+length)
+        values = {edge: (Q(0), Q(0), Q(0)) for edge in edges}
+        packed = [values[edge] for edge in edges]
+        for _ in range(128):
+            edge = rng.choice(edges)
+            value = tuple(Q(rng.randrange(-8, 9), 8) for _ in range(3))
+            values[edge] = value
+            packed[offsets[edge[0]]+edge[1]] = value
+            a, b = [rng.randrange(3) for _ in range(m)], [rng.randrange(3) for _ in range(n)]
+            # Ensure a valid query, retaining other zero-weight controls above.
+            a[edge[0]], b[edge[1]] = 1, 1
+            total, oracle = explicit_join_oracle(a, b, lengths)
+            distribution = prefix_join_distribution(a, b, lengths)
+            for d in range(3):
+                dense = sum(oracle[e]*values[e][d] for e in edges)
+                conditional_mean = sum(distribution[i, j]*packed[offsets[i]+j][d]
+                                       for i, j in edges)
+                assert dense == conditional_mean
+            ea, eb = [0]*m, [0]*n
+            ea[edge[0]], eb[edge[1]] = 1, 1
+            exact = prefix_join_distribution(ea, eb, lengths)
+            assert exact[edge] == 1 and sum(exact.values()) == 1
+            assert packed[offsets[edge[0]]+edge[1]] == values[edge]
+            overwrites += 1
+            point_reads += 1
+        # Current payloads may depend on the preceding sample. Conditional on
+        # that history, fresh sampling still has exactly the current mean.
+        uniform = prefix_join_distribution([1]*m, [1]*n, lengths)
+        for preceding in edges:
+            state = {edge: Q(int(edge == preceding)) for edge in edges}
+            assert sum(uniform[e]*state[e] for e in edges) == Q(1, len(edges))
+            assert state[preceding] == 1  # Reuse would instead return one.
+            fresh_histories += 1
+
+    independent = prefix_join_distribution([1, 1], [1, 1], (1, 2))
+    row_marginal = [sum(p for (r, _), p in independent.items() if r == i) for i in range(2)]
+    col_marginal = [sum(p for (_, c), p in independent.items() if c == j) for j in range(2)]
+    assert row_marginal[0]*col_marginal[1] == Q(1, 9)  # Invalid pair.
+    rejection_controls = []
+    for bits in (2, 8, 32, 128):
+        weight = 2**bits
+        total, _ = explicit_join_oracle([weight, 1], [1, weight], (1, 2))
+        acceptance = Q(total, (weight+1)**2)
+        assert acceptance == Q(2*weight+1, (weight+1)**2)
+        assert 1/acceptance >= Q(weight, 3)
+        rejection_controls.append({"weight_bits": bits+1,
+                                   "proposal_acceptance": str(acceptance),
+                                   "join_tuple_rejections": 0})
+
+    noise_controls, conditioning_controls = 0, []
+    for m, n, lengths in ((2, 2, (2, 2)), (3, 3, (1, 2, 3)), (3, 2, (0, 1, 2))):
+        for i, length in enumerate(lengths):
+            for j in range(length):
+                for ticks in (0, 1, 2, 4):
+                    t = Q(ticks, 8)
+                    a = [(1-t if r == i else t/Q(m-1)) for r in range(m)]
+                    b = [(1-t if c == j else t/Q(n-1)) for c in range(n)]
+                    # Rational weights can be scaled independently to integers.
+                    aa, bb = [int(x*16) for x in a], [int(x*16) for x in b]
+                    p = prefix_join_distribution(aa, bb, lengths)
+                    assert p[i, j] >= (1-t)**2
+                    assert 2*(1-p[i, j]) <= 2*(2*t-t*t)
+                    noise_controls += 1
+    for bits in (2, 8, 32, 128):
+        weight = 2**bits
+        first = prefix_join_distribution([1, 0], [1, weight-1], (1, 2))
+        second = prefix_join_distribution([weight-1, 1], [0, 1], (1, 2))
+        distance = Q(4, weight)  # Combined simplex l1 distance.
+        assert first[0, 0] == second[1, 1] == 1
+        assert sum(abs(first[e]-second[e]) for e in first) == 2
+        conditioning_controls.append({"t": str(Q(1, weight)),
+                                      "query_l1_distance": str(distance),
+                                      "output_gap": "2", "normalized_mask_mass": str(Q(1, weight))})
+
+    # A fixed sample's guarantee cannot hold for all later payload assignments.
+    reused_samples = [(i, i) for i in range(4)]
+    adversarial_values = {(i, j): Q(-1 if (i, j) in reused_samples else 1)
+                          for i in range(4) for j in range(4)}
+    exact_mean = sum(adversarial_values.values())/16
+    reused_mean = sum(adversarial_values[e] for e in reused_samples)/4
+    assert exact_mean == Q(1, 2) and reused_mean == -1
+
+    # Exact Bernoulli tail controls. The rational expression is an upper bound
+    # on the classical exponential bound, not a floating-point approximation.
+    tails = 0
+    for k in range(1, 25):
+        for epsilon in (Q(1, 4), Q(1, 2), Q(3, 4)):
+            probability = Q(sum(comb(k, j) for j in range(k+1)
+                                if abs(Q(2*j, k)-1) > epsilon), 2**k)
+            upper = 2/(1+Q(k)*epsilon**2/128)**64
+            assert probability <= upper
+            tails += 1
+    return {"positive_mass_query_cases": cases, "zero_mass_queries_rejected": zero_mass,
+            "exact_row_tickets": row_tickets, "exact_conditional_tickets": child_tickets,
+            "canonical_vector_overwrites": overwrites, "point_code_exact_reads": point_reads,
+            "adaptive_fresh_sample_histories": fresh_histories,
+            "point_query_simplex_noise_controls": noise_controls,
+            "independent_marginals_invalid_pair_mass": "1/9",
+            "rejection_controls": rejection_controls,
+            "vanishing_mass_conditioning_controls": conditioning_controls,
+            "reused_sample_counterexample": {"samples": reused_samples, "true_mean": str(exact_mean),
+                                             "reused_mean": str(reused_mean), "error": str(exact_mean-reused_mean)},
+            "exact_Bernoulli_tail_controls": tails,
+            "baseline_verdict": "Identical conditional distribution, payload table, prefix metadata and update semantics as the weighted indexed-join specialization; no new strongest-baseline advantage.",
+            "novelty_established": False, "new_publishable_advantage_established": False}
+
+
 def main():
     head_cases = 0
     for n in (2, 3):
@@ -203,6 +414,7 @@ def main():
                                 "physical_additive_heads": 1, "physical_active_values": n,
                                 "signed_unfused_entries": n*n, "fused_active_values": n,
                                 "unrestricted_probe_lower_bound_refuted": True})
+    weighted_prefix_join = check_weighted_prefix_join()
     sources = ["scripts/run_correlated_routing_checks.py", "docs/interleaving_research.md"]
     summary = {"additive_head_cases_including_ties": head_cases,
                "tight_signed_decompositions": len(tight), "approximate_mixture_cases": len(approximate),
@@ -214,10 +426,12 @@ def main():
               "scope": "Common-grid, unfused head-support tradeoff and explicit stronger-baseline escapes. Not an implementation-independent probe lower bound or a new strongest-method advantage.",
               "tight_signed_decompositions": tight, "approximate_mixtures": approximate,
               "layout_and_fusion_escapes": layout_controls, "summary": summary,
+              "weighted_prefix_join": weighted_prefix_join,
               "novelty_established": False, "new_publishable_advantage_established": False,
               "source_sha256": {f: sha256((ROOT/f).read_bytes()).hexdigest() for f in sources}}
     (ROOT/"results/research/correlated_routing_checks.json").write_text(json.dumps(report, indent=2)+"\n")
     print(json.dumps(summary, sort_keys=True))
+    print(json.dumps(weighted_prefix_join, sort_keys=True))
 
 
 if __name__ == "__main__":

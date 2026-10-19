@@ -18,7 +18,7 @@
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "matching_order_numerical_capacity_proved_for_full_affine_quadratics_on_balls_and_sphere; linear_augmentation_not_an_escape; architecture_advantage_unproved"
+      "status": "full_vector_masked_product_mixture_audited; exact_conditional_sampler_matches_weighted_indexed_join; candidate_parked; architecture_advantage_unproved"
     },
     {
       "stage": 4,
@@ -800,6 +800,87 @@
       "whole_cap_affine_states": 372,
       "certified_affine_key_caps": 1920,
       "subspace_sum_counterexamples": 3,
+      "prior_certificate_blocks_preserved": true
+    },
+    "verification_commands": [
+      "python3 -B scripts/run_numerical_capacity_checks.py",
+      "python3 -B scripts/run_robust_frontier_checks.py",
+      "python3 -B scripts/run_affine_robust_checks.py",
+      "python3 -B scripts/run_robust_reader_checks.py",
+      "python3 -B scripts/run_regression_baseline_checks.py",
+      "python3 -B scripts/run_correlated_routing_checks.py",
+      "python3 -B scripts/run_shared_feature_retention_checks.py",
+      "python3 -B scripts/run_retention_geometry_checks.py",
+      "python3 -B scripts/run_retention_tradeoff_checks.py",
+      "python3 -B scripts/run_feature_dimension_checks.py",
+      "python3 -B scripts/run_structural_complexity_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py"
+    ]
+  },
+  "eleventh_iteration": {
+    "previous_turn_classification": "progress: full affine numerical-capacity case closed with exact certificates; full architecture/publication objective unachieved",
+    "record": "docs/interleaving_research.md, Associative-memory goal: conditional sampling meets the weighted-join baseline",
+    "certificate_script": "scripts/run_correlated_routing_checks.py",
+    "certificate_report": "results/research/correlated_routing_checks.json",
+    "candidate": {
+      "workload": "Fixed row-prefix mask, N independent dyadic vector payloads with point overwrite; complete fresh query is a normalized masked product mixture from two full nonnegative weight vectors. Mask/key edits are separate unproved workloads.",
+      "sampling_identity": "Sample row i proportional to a_i*B[length_i], then column j<=length_i proportional to b_j. Exact pair law a_i*b_j/Z, including zero weights and empty rows; Z=0 rejected.",
+      "costs": "N*v payload words plus row lengths/offsets; O(m+n) charged integer-CDF setup per fresh query, O(log(m+1)+log(n+1)) comparisons and v value probes per sample; O(v) canonical payload overwrite. Input, integer width, random bits, accumulators and metadata charged; no free encoder or normalizer.",
+      "retention_and_horizon": "All N independent values remain in the table without update drift. K fresh independent pairs give conditional infinity-error failure <=2*v*exp(-K*epsilon^2/2), hence <=2*v*Q*exp(-K*epsilon^2/2) across a specified finite adaptive horizon Q. Values/query chosen before each read fresh randomness. No fixed-K infinite-horizon or adaptive old-sample guarantee.",
+      "noise": "At point codes and simplex total-variation radii alpha,beta, output error <=2*(alpha+beta-alpha*beta). General normalized reads require mask-mass/noise accounting; exact t->0 witnesses rule out a uniform Lipschitz bound for Z>0 alone.",
+      "comparison": "The weighted indexed-join specialization has the identical distribution, packed payload table, CDF metadata, exact overwrite and finite-precision costs. Coupling on the same random tickets gives identical complete histories. No new architecture advantage."
+    },
+    "primary_sources": [
+      {
+        "url": "https://arxiv.org/html/2201.02670v1",
+        "scope": "Definitions 2.1--2.2, Section 3.2 and Algorithm 1, inequality cumulatives, and Section 3.3 conditional sampling inspected. Covers the candidate weight/predicate rule; dynamic payload overwrite cost established separately by direct state accounting, not attributed to the paper."
+      },
+      {
+        "url": "https://doi.org/10.1080/01621459.1963.10500830",
+        "scope": "Classical bounded-sum method; publisher abstract inspected and the needed centered-MGF argument derived explicitly in the note. No new concentration theorem claimed."
+      },
+      {
+        "url": "https://arxiv.org/html/2509.07963v1",
+        "scope": "Sections 2.1--3.3, BTT/MLR/MLBTC scoring definitions inspected. Efficient full-rank attention scoring is existing architecture research; learning results not independently reproduced."
+      },
+      {
+        "url": "https://arxiv.org/html/2510.03678v1",
+        "scope": "Definition 1.1, Theorem 4.4, Algorithm 2, Theorem 7.6 and surrounding arguments inspected, not fully independently validated. Tensor score sampling is separate from arbitrary-payload retention and fresh-query adaptive update guarantees; audit exact formal model before adopting."
+      }
+    ],
+    "counterexamples": {
+      "independent_marginals": "Three-pair triangular mask, unit raw weights: product of correct marginals puts 1/9 mass on the forbidden pair.",
+      "sample_reuse": "Four retained diagonal samples in a uniform 4-by-4 table can be assigned -1 with all other entries +1: reused answer -1, true mean 1/2, error 3/2.",
+      "normalization_stability": "Triangular mask, a=(1,0), b=(t,1-t) versus a=(1-t,t), b=(0,1): combined simplex l1 distance 4t, mask masses t, output gap 2 for opposite diagonal payloads.",
+      "weak_proposal_baseline": "a=(M,1), b=(1,M) has product-proposal acceptance (2M+1)/(M+1)^2; the existing conditional-join method avoids these pair rejections too."
+    },
+    "decision": "Park this candidate as a contribution: the complete theorem is matched by an existing weighted indexed join. Preserve it as a baseline. Do not train or claim a new paper based on the known sampler or rank alone.",
+    "next_actions": [
+      "Define a genuinely richer complete full-dimensional query/changing-binding workload with a new constructive guarantee; require separation from the applicable indexed, MLR/BTT structured-scoring or tensor-sampling method.",
+      "Before using streamed score-sampler results, audit the exact query/factor update assumptions, auxiliary estimators, randomness, bit costs and payload access; a distribution theorem alone is not a retention architecture.",
+      "Do not reuse the previous unfused-support lower bound as an indexed or fused probe lower bound; conditional join sampling is another explicit stronger implementation.",
+      "Keep the full original goal active with unchanged acceptance criteria. No neural training, outreach or contribution manuscript until novelty and complete-cost gates pass."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "certificate_summary": {
+      "positive_mass_query_cases": 12580,
+      "zero_mass_queries_rejected": 4934,
+      "exact_row_tickets": 73881,
+      "exact_conditional_tickets": 49254,
+      "canonical_vector_overwrites": 640,
+      "point_code_exact_reads": 640,
+      "adaptive_fresh_sample_histories": 26,
+      "point_query_simplex_noise_controls": 52,
+      "vanishing_mass_witnesses": 4,
+      "rejection_controls": 4,
+      "sample_reuse_counterexamples": 1,
+      "exact_Bernoulli_tail_controls": 72,
       "prior_certificate_blocks_preserved": true
     },
     "verification_commands": [

@@ -294,10 +294,96 @@
     "layout_and_fusion_escape_cases": 3,
     "dictionary_point_overwrites_and_matching_reads": 192
   },
+  "weighted_prefix_join": {
+    "positive_mass_query_cases": 12580,
+    "zero_mass_queries_rejected": 4934,
+    "exact_row_tickets": 73881,
+    "exact_conditional_tickets": 49254,
+    "canonical_vector_overwrites": 640,
+    "point_code_exact_reads": 640,
+    "adaptive_fresh_sample_histories": 26,
+    "point_query_simplex_noise_controls": 52,
+    "independent_marginals_invalid_pair_mass": "1/9",
+    "rejection_controls": [
+      {
+        "weight_bits": 3,
+        "proposal_acceptance": "9/25",
+        "join_tuple_rejections": 0
+      },
+      {
+        "weight_bits": 9,
+        "proposal_acceptance": "513/66049",
+        "join_tuple_rejections": 0
+      },
+      {
+        "weight_bits": 33,
+        "proposal_acceptance": "8589934593/18446744082299486209",
+        "join_tuple_rejections": 0
+      },
+      {
+        "weight_bits": 129,
+        "proposal_acceptance": "680564733841876926926749214863536422913/115792089237316195423570985008687907853950549399482440966384333222776666062849",
+        "join_tuple_rejections": 0
+      }
+    ],
+    "vanishing_mass_conditioning_controls": [
+      {
+        "t": "1/4",
+        "query_l1_distance": "1",
+        "output_gap": "2",
+        "normalized_mask_mass": "1/4"
+      },
+      {
+        "t": "1/256",
+        "query_l1_distance": "1/64",
+        "output_gap": "2",
+        "normalized_mask_mass": "1/256"
+      },
+      {
+        "t": "1/4294967296",
+        "query_l1_distance": "1/1073741824",
+        "output_gap": "2",
+        "normalized_mask_mass": "1/4294967296"
+      },
+      {
+        "t": "1/340282366920938463463374607431768211456",
+        "query_l1_distance": "1/85070591730234615865843651857942052864",
+        "output_gap": "2",
+        "normalized_mask_mass": "1/340282366920938463463374607431768211456"
+      }
+    ],
+    "reused_sample_counterexample": {
+      "samples": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "true_mean": "1/2",
+      "reused_mean": "-1",
+      "error": "3/2"
+    },
+    "exact_Bernoulli_tail_controls": 72,
+    "baseline_verdict": "Identical conditional distribution, payload table, prefix metadata and update semantics as the weighted indexed-join specialization; no new strongest-baseline advantage.",
+    "novelty_established": false,
+    "new_publishable_advantage_established": false
+  },
   "novelty_established": false,
   "new_publishable_advantage_established": false,
   "source_sha256": {
-    "scripts/run_correlated_routing_checks.py": "8072b0a4e3c27de8201e8f16d3196a73d3457c67ea998e17468bd817beb58d4d",
-    "docs/interleaving_research.md": "8222fbcf6ff2038caec4be9c9b6ca2b457b7059e6675f7f42cc5e8b50edeb4ec"
+    "scripts/run_correlated_routing_checks.py": "80571e089ba6588e1e2417500436d502d2803030b8e75e2f25862ab7c4a4c1e2",
+    "docs/interleaving_research.md": "9ae247cba925107a3888bd283eedeea5bc0da4c6a1d1aad4d43debdd6dd7f42b"
   }
 }

@@ -12984,3 +12984,245 @@ identities with large linear/radial coefficients; 372 whole-cap affine
 states covering 1,920 key caps; and three subspace-sum counterexamples.
 Previously saved certificate blocks are retained. These exact finite
 controls support the uniform proof and its stated limitations.
+
+### Associative-memory goal: conditional sampling meets the weighted-join baseline
+
+The preceding turn was **progress**: the full affine numerical-capacity
+case was closed and checked. The next concrete candidate changes the
+reader to a normalized distribution on allowed coordinate pairs. It
+retains two full query vectors and independently replaceable pair values.
+It avoids the two-scalar bottleneck and permits inexpensive approximate
+reads. **It fails the strongest-baseline gate:** a weighted indexed join
+implements the same distribution and all the same memory/update guarantees.
+This candidate is therefore parked as a main contribution. The original
+architecture/publication goal remains active and unachieved; no training
+or new contribution manuscript follows from this construction.
+
+**Complete workload and model.** Fix m rows, n columns and prefix lengths
+0<=l_i<=n, with allowed pairs E={(i,j):1<=j<=l_i}. Monotone lengths give a
+Ferrers mask, although the following formula needs only the row prefixes.
+Let N=sum_i l_i>0. Store an independent current value
+V_ij in [-1,1]^v at every allowed pair. A value update receives (i,j,V_new)
+and replaces that payload. The mask and pair identities stay fixed in this
+workload; insertion/deletion of rows, changes to the mask and learned-key
+updates are separate workloads with unproved additional costs.
+
+A fresh query supplies nonnegative vectors a in R^m and b in R^n. Define
+
+```text
+B_k = sum_{j<=k} b_j,  B_0=0,
+Z = sum_i a_i B_{l_i} > 0,
+P_ij = a_i b_j / Z  on E,
+R(a,b,V) = sum_{(i,j) in E} P_ij V_ij.
+```
+
+The encoder can be the identity on the m+n query coordinates: none are
+compressed to two scalars. Any learned map producing these vectors must
+be charged in both methods. The query has compositional product weights
+conditioned on a fixed mask; it does not represent every joint weighting
+of the N pairs or arbitrary dense learned pairwise scores. Zero weights
+are permitted, but Z=0 is an invalid query rather than an arbitrary
+normalization convention. All value assignments are allowed independently.
+
+**Uniform sampling identity and full costs.** Build the column cumulative
+weights B_k and the row cumulative weights of w_i=a_i B_{l_i}. Choose i
+with probability w_i/Z and then j<=l_i with probability b_j/B_{l_i}.
+Rows with w_i=0 are never chosen. Their product is exactly P_ij, including
+zero-weight and empty-row cases. This proves the conditional sampler
+without enumerating the N pairs. Independent row and column choices do
+not implement it: for l=(1,2) and a=b=(1,1), the correct distribution is
+uniform on three pairs, while the product of its marginals puts mass
+1/9 on the forbidden pair (1,2).
+
+For integer weights with B bits per coordinate, both cumulative arrays
+are constructed with O(m+n) additions/multiplications on integers of at
+most L=2B+ceil(log2(mn))+1 bits. Inverse cumulative lookup takes
+O(log(m+1)+log(n+1)) comparisons per sample. The second ticket is drawn
+from a range that depends on the selected row. An exact uniform ticket
+uses rejection on random bits with fewer than two trials in expectation
+and O(L) expected random bits per ticket. There is no rejection of
+completed join pairs, and no unit-cost arbitrary-real random oracle.
+Bit-operation costs of arithmetic/comparisons on L-bit operands remain
+charged; these are word-operation bounds only with adequate word width.
+
+Use row offsets to store all payloads in one packed table. If each value
+coordinate has S dyadic fractional bits, persistent state costs
+N*v*(S+O(1)) payload bits plus O(m*(log(n+1)+log(N+1))) bits for prefix
+lengths/offsets. Query input and cumulative workspace cost
+O((m+n)*(B+L)) bits. Initialization writes all N*v coordinates. A canonical
+point overwrite costs O(v) value-word writes and has no accumulation of
+old update errors. K samples cost K*v value-word probes, O(K*v) additions,
+the cumulative lookup costs above, and the charged O(m+n) query setup.
+The accumulator requires O(v*(S+log(K+1))) bits; exact averaging retains
+the integer numerator and denominator K, or output rounding adds its
+own fixed error. Workspace and preprocessing are not amortized away
+over unspecified future queries. An exact O(N*v) read is an available
+fallback when K is too large, for both implementations.
+
+At a valid point code a=e_i,b=e_j, the output is exactly V_ij under every
+sample. Parsing those vectors still costs O(m+n) if the input format is
+dense. Explicit pair-address input can bypass that scan for both methods.
+All N independently overwritten values are retained, because all N are
+stored. There is no compression below the information required by them.
+
+**Error, adaptivity and retention.** Conditional on the complete history,
+choose the current query and payload state, then draw K fresh independent
+pairs. The sample average is unbiased for the current R. For epsilon>0,
+
+```text
+Pr(||R_hat-R||_infinity > epsilon | history)
+    <= 2*v*exp(-K*epsilon^2/2).
+```
+
+This is the classical bounded-variable estimate, not a new concentration
+result. One direct proof writes h(lambda)=log E exp(lambda*(X-E X))
+for a coordinate X in [-1,1]. The second derivative is the variance under
+an exponential tilt and is at most 1; h(0)=h'(0)=0. Thus
+h(lambda)<=lambda^2/2. Independence, exponential Markov and optimizing
+lambda give the two scalar tails, followed by a union over coordinates.
+See [Hoeffding (1963)](https://doi.org/10.1080/01621459.1963.10500830)
+for the established bounded-sum method.
+
+For a specified finite horizon of Q adaptive reads, the conditional bound
+and a union bound give total failure probability at most
+2*v*Q*exp(-K*epsilon^2/2). It suffices to take
+K>=2*epsilon^-2*log(2*v*Q/eta) for failure probability eta. The current
+payload/query can depend on previous samples; it cannot be selected after
+seeing the fresh samples of its own read. No fixed-K, all-reads-success
+claim for an infinite horizon is made. No analogous adaptivity guarantee
+for an old public sketch is inferred.
+
+For example, on a full 4-by-4 uniform query, retain four diagonal samples
+and later set their values to -1 and the remaining twelve values to +1.
+The retained-sample answer is -1, the true mean is 1/2, and the error is
+3/2. Fresh sampling of this current state remains unbiased. This refutes
+only the proposed reuse-of-these-samples guarantee; it does not rule out
+other adaptive sketches with different hypotheses/resources. A canonical
+payload table gives indefinitely stable stored values; its statistical
+read-error probability still needs the separate horizon accounting.
+
+**Noise promises are also different.** Normalize a,b to probability
+vectors when discussing geometric stability. Around a valid point code,
+if their respective total-variation distances from e_i,e_j are at most
+alpha,beta, then P_ij>=(1-alpha)*(1-beta), because the unconditioned target
+mass has that lower bound and Z<=1. Therefore every independent payload
+assignment satisfies
+
+```text
+||R-V_ij||_infinity <= 2*(alpha+beta-alpha*beta).
+```
+
+This bound is attained on a full mask by putting the target value at one
+endpoint and all other values at the opposite endpoint. It is a simplex
+noise guarantee, not the previous continuous ambient-ball or sphere-cap
+promise. In particular l1 and l2 errors must not be interchanged without
+dimension factors. The normalized bilinear reader has a denominator and
+a restricted nonnegative domain; it does not contradict the quadratic
+capacity theorem.
+
+For general simplex queries write mu_ij=a_i*b_j*1_E and define mu' and
+Z' similarly. If D=||a-a'||_1+||b-b'||_1, then ||mu-mu'||_1<=D and
+
+```text
+||mu/Z-mu'/Z'||_1 <= min(2, 2*D/max(Z,Z')).
+```
+
+Indeed, adding/subtracting mu'/Z bounds this by
+(||mu-mu'||_1+|Z-Z'|)/Z<=2D/Z; exchanging the two queries gives
+the other denominator. If Z,Z'>=gamma>0 this is at most 2D/gamma,
+and it also bounds the output error for every bounded payload. Without
+a mass promise there is no uniform Lipschitz bound. For l=(1,2), compare
+
+```text
+query A: a=(1,0),     b=(t,1-t),
+query B: a=(1-t,t),   b=(0,1),        0<t<1.
+```
+
+Their combined l1 distance is 4t, and both mask masses are t. Their
+conditional distributions are concentrated on (1,1) and (2,2),
+respectively. Set V_11=-1,V_22=+1 to obtain output gap 2 for arbitrarily
+small t. Finite-precision or encoding noise therefore cannot be declared
+harmless merely because the cumulative sampler is exact on its supplied
+integer weights. The stability promise is shared by both implementations.
+
+**Primary baseline comparison.** Shekelyan, Cormode, Triantafillou,
+Shanghooshabad and Ma,
+[Weighted Random Sampling over Joins, v1](https://arxiv.org/html/2201.02670v1),
+Definitions 2.1--2.2, Section 3.2/Algorithm 1 and Section 3.3, explicitly
+use products of row weights, downstream completion sums and conditional
+continuation sampling. Section 3.2 also treats inequalities by cumulative
+weights. These definitions and the displayed algorithm were inspected,
+rather than inferring equivalence from the title. Our prefix sampler is
+the already ordered two-table specialization with predicate j<=l_i.
+The paper's more general streaming implementation need not have the
+same constant factors as this indexed specialization. Its results are
+not being cited as a theorem about dynamic payload overwrites: those
+costs follow directly here because changing V does not change the query
+distribution. We have not audited every algorithm or experiment in that
+paper.
+
+The independent reference implementation can use the identical integer
+cumulative arrays, packed value table and random tickets. Coupled on
+those tickets, it returns the same pairs and answers after every payload
+overwrite, for every legal query/history. Thus its distribution, failure
+bound, retention, metadata, precision, setup and active value costs all
+match. Comparing only against materializing the dense masked matrix,
+against independent-coordinate sampling, or against an unindexed
+product-proposal sampler would miss this baseline. For the last example,
+l=(1,2),a=(M,1),b=(1,M) has proposal acceptance
+(2M+1)/(M+1)^2 and at least M/3 expected trials. Conditional sampling
+avoids those rejections, but that advantage is already available in
+weighted joins. No optimality claim for binary-search CDF lookup is made.
+
+Two additional primary comparisons constrain the next candidate:
+
+- [Kuang et al., Sections 2.1--3.3, v1](https://arxiv.org/html/2509.07963v1)
+  explicitly replace low-rank attention scoring by full/high-rank BTT and
+  MLR bilinear forms, and combine them in MLBTC. Those definitions and
+  their scoring equations were inspected. Full rank plus inexpensive
+  structured evaluation is therefore already an architecture direction,
+  not a new claim by this project. We have not independently reproduced
+  their learning results or established uniform retention from them.
+- [Song--Xie--Zhou, v1](https://arxiv.org/html/2510.03678v1), Definition 1.1,
+  Theorem 4.4, Algorithm 2 and Theorem 7.6, address streamed attention
+  sampling. These statements and their surrounding arguments were
+  inspected, not independently validated in full. The tensor construction
+  studies squared amplitudes of (A1 tensor A2)x, with fixed x and updated
+  factors; Theorem 7.6 is conditional on auxiliary estimators. A score
+  sampler alone is not a theorem retaining N independent payloads or
+  handling adaptively chosen fresh queries and changing factors for free.
+  Its formal guarantee must be separated from a whole memory architecture
+  before adopting or claiming an improvement to it.
+
+**Decision and next proof obligation.** Park the masked product-mixture
+candidate as a contribution: its complete guarantee is matched by the
+published-method specialization above. Do not run a learned comparison
+of two implementations of that same mathematical algorithm. Preserve it
+as a baseline for any genuinely richer construction. A next proposal must
+identify a new complete workload, such as full-dimensional scores with
+changing bindings, and explicitly beat the applicable structured-scoring,
+dynamic-index or tensor-sampling method under that workload. It must
+include access to arbitrary current payloads and charge factor/key edits,
+normalizers, precision, query setup and adaptive failure probability.
+Another known sampler, rank calculation or parameter-count advantage
+does not fulfill the unchanged goal. There is no established new
+architecture advantage or publication-ready contribution from this turn.
+
+The existing checker was extended in place:
+
+```bash
+python3 -B scripts/run_correlated_routing_checks.py
+```
+
+It independently enumerates 12,580 positive-mass queries and rejects 4,934
+zero-mass queries; checks every integer row ticket and conditional child
+ticket in those cases (73,881 and 49,254 respectively); verifies 640
+canonical vector overwrites and point-code reads; covers 26 adaptive
+histories with fresh sampling; checks 52 simplex-noise cases, four
+vanishing-mask-mass witnesses through 128-bit exponents, four rejection
+controls, the fixed-sample counterexample and 72 exact Bernoulli-tail
+controls. The slow direct completion enumeration is an independent proof
+oracle, not a runtime benchmark for the production indexed baseline.
+These finite certificates support the uniform identities and expose
+overstated guarantees; they do not establish novelty. All prior
+certificate blocks and the smooth-number kernels remain preserved.
