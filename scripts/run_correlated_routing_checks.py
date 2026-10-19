@@ -651,6 +651,114 @@ def check_dynamic_gram_sampler():
             'novelty_established': False, 'new_publishable_advantage_established': False}
 
 
+def simplex_routing_weights(query):
+    """Known simplex/Lovasz weights, including zero weights at ties."""
+    order = sorted(range(len(query)), key=lambda i: (-query[i], i))
+    mask, previous, result = 0, Q(1), {}
+    for i in order:
+        result[mask] = previous-query[i]
+        mask |= 1 << i
+        previous = query[i]
+    result[mask] = previous
+    assert min(result.values()) >= 0 and sum(result.values()) == 1
+    return result
+
+
+def check_simplex_routing():
+    grid_queries = threshold_tickets = marginal_controls = corner_controls = 0
+    for d in range(1, 6):
+        for ticks in product(range(5), repeat=d):
+            q = [Q(x, 4) for x in ticks]
+            weights = simplex_routing_weights(q)
+            # Independent common-threshold enumeration, including all ties.
+            counts = {}
+            for ticket in range(4):
+                mask = sum((1 << j) for j, x in enumerate(ticks) if ticket < x)
+                counts[mask] = counts.get(mask, 0)+1
+                threshold_tickets += 1
+            assert {m: w for m, w in weights.items() if w} == {m: Q(c, 4) for m, c in counts.items()}
+            for j in range(d):
+                assert sum(w for m, w in weights.items() if m & (1 << j)) == q[j]
+                marginal_controls += 1
+            assert sum(w > 0 for w in weights.values()) <= d+1
+            grid_queries += 1
+    for d in range(1, 9):
+        for target_mask in range(1 << d):
+            for delta in (Q(0), Q(1, 16), Q(1, 8), Q(1, 4)):
+                q = [1-delta if target_mask & (1 << j) else delta for j in range(d)]
+                weights = simplex_routing_weights(q)
+                p = weights.get(target_mask, Q(0))
+                assert p >= 1-2*delta
+                if target_mask not in (0, (1 << d)-1):
+                    assert p == 1-2*delta
+                assert 2*(1-p) <= 4*delta
+                assert sum((1 << j) for j, x in enumerate(q) if x >= Q(1, 2)) == target_mask
+                corner_controls += 1
+
+    rng = random.Random(130066)
+    updates = 0
+    for d in (2, 4, 6):
+        values = {m: (Q(0), Q(0), Q(0)) for m in range(1 << d)}
+        for _ in range(64):
+            target_mask = rng.randrange(1 << d)
+            values[target_mask] = tuple(Q(rng.randrange(-8, 9), 8) for _ in range(3))
+            ticks = [rng.randrange(9) for _ in range(d)]
+            weights = simplex_routing_weights([Q(x, 8) for x in ticks])
+            direct = [sum(values[sum((1 << j) for j, x in enumerate(ticks) if ticket < x)][k]
+                          for ticket in range(8))/8 for k in range(3)]
+            assert direct == [sum(w*values[m][k] for m, w in weights.items()) for k in range(3)]
+            point = simplex_routing_weights([Q(bool(target_mask & (1 << j))) for j in range(d)])
+            assert point[target_mask] == 1
+            assert tuple(sum(w*values[m][k] for m, w in point.items()) for k in range(3)) == values[target_mask]
+            updates += 1
+
+    global_slopes, full_rank_cases = [], 0
+    for d in range(1, 9):
+        q = [Q(d-j, d+1) for j in range(d)]
+        delta = Q(1, 8*(d+1))
+        gradient = [Q(-2 if j % 2 == 0 else 2) for j in range(d)]
+        perturbed = [x+delta*(1 if g > 0 else -1) for x, g in zip(q, gradient)]
+        weights, changed = simplex_routing_weights(q), simplex_routing_weights(perturbed)
+        alternating = {mask: Q((-1)**r) for r, mask in enumerate(weights)}
+        difference = sum(w*alternating[m] for m, w in changed.items())-sum(w*alternating[m] for m, w in weights.items())
+        assert difference == 2*d*delta
+        global_slopes.append({'dimension': d, 'input_linf_change': str(delta),
+                              'output_change': str(difference), 'sharp_global_linf_constant': 2*d})
+        # V_mask[j]=2*bit_j(mask)-1 gives R(q)=2*q-1 and Jacobian 2*I.
+        masks = list(weights)
+        for position in range(d):
+            derivative = [2*(int(bool(masks[position+1] & (1 << j)))-int(bool(masks[position] & (1 << j))))
+                          for j in range(d)]
+            assert derivative == [2*int(j == position) for j in range(d)]
+        full_rank_cases += 1
+    rank_controls = 0
+    for d in range(1, 6):
+        for k in range(1, d+3):
+            for _ in range(3):
+                values = [[Q(rng.randrange(-8, 9), 8) for _ in range(d)] for _ in range(k)]
+                gradients = [[Q(rng.randrange(-4, 5), 8) for _ in range(d)] for _ in range(k-1)]
+                gradients.append([-sum(row[j] for row in gradients) for j in range(d)])
+                jacobian = [[sum(values[h][i]*gradients[h][j] for h in range(k)) for j in range(d)] for i in range(d)]
+                columns, _, _ = gram_leverages(jacobian)
+                assert len(columns) <= min(d, k-1)
+                rank_controls += 1
+    symbolic = []
+    for d in (16, 32, 64, 128):
+        delta, mask = Q(1, 8), sum(1 << j for j in range(0, d, 2))
+        weights = simplex_routing_weights([1-delta if mask & (1 << j) else delta for j in range(d)])
+        assert weights[mask] == Q(3, 4)
+        symbolic.append({'dimension': d, 'stored_vertices_required': str(1 << d),
+                         'simplex_target_mass': '3/4', 'independent_product_target_mass': str((1-delta)**d),
+                         'simplex_worst_target_error': '1/2', 'table_was_not_allocated': True})
+    return {'dyadic_grid_queries': grid_queries, 'exact_common_threshold_tickets': threshold_tickets,
+            'coordinate_marginal_controls': marginal_controls, 'corner_noise_and_hard_rounding_controls': corner_controls,
+            'vector_payload_overwrites': updates, 'full_jacobian_examples': full_rank_cases,
+            'normalized_common_scalar_mixture_rank_controls': rank_controls,
+            'global_sensitivity_witnesses': global_slopes, 'large_dimension_symbolic_controls': symbolic,
+            'classification': 'Known simplex/Lovasz routing; local corner retention and derivative/read-span observations are elementary consequences. Exponential table storage and arbitrary raw-key encoder are not free.',
+            'novelty_established': False, 'new_publishable_advantage_established': False}
+
+
 def main():
     head_cases = 0
     for n in (2, 3):
@@ -729,6 +837,7 @@ def main():
                                 "unrestricted_probe_lower_bound_refuted": True})
     weighted_prefix_join = check_weighted_prefix_join()
     dynamic_gram_sampler = check_dynamic_gram_sampler()
+    simplex_routing = check_simplex_routing()
     sources = ["scripts/run_correlated_routing_checks.py", "docs/interleaving_research.md"]
     summary = {"additive_head_cases_including_ties": head_cases,
                "tight_signed_decompositions": len(tight), "approximate_mixture_cases": len(approximate),
@@ -742,12 +851,14 @@ def main():
               "layout_and_fusion_escapes": layout_controls, "summary": summary,
               "weighted_prefix_join": weighted_prefix_join,
               "dynamic_gram_sampler": dynamic_gram_sampler,
+              "simplex_routing": simplex_routing,
               "novelty_established": False, "new_publishable_advantage_established": False,
               "source_sha256": {f: sha256((ROOT/f).read_bytes()).hexdigest() for f in sources}}
     (ROOT/"results/research/correlated_routing_checks.json").write_text(json.dumps(report, indent=2)+"\n")
     print(json.dumps(summary, sort_keys=True))
     print(json.dumps(weighted_prefix_join, sort_keys=True))
     print(json.dumps(dynamic_gram_sampler, sort_keys=True))
+    print(json.dumps(simplex_routing, sort_keys=True))
 
 
 if __name__ == "__main__":

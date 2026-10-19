@@ -431,10 +431,106 @@
     "novelty_established": false,
     "new_publishable_advantage_established": false
   },
+  "simplex_routing": {
+    "dyadic_grid_queries": 3905,
+    "exact_common_threshold_tickets": 15620,
+    "coordinate_marginal_controls": 18555,
+    "corner_noise_and_hard_rounding_controls": 2040,
+    "vector_payload_overwrites": 192,
+    "full_jacobian_examples": 8,
+    "normalized_common_scalar_mixture_rank_controls": 75,
+    "global_sensitivity_witnesses": [
+      {
+        "dimension": 1,
+        "input_linf_change": "1/16",
+        "output_change": "1/8",
+        "sharp_global_linf_constant": 2
+      },
+      {
+        "dimension": 2,
+        "input_linf_change": "1/24",
+        "output_change": "1/6",
+        "sharp_global_linf_constant": 4
+      },
+      {
+        "dimension": 3,
+        "input_linf_change": "1/32",
+        "output_change": "3/16",
+        "sharp_global_linf_constant": 6
+      },
+      {
+        "dimension": 4,
+        "input_linf_change": "1/40",
+        "output_change": "1/5",
+        "sharp_global_linf_constant": 8
+      },
+      {
+        "dimension": 5,
+        "input_linf_change": "1/48",
+        "output_change": "5/24",
+        "sharp_global_linf_constant": 10
+      },
+      {
+        "dimension": 6,
+        "input_linf_change": "1/56",
+        "output_change": "3/14",
+        "sharp_global_linf_constant": 12
+      },
+      {
+        "dimension": 7,
+        "input_linf_change": "1/64",
+        "output_change": "7/32",
+        "sharp_global_linf_constant": 14
+      },
+      {
+        "dimension": 8,
+        "input_linf_change": "1/72",
+        "output_change": "2/9",
+        "sharp_global_linf_constant": 16
+      }
+    ],
+    "large_dimension_symbolic_controls": [
+      {
+        "dimension": 16,
+        "stored_vertices_required": "65536",
+        "simplex_target_mass": "3/4",
+        "independent_product_target_mass": "33232930569601/281474976710656",
+        "simplex_worst_target_error": "1/2",
+        "table_was_not_allocated": true
+      },
+      {
+        "dimension": 32,
+        "stored_vertices_required": "4294967296",
+        "simplex_target_mass": "3/4",
+        "independent_product_target_mass": "1104427674243920646305299201/79228162514264337593543950336",
+        "simplex_worst_target_error": "1/2",
+        "table_was_not_allocated": true
+      },
+      {
+        "dimension": 64,
+        "stored_vertices_required": "18446744073709551616",
+        "simplex_target_mass": "3/4",
+        "independent_product_target_mass": "1219760487635835700138573862562971820755615294131238401/6277101735386680763835789423207666416102355444464034512896",
+        "simplex_worst_target_error": "1/2",
+        "table_was_not_allocated": true
+      },
+      {
+        "dimension": 128,
+        "stored_vertices_required": "340282366920938463463374607431768211456",
+        "simplex_target_mass": "3/4",
+        "independent_product_target_mass": "1487815647197611695910312681741273570332356717154798949898498305086387315423300999654757561928633305897036801/39402006196394479212279040100143613805079739270465446667948293404245721771497210611414266254884915640806627990306816",
+        "simplex_worst_target_error": "1/2",
+        "table_was_not_allocated": true
+      }
+    ],
+    "classification": "Known simplex/Lovasz routing; local corner retention and derivative/read-span observations are elementary consequences. Exponential table storage and arbitrary raw-key encoder are not free.",
+    "novelty_established": false,
+    "new_publishable_advantage_established": false
+  },
   "novelty_established": false,
   "new_publishable_advantage_established": false,
   "source_sha256": {
-    "scripts/run_correlated_routing_checks.py": "01dc8652fc3b1fb896bc6bfa44d825dfeb8111c1e15bc0d3c7f6af1997cde66e",
-    "docs/interleaving_research.md": "8e1d70f0cc97e9767033b95ae38f077ce26d7b7da291faae86c8f66b66b64e86"
+    "scripts/run_correlated_routing_checks.py": "d2c060ca762db45880c89820f2f2e23b4ee8ba54976f8b6acb3685c1bd10d7a1",
+    "docs/interleaving_research.md": "d8a31bba1e540a16a7e89b7ef90c9eccbec335431262981fd8ec7ae26c71d3a3"
   }
 }

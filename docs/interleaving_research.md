@@ -13529,3 +13529,192 @@ and ticket-walk routines implement the maintained tree directly. All
 older certificate blocks remain intact. These exact finite checks support
 the uniform arguments and their limits; novelty and the full goal remain
 unachieved.
+
+### Associative-memory goal: shared-threshold routing is an existing lattice reader
+
+The preceding turn was **progress**: the dynamic squared-bilinear sampler
+and its sharp addressability ceiling were checked against their prior art.
+This turn tests a nonlinear escape. Correlating the query's coordinate
+choices with one shared threshold gives inexpensive continuous reads,
+arbitrary independent corner values and dimension-independent retention
+near those corners. **The construction is exactly known simplex lattice
+interpolation / the Lovasz extension.** Its apparent advantage over
+independent-coordinate blending is already available in published methods.
+It is parked at the novelty gate, with no training or new model framework.
+
+**Complete model and identity.** Fix d>0, N=2^d binary addresses and an
+independent current payload V_S in [-1,1]^v at every S subset of [d].
+All N payloads are stored. The fresh continuous query is q in [0,1]^d.
+For a single U uniform on [0,1], define S(U)={j:q_j>U} and
+
+```text
+L(q,V) = E_U V_{S(U)}.
+```
+
+This uses the entire d-vector, rather than projecting it onto two scalars.
+Let pi sort q in decreasing order, t_r=q_{pi(r)}, t_0=1,t_{d+1}=0,
+and S_r={pi(1),...,pi(r)} with S_0 empty. Then
+
+```text
+L(q,V) = sum_{r=0}^d (t_r-t_{r+1}) V_{S_r}.
+```
+
+These are nonnegative weights summing to one, using at most d+1 distinct
+payloads. Ties cause zero intermediate weights, so tie-breaking does not
+change the answer. This is a complete reader for arbitrary fresh q, not
+just a rule at stored addresses. At q=1_S its answer is exactly V_S for
+every independent payload assignment. Non-additive assignments, such as
+parity on the addresses, remain representable at the corners.
+
+**Retention comparison, with its exact domain.** For a target S, put
+a=min_{j in S}q_j (a=1 for empty S) and
+b=max_{j not in S}q_j (b=0 for full S). Its read probability is
+max(0,a-b). Hence, if ||q-1_S||_infinity<=delta<1/2,
+
+```text
+Pr(S(U)=S) >= 1-2*delta,
+||L(q,V)-V_S||_infinity <= 4*delta.
+```
+
+The second bound follows by assigning the remaining total mass to values
+at most distance two from V_S. Both bounds are sharp for a mixed corner:
+set q_j=1-delta on S and delta off S, with target payload +1 and every
+other payload -1. Then the target mass is 1-2*delta and error is 4*delta.
+The all-zero/all-one corners have a better 2*delta error bound. These are
+local corner promises, not global stability bounds for arbitrary q.
+
+In contrast, independent Bernoulli coordinate choices at the same q put
+only (1-delta)^d mass on S, giving worst target error
+2*(1-(1-delta)^d). This is a real difference between two known reader
+functions. It is not a new separation over the strongest applicable
+method. In particular, comparing only against independent product weights
+would overlook simplex interpolation itself.
+
+**Complete costs and precision.** Sort the d coordinates in
+O(d log d) comparisons and construct the chain masks by changing one bit
+per step. Exact evaluation costs at most (d+1)*v payload-word probes and
+O(d*v) arithmetic operations. The d-bit addresses, B-bit input comparisons,
+and arithmetic on B+S+O(log(d+1)) bits are charged for B query fractional
+bits and S payload fractional bits. Word-operation bounds presume a word
+large enough for the address and operands; multiword costs are otherwise
+required. Query/permutation workspace is O(d*(B+log(d+1))) bits, plus
+the output accumulators.
+
+Persistent payload storage is N*v*(S+O(1)) bits. Addresses are implicit
+binary masks, rather than an uncharged learned codebook. Initialization
+writes all N*v coordinates. Point overwrite of a supplied address costs
+O(v) value-word writes, with no accumulated error from earlier overwrites.
+No monotonicity constraints are imposed on the payload table. Enforcing
+such constraints by projection would change the independent-overwrite
+workload. The exponential N=2^d memory cost is essential: this construction
+does not give a small-state memory for arbitrarily large d.
+
+Alternatively, for dyadic q, draw a fresh uniform B-bit integer and compare
+it with the d integer coordinates to sample S(U) exactly. K samples cost
+O(K*d+K*v) operations and K*v payload probes without sorting; this is
+an approximate estimate of L. The previously proved conditional bounded-
+variable guarantee gives failure at most
+2*v*Q*exp(-K*epsilon^2/2) for a specified finite adaptive horizon Q.
+At exact corner queries every sample selects the target, so point recall
+is deterministic. The exact sorted reader needs no probability/horizon
+qualification, apart from explicit output rounding and query noise.
+
+This assumes an already supplied continuous code q and fixed corner keys.
+It does not construct a robust learned encoder for arbitrary raw keys,
+support arbitrary independent movements of those keys, or obtain
+training/sample-complexity advantages for free. Their parameters,
+maintenance, robustness and evaluation costs require another theorem.
+
+**A corner guarantee is not a global guarantee.** In a strict sorting
+chamber, the derivative in coordinate pi(r) is
+
+```text
+partial L/partial q_{pi(r)} = V_{S_r}-V_{S_{r-1}}.
+```
+
+For scalar values in [-1,1], every derivative has magnitude at most two.
+The continuous piecewise-affine reader is therefore globally
+2*d-Lipschitz in the infinity norm. This bound is sharp: choose alternating
+values +1,-1,+1,... along one chain and perturb each sorted coordinate
+in the sign of its derivative, preserving its order. The output changes
+by 2*d times the input infinity-norm change. The checker gives explicit
+interior witnesses. Thus the 4*delta corner result must not be promoted
+to a dimension-independent all-query Lipschitz theorem.
+
+**Local query rank versus active common-scalar mixtures.** On a neighborhood
+where selected addresses are fixed, consider any differentiable reader
+
+```text
+F(q) = sum_{h=1}^k w_h(q) V_h,   sum_h w_h(q)=1,
+```
+
+with fixed stored vectors V_h. Subtracting V_k gives
+J_F=sum_{h<k}(V_h-V_k)*(gradient w_h)^T, hence rank(J_F)<=k-1.
+A rank-d local response therefore needs at least d+1 contributing vectors
+in this class. This is elementary affine-span algebra, not a new lower
+bound for general memory architectures. Query-only residuals, vector-valued
+gates, q-dependent experts and more general decoders are outside the claim.
+Any accessed cached value summaries also belong in the contributing state
+and its cost accounting. Discrete routing traces need not remain fixed
+on their boundaries; the claim concerns the stated differentiable region.
+
+The simplex reader attains rank d: choose V_S[j]=2*1_{j in S}-1. Its
+coordinate marginals equal q, so L(q,V)=2*q-1 and J_L=2*I. This proves
+that the function class has no structural two-latent differential
+bottleneck. It does not promise rank d for every arbitrary payload table;
+a constant table necessarily has zero derivative. Exact local full-rank
+response and cheap scalar-mixture reads already have this known example.
+
+For point recall alone, even more is already available. Componentwise
+rounding followed by one dictionary lookup returns V_S exactly throughout
+||q-1_S||_infinity<1/2. This has a different, discontinuous full-query
+function and zero local Jacobian away from its boundaries. It refutes a
+claimed point-recall/access advantage; it is not an implementation of L.
+The common-threshold random decoder and its median/majority variants do
+not improve this rounding guarantee at corner addresses.
+
+**Exact prior-art comparison.** Gupta et al.,
+[Monotonic Calibrated Interpolated Look-Up Tables (2016)](https://www.jmlr.org/papers/v17/15-243.html),
+Sections 5.2.1--5.2.4 and Algorithm 2, explicitly give the sorted chain,
+coordinate-difference weights, d+1 active vertices and derivative formula.
+Those sections and their definitions were inspected in the paper; the
+relevant equations/algorithm were also visually checked. We use the
+unconstrained interpolation operator, not the paper's additional
+monotonic learning constraints or empirical claims.
+
+The official
+[TensorFlow Lattice simplex evaluator](https://www.tensorflow.org/lattice/api_docs/python/tfl/lattice_lib/evaluate_with_simplex_interpolation)
+documents the identical full-query function, not merely a related sparse
+interpolator. No TensorFlow dependency or benchmark is introduced here.
+[Deep Lattice Networks (2017), Section 2](https://arxiv.org/html/1709.06680v1)
+also names simplex interpolation/Lovasz extension as an existing lattice
+choice. Its reported experiments use multilinear interpolation; we do
+not attribute those training results to the present common-threshold rule.
+The retention/rank calculations above are elementary consequences and
+are not evidence of a new publishable result.
+
+**Decision and next gate.** Nonlinear routing can escape the preceding
+fixed squared-bilinear ceiling while preserving high-dimensional query
+dependence, but known lattice readers already do so. Park this candidate
+at the literature gate. A future proposal must supply a new complete
+encoder/routing/update guarantee beyond the applicable lattice/index
+method, not just a better comparison against independent coordinate
+sampling, a point-only dictionary, or a rank-constrained head. Distinguish
+local address robustness, global query stability, active value bandwidth
+and trainability. The original goal and its publication criteria remain
+unchanged and unachieved.
+
+The existing checker records the bounded independent controls:
+
+```bash
+python3 -B scripts/run_correlated_routing_checks.py
+```
+
+They include 3,905 dyadic queries and 15,620 independently enumerated
+common-threshold tickets, including ties; 18,555 coordinate marginals;
+2,040 corner-noise/rounding cases; 192 vector overwrites; eight full-rank
+Jacobians and eight sharp global-sensitivity witnesses; and 75 normalized
+scalar-mixture rank controls. The 16--128 dimensional examples are
+symbolic corner calculations: their exponential tables were not allocated
+or benchmarked. Older certificates and all protected research remain
+preserved. There was no additional neural training or outreach.

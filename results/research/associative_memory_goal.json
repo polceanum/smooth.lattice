@@ -18,7 +18,7 @@
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "dynamic_full_matrix_squared_bilinear_sampler_derived_from_published_Gram_trees; exact_product_leverage_addressability_ceiling_checked; new_architecture_advantage_unproved"
+      "status": "shared_threshold_nonlinear_routing_equals_known_simplex_lattice_interpolation; local_corner_retention_global_sensitivity_and_active_read_rank_distinguished; new_encoder_routing_advantage_unproved"
     },
     {
       "stage": 4,
@@ -959,6 +959,79 @@
       "exact_finite_sample_confidence_controls": 64,
       "zero_pivot_and_zero_normalizer_controls": true,
       "full_rank_correlated_query_control": true,
+      "novelty_established": false,
+      "new_publishable_advantage_established": false
+    },
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "verification_commands": [
+      "python3 -B scripts/run_numerical_capacity_checks.py",
+      "python3 -B scripts/run_robust_frontier_checks.py",
+      "python3 -B scripts/run_affine_robust_checks.py",
+      "python3 -B scripts/run_robust_reader_checks.py",
+      "python3 -B scripts/run_regression_baseline_checks.py",
+      "python3 -B scripts/run_correlated_routing_checks.py",
+      "python3 -B scripts/run_shared_feature_retention_checks.py",
+      "python3 -B scripts/run_retention_geometry_checks.py",
+      "python3 -B scripts/run_retention_tradeoff_checks.py",
+      "python3 -B scripts/run_feature_dimension_checks.py",
+      "python3 -B scripts/run_structural_complexity_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py"
+    ]
+  },
+  "thirteenth_iteration": {
+    "previous_turn_classification": "progress: dynamic full-matrix bilinear sampler, complete costs and sharp product-leverage recall ceiling saved; full objective unachieved",
+    "record": "docs/interleaving_research.md, Associative-memory goal: shared-threshold routing is an existing lattice reader",
+    "certificate_script": "scripts/run_correlated_routing_checks.py",
+    "certificate_report": "results/research/correlated_routing_checks.json",
+    "candidate_and_gate": {
+      "complete_query": "Store all N=2^d independent bounded vector payloads on fixed binary corners. For full continuous q in [0,1]^d, return E[V_{j:q_j>U}] with one common uniform threshold U. This is exactly the known simplex/Lovasz lattice reader, not a new architecture.",
+      "exact_cost": "Sort d B-bit query coordinates, access at most d+1 payload vectors, and use O(d*v) arithmetic; charge N*v*S payload bits, d-bit addresses, initialization, O(d*(B+log d)) query workspace and B+S+O(log d) arithmetic precision. Point overwrite costs O(v) value words. No arbitrary raw-key encoder, key movement or exponential-storage compression is supplied.",
+      "sampling": "K fresh common thresholds give an unbiased estimate in O(K*d+K*v) operations and K*v value probes. Standard conditional bounded-variable failure <=2*v*Q*exp(-K*epsilon^2/2) at finite adaptive horizon Q. At corner codes exact sampling is deterministic.",
+      "decision": "Park at the literature gate. Published simplex interpolation implements the identical complete fresh-query function, and the common-threshold expectation is an elementary representation. No training or new model/search framework."
+    },
+    "proved_scope_controls": {
+      "corner_retention": "For ||q-1_S||_infinity<=delta<1/2, target mass >=1-2*delta and worst-payload infinity error <=4*delta, sharp at mixed corners. Independent Bernoulli interpolation instead has mass (1-delta)^d in the uniform perturbation family; comparing only with it does not establish novelty.",
+      "global_sensitivity": "Scalar bounded tables have sharp global infinity-norm Lipschitz constant 2*d. Explicit alternating-chain interior perturbations attain it; the corner bound is not an all-query stability theorem.",
+      "active_read_rank": "For a differentiable locally fixed-address normalized common-scalar mixture of k stored vectors, Jacobian rank <=k-1. Full local rank d therefore needs d+1 contributing vectors in that restricted class. Residual query terms, vector gates, q-dependent experts and other decoders are excluded; this is elementary affine-span algebra.",
+      "full_dimensional_example": "V_S=2*1_S-1 gives exact R(q)=2*q-1 and Jacobian 2*I. This shows the function class escapes a structural two-latent bottleneck; it does not guarantee full rank or conditioning for every payload assignment.",
+      "stronger_point_only_baseline": "Componentwise rounding plus one dictionary lookup gives exact corner recall for infinity-noise <1/2. It computes a different discontinuous full-query function, so point-only retention is not a novel sampler advantage."
+    },
+    "primary_sources": [
+      {
+        "url": "https://www.jmlr.org/papers/v17/15-243.html",
+        "scope": "Gupta et al. 2016, Sections 5.2.1--5.2.4 and Algorithm 2: sorted-chain simplex interpolation, active vertices, derivatives and rotational dependence inspected. PDF pages 16--17 visually checked. Unconstrained interpolation used; no monotonic projection or independent empirical replication claimed."
+      },
+      {
+        "url": "https://www.tensorflow.org/lattice/api_docs/python/tfl/lattice_lib/evaluate_with_simplex_interpolation",
+        "scope": "Official API definition inspected; same sorted-coordinate difference weights and complete simplex reader. No dependency installation or benchmark introduced."
+      },
+      {
+        "url": "https://arxiv.org/html/1709.06680v1",
+        "scope": "Section 2 and related function-class discussion inspected. Simplex/Lovasz interpolation is explicitly existing; reported experiments use multilinear interpolation, not the common-threshold reader."
+      }
+    ],
+    "decision": "Nonlinear routing escapes the fixed bilinear ceiling, but known lattice readers already supply this construction. Retain the exact scope distinctions as a gate; do not claim another published-method consequence as a new paper.",
+    "next_actions": [
+      "Before extending checker or model code again, identify an explicit non-corollary encoder/routing claim and its strongest same-workload primary comparator. Another implementation of an established construction is not the next research objective.",
+      "Identify a genuinely new complete encoder/routing/update guarantee for high-dimensional raw queries and changing bindings beyond applicable lattice and dynamic-index methods.",
+      "Require a precise comparison covering local address retention, global query stability, active value bandwidth and encoder/key maintenance; neither point-only lookup nor independent-coordinate blending is a sufficient sole baseline.",
+      "Do not treat local Jacobian rank as a universal trainability result, or extend the normalized common-scalar read-span lemma to vector-gated/residual decoders.",
+      "Preserve the original full goal and acceptance criteria. No neural training, outreach or contribution manuscript before a candidate survives novelty and complete-cost gates."
+    ],
+    "certificate_summary": {
+      "dyadic_grid_queries": 3905,
+      "exact_common_threshold_tickets": 15620,
+      "coordinate_marginal_controls": 18555,
+      "corner_noise_and_hard_rounding_controls": 2040,
+      "vector_payload_overwrites": 192,
+      "full_jacobian_examples": 8,
+      "normalized_common_scalar_mixture_rank_controls": 75,
       "novelty_established": false,
       "new_publishable_advantage_established": false
     },
