@@ -3405,3 +3405,350 @@ stronger generic construction or obstruction is needed. The composed
 fixed-k bounds above also need a dedicated priority check before any
 novelty claim. Preserve them as a baseline and proof artifact; publication,
 learned usefulness and the original advantage goal remain unestablished.
+
+## Exact exponential attention with signed query budgets
+
+The subset mechanism extends to a substantially richer query function
+than a score of the unweighted intersection size. The theorem below
+computes full exponential attention for signed integer queries, with
+every active value included. It is an exact structural result, not a
+new exponential approximation or a learned-model result. Its multilinear
+expansion is classical; a new useful advantage over the strongest
+applicable methods and a publication contribution remain unproved.
+
+### Finite model and uniform algorithm
+
+There are at most n active raw binary keys in dimension d, each of weight
+w, with pair intersections <k, 1<=k<=w. Each slot holds an arbitrary
+independently overwritable signed fixed-grid v-coordinate payload. Write
+its integer grid units as V_i. Use a known common dyadic step 2^(-g);
+S charges both the unit-magnitude bits and the declared grid precision g.
+The displayed formula is in grid units, with that fixed scale applied for
+physical value units and charged when materializing output denominators.
+A query is
+all d raw integer coordinates q_a, with sum_a |q_a|<=B. B is fixed
+before execution. Return the complete exact rational attention mean
+
+```text
+R(q) = sum_i 2^(sum_a q_a*x_ia)*V_i / sum_i 2^(sum_a q_a*x_ia),
+```
+
+or the canonical empty result if no keys are active. This is softmax with
+logits ln(2)*<q,x_i>, expressed with exactly representable dyadic weights.
+It is not unrestricted real-valued transformer attention. Queries have
+no supplied neighbor address or encoded latent; scan every coordinate,
+check integrality and the norm budget, and derive their nonzero support.
+The theorem assumes this integer query representation; producing it from
+semantic inputs or training an encoder is not free or proved here.
+
+Keep the generic subset aggregates, support counts, size-k unique owners,
+raw keys, sorted supports and per-key handles from the preceding theorem.
+Admission is the complete low-intersection test, not membership in a fixed
+polynomial codebook. With F=sum_{j<=k}binom(w,j), T=|supp(q)| and
+Q_T=sum_{j<=k}binom(T,j), the following bounds include every payload word:
+
+```text
+L = k*ceil(log2(d+1)),
+state:      O(n*(ceil(d/W)+w+v+1) + n*F*(L+v+1) + d+w*k) words,
+read:       O(d + Q_T*(L+k+w*k+v+1)),
+overwrite:  O(F*(v+1)),
+raw edit:   O(d + F*(L+v+1)).
+```
+
+Deletion is included in the raw-edit bound; an ordinary value overwrite
+uses cached handles. Initial loading charges n raw edits plus allocation
+and zeroing of the full finite-capacity arenas, raw-key arrays, independent
+values, metadata and scratch. Sorted supports cost n*w words, already
+displayed. Field arithmetic and a learned codebook are unnecessary.
+The finite-word model permits exact integer arithmetic on W-bit words;
+choose W for the explicit guard/address bounds below and charge larger
+bit arithmetic separately. The Python verifier is an exact map model,
+not a measurement of this arena implementation or a runtime benchmark.
+
+Put D=sum_{a:q_a<0}|q_a| and u_a=2^q_a-1. Scale every weight by the
+common factor 2^D. For any subset A of the query support, its scaled
+multilinear coefficient is the integer
+
+```text
+C_A = (-1)^(number of negative q_a in A)
+      * 2^(D-sum_{a in A,q_a<0}|q_a|)
+      * product_{a in A}(2^|q_a|-1).
+```
+
+For s_i=|supp(q) intersect supp(x_i)| define
+
+```text
+lambda_i = 2^(D+<q,x_i>),
+P_i = sum_{A subset supp(q) intersect supp(x_i), |A|<k} C_A.
+```
+
+The product identity product_{a in supp(x_i)}(1+u_a) proves that
+P_i=lambda_i whenever s_i<k. Therefore the full scaled sums are exactly
+
+```text
+den = sum_{A subset supp(q), |A|<k} C_A*c_A
+      + sum_{i:s_i>=k}(lambda_i-P_i),
+num = sum_{A subset supp(q), |A|<k} C_A*H_A
+      + sum_{i:s_i>=k}(lambda_i-P_i)*V_i.
+```
+
+Enumerate subsets to fetch the aggregates and discover all high-order
+owners, deduplicating by cleared address marks. There is no all-key scan
+or omitted low-score mass. At most binom(T,k) owner occurrences arise.
+Unlike the unweighted case, P_i generally depends on which coordinates
+are shared, not only their number.
+
+Compute P_i with elementary symmetric polynomials in O(w*k) operations.
+Initialize E_0=2^D and E_j=0 for 0<j<k. For each shared coordinate a,
+update E_j+=u_a*E_{j-1} in descending order of j. All E_j remain integers:
+before introducing a negative coordinate of magnitude m, every E_j has
+the common factor 2^(D-M), where M is the total magnitude of already
+processed negative coordinates. Since D-M>=m, dividing E_{j-1} by 2^m
+is exact. Multiply the resulting integer by -(2^m-1); positive coordinates
+need no division. Then P_i=sum_{j<k}E_j. Compute lambda_i from its
+nonnegative exponent D+<q,x_i>, which is at most B.
+
+This proves the complete operation bounds. All active keys have strictly
+positive true weights, including keys outside the owner list. Overwriting
+any such value changes the exact output. The saved witness checks this
+explicitly; the candidate list only locates corrections to cached sums.
+
+### Fixed precision and an asymptotic class
+
+Every |C_A|<=2^B and every lambda_i<=2^B. Partial elementary sums have
+magnitude at most 2^B*F. With support counts <=n, a conservative scalar
+guard is
+
+```text
+S+B+ceil(log2(n+1))+ceil(log2(F+1))+ceil(log2(Q_max+1))+O(1) bits,
+Q_max = sum_{j<=k}binom(min(d,B),j).
+```
+
+This also bounds signed cancellation during the complete numerator/count
+calculation. Counts govern cell lifetimes even if the value sum vanishes.
+The final denominator is positive for a nonempty active state. Return
+signed integer numerators and a shared integer denominator; canceling
+the common 2^D does not require floating arithmetic. Address width covers
+all arenas, n-slot arrays, query coordinates and v. No guard or metadata
+counter grows with the number of overwrites or queries.
+
+For w=Theta(log n), d=log^O(1)n, k=O(w/log w), B=O(w), and
+polylogarithmic scalar precision, T<=B and the earlier binomial bounds
+give F,Q_max=n^o(1). State and full raw preprocessing are
+n^(1+o(1))*(v+1), and each complete read, admitted raw edit and value
+overwrite costs n^o(1)*(v+1), including bit arithmetic up to the stated
+polylogarithmic factors. This covers all future raw signed integer queries
+within the budget, not only the stored keys or a supplied query list.
+The integer step is essential: arbitrarily small real or fine-grid
+coordinates can make a norm-bounded query dense. On a grid of step
+2^(-b), the support bound becomes T<=B*2^b, and the claimed subset
+cost must be recomputed; it need not remain subpolynomial. No free
+transfer to dense real neural activations follows from quantization.
+
+The finite factors matter. In the six saved parameter examples below,
+F already exceeds n. The asymptotic notation does not certify useful
+latency, small tables or a win over existing ML implementations.
+
+### Generic admission is feasible without a hidden codebook
+
+For a fresh independent uniform weight-w proposal and any fixed existing
+weight-w key, a specified k-subset is contained in the proposal with
+probability binom(w,k)/binom(d,k). Union over that existing key's
+binom(w,k) subsets, then over at most n current keys, gives the conditional
+per-proposal rejection bound
+
+```text
+rho <= min(1,n*binom(w,k)^2/binom(d,k))
+     <= min(1,n*(e*w^2/(k*d))^k).
+```
+
+It is valid after any history if this proposal is freshly uniform and
+independent of it. When the displayed untruncated bound is <1, resampling
+until acceptance has conditional expected attempts at most 1/(1-rho)
+and tail at most rho^t. Resampling is not a worst-case accepted-edit
+bound. Every individual raw proposal is validated at the stated worst-case
+cost; semantic data are not assumed to be uniform random proposals.
+Correctness and retention are deterministic for every admitted history.
+In an infinite run, this per-proposal statement is not an event that all
+future proposals will be accepted.
+
+For a batch of n independent proposals, the failure probability is at
+most binom(n,2)*binom(w,k)^2/binom(d,k). For example let n=2^m,
+w=8m, d=w^2 and k=ceil(6m/ceil(log2(m+1))). As m tends to infinity,
+the rejection bound is n^(-5+o(1)) and the batch failure bound is
+n^(-4+o(1)); simultaneously F,Q_max=n^o(1) at B=2w. This proves a
+broad random family, not just an isolated codebook. Exact integer controls
+at m=16,32,64,128,256,512 certify per-proposal rejection <=n^-2.
+They also report F and Q_max bit lengths, rather than allocating their
+very large conceptual tables. The hypergeometric/union-bound reasoning
+is elementary and is not a new random-code capacity theorem.
+
+### Retention, independent values, and the scope of a rank obstruction
+
+Let q=b*x_t+e for a positive integer b and sum_a|e_a|<=eta, with this
+query in budget. For any other active key,
+
+```text
+<q,x_t>-<q,x_i> >= b*(w-k+1)-eta = Delta.
+```
+
+Thus the total off-target/target weight ratio is at most
+R=(n-1)*2^(-Delta). If |V_ij|<=M in actual value units, each output
+coordinate differs from its current target value by at most
+2*M*R/(1+R)<=2*M*R. If values lie on a known grid of step delta and
+2*M*R<delta/2, ordinary rounding recovers every independent target
+coordinate exactly. This survives all accepted key edits, overwrites,
+deletions and slot reuse; there is no horizon or accumulated forgetting.
+It does not claim fixed points or iterative Hopfield convergence.
+The standard separation-to-softmax-concentration mechanism is already
+part of [Ramsauer et al., Theorems 4--5](https://arxiv.org/abs/2008.02217).
+The primary statements were read on PDF page 5. The cost theorem, signed
+integer query model and grid accounting are the additional questions here,
+not a discovery of exponential memory capacity or separation-based retrieval.
+
+In the batch family above, b=1, eta=w/4, B=2w, M=1 and grid
+delta=2^(-2m) satisfy the strict rounding inequality for sufficiently
+large m. The six stated finite examples check that inequality exactly.
+The verifier separately installs all 169 affine-polynomial keys over F_13,
+weight 13, k=2, with independent integer values in [-3,3]. It exhausts
+all signed integer perturbations of norm <=1 at four targets, including
+states changed by earlier target overwrites, and checks pure reads after
+each target's own independent overwrite. The conservative error bound is
+63/128<1/2, sufficient for exact integer-grid rounding. A noncandidate
+value overwrite still changes the unrounded rational attention output.
+
+At queries q=x_i, let P be the normalized n-by-n attention matrix.
+If gamma=2*(n-1)*2^(-(w-k+1))<1, then ||P-I||_infinity<=gamma,
+where this norm is the induced maximum absolute row sum. For every
+rank-deficient matrix A, choose Av=0 with ||v||_infinity=1. Then
+||(P-A)v||_infinity>=1-gamma. Consequently a fixed feature method of
+rank <n cannot approximate this operator uniformly on all independent
+bounded values to error <1-gamma. In the fully installed 169-key example,
+the exact row norm is 162/2129, giving lower bound 1967/2129.
+This is an elementary rank obstruction, not a separation from dynamic
+dictionaries, sparse feature states of dimension >=n, indexed correction
+algorithms or value-dependent nonlinear methods. Independent grid-value
+retention also gives the usual information bound requiring enough bits
+to distinguish every value assignment; it does not prove our update cost
+optimal. No two-latent value bottleneck is imposed by this architecture.
+The operator-norm maximum is attained on sign vectors, so the obstruction
+also covers finite value grids containing -1 and +1; it does not depend
+on allowing an infinitely precise value witness.
+
+### A simpler exact comparator: coordinate postings and a total
+
+An ordinary inverted index supplies another important baseline. Maintain
+the current total payload H, active count m, and a posting list of slots
+for each coordinate. For query support S, traverse these lists, accumulating
+c_i=sum_{a in S intersect x_i}q_a at touched slots. Untouched keys have
+score zero. With D as above, exactly
+
+```text
+den = 2^D*m + sum_{touched i}(2^(D+c_i)-2^D),
+num = 2^D*H + sum_{touched i}(2^(D+c_i)-2^D)*V_i.
+```
+
+This is the h=0 version of the correction idea. It returns the full
+function, including untouched values, with no high-order subset tables.
+Every signed integer query in the stated budget works; cancellation of
+positive and negative coordinates can leave a touched slot with zero
+correction, which is harmless. The exact guard is only
+S+B+O(log(n+1)) scalar bits plus address width. The same direct dyadic
+oracle checks both algorithms' complete numerators and denominators on
+every valid test query.
+
+If every coordinate has at most L active keys, at most T*L posting hits
+and min(m,T*L) distinct values are visited. Complete read cost is
+O(d+T*L+min(m,T*L)*(v+1)). Value overwrites cost O(v+1), updating H
+and the independent slot. A linked-node arena with n*w nodes, d heads,
+per-key deletion handles, free lists, bounded score counters and cleared
+touch marks uses O(n*(w+v+1)+d) words. Sorted supports losslessly describe
+the binary keys; supplying raw keys still costs d to validate. The subset
+method may use the same lossless representation, so this is not a memory
+comparison against a redundant dense key array. The verifier stores both
+comparison states; it does not measure this standalone bound.
+
+Generic low-intersection admission also works through postings. Before
+mutation, check each proposed coordinate's load after excluding the old
+slot. Count intersections at all slots reached through its w posting
+lists, rejecting if any other slot reaches k. Keys outside those lists
+have intersection zero. Ignore only the replacing slot; a duplicate is
+therefore rejected by the same check. This completely validates both
+promises in O(d+w*L+w+v) steps. Deletion costs O(w+v+1) using the
+cached handles. Check before removal so rejected edits are atomic; accepted
+edits update the lists, counts and H. There is no n-slot clearing pass or
+unbounded epoch counter. Full initialization charges all input scans,
+validation, allocations and pointer setup. A separate exact control tests
+a load-only rejection that would pass the intersection condition.
+
+The load cap is an additional promise. Low pair intersection alone does
+not imply it. Conversely a random batch of n weight-w keys has coordinate
+load mean mu=n*w/d; a union of standard binomial Chernoff bounds gives
+Pr(max load>2*mu)<=d*exp(-mu/3), with integer rounding handled upward.
+One may prove that elementary inequality directly from
+E exp(t*load)=(1-w/d+(w/d)*exp(t))^n and Markov's inequality at
+t=ln 2. At d=sqrt(n) times suitable logarithmic factors, w,B and v
+polylogarithmic, this baseline has near-linear sparse-key/value state,
+complete reads and raw admission in sqrt(n) times logarithmic factors,
+and O(v+1) value overwrites. Constant k>=8 makes the simultaneous pair
+intersection failure bound n^(-2+o(1)) in that wider dimension regime.
+After admission both invariants and the retention bound are deterministic.
+These statements assert neither an efficient semantic encoder nor that
+the original polylogarithmic-dimension regime has the same load bound.
+
+This is classical postings with an exact background correction, not a
+new fundamental architecture. It shows why the subset factors must be
+compared with load-sensitive methods and why a low-rank obstruction is
+insufficient. Changing raw dimension changes input cost and the feasible
+load, and must be stated when comparing storage, access and retention.
+
+### Primary comparisons and decision
+
+[Alman--Song, Theorems 3.7--3.8 and 4.6](https://arxiv.org/abs/2302.13214)
+give polynomial-feature approximation and a conditional worst-case barrier
+in their normalized real-input model. Their near-linear regime does not
+directly cover the strongly scaled sparse example here. Conversely that
+worst-case lower bound does not apply to every low-intersection promised
+class, and its real-RAM approximation model differs from our exact dyadic
+model. No contradiction or general softmax speedup follows.
+
+[Aliakbarpour--Braverman--Yin--Zhang, Definition B.3 and Theorems C.3/I.5](https://arxiv.org/abs/2510.01643)
+is a directly relevant sparse-exact plus polynomial comparator. The primary
+PDF's Definition B.3 and Theorem I.5 were visually checked on pages 23
+and 67. B.3 assumes sublinear total support of large input entries;
+ordinary sparsity of every row does not imply it for n rows. I.5 removes
+that assumption but its error includes epsilon_2*exp(3*B_entry^2), with
+runtime proportional to epsilon_2^-4. These guarantees cannot be
+advertised as entry-independent high-accuracy bounds by hiding that
+factor. They also do not assert our dynamic exact-query guarantee.
+Their methods or refinements might nevertheless cover this promised
+class; a theorem mismatch is not proof that they cannot.
+Definition I.1 also starts buckets from the minimum absolute input entry;
+our sparse inputs have zeros. A zero-aware specialization is needed for
+direct use, but that routine boundary issue is not an algorithmic separation.
+
+The contemporary comparison is not complete. In particular,
+[Gupta--Huang--Saha--Xu--Ye, ICLR 2026](https://proceedings.iclr.cc/paper_files/paper/2026/hash/8a01099096c85890b1d1aff3c6b4ea56-Abstract-Conference.html)
+studies arbitrary-temperature attention with dimension-dependent bounds,
+and [S3-Attention](https://arxiv.org/abs/2601.17702) uses learned sparse
+features and inverted retrieval. Their primary abstracts were identified;
+the full theorem/function/cost comparisons remain to be done. Neither is
+treated as excluded by this iteration or as a matching exact dynamic
+guarantee on the strength of its abstract.
+
+Finally, the weighted multilinear subset expansion and cached conjunction
+sums are established machinery. The new query function is richer than
+the unweighted intersection transform, but this extension alone does not
+establish a publication-worthy contribution. In particular classical
+subset indexing and aggregate materialization remain applicable baselines.
+Our own compressed index is already an obvious comparator for the new
+application. The fixed-feature rank obstruction cannot substitute for
+that strongest-method comparison.
+
+The useful outcome is a precise exact-attention candidate with complete
+precision, admission and retention accounting. Preserve it and its exact
+certificates. Do not claim a new fundamental advantage, start training or
+prepare a contribution paper on this extension alone. The next substantive
+question is whether query/update cost can be improved in a useful finite
+regime, beyond these established subset and sparse-correction mechanisms,
+or whether this branch should be classified fully as a baseline.

@@ -3369,6 +3369,469 @@ def affine_coded_controls():
             "scope": "Exact sparse-map correctness control, not a direct-array implementation, hardware benchmark or novelty proof. All raw-query numerators/denominators are checked against independent Hamming scans. Small complete codebooks and sparsely occupied larger fixed codebooks are distinguished; larger capacities are conceptual. The construction uses established soft interpolation and affine evaluation constraints with partial cached sums. It restricts key admission to a known polynomial codebook, so does not settle the priority or usefulness of the generic low-intersection candidate. No neural training or strongest-baseline separation is claimed."}
 
 
+def weighted_exponential_controls():
+    """Full signed-integer-query softmax versus independent dyadic sums."""
+    from math import comb
+
+    class Index:
+        # Correctness map, not an arena/word-RAM benchmark. The written
+        # bound uses the preserved finite-capacity trie and explicit handles.
+        def __init__(self, capacity, dimension, weight, level, budget, value_bits=32, load_limit=None):
+            self.n, self.d, self.w, self.k = capacity, dimension, weight, level
+            self.budget, self.value_bits = budget, value_bits
+            self.keys, self.values = {}, {}
+            self.sums, self.owners, self.handles = {}, {}, {}
+            self.postings, self.total_value = {}, [0, 0]
+            self.load_limit = load_limit
+            self.f = sum(comb(weight, j) for j in range(level + 1))
+            self.qmax = sum(comb(min(dimension, budget), j) for j in range(level + 1))
+            self.guard = value_bits + budget + (capacity + 1).bit_length() + self.f.bit_length() + self.qmax.bit_length() + 4
+            self.stats = dict(reads=0, subset_lookups=0, candidate_visits=0,
+                              negative_coefficients=0, negative_corrections=0,
+                              no_candidate_reads=0, bulk_no_candidate_reads=0,
+                              overwrites=0, deletes=0, admitted=0, rejected=0,
+                              live_zero_sum_observations=0, max_intermediate_bits=0)
+            self.stats.update(posting_reads=0, posting_hits=0, posting_value_visits=0,
+                              max_coordinate_load=0, load_only_rejections=0)
+
+        def support(self, key):
+            return tuple(i for i in range(self.d) if key >> i & 1)
+
+        def snapshot(self):
+            return (tuple(sorted(self.keys.items())), tuple(sorted(self.values.items())),
+                    tuple(sorted((a, count, tuple(total)) for a, (count, total) in self.sums.items())),
+                    tuple(sorted(self.owners.items())), tuple(sorted(self.handles.items())),
+                    tuple(sorted((a, tuple(sorted(slots))) for a, slots in self.postings.items())),
+                    tuple(self.total_value))
+
+        def remove(self, slot):
+            if slot not in self.keys:
+                return
+            support = self.support(self.keys[slot])
+            for a in self.handles.pop(slot):
+                count, total = self.sums[a]
+                count -= 1
+                total = [x - y for x, y in zip(total, self.values[slot])]
+                if count:
+                    self.sums[a] = count, total
+                else:
+                    assert total == [0, 0]
+                    del self.sums[a]
+            for a in combinations(support, self.k):
+                assert self.owners.pop(a) == slot
+            del self.keys[slot]
+            for a in support:
+                self.postings[a].remove(slot)
+                if not self.postings[a]:
+                    del self.postings[a]
+            self.total_value = [x - y for x, y in zip(self.total_value, self.values[slot])]
+            del self.values[slot]
+            self.stats['deletes'] += 1
+
+        def replace(self, slot, key, value):
+            assert 0 <= slot < self.n and all(abs(x) < 1 << self.value_bits for x in value)
+            before = self.snapshot()
+            support = self.support(key) if 0 <= key < 1 << self.d else ()
+            valid = len(support) == self.w
+            valid = valid and all(a not in self.owners or self.owners[a] == slot
+                                  for a in combinations(support, self.k))
+            load_valid = (self.load_limit is None or all(
+                len(self.postings.get(a, ())) - (slot in self.postings.get(a, ())) < self.load_limit
+                for a in support))
+            self.stats['load_only_rejections'] += valid and not load_valid
+            valid = valid and load_valid
+            brute = (0 <= key < 1 << self.d and key.bit_count() == self.w
+                     and all(i == slot or (other & key).bit_count() < self.k for i, other in self.keys.items()))
+            brute = brute and (self.load_limit is None or all(
+                sum(i != slot and (other >> a & 1) for i, other in self.keys.items()) < self.load_limit
+                for a in support))
+            assert valid == brute
+            if not valid:
+                assert self.snapshot() == before
+                self.stats['rejected'] += 1
+                return False
+            self.remove(slot)
+            self.keys[slot], self.values[slot] = key, tuple(value)
+            self.total_value = [x + y for x, y in zip(self.total_value, value)]
+            for a in support:
+                self.postings.setdefault(a, set()).add(slot)
+                self.stats['max_coordinate_load'] = max(self.stats['max_coordinate_load'], len(self.postings[a]))
+            handles = tuple(a for j in range(self.k) for a in combinations(support, j))
+            self.handles[slot] = handles
+            for a in handles:
+                count, total = self.sums.get(a, (0, [0, 0]))
+                self.sums[a] = count + 1, [x + y for x, y in zip(total, value)]
+            for a in combinations(support, self.k):
+                assert a not in self.owners
+                self.owners[a] = slot
+            self.stats['admitted'] += 1
+            return True
+
+        def overwrite(self, slot, value):
+            assert slot in self.keys and all(abs(x) < 1 << self.value_bits for x in value)
+            delta = [x - y for x, y in zip(value, self.values[slot])]
+            for a in self.handles[slot]:
+                count, total = self.sums[a]
+                self.sums[a] = count, [x + y for x, y in zip(total, delta)]
+            self.values[slot] = tuple(value)
+            self.total_value = [x + y for x, y in zip(self.total_value, delta)]
+            self.stats['overwrites'] += 1
+
+        def check_state(self):
+            expected, owners = {}, {}
+            for slot, key in self.keys.items():
+                support = self.support(key)
+                assert self.handles[slot] == tuple(a for j in range(self.k) for a in combinations(support, j))
+                for a in self.handles[slot]:
+                    count, total = expected.get(a, (0, [0, 0]))
+                    expected[a] = count + 1, [x + y for x, y in zip(total, self.values[slot])]
+                for a in combinations(support, self.k):
+                    assert a not in owners
+                    owners[a] = slot
+            assert self.sums == expected and self.owners == owners
+            postings = {}
+            for slot, key in self.keys.items():
+                for a in self.support(key):
+                    postings.setdefault(a, set()).add(slot)
+            assert postings == self.postings
+            assert self.total_value == [sum(value[j] for value in self.values.values()) for j in range(2)]
+            assert self.load_limit is None or all(len(slots) <= self.load_limit for slots in self.postings.values())
+            self.stats['live_zero_sum_observations'] += sum(count > 0 and total == [0, 0]
+                                                          for count, total in self.sums.values())
+            assert len(self.sums) + len(self.owners) <= self.n * self.f
+
+        def bounded(self, *numbers):
+            bits = max((abs(x).bit_length() + 1 for x in numbers), default=1)
+            self.stats['max_intermediate_bits'] = max(bits, self.stats['max_intermediate_bits'])
+            assert bits <= self.guard
+
+        def read(self, raw):
+            if len(raw) != self.d or any(type(x) is not int for x in raw) or sum(abs(x) for x in raw) > self.budget:
+                raise ValueError('query outside the stated integer norm budget')
+            self.stats['reads'] += 1
+            support = tuple(i for i in range(self.d) if raw[i])
+            negative_sum = sum(-x for x in raw if x < 0)
+            factor = {a: (1 << abs(raw[a])) - 1 for a in support}
+            numerator, denominator = [0, 0], 0
+            for j in range(self.k):
+                for a in combinations(support, j):
+                    negative = sum(-raw[i] for i in a if raw[i] < 0)
+                    coefficient = 1 << (negative_sum - negative)
+                    for i in a:
+                        coefficient *= factor[i] * (-1 if raw[i] < 0 else 1)
+                    self.stats['negative_coefficients'] += coefficient < 0
+                    self.stats['subset_lookups'] += 1
+                    count, total = self.sums.get(a, (0, [0, 0]))
+                    denominator += coefficient * count
+                    numerator = [x + coefficient * y for x, y in zip(numerator, total)]
+                    self.bounded(coefficient, denominator, *numerator)
+            candidates = {self.owners[a] for a in combinations(support, self.k) if a in self.owners}
+            self.stats['subset_lookups'] += comb(len(support), self.k)
+            for slot in candidates:
+                overlap = [a for a in self.support(self.keys[slot]) if raw[a]]
+                # E_j = 2^negative_sum times the j-th elementary symmetric
+                # polynomial. Dividing by a new negative factor's power
+                # of two is exact before it is introduced.
+                elementary = [1 << negative_sum] + [0] * (self.k - 1)
+                for a in overlap:
+                    shift = max(0, -raw[a])
+                    scale = 1 << shift
+                    for j in range(self.k - 1, 0, -1):
+                        assert elementary[j - 1] % scale == 0
+                        elementary[j] += (elementary[j - 1] // scale) * factor[a] * (-1 if raw[a] < 0 else 1)
+                        self.bounded(elementary[j])
+                exponent = negative_sum + sum(raw[a] for a in overlap)
+                assert 0 <= exponent <= self.budget
+                correction = (1 << exponent) - sum(elementary)
+                denominator += correction
+                numerator = [x + correction * y for x, y in zip(numerator, self.values[slot])]
+                self.stats['candidate_visits'] += 1
+                self.stats['negative_corrections'] += correction < 0
+                self.bounded(correction, denominator, *numerator)
+            assert denominator > 0 if self.keys else denominator == 0 and numerator == [0, 0]
+            self.last_totals = tuple(numerator), denominator, negative_sum
+            self.last_candidates = candidates
+            if not candidates:
+                self.stats['no_candidate_reads'] += 1
+                self.stats['bulk_no_candidate_reads'] += len(self.keys) > 1
+            return tuple(F(x, denominator) for x in numerator) if denominator else None
+
+        def oracle(self, raw):
+            # Independent dot products and rational exponentiation, with
+            # no subset expansion, truncation, owners or elementary DP.
+            weighted = [(slot, F(2) ** sum(raw[a] for a in self.support(key)))
+                        for slot, key in self.keys.items()]
+            denominator = sum((weight for _, weight in weighted), F(0))
+            numerator = tuple(sum((weight * self.values[slot][j] for slot, weight in weighted), F(0))
+                              for j in range(2))
+            scale = 1 << sum(-x for x in raw if x < 0)
+            scaled = tuple(x * scale for x in numerator), denominator * scale
+            assert all(x.denominator == 1 for x in scaled[0]) and scaled[1].denominator == 1
+            self.oracle_totals = tuple(int(x) for x in scaled[0]), int(scaled[1]), scale.bit_length() - 1
+            return tuple(x / denominator for x in numerator) if denominator else None
+
+        def posting_read(self, raw):
+            # Standalone h=0 baseline: total plus exact corrections at
+            # keys sharing >=1 coordinate. This control shares values with
+            # the subset index; no combined-state performance is claimed.
+            self.stats['posting_reads'] += 1
+            scores = {}
+            for a, value in enumerate(raw):
+                if value:
+                    for slot in self.postings.get(a, ()):
+                        scores[slot] = scores.get(slot, 0) + value
+                        self.stats['posting_hits'] += 1
+            negative = sum(-value for value in raw if value < 0)
+            base = 1 << negative
+            numerator = [base * x for x in self.total_value]
+            denominator = base * len(self.keys)
+            for slot, score in scores.items():
+                assert 0 <= negative + score <= self.budget
+                correction = (1 << (negative + score)) - base
+                numerator = [x + correction * y for x, y in zip(numerator, self.values[slot])]
+                denominator += correction
+                assert max(abs(x).bit_length() + 1 for x in [denominator, *numerator]) <= self.value_bits + self.budget + (self.n + 1).bit_length() + 4
+                self.stats['posting_value_visits'] += 1
+            self.posting_totals = tuple(numerator), denominator, negative
+            return tuple(F(x, denominator) for x in numerator) if denominator else None
+
+    def verify(index, raw):
+        actual = index.read(raw)
+        assert actual == index.oracle(raw)
+        assert index.last_totals == index.oracle_totals
+        assert index.posting_read(raw) == actual
+        assert index.posting_totals == index.oracle_totals
+        return actual
+
+    cases, outside_admissions, rejected_queries = [], 0, 0
+    families = [(6, 2, 1, [(0, 1), (2, 3), (4, 5)]),
+                (7, 3, 2, [(0, 1, 2), (0, 3, 4), (0, 5, 6), (1, 3, 5),
+                           (1, 4, 6), (2, 3, 6), (2, 4, 5)]),
+                (9, 4, 2, [(0, 1, 2, 3), (0, 4, 5, 6), (1, 4, 7, 8)])]
+    for prime, level in ((5, 2), (5, 3)):
+        supports = [tuple(a * prime + sum(c * pow(a, j, prime) for j, c in enumerate(f)) % prime
+                          for a in range(prime)) for f in product(range(prime), repeat=level)]
+        families.append((prime * prime, prime, level, supports))
+    for dimension, weight, level, supports in families:
+        index = Index(len(supports) + 3, dimension, weight, level, 2 * weight)
+        initial = [sum(1 << i for i in support) for support in supports]
+        for slot, key in enumerate(initial):
+            assert index.replace(slot, key, (slot * slot - 3, (-1) ** slot * (slot + 2)))
+        index.check_state()
+        queries = []
+        if dimension <= 9:
+            queries = [q for q in product((-1, 0, 1), repeat=dimension) if sum(abs(x) for x in q) <= index.budget]
+        else:
+            queries.append((0,) * dimension)
+            for size in range(1, 2 * weight + 1):
+                for offset in range(5):
+                    q = [0] * dimension
+                    for j in range(size):
+                        q[(offset + 7 * j + j * j) % dimension] = (-1) ** j
+                    queries.append(tuple(q))
+        # Nonunit amplitudes, unequal signed coordinates, and full supports.
+        for a in range(min(dimension, 7)):
+            for b in range(a + 1, min(dimension, 7)):
+                for first, second in ((2, 1), (1, 2), (-2, 1), (2, -1), (-2, -1)):
+                    q = [0] * dimension
+                    q[a], q[b] = first, second
+                    queries.append(tuple(q))
+        for q in queries:
+            verify(index, q)
+        for raw in ((), (index.budget + 1,) + (0,) * (dimension - 1), (0.5,) + (0,) * (dimension - 1)):
+            before = index.snapshot()
+            try:
+                index.read(raw)
+                assert False
+            except ValueError:
+                pass
+            assert index.snapshot() == before
+            rejected_queries += 1
+        index.overwrite(0, (11, -17))
+        index.overwrite(1, (-11, 17))
+        for q in queries[:12] + queries[-12:] + [(0,) * dimension]:
+            verify(index, q)
+        for proposal in (0, initial[0] ^ 1, initial[1], 1 << dimension):
+            before = index.snapshot()
+            assert not index.replace(0, proposal, (23, 31))
+            assert index.snapshot() == before
+        index.remove(0)
+        index.remove(1)
+        # Generic certified admission, not just a polynomial codebook.
+        for support in combinations(range(dimension), weight):
+            proposal = sum(1 << a for a in support)
+            if proposal in initial:
+                continue
+            if index.replace(0, proposal, (19, -23)):
+                outside_admissions += 1
+                break
+            if index.stats['rejected'] > 80:
+                break
+        index.check_state()
+        for q in queries[:12] + queries[-12:] + [(0,) * dimension]:
+            verify(index, q)
+        for slot in list(index.keys):
+            index.remove(slot)
+        index.check_state()
+        verify(index, (0,) * dimension)
+        assert index.replace(0, initial[0], (0, 0))
+        index.check_state()
+        for q in queries[-12:]:
+            verify(index, q)
+        cases.append({'dimension': dimension, 'weight': weight, 'intersection_threshold': level,
+                      'capacity': index.n, 'query_l1_budget': index.budget,
+                      'preselected_guard_bits': index.guard, 'controls': index.stats.copy()})
+
+    # Same selected coordinates, different amplitudes: no unweighted
+    # intersection-count score table can implement both rows of this witness.
+    witness = Index(3, 6, 2, 1, 4)
+    for slot, key in enumerate((3, 12, 48)):
+        assert witness.replace(slot, key, (slot, -slot))
+    first, second = (2, 0, 1, 0, 0, 0), (1, 0, 2, 0, 0, 0)
+    first_result = verify(witness, first)
+    second_result = verify(witness, second)
+    assert first_result != second_result
+
+    guard = Index(3, 6, 2, 2, 512, 264)
+    for slot, key in enumerate((3, 12, 48)):
+        assert guard.replace(slot, key, (((-1) ** slot) * ((1 << 257) + slot), -(1 << 263) + 19 + slot))
+    for q in ((128, -127, 0, 0, 0, 0), (-128, -127, 0, 0, 0, 0),
+              (128, -1, 0, 0, 0, 0), (-1, 0, 2, 0, -3, 0)):
+        verify(guard, q)
+    guard.check_state()
+
+    # Uniform grid retention and dense influence, with every active value
+    # included rather than masked out. Radius one is exhaustive at four keys.
+    prime, level = 13, 2
+    retention = Index(prime ** level, prime * prime, prime, level, 2 * prime)
+    polys = list(product(range(prime), repeat=level))
+    for slot, f in enumerate(polys):
+        key = sum(1 << (a * prime + (f[0] + f[1] * a) % prime) for a in range(prime))
+        assert retention.replace(slot, key, (slot % 7 - 3, (3 * slot) % 7 - 3))
+    retention.check_state()
+    noise_reads = 0
+    ratio_bound = F(retention.n - 1, 2 ** (prime - level + 1 - 1))
+    assert 2 * 3 * ratio_bound < F(1, 2)
+    for slot in (0, 1, 47, 168):
+        q = tuple(int(retention.keys[slot] >> a & 1) for a in range(retention.d))
+        for a in range(-1, retention.d):
+            for delta in ((0,) if a == -1 else (-1, 1)):
+                raw = list(q)
+                if a >= 0:
+                    raw[a] += delta
+                result = verify(retention, tuple(raw))
+                rounded = tuple((2 * x.numerator + x.denominator) // (2 * x.denominator)
+                                for x in result)
+                assert rounded == retention.values[slot]
+                noise_reads += 1
+        retention.overwrite(slot, tuple(-x for x in retention.values[slot]))
+        assert tuple(round(x) for x in verify(retention, q)) == retention.values[slot]
+    q = tuple(int(retention.keys[0] >> a & 1) for a in range(retention.d))
+    old_output, old_value = verify(retention, q), retention.values[43]
+    new_value = old_value[0] + 1, old_value[1] - 1
+    retention.overwrite(43, new_value)
+    new_output = verify(retention, q)
+    weight = F(2) ** sum(q[a] for a in retention.support(retention.keys[43]))
+    unscaled_den = F(retention.last_totals[1], 1 << retention.last_totals[2])
+    assert tuple(x - y for x, y in zip(new_output, old_output)) == (weight / unscaled_den, -weight / unscaled_den)
+    assert 43 not in retention.last_candidates  # A dense low-score value still changes the answer.
+    row_errors = []
+    for key in retention.keys.values():
+        weights = [1 << (key & other).bit_count() for other in retention.keys.values()]
+        total = sum(weights)
+        error = F(2 * (total - (1 << prime)), total)
+        assert error <= F(2 * (retention.n - 1), 2 ** (prime - level + 1)) < 1
+        row_errors.append(error)
+    rho = max(row_errors)
+    load_control = Index(3, 6, 2, 2, 4, load_limit=1)
+    for slot, key in enumerate((3, 12, 48)):
+        assert load_control.replace(slot, key, (slot + 1, -slot - 2))
+    before = load_control.snapshot()
+    assert not load_control.replace(0, 5, (17, -19))
+    assert load_control.snapshot() == before
+    assert load_control.stats['load_only_rejections'] == 1
+    load_control.remove(1)
+    assert load_control.replace(0, 5, (17, -19))
+    load_control.check_state()
+    for raw in ((0,) * 6, (2, -1, 1, 0, 0, 0), (0, 0, -2, 0, 1, 0)):
+        verify(load_control, raw)
+    random_admission_states = random_admission_proposals = 0
+    # Exhaustive hypergeometric union bounds in genuinely generic states.
+    for dimension, weight, level, supports in families[:3]:
+        keys = [sum(1 << a for a in support) for support in supports]
+        proposals = [sum(1 << a for a in support) for support in combinations(range(dimension), weight)]
+        for bits in range(1 << len(keys)):
+            active = [key for i, key in enumerate(keys) if bits >> i & 1]
+            rejected = sum(any((proposal & key).bit_count() >= level for key in active) for proposal in proposals)
+            union_bound = F(len(active) * comb(weight, level) ** 2, comb(dimension, level))
+            assert F(rejected, len(proposals)) <= min(F(1), union_bound)
+            random_admission_states += 1
+            random_admission_proposals += len(proposals)
+    parameter_examples = []
+    for m in (16, 32, 64, 128, 256, 512):
+        capacity, weight = 1 << m, 8 * m
+        dimension, logarithm = weight * weight, m.bit_length()
+        level = (6 * m + logarithm - 1) // logarithm
+        assert 1 <= level <= weight // 2
+        pair_num, pair_den = comb(weight, level) ** 2, comb(dimension, level)
+        assert capacity ** 3 * pair_num <= pair_den  # rejection <= n^-2.
+        noise = weight // 4
+        gap = weight - level + 1 - noise
+        assert 4 * (capacity - 1) * 2 ** (2 * m) < 2 ** gap
+        features = sum(comb(weight, j) for j in range(level + 1))
+        query_subsets = sum(comb(2 * weight, j) for j in range(level + 1))
+        parameter_examples.append({'log2_capacity': m, 'weight': weight, 'dimension': dimension,
+                                   'threshold': level, 'query_l1_budget': 2 * weight,
+                                   'grid_precision_bits': 2 * m, 'retained_l1_noise_radius': noise,
+                                   'per_proposal_rejection_at_most_inverse_capacity_squared': True,
+                                   'grid_retention_strict_integer_bound_passed': True,
+                                   'key_subset_count_bits': features.bit_length(),
+                                   'max_query_subset_count_bits': query_subsets.bit_length(),
+                                   'key_subset_count_exceeds_capacity': features > capacity})
+    for index in (witness, guard, retention):
+        index.check_state()
+    all_stats = [case['controls'] for case in cases] + [witness.stats, guard.stats, retention.stats, load_control.stats]
+    assert outside_admissions > 0
+    assert sum(s['negative_corrections'] for s in all_stats) > 0
+    assert sum(s['negative_coefficients'] for s in all_stats) > 0
+    assert sum(s['live_zero_sum_observations'] for s in all_stats) > 0
+    return {'cases': cases, 'total_exact_raw_reads': sum(s['reads'] for s in all_stats),
+            'total_candidate_visits': sum(s['candidate_visits'] for s in all_stats),
+            'negative_subset_coefficients': sum(s['negative_coefficients'] for s in all_stats),
+            'negative_owner_corrections': sum(s['negative_corrections'] for s in all_stats),
+            'bulk_reads_without_owner_candidates': sum(s['bulk_no_candidate_reads'] for s in all_stats),
+            'generic_outside_initial_family_admissions': outside_admissions,
+            'atomic_invalid_queries_rejected': rejected_queries,
+            'live_zero_sum_observations': sum(s['live_zero_sum_observations'] for s in all_stats),
+            'exact_inverted_index_comparator': {'reads': sum(s['posting_reads'] for s in all_stats),
+                                                'coordinate_posting_hits': sum(s['posting_hits'] for s in all_stats),
+                                                'corrected_value_visits': sum(s['posting_value_visits'] for s in all_stats),
+                                                'atomic_load_only_rejections': load_control.stats['load_only_rejections'],
+                                                'scope': 'Maintained coordinate postings plus total value sum give every full raw-query numerator/denominator independently of subset truncation. The verifier stores both comparison states and does not benchmark either. A standalone linked-posting implementation and its load-capped costs are accounted in the note; the prototype uses exact sets.'},
+            'same_support_amplitude_witness': {'first_query': first, 'second_query': second,
+                                              'first_output': [str(x) for x in first_result],
+                                              'second_output': [str(x) for x in second_result]},
+            'large_dyadic_precision_control': {'budget': guard.budget, 'input_value_bits': guard.value_bits,
+                                               'preselected_guard_bits': guard.guard,
+                                               'observed_max_intermediate_bits': guard.stats['max_intermediate_bits']},
+            'grid_retention': {'capacity': retention.n, 'weight': retention.w, 'threshold': retention.k,
+                               'query_l1_noise_radius': 1, 'value_integer_bound': 3,
+                               'off_target_ratio_upper_bound': str(ratio_bound),
+                               'conservative_value_error_bound': str(6 * ratio_bound),
+                               'exhaustive_noise_queries_at_four_keys': noise_reads,
+                               'independently_overwritten_target_checks': 4,
+                               'noncandidate_value_exactly_changes_dense_output': True,
+                               'all_exact_query_at_key_row_bounds': len(row_errors),
+                               'normalized_operator_distance_from_identity': str(rho),
+                               'rank_deficient_uniform_value_error_lower_bound': str(1 - rho)},
+            'random_admission_controls': {'exhaustive_current_states': random_admission_states,
+                                           'uniform_proposals_examined': random_admission_proposals,
+                                           'bound': 'At any current state with <=n keys, a fresh independent uniform weight-w proposal is rejected with probability <=min(1,n*binom(w,k)^2/binom(d,k)). This is conditional per proposal, not an event of no future rejection or a worst-case resampling bound.'},
+            'uniform_parameter_integer_examples': parameter_examples,
+            'finite_size_warning': 'Every shown key-subset count exceeds capacity, despite the eventual subpolynomial asymptotic bound. These examples certify inequalities and expose expensive finite constants; they do not certify useful ML latency.',
+            'scope': 'Exact tuple-map controls for full base-two exponential attention under a signed-integer raw-query l1 budget and certified low-intersection binary key admission. Independent direct dyadic dot-product sums check normalized output and scaled numerator/denominator, including negative coefficients/corrections, updates, generic admission, cancellation, deletion/reuse, malformed inputs, large precision and noisy grid retrieval. Python arbitrary integers are bounded against preselected guard bits; this is not a finite-word arena implementation or performance/novelty certificate. The 169-value retention example is fully installed. Other capacities are explicit. No learned encoder, training, strongest-baseline advantage or publication priority is established.'}
+
+
 def main():
     sources = ["scripts/run_timing_restart_checks.py", "docs/associative_memory_timing.md"]
     report = {"schema_version": 1,
@@ -3395,6 +3858,7 @@ def main():
               "spectral_mixture_hardness": spectral_omv_controls(),
               "subset_aggregate_candidate": subset_aggregate_controls(),
               "affine_coded_baseline": affine_coded_controls(),
+              "weighted_exponential_candidate": weighted_exponential_controls(),
               "novelty_established": False,
               "strongest_baseline_advantage_established": False,
               "publication_ready": False,

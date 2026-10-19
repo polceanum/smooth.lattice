@@ -2377,11 +2377,310 @@
     "growing_dimension_scope": "With k=floor(p/(4ceil(log2 p))) and h=k-1, keep exact C_h cells rather than the loose p^(2h) bound. This yields n^(1+o(1)) state/preprocessing, n^o(1) updates, and 2^O(k)*poly(p,k)*(v+1) complete raw reads. No implicit constant is treated as uniform in growing k; the note expands it. This is a codebook-specific comparator in the preceding generic candidate's asymptotic regime, not a novelty determination.",
     "scope": "Exact sparse-map correctness control, not a direct-array implementation, hardware benchmark or novelty proof. All raw-query numerators/denominators are checked against independent Hamming scans. Small complete codebooks and sparsely occupied larger fixed codebooks are distinguished; larger capacities are conceptual. The construction uses established soft interpolation and affine evaluation constraints with partial cached sums. It restricts key admission to a known polynomial codebook, so does not settle the priority or usefulness of the generic low-intersection candidate. No neural training or strongest-baseline separation is claimed."
   },
+  "weighted_exponential_candidate": {
+    "cases": [
+      {
+        "dimension": 6,
+        "weight": 2,
+        "intersection_threshold": 1,
+        "capacity": 6,
+        "query_l1_budget": 4,
+        "preselected_guard_bits": 48,
+        "controls": {
+          "reads": 611,
+          "subset_lookups": 2497,
+          "candidate_visits": 1394,
+          "negative_coefficients": 0,
+          "negative_corrections": 601,
+          "no_candidate_reads": 16,
+          "bulk_no_candidate_reads": 3,
+          "overwrites": 2,
+          "deletes": 4,
+          "admitted": 5,
+          "rejected": 4,
+          "live_zero_sum_observations": 1,
+          "max_intermediate_bits": 10,
+          "posting_reads": 611,
+          "posting_hits": 1836,
+          "posting_value_visits": 1394,
+          "max_coordinate_load": 1,
+          "load_only_rejections": 0
+        }
+      },
+      {
+        "dimension": 7,
+        "weight": 3,
+        "intersection_threshold": 2,
+        "capacity": 10,
+        "query_l1_budget": 6,
+        "preselected_guard_bits": 54,
+        "controls": {
+          "reads": 2227,
+          "subset_lookups": 30118,
+          "candidate_visits": 10703,
+          "negative_coefficients": 4894,
+          "negative_corrections": 6214,
+          "no_candidate_reads": 30,
+          "bulk_no_candidate_reads": 17,
+          "overwrites": 2,
+          "deletes": 7,
+          "admitted": 8,
+          "rejected": 32,
+          "live_zero_sum_observations": 4,
+          "max_intermediate_bits": 14,
+          "posting_reads": 2227,
+          "posting_hits": 29028,
+          "posting_value_visits": 14628,
+          "max_coordinate_load": 3,
+          "load_only_rejections": 0
+        }
+      },
+      {
+        "dimension": 9,
+        "weight": 4,
+        "intersection_threshold": 2,
+        "capacity": 6,
+        "query_l1_budget": 8,
+        "preselected_guard_bits": 57,
+        "controls": {
+          "reads": 19339,
+          "subset_lookups": 430518,
+          "candidate_visits": 51089,
+          "negative_coefficients": 57032,
+          "negative_corrections": 32615,
+          "no_candidate_reads": 222,
+          "bulk_no_candidate_reads": 209,
+          "overwrites": 2,
+          "deletes": 4,
+          "admitted": 5,
+          "rejected": 5,
+          "live_zero_sum_observations": 5,
+          "max_intermediate_bits": 14,
+          "posting_reads": 19339,
+          "posting_hits": 151876,
+          "posting_value_visits": 57112,
+          "max_coordinate_load": 2,
+          "load_only_rejections": 0
+        }
+      },
+      {
+        "dimension": 25,
+        "weight": 5,
+        "intersection_threshold": 2,
+        "capacity": 28,
+        "query_l1_budget": 10,
+        "preselected_guard_bits": 62,
+        "controls": {
+          "reads": 219,
+          "subset_lookups": 1744,
+          "candidate_visits": 483,
+          "negative_coefficients": 254,
+          "negative_corrections": 316,
+          "no_candidate_reads": 98,
+          "bulk_no_candidate_reads": 85,
+          "overwrites": 2,
+          "deletes": 26,
+          "admitted": 27,
+          "rejected": 4,
+          "live_zero_sum_observations": 6,
+          "max_intermediate_bits": 20,
+          "posting_reads": 219,
+          "posting_hits": 2819,
+          "posting_value_visits": 2212,
+          "max_coordinate_load": 6,
+          "load_only_rejections": 0
+        }
+      },
+      {
+        "dimension": 25,
+        "weight": 5,
+        "intersection_threshold": 3,
+        "capacity": 128,
+        "query_l1_budget": 10,
+        "preselected_guard_bits": 67,
+        "controls": {
+          "reads": 219,
+          "subset_lookups": 3216,
+          "candidate_visits": 535,
+          "negative_coefficients": 775,
+          "negative_corrections": 317,
+          "no_candidate_reads": 177,
+          "bulk_no_candidate_reads": 164,
+          "overwrites": 2,
+          "deletes": 126,
+          "admitted": 127,
+          "rejected": 4,
+          "live_zero_sum_observations": 16,
+          "max_intermediate_bits": 27,
+          "posting_reads": 219,
+          "posting_hits": 14101,
+          "posting_value_visits": 11071,
+          "max_coordinate_load": 26,
+          "load_only_rejections": 0
+        }
+      }
+    ],
+    "total_exact_raw_reads": 23986,
+    "total_candidate_visits": 80550,
+    "negative_subset_coefficients": 63587,
+    "negative_owner_corrections": 47553,
+    "bulk_reads_without_owner_candidates": 481,
+    "generic_outside_initial_family_admissions": 4,
+    "atomic_invalid_queries_rejected": 15,
+    "live_zero_sum_observations": 32,
+    "exact_inverted_index_comparator": {
+      "reads": 23986,
+      "coordinate_posting_hits": 445403,
+      "corrected_value_visits": 300888,
+      "atomic_load_only_rejections": 1,
+      "scope": "Maintained coordinate postings plus total value sum give every full raw-query numerator/denominator independently of subset truncation. The verifier stores both comparison states and does not benchmark either. A standalone linked-posting implementation and its load-capped costs are accounted in the note; the prototype uses exact sets."
+    },
+    "same_support_amplitude_witness": {
+      "first_query": [
+        2,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "second_query": [
+        1,
+        0,
+        2,
+        0,
+        0,
+        0
+      ],
+      "first_output": [
+        "4/7",
+        "-4/7"
+      ],
+      "second_output": [
+        "6/7",
+        "-6/7"
+      ]
+    },
+    "large_dyadic_precision_control": {
+      "budget": 512,
+      "input_value_bits": 264,
+      "preselected_guard_bits": 791,
+      "observed_max_intermediate_bits": 521
+    },
+    "grid_retention": {
+      "capacity": 169,
+      "weight": 13,
+      "threshold": 2,
+      "query_l1_noise_radius": 1,
+      "value_integer_bound": 3,
+      "off_target_ratio_upper_bound": "21/256",
+      "conservative_value_error_bound": "63/128",
+      "exhaustive_noise_queries_at_four_keys": 1356,
+      "independently_overwritten_target_checks": 4,
+      "noncandidate_value_exactly_changes_dense_output": true,
+      "all_exact_query_at_key_row_bounds": 169,
+      "normalized_operator_distance_from_identity": "162/2129",
+      "rank_deficient_uniform_value_error_lower_bound": "1967/2129"
+    },
+    "random_admission_controls": {
+      "exhaustive_current_states": 144,
+      "uniform_proposals_examined": 5608,
+      "bound": "At any current state with <=n keys, a fresh independent uniform weight-w proposal is rejected with probability <=min(1,n*binom(w,k)^2/binom(d,k)). This is conditional per proposal, not an event of no future rejection or a worst-case resampling bound."
+    },
+    "uniform_parameter_integer_examples": [
+      {
+        "log2_capacity": 16,
+        "weight": 128,
+        "dimension": 16384,
+        "threshold": 20,
+        "query_l1_budget": 256,
+        "grid_precision_bits": 32,
+        "retained_l1_noise_radius": 32,
+        "per_proposal_rejection_at_most_inverse_capacity_squared": true,
+        "grid_retention_strict_integer_bound_passed": true,
+        "key_subset_count_bits": 77,
+        "max_query_subset_count_bits": 98,
+        "key_subset_count_exceeds_capacity": true
+      },
+      {
+        "log2_capacity": 32,
+        "weight": 256,
+        "dimension": 65536,
+        "threshold": 32,
+        "query_l1_budget": 512,
+        "grid_precision_bits": 64,
+        "retained_l1_noise_radius": 64,
+        "per_proposal_rejection_at_most_inverse_capacity_squared": true,
+        "grid_retention_strict_integer_bound_passed": true,
+        "key_subset_count_bits": 136,
+        "max_query_subset_count_bits": 170,
+        "key_subset_count_exceeds_capacity": true
+      },
+      {
+        "log2_capacity": 64,
+        "weight": 512,
+        "dimension": 262144,
+        "threshold": 55,
+        "query_l1_budget": 1024,
+        "grid_precision_bits": 128,
+        "retained_l1_noise_radius": 128,
+        "per_proposal_rejection_at_most_inverse_capacity_squared": true,
+        "grid_retention_strict_integer_bound_passed": true,
+        "key_subset_count_bits": 248,
+        "max_query_subset_count_bits": 306,
+        "key_subset_count_exceeds_capacity": true
+      },
+      {
+        "log2_capacity": 128,
+        "weight": 1024,
+        "dimension": 1048576,
+        "threshold": 96,
+        "query_l1_budget": 2048,
+        "grid_precision_bits": 256,
+        "retained_l1_noise_radius": 256,
+        "per_proposal_rejection_at_most_inverse_capacity_squared": true,
+        "grid_retention_strict_integer_bound_passed": true,
+        "key_subset_count_bits": 456,
+        "max_query_subset_count_bits": 555,
+        "key_subset_count_exceeds_capacity": true
+      },
+      {
+        "log2_capacity": 256,
+        "weight": 2048,
+        "dimension": 4194304,
+        "threshold": 171,
+        "query_l1_budget": 4096,
+        "grid_precision_bits": 512,
+        "retained_l1_noise_radius": 512,
+        "per_proposal_rejection_at_most_inverse_capacity_squared": true,
+        "grid_retention_strict_integer_bound_passed": true,
+        "key_subset_count_bits": 844,
+        "max_query_subset_count_bits": 1021,
+        "key_subset_count_exceeds_capacity": true
+      },
+      {
+        "log2_capacity": 512,
+        "weight": 4096,
+        "dimension": 16777216,
+        "threshold": 308,
+        "query_l1_budget": 8192,
+        "grid_precision_bits": 1024,
+        "retained_l1_noise_radius": 1024,
+        "per_proposal_rejection_at_most_inverse_capacity_squared": true,
+        "grid_retention_strict_integer_bound_passed": true,
+        "key_subset_count_bits": 1572,
+        "max_query_subset_count_bits": 1889,
+        "key_subset_count_exceeds_capacity": true
+      }
+    ],
+    "finite_size_warning": "Every shown key-subset count exceeds capacity, despite the eventual subpolynomial asymptotic bound. These examples certify inequalities and expose expensive finite constants; they do not certify useful ML latency.",
+    "scope": "Exact tuple-map controls for full base-two exponential attention under a signed-integer raw-query l1 budget and certified low-intersection binary key admission. Independent direct dyadic dot-product sums check normalized output and scaled numerator/denominator, including negative coefficients/corrections, updates, generic admission, cancellation, deletion/reuse, malformed inputs, large precision and noisy grid retrieval. Python arbitrary integers are bounded against preselected guard bits; this is not a finite-word arena implementation or performance/novelty certificate. The 169-value retention example is fully installed. Other capacities are explicit. No learned encoder, training, strongest-baseline advantage or publication priority is established."
+  },
   "novelty_established": false,
   "strongest_baseline_advantage_established": false,
   "publication_ready": false,
   "source_sha256": {
-    "scripts/run_timing_restart_checks.py": "7fae7efa1e8cc6e72dcb768f60f42d3159f44455c798b13316716dd0b2541770",
-    "docs/associative_memory_timing.md": "df105b0594b8d7239960e3c7e521fd6678151ff0087141f84ae165007eddd970"
+    "scripts/run_timing_restart_checks.py": "611dedb3e713ed71969543d0a7c1d53506e0335dfdd3e07c8db9101bdfee4536",
+    "docs/associative_memory_timing.md": "63fc074e616428fc5835d0d8e7f16ceb2ef7860630d9e7dcd87cefaa7e71389c"
   }
 }

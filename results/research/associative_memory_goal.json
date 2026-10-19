@@ -18,7 +18,7 @@
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "generic_low_intersection_aggregate_candidate_priority_open; stronger_classical_soft_interpolation_and_cached_affine_sum_comparator_proved_in_fixed_and_growing_polynomial_dimension; polynomial_example_alone_does_not_establish_advantage"
+      "status": "exact_signed_integer_query_exponential_attention_candidate_proved_with_generic_low_intersection_admission; full_value_mass_finite_precision_and_grid_retention_checked; classical_multilinear_and_subset_index_priority_and_useful_finite_cost_gap_unresolved"
     },
     {
       "stage": 4,
@@ -2018,5 +2018,147 @@
     },
     "old_functions_and_certificate_blocks_preserved": true,
     "verification_scope": "Extended exact checker, core build and smoke tests passed. All 234 protected files, twenty-four prior non-main checker function ASTs, twenty-five historical iterations and all historical report blocks are preserved. Final note/checker hashes match the report. New coded controls check 3994 complete raw normalized reads and numerator/denominator pairs across ten fixed-codebook cases, 236 polynomial-root primitive cases, 15 independent affine-fiber cases, 13446 direct-cell addresses, 2056 pure current-value/noise reads, 138 every-bit sensitivity reads, 50 atomic invalid/duplicate rejections and six exact growing-parameter bounds. Counts also cover 357 overwrites, 34 deletions, 2685 admissions, four empty-state queries, signed zero sums and a 264-bit signed payload guard witness. Separately 2112 exhaustive non-polynomial query/radius cases compare direct intersection classes, the published full zeta/Pascal transform and compressed owner-tail sums. Sparse-map controls do not measure the finite-word dense-array memory or runtime; large capacities have only a stated sparse subset installed. The uniform written proof charges complete state, precision and loading. Other proof checkers were not rerun because their sources/artifacts are unchanged. No novelty, strongest-baseline separation, learned encoder or ML advantage is established."
+  },
+  "twenty_seventh_iteration": {
+    "previous_turn_classification": "Progress: stronger classical coded comparator and explicit intersection-transform equivalence were proved, checked and published; the original novelty and strongest-baseline gates remained open.",
+    "record": "docs/associative_memory_timing.md, Exact exponential attention with signed query budgets",
+    "certificate_script": "scripts/run_timing_restart_checks.py",
+    "certificate_report": "results/research/timing_restart_checks.json",
+    "candidate_uniform_bound_proved": true,
+    "model_and_boundary": "At most n active raw binary dimension-d weight-w keys with pair intersections <k and arbitrary independent signed fixed-grid vector values. Every query supplies all d signed integer coordinates with a preselected l1 budget B. Return the complete exact rational base-two exponential attention sum, including every active key, with no supplied address or free semantic encoder. Queries on a finer real/grid representation need a new support/cost calculation; the integer step is essential.",
+    "construction_and_proof": {
+      "weighted_identity": "Use the generic low-order subset count/value sums and size-k unique owners. For q put D=sum negative magnitudes and u_a=2^q_a-1. The common-scaled multilinear coefficient C_A=2^D product_{a in A}u_a is an integer. Each key with fewer than k selected coordinates is represented exactly by the low-order sum; every other key gets its exact residual correction once via unique-owner discovery. This is a coordinate-weighted product identity, richer than any score of unweighted intersection cardinality, but its algebra is classical.",
+      "finite_precision": "Use a known dyadic payload grid with its declared precision charged in S. A negative query coordinate of magnitude m is introduced into scaled elementary symmetric sums by exact division by 2^m and multiplication by -(2^m-1), justified by the remaining common power-of-two factor. Guard S+B+O(log(n+1)+log F+log Q_max) bits covers signed intermediates and exact shared-denominator output, including declared grid output precision. Address and multiword/bit costs are charged; no horizon-dependent precision or metadata appears.",
+      "complete_costs": "F=sum_{j<=k}binom(w,j), Q_T=sum_{j<=k}binom(T,j), T<=min(d,B), L=k ceil(log2(d+1)). State O(n*(ceil(d/W)+w+v+1)+nF*(L+v+1)+d+wk) words, complete read O(d+Q_T*(L+k+wk+v+1)), value overwrite O(F*(v+1)), raw admitted edit/deletion O(d+F*(L+v+1)). Full allocation and n raw insertions are charged. For w=Theta(log n), d=polylog n, k=O(w/log w), B=O(w), polylog scalar precision, state/full preprocessing n^(1+o(1))*(v+1), all individual operations n^o(1)*(v+1). This is an asymptotic structural bound, not a practical ML speedup.",
+      "generic_admission": "Certified admission checks every size-k owner before mutation, admitting arbitrary keys satisfying the invariant. A fresh independent uniform weight-w proposal has conditional rejection <=min(1,n*binom(w,k)^2/binom(d,k)), valid after any current history. Resampling has a conditional expected geometric bound if this is <1, not a worst-case accepted-edit or no-future-rejection guarantee. At n=2^m,w=8m,d=w^2,k=ceil(6m/ceil(log2(m+1))), rejection n^(-5+o(1)) and random-batch failure n^(-4+o(1)) show a broad noncodebook class. Semantic inputs are not assumed random.",
+      "retention": "For q=b*x_t+e with integer b>=1 and ||e||_1<=eta within budget, score gap >=b*(w-k+1)-eta. Off-target ratio R<=(n-1)*2^-gap gives coordinate error <=2M R/(1+R). A known value grid of step delta is recovered by rounding if 2M R<delta/2, uniformly through every admitted key/value update with no accumulated forgetting. This is an established softmax separation mechanism with explicit value/precision accounting, not a new Hopfield convergence/capacity theorem.",
+      "rank_and_information_boundary": "The query-at-key normalized matrix P has induced infinity distance <=2(n-1)2^(-(w-k+1)) from I. Any rank-deficient fixed linear-feature approximation has uniform bounded-value error at least one minus that distance; sign-vector witnesses also lie in finite grids containing +/-1. This elementary obstruction does not cover indexed correction, full-dimension sparse states, nonlinear/value-dependent methods or establish optimal update cost. Independent rounded value recovery gives only the ordinary information lower bound.",
+      "finite_size_audit": "Six exact growing-parameter examples verify random admission and noisy grid inequalities and expose key/query subset-count bit lengths. In every shown example F exceeds capacity n. Consequently the candidate currently has no demonstrated useful finite regime or ML hotpath advantage.",
+      "inverted_index_comparator": "Classical coordinate postings plus a cached total also compute the same full exact exponential attention, with base weight 2^D for untouched keys and correction (2^(D+score_i)-2^D) at touched slots. With coordinate load cap L, complete reads O(d+T L+min(n,T L)*(v+1)), value overwrites O(v+1), generic raw admission O(d+w L+w+v) and deletion O(w+v+1); linked-posting state O(n(w+v+1)+d), using lossless sparse key supports. Load and low-intersection promises are checked before mutation through posting-hit counts. Every new query is independently compared against this complete-function baseline too. A random batch at wider d=sqrt(n)*polylog(n), w,B,v=polylog(n), constant k>=8 supports these promises with high probability, giving classical sqrt(n)*polylog(n) access at near-linear state. This changes raw dimension and is not a new fundamental architecture or a matching bound for the original polylog-dimension regime."
+    },
+    "primary_prior_art": [
+      {
+        "url": "https://arxiv.org/abs/2302.13214",
+        "scope": "Alman--Song, actual Theorems 3.7--3.8, 4.6 and normalized real-RAM model read. Low-rank polynomial approximation and general worst-case SETH barrier do not by themselves prove a matching dynamic exact guarantee or exclude the new strong structural class. No claim of evading the lower bound or separation follows from mismatched hypotheses."
+      },
+      {
+        "url": "https://arxiv.org/abs/2510.01643",
+        "scope": "Aliakbarpour--Braverman--Yin--Zhang, Definition B.3, C.3 and I.1/I.5 read. Definition B.3 and Theorem I.5 visually checked on PDF pages 23 and 67: the first requires sublinear total large-entry support, and the latter includes epsilon_2 exp(3 B_entry^2) accuracy with epsilon_2^-4 runtime. The bucket lower endpoint also needs zero handling for binary sparse inputs. These facts prevent a naive matching-guarantee claim, but do not prove their methods or refinements cannot cover this class."
+      },
+      {
+        "url": "https://arxiv.org/abs/2008.02217",
+        "scope": "Ramsauer et al., Theorems 4--5 read in primary PDF page 5. Separation-based exponentially small retrieval error and large Hopfield capacity are prior art. Our payload/grid lemma is not a new discovery of that mechanism, and we do not assert the paper fixed-point/convergence guarantees for our separate key/value state."
+      },
+      {
+        "url": "https://arxiv.org/abs/0809.2489",
+        "scope": "The preceding full intersection-transform audit remains a close algebraic predecessor. Arbitrary coordinate weights require a multilinear product expansion instead of a scalar overlap score, but the expansion and cached conjunction machinery are classical; novelty cannot rest on renaming their application to attention."
+      }
+    ],
+    "decision": "A complete exact exponential-attention mechanism, generic conditional admission bound and finite-grid noisy retention statement now have uniform proofs and independent exact controls. It preserves every dense low-score contribution and arbitrary current values and goes beyond pure lookup or a two-latent bottleneck. It does not yet establish a new useful tradeoff beyond strongest published subset/aggregate/sparse-correction methods. The displayed finite constants are expensive, and standard retention/rank facts are elementary prior mechanisms. Keep it as a candidate/baseline artifact; do not declare a publishable result, start training or shrink the active goal. The full-function inverted-index baseline is now proved and checked as well. Its load-dependent costs and cheap value writes must be included in future comparisons; a stronger result than static low-rank features is insufficient when this classical baseline applies. The current extension alone is not eligible for a contribution-paper claim.",
+    "next_actions": [
+      "Audit weighted subset/aggregate prior art and the strongest load-sensitive posting/filter baselines in the same raw query, key-admission, dimension and precision model. The exact extension and simpler background-plus-posting correction are classical mechanisms; novelty must come from a substantive further tradeoff rather than a renamed function.",
+      "Seek a substantive improvement in owner discovery or weighted aggregation that reduces the large finite subset factors, or prove a useful general storage/read/write obstruction. The impact gate needs a mechanism beyond this classical expansion and the elementary rank bound.",
+      "Audit whether existing index/filter/sketch methods with the same generic admission, signed norm-budget queries, all independent values and precision already attain better complete costs; compare approximation at matched specified accuracy without claiming an exact-versus-approximate mismatch is a universal lower bound. Preserve all prior work; no training or outbound messages.",
+      "Before choosing another sparse-key family or running training, quantify feasibility and finite costs using the necessary packing inequality n*binom(w,k)<=binom(d,k), since each k-subset has one owner. Compare achievable capacity, raw dimension, subset tables and coordinate loads. Any lower bound restricted to materializing these subsets must not be advertised as a universal architecture lower bound."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "strongest_baseline_advantage_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "verification_commands": [
+      "python3 -B scripts/run_timing_restart_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py"
+    ],
+    "preservation": "All twenty-six historical iterations, twenty-five prior non-main checker function ASTs, historical report blocks, other protected proof artifacts, core kernels, manuscripts and learned-recall data are retained. Only the existing timing note/checker/report and research manifest change.",
+    "additional_primary_comparisons_pending": [
+      {
+        "url": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/8a01099096c85890b1d1aff3c6b4ea56-Abstract-Conference.html",
+        "title": "Subquadratic Algorithms and Hardness for Attention with Any Temperature",
+        "status": "primary conference abstract identified; full dimension/temperature/accuracy and dynamic-query specialization remains unaudited"
+      },
+      {
+        "url": "https://arxiv.org/abs/2601.17702",
+        "title": "S3-Attention: Attention-Aligned Endogenous Retrieval for Memory-Bounded Long-Context Inference",
+        "status": "primary abstract identified; full learned sparse-feature/inverted retrieval function and resource comparison remains unaudited"
+      }
+    ],
+    "certificate_case_count": 5,
+    "certificate_summary": {
+      "total_exact_raw_reads": 23986,
+      "total_candidate_visits": 80550,
+      "negative_subset_coefficients": 63587,
+      "negative_owner_corrections": 47553,
+      "bulk_reads_without_owner_candidates": 481,
+      "generic_outside_initial_family_admissions": 4,
+      "atomic_invalid_queries_rejected": 15,
+      "live_zero_sum_observations": 32,
+      "exact_inverted_index_comparator": {
+        "reads": 23986,
+        "coordinate_posting_hits": 445403,
+        "corrected_value_visits": 300888,
+        "atomic_load_only_rejections": 1,
+        "scope": "Maintained coordinate postings plus total value sum give every full raw-query numerator/denominator independently of subset truncation. The verifier stores both comparison states and does not benchmark either. A standalone linked-posting implementation and its load-capped costs are accounted in the note; the prototype uses exact sets."
+      },
+      "same_support_amplitude_witness": {
+        "first_query": [
+          2,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        "second_query": [
+          1,
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        "first_output": [
+          "4/7",
+          "-4/7"
+        ],
+        "second_output": [
+          "6/7",
+          "-6/7"
+        ]
+      },
+      "large_dyadic_precision_control": {
+        "budget": 512,
+        "input_value_bits": 264,
+        "preselected_guard_bits": 791,
+        "observed_max_intermediate_bits": 521
+      },
+      "grid_retention": {
+        "capacity": 169,
+        "weight": 13,
+        "threshold": 2,
+        "query_l1_noise_radius": 1,
+        "value_integer_bound": 3,
+        "off_target_ratio_upper_bound": "21/256",
+        "conservative_value_error_bound": "63/128",
+        "exhaustive_noise_queries_at_four_keys": 1356,
+        "independently_overwritten_target_checks": 4,
+        "noncandidate_value_exactly_changes_dense_output": true,
+        "all_exact_query_at_key_row_bounds": 169,
+        "normalized_operator_distance_from_identity": "162/2129",
+        "rank_deficient_uniform_value_error_lower_bound": "1967/2129"
+      },
+      "random_admission_controls": {
+        "exhaustive_current_states": 144,
+        "uniform_proposals_examined": 5608,
+        "bound": "At any current state with <=n keys, a fresh independent uniform weight-w proposal is rejected with probability <=min(1,n*binom(w,k)^2/binom(d,k)). This is conditional per proposal, not an event of no future rejection or a worst-case resampling bound."
+      },
+      "finite_size_warning": "Every shown key-subset count exceeds capacity, despite the eventual subpolynomial asymptotic bound. These examples certify inequalities and expose expensive finite constants; they do not certify useful ML latency.",
+      "uniform_parameter_integer_examples": 6
+    },
+    "old_functions_and_certificate_blocks_preserved": true,
+    "verification_scope": "Extended full exact checker, focused weighted control, core build and smoke tests passed. All 234 protected files, twenty-five prior non-main checker function ASTs, twenty-six historical iterations and all historical report blocks are preserved. Final note/checker hashes match the report. The new block checks 23986 full signed-integer raw queries against both direct dyadic dot-product sums and maintained-posting background correction, comparing normalized output and scaled numerator/denominator. Cases include five generic/code families plus precision, load-cap and 169-value complete-code controls; four admitted keys outside initial families, signed cancellations, atomic malformed queries/keys, overwrite/deletion/reuse and a load-only rejection. It checks 1356 exhaustive norm-one noise queries at four targets, four independent post-overwrite pure reads, every query-at-key operator row and an exact noncandidate value influence witness. Hypergeometric rejection bounds are checked on 144 complete current states and 5608 uniform proposals, and six large conceptual parameter cases certify integer admission/grid inequalities while exposing subset tables larger than capacity. The 264-bit payload control has preselected 791-bit guards and observed 521-bit signed intermediates. The verifier uses Python maps/sets and stores both comparison states; standalone finite-word/trie/linked-posting storage and runtime are supplied by the uniform written accounting, not measured hardware. Other proof checkers were not rerun because their sources/artifacts are unchanged. No new theorem beyond prior art, useful finite ML regime, strongest-method separation, encoder guarantee or publication readiness is established."
   }
 }
