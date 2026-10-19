@@ -13,12 +13,12 @@
     {
       "stage": 2,
       "task": "Audit primary theorems for sparse inverse/local correction and dynamic graphical inference; classify what is already a known corollary.",
-      "status": "unlearning_counterfactuals_and_robust_reader_prior_art_audited; precise_robust_capacity_priority_pending"
+      "status": "direct_homogeneous_eigenvector_prior_art_matched; affine_and_spherical_gap_priority_audit_pending"
     },
     {
       "stage": 3,
       "task": "Choose a concrete higher-dimensional binding workload for which dynamic dictionaries do not already solve the complete query specification. Seek a better constructive storage/access/retention bound, including changes to the active key set.",
-      "status": "robust_quadratic_vs_quartic_class_separation_proved; indexed_binding_table_matches_construction; strongest_method_advantage_pending"
+      "status": "full_affine_quadratic_robust_capacity_proofs_on_balls_and_sphere; no_new_strongest_method_architecture_advantage"
     },
     {
       "stage": 4,
@@ -519,6 +519,77 @@
       "point_replacements_including_zero_clears": 96
     },
     "verification_commands": [
+      "python3 -B scripts/run_robust_reader_checks.py",
+      "python3 -B scripts/run_regression_baseline_checks.py",
+      "python3 -B scripts/run_correlated_routing_checks.py",
+      "python3 -B scripts/run_shared_feature_retention_checks.py",
+      "python3 -B scripts/run_retention_geometry_checks.py",
+      "python3 -B scripts/run_retention_tradeoff_checks.py",
+      "python3 -B scripts/run_feature_dimension_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py",
+      "python3 -B scripts/run_structural_complexity_checks.py"
+    ]
+  },
+  "seventh_iteration": {
+    "previous_turn_classification": "progress: homogeneous robust-capacity proof, nonlinear escape and exact indexed-baseline controls saved; full objective unachieved",
+    "record": "docs/interleaving_research.md, Associative-memory goal: affine quadratics and normalized queries",
+    "certificate_script": "scripts/run_affine_robust_checks.py",
+    "certificate_report": "results/research/affine_robust_checks.json",
+    "prior_art_resolution": {
+      "homogeneous_geometric_step": "Fawzi--Fawzi--Frossard Lemma 6.1 uses the same extreme-eigenvector perturbation. Combined with established margin bounds, the prior homogeneous capacity result is an elementary consequence, not a standalone novelty claim.",
+      "unresolved": "Precise prior-art and substantive usefulness of the affine/full-ball and normalized-sphere gap extensions remain unestablished."
+    },
+    "affine_capacity_theorems": {
+      "model": "Fixed real unit keys, arbitrary affine-quadratic state-dependent reader x^T*S*x+b^T*x+c, every binary assignment realized with strictly correct signs throughout radius-delta neighborhoods; no coefficient bound, 0<delta<1.",
+      "full_ball_bound": "n<=300*(p+8)/delta^4 for p>=2; the entire ambient Euclidean ball is queried.",
+      "spherical_bound": "n<=3*(p/4+2)*(2*C0)^2/delta^24, C0=64*660^2=27878400; only unit queries within chord distance delta are required.",
+      "dimension_bound": "The usual (p+1)*(p+2)/2 quadratic feature-dimension bound may be taken in the minimum; p=1 has at most two unit keys.",
+      "full_ball_mechanism": "Spherical-cap moment measure controls the linear term, while ambient eigenvector averages control spectral width; obtain positive/negative center gap >delta^2*(spectral_width+||b||)/10.",
+      "sphere_mechanism": "Great-circle Taylor bounds give approximate opposite extrema; residual identities transfer tangent semidefinite bounds globally, yielding gap >=delta^12*(spectral_width+||b||)/C0.",
+      "margin_step": "Normalize the centered quadratic/linear/constant coefficients and apply the known independent-sign bound in the Hilbert lift (x*x^T,x,1).",
+      "limitations": "Reader-class restriction, not arbitrary nonlinear feature maps, independent ratio denominators, routing, iterative dynamics or complete networks. Constants are too weak for a practical capacity advantage, especially on the sphere; no optimal noise dependence claimed."
+    },
+    "primary_sources": [
+      {
+        "url": "https://arxiv.org/pdf/1502.02590v4",
+        "scope": "The fetched PDF header identifies v4. Lemma 6.1 and displayed proof, Section 6 assumptions and Theorem 6.2 inspected. The earlier homogeneous eigenvector step is published; the theorem additionally imposes an extreme-eigenvalue ratio and moment distinguishability assumptions."
+      },
+      {
+        "url": "https://arxiv.org/html/2607.10751v1",
+        "scope": "Expanded-half-space Definition 3.1, Theorem 3.1, balanced signed-sum lemma and proof inspected. Bounded-margin lift step is established; the paper does not thereby resolve the specific affine/spherical geometric gap priority."
+      },
+      {
+        "url": "https://doi.org/10.1137/0804009",
+        "scope": "Primary abstract on local nonglobal quadratic minimizers over balls and spheres inspected; full proof not accessed/audited. Rigidity is not claimed as new; no conclusion that the present quantitative bounds are absent from this literature."
+      }
+    ],
+    "decision": "Retire the homogeneous result as a standalone novelty candidate. Preserve complete affine/full-ball and spherical proofs as candidates for exact priority and sharpness audit. No strongest-applicable-method storage/access/retention advantage or publication-ready result established.",
+    "next_actions": [
+      "Audit the affine and spherical gap estimates against primary quadratic error-bound, trust-region and geometric-margin literature, including stronger existing noise dependence; no novelty inference from a different application name.",
+      "Determine whether the spherical estimate can be made useful or follows directly from a stronger known theorem before extending this branch.",
+      "Keep the independent query target, encoder geometry, all finite-precision costs and strongest same-workload indexed/regression baseline in any constructive architecture comparison.",
+      "Keep the full original goal active; no additional neural training or contribution manuscript based only on these reader-class restrictions."
+    ],
+    "new_theorem_beyond_prior_art_proved": false,
+    "novelty_established": false,
+    "machine_learning_advantage_established": false,
+    "additional_neural_training_runs": 0,
+    "verification_complete": true,
+    "public_privacy_review_complete": true,
+    "certificate_summary": {
+      "rational_cap_measures": 144,
+      "centered_moment_controls": 5184,
+      "geodesic_derivative_controls": 5184,
+      "residual_transfer_cases": 720,
+      "full_ball_gap_algebra_cases": 192,
+      "mixed_label_whole_ball_instances": 342,
+      "certified_key_balls": 1800,
+      "affine_lift_sign_assignments": 128,
+      "sphere_full_ball_counterexample": true
+    },
+    "verification_commands": [
+      "python3 -B scripts/run_affine_robust_checks.py",
       "python3 -B scripts/run_robust_reader_checks.py",
       "python3 -B scripts/run_regression_baseline_checks.py",
       "python3 -B scripts/run_correlated_routing_checks.py",

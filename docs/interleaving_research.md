@@ -12045,3 +12045,246 @@ and 4,454 rational noisy queries; and 96 replacements/zero-clears. The
 whole-ball theorem is proved above; finite probes alone do not prove it.
 The checker also verifies the indexed top-two escape on every tested
 key neighborhood. No neural or runtime experiment was run.
+
+### Associative-memory goal: affine quadratics and normalized queries
+
+Previous turn classification: progress. The robust homogeneous capacity
+bound, quartic countercontrol and indexed baseline were saved. This
+iteration establishes a direct prior-art boundary and extends the proof
+to linear terms and biases, including a separate proof on the unit sphere.
+The full architecture/novelty/publication goal is still unachieved.
+
+#### The homogeneous geometric step is published prior art
+
+[Fawzi--Fawzi--Frossard, Lemma 6.1](https://arxiv.org/pdf/1502.02590)
+already perturbs toward an opposite-sign extreme eigenvector and bounds
+distance to a homogeneous quadratic decision boundary by the square
+root of its value divided by that eigenvalue magnitude. The lemma and
+its displayed proof, Section 6's assumptions and Theorem 6.2 were
+inspected. The latter additionally uses an extreme-eigenvalue ratio
+condition and a second-moment distinguishability measure. Our earlier
+geometric step is the same mechanism as the lemma; combined with the
+established norm/margin argument, the homogeneous capacity bound is
+an elementary consequence, not a standalone novelty claim. This does
+not establish that the affine or spherical extensions below are new.
+
+#### Two domains, with explicit affine-quadratic bounds
+
+Let p>=2, let u_1,...,u_n be fixed real unit keys, and let 0<delta<1.
+For every binary assignment suppose there is an arbitrary real
+affine-quadratic function
+
+    f(x)=x^T*S*x+b^T*x+c,  S symmetric,
+
+with the prescribed strict sign on the whole specified neighborhood
+of every key. Coefficients and the algorithm that obtains them are
+unrestricted. There are two different neighborhood specifications:
+
+* Full balls: all real x with ||x-u_i||_2<=delta. Then
+
+      n <= 300*(p+8)/delta^4.
+
+* Spherical caps: all unit x with ||x-u_i||_2<=delta. Put
+  C0=64*660^2=27,878,400. Then
+
+      n <= 3*(p/4+2)*(2*C0)^2/delta^24.
+
+The usual quadratic feature-dimension bound
+n<=(p+1)*(p+2)/2 can be taken in the minimum in both cases.
+For p=1 there are only two distinct unit keys, so n<=2.
+Both bounds are linear in p at any fixed positive noise radius.
+The spherical constant and radius dependence are extremely loose;
+they do not establish a useful practical memory advantage. No optimal
+dependence on delta or priority is claimed.
+
+Here is a uniform proof of both bounds. For a mixed assignment, let
+u be a positive key with smallest f-value and v a negative key with
+largest f-value. Write
+
+    g=f(u)-f(v)>0, w=lambda_max(S)-lambda_min(S),
+    B=||b||_2, D=w+B,
+    m=(lambda_max(S)+lambda_min(S))/2, T=S-m*I.
+
+D>0, since otherwise f is constant on the unit sphere. On unit inputs,
+f(x)=x^T*T*x+b^T*x+c+m and ||T||_op=w/2.
+
+#### Full-ball gap: spherical averaging handles the linear term
+
+Let r=delta^2 and alpha=r/4. If B>0 put beta=b/B. For any unit u the
+vector mu=(1-alpha)*u-alpha*beta belongs to the convex hull of its
+spherical cap: ||mu||<=1 and <mu,u> >= 1-r/2. The convex hull equals
+the unit ball cut by that half-space; its cross-sections prove this
+identity for p>=2. Hence a random unit Q in the cap can have mean mu.
+With h=Q-u,
+
+    E h=-alpha*(u+beta), E||h||^2=2*alpha*(1+<u,beta>)<=4*alpha,
+    |E[Q^T*T*Q]-u^T*T*u|<=4*alpha*w.
+
+The last inequality follows by expanding into 2*u^T*T*E h+E[h^T*T*h].
+Positivity throughout the cap gives
+
+    f(u)>alpha*(B+b^T*u)-4*alpha*w.
+
+Use mean (1-alpha)*v+alpha*beta at the negative key to get
+
+    f(v)<-alpha*(B-b^T*v)+4*alpha*w.
+
+Since g=b^T*(u-v)+u^T*T*u-v^T*T*v, and the last two terms differ
+by at most w, subtraction yields
+
+    (1-alpha)*g>alpha*(2*B-9*w).
+
+Separately, averaging f at u plus/minus delta times a minimum
+eigenvector gives f(u)>-delta^2*lambda_min(S). Averaging at v with
+a maximum eigenvector gives f(v)<-delta^2*lambda_max(S). Thus
+g>delta^2*w. If B>=9*w the preceding spherical estimate gives
+g>delta^2*B/4 and D<=10*B/9. Otherwise D<10*w and the eigenvector
+estimate suffices. In either case
+
+    g>delta^2*D/10.
+
+For B=0 the eigenvector estimate alone proves the same conclusion.
+This proves the full-ball gap without assuming bounded weights,
+well-conditioned S, or a bound on the original constant term.
+
+#### Spherical gap: approximate extrema force an almost constant form
+
+The full-ball eigenvector step is unavailable for a sphere-only reader.
+For example f(x)=||x||^2-1+x_1/100 has the correct opposite signs
+around +e_1 and -e_1 on small spherical caps. At x=(9/10)*e_1 its
+value is -181/1000, so the same form fails the positive full-ball
+promise. An off-sphere proof cannot simply be reused after normalization.
+
+We instead show g>=D*delta^12/C0. If g>=D*delta^4 this is immediate.
+Otherwise put eta=sqrt(g*D). Along any unit-speed great circle the
+second and fourth derivatives of f have magnitude at most 2*D and
+8*D, respectively; the radial term m*I is constant there. Taylor's
+formula at u, with steps sqrt(g/D), bounds the tangent gradient by
+2*eta. A symmetric Taylor average with steps (g/D)^(1/4) bounds the
+tangent Hessian below by -8*eta/3. Both steps are less than delta,
+and their chord distances are at most their arc lengths, so they stay
+inside the cap. The same argument for -f at v gives the opposite bounds.
+
+In detail, f(u)<=g and f(v)>=-g. The one-sided Taylor estimate gives
+|f'(0)|<=g/t+D*t=2*eta at t=sqrt(g/D). The symmetric estimate gives
+f''(0)>=-2*g/t^2-(2*D/3)*t^2=-8*eta/3 at t=(g/D)^(1/4).
+These estimates hold in every tangent direction.
+
+Define the sphere Lagrange quantities
+
+    lambda_u=u^T*S*u+b^T*u/2, r_u=S*u+b/2-lambda_u*u,
+    lambda_v=v^T*S*v+b^T*v/2, r_v=S*v+b/2-lambda_v*v.
+
+Then ||r_u||,||r_v||<=eta. On u-perpendicular directions S-lambda_u*I
+is bounded below by -4*eta/3. On v-perpendicular directions
+S-lambda_v*I is bounded above by 4*eta/3. Set d=1-<u,v> and z=u-v.
+The negative key cannot belong to the positive cap, so d>delta^2/2.
+Direct subtraction gives
+
+    d*(lambda_u-lambda_v)=g-<u,r_v>+<v,r_u>,
+    (S-lambda_u*I)*z=r_u-r_v+(lambda_u-lambda_v)*v.
+
+Since g<D and g<=eta, these imply
+
+    |lambda_u-lambda_v|<=3*eta/d,
+    ||(S-lambda_u*I)*z||<=7*eta/d.
+
+For completeness, the following conservative constants make the global
+step explicit. Put A=S-lambda_u*I. For any unit x, subtract
+(<x,u>/d)*z to make x perpendicular to u, or add (<x,v>/d)*z to
+make it perpendicular to v. Each adjusted vector has norm at most
+4/d; the scalar adjustment is at most 1/d. Using ||z||<=2, the
+quadratic-form error from either adjustment is at most
+
+    (10/d^2)*||A*z||<=70*eta/d^3.
+
+The tangent lower and upper bounds therefore put every Rayleigh
+quotient of A between -338*eta/(3*d^3) and 482*eta/(3*d^3). Hence
+
+    ||A||_op<=161*eta/d^3,
+    w<=322*eta/d^3,
+    B<=2*||r_u||+2*||A||_op<=338*eta/d^3,
+    D<=660*eta/d^3.
+
+Squaring and using d>delta^2/2 gives
+g>=D*d^6/660^2>D*delta^12/(64*660^2), as required.
+This argument is also a quantitative version of a simple rigidity fact:
+a quadratic function on the sphere cannot have a local minimum and
+a distinct local maximum at the same value unless it is constant on
+the sphere. At exact extrema the residual identities give equal
+Lagrange multipliers and A*z=0; the two tangent semidefinite conditions
+then force A=0 and b=0. This fact is not claimed as new optimization theory.
+
+#### Converting either gap into a capacity bound
+
+Choose tau=(f(u)+f(v))/2 and divide the on-sphere coefficients by D.
+Every key then has the required sign with margin at least gamma, where
+
+    gamma=delta^2/20                 for full balls,
+    gamma=delta^12/(2*C0)            for spherical caps.
+
+The shifted constant obeys |c+m-tau|<=w/2+B, because tau lies between
+two values on the unit sphere. In the Hilbert feature representation
+
+    Phi(x)=(x*x^T,x,1),
+    W=(T,b,c+m-tau)/D,
+
+we have ||Phi(u_i)||^2=3 and ||W||^2<=p/4+2. Constant sign assignments
+use just the final scalar coordinate. The same independent-sign trace
+argument as before, now in the direct-sum Hilbert space, gives
+
+    n<=3*(p/4+2)/gamma^2.
+
+Substitution proves both displayed theorems. The feature-dimension
+alternative follows from linear dependence of more feature vectors
+than their ambient dimension: assigning signs to agree with the
+nonzero coefficients of a dependence contradicts strict separation.
+
+#### Scope, primary comparison and publication gate
+
+The spherical result covers normalized query coordinates, arbitrary
+linear terms and biases. Clipping does not evade a sign-realizability
+bound. A positive quadratic denominator and a fixed scalar decision
+threshold reduce to an affine-quadratic numerator; sums with a common
+denominator can be fused before applying the result. Different ratio
+denominators, nonlinear feature maps, routing and iterative dynamics
+remain outside it. This is a restriction on the effective reader in
+specified coordinates, not a lower bound on all complete ML models.
+
+The final bounded-margin step is established learning theory.
+[Ivanov--Jung--Naszodi, Theorem 3.1 and its proof](https://arxiv.org/html/2607.10751v1)
+gives the relevant general expanded-half-space bound through balanced
+signed sums and Rademacher type. Those statements and proof were
+inspected; the paper's expanded-ball domain is not an arbitrary
+indefinite-quadratic reader. The normalization/gap argument still needs
+its own precise priority audit. Different domains alone do not establish
+a new theorem of publishable significance.
+
+There is also substantial prior optimization theory:
+[Martinez, *Local Minimizers of Quadratic Functions on Euclidean Balls and Spheres*](https://doi.org/10.1137/0804009).
+Its primary abstract was inspected, including its characterization of
+local nonglobal minimizers; the full proof was not accessed or audited.
+Do not claim the rigidity fact as new or infer from the abstract that
+our quantitative robust-capacity bounds are absent from the literature.
+
+The advance is a complete affine-quadratic extension on both domains,
+not a new efficient architecture. Its constants, especially on the
+sphere, are far too weak to justify a practical capacity claim. The
+earlier quartic table and indexed-dictionary comparisons still apply;
+no strongest-method access, storage or retention advantage has been
+proved. The full goal remains active. Audit the exact geometry and
+sharper bounds before training or preparing a contribution manuscript.
+
+Reproduce the new controls with:
+
+```bash
+python3 -B scripts/run_affine_robust_checks.py
+```
+
+They check rational cap measures and their moments, derivative bounds
+with arbitrarily scaled radial terms, residual-transfer identities,
+the full-ball gap algebra, all mixed labels on small orthogonal key
+sets with linear terms/biases, the affine lifted sign-sum identity and
+the explicit spherical/full-ball counterexample. These finite controls
+support the proofs; they do not establish priority or verify the uniform
+theorem merely by sampling query neighborhoods.

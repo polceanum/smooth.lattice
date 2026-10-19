@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "command": "python3 -B scripts/run_affine_robust_checks.py",
+  "scope": "Exact supporting controls for full-ball and spherical affine-quadratic capacity proofs; no priority, runtime or architecture-advantage claim.",
+  "moments": {
+    "cap_measures": 144,
+    "exact_centered_moment_controls": 5184,
+    "geodesic_derivative_bound_controls": 5184
+  },
+  "transfer": {
+    "residual_transfer_cases": 720,
+    "full_ball_gap_algebra_cases": 192,
+    "sphere_gap_constant": 27878400
+  },
+  "fixtures": {
+    "mixed_label_whole_ball_instances": 342,
+    "certified_key_balls": 1800
+  },
+  "lift": {
+    "affine_lift_sign_assignments": 128,
+    "sphere_only_versus_full_ball_counterexample": true
+  },
+  "new_theorem_beyond_prior_art_established": false,
+  "strongest_method_advantage_established": false,
+  "source_sha256": {
+    "scripts/run_affine_robust_checks.py": "fcfe87d6efe4e237ac1d32399bd40d819bba0fe7dddac35d3ea7db51da83e9bd",
+    "scripts/run_robust_reader_checks.py": "c8753ce51634d92ea6bc3a6ebeaf7708c46da357d6cf1302d9cb5b69b98c7827",
+    "docs/interleaving_research.md": "a6540cdead407ca10ec1f0abb8237bb804afd013f244512226286313f731245e"
+  }
+}
