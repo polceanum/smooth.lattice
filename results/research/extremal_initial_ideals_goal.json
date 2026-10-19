@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-10-19",
+  "title": "A substantial extremal theorem from exponent lattice orderings",
+  "status": "active",
+  "objective": "Achieve a substantial mathematical advance connected to the smooth-number exponent-lattice observations, with resolving a recognized quantitative problem as the success criterion rather than producing another manuscript. The concrete first target is the worst-case number G_3(n) of distinct monomial initial ideals of a length-n polynomial quotient in three variables, over all fields. Determine its sharp asymptotic growth, or prove an infinite realizable family with a polynomially larger number of orderings than the generic corner-cut scale, together with a consequential general theorem. Explain what algebraic dependencies add to the prime/smooth lattice geometry. First audit the strongest relevant primary literature and the repository's unfinished lattice-shadow work; distinguish a genuinely new theorem from a classical geometric corollary before using it. Success requires a complete uniform proof that settles this extremal question or a substantial recognized part of it, a rigorous consequence for algebraic or geometric complexity beyond restating the count, independently implemented reproducible supporting checks, and an honestly attributed paper. A draft, a bounded priority review, isolated examples, a minor refinement, or an unverified novelty claim cannot complete this goal. If this target is already settled or a route fails, record the evidence and choose a comparably consequential problem still directly linked to the original mathematics; do not silently lower the success criterion. Preserve all existing manuscripts, core smooth-number kernels and auditor, previous research, and the paused ML work. Never send emails, messages to people or other tasks, author queries, or submissions. Publish only explicitly privacy-reviewed research files to the already authorized main branch.",
+  "goal_complete": false,
+  "asymptotic_improvement_established_this_iteration": false,
+  "novelty_established_this_iteration": false,
+  "note": "docs/extremal_initial_ideals.md",
+  "relationship_to_previous_work": "New active objective with a higher completion bar. Previous goal records, lattice-shadow candidate, manuscripts and paused ML results are preserved as historical research.",
+  "definitions": {
+    "G_d_n": "Maximum number of monomial initial ideals of a colength-n ideal in d variables, over all fields.",
+    "F_d_n": "The corresponding maximum for n distinct rational points; F_d(n) <= G_d(n).",
+    "first_target_dimension": 3
+  },
+  "success_criteria": [
+    "Sharp asymptotic growth for G_3(n), or an infinite realizable family polynomially above the generic corner-cut scale together with a consequential general theorem.",
+    "A complete uniform proof settling the target or a substantial recognized part, and a further rigorous algebraic or geometric consequence beyond restating the count.",
+    "A current primary-source comparison establishing the exact novelty boundary; an unavailable paper does not establish novelty.",
+    "Independent reproducible supporting checks and an honestly attributed paper; acceptance and impact are not presumed.",
+    "A draft, isolated examples, a bounded search, a minor refinement or an unverified novelty claim cannot complete the goal."
+  ],
+  "first_iteration": {
+    "progress_classification": "source_gap_partly_closed_and_coefficient_sensitive_family_probe_completed",
+    "source_gap_closed": "Full later Stigler--Zhang chapter retrieved and Theorem 8/proof, introductory statements, discussion and Boolean table compared. Its finite-field point bound does not settle the unrestricted all-fields finite-quotient target.",
+    "source_qualification": "The printed equality of complementary standard sets is replaced by the reflected-complement statement in Dimitrova--He--Robbiano--Stigler Theorem 4.8 and Corollary 4.11. The fan/count consequence remains valid.",
+    "finite_probes": {
+      "field_characteristic": 101,
+      "rectangles": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "lengths": [
+        4,
+        6,
+        9,
+        12
+      ],
+      "complete_initial_ideal_counts": [
+        6,
+        12,
+        26,
+        54
+      ],
+      "homogeneous_control_counts": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "independent_determinants_length_4": 70,
+      "grid_downsets": 1194,
+      "grid_reflected_complement_cases": 3072
+    },
+    "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
+    "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
+  },
+  "next_proof_task": "Characterize coherent bases of the nonlinear rectangle family using actual coefficients. Prove a uniform count or a collection of cones with a justified growth rate, or close the route with a uniform obstruction. Do not expand the search merely to gather larger examples.",
+  "remaining_priority_work": [
+    "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
+    "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
+    "Retain the user's assumption that relevant Elizalde--Galvan published results agree with arXiv:2312.16353v1, pending the user's eventual check."
+  ],
+  "primary_sources": [
+    {
+      "authors": "Babson, Onn and Thomas",
+      "url": "https://arxiv.org/pdf/math/0207135",
+      "scope": "Corollary 2.5 and established state-polyhedron framework."
+    },
+    {
+      "authors": "Stigler and Zhang",
+      "url": "https://par.nsf.gov/servlets/purl/10177092",
+      "published": "https://doi.org/10.1007/978-3-030-42687-3_9",
+      "pdf_sha256": "a052c1b9c4934370b8186b67e671f656d6c811f6baa6072cc7d4d624fd796662",
+      "scope": "Full later chapter retrieved; specified theorem and proof comparison in the note."
+    },
+    {
+      "authors": "Dimitrova, He, Robbiano and Stigler",
+      "url": "https://arxiv.org/pdf/1704.03680v2",
+      "scope": "Theorem 4.8, proof and Corollary 4.11 for reflected complements and equal fans."
+    }
+  ],
+  "verification": {
+    "research": {
+      "command": "python3 -B scripts/run_extremal_initial_ideals_checks.py",
+      "status": "passed",
+      "report": "results/research/extremal_initial_ideals_checks.json"
+    },
+    "build": {
+      "command": "./build.sh",
+      "status": "passed"
+    },
+    "smoke": {
+      "command": "python3 tests/test_smoke.py",
+      "status": "passed"
+    }
+  },
+  "preservation": "Only README.md plus four new public research files are intended for this iteration. No core kernels, earlier research files or manuscripts are changed. Private source caches remain ignored.",
+  "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
+  "intended_public_files": [
+    "README.md",
+    "docs/extremal_initial_ideals.md",
+    "scripts/run_extremal_initial_ideals_checks.py",
+    "results/research/extremal_initial_ideals_checks.json",
+    "results/research/extremal_initial_ideals_goal.json"
+  ],
+  "source_sha256": {
+    "README.md": "7917e3f3303898b32c4f6b735f713ceb6f2053691c9d0efafcdbddcac5a6e831",
+    "docs/extremal_initial_ideals.md": "5f22df106e288976b2f4b8e6431eae0bea30709a347e9a51d6cd595fcf15ff74",
+    "scripts/run_extremal_initial_ideals_checks.py": "9bd845027baa8df411787860f28234d6e33ce43809db7d70dc36a131204481f0",
+    "results/research/extremal_initial_ideals_checks.json": "d0a3f23bc540089d446670d1c86a93ac51544e28dcb1d0f3dd8ba7b83d52a0d1"
+  }
+}

@@ -44,6 +44,13 @@ paper/      quantitative manuscript and separate research notes
 results/    selected certified examples and benchmark summaries
 ```
 
+The active [extremal initial-ideal goal](docs/extremal_initial_ideals.md)
+targets sharp growth, or a polynomial separation from the generic scale with
+a general consequence, for finite algebras in three variables. It develops the
+exponent-lattice connection behind the original interleavings. The initial
+source audit, exact family probes and a uniform obstruction to a rank shortcut
+are saved; no new asymptotic advance is established in that iteration.
+
 Current research returns to the original occurrence-count and prime-exponent
 interleaving observations. The [face reconstruction study](docs/occurrence_reconstruction.md)
 proves that face prefixes involving O(log n) coordinates determine an n-term
