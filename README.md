@@ -54,6 +54,13 @@ Novelty and publication significance of this new study remain unresolved.
 The [goal record](results/research/occurrence_reconstruction_goal.json) states
 the next proof and primary-literature gates. The separate ML track is paused;
 its results are preserved without a claimed ML advantage.
+The [single-stream continuation](docs/occurrence_reconstruction.md#one-exponent-stream-determines-the-normalized-ordering)
+also proves normalized-weight recovery from one infinite exponent stream or
+its binary zero mask, an explicit finite height-error bound with calibration,
+and absolute prime-basis uniqueness for three or more primes using the
+classical six exponentials theorem. Arbitrarily long finite stream prefixes
+can nevertheless hide a rank-6 ordering change. Priority and an efficient
+recovery algorithm remain unestablished.
 
 The [mathematical research note](docs/interleaving_research.md) targets general
 structure and certification for fixed-prime rank/unrank. It separates known

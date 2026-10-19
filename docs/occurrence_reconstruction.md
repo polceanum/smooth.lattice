@@ -294,3 +294,280 @@ The separate four-prime witness checks all proper faces through length 1,000.
 The rational fixtures are not presented as prime fixtures. The uniform prime
 statement is proved separately above. Neither finite agreement nor a report
 marked passed establishes novelty, an optimal constant or a running-time gain.
+
+## One exponent stream determines the normalized ordering
+
+The first iteration was progress: it supplied the finite face hierarchy,
+uniform proofs and exact prime witnesses. It did not settle priority or
+provide an access improvement. This second iteration returns more directly
+to the individual streams. Surprisingly, the rank of the remaining face is
+enough to recover its numerical spacings from the *infinite* stream. The
+proof below also supplies a finite error certificate with explicit extra
+calibration data. The distinction between those two statements matters.
+
+Normalize the observed coordinate's weight to 1, and write the remaining
+weights as theta=(theta_1,...,theta_m), m=d-1>=1. Assume 1,theta_1,...,theta_m
+are rationally independent. Let
+
+    0=t_0<t_1<t_2<... be the ordered set {theta.x : x in Z_>=0^m},
+    M(T)=#{x : theta.x<=T},
+    F(T)=#{(a,x) : a+theta.x<=T}.
+
+From the observed exponent stream E, define A(a,r) to be the 1-based
+position of the (r+1)-st occurrence of symbol a. The occurrence-count
+identity gives, exactly,
+
+    A(a,r)=F(a+t_r),
+    A(a+1,0)-A(a,0)=M(a+1),
+    Z(A(a,0))=M(a),                                      (SS1)
+
+where Z counts zeroes through the given position. The second equality also
+follows by dividing the counted tuples into those with positive clock
+coordinate and those with clock coordinate zero. The placement array and
+duality are established sequence machinery; (SS1) specifies their use here.
+
+**Theorem 6 (single-stream rigidity).** In every finite dimension d>=2,
+the one infinite stream E determines the multiset of normalized remaining
+weights, and hence d and the full ordered exponent sequence up to permutation
+of the unobserved coordinate labels. Specifically, for every fixed r>=0,
+
+    t_r = lim_(a->infinity)
+          [A(a,r)-A(a,0)]/[A(a+1,0)-A(a,0)].             (SS2)
+
+The infinite binary zero mask of E suffices as well. A common positive
+scaling of all weights is necessarily invisible.
+
+Here is a finite statement that proves the limit without assuming a
+high-order lattice-counting expansion.
+
+**Theorem 7 (finite height certificate).** Suppose alpha is one of the
+remaining generator weights. Let p,b be coprime integers, b>=1, with
+
+    abs(alpha-p/b)<=1/b^2,     0<alpha<=H.
+
+For an integer a>=1, an integer K>=max(1,ceil(t_r)) and
+
+    R_a(r)=[A(a,r)-A(a,0)]/[A(a+1,0)-A(a,0)],
+
+one has the explicit bound
+
+    abs(R_a(r)-t_r)
+      <= 8/b + 2^m H b/a
+         + (2K+1)[M(a+K)-M(a)]/M(a+1).                 (SS3)
+
+All the M-values in the last term are observable in the zero mask through
+(SS1). K can be taken to be one plus the largest observed exponent through
+A(0,r), with a minimum of 1. The other inputs are a bound on dimension and
+a certified rational approximation to one actual remaining generator.
+They are additional calibration information, not quantities inferred for
+free from a finite word. For a supplied prime system, an integer H and the
+rational approximation can be certified from the corresponding prime pair.
+
+**Proof of Theorem 7.** Use right-closed circular intervals to define
+the discrepancy D(a) of the phases {theta.x} over theta.x<=a, normalized
+by M(a). If abs(alpha-p/b)<=1/b^2, a block of b points in a rotation by
+alpha is within circular distance 1/b of a translated uniform b-grid.
+For any circular interval, perturbation can move at most six grid points
+across its two endpoints; the grid count differs from its length times b
+by at most one. The bound eight is therefore safe. Blocks and a remainder
+give discrepancy in a row of L points at most 8L/b+b.
+
+Slice the simplex along the alpha coordinate. Let R(a) count the other
+m-1 coordinates at height at most a, with R(a)=1 in dimension zero. Summing
+the row bounds gives
+
+    D(a)<=8/b+b R(a)/M(a).
+
+Coordinatewise halving maps the R(a) points into the R(a/2) points, with
+at most 2^(m-1) preimages. Also each such latter point can be combined with
+any alpha-coordinate from 0 through floor(a/(2 alpha)). Thus
+
+    R(a)<=2^(m-1) R(a/2),
+    M(a)>=(floor(a/(2 alpha))+1) R(a/2),
+    R(a)/M(a)<=2^m alpha/a<=2^m H/a.                    (SS4)
+
+Put tau=t_r, and write tau=L+phi with 0<=phi<1. For an existing face
+point y=theta.x<=a, the number of its clock translates entering (a,a+tau]
+is exactly
+
+    floor(tau-y)-floor(-y)
+      = L + 1_((0,phi])({y}).
+
+The mean of this function on the circle is tau. Its sum over those M(a)
+points differs from tau M(a) by at most M(a)D(a). New face points in
+(a,a+tau] contribute at most K+1 clock translates apiece; their number is
+at most M(a+K)-M(a). Divide by M(a+1), and replace tau M(a)/M(a+1) by tau.
+The additional error is at most K[M(a+1)-M(a)]/M(a+1). Since K>=1, both
+boundary terms are bounded by the last term in (SS3). Substitution of
+(SS4) proves the stated finite bound. QED.
+
+**Proof of Theorem 6.** Put S=sum theta_i. The unit cubes based at the
+points counted by M(T) cover the positive simplex of height T and lie in
+the simplex of height T+S. Consequently
+
+    T^m/(m! product theta_i) <= M(T)
+      <= (T+S)^m/(m! product theta_i).                  (SS5)
+
+For fixed K, [M(a+K)-M(a)]/M(a+1) therefore tends to zero. The irrational
+alpha has coprime continued-fraction approximants with unbounded b satisfying
+Theorem 7's hypothesis. First let a tend to infinity with such b fixed;
+(SS3) bounds the limit superior of the error by 8/b. Then let b grow. This
+proves (SS2), for every r, without an assumed uniform Diophantine exponent.
+
+The set of all recovered t_r is the full additive monoid generated by theta.
+Its nonzero elements that cannot be written as a sum of two nonzero elements
+are exactly the m generator weights. Indeed a vector of total degree at least
+two splits, whereas rational independence prevents a generator from being
+a sum of other nonnegative integer combinations. This recovers the multiset
+theta and its size, so also the entire lattice ordering up to the unavoidable
+permutation. Identifying these atoms refers to the exact infinite set; this
+argument is not a finite equality-testing algorithm on estimated real numbers.
+
+Finally the deletion self-similarity reconstructs E from its zero mask:
+
+    E(n)=0 at a zero position,
+    E(n)=1+E(n-Z(n)) otherwise.
+
+The first entry is zero, so the referenced index is smaller than n. Thus
+every finite prefix of E can be reconstructed successively from the same
+length of zero-mask data. This established recursion, followed by (SS2),
+proves the last claim. QED.
+
+The same rank-inversion proof applies more generally to a locally finite
+height set H with no integer differences between distinct heights, provided
+its phases become uniformly distributed and
+M(a+K)/M(a)->1 for every fixed K. Before inserting the rotation estimate,
+the error is at most its interval discrepancy plus
+(2K+1)[M(a+K)-M(a)]/M(a+1). Finite additive generators supply these
+hypotheses and the explicit calibration bound in (SS3). This identifies
+the reusable mechanism; it is not an additional priority claim.
+
+It is essential to compare with ordinal-uniqueness theorems with their
+actual hypotheses. Placement-array duality alone does not imply numerical
+recovery. For example, put t_r=r sqrt(2) and
+
+    Phi(x)=floor(x)+{x}^2,     t'_r=Phi(t_r).
+
+Phi is strictly increasing and Phi(x+a)=Phi(x)+a for every integer a.
+Thus every comparison between a+t_r and b+t_s is preserved by replacing
+t with t', giving the same infinite placement order and observed symbol
+stream. But the heights change. The new set is not additively closed:
+t'_1=4-2 sqrt(2), t'_2=14-8 sqrt(2), and t'_1<2t'_1<t'_2.
+Its transformed phases also fail the uniformity hypothesis. This rules
+out deducing Theorem 6 from arbitrary placement-array duality alone. It
+does not rule out a published theorem with stronger applicable hypotheses.
+
+## Prime bases: an arithmetic rigidity consequence
+
+**Corollary 8.** For systems containing at least three distinct prime bases,
+one infinite exponent stream, or its binary zero mask, determines the
+observed prime and the set of all other primes. Their labels may be permuted.
+The number of bases need not be supplied.
+
+**Proof.** Theorem 6 leaves only a common positive scale lambda between
+the two lists of logarithms. If lambda is irrational, the two numbers
+1,lambda are rationally independent. Three logarithms of distinct primes
+are also rationally independent. All six exponentials of their pairwise
+products would nevertheless be primes from the two systems, hence algebraic.
+This contradicts the classical six exponentials theorem. Thus lambda is
+rational, say A/B with coprime positive integers. For the observed primes,
+q^B=p^A forces q=p and A=B by unique factorization. The scale is one, and
+the remaining prime sets coincide. QED.
+
+The transcendence input is established mathematics, not a new result here.
+A primary real-variable proof is [Pila, 1993, Theorem 3.1, printed pp.
+119--120](https://doi.org/10.1017/S1446788700037022). The logarithmic matrix
+form and stronger variations are discussed in [Waldschmidt, 2005](https://hrj.episciences.org/86).
+The candidate contribution is the recovery of normalized weights from one
+stream; the prime corollary is an application of that recovery and the cited
+theorem. It supplies no new prime-gap or transcendence estimate.
+
+For two bases, the proof establishes the normalized ratio. The four
+exponentials conjecture would also remove the scale ambiguity there, but
+the six-exponentials argument alone does not do so. No equivalence with that
+conjecture or unconditional two-prime absolute-uniqueness claim is made.
+For one base every prime gives the stream 0,1,2,... . For composite bases,
+common powers explicitly preserve the entire stream: (2,3,5) and (4,9,25)
+are a control showing why the prime hypothesis matters.
+
+## Finite words have no uniform recovery length
+
+**Theorem 9.** For every finite M>=1 there are two increasing triples of
+distinct primes, with the same first two primes, whose observed first-prime
+exponent streams agree through M but whose full exponent words first differ
+at rank 6. The observed coordinate is already active at rank 2.
+
+**Proof.** Start from weights (1,sqrt(2),2 sqrt(2)). Every exact tie between
+distinct exponent vectors has the same first coordinate, because 1 and
+sqrt(2) are rationally independent. The only relation direction is (0,2,-1).
+Consider the finite box {0,...,max(M,7)}^3. A sufficiently small positive or
+negative perturbation of the third weight preserves every strict comparison
+between its distinct height classes. Inside a tied class, every first
+coordinate is equal, so its projected word is unchanged by any internal
+reordering. Every possible first-M point lies in this box, independently
+of the positive weights. Thus the two first-coordinate words agree through M.
+
+The first five full vectors on both sides are
+
+    (0,0,0), (1,0,0), (0,1,0), (2,0,0), (1,1,0).
+
+The next two are (0,2,0) and (0,0,1) in opposite orders. The perturbation
+can be chosen small enough to preserve this statement. Approximate the
+first two weights by shared prime logarithms and the perturbed third
+weights by separate prime logarithms using the same finite Bertrand-based
+argument as Theorem 5. Preserve every strict inter-class inequality in the
+box and the comparisons specifying the first seven vectors. No within-class
+comparison needs preservation: its first coordinate is constant. This gives
+the stated prime triples, with increasing numerical bases. QED.
+
+One exact witness is
+
+    P_minus=(101,683,466483), P_plus=(101,683,466517),
+    466483 < 683^2=466489 < 466517.
+
+Their observed first-prime exponent streams agree through 20,000 entries.
+The full word changes at rank 6, from (0,0,1) to (0,2,0). Trial division,
+the heap and an independent exact product-pointer generator check this.
+The report stores a word hash and the first eight full vectors. It does not
+claim that the infinite streams coincide or locate their eventual first
+mismatch. The uniform theorem uses a new pair of triples for each M.
+
+There is no conflict with Corollary 8: the infinite data are unique, while
+no bound depending only on the requested output rank gives a sufficient
+input-prefix length uniformly over unbounded prime bases. Likewise (SS3)
+charges its calibration, dimension and boundary terms; it is not a uniform
+finite recovery guarantee without numerical information or separation.
+
+## Second-iteration comparison and publication decision
+
+The inspection of [Kimberling--Brown, 2004](https://cs.uwaterloo.ca/journals/JIS/VOL7/Kimberling/kimber67.pdf)
+was focused on the rank-array definition, equations (13)--(16), Theorem 4.2
+and Corollary 4.6. These are two-generator arrays; their exact floor increments
+already recover the one irrational parameter. That case and the placement
+array are prior art. [Kimberling, 2022, Section 4 and Example 7](https://cs.uwaterloo.ca/journals/JIS/VOL25/Kimberling/kimber16.pdf)
+establishes regular position-array duality and its signature example. Those
+inspected statements do not supply the present multidimensional recovery
+argument. This is a scoped comparison, not evidence that the general result
+has never been proved elsewhere. A missing keyword search is not a novelty
+certificate. Classical rotation discrepancy and simplex volume estimates
+are explicitly proved here to make their role and hypotheses auditable.
+
+The new candidate has a concrete arithmetic consequence and a finite error
+statement, unlike a conclusion based only on visual self-similarity. Its
+main unresolved gate is priority and significance in higher-dimensional
+signature/ordinal-representation theory. The prior finite-face theorem's
+priority audit also remains open. The next comparison should test whether
+the general one-stream theorem follows from an existing ordinal uniqueness
+or interspersion theorem. If so, credit that theorem and retain the result
+as background. No contribution manuscript or completed-goal claim follows
+from the present internal proof package alone.
+
+The existing checker now includes zero-mask reconstruction, exact placement
+and clock-increment identities, circular-interval endpoint controls, finite
+rational-lattice bounds, rigorous prime-log intervals, the 20,000-entry
+hidden-comparison witness, and non-vacuous quadratic-irrational certificates
+at large clock heights. The latter use an exact special rank-difference
+formula checked against direct lattice sums; they do not pretend to generate
+the enormous full streams. Finite tests do not verify the transcendence
+theorem, the infinite limits or priority. These rest on the written proofs
+and the stated classical input. No core kernel or earlier manuscript changes.
