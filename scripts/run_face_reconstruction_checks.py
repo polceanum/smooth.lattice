@@ -1236,6 +1236,63 @@ def sparse_cone_controls():
             "scope": "Exact prefix-cone certificates replay a strict rational center and use rigorous interval signs, validated against exact prime products. This is separate from the CLI rank auditor and adds no certified fast-unranking range. Uniform sharp arity and exact inversion rest on the written proof; novelty remains unresolved."}
 
 
+def primary_toolkit_comparison_controls():
+    """Exact specializations of the cited moment and Borel-fixed frameworks."""
+    factorial_cases = masses = 0
+    families = []
+    def falling(x, order):
+        return prod(range(x - order + 1, x + 1)) if order <= x else 0
+    for s in range(2, 7):
+        for q in (s // 2, s // 2 + 1):
+            points = [x for x in degree_points(s, q) if sum(x) == q]
+            count = comb(s + q - 1, q)
+            require(len(points) == count, "complete composition population")
+            # One multinomial row, alpha_i=1, in the primary source's
+            # Dirichlet-multinomial formula: every count vector is uniform.
+            for x in points:
+                cell_factorials = prod(factorial(a) for a in x)
+                mass = Fraction(factorial(q) * cell_factorials,
+                                cell_factorials * prod(range(s, s + q)))
+                require(mass == Fraction(1, count), "published distribution specializes to uniform compositions")
+                masses += 1
+            for orders in degree_points(s, 4):
+                total = sum(orders)
+                actual = Fraction(sum(prod(falling(xi, ai) for xi, ai in zip(x, orders))
+                                      for x in points), count)
+                expected = Fraction(falling(q, total) * prod(factorial(a) for a in orders),
+                                    prod(range(s, s + total)))
+                require(actual == expected, "source equation (3) versus complete mixed-factorial enumeration")
+                factorial_cases += 1
+            families.append({"dimension": s, "total_degree": q, "composition_count": count})
+
+    borel_controls = []
+    for primes in ((168323, 106937, 130069, 138373), (168323, 106937, 130069, 138389)):
+        word = [x for _, x in exact_prefix(primes, 10)]
+        permutation = tuple(sorted(range(len(primes)), key=lambda i: primes[i], reverse=True))
+        staircase = {tuple(x[i] for i in permutation) for x in word}
+        transfers = 0
+        for x in staircase:
+            for i in range(len(primes)):
+                if x[i]:
+                    for j in range(i + 1, len(primes)):
+                        shifted = tuple(a - (k == i) + (k == j) for k, a in enumerate(x))
+                        require(shifted in staircase, "Borel-fixed transfer after descending weight permutation")
+                        transfers += 1
+        borel_controls.append({"primes": primes, "prefix_length": 10,
+                               "descending_weight_permutation": permutation,
+                               "borel_transfers_checked": transfers,
+                               "last_vector": word[-1]})
+    require(borel_controls[0]["descending_weight_permutation"] ==
+            borel_controls[1]["descending_weight_permutation"] and
+            borel_controls[0]["last_vector"] != borel_controls[1]["last_vector"],
+            "same Borel coordinate order does not decide the full interleaving")
+    return {"uniform_probability_cases": masses,
+            "mixed_factorial_moment_cases": factorial_cases,
+            "composition_families": families,
+            "borel_fixed_counterpart_controls": borel_controls,
+            "scope": "Positive primary-source identification: the auxiliary distribution and factorial moments are established Dirichlet-multinomial specializations; both differing corner cuts obey the published Borel-fixed condition in the same coordinate order. These tests do not establish novelty of the sharp support law."}
+
+
 def main():
     report = {"schema_version": 1, "status": "passed",
               "command": "python3 -B scripts/run_face_reconstruction_checks.py",
@@ -1255,6 +1312,7 @@ def main():
     report["sharp_interaction_hierarchy"] = sharp_interaction_controls(
         report["proper_face_obstructions"]["witnesses"])
     report["sparse_prefix_cones"] = sparse_cone_controls()
+    report["primary_toolkit_comparison"] = primary_toolkit_comparison_controls()
     path = ROOT / "results/research/face_reconstruction_checks.json"
     path.write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps({"status": report["status"],

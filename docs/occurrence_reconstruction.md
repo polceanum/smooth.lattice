@@ -1298,3 +1298,66 @@ and should not imply that a new fast unranking algorithm or a theorem for
 all finite quotient algebras has been obtained. The remaining priority
 gate concerns the composition halfspace estimate, the sharp free-lattice
 law and subsequent uses of the cited framework. The goal remains active.
+
+## A focused review draft and the supporting-tool boundary
+
+The fifth iteration supplied sparse prefix certificates, the exact
+face/facet parameter and its generic-state-fan consequence. It also
+delimited arbitrary quotient algebras. This sixth iteration consolidates
+those results into the anonymous manuscript
+[Interaction support in smooth-number orders and corner-cut fans](../paper/interleaving_support/main.tex),
+with an [eight-page PDF](../output/pdf/interleaving_support.pdf).
+Its uniform proofs do not depend on the separate infinite-stream or
+Diophantine finite-mask results. The observation model, arbitrary fixed
+coordinate labeling and cost of reading the entire prefix are explicit.
+
+Two further primary comparisons settle supporting-tool attribution rather
+than supplying new mathematical claims.
+
+* [Tvedebrink--Eriksen--Morling, Section 4.2, equation (3), and Appendix A](https://arxiv.org/pdf/1406.6508)
+  give the general mixed factorial moments. One multinomial row and
+  Dirichlet parameters all equal to one give exactly the uniform weak
+  compositions and factorial identity used above. The displayed count
+  factorial a!/(a-r)! is falling, despite a terminology slip in the text.
+  The distribution and moment identity are established background. Our
+  auxiliary constant is a convenient derived estimate, not the proposed
+  contribution.
+* [Onn--Sturmfels, Sections 2--3](https://doi.org/10.1006/aama.1999.0645)
+  were rechecked in the original pages, including Theorem 2.2, Lemmas
+  3.1 and 3.3--3.4, Proposition 3.5, Corollary 3.6 and the proof of
+  Theorem 3.0. Their growing-dimension recognition theorem takes the
+  staircase's maximal elements or minimal excluded border as input.
+  Borel-fixedness controls conversion of those representations. It does
+  not supply the full staircase from the separate face words. This closes
+  that direct comparison and credits recognition as prior art; no new
+  recognition-time theorem is claimed.
+
+The two existing rank-10 prime witnesses obey the Borel-fixed condition
+in the same descending coordinate order, while their full cuts differ.
+The checker verifies every applicable transfer, 13 for each witness.
+It also compares all mixed factorial moments through total order four
+against complete composition populations: 912 identities and 276 exact
+probability values. These are positive identifications of the published
+frameworks, not a novelty test based on missing keywords.
+
+The manuscript attributes signature/placement duality, finite cones,
+recognition, finite prime approximation, the moment identity and the
+state-polyhedron framework. Its candidate contribution is the sharp
+interaction law, the exact reconstruction/certificate parameter, and
+the optimal generic-state-fan consequence. The general-quotient upper
+bound is explicitly a published consequence; the socle example explains
+the boundary. No new count-rounding operation is used in these proofs.
+
+The [manuscript audit](../results/research/interleaving_support_audit.json)
+records theorem dependencies, source-reading scopes, verification and
+publication limits. The current assessment is a plausible focused
+specialist paper for mathematical review. Evidence of a practical
+unranking advantage or a prime-distribution consequence has not been
+obtained. The draft contains an AI-assistance disclosure and makes no
+claim of independent referee approval, acceptance or settled authorship.
+
+The goal remains active for a final internal proof-to-claim and priority
+assessment of this consolidated draft. Further unrelated theorem searches
+are not needed for that decision. Preserve the older manuscripts, all
+research branches and the core rank auditor; no contact or submission is
+authorized.

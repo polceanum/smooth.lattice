@@ -78,6 +78,12 @@ identifies the same optimal support parameter in generic point-ideal state
 fans. An explicit finite quotient shows why the sharper bound does not
 extend to arbitrary ideals. Research interval checks preserve the core
 CLI and its independent rank auditor.
+An anonymous [review manuscript](paper/interleaving_support/main.tex) and
+[PDF](output/pdf/interleaving_support.pdf) now collect the sharp law,
+sparse certificates and generic-state-fan consequence with complete proofs.
+The [audit](results/research/interleaving_support_audit.json) states the
+primary-source boundaries and provisional publication assessment. This is
+a working draft; novelty and submission readiness remain under review.
 
 The [mathematical research note](docs/interleaving_research.md) targets general
 structure and certification for fixed-prime rank/unrank. It separates known

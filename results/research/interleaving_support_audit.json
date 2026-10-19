@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "title": "Interaction support manuscript: proof, primary comparison and publication assessment",
+  "status": "anonymous_review_draft",
+  "manuscript": "paper/interleaving_support/main.tex",
+  "pdf": "output/pdf/interleaving_support.pdf",
+  "research_note": "docs/occurrence_reconstruction.md",
+  "checker": "scripts/run_face_reconstruction_checks.py",
+  "report": "results/research/face_reconstruction_checks.json",
+  "goal_complete": false,
+  "novelty_established": false,
+  "publication_ready": false,
+  "main_candidate_contribution": "The sharp generic comparison interaction rank J(s)=Theta((3*sqrt(3)/2)^s/sqrt(s)), the resulting bounded-error face-dimension law, and their exact sparse-certificate/generic-state-fan interpretation.",
+  "observation_model": [
+    "Face words contain labeled exponent vectors, not numerical prime values and not projected initial streams. Coordinate labels need not be in increasing numerical prime order.",
+    "Bounds are uniform over ambient dimension. Prime examples may depend on the requested finite prefix and may use very large bases.",
+    "The sparse interval certificate starts from an exactly replayed strict rational center and reads the full prefix plus border. It is separate from the CLI independent rank auditor."
+  ],
+  "proof_map": [
+    {
+      "paper": "Theorem 1",
+      "claim": "Sharp first and second logarithmic term for both face parameters",
+      "note": "Theorem 14",
+      "basis": "Uniform interaction count, cone path, prime obstruction and inversion of Stirling estimates."
+    },
+    {
+      "paper": "Lemmas 2-4",
+      "claim": "Box bound, composition moment bound and strict lattice count",
+      "note": "Lemma 2; Theorem 11; Lemma 12",
+      "basis": "Primitive wall relation, exact factorial moments, uniform fourth-moment envelope, strict-sign estimate and separate zero-variance case."
+    },
+    {
+      "paper": "Theorem 5",
+      "claim": "Uniform sharp interaction rank in both parities",
+      "note": "Theorem 13",
+      "basis": "Constant-fraction lattice count and balanced full-support walls with rigorous degree truncation."
+    },
+    {
+      "paper": "Lemma 6",
+      "claim": "Finite prime realization",
+      "note": "Theorem 5 prime-realization argument",
+      "basis": "Established finite realization principle via Bertrand; no new prime-distribution estimate."
+    },
+    {
+      "paper": "Theorem 7",
+      "claim": "Exact equality of face parameters and kappa(n)",
+      "note": "Corollary 17",
+      "basis": "First-changing-wall support and arbitrary finite proper-face agreement across a generic wall."
+    },
+    {
+      "paper": "Theorem 8",
+      "claim": "Optimal sparse cone descriptions and interval consequence",
+      "note": "Theorem 16; Corollary 17",
+      "basis": "Strict realization, finite border inequalities, facet retention and strict conic implication."
+    },
+    {
+      "paper": "Corollary 9",
+      "claim": "Same optimal support parameter for generic n-point state fans",
+      "note": "Corollary 17",
+      "basis": "Published generic-state identification and isolated-coordinate padding to a prescribed size."
+    },
+    {
+      "paper": "Proposition 10",
+      "claim": "Boundary for arbitrary finite quotient algebras",
+      "note": "Proposition 18",
+      "basis": "Published Hilbert-zonotope support consequence plus an explicit socle-binomial quotient. Not proposed as a separate major contribution."
+    }
+  ],
+  "primary_comparison": [
+    {
+      "source": "https://cs.uwaterloo.ca/journals/JIS/VOL7/Kimberling/kimber67.pdf",
+      "inspected": "Rank-array definition and two-generator transposition results; first-page bibliography verified.",
+      "classification": "Established background for placement/occurrence motivation; no claim to introduce signature duality."
+    },
+    {
+      "source": "https://cs.uwaterloo.ca/journals/JIS/VOL25/Kimberling/kimber16.pdf",
+      "inspected": "Section 4 and Example 7; first-page title and article number verified.",
+      "classification": "Established regular position-array duality and signature example."
+    },
+    {
+      "source": "https://doi.org/10.1006/aama.1999.0645",
+      "inspected": "Original pages 30 and 33-39: Theorem 2.2, Lemmas 3.1 and 3.3-3.4, Proposition 3.5, Corollary 3.6 and the complete Theorem 3.0 proof.",
+      "classification": "Corner-cut geometry and growing-dimension recognition from a given staircase/frontier are prior art. Borel-fixed conversion does not by itself reconstruct that staircase from separate face words."
+    },
+    {
+      "source": "https://arxiv.org/pdf/math/0207135",
+      "inspected": "Proposition 3.2, Theorem 3.5 and their proofs; Section 5 generic point configurations.",
+      "classification": "Ground-set, fan refinement, generic-state identification and the immediate general support upper bound are credited. The sharper generic law is the candidate delta."
+    },
+    {
+      "source": "https://ti.inf.ethz.ch/ew/research/phdtheses/wagner03.pdf",
+      "inspected": "Chapter 3 simplex/box observations, difference-matrix encoding and Theorem 3.15 with the flag extension.",
+      "classification": "Established fixed-dimension counting/encoding scope differs from uniform interaction support. Subsequent primary uses are represented by the recorded named-source comparison, not an exhaustive citation claim."
+    },
+    {
+      "source": "https://doi.org/10.1134/S0361768809020030",
+      "inspected": "Supplied original paper; detailed recheck of Sections 5-6, Propositions 4-7, equations 11-16 and Figures 7-8.",
+      "classification": "Finite cones and full-chain frontier reductions are prior art. Retained normals can have full support; the direct reduction does not state the sharp support/rank law."
+    },
+    {
+      "source": "https://arxiv.org/pdf/math/9809134",
+      "inspected": "Section 3 and Lemma 4.1, with primitive/flippable pairs and coherent wall crossing.",
+      "classification": "Boolean framework is credited; repeated exponents change the rank count here."
+    },
+    {
+      "source": "https://www.math.auckland.ac.nz/~slinko/Research/isipta17.pdf",
+      "inspected": "Theorem 3 and proof; author-hosted title/author list.",
+      "classification": "Minimal determining subset comparisons and cone implications are background. The filename is not used as a publication-year assertion."
+    },
+    {
+      "source": "https://arxiv.org/pdf/1406.6508",
+      "inspected": "Section 4.2 equation (3), Appendix A and historical attribution.",
+      "classification": "One row with alpha_i=1 is exactly the auxiliary uniform-composition distribution and moment identity. These are not new claims; the 1962 original is not represented as directly read."
+    }
+  ],
+  "priority_assessment": {
+    "bounded_named_statement_comparison_complete": true,
+    "candidate_gap": "The inspected generic-state framework supplies a general support baseline, but no inspected statement gives the sharp free-lattice interaction scale or its exact face/facet parameter. The uniform composition count and balanced-wall argument supply the quantitative step.",
+    "limitations": "This is a scoped research assessment, not proof that no prior derivation exists. Empty keyword results and citation counts are not used as novelty evidence. Final internal proof-to-claim and priority judgment remains pending."
+  },
+  "verification": {
+    "research_replay": "passed",
+    "core_build": "passed",
+    "smoke": "passed",
+    "commands": [
+      "python3 -B scripts/run_face_reconstruction_checks.py",
+      "./build.sh",
+      "python3 tests/test_smoke.py",
+      "latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=results/local/interleaving_support_latex paper/interleaving_support/main.tex"
+    ],
+    "manuscript_pages": 8,
+    "terminal_latex_compile": "success",
+    "desktop_latex_compile": "success",
+    "overfull_boxes": 0,
+    "unresolved_references": 0,
+    "all_pages_visually_inspected": true,
+    "pdf_metadata": "Anonymous and sanitized; no attachments, correspondence, local paths or task identifiers.",
+    "new_uniform_probability_controls": 276,
+    "new_mixed_factorial_controls": 912,
+    "new_borel_transfers": 26,
+    "scope": "Compilation and finite checks support presentation and delicate finite steps. Uniform theorems rest on the written proof; tests do not establish novelty, external correctness review or a speedup."
+  },
+  "publication_assessment": {
+    "current_decision": "Plausible focused specialist paper for mathematical review; final internal readiness assessment pending.",
+    "mathematical_use": "A sharp growing-dimension structural law, sparse validity certificates and an optimal generic-state-fan interpretation connected to the original exponent observations.",
+    "limits": [
+      "No demonstrated practical random-access improvement.",
+      "No prime-distribution theorem or new transcendence estimate.",
+      "No stronger universal quotient theorem than the stated boundary.",
+      "No independent referee confirmation or journal acceptance."
+    ],
+    "assistance_disclosed": true,
+    "authorship_settled": false,
+    "contact_or_submission_authorized": false
+  },
+  "remaining_internal_work": [
+    "Final consolidated proof-to-claim audit against the original full objective.",
+    "Final bounded priority/publication decision, resolving any concrete new source lead before a completion claim."
+  ],
+  "preservation": "Previous manuscripts, core kernels, rank auditor, earlier research and paused ML track are preserved.",
+  "artifact_sha256": {
+    "paper/interleaving_support/main.tex": "f1b252fb408d11b710d7cd0c83c5d492d23afa959ebddd18e0c38bf694eff303",
+    "output/pdf/interleaving_support.pdf": "83f7351bc48d9b738d1222e4b1385cada0d659fbdbe7b582587c675b1605029a",
+    "scripts/run_face_reconstruction_checks.py": "a72b06c73dfee01cf3a8c27733acc743b0077cc9b0b85309509fb9d0e81668e8",
+    "results/research/face_reconstruction_checks.json": "3b563fd1b71856a46f7187563e9c252eb24a3d5db49bdf8b81ec609aa0896822",
+    "docs/occurrence_reconstruction.md": "21558abd9b97f75efabf42bc86739d9f213abe97077888e975a197466d68333b"
+  }
+}

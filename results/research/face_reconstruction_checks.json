@@ -2650,9 +2650,9 @@
   "publication_ready": false,
   "scope": "Finite exact controls support the uniform proofs; no prime-distribution or unranking speedup claim.",
   "source_sha256": {
-    "scripts/run_face_reconstruction_checks.py": "a68a6b2f55a90b7f0b537a409ea5de2ba34be087ed52ea3db0c99751827e3d6c",
+    "scripts/run_face_reconstruction_checks.py": "a72b06c73dfee01cf3a8c27733acc743b0077cc9b0b85309509fb9d0e81668e8",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
-    "docs/occurrence_reconstruction.md": "c94c46bd36b125994e4d5fc199ae7ec045f149d21c263eaccdaa5f35f52fa78e"
+    "docs/occurrence_reconstruction.md": "21558abd9b97f75efabf42bc86739d9f213abe97077888e975a197466d68333b"
   },
   "sharp_interaction_hierarchy": {
     "nonconstant_weight_moment_cases": 1128,
@@ -3997,5 +3997,108 @@
       "scope": "The exact monomial-plus-one-binomial presentations have two initial ideals. These are a boundary on extending the free-lattice theorem to arbitrary quotients, not a new universal Groebner-basis algorithm."
     },
     "scope": "Exact prefix-cone certificates replay a strict rational center and use rigorous interval signs, validated against exact prime products. This is separate from the CLI rank auditor and adds no certified fast-unranking range. Uniform sharp arity and exact inversion rest on the written proof; novelty remains unresolved."
+  },
+  "primary_toolkit_comparison": {
+    "uniform_probability_cases": 276,
+    "mixed_factorial_moment_cases": 912,
+    "composition_families": [
+      {
+        "dimension": 2,
+        "total_degree": 1,
+        "composition_count": 2
+      },
+      {
+        "dimension": 2,
+        "total_degree": 2,
+        "composition_count": 3
+      },
+      {
+        "dimension": 3,
+        "total_degree": 1,
+        "composition_count": 3
+      },
+      {
+        "dimension": 3,
+        "total_degree": 2,
+        "composition_count": 6
+      },
+      {
+        "dimension": 4,
+        "total_degree": 2,
+        "composition_count": 10
+      },
+      {
+        "dimension": 4,
+        "total_degree": 3,
+        "composition_count": 20
+      },
+      {
+        "dimension": 5,
+        "total_degree": 2,
+        "composition_count": 15
+      },
+      {
+        "dimension": 5,
+        "total_degree": 3,
+        "composition_count": 35
+      },
+      {
+        "dimension": 6,
+        "total_degree": 3,
+        "composition_count": 56
+      },
+      {
+        "dimension": 6,
+        "total_degree": 4,
+        "composition_count": 126
+      }
+    ],
+    "borel_fixed_counterpart_controls": [
+      {
+        "primes": [
+          168323,
+          106937,
+          130069,
+          138373
+        ],
+        "prefix_length": 10,
+        "descending_weight_permutation": [
+          0,
+          3,
+          2,
+          1
+        ],
+        "borel_transfers_checked": 13,
+        "last_vector": [
+          0,
+          0,
+          1,
+          1
+        ]
+      },
+      {
+        "primes": [
+          168323,
+          106937,
+          130069,
+          138389
+        ],
+        "prefix_length": 10,
+        "descending_weight_permutation": [
+          0,
+          3,
+          2,
+          1
+        ],
+        "borel_transfers_checked": 13,
+        "last_vector": [
+          1,
+          1,
+          0,
+          0
+        ]
+      }
+    ],
+    "scope": "Positive primary-source identification: the auxiliary distribution and factorial moments are established Dirichlet-multinomial specializations; both differing corner cuts obey the published Borel-fixed condition in the same coordinate order. These tests do not establish novelty of the sharp support law."
   }
 }

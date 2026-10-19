@@ -1,0 +1,595 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=27mm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Interaction support in smooth-number orders and corner-cut fans},
+ pdfauthor={},pdfsubject={Anonymous working draft for mathematical review}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\NN}{\mathbb Z_{\geq0}}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\card}[1]{\lvert#1\rvert}
+\newcommand{\fl}[1]{\lfloor#1\rfloor}
+\newcommand{\ce}[1]{\lceil#1\rceil}
+\newcommand{\ga}{\gamma}
+\title{Interaction support in smooth-number orders\\and corner-cut fans}
+\author{}
+\date{19 October 2026}
+\begin{document}
+\maketitle
+\begin{center}\small Anonymous working draft for mathematical review.\end{center}
+\begin{abstract}
+Order the nonnegative integer lattice by a positive weight vector.
+How many coordinates must a comparison involve before it can first
+affect a prefix of length \(n\)? We prove that the minimum first tied
+rank of a generic comparison wall with support \(s\) is
+\(\Theta((3\sqrt3/2)^s/\sqrt{s})\), with absolute constants.
+Consequently the worst-case coordinate-face dimension needed to
+reconstruct a labeled \(n\)-term ordered prefix is
+\[
+ \frac{\log n+\tfrac12\log\log n}{\log(3\sqrt3/2)}+O(1).
+\]
+The same parameter is the maximum support of a positive-weight facet
+of a prefix cone and of a sufficiently generic \(n\)-point ideal's
+state fan, uniformly over ambient dimension. It yields sparse linear
+certificates for a realizable prefix. Finite prime approximation
+transfers the face-information result to smooth-number exponent
+orders. The general Hilbert-zonotope framework has a different
+support scale: arbitrary length-\(n\) quotient algebras admit walls
+with \(2\log_2 n+O(1)\) coordinates. We give an explicit boundary
+example and separate the structural statements from running-time
+claims.
+\end{abstract}
+
+\section{The question and its relation to exponent streams}
+Let \(w\in\RR_{>0}^d\) have rationally independent coordinates.
+Write \(W_n(w)\) for the first \(n\) vectors of \(\NN^d\), in increasing
+order of \(w\cdot x\), with the zero vector at rank \(1\).
+For distinct primes \(p_1,\ldots,p_d\), taking \(w_i=\log p_i\)
+gives the exponent vectors of the fixed-basis smooth numbers.
+Coordinates retain their labels; numerical weight order is not
+additional input. In the prime model the labels may have any fixed
+order, and the numerical prime values are not supplied as additional
+data in the reconstruction problem.
+
+For a nonempty coordinate set \(S\), the \emph{face word}
+\(W_n(w_S)\) orders the lattice on \(S\). It contains \(n\) vectors
+from that face, not the first \(n\) entries of a coordinate projection
+of the full word. Let \(R_{\rm all}(n)\) be the least integer \(r\)
+such that all labeled face words of length \(n\) on at most \(r\)
+coordinates determine \(W_n(w)\), uniformly in \(d\) and \(w\).
+Let \(R_{\rm prime}(n)\) restrict the realizing weights to distinct
+prime logarithms. Define both parameters to be \(0\) at \(n=1\).
+
+This question comes from the deletion and occurrence structure of
+the individual exponent streams. If \(E_i(j)\) is coordinate \(i\)
+of the \(j\)-th vector, define \(T(E_i)(j)\) as the number of earlier
+occurrences of the same symbol. Fixing coordinate \(i\) leaves the
+order on the other coordinates. Therefore
+\[
+ T(E_i)(j)=\rho_i(x_j\text{ with coordinate }i\text{ deleted})-1,
+ \qquad T^2(E_i)=E_i,
+\]
+where \(\rho_i\) is the one-based rank on the complementary face.
+Indeed occurrences of each face rank have clock exponents
+\(0,1,2,\ldots\). Deleting zero entries of \(E_i\) and subtracting
+one corresponds to translating lattice points by the \(i\)-th unit
+vector, and reproduces the full order. Placement arrays and
+signature-sequence duality are established background
+\cite{KB04,K22}. For two generators the partner is the other
+exponent; in higher dimension it encodes the rank of an entire
+face vector. Our concern is the finite information needed to
+recover the ordering hidden in these ranks.
+
+Put \(\ga=3\sqrt3/2\). All unqualified logarithms below are natural.
+
+\begin{theorem}[Sharp face information]\label{thm:faces}
+As \(n\to\infty\),
+\[
+ R_{\rm all}(n)=R_{\rm prime}(n)
+ =\frac{\log n+\tfrac12\log\log n}{\log\ga}+O(1).
+\]
+The equality of the two parameters is exact for each \(n\);
+the displayed asymptotic determines their value to bounded
+additive error. Constants are independent of ambient dimension
+and of the prime bases.
+\end{theorem}
+
+The statements concern ordinal exponent data. An arithmetic
+algorithm supplied with the primes can compare numerical products
+directly. Nor is requesting all faces cheap: their number may be
+\(\sum_{j\le r}\binom dj\), each containing \(n\) vectors.
+No random-access running-time improvement follows from
+Theorem~\ref{thm:faces} alone.
+
+\section{Comparison walls and a composition estimate}
+For a primitive mixed-sign \(z\in\ZZ^d\), put \(u=z_+\) and
+\(v=z_-\). A \emph{generic positive wall point} is \(w>0\) such that
+\[
+ \{a\in\ZZ^d:w\cdot a=0\}=\ZZ z.
+\]
+At height \(h=w\cdot u=w\cdot v\), the only tied points are
+\(u,v\). To see this, a point at that height differs from \(u\)
+by an integer multiple of \(z\); nonnegativity permits only the
+two endpoints. The lowest tie anywhere in the lattice is this pair:
+every other tied pair is a nonnegative translate of positive integer
+multiples of \(u,v\).
+Its \emph{first tied rank} is \(1+\card{\{x:w\cdot x<h\}}\).
+
+Let \(J(s)\) be the minimum first tied rank of a generic positive
+wall whose normal has support \(s\). One may work in dimension \(s\):
+additional coordinates can only increase the count, and can be
+chosen large when proving an upper bound.
+
+\begin{lemma}[Box bound]\label{lem:box}
+At a generic positive wall,
+\[
+ J\geq \frac12\prod_i(1+|z_i|)\geq2^{s-1}.
+\]
+\end{lemma}
+\begin{proof}
+Pair the points \(x\) and \(u+v-x\) in the integer box
+\(0\leq x\leq u+v\). Their scores add to \(2h\), and only \(u,v\)
+have score \(h\). Thus exactly
+\((\prod_i(1+|z_i|)-2)/2\) box points lie strictly below \(h\).
+The product is even because a primitive vector has an odd
+coordinate.
+\end{proof}
+
+The box and flip viewpoints are classical ingredients
+\cite{M99,CCS}. The additional points with repeated coordinates
+are essential for the sharper bound.
+
+\begin{lemma}[Strict composition halfspaces]\label{lem:moment}
+Let \(s\geq2\), \(q=\fl{s/2}\), and let \(X\) be uniform on
+\(\{x\in\NN^s:\sum_i x_i=q\}\). If \(\beta\ne0\) and
+\(\sum_i\beta_i=0\), then, for \(Y=\beta\cdot X\),
+\[
+ \mathbb E Y^4\leq12(\mathbb E Y^2)^2,\qquad
+ \Pr(Y<0),\Pr(Y>0)\geq1/48.
+\]
+\end{lemma}
+\begin{proof}
+Use falling factorials \((q)_j\), rising factorials \(s^{(j)}\),
+and \(u_j=(q)_j/s^{(j)}\), interpreted as zero for \(j>q\).
+The standard factorial-moment identity is
+\[
+ \mathbb E\prod_i(X_i)_{a_i}
+ =\frac{(q)_{\sum a_i}\prod_i a_i!}{s^{(\sum a_i)}}.
+\]
+For a self-contained derivation, the numerator's generating function is
+\[
+ \prod_i(a_i!)t^{\sum a_i}(1-t)^{-s-\sum a_i}.
+\]
+Take its coefficient of \(t^q\) and divide by
+\(\binom{s+q-1}{q}\). This is also the all-ones-parameter
+Dirichlet--multinomial specialization of the published general
+formula \cite[Section 4.2 and Appendix A]{T14}.
+
+Put \(A=\sum_i\beta_i^2\) and \(C=\sum_i\beta_i^4\leq A^2\).
+Expanding powers with the factorial moments and
+\(\sum_i\beta_i=0\) gives
+\begin{align*}
+ \mathbb EY^2&=(u_1+u_2)A,\\
+ \mathbb EY^4&=(u_1+7u_2+12u_3+6u_4)C
+                +(3u_2+6u_3+3u_4)A^2.
+\end{align*}
+Set \(r=q/s\) and \(t=u_2\). Then
+\(1/3\leq r\leq1/2\), \(0\leq t\leq r^2\),
+\(u_3\leq rt\), and \(u_4\leq r^2t\). Hence
+\[
+ \frac{\mathbb EY^4}{A^2}
+ \leq r+(10+18r+9r^2)t\leq12(r+t)^2.
+\]
+For the last inequality, the difference between right and left
+is decreasing in \(t\) on the indicated interval: its derivative
+is at most \(6r+15r^2-10<0\). At \(t=r^2\) the difference is
+\(r(2r+6r^2+3r^3-1)>0\).
+
+Write \(\sigma^2=\mathbb EY^2>0\). H\"older interpolation gives
+\(\mathbb E|Y|\geq\sigma^3/\sqrt{\mathbb EY^4}
+\geq\sigma/\sqrt{12}\).
+Since \(\mathbb EY=0\), \(\mathbb EY_-=\mathbb E|Y|/2\).
+Cauchy--Schwarz bounds this by
+\(\sigma\sqrt{\Pr(Y<0)}\), giving \(1/48\).
+Apply the same argument to \(-Y\).
+\end{proof}
+
+No separate novelty claim is made for the factorial moments,
+the fourth-moment method, or the particular nonoptimal constant.
+
+\begin{lemma}[Strict lattice count]\label{lem:count}
+If \(w_i>0\), \(h>0\), and \(\sum_{i=1}^s w_i\leq2h\), then
+\[
+ \card{\{x\in\NN^s:w\cdot x<h\}}
+ \geq \frac1{48}\binom{s+\fl{s/2}-1}{\fl{s/2}}.
+\]
+\end{lemma}
+\begin{proof}
+Put \(q=\fl{s/2}\). If the weights are not all equal, apply
+Lemma~\ref{lem:moment} to
+\(\beta_i=w_i-\sum_jw_j/s\). At least the stated number
+of degree-\(q\) points are strictly below their mean
+\(q\sum_iw_i/s\leq h\).
+If all weights equal \(a\), the entire layer is strictly
+below \(h\) unless \(qa=h\). In that exception \(s=2q\);
+the degree-\(q-1\) layer is below \(h\) and has
+\[
+ \binom{s+q-2}{q-1}
+ =\binom{s+q-1}{q}\frac q{s+q-1}
+ \geq\frac13\binom{s+q-1}{q}.
+\]
+This handles the zero-variance case separately.
+\end{proof}
+
+\section{The sharp interaction scale}
+\begin{theorem}\label{thm:J}
+Uniformly for \(s\geq2\),
+\[
+ J(s)=\Theta(\ga^s/\sqrt{s}).
+\]
+For every prescribed finite \(M\), the upper constructions can be
+perturbed to opposite sides of a wall while preserving all proper
+coordinate-face words through \(M\) terms.
+\end{theorem}
+\begin{proof}
+At a wall with support \(s\), each nonzero \(|z_i|\geq1\), so
+\(\sum_{i\in\supp z}w_i\leq w\cdot(u+v)=2h\).
+Lemma~\ref{lem:count} and Stirling's formula give the lower bound,
+since
+\[
+ \log\binom{s+\fl{s/2}-1}{\fl{s/2}}
+   =s\log\ga-\tfrac12\log s+O(1).
+\]
+
+For the upper bound put \(a=\fl{s/2}\), \(b=\ce{s/2}\),
+and \(z=(1^a,-1^b)\). Start with weights \(b/a\) in the
+first group and \(1\) in the second. The common height is \(b\).
+Choose a generic point on this wall within
+\(\eta<1/(s+1)\) of these weights. Its common height is at most
+\(b+a\eta\), whereas every point of degree at least \(b+1\)
+has score at least
+\((b+1)(1-\eta)>b+a\eta\).
+Therefore
+\[
+ J(s)\leq\binom{s+b}{b}=\Theta(\ga^s/\sqrt{s}).
+\]
+Such generic points exist by avoiding the countably many
+other rational hyperplanes inside a relatively open wall patch.
+
+Every proper coordinate subvector at that point is independent:
+a relation on a proper face cannot be a nonzero multiple of
+the full-support normal \(z\). Each prescribed finite face word
+is determined by finitely many strict inequalities. A sufficiently
+small perturbation of the last weight in either direction preserves
+all of them. It reverses the lowest full tie, changing the full word
+at its first tied rank. Perturbations can be chosen off all rational
+hyperplanes.
+\end{proof}
+
+\begin{lemma}[Finite prime realization]\label{lem:prime}
+Any finite collection of strict positive-weight comparisons can
+be preserved by distinct prime logarithms. Two perturbations
+differing only in the last coordinate can share all their other
+prime bases.
+\end{lemma}
+\begin{proof}
+For large \(L\), Bertrand's postulate supplies a prime in
+\((e^{Lw_i},2e^{Lw_i})\). The normalized logarithmic error is
+at most \(\log2/L\). All finitely many strict comparisons
+persist for large \(L\). Choose the target vectors with distinct
+coordinates; their intervals become disjoint, giving distinct
+bases. Shared coordinates use the same intervals and primes.
+\end{proof}
+Finite prime realization is an established principle; the lemma
+records the elementary version used here. It gives no new
+prime-distribution estimate.
+
+\section{Exact inversion and reconstruction}
+A finite prefix's weight region is an open polyhedral cone.
+Indeed impose its consecutive comparisons, positivity, and the
+comparison of its last point with every coordinatewise minimal
+excluded point. The excluded border is finite, and every excluded
+point dominates a border point.
+
+\begin{theorem}[Exact interaction parameter]\label{thm:kappa}
+For \(n\geq2\), let
+\(\kappa(n)=\max\{s\geq2:J(s)\leq n\}\).
+Set \(\kappa(1)=0\).
+Then
+\[
+ R_{\rm all}(n)=R_{\rm prime}(n)=\kappa(n).
+\]
+\end{theorem}
+\begin{proof}
+Take two weights giving the same supplied face words on at most
+\(\kappa(n)\) coordinates. The intersection of the corresponding
+face-prefix cones is open and convex. Join the weights by a
+generic path inside it. A finite arrangement suffices: every point
+that can appear or first tie by rank \(n\) has every coordinate
+at most \(n\), since larger values give too many smaller pure powers.
+The path can avoid intersections of distinct comparison walls.
+
+If the full prefix changes, a wall with primitive normal \(z\)
+has its lowest tied rank at most \(n\). Restricting to its support
+\(S\) cannot increase this rank, so \(J(|S|)\leq n\).
+Its face is among the supplied data, and crossing the wall changes
+that face's length-\(n\) word. This contradicts the common cone.
+
+Conversely, a generic \(s\)-coordinate wall attaining \(J(s)\leq n\)
+has perturbations agreeing through \(M=n\) on all proper faces and
+differing in the full prefix. Lemma~\ref{lem:prime} transfers the
+two finite patterns to prime bases. Thus fewer than \(s\) coordinates
+cannot suffice even in the prime class. The box bound makes
+\(\kappa(n)\) finite.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:faces}]
+The lower estimate for \(J(s)\) implies that any \(J(s)\leq n\)
+satisfies
+\[
+ s\log\ga-\tfrac12\log s\leq\log n+O(1).
+\]
+The box bound first gives \(s=O(\log n)\), yielding the stated
+upper bound. For the reverse inequality use the even-dimensional
+upper construction with \(s=2k\) and first rank at most
+\(\binom{3k}{k}\). Stirling gives
+\(\log\binom{3k}{k}=2k\log\ga-\tfrac12\log k+O(1)\).
+Taking
+\[
+ k=\fl{\frac{\log n+\tfrac12\log\log n}{2\log\ga}-C}
+\]
+for a sufficiently large fixed \(C\) proves the matching lower bound.
+\end{proof}
+
+\section{Sparse validity cones and interval certificates}
+\begin{theorem}\label{thm:cone}
+Every positive-weight facet of a realizable length-\(n\) prefix
+cone has support at most \(\kappa(n)\). Some cone needs this support.
+The same bound is sufficient for a finite linear inequality
+description, retaining coordinate positivity separately.
+\end{theorem}
+\begin{proof}
+Choose a generic positive relative interior point of a facet.
+Crossing it changes the prefix, so its normal \(z\) has
+\(J(|\supp z|)\leq n\), as above. Coordinate boundary facets
+are represented by positivity. In a finite halfspace description
+each facet has a defining normal. Retaining these normals defines
+the same closed cone. Every other valid normal is a nonzero
+nonnegative combination of them, so their strict inequalities
+also imply all original strict inequalities. Realizability
+provides the strict interior point needed here.
+
+Conversely a wall attaining \(J(s)\leq n\) supplies a genuine
+prefix facet of support \(s\). Any finite inequality description
+must contain a normal parallel to that facet; normals with
+smaller support cannot define it.
+\end{proof}
+
+An explicit sufficient cutoff follows from the proof, without
+computing \(J(s)\). Put \(p=\fl{(s-1)/2}\), \(q=\fl{s/2}\), and
+\[
+ B_s=\max\left(2^{s-1},\
+  1+\ce{\binom{s+p}{p}/s},\
+  1+\ce{\binom{s+q-1}{q}/48}\right).
+\]
+For the middle bound, each cyclic permutation orbit of the
+points of degree at most \(p\) has average height strictly
+below \(h\), so supplies one point below \(h\).
+Thus \(J(s)\geq B_s\), and
+\(r(n)=\max\{s:B_s\leq n\}\) is sufficient.
+One may improve this with the elementary exact values
+\(J(2)=2,J(3)=5,J(4)=10\), proved in the research artifact.
+
+For an actual certificate, first generate a proposed word at
+exact positive rational weights and replay through \(n+1\)
+points to verify a strict prefix and boundary. Form the usual
+consecutive and minimal-border comparisons. Delete all
+nonpositivity normals above a proved sufficient support cutoff.
+For a rational box \(w_i\in[l_i,u_i]\), \(l_i>0\), check
+\[
+ \sum_{z_i\geq0}z_i l_i+\sum_{z_i<0}z_i u_i>0
+\]
+for every retained normal \(z\). Theorem~\ref{thm:cone}
+certifies the whole box, including any prime logarithms
+rigorously enclosed in it. It is essential to establish a strict
+realization first; deletion need not preserve the feasibility
+question for an arbitrary impossible word. This procedure reads
+the whole prefix and border. It makes no running-time claim
+against the published recognition algorithms.
+
+\section{Generic state fans and the quotient boundary}
+For a length-\(n\) ideal, the state polyhedron and its normal fan
+encode its initial ideals. The published framework
+\cite{OS99,BOT03} identifies the state polyhedron of a sufficiently
+generic \(n\)-point configuration with the corner-cut polyhedron
+\[
+ P_n^d=\operatorname{conv}\left\{\sum_{x\in D}x:
+                     D\subset\NN^d,\ |D|=n\right\}.
+\]
+A precise sufficient genericity condition is that every
+\(n\)-element subset of
+\(V_n^d=\{v:\prod_i(v_i+1)\leq n\}\) is a quotient basis.
+This identification is prior art.
+
+\begin{corollary}\label{cor:generic}
+The maximum support of a state-fan facet meeting the positive
+weight cone, over all ambient dimensions and sufficiently
+generic \(n\)-point configurations, equals \(\kappa(n)\).
+\end{corollary}
+\begin{proof}
+A corner-cut cone is refined by the cones for its internal
+ordered prefixes. A positive-weight wall therefore has a
+primitive normal whose lowest tied rank is at most \(n\);
+its support is at most \(\kappa(n)\).
+
+For the reverse bound, take a wall attaining \(J(s)\leq n\)
+at height \(h\). Append \(n-J(s)\) new coordinate weights in
+\((\max(h/2,h-\min_iw_i),h)\). Each contributes exactly its
+unit vector below \(h\). Squares and sums with old nonzero
+points or other new coordinates are above \(h\).
+Choose the added weights generically, preserving only the
+original relation. The first tied rank is now precisely \(n\).
+Across this wall the two \(n\)-point cut sums differ by \(v-u\),
+giving a positive-weight facet with support \(s\).
+The published generic-configuration identification transfers it
+to the state fan.
+\end{proof}
+
+The corresponding statement for arbitrary quotient algebras has
+a different scale. Let \(A(n)\) be the maximum support of a
+noncoordinate state-fan facet meeting positive weights, over
+all length-\(n\) ideals and ambient dimensions.
+
+\begin{proposition}[Boundary for arbitrary quotients]\label{prop:quotient}
+For \(n\geq2\),
+\[
+ 2\fl{\log_2(n+2)}-2\leq A(n)\leq2\fl{\log_2 n}.
+\]
+\end{proposition}
+\begin{proof}
+The upper bound is a direct consequence of the
+Hilbert-zonotope refinement \cite[Proposition 3.2 and
+Theorem 3.5]{BOT03}. Every refining direction is a difference
+of two members of \(V_n^d\), each with support at most
+\(\fl{\log_2 n}\). A facet of the coarser state fan must
+lie in one of the refining wall hyperplanes.
+
+For the lower bound put \(k=\fl{\log_2(n+2)}-1\),
+\(U=x_1\cdots x_k\), \(V=y_1\cdots y_k\), and
+\(\ell=n-(2^{k+1}-2)\). Let
+\[
+ S=\operatorname{div}(U)\cup\operatorname{div}(V)
+            \cup\{t,t^2,\ldots,t^\ell\}.
+\]
+Let \(K\) be the monomial ideal of the complement of \(S\)
+and set \(I=K+(U-V)\). The set \(S\) has \(n+1\) members.
+Every variable annihilates \(U,V\) modulo \(K\);
+hence their relation removes exactly one dimension and
+the quotient has length \(n\).
+
+For either leading choice of \(U-V\), the monomial
+generators of \(K\) and this binomial form a Gr\"obner basis.
+Indeed an S-pair with a monomial generator reduces to a
+nonconstant multiple of the other socle monomial, in \(K\).
+Monomial--monomial S-pairs vanish. Thus the two initial
+ideals are \(K+(U)\) and \(K+(V)\), separated at positive
+weights by
+\(\sum_iw_{x_i}=\sum_iw_{y_i}\), of support \(2k\).
+\end{proof}
+The general upper bound is credited as an immediate published
+consequence. The example delimits Corollary~\ref{cor:generic};
+it is not proposed as an independent universal-basis algorithm.
+A length-\(6\) quotient already has a support-\(4\) wall,
+whereas the full lattice cannot first have one before rank \(10\).
+
+\section{Prior-art boundary, verification, and assessment}
+Corner cuts, generic state polyhedra, and recognition via finite
+linear inequalities are established \cite{OS99,BOT03}.
+The recognition theorem of \cite[Section 3]{OS99} allows growing
+dimension and uses Borel-fixedness to obtain a complete
+frontier description. It assumes that the staircase itself is
+given. Our face input does not give that staircase, and our
+support bound is not a new recognition-time theorem.
+Wagner's fixed-dimension counting and flag bounds \cite{W02}
+address a different parameter. The finite-chain reductions of
+\cite[Sections 5--6]{VP09} likewise use a known full chain and
+its front; they can retain coprime comparisons of full support.
+Boolean flips and minimal determining comparisons
+\cite{M99,CCS} are credited; repeated powers are indispensable
+to the lattice count here.
+
+The candidate contribution is the sharp support/rank law,
+its exact face/facet interpretation, and the generic-state
+consequence, rather than those frameworks or the moment method.
+The repository's bounded primary comparison records the
+statements inspected and remaining priority limits. This
+draft does not assert independent confirmation of novelty,
+journal acceptance, or a new prime-distribution result.
+
+The dependency-free research checker is
+\texttt{scripts/run\_face\_reconstruction\_checks.py};
+its report is
+\texttt{results/research/face\_reconstruction\_checks.json}.
+It checks exact moments on complete composition layers,
+strict boundary cases, cyclic orbits, even and odd support
+obstructions, prime witnesses, and sparse-cone certificates.
+Separate exact product and pointer generators validate prime
+prefixes. The quotient examples check every nontrivial
+Buchberger pair for both leading choices. Large finite
+dimension brackets use exact binomial integers. These checks
+support the delicate steps; the uniform theorems depend
+on the proofs, not a fitted asymptotic curve.
+
+This is a structural result for growing interaction dimension.
+Its practical algorithmic value remains to be established.
+The single-stream rigidity and conditional finite-mask results
+are preserved separately in the research note and are not
+needed for the main theorem.
+
+\paragraph{Reproducibility.}
+From the repository root run
+\begin{quote}\ttfamily\small
+python3 -B scripts/run\_face\_reconstruction\_checks.py\\
+./build.sh\\
+python3 tests/test\_smoke.py
+\end{quote}
+The core CLI, its independent rank auditor and previous
+manuscripts are unchanged.
+
+\paragraph{Assistance and review status.}
+This anonymous working draft was developed with substantial
+assistance from OpenAI's Codex in proof development,
+computation and literature comparison. The proof package
+has undergone internal checking; no independent referee
+assessment is claimed. Authorship and submission decisions
+have not been made.
+
+\begin{thebibliography}{10}
+\bibitem{OS99} S. Onn and B. Sturmfels,
+\emph{Cutting corners}, Advances in Applied Mathematics 23 (1999),
+29--48. \href{https://doi.org/10.1006/aama.1999.0645}{doi:10.1006/aama.1999.0645}.
+\bibitem{BOT03} E. Babson, S. Onn and R. Thomas,
+\emph{The Hilbert zonotope and a polynomial time algorithm for
+universal Gr\"obner bases}, Advances in Applied Mathematics 30 (2003),
+529--544. Inspected preprint:
+\href{https://arxiv.org/abs/math/0207135}{arXiv:math/0207135}.
+\bibitem{W02} U. Wagner, \emph{On the number of corner cuts},
+Advances in Applied Mathematics 29 (2002), 152--161.
+\href{https://doi.org/10.1016/S0196-8858(02)00014-3}{doi:10.1016/S0196-8858(02)00014-3}.
+\bibitem{VP09} N. N. Vasiliev and D. A. Pavlov,
+\emph{Enumeration of finite monomial orderings and combinatorics
+of universal Gr\"obner bases}, Programming and Computer Software
+35 (2009), 79--89.
+\href{https://doi.org/10.1134/S0361768809020030}{doi:10.1134/S0361768809020030}.
+\bibitem{M99} D. Maclagan,
+\emph{Boolean term orders and the root system \(B_n\)}.
+Inspected preprint version:
+\href{https://arxiv.org/abs/math/9809134}{arXiv:math/9809134v2} (1999).
+\bibitem{CCS} R. Christian, M. Conder and A. Slinko,
+\emph{Flippable pairs and subset comparisons in comparative
+probability orderings}. Inspected author-hosted manuscript,
+\href{https://www.math.auckland.ac.nz/~slinko/Research/isipta17.pdf}{author copy}.
+\bibitem{T14} T. Tvedebrink, P. S. Eriksen and N. Morling,
+\emph{The multivariate Dirichlet-multinomial distribution and its
+application in forensic genetics to adjust for sub-population
+effects using the \(\theta\)-correction}.
+\href{https://arxiv.org/abs/1406.6508}{arXiv:1406.6508v2} (2014),
+Section 4.2 and Appendix A.
+\bibitem{KB04} C. Kimberling and J. E. Brown,
+\emph{Partial complements and transposable dispersions},
+Journal of Integer Sequences 7 (2004), Article 04.1.6.
+\href{https://cs.uwaterloo.ca/journals/JIS/VOL7/Kimberling/kimber67.pdf}{inspected article}.
+\bibitem{K22} C. Kimberling,
+\emph{Self-containing sequences, fractal sequences,
+selection functions, and parasequences},
+Journal of Integer Sequences 25 (2022), Article 22.2.1.
+\href{https://cs.uwaterloo.ca/journals/JIS/VOL25/Kimberling/kimber16.pdf}{inspected article}.
+\end{thebibliography}
+\end{document}
