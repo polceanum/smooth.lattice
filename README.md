@@ -81,6 +81,12 @@ polylogarithmic cover by two-list domains is impossible even for that
 quadratic family. Three-list ranks require a signed correction with
 quadratically many terms in the uniform prefix example. These results
 identify a limit of the grouping approach; they do not count the remainder.
+A generic union of two scaled three-pole curves also has only
+`Theta(n^2)` initial ideals, uniformly in the component sizes.
+The six-ray cut and quota proof, supported by independent point-quotient
+controls, rules out multiplying these component fan counts.
+Special node configurations remain outside that result; it does not
+change the unrestricted bound.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count

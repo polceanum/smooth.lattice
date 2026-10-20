@@ -2814,6 +2814,285 @@ ranks. All earlier partial-wall and geometric controls remain unchanged.
 The unrestricted exponent, strongest-current audit, novelty and requested
 paper outcome remain unresolved.
 
+## Generic unions of two rational curves do not multiply their fans
+
+A natural amplification attempt is to combine two copies of the
+[three-pole curve](weighted_facet_incidence.md#quartic-incidence-is-sharp-for-actual-finite-quotients).
+Their individual finite quotients have quadratic fans. Their direct-product
+coordinate algebra does **not** imply a product of these fans: a monomial
+acts on both components at once. The following uniform result assesses
+one such construction without assuming that independence.
+
+Let $K$ be an infinite field, let $\alpha_1,\alpha_2\in K^*$ be distinct,
+and write $s=\alpha_1+\alpha_2$, $p=\alpha_1\alpha_2$. Use the two disjoint
+curves
+
+$$
+C_j:\quad x=t,\quad y=\alpha_j/t,\quad z=(t-1)^{-1},
+\qquad t\ne0,1.
+$$
+
+Choose $m_1,m_2\ge1$ generic points on the respective curves, independently.
+Here generic means belonging to a specified nonempty Zariski-open subset
+of the $n=m_1+m_2$ node parameters; it does not mean every distinct-node choice.
+Let $I$ be their point ideal, of length $n$.
+
+**Theorem.** Uniformly in the two positive component sizes,
+
+$$
+g(I)=\Theta(n^2).
+$$
+
+The constants can be absolute. The proof works in every characteristic
+with distinct nonzero $\alpha_j$ over an infinite field. For finite base
+fields it applies after an infinite extension; it does not assert the
+required generic nodes exist in a prescribed finite field. This family
+cannot give a polynomial separation from generic corner cuts. Special
+node configurations are not covered.
+
+### Two curve bases, valid over the parameter ring
+
+The ideal of the infinite union is
+
+$$
+J=(g_1,g_2),\qquad
+g_1=xz-z-1,\quad g_2=x^2y^2-sxy+p.
+$$
+
+Indeed $p\ne0$ makes $x,y$ units, $g_1$ inverts $x-1$, and $a=xy$
+satisfies $(a-\alpha_1)(a-\alpha_2)=0$. Its algebra is the product of
+the two rational-function coordinate rings above. Put
+
+$$
+\begin{aligned}
+g_3&=xy^2+y^2z+y^2-syz-sy+pz,\\
+g_4&=y^2z^2+2y^2z+y^2-syz^2-syz+pz^2.
+\end{aligned}
+$$
+
+The identities
+
+$$
+\begin{aligned}
+g_3&=zg_2-(xy^2+y^2-sy)g_1,\\
+g_4&=zg_3-y^2g_1,\\
+g_2&=(x-1)g_3-(y^2-sy+p)g_1
+\end{aligned}
+$$
+
+show equality of the relevant ideals. For $w_x>w_z$, the monic
+Gröbner basis $(g_1,g_3,g_4)$ has heads $(xz,xy^2,y^2z^2)$.
+For $w_z>w_x$, $(g_1,g_2,g_3)$ has heads $(xz,x^2y^2,y^2z)$.
+The checker saves all six formal S-pair reduction certificates over
+$\mathbb Z[s,p]$, rather than substituting a few coefficient values.
+Every reduction multiple has head strictly below its pair's least
+common multiple throughout the stated weight domain: for a cost
+difference $d$, this is checked by the nonnegative coefficients of
+$d_x(w_x-w_z)+d_yw_y+(d_x+d_z)w_z$, or the reversed expression.
+Thus the certificates prove the assertions uniformly, including in
+characteristic two. All basis heads are monic in the three actual
+variables, and no division by a parameter occurs.
+
+In the first domain the standard monomials of the curve are the constant
+and six disjoint rays:
+
+$$
+x^a,\ y^b,\ z^c,\ x^ay,\ y^{b+1}z,\ yz^c,
+\qquad a,b,c\ge1. \tag{U1}
+$$
+
+In the other domain exchange $x,z$ in this list. No extra finite initial
+ideal must be counted only on $w_x=w_z$: a finite strict weight witness
+can always be perturbed off this plane.
+
+### Generic sampling gives an exact secondary quota
+
+For a finite list of functions $E$ on two irreducible curves, let $d_j$
+be its functional rank on component $j$, and $d$ its rank on the union.
+Evaluation at $m_j$ independent generic nodes on the components has rank
+
+$$
+\min(m_1+m_2,\ m_2+d_1,\ m_1+d_2,\ d). \tag{U2}
+$$
+
+This is a classical independent-representatives calculation, not a new
+matroid union theorem. Use $m_j$ repeated copies of the component's
+evaluation row space in the Rado rank formula; a minimizing subset
+includes either all copies of a space or none. The max-min formula is
+stated in [Ian Le, Proposition 3.2](https://numdam.org/item/10.5802/alco.182.pdf),
+printed p. 826, following Theorem 3.1's Rado formulation. Evaluation rows
+span the full functional dual on an irreducible curve. Any independent
+choice of arbitrary rows expands multilinearly into a nonzero minor
+of actual evaluation rows. Its nonvanishing is an open node condition.
+For a finite collection of $E$, their nonempty open conditions intersect.
+The same reasoning gives, for several components, the minimum over
+subsets of their row spaces plus the quotas outside the subset.
+
+For a cost prefix of (U1), let $k$ be the number of primary
+monomials (constant and pure powers), and $q$ the secondary count.
+Map the secondary rays injectively to primary nonconstant rays by
+
+$$
+x^ay\mapsto x^a,\quad y^{b+1}z\mapsto y^b,\quad yz^c\mapsto z^c.
+$$
+
+Every image is strictly cheaper. Consequently $k\ge q+1$.
+On either component the primary functions are independent
+by their distinct poles. The single-component identities
+$xy=\alpha_j$, $xz=z+1$, $yz=\alpha_j z-y$ reduce mixed functions
+to strictly cheaper primary functions, all in the chosen cut. Thus
+$d_1=d_2=k$. The union rank is $d=k+q$ by the curve Gröbner basis.
+Write $L=\min(m_1,m_2)$ and $H=\max(m_1,m_2)$. Formula (U2) gives
+the generic prefix rank
+
+$$
+\min(n,\ L+k,\ k+q)=\min(n,\ k+\min(L,q)). \tag{U2a}
+$$
+
+Thus greedy selects every primary monomial until full rank, and only
+the first $L$ secondary monomials. In the balanced case $H=L$, the
+quota cannot be reached before full rank because $k>q$; the basis is
+exactly the first $n$ monomials of (U1).
+
+The generic condition can be chosen for the whole fan at once. Every
+model basis selected by this quota rule is a downset of size $n$ and
+contains $k\ge H$ primary monomials. Its component functional ranks
+are $k$, and its union rank is $n$, so (U2) makes it an independent
+evaluation basis generically. There are finitely many such bases in
+the universal hyperbolic ground, and their open conditions intersect.
+Every partial greedy selection extends to one of them. Once $L$
+secondary columns have been selected, the upper bound $L+k$ in (U2)
+forces later secondary columns to be dependent, even without genericity.
+All other curve monomials reduce to cheaper curve-standard ones.
+This proves the quota rule simultaneously for every positive weight.
+
+### A uniform quadratic count for the six rays
+
+Here is the counting step; no fit to finite fan counts is used. Count
+strict cuts of size $N$ in (U1), in the domain $w_x>w_z$. Normalize
+$w_y=1$, put $u=w_x$, $v=w_z$, and let $h$ be the cut threshold. Write
+the ray occupancies in (U1) as $(A,B,C,D,E,F)$, so
+$1+A+B+C+D+E+F=N$. Thresholds can avoid all ray costs.
+
+If $h<1$, only the $x,z$ rays can occur, giving at most $N$ sets.
+Otherwise put $j=B=\lfloor h\rfloor\ge1$, $P=A+D$, $Q=C+F$.
+If $Q=0$, $v>h$ and $u>v$, so only the pure $y$ chain occurs.
+Suppose $Q\ge1$. Directly from the ray costs,
+
+$$
+Q=\lfloor h/v\rfloor+\lfloor(h-1)/v\rfloor,\qquad
+E=\max(0,\lfloor h-v-1\rfloor).
+$$
+
+For fixed $j,Q$, the first equality implies
+$(2h-1)/(Q+2)<v<(2h-1)/Q$. Therefore $h-v-1$ ranges inside an
+interval of length
+
+$$
+1+\frac{4j+2Q+2}{Q(Q+2)}.
+$$
+
+There are at most $5+4j/Q^2$ possible integer $E$. Each fixes
+$P=N-1-j-Q-E$.
+
+For a pair of rays with costs $au$ and $au+1$, $a\ge1$, selecting
+exactly $P$ points at threshold $h>1$ forces its primary occupancy into
+the open interval
+
+$$
+\frac{h(P-1)+1}{2h-1}<A<\frac{h(P+1)}{2h-1}. \tag{U3}
+$$
+
+This interval has length one, so at each admissible $h$ there is at
+most one integer choice. As $h$ increases from $j$ to $j+1$, its
+upper endpoint decreases by $(P+1)/(4j^2-1)$. The analogous formula
+holds for $C$ with $Q$. The two occupancies change monotonically
+with their common $h$, giving at most
+$5+(N+2)/(4j^2-1)=O(1+N/j^2)$ pairs. Multiplying independent
+occupancy counts would lose this shared-threshold constraint.
+
+All six counts are now fixed. Summing these bounds gives
+
+$$
+O\!\left(N+\sum_{j=1}^{N-1}\sum_{Q=1}^{N-1}
+ (1+j/Q^2)(1+N/j^2)\right)=O(N^2).
+$$
+
+Exchange $x,z$ for the other domain. This counts all bases whose
+secondary quota is unsaturated, at arbitrary aspect ratio.
+
+If the quota is saturated, the basis consists of the first $H$
+primary monomials and first $L$ secondary monomials. Saturation is
+impossible when $H=L$, as above. Otherwise let $r=H-1\ge L$ and
+write $a_i$ for the three nonconstant primary arm counts, summing to
+$r$. Set $\lambda_i=w_i^{-1}/\sum_jw_j^{-1}$. For the first $r$
+nonconstant points on three axes, a threshold $T$ satisfies
+$r<T\sum_jw_j^{-1}<r+3$, hence $|a_i-r\lambda_i|<3$.
+If $d_i$ are instead the counts of the first $L$ nonconstant axis
+points, $|d_i-L\lambda_i|<3$ and therefore
+
+$$
+|d_i-(L/r)a_i|<6. \tag{U4}
+$$
+
+Subtracting the common $w_y$ from secondary costs in (U1) gives
+three axis progressions, with only the $y$ progression shifted by
+$w_z$. If $T$ is the unshifted $L$-th selection threshold, the
+shifted threshold can be chosen between $T$ and $T+w_z$. Since
+$w_x>w_z$, the $x,z$ occupancies can each increase by at most one;
+the $y$ occupancy decreases by their sum, at most two. Consequently
+(U4) fixes the secondary allocation to at most an absolute constant
+number of possibilities for each primary allocation. There are
+$\binom{H+1}{2}=O(n^2)$ primary allocations. The other domain is
+identical after exchanging $x,z$. This proves the upper bound for
+arbitrary component sizes, not just balanced sampling.
+
+For the lower bound there are $\Omega(H^2)=\Omega(n^2)$ allocations
+of the first $H$ primary monomials with all three arm lengths between
+$(H-1)/4$ and $(H-1)/2$, and the $x$ arm shorter than the $z$ arm.
+The weights $w_i=1/(a_i+1/2)$ realize each allocation strictly and
+have maximum/minimum ratio at most two. Perturb inside its open cone
+to make the quota selection strict. In this region each secondary
+ray is its primary ray shifted in cost by at most $4\min_i w_i$.
+At any threshold, at most fifteen primary nonconstant points lack
+their secondary image. Thus $k-q\le16$. If the quota is unsaturated,
+$n=k+q=H+L$ gives $k-H\le8$; if saturated, $k=H$ exactly. Always
+$H\le k\le H+8$. A fixed selected basis can arise from at most
+a constant number of the original $H$-primary allocations: remove
+at most eight endpoints across its three primary arms. Hence there
+are $\Omega(n^2)$ distinct selected bases, completing the proof.
+
+### Verification, specialization and the remaining question
+
+The extended algebraic-incidence checker enumerates complete balanced
+model fans at lengths $4,6,8$, with respectively $10,25,45$ distinct
+standard sets, and also checks four unequal component-size pairs.
+It independently realizes each fan by rational point evaluation and
+by point evaluation in characteristics $101,1009$. It verifies the
+whole positive simplex, ordinary border-basis S-pairs, every universal-ground
+normal form, and (U2) on cost prefixes using separate polynomial
+functional columns and finite evaluation columns. The formal parameter
+certificates cover characteristics beyond these numerical checks.
+
+Genericity is essential. With $\alpha=(1,2)$ and component nodes
+$(2,3)$ and $(4,5)$, the proposed pure-$y$ basis $1,y,y^2,y^3$
+has rank three: the first node of both components has $y=1/2$.
+The components' three-dimensional points are still distinct. Thus
+distinctness alone does not imply the generic truncation rule.
+The checker preserves this exact negative control rather than silently
+applying the theorem to special samples.
+
+Rado's formula, partial fractions and Buchberger certificates are
+established ingredients. The uniform count above rules out this
+generic two-component construction as an amplification route; its exact
+priority is unassessed. It does not exclude special configurations or
+constructions with a growing number of components, and does not bound
+the global remainder $R_T$.
+Any next construction must prove a different rank mechanism on actual
+monomial prefixes, instead of multiplying component fans. The full
+sharp-$G_3$ objective and its original success criteria remain active;
+this obstruction alone warrants neither a new paper nor completion.
+
 ## Reproduction
 
 From the repository root:

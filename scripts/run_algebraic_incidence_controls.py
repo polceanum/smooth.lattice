@@ -9,12 +9,15 @@ shortcut. No stronger extremal count or novelty certificate is inferred. See the
 from collections import defaultdict
 from fractions import Fraction
 from itertools import combinations, product
-from math import gcd
+from math import comb, gcd
 from pathlib import Path
+from random import Random
 import hashlib
 import json
 
-from run_extremal_initial_ideals_checks import cone_for_basis, integer_weight
+from run_extremal_initial_ideals_checks import (
+    adjacent_weights, cone_for_basis, integer_weight, primitive,
+)
 from run_initial_cone_height_checks import (
     add, class_representative, clean, generators, integer_ray, leading,
     normal_form, reference_basis, subtract_shift,
@@ -400,6 +403,266 @@ def axis_plane_controls(n, start, end):
             'selected_plane_cover_lower_bound': (n * (n + 1) // 2 + 2 * n - 2) // (2 * n - 1)}
 
 
+def two_curve_symbolic_controls():
+    """Universal certificates over Z[s,p], with parameter exponents last."""
+    zero = (0, 0, 0, 0, 0)
+    g = [
+        {(1, 0, 1, 0, 0): 1, (0, 0, 1, 0, 0): -1, zero: -1},
+        {(2, 2, 0, 0, 0): 1, (1, 1, 0, 1, 0): -1, (0, 0, 0, 0, 1): 1},
+        {(1, 2, 0, 0, 0): 1, (0, 2, 1, 0, 0): 1, (0, 2, 0, 0, 0): 1,
+         (0, 1, 1, 1, 0): -1, (0, 1, 0, 1, 0): -1, (0, 0, 1, 0, 1): 1},
+        {(0, 2, 2, 0, 0): 1, (0, 2, 1, 0, 0): 2, (0, 2, 0, 0, 0): 1,
+         (0, 1, 2, 1, 0): -1, (0, 1, 1, 1, 0): -1, (0, 0, 2, 0, 1): 1},
+    ]
+
+    def relation(terms):
+        value = {}
+        for sign, index, shift in terms:
+            value = subtract_shift(value, g[index], shift, -sign, 0)
+        assert not value
+
+    relation([(1, 2, zero), (-1, 1, (0, 0, 1, 0, 0)),
+              (1, 0, (1, 2, 0, 0, 0)), (1, 0, (0, 2, 0, 0, 0)),
+              (-1, 0, (0, 1, 0, 1, 0))])
+    relation([(1, 3, zero), (-1, 2, (0, 0, 1, 0, 0)),
+              (1, 0, (0, 2, 0, 0, 0))])
+    relation([(1, 1, zero), (-1, 2, (1, 0, 0, 0, 0)), (1, 2, zero),
+              (1, 0, (0, 2, 0, 0, 0)), (-1, 0, (0, 1, 0, 1, 0)),
+              (1, 0, (0, 0, 0, 0, 1))])
+    cases = []
+    for side, indices in [(1, (0, 2, 3)), (-1, (0, 1, 2))]:
+        weight = (5, 3, 2, 0, 0) if side == 1 else (2, 3, 5, 0, 0)
+        basis = [g[i] for i in indices]
+
+        def universally_lower(a, b):
+            dx, dy, dz = (x - y for x, y in zip(b[:3], a[:3]))
+            coefficients = (dx, dy, dx + dz) if side == 1 else (dz, dy, dx + dz)
+            return min(coefficients) >= 0 and max(coefficients) > 0
+
+        heads = [leading(f, weight) for f in basis]
+        assert all(h[3:] == (0, 0) and f[h] == 1 for h, f in zip(heads, basis))
+        assert all(universally_lower(a, h) for h, f in zip(heads, basis) for a in f if a != h)
+        certificates = []
+        for i, j in combinations(range(3), 2):
+            common = tuple(max(a, b) for a, b in zip(heads[i], heads[j]))
+            first = {add(a, tuple(x - y for x, y in zip(common, heads[i]))): c
+                     for a, c in basis[i].items()}
+            pending = subtract_shift(first, basis[j], tuple(x - y for x, y in zip(common, heads[j])), 1, 0)
+            steps = []
+            while pending:
+                a = leading(pending, weight)
+                assert universally_lower(a, common)
+                for index, (h, f) in enumerate(zip(heads, basis)):
+                    if all(x >= y for x, y in zip(a, h)):
+                        shift, coefficient = tuple(x - y for x, y in zip(a, h)), pending[a]
+                        steps.append({'basis_index': indices[index], 'shift': shift,
+                                      'coefficient': str(coefficient)})
+                        pending = subtract_shift(pending, f, shift, coefficient, 0)
+                        break
+                else:
+                    raise AssertionError('nonzero formal S-pair remainder')
+            certificates.append({'pair': [indices[i], indices[j]], 'reductions': steps})
+        cases.append({'domain': 'w_x>w_z>0' if side == 1 else 'w_z>w_x>0',
+                      'basis_indices': indices, 'heads': [h[:3] for h in heads],
+                      'formal_s_pair_certificates': certificates})
+    return {'coefficient_ring': 'Z[s,p]', 'parameter_order': ['s', 'p'],
+            'generators': [[[a, c] for a, c in sorted(f.items())] for f in g],
+            'ideal_identity_checks': 3, 'domains': cases,
+            'all_characteristics_and_all_positive_weights_in_each_domain': True}
+
+
+def two_curve_cut_fan(n, side, quota):
+    """Enumerate only this proved six-ray model, without quotient ranks."""
+    rays = [((1, 0, 0), (1, 0, 0)), ((0, 1, 0), (0, 1, 0)),
+            ((0, 0, 1), (0, 0, 1)), ((1, 1, 0), (1, 0, 0)),
+            ((0, 2, 1), (0, 1, 0)), ((0, 1, 1), (0, 0, 1))]
+    if side < 0:
+        rays = [(tuple(reversed(a)), tuple(reversed(b))) for a, b in rays]
+    ground = ((0, 0, 0),) + tuple(add(a, tuple(j * x for x in b)) for a, b in rays for j in range(n))
+    comparisons = sorted({primitive(tuple(x - y for x, y in zip(a, b)))
+                          for a, b in combinations(ground, 2)})
+    todo, seen = [(5, 3, 2) if side > 0 else (2, 3, 5)], {}
+    def select(weight):
+        chosen, secondary = [], 0
+        for a in sorted(ground, key=lambda a: (dot(a, weight), a)):
+            mixed = sum(x > 0 for x in a) > 1
+            if not mixed or secondary < quota:
+                chosen.append(a)
+                secondary += int(mixed)
+            if len(chosen) == n:
+                break
+        return tuple(sorted(chosen)), secondary
+
+    while todo:
+        weight = todo.pop()
+        if side * (weight[0] - weight[2]) <= 0:
+            continue
+        selected, secondary = select(weight)
+        if selected in seen:
+            continue
+        counts = []
+        for start, direction in rays:
+            count = 0
+            while add(start, tuple(count * x for x in direction)) in selected:
+                count += 1
+            counts.append(count)
+        assert sum(counts) == n - 1
+        last = [(i, add(a, tuple((k - 1) * x for x in b)))
+                for i, ((a, b), k) in enumerate(zip(rays, counts)) if k]
+        first = [(i, add(a, tuple(k * x for x in b))) for i, ((a, b), k) in enumerate(zip(rays, counts))]
+        normals = {tuple(y - x for x, y in zip(a, b)) for i, a in last for j, b in first
+                   if not (secondary == quota and i < 3 <= j)}
+        normals.add((side, 0, -side))
+        polygon = [tuple(Fraction(i == j) for i in range(3)) for j in range(3)]
+        for normal in sorted(normals):
+            polygon = clip(polygon, normal, 1)
+        assert polygon and area2(polygon)
+        strict = integer_weight(tuple(sum(p[i] for p in polygon) / len(polygon) for i in range(3)))
+        assert min(strict) > 0 and all(dot(z, strict) > 0 for z in normals)
+        assert select(strict)[0] == selected
+        primary = sum(sum(x > 0 for x in a) <= 1 for a in selected)
+        assert primary > n - primary
+        if secondary == quota:
+            prices = strict if side > 0 else tuple(reversed(strict))
+            r = sum(counts[:3])
+            assert r == n - quota - 1 and r >= quota
+            axes = [tuple(j if i == axis else 0 for i in range(3))
+                    for axis in range(3) for j in range(1, quota + 1)]
+            ordinary = sorted(axes, key=lambda a: (dot(a, prices), a))[:quota]
+            smaller = tuple(sum(a[i] > 0 for a in ordinary) for i in range(3))
+            assert all(abs(r * d - quota * a) < 6 * r for a, d in zip(counts[:3], smaller))
+            delta_x, delta_z = counts[3] - smaller[0], counts[5] - smaller[2]
+            assert 0 <= delta_x <= 1 and 0 <= delta_z <= 1
+            assert counts[4] == smaller[1] - delta_x - delta_z
+        seen[selected] = {'weight': strict, 'ray_counts': counts, 'polygon': polygon,
+                          'quota_saturated': secondary == quota}
+        todo.extend(adjacent_weights(polygon, sorted(normals), comparisons))
+    assert sum(area2(v['polygon']) for v in seen.values()) == Fraction(1, 2)
+    return seen
+
+
+def column_prefix_ranks(ordered, columns, characteristic):
+    pivots, ranks = {}, []
+    for a in ordered:
+        vector = [x % characteristic for x in columns[a]] if characteristic else list(map(Fraction, columns[a]))
+        for i, row in sorted(pivots.items()):
+            coefficient = vector[i]
+            vector = [x - coefficient * y for x, y in zip(vector, row)]
+            if characteristic:
+                vector = [x % characteristic for x in vector]
+        index = next((i for i, x in enumerate(vector) if x), None)
+        if index is not None:
+            inverse = pow(vector[index], -1, characteristic) if characteristic else 1 / vector[index]
+            pivots[index] = tuple(x * inverse % characteristic if characteristic else x * inverse for x in vector)
+        ranks.append(len(pivots))
+    return ranks
+
+
+def two_curve_point_controls(n, component_sizes, pieces, characteristic):
+    m, alpha = component_sizes[0], (1, 2)
+    assert sum(component_sizes) == n
+    ground = tuple(hyperbolic_cross(n, 3))
+    assert all(a in ground for selected in pieces for a in selected)
+    rng = Random(20261020 + n + characteristic)
+    for attempt in range(1, 31):
+        nodes = rng.sample(range(2, min(characteristic, 97) if characteristic else 97), n)
+
+        def residue(a):
+            if characteristic:
+                return tuple(pow(t, a[0] - a[1], characteristic) * pow(c, a[1], characteristic) *
+                             pow(t - 1, -a[2], characteristic) % characteristic
+                             for c, nn in zip(alpha, (nodes[:m], nodes[m:])) for t in nn)
+            return tuple(Fraction(t)**(a[0] - a[1]) * c**a[1] * Fraction(t - 1)**(-a[2])
+                         for c, nn in zip(alpha, (nodes[:m], nodes[m:])) for t in nn)
+
+        columns = {a: residue(a) for a in ground}
+        if all(column_prefix_ranks(selected, columns, characteristic)[-1] == n for selected in pieces):
+            break
+    else:
+        raise AssertionError('bounded search failed to find generic sample witnesses')
+    # Independent rational-function columns after a common denominator.
+    A, B, C = (max(a[i] for a in ground) for i in range(3))
+    functional = [{}, {}]
+    for a in ground:
+        polynomial = [0] * (A + B + C + 1)
+        for j in range(C - a[2] + 1):
+            polynomial[a[0] - a[1] + B + j] = comb(C - a[2], j) * (-1)**(C - a[2] - j)
+        for component, c in enumerate(alpha):
+            functional[component][a] = tuple(c**a[1] * x for x in polynomial)
+    union = {a: functional[0][a] + functional[1][a] for a in ground}
+    total_area, pairs, reductions, prefix_checks = Fraction(0), 0, 0, 0
+    scalar = (lambda x: x % characteristic) if characteristic else Fraction
+    for selected, data in pieces.items():
+        weight = data['weight']
+        assert greedy(ground, columns, weight, characteristic) == set(selected)
+        ordered = sorted(ground, key=lambda a: (dot(a, weight), a))
+        ranks = [column_prefix_ranks(ordered, model, characteristic)
+                 for model in (functional[0], functional[1], union, columns)]
+        for i in range(len(ordered)):
+            if i + 1 == len(ordered) or dot(ordered[i], weight) != dot(ordered[i + 1], weight):
+                d1, d2, d, actual = (r[i] for r in ranks)
+                assert actual == min(n, component_sizes[1] + d1, m + d2, d)
+                prefix_checks += 1
+        inverse = field_inverse(selected, columns, characteristic)
+
+        def coordinates(a):
+            return [scalar(sum(x * y for x, y in zip(row, residue(a)))) for row in inverse]
+
+        polynomials, normals = [], set()
+        for a in minimal_excluded_border(selected):
+            polynomial = {a: scalar(1)}
+            for b, c in zip(selected, coordinates(a)):
+                if c:
+                    polynomial[b] = -c
+                    normals.add(tuple(x - y for x, y in zip(a, b)))
+            assert all(dot(a, weight) > dot(b, weight) for b in polynomial if b != a)
+            polynomials.append(polynomial)
+        polygon = [tuple(Fraction(i == j) for i in range(3)) for j in range(3)]
+        for normal in sorted(normals):
+            polygon = clip(polygon, normal, 1)
+        assert polygon and area2(polygon)
+        total_area += area2(polygon)
+        pairs += pair_checks(polynomials, weight, characteristic)
+        for a in ground:
+            expected = {b: c for b, c in zip(selected, coordinates(a)) if c}
+            assert normal_form({a: 1}, polynomials, weight, characteristic) == expected
+            reductions += 1
+    assert total_area == 1
+    return {'length': n, 'component_sizes': component_sizes, 'characteristic': characteristic,
+            'alpha': alpha, 'nodes_by_component': [nodes[:m], nodes[m:]],
+            'generic_sample_attempts': attempt, 'complete_initial_ideals': len(pieces),
+            'complete_simplex_double_area': str(total_area), 'ordinary_s_pairs': pairs,
+            'ordinary_normal_forms': reductions, 'generic_rank_formula_prefix_checks': prefix_checks}
+
+
+def two_curve_controls():
+    symbolic = two_curve_symbolic_controls()
+    fans, points = [], []
+    for component_sizes in [(2, 2), (3, 3), (4, 4), (3, 1), (4, 2), (5, 1), (5, 3)]:
+        n = sum(component_sizes)
+        domains = [two_curve_cut_fan(n, side, min(component_sizes)) for side in (1, -1)]
+        pieces = dict(domains[0])
+        pieces.update(domains[1])
+        fans.append({'length': n, 'component_sizes': component_sizes,
+                     'positive_domain_piece_counts': [len(d) for d in domains],
+                     'distinct_cut_sets': len(pieces),
+                     'quota_saturated_sets': sum(d['quota_saturated'] for d in pieces.values()),
+                     'cut_witnesses': [{'basis': selected, 'weight': data['weight']}
+                                       for selected, data in sorted(pieces.items())]})
+        points.extend(two_curve_point_controls(n, component_sizes, pieces, p) for p in (0, 101, 1009))
+    special = tuple((0, j, 0) for j in range(4))
+    special_columns = {a: tuple(Fraction(c, t)**a[1] for c, nn in [(1, (2, 3)), (2, (4, 5))] for t in nn)
+                       for a in special}
+    special_rank = column_prefix_ranks(special, special_columns, 0)[-1]
+    assert special_rank == 3
+    return {'scope': 'Generic samples of arbitrary positive component sizes on two scaled three-pole curves have Theta(n^2) initial ideals. Special samples are not covered; no unrestricted G_3 improvement or novelty claim.',
+            'symbolic_curve_bases': symbolic, 'complete_six_ray_cut_fans': fans,
+            'generic_point_quotients': points,
+            'nongeneric_negative_control': {'alpha': [1, 2], 'nodes_by_component': [[2, 3], [4, 5]],
+                                            'proposed_basis': special, 'rank': special_rank,
+                                            'obstruction': 'The first node on each component has y=1/2.'}}
+
+
 def main():
     axes = [axis_controls(n) for n in (4, 5, 6, 7, 9, 12, 15, 21)]
     arithmetic = [arithmetic_controls(n) for n in (99, 303, 603)]
@@ -411,12 +674,13 @@ def main():
     planes = [axis_plane_controls(n, start, end) for n in (4, 5, 6, 7, 9, 12, 15, 21)
               for start, end in [((1, 1, 0), (1, 0, 1)), ((2, 1, 0), (0, 1, 2)),
                                  ((1, 0, 2), (0, 1, 3)), ((5, 3, 0), (7, 0, 3))]]
+    unions = two_curve_controls()
     paths = ['scripts/run_algebraic_incidence_controls.py', 'docs/weighted_facet_incidence.md',
              'docs/initial_cone_height.md', 'scripts/run_extremal_initial_ideals_checks.py',
              'scripts/run_structural_complexity_checks.py', 'scripts/run_initial_cone_height_checks.py',
-             'scripts/run_interleaving_research.py']
+             'scripts/run_interleaving_research.py', 'docs/extremal_initial_ideals.md']
     report = {'status': 'passed', 'command': 'python3 -B scripts/run_algebraic_incidence_controls.py',
-              'scope': 'Different three-pole quotient matroids realize the uniform-axis positive fan and give quartic incidence, disproving the cubic budget. Nine-cone quotients check interior radius. No stronger G_3 count or novelty certificate is inferred.',
+              'scope': 'Three-pole quotients give quartic incidence; nine-cone quotients check interior radius. Generic two-curve unions have quadratic fan growth uniformly in the component sizes. No stronger G_3 count or novelty certificate is inferred.',
               'summary': {'complete_axis_fans': len(axes), 'axis_cells': sum(a['positive_cells'] for a in axes),
                           'matrix_selection_controls': sum(a['independent_matrix_selections'] for a in axes),
                           'arithmetic_fixtures': len(arithmetic), 'complete_quotient_fans': len(interior),
@@ -428,10 +692,18 @@ def main():
                           'three_pole_s_pairs': sum(a['ordinary_s_pairs'] for a in curves),
                           'three_pole_normal_forms': sum(a['ordinary_normal_forms'] for a in curves),
                           'complete_positive_plane_traces': len(planes),
-                          'plane_comparison_intervals': sum(a['complete_comparison_intervals'] for a in planes)},
+                          'plane_comparison_intervals': sum(a['complete_comparison_intervals'] for a in planes),
+                          'two_curve_formal_s_pairs': 6,
+                          'two_curve_complete_cut_fans': len(unions['complete_six_ray_cut_fans']),
+                          'two_curve_complete_point_fans': len(unions['generic_point_quotients']),
+                          'two_curve_quota_allocation_checks': sum(a['quota_saturated_sets'] for a in unions['complete_six_ray_cut_fans']),
+                          'two_curve_rank_formula_prefix_checks': sum(a['generic_rank_formula_prefix_checks'] for a in unions['generic_point_quotients']),
+                          'two_curve_s_pairs': sum(a['ordinary_s_pairs'] for a in unions['generic_point_quotients']),
+                          'two_curve_normal_forms': sum(a['ordinary_normal_forms'] for a in unions['generic_point_quotients'])},
               'uniform_axis_matroids': axes, 'arithmetic_lower_bound_controls': arithmetic,
               'interior_quotients': interior, 'three_pole_quotients': curves,
               'positive_plane_traces': planes,
+              'generic_two_curve_unions': unions,
               'source_sha256': {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in paths}}
     (ROOT / 'results/research/algebraic_incidence_controls.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report['summary'], indent=2))
