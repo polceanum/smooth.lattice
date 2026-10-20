@@ -238,6 +238,16 @@ initial cones when `s>=r+2`. An original rank query there uses `O((r+1)*(s+1))` 
 arithmetic operations, and one minimum basis uses `O(n)` comparisons.
 The remaining small-order region has `z` more expensive than at least one
 other variable. Its count, current priority and the main goal remain open.
+A [fixed-equation calculation](docs/fixed_equation_bad_primes.md) now shows
+that every prime changes a coherent standard set of some truncation of
+`x^2+y^2+z^2+x*y*z^3`. A length `O(p^2)` suffices for characteristic `p`,
+with explicit positive weights having no relevant ties. The affected prefix
+block has cyclic torsion given by classical ternary-tree coefficients;
+the whole integer algebra remains free. For any fixed finite list of primes,
+one cutoff makes every sampled characteristic undercount a rational prefix
+rank, even if their maximum is used. Explicit residue classes and the Chinese
+remainder theorem give the simultaneous witness. This does not prove additional
+fan cones, an unrestricted count improvement or novelty.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count

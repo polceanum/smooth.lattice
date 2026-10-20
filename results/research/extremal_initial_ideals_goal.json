@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Preserve the unrestricted G_3 or realizable polynomial-separation endpoint and all original acceptance criteria. The full higher-interaction region where z is cheapest is now uniformly closed by Theorem 4 of docs/higher_interaction_fans.md: it has the boundary standard sets over every field, with an exact original rank oracle. Theorem 1 already excludes r>=sqrt(s). After exchanging x,y, the remaining candidate domain is 2<=r<sqrt(s), w=(u+lambda,u,1) with 0<u<1 and 0<lambda<r; the two outer square cones are elementary. Derive the actual original-cost rank mechanism or a uniform fan count in this domain, including characteristic-dependent ranks. The new general binary-form theorem gives complete price-tier ranks only when the two binary variables have equal prices; its homogeneous basis change cannot be applied when their prices differ. The old single equal-x,y-plane cover is refuted, and a union-of-equal-price-planes cover remains unproved. A promising boundary calculation uses U=x^2+y^2,V=x*y and U=-z^2-V*z^r at equal x,y prices; derive its cutoff and increasing polynomial-degree intervals before inferring a rank law or cover. A global count must control simultaneous exchanges, not multiply unrelated boundary counts or count changed characteristics as extra cones. Retain the unrestricted quotient-sensitive lattice-shadow route and strongest-current primary audit. No new fixed-cutoff fan table, restricted oracle, draft or unverified priority claim completes the goal. No outbound messages or submissions.",
+  "next_proof_task": "Preserve the unrestricted G_3 or realizable polynomial-separation endpoint and all original criteria. The z-cheapest region is uniformly counted by Theorem 4 of docs/higher_interaction_fans.md; r>=sqrt(s) is already excluded. The remaining domain, after x,y exchange, is 2<=r<sqrt(s), w=(u+lambda,u,1) with 0<u<1 and 0<lambda<r. The signed four-channel reduction in docs/fixed_equation_bad_primes.md now gives exact original whole-tier blocks on the equal-x,y boundary. It exhibits every-prime coherent rank changes for fixed r=3, so every fixed finite collection of characteristics can fail simultaneously on one rational prefix, by explicit residue classes and CRT. Derive the actual unequal-binary-price rank mechanism or a uniform count of simultaneous coherent exchanges in the remaining domain, retaining integer arithmetic or a proved field-dependent mechanism. Neither binary homogeneous basis change is price preserving away from its equality plane; a union-of-equality-planes cover remains unproved. A changed standard set is not an increase in any fixed field fan count. Retain the unrestricted quotient-sensitive lattice-shadow route and strongest-current primary audit. The fixed-equation arithmetic realization still needs exact priority comparison; classical tree coefficients, universal denominators and older every-prime local cohomology torsion are not new. No bounded table, restricted oracle, auxiliary theorem, draft or unverified priority claim completes the goal. No outbound messages or submissions.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -123,7 +123,8 @@
     "Audit the strongest relevant work on Markoff-surface truncations and integral standard bases before any new counting claim. The surface and Vieta mutations are established; the general monic-division model and Groebner cone/refinement mechanism are classical. The current all-field certificates are finite and the arbitrary-cutoff endpoint inequality remains a genuine proof obligation, not an established novelty claim.",
     "Assess exact prior scope of the all-field Markoff jet classification, Farey wall budget and matrix-free original price-prefix rank oracle. Monic division, binary graded freeness, Laurent polynomial degree, cone refinement and primitive-pair densities are classical. Dimitrova--He--Robbiano--Stigler Proposition 2.7 with proof covers diagonal invariance; Theorem 4.8 with proof transfers complementary grid fans but gives no count without an identified and counted complement. No unsuccessful search establishes novelty. The unrestricted extremal audit remains open.",
     "Compare the uniform higher-interaction bound O(n^(9/4)/r), the exact boundary Farey budget and the cyclic coherent-prefix quotient Z^3 plus Z/m with the strongest current primary statements. Existing universal-denominator, bad-prime and lattice-volume principles are explicitly retained as prior art; their scoped comparison is not a novelty certificate or a solution of the full original-cost count.",
-    "Assess the exact coefficient-independent binary-form price-prefix law (H18)--(H23), the rank-birth identities (H24)--(H26) and the complete original z-cheapest sector count against current primary work on weighted Hilbert functions, filtered binary complete intersections and parametric monomial ranks. Homogeneous freeness, monic polynomial flags and cone convexity remain classical inputs. The inspected rational-normal-curve CM classification is a different homogeneous object; no equivalent reduction or priority certificate has been established."
+    "Assess the exact coefficient-independent binary-form price-prefix law (H18)--(H23), the rank-birth identities (H24)--(H26) and the complete original z-cheapest sector count against current primary work on weighted Hilbert functions, filtered binary complete intersections and parametric monomial ranks. Homogeneous freeness, monic polynomial flags and cone convexity remain classical inputs. The inspected rational-normal-curve CM classification is a different homogeneous object; no equivalent reduction or priority certificate has been established.",
+    "Compare the specific fixed equation x^2+y^2+z^2+x*y*z^3, coherent cyclic prefix matrix with ternary-tree coefficient, and cutoff O(p)/length O(p^2) realization against current modular Groebner and integral standard-basis literature. Gessel--Xin Lemma 3.2 and pp. 10--11 already give exactly the coefficient law. Abbott--Bigatti--Robbiano Section 2.2 already gives finite bad-prime sets for each fixed ideal. Singh Section 4 already gives every-prime torsion in a fixed hypersurface local cohomology module. No identification of that module with this finite coherent prefix, novelty certificate or additional fan count is inferred. The simultaneous finite-prime realization now uses explicit stable residue classes, elementary factorial valuations and CRT; these arithmetic tools are classical, and the consequence concerns fixed finite rank sampling rather than all modular algorithms."
   ],
   "primary_sources": [
     {
@@ -538,6 +539,24 @@
       "title": "Small Groebner Fans of Ideals of Points",
       "url": "https://arxiv.org/pdf/1704.03680",
       "scope": "Proposition 2.7 and Theorem 4.8 with proofs inspected: coordinate-shift invariance and complementary-grid fan transfer are prior art, not the quantitative cubic classification."
+    },
+    {
+      "authors": "Gessel and Xin",
+      "title": "The Generating Function of Ternary Trees and Continued Fractions",
+      "url": "https://arxiv.org/pdf/math/0505217",
+      "scope": "Lemma 3.2, equations (3.3)--(3.5) and proof on pp. 8--9; coefficient definitions and table on pp. 10--11 inspected. Their b_K equals binom(3K+1,K)/(K+1). The generating series and coefficient formula are established inputs, not a new enumeration result."
+    },
+    {
+      "authors": "Abbott, Bigatti and Robbiano",
+      "title": "Ideals Modulo a Prime, v3",
+      "url": "https://arxiv.org/pdf/1801.06112v3",
+      "scope": "Section 2.2, Remark 2.3, Definition 2.3 and Proposition 2.1 with proof re-read for the fixed-equation comparison. Their finite universal denominator is for a fixed ideal, whereas the new family varies the cutoff. Earlier theorem-level readings and the delegated proof limitation remain preserved."
+    },
+    {
+      "authors": "Singh",
+      "title": "p-torsion elements in local cohomology modules",
+      "url": "https://arxiv.org/pdf/math/0406354",
+      "scope": "Section 4 and its complete displayed argument on pp. 8--9 inspected. Every prime occurs in a local cohomology module of Z[U,V,W,X,Y,Z]/(UX+VY+WZ), using a multigrading and a direct limit. This precedes any general every-prime torsion claim. No transfer to this finite monomial-prefix quotient or new local cohomology theorem is proved."
     }
   ],
   "verification": {
@@ -1199,19 +1218,43 @@
         "closed_region_whole_tier_queries": 1005,
         "closed_region_field_basis_models": 90
       }
+    },
+    "fixed_equation_prime_research": {
+      "command": "python3 -B scripts/run_fixed_equation_prime_checks.py",
+      "report": "results/research/fixed_equation_prime_checks.json",
+      "status": "passed",
+      "source_hashes_verified": true,
+      "counts": {
+        "independent_integral_model_columns": 2800,
+        "signed_block_price_identities": 5600,
+        "signed_block_columns": 2800,
+        "independent_macaulay_relation_rows": 608,
+        "full_macaulay_kernel_equalities": 16,
+        "integer_unit_pivots": 4224,
+        "independent_cyclic_smith_blocks": 64,
+        "prime_divisibility_witnesses_through_10000": 1229,
+        "simultaneous_finite_prime_sets": 9,
+        "simultaneous_integer_smith_blocks": 3,
+        "generic_weight_ground_comparisons": 30744,
+        "integral_expanded_membership_certificates": 6,
+        "independent_original_monomial_rank_tests": 52
+      },
+      "build": "./build.sh passed",
+      "smoke": "python3 tests/test_smoke.py passed",
+      "scope": "Uniform proof with finite exact independent supporting controls; no count or priority certificate."
     }
   },
-  "preservation": "Five explicitly privacy-reviewed research files against 699698b are updated: README, the higher-interaction proof, its checker/report and the active goal. All 57 previous continuations, every earlier report count/control section and all 314 other tracked files are preserved. Core CLI, kernels, auditor, manuscripts/PDFs and paused ML are unchanged; exploratory fans, baselines and raw logs remain ignored.",
+  "preservation": "Five explicitly privacy-reviewed research files against 66f5a4e: README, a new focused proof note, its new exact checker/report and this active goal. All 58 earlier continuations and every previous source/report are preserved; all 317 other baseline tracked files remain byte-identical. Core CLI, kernels, auditor, manuscripts/PDFs and paused ML are unchanged. Scratch calculations, baselines and raw logs remain ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
-    "docs/higher_interaction_fans.md",
-    "scripts/run_higher_interaction_checks.py",
-    "results/research/higher_interaction_checks.json",
+    "docs/fixed_equation_bad_primes.md",
+    "scripts/run_fixed_equation_prime_checks.py",
+    "results/research/fixed_equation_prime_checks.json",
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "4ea94ac65c2858249a95dac8b909e3962b3b9654e98e11fb982cf28b652ecc83",
+    "README.md": "957a67caa1e81793ce10999e360e097b3f76432d4ba94e595b4e62b1d02d3e3a",
     "docs/extremal_initial_ideals.md": "6e84b6ea470841a89760a2e16080a9314ba747499b1a5a733460120fe501a92b",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
@@ -1262,7 +1305,10 @@
     "results/research/cubic_fan_checks.json": "9e2e853788bd9626ee0b790228b57668c743c2fddccef87e37e7763217ca833d",
     "docs/higher_interaction_fans.md": "687c95e06f5311b81de6c5eb51da9528febac5d8a7a25a9e0d203d7d374437e5",
     "scripts/run_higher_interaction_checks.py": "cdc31d1b582e71c4536056429bf7eabeb2fcb312f313713135a2eaee68578916",
-    "results/research/higher_interaction_checks.json": "5f7f268e1e1ffb48a2bad49c1c52b35f3bd517ab95b86533480f34e992a2aeef"
+    "results/research/higher_interaction_checks.json": "5f7f268e1e1ffb48a2bad49c1c52b35f3bd517ab95b86533480f34e992a2aeef",
+    "docs/fixed_equation_bad_primes.md": "6c5005c8ee8e2bd8b5742251876c4103830f61179e0514190a5adca694fa669d",
+    "scripts/run_fixed_equation_prime_checks.py": "5fc3f3b8b3fb31c0451384f2c58e2a5e0126377c2f9c9af05ab36f1ef0cfbcda",
+    "results/research/fixed_equation_prime_checks.json": "57dba00898149b77317222d68cade4801e6a3c4efb6bf34e93f2bfdc6d4aff53"
   },
   "continuations": [
     {
@@ -4132,10 +4178,70 @@
         "source_hashes": "verified",
         "preservation": "Five explicitly privacy-reviewed research files against 699698b are updated: README, the higher-interaction proof, its checker/report and the active goal. All 57 previous continuations, every earlier report count/control section and all 314 other tracked files are preserved. Core CLI, kernels, auditor, manuscripts/PDFs and paused ML are unchanged; exploratory fans, baselines and raw logs remain ignored."
       }
+    },
+    {
+      "title": "Every-prime coherent obstruction for one fixed degree-five equation",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "no progress",
+      "previous_evidence": "The intervening presentation-only response verified that credits were already omitted and made no authoritative change. Revalidated clean main 66f5a4e, all 319 tracked hashes, all 52 prior goal source hashes, the unchanged objective and criteria and all 58 previous continuations. The previous mathematical turn had proved the universal binary-form ranks and the entire cheapest-z region.",
+      "progress_classification": "uniform signed boundary reduction and fixed-equation every-prime cyclic prefix theorem, with explicit generic weights and independent exact controls",
+      "uniform_proofs": [
+        "Integral four-channel freeness over U=x^2+y^2,V=xy, exact ordinary cutoff after eliminating U and signed q-block polynomial columns at equal x,y prices.",
+        "For fixed r=3, s=6K+5 and w=(1,1,6K+1), the block containing z^2 has a primitive cheap sublattice and inclusive Smith quotient Z/(binom(3K+1,K)/(K+1)); z^2 changes rank increment exactly in the dividing characteristics.",
+        "Classical ternary-tree series C=1+T*C^3 computes the triangular residual. No division in bad characteristic is used; all identities are integral.",
+        "Every prime divides one such coefficient with valuation one, at cutoff O(p), length O(p^2). Explicit positive digit-perturbed weights remove every ground tie and retain the standard-membership change.",
+        "An explicit expanded polynomial and monic integer ideal-membership witness certify each retained sample; torsion belongs to a prefix block quotient while the entire algebra is Z-free.",
+        "For every fixed finite set S of primes, explicit residue classes and the Chinese remainder theorem give one K at which all sampled characteristics simultaneously undercount the same rational monomial-prefix rank, even when their maximum is used. K<product(p^e_p), e_2=e_3=2 and other e_p=1. The elementary valuation/CRT inputs are classical."
+      ],
+      "reading_scope": [
+        "Gessel--Xin Lemma 3.2 with proof and exact coefficient definitions/table, all classical background.",
+        "Abbott--Bigatti--Robbiano Section 2.2 and fixed-ideal finiteness, retaining earlier delegated-proof caveat.",
+        "Singh Section 4 full every-prime local-cohomology torsion construction; different module, no new local-cohomology claim or novelty inference."
+      ],
+      "independent_controls": {
+        "independent_integral_model_columns": 2800,
+        "signed_block_price_identities": 5600,
+        "signed_block_columns": 2800,
+        "independent_macaulay_relation_rows": 608,
+        "full_macaulay_kernel_equalities": 16,
+        "integer_unit_pivots": 4224,
+        "independent_cyclic_smith_blocks": 64,
+        "prime_divisibility_witnesses_through_10000": 1229,
+        "simultaneous_finite_prime_sets": 9,
+        "simultaneous_integer_smith_blocks": 3,
+        "generic_weight_ground_comparisons": 30744,
+        "integral_expanded_membership_certificates": 6,
+        "independent_original_monomial_rank_tests": 52
+      },
+      "scope_limit": "No extra fan cones, unrestricted count improvement, prime-distribution theorem, current novelty, completed paper or achieved goal. The obstruction is now simultaneous: any fixed finite list of characteristics can all undercount the same rational prefix of this one fixed-equation family. It does not exclude adaptive or verified modular computation or supply a general running-time lower bound. Simultaneous exchanges away from equal binary prices remain the counting task.",
+      "verification": {
+        "command": "python3 -B scripts/run_fixed_equation_prime_checks.py",
+        "report": "results/research/fixed_equation_prime_checks.json",
+        "status": "passed",
+        "source_hashes_verified": true,
+        "counts": {
+          "independent_integral_model_columns": 2800,
+          "signed_block_price_identities": 5600,
+          "signed_block_columns": 2800,
+          "independent_macaulay_relation_rows": 608,
+          "full_macaulay_kernel_equalities": 16,
+          "integer_unit_pivots": 4224,
+          "independent_cyclic_smith_blocks": 64,
+          "prime_divisibility_witnesses_through_10000": 1229,
+          "simultaneous_finite_prime_sets": 9,
+          "simultaneous_integer_smith_blocks": 3,
+          "generic_weight_ground_comparisons": 30744,
+          "integral_expanded_membership_certificates": 6,
+          "independent_original_monomial_rank_tests": 52
+        },
+        "build": "./build.sh passed",
+        "smoke": "python3 tests/test_smoke.py passed",
+        "scope": "Uniform proof with finite exact independent supporting controls; no count or priority certificate."
+      }
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "The unrestricted and full higher-interaction upper bounds are unchanged. A complete uniform theorem now counts the original open region w_z<min(w_x,w_y) by exactly 2*M_(s,r)+4 and supplies a coefficient-independent binary-form rank law and matrix-free original rank oracle. Remaining regions and the original endpoint are unresolved.",
-  "previous_goal_turn_classification": "progress: 699698b established the higher-interaction bound, boundary count and arbitrary cyclic prefix theorem; all authoritative sources revalidated",
+  "asymptotic_improvement_scope_this_iteration": "No initial-fan count changes. One fixed coefficient-one degree-five equation now has a coherent exceptional characteristic for every prime at cutoff O(p), length O(p^2); this is an arithmetic supporting theorem, not the extremal endpoint.",
+  "previous_goal_turn_classification": "no progress: the intervening presentation-only turn verified that credits were already removed and changed no authoritative files or mathematics; clean 66f5a4e and all previous research sources revalidated before continuing",
   "uniform_relative_margin_hypothesis_status": "refuted_by_actual_all_field_quotients",
   "secondary_extremal_parameter_resolved": {
     "relative_margin_dimension_2": "Theta(n^-2)",
@@ -4270,5 +4376,24 @@
     "remaining_cost_domain": "after x,y exchange: 0<u<1,0<lambda<r at w=(u+lambda,u,1), for 2<=r<sqrt(s)",
     "all_equal_price_plane_union_cover_proved": false
   },
-  "region_count_established_this_iteration": true
+  "region_count_established_this_iteration": false,
+  "arithmetic_obstruction_established_this_iteration": true,
+  "fixed_equation_prime_obstruction": {
+    "proof": "docs/fixed_equation_bad_primes.md",
+    "equation": "x^2+y^2+z^2+x*y*z^3",
+    "coefficient_scope": "fixed coefficients all one over Z",
+    "integer_algebra_free": true,
+    "block_smith_last_entry": "binom(3*K+1,K)/(K+1)",
+    "cutoff": "6*K+5",
+    "length": "(6*K+6)^2",
+    "every_prime_occurs": true,
+    "prime_budget": "s<=2*p+7, n<=(2*p+8)^2 for p>=7, with explicit p=2,3,5 witnesses",
+    "explicit_generic_weights": true,
+    "no_fixed_finite_characteristic_list_for_all_rational_prefixes": true,
+    "whole_fan_count_changed": false,
+    "unrestricted_G3_changed": false,
+    "novelty_established": false,
+    "every_fixed_finite_prime_set_can_fail_simultaneously": true,
+    "simultaneous_budget": "K<product(p^e_p), e_2=e_3=2, other e_p=1, by explicit residue classes and CRT; length<(6*product(p^e_p)+6)^2"
+  }
 }
