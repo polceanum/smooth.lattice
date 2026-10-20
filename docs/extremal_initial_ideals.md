@@ -1978,6 +1978,76 @@ rectangles open. Generic tensor-code rank results do not automatically
 apply to these fixed integer nodes. The unrestricted objective and all
 earlier criteria remain unchanged; this is not goal completion.
 
+## Exact outer cones and a complete graphic-dual rank model
+
+The [outer-cone theorem](rectangle_boundary_fan.md) gives an exact
+prefix rule for $F=y+x(1+y)^d$ in characteristic zero. In the region
+$\min(w_x,w_z)>(s-1)w_y$, one iteration of greedy selection separates
+into $x$-degree blocks. Within each block the relevant Taylor columns
+become disjoint intervals of integer powers of $1+y$; an ordinary
+Vandermonde determinant gives their exact prefix ranks. A common list
+of at most $2rs=2n$ weights, all of height at most $2n$, serves every
+integer $d\ge1$ and nonzero coefficient scaling on this region.
+For the bilinear case $d=1$, the exact regional count is $r+1$ when
+$r\le s$, and $s+2$ when $r>s$.
+
+This also proves a useful obstruction. At square side $q=2a-1$, the
+primitive direction $(a,-(a-1),-a)$ is a coherent global wall and has
+product $a(a+1)^2=\Theta(n^{3/2})$. Hence the rank-sized direction
+cross that closed the additive nested construction cannot hold for
+this bilinear family. Its large walls nevertheless coexist with only
+$q+1$ states in the outer region; they are not a fan-count lower bound.
+
+For the whole bilinear fan, the fixed tensor interpolation nodes
+$(U,V)=(a+c,b+c)$ have cheapest representative cost
+$\alpha U+\beta V-(\alpha+\beta-\gamma)\min(U,V)$ when
+$\gamma<\alpha+\beta$. Prefixes are convex integer-node polygons.
+This closes the cone $\max(\alpha,\beta)<\gamma<\alpha+\beta$
+by classical tensor interpolation, but does not determine ranks in
+all the remaining polygons. The outer-cone formula actually fails
+outside its hypothesis: at side three and $w=(13,10,5)$, the true
+standard set has $z^3$ instead of its predicted $y^2$.
+
+There is a different exact rule for **all subsets**, not just prefixes,
+in matching characteristic. Let $q_1=p^a,q_2=p^b$ and take side lengths
+$q_1-1,q_2-1$. The [cographic theorem](bilinear_cographic_family.md)
+identifies the translated monomial residue matroid with the cographic
+matroid of $K_{q_1,q_2}$. Frobenius makes its complete relation space
+exactly the row and column sums of the periodic rectangle. For a set
+$S$ of residue labels,
+
+$$
+\operatorname{rank}(S)=|S|+1-c(K_{q_1,q_2}\setminus S),
+$$
+
+where components include isolated vertices. Thus a basis is the
+complement of a spanning tree. Using least-cost representatives,
+the initial standard set is the complement of a **maximum** spanning
+tree. The earlier divisible-period representative formula and a
+classical tree algorithm compute it in $O(n\log n)$ comparisons
+and $O(n)$ storage. This concerns one weight and arithmetic comparisons,
+not all fan cells, bit complexity, or dense reduced-basis output.
+
+The finite controls certify twelve characteristic-zero regional fans,
+252 direct selections over two fields, 5,364 block-prefix ranks,
+three rational coherent facets, and thirty whole-fan polygon comparisons.
+The graphic-dual controls separately check 1,192 residue-subset ranks,
+36 tree-selected standard sets in six equal/unequal models, every one
+of 4,177 small spanning trees, and 690 independent cycle inequalities.
+Their proofs use classical interpolation, graph incidence and matroid
+duality. Exact restricted-result priority and the strongest-current
+unrestricted comparison remain unresolved.
+
+The next counting task is now concrete: classify the maximizing trees
+for the **specified periodic costs**, or exclude this family by a
+uniform upper bound. The enormous number of abstract spanning trees
+does not show that the three weights realize them. Likewise existing
+one-parameter results with freely chosen affine edge weights require
+a realization argument before they give any lower bound here.
+The separate characteristic-zero polygon-prefix route and the all-field
+upper route remain available. The original sharp $G_3$ or polynomial
+separation endpoint, its consequence and paper requirements are unchanged.
+
 ## Reproduction
 
 From the repository root:
@@ -1986,6 +2056,8 @@ From the repository root:
 python3 -B scripts/run_extremal_initial_ideals_checks.py
 python3 -B scripts/run_generic_multiaffine_checks.py
 python3 -B scripts/run_bilinear_rectangle_checks.py
+python3 -B scripts/run_rectangle_boundary_checks.py
+python3 -B scripts/run_bilinear_cographic_checks.py
 python3 -B scripts/run_additive_initial_ideals_checks.py
 python3 -B scripts/run_planar_dyadic_bound_checks.py
 python3 -B scripts/run_rational_shadow_bound_checks.py

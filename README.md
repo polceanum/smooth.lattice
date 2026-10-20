@@ -149,6 +149,21 @@ sides also have an exact count. Translation and a rectangular Pascal
 matrix explain the arithmetic; arbitrary column ranks do not survive
 translation. Characteristic zero instead gives a structured tensor
 interpolation problem and remains outside this torsion classification.
+An [exact outer-cone rule](docs/rectangle_boundary_fan.md) now handles
+`z=y+x(1+y)^d` in characteristic zero with one common list of at most
+`2n` weights for that region. It also exhibits coherent bilinear walls
+with primitive direction product `Theta(n^(3/2))`, ruling out a proposed
+linear direction bound. The remaining bilinear fan reduces to fixed
+rectangular interpolation on convex integer-node prefixes.
+A separate [graph-rank reduction](docs/bilinear_cographic_family.md)
+handles side lengths one below powers of the field characteristic.
+Its entire monomial residue matroid is the dual of a complete bipartite
+graph's forest matroid. Standard sets are complements of maximum spanning
+trees with explicit periodic representative costs, giving an
+`O(n log n)` comparison algorithm for one weight. Counting those trees
+as the three monomial weights vary remains open; arbitrary graph lower
+bounds cannot be imported without realizing their costs. Neither result
+settles the unrestricted extremal objective.
 The additive prime-power class is now classified separately: at length
 `n=q^k`, every initial ideal is a prime-power box and the sharp maximum
 is `binomial(k+d-1,d-1)`. The proof uses established Frobenius reduction;
