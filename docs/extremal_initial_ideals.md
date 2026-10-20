@@ -6391,6 +6391,461 @@ inputs; exact priority of the specialized combination is unestablished.
 No new unrestricted exponent, polynomial lower separation, paper or
 goal completion is claimed.
 
+## AG. Long critical blocks require arithmetic resonance
+
+The mixed-wall problem has a useful dynamical reduction. The hook
+rounding error is not arbitrary bounded noise: it is a sum of two
+circle-rotation errors and one two-dimensional torus term. The quota
+inequalities force a large discrepancy whenever a canonical block
+reaches the worst $1/(c-K)$ width scale. Classical uniform distribution
+then confines that phenomenon to finitely many arithmetic aspects for
+each fixed saturation threshold.
+
+This is a structural theorem for the generic component model, uniform
+in the last component size. It does not count its whole fan, provide
+a uniform power improvement in block width, or complete the original
+extremal goal.
+
+### Exact rotation formula away from the first axis collision
+
+Normalize $h=1$ and write
+
+$$
+ w=(1/p,\sigma,1/(1-p)),\quad
+ \gamma=1+\sigma^{-1},\quad K=2+\sigma+\sigma^{-1}.
+$$
+
+First take irrational $p\in(0,1)$, so the two positive axes have no
+coincident costs. Their merged cost at index $j\ge0$ is
+
+$$
+ U_j=j+\epsilon_p(\{jp\}),\qquad
+ \epsilon_p(t)=\min\left(\frac{t}{1-p},\frac{1-t}{p}\right).
+ \tag{AG1}
+$$
+
+This is the complementary-axis identity (AB6), now used off the
+harmonic curve $\sigma=1$. For rational $p=A/D$ in lowest terms,
+it is valid through $j<D-1$; no claim beyond the first collision is
+made by the finite tests below.
+
+Let $F_{j+1}(T)$ count layer $j+1$ at cost $T$, and suppose its
+diagonal anchor is present. Counting its row and column gives
+
+$$
+ F_{j+1}(T)=1+\lfloor p(T-j\sigma)\rfloor
+  +\lfloor(1-p)(T-j\sigma)\rfloor
+  +\left\lfloor\frac{T-U_j}{\sigma}\right\rfloor-2j
+  =\gamma T-Kj+\eta_j(T). \tag{AG2}
+$$
+
+Writing $\theta=\{T/\sigma\}$, the error is exactly
+
+$$
+\begin{aligned}
+ \eta_j(T)={}&1-\{pT-jp\sigma\}
+                  -\{(1-p)T-j(1-p)\sigma\}\\
+ &-G_{p,\sigma,\theta}(\{jp\},\{j/\sigma\}),\\
+ G_{p,\sigma,\theta}(t,u)={}&
+ \left\{\theta-u-\frac{\epsilon_p(t)}\sigma\right\}
+       +\frac{\epsilon_p(t)}\sigma.
+\end{aligned} \tag{AG3}
+$$
+
+Thus the relevant frequencies are $p\sigma$, $(1-p)\sigma$ and
+the vector $(p,1/\sigma)$. There is no assumption that they are
+independent at a particular finite weight.
+
+The torus average is independent of the aspect and phase:
+
+$$
+ \int_{[0,1]^2}G_{p,\sigma,\theta}(t,u)\,dt\,du
+ =\frac12+\frac1{2\sigma}. \tag{AG4}
+$$
+
+For fixed $t$, integration of the fractional part over $u$ gives
+$1/2$, and $\int_0^1\epsilon_p(t)\,dt=1/2$ is the area of its
+triangle. Therefore the centered hook error is
+$\eta_j+\gamma/2$, rather than an assumed zero-mean rounding error.
+
+### A uniform discrepancy bound for the hook error
+
+Let $D_1(H;\alpha)$ be unnormalized discrepancy of a length-$H$
+rotation against circular intervals, taking the supremum over starting
+phase. Let $D_2(H;\alpha)$ be the analogous unnormalized discrepancy
+of a two-dimensional rotation against convex subsets of the unit
+square, again uniform in starting phase. Boundaries may be assigned
+consistently; the same estimates hold for limits from either side.
+
+For $1/c\le\sigma\le c$, put
+
+$$
+ B_c=2(c+2)(c+3),\qquad
+ \mathcal E(H)=D_1(H;p\sigma)+D_1(H;(1-p)\sigma)
+                      +B_cD_2(H;(p,1/\sigma)).
+$$
+
+Every interval of $H$ nonempty hooks satisfies
+
+$$
+ \left|\sum_j(\eta_j(T)+\gamma/2)\right|
+ \le\mathcal E(H), \tag{AG5}
+$$
+
+uniformly in its starting index, $T$ and $p\in(0,1)$.
+
+For the two sawtooths, integrate their interval superlevel sets.
+For $G$, split at $t=1-p$ and at the possible values
+$k=\lfloor\theta-u-\epsilon_p(t)/\sigma\rfloor$. There are at
+most $2(c+3)$ pieces. On each piece $G=\theta-u-k$ and its
+superlevel set is a convex polygon, being an intersection of affine
+halfspaces with the square. Also $0\le G\le1+c$. Layer-cake
+integration and the triangle inequality give the stated, slightly
+enlarged $B_c$. Large slopes of $\epsilon_p$ near the aspect ends
+do not change the polygon count. This is why convex-set discrepancy,
+rather than an unproved bounded-variation assertion, is used here.
+
+### Quota curvature must be paid for by discrepancy
+
+Fix an integer slope $c>4$, any last size $a\ge1$, and
+$m_{j+1}=M-cj$, $M=a+c(r-1)$. Let $\delta=c-K>0$.
+Use weights with irrational $p$ and distinct relevant monomial costs.
+A canonical block of width $h$ is a uniform cheapest prefix at its
+threshold $T$. Its layer counts are therefore the closed hook counts
+in (AG2).
+
+Initially suppose all its hooks are nonempty. For any initial
+$\ell$ layers of the block, the cumulative surplus over the quotas
+$P_\ell$ is nonnegative and $P_h=0$. From (AG2),
+$q_{j+1}-m_{j+1}=\gamma T-M+\delta j+\eta_j$.
+Eliminating the common constant by summing over the whole block gives
+
+$$
+ P_\ell=-\frac\delta2\ell(h-\ell)
+ +\sum_{\text{first }\ell}\eta_j
+ -\frac\ell h\sum_{\text{whole block}}\eta_j. \tag{AG6}
+$$
+
+In particular, with $\ell=\lfloor h/2\rfloor$,
+
+$$
+ \frac{\delta(h^2-1)}8
+ \le\mathcal E(\ell)+\mathcal E(h). \tag{AG7}
+$$
+
+There is a uniformly bounded correction if the block ends with empty
+hooks. Proximity gives $q_s=0\Rightarrow m_s\le c+3$, so at most
+the final two layers of the entire profile can be empty. Remove those
+from the block, leaving length $h'\ge h-2$. Its final surplus is
+$E=\sum m_s$ over the removed layers, hence $0\le E\le2(c+3)$.
+Equation (AG6) then has the additional term $(\ell/h')E$.
+Consequently
+
+$$
+ \frac{\delta(h'^2-1)}8
+ \le2(c+3)+\mathcal E(\lfloor h'/2\rfloor)+\mathcal E(h').
+ \tag{AG8}
+$$
+
+This exact curvature contrast strengthens the pointwise block-width
+test. If $\mathcal E(H)=O((\log(H+1))^b)$ is separately established
+uniformly for a weight family, it implies
+$h=O_c(1+\delta^{-1/2}(\log(h+1))^{b/2})$ there. No such uniform
+logarithmic discrepancy estimate for all aspects is assumed or proved
+here.
+
+### Finite resonance certificate for worst-scale blocks
+
+**Theorem.** Fix an integer $c>4$ and $\varepsilon>0$. There exist
+constants $C,h_0$ and a finite set
+
+$$
+ R_{c,\varepsilon}\subset[0,1]\cap
+          \mathbb Q\!\left(\sqrt{c(c-4)}\right)
+$$
+
+such that every canonical block of width $h\ge h_0$ with
+$\delta h\ge\varepsilon$ satisfies
+
+$$
+ \operatorname{dist}(p,R_{c,\varepsilon})\le C/h. \tag{AG9}
+$$
+
+The constants are independent of $a,r$, the block location and its
+threshold cost. The hypotheses are the generic positive-selection
+model and the no-tie conditions just stated. Explicit, deliberately
+loose polynomial bounds on the resonance height, number of centers,
+neighborhood constant and minimum block width are given below.
+
+Here is the complete finite-frequency argument. For every $\tau>0$,
+there are $Q,C_\tau$ with the following property, in dimensions one
+and two: if a length-$H$ rotation has normalized interval or convex-set
+discrepancy at least $\tau$, some nonzero integer frequency $v$ with
+$\|v\|_\infty\le Q$ satisfies
+
+$$
+ \|v\cdot\alpha\|_{\mathbb R/\mathbb Z}\le C_\tau/H.
+ \tag{AG10}
+$$
+
+To prove this standard form of the uniform-distribution criterion,
+first approximate convex sets from inside and outside by unions of a
+fixed square grid. A convex set in the unit square meets $O(N)$ grid
+boundary cells at mesh $1/N$, uniformly in shape, so their area is
+$O(1/N)$. Choose $N$ in terms of $\tau$. The finitely many grid-cell
+indicators admit continuous upper/lower approximations with arbitrarily
+small integral gap, followed by finite trigonometric-polynomial
+approximations. Thus small normalized exponential sums for finitely
+many frequencies force discrepancy below $\tau$. Starting phase
+only multiplies each sum by a unit complex number. Finally
+
+$$
+ \left|\sum_{j=0}^{H-1}e^{2\pi i j\beta}\right|
+ \le\min\left(H,\frac1{2\|\beta\|_{\mathbb R/\mathbb Z}}\right)
+$$
+
+shows that choosing a large enough $C_\tau$ proves (AG10).
+The one-dimensional argument uses intervals and the same construction.
+These are classical Weyl approximation and geometric-sum facts; the
+proof is included to make the needed uniformities explicit. Compare
+[Matoušek, *Geometric Discrepancy*, Section 1.1, printed pp. 4--7,
+and Section 2.5](https://people.fjfi.cvut.cz/vybirja2/TUM-IBC/Matousek_Geometric_Discrepancy.pdf).
+The criterion, one-dimensional geometric-sum proof and stated
+Kronecker-sequence background were inspected. The original 1916 Weyl
+article was located but not retrieved; no claim depends on inspecting
+that original proof or on an unproved metric discrepancy rate.
+
+If $\delta h\ge\varepsilon$, (AG8), with $h$ sufficiently large,
+forces at least one of its three discrepancy terms at length
+$h'$ or $\lfloor h'/2\rfloor$ to be at least a fixed
+$\tau_{c,\varepsilon}$ times that length. Equation (AG10) therefore
+gives one of
+
+$$
+\begin{aligned}
+ \|k p\sigma\|&\le C_1/h,&
+ \|k(1-p)\sigma\|&\le C_1/h,\\
+ \|u p+v/\sigma\|&\le C_1/h,
+ \qquad&0<\max(|u|,|v|)&\le Q,
+\end{aligned} \tag{AG11}
+$$
+
+with bounded $k\ne0$ or bounded $u,v$.
+
+By (AE7), $\delta(h-1)\le3+1/\sigma\le c+3$.
+For large $h$, $\sigma$ is consequently within $O_c(1/h)$ of one
+of the two simple critical roots $\sigma_\pm$. Replace $\sigma$
+by that root $\sigma_0$ in (AG11), enlarging the constant. Neither
+root is rational: a square discriminant would give
+$(c-2-s)(c-2+s)=4$, whose only nonnegative same-parity solution
+has $s=0,c=4$.
+
+The first two resonances in (AG11) now put $p$ within $O(1/h)$ of
+$m/(k\sigma_0)$ or $1-m/(k\sigma_0)$, for finitely many integers
+$k,m$. In the last resonance, $u=0$ is impossible for sufficiently
+large $h$: bounded nonzero $v$ has $\|v/\sigma_0\|>0$.
+For $u\ne0$ it puts $p$ within $O(1/h)$ of
+$(m-v/\sigma_0)/u$. All these centers lie in
+$\mathbb Q(\sigma_0)=\mathbb Q(\sqrt{c(c-4)})$.
+Replace every center outside $[0,1]$ by its nearer endpoint. This
+cannot increase its distance to $p\in[0,1]$ and keeps all centers
+in the same field. This proves (AG9).
+
+### Explicit polynomial resonance bounds
+
+Here is an effective version of the finite-frequency step. If the
+normalized convex-set discrepancy in the square is at least $\tau$,
+the normalized axis-rectangle discrepancy is at least
+$\zeta=\tau^2/100$, for $0<\tau\le1$. To see this, divide into
+$N=\lceil16/\tau\rceil$ vertical strips. Upper and lower envelopes
+of a convex set have combined variation at most four. Inscribed and
+circumscribed unions of at most $N$ rectangles therefore have area
+gap at most $6/N$, including its two terminal strips. If every
+rectangle discrepancy were below $\tau^2/100$, the discrepancy
+of the convex set would be at most
+$N\tau^2/100+6/N<\tau$, a contradiction.
+
+For a rectangle, use the product of the one-dimensional Fejer kernels
+
+$$
+ K_Q(t)=\frac1Q\left|\sum_{j=0}^{Q-1}e^{2\pi ijt}\right|^2.
+$$
+
+This kernel is nonnegative, has integral one and frequencies $|k|<Q$.
+Its mass outside circle distance $s$ is at most $1/(2Qs)$, by
+$|\sin\pi t|\ge2\|t\|$. The two-dimensional product has outside
+mass at most $1/(Qs)$. Smooth the rectangle expanded or contracted
+by $s$, and add or subtract that outside-mass bound. The resulting
+trigonometric polynomials bracket its indicator pointwise, with
+integral error at most $4s+1/(Qs)$ on each side. Put
+$s=\zeta/16$, $Q=\lceil64/\zeta^2\rceil$; that error is at most
+$\zeta/2$.
+
+Every nonconstant Fourier coefficient of these brackets has magnitude
+at most one, and there are fewer than $4Q^2$ such coefficients.
+A rectangle discrepancy of at least $\zeta$ thus forces a normalized
+exponential sum of at least $\zeta/(8Q^2)$ for a nonzero frequency
+of maximum norm below $Q$. The one-dimensional interval argument
+satisfies the same deliberately enlarged bounds. These elementary
+kernel estimates make (AG10) explicit; no metric discrepancy theorem
+is being imported.
+
+For (AG9), put $e=\min(\varepsilon,1)$, $C_*=c+3$, and use
+$B_c$ from (AG5). Sufficient choices are
+
+$$
+\begin{gathered}
+ \tau=\frac{e}{128(B_c+2)},\quad\zeta=\frac{\tau^2}{100},
+ \quad Q=\left\lceil\frac{64}{\zeta^2}\right\rceil,\\
+ B=\left\lceil\frac{32Q^2}{\zeta}\right\rceil+2c^3C_*Q,
+ \quad C=cB,\\
+ h_0=\left\lceil\max\left(8,\frac{128C_*}{e},
+                            2(2c+1)QB\right)\right\rceil.
+ \tag{AG12}
+\end{gathered}
+$$
+
+Indeed $h'\ge h-2$ and $h\ge8$ give
+$\delta(h'^2-1)/8\ge eh/16$. If all three discrepancies at the
+two lengths were below $\tau$ times their length, the right side
+of (AG8) would be smaller than that, by $h\ge128C_*/e$.
+Each length is at least $h/4$, giving the first part of $B$ from
+the geometric-sum bound. The nearest-root distance is at most
+$c\delta\le2cC_*/h$. Replacing $\sigma$ and its inverse by
+the root changes bounded-frequency residues by at most
+$2c^3C_*Q/h$, the second part of $B$.
+
+For $1\le|v|\le Q$, the quadratic norm gives
+$\|v/\sigma_0\|\ge1/((2c+1)Q)$: the other conjugate factor is
+at most $(2c+1)Q$, while their product is a nonzero integer.
+The last term in $h_0$ therefore excludes $u=0$ in (AG11).
+The displayed $C$ covers both division by $u$ and by $k\sigma_0$.
+
+Take both roots, $1\le|k|,|u|\le Q$, $|v|\le Q$ and
+$|m|\le M=(c+2)Q$ in the three center formulas following (AG11).
+After clipping, their number is at most
+
+$$
+ 2+8Q(2M+1)+4Q(2Q+1)(2M+1). \tag{AG13}
+$$
+
+Each can be written $(a+b\sigma_+)/q$ with integers
+$1\le q\le Q$ and $\max(|a|,|b|)\le3c^3Q$.
+Consequently, as $e\downarrow0$, these choices give
+
+$$
+ Q=O_c(e^{-4}),\quad |R|=O_c(e^{-12}),\quad
+ C=O_c(e^{-10}),\quad h_0=O_c(e^{-14}). \tag{AG14}
+$$
+
+These constants are very large. They make the arithmetic statement
+effective, not a practical finite-scale prediction or the missing
+coherent fan bound.
+
+### Nonresonant limits and the remaining counting problem
+
+**Corollary.** Consider any sequence of these profiles and weights with
+$\delta\downarrow0$ and $p\longrightarrow p_*$, where
+$p_*\notin\mathbb Q(\sqrt{c(c-4)})$. Then their maximum canonical
+block width obeys
+
+$$
+ \delta h_{\max}\longrightarrow0. \tag{AG15}
+$$
+
+Otherwise a subsequence has $\delta h_{\max}\ge\varepsilon$ and
+$h_{\max}\to\infty$. The finite set in (AG9) then contains $p_*$,
+a contradiction. The equivalent direct argument applies uniform
+equidistribution to the irrational row frequencies and the totally
+irrational vector $(p_*,1/\sigma_0)$. Any integer dependence of
+that vector would put $p_*$ in the displayed quadratic field.
+
+This is a necessary arithmetic condition for saturation of the old
+worst-case bound, not a sufficient condition for long blocks.
+It does not by itself give a power saving at every nonresonant aspect.
+For a concrete algebraic aspect the explicit bounds do give one,
+as follows.
+
+**Power-width corollary.** Fix $p_* =\sqrt2-1$ and an integer
+$c>4$ for which $2c(c-4)$ is not a square. At this fixed aspect,
+every canonical block satisfies
+
+$$
+ h=O_c(\delta^{-26/27})\qquad(\delta\downarrow0), \tag{AG16}
+$$
+
+uniformly in $a,r$ and the block location, under the same no-tie
+hypotheses. This includes $c=5,6,9$. The exponent is a consequence
+of the coarse Fourier bounds, not a claimed sharp width exponent.
+
+For a center $z=(a+b\sigma_0)/q$ of height
+$H=\max(1,|a|,|b|,q)$, the field
+$\mathbb Q(\sqrt2,\sqrt{c(c-4)})$ has degree four. Its algebraic
+integer $\beta=q(\sqrt2-1)-a-b\sigma_0$ is nonzero. Each of its
+other three conjugates has magnitude at most $(c+4)H$; its norm is
+a nonzero integer. Therefore
+
+$$
+ |p_*-z|\ge\frac1{(c+4)^3H^4}. \tag{AG17}
+$$
+
+If a block has $e=\delta h\le1$ and $h\ge h_0(e)$, then (AG9),
+(AG14) and (AG17) give
+$\kappa_c e^{16}\le C_c e^{-10}/h$, hence
+$h\le C'_c e^{-26}$ and $h=O_c(\delta^{-26/27})$.
+If $h<h_0(e)$, then $h\le C_c e^{-14}$ instead, giving the
+stronger $h=O_c(\delta^{-14/15})$. Blocks with $\delta h>1$
+have uniformly bounded width by (AG9) at threshold one and the fixed
+finite-set separation, so are absorbed as $\delta\downarrow0$.
+This proves (AG16). The separation is an elementary algebraic norm
+argument, not a new Diophantine approximation theorem.
+
+The missing mixed-wall count remains. These statements do not bound
+the number of coherent cells near the resonant points or control all
+smaller growing blocks across variable aspects. The explicit polynomial
+height and radius bounds now permit a quantitative multiscale attempt;
+parameter measure and separate arrangement counts still do not count
+the complete fan.
+
+### Exact controls and scope
+
+The checker independently constructs 216 heap/quota phase traces,
+selecting 245,340 monomials, and compares their final allocations with
+the compressed global-exchange-certified method. It checks 3,231
+rotation hook identities over 1,524 canonical blocks and verifies 351
+exact curvature contrasts. Nine empty hooks exercise the bounded-tail
+correction. All arithmetic is integral or rational; rational aspects
+have denominators beyond the relevant first collision.
+
+Sixty exact torus integrations partition the unit square into 512
+nonzero convex polygon pieces and obtain (AG4), including near-end
+aspects and both small and large clock ratios. Another 225 algebraic
+identities check sample quadratic-field resonance centers. The separate
+symbolic examples with $p_* =\sqrt2-1$ and slopes $5,6,9$ have a
+different quadratic field from the critical root. Some finite rotation
+fixtures use a fixed rational approximation to that aspect; they are
+not a convergence test of (AG15) or an asymptotic rate. The theorem and finite
+resonance argument are proved above, not inferred from those fixtures.
+
+An additional 225 independently formed quartic multiplication matrices
+have determinants equal to the algebraic norm, all nonzero. For both
+critical roots, 450 outward rational root-interval checks verify
+(AG17) on the stated finite coefficient range. Six exact records of
+(AG12)--(AG13) save the large cutoff, height, radius and cardinality
+constants without enumerating their enormous candidate sets.
+
+The earlier mixed point-ideal certificates, all earlier reports and
+the original goal are preserved. The
+[2025 general multi-parametric matroid comparison](https://arxiv.org/pdf/2503.08178)
+was rechecked at Theorems 3.2, 3.6 and Corollary
+3.4; its full comparison-arrangement approach does not supply this
+sharper family count. The 1985 parametric resource-allocation article
+was located, but its full text was inaccessible; no claim about its
+precise theorem is made. Exact priority of the specialized resonance
+application remains unestablished. No prime-distribution or unranking
+consequence, new unrestricted $G_3$ exponent, polynomial lower
+separation, paper or completed goal is asserted.
+
 ## Reproduction
 
 From the repository root:

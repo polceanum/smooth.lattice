@@ -3393,6 +3393,253 @@ def transition_interaction_controls():
             'scope': 'The classical bounded-degree lattice-point estimate gives a uniform O(L^3 H^2 + V L H) arrangement bound for small-y-coefficient lines truncated near a harmonic curve. This controls the same-type exchange network in the intermediate regime, not the complete fan. Exact boundary signatures fail to determine the optimum even after both same-type orders are fixed: a length-54 actual point ideal has a strict mixed row-column wall. This finite obstruction does not prove an asymptotic lower separation or settle unrestricted G_3.'}
 
 
+def rotation_hook_error(p, sigma, cost, j):
+    """Raw nonempty hook formula; rational p requires j below its first collision."""
+    angle = (j*p) % 1
+    epsilon = min(angle/(1 - p), (1 - angle)/p)
+    g = (cost/sigma - j/sigma - epsilon/sigma) % 1 + epsilon/sigma
+    eta = (1 - (p*cost - j*p*sigma) % 1 -
+           ((1 - p)*cost - j*(1 - p)*sigma) % 1 - g)
+    gamma, K = 1 + 1/sigma, 2 + sigma + 1/sigma
+    value = gamma*cost - K*j + eta
+    assert value.denominator == 1
+    return int(value), eta, epsilon
+
+
+def canonical_rotation_trace(sizes, weight):
+    """Direct heap/quota phases, independent of rotation floors and AP selection."""
+    n, r = sum(sizes), len(sizes)
+    axes, a, c = [(0, (0, 0, 0))], 1, 1
+    while len(axes) < n:
+        if a*weight[0] < c*weight[2]:
+            axes.append((a*weight[0], (a, 0, 0)))
+            a += 1
+        else:
+            axes.append((c*weight[2], (0, 0, c)))
+            c += 1
+    capacities = [0]
+    for value in sizes:
+        capacities.append(capacities[-1] + value)
+    free = [n - value for value in capacities]
+    observed, chosen = [0]*r, [0]*r
+    pending, seen = [(0, 0, 0)], {(0, 0)}
+    active, total, last_cost, blocks = r, 0, -1, []
+    while total < n:
+        cost, i, b = heappop(pending)
+        assert cost > last_cost
+        last_cost, layer = cost, min(i, b)
+        feasible = layer < r and min(free[:layer + 1]) > 0
+        assert feasible == (layer < active)
+        if feasible:
+            chosen[layer] += 1
+            total += 1
+            for s in range(layer + 1):
+                free[s] -= 1
+        if layer < r:
+            observed[layer] += 1
+        values, prefix = [0], 0
+        for s, value in enumerate(observed, 1):
+            prefix += value
+            values.append(capacities[s] - prefix)
+        following = values.index(max(values))
+        assert following <= active
+        if following < active:
+            assert chosen[following:active] == observed[following:active]
+            assert sum(observed[following:active]) == capacities[active] - capacities[following]
+            blocks.append((following, active, cost, tuple(observed[following:active])))
+            active = following
+        for ii, bb in ((i + 1, b), (i, b + 1)):
+            if ii < n and bb < n and (ii, bb) not in seen:
+                seen.add((ii, bb))
+                heappush(pending, (axes[ii][0] + bb*weight[1], ii, bb))
+    assert active == 0 and sum(chosen) == n
+    return chosen, blocks, axes
+
+
+def rotation_mean_integral(p, sigma, theta):
+    """Exact polygon partition and affine integral of the torus rounding term."""
+    def cut(poly, normal):
+        out = []
+        for a, b in zip(poly, poly[1:] + poly[:1]):
+            va, vb = sum(x*y for x, y in zip((*a, 1), normal)), sum(x*y for x, y in zip((*b, 1), normal))
+            if va >= 0:
+                out.append(a)
+            if (va < 0) != (vb < 0):
+                t = va/(va - vb)
+                out.append(tuple(x + t*(y - x) for x, y in zip(a, b)))
+        return out
+
+    area, integral, pieces = Fraction(0), Fraction(0), 0
+    lower = (theta - 1 - 1/sigma).numerator//(theta - 1 - 1/sigma).denominator - 1
+    for left, right, slope, intercept in ((0, 1 - p, 1/(1 - p), 0),
+                                          (1 - p, 1, -1/p, 1/p)):
+        for k in range(lower, 2):
+            poly = [(Fraction(left), Fraction(0)), (Fraction(right), Fraction(0)),
+                    (Fraction(right), Fraction(1)), (Fraction(left), Fraction(1))]
+            poly = cut(poly, (-slope/sigma, -1, theta - k - intercept/sigma))
+            if not poly:
+                continue
+            poly = cut(poly, (slope/sigma, 1, intercept/sigma - theta + k + 1))
+            if not poly:
+                continue
+            twice, moment = Fraction(0), Fraction(0)
+            for a, b in zip(poly, poly[1:] + poly[:1]):
+                cross = a[0]*b[1] - a[1]*b[0]
+                twice += cross
+                moment += (a[1] + b[1])*cross/6
+            assert twice >= 0
+            if twice:
+                area += twice/2
+                integral += (theta - k)*twice/2 - moment
+                pieces += 1
+    assert area == 1 and integral == Fraction(1, 2) + 1/(2*sigma)
+    return pieces
+
+
+def critical_resonance_constants(c, epsilon):
+    """Explicit coarse Fejer/grid certificate; no resonance enumeration."""
+    epsilon = min(Fraction(1), Fraction(epsilon))
+    assert c > 4 and epsilon > 0
+    C0, Bc = c + 3, 2*(c + 2)*(c + 3)
+    tau = epsilon/(128*(Bc + 2))
+    zeta = tau*tau/100
+    ceil = lambda x: -((-x.numerator)//x.denominator)
+    Q = ceil(64/(zeta*zeta))
+    frequency_constant = ceil(32*Q*Q/zeta)
+    B = frequency_constant + 2*c**3*C0*Q
+    C = c*B
+    h0 = max(8, ceil(128*C0/epsilon), 2*(2*c + 1)*Q*B)
+    M = (c + 2)*Q
+    centers = 2 + 8*Q*(2*M + 1) + 4*Q*(2*Q + 1)*(2*M + 1)
+    return {'slope': c, 'saturation_threshold': str(epsilon), 'frequency_cutoff': Q,
+            'neighborhood_constant': C, 'minimum_block_width': h0,
+            'critical_field_height_bound': 3*c**3*Q,
+            'maximum_candidate_centers': centers}
+
+
+def rotation_resonance_controls():
+    """Exact hook rotations, block curvature contrasts and torus means."""
+    counts, witnesses = defaultdict(int), []
+
+    def inside(c, r):
+        a, b = 1, c - 3
+        sigma = Fraction(b, a)
+        while c - (2 + sigma + 1/sigma) > Fraction(1, r*r):
+            a, b = b, (c - 2)*b - a
+            sigma = Fraction(b, a)
+        return sigma
+
+    for r, c, last, aspect, branch in product((4, 8, 16, 32), (5, 6, 9), (1, 6),
+            (Fraction(1, 3), Fraction(4, 5), Fraction(4142135623, 10**10)),
+            ('upper', 'lower', 'regular')):
+        sigma = inside(c, r)
+        if branch == 'lower':
+            sigma = 1/sigma
+        elif branch == 'regular':
+            sigma = Fraction(1)
+        sizes = tuple(last + c*(r - j - 1) for j in range(r))
+        n, target = sum(sizes), (1/aspect, sigma, 1/(1 - aspect))
+        clear, digit, scale = lcm(*(v.denominator for v in target)), 4*n + 3, 10**12*(n + 1)**6
+        weight = tuple(scale*int(v*clear) + q for v, q in zip(target, (digit*digit, digit, 1)))
+        allocation, blocks, axes = canonical_rotation_trace(sizes, weight)
+        compressed = compressed_component_staircase(sizes, weight)
+        assert allocation == compressed['allocation']
+        h = Fraction(weight[0]*weight[2], weight[0] + weight[2])
+        p, sigma = Fraction(weight[2], weight[0] + weight[2]), Fraction(weight[1], h)
+        gamma, delta = 1 + 1/sigma, c - (2 + sigma + 1/sigma)
+        assert delta > 0 and p.denominator > n
+        counts['canonical_trace_fixtures'] += 1
+        counts['independently_selected_monomials'] += n
+        for t, s, raw_cost, takes in blocks:
+            cost, errors = Fraction(raw_cost, h), []
+            assert delta*(s - t - 1) <= 3 + 1/sigma
+            for j, take in zip(range(t, s), takes):
+                if take:
+                    value, eta, epsilon = rotation_hook_error(p, sigma, cost, j)
+                    assert value == take and Fraction(axes[j][0], h) == j + epsilon
+                    assert -2 - 1/sigma <= eta <= 1
+                    errors.append(eta)
+                    counts['independent_hook_rotation_identities'] += 1
+            length, empty = len(errors), s - t - len(errors)
+            assert empty <= 2 and all(value == 0 for value in takes[length:])
+            counts['canonical_blocks'] += 1
+            counts['trimmed_empty_hooks'] += empty
+            if length < 2:
+                continue
+            ell = length//2
+            surplus = sum(takes[:length]) - sum(sizes[t:t + length])
+            prefix = sum(takes[:ell]) - sum(sizes[t:t + ell])
+            assert 0 <= surplus <= 2*(c + 3) and prefix >= 0
+            contrast = sum(errors[:ell]) - Fraction(ell, length)*sum(errors)
+            curvature = delta*ell*(length - ell)/2
+            assert curvature == Fraction(ell, length)*surplus + contrast - prefix
+            first = sum(errors[:ell]) + ell*gamma/2
+            full = sum(errors) + length*gamma/2
+            assert curvature <= 2*(c + 3) + abs(first) + Fraction(ell, length)*abs(full)
+            counts['exact_block_curvature_contrasts'] += 1
+            if (r == 32 and aspect == Fraction(4142135623, 10**10) and last == 6) or empty:
+                witnesses.append({'components': r, 'slope': c, 'last_size': last,
+                    'target_aspect': str(aspect), 'price_branch': branch, 'weight': weight,
+                    'block': (t, s), 'integer_cost': raw_cost, 'block_layer_counts': takes,
+                    'empty_tail': empty, 'delta': str(delta), 'delta_times_block_width': str(delta*(s - t)),
+                    'centered_first_half_error': str(first), 'centered_full_error': str(full),
+                    'curvature_term': str(curvature), 'prefix_surplus': prefix})
+    for p, sigma, theta in product((Fraction(1, 1009), Fraction(1, 3), Fraction(4, 5), Fraction(1008, 1009)),
+                                    (Fraction(1, 9), Fraction(1, 2), Fraction(1), Fraction(2), Fraction(7)),
+                                    (Fraction(0), Fraction(1, 7), Fraction(4, 5))):
+        counts['integrated_torus_polygon_pieces'] += rotation_mean_integral(p, sigma, theta)
+        counts['exact_torus_mean_integrals'] += 1
+    # These are exact field identities for sample resonances, not universal Q constants.
+    field_samples = []
+    for c in (5, 6, 9):
+        discriminant = c*(c - 4)
+        assert isqrt(discriminant)**2 != discriminant
+        assert isqrt(2*discriminant)**2 != 2*discriminant
+        for u, v, m in product(range(1, 4), range(-2, 3), range(-2, 3)):
+            A, B = Fraction(m - v*(c - 2), u), Fraction(v, u)
+            assert u*A + v*(c - 2) == m and u*B - v == 0
+            counts['quadratic_field_resonance_identities'] += 1
+        field_samples.append({'slope': c, 'critical_polynomial': (1, -(c - 2), 1),
+                              'aspect_polynomial': (1, 2, -1),
+                              'twice_discriminant_is_nonsquare': 2*discriminant})
+        sqrt2 = rational_sqrt_bounds(Fraction(2), bits=128)
+        root = rational_sqrt_bounds(Fraction(discriminant), bits=128)
+        roots = ((Fraction(c - 2) - root[1])/2, (Fraction(c - 2) - root[0])/2), \
+                ((Fraction(c - 2) + root[0])/2, (Fraction(c - 2) + root[1])/2)
+        for a, b, q in product(range(-2, 3), range(-2, 3), range(1, 4)):
+            # Multiplication by q*(sqrt(2)-1)-a-b*sigma in the quartic field.
+            basis = ((0, 0), (1, 0), (0, 1), (1, 1))
+            matrix = [[0]*4 for _ in range(4)]
+            for column, (i, j) in enumerate(basis):
+                matrix[column][column] -= q + a
+                matrix[basis.index((1 - i, j))][column] += q*(2 if i else 1)
+                if not j:
+                    matrix[basis.index((i, 1))][column] -= b
+                else:
+                    matrix[basis.index((i, 0))][column] += b
+                    matrix[basis.index((i, 1))][column] -= b*(c - 2)
+            A = a + q
+            U, V = A*A - b*b - 2*q*q, 2*A*b + (c - 2)*b*b
+            norm = U*U + (c - 2)*U*V + V*V
+            assert determinant(matrix) == norm and norm != 0
+            counts['quartic_field_norm_determinants'] += 1
+            H = max(1, abs(a), abs(b), q)
+            lower = Fraction(1, (c + 4)**3*H**4)
+            for lo, hi in roots:
+                zlo, zhi = (a + b*lo)/q, (a + b*hi)/q
+                if zhi < zlo:
+                    zlo, zhi = zhi, zlo
+                dlo, dhi = sqrt2[0] - 1 - zhi, sqrt2[1] - 1 - zlo
+                assert dlo > 0 or dhi < 0
+                assert min(abs(dlo), abs(dhi)) >= lower
+                counts['outward_field_separation_bounds'] += 1
+    return {'counts': dict(counts), 'block_curvature_witnesses': witnesses,
+            'nonresonant_field_examples': field_samples,
+            'explicit_resonance_constant_witnesses': [critical_resonance_constants(c, e)
+                for c, e in product((5, 6, 9), (Fraction(1, 2), Fraction(1, 4)))],
+            'scope': 'Exact heap phases, rotation hooks, curvature contrasts and polygon torus means support the discrepancy reduction. Explicit Fejer/grid constants bound resonance height by O_c(epsilon^-4), count by O_c(epsilon^-12), radius constant by O_c(epsilon^-10) and minimum width by O_c(epsilon^-14). Independent quartic multiplication determinants and outward root intervals check the field-norm separation behind the uniform O_c(delta^(-26/27)) block-width corollary at p=sqrt(2)-1 when the critical field differs. These are analytic proofs with finite supporting controls, not empirical asymptotic fits, a full fan count, prime application, novelty certificate or unrestricted G_3 theorem.'}
+
+
 def main():
     axes = [axis_controls(n) for n in (4, 5, 6, 7, 9, 12, 15, 21)]
     arithmetic = [arithmetic_controls(n) for n in (99, 303, 603)]
@@ -3418,6 +3665,7 @@ def main():
     caps = critical_cap_controls(critical['point_ideal'])
     proximity = supercritical_proximity_controls(critical['point_ideal'])
     transition = transition_interaction_controls()
+    resonance = rotation_resonance_controls()
     paths = ['scripts/run_algebraic_incidence_controls.py', 'docs/weighted_facet_incidence.md',
              'docs/initial_cone_height.md', 'scripts/run_extremal_initial_ideals_checks.py',
              'scripts/run_structural_complexity_checks.py', 'scripts/run_initial_cone_height_checks.py',
@@ -3425,7 +3673,7 @@ def main():
              'docs/generic_multiaffine_bound.md', 'docs/planar_dyadic_bound.md',
              'docs/rational_shadow_bound.md', 'scripts/run_planar_dyadic_bound_checks.py']
     report = {'status': 'passed', 'command': 'python3 -B scripts/run_algebraic_incidence_controls.py',
-              'scope': 'A uniform all-aspect truncated-line arrangement bound controls the same-type exchange network even in shrinking supercritical margins, using classical bounded-degree lattice-point geometry. A length-54 actual point ideal proves that layer boundary prefixes and both same-type orders still miss a mixed row-column wall. The full mixed network, unrestricted G_3 and current priority remain unresolved; every previous section is preserved.',
+              'scope': 'Canonical block curvature reduces to exact rotation discrepancies. Explicit polynomial finite-frequency bounds force worst-scale blocks near finitely many critical quadratic-field aspects; nonresonant limits have delta*h tending to zero. A quartic field norm yields O_c(delta^(-26/27)) width at p=sqrt(2)-1 when its field differs from the critical field. Constants are coarse and no full mixed-wall count, prime application, novelty certificate or unrestricted G_3 theorem follows. Every previous section is preserved.',
               'summary': {'complete_axis_fans': len(axes), 'axis_cells': sum(a['positive_cells'] for a in axes),
                           'matrix_selection_controls': sum(a['independent_matrix_selections'] for a in axes),
                           'arithmetic_fixtures': len(arithmetic), 'complete_quotient_fans': len(interior),
@@ -3478,7 +3726,8 @@ def main():
                           **{'subcritical_' + k: v for k, v in subcritical['counts'].items()},
                           **{'cap_' + k: v for k, v in caps['counts'].items()},
                           **{'proximity_' + k: v for k, v in proximity['counts'].items()},
-                          **{'transition_' + k: v for k, v in transition['counts'].items()}},
+                          **{'transition_' + k: v for k, v in transition['counts'].items()},
+                          **{'resonance_' + k: v for k, v in resonance['counts'].items()}},
               'uniform_axis_matroids': axes, 'arithmetic_lower_bound_controls': arithmetic,
               'interior_quotients': interior, 'three_pole_quotients': curves,
               'positive_plane_traces': planes,
@@ -3494,6 +3743,7 @@ def main():
               'critical_support_energy_caps': caps,
               'higher_slope_boundary_proximity': proximity,
               'transition_boundary_interactions': transition,
+              'critical_block_rotation_resonance': resonance,
               'source_sha256': {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in paths}}
     (ROOT / 'results/research/algebraic_incidence_controls.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report['summary'], indent=2))

@@ -155,6 +155,15 @@ essential: a length-54 point ideal has two adjacent initials with
 identical layer boundary prefixes and identical same-type boundary
 orders. Their separate arithmetic network and its interactions with
 the simpler walls still require a uniform count.
+An exact rotation/discrepancy reduction now gives arithmetic rigidity
+for long pooled blocks: for each fixed saturation threshold, blocks
+reaching the `1/(c-K)` scale lie near finitely many critical aspects
+in the associated quadratic field, with explicit polynomial bounds
+on the resonance parameters. At a nonresonant limiting aspect their
+width is `o(1/(c-K))`; a field-norm argument gives a uniform power
+improvement at a specified algebraic aspect. This identifies an
+arithmetic mechanism behind the remaining degeneracy; it does not
+supply the missing mixed-wall fan count.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count
