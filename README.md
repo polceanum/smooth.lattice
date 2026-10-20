@@ -200,6 +200,13 @@ canonical monomial cover makes this an intrinsic test; any polynomial
 separation needs depth product larger than `n` by a polynomial factor.
 This necessary condition leaves deep relations and multipoint quotients
 uncounted, and gives no new unrestricted exponent or novelty certificate.
+For [two-part hypersurface truncations](docs/hypersurface_truncations.md),
+an exact homogeneous-initial formula now retains the powers created by
+propagating relations. A free-module reduction preserves every original
+monomial rank; one explicit cubic has sparse commuting operators using
+`O(n)` stored coefficients. Its three outer cones are classified, while
+the remaining positive triangle still needs a uniform count. The rank
+reduction and bounded checks supply no asymptotic fan or priority claim.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count
