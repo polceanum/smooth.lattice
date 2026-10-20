@@ -871,6 +871,236 @@ the joint shell/cube obstruction with all three variables, and five
 additional exact formulas check its natural-corank scale. These data support the uniform proof,
 not a completed priority audit or the main goal.
 
+## Period gaps give regional bounds even when every cube fails
+
+The preceding obstruction used arbitrary downsets. Actual periodic labels
+give more information. The following bounds use that information, and
+apply to an unbounded-price part of the original three-generator family.
+They also show that ineffective local pruning can occur inside a region
+whose entire initial fan is only quadratic.
+
+### A gap-dependent common box
+
+Suppose $r>t>s\ge3$ are odd and pairwise coprime. Define
+
+$$
+h=(r-s)/2,\quad e=(r-t)/2,\quad g=\gcd(h,e),\quad
+h_0=h/g,\quad e_0=e/g.
+$$
+
+In $B$, and hence in $A$, the following identities hold over every field:
+
+$$
+X^{e_0s}=Y^{h_0t},\qquad
+Z^h=X^{s+h}Y^h,\qquad
+Z^e=X^eY^{t+e}.                                        \tag{Q22}
+$$
+
+For the first identity, $e_0s-h_0t=(e-h)r/g$; its other two
+label coordinates are multiples of their periods. The other identities
+use $s+2h=r$ and $t+2e=r$. These are group-label identities,
+requiring no squarefreeness or division by the characteristic.
+
+Let $\Omega_Y$ be the region of positive prices satisfying
+
+$$
+h_0t w_Y>e_0s w_X,\qquad
+h w_Z>(s+h)w_X+h w_Y.
+$$
+
+Every standard set of $A$ in this region lies in the **same** box
+
+$$
+0\le a<rs,\quad 0\le b<h_0t,\quad 0\le c<h,
+\qquad \text{volume }h h_0 M.                           \tag{Q23}
+$$
+
+Indeed the first two costly heads in (Q22) are $Y^{h_0t}$ and
+$Z^h$, while $X^{rs}=1$ excludes $a\ge rs$. Similarly, in
+$\Omega_X$ defined by
+
+$$
+e_0s w_X>h_0t w_Y,\qquad
+e w_Z>e w_X+(t+e)w_Y,
+$$
+
+one common box has sides $e_0s,rt,e$, and volume $e e_0M$.
+Both regions are nonempty: choose the first two prices satisfying
+their first inequality and then choose $w_Z$ sufficiently large.
+
+The number of initial ideals realized anywhere in each whole region is
+
+$$
+g_{\Omega_Y}(A)=O\!\left(n^2\sqrt{h h_0}\right),\qquad
+g_{\Omega_X}(A)=O\!\left(n^2\sqrt{e e_0}\right).          \tag{Q24}
+$$
+
+To prove this, take the represented monomial matroid on the relevant
+common box, of rank $n$. Its basis-profile polytope lies in a box of
+volume at most $n^3$ times the ground-box volume. Each positive
+initial basis in the specified region uniquely minimizes its profile
+there, and hence determines a distinct vertex. Adding a unit cube
+handles a lower-dimensional polytope, keeps the enclosing-box volume
+of order $n^3$ times the ground-box volume, and refines its normal fan.
+The classical lattice-vertex bound
+then gives $O(n^{3/2}\sqrt{h h_0 M})$ in the first region.
+Since $M\le8n$, this proves (Q24); the other region is identical.
+
+The basis-profile dictionary and volume-to-vertex step are established
+in [Babson--Onn--Thomas, Theorem 2.4 and the proof of Corollary 2.5](https://arxiv.org/pdf/math/0207135).
+This is a classical geometric corollary using explicit period relations,
+not a new lattice-polytope theorem. It also applies to any quotient of
+$B$ of dimension comparable to $M$. Bounded period gaps make (Q24)
+quadratic; polylogarithmic gaps give $n^2$ times a polylogarithm.
+Neither statement covers the complement of the specified price regions.
+The result must not be multiplied by a count of cover cones: the common
+box already handles every cover and every quotient refinement throughout
+each entire region.
+
+### An all-field obstruction with all three generators present
+
+For every integer $q\ge1$, set
+
+$$
+(r,s,t)=(6q+7,6q+1,6q+5),\quad D=2rst+1,\quad H=2q+3,
+$$
+
+and choose the positive integer prices
+
+$$
+(w_X,w_Y,w_Z)=(D^3+1,D^3+D,H D^3+D^2).                  \tag{Q25}
+$$
+
+These periods are odd and pairwise coprime: their differences are
+$6,2,4$, and $s\equiv1\pmod3$. Here $h=3,e=1,h_0=3,e_0=1$.
+In particular
+
+$$
+Z^3=X^{s+3}Y^3,\quad X^s=Y^{3t},\quad Z=XY^{t+1}.
+$$
+
+The first two give positive strict price margins
+
+$$
+3w_Z-(s+3)w_X-3w_Y=2D^3+3D^2-3D-(s+3)>0,
+\quad 3t w_Y-s w_X>0.
+$$
+
+Thus every cover staircase $E$ and every quotient standard set lie in
+the box $a<rs,b<3t,c<3$, of volume $9M$. All relevant costs
+are distinct: the three lower base-$D$ digits separate exponents in
+the pure-axis box, and their differences have magnitude less than
+$D^3$. The prices are inside $\Omega_Y$, with
+$w_Z/w_X\sim2q\to\infty$. Formula (Q24) bounds the entire regional
+fan by $O(n^2)$, even though the price ratio is unbounded.
+
+Every quotient standard set at (Q25) contains
+
+$$
+X,\quad Y,\quad Z,\quad X^r,\quad Y^t                 \tag{Q26}
+$$
+
+over **every field**. Here is a direct independence proof, including
+characteristics dividing a period. Use the monic tensor basis
+$U^iV^jW^k$ with $i<r-1,j<s-1,k<t-1$.
+
+* Before $Z$, the monomials are exactly $X^aY^b$ with
+  $a+b\le H$. Because $H<s-1$, their residues
+  $U^{a+b}V^aW^b$ are distinct tensor-basis vectors. The residue
+  $VW$ of $Z$ is different from all of them. This also proves that
+  $X$ and $Y$ are selected.
+* Before $Y^t$, every monomial has $a+b\le t$. Those at
+  $U$-degree $t$ are precisely $X^aY^{t-a}$, $1\le a\le t$:
+  $X$ is cheaper than $Y$, and any positive $Z$ exponent would
+  cost more than $Y^t$. There is no $U$ reduction because
+  $t=r-2$. It suffices to show
+  $1\notin\operatorname{span}\{V^aW^{t-a}:1\le a\le t\}$.
+  In a proposed relation, only $a=1$ has $W$ exponent $t-1$,
+  which reduces to $-\sum_{j=0}^{t-2}W^j$. At $W$-degree
+  $t-2$ the coefficient is $c_2V^2-c_1V$; independence gives
+  $c_1=c_2=0$. The remaining nonzero $W$ degrees each occur
+  once, and $V$ is a unit, so their coefficients vanish. The
+  constant equation is $c_t V^t=1$, impossible since
+  $V^t=V^4$ is a nonconstant tensor-basis vector.
+* Before $X^r$, every monomial has $a+b\le r-1$ and
+  $c\le2$. The only $U$ reduction is
+  $U^{r-1}=-\sum_{i=0}^{r-2}U^i$. Let $f\in K[V,W]$
+  be the combined coefficient before this reduction at degree
+  $r-1$. To cancel $U$-degrees $1$ and $2$, $f$ must belong
+  both to the coefficient spans from $a+b=1$ and from $a+b=2$,
+  with $c\le2$. The former uses $V,W$ monomials of odd total
+  degree $1,3,5$; the latter uses even degrees $2,4,6$.
+  All their individual exponents are at most $4$, below both
+  monic-reduction thresholds. Their supports are disjoint, so
+  $f=0$. At $U$-degree zero the remaining earlier span is
+  $\operatorname{span}\{1,VW,V^2W^2\}$. But $X^r$ has residue
+  $V^r=V^6$, outside this span. For $q=1$, $V^6$ reduces to
+  $-\sum_{i=0}^5V^i$, still nonconstant in every field; for
+  $q\ge2$ it is an ordinary nonconstant basis vector.
+
+Each argument considers **all cheaper monomials**, rather than just
+one chosen frontier. Independence from that span forces greedy
+selection and hence membership in the initial standard set. The
+strict inequalities persist on open neighborhoods of (Q25).
+The members $X^r,Y^t$ reach the three thresholds
+$a+b\ge r,a+c\ge s,b+c\ge t$, and $X,Y,Z$ ensure that no
+variable is omitted. Thus this obstruction survives both earlier
+restrictions on a possible separating family.
+
+Nevertheless every oriented local cube fails to fit in $E$. Each of
+the three cube directions has $Z$ increment of absolute value one;
+the eight corners span three $Z$ levels of difference. The cover has
+only levels $0,1,2$. Hence the cube-only filter leaves all $M$ points.
+Since
+
+$$
+M=\Theta(q^3),\quad n=\Theta(q^3),\quad
+k=M-n=\Theta(q^2),\quad M/k\longrightarrow\infty,        \tag{Q27}
+$$
+
+there is no uniform $O(k)$ cube-only bound even when all generators
+are active and every period threshold is reached. The joint upper-shell
+bound remains valid; this does not supply a lower bound on omissions or
+on the number of initial ideals.
+
+The cases $q=1,2,6$ give genuine prime sets $\{7,11,13\}$,
+$\{13,17,19\}$ and $\{37,41,43\}$. Infinitely many prime
+instances are **not** asserted. The infinite family uses pairwise
+coprime periods, including composite ones. Its identities explain an
+arithmetic restriction on these exponent lattices, not a consequence
+for prime distribution.
+
+### Verification and the remaining problem
+
+Eight odd coprime period triples check (Q22) by both group labels and
+independent raw monic division over $\mathbb Q,\mathbb F_2,
+\mathbb F_3,\mathbb F_5$. Sixteen regional price controls verify
+strict inequalities and common-box volumes; four also construct the
+entire shortest-representative cover. Seven family parameters check
+the exact integer formulas. For $q=1,2,3$, ninety prefix tests over
+$\mathbb Q$ and characteristics $2,3,5,7,13$ verify that every
+target in (Q26) increases the rank of the full cheaper-monomial span.
+These include characteristics dividing periods.
+
+For $q=1,2$, the complete binary quotient bases of lengths $720$ and
+$3456$ are computed directly, and independently recovered as complements
+of maximum-cost inverse-label dual bases. Ordinary monic division then
+verifies every standard column and all $35$ minimal-border relations,
+with strictly cheaper tails. Exact omissions, integer prices and border
+certificates are saved in the report. Direct corner tests confirm that
+the full covers of sizes $1001$ and $4199$ survive cube-only pruning.
+No finite fan count is inferred from these two bases.
+
+This closes another arithmetic region as a source of polynomial fan
+separation, while showing why adding an active-generator assumption
+cannot repair the cube-only shortcut. The complement of
+$\Omega_X\cup\Omega_Y$, arbitrary period gaps and the unrestricted
+$G_3(n)$ target remain open. A next proof must either count the
+joint-shell refinements across those remaining regions or construct a
+different realizable source of many simultaneous dependencies. Exact
+priority, a consequential unrestricted theorem and the paper endpoint
+remain unestablished; no new manuscript follows from this corollary.
+
 ## Exact reproduction
 
 ```bash
@@ -893,3 +1123,6 @@ The exact box linkage precedent and earlier symmetric-family exclusion
 are cross-referenced rather than claimed again. The shell continuation
 adds exact dyadic covers, integer exit steps, principal multiplication
 counts and logarithmic-obstruction formulas.
+The period-gap continuation adds raw monic checks of the arithmetic
+identities, regional common boxes, all-cheaper prefix independence and
+complete primal/dual bases with strict borders for active slab covers.

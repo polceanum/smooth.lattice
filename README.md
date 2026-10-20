@@ -221,8 +221,16 @@ pruning rule, including in characteristic two. A uniform boundary-layer
 argument now bounds its survivors by three times the sum of the cover
 projection areas. An infinite thin-cover family shows why a corank-only
 cube bound fails even after all three period thresholds are reached.
-Those examples omit a generator; the joint shell/circuit count for states
-using all three generators remains open. The exact box-residual transfer
+Those first examples omit a generator. A period-gap construction now makes
+all three generators active over every field, reaches all three thresholds,
+and still defeats every cube test. Explicit group relations nevertheless
+put its entire price region inside a quadratic fan bound. More generally,
+for odd coprime periods ordered `r>t>s`, half-gaps `h=(r-s)/2` and
+`e=(r-t)/2`, divided by their gcd to give `h0,e0`,
+give regional bounds `O(n^2 sqrt(h*h0))` and `O(n^2 sqrt(e*e0))`.
+These classical volume corollaries close additional unbounded-price regions;
+they do not count the remaining joint shell/circuit refinements or establish
+an unrestricted advance. The exact box-residual transfer
 is identified with established linkage, while every nonbox group cover
 has a residual/initial mismatch measured by its number of maximal monomials.
 The additive prime-power class is now classified separately: at length

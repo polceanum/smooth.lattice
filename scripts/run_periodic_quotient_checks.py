@@ -4,14 +4,15 @@ from collections import Counter
 from fractions import Fraction as Q
 from functools import cache
 from hashlib import sha256
+from heapq import heappop, heappush
 from itertools import combinations, product
-from math import comb, lcm, prod
+from math import comb, gcd, lcm, prod
 from pathlib import Path
 import json
 
 from run_cyclotomic_price_checks import (border_certificate, circuit_vector,
     cyclotomic_model, frontier_basis, insert, label, scalar, shortest_representatives,
-    tensor)
+    tensor, univariate_powers)
 from run_interleaving_research import minimal_excluded_border
 from run_nested_jet_checks import downsets
 
@@ -646,6 +647,229 @@ def shell_volume_controls(covers):
             'joint_cube_shell_obstructions':joint,'joint_cube_shell_integer_formulas':formulas}
 
 
+def period_gap_controls():
+    """Period identities, regional boxes, and an active three-generator obstruction."""
+    def sparse_residue(periods, p):
+        powers = [univariate_powers(m, p) for m in periods]
+
+        @cache
+        def residue(a):
+            # Raw exponents and repeated monic division, not a label shortcut.
+            u, v, w = a[0]+a[1], a[0]+a[2], a[1]+a[2]
+            factors = [[(i, x) for i, x in enumerate(power(e)) if x]
+                       for power, e in zip(powers, (u, v, w))]
+            return {((i*(periods[1]-1)+j)*(periods[2]-1)+k): scalar(x*y*z, p)
+                    for (i,x), (j,y), (k,z) in product(*factors)}
+        return residue
+
+    def add_sparse(pivots, original, p):
+        v = dict(original)
+        while v:
+            h = min(v)
+            if h not in pivots:
+                scale = pow(v[h], -1, p) if p else Q(1)/v[h]
+                pivots[h] = {i: scalar(x*scale, p) for i,x in v.items()}
+                return True
+            factor = v[h]
+            for i,x in pivots[h].items():
+                value = scalar(v.get(i,0)-factor*x, p)
+                if value:
+                    v[i] = value
+                else:
+                    v.pop(i,None)
+        return False
+
+    relations = []
+    for periods in ((13,7,11),(19,13,17),(25,19,23),(43,37,41),
+                    (37,17,29),(35,23,29),(41,17,23),(21,5,11)):
+        r,s,t = periods
+        require(r>t>s>=3 and all(m%2 for m in periods) and
+                all(gcd(a,b)==1 for a,b in combinations(periods,2)), 'odd coprime gap hypotheses')
+        h,e = (r-s)//2,(r-t)//2
+        g = gcd(h,e)
+        h0,e0 = h//g,e//g
+        pairs = (((e0*s,0,0),(0,h0*t,0)),
+                 ((0,0,h),(s+h,h,0)),((0,0,e),(e,t+e,0)))
+        fields = []
+        for p in (0,2,3,5):
+            powers = [univariate_powers(m,p) for m in periods]
+            for a,b in pairs:
+                require(label(a,periods)==label(b,periods), 'gap binomial has equal group labels')
+                for power,i,j in zip(powers,(a[0]+a[1],a[0]+a[2],a[1]+a[2]),
+                                              (b[0]+b[1],b[0]+b[2],b[1]+b[2])):
+                    require(power(i)==power(j), 'independent raw monic division verifies every gap identity')
+            fields.append(p)
+        M,n = prod(periods),prod(m-1 for m in periods)
+        scale = 2*M+1
+        region_controls = []
+        for region in ('Y','X'):
+            x,y = (h0*t,e0*s+1) if region=='Y' else (h0*t+1,e0*s)
+            z = ((s+h)*x+h*y)//h+1 if region=='Y' else (e*x+(t+e)*y)//e+1
+            weight = (x*scale**3+1,y*scale**3+scale,z*scale**3+scale**2)
+            if region=='Y':
+                margins = (h0*t*weight[1]-e0*s*weight[0],
+                           h*weight[2]-(s+h)*weight[0]-h*weight[1])
+                sides = (r*s,h0*t,h)
+                factor = h*h0
+            else:
+                margins = (e0*s*weight[0]-h0*t*weight[1],
+                           e*weight[2]-e*weight[0]-(t+e)*weight[1])
+                sides = (e0*s,r*t,e)
+                factor = e*e0
+            require(min(margins)>0 and prod(sides)==factor*M, 'strict regional prices and exact common-box volume')
+            record = {'region':region,'weight':weight,'strict_margins':margins,
+                      'common_box_sides':sides,'box_to_cover_volume_ratio':factor}
+            if periods in ((13,7,11),(19,13,17)):
+                cover = shortest_representatives(periods,weight)
+                ground = [a for cost,a in cover.values()]
+                require(all(all(a[i]<sides[i] for i in range(3)) for a in ground), 'actual shortest cover is inside the regional box')
+                record['direct_cover_length'] = len(ground)
+            region_controls.append(record)
+        relations.append({'periods':periods,'length':n,'cover_length':M,'half_gaps':[h,e],
+                          'primitive_half_gaps':[h0,e0],'binomials':pairs,
+                          'monic_division_fields':fields,'regions':region_controls})
+
+    prefixes, formulas, complete = [],[],[]
+    directions = ((1,1,-1),(1,-1,1),(-1,1,1))
+    for q in (1,2,3,6,16,32,64):
+        periods = r,s,t = 6*q+7,6*q+1,6*q+5
+        M,n = prod(periods),prod(m-1 for m in periods)
+        scale,H = 2*M+1,2*q+3
+        weight = (scale**3+1,scale**3+scale,H*scale**3+scale**2)
+        margins = (3*weight[2]-(s+3)*weight[0]-3*weight[1],
+                   3*t*weight[1]-s*weight[0])
+        require(min(margins)>0 and prod((r*s,3*t,3))==9*M, 'uniform slab family lies strictly in the quadratic regional bound')
+        formulas.append({'parameter':q,'periods':periods,'length':n,'cover_length':M,
+                         'corank':M-n,'cover_to_corank_ratio':str(Q(M,M-n)),
+                         'weight':weight,'strict_relation_margins':margins,
+                         'common_box_sides':[r*s,3*t,3]})
+        if q not in (1,2,3):
+            continue
+        for p in (0,2,3,5,7,13):
+            residue = sparse_residue(periods,p)
+            for target in ((1,0,0),(0,1,0),(0,0,1),(r,0,0),(0,t,0)):
+                cost = dot(weight,target)
+                earlier = [a for a in product(range(cost//weight[0]+1),
+                                             range(cost//weight[1]+1),range(cost//weight[2]+1))
+                           if dot(weight,a)<cost]
+                pivots = {}
+                for a in sorted(earlier,key=lambda a:dot(weight,a)):
+                    add_sparse(pivots,residue(a),p)
+                rank = len(pivots)
+                require(add_sparse(pivots,residue(target),p), 'target is independent of every cheaper monomial by direct monic arithmetic')
+                prefixes.append({'parameter':q,'periods':periods,'field':p,'target':target,
+                                 'all_cheaper_monomials':len(earlier),'cheaper_span_rank':rank,
+                                 'rank_with_target':len(pivots)})
+        if q==3:
+            continue
+
+        # A complete binary calculation uses an independent tensor-label model.
+        def primal_bits(a):
+            u,v,w = label(a,periods)
+            first = range(r-1) if u==r-1 else (u,)
+            second = range(s-1) if v==s-1 else (v,)
+            last = (1<<(t-1))-1 if w==t-1 else 1<<w
+            result = 0
+            for i in first:
+                for j in second:
+                    result ^= last<<((i*(s-1)+j)*(t-1))
+            return result
+
+        def add_bits(pivots, v):
+            while v:
+                h = v.bit_length()-1
+                if h not in pivots:
+                    pivots[h] = v
+                    return True
+                v ^= pivots[h]
+            return False
+
+        heap,queued,pivots,basis = [(0,(0,0,0))],{(0,0,0)},{},set()
+        while heap and len(basis)<n:
+            _,a = heappop(heap)
+            if add_bits(pivots,primal_bits(a)):
+                basis.add(a)
+                for i in range(3):
+                    b = tuple(x+(i==j) for j,x in enumerate(a))
+                    if b not in queued:
+                        queued.add(b)
+                        heappush(heap,(dot(weight,b),b))
+        require(len(basis)==n, 'complete binary frontier reaches the true quotient dimension')
+        best = shortest_representatives(periods,weight)
+        ground = frozenset(a for cost,a in best.values())
+        require(len({cost for cost,a in best.values()})==M, 'cover costs are distinct')
+        require(basis<=ground and max(a[2] for a in ground)<3, 'complete quotient basis is in the three-layer cover')
+        oriented = [tuple((1 if dot(weight,v)>0 else -1)*x for x in v) for v in directions]
+        corners = [tuple(sum(e[j]*oriented[j][i] for j in range(3)) for i in range(3))
+                   for e in product((0,1),repeat=3)]
+        require(all(not all(tuple(a[i]+v[i] for i in range(3)) in ground for v in corners)
+                    for a in ground), 'every actual oriented cube test fails on the slab cover')
+        boundary = [g for g in product(*(range(m) for m in periods)) if 0 in g]
+        index = {g:i for i,g in enumerate(boundary)}
+
+        def inverse_dual_bits(a):
+            i,j,k = tuple(-x%m for x,m in zip(label(a,periods),periods))
+            if 0 in (i,j,k):
+                return 1<<index[i,j,k]
+            result = 0
+            for node in ((i,j,0),(i,0,k),(0,j,k),(i,0,0),(0,j,0),(0,0,k),(0,0,0)):
+                result ^= 1<<index[node]
+            return result
+
+        dual_pivots,omitted = {},set()
+        for a in sorted(ground,key=lambda a:dot(weight,a),reverse=True):
+            if add_bits(dual_pivots,inverse_dual_bits(a)):
+                omitted.add(a)
+                if len(omitted)==M-n:
+                    break
+        require(len(omitted)==M-n and basis==ground-omitted, 'independent inverse-label maximum basis exactly complements the direct primal frontier')
+        require(all(a in basis for a in ((1,0,0),(0,1,0),(0,0,1),(r,0,0),(0,t,0))), 'all three generators and every pair-degree threshold occur in the full basis')
+        require(all(tuple(x-(i==j) for j,x in enumerate(a)) in basis
+                    for a in basis for i in range(3) if a[i]), 'the complete computed basis is a downset')
+
+        # Independently divide every standard and minimal-border monomial, then
+        # solve its normal form. No inferred initial ideal from sampled prices.
+        direct = sparse_residue(periods,2)
+        ordered = sorted(basis)
+        solve_pivots = {}
+        for j,a in enumerate(ordered):
+            raw = direct(a)
+            v = sum(1<<i for i in raw)
+            require(v==primal_bits(a), 'ordinary monic division agrees with every standard label column')
+            coordinates = 1<<j
+            while v:
+                h = v.bit_length()-1
+                if h not in solve_pivots:
+                    solve_pivots[h] = (v,coordinates)
+                    break
+                pv,pc = solve_pivots[h]
+                v ^= pv
+                coordinates ^= pc
+            require(v!=0, 'normal-form solver independently verifies standard-column independence')
+        certificates = []
+        for a in sorted(minimal_excluded_border(ordered)):
+            v,coordinates = sum(1<<i for i in direct(a)),0
+            while v:
+                h = v.bit_length()-1
+                require(h in solve_pivots, 'standard columns span every border residue')
+                pv,pc = solve_pivots[h]
+                v ^= pv
+                coordinates ^= pc
+            tail = [ordered[j] for j in range(n) if (coordinates>>j)&1]
+            require(all(dot(weight,b)<dot(weight,a) for b in tail), 'every actual minimal border has a strictly cheaper exact normal form')
+            certificates.append({'head':a,'tail':tail})
+        complete.append({'parameter':q,'periods':periods,'field':2,'length':n,'cover_length':M,
+                         'weight':weight,'cover_sha256':sha256(repr(sorted(ground)).encode()).hexdigest(),
+                         'standard_set_sha256':sha256(repr(ordered).encode()).hexdigest(),
+                         'maximum_exponents':[max(a[i] for a in basis) for i in range(3)],
+                         'maximum_pair_degrees':[max(a[0]+a[1] for a in basis),max(a[0]+a[2] for a in basis),max(a[1]+a[2] for a in basis)],
+                         'cube_surviving_candidates':M,'inverse_dual_omissions':sorted(omitted),
+                         'strict_border_certificates':certificates})
+    return {'gap_relation_controls':relations,'uniform_family_formulas':formulas,
+            'all_cheaper_prefix_controls':prefixes,'complete_binary_controls':complete,
+            'scope':'The regional count is a classical lattice-volume corollary using explicit period identities. The all-field active-generator obstruction defeats cube-only corank pruning, not the joint shell bound. No infinite prime constellation, full fan count, unrestricted improvement or novelty certificate is asserted.'}
+
+
 def main():
     lattice, dual = periodic_and_dual_controls()
     index_controls = intrinsic_index_controls()
@@ -657,11 +881,12 @@ def main():
     thin_controls = thin_cover_controls()
     surface_controls = cube_surface_controls(lattice,thin_controls)
     shell_controls = shell_volume_controls(lattice)
+    gap_controls = period_gap_controls()
     sources = ('docs/periodic_quotient_arithmetic.md','scripts/run_periodic_quotient_checks.py',
                'scripts/run_cyclotomic_price_checks.py','scripts/run_interleaving_research.py',
                'scripts/run_nested_jet_checks.py')
     report = {'schema_version':1,'command':'python3 -B scripts/run_periodic_quotient_checks.py',
-              'scope':'Exact periodic-cover, arithmetic, fixed-cover trace and candidate-filter controls. Direct norm quotients verify the nonbox socle defect. Sector-wide surface budgets, thin-cover obstructions, socle-free dyadic shell bounds and their logarithmic obstruction are checked. No unrestricted asymptotic separation, full nonbox refinement-fan count or novelty certificate.',
+              'scope':'Exact periodic-cover, arithmetic, fixed-cover trace and candidate-filter controls. Direct norm quotients verify the nonbox socle defect. Sector-wide surface budgets, thin-cover obstructions, socle-free dyadic shell bounds and their logarithmic obstruction are checked. Period-gap identities, common regional boxes and active-generator slab obstructions are independently checked by monic division and primal/dual bases. No unrestricted asymptotic separation, full nonbox refinement-fan count or novelty certificate.',
               'source_sha256':{p:sha256((ROOT/p).read_bytes()).hexdigest() for p in sources},
               'full_period_lattice_controls':lattice,'inverse_monomial_dual_controls':dual,
               'trivial_intrinsic_grading_controls':index_controls,
@@ -671,6 +896,7 @@ def main():
               'cube_surface_controls':surface_controls,
               'thin_cover_obstructions':thin_controls,
               'socle_free_shell_controls':shell_controls,
+              'period_gap_controls':gap_controls,
               'summary':{'full_period_cover_prices':len(lattice),'dual_quotient_price_field_controls':len(dual),
                          'nonbox_reflection_obstructions':sum(x['nonbox_reflection_has_no_constant'] for x in dual),
                          'all_field_pair_minimal_polynomial_controls':len(index_controls),
@@ -695,6 +921,12 @@ def main():
                               'dyadic_sharpness_formula_controls':len(shell_controls['infinite_family_integer_formulas']),
                               'joint_shell_cube_downset_controls':len(shell_controls['joint_cube_shell_obstructions']),
                               'joint_shell_cube_formula_controls':len(shell_controls['joint_cube_shell_integer_formulas'])})
+    report['summary'].update({'period_gap_identity_models':len(gap_controls['gap_relation_controls']),
+                              'period_gap_regional_boxes':sum(len(c['regions']) for c in gap_controls['gap_relation_controls']),
+                              'active_slab_family_formulas':len(gap_controls['uniform_family_formulas']),
+                              'all_cheaper_active_prefix_checks':len(gap_controls['all_cheaper_prefix_controls']),
+                              'complete_active_slab_bases':len(gap_controls['complete_binary_controls']),
+                              'strict_active_slab_borders':sum(len(c['strict_border_certificates']) for c in gap_controls['complete_binary_controls'])})
     (ROOT/'results/research/periodic_quotient_checks.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report['summary'],sort_keys=True))
 

@@ -2564,6 +2564,42 @@ in Hausbrandt--Ruzika are explicitly compared. Neither supplies the
 missing quotient-specific two-dimensional count. Exact priority and all
 original success criteria remain open.
 
+## Period-gap arithmetic closes further price regions
+
+The [period-gap continuation](periodic_quotient_arithmetic.md#period-gaps-give-regional-bounds-even-when-every-cube-fails)
+uses actual group labels rather than arbitrary downset geometry. For odd
+coprime periods $r>t>s$, let $h=(r-s)/2,e=(r-t)/2$, and divide
+both by their gcd to obtain $h_0,e_0$. The identities
+$X^{e_0s}=Y^{h_0t}$, $Z^h=X^{s+h}Y^h$ and
+$Z^e=X^eY^{t+e}$ give common monomial boxes of volumes
+$h h_0M$ or $e e_0M$ in two explicit price regions. Classical
+basis-profile volume bounds then give $O(n^2\sqrt{h h_0})$ or
+$O(n^2\sqrt{e e_0})$ initial ideals throughout the corresponding
+entire region, without separately summing periodic-cover cones.
+Bounded gaps give quadratic counts, and polylogarithmic gaps still
+exclude a polynomial separation there. This is a classical corollary,
+not a new general lattice bound or a count outside those regions.
+
+The infinite family $(r,s,t)=(6q+7,6q+1,6q+5)$ supplies a stronger
+diagnostic obstruction. Explicit strict integer prices make $X,Y,Z$
+and $X^r,Y^t$ standard over every field, including ramified ones.
+All three variables are therefore present and every pair-degree period
+threshold is reached. Yet the full cover has only three $Z$ layers,
+so no oriented cube fits: its cube-only candidate set has size
+$M=\Theta(q^3)$ rather than $O(k)$ for $k=\Theta(q^2)$.
+The entire specified price region nevertheless has only $O(n^2)$
+initial ideals. Failed pruning therefore supplies no evidence of a
+large fan. The joint-shell estimate is not contradicted.
+
+Ninety all-cheaper-monomial independence checks support the uniform
+proof. Two complete binary bases are independently checked by raw
+monic arithmetic, inverse-label dual optimization and all minimal
+borders. The family includes genuine prime triples, but its infinitude
+uses coprime periods, with no prime-constellation claim. The remaining
+price regions, unrestricted $G_3$ and the original publication criteria
+remain open. Further counting must retain period arithmetic together
+with the actual joint-shell ranks, or use another realizable family.
+
 ## Reproduction
 
 From the repository root:
