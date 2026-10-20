@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Keep the original sharp-G_3 or infinite realizable polynomial-separation objective and every acceptance criterion. The resonance-cap argument now counts actual initials with near-worst-scale blocks in an enlarged shrinking transition window, including a limited polynomially decreasing saturation fraction. It does not close the whole component fan: smaller growing blocks and larger shrinking supercritical margins remain. Another cutoff-exponent refinement or finite linear-profile screen is not the next task. Seek a joint count of mixed boundary comparisons that includes those residual blocks, or return to the unrestricted rational-shadow/multiplication framework with a new aggregate mechanism. Expected random-shadow estimates alone do not bound the number of profile vertices. Require a whole-family or unrestricted theorem with a consequential algebraic/geometric result, complete the strongest-current and exact priority comparisons, retain the honest-paper requirement, and send no messages or submissions.",
+  "next_proof_task": "Keep the complete sharp-G_3 or infinite realizable polynomial-separation objective and all original gates. The next concrete upper route is the uniform relative-margin question: for every actual length-n three-variable initial cone C, is sup_w min_z (z dot w)/(abs(z) dot w)>=kappa/n for an absolute kappa>0? A complete proved erosion/cofactor/logarithmic-square packing implication would then give G_3(n)=O(n^2*log(n+1)^2), matching the generic power/log scale. First try a uniform proof using downset closure and commuting cyclic multiplication, and actively seek actual quotient counterexamples; a rank-n matroid on distinct V_n^3 axis weights already disproves a rank/lattice-only proof, but its basis is not a downset. The older interior hard-cone family has a symbolic 1/(4n) witness and 98 saved nonlinear quotient cones pass 1/(16n); neither is a universal proof. If individual margins fail, seek an aggregate packing statement or return to the unrestricted multiplication/rational-shadow route, without weakening the endpoint. Common-ray counts and their direct sums reduce to classical greedy/tropical structure, with the independent case matched to published work, so no further common-ray screens or standalone paper are warranted. Preserve all prior results and complete the strongest-current/priority and consequential-theorem requirements. No outbound messages or submissions.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -115,7 +115,9 @@
     "Compare the exact quota-reference proximity bound, O(r) pooling gap, three-progression boundary contraction and compressed monomial output with specialized separable nested-allocation and generic-curve interpolation results. Vidal--Gribel--Jaillet already give efficient integer allocation and a different continuous/integer proximity theorem; no general optimization novelty is asserted. The exact quadratic higher-slope critical energy law and resulting band count have a direct proof but no priority certificate.",
     "Compare the explicit all-aspect harmonic-strip line network and the mixed exchange obstruction with parametric laminar-allocation and interpolation fan results. Davenport already supplies the needed coefficient-independent bounded-degree lattice estimate; the specialized counting application and finite point certificate are supporting analysis, not evidence of a new general geometry theorem, unrestricted endpoint or publication significance.",
     "Compare the exact hook rotation decomposition, torus mean, quota-curvature contrast, explicit polynomial resonance bounds and fixed algebraic-aspect power-width consequence with signature-sequence, rotation-discrepancy and parametric laminar-allocation literature. Weyl/Fejer approximation, geometric sums, convex-set bracketing and algebraic norms are classical. Their specialized application has a complete proof and independent controls here, but no exact priority certificate, coherent global fan count or publication assessment.",
-    "Compare the exact resonance-to-profile-cell combination in Section AH with existing lattice-cap and parametric nested-selection results before claiming novelty. Andrews vertex exponents, finite-difference support bounds and elementary weighted covers are established inputs. The new subset count does not settle the unrestricted extremal endpoint or close the generic higher-slope family."
+    "Compare the exact resonance-to-profile-cell combination in Section AH with existing lattice-cap and parametric nested-selection results before claiming novelty. Andrews vertex exponents, finite-difference support bounds and elementary weighted covers are established inputs. The new subset count does not settle the unrestricted extremal endpoint or close the generic higher-slope family.",
+    "The direct sum of rank-one ray models is exactly the min/max tropical hyperplane-arrangement coarse-type setting of Dochtermann--Joswig--Sanyal, Theorem 2.9 and Corollary 2.10, arXiv:1001.0237v2. Do not treat that count as new. The arbitrary-matroid extension and its traversal are elementary greedy/tropical reductions; a precise further specialization comparison is not a substitute for the unrestricted mixed-term theorem.",
+    "Compare the uniform multiplicative-margin hypothesis and its conditional logarithmic packing implication against quantitative positive-weight representation and stability results for actual Gr\u00f6bner cones. A brief unsuccessful search is not evidence of novelty. The uniform margin is unproved, and the existing abstract-matroid counterexample is explicitly outside quotient/downset realizability."
   ],
   "primary_sources": [
     {
@@ -499,6 +501,13 @@
     {
       "url": "https://www.sciencedirect.com/science/article/pii/0166218X85900484",
       "scope": "Katoh--Ibaraki, 1985 parametric resource-allocation article metadata located. Full text was not retrieved; no theorem-level comparison or novelty conclusion is inferred. This access gap does not block the self-contained rotation/curvature proof."
+    },
+    {
+      "authors": "Dochtermann, Joswig and Sanyal",
+      "title": "Tropical types and associated cellular resolutions",
+      "url": "https://arxiv.org/pdf/1001.0237v2",
+      "published": "https://doi.org/10.1016/j.jalgebra.2011.12.028",
+      "scope": "Section 2 definitions, Proposition 2.7 with proof, Theorem 2.9 with proof and Corollary 2.10 inspected. The independent rank-one common-ray model is exactly the published arrangement/coarse-type case. This positive equivalence identifies prior art rather than certifying novelty of an arbitrary-matroid extension."
     }
   ],
   "verification": {
@@ -981,19 +990,39 @@
       "direct_three_pole_prefix_field_checks": 1728,
       "signed_interval_examples": 1,
       "source_hashes_verified": true
+    },
+    "ray_scaling_research": {
+      "command": "python3 -B scripts/run_ray_scaling_checks.py",
+      "status": "passed",
+      "report": "results/research/ray_scaling_checks.json",
+      "source_hashes_verified": true,
+      "complete_abstract_fans": 820,
+      "exhaustive_independent_bases": 6094,
+      "positive_profile_and_product_checks": 3248,
+      "independent_traversal_support_calls": 8296,
+      "single_exchange_queries": 26596,
+      "all_labelled_rank_two_matroids": 813,
+      "direct_sum_common_fans": 3,
+      "all_pole_allocation_determinants": 450,
+      "partial_fraction_point_checks": 72,
+      "sharp_pole_models": 15,
+      "relative_margin_actual_initial_cones": 98,
+      "hard_relative_margin_identities": 6,
+      "abstract_relative_margin_needles": 6,
+      "abstract_margin_one_over_16n_failures": 2
     }
   },
-  "preservation": "Only the five explicitly privacy-reviewed research files change. All 49 earlier continuations, original objective and criteria, every earlier algebraic-incidence section and all 160 earlier counts, and all 299 unlisted tracked files are preserved against 4ccb1b4. Core CLI, kernels, auditor, manuscripts/PDFs, earlier research and paused ML artifacts are unchanged. Local derivations, diagnostics and logs remain ignored.",
+  "preservation": "Five explicitly reviewed public research files change: README and this goal record, plus the new ray-scaling proof, checker and report. All 50 earlier continuations, original objective and success criteria, every previous research report, and all 302 other previously tracked files are preserved against 97a7081. Core CLI, kernels, auditor, manuscripts/PDFs and paused ML artifacts are unchanged. Baselines, diagnostics and logs are ignored local records.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
-    "docs/extremal_initial_ideals.md",
-    "scripts/run_algebraic_incidence_controls.py",
-    "results/research/algebraic_incidence_controls.json",
+    "docs/ray_scaling_bound.md",
+    "scripts/run_ray_scaling_checks.py",
+    "results/research/ray_scaling_checks.json",
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "b61341481ce98ba495810f9c392e6d7bf105fa44c87bb768cdb20d18910aa563",
+    "README.md": "1d2480d98eac5649163059cd2b2284528ea62f1a01ce9e57ce30fe333a937af9",
     "docs/extremal_initial_ideals.md": "6e84b6ea470841a89760a2e16080a9314ba747499b1a5a733460120fe501a92b",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
@@ -1029,7 +1058,10 @@
     "results/research/rational_shadow_bound_checks.json": "8efff61a84ac099f065cfdb2778b250f0d83fb395d80fc12a320100d7397e2c7",
     "docs/weighted_facet_incidence.md": "61ccaf62917fdf59b7f2480a80148750236e3507959e810403e302a43e31bc13",
     "scripts/run_algebraic_incidence_controls.py": "93e6f0e5d147da43cdfacc16e4419703c59993c10dc03199ef6385df4d420eeb",
-    "results/research/algebraic_incidence_controls.json": "db140030689a8384f545c8d9b8ec91194522e5826696f7ca47d3f10cb217bffb"
+    "results/research/algebraic_incidence_controls.json": "db140030689a8384f545c8d9b8ec91194522e5826696f7ca47d3f10cb217bffb",
+    "docs/ray_scaling_bound.md": "ae2be3549f7dde25c82e1cc264841d1e508d72c28ee1e7f464e80ee062a917db",
+    "scripts/run_ray_scaling_checks.py": "75ab19a339bce62de7b0bdbe5d12f97a7037fcbe783492d20c45e83747e28d9a",
+    "results/research/ray_scaling_checks.json": "7ac11d6ef24ffeb791a591a41e79247360204b9c039178f6d8e3e80bdd92def9"
   },
   "continuations": [
     {
@@ -3419,8 +3451,82 @@
         "source_hashes": "verified",
         "preservation": "Only the five explicitly privacy-reviewed research files change. All 49 earlier continuations, original objective and criteria, every earlier algebraic-incidence section and all 160 earlier counts, and all 299 unlisted tracked files are preserved against 4ccb1b4. Core CLI, kernels, auditor, manuscripts/PDFs, earlier research and paused ML artifacts are unchanged. Local derivations, diagnostics and logs remain ignored."
       }
+    },
+    {
+      "title": "Common-ray reduction and a uniform relative-margin route to the sharp upper scale",
+      "recorded_on": "2026-10-20",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "Revalidated clean 97a7081, all 304 tracked hashes, original goal/criteria and 50 prior records. The last result counted a restricted saturation subset, so the next work returned to a general matroid mechanism and its strongest directly matching primary comparison.",
+      "progress_classification": "Established the common-ray rank ceiling/traversal and its published tropical boundary, then formulated a concrete uniform quotient-cone margin question whose proved packing implication would close the upper power gap. An infinite abstract rank-n hyperbolic-n matroid family refutes a rank/lattice-only margin proof, while a symbolic hard-quotient witness and 98 saved actual cones support feasibility. The uniform hypothesis is unproved and the original endpoint is unchanged.",
+      "uniform_proofs": [
+        "The entire minimum-basis family of a matroid depends only on ordered element cost levels. Strictly increasing log therefore preserves minimum bases, including ties. For c_e=alpha_e*q_type(e), the transformed objective is log(product_B alpha_e)+sum_i k_i(B)*log(q_i). With a fixed ray-count vector, coefficient-product minimizers do not depend on q. Two distinct strict bases, or distinct strictly exposed profiles, cannot share that vector. There are binomial(r+t-1,t-1) compositions; the bound is independent of the number of ground elements and is sharp for a uniform matroid on t coefficient lists 1,...,r.",
+        "The transformed minimum is the degree-r tropical polynomial min_k(beta_k+k dot u). A direct sum of arbitrary ray matroids uses the same polynomial ceiling at total rank, so common positive fans of their profile polytopes cannot multiply separate counts. Componentwise fixed anchors add only fixed-rank linear translations and do not change this conclusion.",
+        "A basis is optimal exactly when every feasible single exchange has nonnegative cost. For each ordered pair of distinct ray types only the least ratio alpha_f/alpha_e matters; same-type inequalities are constant. Thus a strict cone has at most t*(t-1) interior facets, and its logarithmic image is a difference-constraint polyhedron. Breadth-first facet traversal uses at most 1+t*(t-1)*binomial(r+t-1,t-1) support calls, plus explicit O(r*(m-r)) exchange tests per new basis. Rational original-price inequalities avoid numerical logarithms.",
+        "If all positive quotient standard sets lie on the coordinate axes and 1, contract the always-selected 1 in the actual residue matroid to obtain rank n-1 on d rays. The all-field bound is binomial(n+d-2,d-1). Relations x_i*x_j=a*x_i+b*x_j+c suffice: they reduce mixed products to strictly cheaper pure powers at every positive weight.",
+        "Rational partial-fraction coordinates t and 1/(t-a_i), evaluated at n distinct nonpole nodes, attain every composition allocation of n-1. Multiplying by the common pole denominator gives a nonzero polynomial of degree at most n-1, proving independence at all n nodes. Hence the axis-carrier ceiling is sharp, including radical rational point ideals. It explains, rather than enlarges, the earlier quadratic three-pole family.",
+        "For general monomial weights, log(a dot w)=log(sum_i a_i*exp(u_i)) is not affine in u. An existing length-six quotient over F_101 has strict bases {1,x,y,z,z^2,y*z} and {1,x,y,z,z^2,x*z}, both with pure-axis counts (1,1,2), but different profiles. Exact matrix determinants, direct greedy and all strict minimal-border comparisons revalidate the obstruction. No superquadratic lower bound is inferred.",
+        "Conditional packing theorem: if every actual three-variable initial cone has relative margin mu(C)>=kappa/n for one absolute kappa>0, erode each normal z to z-kappa*abs(z)/(2n). Reduced-basis comparison entries are at most n, so clearing denominators gives O(n^2) coefficients. Three independent primitive extreme rays provide an integer interior center of height O(n^4), hence logarithmic aspect O(log n). Relative slack gives a contained log-aspect square of radius kappa/(4n). Disjoint-square packing yields G_3(n)=O(n^2*log(n+1)^2). The implication is proved, but its uniform-margin premise is not.",
+        "The previous wholly interior hard-cone family, of length 2k+1 and necessary quadratic integer height, has witness (4k+1,4k,4k^2-2k). Its relative slacks are 1/(8k+1), 1/(4k-1), 1/(8k+3), all at least 1/(4n). Thus the known hard arithmetic certificates do not refute the proposed relative robustness scale.",
+        "For n=10*(M+5), four explicit binary parallel classes at distinct axis weights with coefficients near M, plus n-4 distinct axis coloops, form a representable rank-n matroid on V_n^3. A positive cell has x/y and x/z ratios in consecutive Farey intervals of width O(M^-2), giving logarithmic area O(n^-4) and relative margin O(n^-2). Its selected basis omits x^(M+1) but contains x^(M+2), so it is not a quotient standard set. This is a uniform obstruction to proving the margin premise from rank and the hyperbolic lattice alone."
+      ],
+      "reading_scope": [
+        {
+          "source": "https://arxiv.org/pdf/1001.0237v2",
+          "scope": "Dochtermann--Joswig--Sanyal: Section 2, Proposition 2.7, Theorem 2.9 and Corollary 2.10 and proofs inspected. For partition matroids with one rank-one summand per component, the logarithmic model is exactly their tropical hyperplane arrangement and its coarse-type labels. The general matroid reduction is supplied independently and is not asserted to be their theorem verbatim."
+        },
+        {
+          "source": "https://ics.uci.edu/~eppstein/pubs/Epp-DCG-98.pdf",
+          "scope": "Section 1.2 greedy statement, opening of Section 4 and Theorem 4 token proof rechecked. Classical greedy/order and exchange facts are used as inputs. This does not supply a new logarithmic or unrestricted three-variable bound."
+        }
+      ],
+      "scope_limit": "No sharp unrestricted G_3 law, unrestricted exponent change, infinite polynomial separation, prime-specific consequence, completed honest-paper gate or achieved goal. This is a classical structural reduction with an explicitly matched published independent-component case. Mixed monomial forms, their coherent interactions and the strongest-current unrestricted comparison remain open. No new manuscript is prepared. The sharp-scale logarithmic packing statement is conditional on a new uniform relative-margin hypothesis, explicitly unproved. The 98 actual-cone checks and hard-family identities are feasibility evidence rather than a uniform proof; failure of the stronger margin premise would not disprove the extremal count.",
+      "independent_controls": {
+        "command": "python3 -B scripts/run_ray_scaling_checks.py",
+        "status": "passed",
+        "report": "results/research/ray_scaling_checks.json",
+        "source_hashes_verified": true,
+        "complete_abstract_fans": 820,
+        "exhaustive_independent_bases": 6094,
+        "positive_profile_and_product_checks": 3248,
+        "independent_traversal_support_calls": 8296,
+        "single_exchange_queries": 26596,
+        "all_labelled_rank_two_matroids": 813,
+        "direct_sum_common_fans": 3,
+        "all_pole_allocation_determinants": 450,
+        "partial_fraction_point_checks": 72,
+        "sharp_pole_models": 15,
+        "relative_margin_actual_initial_cones": 98,
+        "hard_relative_margin_identities": 6,
+        "abstract_relative_margin_needles": 6,
+        "abstract_margin_one_over_16n_failures": 2
+      },
+      "direct_sum_counts": [
+        {
+          "rank": 2,
+          "common_states": 6,
+          "product_of_separate_counts": 9
+        },
+        {
+          "rank": 3,
+          "common_states": 10,
+          "product_of_separate_counts": 27
+        },
+        {
+          "rank": 4,
+          "common_states": 15,
+          "product_of_separate_counts": 81
+        }
+      ],
+      "verification": {
+        "research": "passed",
+        "build": "passed",
+        "smoke": "passed",
+        "source_hashes": "verified",
+        "preservation": "Five explicitly reviewed public research files change: README and this goal record, plus the new ray-scaling proof, checker and report. All 50 earlier continuations, original objective and success criteria, every previous research report, and all 302 other previously tracked files are preserved against 97a7081. Core CLI, kernels, auditor, manuscripts/PDFs and paused ML artifacts are unchanged. Baselines, diagnostics and logs are ignored local records."
+      },
+      "uniform_relative_margin_hypothesis_proved": false
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "No unrestricted G_3 exponent change or polynomial separation. The effective resonance theorem combined with one common integer residue-profile polytope gives O_(a,c)(r^(9/2)*epsilon^(-35/2)*d^(3/2)) actual initial ideals in a margin annulus delta in [d/2,d], provided delta*h>=epsilon and h exceeds the explicit resonance threshold. This yields O(n^2) initials at each fixed saturation fraction for r^(-1/2)<=delta<=r^(-1/3), and a stated polynomially decreasing saturation tradeoff on a smaller window. All aspects, flat caps and planar ends are included. Smaller growing blocks and the remaining margins are not counted; no whole-fan, novelty, prime-application or completed-paper claim follows.",
-  "previous_goal_turn_classification": "Progress: 4ccb1b4 established the effective finite resonance theorem and the nonresonant algebraic-aspect width bound. This continuation preserves all 49 earlier records and the original acceptance criteria, and tests whether that arithmetic localization can count actual coherent cells rather than separate wall arrangements."
+  "asymptotic_improvement_scope_this_iteration": "No unrestricted exponent change or polynomial lower separation. Classical greedy invariance gives a sharp binomial(r+t-1,t-1) count for all positive ray-scaling matroids and their common direct sums. Single-exchange certificates have at most t*(t-1) interior facets, giving an explicit bounded-support-call enumeration reduction, implemented and checked for three rays. Axis-carrier quotient algebras satisfy the sharp all-field upper ceiling binomial(n+d-2,d-1), attained by rational pole-point quotients. The partition case matches a published tropical coarse-type theorem; this elementary structural reduction is not asserted as a new standalone paper. An actual mixed quotient verifies failure of a pure-axis-count extension. The main target remains open. A conditional relative-margin packing theorem now targets the full O(n^2*log(n+1)^2) upper scale. Its universal quotient-margin hypothesis is not established. An infinite abstract matroid obstruction shows exactly why the proof must use algebraic/downset information, while old hard quotient cones still admit the required scale. No new unconditional exponent is recorded.",
+  "previous_goal_turn_classification": "Progress: 97a7081 converted arithmetic resonance into a verified actual-cell count on a specified saturated-block subset and saved a privacy-reviewed main push. That restricted result leaves smaller growing blocks and the full extremal problem open. This continuation revalidated the clean commit, 304 tracked hashes and all 50 prior records, then returned to the general matroid counting mechanism rather than further adjusting the transition exponents."
 }

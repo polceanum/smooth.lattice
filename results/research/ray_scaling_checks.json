@@ -1,0 +1,2411 @@
+{
+  "status": "passed",
+  "command": "python3 -B scripts/run_ray_scaling_checks.py",
+  "counts": {
+    "complete_abstract_fans": 820,
+    "exhaustive_independent_bases": 6094,
+    "positive_profile_and_product_checks": 3248,
+    "independent_traversal_support_calls": 8296,
+    "single_exchange_queries": 26596,
+    "all_labelled_rank_two_matroids": 813,
+    "direct_sum_common_fans": 3,
+    "all_pole_allocation_determinants": 450,
+    "partial_fraction_point_checks": 72,
+    "sharp_pole_models": 15,
+    "relative_margin_actual_initial_cones": 98,
+    "hard_relative_margin_identities": 6,
+    "abstract_relative_margin_needles": 6,
+    "abstract_margin_one_over_16n_failures": 2
+  },
+  "abstract_ray_matroids": {
+    "counts": {
+      "complete_abstract_fans": 820,
+      "exhaustive_independent_bases": 6094,
+      "positive_profile_and_product_checks": 3248,
+      "independent_traversal_support_calls": 8296,
+      "single_exchange_queries": 26596,
+      "all_labelled_rank_two_matroids": 813,
+      "direct_sum_common_fans": 3
+    },
+    "ledger_sha256": "7dfec608ec21862e349cbc36f7eb33cc92964c691b9f1f2636e46f7007b4267e",
+    "exact_abstract_fixtures": [
+      {
+        "model": "uniform_rank_three_with_repeated_ray_weights",
+        "rank": 3,
+        "ground_size": 7,
+        "independent_bases": 35,
+        "positive_states": 8,
+        "composition_bound": 10,
+        "simplex_double_area": "1",
+        "states": [
+          {
+            "basis": [
+              0,
+              1,
+              2
+            ],
+            "ray_counts": [
+              3,
+              0,
+              0
+            ],
+            "profile": [
+              5,
+              0,
+              0
+            ],
+            "strict_weight": [
+              "1/21",
+              "10/21",
+              "10/21"
+            ],
+            "product_coefficient": 3
+          },
+          {
+            "basis": [
+              0,
+              1,
+              3
+            ],
+            "ray_counts": [
+              2,
+              1,
+              0
+            ],
+            "profile": [
+              2,
+              1,
+              0
+            ],
+            "strict_weight": [
+              "23/105",
+              "101/420",
+              "227/420"
+            ],
+            "product_coefficient": 1
+          },
+          {
+            "basis": [
+              0,
+              1,
+              5
+            ],
+            "ray_counts": [
+              2,
+              0,
+              1
+            ],
+            "profile": [
+              2,
+              0,
+              1
+            ],
+            "strict_weight": [
+              "29/126",
+              "139/252",
+              "55/252"
+            ],
+            "product_coefficient": 1
+          },
+          {
+            "basis": [
+              0,
+              3,
+              4
+            ],
+            "ray_counts": [
+              1,
+              2,
+              0
+            ],
+            "profile": [
+              1,
+              3,
+              0
+            ],
+            "strict_weight": [
+              "3/10",
+              "1/15",
+              "19/30"
+            ],
+            "product_coefficient": 2
+          },
+          {
+            "basis": [
+              0,
+              3,
+              5
+            ],
+            "ray_counts": [
+              1,
+              1,
+              1
+            ],
+            "profile": [
+              1,
+              1,
+              1
+            ],
+            "strict_weight": [
+              "551/1260",
+              "199/630",
+              "311/1260"
+            ],
+            "product_coefficient": 1
+          },
+          {
+            "basis": [
+              0,
+              5,
+              6
+            ],
+            "ray_counts": [
+              1,
+              0,
+              2
+            ],
+            "profile": [
+              1,
+              0,
+              5
+            ],
+            "strict_weight": [
+              "17/54",
+              "35/54",
+              "1/27"
+            ],
+            "product_coefficient": 4
+          },
+          {
+            "basis": [
+              3,
+              4,
+              5
+            ],
+            "ray_counts": [
+              0,
+              2,
+              1
+            ],
+            "profile": [
+              0,
+              3,
+              1
+            ],
+            "strict_weight": [
+              "173/280",
+              "17/140",
+              "73/280"
+            ],
+            "product_coefficient": 2
+          },
+          {
+            "basis": [
+              3,
+              5,
+              6
+            ],
+            "ray_counts": [
+              0,
+              1,
+              2
+            ],
+            "profile": [
+              0,
+              1,
+              5
+            ],
+            "strict_weight": [
+              "317/504",
+              "155/504",
+              "4/63"
+            ],
+            "product_coefficient": 4
+          }
+        ],
+        "independent_traversal_support_calls": 25,
+        "single_exchange_queries": 96,
+        "maximum_interior_facets": 4
+      },
+      {
+        "model": "rank_three_linear_0",
+        "rank": 3,
+        "ground_size": 9,
+        "independent_bases": 82,
+        "positive_states": 10,
+        "composition_bound": 10,
+        "simplex_double_area": "1",
+        "states": [
+          {
+            "basis": [
+              0,
+              1,
+              2
+            ],
+            "ray_counts": [
+              3,
+              0,
+              0
+            ],
+            "profile": [
+              10,
+              0,
+              0
+            ],
+            "strict_weight": [
+              "2/69",
+              "37/69",
+              "10/23"
+            ],
+            "product_coefficient": 14
+          },
+          {
+            "basis": [
+              0,
+              1,
+              3
+            ],
+            "ray_counts": [
+              2,
+              1,
+              0
+            ],
+            "profile": [
+              3,
+              1,
+              0
+            ],
+            "strict_weight": [
+              "339/1840",
+              "301/920",
+              "899/1840"
+            ],
+            "product_coefficient": 2
+          },
+          {
+            "basis": [
+              0,
+              1,
+              6
+            ],
+            "ray_counts": [
+              2,
+              0,
+              1
+            ],
+            "profile": [
+              3,
+              0,
+              2
+            ],
+            "strict_weight": [
+              "617/4048",
+              "1343/2024",
+              "745/4048"
+            ],
+            "product_coefficient": 4
+          },
+          {
+            "basis": [
+              0,
+              3,
+              4
+            ],
+            "ray_counts": [
+              1,
+              2,
+              0
+            ],
+            "profile": [
+              1,
+              5,
+              0
+            ],
+            "strict_weight": [
+              "404/1015",
+              "209/2030",
+              "1013/2030"
+            ],
+            "product_coefficient": 4
+          },
+          {
+            "basis": [
+              0,
+              3,
+              6
+            ],
+            "ray_counts": [
+              1,
+              1,
+              1
+            ],
+            "profile": [
+              1,
+              1,
+              2
+            ],
+            "strict_weight": [
+              "3559/8360",
+              "28891/87780",
+              "43039/175560"
+            ],
+            "product_coefficient": 2
+          },
+          {
+            "basis": [
+              0,
+              6,
+              7
+            ],
+            "ray_counts": [
+              1,
+              0,
+              2
+            ],
+            "profile": [
+              1,
+              0,
+              5
+            ],
+            "strict_weight": [
+              "2089/7084",
+              "4343/7084",
+              "163/1771"
+            ],
+            "product_coefficient": 6
+          },
+          {
+            "basis": [
+              3,
+              4,
+              5
+            ],
+            "ray_counts": [
+              0,
+              3,
+              0
+            ],
+            "profile": [
+              0,
+              14,
+              0
+            ],
+            "strict_weight": [
+              "47/87",
+              "2/87",
+              "38/87"
+            ],
+            "product_coefficient": 36
+          },
+          {
+            "basis": [
+              3,
+              4,
+              6
+            ],
+            "ray_counts": [
+              0,
+              2,
+              1
+            ],
+            "profile": [
+              0,
+              5,
+              2
+            ],
+            "strict_weight": [
+              "10891/15428",
+              "713/7714",
+              "3111/15428"
+            ],
+            "product_coefficient": 8
+          },
+          {
+            "basis": [
+              3,
+              6,
+              7
+            ],
+            "ray_counts": [
+              0,
+              1,
+              2
+            ],
+            "profile": [
+              0,
+              1,
+              5
+            ],
+            "strict_weight": [
+              "7765/12236",
+              "3257/12236",
+              "607/6118"
+            ],
+            "product_coefficient": 6
+          },
+          {
+            "basis": [
+              6,
+              7,
+              8
+            ],
+            "ray_counts": [
+              0,
+              0,
+              3
+            ],
+            "profile": [
+              0,
+              0,
+              16
+            ],
+            "strict_weight": [
+              "34/69",
+              "34/69",
+              "1/69"
+            ],
+            "product_coefficient": 66
+          }
+        ],
+        "independent_traversal_support_calls": 37,
+        "single_exchange_queries": 180,
+        "maximum_interior_facets": 6
+      },
+      {
+        "model": "rank_four_sparse_paving",
+        "rank": 4,
+        "ground_size": 8,
+        "independent_bases": 65,
+        "positive_states": 10,
+        "composition_bound": 15,
+        "simplex_double_area": "1",
+        "states": [
+          {
+            "basis": [
+              0,
+              1,
+              2,
+              4
+            ],
+            "ray_counts": [
+              3,
+              1,
+              0
+            ],
+            "profile": [
+              8,
+              4,
+              0
+            ],
+            "strict_weight": [
+              "1/78",
+              "17/130",
+              "167/195"
+            ],
+            "product_coefficient": 40
+          },
+          {
+            "basis": [
+              0,
+              1,
+              2,
+              5
+            ],
+            "ray_counts": [
+              3,
+              0,
+              1
+            ],
+            "profile": [
+              8,
+              0,
+              1
+            ],
+            "strict_weight": [
+              "101/2392",
+              "6113/11960",
+              "2671/5980"
+            ],
+            "product_coefficient": 10
+          },
+          {
+            "basis": [
+              0,
+              1,
+              3,
+              4
+            ],
+            "ray_counts": [
+              2,
+              2,
+              0
+            ],
+            "profile": [
+              3,
+              5,
+              0
+            ],
+            "strict_weight": [
+              "359/2184",
+              "61/728",
+              "821/1092"
+            ],
+            "product_coefficient": 8
+          },
+          {
+            "basis": [
+              0,
+              1,
+              3,
+              5
+            ],
+            "ray_counts": [
+              2,
+              1,
+              1
+            ],
+            "profile": [
+              3,
+              1,
+              1
+            ],
+            "strict_weight": [
+              "4211/17710",
+              "16241/46046",
+              "47141/115115"
+            ],
+            "product_coefficient": 2
+          },
+          {
+            "basis": [
+              0,
+              1,
+              5,
+              6
+            ],
+            "ray_counts": [
+              2,
+              0,
+              2
+            ],
+            "profile": [
+              3,
+              0,
+              4
+            ],
+            "strict_weight": [
+              "179/1012",
+              "355/506",
+              "123/1012"
+            ],
+            "product_coefficient": 6
+          },
+          {
+            "basis": [
+              0,
+              3,
+              4,
+              5
+            ],
+            "ray_counts": [
+              1,
+              2,
+              1
+            ],
+            "profile": [
+              1,
+              5,
+              1
+            ],
+            "strict_weight": [
+              "10217/20748",
+              "919/8645",
+              "41627/103740"
+            ],
+            "product_coefficient": 4
+          },
+          {
+            "basis": [
+              0,
+              3,
+              5,
+              6
+            ],
+            "ray_counts": [
+              1,
+              1,
+              2
+            ],
+            "profile": [
+              1,
+              1,
+              4
+            ],
+            "strict_weight": [
+              "297333/624910",
+              "341977/937365",
+              "298777/1874730"
+            ],
+            "product_coefficient": 3
+          },
+          {
+            "basis": [
+              0,
+              5,
+              6,
+              7
+            ],
+            "ray_counts": [
+              1,
+              0,
+              3
+            ],
+            "profile": [
+              1,
+              0,
+              11
+            ],
+            "strict_weight": [
+              "877/2760",
+              "1777/2760",
+              "53/1380"
+            ],
+            "product_coefficient": 21
+          },
+          {
+            "basis": [
+              3,
+              4,
+              5,
+              6
+            ],
+            "ray_counts": [
+              0,
+              2,
+              2
+            ],
+            "profile": [
+              0,
+              5,
+              4
+            ],
+            "strict_weight": [
+              "9187/11856",
+              "125/1482",
+              "1669/11856"
+            ],
+            "product_coefficient": 12
+          },
+          {
+            "basis": [
+              3,
+              5,
+              6,
+              7
+            ],
+            "ray_counts": [
+              0,
+              1,
+              3
+            ],
+            "profile": [
+              0,
+              1,
+              11
+            ],
+            "strict_weight": [
+              "349/520",
+              "149/520",
+              "11/260"
+            ],
+            "product_coefficient": 21
+          }
+        ],
+        "independent_traversal_support_calls": 37,
+        "single_exchange_queries": 160,
+        "maximum_interior_facets": 6
+      }
+    ],
+    "direct_sum_witnesses": [
+      {
+        "component_ranks": [
+          1,
+          1
+        ],
+        "product_of_separate_counts": 9,
+        "rank": 2,
+        "ground_size": 6,
+        "independent_bases": 9,
+        "positive_states": 6,
+        "composition_bound": 6,
+        "simplex_double_area": "1",
+        "states": [
+          {
+            "basis": [
+              0,
+              3
+            ],
+            "ray_counts": [
+              2,
+              0,
+              0
+            ],
+            "profile": [
+              9,
+              0,
+              0
+            ],
+            "strict_weight": [
+              "13/86",
+              "56/129",
+              "107/258"
+            ],
+            "product_coefficient": 14
+          },
+          {
+            "basis": [
+              0,
+              5
+            ],
+            "ray_counts": [
+              1,
+              0,
+              1
+            ],
+            "profile": [
+              2,
+              0,
+              13
+            ],
+            "strict_weight": [
+              "833/2666",
+              "722/1333",
+              "389/2666"
+            ],
+            "product_coefficient": 26
+          },
+          {
+            "basis": [
+              1,
+              3
+            ],
+            "ray_counts": [
+              1,
+              1,
+              0
+            ],
+            "profile": [
+              7,
+              3,
+              0
+            ],
+            "strict_weight": [
+              "24427/80238",
+              "2652/13373",
+              "39899/80238"
+            ],
+            "product_coefficient": 21
+          },
+          {
+            "basis": [
+              1,
+              4
+            ],
+            "ray_counts": [
+              0,
+              2,
+              0
+            ],
+            "profile": [
+              0,
+              14,
+              0
+            ],
+            "strict_weight": [
+              "454/933",
+              "91/933",
+              "388/933"
+            ],
+            "product_coefficient": 33
+          },
+          {
+            "basis": [
+              1,
+              5
+            ],
+            "ray_counts": [
+              0,
+              1,
+              1
+            ],
+            "profile": [
+              0,
+              3,
+              13
+            ],
+            "strict_weight": [
+              "1987553/3316504",
+              "190183/829126",
+              "568219/3316504"
+            ],
+            "product_coefficient": 39
+          },
+          {
+            "basis": [
+              2,
+              5
+            ],
+            "ray_counts": [
+              0,
+              0,
+              2
+            ],
+            "profile": [
+              0,
+              0,
+              18
+            ],
+            "strict_weight": [
+              "46/93",
+              "41/93",
+              "2/31"
+            ],
+            "product_coefficient": 65
+          }
+        ],
+        "independent_traversal_support_calls": 17,
+        "single_exchange_queries": 48,
+        "maximum_interior_facets": 4
+      },
+      {
+        "component_ranks": [
+          1,
+          1,
+          1
+        ],
+        "product_of_separate_counts": 27,
+        "rank": 3,
+        "ground_size": 9,
+        "independent_bases": 27,
+        "positive_states": 10,
+        "composition_bound": 10,
+        "simplex_double_area": "1",
+        "states": [
+          {
+            "basis": [
+              0,
+              3,
+              6
+            ],
+            "ray_counts": [
+              3,
+              0,
+              0
+            ],
+            "profile": [
+              26,
+              0,
+              0
+            ],
+            "strict_weight": [
+              "437/3453",
+              "514/1151",
+              "1474/3453"
+            ],
+            "product_coefficient": 238
+          },
+          {
+            "basis": [
+              0,
+              3,
+              7
+            ],
+            "ray_counts": [
+              2,
+              1,
+              0
+            ],
+            "profile": [
+              9,
+              19,
+              0
+            ],
+            "strict_weight": [
+              "48760/176103",
+              "112769/528309",
+              "269260/528309"
+            ],
+            "product_coefficient": 266
+          },
+          {
+            "basis": [
+              0,
+              3,
+              8
+            ],
+            "ray_counts": [
+              2,
+              0,
+              1
+            ],
+            "profile": [
+              9,
+              0,
+              23
+            ],
+            "strict_weight": [
+              "6482699/20193144",
+              "14710835/30289716",
+              "11709665/60579432"
+            ],
+            "product_coefficient": 322
+          },
+          {
+            "basis": [
+              0,
+              5,
+              8
+            ],
+            "ray_counts": [
+              1,
+              0,
+              2
+            ],
+            "profile": [
+              2,
+              0,
+              36
+            ],
+            "strict_weight": [
+              "833/2666",
+              "722/1333",
+              "389/2666"
+            ],
+            "product_coefficient": 598
+          },
+          {
+            "basis": [
+              1,
+              3,
+              7
+            ],
+            "ray_counts": [
+              1,
+              2,
+              0
+            ],
+            "profile": [
+              7,
+              22,
+              0
+            ],
+            "strict_weight": [
+              "11732953/34323204",
+              "5733188/25742403",
+              "44838001/102969612"
+            ],
+            "product_coefficient": 399
+          },
+          {
+            "basis": [
+              1,
+              3,
+              8
+            ],
+            "ray_counts": [
+              1,
+              1,
+              1
+            ],
+            "profile": [
+              7,
+              3,
+              23
+            ],
+            "strict_weight": [
+              "3229489/7118478",
+              "3205366/10677717",
+              "5256235/21355434"
+            ],
+            "product_coefficient": 483
+          },
+          {
+            "basis": [
+              1,
+              4,
+              7
+            ],
+            "ray_counts": [
+              0,
+              3,
+              0
+            ],
+            "profile": [
+              0,
+              33,
+              0
+            ],
+            "strict_weight": [
+              "454/933",
+              "91/933",
+              "388/933"
+            ],
+            "product_coefficient": 627
+          },
+          {
+            "basis": [
+              1,
+              5,
+              7
+            ],
+            "ray_counts": [
+              0,
+              2,
+              1
+            ],
+            "profile": [
+              0,
+              22,
+              13
+            ],
+            "strict_weight": [
+              "107477/168251",
+              "99302/504753",
+              "83020/504753"
+            ],
+            "product_coefficient": 741
+          },
+          {
+            "basis": [
+              1,
+              5,
+              8
+            ],
+            "ray_counts": [
+              0,
+              1,
+              2
+            ],
+            "profile": [
+              0,
+              3,
+              36
+            ],
+            "strict_weight": [
+              "3452767/5769224",
+              "332633/1442306",
+              "985925/5769224"
+            ],
+            "product_coefficient": 897
+          },
+          {
+            "basis": [
+              2,
+              5,
+              8
+            ],
+            "ray_counts": [
+              0,
+              0,
+              3
+            ],
+            "profile": [
+              0,
+              0,
+              41
+            ],
+            "strict_weight": [
+              "46/93",
+              "41/93",
+              "2/31"
+            ],
+            "product_coefficient": 1495
+          }
+        ],
+        "independent_traversal_support_calls": 31,
+        "single_exchange_queries": 180,
+        "maximum_interior_facets": 4
+      },
+      {
+        "component_ranks": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "product_of_separate_counts": 81,
+        "rank": 4,
+        "ground_size": 12,
+        "independent_bases": 81,
+        "positive_states": 15,
+        "composition_bound": 15,
+        "simplex_double_area": "1",
+        "states": [
+          {
+            "basis": [
+              0,
+              3,
+              6,
+              9
+            ],
+            "ray_counts": [
+              4,
+              0,
+              0
+            ],
+            "profile": [
+              55,
+              0,
+              0
+            ],
+            "strict_weight": [
+              "1147/9357",
+              "4192/9357",
+              "4018/9357"
+            ],
+            "product_coefficient": 6902
+          },
+          {
+            "basis": [
+              0,
+              3,
+              6,
+              10
+            ],
+            "ray_counts": [
+              3,
+              1,
+              0
+            ],
+            "profile": [
+              26,
+              31,
+              0
+            ],
+            "strict_weight": [
+              "4324930/17394663",
+              "3956558/17394663",
+              "3037725/5798221"
+            ],
+            "product_coefficient": 7378
+          },
+          {
+            "basis": [
+              0,
+              3,
+              6,
+              11
+            ],
+            "ray_counts": [
+              3,
+              0,
+              1
+            ],
+            "profile": [
+              26,
+              0,
+              37
+            ],
+            "strict_weight": [
+              "7511817007/26695009484",
+              "3373713760/6673752371",
+              "5688337437/26695009484"
+            ],
+            "product_coefficient": 8806
+          },
+          {
+            "basis": [
+              0,
+              3,
+              7,
+              10
+            ],
+            "ray_counts": [
+              2,
+              2,
+              0
+            ],
+            "profile": [
+              9,
+              50,
+              0
+            ],
+            "strict_weight": [
+              "29230/105963",
+              "7511/35321",
+              "54200/105963"
+            ],
+            "product_coefficient": 8246
+          },
+          {
+            "basis": [
+              0,
+              3,
+              7,
+              11
+            ],
+            "ray_counts": [
+              2,
+              1,
+              1
+            ],
+            "profile": [
+              9,
+              19,
+              37
+            ],
+            "strict_weight": [
+              "1719041095/4146756042",
+              "1987810687/6220134063",
+              "3307523467/12440268126"
+            ],
+            "product_coefficient": 9842
+          },
+          {
+            "basis": [
+              0,
+              3,
+              8,
+              11
+            ],
+            "ray_counts": [
+              2,
+              0,
+              2
+            ],
+            "profile": [
+              9,
+              0,
+              60
+            ],
+            "strict_weight": [
+              "6482699/20193144",
+              "14710835/30289716",
+              "11709665/60579432"
+            ],
+            "product_coefficient": 11914
+          },
+          {
+            "basis": [
+              0,
+              5,
+              8,
+              11
+            ],
+            "ray_counts": [
+              1,
+              0,
+              3
+            ],
+            "profile": [
+              2,
+              0,
+              73
+            ],
+            "strict_weight": [
+              "833/2666",
+              "722/1333",
+              "389/2666"
+            ],
+            "product_coefficient": 22126
+          },
+          {
+            "basis": [
+              1,
+              3,
+              7,
+              10
+            ],
+            "ray_counts": [
+              1,
+              3,
+              0
+            ],
+            "profile": [
+              7,
+              53,
+              0
+            ],
+            "strict_weight": [
+              "92348369/270088572",
+              "14970548/67522143",
+              "117858011/270088572"
+            ],
+            "product_coefficient": 12369
+          },
+          {
+            "basis": [
+              1,
+              3,
+              7,
+              11
+            ],
+            "ray_counts": [
+              1,
+              2,
+              1
+            ],
+            "profile": [
+              7,
+              22,
+              37
+            ],
+            "strict_weight": [
+              "604165085/1331192174",
+              "3571751389/11980729566",
+              "1485746206/5990364783"
+            ],
+            "product_coefficient": 14763
+          },
+          {
+            "basis": [
+              1,
+              3,
+              8,
+              11
+            ],
+            "ray_counts": [
+              1,
+              1,
+              2
+            ],
+            "profile": [
+              7,
+              3,
+              60
+            ],
+            "strict_weight": [
+              "3229489/7118478",
+              "3205366/10677717",
+              "5256235/21355434"
+            ],
+            "product_coefficient": 17871
+          },
+          {
+            "basis": [
+              1,
+              4,
+              7,
+              10
+            ],
+            "ray_counts": [
+              0,
+              4,
+              0
+            ],
+            "profile": [
+              0,
+              64,
+              0
+            ],
+            "strict_weight": [
+              "454/933",
+              "91/933",
+              "388/933"
+            ],
+            "product_coefficient": 19437
+          },
+          {
+            "basis": [
+              1,
+              5,
+              7,
+              10
+            ],
+            "ray_counts": [
+              0,
+              3,
+              1
+            ],
+            "profile": [
+              0,
+              53,
+              13
+            ],
+            "strict_weight": [
+              "524399/820107",
+              "160538/820107",
+              "135170/820107"
+            ],
+            "product_coefficient": 22971
+          },
+          {
+            "basis": [
+              1,
+              5,
+              7,
+              11
+            ],
+            "ray_counts": [
+              0,
+              2,
+              2
+            ],
+            "profile": [
+              0,
+              22,
+              50
+            ],
+            "strict_weight": [
+              "910675/1426617",
+              "281638/1426617",
+              "234304/1426617"
+            ],
+            "product_coefficient": 27417
+          },
+          {
+            "basis": [
+              1,
+              5,
+              8,
+              11
+            ],
+            "ray_counts": [
+              0,
+              1,
+              3
+            ],
+            "profile": [
+              0,
+              3,
+              73
+            ],
+            "strict_weight": [
+              "3452767/5769224",
+              "332633/1442306",
+              "985925/5769224"
+            ],
+            "product_coefficient": 33189
+          },
+          {
+            "basis": [
+              2,
+              5,
+              8,
+              11
+            ],
+            "ray_counts": [
+              0,
+              0,
+              4
+            ],
+            "profile": [
+              0,
+              0,
+              78
+            ],
+            "strict_weight": [
+              "46/93",
+              "41/93",
+              "2/31"
+            ],
+            "product_coefficient": 55315
+          }
+        ],
+        "independent_traversal_support_calls": 49,
+        "single_exchange_queries": 480,
+        "maximum_interior_facets": 4
+      }
+    ]
+  },
+  "sharp_pole_quotients": {
+    "counts": {
+      "all_pole_allocation_determinants": 450,
+      "partial_fraction_point_checks": 72,
+      "sharp_pole_models": 15
+    },
+    "exact_models": [
+      {
+        "dimension": 2,
+        "length": 1,
+        "characteristic": 1009,
+        "nodes": [
+          3
+        ],
+        "finite_poles": [
+          0
+        ],
+        "all_initial_allocations": 1,
+        "sharp_bound": "binomial(n+d-2,d-1)"
+      },
+      {
+        "dimension": 2,
+        "length": 2,
+        "characteristic": 1009,
+        "nodes": [
+          3,
+          4
+        ],
+        "finite_poles": [
+          0
+        ],
+        "all_initial_allocations": 2,
+        "sharp_bound": "binomial(n+d-2,d-1)"
+      },
+      {
+        "dimension": 2,
+        "length": 4,
+        "characteristic": 1009,
+        "nodes": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "finite_poles": [
+          0
+        ],
+        "all_initial_allocations": 4,
+        "sharp_bound": "binomial(n+d-2,d-1)"
+      },
+      {
+        "dimension": 2,
+        "length": 7,
+        "characteristic": 1009,
+        "nodes": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "finite_poles": [
+          0
+        ],
+        "all_initial_allocations": 7,
+        "sharp_bound": "binomial(n+d-2,d-1)"
+      },
+      {
+        "dimension": 2,
+        "length": 10,
+        "characteristic": 1009,
+        "nodes": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "finite_poles": [
+          0
+        ],
+        "all_initial_allocations": 10,
+        "sharp_bound": "binomial(n+d-2,d-1)"
+      },
+      {
+        "dimension": 3,
+        "length": 1,
+        "characteristic": 1009,
+        "nodes": [
+          4
+        ],
+        "finite_poles": [
+          0,
+          1
+        ],
+        "all_initial_allocations": 1,
+        "sharp_bound": "binomial(n+d-2,d-1)"
+      },
+      {
+        "dimension": 3,
+        "length": 2,
+        "characteristic": 1009,
+        "nodes": [
+          4,
+          5
+        ],
+        "finite_poles": [
+          0,
+          1
+        ],
+        "all_initial_allocations": 3,
+        "sharp_bound": "binomial(n+d-2,d-1)"
+      },
+      {
+        "dimension": 3,
+        "length": 4,
+        "characteristic": 1009,
+        "nodes": [
+          4,
+          5,
+          6,
+          7
+        ],
+        "finite_poles": [
+          0,
+          1
+        ],
+        "all_initial_allocations": 10,
+        "sharp_bound": "binomial(n+d-2,d-1)"
+      },
+      {
+        "dimension": 3,
+        "length": 7,
+        "characteristic": 1009,
+        "nodes": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "finite_poles": [
+          0,
+          1
+        ],
+        "all_initial_allocations": 28,
+        "sharp_bound": "binomial(n+d-2,d-1)"
+      },
+      {
+        "dimension": 3,
+        "length": 10,
+        "characteristic": 1009,
+        "nodes": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "finite_poles": [
+          0,
+          1
+        ],
+        "all_initial_allocations": 55,
+        "sharp_bound": "binomial(n+d-2,d-1)"
+      },
+      {
+        "dimension": 4,
+        "length": 1,
+        "characteristic": 1009,
+        "nodes": [
+          5
+        ],
+        "finite_poles": [
+          0,
+          1,
+          2
+        ],
+        "all_initial_allocations": 1,
+        "sharp_bound": "binomial(n+d-2,d-1)"
+      },
+      {
+        "dimension": 4,
+        "length": 2,
+        "characteristic": 1009,
+        "nodes": [
+          5,
+          6
+        ],
+        "finite_poles": [
+          0,
+          1,
+          2
+        ],
+        "all_initial_allocations": 4,
+        "sharp_bound": "binomial(n+d-2,d-1)"
+      },
+      {
+        "dimension": 4,
+        "length": 4,
+        "characteristic": 1009,
+        "nodes": [
+          5,
+          6,
+          7,
+          8
+        ],
+        "finite_poles": [
+          0,
+          1,
+          2
+        ],
+        "all_initial_allocations": 20,
+        "sharp_bound": "binomial(n+d-2,d-1)"
+      },
+      {
+        "dimension": 4,
+        "length": 7,
+        "characteristic": 1009,
+        "nodes": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "finite_poles": [
+          0,
+          1,
+          2
+        ],
+        "all_initial_allocations": 84,
+        "sharp_bound": "binomial(n+d-2,d-1)"
+      },
+      {
+        "dimension": 4,
+        "length": 10,
+        "characteristic": 1009,
+        "nodes": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "finite_poles": [
+          0,
+          1,
+          2
+        ],
+        "all_initial_allocations": 220,
+        "sharp_bound": "binomial(n+d-2,d-1)"
+      }
+    ]
+  },
+  "mixed_quotient_obstruction": {
+    "length": 6,
+    "characteristic": 101,
+    "ideal": "(x^2,y^3,z-F)",
+    "F_terms": [
+      {
+        "exponents": [
+          0,
+          1
+        ],
+        "coefficient": 7
+      },
+      {
+        "exponents": [
+          0,
+          2
+        ],
+        "coefficient": 10
+      },
+      {
+        "exponents": [
+          1,
+          0
+        ],
+        "coefficient": 7
+      },
+      {
+        "exponents": [
+          1,
+          1
+        ],
+        "coefficient": 15
+      },
+      {
+        "exponents": [
+          1,
+          2
+        ],
+        "coefficient": 23
+      }
+    ],
+    "strict_initial_witnesses": [
+      {
+        "basis": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ],
+        "strict_weight": [
+          20,
+          15,
+          13
+        ],
+        "pure_axis_counts": [
+          1,
+          1,
+          2
+        ],
+        "profile": [
+          1,
+          2,
+          4
+        ],
+        "strict_border_comparisons": 16
+      },
+      {
+        "basis": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ],
+        "strict_weight": [
+          31,
+          51,
+          38
+        ],
+        "pure_axis_counts": [
+          1,
+          1,
+          2
+        ],
+        "profile": [
+          2,
+          1,
+          4
+        ],
+        "strict_border_comparisons": 16
+      }
+    ],
+    "scope": "An existing actual quotient has different initial ideals with identical pure-axis counts. Mixed monomials invalidate a general extension of the ray-count certificate; this is not an asymptotic lower bound."
+  },
+  "conditional_relative_margin_route": {
+    "complete_actual_quotient_cells_checked": 98,
+    "quotient_models": [
+      {
+        "length": 4,
+        "complete_initial_cells": 6,
+        "relative_margin_checked": "1/64"
+      },
+      {
+        "length": 6,
+        "complete_initial_cells": 12,
+        "relative_margin_checked": "1/96"
+      },
+      {
+        "length": 9,
+        "complete_initial_cells": 26,
+        "relative_margin_checked": "1/144"
+      },
+      {
+        "length": 12,
+        "complete_initial_cells": 54,
+        "relative_margin_checked": "1/192"
+      }
+    ],
+    "infinite_hard_cone_margin_witnesses": [
+      {
+        "k": 3,
+        "length": 7,
+        "strict_weight": [
+          13,
+          12,
+          30
+        ],
+        "relative_slacks": [
+          "1/25",
+          "1/11",
+          "1/27"
+        ],
+        "uniform_lower_margin": "1/28"
+      },
+      {
+        "k": 4,
+        "length": 9,
+        "strict_weight": [
+          17,
+          16,
+          56
+        ],
+        "relative_slacks": [
+          "1/33",
+          "1/15",
+          "1/35"
+        ],
+        "uniform_lower_margin": "1/36"
+      },
+      {
+        "k": 10,
+        "length": 21,
+        "strict_weight": [
+          41,
+          40,
+          380
+        ],
+        "relative_slacks": [
+          "1/81",
+          "1/39",
+          "1/83"
+        ],
+        "uniform_lower_margin": "1/84"
+      },
+      {
+        "k": 100,
+        "length": 201,
+        "strict_weight": [
+          401,
+          400,
+          39800
+        ],
+        "relative_slacks": [
+          "1/801",
+          "1/399",
+          "1/803"
+        ],
+        "uniform_lower_margin": "1/804"
+      },
+      {
+        "k": 10000,
+        "length": 20001,
+        "strict_weight": [
+          40001,
+          40000,
+          399980000
+        ],
+        "relative_slacks": [
+          "1/80001",
+          "1/39999",
+          "1/80003"
+        ],
+        "uniform_lower_margin": "1/80004"
+      },
+      {
+        "k": 1000000000000,
+        "length": 2000000000001,
+        "strict_weight": [
+          4000000000001,
+          4000000000000,
+          3999999999998000000000000
+        ],
+        "relative_slacks": [
+          "1/8000000000001",
+          "1/3999999999999",
+          "1/8000000000003"
+        ],
+        "uniform_lower_margin": "1/8000000000004"
+      }
+    ],
+    "abstract_matroid_needles": [
+      {
+        "M": 2,
+        "rank_and_hyperbolic_bound": 70,
+        "parallel_pairs": [
+          [
+            [
+              3,
+              0,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ]
+          ],
+          [
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              0,
+              3,
+              0
+            ]
+          ],
+          [
+            [
+              6,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              5
+            ]
+          ],
+          [
+            [
+              7,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              6
+            ]
+          ]
+        ],
+        "coloop_count": 66,
+        "selected_basis_is_downset": false,
+        "margin_one_over_16n_fails": false,
+        "log_cell_area_upper": "1/280"
+      },
+      {
+        "M": 3,
+        "rank_and_hyperbolic_bound": 80,
+        "parallel_pairs": [
+          [
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              0,
+              3,
+              0
+            ]
+          ],
+          [
+            [
+              5,
+              0,
+              0
+            ],
+            [
+              0,
+              4,
+              0
+            ]
+          ],
+          [
+            [
+              7,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              6
+            ]
+          ],
+          [
+            [
+              8,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              7
+            ]
+          ]
+        ],
+        "coloop_count": 76,
+        "selected_basis_is_downset": false,
+        "margin_one_over_16n_fails": false,
+        "log_cell_area_upper": "1/720"
+      },
+      {
+        "M": 5,
+        "rank_and_hyperbolic_bound": 100,
+        "parallel_pairs": [
+          [
+            [
+              6,
+              0,
+              0
+            ],
+            [
+              0,
+              5,
+              0
+            ]
+          ],
+          [
+            [
+              7,
+              0,
+              0
+            ],
+            [
+              0,
+              6,
+              0
+            ]
+          ],
+          [
+            [
+              9,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              8
+            ]
+          ],
+          [
+            [
+              10,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              9
+            ]
+          ]
+        ],
+        "coloop_count": 96,
+        "selected_basis_is_downset": false,
+        "margin_one_over_16n_fails": false,
+        "log_cell_area_upper": "1/2800"
+      },
+      {
+        "M": 10,
+        "rank_and_hyperbolic_bound": 150,
+        "parallel_pairs": [
+          [
+            [
+              11,
+              0,
+              0
+            ],
+            [
+              0,
+              10,
+              0
+            ]
+          ],
+          [
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              0,
+              11,
+              0
+            ]
+          ],
+          [
+            [
+              14,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              13
+            ]
+          ],
+          [
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              14
+            ]
+          ]
+        ],
+        "coloop_count": 146,
+        "selected_basis_is_downset": false,
+        "margin_one_over_16n_fails": false,
+        "log_cell_area_upper": "1/23400"
+      },
+      {
+        "M": 100,
+        "rank_and_hyperbolic_bound": 1050,
+        "parallel_pairs": [
+          [
+            [
+              101,
+              0,
+              0
+            ],
+            [
+              0,
+              100,
+              0
+            ]
+          ],
+          [
+            [
+              102,
+              0,
+              0
+            ],
+            [
+              0,
+              101,
+              0
+            ]
+          ],
+          [
+            [
+              104,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              103
+            ]
+          ],
+          [
+            [
+              105,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              104
+            ]
+          ]
+        ],
+        "coloop_count": 1046,
+        "selected_basis_is_downset": false,
+        "margin_one_over_16n_fails": true,
+        "log_cell_area_upper": "1/110313000"
+      },
+      {
+        "M": 10000,
+        "rank_and_hyperbolic_bound": 100050,
+        "parallel_pairs": [
+          [
+            [
+              10001,
+              0,
+              0
+            ],
+            [
+              0,
+              10000,
+              0
+            ]
+          ],
+          [
+            [
+              10002,
+              0,
+              0
+            ],
+            [
+              0,
+              10001,
+              0
+            ]
+          ],
+          [
+            [
+              10004,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              10003
+            ]
+          ],
+          [
+            [
+              10005,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              10004
+            ]
+          ]
+        ],
+        "coloop_count": 100046,
+        "selected_basis_is_downset": false,
+        "margin_one_over_16n_fails": true,
+        "log_cell_area_upper": "1/10010003100300000"
+      }
+    ],
+    "scope": "The uniform all-quotient margin hypothesis is unproved. Saved complete rectangle fans pass margin 1/(16n), and a symbolic witness gives 1/(4n) for the known interior hard-cone family. An infinite representable rank-n matroid on distinct hyperbolic-n axis weights has log cells of area O(n^-4), refuting a rank/lattice-only margin argument. Its selected basis is not a downset and it is not asserted to be a quotient matroid."
+  },
+  "scope": "Classical greedy invariance gives a sharp positive common-ray ceiling and bounded-facet traversal. The partition case matches published tropical coarse types. A proved conditional logarithmic packing implication would give the sharp generic upper scale if every actual quotient cone had relative margin Omega(1/n); that hypothesis remains unproved. Exact saved quotient cones and the symbolic hard-cone family support feasibility, while an infinite abstract rank-n hyperbolic-n matroid family refutes a rank/lattice-only argument. No unconditional unrestricted exponent, novelty certificate or completed goal is claimed.",
+  "uniform_relative_margin_hypothesis_proved": false,
+  "novelty_established": false,
+  "goal_complete": false,
+  "source_sha256": {
+    "scripts/run_ray_scaling_checks.py": "75ab19a339bce62de7b0bdbe5d12f97a7037fcbe783492d20c45e83747e28d9a",
+    "docs/ray_scaling_bound.md": "ae2be3549f7dde25c82e1cc264841d1e508d72c28ee1e7f464e80ee062a917db",
+    "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
+    "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
+    "results/research/extremal_initial_ideals_checks.json": "33d876343f415a84976c1fb7a2556143db08bea9b6b729541fc34313cb6b4d6b"
+  }
+}

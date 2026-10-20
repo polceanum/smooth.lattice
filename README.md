@@ -173,6 +173,22 @@ a polynomially decreasing saturation fraction on a smaller window.
 Smaller growing blocks and the rest of the supercritical transition
 remain uncounted; this is a restricted family result, with no new
 unrestricted bound or established novelty claim.
+A [common-ray reduction](docs/ray_scaling_bound.md) gives a general
+explanation of another limit on amplification: a rank-`r` matroid with
+positive prices on `t` common rays has at most `binomial(r+t-1,t-1)`
+strict states, and direct sums share that same ceiling at their total
+rank. A region has at most `t(t-1)` interior facets, giving a finite
+traversal with a proved support-call bound. The proof uses classical
+greedy invariance and tropical monomial labels; the independent-component
+case is a published tropical hyperplane-arrangement theorem. It is
+retained as a structural reduction, with no standalone novelty claim.
+An actual length-six quotient has two initials with identical pure-axis
+counts, identifying precisely why mixed monomials need additional data.
+The next uniform target is a relative margin of order `1/n` inside
+every actual initial cone. A proved packing implication would give
+`G_3(n)=O(n^2 log^2(n+1))` if that hypothesis holds. The hypothesis
+remains unproved; a representable matroid counterexample shows that
+rank and the exponent bounds alone cannot establish it.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count
