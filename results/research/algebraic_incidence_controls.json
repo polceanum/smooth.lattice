@@ -1,7 +1,7 @@
 {
   "status": "passed",
   "command": "python3 -B scripts/run_algebraic_incidence_controls.py",
-  "scope": "Canonical block curvature reduces to exact rotation discrepancies. Explicit polynomial finite-frequency bounds force worst-scale blocks near finitely many critical quadratic-field aspects; nonresonant limits have delta*h tending to zero. A quartic field norm yields O_c(delta^(-26/27)) width at p=sqrt(2)-1 when its field differs from the critical field. Constants are coarse and no full mixed-wall count, prime application, novelty certificate or unrestricted G_3 theorem follows. Every previous section is preserved.",
+  "scope": "The effective resonance theorem now feeds a coherent integer-profile cap count for actual initial ideals with worst-scale canonical blocks: O_(a,c)(r^(9/2)*epsilon^(-35/2)*d^(3/2)) in a margin annulus, subject to its explicit width threshold. Fixed saturation through delta<=r^(-1/3), and a stated polynomially shrinking saturation tradeoff, have only O(n^2) initials across all aspects. Smaller growing blocks still prevent a whole-fan conclusion. No unrestricted G_3 improvement or novelty certificate follows; every previous section is preserved.",
   "summary": {
     "complete_axis_fans": 8,
     "axis_cells": 548,
@@ -162,7 +162,12 @@
     "resonance_exact_torus_mean_integrals": 60,
     "resonance_quadratic_field_resonance_identities": 225,
     "resonance_quartic_field_norm_determinants": 225,
-    "resonance_outward_field_separation_bounds": 450
+    "resonance_outward_field_separation_bounds": 450,
+    "resonant_cells_weighted_interval_covers": 90,
+    "resonant_cells_covered_mesh_intervals": 14887,
+    "resonant_cells_piecewise_support_jet_checks": 20,
+    "resonant_cells_dyadic_resonance_sums": 5,
+    "resonant_cells_tradeoff_exponent_checks": 3
   },
   "uniform_axis_matroids": [
     {
@@ -78721,15 +78726,192 @@
     ],
     "scope": "Exact heap phases, rotation hooks, curvature contrasts and polygon torus means support the discrepancy reduction. Explicit Fejer/grid constants bound resonance height by O_c(epsilon^-4), count by O_c(epsilon^-12), radius constant by O_c(epsilon^-10) and minimum width by O_c(epsilon^-14). Independent quartic multiplication determinants and outward root intervals check the field-norm separation behind the uniform O_c(delta^(-26/27)) block-width corollary at p=sqrt(2)-1 when the critical field differs. These are analytic proofs with finite supporting controls, not empirical asymptotic fits, a full fan count, prime application, novelty certificate or unrestricted G_3 theorem."
   },
+  "resonant_canonical_block_cell_count": {
+    "counts": {
+      "weighted_interval_covers": 90,
+      "covered_mesh_intervals": 14887,
+      "piecewise_support_jet_checks": 20,
+      "dyadic_resonance_sums": 5,
+      "tradeoff_exponent_checks": 3
+    },
+    "weighted_aspect_cover_witnesses": [
+      {
+        "sqrt_component_scale": 8,
+        "center": "0",
+        "radius": "1/8",
+        "minimum_aspect": "1/8192",
+        "cover_intervals": 61,
+        "weighted_sum_upper": "1043087261445373759879589038859337634885/170141183460469231731687303715884105728",
+        "bound": "100*m*sqrt(radius)"
+      },
+      {
+        "sqrt_component_scale": 8,
+        "center": "0",
+        "radius": "1/4",
+        "minimum_aspect": "1/8192",
+        "cover_intervals": 67,
+        "weighted_sum_upper": "91011750905949770022415121832926931139/10633823966279326983230456482242756608",
+        "bound": "100*m*sqrt(radius)"
+      },
+      {
+        "sqrt_component_scale": 8,
+        "center": "0",
+        "radius": "1/2",
+        "minimum_aspect": "1/8192",
+        "cover_intervals": 74,
+        "weighted_sum_upper": "254830664318647852285810700365553972221/21267647932558653966460912964485513216",
+        "bound": "100*m*sqrt(radius)"
+      },
+      {
+        "sqrt_component_scale": 8,
+        "center": "1/3",
+        "radius": "1/8",
+        "minimum_aspect": "1/8192",
+        "cover_intervals": 9,
+        "weighted_sum_upper": "1400296070877816024343595904935139291787/340282366920938463463374607431768211456",
+        "bound": "100*m*sqrt(radius)"
+      },
+      {
+        "sqrt_component_scale": 8,
+        "center": "1/3",
+        "radius": "1/4",
+        "minimum_aspect": "1/8192",
+        "cover_intervals": 20,
+        "weighted_sum_upper": "347113648747506057133053793265466702279/42535295865117307932921825928971026432",
+        "bound": "100*m*sqrt(radius)"
+      },
+      {
+        "sqrt_component_scale": 8,
+        "center": "1/3",
+        "radius": "1/2",
+        "minimum_aspect": "1/8192",
+        "cover_intervals": 83,
+        "weighted_sum_upper": "1347487258320734188059197726392399476609/85070591730234615865843651857942052864",
+        "bound": "100*m*sqrt(radius)"
+      },
+      {
+        "sqrt_component_scale": 64,
+        "center": "0",
+        "radius": "1/64",
+        "minimum_aspect": "1/524288",
+        "cover_intervals": 583,
+        "weighted_sum_upper": "5456218796951837699586510942481436125707/340282366920938463463374607431768211456",
+        "bound": "100*m*sqrt(radius)"
+      },
+      {
+        "sqrt_component_scale": 64,
+        "center": "0",
+        "radius": "1/32",
+        "minimum_aspect": "1/524288",
+        "cover_intervals": 628,
+        "weighted_sum_upper": "7737866032145781945430171683262371254761/340282366920938463463374607431768211456",
+        "bound": "100*m*sqrt(radius)"
+      },
+      {
+        "sqrt_component_scale": 64,
+        "center": "0",
+        "radius": "1/2",
+        "minimum_aspect": "1/524288",
+        "cover_intervals": 808,
+        "weighted_sum_upper": "28576699225930399777613476377658501390783/340282366920938463463374607431768211456",
+        "bound": "100*m*sqrt(radius)"
+      },
+      {
+        "sqrt_component_scale": 64,
+        "center": "1/3",
+        "radius": "1/64",
+        "minimum_aspect": "1/524288",
+        "cover_intervals": 8,
+        "weighted_sum_upper": "1281299253773686463206722174937650241693/340282366920938463463374607431768211456",
+        "bound": "100*m*sqrt(radius)"
+      },
+      {
+        "sqrt_component_scale": 64,
+        "center": "1/3",
+        "radius": "1/32",
+        "minimum_aspect": "1/524288",
+        "cover_intervals": 14,
+        "weighted_sum_upper": "2241356303041771034595814086627887256481/340282366920938463463374607431768211456",
+        "bound": "100*m*sqrt(radius)"
+      },
+      {
+        "sqrt_component_scale": 64,
+        "center": "1/3",
+        "radius": "1/2",
+        "minimum_aspect": "1/524288",
+        "cover_intervals": 878,
+        "weighted_sum_upper": "9801260344461828716593888830478457578191/85070591730234615865843651857942052864",
+        "bound": "100*m*sqrt(radius)"
+      }
+    ],
+    "dyadic_margin_sum_witnesses": [
+      {
+        "sixth_root_components": 2,
+        "components": 64,
+        "annuli": 2,
+        "largest_margin": "1/4",
+        "budget_over_r_four_upper": "28786896969058794952243218354411296245/21267647932558653966460912964485513216"
+      },
+      {
+        "sixth_root_components": 3,
+        "components": 729,
+        "annuli": 2,
+        "largest_margin": "1/9",
+        "budget_over_r_four_upper": "230295175752470359617945746835290369961/170141183460469231731687303715884105728"
+      },
+      {
+        "sixth_root_components": 5,
+        "components": 15625,
+        "annuli": 3,
+        "largest_margin": "1/25",
+        "budget_over_r_four_upper": "1006251294740116054337626639199103532715/680564733841876926926749214863536422912"
+      },
+      {
+        "sixth_root_components": 10,
+        "components": 1000000,
+        "annuli": 4,
+        "largest_margin": "1/100",
+        "budget_over_r_four_upper": "2072656581772233236561511721517613329665/1361129467683753853853498429727072845824"
+      },
+      {
+        "sixth_root_components": 32,
+        "components": 1073741824,
+        "annuli": 6,
+        "largest_margin": "1/1024",
+        "budget_over_r_four_upper": "262680434842661503939219367484003078237/170141183460469231731687303715884105728"
+      }
+    ],
+    "polynomial_saturation_tradeoffs": [
+      {
+        "margin_exponent_beta": "2/5",
+        "saturation_exponent_eta": "1/210",
+        "cell_budget_r_exponent": "239/60",
+        "minimum_width_minus_frequency_threshold_exponent": "23/70"
+      },
+      {
+        "margin_exponent_beta": "9/20",
+        "saturation_exponent_eta": "1/200",
+        "cell_budget_r_exponent": "313/80",
+        "minimum_width_minus_frequency_threshold_exponent": "3/8"
+      },
+      {
+        "margin_exponent_beta": "49/100",
+        "saturation_exponent_eta": "1/100",
+        "cell_budget_r_exponent": "197/50",
+        "minimum_width_minus_frequency_threshold_exponent": "17/50"
+      }
+    ],
+    "scope": "Exact weighted geometric meshes, first-jet identities and annular sums support a coherent integer-profile cap count for actual initials with sufficiently large canonical blocks. The uniform budget is O_(a,c)(r^(9/2)*epsilon^(-35/2)*d^(3/2)) when a block has delta*h>=epsilon and exceeds its explicit resonance threshold. This counts one common state polytope, not products of layer fans. All remaining smaller growing blocks and the unrestricted G_3 objective remain open; no whole-fan or novelty claim is made."
+  },
   "source_sha256": {
-    "scripts/run_algebraic_incidence_controls.py": "4d5087d1892c723ac86feb5ba4366f683f0f4f221914190b5799ceb8eeda8e84",
+    "scripts/run_algebraic_incidence_controls.py": "93e6f0e5d147da43cdfacc16e4419703c59993c10dc03199ef6385df4d420eeb",
     "docs/weighted_facet_incidence.md": "61ccaf62917fdf59b7f2480a80148750236e3507959e810403e302a43e31bc13",
     "docs/initial_cone_height.md": "88088db9af60d5a43ac0682d40848de73c20a09120215f696ef90bb5cc1cafa8",
     "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
     "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
     "scripts/run_initial_cone_height_checks.py": "f804aff89da53a6139aed7cacc9fd802dee8fd8529ee48a0d240dd9740df3dab",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
-    "docs/extremal_initial_ideals.md": "ae0f26fb6962f08c52f3a22582751bc2f1a48a3bea194bf8cd02b8788836f89a",
+    "docs/extremal_initial_ideals.md": "6e84b6ea470841a89760a2e16080a9314ba747499b1a5a733460120fe501a92b",
     "docs/generic_multiaffine_bound.md": "25d79382745c94da18f038cee7f0d6eccc202f0dc5b4cd6568ae9aa43ffd1a19",
     "docs/planar_dyadic_bound.md": "03c3e44166b2e95caaaedf042b2d79d345f7a1e056c46e134dfcd67b313aca45",
     "docs/rational_shadow_bound.md": "09b6e5e19cb03825e9d2151680e557cdf384256c5392cf70b6aca388e488c1ca",

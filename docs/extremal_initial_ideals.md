@@ -6846,6 +6846,268 @@ application remains unestablished. No prime-distribution or unranking
 consequence, new unrestricted $G_3$ exponent, polynomial lower
 separation, paper or completed goal is asserted.
 
+## AH. Counting actual cells near the arithmetic resonances
+
+The resonance theorem can be combined with the integer support caps to
+count actual initial ideals, rather than just candidate walls. The result
+controls blocks near the worst width scale in a larger transition window.
+It still leaves smaller growing blocks and the rest of the supercritical
+region uncounted.
+
+Fix positive integers $a,c$, with $c>4$, and the generic component profile
+$m_s=a+c(r-s)$. Thus $n=cr^2/2+(a-c/2)r$. Use the normalized weights,
+canonical phases and no-tie hypotheses of Sections AE--AG, and put
+$\delta=c-K>0$. Let $h_0(c,\varepsilon)$ be the explicit threshold
+(AG12), using $0<\varepsilon\le1$.
+
+**Theorem.** Let $r^{-1/2}\le d\le c-4$. The number of distinct
+initial ideals admitting a strict witness with
+
+$$
+ \frac d2\le\delta\le d,\qquad
+ h\ge h_0(c,\varepsilon),\qquad \delta h\ge\varepsilon
+ \tag{AH1}
+$$
+
+for at least one canonical block of width $h$ is at most
+
+$$
+ O_{a,c}\!\left(r^{9/2}\varepsilon^{-35/2}d^{3/2}\right).
+ \tag{AH2}
+$$
+
+The implied constant is independent of $r,d,\varepsilon$, the aspect,
+block position and generic realization. Strict witnesses may be chosen
+off all relevant price ties. Replacing a non-strict saturation inequality
+by its stable half-threshold only changes the constants and the explicit
+width threshold. No assertion about additional tie refinements is needed.
+
+In particular, for every fixed $\varepsilon>0$, only
+$O_{a,c,\varepsilon}(n^2)$ initials have a witness in
+
+$$
+ r^{-1/2}\le\delta\le r^{-1/3},\qquad
+ \delta h_{\max}\ge\varepsilon. \tag{AH3}
+$$
+
+This is a count of vertices of one common integer profile polytope.
+It does not multiply choices of layers or phases, and it does not claim
+that a region's parameter measure bounds its number of cells.
+
+### The piecewise energy has the regularity needed for support caps
+
+The homogeneous comparator from (AE1) is
+$F_0(w)=r^3\mathfrak h J_c(w_y/\mathfrak h)$, where
+$\mathfrak h=(w_x^{-1}+w_z^{-1})^{-1}$.
+On its supercritical branch it has the useful form
+
+$$
+ F_{\rm sup}(w)=\frac{cr^3}{6}\left(\mathfrak h+w_y+
+                \frac{c}{w_x^{-1}+w_y^{-1}+w_z^{-1}}\right).
+ \tag{AH4}
+$$
+
+The other branch is $c\sqrt c\,r^3\sqrt{\mathfrak h w_y}/3$.
+These formulas agree to first order at $K=c$, not just in value.
+For example, divide out $r^3$, take $\mathfrak h=1$, and differentiate with
+respect to $\mathfrak h,w_y$. The supercritical derivatives satisfy exactly
+
+$$
+\begin{aligned}
+ \partial_{\mathfrak h}(F_{\rm sup}/r^3)-\frac c6(1+\sigma)
+   &=\frac{c\sigma(c-K)}{6K},\\
+ \partial_{w_y}(F_{\rm sup}/r^3)-\frac c6(1+\sigma^{-1})
+   &=\frac{c(c-K)}{6\sigma K}. \tag{AH5}
+\end{aligned}
+$$
+
+At $K=c$, the subtracted terms are precisely the surface-branch
+derivatives. Alternatively the quadratic excess (AE4) gives the same
+matching first jet. Each branch has second derivatives $O_c(r^3)$
+on compact positive relative-weight boxes, uniformly in the aspect
+center even as that center approaches zero or one. Indeed in the
+dual coordinates of Section AD their rational denominators are positive
+convex combinations of box coordinates; the square-root branch also
+has its arguments bounded away from zero. Matching first derivatives
+therefore makes the piecewise comparator $C^{1,1}$ with gradient
+Lipschitz constant $O_c(r^3)$ there.
+
+Both critical roots and the entire supercritical interval lie inside
+the harmonic window of (AE2). The local boxes and finite-difference
+probes can be chosen to remain in that window. Its support error is
+$O_{a,c}(r^2)$ throughout them, including probes across $K=c$.
+Taylor's estimate with a Lipschitz gradient suffices for (AD14);
+global twice differentiability across the join is unnecessary.
+
+For a normal patch of size $s=r^{-1/2}$ in the harmonic ratio and
+relative aspect, the resulting integer-profile cap has tangential
+widths $O_{a,c}(r^{5/2})$, normal width $O_{a,c}(r^2)$, and volume
+
+$$
+ O_{a,c}\bigl(p_0(1-p_0)r^7\bigr). \tag{AH6}
+$$
+
+For a harmonic center other than one, additionally scale the $y$
+coordinate by that center and the dual profile inversely. That center
+stays in a fixed compact interval depending on $c$, so it changes
+only the constants in (AH6). The factor $p_0(1-p_0)$ must still be
+retained in the actual integer coordinates.
+
+### A weighted relative-aspect cover
+
+Remove first the planar ends $p<1/(Br)$ and $1-p<1/(Br)$, with
+$B$ from (AE2). No selected monomial there uses the expensive axis.
+The corresponding planar elimination quotient has length $n$, so its
+initials number $O(n\log(n+1))$, as in Section AD.
+
+On the rest use a geometric mesh of relative spacing comparable to
+$s$ for $p\le1/2$, and its reflection for $p\ge1/2$. If $I$ is
+an interval of radius $w\ge s$, the mesh patches meeting $I$ obey
+
+$$
+ \sum_{p_j\text{ meeting }I}\sqrt{p_j(1-p_j)}
+       =O\bigl(s^{-1}\sqrt w\bigr). \tag{AH7}
+$$
+
+This estimate is uniform in the center of $I$, including endpoints.
+To prove it, enlarge $I$ by $O(s)$ to absorb patches crossing its
+boundary. On the left half the mesh step is comparable to $sp$;
+the weighted sum is bounded by a constant times
+$s^{-1}\int_{I'}p^{-1/2}\,dp$. Reflection handles the right half.
+An interval of length $O(w)$ has integral $O(\sqrt w)$ against
+$[p(1-p)]^{-1/2}$, proving (AH7). The same bound holds when
+$w>1$ by using the entire aspect interval. The weighted cover avoids an
+extra logarithm at the endpoints.
+
+The classical three-dimensional lattice-vertex theorem bounds the
+number of full-dimensional local-hull vertices in each cap by
+$O_{a,c}(\sqrt{p_j(1-p_j)}r^{7/2})$, exactly as in (AD16).
+Every exposed global vertex remains a vertex of the hull of the
+covered exposed vertices. These are actual integer residue-basis
+profiles of one ideal; the auxiliary nested model is used only to
+locate their witness weights.
+
+### Covering the resonant annulus and counting its vertices
+
+By (AG9), (AG14) and (AH1), every such witness has its aspect within
+
+$$
+ \frac{C(c,\varepsilon)}h
+ \le\frac{C(c,\varepsilon)}\varepsilon\delta
+ \le O_c(\varepsilon^{-11}d) \tag{AH8}
+$$
+
+of one of $O_c(\varepsilon^{-12})$ critical-field centers.
+The harmonic ratio is also within $O_c(d)$ of a critical root:
+$K-c=(\sigma-\sigma_-)(\sigma-\sigma_+)/\sigma$ and the roots
+are simple. This nearest-root bound holds throughout the compact
+supercritical interval. There are only two roots.
+
+Cover one such harmonic interval by $O_c(d/s)$ patches, since
+$d\ge s$, and one aspect interval by (AH7), taking
+$w=C_c\varepsilon^{-11}d\ge s$ after enlarging $C_c$.
+The full-dimensional cap budget per center is at most
+
+$$
+ O_{a,c}\left(r^{7/2}\,d\sqrt r\,
+                  \sqrt r\sqrt{\varepsilon^{-11}d}\right)
+ =O_{a,c}\left(r^{9/2}\varepsilon^{-11/2}d^{3/2}\right).
+ \tag{AH9}
+$$
+
+Summing over the center set gives (AH2). Overlaps and repeated
+witnesses only increase this upper bound; they require no uniqueness
+assignment and no separate mixed-wall arrangement estimate.
+
+Flat caps must be counted separately. On the entire compact harmonic
+window the mesh has $O_{a,c}(r\log(r+1))$ patches. A flat integer
+cap has diameter $O_{a,c}(r^{5/2})$ in the actual coordinates,
+area $O_{a,c}(r^5)$ and induced lattice covolume at least one.
+The planar lattice-vertex bound gives $O_{a,c}(r^{5/3})$ vertices
+per such patch, hence $O_{a,c}(r^{8/3}\log(r+1))$ altogether.
+Zero- and one-dimensional caps have at most two vertices each.
+These contributions and the planar ends are absorbed by (AH2):
+its right-hand scale is at least $r^{15/4}$ when $d\ge r^{-1/2}$
+and $\varepsilon\le1$. No zero-volume use of the spatial bound
+is made. The lattice-vertex inputs are the established theorems
+already cited in Section AD, including the relative-lattice planar
+case; they are not new geometric exponents.
+
+### Fixed and polynomially decreasing saturation
+
+To deduce (AH3), use dyadic margin annuli from $r^{-1/2}$ up to
+$r^{-1/3}$. Their $d^{3/2}$ budgets form a geometric sum dominated
+by its largest term. For fixed $\varepsilon$, saturation forces
+$h\ge\varepsilon r^{1/3}$, so the threshold $h_0(c,\varepsilon)$
+is automatic for all sufficiently large $r$. The finitely many smaller
+lengths are absorbed into the constant. Thus the sum is
+$O_{a,c,\varepsilon}(r^{9/2}r^{-1/2})=O_{a,c,\varepsilon}(n^2)$.
+The entire narrower band $\delta\le r^{-1/2}$ already has the
+quadratic count of Section AE, without a saturation condition.
+
+The explicit threshold also permits a limited shrinking-saturation
+version. Suppose
+
+$$
+ 0<\eta<1/70,\qquad
+ \frac13+\frac{35}{3}\eta<\beta<\frac12.
+ \tag{AH10}
+$$
+
+The number of initials with a witness satisfying
+
+$$
+ r^{-1/2}\le\delta\le r^{-\beta},\qquad
+ \delta h_{\max}\ge r^{-\eta}
+ \tag{AH11}
+$$
+
+is $O_{a,c,\beta,\eta}(n^2)$. Indeed choose
+$\varepsilon=r^{-\eta}$. The block has
+$h\ge r^{\beta-\eta}$, while $h_0=O_c(r^{14\eta})$.
+The inequalities (AH10) imply $\beta>15\eta$, making the width
+threshold eventually automatic. Summing the annuli in (AH2) gives
+
+$$
+ O_{a,c}\left(r^{9/2+(35/2)\eta-(3/2)\beta}\right)=O(n^2).
+ \tag{AH12}
+$$
+
+For example $\beta=2/5$, $\eta=1/210$ gives exponent $239/60<4$
+in $r$. The coarse numerical exponents are bookkeeping for this
+subset count, not asserted sharp transition exponents.
+
+### Scope, controls and the next mechanism
+
+The new exact controls verify 90 relative-aspect covers containing
+14,887 mesh intervals, using outward rational square-root bounds.
+Twenty first-jet identities check (AH5); five dyadic sums and three
+rational exponent tradeoffs check the stated cap budgets. These are
+supporting finite controls of the proof's ingredients, not exhaustive
+fan enumerations or computational proofs of a uniform theorem. All
+earlier algebraic-incidence sections and counts are retained.
+
+This step turns the arithmetic localization into a coherent count
+of actual initials in (AH3) and (AH11), across all aspects and including
+mixed exchanges. It does not count initials witnessed only by smaller
+growing blocks, nor the intervening margins beyond these windows.
+Letting the saturation threshold decrease arbitrarily does not solve
+that problem: the minimum-width threshold grows as $\varepsilon^{-14}$
+and the cell bound loses $\varepsilon^{-35/2}$. Constants in the
+older fixed-width count also grow with that width.
+
+Consequently another improvement of these cutoff exponents or another
+finite linear-profile screen is not the next objective. A whole-fan
+result needs a joint count of the remaining mixed boundary comparisons,
+or a new aggregate bound in the unrestricted rational-shadow and
+multiplication framework. Ordinary random-shadow estimates count an
+expected projection, not all vertices of the residue-profile polytope;
+they do not by themselves supply that aggregate bound. The general
+extremal goal and all of its acceptance criteria remain unchanged.
+The present combination has no established novelty certificate,
+prime-specific consequence or completed-paper claim. Its classical
+support and lattice inputs retain their mathematical references.
+
 ## Reproduction
 
 From the repository root:

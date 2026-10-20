@@ -164,6 +164,15 @@ width is `o(1/(c-K))`; a field-norm argument gives a uniform power
 improvement at a specified algebraic aspect. This identifies an
 arithmetic mechanism behind the remaining degeneracy; it does not
 supply the missing mixed-wall fan count.
+A weighted resonance cover now supplies a count of actual initials
+with sufficiently large pooled blocks, using integer support caps of
+one common profile polytope. For each fixed saturation fraction it
+gives `O(n^2)` initials throughout `r^(-1/2) <= c-K <= r^(-1/3)`,
+where `r` is the component count. An explicit tradeoff also allows
+a polynomially decreasing saturation fraction on a smaller window.
+Smaller growing blocks and the rest of the supercritical transition
+remain uncounted; this is a restricted family result, with no new
+unrestricted bound or established novelty claim.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count

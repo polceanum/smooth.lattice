@@ -3640,6 +3640,74 @@ def rotation_resonance_controls():
             'scope': 'Exact heap phases, rotation hooks, curvature contrasts and polygon torus means support the discrepancy reduction. Explicit Fejer/grid constants bound resonance height by O_c(epsilon^-4), count by O_c(epsilon^-12), radius constant by O_c(epsilon^-10) and minimum width by O_c(epsilon^-14). Independent quartic multiplication determinants and outward root intervals check the field-norm separation behind the uniform O_c(delta^(-26/27)) block-width corollary at p=sqrt(2)-1 when the critical field differs. These are analytic proofs with finite supporting controls, not empirical asymptotic fits, a full fan count, prime application, novelty certificate or unrestricted G_3 theorem.'}
 
 
+def resonant_cell_cover_controls():
+    """Weighted normal covers and the coherent saturated-block cap budget."""
+    counts, covers, sums, tradeoffs = defaultdict(int), [], [], []
+    for m in (2, 4, 8, 16, 32, 64):
+        r, step = m*m, Fraction(m + 1, m)
+        minimum, p = Fraction(1, 128*r), Fraction(1, 2)
+        mesh = []
+        while p >= minimum/step:
+            mesh.append((max(minimum, p/step), min(Fraction(1, 2), p*step), p))
+            mesh.append((max(Fraction(1, 2), 1 - p*step), min(1 - minimum, 1 - p/step), 1 - p))
+            p /= step
+        for center, radius in product((Fraction(0), Fraction(1, 1009), Fraction(1, 3),
+                                       Fraction(4, 5), Fraction(1)),
+                                      (Fraction(1, m), Fraction(2, m), Fraction(1, 2))):
+            lo, hi = max(minimum, center - radius), min(1 - minimum, center + radius)
+            selected = [(a, b, p) for a, b, p in mesh if a <= hi and b >= lo]
+            selected.sort()
+            cursor, upper = lo, Fraction(0)
+            for a, b, p in selected:
+                assert a <= cursor and b >= a
+                cursor = max(cursor, b)
+                upper += rational_sqrt_bounds(p*(1 - p), bits=128)[1]
+            assert cursor >= hi
+            lower = rational_sqrt_bounds(radius, bits=128)[0]
+            assert upper <= 100*m*lower
+            counts['weighted_interval_covers'] += 1
+            counts['covered_mesh_intervals'] += len(selected)
+            if m in (8, 64) and center in (0, Fraction(1, 3)):
+                covers.append({'sqrt_component_scale': m, 'center': str(center),
+                               'radius': str(radius), 'minimum_aspect': str(minimum),
+                               'cover_intervals': len(selected),
+                               'weighted_sum_upper': str(upper),
+                               'bound': '100*m*sqrt(radius)'})
+    # The smooth piecewise support has a matching first jet at K=c.
+    for c, sigma in product((5, 6, 9, 16), (Fraction(1, 16), Fraction(1, 2), Fraction(1),
+                                            Fraction(2), Fraction(16))):
+        K = 2 + sigma + 1/sigma
+        dh = Fraction(c, 6)*(1 + c*sigma*sigma/(1 + sigma)**2)
+        dy = Fraction(c, 6)*(1 + Fraction(c, 1)/(1 + sigma)**2)
+        assert dh - Fraction(c, 6)*(1 + sigma) == Fraction(c, 6)*sigma*(c - K)/K
+        assert dy - Fraction(c, 6)*(1 + 1/sigma) == Fraction(c, 6)*(c - K)/(sigma*K)
+        counts['piecewise_support_jet_checks'] += 1
+    for L in (2, 3, 5, 10, 32):
+        r, d, end = L**6, Fraction(1, L*L), Fraction(1, L**3)
+        total, scales = Fraction(0), 0
+        while d >= end:
+            total += d*rational_sqrt_bounds(d, bits=128)[1]*L**27
+            scales += 1
+            d /= 2
+        assert total <= 3*r**4
+        counts['dyadic_resonance_sums'] += 1
+        sums.append({'sixth_root_components': L, 'components': r, 'annuli': scales,
+                     'largest_margin': str(Fraction(1, L*L)), 'budget_over_r_four_upper': str(total/r**4)})
+    for beta, eta in ((Fraction(2, 5), Fraction(1, 210)),
+                       (Fraction(9, 20), Fraction(1, 200)),
+                       (Fraction(49, 100), Fraction(1, 100))):
+        exponent = Fraction(9, 2) + Fraction(35, 2)*eta - Fraction(3, 2)*beta
+        assert beta < Fraction(1, 2) and beta > Fraction(1, 3) + Fraction(35, 3)*eta
+        assert beta > 15*eta and exponent < 4
+        counts['tradeoff_exponent_checks'] += 1
+        tradeoffs.append({'margin_exponent_beta': str(beta), 'saturation_exponent_eta': str(eta),
+                          'cell_budget_r_exponent': str(exponent),
+                          'minimum_width_minus_frequency_threshold_exponent': str(beta - 15*eta)})
+    return {'counts': dict(counts), 'weighted_aspect_cover_witnesses': covers,
+            'dyadic_margin_sum_witnesses': sums, 'polynomial_saturation_tradeoffs': tradeoffs,
+            'scope': 'Exact weighted geometric meshes, first-jet identities and annular sums support a coherent integer-profile cap count for actual initials with sufficiently large canonical blocks. The uniform budget is O_(a,c)(r^(9/2)*epsilon^(-35/2)*d^(3/2)) when a block has delta*h>=epsilon and exceeds its explicit resonance threshold. This counts one common state polytope, not products of layer fans. All remaining smaller growing blocks and the unrestricted G_3 objective remain open; no whole-fan or novelty claim is made.'}
+
+
 def main():
     axes = [axis_controls(n) for n in (4, 5, 6, 7, 9, 12, 15, 21)]
     arithmetic = [arithmetic_controls(n) for n in (99, 303, 603)]
@@ -3666,6 +3734,7 @@ def main():
     proximity = supercritical_proximity_controls(critical['point_ideal'])
     transition = transition_interaction_controls()
     resonance = rotation_resonance_controls()
+    resonant_cells = resonant_cell_cover_controls()
     paths = ['scripts/run_algebraic_incidence_controls.py', 'docs/weighted_facet_incidence.md',
              'docs/initial_cone_height.md', 'scripts/run_extremal_initial_ideals_checks.py',
              'scripts/run_structural_complexity_checks.py', 'scripts/run_initial_cone_height_checks.py',
@@ -3673,7 +3742,7 @@ def main():
              'docs/generic_multiaffine_bound.md', 'docs/planar_dyadic_bound.md',
              'docs/rational_shadow_bound.md', 'scripts/run_planar_dyadic_bound_checks.py']
     report = {'status': 'passed', 'command': 'python3 -B scripts/run_algebraic_incidence_controls.py',
-              'scope': 'Canonical block curvature reduces to exact rotation discrepancies. Explicit polynomial finite-frequency bounds force worst-scale blocks near finitely many critical quadratic-field aspects; nonresonant limits have delta*h tending to zero. A quartic field norm yields O_c(delta^(-26/27)) width at p=sqrt(2)-1 when its field differs from the critical field. Constants are coarse and no full mixed-wall count, prime application, novelty certificate or unrestricted G_3 theorem follows. Every previous section is preserved.',
+              'scope': 'The effective resonance theorem now feeds a coherent integer-profile cap count for actual initial ideals with worst-scale canonical blocks: O_(a,c)(r^(9/2)*epsilon^(-35/2)*d^(3/2)) in a margin annulus, subject to its explicit width threshold. Fixed saturation through delta<=r^(-1/3), and a stated polynomially shrinking saturation tradeoff, have only O(n^2) initials across all aspects. Smaller growing blocks still prevent a whole-fan conclusion. No unrestricted G_3 improvement or novelty certificate follows; every previous section is preserved.',
               'summary': {'complete_axis_fans': len(axes), 'axis_cells': sum(a['positive_cells'] for a in axes),
                           'matrix_selection_controls': sum(a['independent_matrix_selections'] for a in axes),
                           'arithmetic_fixtures': len(arithmetic), 'complete_quotient_fans': len(interior),
@@ -3727,7 +3796,8 @@ def main():
                           **{'cap_' + k: v for k, v in caps['counts'].items()},
                           **{'proximity_' + k: v for k, v in proximity['counts'].items()},
                           **{'transition_' + k: v for k, v in transition['counts'].items()},
-                          **{'resonance_' + k: v for k, v in resonance['counts'].items()}},
+                          **{'resonance_' + k: v for k, v in resonance['counts'].items()},
+                          **{'resonant_cells_' + k: v for k, v in resonant_cells['counts'].items()}},
               'uniform_axis_matroids': axes, 'arithmetic_lower_bound_controls': arithmetic,
               'interior_quotients': interior, 'three_pole_quotients': curves,
               'positive_plane_traces': planes,
@@ -3744,6 +3814,7 @@ def main():
               'higher_slope_boundary_proximity': proximity,
               'transition_boundary_interactions': transition,
               'critical_block_rotation_resonance': resonance,
+              'resonant_canonical_block_cell_count': resonant_cells,
               'source_sha256': {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in paths}}
     (ROOT / 'results/research/algebraic_incidence_controls.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report['summary'], indent=2))
