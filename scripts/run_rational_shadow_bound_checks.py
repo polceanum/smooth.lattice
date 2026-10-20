@@ -6,8 +6,9 @@ controls do not establish asymptotic sharpness, novelty, or goal completion.
 """
 from collections import defaultdict
 from fractions import Fraction
+from functools import cache
 from itertools import combinations, product
-from math import gcd, isqrt, prod
+from math import comb, gcd, isqrt, prod
 from pathlib import Path
 from random import Random
 import hashlib
@@ -17,6 +18,7 @@ from run_extremal_initial_ideals_checks import rectangle_model
 from run_planar_dyadic_bound_checks import convex_hull, matrix_oracle
 from run_structural_complexity_checks import cross, determinant, dot, hyperbolic_cross, primitive
 from run_structural_complexity_checks import area2, clip
+from run_structural_complexity_checks import cyclic_univariate_model
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -580,6 +582,241 @@ def wall_product_controls(geometry):
             'scope':'Uniform partial count O(n*T^(4/3)*log(n+1)) for initial cells incident to an interior wall with primitive direction product at most T. Exact fiber recovery includes endpoints of collapsed edges. The known three-pole quotient has quadratically many interior cells whose every primitive wall product is Omega(n^2). No bound for all remaining cells, unrestricted G_3 improvement, new enumeration implementation or novelty certificate.'}
 
 
+def ordered_flag_controls():
+    """Exact rank-oracle identities on fixed internal orders; no fan sweep."""
+    def compile_lists(groups,raw_rank):
+        @cache
+        def rank(mask):
+            return raw_rank(mask)
+        original = groups
+        compressed = []
+        for group in groups:
+            mask,kept = 0,[]
+            for e in group:
+                if rank(mask | (1<<e)) > len(kept):
+                    mask |= 1<<e
+                    kept.append(e)
+            compressed.append(tuple(kept))
+        groups = tuple(compressed)+((),)*(3-len(compressed))
+        prefixes = []
+        for group in groups:
+            row = [0]
+            for e in group:
+                row.append(row[-1] | (1<<e))
+            prefixes.append(row)
+        r = rank(sum(1<<e for group in original for e in group))
+        assert max(map(len,groups),default=0)<=r
+        terms = {tuple([e]):1 for group in groups for e in group}
+        pairs = []
+        for a,b in combinations(range(3),2):
+            support = []
+            for i,e in enumerate(groups[a],1):
+                for j,f in enumerate(groups[b],1):
+                    delta = (rank(prefixes[a][i]|prefixes[b][j-1])+
+                             rank(prefixes[a][i-1]|prefixes[b][j])-
+                             rank(prefixes[a][i-1]|prefixes[b][j-1])-
+                             rank(prefixes[a][i]|prefixes[b][j]))
+                    assert delta in (0,1)
+                    if delta:
+                        support.append((i,j))
+                        terms[(e,f)] = -1
+            assert len({i for i,j in support})==len({j for i,j in support})==len(support)
+            assert len(support)==len(groups[a])+len(groups[b])-rank(prefixes[a][-1]|prefixes[b][-1])
+            pairs.append({'groups':[a,b],'matching':support})
+        intervals = []
+        length = len(groups[2])
+        for i,e in enumerate(groups[0],1):
+            for j,f in enumerate(groups[1],1):
+                base = prefixes[0][i-1]|prefixes[1][j-1]
+
+                def gain(k,mask):
+                    context = base|prefixes[2][k]
+                    return rank(context|mask)-rank(context)
+
+                def first(mask,threshold):
+                    low,high = 0,length+1
+                    while low<high:
+                        middle = (low+high)//2
+                        if middle==length+1 or gain(middle,mask)<=threshold:
+                            high = middle
+                        else:
+                            low = middle+1
+                    return low
+
+                birth = first((1<<e)|(1<<f),1)
+                death = min(first(1<<e,0),first(1<<f,0))
+                if birth<death:
+                    intervals.append({'pair':[i,j],'birth':birth,'death':death})
+                    if birth:
+                        terms[(e,f,groups[2][birth-1])] = -1
+                    if death<=length:
+                        terms[(e,f,groups[2][death-1])] = 1
+        calls = rank.cache_info().misses
+        assert sum(len(t)==3 for t in terms)<=2*r*r
+        assert sum(terms.values())==r
+        return {'groups':groups,'terms':terms,'pair_matchings':pairs,'intervals':intervals,
+                'preprocessing_rank_calls':calls,'rank':rank,'total_rank':r}
+
+    def shuffles(groups):
+        if not any(groups):
+            yield ()
+        for i,group in enumerate(groups):
+            if group:
+                rest = groups[:i]+(group[1:],)+groups[i+1:]
+                for suffix in shuffles(rest):
+                    yield (group[0],)+suffix
+
+    def verify(data,groups,orders):
+        prefixes_checked = queries = 0
+        compressed,terms,rank = data['groups'],data['terms'],data['rank']
+        for lengths in product(*(range(len(group)+1) for group in compressed)):
+            selected = {e for group,k in zip(compressed,lengths) for e in group[:k]}
+            mask = sum(1<<e for e in selected)
+            assert rank(mask)==sum(c for term,c in terms.items() if set(term)<=selected)
+            prefixes_checked += 1
+        for order in orders:
+            costs = {e:i+1 for i,e in enumerate(order)}
+            predicted = defaultdict(int)
+            for term,c in terms.items():
+                predicted[max(term,key=lambda e:(costs[e],e))] += c
+            assert all(c in (0,1) for c in predicted.values()), 'signed derivatives give an actual basis indicator'
+            mask,basis = 0,set()
+            for e in order:
+                if rank(mask|(1<<e))>len(basis):
+                    mask |= 1<<e
+                    basis.add(e)
+            assert basis=={e for e,c in predicted.items() if c}
+            assert sum(costs[e] for e in basis)==sum(c*max(costs[e] for e in term) for term,c in terms.items())
+            queries += 1
+        return prefixes_checked,queries
+
+    def labels(prefix,maximum):
+        if len(prefix)==6:
+            if maximum>=2:
+                yield tuple(prefix)
+        else:
+            for c in range(maximum+2):
+                yield from labels(prefix+[c],max(maximum,c))
+
+    two_cases = three_cases = prefixes_checked = queries = 0
+    ledger = []
+    for colors in labels([],0):
+        def rank(mask):
+            return min(2,len({colors[i] for i in range(6) if mask>>i&1 and colors[i]}))
+        for groups in (((0,1,2),(3,4,5)),((0,1),(2,3),(4,5))):
+            data = compile_lists(groups,rank)
+            p,q = verify(data,groups,shuffles(groups))
+            prefixes_checked += p; queries += q
+            two_cases += len(groups)==2; three_cases += len(groups)==3
+            ledger.append((colors,groups,sorted(data['terms'].items())))
+    assert two_cases==three_cases==813
+    linear = []
+    for r,p in product((3,4),(2,3,101)):
+        rng = Random(7400+100*r+p)
+        columns = [tuple(int(i==j) for i in range(r)) if j<r else
+                   tuple(rng.randrange(p) for i in range(r)) for j in range(9)]
+        independent = matrix_oracle(columns,r,p)
+
+        def rank(mask):
+            selected = frozenset()
+            for e in range(9):
+                if mask>>e&1 and independent(selected|{e}):
+                    selected = selected|{e}
+            return len(selected)
+
+        groups = tuple(tuple(range(a,9,3)) for a in range(3))
+        data = compile_lists(groups,rank)
+        pcount,qcount = verify(data,groups,shuffles(groups))
+        prefixes_checked += pcount; queries += qcount
+        linear.append({'rank':r,'field':p,'original_lists':groups,'compressed_lists':data['groups'],
+                       'preprocessing_rank_calls':data['preprocessing_rank_calls'],
+                       'triple_terms':sum(len(t)==3 for t in data['terms']),'queries':qcount})
+
+    triangle_groups = ((0,),(1,),(2,3))
+    triangle_colors = (1,2,3,1)
+    triangle = compile_lists(triangle_groups,lambda mask:min(2,len({triangle_colors[i] for i in range(4) if mask>>i&1})))
+    pcount,qcount = verify(triangle,triangle_groups,shuffles(triangle_groups))
+    prefixes_checked += pcount; queries += qcount
+    assert triangle['terms'][(0,1,2)]==-1 and triangle['terms'][(0,1,3)]==1
+    assert triangle['intervals']==[{'pair':[1,1],'birth':1,'death':2}]
+    uniform = []
+    for r in range(1,9):
+        groups = tuple(tuple(range(a*r,(a+1)*r)) for a in range(3))
+        data = compile_lists(groups,lambda mask:min(r,mask.bit_count()))
+        triple = {t:c for t,c in data['terms'].items() if len(t)==3}
+        assert len(triple)==r*r
+        for term,c in triple.items():
+            level = term[0]+1+term[1]-r+1+term[2]-2*r+1
+            assert (level,c) in ((r+1,-1),(r+2,1)), 'the full quadratic correction is present in the uniform prefix model'
+        pcount,_ = verify(data,groups,())
+        prefixes_checked += pcount
+        allocations = []
+        for a in range(r+1):
+            for b in range(r-a+1):
+                allocation = a,b,r-a-b
+                costs = {e:Fraction(2*(e%r+1),2*allocation[e//r]+1) for e in range(3*r)}
+                order = tuple(sorted(costs,key=lambda e:(costs[e],e)))
+                _,qcount = verify_query_only(data,order,costs)
+                queries += qcount
+                actual = sorted(order[:r])
+                assert tuple(sum(e//r==axis for e in actual) for axis in range(3))==allocation
+                allocations.append(allocation)
+        assert len(allocations)==comb(r+2,2)
+        uniform.append({'rank':r,'triple_terms':len(triple),'negative_triple_terms':sum(c<0 for c in triple.values()),
+                        'positive_triple_terms':sum(c>0 for c in triple.values()),
+                        'preprocessing_rank_calls':data['preprocessing_rank_calls'],
+                        'axis_allocation_queries':len(allocations),
+                        'maximum_states_per_two_list_region':r+1,
+                        'regions_required_for_whole_axis_fan_at_least':(r+3)//2})
+    direct_prefixes = 0
+    for n,p in product(range(3,7),(0,2,3,5)):
+        modulus = [1,-1]+[0]*(n-2)+[1]
+        images = [(0,1)+(0,)*(n-2),(1,)+(0,)*(n-2)+(-1,),(0,)+(-1,)*(n-1)]
+        ground = {(0,0,0)} | {tuple(k if axis==i else 0 for i in range(3))
+                               for axis in range(3) for k in range(1,n)}
+        columns = cyclic_univariate_model(modulus,images,ground)
+        for lengths in product(range(n),repeat=3):
+            selected = {(0,0,0)} | {tuple(k if axis==i else 0 for i in range(3))
+                                      for axis in range(3) for k in range(1,lengths[axis]+1)}
+            pivots = {}
+            for a in sorted(selected):
+                vector = [x%p if p else Fraction(x) for x in columns[a]]
+                for i,row in sorted(pivots.items()):
+                    c = vector[i]
+                    if c:
+                        vector = [(x-c*y)%p if p else x-c*y for x,y in zip(vector,row)]
+                i = next((i for i,x in enumerate(vector) if x),None)
+                if i is not None:
+                    inverse = pow(vector[i],-1,p) if p else 1/vector[i]
+                    pivots[i] = [(x*inverse)%p if p else x*inverse for x in vector]
+            assert len(pivots)==min(n,1+sum(lengths)), 'ordinary quotient columns give the asserted three-axis prefix ranks'
+            direct_prefixes += 1
+    return {'all_rank_two_matroids_on_six_elements':two_cases,'three_list_rank_two_models':three_cases,
+            'prefix_rank_reconstructions':prefixes_checked,'direct_greedy_queries':queries,
+            'linear_flag_models':linear,'uniform_quadratic_correction_models':uniform,
+            'parallel_interval_example':{'lists':triangle_groups,'parallel_classes':triangle_colors,
+                                         'intervals':triangle['intervals'],
+                                         'signed_terms':[[term,c] for term,c in sorted(triangle['terms'].items())]},
+            'direct_three_pole_prefix_field_checks':direct_prefixes,
+            'rank_two_ledger_sha256':hashlib.sha256(json.dumps(ledger).encode()).hexdigest(),
+            'scope':'Two fixed internal orders have a direct matroid-interleaving prior-art boundary. Three-list prefix ranks admit signed pair/triple max formulas, with at most 2*r^2 triple terms and O(r^2*log(r+1)) rank-oracle preprocessing after list compression. Uniform prefix rank already has exactly r^2 triple terms; ordinary three-pole quotient arithmetic verifies that prefix model after contracting the constant. This does not identify its full residue matroid with a uniform matroid. Any two-list region covers at most n states of its positive fan, so the quadratic large-wall subset requires Omega(n) such regions. No polylogarithmic cover, unrestricted G_3 bound, strongest-current or novelty certificate.'}
+
+
+def verify_query_only(data,order,costs):
+    predicted = defaultdict(int)
+    for term,c in data['terms'].items():
+        predicted[max(term,key=lambda e:(costs[e],e))] += c
+    assert all(c in (0,1) for c in predicted.values())
+    mask,basis = 0,set()
+    for e in order:
+        if data['rank'](mask|(1<<e))>len(basis):
+            mask |= 1<<e
+            basis.add(e)
+    assert basis=={e for e,c in predicted.items() if c}
+    assert sum(costs[e] for e in basis)==sum(c*max(costs[e] for e in term) for term,c in data['terms'].items())
+    return basis,1
+
+
 def main():
     if not __debug__:
         raise RuntimeError('Run without -O: exact assertions are required.')
@@ -589,6 +826,7 @@ def main():
     directions = lattice_direction_controls()
     dyadic = dyadic_cover_controls()
     walls = wall_product_controls(geometry)
+    flags = ordered_flag_controls()
     power, log_power = Fraction(9, 8), Fraction(-3, 8)
     assert 1 + Fraction(5, 3) * power == 4 - power == Fraction(23, 8)
     assert 1 + Fraction(5, 3) * log_power == -log_power == Fraction(3, 8)
@@ -605,8 +843,9 @@ def main():
               'oblique_lattice_direction_controls': directions,
               'shared_lines_and_weighted_dyadic_sums': dyadic,
               'partial_wall_product_count':walls,
+              'ordered_flag_interaction_controls':flags,
               'sharp_asymptotic_growth_established': False, 'novelty_established': False, 'goal_complete': False,
-              'scope': 'Exact supporting checks for a uniform rational-shadow theorem and a three-variable upper bound. A partial wall-product count, explicit projection-fiber recovery and a uniform large-wall exception family are also checked. These do not settle the sharp extremal target, establish current novelty, or imply an implemented running-time bound.',
+              'scope': 'Exact supporting checks for a uniform rational-shadow theorem and a three-variable upper bound. A partial wall-product count, explicit projection-fiber recovery and a uniform large-wall exception family are also checked. Fixed-list matching, signed three-list ranks and the obstruction to a small region cover are independently verified. These do not settle the sharp extremal target, establish current novelty, or imply an implemented running-time bound.',
               'source_sha256': {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in sources}}
     out = ROOT / 'results/research/rational_shadow_bound_checks.json'
     out.write_text(json.dumps(report, indent=2) + '\n')
@@ -616,6 +855,7 @@ def main():
                       'strict_vertex_visibility_certificates': geometry['strict_short_shadow_vertex_certificates'],
                       'oblique_direction_cases': directions['cases'], 'goal_complete': False,
                       'wall_product_fiber_checks':walls['projection_fiber_summary']['shadow_vertex_fibers'],
+                      'ordered_flag_greedy_checks':flags['direct_greedy_queries'],
                       'output': str(out.relative_to(ROOT))}))
 
 

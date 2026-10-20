@@ -20986,13 +20986,435 @@
     ],
     "scope": "Uniform partial count O(n*T^(4/3)*log(n+1)) for initial cells incident to an interior wall with primitive direction product at most T. Exact fiber recovery includes endpoints of collapsed edges. The known three-pole quotient has quadratically many interior cells whose every primitive wall product is Omega(n^2). No bound for all remaining cells, unrestricted G_3 improvement, new enumeration implementation or novelty certificate."
   },
+  "ordered_flag_interaction_controls": {
+    "all_rank_two_matroids_on_six_elements": 813,
+    "three_list_rank_two_models": 813,
+    "prefix_rank_reconstructions": 19897,
+    "direct_greedy_queries": 99686,
+    "linear_flag_models": [
+      {
+        "rank": 3,
+        "field": 2,
+        "original_lists": [
+          [
+            0,
+            3,
+            6
+          ],
+          [
+            1,
+            4,
+            7
+          ],
+          [
+            2,
+            5,
+            8
+          ]
+        ],
+        "compressed_lists": [
+          [
+            0,
+            3,
+            6
+          ],
+          [
+            1,
+            4,
+            7
+          ],
+          [
+            2,
+            5
+          ]
+        ],
+        "preprocessing_rank_calls": 43,
+        "triple_terms": 4,
+        "queries": 1680
+      },
+      {
+        "rank": 3,
+        "field": 3,
+        "original_lists": [
+          [
+            0,
+            3,
+            6
+          ],
+          [
+            1,
+            4,
+            7
+          ],
+          [
+            2,
+            5,
+            8
+          ]
+        ],
+        "compressed_lists": [
+          [
+            0,
+            3,
+            6
+          ],
+          [
+            1,
+            4,
+            7
+          ],
+          [
+            2,
+            5,
+            8
+          ]
+        ],
+        "preprocessing_rank_calls": 57,
+        "triple_terms": 7,
+        "queries": 1680
+      },
+      {
+        "rank": 3,
+        "field": 101,
+        "original_lists": [
+          [
+            0,
+            3,
+            6
+          ],
+          [
+            1,
+            4,
+            7
+          ],
+          [
+            2,
+            5,
+            8
+          ]
+        ],
+        "compressed_lists": [
+          [
+            0,
+            3,
+            6
+          ],
+          [
+            1,
+            4,
+            7
+          ],
+          [
+            2,
+            5,
+            8
+          ]
+        ],
+        "preprocessing_rank_calls": 56,
+        "triple_terms": 9,
+        "queries": 1680
+      },
+      {
+        "rank": 4,
+        "field": 2,
+        "original_lists": [
+          [
+            0,
+            3,
+            6
+          ],
+          [
+            1,
+            4,
+            7
+          ],
+          [
+            2,
+            5,
+            8
+          ]
+        ],
+        "compressed_lists": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            2,
+            5,
+            8
+          ]
+        ],
+        "preprocessing_rank_calls": 36,
+        "triple_terms": 7,
+        "queries": 1680
+      },
+      {
+        "rank": 4,
+        "field": 3,
+        "original_lists": [
+          [
+            0,
+            3,
+            6
+          ],
+          [
+            1,
+            4,
+            7
+          ],
+          [
+            2,
+            5,
+            8
+          ]
+        ],
+        "compressed_lists": [
+          [
+            0,
+            3,
+            6
+          ],
+          [
+            1,
+            4,
+            7
+          ],
+          [
+            2,
+            5,
+            8
+          ]
+        ],
+        "preprocessing_rank_calls": 58,
+        "triple_terms": 7,
+        "queries": 1680
+      },
+      {
+        "rank": 4,
+        "field": 101,
+        "original_lists": [
+          [
+            0,
+            3,
+            6
+          ],
+          [
+            1,
+            4,
+            7
+          ],
+          [
+            2,
+            5,
+            8
+          ]
+        ],
+        "compressed_lists": [
+          [
+            0,
+            3,
+            6
+          ],
+          [
+            1,
+            4,
+            7
+          ],
+          [
+            2,
+            5,
+            8
+          ]
+        ],
+        "preprocessing_rank_calls": 57,
+        "triple_terms": 11,
+        "queries": 1680
+      }
+    ],
+    "uniform_quadratic_correction_models": [
+      {
+        "rank": 1,
+        "triple_terms": 1,
+        "negative_triple_terms": 0,
+        "positive_triple_terms": 1,
+        "preprocessing_rank_calls": 8,
+        "axis_allocation_queries": 3,
+        "maximum_states_per_two_list_region": 2,
+        "regions_required_for_whole_axis_fan_at_least": 2
+      },
+      {
+        "rank": 2,
+        "triple_terms": 4,
+        "negative_triple_terms": 1,
+        "positive_triple_terms": 3,
+        "preprocessing_rank_calls": 24,
+        "axis_allocation_queries": 6,
+        "maximum_states_per_two_list_region": 3,
+        "regions_required_for_whole_axis_fan_at_least": 2
+      },
+      {
+        "rank": 3,
+        "triple_terms": 9,
+        "negative_triple_terms": 3,
+        "positive_triple_terms": 6,
+        "preprocessing_rank_calls": 56,
+        "axis_allocation_queries": 10,
+        "maximum_states_per_two_list_region": 4,
+        "regions_required_for_whole_axis_fan_at_least": 3
+      },
+      {
+        "rank": 4,
+        "triple_terms": 16,
+        "negative_triple_terms": 6,
+        "positive_triple_terms": 10,
+        "preprocessing_rank_calls": 96,
+        "axis_allocation_queries": 15,
+        "maximum_states_per_two_list_region": 5,
+        "regions_required_for_whole_axis_fan_at_least": 3
+      },
+      {
+        "rank": 5,
+        "triple_terms": 25,
+        "negative_triple_terms": 10,
+        "positive_triple_terms": 15,
+        "preprocessing_rank_calls": 150,
+        "axis_allocation_queries": 21,
+        "maximum_states_per_two_list_region": 6,
+        "regions_required_for_whole_axis_fan_at_least": 4
+      },
+      {
+        "rank": 6,
+        "triple_terms": 36,
+        "negative_triple_terms": 15,
+        "positive_triple_terms": 21,
+        "preprocessing_rank_calls": 216,
+        "axis_allocation_queries": 28,
+        "maximum_states_per_two_list_region": 7,
+        "regions_required_for_whole_axis_fan_at_least": 4
+      },
+      {
+        "rank": 7,
+        "triple_terms": 49,
+        "negative_triple_terms": 21,
+        "positive_triple_terms": 28,
+        "preprocessing_rank_calls": 330,
+        "axis_allocation_queries": 36,
+        "maximum_states_per_two_list_region": 8,
+        "regions_required_for_whole_axis_fan_at_least": 5
+      },
+      {
+        "rank": 8,
+        "triple_terms": 64,
+        "negative_triple_terms": 28,
+        "positive_triple_terms": 36,
+        "preprocessing_rank_calls": 435,
+        "axis_allocation_queries": 45,
+        "maximum_states_per_two_list_region": 9,
+        "regions_required_for_whole_axis_fan_at_least": 5
+      }
+    ],
+    "parallel_interval_example": {
+      "lists": [
+        [
+          0
+        ],
+        [
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "parallel_classes": [
+        1,
+        2,
+        3,
+        1
+      ],
+      "intervals": [
+        {
+          "pair": [
+            1,
+            1
+          ],
+          "birth": 1,
+          "death": 2
+        }
+      ],
+      "signed_terms": [
+        [
+          [
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            2
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            1,
+            3
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            3
+          ],
+          -1
+        ],
+        [
+          [
+            1
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            3
+          ],
+          -1
+        ],
+        [
+          [
+            2
+          ],
+          1
+        ],
+        [
+          [
+            3
+          ],
+          1
+        ]
+      ]
+    },
+    "direct_three_pole_prefix_field_checks": 1728,
+    "rank_two_ledger_sha256": "17692c5cf1246d7520f606ad006d4f39b4b3f74288ce83524c8172c18a0e052a",
+    "scope": "Two fixed internal orders have a direct matroid-interleaving prior-art boundary. Three-list prefix ranks admit signed pair/triple max formulas, with at most 2*r^2 triple terms and O(r^2*log(r+1)) rank-oracle preprocessing after list compression. Uniform prefix rank already has exactly r^2 triple terms; ordinary three-pole quotient arithmetic verifies that prefix model after contracting the constant. This does not identify its full residue matroid with a uniform matroid. Any two-list region covers at most n states of its positive fan, so the quadratic large-wall subset requires Omega(n) such regions. No polylogarithmic cover, unrestricted G_3 bound, strongest-current or novelty certificate."
+  },
   "sharp_asymptotic_growth_established": false,
   "novelty_established": false,
   "goal_complete": false,
-  "scope": "Exact supporting checks for a uniform rational-shadow theorem and a three-variable upper bound. A partial wall-product count, explicit projection-fiber recovery and a uniform large-wall exception family are also checked. These do not settle the sharp extremal target, establish current novelty, or imply an implemented running-time bound.",
+  "scope": "Exact supporting checks for a uniform rational-shadow theorem and a three-variable upper bound. A partial wall-product count, explicit projection-fiber recovery and a uniform large-wall exception family are also checked. Fixed-list matching, signed three-list ranks and the obstruction to a small region cover are independently verified. These do not settle the sharp extremal target, establish current novelty, or imply an implemented running-time bound.",
   "source_sha256": {
-    "docs/rational_shadow_bound.md": "8869f63ae2fd2e4371e65ebf8158d3ccbb9aaef254ba2fd637688e665e98458a",
-    "scripts/run_rational_shadow_bound_checks.py": "34a9af3d9382ec8cdfbea45fe5304f43bfe955191285bdabd42f2f92c87cbe82",
+    "docs/rational_shadow_bound.md": "09b6e5e19cb03825e9d2151680e557cdf384256c5392cf70b6aca388e488c1ca",
+    "scripts/run_rational_shadow_bound_checks.py": "0c27d91102f4c551099358296d147155165a4c451d1aca5d0a311e1e3d5128be",
     "scripts/run_planar_dyadic_bound_checks.py": "27642dbe7cf5c21e0eacb671b644bd00b97e758422d341cffa82c16df0b224bc",
     "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
     "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f"

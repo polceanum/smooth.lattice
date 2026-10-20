@@ -547,6 +547,184 @@ is still unproved and would be a substantive new step. Neither the
 partial estimate nor the reformulation establishes such an upper bound,
 current novelty, the sharp $G_3$ endpoint or the requested paper.
 
+## Fixed ordered lists: exact compression and a limit on region covers
+
+One proposed way to control $R_T$ is to group weights into domains
+where two lists of ground elements retain their internal cost orders.
+The local optimization is simple, but a polylogarithmic number of
+such domains cannot cover all exceptional cells uniformly.
+
+The two-list setting has direct prior art in
+[Gusfield, *Matroid optimization with the interleaving of two ordered
+sets* (1984)](https://www.sciencedirect.com/science/article/pii/0166218X84900775).
+Its publisher abstract was inspected; a theorem-level comparison with
+the full article remains deferred. The matching reduction below is
+treated as supporting classical matroid structure, without a novelty
+claim. We do not infer that a three-variable quotient automatically
+has a description by three internally fixed lists.
+
+### Two lists give a partial matching
+
+Let a finite rank-$r$ matroid's ground be partitioned into ordered
+lists. An element dependent on earlier elements of its own list is
+never selected by a greedy scan respecting that internal order: its
+dependence is already present in the cheaper prefix. Discarding such
+elements compresses each list to an independent list of length at
+most $r$, using $O(|E|)$ rank calls in total.
+
+For two compressed lists $A=(a_1,\ldots,a_p)$ and
+$B=(b_1,\ldots,b_q)$, put
+
+$$
+R(i,j)=\operatorname{rank}(A_{\le i}\cup B_{\le j}),
+\quad
+d_{ij}=R(i,j-1)+R(i-1,j)-R(i-1,j-1)-R(i,j).             \tag{18}
+$$
+
+Submodularity makes $d_{ij}\ge0$. In the contraction by
+$A_{<i}\cup B_{<j}$, it is one precisely when $a_i,b_j$ are
+parallel nonloops, and otherwise zero. Each row and column sums
+to at most one by telescoping, so its support is a partial matching.
+Its size is exactly $h=p+q-r\le r$.
+
+For any distinct costs respecting both list orders, the minimum basis
+cost is
+
+$$
+F(c)=\sum_{e\in A\cup B}c_e
+       -\sum_{d_{ij}=1}\max(c_{a_i},c_{b_j})
+ =\sum_{e\text{ unmatched}}c_e
+       +\sum_{d_{ij}=1}\min(c_{a_i},c_{b_j}).            \tag{19}
+$$
+
+To prove it, telescope (18) to recover every prefix rank, then scan
+the global cost threshold. The indicator that both matched elements
+have arrived jumps at the maximum of their costs. Integrating the
+rank increments against cost gives (19). Equivalently differentiate
+on a strict-order domain: the selected elements are the unmatched
+ones and the cheaper endpoint of each pair. The full matroid need
+not be a partition matroid; the description is valid on the stated
+internal-order domain only.
+
+For costs $c_e=w\cdot v_e$ in three parameters, normalize positive
+$w$ to a two-dimensional simplex. The restricted fan is refined by
+at most $h$ matching comparison lines. It therefore has at most
+$1+h(h+1)/2$ cells, independently of the original ground size and
+the numerical coordinate heights. This is the ordinary arrangement
+bound applied to (19), not a new unrestricted count.
+
+### Three lists have a sparse signed correction
+
+For compressed lists $A,B,C$, let
+$R(i,j,k)=\operatorname{rank}(A_{\le i}\cup B_{\le j}\cup C_{\le k})$.
+Ordinary finite Möbius inversion on the prefix grid gives single-list
+coefficients, negative pair coefficients from (18), and interior
+coefficients
+
+$$
+m_{ijk}=\Delta_i\Delta_j\Delta_k R(i,j,k).              \tag{20}
+$$
+
+The corresponding basis-cost identity is
+
+$$
+F(c)=\sum_e c_e
+ -\sum_{\text{three boundary pair matchings }(e,f)}\max(c_e,c_f)
+ +\sum_{i,j,k\ge1}m_{ijk}\max(c_{a_i},c_{b_j},c_{c_k}). \tag{21}
+$$
+
+Again this follows by evaluating the prefix-rank identity as the
+global cost threshold increases. The signed sum is the minimum
+basis value, even though an individual positive maximum term is
+convex. The formula is valid for all distinct costs preserving the
+three internal orders; no sign assumption on those costs is needed.
+
+There are at most $2r^2$ nonzero interior coefficients, each $1$ or
+$-1$. To see this, fix $i,j$ and put
+$S_k=A_{<i}\cup B_{<j}\cup C_{\le k}$. Set
+
+$$
+d_{ij}(k)=r(S_k+a_i)+r(S_k+b_j)-r(S_k)-r(S_k+a_i+b_j).
+$$
+
+This is the indicator that the two elements are parallel nonloops
+in the contraction by $S_k$. Once they become parallel, further
+contraction preserves that relation until both become loops. Loops
+cannot become nonloops again. Hence $d_{ij}(k)$ is the indicator
+of one interval, possibly empty. More explicitly, the gains
+
+$$
+g_D(k)=r(S_k\cup D)-r(S_k),\quad
+D\in\{\{a_i\},\{b_j\},\{a_i,b_j\}\},
+$$
+
+are nonincreasing. Let $b$ be the first index with pair gain at most
+one, and $d$ the first index where either singleton gain is zero;
+use $|C|+1$ if the threshold never occurs. The interval is
+$[b,d)$ when $b<d$, and empty otherwise. Since
+
+$$
+m_{ijk}=d_{ij}(k-1)-d_{ij}(k),                          \tag{22}
+$$
+
+each pair contributes at most two interior terms. The three gain
+thresholds can be found by binary search. Including compression and
+the three boundary matchings, (21) can therefore be compiled using
+$O(|E|+r^2\log(r+1))$ rank-oracle calls. Each subsequent generic
+cost query needs $O(r^2)$ arithmetic/comparison operations and no
+further rank calls. Assigning each signed maximum to its winning
+element recovers the basis indicator; the prefix identity ensures
+that the resulting coefficients are zero or one. These are oracle
+bounds, not field-operation or bit-complexity bounds.
+
+Both signs really occur: take lists $(e_1),(e_2),(e_1+e_2,e_1)$
+in a rank-two vector matroid. The parallel indicator for the first
+two elements along the third prefix is $0,1,0$, giving coefficients
+$-1,+1$. Pairwise data at the empty third prefix miss this interaction.
+
+The quadratic number of coefficients is necessary in order, for this
+prefix-grid expansion. For three lists of length $r$ with
+$R(i,j,k)=\min(r,i+j+k)$,
+
+$$
+m_{ijk}=\begin{cases}-1,&i+j+k=r+1,\\
+                     1,&i+j+k=r+2,\\
+                     0,&\text{otherwise},\end{cases}   \tag{23}
+$$
+
+with exactly $\binom r2+\binom{r+1}2=r^2$ nonzero terms.
+This is not a lower bound for every possible optimization algorithm
+or representation. Möbius inversion and closure under contraction
+are classical; exact priority of this sparse three-list formulation
+and its preprocessing bound remains unassessed.
+
+### Exceptional cells need linearly many two-list domains
+
+The known three-pole quotient supplies the rank model in (23) on
+its three axis prefixes, after contracting the constant: every union
+of such prefixes has rank $\min(n-1,i+j+k)$. This follows by
+extending a short allocation to its known monomial basis, or finding
+a full allocation inside a long prefix. It does **not** identify the
+entire residue matroid with a uniform matroid.
+
+For every positive weight, its standard set is $1$ together with the
+$r=n-1$ cheapest nonconstant points on the three axes. Now take any
+partition of those axis points into two internally ordered lists,
+and any weight domain preserving those orders. Its first $r$ points
+are determined by how many are taken from the first list: each chosen
+part is a prefix. There are at most $r+1=n$ possibilities. This bound
+allows a different partition and different orders in each domain.
+
+The exceptional subset in (17) has at least $5n^2/2048$ cells.
+Consequently any such two-list-domain cover of that subset needs at
+least $5n/2048$ domains. In particular a polylogarithmic cover is
+impossible, even for an actual family whose full fan is only quadratic.
+This excludes that proposed way of multiplying a local quadratic
+bound by a small number of domains. It does not exclude aggregate
+counts exploiting overlap, smaller local counts, or a different use
+of the signed three-list ranks. The bound on $R_T$ and the sharp
+unrestricted target remain open.
+
 ## Verification and prior-art boundary
 
 The greedy token/convex-chain viewpoint is classical; see
@@ -625,3 +803,13 @@ uniform gcd-sieve inequalities. The octahedron fixture in the original
 checker had used late-evaluated generators and collapsed to a point;
 it now contains its six intended vertices. This corrects the visibility
 certificate count from $28$ to $34$ without changing the uniform proof.
+
+The ordered-list continuation tests all $813$ labelled rank-two
+matroids on six elements in both two-list and three-list partitions,
+six higher-rank finite-field vector models and eight uniform-prefix
+models. It reconstructs $19,897$ prefix ranks and compares $99,686$
+signed-formula queries with direct greedy selection. The ordinary
+three-pole quotient independently verifies $1,728$ axis-prefix/field
+ranks over $\mathbb Q,\mathbb F_2,\mathbb F_3,\mathbb F_5$.
+These exact checks support the identities; they do not establish a
+new global count or publication priority.

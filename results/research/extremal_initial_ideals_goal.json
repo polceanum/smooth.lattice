@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Preserve the full sharp-G_3 or realizable polynomial-separation objective and all success criteria. The new global reduction is g(I)<=O(n^(5/3)*log(n+1)+n*T^(4/3)*log(n+1))+R_T(I), where R_T counts entirely interior initial cells with no incident wall whose primitive direction product is at most T. Projection fibers recover collapsed edges correctly; at T=O(n), the counted part is O(n^(7/3)*log(n+1)), and at T around n^(3/4) it has the generic quadratic power up to a logarithm. The known three-pole family has Omega(n^2) such exceptions even for thresholds of order n, so neither vanishing exceptions nor one within-box wall per cell is available. A substantive next theorem must give a uniform quotient-sensitive upper bound for R_T or a realizable larger family of these exception cells; the reduction alone and its classical inputs do not settle the problem. Use actual simultaneous monomial-order/rank constraints, not arbitrary downsets, arithmetic index, modular defect or normal height alone. The existing periodic tensor/cycle formulas remain available to study genuine cost prefixes, but larger scalar-core diagnostics or flat repetitions cannot count new cones. Complete strongest-current and exact-priority comparisons for any proposed bound. Preserve every earlier proof and exclusion, correct the explicitly identified octahedron verification fixture, avoid a larger fan-search framework, and send no messages or submissions. Do not lower the endpoint to the partial bound.",
+  "next_proof_task": "Keep the full sharp-G_3 or realizable polynomial-separation objective and every original success criterion. The global remainder R_T still counts entirely interior cells with no incident primitive wall product at most T. A polylogarithmic cover of these cells by two fixed internal-order lists is now disproved by the actual three-pole family: each domain sees at most n states and the exception subset has Omega(n^2). Do not multiply the generic local quadratic matching bound by an assumed small number of domains, enumerate more such domains as a surrogate, or count signed rank terms as fan cells. The sparse signed three-list prefix formula and its O(|E|+r^2*log(r+1)) rank-oracle preprocessing are valid tools only after a fixed-list decomposition has been proved; three variables alone do not supply three lists. Uniform prefix rank already has quadratic third interactions, even in the known quadratic fan, so a large interaction count alone does not establish superquadratic growth. A substantive next theorem must control aggregate feasible exposed exchanges or bound R_T directly using actual monomial-order and rank constraints, or construct an infinite realizable family of more exception cells. The original periodic tensor/cycle formulas remain available for genuinely cost-defined prefixes; arbitrary downsets, torsion, flat repetitions, scalar cores and normal height alone are excluded proxies. Complete the strongest-current and exact-priority comparison, including the full Gusfield two-list theorem before claiming novelty for a related result. Preserve all old bounds and controls, avoid a larger search framework, send no messages or submissions, and do not lower the endpoint.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -105,7 +105,8 @@
     "The score-prefix deficit, forced-element minimum excess, optimal-face matroid and polynomial determinant-rescaling identities are classical. Feichtner--Sturmfels Section 2 and Proposition 2.5 were inspected with the max/min convention reversed. Assess exact priority only of any proposed quantitative realization or fan-count consequence, including the explicit maximal-order all-active excess example and its two-sector O(n^2*log(n+1)) screen. No novelty is inferred from the construction or failed searches, and its behaviour is not assumed to describe the periodic tensor quotient.",
     "Before claiming a coherent arithmetic theorem, compare genuinely cost-defined cycle residuals with cyclotomic/simplicial torsion beyond the standard coefficient-deletion sets. Musiker--Reiner arXiv:1012.1844v4 Proposition 4 and Corollary 5 already supply the arbitrary index construction; our explicit (5,7,11) downset certificate excludes that construction here but does not establish a broader novelty boundary or odd-characteristic stability.",
     "The exact odd-torsion downset and all-order contradiction are verified at periods (5,7,11); their classical flat amplification is not a fan result. If a cost-specific arithmetic theorem is proposed, it must distinguish such downset bases by actual simultaneous order constraints. Katoh--Tokuyama (2002) Theorems 4/12 concern concave-surface levels; Section 4 leaves the general two-parameter matroid extension outside that argument. Current strongest-bound assessment remains open.",
-    "Assess the exact product-threshold partial count L_T(I)=O(n*T^(4/3)*log(n+1)) and its fiber-endpoint oracle reduction against projected matroid polytope and edge-complexity literature. Deza--Manoussakis--Onn Theorem 4.1 supplies the established projected-edge/primitive-zonotope framework. The weighted product moment and use of the existing rational-shadow theorem are elementary given those inputs; absence of matching searches is not novelty. No uniform bound on the remainder R_T has been proved."
+    "Assess the exact product-threshold partial count L_T(I)=O(n*T^(4/3)*log(n+1)) and its fiber-endpoint oracle reduction against projected matroid polytope and edge-complexity literature. Deza--Manoussakis--Onn Theorem 4.1 supplies the established projected-edge/primitive-zonotope framework. The weighted product moment and use of the existing rational-shadow theorem are elementary given those inputs; absence of matching searches is not novelty. No uniform bound on the remainder R_T has been proved.",
+    "The two internally ordered list setting is explicitly prior art in Gusfield (1984), DOI 10.1016/0166-218X(84)90077-5; only the publisher abstract was inspected, so the exact theorem comparison remains deferred. Assess the signed three-list prefix-rank formula, interval support and O(|E|+r^2*log(r+1)) preprocessing against ordered matroid, flag and rank-oracle literature before any novelty claim. The new region-cover obstruction is scoped to two fixed internal-order domains, not all algorithms or all grouping methods."
   ],
   "primary_sources": [
     {
@@ -438,6 +439,13 @@
       "title": "Primitive Zonotopes",
       "url": "https://arxiv.org/pdf/1512.08018v4",
       "scope": "Theorem 4.1 and proof: established bounded-cube utility projection refinement, primitive edge directions and parallel-pair matroid realization. Scoped comparison for the partial product-threshold count, not a novelty certificate."
+    },
+    {
+      "authors": "Gusfield",
+      "title": "Matroid optimization with the interleaving of two ordered sets",
+      "url": "https://www.sciencedirect.com/science/article/pii/0166218X84900775",
+      "published": "https://doi.org/10.1016/0166-218X(84)90077-5",
+      "scope": "Publisher title and abstract inspected; full theorem-level comparison deferred. Direct prior art for fixed internal-order two-list matroid optimization, without asserting exact equivalence of the present formulas or novelty of a three-list extension."
     }
   ],
   "verification": {
@@ -755,9 +763,23 @@
       "complete_central_axis_cells": 163,
       "uniform_gcd_sieve_controls": 5,
       "corrected_strict_vertex_visibility_certificates": 34
+    },
+    "ordered_flag_research": {
+      "command": "python3 -B scripts/run_rational_shadow_bound_checks.py",
+      "report": "results/research/rational_shadow_bound_checks.json",
+      "status": "passed",
+      "all_rank_two_two_list_models": 813,
+      "all_rank_two_three_list_models": 813,
+      "higher_rank_vector_models": 6,
+      "uniform_quadratic_correction_models": 8,
+      "prefix_rank_reconstructions": 19897,
+      "direct_greedy_queries": 99686,
+      "direct_three_pole_prefix_field_checks": 1728,
+      "signed_interval_examples": 1,
+      "source_hashes_verified": true
     }
   },
-  "preservation": "Only the six explicitly privacy-reviewed research files change. All 298 unlisted tracked files, including manuscripts/PDFs, core kernels, auditor, CLI, earlier periodic research and paused ML artifacts, are byte-preserved against the ignored baseline at 88db7ea. Old rational-shadow sections/counts remain exact except the explicit six-vertex octahedron correction and aggregate 28-to-34 visibility count; the other four geometry fixtures are unchanged. The original objective and success criteria and all thirty-five earlier continuations remain exact. Local baselines and logs stay ignored.",
+  "preservation": "Only the six explicitly privacy-reviewed research files change. All 298 unlisted tracked files, including manuscripts/PDFs, core kernels, auditor, CLI, periodic research and paused ML artifacts, are byte-preserved against the ignored baseline at 40f38d3. All earlier rational-shadow report sections/counts, corrected octahedron controls, partial-wall results, the original objective and criteria, and all thirty-six earlier continuations are exact. Local baselines and logs remain ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
@@ -768,8 +790,8 @@
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "3141736f8c8d9d6da3ecd1db6a273ccd43bfc4c15211ffc0780e28b647e8d38f",
-    "docs/extremal_initial_ideals.md": "acd61260cef8bc26abf4b944e8f3c373433d1132967e4521097e8f17479ac296",
+    "README.md": "d6663c72b580143280235f8de511f1a2fe10dafa8d76ff8624fdec0f350ed82f",
+    "docs/extremal_initial_ideals.md": "12c17d31f72a26696bdb1b5c1544ef976a209c64086d8bb127ecbeb0395ab205",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
     "results/research/profile_lattice_checks.json": "437b69bd81173c330b059d879df9f93281befb01e353f9e2c2e00f5a55746d17",
@@ -799,9 +821,9 @@
     "results/research/periodic_quotient_checks.json": "22a195f8358d214aab9701afae4b7ae5d3efc972d9ad16a4a7ce033127150821",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
     "scripts/run_nested_jet_checks.py": "aa1c4a9b69de0d0cfa54c381c4f83ebaa983cdbfd7b298af40b32603a079648c",
-    "docs/rational_shadow_bound.md": "8869f63ae2fd2e4371e65ebf8158d3ccbb9aaef254ba2fd637688e665e98458a",
-    "scripts/run_rational_shadow_bound_checks.py": "34a9af3d9382ec8cdfbea45fe5304f43bfe955191285bdabd42f2f92c87cbe82",
-    "results/research/rational_shadow_bound_checks.json": "ac839c0a60148b0dc9924ded3548ab45adf5b472da6f4bc287ab6bc1af3f470a",
+    "docs/rational_shadow_bound.md": "09b6e5e19cb03825e9d2151680e557cdf384256c5392cf70b6aca388e488c1ca",
+    "scripts/run_rational_shadow_bound_checks.py": "0c27d91102f4c551099358296d147155165a4c451d1aca5d0a311e1e3d5128be",
+    "results/research/rational_shadow_bound_checks.json": "8efff61a84ac099f065cfdb2778b250f0d83fb395d80fc12a320100d7397e2c7",
     "docs/weighted_facet_incidence.md": "61ccaf62917fdf59b7f2480a80148750236e3507959e810403e302a43e31bc13",
     "scripts/run_algebraic_incidence_controls.py": "4490e0abad272e7cc4f6c541ba01537c059aac13386d2a4b7481d5d48c760379",
     "results/research/algebraic_incidence_controls.json": "76acec9b0810c7599d7549a5aee409edb7ac6d9a611c7f8533eaff9f84c7267f"
@@ -2505,8 +2527,48 @@
         "preservation": "All old rational-shadow report sections and counts are preserved except the explicitly corrected octahedron fixture and its aggregate visibility count. The other four geometry fixtures match exactly; all thirty-five earlier continuations, original objective and success criteria, and all 298 unlisted tracked files are preserved against 88db7ea."
       },
       "scope_limit": "No bound on R_T(I), new unrestricted G_3 exponent, polynomial separation, current novelty certificate, strongest-current assessment or paper endpoint. Taking T around n^(3/4) makes the counted part quadratic up to a logarithm, but obtaining the corresponding remainder bound is still a substantive open proof task. All original impact criteria remain in force."
+    },
+    {
+      "title": "Fixed-list rank compilation, signed three-way interactions and a linear lower bound for exception-region covers",
+      "recorded_on": "2026-10-20",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "40f38d3 saved the uniform product-threshold partial count, fiber-endpoint oracle reduction, necessary quadratic large-wall exception family and corrected octahedron verification fixture. Its clean baseline and every existing report section were revalidated.",
+      "progress_classification": "A proposed grouping mechanism for the remainder R_T is now assessed exactly. Two internally fixed cost lists reduce to a partial matching; Gusfield (1984) is direct prior art for this setting, with no new-theorem priority claim. Three lists admit a signed prefix-rank formula with at most 2*r^2 interior terms, compiled using O(|E|+r^2*log(r+1)) rank calls and queried in O(r^2) arithmetic/comparison operations without more rank calls. Uniform prefix rank already has r^2 signed corrections. The actual three-pole exception family requires Omega(n) two-list order domains, disproving a polylogarithmic domain cover even when partitions and orders may vary by domain. This redirects the global argument to aggregate interactions; no unrestricted exponent changes.",
+      "uniform_proofs": [
+        "In any internally fixed list, an element dependent on earlier elements of the same list can be discarded for every respecting greedy order. Each list compresses to at most rank r elements. For two compressed lists, the mixed second rank differences are the indicators of parallel nonloops after contracting the two earlier prefixes. They are nonnegative zero/one entries and telescope to row and column sums at most one: a partial matching of size p+q-r. The minimum basis cost is the sum of unmatched costs plus the minimum cost of each matched pair, on the fixed internal-order domain. For linear three-parameter costs this gives a local arrangement of at most r lines and a quadratic local cell bound. The setting has explicit old prior art and is not treated as a new generic matroid theorem.",
+        "For three compressed lists, finite prefix-grid Mobius inversion writes the greedy basis cost as single costs minus boundary pair maxima plus signed triple maxima. For fixed first/second indices, the pair is parallel after contracting the third prefix on at most one interval: pair rank gain is nonincreasing, and once either element is a loop it stays a loop. The interior mixed third rank differences are the two signed interval endpoints, at most two per first/second pair and at most 2*r^2 in all. Three monotone gain thresholds locate the interval by binary search. Preprocessing uses O(|E|+r^2*log(r+1)) rank-oracle calls; each generic query evaluates O(r^2) signed maxima and recovers an actual zero/one basis indicator without new rank calls. These are oracle bounds, not field-operation or bit-complexity claims, and exact current priority is unassessed.",
+        "The rank-two lists (e1),(e2),(e1+e2,e1) have pair-parallelism sequence zero,one,zero along the third prefix, so both signs are necessary in this expansion. For the uniform prefix model R(i,j,k)=min(r,i+j+k), the mixed third coefficients are minus one at i+j+k=r+1 and plus one at i+j+k=r+2, with exactly r^2 nonzero terms. This proves quadratic order for this prefix-grid coefficient count, not a lower bound for every optimization representation or a fan-count lower bound.",
+        "For the known actual three-pole quotient, after contracting the constant the rank of every three-axis prefix union is min(n-1,i+j+k). Ordinary quotient arithmetic independently checks the model in four fields. This does not identify the full residue matroid with a uniform matroid. Every positive standard set is the constant plus the n-1 cheapest axis points. In any domain preserving two internal total orders on any partition of those points, the first n-1 points are determined by their occupancy in one list, giving at most n possible standard sets. The previously proved 5*n^2/2048 large-wall interior cells therefore require at least 5*n/2048 such domains. A universal polylogarithmic two-list-domain cover is impossible, while aggregate overlap accounting, smaller local estimates or other structural methods remain possible."
+      ],
+      "independent_controls": {
+        "command": "python3 -B scripts/run_rational_shadow_bound_checks.py",
+        "report": "results/research/rational_shadow_bound_checks.json",
+        "status": "passed",
+        "all_rank_two_two_list_models": 813,
+        "all_rank_two_three_list_models": 813,
+        "higher_rank_vector_models": 6,
+        "uniform_quadratic_correction_models": 8,
+        "prefix_rank_reconstructions": 19897,
+        "direct_greedy_queries": 99686,
+        "direct_three_pole_prefix_field_checks": 1728,
+        "signed_interval_examples": 1
+      },
+      "reading_scope": [
+        {
+          "source": "https://www.sciencedirect.com/science/article/pii/0166218X84900775",
+          "scope": "Gusfield, Matroid optimization with the interleaving of two ordered sets, Discrete Applied Mathematics 8(1), 41-50 (1984), DOI 10.1016/0166-218X(84)90077-5. Publisher title and abstract inspected. The full article was not available for theorem-level comparison. The two-list setting is direct prior art; neither exact equivalence of every formula nor novelty of the three-list preprocessing is asserted."
+        }
+      ],
+      "verification": {
+        "research": "passed",
+        "build": "passed",
+        "smoke": "passed",
+        "source_hashes": "verified",
+        "preservation": "Every previous rational-shadow report section/count, the corrected six-vertex octahedron and all earlier wall-product controls remain exact. All thirty-six earlier continuations, original objective and success criteria, and all 298 unlisted tracked files are preserved against 40f38d3."
+      },
+      "scope_limit": "No upper bound on R_T, unrestricted G_3 improvement, realized power separation, full strongest-current or novelty audit, or paper endpoint. Three variables do not supply three internally fixed lists. Quadratic signed-rank support does not itself count feasible exposed cells. All original impact criteria remain in force."
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "The unrestricted bound stays O(n^(23/8)*log(n+1)^(3/8)). A uniform all-field partial bound L_T(I)=O(n*T^(4/3)*log(n+1)), its support-oracle reduction and the corresponding reduced-basis union bound are proved. Quadratically many large-wall interior exceptions exist uniformly in an already classified actual quotient family. The unknown remainder R_T prevents an unrestricted improvement or completion.",
-  "previous_goal_turn_classification": "Progress: 88db7ea supplied a verified arithmetic downset obstruction and count-preserving amplification. This continuation changes the global counting reduction itself, while keeping its unbounded remainder explicit."
+  "asymptotic_improvement_scope_this_iteration": "The unrestricted O(n^(23/8)*log(n+1)^(3/8)) bound and the partial O(n*T^(4/3)*log(n+1)) bound remain unchanged. Exact fixed-list rank compilation is proved with explicit oracle costs, while the actual exception family needs Omega(n) two-list order domains. The missing global count is not replaced by a local quadratic bound or by the number of signed correction terms.",
+  "previous_goal_turn_classification": "Progress: 40f38d3 changed the global count to an explicit partial term plus R_T and verified a necessary quadratic exception family. This continuation assesses a proposed fixed-order grouping of that remainder and rules out a polylogarithmic two-list cover."
 }

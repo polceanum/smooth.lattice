@@ -76,6 +76,11 @@ For `T=O(n)` this is `O(n^(7/3)*log n)` for that part of the fan.
 The remaining cells need a separate bound: the known rational-curve
 family already has quadratically many interior cells whose every wall
 has quadratic primitive product. No unrestricted improvement follows yet.
+Fixed internal list orders give exact rank-oracle formulas, but a
+polylogarithmic cover by two-list domains is impossible even for that
+quadratic family. Three-list ranks require a signed correction with
+quadratically many terms in the uniform prefix example. These results
+identify a limit of the grouping approach; they do not count the remainder.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count

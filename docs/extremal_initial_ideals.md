@@ -2780,6 +2780,40 @@ from $28$ to $34$. The uniform proof and all other old checks remain
 preserved. The full extremal, priority and publication criteria remain
 unachieved.
 
+## Fixed-list grouping does not give a small cover of the exceptions
+
+The [ordered-list continuation](rational_shadow_bound.md#fixed-ordered-lists-exact-compression-and-a-limit-on-region-covers)
+tests a concrete grouping approach to $R_T$. With two internally fixed
+cost lists, the matroid prefix-rank differences form a partial matching
+of size at most the rank. Optimization on that domain becomes independent
+binary choices, and its three-parameter fan has at most quadratically many
+cells. Gusfield's 1984 interleaving paper is direct prior art for this
+setting; the full theorem-level comparison is deferred, and no novelty
+is claimed for the matching reduction.
+
+For three lists, a signed prefix-grid correction is necessary. Its
+nonzero third differences occur at the endpoints of parallelism intervals
+under successive contraction, at most $2r^2$ terms. The resulting formula
+can be compiled with $O(|E|+r^2\log(r+1))$ rank calls and evaluated in
+$O(r^2)$ arithmetic/comparison operations per generic query, without
+further rank calls. Uniform prefix rank already has exactly $r^2$
+nonzero corrections. These oracle identities are not yet a fan bound;
+three variables alone do not provide three fixed lists.
+
+In the known actual three-pole family, any two-list order domain covers
+at most $n$ initial standard sets. Its quadratic subset of large-wall
+cells therefore needs $\Omega(n)$ such domains, even when each domain
+may choose its own partition and orders. A polylogarithmic region cover
+cannot supply the missing global count. The next proof needs an aggregate
+bound for $R_T$ or a different structural description; more fixed-list
+region enumeration would not resolve the endpoint.
+
+Exact checks reconstruct $19,897$ prefix ranks, replay $99,686$ greedy
+queries and independently check $1,728$ actual quotient prefix/field
+ranks. All earlier partial-wall and geometric controls remain unchanged.
+The unrestricted exponent, strongest-current audit, novelty and requested
+paper outcome remain unresolved.
+
 ## Reproduction
 
 From the repository root:
