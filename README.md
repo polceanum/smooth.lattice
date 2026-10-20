@@ -182,6 +182,14 @@ cheap-coordinate region, over every field. Comparable periods with bounded
 price ratios have only `O(n^2)` states by a classical box argument.
 The intermediate price regimes remain open; no polynomial separation or
 publication conclusion follows from these regional exclusions.
+The [nonnegative-grading theorem](docs/nonnegative_graded_fans.md) now
+gives a global `O(n)` bound whenever at least two variable degrees are
+positive, over every field and independently of the grading weights.
+This order is sharp for the combined class. It also gives `O(n)` local
+refinements at every non-axial nonnegative weight of an arbitrary finite
+quotient. In a deformed tower, additional states must reach its defining
+relation; interleaving independent lower blocks alone is insufficient.
+The exact novelty comparison and the unrestricted extremal problem remain open.
 The additive prime-power class is now classified separately: at length
 `n=q^k`, every initial ideal is a prime-power box and the sharp maximum
 is `binomial(k+d-1,d-1)`. The proof uses established Frobenius reduction;

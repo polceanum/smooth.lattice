@@ -2194,6 +2194,88 @@ theorem and the strongest-current unrestricted comparison are unverified.
 The full objective, further-consequence requirement and honest-paper
 criterion are unchanged; none is completed by these exclusions.
 
+## Nonnegative gradings: a global linear class and local fan links
+
+The [Hilbert-budget theorem](nonnegative_graded_fans.md) proves a
+global restriction beyond the cheap-coordinate regions. If a finite
+three-variable quotient is homogeneous for a nonnegative integer grading
+with at least two positive variable degrees, its whole positive fan has
+$O(n)$ initial ideals over every field, uniformly in the grading heights.
+For a strictly positive grading an explicit bound is $12n+6$; for
+$(0,p,q)$, normalized with $p,q$ coprime, it is at most
+$2+2(n-h_0)$. The constants are not claimed optimal. Explicit even-
+and odd-length ribbon quotients have $\lfloor n/2\rfloor+1$ states,
+so the combined class has sharp order $\Theta(n)$. This does not prove
+the same lower order in the strictly positive subclass alone.
+
+The key argument is a weighted divisor budget, not a new lattice-volume
+bound. Among pairs $(a,b)$ whose full divisor rectangles fit a fixed
+graded Hilbert function of total size $n$, there are at most $2n$.
+For coprime positive pair degrees $p,q$, split by $pa\ge qb$. Write
+$b=r+pk$; the degree $pa+qr$ contains $k+1$ divisors, and the map
+$(a,b)\mapsto(pa+qr,k)$ is injective. The other half is symmetric.
+For a zero-positive pair the corresponding rectangle budget is at most
+$n$. A symmetric optimal matroid exchange between actual adjacent
+standard sets supplies an endpoint rectangle. In a graded profile
+polygon, its positive coordinate pair determines the whole primitive
+edge direction. There are therefore only linearly many possible edge
+directions. Intermediate exchanged vector bases need not be downsets;
+the argument uses the actual endpoint standard sets.
+
+For grading $(0,p,q)$ the proof also gives a Hilbert-function-dependent
+common list of $O(n)$ positive integer weights of height at most $4n$.
+Its linear worst-case certificate height is sharp: the same ribbons
+have an extreme cone requiring height at least $\lfloor n/2\rfloor+1$.
+This list is independent of the coefficients within a fixed Hilbert
+function; it is not a single linear list for every Hilbert function
+of size $n$. Two zero variable degrees are excluded: $(J(X,Y),Z)$
+retains the known planar $\Theta(n\log n)$ maximum. Mixed-sign
+integer gradings retain the earlier general rank-two bound.
+
+There is also a consequence for arbitrary finite quotients: at any
+rational nonnegative weight with at least two positive coordinates,
+the associated graded quotient has one of these gradings. Classical
+initial-of-initial refinement therefore gives $O(n)$ distinct local
+positive refinements. All non-axial nonnegative rays of the positive
+Gröbner fan have linear link complexity. The three coordinate-axis
+rays retain the broader planar bound. This does not count how many
+rays occur, and hence does not settle or improve the unrestricted
+$G_3$ exponent by itself.
+
+The tower mechanism can now be stated precisely. For
+$F[T]/T^R$, with $F=K[x]/f$ and generators $x,uT,vT$ for units
+$u,v$, the old slot formula is valid for all generic positive weights:
+interleaving the independent lower blocks changes no dependence.
+For a monic deformation $F[T]/g$, every initial set using only
+$T$ degrees below $R$ must still be one of those same slot sets.
+The only extra border comparisons for such a set come from at most
+$R+1$ pure $Y,Z$ heads of degree $R$. Consequently every additional
+initial set contains a monomial reaching the defining relation. The previous focus
+on incomplete lower-block overlap was too broad; reaching the monic
+relation is necessary. In the mixed-period control $(3,5,7)$, the
+head $Y^2Z^4$ has a noncheaper normal-form term $X^7$, and an actual
+additional state results. This verifies the mechanism, not a lower
+count or an unbounded-price family.
+
+The exact controls test 27,440 arbitrary positive Hilbert budgets,
+34,776 rectangle injections and 6,860 zero-positive budgets. They walk
+51 complete bounded comparison fans, including nonfree quotients,
+even/odd sharpness families and local initial forms; check 174 standard
+sets, 954 strict border relations, 136 symmetric exchanges and 1,098
+multiplication-closure tests; and replay 24 tower deformations.
+The enumeration is independent of the proposed Hilbert candidate list.
+These are finite supporting checks for the written uniform arguments.
+
+The matroid/state dictionary, edge-ideal framework, symmetric exchange,
+initial refinement and border criterion are established inputs.
+Altmann--Sturmfels Proposition 3/Theorem 8, Kreuzer--Robbiano
+Proposition 2.2/Theorem 2.4 and Haiman--Sturmfels Corollary 3.4/
+Theorem 3.6 were inspected in their primary texts within the stated
+scope. A full current-priority comparison of the numerical Hilbert
+budget and grading bounds is still necessary. No new paper or
+publication claim is made. The original sharp $G_3$ or polynomial-
+separation criterion remains active and unachieved.
+
 ## Reproduction
 
 From the repository root:
@@ -2206,6 +2288,7 @@ python3 -B scripts/run_rectangle_boundary_checks.py
 python3 -B scripts/run_bilinear_cographic_checks.py
 python3 -B scripts/run_cographic_structure_checks.py
 python3 -B scripts/run_cyclotomic_price_checks.py
+python3 -B scripts/run_graded_fan_checks.py
 python3 -B scripts/run_additive_initial_ideals_checks.py
 python3 -B scripts/run_planar_dyadic_bound_checks.py
 python3 -B scripts/run_rational_shadow_bound_checks.py
