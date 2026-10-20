@@ -3937,6 +3937,414 @@ The four local cones, large wall coordinates, phase count and
 classical lemmas do not themselves provide a power separation,
 establish current novelty, justify another paper or complete the goal.
 
+## Steep profiles: a rank transition and exact layer factorization
+
+The surviving constraints can have a macroscopic effect. For linear
+component sizes, their leading rank law has a sharp curvature threshold,
+and sufficiently steep gaps force every individual layer quota to become
+tight. The all-tight part can also be counted uniformly: it has only
+$O_{a,c}(n^2)$ initial ideals for fixed linear profiles. Phase counts
+alone do not prove that bound; the wall-curve argument below does.
+
+### A uniform area sandwich for every hook prefix
+
+For positive weights write
+
+$$
+\alpha=w_x^{-1}+w_z^{-1},\quad
+\kappa=w_y+\alpha^{-1},\quad
+\gamma=\alpha+w_y^{-1},\quad
+K=\gamma\kappa=2+\alpha w_y+(\alpha w_y)^{-1}\ge4,
+\quad \lambda=\frac{\alpha}{2w_y}.
+\tag{Z1}
+$$
+
+The merged axis costs satisfy
+
+$$
+\frac{i}{\alpha}\le v_i\le\frac{i+1}{\alpha}. \tag{Z2}
+$$
+
+Indeed their closed counting function is
+$N(v)=1+\lfloor v/w_x\rfloor+\lfloor v/w_z\rfloor$.
+Its bounds and its left limit at $v_i$ give (Z2), including coincident
+axis costs. In the continuous quadrant, the area of
+$\{(u,b):u/\alpha+bw_y\le C,\ \min(u,b)<s\}$ is
+
+$$
+D_s(C)=\lambda\bigl(C_+^2-(C-\kappa s)_+^2\bigr).
+$$
+
+For every integer $s\ge0$ and real cost $C$,
+
+$$
+D_s(C-\alpha^{-1})\le d_s(C)\le D_s(C+\kappa).
+\tag{Z3}
+$$
+
+To prove this, replace each selected grid point $(i,b)$ by its half-open
+unit cell. The condition $\min(i,b)<s$ is exactly the same throughout
+that cell. Its continuous linear cost differs from the discrete cost
+$v_i+bw_y$ by at most $\alpha^{-1}$ in one direction and $\kappa$
+in the other. Inclusion of the resulting regions proves (Z3). In
+particular, for $C\ge0$,
+
+$$
+|d_s(C)-D_s(C)|\le
+E(C):=\lambda(2C\kappa+\kappa^2), \tag{Z4}
+$$
+
+uniformly in $s$. The derivative of the hook area is bounded by the
+derivative of the full triangle area, giving the displayed error from
+(Z3). This is an elementary area comparison. Lattice-point estimates
+by volume and boundary error are classical: the introduction and
+theorem in [Davenport, *On a Principle of Lipschitz*, pp. 179--181](https://people.math.sc.edu/thornef/math788g/davenport-lemma.pdf)
+were inspected for that prior context. No higher-dimensional theorem
+from that source is required; the unit-cell inclusions supply the
+specific constants here.
+
+### The complete leading rank law for linear sizes
+
+Fix integers $a,c\ge1$ and let
+
+$$
+m_s=a+c(r-s),\qquad
+n=\frac c2r^2+\left(a-\frac c2\right)r.
+$$
+
+For the actual generic point ideal let $R_r(C)$ denote its cost-prefix
+rank. Define the following continuous function, with the parameters in
+(Z1). If $c\le K$, put
+
+$$
+\Phi(\tau)=\min\left(\frac c2,\lambda\tau^2\right).
+\tag{Z5}
+$$
+
+If $c>K$, put
+
+$$
+\Phi(\tau)=
+\begin{cases}
+\lambda\tau^2,&0\le\tau\le\kappa,\\
+\displaystyle\frac c2-
+ \frac{(c-\gamma\tau)^2}{2(c-K)},
+ &\kappa\le\tau\le c/\gamma,\\
+c/2,&\tau\ge c/\gamma.
+\end{cases} \tag{Z6}
+$$
+
+There is an explicit finite bound, valid for every $r\ge1$ and $C\ge0$:
+
+$$
+\left|R_r(C)-r^2\Phi(C/r)\right|
+\le \left|a-\frac c2\right|r+E(C)+\frac{(c-K)_+}{8}.
+\tag{Z7}
+$$
+
+Consequently $R_r(r\tau)/r^2\longrightarrow\Phi(\tau)$,
+uniformly for bounded $\tau$ and weights in a compact positive region.
+
+Here is the optimization behind the law. Set $s=ru$ and $C=r\tau$.
+The leading term of $(A_s-d_s)/r^2$ is
+
+$$
+H(u)=c(u-u^2/2)-
+ \lambda\bigl[\tau^2-(\tau-\kappa u)_+^2\bigr],
+\qquad0\le u\le1. \tag{Z8}
+$$
+
+Before $u=\tau/\kappa$, this is
+$(c-\gamma\tau)u+(K-c)u^2/2$. Afterwards its derivative is
+$c(1-u)\ge0$. If $c\le K$, convexity of the first piece and
+monotonicity of the second leave only endpoints $0,1$ as maximizers;
+this gives (Z5). If $c>K$ and $\tau<\kappa$, both pieces are
+increasing up to the endpoint $1$. For $\tau\ge\kappa$, the whole
+interval is the concave quadratic, whose maximizing point is
+
+$$
+u_*=\left[\frac{c-\gamma\tau}{c-K}\right]_{[0,1]}.
+$$
+
+This gives (Z6). To obtain (Z7), replace each $d_s$ by $D_s$ using
+(Z4). The exact capacity correction in $n-A_s$ is
+$(a-c/2)(r-s)$, bounded in absolute value by $|a-c/2|r$.
+If an interior continuous maximizer occurs, rounding $ru_*$ to
+the nearest integer loses at most $(c-K)/8$ in the quadratic.
+Otherwise an integer endpoint is already optimal. This proves the
+finite bound rather than merely fitting the limit to computed ranks.
+
+The minimum possible $K$ is four, attained when
+$w_y=(w_x^{-1}+w_z^{-1})^{-1}$. Thus $c>4$ is exactly the condition
+that an open weight region can have a nonzero **leading** capacity
+defect. For $c\le4$ the leading rank matches carrier truncation on
+compact positive weight regions. This is not an exact rank identity
+and does not exclude extra fan cells for slopes three or four.
+The discrete effects in (Z7), aspect limits and critical surfaces
+$K(w)=c$ still require a counting argument.
+
+For $c>K$, take $\tau_0=(c+K)/(2\gamma)$. Carrier truncation would
+already have full leading rank, but (Z6) loses
+
+$$
+\frac{c-K}{8}\,r^2+O_{a,c,w}(r),
+\qquad\frac{\text{rank deficit}}n\longrightarrow\frac{c-K}{4c}.
+\tag{Z9}
+$$
+
+There are also genuinely many active constraints. Put $q=\alpha w_y$.
+For $\kappa r\le C\le cr/\gamma$, every maximizing integer index
+$\widehat s$ satisfies
+
+$$
+\left|\widehat s-\frac{cr-\gamma C}{c-K}\right|
+ \le B:=1+\frac{|a-K|+2+q^{-1}}{c-K}. \tag{Z10}
+$$
+
+All hooks in this range are nonempty. Their floor formulas give
+$F_s=\gamma C-K(s-1)+\eta_s$, where
+$-2-q^{-1}\le\eta_s\le1$. Hence $m_s-F_s$ is within that bounded
+error of a strictly decreasing linear function of $s$.
+At a maximum its left increment is nonnegative and its right increment
+nonpositive, which proves (Z10), with one-sided conditions at endpoints.
+For generic weights, each jump of the decreasing active index is at
+most $2B$: its limits on both sides of a cost event obey (Z10) at the
+same cost. Across this interval the index moves from $r-O(1)$ to
+$O(1)$. Therefore the number of distinct active indices is
+$\Theta_{a,c,w}(r)$ whenever $c>K$. A bounded number of retained
+capacities cannot describe this regime.
+
+### An exact family losing a fixed fraction of the rank
+
+For every $r\ge4$ divisible by four, choose $a=1,c=9$, weight
+$(2,1,2)$ and $C=13r/4$. Let $e=C\bmod2$. Direct floor summation gives
+
+$$
+d_s(C)=2Cs-2s^2+2s+(1-e)(s\bmod2),\qquad1\le s\le r.
+$$
+
+The capacity difference is
+
+$$
+H_s=\frac52rs-\frac52s^2-\frac{11}{2}s
+ -(1-e)(s\bmod2).
+$$
+
+Its unique maximum is at $s=r/2-1$. For example, the increment there
+is $1+e>0$ and the next increment is $-2-e<0$; strict discrete
+concavity follows from the hook-step bound below. Consequently
+
+$$
+\begin{aligned}
+n&=(9r^2-7r)/2,\\
+\min(n,d_r(C))-R_r(C)
+ &=\frac58r^2-\frac{11}{4}r+2+e.
+\end{aligned} \tag{Z11}
+$$
+
+The lost fraction tends to $5/36$. At $r=4$, an actual length-$58$
+point ideal has rank $56$ at this cost, compared with the truncated
+carrier's $58$; the independent evaluator checks that case directly.
+The exact formula, rather than those finite examples, proves the
+macroscopic family. This is a weighted Hilbert-function consequence,
+not a lower bound on its number of initial ideals.
+
+### A sufficient condition for exact singleton phases
+
+At fixed positive weights define
+
+$$
+D(w)=2+\left\lceil\frac{w_y}{w_x}\right\rceil
+       +\left\lceil\frac{w_y}{w_z}\right\rceil
+       +\left\lceil\frac{\min(w_x,w_z)}{w_y}\right\rceil.
+$$
+
+Every cost and hook index satisfy
+
+$$
+0\le F_s(C)-F_{s+1}(C)\le D(w). \tag{Z12}
+$$
+
+For the upper bound, write a hook as its truncated row and column
+counts. Advancing its index removes one row position and one column
+position. The row count can additionally drop by at most
+$\lceil w_y/w_x\rceil+\lceil w_y/w_z\rceil$, since its cost
+window has width $w_y$. Consecutive merged axis costs differ by at
+most $\min(w_x,w_z)$, giving the last ceiling for the column.
+Taking positive parts does not enlarge these differences, so zero
+hooks are included. The lower bound follows from diagonal-hook
+monotonicity.
+
+Suppose every adjacent size gap is **strictly greater** than $D(w)$,
+and use a generic weight with distinct relevant monomial costs.
+Then $m_s-F_s$ strictly decreases with $s$, so $H_s$ is strictly
+discretely concave at every cost. Its smallest maximizing index can
+drop only one step at a monomial event: a change is possible only
+when the increment at that index decreases from one to zero;
+strict concavity prevents a farther jump. It starts at $r$ and
+finishes at zero. Thus every singleton phase occurs, and (X5) gives
+
+$$
+\text{selected staircase}
+ =\bigcup_{s=1}^r
+ \{\text{the }m_s\text{ cheapest monomials of }L_s\},
+\qquad L_s=M_s\setminus M_{s-1}. \tag{Z13}
+$$
+
+This holds uniformly on a weight domain with a common upper bound
+for $D(w)$ and the stated gaps. For example, if
+$\max_i w_i<2\min_i w_i$, then $D(w)\le8$, so every profile
+with adjacent gaps at least nine satisfies (Z13) at generic weights.
+This includes the growing family $m_s=1+9(r-s)$.
+
+On one fixed carrier-flag domain, each $L_s$ is fixed and is the
+disjoint union of three arithmetic monomial rays. Take its
+$m_s$-subset profile polytope on $L_s\cap V_n^3$. Equation (Z13)
+says that the finite ideal's minimum profile support function is the
+sum of these layer support functions on that domain. By continuity
+the equality extends to its tied weights. Its positive fan there is
+the common refinement of these layer fans, or equivalently the fan
+of their Minkowski sum restricted to the domain. This is a
+support-function identity on the stated domain, not equality of
+the full residue matroid with a direct sum on arbitrary subsets.
+All layers still share the same weights; their fan counts cannot
+be multiplied.
+
+### A uniform quadratic bound for the all-tight part
+
+There is a counting theorem beyond the support-function reduction.
+For arbitrary sizes put $N_s=m_s+s-1$ and $L=\max_s N_s$. Count
+initial staircases with a generic positive weight witness for which
+every layer quota is tight. Their number is at most
+
+$$
+O\!\left(1+nL^2+
+ \sum_{s<t}(m_s+m_t)(m_s+m_t+s+t)\right). \tag{Z14}
+$$
+
+The constant is absolute. Since $r\le L$ and
+$m_s+s\le L+1$, (Z14) also simplifies to $O(nL^2)$.
+Thus every profile with $L=O(\sqrt n)$ has a quadratic all-tight
+bound, without assuming linear sizes. The count includes all
+axis-order domains and all positive weight ratios. For fixed integers
+$a,c\ge1$ and $m_s=a+c(r-s)$,
+
+$$
+\#\{\text{all-tight initial staircases}\}
+ =O_{a,c}(r^4)=O_{a,c}(n^2). \tag{Z15}
+$$
+
+Indeed $L=O_{a,c}(r)$, every summand is $O_{a,c}(r^2)$, and
+there are $O(r^2)$ pairs. Combined with (Z13), this excludes
+polynomial amplification throughout the central weight region
+$\max w_i<2\min w_i$ for the slope-nine family. It also excludes
+the all-tight part of every other fixed linear profile. It does
+not bound the remaining initial ideals with pooled phases.
+
+Here is the count. Normalize $w_z=1$, and write
+$\rho=w_x/w_z>0$, $\eta=w_y/w_z>0$. A layer's row and column
+costs, after subtracting a common constant, are exactly
+
+$$
+\{v_i(\rho)-v_{s-1}(\rho):i\ge s-1\}
+ \ \cup\ \{k\eta:k\ge1\}. \tag{Z16}
+$$
+
+The row's first member is zero and always selected. Away from
+axis ties, a selection wall exchanges its item $i$ with column
+item $k$. The strictly cheaper count is $i-s+k$. It affects the
+$m_s$-prefix precisely when
+
+$$
+i+k=N_s,\qquad s\le i<N_s,
+\qquad
+\eta=f_{s,k}(\rho):=
+ \frac{v_{N_s-k}(\rho)-v_{s-1}(\rho)}k,
+\quad1\le k<m_s. \tag{Z17}
+$$
+
+Thus there are only $n-r$ global wall curves. They are continuous
+piecewise affine graphs. Their order within one layer never changes
+at positive height: increasing the row index increases the numerator
+and decreases its positive denominator. Ties between pure axis
+monomials $x^u,z^v$ can change $v_i$ only at
+$\rho=v/u$ with $u+v\in\{i,i+1\}$. Hence $v_i$ has at most
+$2i$ breakpoints and $f_{s,k}$ has $O(m_s+s)$ pieces.
+
+Add all vertical lines $\rho=v/u$ with $u+v\le L+1$ to the
+arrangement. There are $O(L^2)$ of them. On each of their domains,
+the relevant axis orders are fixed, and (Z17) determines every
+layer selection. The formal union of independently selected layer
+prefixes is constant in each arrangement cell. Every actual all-tight
+staircase is one of these unions, so it suffices to bound this
+arrangement; no independent feasibility is assumed for every formal
+union.
+
+Most pairs of curves cannot meet. Put $h=\rho/(1+\rho)$.
+Equation (Z2) says $v_j=h(j+\epsilon_j)$ with
+$0\le\epsilon_j\le1$. At a point on $f_{s,k}$, (Z17) gives
+
+$$
+\left|m_s-k(1+\eta/h)\right|\le1.
+$$
+
+If $f_{s,k}$ and $f_{t,\ell}$ meet, necessarily
+
+$$
+|m_s\ell-m_tk|\le k+\ell. \tag{Z18}
+$$
+
+For fixed $k$, this restricts $\ell$ to an interval of length
+at most $2(m_s+m_t)/m_s$, since $k<m_s$, $\ell<m_t$.
+Summing over $k$ leaves at most $3m_s+2m_t$ integer pairs.
+This bound is uniform even at unbounded aspect ratio and requires
+no distribution assumption about rational slopes.
+
+Each surviving pair has $O(m_s+m_t+s+t)$ intersection events,
+including endpoints of coincident intervals: refine the breakpoints
+of the two piecewise affine graphs, then subtract their affine
+pieces. On each open interval the difference has at most one zero
+or vanishes identically. Coincident pieces add no regions; their
+endpoints obey the same bound. Curves from a single layer do not
+cross at positive height. Each curve meets each added vertical
+line at most once. The remaining graph pieces and possible contacts
+with height zero number $O(nL)$, already dominated by $nL^2$.
+Counting these events in a planar graph, or adding the curves one
+at a time, proves (Z14). This argument counts actual arrangement
+cells, including changes of axis order; it does not multiply
+separate layer fan counts.
+
+The rank loss and many phases therefore do not rescue the entire
+all-tight route. Further amplification in these fixed linear
+profiles would have to use pooled phases, possibly near the
+critical surfaces $K(w)=c$ or at extreme aspect ratios. The area
+method, quadratic optimization and classical matroid inputs do
+not establish current novelty of the combined rank and wall-count
+statements. No new manuscript or completed-goal claim follows.
+
+### Independent checks
+
+The existing checker adds 113,616 hook-area sandwiches, 3,456 exact
+rational rank/error comparisons and 656 active-index localizations.
+The exact family (Z11) is checked for eight component counts through
+$256$. Eighty-four separate model bases check nested-quota greedy
+against independent layer selection and verify all 420 singleton
+phases; they cover $2\le r\le8$, two last-component sizes and
+six permuted price profiles with generic integer perturbations.
+For two actual point ideals of lengths $58,95$, three weight
+certificates per ideal have invertible evaluation matrices and 87
+vanishing minimal-border relations with strictly lower tails in
+total. The length-$58$ evaluator also checks the rank defect above.
+Nodes, selected bases, phases, weights and initial generators are
+saved. These are specified-weight certificates, not full fan
+enumerations or evidence of an asymptotic fan advantage.
+The wall checker additionally inspects 1,071 cross-layer curve pairs,
+38,920 affine-piece intervals and 1,866 exact wall-quota samples
+across four finite profiles. It checks the arithmetic filter even
+for overlaps, the breakpoint budgets and the per-layer integer-pair
+bound. These fixtures support the uniform arrangement proof;
+they do not infer it from finite counts.
+
 ## Reproduction
 
 From the repository root:

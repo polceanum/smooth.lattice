@@ -104,6 +104,16 @@ independent exchanges at different costs, verified in exact point ideals.
 It exposes the missing simultaneous-cost mechanism in the balanced proof;
 four local choices alone give no growing lower bound. Counting those
 interactions and the unrestricted count remain open.
+A uniform area sandwich now gives the complete leading rank law for
+linear size profiles, with an explicit finite error and a curvature
+threshold of four. Above that threshold, an infinite family loses a
+fixed fraction of the rank and has linearly many active capacity phases.
+Sufficiently steep gaps also give exact separate layer selection on
+fixed carrier domains. This reduces their fan to a common refinement;
+an arithmetic wall-curve count bounds its all-tight part by `O(n^2)`
+for every fixed linear profile, across all axis orders and aspects.
+The count for pooled phases, including discrete critical regimes,
+remains unresolved.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count

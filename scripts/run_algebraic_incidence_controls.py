@@ -1375,6 +1375,284 @@ def unequal_point_controls(t):
             'certificate': 'Four invertible evaluation bases and vanishing minimal-border relations with strictly lower tails prove the four actual initial ideals by inclusion and equal colength. No whole-fan enumeration or full residue-matroid equivalence is claimed.'}
 
 
+def hook_area(weight, s, cost):
+    """Continuous triangle intersected with the width-s diagonal hook strip."""
+    x, y, z = weight
+    alpha = Fraction(1, x) + Fraction(1, z)
+    kappa = y + 1/alpha
+    return alpha/(2*y) * (max(0, cost)**2 - max(0, cost - kappa*s)**2)
+
+
+def linear_profile_limit(weight, slope, tau):
+    x, y, z = weight
+    alpha = Fraction(1, x) + Fraction(1, z)
+    kappa, gamma = y + 1/alpha, alpha + Fraction(1, y)
+    curvature = gamma*kappa
+    if slope <= curvature:
+        return min(Fraction(slope, 2), alpha/(2*y)*tau*tau)
+    if tau <= kappa:
+        return alpha/(2*y)*tau*tau
+    if tau >= slope/gamma:
+        return Fraction(slope, 2)
+    return Fraction(slope, 2) - (slope - gamma*tau)**2/(2*(slope - curvature))
+
+
+def hook_step_bound(weight):
+    x, y, z = weight
+    ceil_ratio = lambda a, b: (a + b - 1)//b
+    return 2 + ceil_ratio(y, x) + ceil_ratio(y, z) + ceil_ratio(min(x, z), y)
+
+
+def steep_rank_controls():
+    prices = [(1, 1, 1), (2, 1, 2), (3, 2, 6), (5, 3, 7), (1, 4, 1), (7, 2, 3)]
+    counts, witnesses = defaultdict(int), []
+    for weight in prices:
+        x, y, z = weight
+        alpha = Fraction(1, x) + Fraction(1, z)
+        kappa, gamma, q = y + 1/alpha, alpha + Fraction(1, y), alpha*y
+        curvature, D = gamma*kappa, hook_step_bound(weight)
+        assert curvature >= 4
+        for r in (1, 2, 4, 8, 16, 32, 64, 128):
+            axes = sorted([0] + [j*x for j in range(1, r + 1)] + [j*z for j in range(1, r + 1)])
+            assert all(Fraction(i, 1)/alpha <= axes[i] <= Fraction(i + 1, 1)/alpha for i in range(r + 1))
+            for slope, last in product((1, 3, 4, 5, 9, 12), (1, 4)):
+                sizes = [last + slope*(r - s) for s in range(1, r + 1)]
+                n, capacities = sum(sizes), [0]
+                for size in sizes:
+                    capacities.append(capacities[-1] + size)
+                for tau in (0, kappa/2, kappa, (kappa + slope/gamma)/2, slope/gamma, 2*slope/gamma):
+                    cost = int(r*tau)
+                    ranks = [0] + subcurve_prefix_counts(r, weight, cost)
+                    hooks = [b - a for a, b in zip(ranks, ranks[1:])]
+                    assert all(0 <= a - b <= D for a, b in zip(hooks, hooks[1:]))
+                    for s, rank in enumerate(ranks):
+                        assert hook_area(weight, s, cost - 1/alpha) <= rank <= hook_area(weight, s, cost + kappa)
+                        counts['area_sandwiches'] += 1
+                    values = [a - b for a, b in zip(capacities, ranks)]
+                    rank = n - max(values)
+                    predicted = r*r*linear_profile_limit(weight, slope, Fraction(cost, r))
+                    error = (abs(last - Fraction(slope, 2))*r +
+                             alpha/(2*y)*(2*cost*kappa + kappa*kappa) +
+                             max(Fraction(0), slope - curvature)/8)
+                    assert abs(rank - predicted) <= error
+                    assert generic_multicurve_prefix_rank(component_capacity_profile(sizes), weight, cost) == rank
+                    counts['finite_error_rank_queries'] += 1
+                    if slope > curvature and kappa*r <= cost <= slope/gamma*r:
+                        center = (slope*r - gamma*cost)/(slope - curvature)
+                        radius = 1 + (abs(last - curvature) + 2 + 1/q)/(slope - curvature)
+                        active = [s for s in range(r + 1) if values[s] == max(values)]
+                        assert all(abs(s - center) <= radius for s in active)
+                        counts['active_index_localizations'] += 1
+    for r in (4, 8, 12, 16, 32, 64, 128, 256):
+        n, cost, parity = (9*r*r - 7*r)//2, 13*r//4, (r//4) % 2
+        sizes = [1 + 9*(r - s) for s in range(1, r + 1)]
+        ranks, capacity, values = subcurve_prefix_counts(r, (2, 1, 2), cost), 0, [0]
+        for size, rank in zip(sizes, ranks):
+            capacity += size
+            values.append(capacity - rank)
+        active = [s for s, v in enumerate(values) if v == max(values)]
+        deficit = Fraction(5*r*r, 8) - Fraction(11*r, 4) + 2 + parity
+        assert active == [r//2 - 1] and max(values) == deficit and ranks[-1] >= n
+        assert generic_multicurve_prefix_rank(component_capacity_profile(sizes), (2, 1, 2), cost) == n - deficit
+        witnesses.append({'components': r, 'length': n, 'cost': cost, 'rank': int(n - deficit),
+                          'carrier_truncation_rank': n, 'exact_deficit': int(deficit), 'unique_active_index': active[0]})
+    return {'counts': dict(counts), 'exact_linear_deficit_family': witnesses,
+            'scope': 'An explicit O(r) finite error proves the linear-profile rank limit and its curvature transition at slope four. Rank loss and many cost phases do not count coherent initial ideals or establish a polynomial fan separation.'}
+
+
+def steep_model_basis(r, last, base_weight):
+    sizes = [last + 9*(r - s) for s in range(1, r + 1)]
+    digit_base = 4*(2*r + max(sizes)) + 1
+    scale = digit_base**3 + 1
+    weight = tuple(scale*w + d for w, d in zip(base_weight, (digit_base**2, digit_base, 1)))
+    assert max(weight) < 2*min(weight) and hook_step_bound(weight) < 9
+    cutoff = (2*r + max(sizes))*max(weight)
+    pool = [(a, b, c) for b in range(cutoff//weight[1] + 1)
+            for a, c in ([(a, 0) for a in range((cutoff - b*weight[1])//weight[0] + 1)] +
+                         [(0, c) for c in range(1, (cutoff - b*weight[1])//weight[2] + 1)])]
+    assert all(max(a) < digit_base for a in pool)
+    ordered = sorted(pool, key=lambda a: dot(a, weight))
+    assert len({dot(a, weight) for a in ordered}) == len(ordered)
+    flags = {a: [multicurve_allowed(a, s, weight) for s in range(r + 1)] for a in ordered}
+    layers = [[a for a in ordered if flags[a][s] and not flags[a][s - 1]] for s in range(1, r + 1)]
+    selected = {a for layer, size in zip(layers, sizes) for a in layer[:size]}
+    n, capacities, counts, outside, quota_selected = sum(sizes), [0], [0]*(r + 1), [0]*(r + 1), set()
+    for size in sizes:
+        capacities.append(capacities[-1] + size)
+    phases = [r]
+    for a in ordered:
+        if not flags[a][r]:
+            continue
+        feasible = all(outside[s] + (not flags[a][s]) <= n - capacities[s] for s in range(r + 1))
+        if feasible:
+            quota_selected.add(a)
+            outside = [v + (not member) for v, member in zip(outside, flags[a])]
+        counts = [v + member for v, member in zip(counts, flags[a])]
+        values = [v - count for v, count in zip(capacities, counts)]
+        active = values.index(max(values))
+        if active != phases[-1]:
+            assert active == phases[-1] - 1
+            phases.append(active)
+        if len(quota_selected) == n:
+            break
+    assert quota_selected == selected and phases == list(range(r, -1, -1))
+    assert all(tuple(v - int(i == j) for i, v in enumerate(a)) in selected
+               for a in selected for j in range(3) if a[j])
+    return sizes, weight, tuple(sorted(selected)), phases
+
+
+def steep_point_control(r):
+    bases = [steep_model_basis(r, 1, w) for w in ((11, 13, 17), (13, 17, 11), (17, 11, 13))]
+    sizes, n, prime, rng = bases[0][0], sum(bases[0][0]), 1000003, Random(20261020 + 100*r)
+    for attempt in range(1, 31):
+        nodes = rng.sample(range(2, prime), n)
+        components, start = [], 0
+        for j, size in enumerate(sizes, 1):
+            components.extend((j, node) for node in nodes[start:start + size])
+            start += size
+
+        def residue(a):
+            return tuple(pow(node, a[0] - a[1], prime)*pow(j, a[1], prime)*
+                         pow(node - 1, -a[2], prime) % prime for j, node in components)
+
+        columns = {a: residue(a) for _, _, selected, _ in bases for a in selected}
+        try:
+            inverses = [field_inverse(selected, columns, prime) for _, _, selected, _ in bases]
+        except StopIteration:
+            continue
+        break
+    else:
+        raise AssertionError('no simultaneous steep-component point witness')
+    certificates, border_checks = [], 0
+    for (_, weight, selected, phases), inverse in zip(bases, inverses):
+        border = sorted(minimal_excluded_border(selected))
+        for a in border:
+            column = residue(a)
+            coordinates = [sum(x*y for x, y in zip(row, column)) % prime for row in inverse]
+            assert all(sum(coordinates[j]*columns[b][i] for j, b in enumerate(selected)) % prime == column[i]
+                       for i in range(n))
+            assert all(dot(a, weight) > dot(b, weight) for b, c in zip(selected, coordinates) if c)
+        border_checks += len(border)
+        certificates.append({'weight': weight, 'selected': selected, 'decreasing_phases': phases,
+                             'minimal_initial_generators': border})
+    point_rank = None
+    if r == 4:
+        cost = 13
+        pool = [(a, b, c) for b in range(cost + 1)
+                for a, c in ([(a, 0) for a in range((cost - b)//2 + 1)] +
+                             [(0, c) for c in range(1, (cost - b)//2 + 1)])]
+        actual = column_prefix_ranks(pool, {a: residue(a) for a in pool}, prime)[-1]
+        assert actual == 56
+        point_rank = {'weight': [2, 1, 2], 'cost': cost, 'rank': actual, 'carrier_truncation_rank': n}
+    start, nodes_by_component = 0, []
+    for size in sizes:
+        nodes_by_component.append(nodes[start:start + size])
+        start += size
+    return {'components': r, 'length': n, 'component_sizes': sizes, 'characteristic': prime,
+            'component_scalars': list(range(1, r + 1)), 'nodes_by_component': nodes_by_component,
+            'generic_sample_attempts': attempt, 'positive_basis_certificates': certificates,
+            'matrix_bases': len(bases), 'minimal_border_relations': border_checks,
+            'direct_prefix_rank': point_rank,
+            'scope': 'Separate weights in one actual finite point ideal verify the layer decomposition. Invertible bases and strictly lower vanishing border relations prove the initials by equal colength. No complete fan or arbitrary-subset matroid identification.'}
+
+
+def layer_wall_controls():
+    """Exact wall curves, the arithmetic intersection filter and break counts."""
+    pair_checks, segment_checks, wall_checks, fixtures = 0, 0, 0, []
+    for sizes in ((10, 1), (19, 10, 1), (28, 19, 10, 1), (7, 4, 1)):
+        r, L = len(sizes), max(m + s - 1 for s, m in enumerate(sizes, 1))
+        curves = [(s, i, m + s - 1 - i, m) for s, m in enumerate(sizes, 1)
+                  for i in range(s, m + s - 1)]
+
+        def breaks(index):
+            return {Fraction(c, a) for level in (index, index + 1)
+                    for a in range(1, level) for c in (level - a,)}
+
+        def axis_line(index, rho):
+            # Independent closed two-list selection formula, checked below
+            # against an explicitly sorted merge at every wall sample.
+            ceil = lambda t: -((-t.numerator)//t.denominator)
+            a, c = ceil(index/(1 + rho)), ceil(index*rho/(1 + rho))
+            return (a, 0) if a*rho < c else (0, c)
+
+        def line(curve, rho):
+            s, i, k, _ = curve
+            a, c = axis_line(i, rho)
+            b, d = axis_line(s - 1, rho)
+            return Fraction(a - b, k), Fraction(c - d, k)
+
+        breakpoints = {curve: breaks(curve[1]) | breaks(curve[0] - 1) for curve in curves}
+        assert all(len(breakpoints[curve]) <= 2*(curve[1] + curve[0] - 1) for curve in curves)
+        candidates, actual_pairs, meetings = defaultdict(int), 0, 0
+        for first, second in combinations(curves, 2):
+            s, i, k, m = first
+            t, j, ell, nn = second
+            if s == t:
+                continue
+            pair_checks += 1
+            necessary = abs(m*ell - nn*k) <= k + ell
+            candidates[min(s, t), max(s, t)] += int(necessary)
+            cuts = [Fraction(0)] + sorted(breakpoints[first] | breakpoints[second])
+            found, complexity = False, 0
+            for left, right in zip(cuts, cuts[1:] + [None]):
+                probe = (left + right)/2 if right is not None else left + 1
+                a, b = line(first, probe)
+                c, d = line(second, probe)
+                if a != c:
+                    root = (d - b)/(a - c)
+                    if root > 0 and left <= root and (right is None or root <= right):
+                        assert necessary
+                        found, complexity = True, complexity + 1
+                elif b == d:
+                    assert necessary
+                    found, complexity = True, complexity + 1
+                segment_checks += 1
+            if found:
+                actual_pairs += 1
+                meetings += complexity
+            assert complexity <= 1 + len(breakpoints[first]) + len(breakpoints[second])
+        for (s, t), count in candidates.items():
+            assert count <= 3*sizes[s - 1] + 2*sizes[t - 1]
+        # Check the exact quota at wall points independently of the area filter.
+        for curve in curves:
+            cuts = [Fraction(0)] + sorted(breakpoints[curve])
+            for left, right in zip(cuts, cuts[1:] + [None]):
+                rho = (left + right)/2 if right is not None else left + 1
+                a, b = line(curve, rho)
+                eta = a*rho + b
+                if eta <= 0:
+                    continue
+                s, i, k, m = curve
+                assert i - s + k == m - 1
+                axis = sorted([Fraction(0)] + [j*rho for j in range(1, L + 1)] +
+                              [Fraction(j) for j in range(1, L + 1)])
+                threshold = axis[i] - axis[s - 1]
+                assert threshold == k*eta
+                strict = (sum(v - axis[s - 1] < threshold for v in axis[s - 1:]) +
+                          sum(j*eta < threshold for j in range(1, m + 1)))
+                assert strict == m - 1
+                wall_checks += 1
+        fixtures.append({'sizes': sizes, 'curve_count': len(curves), 'maximum_axis_index': L,
+                         'arithmetically_possible_curve_pairs': sum(candidates.values()),
+                         'meeting_curve_pairs_including_overlaps': actual_pairs,
+                         'piecewise_meeting_intervals_including_shared_endpoints': meetings})
+    return {'curve_pair_checks': pair_checks, 'affine_piece_pair_checks': segment_checks,
+            'exact_wall_quota_checks': wall_checks, 'fixtures': fixtures,
+            'scope': 'All positive wall curves of formal independent layer selection are checked. The uniform arithmetic filter and piece count prove an upper bound; these fixtures are not full point-ideal fan counts.'}
+
+
+def steep_component_controls():
+    models = [steep_model_basis(r, last, weight) for r in range(2, 9) for last in (1, 3)
+              for weight in ((11, 13, 17), (11, 17, 13), (13, 11, 17),
+                             (13, 17, 11), (17, 11, 13), (17, 13, 11))]
+    points = [steep_point_control(r) for r in (4, 5)]
+    return {'rank_limit': steep_rank_controls(), 'layer_wall_counting': layer_wall_controls(),
+            'fixed_price_model_bases': len(models),
+            'singleton_phase_blocks': sum(len(model[3]) - 1 for model in models),
+            'point_ideals': points,
+            'scope': 'Sufficiently steep gaps give every singleton phase and an exact positive layer sum. An arithmetic wall-curve argument bounds all all-tight selections by O(n^2) for fixed linear profiles, including all axis orders and aspects. Pooled phases and unrestricted G_3 remain open.'}
+
+
 def main():
     axes = [axis_controls(n) for n in (4, 5, 6, 7, 9, 12, 15, 21)]
     arithmetic = [arithmetic_controls(n) for n in (99, 303, 603)]
@@ -1392,6 +1670,7 @@ def main():
     unequal = {'phase_controls': unequal_phase_controls(),
                'hook_capacity_compression': hook_capacity_jump_controls(),
                'simultaneous_two_cost_point_faces': [unequal_point_controls(t) for t in (1, 2)]}
+    steep = steep_component_controls()
     paths = ['scripts/run_algebraic_incidence_controls.py', 'docs/weighted_facet_incidence.md',
              'docs/initial_cone_height.md', 'scripts/run_extremal_initial_ideals_checks.py',
              'scripts/run_structural_complexity_checks.py', 'scripts/run_initial_cone_height_checks.py',
@@ -1399,7 +1678,7 @@ def main():
              'docs/generic_multiaffine_bound.md', 'docs/planar_dyadic_bound.md',
              'docs/rational_shadow_bound.md', 'scripts/run_planar_dyadic_bound_checks.py']
     report = {'status': 'passed', 'command': 'python3 -B scripts/run_algebraic_incidence_controls.py',
-              'scope': 'Scaled components have exact generic prefix ranks. Only size drops greater than two supply additional constraints, so slowly decreasing sizes share the uniform quadratic-power fan bound. General unequal samples have decreasing phases and actual two-cost parallelogram faces. No growing lower separation, unrestricted bound or novelty certificate is inferred.',
+              'scope': 'Linear generic component profiles have a finite-error rank transition and exact steep-gap layer factorization. Arithmetic wall curves bound their all-tight part by O(n^2), uniformly over axis orders and aspect ratios. Pooled phases, unrestricted G_3 and exact priority remain unresolved.',
               'summary': {'complete_axis_fans': len(axes), 'axis_cells': sum(a['positive_cells'] for a in axes),
                           'matrix_selection_controls': sum(a['independent_matrix_selections'] for a in axes),
                           'arithmetic_fixtures': len(arithmetic), 'complete_quotient_fans': len(interior),
@@ -1438,7 +1717,14 @@ def main():
                           **{'unequal_' + k: v for k, v in unequal['hook_capacity_compression']['counts'].items()},
                           'unequal_point_matrix_bases': sum(a['matrix_bases'] for a in unequal['simultaneous_two_cost_point_faces']),
                           'unequal_point_border_relations': sum(a['minimal_border_relations'] for a in unequal['simultaneous_two_cost_point_faces']),
-                          'unequal_direct_prefix_rank_queries': sum(len(a['direct_prefix_ranks']) for a in unequal['simultaneous_two_cost_point_faces'])},
+                          'unequal_direct_prefix_rank_queries': sum(len(a['direct_prefix_ranks']) for a in unequal['simultaneous_two_cost_point_faces']),
+                          **{'steep_' + k: v for k, v in steep['rank_limit']['counts'].items()},
+                          'steep_model_bases': steep['fixed_price_model_bases'],
+                          'steep_singleton_phase_blocks': steep['singleton_phase_blocks'],
+                          'steep_point_matrix_bases': sum(a['matrix_bases'] for a in steep['point_ideals']),
+                          'steep_point_border_relations': sum(a['minimal_border_relations'] for a in steep['point_ideals']),
+                          **{'steep_' + k: steep['layer_wall_counting'][k] for k in
+                             ('curve_pair_checks', 'affine_piece_pair_checks', 'exact_wall_quota_checks')}},
               'uniform_axis_matroids': axes, 'arithmetic_lower_bound_controls': arithmetic,
               'interior_quotients': interior, 'three_pole_quotients': curves,
               'positive_plane_traces': planes,
@@ -1446,6 +1732,7 @@ def main():
               'generic_multicurve_unions': multicurves,
               'balanced_hook_threshold_charging': charging,
               'unequal_component_phases': unequal,
+              'steep_component_profiles': steep,
               'source_sha256': {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in paths}}
     (ROOT / 'results/research/algebraic_incidence_controls.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report['summary'], indent=2))
