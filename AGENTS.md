@@ -2,6 +2,13 @@
 
 Guidance for Codex or other coding agents working in this repository.
 
+## Research presentation
+
+Keep public research material focused on mathematical questions, proofs,
+evidence and open problems. Omit project credits, contributor narratives and
+authorship or assistance commentary. Preserve mathematical citations,
+prior-art comparisons and accurate statements of verification limits.
+
 ## Standing user instruction: no outbound messages
 
 Never send emails or messages, including author queries, chat messages,

@@ -1353,8 +1353,8 @@ records theorem dependencies, source-reading scopes, verification and
 publication limits. The current assessment is a plausible focused
 specialist paper for mathematical review. Evidence of a practical
 unranking advantage or a prime-distribution consequence has not been
-obtained. The draft makes no claim of independent referee approval,
-acceptance or settled authorship.
+obtained. The draft makes no claim of independent referee approval or
+acceptance.
 
 The goal remains active for a final internal proof-to-claim and priority
 assessment of this consolidated draft. Further unrelated theorem searches
@@ -1460,7 +1460,7 @@ The inspected sources leave a defensible, explicitly scoped originality
 case for the sharp interaction law and its consequences. The work does
 not justify a claim of a major breakthrough in prime theory or a practical
 algorithmic advantage. Actual publication, independent confirmation of
-priority and correctness, authorship and submission decisions remain
+priority and correctness, and submission decisions remain
 unsettled. They are not represented as accomplished by internal tests.
 No contact or submission is authorized or performed.
 

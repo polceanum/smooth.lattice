@@ -196,7 +196,7 @@ sparse certificates and generic-state-fan consequence with complete proofs.
 The [audit](results/research/interleaving_support_audit.json) states the
 primary-source boundaries and final internal publication assessment. The
 sharp interaction law and its consequences support a focused specialist
-paper for independent review. Global priority, acceptance, authorship and
+paper for independent review. Global priority, acceptance and
 submission are not settled; no practical unranking speedup is claimed.
 
 The [mathematical research note](docs/interleaving_research.md) targets general
