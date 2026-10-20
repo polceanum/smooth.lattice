@@ -103,8 +103,15 @@ tight has only `Theta(sqrt(n) log(n+1))` initial sets in that large-box
 family. A consecutive-block cut certificate now bounds the entire
 equal-valuation family by `O(n^2 log(n+1)^4)`, uniformly in its valuation
 parameter. This excludes a polynomial separation from that whole family.
-Unequal valuations remain open; these results do not establish an
-unrestricted spatial bound or a priority claim.
+A stronger [cheap-prefix theorem](docs/nested_prefix_bound.md) now gives
+the same bound for the **entire** explicit nested construction, including
+unequal valuations and embedding dimension three, in terms of its actual
+quotient length. It also applies to generic truncated power series with
+any fixed leading orders in characteristic zero. One common weight list
+samples all these fans. This closes the whole nested route to a power
+separation; the unrestricted spatial target and exact priority remain
+unresolved. Further lower constructions need dependencies outside that
+single additive valuation order.
 The additive prime-power class is now classified separately: at length
 `n=q^k`, every initial ideal is a prime-power box and the sharp maximum
 is `binomial(k+d-1,d-1)`. The proof uses established Frobenius reduction;

@@ -84,11 +84,32 @@ size $O(n\log^2(n+1))$; the classical plane-arrangement count gives
 the stated bound. The large footprint of the entire standard set is
 consistent with these small relative boxes for exchanges. Thus the
 entire equal-valuation family is closed as a power-separation route.
-For unequal valuations the corresponding degree blocks are arithmetic
-strips, and that common-coordinate direction estimate remains unproved.
-The allocation class, uncrossing principle, arrangement bound and planar
-counting input are established mathematics; the exact construction theorem
-has no novelty certificate and does not complete the unrestricted goal.
+The subsequent [cheap-prefix theorem](nested_prefix_bound.md) removes
+the unequal-valuation obstacle and bounds the **entire** explicit nested
+family by the same order. At a tied feasible exchange, lowering valuation
+forces every cheaper monomial below the higher endpoint valuation into
+the chosen basis. Its closed cut is an intersection of two positive
+halfspaces with at most $8(n-1)$ lattice points. Its box in the original
+coordinates has at most $216(n-1)$ points, bounding every active exchange
+direction in one hyperbolic cross. This applies with the true length
+$n=L-\max_k(k-\nu_m(k))$, including the non-binomial quotients of
+embedding dimension three. In fixed dimension $d$, the bound is
+$O_d(n^{d-1}\log^{(d-1)^2}(n+1))$ and one common list of that size
+samples all the positive fans.
+
+Generic normalized power series with any fixed tuple of leading orders
+have the same rank rule on a nonempty Zariski-open coefficient set, so
+the bound also covers generic one-parameter jets. Specializing off that
+locus can change ranks and even the quotient length; it does not by
+itself produce many cones. A two-cone all-field binomial example has a
+quadratic primitive direction product and fails every positive valuation
+lowering order. This preserves the distinction between a large normal and
+a large fan. The whole additive nested family is closed as a power-gain
+route. The nonlinear two-parameter rectangles remain a defined next
+candidate. Classical matroid geometry, the Hilbert-zonotope sampling
+method and arrangement counting are prior art; the exact prefix theorem
+and generic-jet consequence have no novelty certificate and do not
+complete the unrestricted goal.
 
 ## Connection to the original observations
 
@@ -130,6 +151,7 @@ give a subclass; write their maximum as $F_d(n)\le G_d(n)$.
 | $G_3(n)=O(n^{44/15}\log^{4/5}(n+1))$ | Existing repository lattice-shadow candidate, with a remaining classical-priority comparison. This does not complete the present goal. |
 | $G_3(n)=O(n^{23/8}\log^{3/8}(n+1))$; $\lvert\mathcal U(I)\rvert=O(n^{85/24}\log^{3/8}(n+1))$ | [Complete rational-shadow proof](rational_shadow_bound.md), all fields and finite quotients, with independently checked arithmetic projections and vertex visibility. Stronger than the older repository candidate; current priority and the sharp endpoint remain open. |
 | Binomial ideals: $g(I)=O_d(n^{d-1}\log^{(d-1)^2}(n+1))$ | Existing repository reduction using published binomial normal forms and Minkowski-sum bounds. In three variables this excludes a polynomial separation from the generic scale within this subclass. |
+| Additive nested residue matroids and generic fixed-order one-parameter jets: $g(I)=O_d(n^{d-1}\log^{(d-1)^2}(n+1))$ | [Uniform prefix theorem](nested_prefix_bound.md), independent of ambient truncation and valuations when expressed in the actual length. The explicit and generic-jet realizations use characteristic zero; the abstract matroid bound assumes no field. This closes that whole construction route, with exact priority unsettled. |
 | Planar ideals containing an irreducible degree-$D$ equation: $g(I)\le5Dn$; sharp order $\Theta_D(n)$ for the maximum over degrees at most fixed $D\ge2$ | Uniform proof and exact wall controls below; the precise priority comparison remains open. This does not bound all ideals by a constant times $n$. |
 
 The published upper bound and state-polyhedron framework are in
@@ -1806,6 +1828,7 @@ python3 -B scripts/run_initial_cone_height_checks.py
 python3 -B scripts/run_weighted_facet_incidence_checks.py
 python3 -B scripts/run_algebraic_incidence_controls.py
 python3 -B scripts/run_nested_chain_checks.py
+python3 -B scripts/run_nested_prefix_checks.py
 ./build.sh
 python3 tests/test_smoke.py
 ```
