@@ -239,6 +239,14 @@ scale and derived from classical profile geometry. One actual cover needs
 a box of size `Omega(M^(5/3))` near an explicit arithmetic ray, although its
 quotient has only `O(n)` infinitesimal refinements at that ray. A sharper
 global count therefore needs rank information beyond these cover boxes.
+An exact score-filtration comparison now separates individual monomial
+defects from collective basis excess. A coherent family using all three
+generators has zero individual defect on every selected monomial but
+quadratic total excess; its whole specified sector still has only
+`Theta(n log n)` initial ideals, and an exact opposite-sector rule bounds
+the whole explicit family by `O(n^2 log n)`. Prefix ranks and determinant valuations
+detect the missing collective dependence. These are supporting identities
+and obstructions, with no unrestricted counting or novelty conclusion.
 The exact box-residual transfer
 is identified with established linkage, while every nonbox group cover
 has a residual/initial mismatch measured by its number of maximal monomials.

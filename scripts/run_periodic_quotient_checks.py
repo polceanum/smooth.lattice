@@ -12,7 +12,7 @@ import json
 
 from run_cyclotomic_price_checks import (border_certificate, circuit_vector,
     cyclotomic_model, frontier_basis, insert, label, scalar, shortest_representatives,
-    tensor, univariate_powers)
+    solver, tensor, univariate_powers)
 from run_interleaving_research import minimal_excluded_border
 from run_nested_jet_checks import downsets
 
@@ -970,6 +970,239 @@ def global_gap_controls():
             'scope':'A classical common-box vertex bound now covers all positive weights, with O(n^(7/3)) for comparable periods with bounded normalized gaps, not a quadratic count or unrestricted improvement. The uniform box obstruction concerns the full group cover, not an asserted quotient basis or fan-count lower bound. Its infinitesimal perturbations lie at a single positive-ray degeneration; the already proved local linear refinement bound remains valid.'}
 
 
+def score_filtration_controls():
+    """Exact filtered ranks and a coherent collective-defect obstruction."""
+    def polynomial_determinant(columns, scores, row_scores, p):
+        # Direct determinant expansion by subsets; retain all polynomial
+        # degrees and cancellations rather than assuming a predicted order.
+        n = len(columns)
+        table = {0:{0:scalar(1,p)}}
+        for mask in range(1<<n):
+            if mask not in table:
+                continue
+            row = mask.bit_count()
+            if row==n:
+                continue
+            for j,column in enumerate(columns):
+                if (mask>>j)&1 or not column.get(row):
+                    continue
+                exponent = scores[j]-row_scores[row]
+                require(exponent>=0, 'filtered coefficient matrices have no negative powers')
+                sign = -1 if (mask>>(j+1)).bit_count()%2 else 1
+                coefficient = scalar(sign*column[row],p)
+                target = table.setdefault(mask|(1<<j),{})
+                for degree,value in table[mask].items():
+                    degree += exponent
+                    new = scalar(target.get(degree,0)+coefficient*value,p)
+                    if new:
+                        target[degree] = new
+                    else:
+                        target.pop(degree,None)
+        return table.get((1<<n)-1,{})
+
+    def check(ground,residue,n,p,bases=None,exhaustive=True):
+        ordered = sorted(ground,key=lambda a:(sum(a),a))
+        pivots,b0,snapshots,ranks = {},[],{-1:{}},[]
+        for h in range(1+max(map(sum,ground))):
+            for a in ordered:
+                if sum(a)==h and insert(pivots,residue(a),p):
+                    b0.append(a)
+            ranks.append(len(pivots))
+            snapshots[h] = dict(pivots)
+        require(len(b0)==n, 'all nonzero monomials span the finite quotient')
+        d0 = [sum(a) for a in b0]
+        minimum = sum(d0)
+        solve = solver([residue(a) for a in b0],p)
+        coordinates = {a:solve(residue(a)) for a in ground}
+        nu = {a:max(d0[i] for i in coordinates[a]) for a in ground}
+        defects = {a:sum(a)-nu[a] for a in ground}
+        require(min(defects.values())>=0, 'all individual score defects are nonnegative')
+        for a in ground:
+            require(insert(dict(snapshots[nu[a]-1]),residue(a),p) and
+                    not insert(dict(snapshots[nu[a]]),residue(a),p), 'independent prefix ranks verify each filtered degree')
+            j = max(coordinates[a],key=lambda i:d0[i])
+            replacement = list(b0)
+            replacement[j] = a
+            test = {}
+            require(all(insert(test,residue(b),p) for b in replacement) and
+                    sum(map(sum,replacement))-minimum==defects[a], 'each fundamental-circuit exchange attains the individual inclusion excess')
+        products = 0
+        for a,b in product(ground,repeat=2):
+            c = tuple(x+y for x,y in zip(a,b))
+            if c in defects:
+                require(defects[c]>=defects[a]+defects[b], 'score defect is superadditive on every nonzero product')
+                products += 1
+        controls = []
+        minimum_inclusion = {a:None for a in ground}
+        for basis in bases or ():
+            rank = {}
+            independent = all(insert(rank,residue(a),p) for a in basis)
+            determinant = (polynomial_determinant([coordinates[a] for a in basis],list(map(sum,basis)),d0,p)
+                           if n<=10 else None)
+            if determinant is not None:
+                require(bool(determinant)==independent, 'direct polynomial determinant detects independent and dependent subsets')
+            if not independent:
+                continue
+            energy = sum(map(sum,basis))-minimum
+            deficits = [r-sum(sum(a)<=h for a in basis) for h,r in enumerate(ranks)]
+            require(min(deficits)>=0 and sum(deficits)==energy, 'full rank-prefix deficits sum exactly to basis excess')
+            require(energy>=sum(defects[a] for a in basis), 'collective excess dominates the sum of individual defects')
+            if determinant is not None:
+                require(set(determinant)=={energy}, 'the independently expanded determinant has exactly the predicted excess valuation')
+            for a in basis:
+                old = minimum_inclusion[a]
+                minimum_inclusion[a] = energy if old is None else min(old,energy)
+            controls.append({'basis':basis,'excess':energy,'rank_prefix_deficits':deficits,
+                             'sum_individual_defects':sum(defects[a] for a in basis),
+                             'direct_determinant_polynomial':({str(k):str(v) for k,v in determinant.items()}
+                                                              if determinant is not None else None)})
+        if controls and exhaustive:
+            require(all(minimum_inclusion[a]==defects[a] for a in ground), 'exhaustive bases independently verify every minimum inclusion excess')
+        return {'field':p,'length':n,'ground_size':len(ground),'minimum_score':minimum,
+                'minimum_basis':b0,'filtered_ranks':ranks,
+                'individual_defects':[{'monomial':a,'filtered_degree':nu[a],'defect':defects[a]} for a in ordered],
+                'nonzero_product_checks':products,'full_basis_controls':controls},defects
+
+    triangles,small_basis_tests,univariate = [],0,[]
+    for q,p in product(range(2,9),(0,2,3,5,7)):
+        xy = [(a,b) for a in range(q+1) for b in range(q+1-a)]
+        index = {a:i for i,a in enumerate(xy)}
+        n = len(xy)
+        ground = [a for a in product(range(q+1),repeat=3) if a[0]+a[1]+2*a[2]<=q]
+
+        @cache
+        def residue(a):
+            x,y,z = a
+            result = [scalar(0,p)]*n
+            if x+y+2*z<=q:
+                for j in range(z+1):
+                    result[index[x+2*z-j,y+j]] = scalar((-1)**j*comb(z,j),p)
+            return tuple(result)
+
+        subsets = list(combinations(ground,n)) if q<=3 and p in (0,2,3) else []
+        record,defects = check(ground,residue,n,p,subsets)
+        expected = [sum(max(0,min(D+1,2*h-D+1)) for D in range(q+1)) for h in range(q+1)]
+        require(record['filtered_ranks']==expected, 'independent monic ranks agree with the all-q divisibility formula')
+        require(all(v==0 for v in defects.values()), 'every nonzero monomial in the entire quotient has zero individual score defect')
+        basis = frozenset((a,b,0) for a,b in xy)
+        energy = sum(map(sum,basis))-record['minimum_score']
+        expected_energy = sum(D*D//4 for D in range(q+1))
+        require(energy==expected_energy>0, 'the coherent planar basis has the exact unbounded collective excess')
+        certificates = border_certificate(basis,residue,(2,3,7),p)
+        step = Q(1,10*(q+1))
+        near_weight = tuple(1+(i+1)*step for i in range(3))
+        widths = (q,q,q//2)
+        perturbation_budget = sum((i+1)*step*widths[i] for i in range(3))
+        require(perturbation_budget<1, 'finite score-stability neighborhood is strict')
+        near_basis = frontier_basis(residue,n,near_weight,p)
+        require(sum(map(sum,near_basis))==record['minimum_score'], 'direct quotient frontier in the finite neighborhood stays on the grading face')
+        require(energy<=n*sum(v*r for v,r in zip((1,2,6),widths)), 'the actual coherent excess satisfies the finite-perturbation bound')
+        record.update({'parameter':q,'all_subsets_checked':len(subsets),
+                       'coherent_basis':sorted(basis),'coherent_weight':[2,3,7],
+                       'coherent_excess':energy,'exact_excess_formula':expected_energy,
+                       'finite_neighborhood_weight':list(map(str,near_weight)),
+                       'finite_neighborhood_exchange_budget':str(perturbation_budget),
+                       'finite_neighborhood_basis':sorted(near_basis),
+                       'strict_border_certificates':certificates})
+        triangles.append(record)
+        small_basis_tests += len(subsets)
+
+    for m,p in product(range(3,7),(0,2,3)):
+        ground = [a for a in product(range(m),repeat=3) if a[0]+2*a[1]+3*a[2]<m]
+
+        def residue(a):
+            degree = a[0]+2*a[1]+3*a[2]
+            return tuple(scalar(int(i==degree),p) for i in range(m))
+
+        groups = [[a for a in ground if a[0]+2*a[1]+3*a[2]==j] for j in range(m)]
+        bases = list(product(*groups))
+        record,defects = check(ground,residue,m,p,bases)
+        require(all(v==sum(a)-(a[0]+2*a[1]+3*a[2]+2)//3 for a,v in defects.items()), 'independent filtration agrees with the univariate score-defect formula')
+        record.update({'model':'X=T,Y=T^2,Z=T^3 modulo T^m','nilpotency':m})
+        univariate.append(record)
+    split = []
+    for L,p in product(range(4,9),(0,101,1009)):
+        nodes = [pow(2,i) for i in range(1,L+1)]
+        M = L+1
+        ground = [a for a in product(range(L+1),repeat=3)
+                  if sum(a)<=L and (a[0]==0 or (a[2]==0 and a[0]+a[1]<L))]
+
+        @cache
+        def residue(a):
+            x,y,z = a
+            line = [scalar(int(z==0 and i==x+y),p) for i in range(L)]
+            fat = [scalar(pow(node,y+M*z),p) if x==0 else scalar(0,p) for node in nodes]
+            return tuple(line+fat)
+
+        polynomial = [1]
+        for node in nodes:
+            new = [0]*(len(polynomial)+1)
+            for j,c in enumerate(polynomial):
+                new[j] -= node*c
+                new[j+1] += c
+            polynomial = new
+        relations = [[(1,(1,1,0)),(-1,(2,0,0))],[(1,(L,0,0))],
+                     [(1,(0,0,1)),(-1,(0,L+1,0))],
+                     [(sign*c,a) for j,c in enumerate(polynomial)
+                      for sign,a in ((1,(0,j+1,0)),(-1,(1,j,0)))]]
+        for relation in relations:
+            vector = [scalar(0,p)]*(2*L)
+            for c,a in relation:
+                vector = [scalar(v+c*x,p) for v,x in zip(vector,residue(a))]
+            require(not any(vector), 'all four generators of the displayed polynomial ideal vanish by direct arithmetic')
+        basis = frozenset([(0,0,0),(0,0,1)]+
+                          [(a,0,0) for a in range(1,L)]+[(0,b,0) for b in range(1,L)])
+        record,defects = check(ground,residue,2*L,p,[sorted(basis)],False)
+        expected = [min(h+1,L)+min(L,(h+1)*(h+2)//2-1) for h in range(L+1)]
+        require(record['filtered_ranks']==expected, 'the line/point split has the exact generic planar filtration ranks')
+        require(all(defects[a]==0 for a in basis), 'every monomial of the all-active coherent basis has zero individual defect')
+        energy = L*(L-1)+1-record['minimum_score']
+        fat_minimum = sum(L-min(L,(h+1)*(h+2)//2-1) for h in range(L))
+        require(energy==L*(L-1)//2+1-fat_minimum and energy>0,
+                'direct filtered ranks give a positive collective excess')
+        certificates = border_certificate(basis,residue,(1,2,2*L-1),p)
+        sector = []
+        digit = 4*L+1
+        for weight in ((1,2,2*L-1),(1,digit**2,digit**2+digit+1),
+                       (1,digit**2,2*digit**2+digit+1)):
+            fat_ground = [(0,b,c) for b in range(L+1) for c in range(L+1-b) if b+c]
+            fat_prefix = sorted(fat_ground,key=lambda a:(dot(weight,a),a))[:L]
+            predicted = frozenset([(a,0,0) for a in range(L)]+fat_prefix)
+            actual = frontier_basis(residue,2*L,weight,p)
+            require(actual==predicted, 'ordinary full quotient frontiers agree with the whole-sector planar prefix rule')
+            sector.append({'weight':weight,'point_prefix':fat_prefix,'standard_set':sorted(actual)})
+        opposite = []
+        for weight in ((2,1,1),(L,1,1),(L+2,1,L+2),(L,1,2)):
+            fixed = [(0,b,0) for b in range(L)]
+            penalized = [(1,b-1,0) for b in range(1,L)]
+            if weight[2]>M*weight[1]:
+                bulk = [(0,b,0) for b in range(L,2*L)]
+                regime = 'pure_Y'
+            else:
+                bulk = [(0,L,0)]+[(0,b,c) for b in range(L+1) for c in range(1,L+1)]
+                regime = 'maximal_Z'
+            chosen = sorted(penalized+bulk,key=lambda a:(dot(weight,a),a))[:L]
+            predicted = frozenset(fixed+chosen)
+            actual = frontier_basis(residue,2*L,weight,p)
+            require(actual==predicted, 'ordinary quotient frontier verifies the opposite-sector penalized-axis rule')
+            selected_axis = [a[1]+1 for a in chosen if a[0]]
+            require(sorted(selected_axis)==list(range(1,len(selected_axis)+1)), 'the selected penalized axis is always an initial segment')
+            opposite.append({'weight':weight,'representative_regime':regime,
+                             'selected_point_representatives':chosen,'standard_set':sorted(actual)})
+        record.update({'model':'nilpotent line plus explicit planar points','line_length':L,
+                       'point_nodes':nodes,'point_z_power':M,'coherent_basis':sorted(basis),
+                       'point_polynomial_coefficients':polynomial,'displayed_ideal_relations_checked':len(relations),
+                       'coherent_weight':[1,2,2*L-1],'coherent_excess':energy,
+                       'strict_border_certificates':certificates,'sector_prefix_controls':sector,
+                       'opposite_sector_controls':opposite,
+                       'scope':'The uniform explicit realization is over Q. The two finite fields are additional nondegenerate specializations, not a claim for every finite field.'})
+        split.append(record)
+    return {'triangle_obstructions':triangles,'univariate_controls':univariate,
+            'all_active_quadratic_excess_obstructions':split,
+            'exhaustive_small_triangle_subsets':small_basis_tests,
+            'scope':'Exact rank filtration, inclusion excess, superadditivity and polynomial-minor controls. The all-field triangle family has no nonzero individual monomial defect but basis excess Theta(n^(3/2)). An explicit rational all-active family has zero defect on every monomial of a coherent basis but worst-order Theta(n^2) excess. Both sectors reduce to explicit planar prefix selection, bounding its whole fan by O(n^2*log(n+1)). The filtration/initial-matroid dictionary is classical; no general near-ray fan count, unrestricted improvement or novelty is inferred.'}
+
+
 def main():
     lattice, dual = periodic_and_dual_controls()
     index_controls = intrinsic_index_controls()
@@ -983,11 +1216,12 @@ def main():
     shell_controls = shell_volume_controls(lattice)
     gap_controls = period_gap_controls()
     global_controls = global_gap_controls()
+    score_controls = score_filtration_controls()
     sources = ('docs/periodic_quotient_arithmetic.md','scripts/run_periodic_quotient_checks.py',
                'scripts/run_cyclotomic_price_checks.py','scripts/run_interleaving_research.py',
                'scripts/run_nested_jet_checks.py')
     report = {'schema_version':1,'command':'python3 -B scripts/run_periodic_quotient_checks.py',
-              'scope':'Exact periodic-cover, arithmetic, fixed-cover trace and candidate-filter controls. Direct norm quotients verify the nonbox socle defect. Sector-wide surface budgets, thin-cover obstructions, socle-free dyadic shell bounds and their logarithmic obstruction are checked. Period-gap identities, common regional boxes and active-generator slab obstructions are independently checked by monic division and primal/dual bases. Four global price sectors and a uniform large-box obstruction at a positive arithmetic ray are checked. No unrestricted asymptotic separation, sharp nonbox refinement-fan count or novelty certificate.',
+              'scope':'Exact periodic-cover, arithmetic, fixed-cover trace and candidate-filter controls. Direct norm quotients verify the nonbox socle defect. Sector-wide surface budgets, thin-cover obstructions, socle-free dyadic shell bounds and their logarithmic obstruction are checked. Period-gap identities, common regional boxes and active-generator slab obstructions are independently checked by monic division and primal/dual bases. Four global price sectors and a uniform large-box obstruction at a positive arithmetic ray are checked. Score filtrations, polynomial minors and coherent collective-defect obstructions are independently verified. No unrestricted asymptotic separation, sharp nonbox refinement-fan count or novelty certificate.',
               'source_sha256':{p:sha256((ROOT/p).read_bytes()).hexdigest() for p in sources},
               'full_period_lattice_controls':lattice,'inverse_monomial_dual_controls':dual,
               'trivial_intrinsic_grading_controls':index_controls,
@@ -999,6 +1233,7 @@ def main():
               'socle_free_shell_controls':shell_controls,
               'period_gap_controls':gap_controls,
               'global_gap_controls':global_controls,
+              'score_filtration_controls':score_controls,
               'summary':{'full_period_cover_prices':len(lattice),'dual_quotient_price_field_controls':len(dual),
                          'nonbox_reflection_obstructions':sum(x['nonbox_reflection_has_no_constant'] for x in dual),
                          'all_field_pair_minimal_polynomial_controls':len(index_controls),
@@ -1034,6 +1269,21 @@ def main():
                               'critical_ray_box_formulas':len(global_controls['critical_ray_box_obstruction']),
                               'critical_ray_direct_covers':sum('actual_cover_box_sides' in c for c in global_controls['critical_ray_box_obstruction']),
                               'complete_low_score_target_checks':sum(len(c.get('independent_low_score_controls',[])) for c in global_controls['critical_ray_box_obstruction'])})
+    all_score = (score_controls['triangle_obstructions']+score_controls['univariate_controls']+
+                 score_controls['all_active_quadratic_excess_obstructions'])
+    report['summary'].update({'score_filtration_triangle_fields':len(score_controls['triangle_obstructions']),
+                              'finite_score_neighborhood_frontiers':len(score_controls['triangle_obstructions']),
+                              'score_filtration_univariate_fields':len(score_controls['univariate_controls']),
+                              'exhaustive_score_subsets':score_controls['exhaustive_small_triangle_subsets'],
+                              'independent_score_basis_checks':sum(len(c['full_basis_controls']) for c in all_score),
+                              'individual_score_defect_checks':sum(c['ground_size'] for c in all_score),
+                              'score_nonzero_product_checks':sum(c['nonzero_product_checks'] for c in all_score),
+                              'strict_collective_defect_borders':sum(len(c['strict_border_certificates']) for c in score_controls['triangle_obstructions'])})
+    report['summary'].update({'all_active_score_split_fields':len(score_controls['all_active_quadratic_excess_obstructions']),
+                              'score_split_sector_frontiers':sum(len(c['sector_prefix_controls'])+len(c['opposite_sector_controls']) for c in score_controls['all_active_quadratic_excess_obstructions']),
+                              'strict_active_score_borders':sum(len(c['strict_border_certificates']) for c in score_controls['all_active_quadratic_excess_obstructions']),
+                              'score_split_ideal_relations':sum(c['displayed_ideal_relations_checked'] for c in score_controls['all_active_quadratic_excess_obstructions']),
+                              'direct_independent_score_minors':sum(b['direct_determinant_polynomial'] is not None for c in all_score for b in c['full_basis_controls'])})
     (ROOT/'results/research/periodic_quotient_checks.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report['summary'],sort_keys=True))
 

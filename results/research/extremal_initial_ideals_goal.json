@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Preserve the full sharp-G_3 or polynomial-separation objective and every original success criterion. Actual period arithmetic now covers every positive weight with four fixed sectors. Comparable odd coprime periods have the global bound O(sqrt(H)*n^(7/3)), H=(r-s)/gcd(r-s,r-t); bounded normalized gaps give O(n^(7/3)), still above the generic scale. This is a classical common-box/profile corollary and does not close the family or improve unrestricted G_3. Do not add another sector-box corollary as a substitute for a sharper count. One explicit shortest cover near the ray (t,2,2) has unavoidable box volume Omega(M^(5/3)), even with fixed normalized gaps, while all infinitesimal quotient refinements at that ray number only O(n) by the previous positive-grading theorem. The box obstruction concerns the full cover, not proved quotient-axis membership. The next concrete task is a rank-sensitive profile-deficit or cost-filtration bound in the remaining sector: quantify how a basis can depart from the minimum score t*a+2*b+2*c as prices leave an arithmetic grading ray. Prove a usable global incidence/charging statement for cones meeting these rays, or produce an exact coherent counterexample before assuming a small ray cover. A finite-distance neighborhood is not an infinitesimal star. Preserve the existing counterexample to unrestricted polylogarithmic projection-plane covers, local linear refinement theorem, all-field shell bound, inverse-dual cost formulation and field-sensitive ranks. Do not multiply unrelated cover/refinement counts or infer fan growth from a large candidate set, large box, torsion or primitive normal. Keep the alternative unrestricted rational-shadow route and realizable nonlinear lower constructions available if periodic refinements cannot yield a consequential advance. Complete strongest-current and exact-priority comparisons without treating failed downloads or searches as novelty evidence. No larger line-sweep framework, messages, submissions or reduced endpoint.",
+  "next_proof_task": "Preserve the full sharp-G_3 or polynomial-separation objective and every original success criterion. The global O(sqrt(H)*n^(7/3)) comparable-period bound and all previous exclusions remain valid. Score excess is now exactly the sum of collective prefix-rank deficits, with a finite star-stability criterion and a determinant-valuation certificate. Its individual monomial inclusion-defect filter is valid, but even a coherent all-active basis can have maximal-order Theta(n^2) excess while every selected monomial has defect zero. The explicit line/point counterexample has an entire O(n^2*log(n+1)) fan by two exact sector rules, and the all-field truncated-plane counterexample is graded with a linear whole fan. Do not run larger fans of either diagnostic family, infer growth from excess, or replace collective ranks by filtered degrees of single monomials. The abstract loop-free initial-matroid distinction and valuation rescaling are established mathematics, not a paper result. For the original mixed-period algebra, retain the exact tensor/cycle-space prefix representation and analyse the simultaneous ranks as prices move away from an arithmetic ray such as (t,2,2). A useful next theorem must control genuinely perturbed prefixes or their exposed cones in both price parameters; the fixed-score Hilbert function or excess alone does not do this. Determine a concrete rank/charging budget for those periodic prefixes, or an exact coherent obstruction to that budget, before any wider search. The generic counterexample is not asserted periodic and cannot be used to abandon that family without its own rank analysis. Keep the unrestricted rational-shadow route and genuinely different realizable nonlinear lower constructions available. Complete strongest-current and exact-priority comparisons without treating empty searches as novelty. No larger line-sweep framework, messages, submissions or lowered endpoint.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -101,7 +101,8 @@
     "Assess the exact cover-count specialization, inverse-label cost formulation, intrinsic-index obstruction and coherent arithmetic witness against primary lattice-ideal, cyclotomic/simplicial and modular Groebner literature. Martin--Reiner Theorem 1 and Arnold Theorems 5.11--5.13 are established inputs. Finite pure-power pullbacks and their unchanged fans are classical consequences, not novelty claims. The strongest current unrestricted comparison remains unresolved.",
     "Compare the fixed-cover upper-shell specialization, oriented cube-circuit filter and proposed surviving-candidate bound with parametric matroid and simplicial-tree optimization literature. Hrubes--Yehudayoff Theorem 4/Lemma 5 and Sabariego--Santos Section 4/Theorems 5.1/5.3 are established inspected frameworks, not numerical-priority certificates. A line trace or finite refinement count does not settle the full cone or unrestricted G_3.",
     "Compare the explicit gap-dependent common-box regions and all-field active-generator slab construction against primary weighted lattice-routing and lattice-ideal literature. The basis-profile dictionary and final volume estimate are established; no new lattice theorem or unrestricted count is asserted. Distinguish cube-only counterexamples from joint-shell or fan-count lower bounds, and finite prime triples from an unproved infinite prime constellation.",
-    "Compare the global four-sector bound O(sqrt(H)*n^(7/3)) for comparable dense periodic quotients, and the uniform shortest-cover box obstruction at (t,2,2), against primary weighted lattice-ideal and routing literature. The state-profile/vertex step and successive-initial/graded-refinement arguments are established inputs. No sharpness for the actual fan, quotient-axis obstruction, current novelty or new unrestricted result is inferred."
+    "Compare the global four-sector bound O(sqrt(H)*n^(7/3)) for comparable dense periodic quotients, and the uniform shortest-cover box obstruction at (t,2,2), against primary weighted lattice-ideal and routing literature. The state-profile/vertex step and successive-initial/graded-refinement arguments are established inputs. No sharpness for the actual fan, quotient-axis obstruction, current novelty or new unrestricted result is inferred.",
+    "The score-prefix deficit, forced-element minimum excess, optimal-face matroid and polynomial determinant-rescaling identities are classical. Feichtner--Sturmfels Section 2 and Proposition 2.5 were inspected with the max/min convention reversed. Assess exact priority only of any proposed quantitative realization or fan-count consequence, including the explicit maximal-order all-active excess example and its two-sector O(n^2*log(n+1)) screen. No novelty is inferred from the construction or failed searches, and its behaviour is not assumed to describe the periodic tensor quotient."
   ],
   "primary_sources": [
     {
@@ -688,10 +689,23 @@
       "global_gap_direct_covers": 8,
       "critical_ray_box_formulas": 8,
       "critical_ray_direct_covers": 4,
-      "complete_low_score_target_checks": 12
+      "complete_low_score_target_checks": 12,
+      "score_filtration_triangle_fields": 35,
+      "finite_score_neighborhood_frontiers": 35,
+      "score_filtration_univariate_fields": 12,
+      "exhaustive_score_subsets": 879,
+      "independent_score_basis_checks": 552,
+      "individual_score_defect_checks": 2244,
+      "score_nonzero_product_checks": 19420,
+      "strict_collective_defect_borders": 280,
+      "all_active_score_split_fields": 15,
+      "score_split_sector_frontiers": 105,
+      "strict_active_score_borders": 90,
+      "score_split_ideal_relations": 60,
+      "direct_independent_score_minors": 543
     }
   },
-  "preservation": "Only the six explicitly privacy-reviewed public research files change. Every unlisted tracked file, including all manuscripts/PDFs, core kernels, auditor, public CLI, previous research and paused ML artifacts, is byte-preserved against the ignored baseline at 0a3567f. Every previous periodic report section/count, original objective and criteria, and all thirty-one previous continuations are preserved. Local baselines, probes and logs remain ignored.",
+  "preservation": "Only the six explicitly privacy-reviewed public research files change. All 298 unlisted tracked files, including manuscripts/PDFs, core kernels, auditor, public CLI, previous research and paused ML artifacts, are byte-preserved against the ignored baseline at 08243a5. Every earlier periodic report section/count, the original objective and criteria, and all thirty-two previous continuations are preserved. Local baselines, probes and logs remain ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
@@ -702,8 +716,8 @@
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "34c817ae53a9f6a146e369d31c8aa36f603b5b2da8899b724d6b2302efbbcf7c",
-    "docs/extremal_initial_ideals.md": "20ef2a2b04920772e157683110f9efa4e5a72275c491eea6adbc4826fac77eb2",
+    "README.md": "06f36e98946f367381e73a15ce8f68f61727b8813ce44f0ce1b2d8f3d019fc17",
+    "docs/extremal_initial_ideals.md": "ba229254a2c169907e400a58410b04ee79dae28e133497904f52813b3d03b217",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
     "results/research/profile_lattice_checks.json": "437b69bd81173c330b059d879df9f93281befb01e353f9e2c2e00f5a55746d17",
@@ -728,9 +742,9 @@
     "docs/nonnegative_graded_fans.md": "88de976c7b8359dea3b00aa30965c7caf613633adc80ae2ef16b885b8c584e6d",
     "scripts/run_graded_fan_checks.py": "b3cc437c7274378d26c8a9ced7f7ec785905601bc83ec17ea6bb9db3a515554f",
     "results/research/graded_fan_checks.json": "6d03769c1bf742dcb74d53502cbdb7c1f0cc9878b59b80426e699e0837fee055",
-    "docs/periodic_quotient_arithmetic.md": "940878479ce32f65cf04860f0f899d7c35c02998d1562c55b77ab29b43dd3bc2",
-    "scripts/run_periodic_quotient_checks.py": "c5afe23924fe7b319be107ee3120d2cc6436598440e89c34ededef850df83ac8",
-    "results/research/periodic_quotient_checks.json": "ef96f322c85c73cdbe870c6cd0d28eec239048f3e39139168ac48e1012e9e4e4",
+    "docs/periodic_quotient_arithmetic.md": "5283e2a493d463e36f35586b290cbb57303ebd089dbc89b72376dfa7c53ff79f",
+    "scripts/run_periodic_quotient_checks.py": "91802c5deb2de2a919055df68293598c3d15bbed52761f2b17677eb4b2fe860b",
+    "results/research/periodic_quotient_checks.json": "e01aa75ad09812c93c28d4632f0bf1753551195eae2f0459bf5e15837c67c551",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
     "scripts/run_nested_jet_checks.py": "aa1c4a9b69de0d0cfa54c381c4f83ebaa983cdbfd7b298af40b32603a079648c"
   },
@@ -2262,8 +2276,54 @@
         "preservation": "All thirty-one previous continuations, every old periodic report section/count, original objective and criteria, and all unlisted tracked files are preserved."
       },
       "scope_limit": "The global restricted exponent is above n^2*log(n)^2 and leaves a possible polynomial separation. It does not improve unrestricted G_3, establish a matching lower family, certify strongest-current priority or finish a paper. A large cover box can coexist with a linear local fan. Every original impact and publication criterion remains in force, and the main goal stays active."
+    },
+    {
+      "title": "Exact score deficits, maximal coherent collective excess and a complete bound for its explicit example family",
+      "recorded_on": "2026-10-20",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "08243a5 saved the global four-sector period-gap bound, a uniform large-box obstruction and its linear arithmetic-ray refinement comparison. The revalidated worktree was clean; all those results and prior report sections/counts remain preserved.",
+      "progress_classification": "The finite-neighbourhood problem now has an exact rank-prefix excess identity, an individual inclusion-defect filter and polynomial-minor certificate. The abstract filtration/initial-matroid content is classical. A uniform all-field example shows the column filter can miss large coherent excess, and an explicit rational all-active quotient realizes the maximal quadratic excess order with zero individual defect on every selected monomial. Both sectors of that example reduce to planar selection, proving a global O(n^2*log(n+1)) bound and closing it as a power-separation route. The unrestricted G_3 exponent is unchanged.",
+      "uniform_proofs": [
+        "For every finite quotient and positive integral score, the excess of any monomial vector basis over a score-greedy basis is exactly the sum over integer thresholds of the rank of the filtered prefix minus the basis occupancy there. All deficits are nonnegative. On a finite ground of coordinate widths R_i, a perturbed minimum basis has excess at most n*sum_i |v_i|*R_i. If that last sum without n is less than one, exchange optimality keeps every generic minimizer on the score-minimum face, giving a finite neighbourhood for the existing linear local refinement bound.",
+        "For a nonzero monomial m, its defect lambda(m)=score(m)-minimum_filtered_degree(m) is nonnegative, superadditive on nonzero products and exactly the smallest excess of an ordinary vector basis containing m. Its bounded sublevel ground is a finite downset. The sum of these individual defects in a basis is at most the collective excess. In a filtered basis with row degrees d_i, the polynomial coefficient matrix c_(i,m)*T^(score(m)-d_i) has determinant det(c)*T^excess. These are elementary filtered-linear-algebra and weighted-matroid identities, not new abstract optimization claims; a nonzero determinant modulo T^(E+1) need not be a unit or give a field independence oracle.",
+        "For A_q=K[x,y]/(x,y)^(q+1), with X=x,Y=y,Z=x(x-y), every nonzero monomial has zero individual defect at score (1,1,1), over every field. Its ordinary degree-D filtration rank is max(0,min(D+1,2h-D+1)), by divisibility by x(x-y). The coherent planar basis at weights (2,3,7) has exact excess sum_(D<=q) floor(D^2/4)=Theta(n^(3/2)). Its entire fan remains linear by the previously proved positive grading (1,1,2); this is a diagnostic family, not a separating candidate.",
+        "For L>=4 over Q, take the nilpotent line Q[t]/t^L and L reduced points u_i=2^i, with X=(t;0),Y=(t;u_i),Z=(0;u_i^(L+1)). The explicit ideal is (X(Y-X),X^L,(Y-X)*product_i(Y-u_i),Z-Y^(L+1)). Reduction spans at most 2L dimensions, and a Vandermonde calculation proves the all-active basis 1,X,...,X^(L-1),Y,...,Y^(L-1),Z is independent. Its six borders are strict at (1,2,2L-1). Every selected monomial has zero individual defect, but filtered ranks min(h+1,L)+min(L,binomial(h+2,2)-1) give excess n^2/8+O(n^(3/2)). Quadratic order is maximal for a downset at total-degree score.",
+        "For that rational family, the whole wX<wY sector consists of fixed pure-X line representatives plus the first L nonconstant planar monomials, giving exactly C_2(L+1)=Theta(n*log n) states. For wX>wY, contracting the fixed Y line representatives gives uniform point labels e=b+(L+1)c. Low Y labels have one common cost penalty; all other labels use pure Y or maximal-Z representatives according to wZ versus (L+1)wY. Fixing the selected penalized-axis length leaves translated planar prefixes plus one exceptional point. Summing their established planar counts bounds the entire family by O(n^2*log(n+1)). Boundary orders are captured by perturbation. The construction is not asserted to be the original periodic quotient or to retain the same rank behaviour over every finite field."
+      ],
+      "independent_controls": {
+        "command": "python3 -B scripts/run_periodic_quotient_checks.py",
+        "report": "results/research/periodic_quotient_checks.json",
+        "status": "passed",
+        "score_filtration_triangle_fields": 35,
+        "finite_score_neighborhood_frontiers": 35,
+        "score_filtration_univariate_fields": 12,
+        "exhaustive_score_subsets": 879,
+        "independent_score_basis_checks": 552,
+        "individual_score_defect_checks": 2244,
+        "score_nonzero_product_checks": 19420,
+        "strict_collective_defect_borders": 280,
+        "all_active_score_split_fields": 15,
+        "score_split_sector_frontiers": 105,
+        "strict_active_score_borders": 90,
+        "score_split_ideal_relations": 60,
+        "direct_independent_score_minors": 543
+      },
+      "reading_scope": [
+        {
+          "source": "https://arxiv.org/pdf/math/0411260",
+          "scope": "Inspected Section 2, Definition 2.1, the optimal-face matroid discussion and Proposition 2.5 with its proof. These identify the established distinction between each element belonging to an optimizing basis and the chosen elements together forming one. The source uses maximizing weights, reversed here. No novelty is claimed for that distinction, ordinary exchange sensitivity or determinant rescaling."
+        }
+      ],
+      "verification": {
+        "research": "passed",
+        "build": "passed",
+        "smoke": "passed",
+        "source_hashes": "verified",
+        "preservation": "Every old periodic-report section/count, all thirty-two prior continuations, original objective and criteria, and all 298 unlisted tracked files are preserved."
+      },
+      "scope_limit": "These exact identities and extremal-order counterexamples change the proposed proof mechanism, and the whole example family is excluded from polynomial fan separation. They do not improve unrestricted G_3, count finite-distance periodic refinements, prove a current-priority statement or finish a paper. Large collective excess is not itself a fan-count lower bound. All original impact criteria remain in force, with the main goal active."
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "A global restricted O(sqrt(H)*n^(7/3)) bound now covers all prices of comparable-period dense quotients; it is not an improvement of unrestricted G_3. An actual large-box family and its linear infinitesimal refinement bound identify the missing rank/cost-filtration information. No polynomial separation, novelty certificate or paper endpoint.",
-  "previous_goal_turn_classification": "Progress: 0a3567f saved regional arithmetic bounds and the active-generator cube obstruction. This continuation gives a global four-sector bound and a uniform actual-cover box obstruction whose arithmetic-ray quotient refinements remain linear."
+  "asymptotic_improvement_scope_this_iteration": "No unrestricted G_3 exponent or polynomial separation. Exact collective-score identities and finite stability are established with their classical boundary; uniform coherent counterexamples show individual degree defects can miss the maximal possible excess order. Both sectors of the explicit rational example give a whole-family O(n^2*log(n+1)) exclusion. None of this establishes current novelty or a paper endpoint.",
+  "previous_goal_turn_classification": "Progress: 08243a5 proved an all-weight restricted bound and a uniform cover-box obstruction. This continuation gives the exact collective-score invariant, verified counterexamples to a columnwise replacement and a complete bound that closes the explicit counterexample family."
 }

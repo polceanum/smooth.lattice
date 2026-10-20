@@ -1304,6 +1304,334 @@ a global restricted upper bound and a proof-budget obstruction, not
 a polynomial fan separation, a novelty certificate or the requested
 paper endpoint.
 
+## Score filtrations measure collective, not individual, rank loss
+
+A small infinitesimal fan at a positive integer ray does not yet control
+a finite price neighbourhood. The following exact filtration identities
+give a way to measure departure from that ray. They are elementary forms
+of established weighted-matroid and filtered-linear-algebra facts. Two
+explicit quotient families show why the individual-column version cannot
+replace the collective ranks needed for a global fan count.
+
+### Exact prefix deficits and a finite stability neighbourhood
+
+Let $A=K[X,Y,Z]/I$ have dimension $n$, and fix positive integer
+scores $d=(d_X,d_Y,d_Z)$. Put $s(a)=d\cdot a$, let $F_h$
+be the span of all monomials of score at most $h$, and write
+$r_h=\dim F_h$. Choose a score-greedy monomial basis $B_0$;
+it is adapted to every $F_h$. If $\mu_0=\sum_{b\in B_0}s(b)$,
+then every monomial vector basis $B$ has nonnegative integral excess
+
+$$
+\mathcal E(B)=\sum_{b\in B}s(b)-\mu_0
+ =\sum_{h\ge0}\left(r_h-|\{b\in B:s(b)\le h\}|\right). \tag{Q34}
+$$
+
+All summands are nonnegative, because the displayed subset of $B$ is
+independent inside $F_h$. The sum is finite. Summing the prefix counts
+up to any common final score proves the equality. This is the usual
+rank-prefix proof of greedy optimality written as an exact deficit.
+It applies to ordinary vector bases; they need not be downsets or
+coherent initial sets.
+
+On a finite monomial ground containing all relevant standard sets, let
+$R_i$ be its coordinate widths. For a positive weight $w=d+v$, a
+$w$-minimum basis satisfies
+
+$$
+0\le\mathcal E(B)\le n\Delta(v),\qquad
+\Delta(v)=\sum_i |v_i|R_i.                              \tag{Q35}
+$$
+
+Indeed compare its cost with a $d$-minimum basis and use the coordinate
+widths of their profiles. More strongly, if $\Delta(v)<1$, every
+generic $w$-minimum basis is $d$-minimum. Choose a basis minimizing
+$v$ on the $d$-minimum face. A one-element exchange increasing the
+integral $d$ score costs at least one and cannot become cheaper under
+this perturbation. An exchange of zero $d$ cost cannot improve $v$.
+The ordinary matroid exchange optimality criterion proves the claim.
+Thus the earlier linear graded-refinement count holds in this explicit
+finite neighbourhood, not merely in a limiting perturbation.
+
+These are standard optimal-face and sensitivity arguments. In
+[Feichtner--Sturmfels, Section 2, Definition 2.1 and the discussion before
+Proposition 2.5](https://arxiv.org/pdf/math/0411260), faces are represented
+by the matroids of optimizing bases. That source uses maximum weights;
+negating them gives the minimum convention here. No new abstract
+matroid-face theorem is asserted.
+
+### A canonical monomial filter and its exact limitation
+
+For a nonzero residue $m$, let $\nu(m)=\min\{h:m\in F_h\}$ and
+define its individual defect $\lambda(m)=s(m)-\nu(m)\ge0$.
+Give zero residues defect $+\infty$. Filtered multiplication implies
+
+$$
+\lambda(m_1m_2)\ge\lambda(m_1)+\lambda(m_2)
+\quad\text{when }m_1m_2\ne0.                           \tag{Q36}
+$$
+
+For a basis $B$, the total defect is bounded by its collective excess:
+
+$$
+\sum_{m\in B}\lambda(m)\le\mathcal E(B).                \tag{Q37}
+$$
+
+Here is an exact matrix proof that also records the lost information.
+Expand every residue in $B_0=(b_i)$ with coefficients $c_{i,m}$,
+and put $d_i=s(b_i)$. Adaptedness gives
+$\nu(m)=\max\{d_i:c_{i,m}\ne0\}$. Form the polynomial matrix
+
+$$
+D_B(T)_{i,m}=c_{i,m}T^{s(m)-d_i}.
+$$
+
+Nonzero entries have nonnegative exponents, and row/column rescaling gives
+
+$$
+\det D_B(T)=\det(c_{i,m})\,T^{\mathcal E(B)}.             \tag{Q38}
+$$
+
+Each column is divisible by $T^{\lambda(m)}$, proving (Q37).
+Moreover $\lambda(m)$ is exactly the minimum excess of any basis
+containing $m$: replace a $B_0$ column of largest score with nonzero
+coefficient in $m$. That fundamental-circuit exchange attains the
+lower bound. It need not be a coherent monomial downset.
+
+Consequently all bases of excess at most $E$ lie in the canonical
+downset $\{m:\lambda(m)\le E\}$. It is finite for positive $d$:
+if $L_0=\max_i s(b_i)$, then $\nu(m)\le L_0$, so $s(m)\le L_0+E$.
+One may also intersect it with the usual universal monomial ground.
+This gives a valid coefficient-sensitive filter, with no claim that
+constructing it or computing its ranks is cheap.
+
+The converse to (Q37) is false even at the largest possible order of
+excess. Columnwise zero defect says that each element belongs to
+some minimum basis, not that the chosen columns together form one.
+This is precisely the established loop-free initial-matroid distinction;
+compare [Feichtner--Sturmfels, Proposition 2.5](https://arxiv.org/pdf/math/0411260),
+again reversing weights. Formula (Q38), rather than column divisibility,
+detects the simultaneous leading-rank loss. Reduction modulo
+$T^{E+1}$ retains a basis determinant exactly when its excess is at
+most $E$. A nonzero determinant there need not be a unit: this is not
+an ordinary independence test over a field or a new greedy oracle.
+
+### An all-field example with every nonzero monomial defect zero
+
+For $q\ge2$ over any field, take
+
+$$
+A_q=K[x,y]/(x,y)^{q+1},\quad
+X=x,\ Y=y,\ Z=f=x(x-y),\quad n=\binom{q+2}{2}.
+$$
+
+Use scores $(1,1,1)$. In ordinary $x,y$ degree $D\le q$, the
+score filtration has dimension
+
+$$
+\dim(F_h\cap (A_q)_D)=\max(0,\min(D+1,2h-D+1)).         \tag{Q39}
+$$
+
+Indeed the relevant space is
+$f^{\max(0,D-h)}K[x,y]_{D-2\max(0,D-h)}$, with negative
+degrees meaning zero. Multiplication by the nonzero polynomial $f$
+is injective before reaching the truncation degree. A nonzero monomial
+$X^aY^bZ^c$ has exactly $c$ factors of $x-y$, so it cannot lie
+in the next lower filtration space. Its individual defect is zero.
+This includes characteristic two.
+
+The planar downset $B=\{X^aY^b:a+b\le q\}$ is coherent at
+weight $(2,3,7)$: replacing $Z$ by $X^2-XY$ strictly lowers cost,
+and every degree-$q+1$ planar monomial is zero. Yet (Q39) gives
+
+$$
+\mathcal E(B)=\sum_{D=0}^q\left\lfloor D^2/4\right\rfloor
+ =\Theta(n^{3/2}),\qquad \sum_{m\in B}\lambda(m)=0.       \tag{Q40}
+$$
+
+This family is homogeneous for the other positive grading $(1,1,2)$.
+The previous theorem therefore bounds its **entire** fan by $12n+6$.
+Large excess is not evidence of many initial ideals; this construction
+is retained as a diagnostic example, not a separating candidate.
+
+### Worst-order excess with all three generators active
+
+A second construction removes the missing-generator issue and makes the
+excess quadratic. For $L\ge4$, work over $\mathbb Q$ and define
+
+$$
+A_L=\mathbb Q[t]/t^L\ \times\ \mathbb Q^L,\qquad u_i=2^i,
+$$
+$$
+X=(t;0),\qquad Y=(t;(u_i)),\qquad
+Z=(0;(u_i^{L+1})).
+$$
+
+An explicit polynomial presentation is
+
+$$
+I_L=(X(Y-X),\ X^L,\ (Y-X)f_L(Y),\ Z-Y^{L+1}),\qquad
+f_L(Y)=\prod_{i=1}^L(Y-u_i).
+$$
+
+Each generator vanishes in the displayed algebra. Conversely remove
+$Z$, reduce mixed $X,Y$ monomials to pure $X$ powers, and use the
+monic last $Y$ relation to reduce $Y^{L+1}$. This spans the quotient
+by $1,X,\ldots,X^{L-1},Y,\ldots,Y^L$, at most $2L$ vectors.
+The independent $2L$ vectors below prove equality of the kernel with
+$I_L$, as well as the stated length.
+
+These generate the whole algebra. In fact
+
+$$
+B_L=\{1,X,\ldots,X^{L-1},Y,\ldots,Y^{L-1},Z\}
+\quad\text{is a basis of size }n=2L.                    \tag{Q41}
+$$
+
+Its line components first eliminate the constant coefficient and pair
+the $X^j,Y^j$ coefficients. The remaining $L$ point-component columns
+have exponents $1,\ldots,L-1,L+1$ in the nodes $u_i=2^i$.
+They form, after transposition and column scaling, an ordinary
+Vandermonde matrix on distinct numbers $2^j$. Thus they are independent.
+This supplies an actual finite polynomial quotient with commuting
+multiplication, not an abstract matroid representation.
+
+The basis is coherent at $(1,2,2L-1)$. Its minimal border heads are
+$XY,XZ,X^L,Y^L,YZ,Z^2$. The first reduces to $X^2$, the
+next two to zero, and the other three are more expensive than every
+basis monomial. Their exact normal forms therefore certify this order.
+Every monomial in $B_L$ has zero individual defect at score $(1,1,1)$:
+projection to the line forces $\nu(X^j)=\nu(Y^j)=j$ for $j<L$,
+and $\nu(Z)=1$. All three generators are present.
+
+The filtration ranks are explicit:
+
+$$
+r_h=\min(h+1,L)+\min\!\left(L,\binom{h+2}{2}-1\right).
+\tag{Q42}
+$$
+
+The first term is the line rank. After subtracting the line part of
+$Y^j$ by $X^j$, the other columns are the evaluations of nonconstant
+$Y,Z$ monomials of degree at most $h$. For $h\le L$, their exponents
+$b+(L+1)c$ are distinct, and the same Vandermonde argument gives the
+second term. At larger $h$ the full dimension has already been reached.
+
+Let $s_L$ be the sum of degrees of the first $L$ nonconstant monomials
+in two variables ordered by total degree. Thus $s_L=\Theta(L^{3/2})$.
+Equation (Q42) gives $\mu_0=L(L-1)/2+s_L$, and hence
+
+$$
+\mathcal E(B_L)=L(L-1)/2+1-s_L
+ =\frac{n^2}{8}+O(n^{3/2}),\qquad
+\sum_{m\in B_L}\lambda(m)=0.                            \tag{Q43}
+$$
+
+Quadratic order is the largest possible here: in any $n$-point
+monomial downset, the $i$th monomial in degree order has degree at
+most $i-1$, by its divisor chain. Thus its total degree, and therefore
+its excess at $(1,1,1)$, is at most $n(n-1)/2$.
+
+This maximal-order discrepancy still occurs in a sector with an exact
+small count. Throughout $w_X<w_Y$, each $X^j$, $j<L$, is cheaper
+than any other monomial with the same nonzero line component.
+Monomials containing $X$ and $Z$ vanish; mixed $X,Y$ monomials reduce
+to cheaper pure $X$ powers. Greedy selection therefore takes
+$1,X,\ldots,X^{L-1}$ and then the first $L$ nonconstant $Y,Z$
+monomials. The latter have degree at most $L$, so their evaluation
+columns are independent by the preceding Vandermonde calculation.
+This proves the rule even when the two scans interleave in cost.
+
+Every planar prefix arises by choosing $w_X<w_Y$, so the sector count
+is exactly the established corner-cut count $C_2(L+1)=\Theta(L\log L)$.
+
+The opposite sector also has a complete selection rule. If $w_X>w_Y$,
+the cheapest monomial with line component $t^j$, $j<L$, is $Y^j$.
+Thus $1,Y,\ldots,Y^{L-1}$ are always selected. Contract their span
+and put $\eta=w_X-w_Y>0$. The remaining point columns have scalar
+labels $e=b+(L+1)c>0$. Any $L$ distinct labels are independent,
+by the same Vandermonde argument, even when their degrees exceed $L$.
+The available costs for a label are:
+
+* $e=b$, $1\le b<L$: the representative $XY^{b-1}$ costs
+  $bw_Y+\eta$;
+* $e=b$, $b\ge L$: $Y^b$ costs $bw_Y$;
+* $e=b+(L+1)c$, $c\ge1$: $Y^bZ^c$ costs $bw_Y+cw_Z$.
+
+Mixed monomials with higher $X$ powers reduce to cheaper $XY^{j-1}$;
+ones also containing $Z$ vanish. Choose the cheapest representative of
+each point label and then take the cheapest $L$ distinct labels.
+This is exact contraction followed by uniform matroid optimization,
+not an assumption that a point matroid is generic for arbitrary costs.
+
+If $w_Z>(L+1)w_Y$, all large labels use pure $Y$ powers.
+For each possible number $m$ of selected penalized labels, those
+labels are $1,\ldots,m$, and the other labels are
+$L,\ldots,2L-m-1$. This gives at most $L$ states.
+
+If $w_Z<(L+1)w_Y$, each large label uses its representation with
+maximal $Z$ exponent, so $0\le b\le L$ and $c\ge1$.
+The unpenalized ground is this translated strip plus the exceptional
+point $(L,0)$. Fix the number $m$ of selected penalized labels,
+again necessarily $1,\ldots,m$. The other $N=L-m$ labels form
+an $N$-point prefix of the unpenalized ground. Without the exceptional
+point, translating $c$ by one makes this an ordinary planar prefix;
+the strip bound does not restrict the first $N\le L$ points. With
+the exceptional point, the other $N-1$ points form such a prefix.
+There are at most $C_2(N)+C_2(N-1)$ choices. Summing over
+$0\le m<L$ proves the whole-family bound
+
+$$
+g(A_L)=O(L^2\log(L+1))=O(n^2\log(n+1)).                 \tag{Q44}
+$$
+
+Boundary orders are obtained by generic perturbations, including the
+comparison between $Z$ and $Y^{L+1}$. This excludes the entire
+explicit family as a source of polynomial separation, despite its
+maximal-order coherent excess and all-active witness. The bound is
+not asserted sharp, nor is it a theorem for arbitrary planar point
+components. The representation and prefix counts are established
+ingredients; no novelty certificate follows from their specialization.
+
+The rational construction is uniform. It does not specialize unchanged
+to every finite field; the checker uses two separately nondegenerate
+finite-field controls. The direct product is also not asserted to be
+the original periodic three-circuit algebra.
+
+### Verification and effect on the counting problem
+
+The checker directly computes filtered ranks, normal-form degrees,
+fundamental-circuit inclusion witnesses and every retained nonzero
+product. It enumerates all $879$ candidate subsets for the two small
+triangle sizes in three fields, and all bases of twelve univariate
+controls with nonzero individual defects. Direct polynomial determinant
+expansion checks cancellations and valuations independently, without
+assuming one surviving degree. Thirty-five triangle field models verify
+(Q39)--(Q40), strict borders and the finite stability neighbourhood.
+Fifteen line/point models check (Q41)--(Q43), the four displayed ideal
+generators, all six border relations,
+and $105$ full quotient frontiers against both sector rules in (Q44).
+The latter controls are over $\mathbb Q,\mathbb F_{101},\mathbb F_{1009}$
+at the recorded sizes, with no all-finite-fields claim.
+
+Across the controls there are $2,244$ individual-degree checks,
+$19,420$ nonzero product checks, $552$ independent basis checks and
+$543$ direct nonzero polynomial minors; larger line/point bases use
+exact ranks and borders rather than exponential determinant expansion.
+These finite checks support the uniform proofs, not an asymptotic fit.
+
+The individual filter and finite-radius calculation are valid supporting
+tools, but their abstract content is classical. The examples rule out
+replacing collective prefix deficits by individual degree loss, even with
+all generators active and even at the worst possible excess order.
+They also rule out using large excess alone as evidence of a large fan;
+the entire explicit rational family is bounded below the generic spatial
+scale by (Q44).
+The next argument needs the simultaneous ranks of perturbed prefixes,
+or a genuine incidence budget for their exposed cones. None of this
+changes the unrestricted exponent, proves current novelty or supplies
+the requested paper endpoint.
+
 ## Exact reproduction
 
 ```bash
@@ -1332,3 +1660,7 @@ complete primal/dual bases with strict borders for active slab covers.
 The global continuation adds four-sector coverage, exact period identities,
 complete low-score representation tests and the large-box obstruction at
 one positive arithmetic weight ray.
+The filtration continuation adds exact score-prefix ranks, individual and
+collective defects, polynomial-minor valuations, finite neighbourhoods and
+two explicit algebraic obstructions to replacing collective rank by a
+columnwise filter.

@@ -2640,6 +2640,44 @@ incidence bound for the arithmetic rays. No assertion that all remaining
 cones meet a small ray collection is made. The full original goal and
 all publication criteria remain unachieved.
 
+## Score excess needs collective rank information
+
+The [score-filtration continuation](periodic_quotient_arithmetic.md#score-filtrations-measure-collective-not-individual-rank-loss)
+gives an exact identity for every finite quotient at a positive integer
+score: a basis's excess cost is the sum of its deficits against the
+filtered prefix ranks. Each monomial's individual filtered-degree defect
+is its minimum possible inclusion excess. These defects are superadditive
+under nonzero multiplication, but their sum only bounds the total excess
+from below. A filtered coefficient determinant records the exact excess.
+These are elementary forms of classical matroid/filtration identities,
+with a finite stability radius for which the previous linear local count
+continues to hold.
+
+The failure of a columnwise converse is realizable and sharp in order.
+An explicit rational quotient of length $n=2L$ combines a nilpotent line
+with planar points at powers of two. Its coherent all-active basis has
+zero individual defect on every selected monomial, yet excess
+$n^2/8+O(n^{3/2})$. Quadratic order is maximal for an $n$-monomial
+downset at total-degree score. Nevertheless its entire $w_X<w_Y$
+sector reduces exactly to the first $L$ nonconstant planar monomials
+and has only $C_2(L+1)=\Theta(n\log n)$ initial ideals. In the other
+sector, contraction gives a penalized axis and translated planar prefixes;
+summing over the selected axis length bounds the whole explicit family
+by $O(n^2\log(n+1))$. It is therefore closed as a power-separation
+route, rather than kept for a larger fan search. A separate
+all-field truncated-plane family has no individual defect on any
+nonzero monomial and still admits coherent excess $\Theta(n^{3/2})$;
+its whole fan is linear by the earlier positive-grading theorem.
+
+Thus neither individual degree loss nor a large total excess measures
+fan growth. The loop-free initial-matroid distinction is established
+prior work, explicitly compared with Feichtner--Sturmfels Proposition 2.5.
+Exact prefix ranks, polynomial minors and border certificates verify
+the realizations. The next count must retain simultaneous dependencies
+as the weight changes. No unrestricted exponent, polynomial separation,
+novelty certificate or paper endpoint follows from these diagnostics;
+all original goal criteria remain in force.
+
 ## Reproduction
 
 From the repository root:
