@@ -1,7 +1,7 @@
 {
   "status": "passed",
   "command": "python3 -B scripts/run_algebraic_incidence_controls.py",
-  "scope": "Three-pole quotients give quartic incidence; nine-cone quotients check interior radius. Generic two-curve unions have quadratic fan growth uniformly in the component sizes. No stronger G_3 count or novelty certificate is inferred.",
+  "scope": "Three-pole quotients give quartic incidence and generic two-curve unions have quadratic fans. Arbitrarily many scaled components have an exact generic prefix-rank formula with only square-root many capacity constraints. The full extremal count and priority remain open.",
   "summary": {
     "complete_axis_fans": 8,
     "axis_cells": 548,
@@ -23,7 +23,19 @@
     "two_curve_quota_allocation_checks": 10,
     "two_curve_rank_formula_prefix_checks": 15885,
     "two_curve_s_pairs": 5307,
-    "two_curve_normal_forms": 16665
+    "two_curve_normal_forms": 16665,
+    "multicurve_formal_sectors": 28,
+    "multicurve_formal_s_pairs": 84,
+    "multicurve_complete_point_fans": 8,
+    "multicurve_prefix_rank_checks": 10006,
+    "multicurve_normal_forms": 10582,
+    "multicurve_direct_point_rank_queries": 84,
+    "capacity_partitions": 66,
+    "compressed_rank_queries": 54912,
+    "signed_large_integer_floor_sums": 2625,
+    "direct_hook_counts": 6656,
+    "surface_floor_sum_counts": 832,
+    "independent_functional_subset_ranks": 1596
   },
   "uniform_axis_matroids": [
     {
@@ -28024,14 +28036,9238 @@
       "obstruction": "The first node on each component has y=1/2."
     }
   },
+  "generic_multicurve_unions": {
+    "scope": "Uniform carrier and generic sampling-rank formulas for any number of scaled components. Balanced samples with r^2>=n have exactly the generic surface fan. Intermediate balanced counts and unrestricted G_3 remain unresolved; no novelty certificate.",
+    "formal_parameter_sectors": [
+      {
+        "components": 1,
+        "sector": 0,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 6
+      },
+      {
+        "components": 2,
+        "sector": 0,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            2,
+            2,
+            0
+          ],
+          [
+            0,
+            2,
+            1
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 12
+      },
+      {
+        "components": 2,
+        "sector": 1,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            2,
+            0
+          ],
+          [
+            0,
+            2,
+            2
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 14
+      },
+      {
+        "components": 3,
+        "sector": 0,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            3,
+            3,
+            0
+          ],
+          [
+            0,
+            3,
+            1
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 20
+      },
+      {
+        "components": 3,
+        "sector": 1,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            2,
+            3,
+            0
+          ],
+          [
+            0,
+            3,
+            2
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 27
+      },
+      {
+        "components": 3,
+        "sector": 2,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            3,
+            0
+          ],
+          [
+            0,
+            3,
+            3
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 22
+      },
+      {
+        "components": 4,
+        "sector": 0,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            4,
+            4,
+            0
+          ],
+          [
+            0,
+            4,
+            1
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 30
+      },
+      {
+        "components": 4,
+        "sector": 1,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            3,
+            4,
+            0
+          ],
+          [
+            0,
+            4,
+            2
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 45
+      },
+      {
+        "components": 4,
+        "sector": 2,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            2,
+            4,
+            0
+          ],
+          [
+            0,
+            4,
+            3
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 42
+      },
+      {
+        "components": 4,
+        "sector": 3,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            4,
+            0
+          ],
+          [
+            0,
+            4,
+            4
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 32
+      },
+      {
+        "components": 5,
+        "sector": 0,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            5,
+            5,
+            0
+          ],
+          [
+            0,
+            5,
+            1
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 42
+      },
+      {
+        "components": 5,
+        "sector": 1,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            4,
+            5,
+            0
+          ],
+          [
+            0,
+            5,
+            2
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 68
+      },
+      {
+        "components": 5,
+        "sector": 2,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            3,
+            5,
+            0
+          ],
+          [
+            0,
+            5,
+            3
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 69
+      },
+      {
+        "components": 5,
+        "sector": 3,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            2,
+            5,
+            0
+          ],
+          [
+            0,
+            5,
+            4
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 60
+      },
+      {
+        "components": 5,
+        "sector": 4,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            5,
+            0
+          ],
+          [
+            0,
+            5,
+            5
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 44
+      },
+      {
+        "components": 6,
+        "sector": 0,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            6,
+            6,
+            0
+          ],
+          [
+            0,
+            6,
+            1
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 56
+      },
+      {
+        "components": 6,
+        "sector": 1,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            5,
+            6,
+            0
+          ],
+          [
+            0,
+            6,
+            2
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 96
+      },
+      {
+        "components": 6,
+        "sector": 2,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            4,
+            6,
+            0
+          ],
+          [
+            0,
+            6,
+            3
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 103
+      },
+      {
+        "components": 6,
+        "sector": 3,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            3,
+            6,
+            0
+          ],
+          [
+            0,
+            6,
+            4
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 97
+      },
+      {
+        "components": 6,
+        "sector": 4,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            2,
+            6,
+            0
+          ],
+          [
+            0,
+            6,
+            5
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 81
+      },
+      {
+        "components": 6,
+        "sector": 5,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            6,
+            0
+          ],
+          [
+            0,
+            6,
+            6
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 58
+      },
+      {
+        "components": 7,
+        "sector": 0,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            7,
+            7,
+            0
+          ],
+          [
+            0,
+            7,
+            1
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 72
+      },
+      {
+        "components": 7,
+        "sector": 1,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            6,
+            7,
+            0
+          ],
+          [
+            0,
+            7,
+            2
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 129
+      },
+      {
+        "components": 7,
+        "sector": 2,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            5,
+            7,
+            0
+          ],
+          [
+            0,
+            7,
+            3
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 144
+      },
+      {
+        "components": 7,
+        "sector": 3,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            4,
+            7,
+            0
+          ],
+          [
+            0,
+            7,
+            4
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 143
+      },
+      {
+        "components": 7,
+        "sector": 4,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            3,
+            7,
+            0
+          ],
+          [
+            0,
+            7,
+            5
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 129
+      },
+      {
+        "components": 7,
+        "sector": 5,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            2,
+            7,
+            0
+          ],
+          [
+            0,
+            7,
+            6
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 105
+      },
+      {
+        "components": 7,
+        "sector": 6,
+        "heads": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            7,
+            0
+          ],
+          [
+            0,
+            7,
+            7
+          ]
+        ],
+        "formal_s_pairs": 3,
+        "universally_lower_reduction_steps": 74
+      }
+    ],
+    "rank_controls": {
+      "capacity_partitions": 66,
+      "compressed_rank_queries": 54912,
+      "signed_large_integer_floor_sums": 2625,
+      "direct_hook_counts": 6656,
+      "surface_floor_sum_counts": 832,
+      "independent_functional_subset_ranks": 1596
+    },
+    "complete_balanced_model_fans": [
+      {
+        "components": 3,
+        "points_per_component": 2,
+        "length": 6,
+        "carrier_domain_piece_counts": [
+          10,
+          15,
+          10
+        ],
+        "distinct_initial_ideals": 25,
+        "surface_fan_equality": true,
+        "cut_witnesses": [
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                5
+              ]
+            ],
+            "weight": [
+              16,
+              16,
+              1
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "weight": [
+              1900,
+              1009,
+              259
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              821,
+              1712,
+              239
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ]
+            ],
+            "weight": [
+              672,
+              259,
+              125
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              5368,
+              5353,
+              1879
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              146,
+              523,
+              101
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ]
+            ],
+            "weight": [
+              114,
+              31,
+              31
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              1284,
+              829,
+              527
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              382,
+              721,
+              382
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              101,
+              523,
+              146
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ]
+            ],
+            "weight": [
+              236,
+              31,
+              63
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              1504,
+              747,
+              1049
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ]
+            ],
+            "weight": [
+              178,
+              13,
+              49
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              919,
+              322,
+              919
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "weight": [
+              1049,
+              747,
+              1504
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              181,
+              257,
+              282
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              647,
+              1699,
+              1119
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              239,
+              1712,
+              821
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ]
+            ],
+            "weight": [
+              110,
+              3,
+              31
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              14941,
+              3877,
+              20782
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "weight": [
+              1691,
+              757,
+              2832
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              31,
+              31,
+              114
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              125,
+              259,
+              672
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              259,
+              1009,
+              1900
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                5,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              1,
+              16,
+              16
+            ]
+          }
+        ]
+      },
+      {
+        "components": 3,
+        "points_per_component": 3,
+        "length": 9,
+        "carrier_domain_piece_counts": [
+          21,
+          33,
+          21
+        ],
+        "distinct_initial_ideals": 61,
+        "surface_fan_equality": true,
+        "cut_witnesses": [
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                5
+              ],
+              [
+                0,
+                0,
+                6
+              ],
+              [
+                0,
+                0,
+                7
+              ],
+              [
+                0,
+                0,
+                8
+              ]
+            ],
+            "weight": [
+              25,
+              25,
+              1
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                5
+              ],
+              [
+                0,
+                0,
+                6
+              ],
+              [
+                0,
+                0,
+                7
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "weight": [
+              8701,
+              4876,
+              703
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                5
+              ],
+              [
+                0,
+                0,
+                6
+              ],
+              [
+                0,
+                0,
+                7
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              3641,
+              7466,
+              623
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                5
+              ],
+              [
+                0,
+                0,
+                6
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ]
+            ],
+            "weight": [
+              2352,
+              1117,
+              227
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                5
+              ],
+              [
+                0,
+                0,
+                6
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              69678,
+              89147,
+              15055
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                5
+              ],
+              [
+                0,
+                0,
+                6
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              1711,
+              5952,
+              617
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                5
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ]
+            ],
+            "weight": [
+              2263,
+              834,
+              269
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                5
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              68270,
+              68573,
+              17597
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                5
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              929,
+              1844,
+              377
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                5
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              1837,
+              9030,
+              1139
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                0,
+                2,
+                0
+              ]
+            ],
+            "weight": [
+              4293,
+              1254,
+              641
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              174026,
+              123546,
+              50503
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              479,
+              671,
+              215
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              201136,
+              603661,
+              155683
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              83,
+              530,
+              83
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                1
+              ]
+            ],
+            "weight": [
+              144,
+              28,
+              23
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              4890,
+              2487,
+              1723
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "weight": [
+              477,
+              367,
+              276
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              1325,
+              1879,
+              996
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              232,
+              527,
+              201
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              201,
+              527,
+              232
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              155683,
+              603661,
+              201136
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                5,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              1139,
+              9030,
+              1837
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                0,
+                3,
+                0
+              ]
+            ],
+            "weight": [
+              144,
+              23,
+              28
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ]
+            ],
+            "weight": [
+              4293,
+              641,
+              1254
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              4162,
+              1359,
+              1759
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "weight": [
+              1851,
+              968,
+              1381
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              996,
+              1879,
+              1325
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              1479,
+              4481,
+              2440
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                5,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              15487,
+              72168,
+              28265
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                5,
+                0,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              617,
+              5952,
+              1711
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ]
+            ],
+            "weight": [
+              487,
+              43,
+              133
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              23264,
+              5683,
+              13893
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                0,
+                6,
+                0
+              ]
+            ],
+            "weight": [
+              555,
+              32,
+              154
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              2376,
+              485,
+              1891
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "weight": [
+              919,
+              322,
+              919
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              1381,
+              968,
+              1851
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              276,
+              367,
+              477
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                0,
+                6,
+                0
+              ],
+              [
+                0,
+                7,
+                0
+              ]
+            ],
+            "weight": [
+              1079,
+              44,
+              302
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                0,
+                6,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              12781,
+              2158,
+              12781
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "weight": [
+              1891,
+              485,
+              2376
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ]
+            ],
+            "weight": [
+              13893,
+              5683,
+              23264
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              73,
+              47,
+              132
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              1723,
+              2487,
+              4890
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              50503,
+              123546,
+              174026
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                5,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              17597,
+              68573,
+              68270
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                5,
+                0,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              15055,
+              89147,
+              69678
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                5,
+                0,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              623,
+              7466,
+              3641
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                0,
+                6,
+                0
+              ],
+              [
+                0,
+                7,
+                0
+              ],
+              [
+                0,
+                8,
+                0
+              ]
+            ],
+            "weight": [
+              173,
+              3,
+              49
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                0,
+                6,
+                0
+              ],
+              [
+                0,
+                7,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              678848,
+              98201,
+              918701
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                0,
+                6,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "weight": [
+              418195,
+              85637,
+              637308
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ]
+            ],
+            "weight": [
+              28416,
+              8677,
+              50423
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              1254,
+              641,
+              4293
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                2,
+                1,
+                0
+              ]
+            ],
+            "weight": [
+              28,
+              23,
+              144
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              23,
+              28,
+              144
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              641,
+              1254,
+              4293
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                5,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              269,
+              834,
+              2263
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                5,
+                0,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              227,
+              1117,
+              2352
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                5,
+                0,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              703,
+              4876,
+              8701
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                5,
+                0,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              1,
+              25,
+              25
+            ]
+          }
+        ]
+      },
+      {
+        "components": 4,
+        "points_per_component": 2,
+        "length": 8,
+        "carrier_domain_piece_counts": [
+          14,
+          19,
+          19,
+          14
+        ],
+        "distinct_initial_ideals": 45,
+        "surface_fan_equality": true,
+        "cut_witnesses": [
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                5
+              ],
+              [
+                0,
+                0,
+                6
+              ],
+              [
+                0,
+                0,
+                7
+              ]
+            ],
+            "weight": [
+              22,
+              22,
+              1
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                5
+              ],
+              [
+                0,
+                0,
+                6
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "weight": [
+              1894,
+              1049,
+              177
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                5
+              ],
+              [
+                0,
+                0,
+                6
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              479,
+              986,
+              95
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                5
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ]
+            ],
+            "weight": [
+              460,
+              207,
+              53
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                5
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              3333,
+              3710,
+              757
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                5
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              3173,
+              11106,
+              1361
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ]
+            ],
+            "weight": [
+              134,
+              39,
+              16
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              6305,
+              4668,
+              1627
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              2921740,
+              6182987,
+              1593033
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              1559,
+              7736,
+              1193
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                0,
+                2,
+                0
+              ]
+            ],
+            "weight": [
+              76,
+              17,
+              12
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              351,
+              172,
+              107
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              386,
+              561,
+              253
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              800,
+              2153,
+              695
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              1193,
+              7736,
+              1559
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                0,
+                3,
+                0
+              ]
+            ],
+            "weight": [
+              102,
+              14,
+              19
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              3296,
+              1237,
+              1767
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "weight": [
+              146,
+              103,
+              111
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              23,
+              29,
+              20
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              253,
+              561,
+              386
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              1593033,
+              6182987,
+              2921740
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                5,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              1361,
+              11106,
+              3173
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ]
+            ],
+            "weight": [
+              276,
+              22,
+              53
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ]
+            ],
+            "weight": [
+              657,
+              34,
+              128
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              945,
+              244,
+              701
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "weight": [
+              881,
+              394,
+              741
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              111,
+              103,
+              146
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                0,
+                6,
+                0
+              ]
+            ],
+            "weight": [
+              1485,
+              50,
+              292
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              4460,
+              869,
+              4031
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "weight": [
+              701,
+              244,
+              945
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              1767,
+              1237,
+              3296
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              128,
+              187,
+              285
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              95,
+              272,
+              233
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                5,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              971,
+              4532,
+              2657
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                5,
+                0,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              95,
+              986,
+              479
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                0,
+                6,
+                0
+              ],
+              [
+                0,
+                7,
+                0
+              ]
+            ],
+            "weight": [
+              287,
+              4,
+              57
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                0,
+                6,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              288867,
+              48931,
+              453902
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "weight": [
+              26517,
+              6863,
+              48520
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ]
+            ],
+            "weight": [
+              439,
+              181,
+              1018
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              223,
+              143,
+              579
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              12,
+              17,
+              76
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              16,
+              39,
+              134
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                5,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              53,
+              207,
+              460
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                5,
+                0,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              177,
+              1049,
+              1894
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                5,
+                0,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              1,
+              22,
+              22
+            ]
+          }
+        ]
+      },
+      {
+        "components": 5,
+        "points_per_component": 1,
+        "length": 5,
+        "carrier_domain_piece_counts": [
+          6,
+          8,
+          7,
+          8,
+          6
+        ],
+        "distinct_initial_ideals": 17,
+        "surface_fan_equality": true,
+        "cut_witnesses": [
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                0,
+                4
+              ]
+            ],
+            "weight": [
+              13,
+              13,
+              1
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "weight": [
+              127,
+              46,
+              16
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              397,
+              838,
+              151
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ]
+            ],
+            "weight": [
+              94,
+              19,
+              13
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              1968,
+              1703,
+              949
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              31,
+              114,
+              31
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ]
+            ],
+            "weight": [
+              158,
+              17,
+              23
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ]
+            ],
+            "weight": [
+              575,
+              32,
+              86
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              120,
+              59,
+              73
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              971,
+              1538,
+              1187
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              151,
+              838,
+              397
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ]
+            ],
+            "weight": [
+              269,
+              5,
+              41
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              2176,
+              709,
+              2659
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "weight": [
+              123,
+              89,
+              316
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              61,
+              87,
+              188
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              71,
+              188,
+              245
+            ]
+          },
+          {
+            "basis": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ]
+            ],
+            "weight": [
+              1,
+              13,
+              13
+            ]
+          }
+        ]
+      }
+    ],
+    "generic_point_quotients": [
+      {
+        "length": 6,
+        "component_sizes": [
+          2,
+          2,
+          2
+        ],
+        "characteristic": 0,
+        "alpha": [
+          1,
+          2,
+          3
+        ],
+        "nodes_by_component": [
+          [
+            16,
+            31
+          ],
+          [
+            88,
+            19
+          ],
+          [
+            64,
+            53
+          ]
+        ],
+        "generic_sample_attempts": 1,
+        "complete_initial_ideals": 25,
+        "complete_simplex_double_area": "1",
+        "ordinary_s_pairs": 221,
+        "ordinary_normal_forms": 625,
+        "generic_rank_formula_prefix_checks": 559
+      },
+      {
+        "length": 6,
+        "component_sizes": [
+          2,
+          2,
+          2
+        ],
+        "characteristic": 1009,
+        "alpha": [
+          1,
+          2,
+          3
+        ],
+        "nodes_by_component": [
+          [
+            24,
+            66
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            63,
+            96
+          ]
+        ],
+        "generic_sample_attempts": 1,
+        "complete_initial_ideals": 25,
+        "complete_simplex_double_area": "1",
+        "ordinary_s_pairs": 221,
+        "ordinary_normal_forms": 625,
+        "generic_rank_formula_prefix_checks": 559
+      },
+      {
+        "length": 9,
+        "component_sizes": [
+          3,
+          3,
+          3
+        ],
+        "characteristic": 0,
+        "alpha": [
+          1,
+          2,
+          3
+        ],
+        "nodes_by_component": [
+          [
+            89,
+            60,
+            90
+          ],
+          [
+            56,
+            13,
+            36
+          ],
+          [
+            91,
+            35,
+            20
+          ]
+        ],
+        "generic_sample_attempts": 2,
+        "complete_initial_ideals": 61,
+        "complete_simplex_double_area": "1",
+        "ordinary_s_pairs": 729,
+        "ordinary_normal_forms": 2684,
+        "generic_rank_formula_prefix_checks": 2530
+      },
+      {
+        "length": 9,
+        "component_sizes": [
+          3,
+          3,
+          3
+        ],
+        "characteristic": 1009,
+        "alpha": [
+          1,
+          2,
+          3
+        ],
+        "nodes_by_component": [
+          [
+            94,
+            69,
+            42
+          ],
+          [
+            66,
+            51,
+            27
+          ],
+          [
+            89,
+            57,
+            91
+          ]
+        ],
+        "generic_sample_attempts": 1,
+        "complete_initial_ideals": 61,
+        "complete_simplex_double_area": "1",
+        "ordinary_s_pairs": 729,
+        "ordinary_normal_forms": 2684,
+        "generic_rank_formula_prefix_checks": 2530
+      },
+      {
+        "length": 8,
+        "component_sizes": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "characteristic": 0,
+        "alpha": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "nodes_by_component": [
+          [
+            81,
+            73
+          ],
+          [
+            90,
+            94
+          ],
+          [
+            76,
+            7
+          ],
+          [
+            89,
+            29
+          ]
+        ],
+        "generic_sample_attempts": 1,
+        "complete_initial_ideals": 45,
+        "complete_simplex_double_area": "1",
+        "ordinary_s_pairs": 493,
+        "ordinary_normal_forms": 1710,
+        "generic_rank_formula_prefix_checks": 1660
+      },
+      {
+        "length": 8,
+        "component_sizes": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "characteristic": 1009,
+        "alpha": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "nodes_by_component": [
+          [
+            47,
+            15
+          ],
+          [
+            27,
+            31
+          ],
+          [
+            80,
+            82
+          ],
+          [
+            77,
+            81
+          ]
+        ],
+        "generic_sample_attempts": 1,
+        "complete_initial_ideals": 45,
+        "complete_simplex_double_area": "1",
+        "ordinary_s_pairs": 493,
+        "ordinary_normal_forms": 1710,
+        "generic_rank_formula_prefix_checks": 1660
+      },
+      {
+        "length": 5,
+        "component_sizes": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "characteristic": 0,
+        "alpha": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "nodes_by_component": [
+          [
+            56
+          ],
+          [
+            50
+          ],
+          [
+            30
+          ],
+          [
+            27
+          ],
+          [
+            88
+          ]
+        ],
+        "generic_sample_attempts": 1,
+        "complete_initial_ideals": 17,
+        "complete_simplex_double_area": "1",
+        "ordinary_s_pairs": 120,
+        "ordinary_normal_forms": 272,
+        "generic_rank_formula_prefix_checks": 254
+      },
+      {
+        "length": 5,
+        "component_sizes": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "characteristic": 1009,
+        "alpha": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "nodes_by_component": [
+          [
+            36
+          ],
+          [
+            62
+          ],
+          [
+            15
+          ],
+          [
+            24
+          ],
+          [
+            90
+          ]
+        ],
+        "generic_sample_attempts": 1,
+        "complete_initial_ideals": 17,
+        "complete_simplex_double_area": "1",
+        "ordinary_s_pairs": 120,
+        "ordinary_normal_forms": 272,
+        "generic_rank_formula_prefix_checks": 254
+      }
+    ],
+    "finite_prefix_rank_fixtures": [
+      {
+        "component_sizes": [
+          15,
+          15,
+          15
+        ],
+        "length": 45,
+        "characteristic": 1009,
+        "nodes_by_component": [
+          [
+            965,
+            841,
+            283,
+            287,
+            954,
+            285,
+            766,
+            263,
+            753,
+            278,
+            624,
+            121,
+            773,
+            352,
+            848
+          ],
+          [
+            100,
+            993,
+            650,
+            827,
+            585,
+            145,
+            940,
+            251,
+            667,
+            582,
+            461,
+            992,
+            655,
+            404,
+            447
+          ],
+          [
+            303,
+            801,
+            523,
+            265,
+            1005,
+            38,
+            581,
+            548,
+            986,
+            1006,
+            339,
+            508,
+            779,
+            669,
+            173
+          ]
+        ],
+        "generic_sample_attempts": 1,
+        "retained_capacity_constraints": 3,
+        "direct_prefix_rank_queries": 21,
+        "queries": [
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 0,
+            "evaluation_rank": 1,
+            "surface_prefix_count": 1
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 1,
+            "evaluation_rank": 4,
+            "surface_prefix_count": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 2,
+            "evaluation_rank": 9,
+            "surface_prefix_count": 9
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 3,
+            "evaluation_rank": 16,
+            "surface_prefix_count": 16
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 4,
+            "evaluation_rank": 25,
+            "surface_prefix_count": 25
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 5,
+            "evaluation_rank": 34,
+            "surface_prefix_count": 36
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 6,
+            "evaluation_rank": 43,
+            "surface_prefix_count": 49
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 0,
+            "evaluation_rank": 1,
+            "surface_prefix_count": 1
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 1,
+            "evaluation_rank": 2,
+            "surface_prefix_count": 2
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 2,
+            "evaluation_rank": 4,
+            "surface_prefix_count": 4
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 3,
+            "evaluation_rank": 7,
+            "surface_prefix_count": 7
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 4,
+            "evaluation_rank": 10,
+            "surface_prefix_count": 10
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 5,
+            "evaluation_rank": 14,
+            "surface_prefix_count": 14
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 6,
+            "evaluation_rank": 19,
+            "surface_prefix_count": 19
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 0,
+            "evaluation_rank": 1,
+            "surface_prefix_count": 1
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 1,
+            "evaluation_rank": 2,
+            "surface_prefix_count": 2
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 2,
+            "evaluation_rank": 4,
+            "surface_prefix_count": 4
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 3,
+            "evaluation_rank": 7,
+            "surface_prefix_count": 7
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 4,
+            "evaluation_rank": 10,
+            "surface_prefix_count": 10
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 5,
+            "evaluation_rank": 14,
+            "surface_prefix_count": 14
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 6,
+            "evaluation_rank": 19,
+            "surface_prefix_count": 19
+          }
+        ],
+        "rank_defect_witness": {
+          "weight": [
+            1,
+            1,
+            1
+          ],
+          "threshold": 5,
+          "evaluation_rank": 34,
+          "surface_prefix_count": 36
+        }
+      },
+      {
+        "component_sizes": [
+          30,
+          10,
+          5
+        ],
+        "length": 45,
+        "characteristic": 1009,
+        "nodes_by_component": [
+          [
+            965,
+            841,
+            283,
+            287,
+            954,
+            285,
+            766,
+            263,
+            753,
+            278,
+            624,
+            121,
+            773,
+            352,
+            848,
+            100,
+            993,
+            650,
+            827,
+            585,
+            145,
+            940,
+            251,
+            667,
+            582,
+            461,
+            992,
+            655,
+            404,
+            447
+          ],
+          [
+            303,
+            801,
+            523,
+            265,
+            1005,
+            38,
+            581,
+            548,
+            986,
+            1006
+          ],
+          [
+            339,
+            508,
+            779,
+            669,
+            173
+          ]
+        ],
+        "generic_sample_attempts": 1,
+        "retained_capacity_constraints": 3,
+        "direct_prefix_rank_queries": 21,
+        "queries": [
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 0,
+            "evaluation_rank": 1,
+            "surface_prefix_count": 1
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 1,
+            "evaluation_rank": 4,
+            "surface_prefix_count": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 2,
+            "evaluation_rank": 9,
+            "surface_prefix_count": 9
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 3,
+            "evaluation_rank": 16,
+            "surface_prefix_count": 16
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 4,
+            "evaluation_rank": 25,
+            "surface_prefix_count": 25
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 5,
+            "evaluation_rank": 31,
+            "surface_prefix_count": 36
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 6,
+            "evaluation_rank": 34,
+            "surface_prefix_count": 49
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 0,
+            "evaluation_rank": 1,
+            "surface_prefix_count": 1
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 1,
+            "evaluation_rank": 2,
+            "surface_prefix_count": 2
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 2,
+            "evaluation_rank": 4,
+            "surface_prefix_count": 4
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 3,
+            "evaluation_rank": 7,
+            "surface_prefix_count": 7
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 4,
+            "evaluation_rank": 10,
+            "surface_prefix_count": 10
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 5,
+            "evaluation_rank": 14,
+            "surface_prefix_count": 14
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 6,
+            "evaluation_rank": 19,
+            "surface_prefix_count": 19
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 0,
+            "evaluation_rank": 1,
+            "surface_prefix_count": 1
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 1,
+            "evaluation_rank": 2,
+            "surface_prefix_count": 2
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 2,
+            "evaluation_rank": 4,
+            "surface_prefix_count": 4
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 3,
+            "evaluation_rank": 7,
+            "surface_prefix_count": 7
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 4,
+            "evaluation_rank": 10,
+            "surface_prefix_count": 10
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 5,
+            "evaluation_rank": 14,
+            "surface_prefix_count": 14
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 6,
+            "evaluation_rank": 19,
+            "surface_prefix_count": 19
+          }
+        ],
+        "rank_defect_witness": {
+          "weight": [
+            1,
+            1,
+            1
+          ],
+          "threshold": 5,
+          "evaluation_rank": 31,
+          "surface_prefix_count": 36
+        }
+      },
+      {
+        "component_sizes": [
+          5,
+          30,
+          10
+        ],
+        "length": 45,
+        "characteristic": 1009,
+        "nodes_by_component": [
+          [
+            965,
+            841,
+            283,
+            287,
+            954
+          ],
+          [
+            285,
+            766,
+            263,
+            753,
+            278,
+            624,
+            121,
+            773,
+            352,
+            848,
+            100,
+            993,
+            650,
+            827,
+            585,
+            145,
+            940,
+            251,
+            667,
+            582,
+            461,
+            992,
+            655,
+            404,
+            447,
+            303,
+            801,
+            523,
+            265,
+            1005
+          ],
+          [
+            38,
+            581,
+            548,
+            986,
+            1006,
+            339,
+            508,
+            779,
+            669,
+            173
+          ]
+        ],
+        "generic_sample_attempts": 1,
+        "retained_capacity_constraints": 3,
+        "direct_prefix_rank_queries": 21,
+        "queries": [
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 0,
+            "evaluation_rank": 1,
+            "surface_prefix_count": 1
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 1,
+            "evaluation_rank": 4,
+            "surface_prefix_count": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 2,
+            "evaluation_rank": 9,
+            "surface_prefix_count": 9
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 3,
+            "evaluation_rank": 16,
+            "surface_prefix_count": 16
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 4,
+            "evaluation_rank": 25,
+            "surface_prefix_count": 25
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 5,
+            "evaluation_rank": 31,
+            "surface_prefix_count": 36
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 6,
+            "evaluation_rank": 34,
+            "surface_prefix_count": 49
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 0,
+            "evaluation_rank": 1,
+            "surface_prefix_count": 1
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 1,
+            "evaluation_rank": 2,
+            "surface_prefix_count": 2
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 2,
+            "evaluation_rank": 4,
+            "surface_prefix_count": 4
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 3,
+            "evaluation_rank": 7,
+            "surface_prefix_count": 7
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 4,
+            "evaluation_rank": 10,
+            "surface_prefix_count": 10
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 5,
+            "evaluation_rank": 14,
+            "surface_prefix_count": 14
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 6,
+            "evaluation_rank": 19,
+            "surface_prefix_count": 19
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 0,
+            "evaluation_rank": 1,
+            "surface_prefix_count": 1
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 1,
+            "evaluation_rank": 2,
+            "surface_prefix_count": 2
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 2,
+            "evaluation_rank": 4,
+            "surface_prefix_count": 4
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 3,
+            "evaluation_rank": 7,
+            "surface_prefix_count": 7
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 4,
+            "evaluation_rank": 10,
+            "surface_prefix_count": 10
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 5,
+            "evaluation_rank": 14,
+            "surface_prefix_count": 14
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 6,
+            "evaluation_rank": 19,
+            "surface_prefix_count": 19
+          }
+        ],
+        "rank_defect_witness": {
+          "weight": [
+            1,
+            1,
+            1
+          ],
+          "threshold": 5,
+          "evaluation_rank": 31,
+          "surface_prefix_count": 36
+        }
+      },
+      {
+        "component_sizes": [
+          20,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "length": 27,
+        "characteristic": 1009,
+        "nodes_by_component": [
+          [
+            521,
+            523,
+            508,
+            967,
+            876,
+            777,
+            419,
+            298,
+            218,
+            89,
+            509,
+            926,
+            361,
+            371,
+            78,
+            800,
+            426,
+            917,
+            358,
+            873
+          ],
+          [
+            987
+          ],
+          [
+            296
+          ],
+          [
+            774
+          ],
+          [
+            966
+          ],
+          [
+            240
+          ],
+          [
+            263
+          ],
+          [
+            940
+          ]
+        ],
+        "generic_sample_attempts": 1,
+        "retained_capacity_constraints": 5,
+        "direct_prefix_rank_queries": 21,
+        "queries": [
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 0,
+            "evaluation_rank": 1,
+            "surface_prefix_count": 1
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 1,
+            "evaluation_rank": 4,
+            "surface_prefix_count": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 2,
+            "evaluation_rank": 9,
+            "surface_prefix_count": 9
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 3,
+            "evaluation_rank": 16,
+            "surface_prefix_count": 16
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 4,
+            "evaluation_rank": 20,
+            "surface_prefix_count": 25
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 5,
+            "evaluation_rank": 23,
+            "surface_prefix_count": 36
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 6,
+            "evaluation_rank": 26,
+            "surface_prefix_count": 49
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 0,
+            "evaluation_rank": 1,
+            "surface_prefix_count": 1
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 1,
+            "evaluation_rank": 2,
+            "surface_prefix_count": 2
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 2,
+            "evaluation_rank": 4,
+            "surface_prefix_count": 4
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 3,
+            "evaluation_rank": 7,
+            "surface_prefix_count": 7
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 4,
+            "evaluation_rank": 10,
+            "surface_prefix_count": 10
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 5,
+            "evaluation_rank": 14,
+            "surface_prefix_count": 14
+          },
+          {
+            "weight": [
+              1,
+              2,
+              3
+            ],
+            "threshold": 6,
+            "evaluation_rank": 19,
+            "surface_prefix_count": 19
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 0,
+            "evaluation_rank": 1,
+            "surface_prefix_count": 1
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 1,
+            "evaluation_rank": 2,
+            "surface_prefix_count": 2
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 2,
+            "evaluation_rank": 4,
+            "surface_prefix_count": 4
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 3,
+            "evaluation_rank": 7,
+            "surface_prefix_count": 7
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 4,
+            "evaluation_rank": 10,
+            "surface_prefix_count": 10
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 5,
+            "evaluation_rank": 14,
+            "surface_prefix_count": 14
+          },
+          {
+            "weight": [
+              3,
+              2,
+              1
+            ],
+            "threshold": 6,
+            "evaluation_rank": 19,
+            "surface_prefix_count": 19
+          }
+        ],
+        "rank_defect_witness": {
+          "weight": [
+            1,
+            1,
+            1
+          ],
+          "threshold": 4,
+          "evaluation_rank": 20,
+          "surface_prefix_count": 25
+        }
+      }
+    ]
+  },
   "source_sha256": {
-    "scripts/run_algebraic_incidence_controls.py": "2bc4de6f76704188b1b6477b37cc605260d0e3a68fa03fd9a5b84fe72df6e709",
+    "scripts/run_algebraic_incidence_controls.py": "844d3b80f1fae884bc07de3ed2edc9ac1d72f128401dbbfb8da514f1f7d462fa",
     "docs/weighted_facet_incidence.md": "61ccaf62917fdf59b7f2480a80148750236e3507959e810403e302a43e31bc13",
     "docs/initial_cone_height.md": "88088db9af60d5a43ac0682d40848de73c20a09120215f696ef90bb5cc1cafa8",
     "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
     "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
     "scripts/run_initial_cone_height_checks.py": "f804aff89da53a6139aed7cacc9fd802dee8fd8529ee48a0d240dd9740df3dab",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
-    "docs/extremal_initial_ideals.md": "4a4a9b715777361708d00fa413ae03aa721cde20c988249cf191d36fa994d154"
+    "docs/extremal_initial_ideals.md": "72f6ee8553b6cdb4a7af549826fd40570b7bb85e796c7a71d0cdbeff00d0839e",
+    "docs/generic_multiaffine_bound.md": "25d79382745c94da18f038cee7f0d6eccc202f0dc5b4cd6568ae9aa43ffd1a19"
   }
 }

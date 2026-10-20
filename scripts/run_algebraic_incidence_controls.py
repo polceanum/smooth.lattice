@@ -4,12 +4,15 @@
 The uniform-axis matroid is not a quotient residue matroid. Different
 three-pole quotient matroids realize exactly its positive fan, disproving
 the proposed cubic incidence budget. Nine-cone quotients check a second
-shortcut. No stronger extremal count or novelty certificate is inferred. See the two linked notes.
+shortcut. Scaled-component controls verify uniform carrier bases and
+generic sampling ranks. No unrestricted extremal count or novelty
+certificate is inferred. See the linked research notes.
 """
 from collections import defaultdict
 from fractions import Fraction
 from itertools import combinations, product
-from math import comb, gcd
+from math import comb, gcd, isqrt
+from heapq import nlargest
 from pathlib import Path
 from random import Random
 import hashlib
@@ -559,8 +562,12 @@ def column_prefix_ranks(ordered, columns, characteristic):
 
 
 def two_curve_point_controls(n, component_sizes, pieces, characteristic):
-    m, alpha = component_sizes[0], (1, 2)
+    m, alpha = component_sizes[0], tuple(range(1, len(component_sizes) + 1))
     assert sum(component_sizes) == n
+    blocks, offset = [], 0
+    for size in component_sizes:
+        blocks.append((offset, offset + size))
+        offset += size
     ground = tuple(hyperbolic_cross(n, 3))
     assert all(a in ground for selected in pieces for a in selected)
     rng = Random(20261020 + n + characteristic)
@@ -571,9 +578,9 @@ def two_curve_point_controls(n, component_sizes, pieces, characteristic):
             if characteristic:
                 return tuple(pow(t, a[0] - a[1], characteristic) * pow(c, a[1], characteristic) *
                              pow(t - 1, -a[2], characteristic) % characteristic
-                             for c, nn in zip(alpha, (nodes[:m], nodes[m:])) for t in nn)
+                             for c, (lo, hi) in zip(alpha, blocks) for t in nodes[lo:hi])
             return tuple(Fraction(t)**(a[0] - a[1]) * c**a[1] * Fraction(t - 1)**(-a[2])
-                         for c, nn in zip(alpha, (nodes[:m], nodes[m:])) for t in nn)
+                         for c, (lo, hi) in zip(alpha, blocks) for t in nodes[lo:hi])
 
         columns = {a: residue(a) for a in ground}
         if all(column_prefix_ranks(selected, columns, characteristic)[-1] == n for selected in pieces):
@@ -582,26 +589,31 @@ def two_curve_point_controls(n, component_sizes, pieces, characteristic):
         raise AssertionError('bounded search failed to find generic sample witnesses')
     # Independent rational-function columns after a common denominator.
     A, B, C = (max(a[i] for a in ground) for i in range(3))
-    functional = [{}, {}]
+    functional = [{} for _ in alpha]
     for a in ground:
         polynomial = [0] * (A + B + C + 1)
         for j in range(C - a[2] + 1):
             polynomial[a[0] - a[1] + B + j] = comb(C - a[2], j) * (-1)**(C - a[2] - j)
         for component, c in enumerate(alpha):
             functional[component][a] = tuple(c**a[1] * x for x in polynomial)
-    union = {a: functional[0][a] + functional[1][a] for a in ground}
+    union = {a: sum((model[a] for model in functional), ()) for a in ground}
     total_area, pairs, reductions, prefix_checks = Fraction(0), 0, 0, 0
     scalar = (lambda x: x % characteristic) if characteristic else Fraction
     for selected, data in pieces.items():
         weight = data['weight']
         assert greedy(ground, columns, weight, characteristic) == set(selected)
         ordered = sorted(ground, key=lambda a: (dot(a, weight), a))
-        ranks = [column_prefix_ranks(ordered, model, characteristic)
-                 for model in (functional[0], functional[1], union, columns)]
+        models = (functional[0], functional[1], union, columns) if len(alpha) == 2 else (union, columns)
+        ranks = [column_prefix_ranks(ordered, model, characteristic) for model in models]
         for i in range(len(ordered)):
             if i + 1 == len(ordered) or dot(ordered[i], weight) != dot(ordered[i + 1], weight):
-                d1, d2, d, actual = (r[i] for r in ranks)
-                assert actual == min(n, component_sizes[1] + d1, m + d2, d)
+                if len(alpha) == 2:
+                    d1, d2, d, actual = (r[i] for r in ranks)
+                    assert actual == min(n, component_sizes[1] + d1, m + d2, d)
+                else:
+                    assert len(set(component_sizes)) == 1
+                    d, actual = (r[i] for r in ranks)
+                    assert actual == min(n, d)
                 prefix_checks += 1
         inverse = field_inverse(selected, columns, characteristic)
 
@@ -629,7 +641,7 @@ def two_curve_point_controls(n, component_sizes, pieces, characteristic):
             reductions += 1
     assert total_area == 1
     return {'length': n, 'component_sizes': component_sizes, 'characteristic': characteristic,
-            'alpha': alpha, 'nodes_by_component': [nodes[:m], nodes[m:]],
+            'alpha': alpha, 'nodes_by_component': [nodes[lo:hi] for lo, hi in blocks],
             'generic_sample_attempts': attempt, 'complete_initial_ideals': len(pieces),
             'complete_simplex_double_area': str(total_area), 'ordinary_s_pairs': pairs,
             'ordinary_normal_forms': reductions, 'generic_rank_formula_prefix_checks': prefix_checks}
@@ -663,6 +675,275 @@ def two_curve_controls():
                                             'obstruction': 'The first node on each component has y=1/2.'}}
 
 
+def multicurve_allowed(a, r, weight):
+    if not r or a[0] * a[2]:
+        return False
+    ell = r * weight[0] // (weight[0] + weight[2])
+    return a[1] < r or (a[0] < r - ell and a[2] < ell + 1)
+
+
+def multicurve_symbolic_controls():
+    cases = []
+    for r in range(1, 8):
+        zero = (0,) * (r + 3)
+        relation = {(1, 0, 1) + (0,) * r: 1, (0, 0, 1) + (0,) * r: -1, zero: -1}
+        f = {(r, r, 0) + (0,) * r: 1}
+        for j in range(r):
+            a = [j, j, 0] + [0] * r
+            a[3 + j] = 1
+            f[tuple(a)] = 1
+        h = [f]
+        for _ in range(r):
+            h.append(normal_form({add(a, (0, 0, 1) + (0,) * r): c for a, c in h[-1].items()},
+                                 [relation], (1, 1, 1) + (0,) * r, 0))
+        for ell in range(r):
+            weight = (2 * ell + 1, 2 * r + 1, 2 * r - 2 * ell - 1) + (0,) * r
+            basis = [relation, h[ell], h[ell + 1]]
+            heads = [leading(g, weight) for g in basis]
+            assert [a[:3] for a in heads] == [(1, 0, 1), (r - ell, r, 0), (0, r, ell + 1)]
+
+            def lower(a, b):
+                dx, dy, dz = (x - y for x, y in zip(b[:3], a[:3]))
+                values = (dy, ell * dx + (r - ell) * dz,
+                          (ell + 1) * dx + (r - ell - 1) * dz)
+                return min(values) >= 0 and max(values) > 0
+
+            assert all(lower(a, head) for head, g in zip(heads, basis) for a in g if a != head)
+            steps = 0
+            for i, j in combinations(range(3), 2):
+                common = tuple(max(a, b) for a, b in zip(heads[i], heads[j]))
+                first = {add(a, tuple(x - y for x, y in zip(common, heads[i]))): c
+                         for a, c in basis[i].items()}
+                pending = subtract_shift(first, basis[j], tuple(x - y for x, y in zip(common, heads[j])), 1, 0)
+                while pending:
+                    a = leading(pending, weight)
+                    assert lower(a, common)
+                    for head, g in zip(heads, basis):
+                        if all(x >= y for x, y in zip(a, head)):
+                            pending = subtract_shift(pending, g, tuple(x - y for x, y in zip(a, head)), pending[a], 0)
+                            steps += 1
+                            break
+                    else:
+                        raise AssertionError('nonzero universal multicurve S-pair')
+            cases.append({'components': r, 'sector': ell, 'heads': [a[:3] for a in heads],
+                          'formal_s_pairs': 3, 'universally_lower_reduction_steps': steps})
+    return cases
+
+
+def floor_sum_integer(n, modulus, slope, offset):
+    """Classical Euclidean floor sum; Python integers, including signed inputs."""
+    qa, slope = divmod(slope, modulus)
+    qb, offset = divmod(offset, modulus)
+    answer = qa * n * (n - 1) // 2 + qb * n
+    while True:
+        qa, slope = divmod(slope, modulus)
+        qb, offset = divmod(offset, modulus)
+        answer += qa * n * (n - 1) // 2 + qb * n
+        height = slope * n + offset
+        if height < modulus:
+            return answer
+        n, offset = divmod(height, modulus)
+        modulus, slope = slope, modulus
+
+
+def surface_prefix_count(weight, threshold):
+    if threshold < 0:
+        return 0
+    x, y, z = weight
+    rows = threshold // y + 1
+    return (rows + floor_sum_integer(rows, x, -y, threshold) +
+            rows + floor_sum_integer(rows, z, -y, threshold) - rows)
+
+
+def subcurve_prefix_counts(r, weight, threshold):
+    x, y, z = weight
+    axis_cost, next_x, next_z, total, ranks = 0, x, z, 0, []
+    for s in range(1, r + 1):
+        level = threshold - (s - 1) * y
+        axis_count = 0 if level < 0 else 1 + level // x + level // z
+        total += max(0, axis_count - s + 1)
+        total += max(0, (threshold - axis_cost) // y - s + 1)
+        ranks.append(total)
+        if next_x < next_z:
+            axis_cost, next_x = next_x, next_x + x
+        else:
+            axis_cost, next_z = next_z, next_z + z
+    return ranks
+
+
+def component_capacity_profile(sizes):
+    assert sizes and min(sizes) >= 1
+    n = sum(sizes)
+    capacities, prefix = [], 0
+    for size in nlargest(min(len(sizes), isqrt(n - 1)), sizes):
+        prefix += size
+        capacities.append(prefix)
+    return n, capacities
+
+
+def generic_multicurve_prefix_rank(profile, weight, threshold):
+    n, capacities = profile
+    ranks = subcurve_prefix_counts(len(capacities), weight, threshold)
+    return min([n, surface_prefix_count(weight, threshold)] +
+               [n - capacity + rank for capacity, rank in zip(capacities, ranks)])
+
+
+def multicurve_rank_controls():
+    def partitions(n, maximum):
+        if n == 0:
+            yield ()
+        for first in range(min(n, maximum), 0, -1):
+            for rest in partitions(n - first, first):
+                yield (first,) + rest
+
+    floor_stress = 0
+    for n, modulus, slope, offset in product(range(21), (1, 2, 7, 101, 10**20 + 3),
+                                            (-10**20, -3, 0, 5, 10**20 + 7),
+                                            (-10**20 - 1, -1, 0, 11, 10**20 + 9)):
+        assert floor_sum_integer(n, modulus, slope, offset) == sum((slope * i + offset) // modulus for i in range(n))
+        floor_stress += 1
+    profiles = [p for n in range(1, 9) for p in partitions(n, n)]
+    rank_checks, hook_checks, floor_checks = 0, 0, 0
+    for weight in product(range(1, 5), repeat=3):
+        for threshold in range(13):
+            ground = tuple((a, b, c) for a, b, c in product(range(threshold + 1), repeat=3)
+                           if not a * c and dot((a, b, c), weight) <= threshold)
+            assert surface_prefix_count(weight, threshold) == len(ground)
+            floor_checks += 1
+            direct = [sum(multicurve_allowed(a, r, weight) for a in ground) for r in range(1, 9)]
+            assert direct == subcurve_prefix_counts(8, weight, threshold)
+            increments = [direct[0]] + [b - a for a, b in zip(direct, direct[1:])]
+            assert all(a >= b for a, b in zip(increments, increments[1:]))
+            hook_checks += 8
+            for sizes in profiles:
+                n, prefix, expected = sum(sizes), 0, min(sum(sizes), direct[len(sizes) - 1])
+                for size, d in zip(sizes, direct):
+                    prefix += size
+                    expected = min(expected, n - prefix + d)
+                assert generic_multicurve_prefix_rank(component_capacity_profile(sizes), weight, threshold) == expected
+                rank_checks += 1
+    # Independent rational-function numerators, all component subsets.
+    matrix_checks = 0
+    for r, prime in product((3, 5), (7, 101)):
+        for weight in ((1, 1, 1), (1, 2, 3), (3, 2, 1)):
+            for threshold in range(7):
+                ground = tuple((a, b, c) for a, b, c in product(range(threshold + 1), repeat=3)
+                               if not a * c and dot((a, b, c), weight) <= threshold)
+                B, C = (max(a[i] for a in ground) for i in (1, 2))
+                degree = max(a[0] for a in ground) + B + C
+                functional = [{} for _ in range(r)]
+                for a in ground:
+                    polynomial = [0] * (degree + 1)
+                    for j in range(C - a[2] + 1):
+                        polynomial[a[0] - a[1] + B + j] = comb(C - a[2], j) * (-1)**(C - a[2] - j)
+                    for i in range(r):
+                        functional[i][a] = tuple((i + 1)**a[1] * c % prime for c in polynomial)
+                for size in range(1, r + 1):
+                    expected = sum(multicurve_allowed(a, size, weight) for a in ground)
+                    for subset in combinations(range(r), size):
+                        columns = {a: sum((functional[i][a] for i in subset), ()) for a in ground}
+                        assert column_prefix_ranks(ground, columns, prime)[-1] == expected
+                        matrix_checks += 1
+    return {'capacity_partitions': len(profiles), 'compressed_rank_queries': rank_checks,
+            'signed_large_integer_floor_sums': floor_stress,
+            'direct_hook_counts': hook_checks, 'surface_floor_sum_counts': floor_checks,
+            'independent_functional_subset_ranks': matrix_checks}
+
+
+def multicurve_point_prefix_controls():
+    prime, fixtures = 1009, []
+    queries = [(weight, threshold) for weight in ((1, 1, 1), (1, 2, 3), (3, 2, 1)) for threshold in range(7)]
+    for sizes in ((15, 15, 15), (30, 10, 5), (5, 30, 10), (20, 1, 1, 1, 1, 1, 1, 1)):
+        n, profile = sum(sizes), component_capacity_profile(sizes)
+        rng = Random(20261020 + n + len(sizes))
+        query_grounds = {q: tuple((a, b, c) for a, b, c in product(range(q[1] + 1), repeat=3)
+                                  if not a * c and dot((a, b, c), q[0]) <= q[1]) for q in queries}
+        ground = set().union(*map(set, query_grounds.values()))
+        for attempt in range(1, 31):
+            nodes = rng.sample(range(2, prime), n)
+            blocks, offset = [], 0
+            for size in sizes:
+                blocks.append(nodes[offset:offset + size])
+                offset += size
+            columns = {a: tuple(pow(t, a[0] - a[1], prime) * pow(j, a[1], prime) *
+                                pow(t - 1, -a[2], prime) % prime
+                                for j, nn in enumerate(blocks, 1) for t in nn) for a in ground}
+            results = []
+            for weight, threshold in queries:
+                actual = column_prefix_ranks(query_grounds[(weight, threshold)], columns, prime)[-1]
+                expected = generic_multicurve_prefix_rank(profile, weight, threshold)
+                if actual != expected:
+                    break
+                results.append({'weight': weight, 'threshold': threshold, 'evaluation_rank': actual,
+                                'surface_prefix_count': surface_prefix_count(weight, threshold)})
+            else:
+                break
+        else:
+            raise AssertionError('no generic finite-prefix evaluation witness found')
+        assert len(results) == len(queries)
+        defects = [q for q in results if q['evaluation_rank'] < min(n, q['surface_prefix_count'])]
+        assert defects, sizes
+        fixtures.append({'component_sizes': sizes, 'length': n, 'characteristic': prime,
+                         'nodes_by_component': blocks, 'generic_sample_attempts': attempt,
+                         'retained_capacity_constraints': len(profile[1]),
+                         'direct_prefix_rank_queries': len(results), 'queries': results,
+                         'rank_defect_witness': defects[0]})
+    return fixtures
+
+
+def multicurve_balanced_fan(r, m):
+    n = r * m
+    ground = tuple(a for a in hyperbolic_cross(n, 3) if not a[0] * a[2])
+    comparisons = {primitive(tuple(x - y for x, y in zip(a, b))) for a, b in combinations(ground, 2)}
+    comparisons.update(primitive((r - h, 0, -h)) for h in range(1, r))
+    pieces, domain_counts = {}, []
+    for ell in range(r):
+        todo, seen = [(2 * ell + 1, 3 * r + 1, 2 * r - 2 * ell - 1)], {}
+        allowed = tuple(a for a in ground if a[1] < r or (a[0] < r - ell and a[2] < ell + 1))
+        lower, upper = (r - ell, 0, -ell), (-(r - ell - 1), 0, ell + 1)
+        while todo:
+            weight = todo.pop()
+            if dot(lower, weight) <= 0 or dot(upper, weight) <= 0:
+                continue
+            selected = tuple(sorted(sorted(allowed, key=lambda a: (dot(a, weight), a))[:n]))
+            if selected in seen:
+                continue
+            normals = {tuple(y - x for x, y in zip(a, b)) for a in selected for b in allowed if b not in selected}
+            normals.update((lower, upper))
+            polygon = [tuple(Fraction(i == j) for i in range(3)) for j in range(3)]
+            for normal in sorted(normals):
+                polygon = clip(polygon, normal, 1)
+            assert polygon and area2(polygon)
+            strict = integer_weight(tuple(sum(p[i] for p in polygon) / len(polygon) for i in range(3)))
+            assert all(dot(z, strict) > 0 for z in normals)
+            if n <= r * r:
+                assert selected == tuple(sorted(sorted(ground, key=lambda a: (dot(a, strict), a))[:n]))
+            seen[selected] = {'weight': strict, 'polygon': polygon}
+            todo.extend(adjacent_weights(polygon, sorted(normals), sorted(comparisons)))
+        assert sum(area2(v['polygon']) for v in seen.values()) == Fraction(1, r)
+        domain_counts.append(len(seen))
+        pieces.update(seen)
+    return pieces, {'components': r, 'points_per_component': m, 'length': n,
+                    'carrier_domain_piece_counts': domain_counts, 'distinct_initial_ideals': len(pieces),
+                    'surface_fan_equality': n <= r * r,
+                    'cut_witnesses': [{'basis': selected, 'weight': data['weight']}
+                                      for selected, data in sorted(pieces.items())]}
+
+
+def multicurve_controls():
+    formal, rank_controls = multicurve_symbolic_controls(), multicurve_rank_controls()
+    fans, points = [], []
+    for r, m in ((3, 2), (3, 3), (4, 2), (5, 1)):
+        pieces, fan = multicurve_balanced_fan(r, m)
+        fans.append(fan)
+        points.extend(two_curve_point_controls(r * m, (m,) * r, pieces, p) for p in (0, 1009))
+    prefixes = multicurve_point_prefix_controls()
+    return {'scope': 'Uniform carrier and generic sampling-rank formulas for any number of scaled components. Balanced samples with r^2>=n have exactly the generic surface fan. Intermediate balanced counts and unrestricted G_3 remain unresolved; no novelty certificate.',
+            'formal_parameter_sectors': formal, 'rank_controls': rank_controls,
+            'complete_balanced_model_fans': fans, 'generic_point_quotients': points,
+            'finite_prefix_rank_fixtures': prefixes}
+
+
 def main():
     axes = [axis_controls(n) for n in (4, 5, 6, 7, 9, 12, 15, 21)]
     arithmetic = [arithmetic_controls(n) for n in (99, 303, 603)]
@@ -675,12 +956,14 @@ def main():
               for start, end in [((1, 1, 0), (1, 0, 1)), ((2, 1, 0), (0, 1, 2)),
                                  ((1, 0, 2), (0, 1, 3)), ((5, 3, 0), (7, 0, 3))]]
     unions = two_curve_controls()
+    multicurves = multicurve_controls()
     paths = ['scripts/run_algebraic_incidence_controls.py', 'docs/weighted_facet_incidence.md',
              'docs/initial_cone_height.md', 'scripts/run_extremal_initial_ideals_checks.py',
              'scripts/run_structural_complexity_checks.py', 'scripts/run_initial_cone_height_checks.py',
-             'scripts/run_interleaving_research.py', 'docs/extremal_initial_ideals.md']
+             'scripts/run_interleaving_research.py', 'docs/extremal_initial_ideals.md',
+             'docs/generic_multiaffine_bound.md']
     report = {'status': 'passed', 'command': 'python3 -B scripts/run_algebraic_incidence_controls.py',
-              'scope': 'Three-pole quotients give quartic incidence; nine-cone quotients check interior radius. Generic two-curve unions have quadratic fan growth uniformly in the component sizes. No stronger G_3 count or novelty certificate is inferred.',
+              'scope': 'Three-pole quotients give quartic incidence and generic two-curve unions have quadratic fans. Arbitrarily many scaled components have an exact generic prefix-rank formula with only square-root many capacity constraints. The full extremal count and priority remain open.',
               'summary': {'complete_axis_fans': len(axes), 'axis_cells': sum(a['positive_cells'] for a in axes),
                           'matrix_selection_controls': sum(a['independent_matrix_selections'] for a in axes),
                           'arithmetic_fixtures': len(arithmetic), 'complete_quotient_fans': len(interior),
@@ -699,11 +982,19 @@ def main():
                           'two_curve_quota_allocation_checks': sum(a['quota_saturated_sets'] for a in unions['complete_six_ray_cut_fans']),
                           'two_curve_rank_formula_prefix_checks': sum(a['generic_rank_formula_prefix_checks'] for a in unions['generic_point_quotients']),
                           'two_curve_s_pairs': sum(a['ordinary_s_pairs'] for a in unions['generic_point_quotients']),
-                          'two_curve_normal_forms': sum(a['ordinary_normal_forms'] for a in unions['generic_point_quotients'])},
+                          'two_curve_normal_forms': sum(a['ordinary_normal_forms'] for a in unions['generic_point_quotients']),
+                          'multicurve_formal_sectors': len(multicurves['formal_parameter_sectors']),
+                          'multicurve_formal_s_pairs': sum(a['formal_s_pairs'] for a in multicurves['formal_parameter_sectors']),
+                          'multicurve_complete_point_fans': len(multicurves['generic_point_quotients']),
+                          'multicurve_prefix_rank_checks': sum(a['generic_rank_formula_prefix_checks'] for a in multicurves['generic_point_quotients']),
+                          'multicurve_normal_forms': sum(a['ordinary_normal_forms'] for a in multicurves['generic_point_quotients']),
+                          'multicurve_direct_point_rank_queries': sum(a['direct_prefix_rank_queries'] for a in multicurves['finite_prefix_rank_fixtures']),
+                          **multicurves['rank_controls']},
               'uniform_axis_matroids': axes, 'arithmetic_lower_bound_controls': arithmetic,
               'interior_quotients': interior, 'three_pole_quotients': curves,
               'positive_plane_traces': planes,
               'generic_two_curve_unions': unions,
+              'generic_multicurve_unions': multicurves,
               'source_sha256': {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in paths}}
     (ROOT / 'results/research/algebraic_incidence_controls.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report['summary'], indent=2))

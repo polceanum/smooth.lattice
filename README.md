@@ -87,6 +87,12 @@ The six-ray cut and quota proof, supported by independent point-quotient
 controls, rules out multiplying these component fan counts.
 Special node configurations remain outside that result; it does not
 change the unrestricted bound.
+For an arbitrary number of scaled curve components, an exact generic
+weighted-prefix rank formula now retains only the largest
+`floor(sqrt(n-1))` component capacities. It gives a matrix-free rank
+oracle using classical floor sums. Balanced samples with at least
+`sqrt(n)` components have exactly the generic enclosing-surface fan;
+the intermediate component regime and unrestricted count remain open.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count

@@ -3093,6 +3093,258 @@ monomial prefixes, instead of multiplying component fans. The full
 sharp-$G_3$ objective and its original success criteria remain active;
 this obstruction alone warrants neither a new paper nor completion.
 
+## A uniform rank formula for any number of scaled components
+
+The two-component calculation extends at the level of carrier ideals and
+all weighted prefix ranks. It does not justify multiplying component
+fans. Let $\alpha_1,\ldots,\alpha_r$ be distinct nonzero scalars over
+an infinite field, and retain the curves $C_j$ above. Choose $m_j\ge1$
+generic nodes on component $j$, with total length $n=\sum_jm_j$.
+Genericity is a simultaneous open condition, explained below. All the
+statements hold in arbitrary characteristic over such a field; rational
+witnesses in each prescribed finite field are not asserted.
+
+### The complete carrier basis has a hook description
+
+For a monic polynomial $f$ of degree $s$, put
+
+$$
+J_f=(g,f(xy)),\qquad g=xz-z-1,\qquad
+H_h=\operatorname{NF}_{g}(z^h f(xy)),\quad 0\le h\le s.
+$$
+
+For a positive weight away from the finitely many boundary ratios, define
+
+$$
+\ell=\left\lfloor\frac{s w_x}{w_x+w_z}\right\rfloor,
+\qquad a=s-\ell,\quad c=\ell+1.
+$$
+
+**Carrier theorem.** A Gröbner basis of $J_f$ is
+$(g,H_\ell,H_{\ell+1})$, with heads
+
+$$
+xz,\qquad x^a y^s,\qquad y^s z^c,\qquad a+c=s+1. \tag{V1}
+$$
+
+In particular the infinite carrier has exactly $s$ positive monomial
+initial ideals, independent of the coefficients of $f$. For the union
+of any $s$ of our components, use $f(U)=\prod(U-\alpha_j)$.
+
+Here is a uniform proof. In the normal form of $x^s z^h$, the extreme
+pure terms are $x^{s-h}$ and $z^h$, with coefficient one (ignoring an
+extreme that coincides with a constant at an endpoint). Every other
+term of $H_h$ divides one of $y^s x^{s-h}$ and $y^s z^h$, properly
+unless it is that extreme. Terms arising from lower powers of $xy$
+are smaller too. Thus $H_h$ has the first head when
+$(s-h)w_x>h w_z$, and the second when the inequality reverses.
+The switch occurs between $h=\ell$ and $h=\ell+1$.
+
+Modulo $g$ there are identities
+
+$$
+zH_h=H_{h+1},\qquad xH_{h+1}=H_h+H_{h+1}. \tag{V2}
+$$
+
+Moreover $z$ is a unit modulo $g$, with inverse $x-1$. Hence any
+$H_h$ together with $g$ generates $J_f$. Reduce the S-pair of $g$
+and $H_\ell$ using $g$ first: its remainder is $-H_{\ell+1}$.
+Its head is strictly below the pair's least common multiple because
+$a w_x>\ell w_z$. For the pair of $g$ and $H_{\ell+1}$ the
+remainder is $-H_\ell-H_{\ell+1}$; its heads are below the corresponding
+least common multiple because $(a-1)w_x<c w_z$. Reductions using
+$g$ always decrease cost. These are standard representations for both
+pairs. The head $xz$ divides the least common multiple of the two
+remaining heads, so the classical chain criterion supplies the third
+pair. This proves (V1) for every $s$, rather than extrapolating the
+symbolic checks. The criterion itself is established: see Buchberger's
+[SYNASC 2017 account](https://synasc.ro/2017/wp-content/uploads/sites/7/2017/10/BrunoBuchberger.pdf),
+pp. 4--7, including the reference to his 1979 paper. Those pages were
+inspected; the original 1979 proof is not claimed as read. The S-pair
+argument here specifies the needed standard representations directly.
+
+Order the two-axis monomials
+
+$$
+T=(1,x,x^2,\ldots,z,z^2,\ldots)=(t_0,t_1,\ldots)
+$$
+
+by their merged positive costs $v_i$, with $t_0=1$. This notation
+denotes a merge, not concatenation. The first $s$ monomials of $T$
+are exactly $1,x,\ldots,x^{a-1},z,\ldots,z^{c-1}$: the two
+threshold comparisons are precisely the inequalities defining (V1).
+The carrier-standard monomials therefore have the coefficient-free
+description
+
+$$
+M_s=\{t_i y^b:\ \min(i,b)<s\}. \tag{V3}
+$$
+
+At a boundary ratio use a consistent monomial refinement. The cost
+multisets and ranks of closed prefixes below do not depend on that
+choice. Formula (V3) displays the link to interleavings: one stream
+merges multiples of two coordinate prices, and successive hook layers
+add a row and a column. It remains an exponent-lattice construction,
+not a statement about prime distribution.
+
+### All generic sampling ranks depend only on component sizes
+
+Let $E_w(C)$ consist of every monomial of weight at most $C$, and let
+$d_s(C)$ be its functional rank on any $s$ components; set $d_0=0$.
+By (V1)--(V3), $d_s(C)$ is independent of which components were chosen:
+
+$$
+d_s(C)=\#\{(i,b):v_i+bw_y\le C,\ \min(i,b)<s\}. \tag{V4}
+$$
+
+The general component-row-space version of the established Rado
+formula (U2) gives the generic finite evaluation rank. Sort the component
+sizes as $m_{(1)}\ge\cdots\ge m_{(r)}$ and put
+$A_s=\sum_{j=1}^s m_{(j)}$, $A_0=0$. Since the functional rank of a
+subset depends only on its cardinality, minimizing over subsets chooses
+the $s$ largest capacities. Consequently the weighted affine Hilbert
+function of the generic point quotient is exactly
+
+$$
+R_w(C)=\min_{0\le s\le r}\bigl(n-A_s+d_s(C)\bigr). \tag{V5}
+$$
+
+This is a formula for actual monomial cost prefixes. It does not identify
+the full residue matroid with a coefficient-free or uniform matroid.
+Nevertheless it determines the entire positive initial fan generically,
+so that fan depends only on the multiset of component sizes, rather than
+their association to particular $\alpha_j$ or the generic node values.
+
+One open node condition suffices for all $w,C$. For a quotient of length
+$n$, every monomial chosen by greedy selection is in the universal
+hyperbolic ground $V_n$: the chosen set is a downset of size at most $n$.
+Thus every prefix evaluation rank equals its rank after intersection
+with $V_n$, for every node configuration of the stated length. There
+are finitely many subsets of $V_n$. Impose the generic Rado rank on
+each of them. For any fixed full prefix its generic maximum rank is
+also given by Rado, and equals that of its intersection with $V_n$ by
+the same downset observation. Hence this finite open condition gives
+(V5) simultaneously. No infinite intersection of open sets is used.
+
+For equal sizes $m_j=m$, the functional rank $d_s(C)$ is a concave
+sequence in $s$. Indeed the row-space rank is submodular and symmetric
+in the selected components, giving
+$2d_s\ge d_{s-1}+d_{s+1}$. Equivalently, (V3) injects each layer's
+row and column into cheaper points of the preceding layer. Thus the
+minimum of $(r-s)m+d_s(C)$ occurs at an endpoint:
+
+$$
+R_w(C)=\min(n,d_r(C)),\qquad n=rm. \tag{V6}
+$$
+
+Balanced generic sampling is exactly a uniform truncation of the
+carrier's positive prefixes, for every $r$ and every distinct nonzero
+choice of component scalars. This uses the symmetry of the actual
+functional prefix ranks, not an assumption that component choices are
+independent.
+
+### Only square-root many capacity constraints can matter
+
+Let $M_\infty=\{t_i y^b:i,b\ge0\}$ be the standard monomials of
+the enclosing surface $xz-z-1=0$, and write $d_\infty(C)$ for its
+prefix count. An excluded monomial of $M_s$ has $i,b\ge s$.
+All $s^2$ points with $i,b<s$ are allowed and strictly cheaper.
+It follows that the first $N$ points of $M_s$ and $M_\infty$ agree
+whenever $N\le s^2$. In particular
+
+$$
+d_s(C)\ge\min(n,d_\infty(C))\quad\text{if }s^2\ge n. \tag{V7}
+$$
+
+Put $q=\min(r,\lfloor\sqrt{n-1}\rfloor)$. Every larger-$s$ term
+in (V5) is redundant, and the exact general formula becomes
+
+$$
+R_w(C)=\min\left(n,d_\infty(C),
+ \min_{1\le s\le q}\{n-A_s+d_s(C)\}\right). \tag{V8}
+$$
+
+To see redundancy also for early prefixes, if $d_\infty<n$ all these
+large-$s$ ranks equal $d_\infty$; otherwise (V7) makes them at least
+$n$. When $r<\sqrt n$, its full-subset term remains in (V8) and is
+already at most $d_\infty$. Thus adding that extra minimum changes
+nothing in either case. Only the largest $q$ component sizes, plus
+the total length, are needed for every weighted Hilbert-function query.
+
+For balanced samples, if $r^2\ge n$, (V6)--(V7) show equality of
+the entire finite fan with that of generic points on the enclosing
+surface. The [classical convex-position screening bound](generic_multiaffine_bound.md)
+then gives $g(I)=O(n^2\log(n+1))$. This transfer proves equality of
+the fans; it does not assume curve-generic samples are surface-generic.
+For general $r$, each of the $r$ carrier cones uses uniform selection
+from a subset of the orthant-boundary ground $M_\infty\cap V_n$,
+of size $O(n\log(n+1))$. The same classical strict-set bound gives
+
+$$
+g(I)=O(rn^2\log(n+1))\quad\text{for balanced samples}. \tag{V9}
+$$
+
+Combining the two regimes yields the uniform family bound
+$O(n^{5/2}\log(n+1))$. A polynomial separation in this balanced
+construction could occur only with an increasing $r<\sqrt n$;
+bounded $r$, and also $r=n^{o(1)}$, cannot supply a fixed power gain.
+These are restricted bounds, not a new bound on unrestricted $G_3$.
+The intermediate balanced count and the general unbalanced count
+remain open here.
+
+### An exact rank oracle without evaluation matrices
+
+For positive integer prices and integer $C$, define
+
+$$
+B(t)=\begin{cases}1+\lfloor t/w_x\rfloor+\lfloor t/w_z\rfloor,&t\ge0,\\0,&t<0.\end{cases}
+$$
+
+The new row and column in (V3) give
+
+$$
+d_s-d_{s-1}=\max(0,B(C-(s-1)w_y)-s+1)
+ +\max\left(0,\left\lfloor\frac{C-v_{s-1}}{w_y}\right\rfloor-s+1\right). \tag{V10}
+$$
+
+Generate $v_0,\ldots,v_{q-1}$ by merging the two axis progressions.
+All $d_s$ required by (V8) take $O(q)$ arithmetic operations and
+comparisons. The surface count is the sum of two ordinary planar
+lattice counts, less their shared $y$ axis. Each planar count is one
+Euclidean floor sum. That logarithmic-time algorithm is established;
+the [AtCoder Library documentation](https://atcoder.github.io/ac-library/production/document_en/math.html)
+and [implementation](https://raw.githubusercontent.com/atcoder/ac-library/master/atcoder/internal_math.hpp)
+were inspected for the stated sum and recurrence. The research checker
+uses unbounded Python integers, rather than that implementation's
+fixed-width overflow convention.
+
+After reading the $r$ sizes and retaining their largest $q$ values,
+a query therefore takes $O(q+\log W)$ arithmetic/comparison operations,
+where $W=2+|C|+w_x+w_y+w_z$. Standard selection uses
+$O(r\log(q+2))$ preprocessing time and $O(q+1)$ retained data. This
+is an exact, matrix-free weighted-Hilbert-function oracle under the
+specified generic assumption. It is not a bit-complexity bound, an
+oracle for special node configurations, a full Gröbner-basis algorithm,
+or an extension of the smooth-number CLI's certified range. Its use
+of the same planar floor-count geometry makes the exponent-lattice
+connection concrete, without an asserted prime-distribution consequence.
+
+The checker tests formal coefficient bases in all sectors for
+$1\le r\le7$, independent functional ranks on component subsets,
+the compressed oracle against full subset-size minimization, and
+complete finite point fans in rational and finite-field arithmetic.
+Additional direct point-prefix fixtures exercise active curve and
+capacity constraints beyond the surface-equality range: at weight
+$(1,1,1)$ and threshold $5$, component sizes $(15,15,15)$ give
+rank $34$ versus the surface's $36$ functions, while $(30,10,5)$
+and its permutation give rank $31$. A length-$27$ eight-component
+fixture checks the reduction to five retained capacity constraints.
+These larger fixtures check specified prefix ranks, not complete fans.
+The uniform proofs above establish the claims beyond those fixtures.
+Classical inputs remain explicit; exact priority of this combined rank
+and counting formulation has not been established. No new paper or
+completed-goal claim follows from these restricted results alone.
+
 ## Reproduction
 
 From the repository root:
