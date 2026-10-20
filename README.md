@@ -133,6 +133,14 @@ Full-rank degree congruences also sharpen the rectangle volume bound: a single n
 homogeneous correction of degree comparable to the side length cannot
 give a power separation. Exact priority remains under assessment; the
 unrestricted full-rank case is still the main target.
+The [generic multiaffine continuation](docs/generic_multiaffine_bound.md)
+now excludes another entire construction class: sufficiently general
+points on any irreducible multiaffine surface have
+`O(n^2 log(n+1))` initial ideals, with one common weight list for the class.
+This is a corollary of classical convex-position geometry and generic
+interpolation. Explicit reduced point quotients realize the toric model;
+special configurations and local rectangle algebras can violate its rank
+rule and remain outside the bound. The unrestricted endpoint stays open.
 The additive prime-power class is now classified separately: at length
 `n=q^k`, every initial ideal is a prime-power box and the sharp maximum
 is `binomial(k+d-1,d-1)`. The proof uses established Frobenius reduction;

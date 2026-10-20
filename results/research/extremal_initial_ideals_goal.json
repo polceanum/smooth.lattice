@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Preserve the original sharp G_3 or polynomial-separation endpoint and every success criterion. The exchange-lattice theorem closes all rank-at-most-two intrinsic profile lattices at O_d(n log(n+1)), including every three-variable ideal with a nonzero integer grading, independently of its weights and characteristic. A spatial power separation must have full integer rank three. Every two-dimensional profile face of an unrestricted quotient nevertheless has O(n log(n+1)) vertices; a count or placement theorem for these faces remains missing. This local bound alone does not improve G_3. For square rectangle embeddings of length n=q^2 the exact index h=gcd{a+b-1:(a,b) in support(H)} gives O(n^(9/4)/sqrt(h)). Thus one homogeneous nonlinear correction of degree comparable with q, or more generally h=Omega(q), cannot give a power separation. A proposed n^(2+epsilon) family needs h=O(n^(1/2-2*epsilon)) as well as the terminal-band constraint. General low-order mixed degrees with h=1 remain open. Seek a defined symbolic coefficient family with an exact selected-column rank or coherent-exchange description before more fan counts. All mixed-image and Jordan ranks are fixed across the rectangle family and insufficient; support matching is false; the fixed coefficient probe is a rational-surface specialization; four counts do not prove growth. Retain the all-fields upper route with exchange-lattice normalization on faces, but do not reuse the disproved cubic full incidence moment, universal polylogarithmic plane cover or smaller individual certificate radius. Finish the strongest-current-primary-bound comparison and assess priority of the exact rank-two theorem against graded-ideal and parametric optimization work. The inspected concave-surface preprint does not cover arbitrary two-parameter matroids, and its journal version is not assumed identical. Matroid faces, dichotomic hull enumeration, Cauchy--Binet and normalized lattice volume are classical inputs. No new manuscript or completed-goal claim follows from these scoped comparisons.",
+  "next_proof_task": "Preserve the original sharp G_3 growth or polynomial-separation endpoint and every success criterion. Generic point configurations on all geometrically irreducible multiaffine surfaces are now uniformly bounded by O(n^2*log(n+1)); their exact fans reduce to canonical-prefix models, and one common weight list of the same order works across the class. Do not pursue generic interpolation on xyz=1, xy=z, or another multiaffine carrier as a source of a polynomial separation. The proof is a corollary of classical convex-position k-set geometry and generic evaluation, not a new unrestricted count or a completed priority audit. A carrier equation alone is insufficient: explicit reduced special points on xyz=1 already violate the uniform rank rule. The next lower construction must specify and count a genuinely nonuniform selected-column rank rule, or use a carrier outside this squarefree class. In particular the preserved local two-parameter rectangles with low-order mixed H and intrinsic index one remain open; image/Jordan ranks and support matching do not determine their columns. The fixed quadric xy=z is a concrete comparison for special configurations and fat-point limits: generic-point bounds cannot be imported through specialization. Seek a uniform theorem for these dependencies before further coefficient screens or growth fits. Retain the independent quotient-sensitive upper route, exact rank-two facet theorem and finite-index normalization, without reusing the disproved cubic incidence budget, polylogarithmic plane cover or smaller individual certificate radius. The strongest-current-primary-bound and exact theorem-priority comparisons remain incomplete. Keep all original success criteria; this restricted classical corollary does not complete the goal.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -89,7 +89,8 @@
     "Compare the exact x-chain allocation reduction, active consecutive-block cut certificate and uniform O(n^2*log(n+1)^4) bound for all I_(n,M,M) with nested integer allocation, parametric scheduling and initial-fan literature. The optimization class, lattice comparative statics and final hyperbolic-cross arrangement count are established inputs. The new proof closes this construction as a power-separation route; no unsuccessful search or restricted theorem certifies priority or settles G_3.",
     "Assess the exact cheap-prefix saturation estimate, rank-sized primitive direction cross and common weight list for full additive-valuation sublevel grounds whose bases permit lowering valuation. Compare the generic fixed-order jet application with primary curve and jet literature. The entire constructed class is excluded from polynomial separation; the general all-fields G_3 endpoint and the strongest-current-bound audit remain unresolved.",
     "Assess the exact high-order direct-sum rank decomposition and g(I_F)=O((1+R*S)^(3/2)) comparison in docs/rectangle_rank_structure.md against graded deformation and initial-fan literature. The automorphism, characteristic-zero Jordan formula, Minkowski normal-fan refinement and final lattice estimate are classical inputs. The low-order rectangle rank and unrestricted extremal targets remain open; an unsuccessful search is not a novelty certificate.",
-    "Assess exact priority of the exchange-lattice shadow theorem, sharp-order rank-two intrinsic-profile classification, unrestricted local facet bound and rectangle degree-index estimate. Their classical inputs do not establish the new quantitative comparison or resolve full-rank G_3. Compare with primary graded-ideal and parametric optimization results, without treating unsuccessful searches as novelty evidence."
+    "Assess exact priority of the exchange-lattice shadow theorem, sharp-order rank-two intrinsic-profile classification, unrestricted local facet bound and rectangle degree-index estimate. Their classical inputs do not establish the new quantitative comparison or resolve full-rank G_3. Compare with primary graded-ideal and parametric optimization results, without treating unsuccessful searches as novelty evidence.",
+    "Assess the exact generic multiaffine screening corollary and common-list scope against existing generic-interpolation and carrier-dependent fan literature. The convex-position facet formula is explicitly classical, and this result is not a new unrestricted count or endpoint completion."
   ],
   "primary_sources": [
     {
@@ -316,6 +317,13 @@
       "authors": "Przybylski, Klamroth and Lacour",
       "url": "https://arxiv.org/pdf/1911.08937",
       "scope": "Section 2.1 and Algorithm 1 inspected: classical dichotomic edge-normal scalarization and support-facet convex-hull enumeration. The method is an established input."
+    },
+    {
+      "authors": "Brett Leroux and Luis Rademacher",
+      "title": "Algebraic k-Sets and Generally Neighborly Embeddings",
+      "url": "https://www.math.ucdavis.edu/~lrademac/algebraicksets.pdf",
+      "doi": "https://doi.org/10.1007/s00454-021-00340-1",
+      "scope": "Section 2.5 and Proposition 2.13, full PDF pages 6-7 read and visually checked. Classical three-dimensional convex-position oriented-facet formula and strict-set perturbation principle; not a claim to a new general k-set theorem."
     }
   ],
   "verification": {
@@ -444,24 +452,41 @@
       "high_order_exact_component_indices": 9,
       "support_oracle_calls": 216,
       "independently_enumerated_profile_vertices": 108
+    },
+    "generic_multiaffine_research": {
+      "command": "python3 -B scripts/run_generic_multiaffine_checks.py",
+      "status": "passed",
+      "report": "results/research/generic_multiaffine_checks.json",
+      "source_hashes_verified": true,
+      "complete_fans": 20,
+      "complete_cells": 476,
+      "independent_comparison_chambers": 318,
+      "explicit_point_quotients": 8,
+      "symbolic_vandermonde_minors": 756,
+      "convex_position_configurations": 8,
+      "common_lists": 2,
+      "additional_carrier_point_quotients": 4
     }
   },
-  "preservation": "Only the six explicitly listed public research files change. Every other tracked file, including all manuscripts and PDFs, kernels and auditor, prior research notes and reports, previous scripts and paused ML work, is byte-preserved. The original objective, success criteria and all prior continuations remain unchanged. Downloads, rendered pages, baselines and logs remain under ignored results/local/.",
+  "preservation": "Only the six explicitly listed public research files change. Every other tracked file, including all manuscripts and PDFs, kernels and auditor, prior notes and reports, previous scripts and paused ML work, is byte-preserved. The objective, success criteria and all eighteen earlier continuations are preserved. Source downloads, rendered pages, private baselines and exploratory larger-case counts remain under ignored results/local/.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
     "docs/extremal_initial_ideals.md",
-    "docs/profile_lattice_bound.md",
-    "scripts/run_profile_lattice_checks.py",
-    "results/research/profile_lattice_checks.json",
+    "docs/generic_multiaffine_bound.md",
+    "scripts/run_generic_multiaffine_checks.py",
+    "results/research/generic_multiaffine_checks.json",
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "c615cb30bbf07b0867a1f1d4a01565914566b44633adfe045c1e812f57e24ca6",
-    "docs/extremal_initial_ideals.md": "4b7f53ac60cb6dea82cb08a25e3afc388ab1640585c13d6cb66839aafa2172f1",
+    "README.md": "0a323406203a600e0c473ae1c0801abb065fc7cf52101d2f131096f8215604df",
+    "docs/extremal_initial_ideals.md": "7941f5ecd74d7e28c6cac7133bdd4b8e90e13177d00f80ea98b8fad4d281cc0e",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
-    "results/research/profile_lattice_checks.json": "437b69bd81173c330b059d879df9f93281befb01e353f9e2c2e00f5a55746d17"
+    "results/research/profile_lattice_checks.json": "437b69bd81173c330b059d879df9f93281befb01e353f9e2c2e00f5a55746d17",
+    "scripts/run_generic_multiaffine_checks.py": "85d76fb1b87dde0715ff44731206d7d81b29e4fc55a803ee5607aa53b0f5063d",
+    "docs/generic_multiaffine_bound.md": "25d79382745c94da18f038cee7f0d6eccc202f0dc5b4cd6568ae9aa43ffd1a19",
+    "results/research/generic_multiaffine_checks.json": "10698db1ece3391ed3a267c4bad2cf35e02e428559f1fcc1acb9ea54bb778c83"
   },
   "continuations": [
     {
@@ -1267,8 +1292,57 @@
         "smoke": "passed",
         "preservation": "Original objective, success criteria and every prior continuation preserved. All tracked files outside the explicit current public list remain byte-preserved."
       }
+    },
+    {
+      "title": "Classical convex-position geometry excludes generic multiaffine surfaces as a power-separation route",
+      "recorded_on": "2026-10-20",
+      "previous_turn_classification": "progress (editorial only in the immediately preceding turn)",
+      "previous_evidence": "d11c1c0 completed the requested remaining credits cleanup. It did not change the mathematical endpoint. The preceding mathematical continuation 7bda1a5 proved the rank-two profile and local facet bounds while leaving full-rank small-index cases open.",
+      "progress_classification": "uniform restricted class screened by an explicitly classical theorem, with an exact realizable rank model and a checked nonuniform boundary",
+      "uniform_proofs": [
+        "On a positive-dimensional geometrically integral carrier, generic evaluation at n points truncates every rank on a finite monomial ground to min(n, carrier rank). Thus the initial standard set is the first n carrier standard monomials. The hyperbolic-cross bound makes the simultaneous open condition finite, over every characteristic with an extension-field qualification.",
+        "A finite ground on the orthant boundary admits a small paraboloid-type perturbation making every point exposed while retaining every strict r-set. A further generic perturbation retains those properties. The classical convex-position formula e_j=2(j+1)(m-j-2), together with the simplicial r-sum polytope and Euler, bounds strict r-sets by 2*r*(m-r)-m+2. This is an established geometric input, not a new k-set theorem.",
+        "Every head of a multiaffine carrier is squarefree. For a head on t variables the canonical hyperbolic ground has exactly t*sum(floor(n/j))-binom(t,2)*n+binom(t,3) elements, hence O(n log(n+1)). At most seven heads and the classical boundary bound give g(I)=O(n^2 log(n+1)) uniformly for the entire generic-point class. Fixed support gives coefficient-independent generic fans.",
+        "One common positive weight list of size O(n^2 log(n+1)) serves all these generic point ideals: refine each of the seven canonical-prefix fans by the fixed six-wall squarefree comparison arrangement. This is a restricted common-list consequence of existing state-fan methods, not a new general algorithm or bit-cost bound.",
+        "For xyz=1, n explicit geometric-progression points have canonical evaluation columns (1,T^e,...,T^((n-1)e)) with injective Kronecker exponents e. Ordinary Vandermonde determinants realize the entire fan over Q, and over arbitrary characteristic using an indeterminate T. The Laurent triangle model therefore describes actual reduced quotients, but its whole generic class cannot yield a polynomial separation.",
+        "Four reduced special points (t,t,t^-2) on the same surface have a dependent first canonical prefix at weight (2,3,5), although all monomial evaluations are nonzero. The generic hypothesis cannot be removed. Special configurations and local rectangle algebras remain open; no specialization monotonicity is assumed."
+      ],
+      "independent_controls": {
+        "command": "python3 -B scripts/run_generic_multiaffine_checks.py",
+        "report": "results/research/generic_multiaffine_checks.json",
+        "complete_fans": 20,
+        "complete_cells": 476,
+        "independent_comparison_chambers": 318,
+        "symbolic_vandermonde_minors": 756,
+        "symbolic_small_characteristics": [
+          2,
+          3
+        ],
+        "convex_position_configurations": 8,
+        "explicit_toric_point_quotients": 8,
+        "additional_carrier_point_quotients": 4,
+        "complete_common_weight_lists": 2,
+        "checks": "Exact full fan coverage; independent complete comparison arrangements; strict boundary and general-position perturbations; oriented-triple facet counts and independently witnessed strict subsets; permutation versus product symbolic determinants; polynomial remainder quotients versus direct geometric evaluation; fixed-head nonbinomial and changing-head carriers; a reduced special-point guard."
+      },
+      "literature_boundary": "Leroux--Rademacher, Algebraic k-Sets and Generally Neighborly Embeddings, DOI 10.1007/s00454-021-00340-1, Section 2.5 and Proposition 2.13, PDF pages 6-7, were read and visually checked in the author-hosted published text. They explicitly give the classical three-dimensional convex-position facet formula and attribute earlier sources. The new screening bound is a corollary of that input and generic interpolation. No empty search establishes novelty; no strongest-current-bound conclusion is drawn. The unresolved older McMullen application and all earlier priority gates remain preserved.",
+      "prior_next_proof_task": "Preserve the original sharp G_3 or polynomial-separation endpoint and every success criterion. The exchange-lattice theorem closes all rank-at-most-two intrinsic profile lattices at O_d(n log(n+1)), including every three-variable ideal with a nonzero integer grading, independently of its weights and characteristic. A spatial power separation must have full integer rank three. Every two-dimensional profile face of an unrestricted quotient nevertheless has O(n log(n+1)) vertices; a count or placement theorem for these faces remains missing. This local bound alone does not improve G_3. For square rectangle embeddings of length n=q^2 the exact index h=gcd{a+b-1:(a,b) in support(H)} gives O(n^(9/4)/sqrt(h)). Thus one homogeneous nonlinear correction of degree comparable with q, or more generally h=Omega(q), cannot give a power separation. A proposed n^(2+epsilon) family needs h=O(n^(1/2-2*epsilon)) as well as the terminal-band constraint. General low-order mixed degrees with h=1 remain open. Seek a defined symbolic coefficient family with an exact selected-column rank or coherent-exchange description before more fan counts. All mixed-image and Jordan ranks are fixed across the rectangle family and insufficient; support matching is false; the fixed coefficient probe is a rational-surface specialization; four counts do not prove growth. Retain the all-fields upper route with exchange-lattice normalization on faces, but do not reuse the disproved cubic full incidence moment, universal polylogarithmic plane cover or smaller individual certificate radius. Finish the strongest-current-primary-bound comparison and assess priority of the exact rank-two theorem against graded-ideal and parametric optimization work. The inspected concave-surface preprint does not cover arbitrary two-parameter matroids, and its journal version is not assumed identical. Matroid faces, dichotomic hull enumeration, Cauchy--Binet and normalized lattice volume are classical inputs. No new manuscript or completed-goal claim follows from these scoped comparisons.",
+      "effect_on_next_action": "Preserve the original sharp G_3 growth or polynomial-separation endpoint and every success criterion. Generic point configurations on all geometrically irreducible multiaffine surfaces are now uniformly bounded by O(n^2*log(n+1)); their exact fans reduce to canonical-prefix models, and one common weight list of the same order works across the class. Do not pursue generic interpolation on xyz=1, xy=z, or another multiaffine carrier as a source of a polynomial separation. The proof is a corollary of classical convex-position k-set geometry and generic evaluation, not a new unrestricted count or a completed priority audit. A carrier equation alone is insufficient: explicit reduced special points on xyz=1 already violate the uniform rank rule. The next lower construction must specify and count a genuinely nonuniform selected-column rank rule, or use a carrier outside this squarefree class. In particular the preserved local two-parameter rectangles with low-order mixed H and intrinsic index one remain open; image/Jordan ranks and support matching do not determine their columns. The fixed quadric xy=z is a concrete comparison for special configurations and fat-point limits: generic-point bounds cannot be imported through specialization. Seek a uniform theorem for these dependencies before further coefficient screens or growth fits. Retain the independent quotient-sensitive upper route, exact rank-two facet theorem and finite-index normalization, without reusing the disproved cubic incidence budget, polylogarithmic plane cover or smaller individual certificate radius. The strongest-current-primary-bound and exact theorem-priority comparisons remain incomplete. Keep all original success criteria; this restricted classical corollary does not complete the goal.",
+      "new_unrestricted_counting_exponent": false,
+      "generic_multiaffine_class_power_separation_excluded": true,
+      "generic_point_fan_rank_reduction_established": true,
+      "explicit_toric_realization_established": true,
+      "special_multiaffine_quotients_closed": false,
+      "sharp_or_separated_unrestricted_endpoint_achieved": false,
+      "novelty_established": false,
+      "goal_complete": false,
+      "verification": {
+        "new_research": "passed",
+        "build": "passed",
+        "smoke": "passed",
+        "preservation": "Original objective, success criteria and all eighteen previous continuations preserved. Earlier manuscripts, PDFs, core kernels, auditor, prior research scripts and reports, and paused ML work are unchanged outside the explicit current public list."
+      }
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "No new unrestricted G_3 exponent. Every intrinsic profile lattice of rank at most two now has O_d(n log(n+1)) vertices, with the same local bound on every two-dimensional face of arbitrary quotient profile polytopes. Exact degree-index normalization also excludes one homogeneous nonlinear rectangle correction of degree comparable to q. Full-rank small-index and mixed low-degree cases remain open.",
-  "previous_goal_turn_classification": "progress: 55719b1 supplied image-rank and terminal-band restrictions; this turn proves the uniform rank-two profile theorem, local unrestricted facet bound and finite-index restrictions without lowering the main goal."
+  "asymptotic_improvement_scope_this_iteration": "No new unrestricted G_3 exponent. All generic point configurations on geometrically irreducible multiaffine surfaces have O(n^2 log(n+1)) initial ideals and one common weight list of the same order, by classical convex-position geometry. Prescribed nonuniform rank dependencies remain the open lower route.",
+  "previous_goal_turn_classification": "Progress: d11c1c0 performed the requested editorial cleanup without a counting advance; the current continuation excludes a complete realizable generic carrier class by a uniform classical corollary and independently checks its precise rank boundary. The unrestricted endpoint remains incomplete."
 }

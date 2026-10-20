@@ -1892,12 +1892,53 @@ The current comparisons do not certify novelty of the exchange-lattice
 theorem or complete the strongest-current-bound audit. The unrestricted
 endpoint, original success criteria and earlier proofs are preserved.
 
+## Generic multiaffine carriers and the nonuniform-rank boundary
+
+The [generic multiaffine screening proof](generic_multiaffine_bound.md)
+gives $g(I)=O(n^2\log(n+1))$ for sufficiently general point configurations
+on every geometrically irreducible multiaffine surface in three variables.
+The constant is independent of coefficients and characteristic, with the
+usual extension-field qualification when a finite field has no rational
+points in the required open set. A common list of the same order meets
+every initial cone across this entire class.
+
+The mechanism is exact. Generic evaluations truncate the carrier's
+monomial rank function. Its possible heads are squarefree, so their
+standard grounds lie on the orthant boundary and have only
+$O(n\log(n+1))$ relevant monomials. A small perturbation puts that ground
+in convex position while preserving its strict prefix sets. The classical
+three-dimensional convex-position $k$-set formula then supplies the bound.
+The exact primary formula was inspected in Leroux--Rademacher, Section 2.5
+and Proposition 2.13. This is a geometric corollary, not a new general
+$k$-set theorem or a completed priority assessment.
+
+For $xyz=1$, an explicit geometric-progression point family gives ordinary
+Vandermonde columns and realizes the full canonical-prefix fan. Under
+Laurent coordinates these are lattice points in triangles with vertices
+on three fixed rays. The three-way pattern therefore has a precise
+realization, but cannot provide the requested polynomial separation.
+The checker covers 20 full fans, 318 independent comparison chambers,
+756 symbolic minors (including characteristics two and three), eight
+convex-position configurations, eight explicit toric quotients and four
+additional carrier point quotients. Two complete common lists are checked
+against both fixed-head and changing-head carriers.
+
+The generic condition cannot be omitted: reduced special points on
+$xyz=1$ already give a dependent first canonical prefix although no
+monomial evaluation is zero. This leaves the preserved local rectangle
+family, and special configurations with a prescribed rank rule, logically
+open. Further generic interpolation on multiaffine carriers is excluded
+as a lower-bound route. The unrestricted $G_3$ target, its success
+criteria, the quotient-sensitive upper route and every earlier result
+remain in force; this restricted corollary does not complete the goal.
+
 ## Reproduction
 
 From the repository root:
 
 ```bash
 python3 -B scripts/run_extremal_initial_ideals_checks.py
+python3 -B scripts/run_generic_multiaffine_checks.py
 python3 -B scripts/run_additive_initial_ideals_checks.py
 python3 -B scripts/run_planar_dyadic_bound_checks.py
 python3 -B scripts/run_rational_shadow_bound_checks.py
