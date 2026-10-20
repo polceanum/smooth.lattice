@@ -4345,6 +4345,369 @@ for overlaps, the breakpoint budgets and the per-layer integer-pair
 bound. These fixtures support the uniform arrangement proof;
 they do not infer it from finite counts.
 
+## Bounded pooling has a quadratic count away from the critical regime
+
+The separate-layer argument extends to pooled blocks of any fixed maximum
+width. The extension must account for changes in the block partition;
+counting each block's prefix fan alone is not sufficient. Prefixes one
+rank below the block quota provide that additional certificate.
+
+### Statement and scope
+
+Fix integers $H\ge1$ and $R\ge2$. Use the generic component model and
+let $L=\max_s(m_s+s-1)$. Count initial staircases admitting a generic
+positive weight witness such that
+
+$$
+\frac{\max w_i}{\min w_i}<R,
+\qquad \max_j(s_{j-1}-s_j)\le H, \tag{AA1}
+$$
+
+where $r=s_0>\cdots>s_k=0$ are the canonical decreasing active phases
+of (X5). Then their number is
+
+$$
+O_{H,R}(L^4). \tag{AA2}
+$$
+
+In particular this is $O(n^2)$ whenever $L=O(\sqrt n)$, and for every
+fixed linear profile $m_s=a+c(r-s)$. The theorem counts all phase
+partitions satisfying (AA1), without multiplying their separate counts.
+The generic point realization and field scope are those of (V5).
+It makes no assertion for special node configurations.
+
+### A certificate that survives changes of partition
+
+For every consecutive block $(t,s]$ of width at most $2H$, set
+$B=A_s-A_t$. Consider the uniform-prefix fans on $M_s\setminus M_t$
+at both ranks $B$ and $B-1$; rank zero contributes a constant empty set.
+Take their common refinement, along with enough axis-order walls to
+fix the monomial labels. All these prefixes can be treated on a finite
+ground. In translated grid coordinates, a cheapest $q$-prefix is a
+downset, so its indices are at most $t+q-1\le n-1$.
+
+On a cell of this refinement, start with one actual staircase $D$
+whose canonical blocks have width at most $H$. For each of its blocks,
+the selected $B$-prefix remains fixed on the cell. At the initial
+generic witness, their largest selected costs strictly increase from
+outer to inner blocks, since outer phases freeze earlier.
+
+That cutoff order cannot change within the cell. At its first failure,
+two adjacent block cutoffs equal $T$. Their selected union is then a
+cheapest $(B_1+B_2)$-prefix: all its chosen points cost at most $T$,
+and all its omitted points cost at least $T$. At least two chosen
+points have cost $T$. Therefore the rank-$(B_1+B_2-1)$ prefix has a
+nontrivial tie. This is a boundary of the uniform-prefix fan for their
+union, whose width is at most $2H$, contradicting interiority of the
+refinement cell. The assertion also covers larger tie blocks: omitting
+one of two distinct chosen threshold points changes the profile.
+
+Thus $D$ stays feasible and optimal throughout that cell. Its canonical
+boundary quotas are tight and depend only on $D$ and the fixed flags.
+An exchange from an inner block to an outer block would violate one
+of those quotas. For the reverse exchange, every selected outer cost
+is at most its cutoff, which is below the inner cutoff and hence below
+every omitted inner cost. Within a block, the cheapest-prefix property
+already excludes improving exchanges. The classical matroid exchange
+optimality criterion finishes the argument. It can also be proved by
+the greedy prefix-rank criterion: if a basis has too few points in a
+cheap prefix, a fundamental circuit permits replacing an expensive
+point by a cheap one. The greedy minimum-basis framework in
+[Ardila--Klivans, Section 2, PDF pp. 2--4](https://arxiv.org/pdf/math/0311370)
+was rechecked; no new general matroid optimality theorem is asserted.
+
+This is a certificate in the nested positive-selection model, whose
+positive greedy bases agree with those of the actual generic ideal.
+It does not identify its full residue matroid on arbitrary subsets.
+Feasibility remains fixed on a flag domain. Since a connected
+refinement cell cannot leave the cutoff certificate, two different
+staircases satisfying (AA1) cannot have witnesses in the same cell,
+even if intervening weights might otherwise have wider blocks.
+It suffices to count this short-block refinement.
+
+### The complete short-block wall families
+
+Write $h=s-t\le2H$ and work in the axis/row grid. The block is the
+disjoint union of
+
+$$
+\begin{array}{ll}
+\text{columns:}&t\le i<s,\quad b\ge t,\\
+\text{rows:}&i\ge s,\quad t\le b<s.
+\end{array} \tag{AA3}
+$$
+
+There are $h$ column progressions and $2h$ row progressions after
+splitting the two axis rays. At rank $q\in\{B,B-1\}$, using $B$
+points in the first column bounds the threshold by
+$v_t+(t+B-1)w_y$. Here $B\le h m_1$. Since the axis counting density
+is $w_x^{-1}+w_z^{-1}$ and all price ratios are at most $R$, every
+critical axis index and monomial exponent is at most
+$Q=C_{H,R}L$. The exact constant is immaterial for (AA2).
+
+Normalize $w_z=1$ and put $\rho=w_x/w_z$, $\eta=w_y/w_z$.
+The aspect domain is contained in $[1/R,R]^2$ and is cut out there
+by the additional linear ratio inequalities. Inside a fixed axis-order
+domain, every nontrivial prefix boundary comes from a threshold tie.
+Ties between two rows, or between two columns, have equations
+
+$$
+\eta=(c-a\rho)/d,\qquad
+0\le a,c\le Q,\quad0<|d|\le2HR. \tag{AA4}
+$$
+
+For rows, the difference of their $y$ indices is less than $h$.
+For columns, the anchors span at most $h\min(w_x,w_z)$ in axis
+cost, so a tie forces a $y$-index difference at most $hR$.
+The signs in (AA4) include same-axis exchanges with $a=0$ or $c=0$.
+If $d=0$, add the corresponding vertical axis-order line instead.
+There are $O_{H,R}(L^2)$ such lines and verticals altogether.
+
+A cross tie has a column point $(i,b_1)$, $t\le i<s$, and a row
+point $(j,b_0)$, $j\ge s$, $t\le b_0<s$. Set $k=b_1-b_0$.
+Off axis ties, $k\ge1$, and the wall is
+
+$$
+\eta=\frac{v_j(\rho)-v_i(\rho)}k. \tag{AA5}
+$$
+
+Its quota bounds the remaining integer freedom. At the common cost,
+the strict count in each column differs from $k$ by at most
+$h+hR+1$. The strict count in each row differs from $j-s$ by at
+most $2hR$. A threshold tie has at most $3h$ points. Hence
+
+$$
+\left|j+k-s-\frac qh\right|\le E_{h,R}:=h+3hR+4.
+\tag{AA6}
+$$
+
+This includes degenerate threshold ties and both ranks $B,B-1$.
+For each short block and each of its $h$ column anchors, therefore,
+$N=j+k$ lies in an interval of bounded length. There are only
+$O_{H,R}(L)$ templates $(i,N)$ in total. Each contributes the curves
+
+$$
+f_{i,N,k}(\rho)=\frac{v_{N-k}(\rho)-v_i(\rho)}k,
+\qquad1\le k\le N-s. \tag{AA7}
+$$
+
+All their indices are $O_{H,R}(L)$. Thus there are $O_{H,R}(L^2)$
+curves, only $O_{H,R}(L)$ at each fixed denominator $k$, and each
+has $O_{H,R}(L)$ affine pieces. The breakpoints are the axis-order
+ratios already counted. These families cover the short-block prefix
+fans; many of their candidate curves need not be active.
+
+### Counting mixed intersections without an extra power
+
+Curve--curve intersections satisfy the same arithmetic filter as (Z18).
+For template $(i,N)$ put $\mu=N-i$. The axis displacement bound
+(Z2) gives
+$|\mu-k(1+\eta/[\rho/(1+\rho)])|\le1$ on its curve.
+Two templates of sizes $\mu,\nu$ can therefore meet only for
+
+$$
+|\mu\ell-\nu k|\le k+\ell. \tag{AA8}
+$$
+
+Since $k<\mu$, $\ell<\nu$, at most $3\mu+2\nu$ integer
+pairs survive. Each pair has $O_{H,R}(L)$ meeting events, including
+ends of coincident intervals, by subtracting its affine pieces.
+There are $O_{H,R}(L)$ templates. The total is $O_{H,R}(L^4)$.
+
+For line--curve intersections, the crude piece-by-piece product would
+lose a power. A curve in (AA7) is Lipschitz with constant $2Q/k$:
+each axis order statistic has slopes between zero and its index.
+A line (AA4) has slope magnitude at least $a/(2HR)$. If
+
+$$
+ak>2(2HR)Q, \tag{AA9}
+$$
+
+the line is steeper than every curve piece, so their difference is
+strictly monotone and they meet at most once. All such pairs cost
+only the product of the numbers of curves and lines, $O_{H,R}(L^4)$.
+
+For the other pairs, $a=O_{H,R}(Q/k)$. A line meeting the aspect box
+must have $c\le Ra+2HR^2$. Thus at denominator $k$ there are only
+$O_{H,R}((Q/k)^2+Q/k+1)$ possible small-slope lines. There are
+$O_{H,R}(L)$ curves at that denominator, with $O(Q)$ pieces each.
+Summing their meeting events gives
+
+$$
+O_{H,R}\!\left(
+ LQ\sum_{k=1}^{Q}\left[\frac{Q^2}{k^2}+\frac Qk+1\right]
+\right)=O_{H,R}(L^4). \tag{AA10}
+$$
+
+Horizontal lines are included in the bounded $a=0$ term. Coincident
+pieces can occur only in this second case; their endpoints obey the
+same piece count. Line--line intersections, vertical intersections
+with all curves and lines, and contacts with the aspect boundary also
+fit the $O_{H,R}(L^4)$ budget. A planar arrangement count now proves
+(AA2). This bounds the actual common refinement, including changes
+of phase partition certified above, rather than separate block fans.
+
+### Consequence for every fixed supercritical margin
+
+For $m_s=a+c(r-s)$, fix $R$ and $\delta>0$ and restrict to weights
+with aspect less than $R$ and
+
+$$
+c-K(w)\ge\delta. \tag{AA11}
+$$
+
+Every canonical phase has bounded width there. In (Z10),
+$q=\alpha w_y\in[2/R,2R]$, so its radius is at most
+$1+(a+4+3R)/\delta$. On the central cost interval, both sides of
+any phase jump obey that bound at the same limiting cost. Before
+that interval monotonicity confines the index to the last bounded
+number of components; afterwards it confines it to the first bounded
+number. Therefore all widths are at most
+
+$$
+H=\left\lceil2+\frac{2(a+4+3R)}\delta\right\rceil.
+$$
+
+Applying (AA2) gives $O_{a,c,R,\delta}(n^2)$ initial ideals with
+witnesses in (AA11), including genuine pooled phases. The compact
+aspect restriction can in fact be removed at the cost of one logarithm,
+as follows. Neither version treats a margin shrinking with $r$.
+
+### All positive aspect ratios through logarithmic coordinates
+
+Put $\sigma=\alpha w_y$. For fixed $H$ and constants
+$0<u<v<\infty$, count staircases with generic witnesses satisfying
+canonical width at most $H$ and
+
+$$
+u\le\sigma\le v,
+\qquad\text{with no bound on }w_x/w_z.
+$$
+
+Their number is
+
+$$
+O_{H,u,v}\bigl(L^4\log(L+1)\bigr). \tag{AA12}
+$$
+
+The short-block certificate is unchanged. Its wall description also
+remains uniform. A row's count changes by at most $h\sigma+2$
+under a displacement of $h$ row steps. Since
+$\alpha\min(w_x,w_z)\le2$, a column count changes by at most
+$2h/\sigma+1$ under a displacement of $h$ anchors. Thus in (AA6)
+one can use $h(1+v+2/u)+7$ in place of $E_{h,R}$.
+The first-column threshold bound gives all relevant indices
+$Q=O_{H,v}(L)$ independently of aspect. The bounded coefficient
+in (AA4) now satisfies $|d|\le D$ for a constant $D$ depending
+only on $H,u$. There are still $O_{H,u,v}(L)$ templates,
+$O_{H,u,v}(L^2)$ curves, and $O_{H,u,v}(L)$ curves at each
+denominator. Curve--curve and vertical intersections therefore
+retain their $O_{H,u,v}(L^4)$ bounds.
+
+The remaining line--curve count uses $x=\log\rho$ and
+$h(\rho)=\rho/(1+\rho)$. Define $U_i=v_i/h$. By (Z2),
+$i\le U_i\le i+1$. On an axis branch its logarithmic derivative
+is either $a\rho$ or $-c/\rho$, each of magnitude at most $i+1$.
+Hence the normalized curve $f_{i,N,k}/h$ is Lipschitz in $x$ with
+constant $2(Q+1)/k$. For a line (AA4), its normalized height is
+
+$$
+g(x)=\frac{c/\rho+c-a-a\rho}{d},\qquad
+\left|\frac{dg}{dx}\right|
+ =\frac{a\rho+c/\rho}{|d|}
+ \ge\frac{2\sqrt{ac}}{|d|}.
+$$
+
+The derivative has a fixed sign. If $a,c>0$ and
+
+$$
+ac\,k^2>d^2(Q+1)^2, \tag{AA13}
+$$
+
+the normalized line minus the normalized curve is strictly monotone,
+so they meet at most once over the entire positive axis. All those
+pairs again contribute $O_{H,u,v}(L^4)$.
+
+In the other case, $ac\le D^2(Q+1)^2/k^2$. The elementary harmonic
+bound for positive integer pairs is
+
+$$
+\#\{1\le a,c\le Q:ac\le T\}
+ \le T\sum_{a=1}^Q\frac1a
+ \le T(1+\log Q).
+$$
+
+Using $O(L)$ curves per denominator and $O(Q)$ pieces per pair,
+and then summing $\sum_{k\ge1}k^{-2}$, bounds these meetings by
+$O_{H,u,v}(L^4\log(L+1))$. Lines with $a=0$ or $c=0$ number
+only $O_{H,u,v}(Q)$; their full piecewise intersection budget is
+$O_{H,u,v}(L^4)$. Coincident pieces are allowed in the latter
+budgets and contribute only their endpoints. The harmonic estimate
+is classical integer-product counting, not a new arithmetic theorem.
+
+Finally, the boundary of the normalized height strip $u\le\eta/h\le v$
+adds no larger term. Each affine curve piece meets a boundary
+$\eta=u h$ or $\eta=v h$ at most twice, by a quadratic equation.
+Normalized lines are monotone and meet each such boundary at most once.
+Compactifying $\rho$ by $h\in(0,1)$ gives a finite planar subdivision;
+the boundary and endpoint contributions fit the previous budgets.
+The same certificate and arrangement count prove (AA12).
+
+For a fixed linear profile, $c-K(w)\ge\delta>0$ itself implies
+$1/c<\sigma<c$. Its active-index radius in (Z10) is at most
+$1+(a+2c+2)/\delta$, so take
+$H=\lceil2+2(a+2c+2)/\delta\rceil$. Equation (AA12) gives the
+global consequence
+
+$$
+\#\{\text{initial staircases with }c-K(w)\ge\delta\}
+ =O_{a,c,\delta}\bigl(n^2\log(n+1)\bigr), \tag{AA14}
+$$
+
+across **all** positive aspect ratios. Thus no fixed supercritical
+margin of a fixed linear profile can yield polynomial amplification,
+including its genuine pooled states. The constants are not uniform
+as $\delta\downarrow0$. The critical and subcritical regimes,
+and slopes three and four in particular, remain unresolved.
+
+### Exact controls and remaining task
+
+The checker performs a complete one-dimensional cost-order sweep of
+the length-$81$ profile $(26,21,16,11,6,1)$, with axis prices
+$(101,103)$ and $48<w_y<56$. The first $n$ merged axis points and
+$0\le b<n$ contain every needed prefix, so all relevant tie prices
+are enumerated exactly. There are 4,662 intervals, including 3,654
+with genuine pooling and three changes of canonical partition.
+The maximum width is two. Seventeen unordered short-block signatures
+at ranks $B,B-1$ distinguish four actual bases; the checker verifies
+the cell certificate's injectivity and 23,984 canonical block prefixes.
+
+At all critical sweep events it checks 65 cross-row/column walls,
+29 bounded-$y$-coefficient walls and 694 generalized curve intersection
+filters. An additional 414 exact piecewise comparisons test the
+steep-line monotonicity branch, including explicit admissible lines
+that need not be active in this narrow trace. For the global extension,
+another 465 piecewise comparisons check (AA13) over all $\rho>0$, together with
+the normalized axis derivative bounds; 240 exact integer-product
+enumerations check the harmonic pair bound. Three genuinely pooled
+bases in one finite point ideal are independently certified over
+$\mathbb F_{1000003}$ by invertible evaluation matrices and 49
+vanishing minimal-border relations with strictly lower tails.
+The report saves the tie prices, node configuration and exact bases,
+weights, phases and initial generators. It is a complete line trace
+and specified point certificates, not enumeration of the whole fan.
+
+The next count must handle blocks whose widths grow with the problem,
+especially the critical and subcritical regimes. Extreme aspect by
+itself no longer evades a fixed supercritical-margin bound.
+The bounded-width constants cannot be treated as uniform when the
+margin shrinks or the harmonic-ratio window degenerates.
+Classical matroid optimization and planar arrangement facts remain
+inputs; precise current priority of the combined certificate and
+mixed-intersection count is not established. No unrestricted $G_3$
+improvement, polynomial lower separation, new manuscript or completed
+goal follows from this restricted theorem alone.
+
 ## Reproduction
 
 From the repository root:

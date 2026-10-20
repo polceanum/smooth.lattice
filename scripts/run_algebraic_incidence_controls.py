@@ -1653,6 +1653,273 @@ def steep_component_controls():
             'scope': 'Sufficiently steep gaps give every singleton phase and an exact positive layer sum. An arithmetic wall-curve argument bounds all all-tight selections by O(n^2) for fixed linear profiles, including all axis orders and aspects. Pooled phases and unrestricted G_3 remain open.'}
 
 
+def pooled_block_controls():
+    """Complete one-parameter trace and short-block exchange certificates."""
+    r, slope, H, R = 6, 5, 2, 3
+    sizes = [1 + slope*(r - s) for s in range(1, r + 1)]
+    n, capacities = sum(sizes), [0]
+    for size in sizes:
+        capacities.append(capacities[-1] + size)
+    axes = sorted([(0, (0, 0, 0))] + [(101*j, (j, 0, 0)) for j in range(1, n)] +
+                  [(103*j, (0, 0, j)) for j in range(1, n)])[:n]
+    assert len({v for v, _ in axes}) == n
+    grid = [(i, b) for i in range(n) for b in range(n)]
+    differences = {v - u for u, _ in axes for v, _ in axes if v > u}
+    events = sorted({Fraction(48), Fraction(56)} |
+                    {Fraction(d, k) for d in differences for k in range(1, n) if 48*k < d < 56*k})
+    blocks = [(t, s, capacities[s] - capacities[t]) for t in range(r)
+              for s in range(t + 1, min(r, t + 2*H) + 1)]
+    counters, signatures, candidates, phase_patterns = defaultdict(int), {}, {}, set()
+    observed_curves, observed_lines = set(), set()
+    max_width, previous, previous_phase = 0, None, None
+
+    def ordered_grid(y):
+        keys = {p: axes[p[0]][0]*y.denominator + p[1]*y.numerator for p in grid}
+        return sorted(grid, key=keys.__getitem__), keys
+
+    def block_head(ordered, keys, t, s, take):
+        head = []
+        cutoff = None
+        for p in ordered:
+            if t <= min(p) < s:
+                if cutoff is not None and keys[p] > cutoff:
+                    break
+                head.append(p)
+                if len(head) == take:
+                    cutoff = keys[p]
+        assert len(head) >= take
+        return head
+
+    for left, right in zip(events, events[1:]):
+        y = (left + right)/2
+        ordered, keys = ordered_grid(y)
+        assert len(set(keys.values())) == len(grid)
+        counts, outside, chosen, phases = [0]*(r + 1), [0]*(r + 1), [], [r]
+        for p in ordered:
+            layer = min(p)
+            if layer >= r:
+                continue
+            expected = layer < phases[-1]
+            feasible = all(outside[s] + int(layer >= s) <= n - capacities[s] for s in range(r + 1))
+            assert expected == feasible
+            if feasible:
+                chosen.append(p)
+                outside = [v + int(layer >= s) for s, v in enumerate(outside)]
+            counts = [v + int(layer < s) for s, v in enumerate(counts)]
+            values = [a - d for a, d in zip(capacities, counts)]
+            active = values.index(max(values))
+            if active != phases[-1]:
+                phases.append(active)
+            if len(chosen) == n:
+                break
+        assert len(chosen) == n and phases[-1] == 0
+        selected = tuple(sorted(chosen))
+        width = max(s - t for s, t in zip(phases, phases[1:]))
+        max_width = max(max_width, width)
+        cutoffs = []
+        for s, t in zip(phases, phases[1:]):
+            take = capacities[s] - capacities[t]
+            prefix = block_head(ordered, keys, t, s, take)[:take]
+            assert set(prefix) == {p for p in chosen if t <= min(p) < s}
+            cutoffs.append(max(keys[p] for p in prefix))
+            counters['canonical_block_prefix_checks'] += 1
+        assert all(a < b for a, b in zip(cutoffs, cutoffs[1:]))
+        signature = []
+        for t, s, take in blocks:
+            prefix = block_head(ordered, keys, t, s, take)[:take]
+            signature.extend((tuple(sorted(prefix)), tuple(sorted(prefix[:-1]))))
+        if width <= H:
+            signature = tuple(signature)
+            assert signatures.setdefault(signature, selected) == selected
+            counters['bounded_width_intervals'] += 1
+            if width > 1:
+                counters['genuinely_pooled_intervals'] += 1
+                candidates.setdefault(selected, (y, phases))
+        if previous is not None and previous != selected:
+            counters['actual_basis_transitions'] += 1
+        if previous_phase is not None and previous_phase != phases:
+            counters['phase_partition_transitions'] += 1
+        previous, previous_phase = selected, phases
+        phase_patterns.add(tuple(phases))
+        counters['complete_cost_order_intervals'] += 1
+    assert max_width <= H and counters['genuinely_pooled_intervals'] > 0
+    assert counters['phase_partition_transitions'] > 0
+    assert counters['actual_basis_transitions'] > 0
+
+    for y in events[1:-1]:
+        ordered, keys = ordered_grid(y)
+        at_event = []
+        for t, s, take in blocks:
+            head = block_head(ordered, keys, t, s, take)
+            h = s - t
+            for target in (take, take - 1):
+                if not target:
+                    continue
+                cost = keys[head[target - 1]]
+                strict = sum(keys[p] < cost for p in head)
+                tied = [p for p in head if keys[p] == cost]
+                if not strict < target < strict + len(tied):
+                    continue
+                assert len(tied) <= 3*h
+                for first, second in combinations(tied, 2):
+                    if (first[0] < s) != (second[0] < s):
+                        col, row = (first, second) if first[0] < s else (second, first)
+                        i, b1 = col
+                        j, b0 = row
+                        k = b1 - b0
+                        assert k >= 1 and j >= s
+                        N = j + k
+                        assert abs(Fraction(N - s) - Fraction(target, h)) <= h + 3*h*R + 4
+                        observed_curves.add((i, j, k))
+                        at_event.append((N - i, k))
+                        counters['cross_row_column_walls'] += 1
+                    else:
+                        d = first[1] - second[1]
+                        assert d and abs(d) <= h*R
+                        a = axes[first[0]][1][0] - axes[second[0]][1][0]
+                        c = axes[second[0]][1][2] - axes[first[0]][1][2]
+                        if a < 0 or (not a and c < 0):
+                            a, c, d = -a, -c, -d
+                        assert a >= 0 and c >= 0
+                        assert (a*101 - c*103)*y.denominator + d*y.numerator == 0
+                        observed_lines.add((a, c, d))
+                        counters['small_y_coefficient_walls'] += 1
+        for (mu, k), (nu, ell) in combinations(at_event, 2):
+            assert abs(mu*ell - nu*k) <= k + ell
+            counters['generalized_curve_intersection_filters'] += 1
+
+    def axis_line(index, rho):
+        ceil = lambda t: -((-t.numerator)//t.denominator)
+        a, c = ceil(index/(1 + rho)), ceil(index*rho/(1 + rho))
+        return (a, 0) if a*rho < c else (0, c)
+
+    Q = max(j for _, j, _ in observed_curves)
+    # The narrow trace need not encounter a line steep enough for the
+    # monotonicity branch; include explicit admissible small-d lines too.
+    test_lines = observed_lines | {(a, c, d) for a in range(max(1, Q - 2), Q + 1)
+                                   for c in range(max(1, Q - 2), Q + 1) for d in (-1, 1)}
+    for (i, j, k), (a, c, d) in product(observed_curves, test_lines):
+        if a*k <= 2*abs(d)*Q:
+            continue
+        breaks = {Fraction(1, R), Fraction(R)}
+        for index in (i, j):
+            breaks.update(Fraction(v, u) for level in (index, index + 1)
+                          for u in range(1, level) for v in (level - u,)
+                          if Fraction(1, R) < Fraction(v, u) < R)
+        roots = set()
+        cuts = sorted(breaks)
+        for left, right in zip(cuts, cuts[1:]):
+            rho = (left + right)/2
+            x1, z1 = axis_line(i, rho)
+            x2, z2 = axis_line(j, rho)
+            slope_difference = Fraction(x2 - x1, k) + Fraction(a, d)
+            intercept_difference = Fraction(z2 - z1, k) - Fraction(c, d)
+            assert slope_difference
+            root = -intercept_difference/slope_difference
+            if left <= root <= right:
+                roots.add(root)
+        assert len(roots) <= 1
+        counters['steep_line_curve_intersection_checks'] += 1
+    assert counters['steep_line_curve_intersection_checks'] > 0
+
+    # Global logarithmic-coordinate branch: the product of the two line
+    # coefficients replaces a compact aspect bound. No logarithms are
+    # evaluated; roots and the normalized derivatives are rational.
+    for (i, j, k), (a, c, d) in product(observed_curves, test_lines):
+        if a*c*k*k <= d*d*(Q + 1)**2:
+            continue
+        cuts = [Fraction(0)] + sorted({Fraction(v, u) for index in (i, j)
+                                       for level in (index, index + 1)
+                                       for u in range(1, level) for v in (level - u,)})
+        roots = set()
+        for left, right in zip(cuts, cuts[1:] + [None]):
+            rho = (left + right)/2 if right is not None else left + 1
+            x1, z1 = axis_line(i, rho)
+            x2, z2 = axis_line(j, rho)
+            first_derivative = x1*rho if x1 else -Fraction(z1, 1)/rho
+            second_derivative = x2*rho if x2 else -Fraction(z2, 1)/rho
+            assert abs(first_derivative) <= i + 1 and abs(second_derivative) <= j + 1
+            assert abs((second_derivative - first_derivative)/k) <= Fraction(2*(Q + 1), k)
+            slope_difference = Fraction(x2 - x1, k) + Fraction(a, d)
+            intercept_difference = Fraction(z2 - z1, k) - Fraction(c, d)
+            if not slope_difference:
+                assert intercept_difference
+                continue
+            root = -intercept_difference/slope_difference
+            if root > 0 and left <= root and (right is None or root <= right):
+                roots.add(root)
+        assert len(roots) <= 1
+        counters['global_logarithmic_line_curve_checks'] += 1
+    assert counters['global_logarithmic_line_curve_checks'] > 0
+    for limit in (4, 8, 16, 32):
+        harmonic = sum(Fraction(1, a) for a in range(1, limit + 1))
+        for k, d in product(range(1, limit + 1), range(1, 5)):
+            threshold = Fraction(d*d*(limit + 1)**2, k*k)
+            direct = sum(a*c <= threshold for a in range(1, limit + 1) for c in range(1, limit + 1))
+            assert direct <= threshold*harmonic
+            counters['integer_product_pair_counts'] += 1
+
+    chosen_cases = list(candidates.items())
+    assert len(chosen_cases) >= 3
+    cases = [chosen_cases[j] for j in sorted({0, len(chosen_cases)//2, len(chosen_cases) - 1})]
+    prime, rng = 1000003, Random(20261020 + 4300)
+
+    def exponent(p):
+        a = axes[p[0]][1]
+        return (a[0], p[1], a[2])
+
+    for attempt in range(1, 31):
+        nodes = rng.sample(range(2, prime), n)
+        components, start = [], 0
+        for j, size in enumerate(sizes, 1):
+            components.extend((j, node) for node in nodes[start:start + size])
+            start += size
+
+        def residue(a):
+            return tuple(pow(node, a[0] - a[1], prime)*pow(j, a[1], prime)*
+                         pow(node - 1, -a[2], prime) % prime for j, node in components)
+
+        bases = [tuple(sorted(exponent(p) for p in selected)) for selected, _ in cases]
+        columns = {a: residue(a) for selected in bases for a in selected}
+        try:
+            inverses = [field_inverse(selected, columns, prime) for selected in bases]
+        except StopIteration:
+            continue
+        break
+    else:
+        raise AssertionError('no simultaneous pooled point witness')
+    certificates = []
+    for selected, inverse, (_, (y, phases)) in zip(bases, inverses, cases):
+        weight = (101*y.denominator, y.numerator, 103*y.denominator)
+        border = sorted(minimal_excluded_border(selected))
+        for a in border:
+            column = residue(a)
+            coordinates = [sum(x*z for x, z in zip(row, column)) % prime for row in inverse]
+            assert all(sum(coordinates[j]*columns[b][i] for j, b in enumerate(selected)) % prime == column[i]
+                       for i in range(n))
+            assert all(dot(a, weight) > dot(b, weight) for b, value in zip(selected, coordinates) if value)
+        counters['point_matrix_bases'] += 1
+        counters['point_border_relations'] += len(border)
+        certificates.append({'weight': weight, 'selected': selected, 'canonical_phases': phases,
+                             'minimal_initial_generators': border})
+    start, nodes_by_component = 0, []
+    for size in sizes:
+        nodes_by_component.append(nodes[start:start + size])
+        start += size
+    return {'counts': dict(counters), 'component_sizes': sizes, 'length': n,
+            'fixed_axis_prices': [101, 103], 'y_price_interval': [48, 56],
+            'complete_breakpoints': [str(y) for y in events],
+            'maximum_canonical_block_width': max_width,
+            'certificate_block_width': 2*H, 'aspect_bound': R,
+            'distinct_short_block_signatures': len(signatures),
+            'distinct_actual_bases': len(set(signatures.values())),
+            'distinct_phase_patterns': sorted(phase_patterns),
+            'point_ideal': {'characteristic': prime, 'component_scalars': list(range(1, r + 1)),
+                            'nodes_by_component': nodes_by_component, 'generic_sample_attempts': attempt,
+                            'positive_basis_certificates': certificates},
+            'scope': 'Complete one-dimensional trace, not a whole fan. Short-block rank-q and rank-(q-1) signatures, critical walls, compact and global logarithmic line-curve branches and integer-product counts are checked. Three actual pooled bases have exact point certificates. Uniform bounded-width theorems are proved separately.'}
+
+
 def main():
     axes = [axis_controls(n) for n in (4, 5, 6, 7, 9, 12, 15, 21)]
     arithmetic = [arithmetic_controls(n) for n in (99, 303, 603)]
@@ -1671,6 +1938,7 @@ def main():
                'hook_capacity_compression': hook_capacity_jump_controls(),
                'simultaneous_two_cost_point_faces': [unequal_point_controls(t) for t in (1, 2)]}
     steep = steep_component_controls()
+    pooled = pooled_block_controls()
     paths = ['scripts/run_algebraic_incidence_controls.py', 'docs/weighted_facet_incidence.md',
              'docs/initial_cone_height.md', 'scripts/run_extremal_initial_ideals_checks.py',
              'scripts/run_structural_complexity_checks.py', 'scripts/run_initial_cone_height_checks.py',
@@ -1678,7 +1946,7 @@ def main():
              'docs/generic_multiaffine_bound.md', 'docs/planar_dyadic_bound.md',
              'docs/rational_shadow_bound.md', 'scripts/run_planar_dyadic_bound_checks.py']
     report = {'status': 'passed', 'command': 'python3 -B scripts/run_algebraic_incidence_controls.py',
-              'scope': 'Linear generic component profiles have a finite-error rank transition and exact steep-gap layer factorization. Arithmetic wall curves bound their all-tight part by O(n^2), uniformly over axis orders and aspect ratios. Pooled phases, unrestricted G_3 and exact priority remain unresolved.',
+              'scope': 'Short-block certificates give O_(H,R)(L^4) states on compact aspects and O_(H,u,v)(L^4 log(L+1)) on a bounded harmonic-ratio window, without aspect bounds. Fixed supercritical margins of linear profiles therefore have quadratic-power counts globally. Growing widths, critical/subcritical regimes, unrestricted G_3 and exact priority remain unresolved.',
               'summary': {'complete_axis_fans': len(axes), 'axis_cells': sum(a['positive_cells'] for a in axes),
                           'matrix_selection_controls': sum(a['independent_matrix_selections'] for a in axes),
                           'arithmetic_fixtures': len(arithmetic), 'complete_quotient_fans': len(interior),
@@ -1724,7 +1992,8 @@ def main():
                           'steep_point_matrix_bases': sum(a['matrix_bases'] for a in steep['point_ideals']),
                           'steep_point_border_relations': sum(a['minimal_border_relations'] for a in steep['point_ideals']),
                           **{'steep_' + k: steep['layer_wall_counting'][k] for k in
-                             ('curve_pair_checks', 'affine_piece_pair_checks', 'exact_wall_quota_checks')}},
+                             ('curve_pair_checks', 'affine_piece_pair_checks', 'exact_wall_quota_checks')},
+                          **{'pooled_' + k: v for k, v in pooled['counts'].items()}},
               'uniform_axis_matroids': axes, 'arithmetic_lower_bound_controls': arithmetic,
               'interior_quotients': interior, 'three_pole_quotients': curves,
               'positive_plane_traces': planes,
@@ -1733,6 +2002,7 @@ def main():
               'balanced_hook_threshold_charging': charging,
               'unequal_component_phases': unequal,
               'steep_component_profiles': steep,
+              'pooled_component_blocks': pooled,
               'source_sha256': {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in paths}}
     (ROOT / 'results/research/algebraic_incidence_controls.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report['summary'], indent=2))

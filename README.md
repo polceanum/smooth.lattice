@@ -112,8 +112,12 @@ Sufficiently steep gaps also give exact separate layer selection on
 fixed carrier domains. This reduces their fan to a common refinement;
 an arithmetic wall-curve count bounds its all-tight part by `O(n^2)`
 for every fixed linear profile, across all axis orders and aspects.
-The count for pooled phases, including discrete critical regimes,
-remains unresolved.
+A short-block certificate and mixed-intersection bound extend the
+quadratic count to fixed pooling widths on compact weight regions.
+Logarithmic coordinates give a global `O(n^2 log(n+1))` bound for every
+fixed margin above the curvature threshold of a linear profile, including
+genuine pooling and all positive aspect ratios. Growing blocks and the
+critical and subcritical regimes remain unresolved.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count
