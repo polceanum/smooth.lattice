@@ -10,6 +10,9 @@ local refinement fan at every non-axial nonnegative weight of an arbitrary
 finite quotient. A precise prior-art comparison remains incomplete.
 These statements do not resolve unrestricted $G_3(n)$ or produce a
 polynomial separation above the generic scale.
+The signed extension below removes positivity of the grading when all
+three variable degrees are nonzero. A zero degree between two opposite
+signs requires a different argument and remains outside that extension.
 
 Throughout, $I\subset K[X,Y,Z]$ is proper of colength $n$, $K$ is
 arbitrary, and $g(I)$ counts monomial initial ideals for global orders.
@@ -114,6 +117,88 @@ proved here for the strictly positive subclass alone. The bound is
 uniform in the numerical grading weights, characteristic, radicality,
 generators and coefficient sizes. It does not rely on a lattice-volume
 estimate or replace $n$ by a presentation degree.
+
+## Signed degrees: the extension and its exact boundary
+
+Let $h:\mathbb Z\to\mathbb N_0$ have finite support and total $n$.
+For opposite pair degrees $p,-q$, normalize $p,q>0$ to be coprime.
+An admissible rectangle has at least
+
+$$
+1+\min(\lfloor a/q\rfloor,\lfloor b/p\rfloor)
+$$
+
+divisors in its corner degree $pa-qb$. The map
+
+$$
+(a,b)\longmapsto
+\left(pa-qb,\min(\lfloor a/q\rfloor,\lfloor b/p\rfloor)\right)       \tag{G2a}
+$$
+
+is injective. Two corners of the same degree differ by $(qt,pt)$;
+their two floor quotients, and hence their minimum, both change by
+$t$. Each image is a slot of the Hilbert function, so there are at
+most $n$ admissible rectangles. Common pair-degree factors and an
+overall sign are handled by restricting or reversing the degree index.
+Thus any pair of nonzero degrees has budget at most $2n$, even when
+the signs differ.
+
+**Theorem 2a.** If $I$ is homogeneous for an integer grading
+$d=(d_X,d_Y,d_Z)$ with **all three coordinates nonzero**, then
+
+$$
+g(I)\le12n+7.                                          \tag{G2b}
+$$
+
+For degrees of one sign, Theorem 2 applies after an overall sign change.
+For mixed signs, project the positive cost orthant to the two-dimensional
+objective space modulo $\mathbb R d$. Its image is a pointed convex
+cone. Indeed a line in the image would lift to two nonzero nonnegative
+vectors whose sum belongs to $\mathbb R d$, impossible for mixed $d$.
+The positive exposed part of the profile polygon is therefore a connected
+chain. Its vertices are actual initial standard sets; other polygon
+vertices need not be, and must not be included in the divisor argument.
+
+Each edge of that chain has a symmetric optimal exchange between its
+actual endpoint standard sets. As before, its primitive positive pair
+is an admissible rectangle. The remaining coordinate is determined
+because its grading degree is nonzero. The signed rectangle bound
+gives at most $6n+3$ unoriented directions. A convex polygon has at
+most two edges per direction, so the chain has at most $12n+7$
+vertices. Degenerate profile dimension is separate and satisfies the
+same bound. This proves the claim over every field.
+
+The hypothesis about the third degree is necessary **for this encoding
+argument**. It is not a proved boundary of the linear conclusion.
+For grading $(0,1,-1)$, positive pairs $(c,c)$ in the last two
+coordinates do not determine the first coordinate of an exchange.
+There is an actual all-field family demonstrating that ambiguity:
+
+$$
+I_{a,c}=(XY,XZ,X^{a+1},Y^{c+1},Z^{c+1},X^a-Y^cZ^c),
+\quad a,c\ge1.                                         \tag{G2c}
+$$
+
+Before the last relation the length is $a+(c+1)^2$; the relation
+identifies the two nonzero socle monomials and reduces it by one.
+Thus $n=a+(c+1)^2-1$. There are exactly two initial ideals, with
+wall direction $(a,-c,-c)$, reduced by its gcd, and wall
+$a w_X=c(w_Y+w_Z)$. Both choices are strict positive-weight cones.
+For fixed $c$ and coprime varying $a$, the same positive pair $(c,c)$
+therefore occurs with different primitive directions. The example
+invalidates an automatic extension of the encoding; it does not
+disprove a linear bound for $(0,p,-q)$.
+
+There is still useful structure in this excluded case. In any finite
+algebra graded by $(0,p,-q)$, $Y,Z$ are nilpotent. Put $T=Y^qZ^p$.
+Every grade's nonnegative $Y,Z$ solutions form one chain
+$(b_\ell+qj,c_\ell+pj)$, $j\ge0$. Its monomial columns are therefore
+a cyclic finite module over $K[X,T]$. Different grades are independent,
+but their costs use the same positive parameter
+$(q w_Y+p w_Z)/w_X$. Applying a planar bound separately gives the
+earlier $O(n\log n)$ bound, not the new linear one. Bounding all
+these modules' changes with one shared budget remains a possible
+extension; no such budget is asserted here.
 
 ## One zero degree and two positive degrees
 
@@ -288,6 +373,127 @@ identifies a broad kind of dependency that restricts the ordering family;
 the mixed-period relation breaks this grading. It does not yield a prime
 distribution theorem or a new certified unranking range.
 
+## An exact prefix formula for the original mixed-period algebra
+
+There is a direct way to study the columns that reach the relation.
+Keep the mixed-period notation
+$F=K[U,V]/(S_r(U),S_s(V))$, $D=(r-1)(s-1)$ and
+$A=F[W]/S_t(W)$, with $X=UV,Y=UW,Z=VW$.
+For any finite monomial list $E$, group its elements by
+$j=(b+c)\bmod t$ and set
+
+$$
+V_j(E)=\operatorname{span}_K
+ \{U^{a+b}V^{a+c}:(a,b,c)\in E,\ b+c\equiv j\pmod t\}
+ \subseteq F.
+$$
+
+Then, over every field,
+
+$$
+\operatorname{rank}_A(E)=\sum_{j=0}^{t-1}\dim V_j(E)
+                         -\dim\bigcap_{j=0}^{t-1}V_j(E).  \tag{G7}
+$$
+
+This is an elementary tensor/circuit rank identity, not a new general
+matroid theorem. The kernel of $F^t\to A$, $(v_j)\mapsto\sum v_jW^j$,
+is exactly the diagonal copy of $F$: $W^{t-1}=-\sum_{j<t-1}W^j$.
+Intersecting that kernel with $\bigoplus V_j$ proves (G7), including
+repeated labels and characteristics dividing a period.
+
+The known cographic model makes this more concrete. Let $G=K_{r,s}$,
+and let $S_j\subseteq E(G)$ be the distinct coefficient labels
+$((a+b)\bmod r,(a+c)\bmod s)$ occurring in group $j$.
+Write $\mathcal Z(H)$ for the cycle space of a spanning subgraph
+$H$, over $K$, and $c(H)$ for its number of components including
+isolated vertices. The established cographic representation identifies
+$V_j^\perp$ with $\mathcal Z(G\setminus S_j)$. Hence
+
+$$
+\begin{split}
+\dim V_j&=|S_j|+1-c(G\setminus S_j),\\
+\dim\bigcap_j V_j
+ &=D-\dim\left(\sum_j\mathcal Z(G\setminus S_j)\right).    \tag{G8}
+\end{split}
+$$
+
+The sum in (G8) is a sum of vector spaces, **not** the cycle space
+of the union of the graphs. Even two spanning trees can have a union
+with cycles while both individual cycle spaces are zero. In $K_{3,3}$,
+the tree made of row zero and column zero and the tree made of row one
+and column one have a union of eight edges and cycle rank three;
+their cycle-space sum has rank zero. Substituting connectivity of the
+union would therefore give the wrong rank. This identifies an exact
+reason the two-factor connectivity reduction does not extend directly.
+
+For positive prices $w$ use the actual finite cost prefix
+$E_C=\{(a,b,c)\ge0:w\cdot(a,b,c)\le C\}$. Formulas (G7)--(G8)
+then give its exact rank and, with a tie refinement, its greedy rank
+increments. Before $C<(t-1)\min(w_Y,w_Z)$, the last group is empty,
+so the intersection is zero and the lower blocks are independent.
+Once all groups occur, the growth of their intersection becomes part
+of the problem. A new column may still fill an uncompleted lower
+span before an intersection grows; no equivalence between those
+events is assumed.
+
+The next uniform question is how these specific cost-defined subspaces
+and cycle-space sums vary with the three prices. Formula (G7) alone
+does not bound the number of their changes, give a new rank algorithm
+complexity, or establish a coherent lower family. It turns the remaining
+mixed-period question into a defined prefix-intersection problem without
+replacing the original extremal endpoint.
+
+### A wider region with at most one complete period
+
+Put $m=\min(w_Y,w_Z)$ and $\alpha=w_X$. If
+
+$$
+t m>(D-1)\alpha,                                       \tag{G9}
+$$
+
+every standard monomial has $a<D$ and $b+c<t$. The monic degree-$D$
+relation of $X$ excludes $a\ge D$ for every positive weight. For the
+second assertion, fix a period label $j$. The $D$ monomials $X^a$ times the $j$th power of
+the cheaper of $Y,Z$ span its entire coefficient space $F$. They all
+cost at most $jm+(D-1)\alpha<(j+t)m$. Every monomial of the same
+period label with $b+c\ge j+t$ costs at least $(j+t)m$, so its
+coefficient is already in the span of earlier columns in that group.
+It cannot be selected by the global greedy process, even when some
+earlier columns were rejected through the diagonal relation.
+
+More precisely, let $E_0(\rho)$ contain the $D$ coefficient-greedy
+slots in each of the $t$ groups $j=0,\ldots,t-1$, using $a<D$,
+$c\le j$ and $\rho=(w_Z-w_Y)/w_X$. Under (G9), every initial
+standard set is a subset of this $tD$-element set, and omits exactly
+$D$ elements. There are only $O(tD)=O(n)$ possible auxiliary sets
+$E_0$; this does not bound how many rank-$D$ omissions can be coherent
+within each one.
+
+Condition (G9) is weaker by a factor $t$ than the earlier completed-
+block condition $m>(D-1)\alpha$. It permits degree $t-1$, so it does
+not exclude the new columns in (G7). It excludes additional complete
+periods, rather than assuming they are harmless.
+
+A classical volume consequence provides a regional count. Use the
+finite monomial ground $a<D,b+c<t$, which contains all standard sets
+in this region. A rank-$n$ basis profile has coordinate ranges at most
+$n(D-1),n(t-1),n(t-1)$. The established three-dimensional lattice-
+polytope vertex bound, with a unit-cube regularization when needed,
+therefore gives
+
+$$
+g_{\text{(G9)}}(A)=O(1+n^{3/2}\sqrt D\,t)
+                 =O(1+n^2\sqrt t).                     \tag{G10}
+$$
+
+For comparable periods tending to infinity, $t=\Theta(n^{1/3})$,
+giving $O(n^{13/6})$ in this region. This is an explicitly classical
+volume corollary of the new range restriction; it remains above the
+generic scale and is not a polynomial-separation exclusion. The
+uncovered price range and the coherent omissions inside each auxiliary
+set still require a uniform analysis. No new lattice-vertex theorem,
+unrestricted exponent or faster rank algorithm is asserted.
+
 ## Prior-art boundary and verification
 
 The graded/state dictionary, polygon edge facts, symmetric exchange,
@@ -318,6 +524,44 @@ and the strongest-current unrestricted bound remain unresolved.
 No new paper, completion claim or publication assessment follows yet.
 All earlier manuscripts and the full main objective are retained.
 
+### What the closest inspected statements actually compare
+
+| Primary statement | Established content | Exact remaining comparison |
+| --- | --- | --- |
+| Babson--Onn--Thomas, Proposition 2.2, Theorem 2.4, Corollary 2.5 | The minimum-basis/state dictionary and a polynomial bound for arbitrary finite quotients. | The dictionary is an input. The stated general bound does not by itself give the Hilbert-sensitive linear bound. |
+| [Sturmfels, *Gröbner Bases and Convex Polytopes*, Theorem 2.5 and Lemma 2.6](https://math.berkeley.edu/~bernd/GBCP.pdf) | A state polytope realizes the fan of a positively graded ideal; faces correspond to initial ideals. | The author-hosted indexed primary excerpt was inspected, not the full scanned book. This supplies the classical fan framework, not a checked quantitative-priority conclusion. |
+| Altmann--Sturmfels, Proposition 3 and Theorem 8 | Edge ideals and uniqueness of an edge direction between prescribed monomial ideals. | Uniqueness for two endpoints does not count directions over a Hilbert class. The full subsequent quantitative literature remains unassessed. |
+| Haiman--Sturmfels, Proposition 3.2, Corollary 3.4, Theorem 3.6 | Finite supportive degree sets and embeddings/constructions of multigraded Hilbert schemes. | A finite supportive set is not the same assertion as a linear rectangle or edge budget. Exact derivability of that numerical budget from other results still needs checking. |
+| Kreuzer--Robbiano, Proposition 2.2, Lemma 2.3, Theorem 2.4 | Homogeneous borders, positive weight realizations and conditional flat deformations. | These justify established deformation tools. They do not justify assuming that a flat deformation preserves or bounds the number of fan cones. |
+| [Frels--Schmitz, Notation 2.10 and Theorems 2.12--2.13](https://arxiv.org/pdf/1303.3461) | A characteristic-zero lower bound linear in generating degree for generic initial ideals, with a generic-family extension. | Their parameter is generating degree and their count uses generic coordinates. It is not a uniform upper bound in finite quotient length. |
+
+For the normalization check, their explicit Notation 2.10 family is
+$J_d=(X^aY^{d-a},Z^d:0\le a\le d-1)$. Every $X^k$ survives,
+so that particular family has infinite colength. This does **not** say
+that their entire generic-family theorem excludes Artinian ideals.
+One can instead truncate at $(X,Y,Z)^{d+1}$. The degree-$d$ component,
+where their lower-bound mechanism is proved, remains unchanged, while
+the finite length becomes
+
+$$
+N_d=\binom{d+2}{3}+\binom{d+2}{2}-(d+1)
+   =\frac{d(d+1)(d+5)}6.                                \tag{G6}
+$$
+
+Thus a lower bound linear in $d$ remains consistent with a linear
+upper bound in $N_d$; it does not supply a matching lower bound for
+our strictly positive grading class. Definitions of generic coordinates/fans
+and the main degree-$d$ mechanism were inspected; the determinant appendix
+was not independently verified.
+
+An additional [NSF primary-PDF lead](https://par.nsf.gov/servlets/purl/10393536)
+mentions finite-colength homogeneous ideals and tropical matroids in
+indexed text. Its exact bibliographic metadata and full definitions
+were not retrieved successfully, so it remains an unresolved comparison
+and supports no novelty inference. None of these reading limits stops
+the current mathematical work or establishes that the new numerical
+statement was previously unknown.
+
 ```bash
 python3 -B scripts/run_graded_fan_checks.py
 ```
@@ -329,4 +573,9 @@ candidate set, verify strict borders and exchanged endpoint rectangles,
 test even/odd sharpness and integer weights, replay local refinements
 of nonhomogeneous quotients, and compare nilpotent versus geometric-sum
 tower relations. They are finite supporting checks, not a uniform proof,
-priority certificate or full mixed-period fan search.
+priority certificate or full mixed-period fan search. Additional controls
+use actual shared facets for signed full-support gradings and the
+zero/opposite-sign boundary family, compare ordinary polynomial ranks
+with both subspace-intersection and graph-cycle-sum calculations on full
+finite cost balls, and verify the one-period range and exact omitted
+slots at specified prices. Characteristics dividing a period are included.

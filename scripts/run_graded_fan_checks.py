@@ -5,7 +5,7 @@ from fractions import Fraction as Q
 from functools import cache
 from hashlib import sha256
 from itertools import combinations, product
-from math import ceil, gcd
+from math import ceil, gcd, lcm
 from pathlib import Path
 import json
 
@@ -14,7 +14,7 @@ from run_cyclotomic_price_checks import (border_certificate, cyclotomic_model,
     univariate_powers)
 from run_planar_dyadic_bound_checks import convex_hull
 from run_rectangle_rank_checks import rectangle
-from run_structural_complexity_checks import dot, greedy, hyperbolic_cross, positive_chambers, primitive
+from run_structural_complexity_checks import clip, dot, greedy, hyperbolic_cross, positive_chambers, primitive
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -64,6 +64,46 @@ def compositions(n, width):
         for first in range(n+1):
             for rest in compositions(n-first, width-1):
                 yield (first,)+rest
+
+
+def signed_rectangle_injection(h, p, q, cells):
+    if p < 0:
+        h, p, q = {-k: v for k, v in h.items()}, -p, -q
+    if q > 0:
+        return rectangle_injection(h, p, q, cells)
+    require(p > 0 > q, 'opposite pair signs')
+    common = gcd(p, -q)
+    p, q = p//common, -q//common
+    images = set()
+    for a, b in cells:
+        level, k = p*a-q*b, min(a//q, b//p)
+        divisors = [(a-q*j, b-p*j) for j in range(k+1)]
+        require(all(0 <= i <= a and 0 <= j <= b and p*i-q*j == level for i, j in divisors),
+                'opposite-sign corner fiber is an actual divisor chain')
+        require(k < h.get(common*level, 0), 'corner fiber fits the Hilbert slot')
+        require((level, k) not in images, 'opposite-sign corner map is injective')
+        images.add((level, k))
+    require(len(cells) <= sum(h.values()), 'opposite-sign rectangle budget is n')
+    return len(cells)
+
+
+def signed_injection_controls():
+    cases = corners = 0
+    largest = {}
+    for n in range(1, 7):
+        for values in compositions(n, 7):
+            h = dict(zip(range(-3, 4), values))
+            for p, q in product(range(1, 5), range(-4, 0)):
+                cells = rectangles(h, p, q)
+                signed_rectangle_injection(h, p, q, cells)
+                cases += 1
+                corners += len(cells)
+                if (p, q) not in largest or Q(len(cells), n) > Q(largest[p, q]['rectangles'], largest[p, q]['n']):
+                    largest[p, q] = {'pair_degrees': (p, q), 'n': n, 'hilbert': h,
+                                     'rectangles': len(cells), 'corners': cells}
+    return {'scope': 'All weak compositions of total n<=6 on degrees -3 through 3, and pair degrees p=1..4,q=-4..-1.',
+            'opposite_sign_budget_cases': cases, 'explicit_corner_injections': corners,
+            'largest_observed_ratios': list(largest.values())}
 
 
 def injection_controls():
@@ -469,12 +509,337 @@ def tower_relation_controls():
     return records
 
 
+def signed_directions(h, grading):
+    require(all(grading), 'the omitted coordinate must have nonzero degree')
+    allowed, records, n = set(), [], sum(h.values())
+    for i, j in combinations(range(3), 2):
+        k = next(k for k in range(3) if k not in (i, j))
+        cells = rectangles(h, grading[i], grading[j])
+        signed_rectangle_injection(h, grading[i], grading[j], cells)
+        records.append({'coordinates': (i, j), 'admissible_rectangles': cells})
+        for a, b in cells:
+            total = grading[i]*a+grading[j]*b
+            if not a or not b or total % grading[k] or total//grading[k] <= 0:
+                continue
+            vector = [0, 0, 0]
+            vector[i], vector[j], vector[k] = a, b, -total//grading[k]
+            allowed.add(primitive(vector))
+        common = gcd(grading[i], grading[j])
+        vector = [0, 0, 0]
+        vector[i], vector[j] = grading[j]//common, -grading[i]//common
+        if min(vector) < 0 < max(vector):
+            allowed.add(primitive(vector))
+    require(len(allowed) <= 6*n+3, 'signed full-support grading direction budget')
+    return allowed, records
+
+
+def signed_full_fan(model, use_linear_theorem=True):
+    """Positive cones and their shared facets; no invisible polygon edge is used."""
+    g, p, n, residue = model['grading'], model['p'], model['n'], model['residue']
+    active = [a for a in model['ground'] if any(residue(a))]
+    columns = {a: residue(a) for a in active}
+    normals = {primitive(tuple(x-y for x, y in zip(a, b)))
+               for a, b in combinations(active, 2) if dot(g, a) == dot(g, b)
+               and min(x-y for x, y in zip(a, b)) < 0 < max(x-y for x, y in zip(a, b))}
+    weights, unique = positive_chambers(sorted(normals)), {}
+    for weight in weights:
+        basis = frozenset(greedy(active, columns, weight, p))
+        require(basis == frontier_basis(residue, n, weight, p), 'independent signed positive-fan computations')
+        require(dict(Counter(dot(g, a) for a in basis)) == model['h'], 'signed Hilbert function is preserved')
+        if basis not in unique:
+            border = border_certificate(basis, residue, weight, p)
+            inequalities = {tuple(x-y for x, y in zip(f['head'], t['exponent']))
+                            for f in border for t in f['tail']}
+            polygon = [tuple(Q(i == j) for i in range(3)) for j in range(3)]
+            for normal in sorted(inequalities):
+                polygon = clip(polygon, normal, 1)
+                require(polygon, 'strict signed positive cone survives border clipping')
+            unique[basis] = {'weight': weight, 'standard_set': sorted(basis),
+                             'strict_border_relations': border, 'polygon': polygon,
+                             'inequalities': inequalities}
+    wall_map = {}
+    for basis, record in unique.items():
+        polygon = record['polygon']
+        for a, b in zip(polygon, polygon[1:]+polygon[:1]):
+            middle = tuple((x+y)/2 for x, y in zip(a, b))
+            if min(middle) <= 0:
+                continue
+            normal = next(v for v in record['inequalities'] if dot(v, a) == dot(v, b) == 0)
+            key = (primitive(normal), tuple(sorted((a, b))))
+            wall_map.setdefault(key, []).append(basis)
+    allowed, rectangle_records = signed_directions(model['h'], g) if use_linear_theorem else (None, [])
+    adjacency, exchanges = Counter(), []
+    for (normal, endpoints), bases in wall_map.items():
+        require(len(bases) == 2, 'each interior facet has its two actual positive endpoint bases')
+        middle = tuple((x+y)/2 for x, y in zip(*endpoints))
+        scale = lcm(*(x.denominator for x in middle))
+        weight = tuple(int(x*scale) for x in middle)
+        left, right = bases
+        a, b = exchanged_pair(model, left, right, weight)
+        direction = primitive(tuple(x-y for x, y in zip(a, b)))
+        require(direction == normal, 'endpoint exchange is parallel to the actual positive facet')
+        if use_linear_theorem:
+            require(direction in allowed, 'signed actual direction has a Hilbert-budget encoding')
+        adjacency[left] += 1
+        adjacency[right] += 1
+        exchanges.append({'strict_positive_wall_weight': weight, 'from': a, 'to': b,
+                          'primitive_direction': direction})
+    require(len(exchanges) == len(unique)-1 and max(adjacency.values(), default=0) <= 2,
+            'the positive visible part is a chain')
+    if use_linear_theorem:
+        require(len(unique) <= 12*n+7, 'global signed full-support linear bound')
+    witnesses = []
+    for record in unique.values():
+        witnesses.append({'weight': record['weight'], 'standard_set': record['standard_set'],
+                          'strict_border_relations': record['strict_border_relations'],
+                          'positive_cone_polygon': [[str(x) for x in a] for a in record['polygon']]})
+    return {'label': model['label'], 'field': p, 'grading': g, 'n': n, 'hilbert_function': model['h'],
+            'ambient_domain': model['ground'],
+            'relations': [[[*a, str(c)] for a, c in sorted(f.items())] for f in model['relations']],
+            'relation_closure_checks': model['closure_checks'],
+            'complete_comparison_chambers': len(weights), 'initial_ideal_count': len(unique),
+            'full_positive_comparison_coverage': True,
+            'linear_theorem_applied': use_linear_theorem, 'witnesses': witnesses,
+            'actual_positive_wall_exchanges': exchanges, 'rectangle_budget_controls': rectangle_records,
+            'candidate_directions': sorted(allowed) if allowed is not None else None}
+
+
+def signed_fan_controls():
+    records = []
+    for p in (0, 2, 3):
+        data = [
+            ('signed_nonlinear_1_1_minus1', (1, 1, -1), tuple(product(range(3), range(3), range(2))),
+             [{(1, 0, 0): 1, (0, 1, 0): -1, (0, 2, 1): -1}]),
+            ('signed_nonlinear_1_minus1_2', (1, -1, 2), tuple(product(range(4), range(4), range(2))),
+             [{(0, 0, 1): 1, (2, 0, 0): -1, (3, 1, 0): -1}]),
+            ('signed_nonlinear_2_minus3_5', (2, -3, 5), tuple(product(range(6), range(3), range(2))),
+             [{(0, 0, 1): 1, (4, 1, 0): -1}])]
+        for label, grading, domain, relations in data:
+            model = ambient_quotient(domain, relations, grading, p, label)
+            records.append(signed_full_fan(model))
+            print(json.dumps({'signed_full_fan_passed': label, 'field': p}), flush=True)
+    return records
+
+
+def zero_opposite_boundary_controls():
+    records = []
+    for a, c, p in product((3, 5, 7), (2,), (0, 2, 3)):
+        domain = [(i, 0, 0) for i in range(1, a+1)]+[(0, j, k) for j in range(c+1) for k in range(c+1)]
+        model = ambient_quotient(domain, [{(a, 0, 0): 1, (0, c, c): -1}],
+                                  (0, 1, -1), p, 'zero_opposite_socle_boundary')
+        rec = signed_full_fan(model, False)
+        require(model['n'] == a+(c+1)**2-1, 'socle identification has the exact stated length')
+        expected = {frozenset(domain)-{(a, 0, 0)}, frozenset(domain)-{(0, c, c)}}
+        require({frozenset(map(tuple, w['standard_set'])) for w in rec['witnesses']} == expected,
+                'the actual all-field boundary family has precisely its two proved states')
+        require(rec['actual_positive_wall_exchanges'][0]['primitive_direction'] == primitive((a, -c, -c)),
+                'fixed positive pair does not determine the remaining coordinate')
+        rec['parameters'], rec['positive_pair'] = (a, c), (c, c)
+        records.append(rec)
+    return records
+
+
+def primary_parameter_controls():
+    records = []
+    for d in range(3, 13):
+        generators = [(a, d-a, 0) for a in range(d)]+[(0, 0, d)]
+        require(all(a[1] or a[2] for a in generators), 'Notation 2.10 leaves the whole pure-X polynomial subalgebra')
+        require(all(not any(all(u <= v for u, v in zip(g, (k, 0, 0))) for g in generators)
+                    for k in range(3*d+1)), 'explicit pure-X survival controls')
+        finite = [a for a in product(range(d+1), repeat=3) if sum(a) <= d
+                  and not any(all(u <= v for u, v in zip(g, a)) for g in generators)]
+        require(len(finite) == d*(d+1)*(d+5)//6, 'exact Artinian truncation length, distinct from generator degree')
+        records.append({'generator_degree': d, 'generators': generators,
+                        'untruncated_colength': 'infinite', 'truncation': '(X,Y,Z)^(d+1)',
+                        'truncated_length': len(finite), 'degree_d_dimension': sum(sum(a) == d for a in finite)})
+    return {'primary_source': 'https://arxiv.org/pdf/1303.3461',
+            'scope': 'Only the exact parameter/finite-length normalization is independently checked. The published generic-initial lower bound and determinant appendix are not independently re-proved.',
+            'fixtures': records}
+
+
+def annihilator(vectors, width, p):
+    pivots = {}
+    for v in vectors:
+        insert(pivots, v, p)
+    basis = []
+    for free in range(width):
+        if free in pivots:
+            continue
+        vector = [0]*width
+        vector[free] = 1
+        for i, row in sorted(pivots.items(), reverse=True):
+            vector[i] = scalar(-sum(value*vector[j] for j, value in row.items() if i != j), p)
+        require(all(not scalar(dot(v, vector), p) for v in vectors), 'annihilator equations hold exactly')
+        basis.append(tuple(vector))
+    return basis
+
+
+def graph_cycle_basis(r, s, edges, p):
+    all_edges = tuple(product(range(r), range(s)))
+    edge_index = {e: i for i, e in enumerate(all_edges)}
+    parent = list(range(r+s))
+    forest = [[] for _ in parent]
+    chords = []
+    def find(i):
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+    for edge in sorted(edges):
+        u, v = edge[0], r+edge[1]
+        a, b = find(u), find(v)
+        if a == b:
+            chords.append(edge)
+        else:
+            parent[a] = b
+            forest[u].append((v, edge))
+            forest[v].append((u, edge))
+    components = len({find(i) for i in range(r+s)})
+    result = []
+    for edge in chords:
+        start, end = r+edge[1], edge[0]
+        reached, queue = {start: None}, [start]
+        for u in queue:
+            for v, e in forest[u]:
+                if v not in reached:
+                    reached[v] = (u, e)
+                    queue.append(v)
+        require(end in reached, 'fundamental cycle has a forest path')
+        vector = [0]*len(all_edges)
+        vector[edge_index[edge]] = 1
+        v = end
+        while v != start:
+            u, e = reached[v]
+            vector[edge_index[e]] += 1 if u < r else -1
+            v = u
+        require(all(sum(vector[edge_index[e]] for e in all_edges if e[0] == u) == 0 for u in range(r))
+                and all(sum(vector[edge_index[e]] for e in all_edges if e[1] == v) == 0 for v in range(s)),
+                'fundamental vectors satisfy oriented incidence equations')
+        result.append(tuple(scalar(x, p) for x in vector))
+    require(len(result) == len(edges)-(r+s)+components, 'graph cycle dimension includes isolated vertices')
+    return result, components
+
+
+def tensor_prefix_controls():
+    records = []
+    for periods, p in product(((3, 5, 7), (3, 5, 11)), (0, 2, 3, 7)):
+        r, s, t = periods
+        model, D = cyclotomic_model(periods, p), (r-1)*(s-1)
+        powers = [univariate_powers(m, p) for m in periods[:2]]
+        all_edges = set(product(range(r), range(s)))
+        for weight, cutoff in (((1, 1, 1), t+1), ((1, 3, 3), 3*t-1)):
+            monomials = [(a, b, c) for a in range(cutoff//weight[0]+1)
+                         for b in range((cutoff-weight[0]*a)//weight[1]+1)
+                         for c in range((cutoff-weight[0]*a-weight[1]*b)//weight[2]+1)]
+            monomials.sort(key=lambda a: (dot(weight, a), a))
+            groups, labels, direct, position = [{} for _ in range(t)], [set() for _ in range(t)], {}, 0
+            checks, different_union = [], None
+            for cost in range(cutoff+1):
+                while position < len(monomials) and dot(weight, monomials[position]) <= cost:
+                    a, b, c = monomials[position]
+                    insert(direct, model['residue']((a, b, c)), p)
+                    j = (b+c) % t
+                    coefficient = tensor(powers[0](a+b), powers[1](a+c))
+                    insert(groups[j], coefficient, p)
+                    labels[j].add(((a+b) % r, (a+c) % s))
+                    position += 1
+                component_bases = [list(basis.values()) for basis in groups]
+                # Convert sparse row bases to ordinary D-vectors.
+                component_bases = [[tuple(row.get(i, 0) for i in range(D)) for row in rows]
+                                   for rows in component_bases]
+                normals = [annihilator(rows, D, p) for rows in component_bases]
+                joined = [v for group in normals for v in group]
+                intersection = annihilator(joined, D, p)
+                for v in intersection:
+                    require(all(not insert(dict(group), v, p) for group in groups), 'intersection vector belongs to every coefficient span')
+                dims = [len(group) for group in groups]
+                predicted = sum(dims)-len(intersection)
+                require(predicted == len(direct), 'tensor prefix formula equals direct ordinary polynomial rank')
+                cycles, union = [], set()
+                for label_set, dimension in zip(labels, dims):
+                    complement = all_edges-label_set
+                    cycle_vectors, components = graph_cycle_basis(r, s, complement, p)
+                    require(dimension == len(label_set)+1-components, 'coefficient prefix has the established cographic rank')
+                    cycles += cycle_vectors
+                    union |= complement
+                cycle_pivots = {}
+                for v in cycles:
+                    insert(cycle_pivots, v, p)
+                require(D-len(cycle_pivots) == len(intersection), 'sum of complement cycle spaces equals the annihilator sum')
+                union_cycles, _ = graph_cycle_basis(r, s, union, p)
+                require(len(cycle_pivots) <= len(union_cycles), 'cycle-space sum is a subspace of union cycles')
+                if len(cycle_pivots) != len(union_cycles) and different_union is None:
+                    different_union = {'cost': cost, 'coefficient_labels': [sorted(g) for g in labels],
+                                       'cycle_sum_rank': len(cycle_pivots), 'union_cycle_rank': len(union_cycles)}
+                if cost < (t-1)*min(weight[1:]):
+                    require(not groups[t-1] and not intersection, 'before the last period level arrives the blocks are independent')
+                checks.append({'cost_cutoff': cost, 'monomials': position,
+                               'coefficient_dimensions': dims, 'intersection_dimension': len(intersection),
+                               'intersection_basis': [[str(x) for x in v] for v in intersection],
+                               'cycle_space_sum_rank': len(cycle_pivots), 'direct_polynomial_rank': len(direct)})
+            records.append({'periods': periods, 'field': p, 'weight': weight, 'maximum_cost': cutoff,
+                            'scope': 'Full finite cost balls, not a sampled monomial ground or a full fan count.',
+                            'prefixes': checks, 'first_cycle_union_mismatch': different_union})
+    counterexamples = []
+    for p in (0, 2, 3):
+        trees = [{(u, v) for u, v in product(range(3), repeat=2) if u == a or v == a} for a in (0, 1)]
+        cycle_sets = [graph_cycle_basis(3, 3, tree, p)[0] for tree in trees]
+        union_cycles = graph_cycle_basis(3, 3, set.union(*trees), p)[0]
+        require(not any(cycle_sets) and len(union_cycles) == 3, 'two trees do not generate the cycle space of their union')
+        counterexamples.append({'field': p, 'trees': [sorted(tree) for tree in trees],
+                                'cycle_space_sum_rank': 0, 'union_cycle_rank': 3})
+    require(any(m['first_cycle_union_mismatch'] for m in records), 'actual cost prefixes also distinguish the two cycle operations')
+    return {'prefix_models': records, 'cycle_union_counterexamples': counterexamples}
+
+
+def one_period_region_controls():
+    records = []
+    for periods, p in product(((3, 5, 7), (3, 5, 11)), (0, 2, 3, 7)):
+        r, s, t = periods
+        model, D = cyclotomic_model(periods, p), (r-1)*(s-1)
+        n, scale = model['n'], 2*model['n']+1
+        for template in ((2, 3, 3), (9, 10, 10), (1, 10, 11)):
+            # Small distinct perturbations resolve comparisons of degree <= n.
+            weight = tuple(v*scale**3+scale**i for i, v in enumerate(template))
+            alpha, m = weight[0], min(weight[1:])
+            require(t*m > (D-1)*alpha, 'strict one-period price condition')
+            basis = frontier_basis(model['residue'], n, weight, p)
+            auxiliary = tower_basis(model, 0, D, t, Q(weight[2]-weight[1], alpha))
+            require(len(auxiliary) == t*D, 'each of the t auxiliary groups has rank D')
+            require(basis <= auxiliary, 'ordinary quotient basis is contained in independent coefficient slots')
+            require(len(auxiliary-basis) == D, 'the diagonal relation removes exactly D slots')
+            require(all(a < D and b+c < t for a, b, c in basis), 'all actual standard monomials satisfy the one-period range')
+            pivots = {}
+            for a in auxiliary:
+                insert(pivots, model['residue'](a), p)
+            require(len(pivots) == n, 'auxiliary columns have full ordinary quotient rank')
+            border = border_certificate(basis, model['residue'], weight, p)
+            records.append({'periods': periods, 'field': p, 'n': n, 'D': D,
+                            'price_template': template, 'strict_weight': weight,
+                            'older_complete_block_condition': m > (D-1)*alpha,
+                            'one_period_condition': True, 'standard_set': sorted(basis),
+                            'auxiliary_slots': sorted(auxiliary), 'omitted_slots': sorted(auxiliary-basis),
+                            'strict_border_relations': border})
+    require(any(not m['older_complete_block_condition'] for m in records),
+            'controls include the wider region beyond the completed-block hypothesis')
+    require(any(max(b+c for a, b, c in m['standard_set']) == m['periods'][2]-1 for m in records),
+            'controls actually reach the coupled last level')
+    return {'scope': 'Exact ordinary polynomial arithmetic and strict border controls at specified prices; not a complete regional fan enumeration.',
+            'models': records}
+
+
 def main():
     injections = injection_controls()
     fans = graded_fixtures()
     sharpness = sharpness_controls()
     local = local_refinement_controls()
     towers = tower_relation_controls()
+    signed_injections = signed_injection_controls()
+    signed_fans = signed_fan_controls()
+    zero_opposite = zero_opposite_boundary_controls()
+    primary = primary_parameter_controls()
+    prefixes = tensor_prefix_controls()
+    one_period = one_period_region_controls()
     all_fans = fans+sharpness+[m['initial_form_fan'] for m in local]
     sources = ('docs/nonnegative_graded_fans.md', 'scripts/run_graded_fan_checks.py',
                'scripts/run_cyclotomic_price_checks.py', 'scripts/run_structural_complexity_checks.py',
@@ -493,12 +858,33 @@ def main():
                'ordinary_local_refinements': sum(m['local_refinements_checked'] for m in local),
                'tower_deformation_controls': len(towers),
                'actual_relation_reaching_changes': sum(bool(m['failed_inequalities']) for m in towers)}
+    summary.update({'opposite_sign_hilbert_budget_cases': signed_injections['opposite_sign_budget_cases'],
+                    'opposite_sign_corner_injections': signed_injections['explicit_corner_injections'],
+                    'complete_signed_full_support_fans': len(signed_fans),
+                    'zero_opposite_boundary_fans': len(zero_opposite),
+                    'signed_and_boundary_comparison_chambers': sum(m['complete_comparison_chambers'] for m in signed_fans+zero_opposite),
+                    'signed_and_boundary_states': sum(m['initial_ideal_count'] for m in signed_fans+zero_opposite),
+                    'signed_and_boundary_border_relations': sum(len(w['strict_border_relations']) for m in signed_fans+zero_opposite for w in m['witnesses']),
+                    'actual_positive_signed_exchanges': sum(len(m['actual_positive_wall_exchanges']) for m in signed_fans+zero_opposite),
+                    'primary_parameter_normalizations': len(primary['fixtures'])})
+    summary.update({'mixed_period_cost_prefix_models': len(prefixes['prefix_models']),
+                    'ordinary_and_graph_prefix_ranks': sum(len(m['prefixes']) for m in prefixes['prefix_models']),
+                    'coefficient_subspace_ranks': sum(len(w['coefficient_dimensions']) for m in prefixes['prefix_models'] for w in m['prefixes']),
+                    'cycle_union_counterexamples': len(prefixes['cycle_union_counterexamples'])})
+    summary.update({'one_period_region_models': len(one_period['models']),
+                    'models_outside_older_block_condition': sum(not m['older_complete_block_condition'] for m in one_period['models']),
+                    'one_period_strict_border_relations': sum(len(m['strict_border_relations']) for m in one_period['models'])})
     report = {'schema_version': 1, 'command': 'python3 -B scripts/run_graded_fan_checks.py',
-              'scope': 'Finite controls of uniform global nonnegative-grading and local-refinement proofs. Complete fans are small homogeneous fixtures and are independently enumerated from all monomial comparisons. No full mixed-period fan search, unrestricted G_3 resolution or novelty certificate.',
+              'scope': 'Finite controls of uniform nonnegative and signed-full-support grading bounds, local refinements, the zero/opposite-sign proof boundary, exact mixed-period prefix ranks and the one-period price restriction. Complete small graded fans use independent monomial comparisons and actual shared facets. No full mixed-period fan search, unrestricted G_3 resolution or novelty certificate.',
               'source_sha256': {s: sha256((ROOT/s).read_bytes()).hexdigest() for s in sources},
               'hilbert_budget_controls': injections, 'actual_graded_quotients': fans,
               'pointwise_sharpness_controls': sharpness, 'local_refinement_controls': local,
-              'tower_relation_controls': towers, 'summary': summary}
+              'tower_relation_controls': towers,
+              'signed_hilbert_budget_controls': signed_injections, 'signed_full_support_controls': signed_fans,
+              'zero_opposite_proof_boundary': zero_opposite, 'primary_parameter_controls': primary,
+              'mixed_period_prefix_rank_controls': prefixes,
+              'one_period_price_controls': one_period,
+              'summary': summary}
     (ROOT/'results/research/graded_fan_checks.json').write_text(json.dumps(report, indent=2)+'\n')
     print(json.dumps(summary, sort_keys=True))
 

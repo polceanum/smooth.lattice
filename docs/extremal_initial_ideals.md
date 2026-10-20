@@ -2276,6 +2276,80 @@ budget and grading bounds is still necessary. No new paper or
 publication claim is made. The original sharp $G_3$ or polynomial-
 separation criterion remains active and unachieved.
 
+## Signed gradings and the mixed-period prefix mechanism
+
+The [grading study](nonnegative_graded_fans.md) now proves a linear
+bound for every integer grading with all three variable degrees
+nonzero, including mixed signs. For opposite pair degrees $p,-q$,
+the map
+
+$$
+(a,b)\longmapsto
+ \left(pa-qb,\min(\lfloor a/q\rfloor,\lfloor b/p\rfloor)\right)
+$$
+
+injects each admissible rectangle corner into its Hilbert budget.
+There are at most $n$ such corners. Actual positive-weight endpoint
+exchanges, with the third degree determining the remaining coordinate,
+give $g(I)\le12n+7$. Mixed signs require counting the positive-visible
+chain of the state polygon, rather than assuming every polygon vertex
+can be realized by a positive weight.
+
+The grading $(0,p,-q)$ remains outside this proof. The explicit
+socle-identification family
+$(XY,XZ,X^{a+1},Y^{c+1},Z^{c+1},X^a-Y^cZ^c)$ has exactly two
+states and shows that a fixed positive pair $(c,c)$ does not determine
+the wall direction. It disproves that encoding shortcut, not a linear
+bound for the class. The earlier planar $O(n\log n)$ estimate remains.
+
+For the original full-rank candidate, put
+$F=K[U,V]/(S_r(U),S_s(V))$, $D=(r-1)(s-1)$ and
+$A=F[W]/S_t(W)$, of length $n=D(t-1)$. Group a finite monomial
+prefix by $j=(b+c)\bmod t$, and let $V_j$ be its coefficient span
+in $F$. The diagonal kernel of $F^t\to A$ gives the exact all-field
+identity
+
+$$
+\operatorname{rank}_A(E)=\sum_j\dim V_j-\dim\bigcap_jV_j.
+$$
+
+In the established cographic two-factor model, the intersection is
+controlled by the **sum of the complement graph cycle spaces**.
+It is not controlled by the cycle space of their union: even two
+spanning trees can have a union with cycles. This is a concrete
+obstruction to extending the old connectivity algorithm directly.
+The tensor/circuit rank identity and graph duality are classical
+inputs, not new general matroid claims.
+
+When $t\min(w_Y,w_Z)>(D-1)w_X$, every standard monomial has
+$a<D$ and $b+c<t$. Each standard set is contained in a $tD$-element
+auxiliary slot set and omits exactly $D$ elements. There are only
+$O(n)$ possible auxiliary sets, but their coherent omissions have
+not been counted. The established lattice-volume estimate gives the
+regional corollary $O(1+n^2\sqrt t)$, or $O(n^{13/6})$ for comparable
+periods. This remains above the generic scale and does not exclude
+a polynomial separation. The additional-period region also remains
+open. The next proof task is the uniform variation of these specific
+cost-prefix intersections and omissions, not a larger full-fan sweep.
+
+Independent checks cover signed Hilbert budgets, actual complete
+small signed fans, the zero/opposite-sign boundary, full cost-prefix
+ranks by ordinary polynomial arithmetic and graph cycle sums, and
+one-period slot omissions with strict border certificates. They include
+characteristics dividing periods. These controls support the uniform
+arguments and do not prove a fan growth law.
+
+The primary comparison now distinguishes fixed coordinates, generic
+coordinates and generating degree from finite length. In particular,
+Frels--Schmitz's explicit Notation 2.10 example has infinite colength;
+truncating at degree $d+1$ preserves its degree-$d$ mechanism but
+gives length $d(d+1)(d+5)/6$. Their generic-family theorem is not
+claimed to exclude Artinian ideals. This parameter normalization does
+not establish priority of the present bound. Exact inspected theorem
+scopes and an unread primary-PDF lead are recorded in the grading note.
+The strongest current unrestricted comparison, novelty and the main
+sharp-count or separation endpoint remain unresolved.
+
 ## Reproduction
 
 From the repository root:

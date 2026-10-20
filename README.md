@@ -190,6 +190,12 @@ refinements at every non-axial nonnegative weight of an arbitrary finite
 quotient. In a deformed tower, additional states must reach its defining
 relation; interleaving independent lower blocks alone is insufficient.
 The exact novelty comparison and the unrestricted extremal problem remain open.
+The same note extends the linear bound to signed gradings with all three
+degrees nonzero and gives an exact prefix-rank formula for the original
+mixed-period algebra. Its remaining difficulty is a sum of graph cycle
+spaces, which cannot be replaced by connectivity of their union. A wider
+price region restricts every basis to one period of candidate slots;
+counting their coherent omissions remains open.
 The additive prime-power class is now classified separately: at length
 `n=q^k`, every initial ideal is a prime-power box and the sharp maximum
 is `binomial(k+d-1,d-1)`. The proof uses established Frobenius reduction;
