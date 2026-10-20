@@ -128,8 +128,14 @@ surface prefixes, uniformly across all positive aspect ratios, giving
 `O(n^2 log(n+1))` states. At slope four, every exception lies in an
 explicit harmonic-ratio strip of width `O(n^(-1/4))`. The critical
 family still has a `sqrt(n)` rank deficit at the final surface prefix.
-Counting coherent states inside the shrinking strip, and across shrinking
-supercritical margins for higher slopes, remains open.
+Integrating the rank law now supplies a uniform smooth cost approximation.
+Relative-aspect integer-profile caps and the classical lattice-vertex bound
+count the whole shrinking strip, giving `O(n^2 log(n+1))` initials for
+**every** decreasing profile with `|m_s-4(r-s)| <= D`, for fixed `D`.
+This includes bounded irregular perturbations and unbounded block widths,
+across all positive aspects. The entire class is therefore excluded as a
+polynomial-amplification route. Higher slopes with shrinking supercritical
+margins, unbounded profile deviations and unrestricted `G_3` remain open.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count

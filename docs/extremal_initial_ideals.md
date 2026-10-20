@@ -5391,6 +5391,377 @@ critical region, with coherent rather than independent phase choices,
 or return to the unrestricted incidence/shadow problem with a stronger
 aggregate theorem. Every original goal criterion remains active.
 
+## AD. A uniform count through the entire critical strip
+
+The critical-strip argument can now be completed. It also permits
+bounded irregular changes in the component sizes.
+
+**Theorem.** Fix $D\ge1$. For every decreasing positive integer
+component profile satisfying
+
+$$
+ |m_s-4(r-s)|\le D\qquad(1\le s\le r), \tag{AD1}
+$$
+
+the generic scaled-curve construction has
+
+$$
+ g(I)=O_D(n^2\log(n+1)) \tag{AD2}
+$$
+
+across all positive weights and all axis aspect ratios. The number
+of initials witnessed where the selected basis differs from the
+ordinary surface prefix is $O_D(n^2)$. The assertion includes every
+fixed-last-size slope-four profile and its long canonical blocks.
+It is characteristic-independent under the same generic sampling
+hypotheses as the earlier component rank formula. A finite field may
+require extension to realize those generic conditions.
+
+This closes the whole class (AD1) as a polynomial-amplification route,
+even though it has the final-prefix defects in (AC9). It does not
+bound profiles whose deviation $D$ grows with the problem, higher
+linear slopes, arbitrary special node configurations, or unrestricted
+$G_3$. The proof combines the exact component rank formula with
+classical convex and lattice geometry; exact priority of this combined
+restricted statement is not established.
+
+### Concentration remains valid for bounded irregular profiles
+
+Write $m_s=4(r-s)+e_s$, $|e_s|\le D$, and put $D_0=D+2$.
+Then
+
+$$
+ |n-2r^2|\le D_0r,\qquad
+ n-A_s\ge\max(k,2k^2-D_0k),\quad k=r-s. \tag{AD3}
+$$
+
+The first lower bound on the tail uses positivity of every component.
+The hook-error proof of (AC2) still applies: at a nonempty hook,
+
+$$
+ u_s=4r-4-\gamma C+(K-4)(s-1)+(e_s-\eta_s),
+ \quad -2-\sigma^{-1}\le\eta_s\le1.
+$$
+
+The error interval now has width $2D+3+\sigma^{-1}$. Consequently
+an extra maximizing index satisfies
+
+$$
+ (K-4)(s+1)<2(2D+3+\sigma^{-1}). \tag{AD4}
+$$
+
+Here and below a maximum above both endpoints has a nonpositive next
+increment, which forces that next hook and all preceding hooks to be
+nonempty. This justifies the floor formulas, including at closed cost
+ties.
+
+For definiteness take
+
+$$
+ R_D=64(D+2),\quad T_D=4096(D+1),\quad
+ M_D=10^6(D+1)^2. \tag{AD5}
+$$
+
+For $r\ge R_D$, the first $n$ whole-surface monomials are the actual
+selected basis whenever
+
+$$
+ \sigma<T_D^{-1},\qquad \sigma>T_D,\qquad\text{or}\qquad
+ Kr^2>(2r+M_D)^2. \tag{AD6}
+$$
+
+Here is the extension of the previous final-prefix proof. One has
+$r^2\le n\le3r^2$, $m_1\le5r$, and
+$|\sqrt{2n}-2r|\le D_0$. In the low-$\sigma$ range (AD4) retains
+at most capacity one; there are at most
+$2+\sqrt{2n\sigma}\le2+r/32\le r/16$ merged axis points.
+The pure-$y$ column therefore has at least $16r$ points and
+satisfies that capacity. The whole prefix is inside $M_r$.
+In the high-$\sigma$ range there are no interior capacities and
+$C_n/w_y\le1+r/32<r$, which gives the carrier endpoint instead.
+
+In the central range let $q=\sqrt K$ and assume
+$r(q-2)>M_D$. Then $q\le65\sqrt{D+1}$.
+Split the indices at $\theta r$, $\theta=2/(q+2)$.
+Summing the lower hook bound as in (AC6), every nonempty earlier
+index satisfies
+
+$$
+ d_s(C_n)-A_s\ge
+ s\bigl[r(q-2)-C_1\bigr],\qquad
+ C_1=(q+1)D_0+q^2/2+2+\sigma^{-1}
+       \le6400(D+1)^{3/2}<M_D. \tag{AD7}
+$$
+
+An empty hook gives $d_s=n$ directly. For later indices,
+$\theta\ge1/(34\sqrt{D+1})$ and the translated outside-grid
+bound (AC7) has its positive-part argument at most
+
+$$
+ 2k-(q-2)s+D_0+\sigma^{-1/2}+q
+ \le 2k-2D_0.
+$$
+
+Indeed $(q-2)s>M_D/(34\sqrt{D+1})>
+3D_0+\sigma^{-1/2}+q$. Finally
+$\tfrac12(2k-2D_0)_+^2\le\max(k,2k^2-D_0k)$:
+for $k<D_0$ the left side vanishes, and for $k\ge D_0$ expand
+the square. This proves every remaining capacity by (AD3), including
+$s=r$. The argument uses full cost prefixes and never identifies
+arbitrary actual residue subsets with the auxiliary nested matroid.
+
+Thus every non-surface witness for large $r$ lies in
+
+$$
+ K-4=\frac{(\sigma-1)^2}{\sigma}
+ \le\frac{4M_D}{r}+\frac{M_D^2}{r^2}. \tag{AD8}
+$$
+
+For sufficiently large $r$ this is contained in
+$1/2\le\sigma\le2$ and $|\sigma-1|\le C_Dr^{-1/2}$.
+The finitely many smaller lengths can be absorbed into constants
+depending on $D$. Ordinary surface prefixes already number
+$O(n^2\log(n+1))$. It remains to count all exposed states in (AD8),
+rather than infer a count from its parameter width.
+
+### Integrating the rank law gives a uniform support approximation
+
+Normalize $h=\alpha^{-1}=1$ and write
+$w(p,\sigma)=(1/p,\sigma,1/(1-p))$, $0<p<1$.
+Put
+
+$$
+ B_D=2D+11,\qquad
+ E_D=2(D+2)B_D+3B_D^2+9B_D. \tag{AD9}
+$$
+
+For $1/2\le\sigma\le2$, the actual cost-prefix rank is full
+by cost $B_Dr$, independently of $p$. To see this, in each layer
+$L_s$ take $m_s$ points in its column $i=s-1$, starting at $b=s-1$.
+They satisfy all auxiliary quotas exactly, and their costs are at most
+$r+2(r+4r+D)\le B_Dr$. The complete prefix containing them
+therefore has rank $n$ by the proved prefix-rank formula. This is
+not an assertion of independence for an arbitrary chosen residue subset.
+
+The same unit-cell estimate and endpoint optimization as (Z5)--(Z7)
+give, uniformly in $p$,
+
+$$
+ \left|R(C)-\min\left(2r^2,\frac{C^2}{2\sigma}\right)\right|
+ \le (D+2)r+6C+9,\qquad0\le C\le B_Dr. \tag{AD10}
+$$
+
+In detail, the exact tail capacity differs from $2(r-s)^2$ by at
+most $(D+2)(r-s)$, while each $d_s$ differs from its hook area
+by at most $6C+9$. The unperturbed continuous objective with slope
+four has an integer endpoint minimizer because $K\ge4$. Its minimum
+is precisely the expression in (AD10). No interior rounding error
+is introduced.
+
+Let $F_r(w)$ be the minimum total monomial cost of a residue basis.
+Greedy selection gives the exact identity
+$F_r(w)=\int_0^\infty(n-R(C))\,dC$. Integrating (AD10) up to the
+full-rank cutoff, and using $|n-2r^2|\le(D+2)r$, proves
+
+$$
+ \left|F_r(w(p,\sigma))-\frac83r^3\sqrt{\sigma}\right|
+ \le E_Dr^2. \tag{AD11}
+$$
+
+The comparison integral is elementary and is already full by
+$2r\sqrt{\sigma}<B_Dr$. Equivalently the smooth homogeneous
+comparison function is
+
+$$
+ F_0(w)=\frac83r^3
+       \sqrt{\frac{w_yw_xw_z}{w_x+w_z}}. \tag{AD12}
+$$
+
+Its error is $O_D(r^2)$ in normalized weights even when $p$
+approaches either endpoint. This uniformity is essential below.
+
+### A classical finite-difference support lemma
+
+Take the actual residue matroid on the finite universal two-plane
+ground. Its basis profiles $S=(X,Y,Z)$ are integer vectors, and
+$F_r(w)=\min_S w\cdot S$ is a concave support function.
+A monomial initial ideal with a strict positive witness can be
+represented at nearby distinct monomial prices. Its minimum basis
+is unique, so its profile is an exposed vertex and different such
+initials have different profiles. This uses classical matroid greedy
+uniqueness and the state-polytope framework, not an arbitrary-subset
+identification with the auxiliary model.
+
+Fix a center $p_0\in(0,1)$ and rescale weights and profiles dually:
+
+$$
+ V=(p_0w_x,w_y,(1-p_0)w_z),\qquad
+ S'=(X/p_0,Y,Z/(1-p_0)).
+$$
+
+Divide $V$ by $V_z$ to use the affine chart $V_z=1$.
+On $4/5\le V_x,V_y\le6/5$, the new $h$ lies between $2/3$
+and $3/2$, and $\sigma$ lies between $8/15$ and $9/5$.
+Consequently (AD11) gives support error at most
+$e=2E_Dr^2$ there. The comparator becomes
+
+$$
+ \varphi(V)=\frac83r^3
+ \sqrt{\frac{V_yV_xV_z}{(1-p_0)V_x+p_0V_z}}. \tag{AD13}
+$$
+
+Its slice Hessian has operator norm at most $H=1000r^3$,
+uniformly in $p_0$. One direct check writes $t=V_x$, $u=V_y$,
+$d=(1-p_0)t+p_0$ and $g=\sqrt{ut/d}$.
+The three slice second derivatives of $g$, divided by $g$, are
+
+$$
+ -\frac{p_0(4(1-p_0)t+p_0)}{4t^2d^2},\qquad
+ \frac{p_0}{4utd},\qquad-\frac1{4u^2}.
+$$
+
+Already on $1/2\le t,u\le3/2$ these give each entry of
+$r^{-3}D^2\varphi$ magnitude below $500$, hence the stated bound.
+
+Here is the elementary support estimate being used. If a concave
+support function differs from a $C^2$ homogeneous comparator by at
+most $e$ on that box, and an exposed state is witnessed at
+$|V_x-1|,|V_y-1|\le\varepsilon/2$, with
+$0<\varepsilon\le1/8$, finite differences at steps $\pm\varepsilon$
+give
+
+$$
+ \begin{gathered}
+ |S'_j-\partial_j\varphi(1,1,1)|\le L
+       :=2H\varepsilon+2e/\varepsilon,\quad j=x,y,\\
+ |S'_x+S'_y+S'_z-\varphi(1,1,1)|
+       \le N:=e+H\varepsilon^2+2\varepsilon L. \tag{AD14}
+ \end{gathered}
+$$
+
+Indeed the support inequality bounds each supergradient component
+between forward and backward difference quotients. Taylor's estimate
+and the error $2e$ give the first bound at $V$, then the Hessian
+bound moves it to the center. For the second, use
+$V\cdot S'=F_r(V)$, expand the comparator at the center, and
+bound the two tangential error products. Homogeneity gives
+$\varphi(1,1,1)=\sum_j\partial_j\varphi(1,1,1)$.
+All finite-difference points remain in the prescribed box.
+
+For $\varepsilon=C_D/\sqrt r$, these widths are
+$L=O_D(r^{5/2})$, $N=O_D(r^2)$. In the actual integer-profile
+coordinates (AD14) is a parallelepiped of volume at most
+
+$$
+ 8p_0(1-p_0)L^2N=O_D(p_0(1-p_0)r^7). \tag{AD15}
+$$
+
+The factor $p_0(1-p_0)$ is a determinant, not a lattice-preserving
+coordinate change. Dropping it would lose the all-aspect conclusion.
+
+### Lattice vertices and relative-aspect covers count the strip
+
+Every subset of exposed global vertices remains vertices of its own
+convex hull. For a full-dimensional local hull of integer profiles,
+the classical Andrews bound in dimension three is
+$f_0(P)=O(\operatorname{vol}(P)^{1/2})$. Thus (AD15) bounds the
+number in one patch by
+
+$$
+ O_D(\sqrt{p_0(1-p_0)}\,r^{7/2}). \tag{AD16}
+$$
+
+This lattice-vertex estimate is established mathematics:
+[Andrews, 1963](https://doi.org/10.1090/S0002-9947-1963-0143105-7).
+An accessible primary proof retelling is
+[Dillon, Theorem 1 and Sections 1--2.2](https://arxiv.org/pdf/2606.30856),
+which explicitly attributes the argument to earlier work.
+The present application does not claim a new lattice-vertex exponent.
+
+Lower-dimensional local hulls require their own branch. In dimension
+two, their area is $O_D(L^2)$, and the covolume of the induced
+integer plane lattice is at least one. The planar Andrews bound
+therefore gives $O_D(L^{2/3})=O_D(r^{5/3})$ vertices. Dimensions
+zero and one give at most two. These bounds are dominated by
+(AD16) when $p_0,1-p_0\ge c_D/r$. It would be invalid to apply
+the three-dimensional formula to a flat hull with volume zero.
+
+The selected-cost cutoff supplies the two extreme ends. If
+$p<1/(B_Dr)$, no selected monomial has a positive $x$ exponent;
+if $1-p<1/(B_Dr)$, none has a positive $z$ exponent. In either
+case its selected planar basis spans the quotient. The corresponding
+elimination algebra has length $n$, and its planar positive initials
+number $O(n\log(n+1))$ by the established all-field planar theorem.
+This counts both ends without any assumed uniform condition number.
+
+In the remaining range cover each dyadic interval
+$p\asymp2^{-j}\le1/2$ by patches of relative radius
+$c\varepsilon p(1-p)$, with $\varepsilon=C_D/\sqrt r$.
+There are $O_D(\sqrt r)$ patches per interval. In each, after
+normalization to $V_z=1$, (AD8) and the relative $p$ width ensure
+$|V_x-1|,|V_y-1|\le\varepsilon/2$, enlarging $C_D$ by a fixed
+factor if needed. For example
+$V_x=p_0(1-p)/(p(1-p_0))$ and
+$V_y=\sigma(1-p)/(1-p_0)$ give this directly.
+For all sufficiently large $r$, the finite-difference box condition
+is satisfied. Applying (AD16) and summing the patches gives
+
+$$
+ \sum_j O_D(\sqrt r)\,O_D(2^{-j/2}r^{7/2})
+ =O_D(r^4)=O_D(n^2). \tag{AD17}
+$$
+
+The sum is geometric; there is no extra factor from the number of
+aspect scales. Reflection handles $p$ near one. Adding the planar
+ends and the ordinary surface prefixes proves (AD2). Long blocks,
+changing phase partitions and large final rank defects are all
+included without counting independent block choices.
+
+### Independent checks and the next unrestricted problem
+
+The checker constructs 504 heap/quota bases, including 180 irregular
+profile fixtures, and verifies 628,830 selected-monomial downset
+memberships. For 234 fixtures it independently integrates 15,644
+exact floor-rank events and obtains the identical total basis cost.
+Outward rational square-root intervals verify (AD11); no floating
+tolerance is used. All 504 integer profiles pass the exact
+finite-difference cap and nonunimodular determinant checks.
+
+Twelve large irregular-profile fixtures check 1,838,616 individual
+capacity inequalities and exercise all three branches of (AD6),
+with up to 524,288 components. The report records their patterns,
+positive clipping and sorting convention, weights, exact cutoff
+costs and capacity slacks. Another 756 rational squared Hessian
+entries, 165 relative-cover intervals and ten weighted geometric
+sums check the geometric calculations. Four explicit flat integer
+parallelograms have zero ambient volume but nonzero relative area,
+preserving the lower-dimensional branch.
+
+Three cap-test bases in the same length-$32$ point ideal as Section
+AB are independently certified by invertible evaluation matrices
+and 30 vanishing minimal-border relations with strictly lower tails.
+The report gives the exact selected sets and generators. These are
+specified certificates and supporting controls, not complete fan
+enumerations or extensions of the smooth-number auditor.
+
+The lattice estimate, finite-difference argument, rank integration
+and state-polytope interpretation are classical inputs. The proof
+supplies the uniform construction bound directly; an unsuccessful
+search does not certify priority of its combination. The original
+unrestricted objective is not complete and no new paper follows
+from this exclusion alone.
+
+The remaining candidate mechanism must therefore use more than
+bounded irregular perturbations of the critical slope-four profile.
+Higher slopes with shrinking supercritical margins, unbounded
+profile deviations and the unrestricted incidence/shadow problem
+remain. The support-energy method is a useful general test: a
+smooth cost approximation and a small set of exceptional normal
+directions can be converted into a coherent count by actual integer
+cap volumes. Applying that test elsewhere requires proving both
+hypotheses; it cannot be inferred from a small rank defect or a
+narrow parameter region alone.
+
 ## Reproduction
 
 From the repository root:

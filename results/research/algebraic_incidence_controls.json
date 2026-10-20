@@ -1,7 +1,7 @@
 {
   "status": "passed",
   "command": "python3 -B scripts/run_algebraic_incidence_controls.py",
-  "scope": "Subcritical linear profiles have an explicit all-aspect criterion forcing their final basis to be the ordinary surface prefix. For slope four, every exceptional initial lies in a harmonic strip of width O_a(r^(-1/2)), once r is sufficiently large. All fixed subcritical margins therefore have quadratic-power counts, complementing the preceding supercritical-margin theorem. Critical final surface prefixes really do have growing dependencies. The shrinking strip, unrestricted G_3 and exact priority remain unresolved.",
+  "scope": "Every decreasing positive component profile with |m_s-4(r-s)|<=D has O_D(n^2 log(n+1)) initials across all aspects, including irregular bounded perturbations. An integrated rank estimate gives a smooth support-energy approximation; relative-aspect integer caps and the classical Andrews bound count its shrinking critical strip by O_D(n^2), including unbounded blocks. Earlier sections are preserved. Higher slopes, unbounded profile deviations, unrestricted G_3 and exact current priority remain unresolved.",
   "summary": {
     "complete_axis_fans": 8,
     "axis_cells": 548,
@@ -108,7 +108,25 @@
     "subcritical_large_sigma_full_basis_queries": 18,
     "subcritical_critical_final_prefix_dependency_witnesses": 7,
     "subcritical_point_surface_matrix_bases": 3,
-    "subcritical_point_surface_border_relations": 11
+    "subcritical_point_surface_border_relations": 11,
+    "cap_uniform_energy_and_full_rank_cutoffs": 504,
+    "cap_selected_monomial_downset_checks": 628830,
+    "cap_independent_floor_rank_events": 15644,
+    "cap_independent_exact_rank_integrals": 234,
+    "cap_exact_profile_caps_and_lattice_factors": 504,
+    "cap_planar_x_absent_states": 252,
+    "cap_extreme_aspect_forced_planar_checks": 90,
+    "cap_irregular_profile_energy_and_cap_fixtures": 180,
+    "cap_irregular_collapse_capacity_inequalities": 1838616,
+    "cap_irregular_collapse_compact_fixtures": 4,
+    "cap_irregular_collapse_small_fixtures": 4,
+    "cap_irregular_collapse_large_fixtures": 4,
+    "cap_rational_squared_hessian_entries": 756,
+    "cap_relative_axis_cover_intervals": 165,
+    "cap_weighted_geometric_cover_sums": 10,
+    "cap_lower_dimensional_lattice_controls": 4,
+    "cap_point_cap_matrix_bases": 3,
+    "cap_point_cap_border_relations": 30
   },
   "uniform_axis_matroids": [
     {
@@ -70973,15 +70991,2735 @@
     },
     "scope": "All-field generic-component rank model, with explicit subcritical capacity localization and an eventual final-surface-prefix collapse criterion uniform over all positive aspects. Large matrix-free integer witnesses exercise the compact-gap and both extreme-sigma branches; independent heaps and three actual point bases are separate controls. Critical final-prefix dependencies grow as sqrt(n), but neither they nor the narrowing exceptional strip count the remaining coherent states. No unrestricted G_3 improvement or novelty certificate."
   },
+  "critical_support_energy_caps": {
+    "counts": {
+      "uniform_energy_and_full_rank_cutoffs": 504,
+      "selected_monomial_downset_checks": 628830,
+      "independent_floor_rank_events": 15644,
+      "independent_exact_rank_integrals": 234,
+      "exact_profile_caps_and_lattice_factors": 504,
+      "planar_x_absent_states": 252,
+      "extreme_aspect_forced_planar_checks": 90,
+      "irregular_profile_energy_and_cap_fixtures": 180,
+      "irregular_collapse_capacity_inequalities": 1838616,
+      "irregular_collapse_compact_fixtures": 4,
+      "irregular_collapse_small_fixtures": 4,
+      "irregular_collapse_large_fixtures": 4,
+      "rational_squared_hessian_entries": 756,
+      "relative_axis_cover_intervals": 165,
+      "weighted_geometric_cover_sums": 10,
+      "lower_dimensional_lattice_controls": 4,
+      "point_cap_matrix_bases": 3,
+      "point_cap_border_relations": 30
+    },
+    "energy_and_cap_witnesses": [
+      {
+        "components": 4,
+        "last_size": 1,
+        "component_sizes": [
+          13,
+          9,
+          5,
+          1
+        ],
+        "maximum_profile_deviation": 1,
+        "length": 28,
+        "center_p": "1/3",
+        "weight": [
+          131718000784,
+          43906000028,
+          65859000001
+        ],
+        "minimum_basis_energy": 5422391006305,
+        "integer_profile": [
+          6,
+          56,
+          33
+        ],
+        "last_selected_cost": 307342000114,
+        "normalized_energy_error_bound_over_r_squared": "3514676069679746638970972837487737/1192257607006241566627736267522048",
+        "normalized_energy_error_constant": 702,
+        "cap_step": "1/16",
+        "tangential_half_width": "726848",
+        "normal_half_width": "113570",
+        "actual_lattice_box_volume": "959999060405780480/9"
+      },
+      {
+        "components": 4,
+        "last_size": 1,
+        "component_sizes": [
+          13,
+          9,
+          5,
+          1
+        ],
+        "maximum_profile_deviation": 1,
+        "length": 28,
+        "center_p": "123/160",
+        "weight": [
+          129961760000784,
+          99908103000028,
+          432035040000001
+        ],
+        "minimum_basis_energy": 12219391048033715,
+        "integer_profile": [
+          41,
+          56,
+          3
+        ],
+        "last_selected_cost": 689609589002436,
+        "normalized_energy_error_bound_over_r_squared": "93298343340720374972171638073404974058169/30867708229062127748004833102179118088192",
+        "normalized_energy_error_constant": 702,
+        "cap_step": "1/16",
+        "tangential_half_width": "726848",
+        "normal_half_width": "113570",
+        "actual_lattice_box_volume": "426655832412764352/5"
+      },
+      {
+        "components": 4,
+        "last_size": 2,
+        "component_sizes": [
+          14,
+          10,
+          6,
+          2
+        ],
+        "maximum_profile_deviation": 2,
+        "length": 32,
+        "center_p": "1/3",
+        "weight": [
+          196614001024,
+          65538000032,
+          98307000001
+        ],
+        "minimum_basis_energy": 9961776011430,
+        "integer_profile": [
+          9,
+          68,
+          38
+        ],
+        "last_selected_cost": 491535000005,
+        "normalized_energy_error_bound_over_r_squared": "664123322545558685845872837207479/569248562686535276430409498361856",
+        "normalized_energy_error_constant": 930,
+        "cap_step": "1/16",
+        "tangential_half_width": "960320",
+        "normal_half_width": "150050",
+        "actual_lattice_box_volume": "2214052577361920000/9"
+      },
+      {
+        "components": 4,
+        "last_size": 2,
+        "component_sizes": [
+          14,
+          10,
+          6,
+          2
+        ],
+        "maximum_profile_deviation": 2,
+        "length": 32,
+        "center_p": "123/160",
+        "weight": [
+          193992480001024,
+          149131719000032,
+          644893920000001
+        ],
+        "minimum_basis_energy": 22538976966049476,
+        "integer_profile": [
+          46,
+          74,
+          4
+        ],
+        "last_selected_cost": 1092289077000097,
+        "normalized_energy_error_bound_over_r_squared": "983898698092014048665778699956668835179/805980060754148090458558584629709766656",
+        "normalized_energy_error_constant": 930,
+        "cap_step": "1/16",
+        "tangential_half_width": "960320",
+        "normal_half_width": "150050",
+        "actual_lattice_box_volume": "196799868741681600"
+      },
+      {
+        "components": 4,
+        "last_size": 6,
+        "component_sizes": [
+          18,
+          14,
+          10,
+          6
+        ],
+        "maximum_profile_deviation": 6,
+        "length": 48,
+        "center_p": "1/3",
+        "weight": [
+          663558002304,
+          221186000048,
+          331779000001
+        ],
+        "minimum_basis_energy": 63590975043319,
+        "integer_profile": [
+          16,
+          133,
+          71
+        ],
+        "last_selected_cost": 2101267000101,
+        "normalized_energy_error_bound_over_r_squared": "110472558813647708122677790592843545/15128909630941419759326980938399744",
+        "normalized_energy_error_constant": 2162,
+        "cap_step": "1/16",
+        "tangential_half_width": "2221888",
+        "normal_half_width": "347170",
+        "actual_lattice_box_volume": "27422465510482247680/9"
+      },
+      {
+        "components": 4,
+        "last_size": 6,
+        "component_sizes": [
+          18,
+          14,
+          10,
+          6
+        ],
+        "maximum_profile_deviation": 6,
+        "length": 48,
+        "center_p": "123/160",
+        "weight": [
+          654710560002304,
+          503308743000048,
+          2176470240000001
+        ],
+        "minimum_basis_energy": 144361024248227718,
+        "integer_profile": [
+          96,
+          136,
+          6
+        ],
+        "last_selected_cost": 4783479029011664,
+        "normalized_energy_error_bound_over_r_squared": "66646881068763929411863445405738020703623/9180222332184410509887182622326286974976",
+        "normalized_energy_error_constant": 2162,
+        "cap_step": "1/16",
+        "tangential_half_width": "2221888",
+        "normal_half_width": "347170",
+        "actual_lattice_box_volume": "12187464896309053632/5"
+      },
+      {
+        "components": 25,
+        "last_size": 1,
+        "component_sizes": [
+          97,
+          93,
+          89,
+          85,
+          81,
+          77,
+          73,
+          69,
+          65,
+          61,
+          57,
+          53,
+          49,
+          45,
+          41,
+          37,
+          33,
+          29,
+          25,
+          21,
+          17,
+          13,
+          9,
+          5,
+          1
+        ],
+        "maximum_profile_deviation": 1,
+        "length": 1225,
+        "center_p": "1/3",
+        "weight": [
+          11029593757500625,
+          3676531252001225,
+          5514796878000001
+        ],
+        "minimum_basis_energy": 146311237707881379112,
+        "integer_profile": [
+          2176,
+          19600,
+          9112
+        ],
+        "last_selected_cost": 180150031348056352,
+        "normalized_energy_error_bound_over_r_squared": "12010373270844559954913012955056039768232631714073/4012731625653321125964843630406948985241600000000",
+        "normalized_energy_error_constant": 702,
+        "cap_step": "1/40",
+        "tangential_half_width": "70981250",
+        "normal_half_width": "35490625/8",
+        "actual_lattice_box_volume": "357627518626220703125000/9"
+      },
+      {
+        "components": 25,
+        "last_size": 1,
+        "component_sizes": [
+          97,
+          93,
+          89,
+          85,
+          81,
+          77,
+          73,
+          69,
+          65,
+          61,
+          57,
+          53,
+          49,
+          45,
+          41,
+          37,
+          33,
+          29,
+          25,
+          21,
+          17,
+          13,
+          9,
+          5,
+          1
+        ],
+        "maximum_profile_deviation": 1,
+        "length": 1225,
+        "center_p": "159/200",
+        "weight": [
+          15073778133201500625,
+          11983653615894001225,
+          58456846906800000001
+        ],
+        "minimum_basis_energy": 476799779090643995995844,
+        "integer_profile": [
+          12776,
+          19600,
+          844
+        ],
+        "last_selected_cost": 587123658288186531625,
+        "normalized_energy_error_bound_over_r_squared": "5296351779544035432831752743961277789113020536168333197/1761548650779633170776798166502267152273453875200000000",
+        "normalized_energy_error_constant": 702,
+        "cap_step": "1/40",
+        "tangential_half_width": "70981250",
+        "normal_half_width": "35490625/8",
+        "actual_lattice_box_volume": "466274758784866552734375/16"
+      },
+      {
+        "components": 25,
+        "last_size": 2,
+        "component_sizes": [
+          98,
+          94,
+          90,
+          86,
+          82,
+          78,
+          74,
+          70,
+          66,
+          62,
+          58,
+          54,
+          50,
+          46,
+          42,
+          38,
+          34,
+          30,
+          26,
+          22,
+          18,
+          14,
+          10,
+          6,
+          2
+        ],
+        "maximum_profile_deviation": 2,
+        "length": 1250,
+        "center_p": "1/3",
+        "weight": [
+          11718750007562500,
+          3906250002001250,
+          5859375003000001
+        ],
+        "minimum_basis_energy": 160253906335687645570,
+        "integer_profile": [
+          2312,
+          20109,
+          9320
+        ],
+        "last_selected_cost": 193359375099026269,
+        "normalized_energy_error_bound_over_r_squared": "33218887717046726773034993192094422229417443677/32356059466018180216220171301524865024000000000",
+        "normalized_energy_error_constant": 930,
+        "cap_step": "1/40",
+        "tangential_half_width": "93781250",
+        "normal_half_width": "46890625/8",
+        "actual_lattice_box_volume": "824798858673095703125000/9"
+      },
+      {
+        "components": 25,
+        "last_size": 2,
+        "component_sizes": [
+          98,
+          94,
+          90,
+          86,
+          82,
+          78,
+          74,
+          70,
+          66,
+          62,
+          58,
+          54,
+          50,
+          46,
+          42,
+          38,
+          34,
+          30,
+          26,
+          22,
+          18,
+          14,
+          10,
+          6,
+          2
+        ],
+        "maximum_profile_deviation": 2,
+        "length": 1250,
+        "center_p": "159/200",
+        "weight": [
+          16015625008201562500,
+          12732421881519001250,
+          62109375031800000001
+        ],
+        "minimum_basis_energy": 522263801048669692830865,
+        "integer_profile": [
+          13185,
+          20214,
+          865
+        ],
+        "last_selected_cost": 630455078447796183750,
+        "normalized_energy_error_bound_over_r_squared": "567195260738886248612530960159222000692803964865543133/546853356080031187751546324982746296667340800000000000",
+        "normalized_energy_error_constant": 930,
+        "cap_step": "1/40",
+        "tangential_half_width": "93781250",
+        "normal_half_width": "46890625/8",
+        "actual_lattice_box_volume": "1075372751937982177734375/16"
+      },
+      {
+        "components": 25,
+        "last_size": 6,
+        "component_sizes": [
+          102,
+          98,
+          94,
+          90,
+          86,
+          82,
+          78,
+          74,
+          70,
+          66,
+          62,
+          58,
+          54,
+          50,
+          46,
+          42,
+          38,
+          34,
+          30,
+          26,
+          22,
+          18,
+          14,
+          10,
+          6
+        ],
+        "maximum_profile_deviation": 6,
+        "length": 1350,
+        "center_p": "1/3",
+        "weight": [
+          14762250007822500,
+          4920750002001350,
+          7381125003000001
+        ],
+        "minimum_basis_energy": 226721095971903453959,
+        "integer_profile": [
+          2592,
+          22610,
+          10459
+        ],
+        "last_selected_cost": 253418625103031069,
+        "normalized_energy_error_bound_over_r_squared": "2112321887779140124630439699549270255698304980111/299512499690404869248721935355047470694400000000",
+        "normalized_energy_error_constant": 2162,
+        "cap_step": "1/40",
+        "tangential_half_width": "216981250",
+        "normal_half_width": "108490625/8",
+        "actual_lattice_box_volume": "10215664472610595703125000/9"
+      },
+      {
+        "components": 25,
+        "last_size": 6,
+        "component_sizes": [
+          102,
+          98,
+          94,
+          90,
+          86,
+          82,
+          78,
+          74,
+          70,
+          66,
+          62,
+          58,
+          54,
+          50,
+          46,
+          42,
+          38,
+          34,
+          30,
+          26,
+          22,
+          18,
+          14,
+          10,
+          6
+        ],
+        "maximum_profile_deviation": 6,
+        "length": 1350,
+        "center_p": "159/200",
+        "weight": [
+          20175075008201822500,
+          16039184631519001350,
+          78239925031800000001
+        ],
+        "minimum_basis_energy": 738887565172466978907330,
+        "integer_profile": [
+          14776,
+          22701,
+          980
+        ],
+        "last_selected_cost": 826673698461062439250,
+        "normalized_energy_error_bound_over_r_squared": "36663549038059178337999177319043468893470257872174340159/5206725293975662295642824400305656643127114465280000000",
+        "normalized_energy_error_constant": 2162,
+        "cap_step": "1/40",
+        "tangential_half_width": "216981250",
+        "normal_half_width": "108490625/8",
+        "actual_lattice_box_volume": "13319183339389694677734375/16"
+      },
+      {
+        "components": 50,
+        "last_size": 1,
+        "component_sizes": [
+          197,
+          193,
+          189,
+          185,
+          181,
+          177,
+          173,
+          169,
+          165,
+          161,
+          157,
+          153,
+          149,
+          145,
+          141,
+          137,
+          133,
+          129,
+          125,
+          121,
+          117,
+          113,
+          109,
+          105,
+          101,
+          97,
+          93,
+          89,
+          85,
+          81,
+          77,
+          73,
+          69,
+          65,
+          61,
+          57,
+          53,
+          49,
+          45,
+          41,
+          37,
+          33,
+          29,
+          25,
+          21,
+          17,
+          13,
+          9,
+          5,
+          1
+        ],
+        "maximum_profile_deviation": 1,
+        "length": 4950,
+        "center_p": "1/3",
+        "weight": [
+          727724250030502500,
+          242574750002004950,
+          363862125003000001
+        ],
+        "minimum_basis_energy": 79041041690592353368524,
+        "integer_profile": [
+          17952,
+          161700,
+          73524
+        ],
+        "last_selected_cost": 24014900250198475202,
+        "normalized_energy_error_bound_over_r_squared": "90876460875490222611992040601065392802696961460099/30327198387849873593544987527119305598566400000000",
+        "normalized_energy_error_constant": 702,
+        "cap_step": "1/64",
+        "tangential_half_width": "453186250",
+        "normal_half_width": "1132965625/64",
+        "actual_lattice_box_volume": "58171490423529234619140625/9"
+      },
+      {
+        "components": 50,
+        "last_size": 1,
+        "component_sizes": [
+          197,
+          193,
+          189,
+          185,
+          181,
+          177,
+          173,
+          169,
+          165,
+          161,
+          157,
+          153,
+          149,
+          145,
+          141,
+          137,
+          133,
+          129,
+          125,
+          121,
+          117,
+          113,
+          109,
+          105,
+          101,
+          97,
+          93,
+          89,
+          85,
+          81,
+          77,
+          73,
+          69,
+          65,
+          61,
+          57,
+          53,
+          49,
+          45,
+          41,
+          37,
+          33,
+          29,
+          25,
+          21,
+          17,
+          13,
+          9,
+          5,
+          1
+        ],
+        "maximum_profile_deviation": 1,
+        "length": 4950,
+        "center_p": "319/400",
+        "weight": [
+          3929710950032424502500,
+          3133944482650839004950,
+          15476269050127600000001
+        ],
+        "minimum_basis_energy": 1021114516808684026957441724,
+        "integer_profile": [
+          104408,
+          161700,
+          6724
+        ],
+        "last_selected_cost": 310250679505059523756500,
+        "normalized_energy_error_bound_over_r_squared": "114173356562264229476430322525780230896175062069/38010789969958961838581540439043145265314062500",
+        "normalized_energy_error_constant": 702,
+        "cap_step": "1/64",
+        "tangential_half_width": "453186250",
+        "normal_half_width": "1132965625/64",
+        "actual_lattice_box_volume": "2404949025685715029318359375/512"
+      },
+      {
+        "components": 50,
+        "last_size": 2,
+        "component_sizes": [
+          198,
+          194,
+          190,
+          186,
+          182,
+          178,
+          174,
+          170,
+          166,
+          162,
+          158,
+          154,
+          150,
+          146,
+          142,
+          138,
+          134,
+          130,
+          126,
+          122,
+          118,
+          114,
+          110,
+          106,
+          102,
+          98,
+          94,
+          90,
+          86,
+          82,
+          78,
+          74,
+          70,
+          66,
+          62,
+          58,
+          54,
+          50,
+          46,
+          42,
+          38,
+          34,
+          30,
+          26,
+          22,
+          18,
+          14,
+          10,
+          6,
+          2
+        ],
+        "maximum_profile_deviation": 2,
+        "length": 5000,
+        "center_p": "1/3",
+        "weight": [
+          750000000031000000,
+          250000000002005000,
+          375000000003000001
+        ],
+        "minimum_basis_energy": 82700000001125243949324,
+        "integer_profile": [
+          18513,
+          163775,
+          74324
+        ],
+        "last_selected_cost": 24875000000199235035,
+        "normalized_energy_error_bound_over_r_squared": "2622997884444892124107558614320838796145230153493/2588484754413412873829196223053582827520000000000",
+        "normalized_energy_error_constant": 930,
+        "cap_step": "1/64",
+        "tangential_half_width": "599106250",
+        "normal_half_width": "1497765625/64",
+        "actual_lattice_box_volume": "134397616941496734619140625/9"
+      },
+      {
+        "components": 50,
+        "last_size": 2,
+        "component_sizes": [
+          198,
+          194,
+          190,
+          186,
+          182,
+          178,
+          174,
+          170,
+          166,
+          162,
+          158,
+          154,
+          150,
+          146,
+          142,
+          138,
+          134,
+          130,
+          126,
+          122,
+          118,
+          114,
+          110,
+          106,
+          102,
+          98,
+          94,
+          90,
+          86,
+          82,
+          78,
+          74,
+          70,
+          66,
+          62,
+          58,
+          54,
+          50,
+          46,
+          42,
+          38,
+          34,
+          30,
+          26,
+          22,
+          18,
+          14,
+          10,
+          6,
+          2
+        ],
+        "maximum_profile_deviation": 2,
+        "length": 5000,
+        "center_p": "319/400",
+        "weight": [
+          4050000000032425000000,
+          3229875000025839005000,
+          15950000000127600000001
+        ],
+        "minimum_basis_energy": 1068398022133549837447721805,
+        "integer_profile": [
+          106098,
+          164143,
+          6805
+        ],
+        "last_selected_cost": 321448500002571738460000,
+        "normalized_energy_error_bound_over_r_squared": "98723734501611464533181999544183345990456366917/96896250001550938125012281145000048637500000000",
+        "normalized_energy_error_constant": 930,
+        "cap_step": "1/64",
+        "tangential_half_width": "599106250",
+        "normal_half_width": "1497765625/64",
+        "actual_lattice_box_volume": "5556320038642134601318359375/512"
+      },
+      {
+        "components": 50,
+        "last_size": 6,
+        "component_sizes": [
+          202,
+          198,
+          194,
+          190,
+          186,
+          182,
+          178,
+          174,
+          170,
+          166,
+          162,
+          158,
+          154,
+          150,
+          146,
+          142,
+          138,
+          134,
+          130,
+          126,
+          122,
+          118,
+          114,
+          110,
+          106,
+          102,
+          98,
+          94,
+          90,
+          86,
+          82,
+          78,
+          74,
+          70,
+          66,
+          62,
+          58,
+          54,
+          50,
+          46,
+          42,
+          38,
+          34,
+          30,
+          26,
+          22,
+          18,
+          14,
+          10,
+          6
+        ],
+        "maximum_profile_deviation": 6,
+        "length": 5200,
+        "center_p": "1/3",
+        "weight": [
+          843648000033040000,
+          281216000002005200,
+          421824000003000001
+        ],
+        "minimum_basis_energy": 98678413185233172434046,
+        "integer_profile": [
+          19618,
+          173776,
+          78846
+        ],
+        "last_selected_cost": 28543424000203254835,
+        "normalized_energy_error_bound_over_r_squared": "322179802809965579833912535073918351466279731742267/45853625843707123119879037763882797183795200000000",
+        "normalized_energy_error_constant": 2162,
+        "cap_step": "1/64",
+        "tangential_half_width": "1387586250",
+        "normal_half_width": "3468965625/64",
+        "actual_lattice_box_volume": "185531420973640748291015625"
+      },
+      {
+        "components": 50,
+        "last_size": 6,
+        "component_sizes": [
+          202,
+          198,
+          194,
+          190,
+          186,
+          182,
+          178,
+          174,
+          170,
+          166,
+          162,
+          158,
+          154,
+          150,
+          146,
+          142,
+          138,
+          134,
+          130,
+          126,
+          122,
+          118,
+          114,
+          110,
+          106,
+          102,
+          98,
+          94,
+          90,
+          86,
+          82,
+          78,
+          74,
+          70,
+          66,
+          62,
+          58,
+          54,
+          50,
+          46,
+          42,
+          38,
+          34,
+          30,
+          26,
+          22,
+          18,
+          14,
+          10,
+          6
+        ],
+        "maximum_profile_deviation": 6,
+        "length": 5200,
+        "center_p": "319/400",
+        "weight": [
+          4555699200032427040000,
+          3633170112025839005200,
+          17941580800127600000001
+        ],
+        "minimum_basis_energy": 1274826409809389570789779235,
+        "integer_profile": [
+          112485,
+          174110,
+          7235
+        ],
+        "last_selected_cost": 368897742722625563972000,
+        "normalized_energy_error_bound_over_r_squared": "4929402434022000313247600924903696933698885190461237135723/702110718896344086188578423429730961868520612167680000000",
+        "normalized_energy_error_constant": 2162,
+        "cap_step": "1/64",
+        "tangential_half_width": "1387586250",
+        "normal_half_width": "3468965625/64",
+        "actual_lattice_box_volume": "69032827966145807449318359375/512"
+      },
+      {
+        "components": 4,
+        "last_size": null,
+        "component_sizes": [
+          13,
+          12,
+          6,
+          5
+        ],
+        "maximum_profile_deviation": 5,
+        "length": 36,
+        "center_p": "1/3",
+        "weight": [
+          279942001296,
+          93314000036,
+          139971000001
+        ],
+        "minimum_basis_energy": 17076462014736,
+        "integer_profile": [
+          9,
+          84,
+          48
+        ],
+        "last_selected_cost": 746512000182,
+        "normalized_energy_error_bound_over_r_squared": "2767484484050858117710495845718035/3590250149093711738618245239799808",
+        "normalized_energy_error_constant": 1806,
+        "cap_step": "1/16",
+        "tangential_half_width": "1857344",
+        "normal_half_width": "290210",
+        "actual_lattice_box_volume": "16018323129146408960/9"
+      },
+      {
+        "components": 4,
+        "last_size": null,
+        "component_sizes": [
+          13,
+          12,
+          6,
+          5
+        ],
+        "maximum_profile_deviation": 5,
+        "length": 36,
+        "center_p": "123/160",
+        "weight": [
+          276209440001296,
+          212336007000036,
+          918209760000001
+        ],
+        "minimum_basis_energy": 38634048908083380,
+        "integer_profile": [
+          62,
+          84,
+          4
+        ],
+        "last_selected_cost": 1677972348004032,
+        "normalized_energy_error_bound_over_r_squared": "24576458906823379528263314090019375611459/34857020486063952432019910132885683699712",
+        "normalized_energy_error_constant": 1806,
+        "cap_step": "1/16",
+        "tangential_half_width": "1857344",
+        "normal_half_width": "290210",
+        "actual_lattice_box_volume": "7119080914135283904/5"
+      },
+      {
+        "components": 4,
+        "last_size": null,
+        "component_sizes": [
+          10,
+          9,
+          4,
+          3
+        ],
+        "maximum_profile_deviation": 3,
+        "length": 26,
+        "center_p": "1/3",
+        "weight": [
+          105462000676,
+          35154000026,
+          52731000001
+        ],
+        "minimum_basis_energy": 3849363005409,
+        "integer_profile": [
+          6,
+          51,
+          27
+        ],
+        "last_selected_cost": 228501000131,
+        "normalized_energy_error_bound_over_r_squared": "140251631264406903617685808766744959/36687075231407237842926068570259456",
+        "normalized_energy_error_constant": 1190,
+        "cap_step": "1/16",
+        "tangential_half_width": "1226560",
+        "normal_half_width": "191650",
+        "actual_lattice_box_volume": "4613243743191040000/9"
+      },
+      {
+        "components": 4,
+        "last_size": null,
+        "component_sizes": [
+          10,
+          9,
+          4,
+          3
+        ],
+        "maximum_profile_deviation": 3,
+        "length": 26,
+        "center_p": "123/160",
+        "weight": [
+          104055840000676,
+          79992927000026,
+          345915360000001
+        ],
+        "minimum_basis_energy": 8703409743025613,
+        "integer_profile": [
+          36,
+          49,
+          3
+        ],
+        "last_selected_cost": 520279200003380,
+        "normalized_energy_error_bound_over_r_squared": "83467171956851670869916967525165377971765/21587119619340827744843560453575851114496",
+        "normalized_energy_error_constant": 1190,
+        "cap_step": "1/16",
+        "tangential_half_width": "1226560",
+        "normal_half_width": "191650",
+        "actual_lattice_box_volume": "410056099126219200"
+      },
+      {
+        "components": 25,
+        "last_size": null,
+        "component_sizes": [
+          97,
+          96,
+          90,
+          89,
+          83,
+          82,
+          73,
+          72,
+          66,
+          65,
+          59,
+          58,
+          49,
+          48,
+          42,
+          41,
+          35,
+          34,
+          25,
+          24,
+          18,
+          17,
+          11,
+          10,
+          1
+        ],
+        "maximum_profile_deviation": 6,
+        "length": 1285,
+        "center_p": "1/3",
+        "weight": [
+          12730944757651225,
+          4243648252001285,
+          6365472378000001
+        ],
+        "minimum_basis_energy": 181509323038501100336,
+        "integer_profile": [
+          2380,
+          21148,
+          9656
+        ],
+        "last_selected_cost": 212182412624774800,
+        "normalized_energy_error_bound_over_r_squared": "450231942542872685811792564555649881910178944911/254579279941142864926778583838332305801216000000",
+        "normalized_energy_error_constant": 2162,
+        "cap_step": "1/40",
+        "tangential_half_width": "216981250",
+        "normal_half_width": "108490625/8",
+        "actual_lattice_box_volume": "10215664472610595703125000/9"
+      },
+      {
+        "components": 25,
+        "last_size": null,
+        "component_sizes": [
+          97,
+          96,
+          90,
+          89,
+          83,
+          82,
+          73,
+          72,
+          66,
+          65,
+          59,
+          58,
+          49,
+          48,
+          42,
+          41,
+          35,
+          34,
+          25,
+          24,
+          18,
+          17,
+          11,
+          10,
+          1
+        ],
+        "maximum_profile_deviation": 6,
+        "length": 1285,
+        "center_p": "159/200",
+        "weight": [
+          17398957833201651225,
+          13832171477394001285,
+          67474007206800000001
+        ],
+        "minimum_basis_energy": 591527529888703374980734,
+        "integer_profile": [
+          13734,
+          21055,
+          909
+        ],
+        "last_selected_cost": 695088365436392852050,
+        "normalized_energy_error_bound_over_r_squared": "45351603783365831137437703097658100124034453258195821113/25816036177885556684392597539448901277002615488512000000",
+        "normalized_energy_error_constant": 2162,
+        "cap_step": "1/40",
+        "tangential_half_width": "216981250",
+        "normal_half_width": "108490625/8",
+        "actual_lattice_box_volume": "13319183339389694677734375/16"
+      },
+      {
+        "components": 25,
+        "last_size": null,
+        "component_sizes": [
+          94,
+          93,
+          88,
+          87,
+          80,
+          77,
+          70,
+          69,
+          64,
+          63,
+          56,
+          53,
+          46,
+          45,
+          40,
+          39,
+          32,
+          29,
+          22,
+          21,
+          16,
+          15,
+          8,
+          5,
+          1
+        ],
+        "maximum_profile_deviation": 3,
+        "length": 1213,
+        "center_p": "1/3",
+        "weight": [
+          10708623589471369,
+          3569541196001213,
+          5354311794000001
+        ],
+        "minimum_basis_energy": 139954571215993053298,
+        "integer_profile": [
+          2176,
+          19246,
+          8956
+        ],
+        "last_selected_cost": 174907518604012156,
+        "normalized_energy_error_bound_over_r_squared": "992011632299471289498212187190065885494323229661/252172154365901825036936174106433166692581376000",
+        "normalized_energy_error_constant": 1190,
+        "cap_step": "1/40",
+        "tangential_half_width": "119781250",
+        "normal_half_width": "59890625/8",
+        "actual_lattice_box_volume": "1718567216094970703125000/9"
+      },
+      {
+        "components": 25,
+        "last_size": null,
+        "component_sizes": [
+          94,
+          93,
+          88,
+          87,
+          80,
+          77,
+          70,
+          69,
+          64,
+          63,
+          56,
+          53,
+          46,
+          45,
+          40,
+          39,
+          32,
+          29,
+          22,
+          21,
+          16,
+          15,
+          8,
+          5,
+          1
+        ],
+        "maximum_profile_deviation": 3,
+        "length": 1213,
+        "center_p": "159/200",
+        "weight": [
+          14635118903601471369,
+          11634919528362001213,
+          56755705016400000001
+        ],
+        "minimum_basis_energy": 456102422261747867800128,
+        "integer_profile": [
+          12545,
+          19353,
+          834
+        ],
+        "last_selected_cost": 567557050164000000010,
+        "normalized_energy_error_bound_over_r_squared": "14410881431110010244266000107436116299412497003776556971/3653133942412455688950691772164052302869437796581376000",
+        "normalized_energy_error_constant": 1190,
+        "cap_step": "1/40",
+        "tangential_half_width": "119781250",
+        "normal_half_width": "59890625/8",
+        "actual_lattice_box_volume": "2240667936344622802734375/16"
+      },
+      {
+        "components": 50,
+        "last_size": null,
+        "component_sizes": [
+          197,
+          196,
+          190,
+          189,
+          183,
+          182,
+          173,
+          172,
+          166,
+          165,
+          159,
+          158,
+          149,
+          148,
+          142,
+          141,
+          135,
+          134,
+          125,
+          124,
+          118,
+          117,
+          111,
+          110,
+          101,
+          100,
+          94,
+          93,
+          87,
+          86,
+          77,
+          76,
+          70,
+          69,
+          63,
+          62,
+          53,
+          52,
+          46,
+          45,
+          39,
+          38,
+          29,
+          28,
+          22,
+          21,
+          15,
+          14,
+          5,
+          4
+        ],
+        "maximum_profile_deviation": 6,
+        "length": 5073,
+        "center_p": "1/3",
+        "weight": [
+          783331944133735329,
+          261110648036005073,
+          391665972054000001
+        ],
+        "minimum_basis_energy": 88279290660948819998751,
+        "integer_profile": [
+          18833,
+          168041,
+          75701
+        ],
+        "last_selected_cost": 26111064804423550820,
+        "normalized_energy_error_bound_over_r_squared": "1284077223829909494554904583602553987634249230443989/674670158588099927729866833020961155640729796608000",
+        "normalized_energy_error_constant": 2162,
+        "cap_step": "1/64",
+        "tangential_half_width": "1387586250",
+        "normal_half_width": "3468965625/64",
+        "actual_lattice_box_volume": "185531420973640748291015625"
+      },
+      {
+        "components": 50,
+        "last_size": null,
+        "component_sizes": [
+          197,
+          196,
+          190,
+          189,
+          183,
+          182,
+          173,
+          172,
+          166,
+          165,
+          159,
+          158,
+          149,
+          148,
+          142,
+          141,
+          135,
+          134,
+          125,
+          124,
+          118,
+          117,
+          111,
+          110,
+          101,
+          100,
+          94,
+          93,
+          87,
+          86,
+          77,
+          76,
+          70,
+          69,
+          63,
+          62,
+          53,
+          52,
+          46,
+          45,
+          39,
+          38,
+          29,
+          28,
+          22,
+          21,
+          15,
+          14,
+          5,
+          4
+        ],
+        "maximum_profile_deviation": 6,
+        "length": 5073,
+        "center_p": "319/400",
+        "weight": [
+          4229992498183225735329,
+          3373419017301102005073,
+          16658859344696800000001
+        ],
+        "minimum_basis_energy": 1140472515553300576987256200,
+        "integer_profile": [
+          108270,
+          167786,
+          6992
+        ],
+        "last_selected_cost": 338198475210992324237556,
+        "normalized_energy_error_bound_over_r_squared": "11759017883930648003864478118594811153128363493270364263647/6198329680776991474569745898010226948107317141643271864320",
+        "normalized_energy_error_constant": 2162,
+        "cap_step": "1/64",
+        "tangential_half_width": "1387586250",
+        "normal_half_width": "3468965625/64",
+        "actual_lattice_box_volume": "69032827966145807449318359375/512"
+      },
+      {
+        "components": 50,
+        "last_size": null,
+        "component_sizes": [
+          194,
+          193,
+          188,
+          187,
+          180,
+          177,
+          170,
+          169,
+          164,
+          163,
+          156,
+          153,
+          146,
+          145,
+          140,
+          139,
+          132,
+          129,
+          122,
+          121,
+          116,
+          115,
+          108,
+          105,
+          98,
+          97,
+          92,
+          91,
+          84,
+          81,
+          74,
+          73,
+          68,
+          67,
+          60,
+          57,
+          50,
+          49,
+          44,
+          43,
+          36,
+          33,
+          26,
+          25,
+          20,
+          19,
+          12,
+          9,
+          2,
+          1
+        ],
+        "maximum_profile_deviation": 3,
+        "length": 4923,
+        "center_p": "1/3",
+        "weight": [
+          715880870832235929,
+          238626956936004923,
+          357940435404000001
+        ],
+        "minimum_basis_energy": 77117192986921071872608,
+        "integer_profile": [
+          17936,
+          160101,
+          72841
+        ],
+        "last_selected_cost": 23624068736664103435,
+        "normalized_energy_error_bound_over_r_squared": "327233755578810172072242532498078243829936614255639/80497668525980776334962168541385330333050732544000",
+        "normalized_energy_error_constant": 1190,
+        "cap_step": "1/64",
+        "tangential_half_width": "765506250",
+        "normal_half_width": "1913765625/64",
+        "actual_lattice_box_volume": "31151841929298248291015625"
+      },
+      {
+        "components": 50,
+        "last_size": null,
+        "component_sizes": [
+          194,
+          193,
+          188,
+          187,
+          180,
+          177,
+          170,
+          169,
+          164,
+          163,
+          156,
+          153,
+          146,
+          145,
+          140,
+          139,
+          132,
+          129,
+          122,
+          121,
+          116,
+          115,
+          108,
+          105,
+          98,
+          97,
+          92,
+          91,
+          84,
+          81,
+          74,
+          73,
+          68,
+          67,
+          60,
+          57,
+          50,
+          49,
+          44,
+          43,
+          36,
+          33,
+          26,
+          25,
+          20,
+          19,
+          12,
+          9,
+          2,
+          1
+        ],
+        "maximum_profile_deviation": 3,
+        "length": 4923,
+        "center_p": "319/400",
+        "weight": [
+          3865756702363224235929,
+          3082940970134652004923,
+          15224399852516800000001
+        ],
+        "minimum_basis_energy": 996271004582797211757745836,
+        "integer_profile": [
+          103556,
+          160446,
+          6654
+        ],
+        "last_selected_cost": 304563641795686505488284,
+        "normalized_energy_error_bound_over_r_squared": "9982874575582908887076217756088382874893398542/2452242740388520923812727530180769601009830375",
+        "normalized_energy_error_constant": 1190,
+        "cap_step": "1/64",
+        "tangential_half_width": "765506250",
+        "normal_half_width": "1913765625/64",
+        "actual_lattice_box_volume": "11591027188000379101318359375/512"
+      }
+    ],
+    "irregular_profile_collapse_witnesses": [
+      {
+        "profile_pattern_before_sorting_and_positive_clipping": [
+          1,
+          4,
+          2,
+          5,
+          3,
+          6
+        ],
+        "components": 524288,
+        "maximum_deviation_bound": 6,
+        "length": 549756600318,
+        "center_p": "1/3",
+        "weight": [
+          996925275154702501629054315317349795701124,
+          4763973581539271686340440043567112868732600318,
+          498462637577351250663410997862072299000001
+        ],
+        "sigma": "3561994255204328984612674178373638231252456591841081837876102323648055909605385144978875/248465001060569823170523917053639698005453797398398610336414634441095800456935850562",
+        "nth_surface_cost": 41718700851750642823109610028844784370834549148340,
+        "surface_count": 549756600318,
+        "surface_count_one_cost_earlier": 549756600317,
+        "minimum_capacity_slack": 0,
+        "criterion_branch": "compact",
+        "gap_constant": 49000000
+      },
+      {
+        "profile_pattern_before_sorting_and_positive_clipping": [
+          1,
+          4,
+          2,
+          5,
+          3,
+          6
+        ],
+        "components": 515,
+        "maximum_deviation_bound": 6,
+        "length": 531220,
+        "center_p": "1/3",
+        "weight": [
+          25788880566753755590226688400,
+          149907462371848001531220,
+          12894440283376877654016000001
+        ],
+        "sigma": "289945923237954057440464889649646584739216866668961/16626659022157237471592620996201988875428919810231334420",
+        "nth_surface_cost": 36026360987051999310796764640,
+        "surface_count": 531220,
+        "surface_count_one_cost_earlier": 531219,
+        "minimum_capacity_slack": 0,
+        "criterion_branch": "small",
+        "gap_constant": 49000000
+      },
+      {
+        "profile_pattern_before_sorting_and_positive_clipping": [
+          1,
+          4,
+          2,
+          5,
+          3,
+          6
+        ],
+        "components": 515,
+        "maximum_deviation_bound": 6,
+        "length": 531220,
+        "center_p": "1/3",
+        "weight": [
+          899444774231370200688400,
+          17192587044502503538688531220,
+          449722387115544003000001
+        ],
+        "sigma": "15062125882494270130241535707791328462314052753493/262662630484372303004143475206509950022987460",
+        "nth_surface_cost": 65605801647340302853643131862,
+        "surface_count": 531220,
+        "surface_count_one_cost_earlier": 531219,
+        "minimum_capacity_slack": 0,
+        "criterion_branch": "large",
+        "gap_constant": 49000000
+      },
+      {
+        "profile_pattern_before_sorting_and_positive_clipping": [
+          1,
+          4,
+          2,
+          5,
+          3,
+          6
+        ],
+        "components": 524288,
+        "maximum_deviation_bound": 6,
+        "length": 549756600318,
+        "center_p": "1/101",
+        "weight": [
+          1678157546510415877233785925121903278497701124,
+          238198679076963584317022002178355616498556600318,
+          16781575465104158772334836928023100733000001
+        ],
+        "sigma": "201866129985218666470536288844354682098709076439845061283134325200230141736356778545768978875/14081063754549293141080960435341182266580462265623179155417717370648316114341301194850562",
+        "nth_surface_cost": 2085935047073695878843611804931033827300356956607529,
+        "surface_count": 549756600318,
+        "surface_count_one_cost_earlier": 549756600317,
+        "minimum_capacity_slack": 0,
+        "criterion_branch": "compact",
+        "gap_constant": 49000000
+      },
+      {
+        "profile_pattern_before_sorting_and_positive_clipping": [
+          1,
+          4,
+          2,
+          5,
+          3,
+          6
+        ],
+        "components": 515,
+        "maximum_deviation_bound": 6,
+        "length": 531220,
+        "center_p": "1/101",
+        "weight": [
+          21705641143684410717875794688400,
+          3747686559296200025531220,
+          217056411436844107175936000001
+        ],
+        "sigma": "456441105393575510547779986294730284147336798812874329/26174158747689194073145179494364521806518452687867878859380",
+        "nth_surface_cost": 823293432328275311905942740861,
+        "surface_count": 531220,
+        "surface_count_one_cost_earlier": 531219,
+        "minimum_capacity_slack": 0,
+        "criterion_branch": "small",
+        "gap_constant": 49000000
+      },
+      {
+        "profile_pattern_before_sorting_and_positive_clipping": [
+          1,
+          4,
+          2,
+          5,
+          3,
+          6
+        ],
+        "components": 515,
+        "maximum_deviation_bound": 6,
+        "length": 531220,
+        "center_p": "1/101",
+        "weight": [
+          1514065369955665092294688400,
+          859629352225125176934400531220,
+          15140653699556648101000001
+        ],
+        "sigma": "9389645596667840805408505158710106380492198220657088423/163742424607070326847374537595682782756513004962060",
+        "nth_surface_cost": 3280286784402842962026078691098,
+        "surface_count": 531220,
+        "surface_count_one_cost_earlier": 531219,
+        "minimum_capacity_slack": 0,
+        "criterion_branch": "large",
+        "gap_constant": 49000000
+      },
+      {
+        "profile_pattern_before_sorting_and_positive_clipping": [
+          -3,
+          2,
+          -1,
+          4,
+          0,
+          1
+        ],
+        "components": 393216,
+        "maximum_deviation_bound": 4,
+        "length": 309237055488,
+        "center_p": "1/3",
+        "weight": [
+          177429503949106558216530344850734028918144,
+          605626040146283718386014850948593420277055488,
+          88714751974553279060451394181922819000001
+        ],
+        "sigma": "25698962344184505889779169994899415758699960576434797605710422892398666540561774080/2509664291424268153749617337441248907989197385582336353054847254958087924420427",
+        "nth_surface_cost": 4706384246600368337031850907644415464798589328256,
+        "surface_count": 309237055488,
+        "surface_count_one_cost_earlier": 309237055487,
+        "minimum_capacity_slack": 0,
+        "criterion_branch": "compact",
+        "gap_constant": 25000000
+      },
+      {
+        "profile_pattern_before_sorting_and_positive_clipping": [
+          -3,
+          2,
+          -1,
+          4,
+          0,
+          1
+        ],
+        "components": 387,
+        "maximum_deviation_bound": 4,
+        "length": 298956,
+        "center_p": "1/3",
+        "weight": [
+          3283242983977797762334689936,
+          26719099804506817298956,
+          1641621491988898836480000001
+        ],
+        "sigma": "32896986364256083078837711518809671363261243451443/1347460561479929160059276206591945001507440856903672484",
+        "nth_surface_cost": 4048958946175354132488170984,
+        "surface_count": 298956,
+        "surface_count_one_cost_earlier": 298955,
+        "minimum_capacity_slack": 0,
+        "criterion_branch": "small",
+        "gap_constant": 25000000
+      },
+      {
+        "profile_pattern_before_sorting_and_positive_clipping": [
+          -3,
+          2,
+          -1,
+          4,
+          0,
+          1
+        ],
+        "components": 387,
+        "maximum_deviation_bound": 4,
+        "length": 298956,
+        "center_p": "1/3",
+        "weight": [
+          160314598827130276689936,
+          2188828655985198448640298956,
+          80157299413520451000001
+        ],
+        "sigma": "131587945457073234925653248391439613829570738201443/3212596324636174027366768402509987252853172484",
+        "nth_surface_cost": 7277160584555867664486905734,
+        "surface_count": 298956,
+        "surface_count_one_cost_earlier": 298955,
+        "minimum_capacity_slack": 0,
+        "criterion_branch": "large",
+        "gap_constant": 25000000
+      },
+      {
+        "profile_pattern_before_sorting_and_positive_clipping": [
+          -3,
+          2,
+          -1,
+          4,
+          0,
+          1
+        ],
+        "components": 393216,
+        "maximum_deviation_bound": 4,
+        "length": 309237055488,
+        "center_p": "1/101",
+        "weight": [
+          298672998314329372836948654635627045690918144,
+          30281302007314185919300742547429655861237055488,
+          2986729983143293728368530270791401573000001
+        ],
+        "sigma": "728208652425072623576461634101215207377945328488090120644443730122373598467143512887040/71114126213385998396139056890330610296334336648872519729960064963808115960051514901",
+        "nth_surface_cost": 235319213039736432555790259841869532904430013578660,
+        "surface_count": 309237055488,
+        "surface_count_one_cost_earlier": 309237055487,
+        "minimum_capacity_slack": 0,
+        "criterion_branch": "compact",
+        "gap_constant": 25000000
+      },
+      {
+        "profile_pattern_before_sorting_and_positive_clipping": [
+          -3,
+          2,
+          -1,
+          4,
+          0,
+          1
+        ],
+        "components": 387,
+        "maximum_deviation_bound": 4,
+        "length": 298956,
+        "center_p": "1/101",
+        "weight": [
+          552679235636262608370974689936,
+          133595499022534085298956,
+          5526792356362626082816000001
+        ],
+        "sigma": "18643453216765349691505849343644427783404113036451443/763635843758708721656460868059072851903908616527687672484",
+        "nth_surface_cost": 18274902378689700586379957907,
+        "surface_count": 298956,
+        "surface_count_one_cost_earlier": 298955,
+        "minimum_capacity_slack": 0,
+        "criterion_branch": "small",
+        "gap_constant": 25000000
+      },
+      {
+        "profile_pattern_before_sorting_and_positive_clipping": [
+          -3,
+          2,
+          -1,
+          4,
+          0,
+          1
+        ],
+        "components": 387,
+        "maximum_deviation_bound": 4,
+        "length": 298956,
+        "center_p": "1/101",
+        "weight": [
+          269862908025518941074689936,
+          109441432799259922432000298956,
+          2698629080255188517000001
+        ],
+        "sigma": "7457381286706142304043981021485771468056413249314201443/182064972819974177941826139966026854130401496672484",
+        "nth_surface_cost": 363857387969398075060692393232,
+        "surface_count": 298956,
+        "surface_count_one_cost_earlier": 298955,
+        "minimum_capacity_slack": 0,
+        "criterion_branch": "large",
+        "gap_constant": 25000000
+      }
+    ],
+    "lower_dimensional_witnesses": [
+      {
+        "parameter": 1,
+        "integer_edge_vectors": [
+          [
+            1,
+            -1,
+            0
+          ],
+          [
+            1,
+            0,
+            -1
+          ]
+        ],
+        "primitive_plane_normal": [
+          1,
+          1,
+          1
+        ],
+        "ambient_volume": 0,
+        "euclidean_area_squared": 3,
+        "relative_lattice_area": 1,
+        "vertices": 4
+      },
+      {
+        "parameter": 2,
+        "integer_edge_vectors": [
+          [
+            2,
+            -1,
+            0
+          ],
+          [
+            4,
+            0,
+            -1
+          ]
+        ],
+        "primitive_plane_normal": [
+          1,
+          2,
+          4
+        ],
+        "ambient_volume": 0,
+        "euclidean_area_squared": 21,
+        "relative_lattice_area": 1,
+        "vertices": 4
+      },
+      {
+        "parameter": 7,
+        "integer_edge_vectors": [
+          [
+            7,
+            -1,
+            0
+          ],
+          [
+            49,
+            0,
+            -1
+          ]
+        ],
+        "primitive_plane_normal": [
+          1,
+          7,
+          49
+        ],
+        "ambient_volume": 0,
+        "euclidean_area_squared": 2451,
+        "relative_lattice_area": 1,
+        "vertices": 4
+      },
+      {
+        "parameter": 101,
+        "integer_edge_vectors": [
+          [
+            101,
+            -1,
+            0
+          ],
+          [
+            10201,
+            0,
+            -1
+          ]
+        ],
+        "primitive_plane_normal": [
+          1,
+          101,
+          10201
+        ],
+        "ambient_volume": 0,
+        "euclidean_area_squared": 104070603,
+        "relative_lattice_area": 1,
+        "vertices": 4
+      }
+    ],
+    "point_ideal": {
+      "configuration": "critical_harmonic_rotation.point_ideal",
+      "positive_basis_certificates": [
+        {
+          "weight": [
+            4073842080001024,
+            3231187245000032,
+            13757736960000001
+          ],
+          "selected": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              0,
+              3,
+              0
+            ],
+            [
+              1,
+              2,
+              0
+            ],
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ],
+            [
+              0,
+              4,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              3,
+              0
+            ],
+            [
+              2,
+              2,
+              0
+            ],
+            [
+              3,
+              1,
+              0
+            ],
+            [
+              0,
+              5,
+              0
+            ],
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              4,
+              0
+            ],
+            [
+              2,
+              3,
+              0
+            ],
+            [
+              3,
+              2,
+              0
+            ],
+            [
+              0,
+              6,
+              0
+            ],
+            [
+              4,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              1,
+              5,
+              0
+            ],
+            [
+              5,
+              0,
+              0
+            ],
+            [
+              2,
+              4,
+              0
+            ],
+            [
+              3,
+              3,
+              0
+            ],
+            [
+              0,
+              7,
+              0
+            ],
+            [
+              4,
+              2,
+              0
+            ],
+            [
+              0,
+              3,
+              1
+            ],
+            [
+              1,
+              6,
+              0
+            ]
+          ],
+          "integer_profile": [
+            46,
+            74,
+            4
+          ],
+          "minimal_initial_generators": [
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              4,
+              1
+            ],
+            [
+              0,
+              8,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              7,
+              0
+            ],
+            [
+              2,
+              5,
+              0
+            ],
+            [
+              3,
+              4,
+              0
+            ],
+            [
+              4,
+              3,
+              0
+            ],
+            [
+              5,
+              1,
+              0
+            ],
+            [
+              6,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "weight": [
+            193992480001024,
+            149131719000032,
+            644893920000001
+          ],
+          "selected": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              0,
+              3,
+              0
+            ],
+            [
+              1,
+              2,
+              0
+            ],
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ],
+            [
+              0,
+              4,
+              0
+            ],
+            [
+              1,
+              3,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              2,
+              2,
+              0
+            ],
+            [
+              3,
+              1,
+              0
+            ],
+            [
+              0,
+              5,
+              0
+            ],
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              1,
+              4,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              2,
+              3,
+              0
+            ],
+            [
+              3,
+              2,
+              0
+            ],
+            [
+              0,
+              6,
+              0
+            ],
+            [
+              4,
+              1,
+              0
+            ],
+            [
+              1,
+              5,
+              0
+            ],
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              5,
+              0,
+              0
+            ],
+            [
+              2,
+              4,
+              0
+            ],
+            [
+              3,
+              3,
+              0
+            ],
+            [
+              0,
+              7,
+              0
+            ],
+            [
+              4,
+              2,
+              0
+            ],
+            [
+              1,
+              6,
+              0
+            ],
+            [
+              0,
+              3,
+              1
+            ]
+          ],
+          "integer_profile": [
+            46,
+            74,
+            4
+          ],
+          "minimal_initial_generators": [
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              4,
+              1
+            ],
+            [
+              0,
+              8,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              7,
+              0
+            ],
+            [
+              2,
+              5,
+              0
+            ],
+            [
+              3,
+              4,
+              0
+            ],
+            [
+              4,
+              3,
+              0
+            ],
+            [
+              5,
+              1,
+              0
+            ],
+            [
+              6,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "weight": [
+            12609511200001024,
+            9395298297000032,
+            41273210880000001
+          ],
+          "selected": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              0,
+              3,
+              0
+            ],
+            [
+              1,
+              2,
+              0
+            ],
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              0,
+              4,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ],
+            [
+              1,
+              3,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              2,
+              2,
+              0
+            ],
+            [
+              0,
+              5,
+              0
+            ],
+            [
+              3,
+              1,
+              0
+            ],
+            [
+              1,
+              4,
+              0
+            ],
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              2,
+              3,
+              0
+            ],
+            [
+              0,
+              6,
+              0
+            ],
+            [
+              3,
+              2,
+              0
+            ],
+            [
+              1,
+              5,
+              0
+            ],
+            [
+              4,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              2,
+              4,
+              0
+            ],
+            [
+              5,
+              0,
+              0
+            ],
+            [
+              0,
+              7,
+              0
+            ],
+            [
+              3,
+              3,
+              0
+            ],
+            [
+              1,
+              6,
+              0
+            ],
+            [
+              4,
+              2,
+              0
+            ],
+            [
+              0,
+              3,
+              1
+            ]
+          ],
+          "integer_profile": [
+            46,
+            74,
+            4
+          ],
+          "minimal_initial_generators": [
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              4,
+              1
+            ],
+            [
+              0,
+              8,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              7,
+              0
+            ],
+            [
+              2,
+              5,
+              0
+            ],
+            [
+              3,
+              4,
+              0
+            ],
+            [
+              4,
+              3,
+              0
+            ],
+            [
+              5,
+              1,
+              0
+            ],
+            [
+              6,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    "scope": "Independent heap/quota bases versus exact floor-rank integration, including bounded irregular perturbations of slope four; outward rational square-root bounds; exact profile-cap, Hessian and nonunimodular volume controls; generalized final-prefix collapse, weighted dyadic covers and planar degeneracies; three actual point-basis certificates. These support a uniform proof using classical Andrews geometry. They are not whole-fan enumerations or a novelty certificate."
+  },
   "source_sha256": {
-    "scripts/run_algebraic_incidence_controls.py": "5bc641c5ef0e9ead00cea778a99b9207e2a2640d379c283400d936be02e739e8",
+    "scripts/run_algebraic_incidence_controls.py": "f203840cf9f77b94f457d5c807fbd9a8473f6a577f39e8e972395243de3523c2",
     "docs/weighted_facet_incidence.md": "61ccaf62917fdf59b7f2480a80148750236e3507959e810403e302a43e31bc13",
     "docs/initial_cone_height.md": "88088db9af60d5a43ac0682d40848de73c20a09120215f696ef90bb5cc1cafa8",
     "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
     "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
     "scripts/run_initial_cone_height_checks.py": "f804aff89da53a6139aed7cacc9fd802dee8fd8529ee48a0d240dd9740df3dab",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
-    "docs/extremal_initial_ideals.md": "afdb35e6893efdda6f16df74ae8ea36f6c96a00d4a5947a8f6e35e676accb622",
+    "docs/extremal_initial_ideals.md": "9e007ae4aa1d4022819e814dbf7ebabe90790c4c74bc7a2f775019ac8a49e656",
     "docs/generic_multiaffine_bound.md": "25d79382745c94da18f038cee7f0d6eccc202f0dc5b4cd6568ae9aa43ffd1a19",
     "docs/planar_dyadic_bound.md": "03c3e44166b2e95caaaedf042b2d79d345f7a1e056c46e134dfcd67b313aca45",
     "docs/rational_shadow_bound.md": "09b6e5e19cb03825e9d2151680e557cdf384256c5392cf70b6aca388e488c1ca",

@@ -11,7 +11,7 @@ certificate is inferred. See the linked research notes.
 from collections import defaultdict
 from fractions import Fraction
 from itertools import combinations, product
-from math import comb, gcd, isqrt
+from math import comb, gcd, isqrt, lcm
 from heapq import heappop, heappush, nlargest
 from pathlib import Path
 from random import Random
@@ -2413,6 +2413,282 @@ def subcritical_surface_controls(point):
             'scope': 'All-field generic-component rank model, with explicit subcritical capacity localization and an eventual final-surface-prefix collapse criterion uniform over all positive aspects. Large matrix-free integer witnesses exercise the compact-gap and both extreme-sigma branches; independent heaps and three actual point bases are separate controls. Critical final-prefix dependencies grow as sqrt(n), but neither they nor the narrowing exceptional strip count the remaining coherent states. No unrestricted G_3 improvement or novelty certificate.'}
 
 
+def linear_profile_greedy_basis(r, last, slope, weight, component_sizes=None):
+    """Heap prices and direct nested-quota feasibility, without rank floors."""
+    sizes = (tuple(component_sizes) if component_sizes is not None else
+             tuple(last + slope*(r - s) for s in range(1, r + 1)))
+    assert len(sizes) == r and min(sizes) > 0 and list(sizes) == sorted(sizes, reverse=True)
+    n, capacities = sum(sizes), [0]
+    for size in sizes:
+        capacities.append(capacities[-1] + size)
+    free = [n - a for a in capacities]
+    axes, a, c = [(0, (0, 0, 0))], 1, 1
+    while len(axes) < n:
+        if a*weight[0] < c*weight[2]:
+            axes.append((a*weight[0], (a, 0, 0)))
+            a += 1
+        else:
+            axes.append((c*weight[2], (0, 0, c)))
+            c += 1
+    pending, seen = [(0, 0, 0)], {(0, 0)}
+    selected, events = [], []
+    while len(selected) < n:
+        cost, i, b = heappop(pending)
+        events.append(cost)
+        layer = min(i, b)
+        if layer < r and min(free[:layer + 1]) > 0:
+            axis = axes[i][1]
+            selected.append((axis[0], b, axis[2]))
+            for s in range(layer + 1):
+                free[s] -= 1
+        for j, k in ((i + 1, b), (i, b + 1)):
+            if j < n and k < n and (j, k) not in seen:
+                seen.add((j, k))
+                heappush(pending, (axes[j][0] + k*weight[1], j, k))
+    selected_set = set(selected)
+    assert len(selected_set) == n and free[0] == 0
+    assert all(tuple(v - int(k == j) for k, v in enumerate(a)) in selected_set
+               for a in selected for j in range(3) if a[j])
+    return sizes, tuple(selected), events
+
+
+def rational_sqrt_bounds(value, bits=48):
+    """Outward rational square-root enclosure, proved with integer squares."""
+    scale = 1 << bits
+    q = isqrt(value.numerator*scale*scale//value.denominator)
+    lo = Fraction(q, scale)
+    hi = lo if lo*lo == value else Fraction(q + 1, scale)
+    assert lo*lo <= value <= hi*hi
+    return lo, hi
+
+
+def critical_cap_controls(point):
+    """Independent energies, rescaled integer profiles and lattice cap factors."""
+    counts, fixtures, point_cases = defaultdict(int), [], []
+    patterns = ((1, 4, 2, 5, 3, 6), (-3, 2, -1, 4, 0, 1))
+
+    def irregular_sizes(r, pattern):
+        return tuple(sorted((max(1, 4*(r - s) + pattern[(s - 1) % len(pattern)])
+                             for s in range(1, r + 1)), reverse=True))
+
+    profiles = [(r, last, None) for r, last in product((2, 4, 8, 16, 25, 50), (1, 2, 6))]
+    profiles += [(r, None, irregular_sizes(r, pattern))
+                 for r, pattern in product((4, 8, 16, 25, 50), patterns)]
+    for r, last, supplied in profiles:
+        sizes = supplied or tuple(last + 4*(r - s) for s in range(1, r + 1))
+        n = sum(sizes)
+        D = max(abs(size - 4*(r - s)) for s, size in enumerate(sizes, 1))
+        root = isqrt(r)
+        ceil_root = root if root*root == r else root + 1
+        delta = Fraction(1, 8*ceil_root)
+        centers = (Fraction(1, 3), Fraction(1, 101), Fraction(100, 101),
+                   Fraction(1, 8*r), Fraction(1, r**3 + 1),
+                   Fraction(4, 5) - Fraction(1, 8*r))
+        B = 2*D + 11
+        E = 2*(D + 2)*B + 3*B*B + 9*B
+        for p, (ex, ey) in product(centers, ((-1, 1), (0, 0), (1, -1))):
+            target = ((1 + delta*ex/4)/p, 1 + delta*ey/4, 1/(1 - p))
+            clear = lcm(*(v.denominator for v in target))
+            base = tuple(int(v*clear) for v in target)
+            weight = tuple(10**6*(n**3 + 1)*w + t
+                           for w, t in zip(base, (n*n, n, 1)))
+            sizes, selected, events = linear_profile_greedy_basis(r, last, 4, weight, supplied)
+            assert len(set(events)) == len(events)
+            energy = sum(dot(a, weight) for a in selected)
+            h = Fraction(weight[0]*weight[2], weight[0] + weight[2])
+            sigma = Fraction(weight[1], h)
+            assert Fraction(1, 2) <= sigma <= 2
+            assert events[-1] <= B*r*h
+            low, high = rational_sqrt_bounds(sigma)
+            target_scale = Fraction(8*r**3, 3)
+            normalized = Fraction(energy, h)
+            assert normalized - E*r*r <= target_scale*low
+            assert target_scale*high <= normalized + E*r*r
+            error_bound = max(abs(normalized - target_scale*low),
+                              abs(normalized - target_scale*high))/r**2
+            counts['uniform_energy_and_full_rank_cutoffs'] += 1
+            if supplied is not None:
+                counts['irregular_profile_energy_and_cap_fixtures'] += 1
+            counts['selected_monomial_downset_checks'] += len(selected)
+            if r <= 8:
+                capacities = []
+                prefix = 0
+                for size in sizes:
+                    prefix += size
+                    capacities.append(prefix)
+                rank, previous, integral = 0, 0, 0
+                for cost in events:
+                    integral += (cost - previous)*(n - rank)
+                    new_rank = generic_multicurve_prefix_rank((n, capacities), weight, cost)
+                    assert 0 <= new_rank - rank <= 1
+                    rank, previous = new_rank, cost
+                    counts['independent_floor_rank_events'] += 1
+                assert rank == n and integral == energy
+                counts['independent_exact_rank_integrals'] += 1
+            profile = tuple(sum(a[j] for a in selected) for j in range(3))
+            S = (Fraction(profile[0], p), Fraction(profile[1]),
+                 Fraction(profile[2], 1 - p))
+            Vx = Fraction(p*weight[0], (1 - p)*weight[2])
+            Vy = Fraction(weight[1], (1 - p)*weight[2])
+            assert abs(Vx - 1) <= delta/2 and abs(Vy - 1) <= delta/2
+            gradient = (Fraction(4*r**3, 3)*p, Fraction(4*r**3, 3),
+                        Fraction(4*r**3, 3)*(1 - p))
+            H, error = 1000*r**3, 2*E*r*r
+            width = 2*H*delta + 2*error/delta
+            normal_width = error + H*delta*delta + 2*delta*width
+            assert abs(S[0] - gradient[0]) <= width
+            assert abs(S[1] - gradient[1]) <= width
+            assert abs(sum(S) - Fraction(8*r**3, 3)) <= normal_width
+            matrix = ((1/p, 0, 0), (0, 1, 0), (1/p, 1, 1/(1 - p)))
+            factor = determinant(matrix)
+            assert factor == 1/(p*(1 - p))
+            actual_box_volume = 8*p*(1 - p)*width*width*normal_width
+            assert actual_box_volume*factor == 8*width*width*normal_width
+            counts['exact_profile_caps_and_lattice_factors'] += 1
+            if profile[0] == 0:
+                counts['planar_x_absent_states'] += 1
+            if p < Fraction(1, B*r):
+                assert profile[0] == 0
+                counts['extreme_aspect_forced_planar_checks'] += 1
+            # Save a bounded list of exact witnesses, not every large selected set.
+            if ex == ey == 0 and p in (centers[0], centers[-1]) and r in (4, 25, 50):
+                fixtures.append({'components': r, 'last_size': last, 'component_sizes': sizes,
+                                 'maximum_profile_deviation': D, 'length': n,
+                                 'center_p': str(p), 'weight': weight,
+                                 'minimum_basis_energy': energy, 'integer_profile': profile,
+                                 'last_selected_cost': events[-1],
+                                 'normalized_energy_error_bound_over_r_squared': str(error_bound),
+                                 'normalized_energy_error_constant': E,
+                                 'cap_step': str(delta), 'tangential_half_width': str(width),
+                                 'normal_half_width': str(normal_width),
+                                 'actual_lattice_box_volume': str(actual_box_volume)})
+            if r == 4 and last == 2 and p == centers[-1]:
+                point_cases.append((weight, selected))
+    # Generalized collapse criterion for bounded irregular critical profiles.
+    collapse = []
+    for pattern, p, branch in product(patterns, (Fraction(1, 3), Fraction(1, 101)),
+                                      ('compact', 'small', 'large')):
+        D = max(1, max(map(abs, pattern)))
+        M, threshold = 10**6*(D + 1)**2, 4096*(D + 1)
+        if branch == 'compact':
+            sigma = Fraction(threshold, 2)
+            K = 2 + sigma + 1/sigma
+            r = 64*(D + 2)
+            while K*r*r <= (2*r + M)**2:
+                r *= 2
+        else:
+            sigma = Fraction(1, 2*threshold) if branch == 'small' else Fraction(2*threshold)
+            r = 64*(D + 2) + 3
+        sizes = irregular_sizes(r, pattern)
+        assert all(abs(size - 4*(r - s)) <= D for s, size in enumerate(sizes, 1))
+        n = sum(sizes)
+        target = (1/p, sigma, 1/(1 - p))
+        clear = lcm(*(v.denominator for v in target))
+        weight = tuple(10**6*(n**3 + 1)*int(w*clear) + t
+                       for w, t in zip(target, (n*n, n, 1)))
+        actual_sigma = Fraction(weight[1], weight[0]) + Fraction(weight[1], weight[2])
+        K = 2 + actual_sigma + 1/actual_sigma
+        if branch == 'compact':
+            assert K*r*r > (2*r + M)**2
+        elif branch == 'small':
+            assert actual_sigma < Fraction(1, threshold)
+        else:
+            assert actual_sigma > threshold
+        cost = surface_prefix_cut(n, weight)
+        assert surface_prefix_count(weight, cost) == n
+        assert surface_prefix_count(weight, cost - 1) == n - 1
+        d_s = subcurve_prefix_counts(r, weight, cost)
+        capacity, minimum = 0, n
+        for size, d_value in zip(sizes, d_s):
+            capacity += size
+            assert d_value >= capacity
+            minimum = min(minimum, d_value - capacity)
+        assert d_s[-1] == n
+        counts['irregular_collapse_capacity_inequalities'] += r
+        counts['irregular_collapse_' + branch + '_fixtures'] += 1
+        collapse.append({'profile_pattern_before_sorting_and_positive_clipping': pattern,
+                         'components': r, 'maximum_deviation_bound': D, 'length': n,
+                         'center_p': str(p), 'weight': weight, 'sigma': str(actual_sigma),
+                         'nth_surface_cost': cost, 'surface_count': n,
+                         'surface_count_one_cost_earlier': n - 1,
+                         'minimum_capacity_slack': minimum, 'criterion_branch': branch,
+                         'gap_constant': M})
+    # Exact squared Hessian bounds for the smooth homogeneous comparator.
+    for p, t, u in product((Fraction(1, 10000), Fraction(1, 101), Fraction(1, 3),
+                             Fraction(1, 2), Fraction(2, 3), Fraction(100, 101),
+                             Fraction(9999, 10000)),
+                            (Fraction(1, 2), Fraction(2, 3), Fraction(4, 5),
+                             Fraction(1), Fraction(6, 5), Fraction(3, 2)),
+                            (Fraction(1, 2), Fraction(2, 3), Fraction(4, 5),
+                             Fraction(1), Fraction(6, 5), Fraction(3, 2))):
+        den = (1 - p)*t + p
+        radicand = u*t/den
+        factors = (-p*(4*(1 - p)*t + p)/(4*t*t*den*den),
+                   p/(4*u*t*den), -1/(4*u*u))
+        for factor in factors:
+            assert Fraction(64, 9)*radicand*factor*factor <= 500**2
+            counts['rational_squared_hessian_entries'] += 1
+    # Verify a relative-p dyadic cover and its weighted geometric sum.
+    for r in (1, 2, 4, 16, 25, 64, 100, 10000, 10**8, 10**12):
+        root = isqrt(r)
+        k = root if root*root == r else root + 1
+        epsilon, per_interval = Fraction(1, k), 8*k
+        upper, j = Fraction(0), 1
+        while Fraction(1, 2**j) >= Fraction(1, 100*r):
+            P = Fraction(1, 2**j)
+            # Mesh half-width <= epsilon*p*(1-p) throughout [P/2,P].
+            assert P/(4*per_interval) <= epsilon*P/4
+            upper += per_interval*Fraction(1, 2**(j//2))
+            counts['relative_axis_cover_intervals'] += 1
+            j += 1
+        assert upper <= 3*per_interval
+        counts['weighted_geometric_cover_sums'] += 1
+    # Flat integer polygons expose why ambient volume zero needs a separate branch.
+    flat = []
+    for m in (1, 2, 7, 101):
+        v, w = (m, -1, 0), (m*m, 0, -1)
+        normal = (1, m, m*m)
+        gram = dot(v, v)*dot(w, w) - dot(v, w)**2
+        assert gram == dot(normal, normal)
+        assert dot(v, normal) == dot(w, normal) == 0
+        flat.append({'parameter': m, 'integer_edge_vectors': [v, w],
+                     'primitive_plane_normal': normal, 'ambient_volume': 0,
+                     'euclidean_area_squared': gram, 'relative_lattice_area': 1,
+                     'vertices': 4})
+        counts['lower_dimensional_lattice_controls'] += 1
+    # Independently certify cap-test bases in the existing length-32 point ideal.
+    prime, n = point['characteristic'], point['length']
+    components = [(j, node) for j, nodes in zip(point['component_scalars'], point['nodes_by_component'])
+                  for node in nodes]
+
+    def residue(a):
+        return tuple(pow(node, a[0] - a[1], prime)*pow(j, a[1], prime)*
+                     pow(node - 1, -a[2], prime) % prime for j, node in components)
+
+    certificates = []
+    for weight, selected in point_cases:
+        columns = {a: residue(a) for a in selected}
+        inverse = field_inverse(selected, columns, prime)
+        border = sorted(minimal_excluded_border(selected))
+        for a in border:
+            column = residue(a)
+            coordinates = [sum(x*y for x, y in zip(row, column)) % prime for row in inverse]
+            assert all(sum(coordinates[j]*columns[b][i] for j, b in enumerate(selected)) % prime == column[i]
+                       for i in range(n))
+            assert all(dot(a, weight) > dot(b, weight) for b, value in zip(selected, coordinates) if value)
+        certificates.append({'weight': weight, 'selected': selected, 'integer_profile':
+                             tuple(sum(a[j] for a in selected) for j in range(3)),
+                             'minimal_initial_generators': border})
+        counts['point_cap_matrix_bases'] += 1
+        counts['point_cap_border_relations'] += len(border)
+    return {'counts': dict(counts), 'energy_and_cap_witnesses': fixtures,
+            'irregular_profile_collapse_witnesses': collapse,
+            'lower_dimensional_witnesses': flat,
+            'point_ideal': {'configuration': 'critical_harmonic_rotation.point_ideal',
+                            'positive_basis_certificates': certificates},
+            'scope': 'Independent heap/quota bases versus exact floor-rank integration, including bounded irregular perturbations of slope four; outward rational square-root bounds; exact profile-cap, Hessian and nonunimodular volume controls; generalized final-prefix collapse, weighted dyadic covers and planar degeneracies; three actual point-basis certificates. These support a uniform proof using classical Andrews geometry. They are not whole-fan enumerations or a novelty certificate.'}
+
+
 def main():
     axes = [axis_controls(n) for n in (4, 5, 6, 7, 9, 12, 15, 21)]
     arithmetic = [arithmetic_controls(n) for n in (99, 303, 603)]
@@ -2435,6 +2711,7 @@ def main():
     three_drop = three_drop_controls()
     critical = critical_rotation_controls()
     subcritical = subcritical_surface_controls(critical['point_ideal'])
+    caps = critical_cap_controls(critical['point_ideal'])
     paths = ['scripts/run_algebraic_incidence_controls.py', 'docs/weighted_facet_incidence.md',
              'docs/initial_cone_height.md', 'scripts/run_extremal_initial_ideals_checks.py',
              'scripts/run_structural_complexity_checks.py', 'scripts/run_initial_cone_height_checks.py',
@@ -2442,7 +2719,7 @@ def main():
              'docs/generic_multiaffine_bound.md', 'docs/planar_dyadic_bound.md',
              'docs/rational_shadow_bound.md', 'scripts/run_planar_dyadic_bound_checks.py']
     report = {'status': 'passed', 'command': 'python3 -B scripts/run_algebraic_incidence_controls.py',
-              'scope': 'Subcritical linear profiles have an explicit all-aspect criterion forcing their final basis to be the ordinary surface prefix. For slope four, every exceptional initial lies in a harmonic strip of width O_a(r^(-1/2)), once r is sufficiently large. All fixed subcritical margins therefore have quadratic-power counts, complementing the preceding supercritical-margin theorem. Critical final surface prefixes really do have growing dependencies. The shrinking strip, unrestricted G_3 and exact priority remain unresolved.',
+              'scope': 'Every decreasing positive component profile with |m_s-4(r-s)|<=D has O_D(n^2 log(n+1)) initials across all aspects, including irregular bounded perturbations. An integrated rank estimate gives a smooth support-energy approximation; relative-aspect integer caps and the classical Andrews bound count its shrinking critical strip by O_D(n^2), including unbounded blocks. Earlier sections are preserved. Higher slopes, unbounded profile deviations, unrestricted G_3 and exact current priority remain unresolved.',
               'summary': {'complete_axis_fans': len(axes), 'axis_cells': sum(a['positive_cells'] for a in axes),
                           'matrix_selection_controls': sum(a['independent_matrix_selections'] for a in axes),
                           'arithmetic_fixtures': len(arithmetic), 'complete_quotient_fans': len(interior),
@@ -2492,7 +2769,8 @@ def main():
                           **{'pooled_' + k: v for k, v in pooled['counts'].items()},
                           **{'three_drop_' + k: v for k, v in three_drop['counts'].items()},
                           **{'critical_' + k: v for k, v in critical['counts'].items()},
-                          **{'subcritical_' + k: v for k, v in subcritical['counts'].items()}},
+                          **{'subcritical_' + k: v for k, v in subcritical['counts'].items()},
+                          **{'cap_' + k: v for k, v in caps['counts'].items()}},
               'uniform_axis_matroids': axes, 'arithmetic_lower_bound_controls': arithmetic,
               'interior_quotients': interior, 'three_pole_quotients': curves,
               'positive_plane_traces': planes,
@@ -2505,6 +2783,7 @@ def main():
               'three_drop_capacity_reduction': three_drop,
               'critical_harmonic_rotation': critical,
               'subcritical_final_surface_prefixes': subcritical,
+              'critical_support_energy_caps': caps,
               'source_sha256': {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in paths}}
     (ROOT / 'results/research/algebraic_incidence_controls.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report['summary'], indent=2))
