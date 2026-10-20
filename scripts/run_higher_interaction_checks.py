@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Exact controls for higher-order hypersurface fans and cyclic price prefixes."""
-from collections import defaultdict
+from collections import Counter, defaultdict
 from fractions import Fraction as F
 from functools import lru_cache
+from heapq import merge
 from itertools import product
 from math import comb, gcd
 from pathlib import Path
@@ -381,6 +382,287 @@ def cyclic_controls():
                           'scope': 'Integer unit operations on constant-size excluded coefficient matrices, independently compared with sparse Gaussian ranks of original monomials in the full integral quotient. Composite m and primes not dividing m are included.'}
 
 
+def floor(value):
+    value = F(value)
+    return value.numerator//value.denominator
+
+
+def ceil(value):
+    return -floor(-value)
+
+
+def cap(value, maximum):
+    return max(0, min(value, maximum))
+
+
+def channel_degrees(r, s):
+    return ((delta, 1 if delta in (0, r+1) else 2)
+            for delta in range(min(s, r+1)+1))
+
+
+def equal_binary_rank(s, r, lam, price):
+    """The universal whole-tier rank; coprime degree-(2,r+1) binary forms."""
+    lam, price = F(lam), F(price)
+    if not -1 < lam:
+        raise ValueError('The distinguished variable must have positive price.')
+    if lam >= r:
+        return sum(cap(floor(price-(1+lam)*a-b)+1, s-a-b+1)
+                   for a in range(min(1, s)+1) for b in range(s-a+1))
+    result = 0
+    for delta, multiplicity in channel_degrees(r, s):
+        S, T = s-delta, price-delta
+        for q in range(S+1):
+            L = min(q, (S-q)//r)+1
+            high = min(q, floor((T-(1-r)*q)/(2*r)))
+            low = 0
+            if lam > 0:
+                low = max(0, ceil(((1+lam)*q-T)/(2*lam)))
+            elif lam < 0:
+                high = min(high, floor((T-(1+lam)*q)/(-2*lam)))
+            elif T < q:
+                continue
+            result += multiplicity*cap(high-low+1, L)
+    return result
+
+
+def channel_price_multiset(s, r, lam):
+    """Literal sorted-kappa law, separately checking the floor implementation."""
+    lam = F(lam)
+    if lam >= r:
+        return Counter((1+lam)*a+b+c for a, b, c in ground(s) if a < 2)
+    values = Counter()
+    for delta, multiplicity in channel_degrees(r, s):
+        for q in range(s-delta+1):
+            L = min(q, (s-delta-q)//r)+1
+            prices = sorted(max((1+lam)*q-2*lam*i, (1-r)*q+2*r*i)
+                            for i in range(q+1))
+            values.update({delta+v: multiplicity*prices[:L].count(v)
+                           for v in set(prices[:L])})
+    return values
+
+
+def binary_form_model(s, Q, H):
+    """Independent original-column recursion for general coefficient choices."""
+    basis = tuple((a, b, c) for a in range(min(1, s)+1)
+                  for b in range(s-a+1) for c in range(s-a-b+1))
+    index = {a: i for i, a in enumerate(basis)}
+
+    @lru_cache(None)
+    def evaluate(a):
+        x, y, z = a
+        if sum(a) > s:
+            return {}
+        if x < 2:
+            return {index[a]: 1}
+        out = defaultdict(int)
+        for (b, c), value in Q.items():
+            for j, d in evaluate((x-2, y+b, z+c)).items():
+                out[j] -= value*d
+        for (b, c), value in H.items():
+            for j, d in evaluate((x-1, y+b, z+c)).items():
+                out[j] -= value*d
+        return {j: d for j, d in out.items() if d}
+
+    return basis, evaluate
+
+
+def sector_standard_set(s, r, weight):
+    """Lazy three-stream output for the original quotient when z is cheapest."""
+    wx, wy, wz = map(F, weight)
+    swapped = wx < wy
+    if swapped:
+        wx, wy = wy, wx
+    if not 0 < wz <= wy:
+        raise ValueError('This proved region requires z to have smallest price.')
+    lam = (wx-wy)/wz
+    if lam >= r:
+        chosen = tuple((a, b, c) for a in range(min(1, s)+1)
+                       for b in range(s-a+1) for c in range(s-a-b+1))
+    else:
+        mu = lam/r
+        chosen = [(0, 0, c) for c in range(s+1)]
+        for k in range(1, s+1):
+            L = s-k+1
+            for j in range(min(r, L)):
+                Lj = 1+(L-1-j)//r
+                streams = (((mu*a, (a, k-a, j)) for a in range(k+1)),
+                           ((F(d), (0, k, j+r*d)) for d in range(1, Lj)),
+                           ((mu*k+d, (k, 0, j+r*d)) for d in range(1, Lj)))
+                for h, (_, a) in enumerate(merge(*streams)):
+                    if h == 2*Lj:
+                        break
+                    chosen.append(a)
+    result = frozenset((b, a, c) if swapped else (a, b, c) for a, b, c in chosen)
+    assert len(result) == (s+1)**2
+    return result
+
+
+def sector_prefix_rank(s, r, weight, price):
+    """Original price-prefix rank in the closed proved region, O((r+1)(s+1))."""
+    wx, wy = sorted(map(F, weight[:2]), reverse=True)
+    wz, price = F(weight[2]), F(price)
+    if not 0 < wz <= wy:
+        raise ValueError('This proved region requires z to have smallest price.')
+    lam = (wx-wy)/wz
+    if lam >= r:
+        return sum(cap(floor((price-wx*a-wy*b)/wz)+1, s-a-b+1)
+                   for a in range(min(1, s)+1) for b in range(s-a+1))
+    mu = lam/r
+    result = cap(floor(price/wz)+1, s+1)
+    for k in range(1, s+1):
+        L = s-k+1
+        for j in range(min(r, L)):
+            Lj = 1+(L-1-j)//r
+            T = (price-wy*k-wz*j)/(r*wz)
+            spine = cap(floor(T/mu)+1, k+1) if mu else (k+1 if T >= 0 else 0)
+            result += min(2*Lj, spine+cap(floor(T), Lj-1)
+                          +cap(floor(T-mu*k), Lj-1))
+    return result
+
+
+def universal_binary_controls():
+    counts, fixtures = defaultdict(int), []
+    for s, r in ((3, 1), (5, 1), (7, 2), (9, 3), (10, 4)):
+        pairs = (
+            ({(2, 0): 1}, {(0, r+1): 1}),
+            ({(1, 1): 1}, {(r+1, 0): 1, (0, r+1): 1}),
+            ({(2, 0): 1, (1, 1): 2, (0, 2): 1}, {(0, r+1): 1}),
+            ({(2, 0): 1, (0, 2): 1}, {(1, r): 1}),
+        )
+        lambdas = (F(-31, 37), F(-7, 37), F(0), F(r, 37), F(7*r, 37),
+                   F(19*r, 37), F(31*r, 37), F(r)+F(1, 5))
+        E = ground(s)
+        for form_index, (Q, H) in enumerate(pairs):
+            _, evaluate = binary_form_model(s, Q, H)
+            # All listed pairs are coprime over every field: monomial axis powers
+            # with a nonvanishing opposite-axis term, or yz with both pure powers.
+            for p in (0, 2, 3, 5):
+                if s <= 5:
+                    f = {(2, 0, 0): 1, **{(0, b, c): v for (b, c), v in Q.items()},
+                         **{(1, b, c): v for (b, c), v in H.items()}}
+                    rows = relation_rows(E, [f], p)
+                    assert len(rows) == len(E)-(s+1)**2
+                    for row in rows:
+                        v = linear_sum((c, evaluate(a)) for a, c in zip(E, row) if c)
+                        assert all(not (c % p if p else c) for c in v.values())
+                    counts['general_form_full_macaulay_kernel_equalities'] += 1
+                for lam in lambdas:
+                    weight = (1+lam, F(1), F(1))
+                    chosen, _ = rank_trace(sorted(E, key=lambda a: (dot(a, weight), a)),
+                                           evaluate, p, set())
+                    prices = Counter(dot(a, weight) for a in chosen)
+                    assert prices == channel_price_multiset(s, r, lam)
+                    tiers = sorted({dot(a, weight) for a in E})
+                    for T in [F(-1), *tiers[::max(1, len(tiers)//7)], tiers[-1]]:
+                        assert sum(v for t, v in prices.items() if t <= T) == \
+                               equal_binary_rank(s, r, lam, T)
+                        counts['universal_binary_floor_rank_queries'] += 1
+                    counts['universal_binary_original_field_bases'] += 1
+                    counts['universal_binary_whole_tier_rank_comparisons'] += len(tiers)
+            fixtures.append({'cutoff': s, 'order': r, 'form_index': form_index,
+                             'Q': [{'exponent': a, 'coefficient': v} for a, v in sorted(Q.items())],
+                             'H': [{'exponent': a, 'coefficient': v} for a, v in sorted(H.items())],
+                             'characteristics': [0, 2, 3, 5],
+                             'lambda_parameters': list(map(str, lambdas))})
+    # A deliberately absent H violates the regular-sequence hypothesis.
+    _, evaluate = binary_form_model(5, {(2, 0): 1}, {})
+    lam, T = F(7, 37), F(88, 37)
+    chosen, _ = rank_trace(sorted(ground(5), key=lambda a: (dot(a, (1+lam, 1, 1)), a)),
+                           evaluate, 0, set())
+    actual = sum(dot(a, (1+lam, 1, 1)) <= T for a in chosen)
+    predicted = equal_binary_rank(5, 1, lam, T)
+    assert actual == 9 and predicted == 10
+    return dict(counts), {'fixtures': fixtures,
+                          'hypothesis_negative_control': {'cutoff': 5, 'order': 1,
+                              'Q': 'y^2', 'H': '0', 'lambda': str(lam), 'price': str(T),
+                              'actual_rank': actual, 'inapplicable_formula': predicted},
+                          'scope': 'Original monomial columns for four different binary-form pairs, in four characteristics, including negative/zero lambda and the outer region. Whole-tier rank multisets and an independent floor implementation agree. The absent-H control prevents silently dropping the hypothesis.'}
+
+
+def generalized_birth_controls():
+    counts = defaultdict(int)
+    for r in range(1, 9):
+        for ratio in (F(1, 997), F(301, 997), F(719, 997), F(991, 997)):
+            lam = r*ratio
+            for s in (3, 7, 15, 31, 50):
+                actual = Counter(dot(a, (1+lam, 1, 1)) for a in boundary_basis(s, r, ratio))
+                assert actual == channel_price_multiset(s, r, lam)
+                counts['generalized_cutoff_price_multiset_identities'] += 1
+            alpha, beta = (1-ratio)/2, (1-ratio)/(2*ratio)
+            for D in range(61):
+                boundary = Counter(floor(min(alpha*k, beta*((D-k)//r))) for k in range(D+1))
+                original = Counter()
+                for delta, multiplicity in channel_degrees(r, D):
+                    for b in range((D-delta)//(r+1)+1):
+                        remainder = D-delta-(r+1)*b
+                        if remainder % 2:
+                            continue
+                        ell = remainder//2
+                        original[min(ell, floor(beta*b))] += multiplicity
+                assert original == boundary
+                counts['generalized_mixed_birth_multisets'] += 1
+    return dict(counts)
+
+
+def original_sector_controls(boundary_fixtures):
+    counts, fixtures = defaultdict(int), []
+    for fixture in boundary_fixtures:
+        s, r = fixture['cutoff'], fixture['order']
+        endpoints = (F(0), *(F(v) for v in fixture['positive_normalized_walls']), F(1))
+        _, evaluate = monic_model(s, r)
+        records = []
+        for lo, hi in zip(endpoints, endpoints[1:]):
+            mu, u = (lo+hi)/2, F(17, 13)
+            weight = (u+r*mu, u, F(1))
+            B = boundary_basis(s, r, mu)
+            assert sector_standard_set(s, r, weight) == B
+            normals, _, stats = border_certificate(B, evaluate, s, r, weight)
+            assert all(x+y >= 0 and
+                       min(x+y+r*lo*x+z, x+y+r*hi*x+z) >= 0 for x, y, z in normals)
+            counts['original_entire_sector_integer_certificates'] += 1
+            counts['original_sector_monic_border_relations'] += stats[0]
+            for p in (0, 2, 3, 5):
+                chosen, _ = rank_trace(sorted(ground(s), key=lambda a: (dot(a, weight), a)),
+                                       evaluate, p, set())
+                assert chosen == B
+                tiers = sorted({dot(a, weight) for a in ground(s)})
+                for T in [F(-1), *tiers[::max(1, len(tiers)//7)], tiers[-1]]:
+                    assert sum(dot(a, weight) <= T for a in chosen) == \
+                           sector_prefix_rank(s, r, weight, T)
+                    counts['original_sector_floor_rank_queries'] += 1
+                counts['original_sector_independent_field_bases'] += 1
+            records.append({'normalized_lambda_interval': [str(lo), str(hi)],
+                            'original_standard_set_sha256':
+                                hashlib.sha256(json.dumps(sorted(B)).encode()).hexdigest(),
+                            'original_normals_sha256':
+                                hashlib.sha256(json.dumps(sorted(normals)).encode()).hexdigest(),
+                            'minimum_binary_degree_slack': min(x+y for x, y, z in normals),
+                            'monic_integer_border_relations': stats[0]})
+        fixtures.append({'cutoff': s, 'order': r, 'length': (s+1)**2,
+                         'full_initial_cones_meeting_z_cheapest_region':
+                             fixture['boundary_fan_cells'],
+                         'ordered_sector_certificates': records})
+    # Complete-tier boundary, rescaling, coordinate exchange, and small/outer cases.
+    for s, r in ((0, 1), (1, 3), (2, 4), (4, 2), (6, 3), (9, 2)):
+        _, evaluate = monic_model(s, r)
+        weights = ((F(1), F(1), F(1)), (F(2), F(2), F(1)),
+                   (F(1), F(1+r, 2), F(1, 2)), (F(r+1), F(1), F(1)),
+                   (F(3*r+3), F(1), F(1)))
+        for weight, p in product(weights, (0, 2, 3)):
+            chosen, _ = rank_trace(sorted(ground(s), key=lambda a: (dot(a, weight), a)),
+                                   evaluate, p, set())
+            predicted = sector_standard_set(s, r, weight)
+            assert Counter(dot(a, weight) for a in chosen) == \
+                   Counter(dot(a, weight) for a in predicted)
+            for T in {dot(a, weight) for a in ground(s)}:
+                assert sum(dot(a, weight) <= T for a in chosen) == \
+                       sector_prefix_rank(s, r, weight, T)
+                counts['closed_region_whole_tier_queries'] += 1
+            counts['closed_region_field_basis_models'] += 1
+    return dict(counts), {'fixtures': fixtures,
+                          'scope': 'Every ordered interval in the retained boundary table is lifted to an entire original sector u>1 by integral monic membership and both endpoint inequalities. Gaussian original bases and floor-rank queries are independent controls; ties are checked as entire tiers, without asserting every tie refinement stays in the region.'}
+
+
 def main():
     if not __debug__:
         raise RuntimeError('Run without -O: exact assertions are required.')
@@ -388,7 +670,11 @@ def main():
     boundary_counts, boundary = boundary_controls()
     cone_counts, cone = plane_obstruction()
     cyclic_counts, cyclic = cyclic_controls()
-    counts = {**model_counts, **boundary_counts, **cone_counts, **cyclic_counts}
+    universal_counts, universal = universal_binary_controls()
+    birth_counts = generalized_birth_controls()
+    sector_counts, sectors = original_sector_controls(boundary)
+    counts = {**model_counts, **boundary_counts, **cone_counts, **cyclic_counts,
+              **universal_counts, **birth_counts, **sector_counts}
     sources = ('docs/higher_interaction_fans.md', 'scripts/run_higher_interaction_checks.py',
                'scripts/run_hypersurface_truncation_checks.py', 'scripts/run_interleaving_research.py',
                'scripts/run_structural_complexity_checks.py', 'scripts/run_socle_stability_checks.py',
@@ -398,13 +684,19 @@ def main():
               'counts': counts, 'independent_kernel_models': models,
               'boundary_interval_fixtures': boundary, 'equal_xy_plane_obstruction': cone,
               'cyclic_prefix_controls': cyclic,
+              'universal_binary_rank_controls': universal,
+              'generalized_birth_controls': birth_counts,
+              'original_z_cheapest_sector_controls': sectors,
               'uniform_results': {
                   'family_fan_bound': 'O(n^(9/4)/r), n=(s+1)^2, uniform in s,r and field',
                   'excluded_amplification_regime': 'r>=sqrt(s) implies O(n^2) full positive fan',
                   'boundary_fan': '2*M_(s,r)+4, with epsilon*((r+2)*q+r*p)<=2*(s+r)',
                   'cyclic_prefix_quotient': 'For every integer m>=2, V_D/L_< is Z^3 plus Z/m; beta changes standard membership exactly in characteristics dividing m.',
-                  'integer_algebra_itself_free': True},
-              'scope': 'Finite independent exact controls support the uniform proofs in the note. A changed standard set is not a count increase. The small-order full fan, unrestricted G_3, current priority and publication significance remain open.',
+                  'integer_algebra_itself_free': True,
+                  'universal_equal_binary_rank': 'Coefficient-independent whole-tier ranks for x^2+Q+x*H, coprime binary Q,H of degrees 2,r+1, at weights (1+lambda,1,1), -1<lambda<r; O((r+1)*(s+1)) exact operations.',
+                  'original_z_cheapest_region': 'Exactly 2*M_(s,r)+4 full initial cones meet w_z<min(w_x,w_y), for s>=r+2, over every field. Entire-tier ranks extend to the closed region. One minimum basis uses O(n) comparisons.',
+                  'exceptional_characteristic_region': 'At generic weights, changes can occur only when w_z>min(w_x,w_y); no universal equal-plane cover is proved.'},
+              'scope': 'Finite independent exact controls support the uniform proofs in the note. A changed standard set is not a count increase. The original z-cheapest region is now uniformly counted and has an exact rank oracle. Remaining small-order regions, unrestricted G_3, current priority and publication significance remain open.',
               'unrestricted_G3_improvement': False, 'novelty_established': False,
               'goal_complete': False,
               'source_sha256': {p: hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in sources}}

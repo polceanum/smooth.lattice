@@ -230,7 +230,14 @@ price-prefix quotient for every integer `m>=2`; its standard set changes
 in precisely the characteristics dividing `m` at that prefix.
 The algebra remains integrally free. This arithmetic change does not
 establish a larger fan: the same subfamily already has an `O(n^2)` bound.
-The full small-order regime, current priority and the main goal remain open.
+A coefficient-independent rank law now covers coprime binary forms
+`x^2+Q(y,z)+x*H(y,z)` when `y,z` have equal prices, over every field.
+Matching its cutoff ranks with the streams proves the entire original
+region where `z` is strictly cheapest: exactly the boundary's `2*M_(s,r)+4`
+initial cones when `s>=r+2`. An original rank query there uses `O((r+1)*(s+1))` exact
+arithmetic operations, and one minimum basis uses `O(n)` comparisons.
+The remaining small-order region has `z` more expensive than at least one
+other variable. Its count, current priority and the main goal remain open.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count

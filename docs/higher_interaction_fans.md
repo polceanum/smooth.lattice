@@ -258,6 +258,217 @@ Here $r\asymp\sqrt{s}$, so Theorem 1 bounds the complete fan by $O(n^2)$
 in every field. Arbitrary divisibility in coherent ranks and polynomial fan
 amplification are distinct mechanisms.
 
+## A coefficient-independent rank law on an equal-price plane
+
+The preceding boundary calculation now extends to an actual two-dimensional
+region of the full fan. First there is a more general rank statement.
+
+**Theorem 3.** Over a field $K$, let $Q,H\in K[y,z]$ be coprime
+homogeneous forms of degrees $2,r+1$, with $r\ge1$, and put
+$$
+A=K[x,y,z]/(x^2+Q+xH,\mathfrak m^{s+1}).
+$$
+For prices $(1+\lambda,1,1)$, $-1<\lambda<r$, define
+$$
+c_\delta=\begin{cases}1&\delta=0,r+1,\\2&1\le\delta\le r,\end{cases}
+\quad
+L_{\delta,q}=1+\min\{q,\lfloor(s-\delta-q)/r\rfloor\},
+$$
+and, for $0\le i\le q$,
+$$
+\kappa_{q,i}=\max\{(1+\lambda)q-2\lambda i,\ (1-r)q+2ri\}.
+\tag{H18}
+$$
+The rank of **all original monomials of price at most $T$** is
+$$
+\boxed{\ \sum_{\delta=0}^{r+1}c_\delta
+ \sum_{q=0}^{s-\delta}
+ \min\big\{L_{\delta,q},\#\{0\le i\le q:\kappa_{q,i}\le T-\delta\}\big\}\ } .
+\tag{H19}
+$$
+Empty sums are zero. In particular this rank depends only on $r,s,\lambda,T$,
+not on the coefficients or field, subject to the stated coprimality.
+This is a rank of entire price tiers, not a claim about individual
+monomial bases within a tier or the full fan.
+
+**Proof.** The regular sequence $Q,H$ gives the classical homogeneous
+free-module decomposition
+$$
+K[y,z]=\bigoplus_j t_jK[Q,H],\qquad
+\sum_j t^{\deg t_j}=(1+t)(1+t+\cdots+t^r). \tag{H20}
+$$
+Generation by lifts of $K[y,z]/(Q,H)$ and equality of Hilbert series prove
+freeness. Thus their degrees have multiplicities $c_\delta$ over any field.
+Eliminate $Q=-x^2-xH$. This never decreases ordinary degree when $H$
+has degree $r+1$. The exact quotient is consequently
+$$
+\bigoplus_j t_j\,K[x,H]/
+ \langle x^aH^b:a+(r+1)b>s-\deg t_j\rangle. \tag{H21}
+$$
+At equal $y,z$ prices every homogeneous binary space is present in full
+or absent from a prefix. The change of basis (H20) therefore preserves
+that prefix span. Its columns are $t_jx^aQ^iH^b$, at price
+$\delta+(1+\lambda)a+2i+(r+1)b$.
+
+In auxiliary degree $q=a+2i+b$, elimination gives the finite columns
+$\xi^b(1+\xi)^i$ modulo $\xi^{L_{\delta,q}}$, with price
+$$
+\delta+(1+\lambda)q-2\lambda i+(r-\lambda)b,\qquad
+0\le i\le\lfloor(q-b)/2\rfloor. \tag{H22}
+$$
+This labels a finite vector space; no nilpotent element is inverted.
+Columns with $b\ge L_{\delta,q}$ may harmlessly be added, since they
+are zero in this space.
+
+For $0<\lambda<r$, the allowed $i$ at successive $b$ form intervals
+with nondecreasing lower endpoints and nonincreasing upper endpoints.
+After factoring the unit $(1+\xi)^{i_0}$, where
+$i_0=\max(0,\lceil((1+\lambda)q-(T-\delta))/(2\lambda)\rceil)$,
+the prefix spans all polynomials up to its largest degree. A new degree
+increases by at most one and is supplied by a monic column. Degree
+$d>q/2$ is first attained at $b=2d-q$, at price
+$(1-r)q+2rd$; the initial $b=0$ interval gives the other bound in (H18).
+Thus its dimension before the cap is exactly the number of indices in
+(H18) below the price threshold.
+
+For $-1<\lambda\le0$, every nonempty $i$ interval starts at zero.
+The allowed $b$ are consecutive starting at zero, and their upper $i$
+endpoints are nonincreasing. The same monic-degree induction gives the
+full polynomial space through its maximum degree. For a prescribed degree
+$d=i+b$, its cheapest column has $i=\min(d,q-d)$, since $r+\lambda>0$.
+Its price is exactly (H18). These prices are nondecreasing in $d$.
+This proves the same rank formula, including $\lambda=0$. Reducing the
+full polynomial space, or a unit times it, modulo $\xi^L$ caps the rank
+at $L$, in every characteristic. Summing proves (H19). $\square$
+
+For $\lambda>0$, the index set in (H19) is the integer interval
+$$
+\max\!\left(0,\left\lceil\frac{(1+\lambda)q-(T-\delta)}{2\lambda}\right\rceil\right)
+\le i\le
+\min\!\left(q,\left\lfloor\frac{T-\delta-(1-r)q}{2r}\right\rfloor\right).
+\tag{H23}
+$$
+For $\lambda<0$ both bounds in (H18) instead give upper bounds on $i$;
+for $\lambda=0$ the first is the constant $q$.
+Hence (H19) uses $O((r+1)(s+1))$ exact arithmetic/floor operations
+and constant auxiliary storage. Hypothesis verification, coefficient
+encoding and bit complexity are separate. For $\lambda\ge r$,
+the elementary $x$-exponent-below-two basis is minimum-price and supplies
+the outer formula; the leading monomial is strictly $x^2$ when $\lambda>r$.
+
+## The full fan when the interaction variable is cheapest
+
+**Theorem 4.** For the original family (H1), every generic positive weight
+with $w_z<\min(w_x,w_y)$ selects exactly the boundary standard set in (H9),
+after exchanging $x,y$ if necessary. These sets are the same over every
+field. For $s\ge r+2$ there are exactly $2M_{s,r}+4$ full initial cones
+meeting this open region. If $2\le s<r+2$ there are two, and if $s<2$
+there is one.
+
+This counts a specified open region of the original fan, not the whole fan.
+At its equal-price boundary the rank formula remains valid for complete
+tiers; arbitrary tie refinements need not stay inside the region.
+
+**Proof of the rank identity.** Apply Theorem 3 with
+$Q=y^2+z^2,H=yz^r$, and first take irrational $0<\lambda<r$.
+Write $\mu=\lambda/r$. The list (H18) is the merge of
+$$
+q+\lambda a\quad(0\le a\le q,\ a\equiv q\bmod2),\qquad
+q+rb\quad(1\le b\le q,\ b\equiv q\bmod2).
+$$
+An item at position $h$ is retained exactly when
+$s\ge\delta+q+r(h-1)$. We compare first cutoffs, not merely finite ranks.
+
+For $a>0$ an item of price $D+\lambda a$, $D=\delta+q$, first occurs at
+$$
+s=D+r\psi(a),\qquad
+\psi(a)=\left\lfloor\frac{a+\lfloor\mu a\rfloor}{2}\right\rfloor.
+\tag{H24}
+$$
+Its channel multiplicity is $\min(r+1,D-a+1)$, since
+$$
+\frac{(1+t)(1+t+\cdots+t^r)}{1-t^2}
+=\frac{1+t+\cdots+t^r}{1-t}.
+$$
+The boundary's $x$-bearing terms at that price are precisely
+$x^ay^bz^c$ with $b+c=D-a$ and either $c<r$ or $b=0$.
+They have the same multiplicity. Counting cheaper items in their three
+streams gives the same first cutoff (H24), both for the spine
+and the vertical $x$ arm.
+
+For the remaining items put
+$\alpha=(1-\mu)/2$, $\beta=(1-\mu)/(2\mu)$.
+The original items at integer price $D$ have labels
+$$
+D=\delta+2\ell+(r+1)b,\qquad
+s=D+r\min(\ell,\lfloor\beta b\rfloor),\qquad \ell,b\ge0.
+\tag{H25}
+$$
+The case $b=0$ includes the zero-$a$ item of the first list.
+Boundary terms $y^kz^c$ with $k+c=D$ first occur at
+$$
+s=D+r\left\lfloor\min\{\alpha k,\beta\lfloor c/r\rfloor\}\right\rfloor.
+\tag{H26}
+$$
+These first-cutoff multisets agree. Indeed for surplus at least $rj$,
+$j\ge1$, put $B_j=\lceil2\mu j/(1-\mu)\rceil$. On the original side
+$\ell\ge j,b\ge B_j$. Its generating series is
+$$
+\frac{(1+t)(1+t+\cdots+t^r)\,
+ t^{2j+(r+1)B_j}}{(1-t^2)(1-t^{r+1})}
+=\frac{t^{2j+(r+1)B_j}}{(1-t)^2}.
+$$
+The coefficient at $D$ is $\max(0,D-2j-(r+1)B_j+1)$.
+On the boundary side $k\ge2j+B_j,c\ge rB_j$, giving exactly this
+number. Total multiplicity at $j=0$ is $D+1$ on both sides.
+This proves equality of all price-prefix ranks at $(1+\lambda,1,1)$.
+The $k$th rank-birth price is the minimum, over independent $k$-sets,
+of their maximum price. It is a continuous finite min-max function.
+Equality of these sorted birth prices on the dense irrational parameters
+therefore gives the complete-tier equality at rational parameters too.
+
+**Proof of the sector statement.** A boundary basis lifts to an original
+basis: the binary-degree filtration of the integral monic model has associated
+graded quotient (H8). The change-of-basis matrix is block triangular,
+with the same diagonal blocks as the boundary basis. These blocks have
+unit determinant over $\mathbb Z$, since they are bases over every field.
+Thus the original basis is also integral and field independent.
+
+For any nonzero border coefficient let its exponent difference be
+$\eta=(a,b,c)$ and put $A=a+b$. The filtration gives $A\ge0$.
+Equality of minimum price ranks proves
+$A+\lambda a+c\ge0$ at $(1+\lambda,1,1)$: a nonzero coefficient permits
+a one-column basis exchange, so a negative value would improve the basis.
+For $w=(u+\lambda,u,1)$, $u>1$,
+$$
+\eta\cdot w=A(u-1)+(A+\lambda a+c). \tag{H27}
+$$
+This is strict when $A>0$. If $A=0$, it is the strict boundary comparison
+at a parameter between successive walls. Every border inequality is
+therefore strict throughout that sector. The two outer $x^2,y^2$ cones
+are elementary; exchanging $x,y$ completes coverage and (H10) gives the
+exact count. No permutation exchanging $z$ with another variable is used.
+$\square$
+
+The same three-stream prefix count now computes an **original** rank for
+every $w_z\le\min(w_x,w_y)$, including complete tiers at ties. For each
+$(k,j)$ residue block it counts how many items in each arithmetic stream
+are cheaper than the price, caps their sum at $2L_j$, then sums the blocks.
+This costs $O((r+1)(s+1))$ exact arithmetic/floor operations and constant
+extra storage. Three lazy sorted streams also emit one minimum-price basis
+using $O(n)$ comparisons and output space. At generic weights this is
+the unique initial standard set; at ties it chooses one compatible
+refinement from inside the region.
+
+Consequently all standard sets and their prefix lattices arising at strict
+weights with $z$ cheapest are unimodular and independent of characteristic.
+Any initial set outside the listed family, and any exceptional
+characteristic at a generic weight, must occur where
+$w_z>\min(w_x,w_y)$. The counterexample (H11) lies there, as does the
+cyclic family (H12). The main unresolved count for $2\le r<\sqrt{s}$
+is now confined to that remaining region. A universal cover by the
+equal-price planes has not been proved.
+
 ## Literature boundary and verification
 
 Bad primes and monomial-order dependence are established phenomena.
@@ -282,10 +493,25 @@ lattice-vertex bound. Equations (H4)--(H7) insert a narrower slab and the
 actual grading index. Exact priority of these specializations and (H13)
 remains unassessed; unsuccessful searches are not evidence of novelty.
 
+For the continuation, [Fukuda--Jensen--Thomas, Proposition 2.6,
+Lemma 2.10, Corollary 2.11, Lemma 2.13 and Corollary 2.14](https://arxiv.org/pdf/math/0509544)
+with proofs were re-read. They supply the classical cone-inequality and
+refinement framework, not the rank identity (H24)--(H26).
+[Conca--De Negri--Rossi, Definition 2.4, Theorem 4.11 and
+Remarks 4.10/4.17](https://arxiv.org/pdf/0705.3767v2) were inspected at
+definition/statement level. Their count concerns Cohen--Macaulay initials
+of the homogeneous rational-normal-curve ideal in its standard coordinates.
+No transfer of that classification to these finite inhomogeneous quotients
+has been established. These scoped comparisons leave priority open.
+
 The checker compares the integral model with full Macaulay kernels, boundary
 streams with independent Gaussian ranks and exact interval walks, and the
 cone obstruction with monic integer membership. It independently computes
 the small Smith matrices and both prefix ranks in original monomial columns.
+The extension checks four coprime binary-form pairs in several fields,
+including negative and zero distinguished-price difference, both rank
+implementations, the generalized cutoff identities, and complete original
+sectors by monic border membership and both endpoint inequalities.
 These finite controls support the uniform proofs, rather than replacing them.
 
 ~~~bash
@@ -295,8 +521,9 @@ python3 tests/test_smoke.py
 ~~~
 
 The remaining counting issue is the simultaneous set of original-cost
-constraints for $2\le r<\sqrt{s}$. The small boundary count cannot be imported
-as their full fan, and changed characteristics cannot be counted as extra
-cones without proof. A uniform bound or a coherent large-fan construction
-in that regime would change the research decision. Another fixed-cutoff
-table would not settle it.
+constraints for $2\le r<\sqrt{s}$ where $z$ is not the cheapest variable.
+The boundary now counts the proved region in Theorem 4, and cannot be
+imported as the whole fan. Changed characteristics likewise cannot be
+counted as extra cones without proof. A uniform bound or a coherent
+large-fan construction in that remaining regime would change the research
+decision. Another fixed-cutoff table would not settle it.

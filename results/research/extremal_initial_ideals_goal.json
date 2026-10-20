@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "recorded_on": "2026-10-20",
+  "recorded_on": "2026-10-21",
   "title": "A substantial extremal theorem from exponent lattice orderings",
   "status": "active",
   "objective": "Achieve a substantial mathematical advance connected to the smooth-number exponent-lattice observations, with resolving a recognized quantitative problem as the success criterion rather than producing another manuscript. The concrete first target is the worst-case number G_3(n) of distinct monomial initial ideals of a length-n polynomial quotient in three variables, over all fields. Determine its sharp asymptotic growth, or prove an infinite realizable family with a polynomially larger number of orderings than the generic corner-cut scale, together with a consequential general theorem. Explain what algebraic dependencies add to the prime/smooth lattice geometry. First audit the strongest relevant primary literature and the repository's unfinished lattice-shadow work; distinguish a genuinely new theorem from a classical geometric corollary before using it. Success requires a complete uniform proof that settles this extremal question or a substantial recognized part of it, a rigorous consequence for algebraic or geometric complexity beyond restating the count, independently implemented reproducible supporting checks, and an honestly attributed paper. A draft, a bounded priority review, isolated examples, a minor refinement, or an unverified novelty claim cannot complete this goal. If this target is already settled or a route fails, record the evidence and choose a comparably consequential problem still directly linked to the original mathematics; do not silently lower the success criterion. Preserve all existing manuscripts, core smooth-number kernels and auditor, previous research, and the paused ML work. Never send emails, messages to people or other tasks, author queries, or submissions. Publish only explicitly privacy-reviewed research files to the already authorized main branch.",
@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Continue the original unrestricted goal without lowering its criteria. The higher-order family now has the uniform all-field bound O(n^(9/4)/r), so only 2<=r<sqrt(s) can still provide a polynomial amplifier. Determine a full original-cost rank mechanism and uniform count in that remaining regime, or construct an actual infinite coherent count above n^2*log(n)^2; do not import the boundary count. The equal-x,y-plane cover is refuted by a monic all-field cone. The arbitrary cyclic prefix quotient Z/m shows genuine coefficient dependence, but its realizing subfamily already obeys O(n^2), and changed standard membership is not more cones. Seek a structural counting theorem for simultaneous dependencies, using the exact grading index and annihilating homogeneous powers or the unrestricted lattice-shadow route. Audit strongest current primary work for any proposed theorem, retain the full original completion bar, and do not expand the finite fan table as a substitute for proof. No outbound messages or submissions.",
+  "next_proof_task": "Preserve the unrestricted G_3 or realizable polynomial-separation endpoint and all original acceptance criteria. The full higher-interaction region where z is cheapest is now uniformly closed by Theorem 4 of docs/higher_interaction_fans.md: it has the boundary standard sets over every field, with an exact original rank oracle. Theorem 1 already excludes r>=sqrt(s). After exchanging x,y, the remaining candidate domain is 2<=r<sqrt(s), w=(u+lambda,u,1) with 0<u<1 and 0<lambda<r; the two outer square cones are elementary. Derive the actual original-cost rank mechanism or a uniform fan count in this domain, including characteristic-dependent ranks. The new general binary-form theorem gives complete price-tier ranks only when the two binary variables have equal prices; its homogeneous basis change cannot be applied when their prices differ. The old single equal-x,y-plane cover is refuted, and a union-of-equal-price-planes cover remains unproved. A promising boundary calculation uses U=x^2+y^2,V=x*y and U=-z^2-V*z^r at equal x,y prices; derive its cutoff and increasing polynomial-degree intervals before inferring a rank law or cover. A global count must control simultaneous exchanges, not multiply unrelated boundary counts or count changed characteristics as extra cones. Retain the unrestricted quotient-sensitive lattice-shadow route and strongest-current primary audit. No new fixed-cutoff fan table, restricted oracle, draft or unverified priority claim completes the goal. No outbound messages or submissions.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -122,7 +122,8 @@
     "Assess precise prior scope of the two-part hypersurface free-module truncation and highest-degree initial formula, including complete-intersection/filtered-module literature. Lauritzen Lemma 2.1, Proposition 2.3 and Theorem 3.1 with proofs were checked under their homogeneous hypotheses. Bahloul--Takayama local/global definitions and full-preprint Theorem 5.1.1 with proof concern nonpositive weights and a positive grading; they do not by themselves bound the positive global fan of the inhomogeneous truncations. The free homogeneous-parameter mechanism is classical, and no failed search or rank computation establishes novelty or a full-fan bound.",
     "Audit the strongest relevant work on Markoff-surface truncations and integral standard bases before any new counting claim. The surface and Vieta mutations are established; the general monic-division model and Groebner cone/refinement mechanism are classical. The current all-field certificates are finite and the arbitrary-cutoff endpoint inequality remains a genuine proof obligation, not an established novelty claim.",
     "Assess exact prior scope of the all-field Markoff jet classification, Farey wall budget and matrix-free original price-prefix rank oracle. Monic division, binary graded freeness, Laurent polynomial degree, cone refinement and primitive-pair densities are classical. Dimitrova--He--Robbiano--Stigler Proposition 2.7 with proof covers diagonal invariance; Theorem 4.8 with proof transfers complementary grid fans but gives no count without an identified and counted complement. No unsuccessful search establishes novelty. The unrestricted extremal audit remains open.",
-    "Compare the uniform higher-interaction bound O(n^(9/4)/r), the exact boundary Farey budget and the cyclic coherent-prefix quotient Z^3 plus Z/m with the strongest current primary statements. Existing universal-denominator, bad-prime and lattice-volume principles are explicitly retained as prior art; their scoped comparison is not a novelty certificate or a solution of the full original-cost count."
+    "Compare the uniform higher-interaction bound O(n^(9/4)/r), the exact boundary Farey budget and the cyclic coherent-prefix quotient Z^3 plus Z/m with the strongest current primary statements. Existing universal-denominator, bad-prime and lattice-volume principles are explicitly retained as prior art; their scoped comparison is not a novelty certificate or a solution of the full original-cost count.",
+    "Assess the exact coefficient-independent binary-form price-prefix law (H18)--(H23), the rank-birth identities (H24)--(H26) and the complete original z-cheapest sector count against current primary work on weighted Hilbert functions, filtered binary complete intersections and parametric monomial ranks. Homogeneous freeness, monic polynomial flags and cone convexity remain classical inputs. The inspected rational-normal-curve CM classification is a different homogeneous object; no equivalent reduction or priority certificate has been established."
   ],
   "primary_sources": [
     {
@@ -1184,11 +1185,23 @@
         "original_monic_border_membership_witnesses": 26,
         "exact_cyclic_smith_matrices": 34,
         "exact_inclusive_unit_matrices": 34,
-        "independent_original_cyclic_prefixes": 36
+        "independent_original_cyclic_prefixes": 36,
+        "general_form_full_macaulay_kernel_equalities": 32,
+        "universal_binary_floor_rank_queries": 6496,
+        "universal_binary_original_field_bases": 640,
+        "universal_binary_whole_tier_rank_comparisons": 21680,
+        "generalized_cutoff_price_multiset_identities": 160,
+        "generalized_mixed_birth_multisets": 1952,
+        "original_entire_sector_integer_certificates": 63,
+        "original_sector_monic_border_relations": 1501,
+        "original_sector_floor_rank_queries": 2428,
+        "original_sector_independent_field_bases": 252,
+        "closed_region_whole_tier_queries": 1005,
+        "closed_region_field_basis_models": 90
       }
     }
   },
-  "preservation": "Five explicitly reviewed research files against ba9f4ad: README and the active goal are updated; one proof note, one checker and its report are added. All 56 older continuation records and all 314 other existing tracked files are preserved. Core CLI, kernels, auditor, manuscripts/PDFs, old reports and paused ML are unchanged. Scratch work and raw execution logs stay ignored.",
+  "preservation": "Five explicitly privacy-reviewed research files against 699698b are updated: README, the higher-interaction proof, its checker/report and the active goal. All 57 previous continuations, every earlier report count/control section and all 314 other tracked files are preserved. Core CLI, kernels, auditor, manuscripts/PDFs and paused ML are unchanged; exploratory fans, baselines and raw logs remain ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
@@ -1198,7 +1211,7 @@
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "6be3efa64786f4238e06cbb28453208896d112157bfad336a9571710b1d795b3",
+    "README.md": "4ea94ac65c2858249a95dac8b909e3962b3b9654e98e11fb982cf28b652ecc83",
     "docs/extremal_initial_ideals.md": "6e84b6ea470841a89760a2e16080a9314ba747499b1a5a733460120fe501a92b",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
@@ -1247,9 +1260,9 @@
     "docs/cubic_fan_classification.md": "a1263769ab1888e4e6f209b8f788a4c35a56ef98890bfdc9b889a5db11b0b385",
     "scripts/run_cubic_fan_checks.py": "42a01aaf57e597397ba446ccd9911cf1f1fd7df6eca62d72aa10d991ff93b322",
     "results/research/cubic_fan_checks.json": "9e2e853788bd9626ee0b790228b57668c743c2fddccef87e37e7763217ca833d",
-    "docs/higher_interaction_fans.md": "57bcd1a9ce15f14e0ecb24e7ea4828dff865fe752b05efe6d448e58be14f44dc",
-    "scripts/run_higher_interaction_checks.py": "8199694780fbc87574395689989240ea5b0d32a3147edc88ad34c0438a50e5f8",
-    "results/research/higher_interaction_checks.json": "aaf063199005136f8a3b5d79f1ad1a1d402f561b93ab7b8a3467a0684ddbf597"
+    "docs/higher_interaction_fans.md": "687c95e06f5311b81de6c5eb51da9528febac5d8a7a25a9e0d203d7d374437e5",
+    "scripts/run_higher_interaction_checks.py": "cdc31d1b582e71c4536056429bf7eabeb2fcb312f313713135a2eaee68578916",
+    "results/research/higher_interaction_checks.json": "5f7f268e1e1ffb48a2bad49c1c52b35f3bd517ab95b86533480f34e992a2aeef"
   },
   "continuations": [
     {
@@ -4066,10 +4079,63 @@
         "source_hashes": "verified",
         "preservation": "Five explicitly reviewed research files against ba9f4ad: README and the active goal are updated; one proof note, one checker and its report are added. All 56 older continuation records and all 314 other existing tracked files are preserved. Core CLI, kernels, auditor, manuscripts/PDFs, old reports and paused ML are unchanged. Scratch work and raw execution logs stay ignored."
       }
+    },
+    {
+      "title": "Universal binary-form ranks and the full region with cheapest z",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "699698b proved the uniform O(n^(9/4)/r) bound, exact boundary fan and arbitrary cyclic coherent-prefix torsion, and saved an all-field failure of the single equal-price-plane cover. Revalidated clean main, all 319 tracked hashes, all current goal sources, the original objective/criteria and all 57 continuation records.",
+      "progress_classification": "Proved a coefficient-independent whole-tier rank law for arbitrary coprime degree-(2,r+1) binary forms over every field, and used a uniform rank-birth identity to classify the complete original z-cheapest region. This is an exact two-dimensional region of the full fan, rather than a list of sampled weights. It reduces the remaining counting domain without changing the unrestricted endpoint.",
+      "uniform_proofs": [
+        "For F=x^2+Q(y,z)+x*H(y,z), with coprime homogeneous binary forms of degrees 2,r+1, classical regular-sequence freeness has channel polynomial (1+t)*(1+...+t^r). Eliminating Q=-x^2-xH never decreases ordinary degree and preserves the exact cutoff. At equal binary prices, each original homogeneous binary space is present in full, so the basis change preserves actual price-prefix ranks.",
+        "An auxiliary grading q=a+2*i+j gives finite columns xi^j*(1+xi)^i modulo xi^L, L=1+min(q,floor((s-delta-q)/r)). For -1<lambda<r their monic prefix flags give rank min(L, number of kappa(q,i)<=T-delta), with kappa=max((1+lambda)*q-2*lambda*i,(1-r)*q+2*r*i). Positive lambda factors a unit and uses nested suffixes; nonpositive lambda uses polynomial prefixes. The calculation is valid in every characteristic, not only for generic coefficients or characteristic zero.",
+        "For the original interaction monomial, lambda-dependent rank births match boundary x-bearing terms at cutoff D+r*floor((a+floor((lambda/r)*a))/2), with multiplicity min(r+1,D-a+1). The remaining binary terms match by their superlevel count max(0,D-2*j-(r+1)*ceil(2*mu*j/(1-mu))+1); the channel Hilbert polynomial cancels exactly. Sorted rank-birth prices are continuous finite min-max functions, so dense irrational equality gives complete tiers at rational weights too.",
+        "The boundary basis lifts integrally through the binary-degree filtration. A border normal eta=(a,b,c) has A=a+b>=0 and endpoint slack A+lambda*a+c>=0. Equation eta dot (u+lambda,u,1)=A*(u-1)+(A+lambda*a+c) is strict for u>1 between boundary walls. The outer square cones and x,y exchange complete all weights where z is strictly cheapest. Hence exactly 2*M_(s,r)+4 full cones meet that region for s>=r+2, with identical monomial sets over every field.",
+        "The rank formula uses O((r+1)*(s+1)) exact arithmetic/floor operations and constant auxiliary storage. Three lazy streams emit one minimum basis in O(n) comparisons and output space. At ties the query includes entire tiers and the basis chooses one compatible refinement; there is no claim that every tie refinement remains in the proved open region. These are operation counts, not general bit complexity or smooth-number unranking speed claims."
+      ],
+      "reading_scope": [
+        {
+          "source": "https://arxiv.org/pdf/math/0509544",
+          "scope": "Re-read Proposition 2.6, Lemma 2.10, Corollary 2.11, Lemma 2.13 and Corollary 2.14 with proofs. Established initial-cone inequalities and refinement; they do not supply the new rank-birth identity."
+        },
+        {
+          "source": "https://arxiv.org/pdf/0705.3767v2",
+          "scope": "Definition 2.4, Theorem 4.11 and Remarks 4.10/4.17 inspected at definition/statement level. The source classifies CM monomial initials of the homogeneous rational-normal-curve ideal in its standard coordinates. No transfer to these inhomogeneous finite quotients is established; no full-paper or proof audit is claimed."
+        }
+      ],
+      "independent_controls": {
+        "command": "python3 -B scripts/run_higher_interaction_checks.py",
+        "status": "passed",
+        "report": "results/research/higher_interaction_checks.json",
+        "source_hashes_verified": true,
+        "new_counts": {
+          "general_form_full_macaulay_kernel_equalities": 32,
+          "universal_binary_floor_rank_queries": 6496,
+          "universal_binary_original_field_bases": 640,
+          "universal_binary_whole_tier_rank_comparisons": 21680,
+          "generalized_cutoff_price_multiset_identities": 160,
+          "generalized_mixed_birth_multisets": 1952,
+          "original_entire_sector_integer_certificates": 63,
+          "original_sector_monic_border_relations": 1501,
+          "original_sector_floor_rank_queries": 2428,
+          "original_sector_independent_field_bases": 252,
+          "closed_region_whole_tier_queries": 1005,
+          "closed_region_field_basis_models": 90
+        },
+        "scope": "Original monomial Gaussian ranks for four coprime binary-form pairs in four fields, both signs and zero lambda, independent floor queries, all-field integer endpoint certificates for complete original sectors, generalized cutoff-birth identities, and closed-region ties. Every previous control and count is retained."
+      },
+      "scope_limit": "The full higher-interaction count outside the z-cheapest region, the sharp unrestricted G_3 or polynomial lower separation, current priority, significance and paper gates remain open. No equal-price-plane union cover is proved, and the original objective and acceptance criteria are unchanged.",
+      "verification": {
+        "research": "passed",
+        "build": "passed",
+        "smoke": "passed",
+        "source_hashes": "verified",
+        "preservation": "Five explicitly privacy-reviewed research files against 699698b are updated: README, the higher-interaction proof, its checker/report and the active goal. All 57 previous continuations, every earlier report count/control section and all 314 other tracked files are preserved. Core CLI, kernels, auditor, manuscripts/PDFs and paused ML are unchanged; exploratory fans, baselines and raw logs remain ignored."
+      }
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "A new uniform higher-interaction family bound O(n^(9/4)/r), excluding r>=sqrt(s) as a polynomial amplifier. This does not improve unrestricted G_3 or complete the original goal.",
-  "previous_goal_turn_classification": "no_progress_in_intervening_presentation_turn; prior mathematical baseline revalidated",
+  "asymptotic_improvement_scope_this_iteration": "The unrestricted and full higher-interaction upper bounds are unchanged. A complete uniform theorem now counts the original open region w_z<min(w_x,w_y) by exactly 2*M_(s,r)+4 and supplies a coefficient-independent binary-form rank law and matrix-free original rank oracle. Remaining regions and the original endpoint are unresolved.",
+  "previous_goal_turn_classification": "progress: 699698b established the higher-interaction bound, boundary count and arbitrary cyclic prefix theorem; all authoritative sources revalidated",
   "uniform_relative_margin_hypothesis_status": "refuted_by_actual_all_field_quotients",
   "secondary_extremal_parameter_resolved": {
     "relative_margin_dimension_2": "Theta(n^-2)",
@@ -4175,7 +4241,7 @@
       "novelty_established": false
     }
   },
-  "family_asymptotic_improvement_established_this_iteration": true,
+  "family_asymptotic_improvement_established_this_iteration": false,
   "higher_interaction_reduction": {
     "proof": "docs/higher_interaction_fans.md",
     "fields": "every field",
@@ -4190,6 +4256,19 @@
     "characteristic_changes_prove_more_cones": false,
     "remaining_family_regime": "2<=r<sqrt(s)",
     "unrestricted_G3_changed": false,
-    "novelty_established": false
-  }
+    "novelty_established": false,
+    "universal_binary_form_rank_law": {
+      "hypotheses": "coprime homogeneous Q,H in K[y,z] of degrees 2,r+1, F=x^2+Q+xH",
+      "weights": "(1+lambda,1,1), -1<lambda<r; elementary outer formula for lambda>=r",
+      "scope": "entire original monomial price tiers; not individual bases within tied tiers or the complete fan",
+      "all_fields": true,
+      "operation_count": "O((r+1)*(s+1)) exact arithmetic/floor operations, constant auxiliary storage"
+    },
+    "original_z_cheapest_region_count": "2*M_(s,r)+4 full cones meet w_z<min(w_x,w_y), for s>=r+2; the same standard sets over every field",
+    "original_z_cheapest_rank_query": "complete tiers also at w_z=min(w_x,w_y); O((r+1)*(s+1)) exact operations and constant auxiliary storage",
+    "original_z_cheapest_basis_output": "one minimum basis in O(n) comparisons and output space; compatible refinement at ties",
+    "remaining_cost_domain": "after x,y exchange: 0<u<1,0<lambda<r at w=(u+lambda,u,1), for 2<=r<sqrt(s)",
+    "all_equal_price_plane_union_cover_proved": false
+  },
+  "region_count_established_this_iteration": true
 }

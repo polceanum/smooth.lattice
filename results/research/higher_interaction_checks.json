@@ -17,7 +17,19 @@
     "original_monic_border_membership_witnesses": 26,
     "exact_cyclic_smith_matrices": 34,
     "exact_inclusive_unit_matrices": 34,
-    "independent_original_cyclic_prefixes": 36
+    "independent_original_cyclic_prefixes": 36,
+    "general_form_full_macaulay_kernel_equalities": 32,
+    "universal_binary_floor_rank_queries": 6496,
+    "universal_binary_original_field_bases": 640,
+    "universal_binary_whole_tier_rank_comparisons": 21680,
+    "generalized_cutoff_price_multiset_identities": 160,
+    "generalized_mixed_birth_multisets": 1952,
+    "original_entire_sector_integer_certificates": 63,
+    "original_sector_monic_border_relations": 1501,
+    "original_sector_floor_rank_queries": 2428,
+    "original_sector_independent_field_bases": 252,
+    "closed_region_whole_tier_queries": 1005,
+    "closed_region_field_basis_models": 90
   },
   "independent_kernel_models": [
     {
@@ -2850,20 +2862,1765 @@
     ],
     "scope": "Integer unit operations on constant-size excluded coefficient matrices, independently compared with sparse Gaussian ranks of original monomials in the full integral quotient. Composite m and primes not dividing m are included."
   },
+  "universal_binary_rank_controls": {
+    "fixtures": [
+      {
+        "cutoff": 3,
+        "order": 1,
+        "form_index": 0,
+        "Q": [
+          {
+            "exponent": [
+              2,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "H": [
+          {
+            "exponent": [
+              0,
+              2
+            ],
+            "coefficient": 1
+          }
+        ],
+        "characteristics": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "lambda_parameters": [
+          "-31/37",
+          "-7/37",
+          "0",
+          "1/37",
+          "7/37",
+          "19/37",
+          "31/37",
+          "6/5"
+        ]
+      },
+      {
+        "cutoff": 3,
+        "order": 1,
+        "form_index": 1,
+        "Q": [
+          {
+            "exponent": [
+              1,
+              1
+            ],
+            "coefficient": 1
+          }
+        ],
+        "H": [
+          {
+            "exponent": [
+              0,
+              2
+            ],
+            "coefficient": 1
+          },
+          {
+            "exponent": [
+              2,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "characteristics": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "lambda_parameters": [
+          "-31/37",
+          "-7/37",
+          "0",
+          "1/37",
+          "7/37",
+          "19/37",
+          "31/37",
+          "6/5"
+        ]
+      },
+      {
+        "cutoff": 3,
+        "order": 1,
+        "form_index": 2,
+        "Q": [
+          {
+            "exponent": [
+              0,
+              2
+            ],
+            "coefficient": 1
+          },
+          {
+            "exponent": [
+              1,
+              1
+            ],
+            "coefficient": 2
+          },
+          {
+            "exponent": [
+              2,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "H": [
+          {
+            "exponent": [
+              0,
+              2
+            ],
+            "coefficient": 1
+          }
+        ],
+        "characteristics": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "lambda_parameters": [
+          "-31/37",
+          "-7/37",
+          "0",
+          "1/37",
+          "7/37",
+          "19/37",
+          "31/37",
+          "6/5"
+        ]
+      },
+      {
+        "cutoff": 3,
+        "order": 1,
+        "form_index": 3,
+        "Q": [
+          {
+            "exponent": [
+              0,
+              2
+            ],
+            "coefficient": 1
+          },
+          {
+            "exponent": [
+              2,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "H": [
+          {
+            "exponent": [
+              1,
+              1
+            ],
+            "coefficient": 1
+          }
+        ],
+        "characteristics": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "lambda_parameters": [
+          "-31/37",
+          "-7/37",
+          "0",
+          "1/37",
+          "7/37",
+          "19/37",
+          "31/37",
+          "6/5"
+        ]
+      },
+      {
+        "cutoff": 5,
+        "order": 1,
+        "form_index": 0,
+        "Q": [
+          {
+            "exponent": [
+              2,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "H": [
+          {
+            "exponent": [
+              0,
+              2
+            ],
+            "coefficient": 1
+          }
+        ],
+        "characteristics": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "lambda_parameters": [
+          "-31/37",
+          "-7/37",
+          "0",
+          "1/37",
+          "7/37",
+          "19/37",
+          "31/37",
+          "6/5"
+        ]
+      },
+      {
+        "cutoff": 5,
+        "order": 1,
+        "form_index": 1,
+        "Q": [
+          {
+            "exponent": [
+              1,
+              1
+            ],
+            "coefficient": 1
+          }
+        ],
+        "H": [
+          {
+            "exponent": [
+              0,
+              2
+            ],
+            "coefficient": 1
+          },
+          {
+            "exponent": [
+              2,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "characteristics": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "lambda_parameters": [
+          "-31/37",
+          "-7/37",
+          "0",
+          "1/37",
+          "7/37",
+          "19/37",
+          "31/37",
+          "6/5"
+        ]
+      },
+      {
+        "cutoff": 5,
+        "order": 1,
+        "form_index": 2,
+        "Q": [
+          {
+            "exponent": [
+              0,
+              2
+            ],
+            "coefficient": 1
+          },
+          {
+            "exponent": [
+              1,
+              1
+            ],
+            "coefficient": 2
+          },
+          {
+            "exponent": [
+              2,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "H": [
+          {
+            "exponent": [
+              0,
+              2
+            ],
+            "coefficient": 1
+          }
+        ],
+        "characteristics": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "lambda_parameters": [
+          "-31/37",
+          "-7/37",
+          "0",
+          "1/37",
+          "7/37",
+          "19/37",
+          "31/37",
+          "6/5"
+        ]
+      },
+      {
+        "cutoff": 5,
+        "order": 1,
+        "form_index": 3,
+        "Q": [
+          {
+            "exponent": [
+              0,
+              2
+            ],
+            "coefficient": 1
+          },
+          {
+            "exponent": [
+              2,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "H": [
+          {
+            "exponent": [
+              1,
+              1
+            ],
+            "coefficient": 1
+          }
+        ],
+        "characteristics": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "lambda_parameters": [
+          "-31/37",
+          "-7/37",
+          "0",
+          "1/37",
+          "7/37",
+          "19/37",
+          "31/37",
+          "6/5"
+        ]
+      },
+      {
+        "cutoff": 7,
+        "order": 2,
+        "form_index": 0,
+        "Q": [
+          {
+            "exponent": [
+              2,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "H": [
+          {
+            "exponent": [
+              0,
+              3
+            ],
+            "coefficient": 1
+          }
+        ],
+        "characteristics": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "lambda_parameters": [
+          "-31/37",
+          "-7/37",
+          "0",
+          "2/37",
+          "14/37",
+          "38/37",
+          "62/37",
+          "11/5"
+        ]
+      },
+      {
+        "cutoff": 7,
+        "order": 2,
+        "form_index": 1,
+        "Q": [
+          {
+            "exponent": [
+              1,
+              1
+            ],
+            "coefficient": 1
+          }
+        ],
+        "H": [
+          {
+            "exponent": [
+              0,
+              3
+            ],
+            "coefficient": 1
+          },
+          {
+            "exponent": [
+              3,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "characteristics": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "lambda_parameters": [
+          "-31/37",
+          "-7/37",
+          "0",
+          "2/37",
+          "14/37",
+          "38/37",
+          "62/37",
+          "11/5"
+        ]
+      },
+      {
+        "cutoff": 7,
+        "order": 2,
+        "form_index": 2,
+        "Q": [
+          {
+            "exponent": [
+              0,
+              2
+            ],
+            "coefficient": 1
+          },
+          {
+            "exponent": [
+              1,
+              1
+            ],
+            "coefficient": 2
+          },
+          {
+            "exponent": [
+              2,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "H": [
+          {
+            "exponent": [
+              0,
+              3
+            ],
+            "coefficient": 1
+          }
+        ],
+        "characteristics": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "lambda_parameters": [
+          "-31/37",
+          "-7/37",
+          "0",
+          "2/37",
+          "14/37",
+          "38/37",
+          "62/37",
+          "11/5"
+        ]
+      },
+      {
+        "cutoff": 7,
+        "order": 2,
+        "form_index": 3,
+        "Q": [
+          {
+            "exponent": [
+              0,
+              2
+            ],
+            "coefficient": 1
+          },
+          {
+            "exponent": [
+              2,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "H": [
+          {
+            "exponent": [
+              1,
+              2
+            ],
+            "coefficient": 1
+          }
+        ],
+        "characteristics": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "lambda_parameters": [
+          "-31/37",
+          "-7/37",
+          "0",
+          "2/37",
+          "14/37",
+          "38/37",
+          "62/37",
+          "11/5"
+        ]
+      },
+      {
+        "cutoff": 9,
+        "order": 3,
+        "form_index": 0,
+        "Q": [
+          {
+            "exponent": [
+              2,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "H": [
+          {
+            "exponent": [
+              0,
+              4
+            ],
+            "coefficient": 1
+          }
+        ],
+        "characteristics": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "lambda_parameters": [
+          "-31/37",
+          "-7/37",
+          "0",
+          "3/37",
+          "21/37",
+          "57/37",
+          "93/37",
+          "16/5"
+        ]
+      },
+      {
+        "cutoff": 9,
+        "order": 3,
+        "form_index": 1,
+        "Q": [
+          {
+            "exponent": [
+              1,
+              1
+            ],
+            "coefficient": 1
+          }
+        ],
+        "H": [
+          {
+            "exponent": [
+              0,
+              4
+            ],
+            "coefficient": 1
+          },
+          {
+            "exponent": [
+              4,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "characteristics": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "lambda_parameters": [
+          "-31/37",
+          "-7/37",
+          "0",
+          "3/37",
+          "21/37",
+          "57/37",
+          "93/37",
+          "16/5"
+        ]
+      },
+      {
+        "cutoff": 9,
+        "order": 3,
+        "form_index": 2,
+        "Q": [
+          {
+            "exponent": [
+              0,
+              2
+            ],
+            "coefficient": 1
+          },
+          {
+            "exponent": [
+              1,
+              1
+            ],
+            "coefficient": 2
+          },
+          {
+            "exponent": [
+              2,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "H": [
+          {
+            "exponent": [
+              0,
+              4
+            ],
+            "coefficient": 1
+          }
+        ],
+        "characteristics": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "lambda_parameters": [
+          "-31/37",
+          "-7/37",
+          "0",
+          "3/37",
+          "21/37",
+          "57/37",
+          "93/37",
+          "16/5"
+        ]
+      },
+      {
+        "cutoff": 9,
+        "order": 3,
+        "form_index": 3,
+        "Q": [
+          {
+            "exponent": [
+              0,
+              2
+            ],
+            "coefficient": 1
+          },
+          {
+            "exponent": [
+              2,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "H": [
+          {
+            "exponent": [
+              1,
+              3
+            ],
+            "coefficient": 1
+          }
+        ],
+        "characteristics": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "lambda_parameters": [
+          "-31/37",
+          "-7/37",
+          "0",
+          "3/37",
+          "21/37",
+          "57/37",
+          "93/37",
+          "16/5"
+        ]
+      },
+      {
+        "cutoff": 10,
+        "order": 4,
+        "form_index": 0,
+        "Q": [
+          {
+            "exponent": [
+              2,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "H": [
+          {
+            "exponent": [
+              0,
+              5
+            ],
+            "coefficient": 1
+          }
+        ],
+        "characteristics": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "lambda_parameters": [
+          "-31/37",
+          "-7/37",
+          "0",
+          "4/37",
+          "28/37",
+          "76/37",
+          "124/37",
+          "21/5"
+        ]
+      },
+      {
+        "cutoff": 10,
+        "order": 4,
+        "form_index": 1,
+        "Q": [
+          {
+            "exponent": [
+              1,
+              1
+            ],
+            "coefficient": 1
+          }
+        ],
+        "H": [
+          {
+            "exponent": [
+              0,
+              5
+            ],
+            "coefficient": 1
+          },
+          {
+            "exponent": [
+              5,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "characteristics": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "lambda_parameters": [
+          "-31/37",
+          "-7/37",
+          "0",
+          "4/37",
+          "28/37",
+          "76/37",
+          "124/37",
+          "21/5"
+        ]
+      },
+      {
+        "cutoff": 10,
+        "order": 4,
+        "form_index": 2,
+        "Q": [
+          {
+            "exponent": [
+              0,
+              2
+            ],
+            "coefficient": 1
+          },
+          {
+            "exponent": [
+              1,
+              1
+            ],
+            "coefficient": 2
+          },
+          {
+            "exponent": [
+              2,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "H": [
+          {
+            "exponent": [
+              0,
+              5
+            ],
+            "coefficient": 1
+          }
+        ],
+        "characteristics": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "lambda_parameters": [
+          "-31/37",
+          "-7/37",
+          "0",
+          "4/37",
+          "28/37",
+          "76/37",
+          "124/37",
+          "21/5"
+        ]
+      },
+      {
+        "cutoff": 10,
+        "order": 4,
+        "form_index": 3,
+        "Q": [
+          {
+            "exponent": [
+              0,
+              2
+            ],
+            "coefficient": 1
+          },
+          {
+            "exponent": [
+              2,
+              0
+            ],
+            "coefficient": 1
+          }
+        ],
+        "H": [
+          {
+            "exponent": [
+              1,
+              4
+            ],
+            "coefficient": 1
+          }
+        ],
+        "characteristics": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "lambda_parameters": [
+          "-31/37",
+          "-7/37",
+          "0",
+          "4/37",
+          "28/37",
+          "76/37",
+          "124/37",
+          "21/5"
+        ]
+      }
+    ],
+    "hypothesis_negative_control": {
+      "cutoff": 5,
+      "order": 1,
+      "Q": "y^2",
+      "H": "0",
+      "lambda": "7/37",
+      "price": "88/37",
+      "actual_rank": 9,
+      "inapplicable_formula": 10
+    },
+    "scope": "Original monomial columns for four different binary-form pairs, in four characteristics, including negative/zero lambda and the outer region. Whole-tier rank multisets and an independent floor implementation agree. The absent-H control prevents silently dropping the hypothesis."
+  },
+  "generalized_birth_controls": {
+    "generalized_cutoff_price_multiset_identities": 160,
+    "generalized_mixed_birth_multisets": 1952
+  },
+  "original_z_cheapest_sector_controls": {
+    "fixtures": [
+      {
+        "cutoff": 4,
+        "order": 1,
+        "length": 25,
+        "full_initial_cones_meeting_z_cheapest_region": 6,
+        "ordered_sector_certificates": [
+          {
+            "normalized_lambda_interval": [
+              "0",
+              "1/3"
+            ],
+            "original_standard_set_sha256": "62a0b4d64583a520fecfd6697a11ca4f4cd6b7270ff752b1390af4228fe75519",
+            "original_normals_sha256": "4c25f5323545a0c26d89f4051abf0ca25d6b030d3f38979cee837d4b561d159a",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 13
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/3",
+              "1"
+            ],
+            "original_standard_set_sha256": "23a9a7385d39de4794472e759027fc256352784877fb5d5e208f42cb2f549565",
+            "original_normals_sha256": "776d7aef5cb11536c0e290e940baae310fcd7e77b2af366ecfe162bf81635d54",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 12
+          }
+        ]
+      },
+      {
+        "cutoff": 4,
+        "order": 2,
+        "length": 25,
+        "full_initial_cones_meeting_z_cheapest_region": 4,
+        "ordered_sector_certificates": [
+          {
+            "normalized_lambda_interval": [
+              "0",
+              "1"
+            ],
+            "original_standard_set_sha256": "9c35c729993276ee02c4ec6bf4e4f4ce1c77adedeca4051c0e5d5c5c5822d16d",
+            "original_normals_sha256": "740d7fb31fbc67b9b5f522a7ef8dff072941ed36876df19f1f2a54476c06a8fe",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 13
+          }
+        ]
+      },
+      {
+        "cutoff": 6,
+        "order": 1,
+        "length": 49,
+        "full_initial_cones_meeting_z_cheapest_region": 8,
+        "ordered_sector_certificates": [
+          {
+            "normalized_lambda_interval": [
+              "0",
+              "1/3"
+            ],
+            "original_standard_set_sha256": "3d65941535a319d5fcd3ec6545dc36c752e904b4be9659663b215bdeda9067b0",
+            "original_normals_sha256": "070d10e0d209c32b85dd5ed61274ae295a30ec8b1b4535f716fd7b7f30aed64c",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 17
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/3",
+              "1/2"
+            ],
+            "original_standard_set_sha256": "76eb969058a65b6bbb3c061756ccf69891b7e0ab08b73315b070cfe54f655b44",
+            "original_normals_sha256": "03d9c3a1e960c31ef69d744eccf75b8625a83021545cd58cd1ea7f383d64dae4",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 17
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/2",
+              "1"
+            ],
+            "original_standard_set_sha256": "bb484e7fa0ea990b371e9ec98d4829ddf4b16fe3a008eae8979dfe1bbe2c8fe3",
+            "original_normals_sha256": "da606187e6c13ce844c98ad9629001de8dcf9797fb4a1ef73a01652fb59b2047",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 16
+          }
+        ]
+      },
+      {
+        "cutoff": 6,
+        "order": 2,
+        "length": 49,
+        "full_initial_cones_meeting_z_cheapest_region": 6,
+        "ordered_sector_certificates": [
+          {
+            "normalized_lambda_interval": [
+              "0",
+              "1/3"
+            ],
+            "original_standard_set_sha256": "fae735ac855fa02e4d2e7d2f9098e1353b4b44759d0c437f9fda937e4dd9a435",
+            "original_normals_sha256": "74238d40627443d99def6119eedf9852c308098a0f70d89c49df4562fba85999",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 17
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/3",
+              "1"
+            ],
+            "original_standard_set_sha256": "1e4c4dded67a47000dbd54ecb0b475a4afcc5f91f1ec5b6ac8c5072b5e46a2e8",
+            "original_normals_sha256": "bc5d3cae64d701cde7e39b84eaf8bf96e8a46da2619f8edd68737b961c9bff77",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 16
+          }
+        ]
+      },
+      {
+        "cutoff": 6,
+        "order": 3,
+        "length": 49,
+        "full_initial_cones_meeting_z_cheapest_region": 6,
+        "ordered_sector_certificates": [
+          {
+            "normalized_lambda_interval": [
+              "0",
+              "1/3"
+            ],
+            "original_standard_set_sha256": "e63b924059e2695821e1e0ddf731f9991b46db5ea079ee03a562208ff74ae1b2",
+            "original_normals_sha256": "a2de0528d45ed0c9a6a5367d176c58b2e3fb0e65c34a4dd21960e45fe73a71db",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 18
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/3",
+              "1"
+            ],
+            "original_standard_set_sha256": "1a9b560613910f0c448665fac390e8cdf51664e85242be44370dc4aa578ccdcb",
+            "original_normals_sha256": "bb968499b037069ce5439179daaab87568bfbdfd1cd8fb94b1ade2528ba6d562",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 17
+          }
+        ]
+      },
+      {
+        "cutoff": 6,
+        "order": 4,
+        "length": 49,
+        "full_initial_cones_meeting_z_cheapest_region": 4,
+        "ordered_sector_certificates": [
+          {
+            "normalized_lambda_interval": [
+              "0",
+              "1"
+            ],
+            "original_standard_set_sha256": "65b977a3781f4bad30c23d68d5c45d218ada23e971cc2de319c012cabaaa099d",
+            "original_normals_sha256": "884dd363da6dd02978b67ec06575564fd1fdeba6e0e396dc4d3b114f88996f75",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 17
+          }
+        ]
+      },
+      {
+        "cutoff": 8,
+        "order": 1,
+        "length": 81,
+        "full_initial_cones_meeting_z_cheapest_region": 12,
+        "ordered_sector_certificates": [
+          {
+            "normalized_lambda_interval": [
+              "0",
+              "1/5"
+            ],
+            "original_standard_set_sha256": "c98c5afbf76de9b2c5311c5278e283f0fa260aeb44eefc3d93e87d22c0452ed7",
+            "original_normals_sha256": "fb3fdf1e6497c652c79b41eb75e97349158fe6fe350067f8975a54c87ad26342",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 20
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/5",
+              "1/3"
+            ],
+            "original_standard_set_sha256": "1becc92bed2cad0cd01e9a72de3401f23fdb19e48933364093d145ea4c497d47",
+            "original_normals_sha256": "8ed47b547058d27adaa936689c72dec276c63ed000bd23b33a503a4cb065bc36",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 21
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/3",
+              "1/2"
+            ],
+            "original_standard_set_sha256": "e6d0616dda170753d9a8b784e3181d990dbdc5f6131d57ae4304f6630d6b6fe4",
+            "original_normals_sha256": "264dc39de07933687cab0a58c5513687b82177a330971cd6c00fec266ac07921",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 21
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/2",
+              "3/5"
+            ],
+            "original_standard_set_sha256": "3363200b4ef5b1aa949a6d36c7cbc5b9f88e084c2536caf1654dfd27f631744a",
+            "original_normals_sha256": "7159aee7f56733a7e1855a6dec75e5bfbfeabe6f2c66f78e89d93260ed0aa28d",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 21
+          },
+          {
+            "normalized_lambda_interval": [
+              "3/5",
+              "1"
+            ],
+            "original_standard_set_sha256": "5086dc6711daff72465b13edf92d320271850a7a0afc690c8bb6bd061c404e36",
+            "original_normals_sha256": "6a30a9033ccb79dbd53b013711a632ba9ad3824797a728291f7e3b4a3a173d13",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 20
+          }
+        ]
+      },
+      {
+        "cutoff": 8,
+        "order": 2,
+        "length": 81,
+        "full_initial_cones_meeting_z_cheapest_region": 8,
+        "ordered_sector_certificates": [
+          {
+            "normalized_lambda_interval": [
+              "0",
+              "1/3"
+            ],
+            "original_standard_set_sha256": "de7fbc988cd7be728e9c8868e1093a4fa5658292f76645de7c6e553cf7c69603",
+            "original_normals_sha256": "54d898c095abd0cbeec3c5776125db7a350e199ee708a87cccf854e96b52aee9",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 21
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/3",
+              "1/2"
+            ],
+            "original_standard_set_sha256": "2d616cdf9d11ba1257b7d205cfe6eaf44418c5e55e3da6b93a8919b0c7c33dc9",
+            "original_normals_sha256": "065cb86f9d0109fd08abbcfce67b1e459d31872eb7747152754d2e0c8725c5cc",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 22
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/2",
+              "1"
+            ],
+            "original_standard_set_sha256": "5dcd6870abff5cac6b60be0d059fd7f8ff4b008c57c51dc0f6fd021a28f0f553",
+            "original_normals_sha256": "e7f5b624e2b579ed4e909d538917a7fc3c23ef4180250a3f01bc4420ff03bcc1",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 21
+          }
+        ]
+      },
+      {
+        "cutoff": 8,
+        "order": 3,
+        "length": 81,
+        "full_initial_cones_meeting_z_cheapest_region": 6,
+        "ordered_sector_certificates": [
+          {
+            "normalized_lambda_interval": [
+              "0",
+              "1/3"
+            ],
+            "original_standard_set_sha256": "3b776466a326d6da0099fc6ad068d82a63d44297560cd6c873593b583614a18f",
+            "original_normals_sha256": "8a5e196d4127da2d7eb4f3bcd46c9e474fffd5ad2b73ecc0e3394c5426c2f279",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 21
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/3",
+              "1"
+            ],
+            "original_standard_set_sha256": "cdc514a6481f2e8311b89af2124fc3c8eaab89fbe65eabf83023952f3498c075",
+            "original_normals_sha256": "bb968499b037069ce5439179daaab87568bfbdfd1cd8fb94b1ade2528ba6d562",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 20
+          }
+        ]
+      },
+      {
+        "cutoff": 8,
+        "order": 5,
+        "length": 81,
+        "full_initial_cones_meeting_z_cheapest_region": 6,
+        "ordered_sector_certificates": [
+          {
+            "normalized_lambda_interval": [
+              "0",
+              "1/3"
+            ],
+            "original_standard_set_sha256": "c285c7ed50ef3fc2b2e38356225798764ac42a9ba24878e36f7b70970c9b504f",
+            "original_normals_sha256": "dd1c2da49f97be7a1b938c80e4067a93b92885f986f60339efa532d14c9dddd8",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 22
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/3",
+              "1"
+            ],
+            "original_standard_set_sha256": "431d62b620637a99b154f2d46f86f6095ea4d890ed2c36c315a930583f992678",
+            "original_normals_sha256": "0b7ea7e1cbd25eb0339eca3b3cd8adf36a26deef7104ec9a8c36aa7639c8a566",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 21
+          }
+        ]
+      },
+      {
+        "cutoff": 8,
+        "order": 6,
+        "length": 81,
+        "full_initial_cones_meeting_z_cheapest_region": 4,
+        "ordered_sector_certificates": [
+          {
+            "normalized_lambda_interval": [
+              "0",
+              "1"
+            ],
+            "original_standard_set_sha256": "9f2974d560a0452b5fdfb4ae7da6581485ba13103da15d14076b45de5d8d1b68",
+            "original_normals_sha256": "ccdd2e7239c244a9cf15821d01d0b33b221e3248fd062e4937b8a1bb743fa17a",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 21
+          }
+        ]
+      },
+      {
+        "cutoff": 10,
+        "order": 1,
+        "length": 121,
+        "full_initial_cones_meeting_z_cheapest_region": 16,
+        "ordered_sector_certificates": [
+          {
+            "normalized_lambda_interval": [
+              "0",
+              "1/7"
+            ],
+            "original_standard_set_sha256": "0333588bc308a923ae24707f14ceb813c911c4360091a6faa6133af9c71ed511",
+            "original_normals_sha256": "087f519b8c4a064e6df95fe08fc398c864bc5bf1c444a9bb167a5c8b90233245",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 25
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/7",
+              "1/5"
+            ],
+            "original_standard_set_sha256": "bdd3a935c6faec304336b69e5f4f65db993f8f7c5c1c545d81b73b501b7a26d1",
+            "original_normals_sha256": "3ff94673d48b50144d892519398adeeb1456f36800aad083efda224b1e45b069",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 24
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/5",
+              "1/3"
+            ],
+            "original_standard_set_sha256": "b06e1d665dd833cf15409fe995205b2cc5d98b0750e65f04800f9dc91dc9761e",
+            "original_normals_sha256": "24692bc707e90085378421774d79022e9c7c374113b55ec2b4865ca6c020ebaf",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 24
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/3",
+              "1/2"
+            ],
+            "original_standard_set_sha256": "62185bf22a29dc0f44f910342d4045e0b8c0490bf9a3a995ac942ce2af5292b6",
+            "original_normals_sha256": "9a1c80c9f2863182893a9d8f8053a20fc02d723bccf31ca98c9c90e8782e685f",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 25
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/2",
+              "3/5"
+            ],
+            "original_standard_set_sha256": "c5ce5f03ed19436643e7409611c8cc27710cb7982b723cc0f7989fafcb127374",
+            "original_normals_sha256": "cef2441131ae60228d86842e22959df13bb5014791d0a382bab20ded34b2c5ab",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 25
+          },
+          {
+            "normalized_lambda_interval": [
+              "3/5",
+              "2/3"
+            ],
+            "original_standard_set_sha256": "0f5053b0eab8aebe76fbf821a0941418694369a33c3849779f8f0179d8f0fe95",
+            "original_normals_sha256": "efdf7ffc5241a09f90ccb3f5dd387d56bb5190795c39cf8a6bb4de87fcf09f6d",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 25
+          },
+          {
+            "normalized_lambda_interval": [
+              "2/3",
+              "1"
+            ],
+            "original_standard_set_sha256": "a43e7eb322e660dbe100df07a5bb96005a3a36ea5fff7e029d28985199dc51a7",
+            "original_normals_sha256": "bc8378e7876b6fd42b60de586cccc95480f756322c65e7859ddf81481bcdfea8",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 24
+          }
+        ]
+      },
+      {
+        "cutoff": 10,
+        "order": 2,
+        "length": 121,
+        "full_initial_cones_meeting_z_cheapest_region": 10,
+        "ordered_sector_certificates": [
+          {
+            "normalized_lambda_interval": [
+              "0",
+              "1/5"
+            ],
+            "original_standard_set_sha256": "40912925b07cd2f4cf88ada8a26f355145d376c3ff0ec22258e53b1874fa2a5e",
+            "original_normals_sha256": "823ab964e20ad78e08be249b1e5d7289a28c3022228fd55e2933633bfe9d22d9",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 25
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/5",
+              "1/3"
+            ],
+            "original_standard_set_sha256": "0da5516cde04a309b3383d5a742332d29de8651f9fe1b02e4694781c8bc0c205",
+            "original_normals_sha256": "aac74d5b5609411371467bfaac34dd1bbc28a0cd83477fd1e47b36aef75a5ebc",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 24
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/3",
+              "1/2"
+            ],
+            "original_standard_set_sha256": "9291a6b6d5e88e07f25809a80fcb7c080af79427bae62253d0305cc3839b63f9",
+            "original_normals_sha256": "aa8bc3a9e378798755c12aa02fc8443357b2c4b4b7d188125e1b1fb9018bff19",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 24
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/2",
+              "1"
+            ],
+            "original_standard_set_sha256": "61334b63294179fd61f3582958f172d350f086f76d05c097e89a6ea4909f0ea9",
+            "original_normals_sha256": "42710550927f47422e498313bdc4610bbaf321c75b8f795d60389bb8d251a1fb",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 25
+          }
+        ]
+      },
+      {
+        "cutoff": 10,
+        "order": 3,
+        "length": 121,
+        "full_initial_cones_meeting_z_cheapest_region": 8,
+        "ordered_sector_certificates": [
+          {
+            "normalized_lambda_interval": [
+              "0",
+              "1/3"
+            ],
+            "original_standard_set_sha256": "747ad4e15931ce3775a9a20d6fc8b6547185f109f6ff54fabadb5ce0f4507162",
+            "original_normals_sha256": "9dde39e6455d2060dc7110b1614cdae25a01d5d2a512f435175bcf1dc73a3828",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 25
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/3",
+              "1/2"
+            ],
+            "original_standard_set_sha256": "3521f25bb365eec67e59ba7fa823f05756506938d7ca7f16a795f59e13403606",
+            "original_normals_sha256": "4950ae34d1ad933576b6983c52b22b3cc3927adba7293282dbd17e1a4b3ed269",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 26
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/2",
+              "1"
+            ],
+            "original_standard_set_sha256": "2a90e8f9fd9ed7109ae6f59db1c25b8039d97b5b5f671cb092afbd015e33823b",
+            "original_normals_sha256": "8d508c55af46010fb60b413e1f6729cc856ad2f97ea4ef78c8d7f746f0dd21c5",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 25
+          }
+        ]
+      },
+      {
+        "cutoff": 10,
+        "order": 5,
+        "length": 121,
+        "full_initial_cones_meeting_z_cheapest_region": 6,
+        "ordered_sector_certificates": [
+          {
+            "normalized_lambda_interval": [
+              "0",
+              "1/3"
+            ],
+            "original_standard_set_sha256": "07c278d3c9ee0b53f611c0b64210b4c6a5fd96b36091597a297131e15259f530",
+            "original_normals_sha256": "dd1c2da49f97be7a1b938c80e4067a93b92885f986f60339efa532d14c9dddd8",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 26
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/3",
+              "1"
+            ],
+            "original_standard_set_sha256": "796e11798a16791441b25cb8522430ac5f3fa90a85e7a359b43189be026a53a7",
+            "original_normals_sha256": "0b7ea7e1cbd25eb0339eca3b3cd8adf36a26deef7104ec9a8c36aa7639c8a566",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 25
+          }
+        ]
+      },
+      {
+        "cutoff": 10,
+        "order": 8,
+        "length": 121,
+        "full_initial_cones_meeting_z_cheapest_region": 4,
+        "ordered_sector_certificates": [
+          {
+            "normalized_lambda_interval": [
+              "0",
+              "1"
+            ],
+            "original_standard_set_sha256": "bf02331db56c986df41ce3cef46b68dc7414cb9ec7b8163ca74f826f96337ed8",
+            "original_normals_sha256": "17244e570694cd35a4e2afb05f1976289533b489814d9ec24cb83f3bf9fb8058",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 25
+          }
+        ]
+      },
+      {
+        "cutoff": 12,
+        "order": 1,
+        "length": 169,
+        "full_initial_cones_meeting_z_cheapest_region": 22,
+        "ordered_sector_certificates": [
+          {
+            "normalized_lambda_interval": [
+              "0",
+              "1/7"
+            ],
+            "original_standard_set_sha256": "2a70e089ec0eab75b4534f6e2e00f75bbab4d21e1ad78076c4ea4036b0c96e9a",
+            "original_normals_sha256": "57b6e773382b33f84627595a21e357b6e0374cf84038c2751630a174918e86cc",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 29
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/7",
+              "1/5"
+            ],
+            "original_standard_set_sha256": "3f6f84594f16b5092b5a363cfea9a3f38a8146c1f0352db089935b7c2fe7df1f",
+            "original_normals_sha256": "5ddd36328d3842ff063bcced91f9cce4b586779906be521d9f52249f598f2773",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 29
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/5",
+              "1/4"
+            ],
+            "original_standard_set_sha256": "9fce0c1e39033b2381ee197e3e6957200c2d6afea674ef24efc9e2c2eacd5297",
+            "original_normals_sha256": "354d713187b6f00349b9837e301c9e3bcceaf6c1a861eb7d2f0694bc860639a5",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 29
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/4",
+              "1/3"
+            ],
+            "original_standard_set_sha256": "590346fc99cedc879de2f711bf10650a1946ed306818246d5be631673682fc9a",
+            "original_normals_sha256": "ca5d94ff275f444e9fe99867fa55977a4c0b2eae88c2753bb8af014833552c72",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 28
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/3",
+              "3/7"
+            ],
+            "original_standard_set_sha256": "784171cdbd7e5538f2b9bc301ec257f55a373ef823912f4cf6cb4c167f0b3fe7",
+            "original_normals_sha256": "ee08cfa604130d40dd9aa10594aeea9a58dec648024ffe7b3a515c9a1eda307e",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 28
+          },
+          {
+            "normalized_lambda_interval": [
+              "3/7",
+              "1/2"
+            ],
+            "original_standard_set_sha256": "f9108cee2c177e533e764ffff79903f9407485a39c6084e7e74eadd86892d076",
+            "original_normals_sha256": "4d6277da9ee97fe47f02ec0403332e65b1c52a93ce3ec16c96d9f1398d79212d",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 29
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/2",
+              "3/5"
+            ],
+            "original_standard_set_sha256": "6bf231c7b9eb8dd980c1bff35d5d68df4f4084eac856262718d687d98cc0563a",
+            "original_normals_sha256": "1359a8911e96d5dff4f706c68469ce29cdd1a46005486f3103fe787c641f7eb9",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 29
+          },
+          {
+            "normalized_lambda_interval": [
+              "3/5",
+              "2/3"
+            ],
+            "original_standard_set_sha256": "d56872b712d96a0f3d7e5f57e76eb92f63a1d38e98fa8c7e7f59297813f33099",
+            "original_normals_sha256": "36452d30a0098ce9a3218d48aff2121c5dc3f66192a1b137509bc990a3b3a182",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 29
+          },
+          {
+            "normalized_lambda_interval": [
+              "2/3",
+              "5/7"
+            ],
+            "original_standard_set_sha256": "8b7c988cc57a347219f6aa8b1ce9dd470003ee28778b8ac898860cc8d726a6cc",
+            "original_normals_sha256": "95811e4e0f7bd7a89d84b6ea41653feec4b440eeb323f47ac4279349a6d5f6ee",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 29
+          },
+          {
+            "normalized_lambda_interval": [
+              "5/7",
+              "1"
+            ],
+            "original_standard_set_sha256": "6c15113308730450b2f80301069186edef6f4264f6ed6b491871ef370e35dc78",
+            "original_normals_sha256": "16c91af02ad575bea70e45793e6c244fef1f02f4f59bdaaf7d745de2c57837c1",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 28
+          }
+        ]
+      },
+      {
+        "cutoff": 12,
+        "order": 2,
+        "length": 169,
+        "full_initial_cones_meeting_z_cheapest_region": 12,
+        "ordered_sector_certificates": [
+          {
+            "normalized_lambda_interval": [
+              "0",
+              "1/5"
+            ],
+            "original_standard_set_sha256": "9af18dfc503d3a202c951ccc86f11d4ef7e36d4f0eb9223a793bbcae58f5bbb2",
+            "original_normals_sha256": "855979d5eaebf035b0b860439f9b213f738625a06b66232b672d765f49bff35e",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 29
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/5",
+              "1/3"
+            ],
+            "original_standard_set_sha256": "76e2fcbec6a75640bdb82cbb9fccf5eaf2fb6e9b1955c8d74b1c9bdf4745d023",
+            "original_normals_sha256": "a085837fef9c29ad679ba93d138b132b38d4b6f10a924441306dbdfd15ae4d29",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 30
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/3",
+              "1/2"
+            ],
+            "original_standard_set_sha256": "45161b8401908882b97b2d00b5beecc83917b1ee2e73daf5b449341f17b07449",
+            "original_normals_sha256": "e520c50eeb7998dc5ad7b6ec1e7411c249714a91c274dad9bcbf24cb57830edc",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 29
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/2",
+              "3/5"
+            ],
+            "original_standard_set_sha256": "b5de84ef0fb68002eed621ef64b64b2ed06568df7ddba1764c01863a9dbbff80",
+            "original_normals_sha256": "2a3d96ce19553dee066cc335ea22a2d9a990a47c14051040d804224b8f684750",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 29
+          },
+          {
+            "normalized_lambda_interval": [
+              "3/5",
+              "1"
+            ],
+            "original_standard_set_sha256": "7191fa139ca866b2048c092377ad0bf960fd56bfabd99bbef1f2a3e34cf6d588",
+            "original_normals_sha256": "78a348a1d012a97604880473e47f5e264dbb57d53968c6dd5c5ae35128009215",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 28
+          }
+        ]
+      },
+      {
+        "cutoff": 12,
+        "order": 3,
+        "length": 169,
+        "full_initial_cones_meeting_z_cheapest_region": 10,
+        "ordered_sector_certificates": [
+          {
+            "normalized_lambda_interval": [
+              "0",
+              "1/5"
+            ],
+            "original_standard_set_sha256": "6863371a6afb8be2c7afab7941f36167c2506895d0b2e2d98bf0e867cf1db0d2",
+            "original_normals_sha256": "7b1ada97bf0fadfe282e2fc361b4df2568f0c5cc16eeda24480cad06ab5e5dbe",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 30
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/5",
+              "1/3"
+            ],
+            "original_standard_set_sha256": "0dc2cefde09b852aaedc45f8c9228d323923d2e4d707114efd3b7056814bd846",
+            "original_normals_sha256": "6b818341d01bbd5917702cd823a9c65375944d19650214439fc819705230b391",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 29
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/3",
+              "1/2"
+            ],
+            "original_standard_set_sha256": "c3e802314e31d1d82902e61a3aa5559af5fe1b5abc54cdf21258b7a9ff9b00fc",
+            "original_normals_sha256": "5d9f5636fe9f3e835ae06656913930f9854db37c4a7646a73fad83e5d5a49fa0",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 29
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/2",
+              "1"
+            ],
+            "original_standard_set_sha256": "09457b7f983b7545f6aeaf0e5be19d973ef8620ccc470593a0666602c5d5d7f2",
+            "original_normals_sha256": "288a1b25f47e6c8761fe205611ee03e958e80dc63a016a99f1daa62f059eb0d4",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 28
+          }
+        ]
+      },
+      {
+        "cutoff": 12,
+        "order": 5,
+        "length": 169,
+        "full_initial_cones_meeting_z_cheapest_region": 6,
+        "ordered_sector_certificates": [
+          {
+            "normalized_lambda_interval": [
+              "0",
+              "1/3"
+            ],
+            "original_standard_set_sha256": "d63fd86a7d2db5cc41733c17773505a32733ff829517f789d59204602e496a67",
+            "original_normals_sha256": "f585ddc470e8391539761ea6ea295d9cebbe7c46c62c9609cdf55f0ec289dc66",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 29
+          },
+          {
+            "normalized_lambda_interval": [
+              "1/3",
+              "1"
+            ],
+            "original_standard_set_sha256": "7aa63505b48a61c55a52d7c36e8dee7901ad42e2accf437ddece69f041b0b59f",
+            "original_normals_sha256": "0b7ea7e1cbd25eb0339eca3b3cd8adf36a26deef7104ec9a8c36aa7639c8a566",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 28
+          }
+        ]
+      },
+      {
+        "cutoff": 12,
+        "order": 10,
+        "length": 169,
+        "full_initial_cones_meeting_z_cheapest_region": 4,
+        "ordered_sector_certificates": [
+          {
+            "normalized_lambda_interval": [
+              "0",
+              "1"
+            ],
+            "original_standard_set_sha256": "432021878147848fd6f67f43cbce3fa2f1ce7408a8436a9e041ddf69f2ba18be",
+            "original_normals_sha256": "0d457a7e3d876f1962b22bb5b4b2540bae39fdb0fbdb0a5d4dbff74b5250040f",
+            "minimum_binary_degree_slack": 0,
+            "monic_integer_border_relations": 29
+          }
+        ]
+      }
+    ],
+    "scope": "Every ordered interval in the retained boundary table is lifted to an entire original sector u>1 by integral monic membership and both endpoint inequalities. Gaussian original bases and floor-rank queries are independent controls; ties are checked as entire tiers, without asserting every tie refinement stays in the region."
+  },
   "uniform_results": {
     "family_fan_bound": "O(n^(9/4)/r), n=(s+1)^2, uniform in s,r and field",
     "excluded_amplification_regime": "r>=sqrt(s) implies O(n^2) full positive fan",
     "boundary_fan": "2*M_(s,r)+4, with epsilon*((r+2)*q+r*p)<=2*(s+r)",
     "cyclic_prefix_quotient": "For every integer m>=2, V_D/L_< is Z^3 plus Z/m; beta changes standard membership exactly in characteristics dividing m.",
-    "integer_algebra_itself_free": true
+    "integer_algebra_itself_free": true,
+    "universal_equal_binary_rank": "Coefficient-independent whole-tier ranks for x^2+Q+x*H, coprime binary Q,H of degrees 2,r+1, at weights (1+lambda,1,1), -1<lambda<r; O((r+1)*(s+1)) exact operations.",
+    "original_z_cheapest_region": "Exactly 2*M_(s,r)+4 full initial cones meet w_z<min(w_x,w_y), for s>=r+2, over every field. Entire-tier ranks extend to the closed region. One minimum basis uses O(n) comparisons.",
+    "exceptional_characteristic_region": "At generic weights, changes can occur only when w_z>min(w_x,w_y); no universal equal-plane cover is proved."
   },
-  "scope": "Finite independent exact controls support the uniform proofs in the note. A changed standard set is not a count increase. The small-order full fan, unrestricted G_3, current priority and publication significance remain open.",
+  "scope": "Finite independent exact controls support the uniform proofs in the note. A changed standard set is not a count increase. The original z-cheapest region is now uniformly counted and has an exact rank oracle. Remaining small-order regions, unrestricted G_3, current priority and publication significance remain open.",
   "unrestricted_G3_improvement": false,
   "novelty_established": false,
   "goal_complete": false,
   "source_sha256": {
-    "docs/higher_interaction_fans.md": "57bcd1a9ce15f14e0ecb24e7ea4828dff865fe752b05efe6d448e58be14f44dc",
-    "scripts/run_higher_interaction_checks.py": "8199694780fbc87574395689989240ea5b0d32a3147edc88ad34c0438a50e5f8",
+    "docs/higher_interaction_fans.md": "687c95e06f5311b81de6c5eb51da9528febac5d8a7a25a9e0d203d7d374437e5",
+    "scripts/run_higher_interaction_checks.py": "cdc31d1b582e71c4536056429bf7eabeb2fcb312f313713135a2eaee68578916",
     "scripts/run_hypersurface_truncation_checks.py": "700073c01784db06a953d351c500e0d66b0019c1152fe4b127cbf50f35cbcd7e",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
     "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
