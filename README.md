@@ -122,6 +122,17 @@ Classical lattice geometry then gives
 `g(I_F)=O(1+q^(3/2)*(2q-D)^3)`, ruling out a power separation from
 shallow terminal perturbations. General low-order nonlinear terms,
 the unrestricted endpoint and the priority assessment remain open.
+The [profile-lattice continuation](docs/profile_lattice_bound.md) now
+proves `O_d(n log(n+1))` whenever the intrinsic grading lattice has rank
+at most two. In three variables this covers every nonzero integer
+grading, uniformly in its weights and characteristic. A classical planar
+oracle method then needs `O_d(n log(n+1))` greedy calls.
+Two-dimensional faces of unrestricted quotient profile polytopes also
+have `O_d(n log(n+1))` vertices; this local bound does not count the faces.
+Full-rank degree congruences also sharpen the rectangle volume bound: a single nonlinear
+homogeneous correction of degree comparable to the side length cannot
+give a power separation. Exact priority remains under assessment; the
+unrestricted full-rank case is still the main target.
 The additive prime-power class is now classified separately: at length
 `n=q^k`, every initial ideal is a prime-power box and the sharp maximum
 is `binomial(k+d-1,d-1)`. The proof uses established Frobenius reduction;
