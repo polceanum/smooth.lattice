@@ -95,9 +95,16 @@ prefixes: their fixed-height count is `Theta_h(n^2 log(n+1))` for `h>=2`,
 and a classical geometric bound excludes a power separation at any height.
 General valuations need a different argument. A family of length `n=M^2`
 has a coherent box of `n^(3/2)` points and explicit layer-rank defects.
-Counting the interactions of these layers remains open; neither their
-large footprint nor the restricted count establishes a new spatial bound
-or a priority claim.
+The [chain-allocation reduction](docs/nested_chain_allocation.md) now turns
+the curvilinear basis conditions into linear cumulative constraints and
+gives exact initial-cone certificates. Along a valuation-price line each
+quota can cease to be tight only once. The stratum where all quotas are
+tight has only `Theta(sqrt(n) log(n+1))` initial sets in that large-box
+family. A consecutive-block cut certificate now bounds the entire
+equal-valuation family by `O(n^2 log(n+1)^4)`, uniformly in its valuation
+parameter. This excludes a polynomial separation from that whole family.
+Unequal valuations remain open; these results do not establish an
+unrestricted spatial bound or a priority claim.
 The additive prime-power class is now classified separately: at length
 `n=q^k`, every initial ideal is a prime-power box and the sharp maximum
 is `binomial(k+d-1,d-1)`. The proof uses established Frobenius reduction;

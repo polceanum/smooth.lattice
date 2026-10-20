@@ -61,9 +61,34 @@ for $h\ge2$. A classical relative-box argument keeps their count within
 the generic power scale even as height varies. For general valuations,
 an infinite length-$M^2$ family has coherent bounding boxes of $M^3$
 points and exact layer-rank defects. Thus neither lattice convexity nor
-a uniform linear box product extends that slab proof. Counting these
-interacting rank layers remains open; the restricted result and large
-footprint do not settle the spatial extremal target or establish novelty.
+a uniform linear box product extends that slab proof. The large footprint
+alone gives no counting lower bound. The continuation below controls the
+equal-valuation family without assuming a small box for its standard sets.
+
+The [chain-allocation continuation](nested_chain_allocation.md) describes
+the curvilinear subfamily exactly by cumulative integer quotas and a
+separable quadratic objective. Feasible unit transfers give all its
+positive initial-cone inequalities. Along a valuation-price line,
+submodular uncrossing proves that cumulative allocations increase and
+each quota can cease to be tight only once. For $n=M^2$, $m=(1,M,M)$,
+the stratum with every quota tight has only
+$\Theta(M\log(M+1))$ initial sets, even though large coherent boxes
+occur there. This excludes that stratum as a power-separation mechanism.
+A stronger consecutive-block certificate now bounds the whole family
+$I_{n,M,M}$ by $O(n^2\log^4(n+1))$, uniformly in $M$ and without
+requiring $n=M^2$. At an active exchange, consecutive tight-quota blocks
+form an ordinary lattice cut in a shifted wedge. In the fixed unimodular
+coordinates $(a,b,b+c)$ its closed cut has box volume at most $512n$.
+All interior facet normals therefore belong to one hyperbolic cross of
+size $O(n\log^2(n+1))$; the classical plane-arrangement count gives
+the stated bound. The large footprint of the entire standard set is
+consistent with these small relative boxes for exchanges. Thus the
+entire equal-valuation family is closed as a power-separation route.
+For unequal valuations the corresponding degree blocks are arithmetic
+strips, and that common-coordinate direction estimate remains unproved.
+The allocation class, uncrossing principle, arrangement bound and planar
+counting input are established mathematics; the exact construction theorem
+has no novelty certificate and does not complete the unrestricted goal.
 
 ## Connection to the original observations
 
@@ -1780,6 +1805,7 @@ python3 -B scripts/run_rational_shadow_bound_checks.py
 python3 -B scripts/run_initial_cone_height_checks.py
 python3 -B scripts/run_weighted_facet_incidence_checks.py
 python3 -B scripts/run_algebraic_incidence_controls.py
+python3 -B scripts/run_nested_chain_checks.py
 ./build.sh
 python3 tests/test_smoke.py
 ```

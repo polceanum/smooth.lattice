@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Preserve the original sharp-growth or polynomial-separation endpoint. The balanced valuation subfamily L=h*q,m=(1,1,q) is now exactly the slab-prefix problem. Its fixed-height count is Theta_h(n^2*log(n+1)) for h>=2, and a classical dyadic relative-box argument gives O(n^2*log(n+1)*(1+log(min(h,n)))) uniformly in height. It cannot supply a polynomial separation and is parked for that lower-bound route. Do not mistake this classical corollary or the radical parallel-plane realizations for an unrestricted initial-ideal theorem or a novelty certificate. General nested constraints remain outside that reduction. The concrete next family is L=n=M^2,m=(1,M,M): at strict weight ((M+1)^3,M+1,M+2) a coherent standard set has all three axis counts M, hence a box of n^(3/2) points. Its x-layer prefix ranks are R_r=M^2-max_{0<=d<=M}(M*d-(r+1)*binomial(d+1,2)). Count how these rank-defect layers interact when leaving the lexicographic weight region, seeking either a power-separated family or a uniform structural bound applicable beyond that example. The large footprint describes a standard set, not many different initial ideals; no counting lower exponent follows from it. The L=8,m=(1,3,4) midpoint hole also rules out assuming lattice convexity. Preserve the full objective, all source comparisons, the exact true-length formula for general L,m, and the earlier quartic-incidence and linear-cover obstructions. Do not fit finite fan counts, expand coefficient screens, return to disproved small-moment or cover shortcuts, create another manuscript as a substitute, or complete the goal for this restricted classification. Continue the strongest-current-primary-bound audit and precise construction-priority comparison.",
+  "next_proof_task": "Preserve the original sharp G_3 growth or polynomial-separation endpoint and all success criteria. The full equal-valuation family I_(n,M,M), for every n,M, now has the proved upper bound O(n^2*log(n+1)^4), independent of M. At an active feasible chain transfer, the tight-quota blocks between its endpoints form one ordinary rank-N cut in a consecutive degree wedge. In the fixed unimodular coordinates (a,b,b+c), floor-halving and an explicit inner grid bound its closed-cut box by 512*N. Every positive interior facet normal therefore lies in one O(n*log(n+1)^2)-size hyperbolic cross; the classical arrangement bound proves the count. This closes the entire equal-valuation family, including partial-release strata and the n=M^2 large-box fixtures, as a source of a polynomial separation. Do not spend more coefficient screens or finite fan fits on that lower route. For unequal A,B in I_(n,A,B), use the exact chain allocation and active consecutive-block certificate to study the arithmetic strips between tight starts Ab+Bc. Prove a uniform direction cover in a controlled common lattice coordinate system, or an infinite family of distinct interactions with a proved power-separated count. The equal-valuation wedge box proof cannot be assumed for those strips. If this broader curvilinear route also stays at the generic power scale, preserve its proof and move to the existing genuine embedding-dimension-three family, using the actual image length n=L-max_k(k-nu_m(k)). The allocation class, lattice uncrossing, planar prefix count and central arrangement bound are established inputs; no priority certificate or unrestricted theorem follows from their use. Continue the strongest-current-primary-bound and exact multiplicative-construction comparisons. Retain the quartic weighted-incidence, linear plane-cover, quadratic cone-height and nonconvexity obstructions. No new manuscript or completed-goal claim follows from this restricted family theorem.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -85,7 +85,8 @@
     "Assess priority of the boundary-plane reduction, weighted interior-facet incidence formulation and exact local surface-tail example. The next unconditional count requires a stronger incidence theorem, not an unproved area or aspect bound. Classical ingredients and the binomial subclass boundary remain credited.",
     "Compare the exact three-pole curve fan, coefficient-independent pure-axis basis classification, quartic incidence sharpness and linear all-plane trace bound with existing curve-interpolation and Groebner-fan literature. Partial fractions, Vandermonde interpolation, primitive normal calculations and the elementary coprime sieve are classical. The proof-budget obstruction is scoped to separately summing the current arithmetic shadow envelope; no universal enumeration lower bound or novelty certificate is claimed.",
     "Compare the exact multiplicative realization and exposed-profile counts in docs/nested_jet_matroids.md with generic-jet and ordered interpolation constructions, parametric scheduling, and Schubert/lattice-path matroid optimization. Classical poisedness and the nested rank rule are not new; ordinary matrix representations do not automatically imply a cyclic polynomial quotient. No asymptotic bound for this family or the unrestricted spatial target has yet been established.",
-    "Assess the exact slab-prefix realization, prefix-pair formula, sharp fixed-height consequence, and the general-valuation layer-defect family in docs/nested_jet_matroids.md against bounded-height lattice-cut, generic interpolation and nested scheduling literature. The relative-box upper and planar count are classical inputs; neither a bounded keyword search nor the proof itself establishes priority. A uniform count of the broader nested family, especially L=M^2,m=(1,M,M), remains unproved."
+    "Assess the exact slab-prefix realization, prefix-pair formula, sharp fixed-height consequence, and the general-valuation layer-defect family in docs/nested_jet_matroids.md against bounded-height lattice-cut, generic interpolation and nested scheduling literature. The relative-box upper and planar count are classical inputs; neither a bounded keyword search nor the proof itself establishes priority. A uniform count of the broader nested family, especially L=M^2,m=(1,M,M), remains unproved.",
+    "Compare the exact x-chain allocation reduction, active consecutive-block cut certificate and uniform O(n^2*log(n+1)^4) bound for all I_(n,M,M) with nested integer allocation, parametric scheduling and initial-fan literature. The optimization class, lattice comparative statics and final hyperbolic-cross arrangement count are established inputs. The new proof closes this construction as a power-separation route; no unsuccessful search or restricted theorem certifies priority or settles G_3."
   ],
   "primary_sources": [
     {
@@ -257,6 +258,21 @@
       "authors": "Corteel, Remond, Schaeffer and Thomas",
       "url": "https://doi.org/10.1006/aama.1999.0646",
       "scope": "The established planar corner-cut count Theta(n*log(n)) is a classical input, also stated and used in the inspected Wagner primary argument. This continuation does not claim a new full-proof audit of the 1999 paper."
+    },
+    {
+      "authors": "Akhil P T and Rajesh Sundaresan",
+      "url": "https://arxiv.org/html/1608.08000v1",
+      "scope": "Sections 2 and 4: ascending-constraint polymatroid description, exchange optimality criterion, and integer resource-allocation formulation. These are established optimization inputs, not an initial-ideal count."
+    },
+    {
+      "authors": "Vidal, Jaillet and Maculan",
+      "url": "https://www.mit.edu/~jaillet/general/RAP-LB-15.pdf",
+      "scope": "Equations (1.1)--(1.4), Theorems 3.1--3.2 and the integer proof: nested convex allocation with integer and continuous variables. Its decomposition monotonicity is distinguished from the parameter-line and initial-fan consequences proved here."
+    },
+    {
+      "authors": "Topkis",
+      "url": "https://doi.org/10.1287/opre.26.2.305",
+      "scope": "Publisher abstract only: general isotone minimizers for submodular lattice problems. Full original theorem was not inspected; the precise special case used here has a self-contained proof."
     }
   ],
   "verification": {
@@ -966,8 +982,64 @@
         "smoke": "passed",
         "preservation": "passed: all tracked files outside the reviewed public list are byte-unchanged; objective, success criteria and prior continuations are preserved; old nested-check results differ only in their refreshed note hash"
       }
+    },
+    {
+      "title": "Exact chain allocation and a uniform bound excluding the whole equal-valuation family",
+      "recorded_on": "2026-10-20",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "2104784 classified balanced slab fans and exhibited coherent boxes of n^(3/2) points for n=M^2,m=(1,M,M), without inferring many initial ideals from that footprint.",
+      "progress_classification": "complete chain-allocation reduction and initial-cone certificate; monotone quota release; uniform equal-valuation family count closing its power-separation route; unrestricted endpoint open",
+      "uniform_proofs": [
+        "For I_(n,A,B), every x-chain-prefix allocation of total n is a residue basis exactly when its total length in chains starting below q is at least q for each distinct start q=Ab+Bc<n. Concatenating chains supplies a valuation-index assignment. Compressing an arbitrary basis within its x-chains preserves independence and strictly improves positive x weight unless already compressed.",
+        "Minimum residue bases are exactly minimizers of sum_j[w_x*binomial(ell_j,2)+(b_j*w_y+c_j*w_z)*ell_j] under the cumulative integer quotas. Feasible unit transfers give necessary and sufficient optimality and strict uniqueness tests. A transport respecting tight quota cuts proves sufficiency, and its linear inequalities describe the whole open positive initial cone.",
+        "Along s_j(tau)=s_j(0)+tau*q_j, group costs are discretely convex. Submodular uncrossing in cumulative coordinates proves that every optimal cumulative vector at an earlier parameter is at most every optimum at a later one. Each quota can cease to be tight only once; the number of unique states is at most 1+sum_k(n-q_k). This line estimate is not claimed to improve the stronger general shadow bound.",
+        "For every n,M, the entire family I_(n,M,M) has O(n^2*log(n+1)^4) positive monomial initial ideals, with a constant independent of M. Any active feasible exchange is an ordinary cut on the consecutive tight-quota blocks between its endpoints. For w_y>w_z, the fixed unimodular coordinates (a,b,b+c) give a translated wedge 0<=e<=j-i,0<=b<=i+e. Floor-halving maps its closed cut to the strict cut with fibers at most eight. An explicit inner grid gives relative box volume <=64*closed-cut-size<=512*N. Thus all facet normals lie in one hyperbolic cross with O(n*log(n+1)^2) integer directions. A classical central-plane arrangement proves the bound; swapping y,z covers the other half. The whole standard set can still have a box of n^(3/2) points. The entire equal-valuation family is excluded as a power-separation mechanism.",
+        "For n=M^2,m=(1,M,M), the stratum where all quotas are tight has exactly the order Theta(M*log(M+1)). Each degree group selects M points of a planar strip, and sufficiently small common y,z price realizes every joint strip tuple. Every primitive ratio wall p/q satisfies (p+1)*(q+1)<=2*M by a lattice-triangle count. The known planar prefix count gives the matching lower bound. This is a restricted consequence with established counting input.",
+        "In the sector w_y>=A*w_x and w_z>=B*w_x the ordinary n-cheapest orthant prefix is already a residue basis, so the quotient fan there is the ordinary cut fan restricted to that sector."
+      ],
+      "independent_controls": {
+        "command": "python3 -B scripts/run_nested_chain_checks.py",
+        "report": "results/research/nested_chain_checks.json",
+        "exhaustive_allocation_matrix_checks": 2998,
+        "feasible_allocations": 448,
+        "transfer_feasibility_checks": 8817,
+        "local_optimality_checks": 3584,
+        "previous_complete_cones_reconstructed": 114,
+        "complete_weight_lines": 9,
+        "complete_line_comparison_intervals": 568,
+        "strict_line_states": 79,
+        "independent_line_matrix_checks": 32,
+        "asymmetric_complete_weight_lines": 3,
+        "asymmetric_line_comparison_intervals": 207,
+        "asymmetric_strict_line_states": 26,
+        "tight_stratum_fixtures": 11,
+        "strict_tight_stratum_witnesses": 110,
+        "tight_stratum_scheduler_controls": 9,
+        "generic_sector_fixtures": 8,
+        "block_cut_complete_half_fans": 4,
+        "block_cut_half_fan_cells": 43,
+        "block_cut_positive_facets": 132,
+        "active_facet_cut_certificates": 148,
+        "checks": "All weak compositions in five small chain grounds checked by rational Gaussian elimination and the original valuation rule; all feasible allocations tested for local and global optimality at eight weights each, including ties; independent prefix dynamic programming versus the deadline scheduler; all 114 earlier curvilinear initial cones reconstructed from chain-transfer inequalities; twelve complete rational weight-line arrangements, including unequal valuation pairs; complete ratio partitions for eleven tight-stratum fixtures; four complete small half-fans with every positive facet exchange checked by its explicit consecutive-block cut, halving map, inner grid and direction product. All 43 cones in the four new half-fans are also reconstructed independently from rational residue coefficients and exact border polynomials.",
+        "block_cut_independent_border_cones": 43
+      },
+      "literature_boundary": "Akhil--Sundaresan Sections 2 and 4 identify the established ascending-constraint polymatroid and integer allocation class. Vidal--Jaillet--Maculan equations (1.1)--(1.4), Theorems 3.1--3.2 and the integer proof were inspected; reversing order converts our lower quotas to their upper quotas. Their decomposition monotonicity is not itself our all-parameter initial-fan count. Padakandla--Sundaresan was accessed at abstract level only in this continuation. Topkis was accessed at publisher-abstract level only; the special-case uncrossing argument is proved in full. The relative-box and central-arrangement mechanisms and the planar count are classical. Priority of the exact multiplicative quotient, block-cut certificate and restricted consequences remains unestablished; absence of search results is not evidence.",
+      "effect_on_next_action": "Preserve the original sharp G_3 growth or polynomial-separation endpoint and all success criteria. The full equal-valuation family I_(n,M,M), for every n,M, now has the proved upper bound O(n^2*log(n+1)^4), independent of M. At an active feasible chain transfer, the tight-quota blocks between its endpoints form one ordinary rank-N cut in a consecutive degree wedge. In the fixed unimodular coordinates (a,b,b+c), floor-halving and an explicit inner grid bound its closed-cut box by 512*N. Every positive interior facet normal therefore lies in one O(n*log(n+1)^2)-size hyperbolic cross; the classical arrangement bound proves the count. This closes the entire equal-valuation family, including partial-release strata and the n=M^2 large-box fixtures, as a source of a polynomial separation. Do not spend more coefficient screens or finite fan fits on that lower route. For unequal A,B in I_(n,A,B), use the exact chain allocation and active consecutive-block certificate to study the arithmetic strips between tight starts Ab+Bc. Prove a uniform direction cover in a controlled common lattice coordinate system, or an infinite family of distinct interactions with a proved power-separated count. The equal-valuation wedge box proof cannot be assumed for those strips. If this broader curvilinear route also stays at the generic power scale, preserve its proof and move to the existing genuine embedding-dimension-three family, using the actual image length n=L-max_k(k-nu_m(k)). The allocation class, lattice uncrossing, planar prefix count and central arrangement bound are established inputs; no priority certificate or unrestricted theorem follows from their use. Continue the strongest-current-primary-bound and exact multiplicative-construction comparisons. Retain the quartic weighted-incidence, linear plane-cover, quadratic cone-height and nonconvexity obstructions. No new manuscript or completed-goal claim follows from this restricted family theorem.",
+      "new_unrestricted_counting_exponent": false,
+      "uniform_equal_valuation_bound_established": true,
+      "entire_equal_valuation_family_power_separation_excluded": true,
+      "general_curvilinear_count_established": false,
+      "sharp_or_separated_endpoint_achieved": false,
+      "novelty_established": false,
+      "goal_complete": false,
+      "verification": {
+        "new_research": "passed",
+        "build": "passed",
+        "smoke": "passed",
+        "preservation": "Original objective, success criteria and all earlier continuations preserved; prior manuscripts, PDFs, research reports, core kernels and paused ML work are byte-unchanged outside the explicitly reviewed public list."
+      }
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "No new unrestricted counting exponent. The balanced subfamily is exactly a slab-prefix fan with sharp fixed-height order Theta_h(n^2*log(n+1)), uniformly within the generic power scale by a classical geometric corollary. General nested valuations admit nonconvex standard sets and coherent boxes of n^(3/2) points; their interaction count remains open.",
-  "previous_goal_turn_classification": "progress: f04e8b1 proved explicit multiplicative nested-matroid realizations with exact ranks, actual quotient lengths, and independent full-fan checks. The objective and all completion criteria are preserved."
+  "asymptotic_improvement_scope_this_iteration": "No new unrestricted G_3 exponent. A uniform O(n^2*log(n+1)^4) bound closes all I_(n,M,M), for arbitrary n,M, as a polynomial-separation route. The exact chain reduction and monotone cumulative constraints also apply to I_(n,A,B); unequal valuations and embedding dimension three remain open.",
+  "previous_goal_turn_classification": "progress: 2104784 classified balanced slab fans and supplied the large-box equal-valuation construction. Its full interaction count is now bounded uniformly without changing the unrestricted endpoint."
 }
