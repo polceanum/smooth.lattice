@@ -2048,6 +2048,86 @@ The separate characteristic-zero polygon-prefix route and the all-field
 upper route remain available. The original sharp $G_3$ or polynomial
 separation endpoint, its consequence and paper requirements are unchanged.
 
+## Ordered trees, sparse costs and a corank screen
+
+The [ordered cographic continuation](cographic_order_ideals.md) closes
+the exact prior-art comparison for the underlying two-circuit duality:
+Hidaka--Itoh Section 5.2 and Fu--Ma--Wang Proposition 3.5 explicitly
+contain that identity. Martin--Reiner give the cyclotomic-prime version.
+The earlier rank model is an application of established mathematics,
+rather than a new graph-duality result. These primary passages were
+inspected; the full papers and the priority of the additional ordering
+statements have not been audited.
+
+The polynomial realization extends to
+$J_{r,s}=(S_r(X),S_s(Y),Z-XY)$ over every field and arbitrary periods,
+where $S_q(t)=1+\cdots+t^{q-1}$. For equal periods $q$, every basis
+that is a monomial downset in the $XY$-head region omits a spanning
+tree whose only possible branching vertices are row $q-1$ and column
+$q-1$. Its $Z$-axis has length $q-1$ or $q$. The proof compares
+neighbor sets of consecutive rows: at most one neighbor disappears,
+whereas two shared neighbors would give a four-cycle. It applies to
+noncoherent downset bases as well; it does not count them as initial sets.
+
+There is also a weighted algorithmic consequence. The periodic edge
+cost is affine on the pieces determined by three diagonal lines. An
+edge away from their width-four strips and the square boundary is the
+unique minimum of an explicit four-cycle, and hence cannot belong to
+a maximum tree. At most $19q$ candidate edges remain. For generic
+weights, the omitted tree can be computed and stored in
+$O(q\log q)$ arithmetic time and $O(q)$ words. Together with the
+on-demand least-representative rule, it represents the standard set
+using $O(\sqrt n)$ words, with deterministic logarithmic membership
+queries. Listing all $n=(q-1)^2$ monomials still requires linear output.
+These bounds do not count bits or dense reduced-basis coefficients.
+The candidate graph changes with the prices, so its sparsity alone
+does not bound the number of fan cells.
+
+Consecutive binomial nodes strengthen a different supporting result:
+the bilinear outer-cone theorem and its exact regional count now hold
+in every characteristic. The relevant integer determinant is one,
+even when the prefix length exceeds the characteristic. Thus coherent
+directions with product $\Theta(n^{3/2})$ occur inside the regular
+cographic class too, including radical characteristic-zero geometric-sum
+quotients. Compressed basis size and primitive direction product remain
+different quantities.
+
+A classical general screen also limits the next construction search.
+If every standard set fits in one box of $M$ monomials and the quotient
+length is $n$, matroid duality and the established three-dimensional
+lattice-vertex bound give $g(I)=O(1+(M-n)^{3/2}\sqrt M)$.
+A box with $M=O(n)$ cannot yield a polynomial separation above $n^2$.
+In particular, three equal odd-period circuit factors, mixed through
+$X=UV,Y=UW,Z=VW$, give a realizable nonregular quotient of length
+$(q-1)^3$ with only $O(n^{3/2})$ possible initials. This is a classical
+corollary, not a new unrestricted exponent or lattice theorem.
+
+The distinct-prime-period pair-product construction is not closed by
+that small-box argument. It realizes
+$\mathbb Q(\zeta_{p_1p_2p_3})$ in three generators, with the known
+tensor/simplicial rank model and a price-dependent representative
+problem. Its elementary period box has size $(p_1p_2p_3)^2$.
+Its full coherence count remains to prove; the known number of abstract
+simplicial bases is not a lower bound for that count.
+
+The independent controls enumerate all 84 small downset bases, compare
+42 sparse/dense tree problems through period 127, check 114,598 explicit
+excluded-edge cycles, and compare 54 ordinary polynomial standard sets
+over three characteristics. Actual coherent facets and 660 unit
+binomial determinants test the small-characteristic argument. The
+triple-factor check verifies actual polynomial relations and dual
+profile budgets. Exact bounded fans remain finite evidence, not an
+asymptotic law: $6,14,26,86$ states at periods $3,4,5,8$ suggest
+$2(q-1)(q-2)+2$, which would exclude the equal-period cographic family
+too if proved. No larger fan sweep is justified before a classification.
+
+The next task is a uniform coherence count using these constraints,
+or a stronger defined prime-period family with a provable count. The
+unrestricted sharp $G_3$ or polynomial separation endpoint, additional
+consequence, strongest-primary comparison and honest-paper requirements
+remain unchanged. None is replaced by the compressed algorithm or the
+finite count conjecture.
+
 ## Reproduction
 
 From the repository root:
@@ -2058,6 +2138,7 @@ python3 -B scripts/run_generic_multiaffine_checks.py
 python3 -B scripts/run_bilinear_rectangle_checks.py
 python3 -B scripts/run_rectangle_boundary_checks.py
 python3 -B scripts/run_bilinear_cographic_checks.py
+python3 -B scripts/run_cographic_structure_checks.py
 python3 -B scripts/run_additive_initial_ideals_checks.py
 python3 -B scripts/run_planar_dyadic_bound_checks.py
 python3 -B scripts/run_rational_shadow_bound_checks.py

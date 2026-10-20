@@ -164,6 +164,16 @@ trees with explicit periodic representative costs, giving an
 as the three monomial weights vary remains open; arbitrary graph lower
 bounds cannot be imported without realizing their costs. Neither result
 settles the unrestricted extremal objective.
+The [ordered-tree continuation](docs/cographic_order_ideals.md) now
+identifies the graph duality with its exact prior sources and proves
+additional structure for equal periods. Only two fixed tree vertices
+can branch, and a four-cycle certificate reduces `q^2` weighted edges
+to at most `19q` candidates. This gives an `O(sqrt(n))` compressed
+standard set with `O(sqrt(n) log(n))` arithmetic construction cost;
+explicit output still has size `n`. A classical corank/box bound also
+excludes the equal-period three-circuit extension from polynomial
+separation. The equal-period phase count remains conjectural; distinct
+prime periods require a different coherence argument.
 The additive prime-power class is now classified separately: at length
 `n=q^k`, every initial ideal is a prime-power box and the sharp maximum
 is `binomial(k+d-1,d-1)`. The proof uses established Frobenius reduction;

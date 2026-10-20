@@ -117,6 +117,22 @@ comparisons and $O(n)$ storage, counting arithmetic comparisons on the
 given weights. This is not a bit-complexity bound or a bound for writing
 every coefficient of a reduced Gröbner basis.
 
+## Precise established boundary and the next reduction
+
+The underlying cographic identity is established, rather than a proposed
+new matroid theorem. See Hidaka--Itoh,
+[Theorem 1.2 and Section 5.2 with its following remark](https://arxiv.org/html/2403.10817v3#S5.SS2),
+and Fu--Ma--Wang,
+[Proposition 3.5, equation (3.4)](https://arxiv.org/html/2609.29227v1#S3.SS2).
+The corresponding cyclotomic-prime construction is in Martin--Reiner,
+[Theorem 1 and Remark 6](https://www-users.cse.umn.edu/~reiner/Papers/cyclotomic.pdf).
+These specific primary passages were inspected; the full papers were
+not audited. The [ordered continuation](cographic_order_ideals.md)
+extends the polynomial realization to all fields and separates the
+remaining coherence count from that known dictionary. For equal periods
+it proves a two-vertex branching constraint and a linear-size weighted
+candidate graph. No all-period fan count or novelty conclusion follows.
+
 ## What this does and does not permit next
 
 This family has an exact rank rule over the full weight orthant. Counting
