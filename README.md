@@ -230,7 +230,16 @@ for odd coprime periods ordered `r>t>s`, half-gaps `h=(r-s)/2` and
 give regional bounds `O(n^2 sqrt(h*h0))` and `O(n^2 sqrt(e*e0))`.
 These classical volume corollaries close additional unbounded-price regions;
 they do not count the remaining joint shell/circuit refinements or establish
-an unrestricted advance. The exact box-residual transfer
+an unrestricted advance. Two further period identities now cover the whole
+positive price domain with four common boxes. They give `O(sqrt(H)*n^(7/3))`
+initial ideals for comparable periods, where `H` is the largest normalized
+half-gap; bounded normalized gaps include fixed gap ratios and coprime
+arithmetic progressions. This is a global restricted bound, above the generic
+scale and derived from classical profile geometry. One actual cover needs
+a box of size `Omega(M^(5/3))` near an explicit arithmetic ray, although its
+quotient has only `O(n)` infinitesimal refinements at that ray. A sharper
+global count therefore needs rank information beyond these cover boxes.
+The exact box-residual transfer
 is identified with established linkage, while every nonbox group cover
 has a residual/initial mismatch measured by its number of maximal monomials.
 The additive prime-power class is now classified separately: at length

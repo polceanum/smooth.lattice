@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "command": "python3 -B scripts/run_periodic_quotient_checks.py",
-  "scope": "Exact periodic-cover, arithmetic, fixed-cover trace and candidate-filter controls. Direct norm quotients verify the nonbox socle defect. Sector-wide surface budgets, thin-cover obstructions, socle-free dyadic shell bounds and their logarithmic obstruction are checked. Period-gap identities, common regional boxes and active-generator slab obstructions are independently checked by monic division and primal/dual bases. No unrestricted asymptotic separation, full nonbox refinement-fan count or novelty certificate.",
+  "scope": "Exact periodic-cover, arithmetic, fixed-cover trace and candidate-filter controls. Direct norm quotients verify the nonbox socle defect. Sector-wide surface budgets, thin-cover obstructions, socle-free dyadic shell bounds and their logarithmic obstruction are checked. Period-gap identities, common regional boxes and active-generator slab obstructions are independently checked by monic division and primal/dual bases. Four global price sectors and a uniform large-box obstruction at a positive arithmetic ray are checked. No unrestricted asymptotic separation, sharp nonbox refinement-fan count or novelty certificate.",
   "source_sha256": {
-    "docs/periodic_quotient_arithmetic.md": "63f0932a73945bf66ebadeb5071bf626cbbfe77d79b22dc3093739a522c34591",
-    "scripts/run_periodic_quotient_checks.py": "09b7a1270d1583983cc73d9ad3b3a59092eec48694165d1cb18b347c95d8ef83",
+    "docs/periodic_quotient_arithmetic.md": "940878479ce32f65cf04860f0f899d7c35c02998d1562c55b77ab29b43dd3bc2",
+    "scripts/run_periodic_quotient_checks.py": "c5afe23924fe7b319be107ee3120d2cc6436598440e89c34ededef850df83ac8",
     "scripts/run_cyclotomic_price_checks.py": "de90c77f6d91e700a4f7b5adbbdad98024f69594df2fe1e0de933aaa5e0770ef",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
     "scripts/run_nested_jet_checks.py": "aa1c4a9b69de0d0cfa54c381c4f83ebaa983cdbfd7b298af40b32603a079648c"
@@ -128468,6 +128468,2034 @@
     ],
     "scope": "The regional count is a classical lattice-volume corollary using explicit period identities. The all-field active-generator obstruction defeats cube-only corank pruning, not the joint shell bound. No infinite prime constellation, full fan count, unrestricted improvement or novelty certificate is asserted."
   },
+  "global_gap_controls": {
+    "global_sector_controls": [
+      {
+        "periods": [
+          13,
+          7,
+          11
+        ],
+        "normalized_half_gaps": [
+          3,
+          1,
+          2
+        ],
+        "x_more_expensive_in_xy_relation": false,
+        "x_more_expensive_in_xz_relation": false,
+        "weight": [
+          530379565783,
+          225009514759,
+          835753630817
+        ],
+        "quotient_length": 720,
+        "pure_axis_degrees": [
+          72,
+          120,
+          60
+        ],
+        "global_sector_box_sides": [
+          72,
+          33,
+          33
+        ],
+        "global_sector_box_volume": 78408,
+        "dense_cover_sector_box_sides": [
+          91,
+          33,
+          33
+        ],
+        "dense_cover_sector_box_volume": 99099,
+        "direct_cover_length": 1001
+      },
+      {
+        "periods": [
+          13,
+          7,
+          11
+        ],
+        "normalized_half_gaps": [
+          3,
+          1,
+          2
+        ],
+        "x_more_expensive_in_xy_relation": false,
+        "x_more_expensive_in_xz_relation": true,
+        "weight": [
+          530379565783,
+          225009514759,
+          208941416711
+        ],
+        "quotient_length": 720,
+        "pure_axis_degrees": [
+          72,
+          120,
+          60
+        ],
+        "global_sector_box_sides": [
+          26,
+          33,
+          60
+        ],
+        "global_sector_box_volume": 51480,
+        "dense_cover_sector_box_sides": [
+          26,
+          33,
+          77
+        ],
+        "dense_cover_sector_box_volume": 66066,
+        "direct_cover_length": 1001
+      },
+      {
+        "periods": [
+          13,
+          7,
+          11
+        ],
+        "normalized_half_gaps": [
+          3,
+          1,
+          2
+        ],
+        "x_more_expensive_in_xy_relation": true,
+        "x_more_expensive_in_xz_relation": false,
+        "weight": [
+          530379565783,
+          56252380192,
+          835753630817
+        ],
+        "quotient_length": 720,
+        "pure_axis_degrees": [
+          72,
+          120,
+          60
+        ],
+        "global_sector_box_sides": [
+          7,
+          120,
+          33
+        ],
+        "global_sector_box_volume": 27720,
+        "dense_cover_sector_box_sides": [
+          7,
+          143,
+          33
+        ],
+        "dense_cover_sector_box_volume": 33033,
+        "direct_cover_length": 1001
+      },
+      {
+        "periods": [
+          13,
+          7,
+          11
+        ],
+        "normalized_half_gaps": [
+          3,
+          1,
+          2
+        ],
+        "x_more_expensive_in_xy_relation": true,
+        "x_more_expensive_in_xz_relation": true,
+        "weight": [
+          530379565783,
+          56252380192,
+          208941416711
+        ],
+        "quotient_length": 720,
+        "pure_axis_degrees": [
+          72,
+          120,
+          60
+        ],
+        "global_sector_box_sides": [
+          7,
+          120,
+          60
+        ],
+        "global_sector_box_volume": 50400,
+        "dense_cover_sector_box_sides": [
+          7,
+          143,
+          77
+        ],
+        "dense_cover_sector_box_volume": 77077,
+        "direct_cover_length": 1001
+      },
+      {
+        "periods": [
+          19,
+          13,
+          17
+        ],
+        "normalized_half_gaps": [
+          3,
+          1,
+          2
+        ],
+        "x_more_expensive_in_xy_relation": false,
+        "x_more_expensive_in_xz_relation": false,
+        "weight": [
+          60434219210299,
+          30809601958747,
+          90058907013449
+        ],
+        "quotient_length": 3456,
+        "pure_axis_degrees": [
+          216,
+          288,
+          192
+        ],
+        "global_sector_box_sides": [
+          216,
+          51,
+          51
+        ],
+        "global_sector_box_volume": 561816,
+        "dense_cover_sector_box_sides": [
+          247,
+          51,
+          51
+        ],
+        "dense_cover_sector_box_volume": 642447,
+        "direct_cover_length": 4199
+      },
+      {
+        "periods": [
+          19,
+          13,
+          17
+        ],
+        "normalized_half_gaps": [
+          3,
+          1,
+          2
+        ],
+        "x_more_expensive_in_xy_relation": false,
+        "x_more_expensive_in_xz_relation": true,
+        "weight": [
+          60434219210299,
+          30809601958747,
+          22514779660763
+        ],
+        "quotient_length": 3456,
+        "pure_axis_degrees": [
+          216,
+          288,
+          192
+        ],
+        "global_sector_box_sides": [
+          38,
+          51,
+          192
+        ],
+        "global_sector_box_volume": 372096,
+        "dense_cover_sector_box_sides": [
+          38,
+          51,
+          221
+        ],
+        "dense_cover_sector_box_volume": 428298,
+        "direct_cover_length": 4199
+      },
+      {
+        "periods": [
+          19,
+          13,
+          17
+        ],
+        "normalized_half_gaps": [
+          3,
+          1,
+          2
+        ],
+        "x_more_expensive_in_xy_relation": true,
+        "x_more_expensive_in_xz_relation": false,
+        "weight": [
+          60434219210299,
+          7702400495986,
+          90058907013449
+        ],
+        "quotient_length": 3456,
+        "pure_axis_degrees": [
+          216,
+          288,
+          192
+        ],
+        "global_sector_box_sides": [
+          13,
+          288,
+          51
+        ],
+        "global_sector_box_volume": 190944,
+        "dense_cover_sector_box_sides": [
+          13,
+          323,
+          51
+        ],
+        "dense_cover_sector_box_volume": 214149,
+        "direct_cover_length": 4199
+      },
+      {
+        "periods": [
+          19,
+          13,
+          17
+        ],
+        "normalized_half_gaps": [
+          3,
+          1,
+          2
+        ],
+        "x_more_expensive_in_xy_relation": true,
+        "x_more_expensive_in_xz_relation": true,
+        "weight": [
+          60434219210299,
+          7702400495986,
+          22514779660763
+        ],
+        "quotient_length": 3456,
+        "pure_axis_degrees": [
+          216,
+          288,
+          192
+        ],
+        "global_sector_box_sides": [
+          13,
+          288,
+          192
+        ],
+        "global_sector_box_volume": 718848,
+        "dense_cover_sector_box_sides": [
+          13,
+          323,
+          221
+        ],
+        "dense_cover_sector_box_volume": 927979,
+        "direct_cover_length": 4199
+      },
+      {
+        "periods": [
+          25,
+          19,
+          23
+        ],
+        "normalized_half_gaps": [
+          3,
+          1,
+          2
+        ],
+        "x_more_expensive_in_xy_relation": false,
+        "x_more_expensive_in_xz_relation": false,
+        "weight": [
+          1439769726211039,
+          792916660833727,
+          2086623269076401
+        ],
+        "quotient_length": 9504,
+        "pure_axis_degrees": [
+          432,
+          528,
+          396
+        ],
+        "global_sector_box_sides": [
+          432,
+          69,
+          69
+        ],
+        "global_sector_box_volume": 2056752,
+        "dense_cover_sector_box_sides": [
+          475,
+          69,
+          69
+        ],
+        "dense_cover_sector_box_volume": 2261475
+      },
+      {
+        "periods": [
+          25,
+          19,
+          23
+        ],
+        "normalized_half_gaps": [
+          3,
+          1,
+          2
+        ],
+        "x_more_expensive_in_xy_relation": false,
+        "x_more_expensive_in_xz_relation": true,
+        "weight": [
+          1439769726211039,
+          792916660833727,
+          521656175368751
+        ],
+        "quotient_length": 9504,
+        "pure_axis_degrees": [
+          432,
+          528,
+          396
+        ],
+        "global_sector_box_sides": [
+          50,
+          69,
+          396
+        ],
+        "global_sector_box_volume": 1366200,
+        "dense_cover_sector_box_sides": [
+          50,
+          69,
+          437
+        ],
+        "dense_cover_sector_box_volume": 1507650
+      },
+      {
+        "periods": [
+          25,
+          19,
+          23
+        ],
+        "normalized_half_gaps": [
+          3,
+          1,
+          2
+        ],
+        "x_more_expensive_in_xy_relation": true,
+        "x_more_expensive_in_xz_relation": false,
+        "weight": [
+          1439769726211039,
+          198229165224820,
+          2086623269076401
+        ],
+        "quotient_length": 9504,
+        "pure_axis_degrees": [
+          432,
+          528,
+          396
+        ],
+        "global_sector_box_sides": [
+          19,
+          528,
+          69
+        ],
+        "global_sector_box_volume": 692208,
+        "dense_cover_sector_box_sides": [
+          19,
+          575,
+          69
+        ],
+        "dense_cover_sector_box_volume": 753825
+      },
+      {
+        "periods": [
+          25,
+          19,
+          23
+        ],
+        "normalized_half_gaps": [
+          3,
+          1,
+          2
+        ],
+        "x_more_expensive_in_xy_relation": true,
+        "x_more_expensive_in_xz_relation": true,
+        "weight": [
+          1439769726211039,
+          198229165224820,
+          521656175368751
+        ],
+        "quotient_length": 9504,
+        "pure_axis_degrees": [
+          432,
+          528,
+          396
+        ],
+        "global_sector_box_sides": [
+          19,
+          528,
+          396
+        ],
+        "global_sector_box_volume": 3972672,
+        "dense_cover_sector_box_sides": [
+          19,
+          575,
+          437
+        ],
+        "dense_cover_sector_box_volume": 4774225
+      },
+      {
+        "periods": [
+          43,
+          37,
+          41
+        ],
+        "normalized_half_gaps": [
+          3,
+          1,
+          2
+        ],
+        "x_more_expensive_in_xy_relation": false,
+        "x_more_expensive_in_xz_relation": false,
+        "weight": [
+          546257219578060363,
+          328642554868231819,
+          763871901308613737
+        ],
+        "quotient_length": 60480,
+        "pure_axis_degrees": [
+          1512,
+          1680,
+          1440
+        ],
+        "global_sector_box_sides": [
+          1512,
+          123,
+          123
+        ],
+        "global_sector_box_volume": 22875048,
+        "dense_cover_sector_box_sides": [
+          1591,
+          123,
+          123
+        ],
+        "dense_cover_sector_box_volume": 24070239
+      },
+      {
+        "periods": [
+          43,
+          37,
+          41
+        ],
+        "normalized_half_gaps": [
+          3,
+          1,
+          2
+        ],
+        "x_more_expensive_in_xy_relation": false,
+        "x_more_expensive_in_xz_relation": true,
+        "weight": [
+          546257219578060363,
+          328642554868231819,
+          190967988092599211
+        ],
+        "quotient_length": 60480,
+        "pure_axis_degrees": [
+          1512,
+          1680,
+          1440
+        ],
+        "global_sector_box_sides": [
+          86,
+          123,
+          1440
+        ],
+        "global_sector_box_volume": 15232320,
+        "dense_cover_sector_box_sides": [
+          86,
+          123,
+          1517
+        ],
+        "dense_cover_sector_box_volume": 16046826
+      },
+      {
+        "periods": [
+          43,
+          37,
+          41
+        ],
+        "normalized_half_gaps": [
+          3,
+          1,
+          2
+        ],
+        "x_more_expensive_in_xy_relation": true,
+        "x_more_expensive_in_xz_relation": false,
+        "weight": [
+          546257219578060363,
+          82160638717155802,
+          763871901308613737
+        ],
+        "quotient_length": 60480,
+        "pure_axis_degrees": [
+          1512,
+          1680,
+          1440
+        ],
+        "global_sector_box_sides": [
+          37,
+          1680,
+          123
+        ],
+        "global_sector_box_volume": 7645680,
+        "dense_cover_sector_box_sides": [
+          37,
+          1763,
+          123
+        ],
+        "dense_cover_sector_box_volume": 8023413
+      },
+      {
+        "periods": [
+          43,
+          37,
+          41
+        ],
+        "normalized_half_gaps": [
+          3,
+          1,
+          2
+        ],
+        "x_more_expensive_in_xy_relation": true,
+        "x_more_expensive_in_xz_relation": true,
+        "weight": [
+          546257219578060363,
+          82160638717155802,
+          190967988092599211
+        ],
+        "quotient_length": 60480,
+        "pure_axis_degrees": [
+          1512,
+          1680,
+          1440
+        ],
+        "global_sector_box_sides": [
+          37,
+          1680,
+          1440
+        ],
+        "global_sector_box_volume": 89510400,
+        "dense_cover_sector_box_sides": [
+          37,
+          1763,
+          1517
+        ],
+        "dense_cover_sector_box_volume": 98955427
+      },
+      {
+        "periods": [
+          37,
+          17,
+          29
+        ],
+        "normalized_half_gaps": [
+          5,
+          2,
+          3
+        ],
+        "x_more_expensive_in_xy_relation": false,
+        "x_more_expensive_in_xz_relation": false,
+        "weight": [
+          14082171448270231,
+          6604052817156315,
+          21560291410429917
+        ],
+        "quotient_length": 16128,
+        "pure_axis_degrees": [
+          576,
+          1008,
+          448
+        ],
+        "global_sector_box_sides": [
+          576,
+          145,
+          145
+        ],
+        "global_sector_box_volume": 12110400,
+        "dense_cover_sector_box_sides": [
+          629,
+          145,
+          145
+        ],
+        "dense_cover_sector_box_volume": 13224725
+      },
+      {
+        "periods": [
+          37,
+          17,
+          29
+        ],
+        "normalized_half_gaps": [
+          5,
+          2,
+          3
+        ],
+        "x_more_expensive_in_xy_relation": false,
+        "x_more_expensive_in_xz_relation": true,
+        "weight": [
+          14082171448270231,
+          6604052817156315,
+          5390073850864446
+        ],
+        "quotient_length": 16128,
+        "pure_axis_degrees": [
+          576,
+          1008,
+          448
+        ],
+        "global_sector_box_sides": [
+          111,
+          145,
+          448
+        ],
+        "global_sector_box_volume": 7210560,
+        "dense_cover_sector_box_sides": [
+          111,
+          145,
+          493
+        ],
+        "dense_cover_sector_box_volume": 7934835
+      },
+      {
+        "periods": [
+          37,
+          17,
+          29
+        ],
+        "normalized_half_gaps": [
+          5,
+          2,
+          3
+        ],
+        "x_more_expensive_in_xy_relation": true,
+        "x_more_expensive_in_xz_relation": false,
+        "weight": [
+          14082171448270231,
+          1651013204316441,
+          21560291410429917
+        ],
+        "quotient_length": 16128,
+        "pure_axis_degrees": [
+          576,
+          1008,
+          448
+        ],
+        "global_sector_box_sides": [
+          34,
+          1008,
+          145
+        ],
+        "global_sector_box_volume": 4969440,
+        "dense_cover_sector_box_sides": [
+          34,
+          1073,
+          145
+        ],
+        "dense_cover_sector_box_volume": 5289890
+      },
+      {
+        "periods": [
+          37,
+          17,
+          29
+        ],
+        "normalized_half_gaps": [
+          5,
+          2,
+          3
+        ],
+        "x_more_expensive_in_xy_relation": true,
+        "x_more_expensive_in_xz_relation": true,
+        "weight": [
+          14082171448270231,
+          1651013204316441,
+          5390073850864446
+        ],
+        "quotient_length": 16128,
+        "pure_axis_degrees": [
+          576,
+          1008,
+          448
+        ],
+        "global_sector_box_sides": [
+          34,
+          1008,
+          448
+        ],
+        "global_sector_box_volume": 15353856,
+        "dense_cover_sector_box_sides": [
+          34,
+          1073,
+          493
+        ],
+        "dense_cover_sector_box_volume": 17985626
+      },
+      {
+        "periods": [
+          35,
+          23,
+          29
+        ],
+        "normalized_half_gaps": [
+          2,
+          1,
+          1
+        ],
+        "x_more_expensive_in_xy_relation": false,
+        "x_more_expensive_in_xz_relation": false,
+        "weight": [
+          11807488076815037,
+          9364559509244823,
+          14250418824481421
+        ],
+        "quotient_length": 20944,
+        "pure_axis_degrees": [
+          748,
+          952,
+          616
+        ],
+        "global_sector_box_sides": [
+          748,
+          58,
+          58
+        ],
+        "global_sector_box_volume": 2516272,
+        "dense_cover_sector_box_sides": [
+          805,
+          58,
+          58
+        ],
+        "dense_cover_sector_box_volume": 2708020
+      },
+      {
+        "periods": [
+          35,
+          23,
+          29
+        ],
+        "normalized_half_gaps": [
+          2,
+          1,
+          1
+        ],
+        "x_more_expensive_in_xy_relation": false,
+        "x_more_expensive_in_xz_relation": true,
+        "weight": [
+          11807488076815037,
+          9364559509244823,
+          3562606341157466
+        ],
+        "quotient_length": 20944,
+        "pure_axis_degrees": [
+          748,
+          952,
+          616
+        ],
+        "global_sector_box_sides": [
+          35,
+          58,
+          616
+        ],
+        "global_sector_box_volume": 1250480,
+        "dense_cover_sector_box_sides": [
+          35,
+          58,
+          667
+        ],
+        "dense_cover_sector_box_volume": 1354010
+      },
+      {
+        "periods": [
+          35,
+          23,
+          29
+        ],
+        "normalized_half_gaps": [
+          2,
+          1,
+          1
+        ],
+        "x_more_expensive_in_xy_relation": true,
+        "x_more_expensive_in_xz_relation": false,
+        "weight": [
+          11807488076815037,
+          2341139877346224,
+          14250418824481421
+        ],
+        "quotient_length": 20944,
+        "pure_axis_degrees": [
+          748,
+          952,
+          616
+        ],
+        "global_sector_box_sides": [
+          23,
+          952,
+          58
+        ],
+        "global_sector_box_volume": 1269968,
+        "dense_cover_sector_box_sides": [
+          23,
+          1015,
+          58
+        ],
+        "dense_cover_sector_box_volume": 1354010
+      },
+      {
+        "periods": [
+          35,
+          23,
+          29
+        ],
+        "normalized_half_gaps": [
+          2,
+          1,
+          1
+        ],
+        "x_more_expensive_in_xy_relation": true,
+        "x_more_expensive_in_xz_relation": true,
+        "weight": [
+          11807488076815037,
+          2341139877346224,
+          3562606341157466
+        ],
+        "quotient_length": 20944,
+        "pure_axis_degrees": [
+          748,
+          952,
+          616
+        ],
+        "global_sector_box_sides": [
+          23,
+          952,
+          616
+        ],
+        "global_sector_box_volume": 13487936,
+        "dense_cover_sector_box_sides": [
+          23,
+          1015,
+          667
+        ],
+        "dense_cover_sector_box_volume": 15571115
+      },
+      {
+        "periods": [
+          41,
+          17,
+          23
+        ],
+        "normalized_half_gaps": [
+          4,
+          3,
+          1
+        ],
+        "x_more_expensive_in_xy_relation": false,
+        "x_more_expensive_in_xz_relation": false,
+        "weight": [
+          6064992778424649,
+          6724231123937651,
+          5405755460979677
+        ],
+        "quotient_length": 14080,
+        "pure_axis_degrees": [
+          640,
+          880,
+          352
+        ],
+        "global_sector_box_sides": [
+          640,
+          92,
+          92
+        ],
+        "global_sector_box_volume": 5416960,
+        "dense_cover_sector_box_sides": [
+          697,
+          92,
+          92
+        ],
+        "dense_cover_sector_box_volume": 5899408
+      },
+      {
+        "periods": [
+          41,
+          17,
+          23
+        ],
+        "normalized_half_gaps": [
+          4,
+          3,
+          1
+        ],
+        "x_more_expensive_in_xy_relation": false,
+        "x_more_expensive_in_xz_relation": true,
+        "weight": [
+          6064992778424649,
+          6724231123937651,
+          1351439636271896
+        ],
+        "quotient_length": 14080,
+        "pure_axis_degrees": [
+          640,
+          880,
+          352
+        ],
+        "global_sector_box_sides": [
+          41,
+          92,
+          352
+        ],
+        "global_sector_box_volume": 1327744,
+        "dense_cover_sector_box_sides": [
+          41,
+          92,
+          391
+        ],
+        "dense_cover_sector_box_volume": 1474852
+      },
+      {
+        "periods": [
+          41,
+          17,
+          23
+        ],
+        "normalized_half_gaps": [
+          4,
+          3,
+          1
+        ],
+        "x_more_expensive_in_xy_relation": true,
+        "x_more_expensive_in_xz_relation": false,
+        "weight": [
+          6064992778424649,
+          1681057781008460,
+          5405755460979677
+        ],
+        "quotient_length": 14080,
+        "pure_axis_degrees": [
+          640,
+          880,
+          352
+        ],
+        "global_sector_box_sides": [
+          51,
+          880,
+          92
+        ],
+        "global_sector_box_volume": 4128960,
+        "dense_cover_sector_box_sides": [
+          51,
+          943,
+          92
+        ],
+        "dense_cover_sector_box_volume": 4424556
+      },
+      {
+        "periods": [
+          41,
+          17,
+          23
+        ],
+        "normalized_half_gaps": [
+          4,
+          3,
+          1
+        ],
+        "x_more_expensive_in_xy_relation": true,
+        "x_more_expensive_in_xz_relation": true,
+        "weight": [
+          6064992778424649,
+          1681057781008460,
+          1351439636271896
+        ],
+        "quotient_length": 14080,
+        "pure_axis_degrees": [
+          640,
+          880,
+          352
+        ],
+        "global_sector_box_sides": [
+          41,
+          880,
+          352
+        ],
+        "global_sector_box_volume": 12700160,
+        "dense_cover_sector_box_sides": [
+          41,
+          943,
+          391
+        ],
+        "dense_cover_sector_box_volume": 15117233
+      },
+      {
+        "periods": [
+          21,
+          5,
+          11
+        ],
+        "normalized_half_gaps": [
+          8,
+          5,
+          3
+        ],
+        "x_more_expensive_in_xy_relation": false,
+        "x_more_expensive_in_xz_relation": false,
+        "weight": [
+          2172263496657,
+          1234240625411,
+          3110291710933
+        ],
+        "quotient_length": 800,
+        "pure_axis_degrees": [
+          80,
+          200,
+          40
+        ],
+        "global_sector_box_sides": [
+          80,
+          88,
+          40
+        ],
+        "global_sector_box_volume": 281600,
+        "dense_cover_sector_box_sides": [
+          105,
+          88,
+          55
+        ],
+        "dense_cover_sector_box_volume": 508200
+      },
+      {
+        "periods": [
+          21,
+          5,
+          11
+        ],
+        "normalized_half_gaps": [
+          8,
+          5,
+          3
+        ],
+        "x_more_expensive_in_xy_relation": false,
+        "x_more_expensive_in_xz_relation": true,
+        "weight": [
+          2172263496657,
+          1234240625411,
+          777576933274
+        ],
+        "quotient_length": 800,
+        "pure_axis_degrees": [
+          80,
+          200,
+          40
+        ],
+        "global_sector_box_sides": [
+          63,
+          88,
+          40
+        ],
+        "global_sector_box_volume": 221760,
+        "dense_cover_sector_box_sides": [
+          63,
+          88,
+          55
+        ],
+        "dense_cover_sector_box_volume": 304920
+      },
+      {
+        "periods": [
+          21,
+          5,
+          11
+        ],
+        "normalized_half_gaps": [
+          8,
+          5,
+          3
+        ],
+        "x_more_expensive_in_xy_relation": true,
+        "x_more_expensive_in_xz_relation": false,
+        "weight": [
+          2172263496657,
+          308560158086,
+          3110291710933
+        ],
+        "quotient_length": 800,
+        "pure_axis_degrees": [
+          80,
+          200,
+          40
+        ],
+        "global_sector_box_sides": [
+          25,
+          200,
+          40
+        ],
+        "global_sector_box_volume": 200000,
+        "dense_cover_sector_box_sides": [
+          25,
+          231,
+          55
+        ],
+        "dense_cover_sector_box_volume": 317625
+      },
+      {
+        "periods": [
+          21,
+          5,
+          11
+        ],
+        "normalized_half_gaps": [
+          8,
+          5,
+          3
+        ],
+        "x_more_expensive_in_xy_relation": true,
+        "x_more_expensive_in_xz_relation": true,
+        "weight": [
+          2172263496657,
+          308560158086,
+          777576933274
+        ],
+        "quotient_length": 800,
+        "pure_axis_degrees": [
+          80,
+          200,
+          40
+        ],
+        "global_sector_box_sides": [
+          25,
+          200,
+          40
+        ],
+        "global_sector_box_volume": 200000,
+        "dense_cover_sector_box_sides": [
+          25,
+          231,
+          55
+        ],
+        "dense_cover_sector_box_volume": 317625
+      },
+      {
+        "periods": [
+          13,
+          5,
+          9
+        ],
+        "normalized_half_gaps": [
+          2,
+          1,
+          1
+        ],
+        "x_more_expensive_in_xy_relation": false,
+        "x_more_expensive_in_xz_relation": false,
+        "weight": [
+          57806035597,
+          32114465391,
+          83498978213
+        ],
+        "quotient_length": 384,
+        "pure_axis_degrees": [
+          48,
+          96,
+          32
+        ],
+        "global_sector_box_sides": [
+          48,
+          18,
+          18
+        ],
+        "global_sector_box_volume": 15552,
+        "dense_cover_sector_box_sides": [
+          65,
+          18,
+          18
+        ],
+        "dense_cover_sector_box_volume": 21060
+      },
+      {
+        "periods": [
+          13,
+          5,
+          9
+        ],
+        "normalized_half_gaps": [
+          2,
+          1,
+          1
+        ],
+        "x_more_expensive_in_xy_relation": false,
+        "x_more_expensive_in_xz_relation": true,
+        "weight": [
+          57806035597,
+          32114465391,
+          20875772984
+        ],
+        "quotient_length": 384,
+        "pure_axis_degrees": [
+          48,
+          96,
+          32
+        ],
+        "global_sector_box_sides": [
+          13,
+          18,
+          32
+        ],
+        "global_sector_box_volume": 7488,
+        "dense_cover_sector_box_sides": [
+          13,
+          18,
+          45
+        ],
+        "dense_cover_sector_box_volume": 10530
+      },
+      {
+        "periods": [
+          13,
+          5,
+          9
+        ],
+        "normalized_half_gaps": [
+          2,
+          1,
+          1
+        ],
+        "x_more_expensive_in_xy_relation": true,
+        "x_more_expensive_in_xz_relation": false,
+        "weight": [
+          57806035597,
+          8028617226,
+          83498978213
+        ],
+        "quotient_length": 384,
+        "pure_axis_degrees": [
+          48,
+          96,
+          32
+        ],
+        "global_sector_box_sides": [
+          5,
+          96,
+          18
+        ],
+        "global_sector_box_volume": 8640,
+        "dense_cover_sector_box_sides": [
+          5,
+          117,
+          18
+        ],
+        "dense_cover_sector_box_volume": 10530
+      },
+      {
+        "periods": [
+          13,
+          5,
+          9
+        ],
+        "normalized_half_gaps": [
+          2,
+          1,
+          1
+        ],
+        "x_more_expensive_in_xy_relation": true,
+        "x_more_expensive_in_xz_relation": true,
+        "weight": [
+          57806035597,
+          8028617226,
+          20875772984
+        ],
+        "quotient_length": 384,
+        "pure_axis_degrees": [
+          48,
+          96,
+          32
+        ],
+        "global_sector_box_sides": [
+          5,
+          96,
+          32
+        ],
+        "global_sector_box_volume": 15360,
+        "dense_cover_sector_box_sides": [
+          5,
+          117,
+          45
+        ],
+        "dense_cover_sector_box_volume": 26325
+      },
+      {
+        "periods": [
+          29,
+          17,
+          23
+        ],
+        "normalized_half_gaps": [
+          2,
+          1,
+          1
+        ],
+        "x_more_expensive_in_xy_relation": false,
+        "x_more_expensive_in_xz_relation": false,
+        "weight": [
+          1073147777261189,
+          793196183215731,
+          1353099885666365
+        ],
+        "quotient_length": 9856,
+        "pure_axis_degrees": [
+          448,
+          616,
+          352
+        ],
+        "global_sector_box_sides": [
+          448,
+          46,
+          46
+        ],
+        "global_sector_box_volume": 947968,
+        "dense_cover_sector_box_sides": [
+          493,
+          46,
+          46
+        ],
+        "dense_cover_sector_box_volume": 1043188
+      },
+      {
+        "periods": [
+          29,
+          17,
+          23
+        ],
+        "normalized_half_gaps": [
+          2,
+          1,
+          1
+        ],
+        "x_more_expensive_in_xy_relation": false,
+        "x_more_expensive_in_xz_relation": true,
+        "weight": [
+          1073147777261189,
+          793196183215731,
+          338275357169372
+        ],
+        "quotient_length": 9856,
+        "pure_axis_degrees": [
+          448,
+          616,
+          352
+        ],
+        "global_sector_box_sides": [
+          29,
+          46,
+          352
+        ],
+        "global_sector_box_volume": 469568,
+        "dense_cover_sector_box_sides": [
+          29,
+          46,
+          391
+        ],
+        "dense_cover_sector_box_volume": 521594
+      },
+      {
+        "periods": [
+          29,
+          17,
+          23
+        ],
+        "normalized_half_gaps": [
+          2,
+          1,
+          1
+        ],
+        "x_more_expensive_in_xy_relation": true,
+        "x_more_expensive_in_xz_relation": false,
+        "weight": [
+          1073147777261189,
+          198299045820942,
+          1353099885666365
+        ],
+        "quotient_length": 9856,
+        "pure_axis_degrees": [
+          448,
+          616,
+          352
+        ],
+        "global_sector_box_sides": [
+          17,
+          616,
+          46
+        ],
+        "global_sector_box_volume": 481712,
+        "dense_cover_sector_box_sides": [
+          17,
+          667,
+          46
+        ],
+        "dense_cover_sector_box_volume": 521594
+      },
+      {
+        "periods": [
+          29,
+          17,
+          23
+        ],
+        "normalized_half_gaps": [
+          2,
+          1,
+          1
+        ],
+        "x_more_expensive_in_xy_relation": true,
+        "x_more_expensive_in_xz_relation": true,
+        "weight": [
+          1073147777261189,
+          198299045820942,
+          338275357169372
+        ],
+        "quotient_length": 9856,
+        "pure_axis_degrees": [
+          448,
+          616,
+          352
+        ],
+        "global_sector_box_sides": [
+          17,
+          616,
+          352
+        ],
+        "global_sector_box_volume": 3686144,
+        "dense_cover_sector_box_sides": [
+          17,
+          667,
+          391
+        ],
+        "dense_cover_sector_box_volume": 4433549
+      }
+    ],
+    "critical_ray_box_obstruction": [
+      {
+        "parameter": 1,
+        "periods": [
+          13,
+          7,
+          11
+        ],
+        "cover_length": 1001,
+        "weight": [
+          88396594298,
+          16072110057,
+          16076120063
+        ],
+        "unperturbed_ray": [
+          11,
+          2,
+          2
+        ],
+        "guaranteed_axis_monomials": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "guaranteed_box_volume": 8,
+        "box_to_cover_lower_ratio": "8/1001",
+        "actual_cover_box_sides": [
+          7,
+          39,
+          35
+        ],
+        "actual_cover_box_volume": 9555,
+        "actual_box_to_cover_ratio": "105/11",
+        "independent_low_score_controls": [
+          {
+            "target": [
+              1,
+              0,
+              0
+            ],
+            "all_low_score_representations": [
+              [
+                1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "target": [
+              0,
+              1,
+              0
+            ],
+            "all_low_score_representations": [
+              [
+                0,
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "target": [
+              0,
+              0,
+              1
+            ],
+            "all_low_score_representations": [
+              [
+                0,
+                0,
+                1
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "parameter": 2,
+        "periods": [
+          19,
+          13,
+          17
+        ],
+        "cover_length": 4199,
+        "weight": [
+          10072369868384,
+          1184984698797,
+          1185055233599
+        ],
+        "unperturbed_ray": [
+          17,
+          2,
+          2
+        ],
+        "guaranteed_axis_monomials": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            0,
+            4
+          ]
+        ],
+        "guaranteed_box_volume": 75,
+        "box_to_cover_lower_ratio": "75/4199",
+        "actual_cover_box_sides": [
+          13,
+          95,
+          91
+        ],
+        "actual_cover_box_volume": 112385,
+        "actual_box_to_cover_ratio": "455/17",
+        "independent_low_score_controls": [
+          {
+            "target": [
+              2,
+              0,
+              0
+            ],
+            "all_low_score_representations": [
+              [
+                0,
+                2,
+                15
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "target": [
+              0,
+              4,
+              0
+            ],
+            "all_low_score_representations": [
+              [
+                0,
+                4,
+                0
+              ]
+            ]
+          },
+          {
+            "target": [
+              0,
+              0,
+              4
+            ],
+            "all_low_score_representations": [
+              [
+                0,
+                0,
+                4
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "parameter": 3,
+        "periods": [
+          25,
+          19,
+          23
+        ],
+        "cover_length": 10925,
+        "weight": [
+          239961621035174,
+          20866227937953,
+          20866705382303
+        ],
+        "unperturbed_ray": [
+          23,
+          2,
+          2
+        ],
+        "guaranteed_axis_monomials": [
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            0,
+            9,
+            0
+          ],
+          [
+            0,
+            0,
+            9
+          ]
+        ],
+        "guaranteed_box_volume": 400,
+        "box_to_cover_lower_ratio": "16/437",
+        "actual_cover_box_sides": [
+          17,
+          175,
+          171
+        ],
+        "actual_cover_box_volume": 508725,
+        "actual_box_to_cover_ratio": "1071/23",
+        "independent_low_score_controls": [
+          {
+            "target": [
+              3,
+              0,
+              0
+            ],
+            "all_low_score_representations": [
+              [
+                1,
+                2,
+                21
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "target": [
+              0,
+              9,
+              0
+            ],
+            "all_low_score_representations": [
+              [
+                0,
+                9,
+                0
+              ]
+            ]
+          },
+          {
+            "target": [
+              0,
+              0,
+              9
+            ],
+            "all_low_score_representations": [
+              [
+                0,
+                0,
+                9
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "parameter": 6,
+        "periods": [
+          43,
+          37,
+          41
+        ],
+        "cover_length": 65231,
+        "weight": [
+          91042869929676728,
+          4441115606456157,
+          4441132626920063
+        ],
+        "unperturbed_ray": [
+          41,
+          2,
+          2
+        ],
+        "guaranteed_axis_monomials": [
+          [
+            6,
+            0,
+            0
+          ],
+          [
+            0,
+            36,
+            0
+          ],
+          [
+            0,
+            0,
+            36
+          ]
+        ],
+        "guaranteed_box_volume": 9583,
+        "box_to_cover_lower_ratio": "259/1763",
+        "actual_cover_box_sides": [
+          29,
+          559,
+          555
+        ],
+        "actual_cover_box_volume": 8997105,
+        "actual_box_to_cover_ratio": "5655/41",
+        "independent_low_score_controls": [
+          {
+            "target": [
+              6,
+              0,
+              0
+            ],
+            "all_low_score_representations": [
+              [
+                0,
+                6,
+                117
+              ],
+              [
+                2,
+                4,
+                78
+              ],
+              [
+                4,
+                2,
+                39
+              ],
+              [
+                6,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "target": [
+              0,
+              36,
+              0
+            ],
+            "all_low_score_representations": [
+              [
+                0,
+                36,
+                0
+              ]
+            ]
+          },
+          {
+            "target": [
+              0,
+              0,
+              36
+            ],
+            "all_low_score_representations": [
+              [
+                0,
+                0,
+                36
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "parameter": 10,
+        "periods": [
+          67,
+          61,
+          65
+        ],
+        "cover_length": 265655,
+        "weight": [
+          9748993456776160016,
+          299969029439797773,
+          299969311730645183
+        ],
+        "unperturbed_ray": [
+          65,
+          2,
+          2
+        ],
+        "guaranteed_axis_monomials": [
+          [
+            10,
+            0,
+            0
+          ],
+          [
+            0,
+            100,
+            0
+          ],
+          [
+            0,
+            0,
+            100
+          ]
+        ],
+        "guaranteed_box_volume": 112211,
+        "box_to_cover_lower_ratio": "112211/265655"
+      },
+      {
+        "parameter": 16,
+        "periods": [
+          103,
+          97,
+          101
+        ],
+        "cover_length": 1009091,
+        "weight": [
+          830238759803077983188,
+          16440371481251087157,
+          16440375554311690463
+        ],
+        "unperturbed_ray": [
+          101,
+          2,
+          2
+        ],
+        "guaranteed_axis_monomials": [
+          [
+            16,
+            0,
+            0
+          ],
+          [
+            0,
+            256,
+            0
+          ],
+          [
+            0,
+            0,
+            256
+          ]
+        ],
+        "guaranteed_box_volume": 1122833,
+        "box_to_cover_lower_ratio": "1122833/1009091"
+      },
+      {
+        "parameter": 32,
+        "periods": [
+          199,
+          193,
+          197
+        ],
+        "cover_length": 7566179,
+        "weight": [
+          682631199917362100422964,
+          6930265989008767420917,
+          6930266217997041193439
+        ],
+        "unperturbed_ray": [
+          197,
+          2,
+          2
+        ],
+        "guaranteed_axis_monomials": [
+          [
+            32,
+            0,
+            0
+          ],
+          [
+            0,
+            1024,
+            0
+          ],
+          [
+            0,
+            0,
+            1024
+          ]
+        ],
+        "guaranteed_box_volume": 34670625,
+        "box_to_cover_lower_ratio": "34670625/7566179"
+      },
+      {
+        "parameter": 64,
+        "periods": [
+          391,
+          385,
+          389
+        ],
+        "cover_length": 58558115,
+        "weight": [
+          624886099751844146071258100,
+          3212782003865522719025013,
+          3212782017581734165554143
+        ],
+        "unperturbed_ray": [
+          389,
+          2,
+          2
+        ],
+        "guaranteed_axis_monomials": [
+          [
+            64,
+            0,
+            0
+          ],
+          [
+            0,
+            4096,
+            0
+          ],
+          [
+            0,
+            0,
+            4096
+          ]
+        ],
+        "guaranteed_box_volume": 1091051585,
+        "box_to_cover_lower_ratio": "12835901/688919"
+      }
+    ],
+    "scope": "A classical common-box vertex bound now covers all positive weights, with O(n^(7/3)) for comparable periods with bounded normalized gaps, not a quadratic count or unrestricted improvement. The uniform box obstruction concerns the full group cover, not an asserted quotient basis or fan-count lower bound. Its infinitesimal perturbations lie at a single positive-ray degeneration; the already proved local linear refinement bound remains valid."
+  },
   "summary": {
     "full_period_cover_prices": 9,
     "dual_quotient_price_field_controls": 27,
@@ -128500,6 +130528,11 @@
     "active_slab_family_formulas": 7,
     "all_cheaper_active_prefix_checks": 90,
     "complete_active_slab_bases": 2,
-    "strict_active_slab_borders": 35
+    "strict_active_slab_borders": 35,
+    "global_gap_price_sectors": 40,
+    "global_gap_direct_covers": 8,
+    "critical_ray_box_formulas": 8,
+    "critical_ray_direct_covers": 4,
+    "complete_low_score_target_checks": 12
   }
 }

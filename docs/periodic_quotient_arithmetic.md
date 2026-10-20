@@ -1101,6 +1101,209 @@ different realizable source of many simultaneous dependencies. Exact
 priority, a consequential unrestricted theorem and the paper endpoint
 remain unestablished; no new manuscript follows from this corollary.
 
+## A global gap bound and why small cover boxes cannot make it quadratic
+
+The preceding price regions do not exhaust the fan. There is, however,
+a global bound from two period identities. It still leaves a power gap
+above the generic scale, and its classical geometric proof does not
+establish novelty or complete the main goal.
+
+### Four sectors cover every positive weight
+
+Continue with odd coprime periods $r>t>s\ge3$. In addition to the
+previous $h,e,g,h_0,e_0$, put $\delta=h-e=(t-s)/2$ and
+$\delta_0=\delta/g$. The exact identities
+
+$$
+X^{e_0s}=Y^{h_0t},\qquad
+X^{\delta_0r}=Z^{h_0t},\qquad
+Y^{\delta_0r}Z^{e_0s}=1                                \tag{Q28}
+$$
+
+hold in $B$ and every quotient. The first two were obtained by
+cancelling shared period coordinates. For the third,
+$\delta_0r+e_0s=h_0t$. These are equalities of integral labels,
+valid in ramified characteristics as well.
+
+Write $D_X,D_Y,D_Z$ for the exact pure-axis degrees (P3), and
+$\alpha=e_0s,\beta=h_0t,\gamma=\delta_0r$. The first two
+relations partition positive weight space into four strict sectors.
+Each has one common box, obtained by intersecting the pure-axis box
+with the following head bounds:
+
+| Expensive head in the first relation | Expensive head in the second | Additional bounds |
+|---|---|---|
+| $Y^\beta$ | $Z^\beta$ | $b<\beta,c<\beta$ |
+| $X^\alpha$ | $Z^\beta$ | $a<\alpha,c<\beta$ |
+| $Y^\beta$ | $X^\gamma$ | $b<\beta,a<\gamma$ |
+| $X^\alpha$ | $X^\gamma$ | $a<\min(\alpha,\gamma)$ |
+
+Let $V_1,\ldots,V_4$ be these four box volumes, after clipping each
+side by its corresponding $D_i$. The common-box profile argument gives
+the **global**, all-field bound
+
+$$
+g(A)=O\!\left(n^{3/2}\sum_{j=1}^4\sqrt{V_j}\right).    \tag{Q29}
+$$
+
+Only four fixed sectors are summed, rather than an unknown number of
+periodic-cover cones. A standard set on a comparison wall is represented
+by a generic perturbation and adds no extra case. Each counted basis
+is a unique minimum on the common ground for its sector. The argument
+uses the established state/profile dictionary and lattice-vertex bound
+of [Babson--Onn--Thomas, Theorem 2.4 and Corollary 2.5](https://arxiv.org/pdf/math/0207135).
+It does not assert a new vertex theorem or a field-independent equality
+of fans.
+
+Suppose the periods are comparable, with $r/s$ bounded. Put
+$H=h_0$ and use $R=s$ as a size parameter, so $n=\Theta(R^3)$
+and $H=O(R)$. In the first three sectors the box volume is
+$O(H^2R^4)$; in the last it is $O(HR^5)$. Therefore
+
+$$
+g(A)=O\!\left(\sqrt H\,n^{7/3}\right),                \tag{Q30}
+$$
+
+with constants depending only on the period comparability bound.
+For bounded normalized gaps this is $O(n^{7/3})$ across **all**
+positive weights, including every earlier intermediate region.
+The first three sectors separately have
+$O(H n^{13/6})$ states. The older pure-axis box alone gives
+$O(n^{5/2})$; (Q30) saves a power when $H=o(n^{1/3})$.
+Fixed ratios between the period gaps are enough: the actual gaps need
+not stay bounded. For example three-term arithmetic progressions have
+$(h_0,e_0,\delta_0)=(2,1,1)$ whenever the odd periods are coprime.
+No statement about the infinitude or distribution of such prime triples
+is used.
+
+More generally (Q29) holds for every quotient of $B$ if the pure-axis
+sides are replaced by $rs,rt,st$ and its actual dimension is used
+as $n$. If that dimension is bounded below by a positive constant
+times $M$, (Q30) holds with the corresponding constant. Thus the
+global bound is not limited to the particular three-circuit quotient.
+Its exact priority among dense periodic-quotient counts remains open;
+the restricted exponent does not improve the unrestricted $G_3$ bound.
+
+### A single shortest cover really can need the larger box
+
+The fourth-sector box has volume of order $R^5$ at fixed normalized
+gaps. That scale cannot be reduced to $O(M\operatorname{polylog}M)$
+for every actual shortest cover by adapting just its enclosing box.
+Here is a uniform proof, without fitting numerical extents.
+
+Take $(r,s,t)=(6q+7,6q+1,6q+5)$ and $D=2M+1$, as before,
+but now use
+
+$$
+w=(tD^3+1,\ 2D^3+D,\ 2D^3+D^2).                       \tag{Q31}
+$$
+
+The shortest-representative cover $E$ contains
+
+$$
+X^q,\qquad Y^{q^2},\qquad Z^{q^2}.                    \tag{Q32}
+$$
+
+To prove this, first compare the integral score
+$\ell(a,b,c)=ta+2b+2c$. For a competitor to $X^q$ of score
+at most $tq$, its labels force
+
+$$
+b+c=tk,\quad b=q-a+ri,\quad c=q-a+sj,
+\quad a+2k\le q,
+$$
+
+with $i,j,k\ge0$. The nonnegativity of $i,j$ follows from
+$0\le q-a\le q<s$. Also $i,j\le k\le q/2$. Substitution gives
+
+$$
+s(k-i-j)=2(q-a)+6i-4k.
+$$
+
+The right side lies in $[-2q,5q]$, strictly between $-s$ and
+$s$, so it is zero. Hence $k=i+j$ and $q-a=2j-i$.
+The score bound also gives $q-a\ge2(i+j)$, forcing $i=0$.
+All low-score competitors are consequently exactly
+
+$$
+(a,b,c)=(q-2j,2j,(s+2)j),\quad0\le j\le\lfloor q/2\rfloor.
+$$
+
+They tie in integral score, but the lower price digits in (Q31)
+increase by $j(-2+2D+(s+2)D^2)>0$ for $j>0$.
+
+For a competitor to $Y^m$, $m=q^2$, the score bound forces
+$b+c=m-tl$ and $0\le a\le2l$, with $0\le l\le m/t<q/6$.
+Its other labels give $a+b=m-rp$ and $a+c=sj$, with
+$0\le p\le m/r<q/6$ and $j\ge0$. Thus
+
+$$
+2a-4l=s(j-p+l)-6p\in[-4l,0].
+$$
+
+An integer value $j-p+l\ge1$ makes the right side positive;
+a value at most $-1$ makes it less than $-4l$. Therefore
+$p=j+l$ and $a=2l-3p\le-l$, forcing $l=p=j=a=0$.
+The unique low-score competitor is $Y^m$ itself.
+
+For $Z^m$, the analogous labels are $a+b=rj$ and
+$a+c=m-sp$, with $j<q/6$. They give
+
+$$
+2a-4l=s(j-p+l)+6j\in[-4l,0].
+$$
+
+The same small-multiple argument forces $j-p+l=0$ and $j=0$,
+then $a+b=0$ and $a=2l$ force $l=a=b=0$. Only $Z^m$ remains.
+The signs and bounds use only integer labels, not coefficient ranks.
+Finally the lower-digit cost of each target is less than $D^3$,
+whereas one extra unit of integral score costs $D^3$. No higher-score
+monomial can defeat a target. This proves (Q32) for the actual prices.
+
+Every coordinate box enclosing this **one** cover must therefore have
+volume at least
+
+$$
+(q+1)(q^2+1)^2=\Omega(q^5)=\Omega(M^{5/3}).             \tag{Q33}
+$$
+
+The fourth-sector cover box is also $O(q^5)$, so this order is
+attained up to constants. The assertion is about the full group cover,
+not a proof that the quotient basis contains the same axis monomials.
+It does not refute a sharper quotient-rank/profile bound or the
+sublinear omission-shell estimate.
+
+### The difficult box does not imply a difficult local fan
+
+Prices (Q31) refine the positive integer ray $w_0=(t,2,2)$.
+Indeed the lower digits cannot reverse any nonzero integral-score
+comparison in the pure-axis ground. All infinitesimal refinements at
+this ray are initial ideals of $\operatorname{in}_{w_0}(I)$.
+That ideal is homogeneous for the strictly positive grading $w_0$.
+The [previous all-field grading theorem](nonnegative_graded_fans.md#all-three-variable-degrees-positive)
+therefore bounds their total number by $O(n)$, uniformly in $q$.
+This uses the established transitivity of successive initials and
+the earlier proved grading bound. It is not a global count of cones
+near the ray at a finite distance.
+
+Thus a cover can require a large price-adapted box while the quotient
+has only linearly many infinitesimal refinements there. The next count
+must use ranks or control how cones meet these arithmetic rays; the
+box volume alone loses that information. Proving that every remaining
+cone meets a controlled collection of rays would be substantive.
+It is **not** established by the examples, and the earlier unrestricted
+counterexample to a polylogarithmic projection-plane cover remains valid.
+
+Ten period models check (Q28) by raw monic division over four fields.
+Forty strict sector controls verify the clipped boxes, and eight
+construct complete covers. Eight parameter choices check (Q33)'s
+integer formulas; four complete covers and twelve exhaustive low-score
+representation tests independently verify (Q32), including every tie
+at $X^q$. All previous evidence remains preserved. The new result is
+a global restricted upper bound and a proof-budget obstruction, not
+a polynomial fan separation, a novelty certificate or the requested
+paper endpoint.
+
 ## Exact reproduction
 
 ```bash
@@ -1126,3 +1329,6 @@ counts and logarithmic-obstruction formulas.
 The period-gap continuation adds raw monic checks of the arithmetic
 identities, regional common boxes, all-cheaper prefix independence and
 complete primal/dual bases with strict borders for active slab covers.
+The global continuation adds four-sector coverage, exact period identities,
+complete low-score representation tests and the large-box obstruction at
+one positive arithmetic weight ray.

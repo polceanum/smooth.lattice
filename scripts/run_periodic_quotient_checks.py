@@ -870,6 +870,106 @@ def period_gap_controls():
             'scope':'The regional count is a classical lattice-volume corollary using explicit period identities. The all-field active-generator obstruction defeats cube-only corank pruning, not the joint shell bound. No infinite prime constellation, full fan count, unrestricted improvement or novelty certificate is asserted.'}
 
 
+def global_gap_controls():
+    """Four global price sectors and a uniform obstruction to a small cover box."""
+    sectors = []
+    for periods in ((13,7,11),(19,13,17),(25,19,23),(43,37,41),
+                    (37,17,29),(35,23,29),(41,17,23),(21,5,11),
+                    (13,5,9),(29,17,23)):
+        r,s,t = periods
+        require(r>t>s>=3 and all(m%2 for m in periods) and
+                all(gcd(a,b)==1 for a,b in combinations(periods,2)), 'global gap hypotheses')
+        h,e = (r-s)//2,(r-t)//2
+        g = gcd(h,e)
+        h0,e0,d0 = h//g,e//g,(h-e)//g
+        pairs = (((e0*s,0,0),(0,h0*t,0)),
+                 ((d0*r,0,0),(0,0,h0*t)),
+                 ((0,d0*r,e0*s),(0,0,0)))
+        for p in (0,2,3,5):
+            powers = [univariate_powers(m,p) for m in periods]
+            for a,b in pairs:
+                require(label(a,periods)==label(b,periods), 'global pair/product identities have equal labels')
+                for power,i,j in zip(powers,(a[0]+a[1],a[0]+a[2],a[1]+a[2]),
+                                              (b[0]+b[1],b[0]+b[2],b[1]+b[2])):
+                    require(power(i)==power(j), 'raw monic arithmetic checks global identities in every control field')
+        M,n = prod(periods),prod(m-1 for m in periods)
+        pure = ((r-1)*(s-1),(r-1)*(t-1),(s-1)*(t-1))
+        scale = 2*M+1
+        for expensive_x_y,expensive_x_z in product((False,True),repeat=2):
+            # Independent Y and Z prices realize each strict orientation.
+            x = 2*h0*t
+            y = e0*s if expensive_x_y else 4*e0*s
+            z = d0*r if expensive_x_z else 4*d0*r
+            weight = (x*scale**3+1,y*scale**3+scale,z*scale**3+scale**2)
+            require((e0*s*weight[0]>h0*t*weight[1])==expensive_x_y and
+                    (d0*r*weight[0]>h0*t*weight[2])==expensive_x_z, 'each entire global price sector is nonempty')
+            sides = list(pure)
+            sides[0 if expensive_x_y else 1] = min(sides[0 if expensive_x_y else 1],
+                                                  e0*s if expensive_x_y else h0*t)
+            sides[0 if expensive_x_z else 2] = min(sides[0 if expensive_x_z else 2],
+                                                  d0*r if expensive_x_z else h0*t)
+            cover_sides = [r*s,r*t,s*t]
+            cover_sides[0 if expensive_x_y else 1] = min(cover_sides[0 if expensive_x_y else 1],
+                                                        e0*s if expensive_x_y else h0*t)
+            cover_sides[0 if expensive_x_z else 2] = min(cover_sides[0 if expensive_x_z else 2],
+                                                        d0*r if expensive_x_z else h0*t)
+            row = {'periods':periods,'normalized_half_gaps':[h0,e0,d0],
+                   'x_more_expensive_in_xy_relation':expensive_x_y,
+                   'x_more_expensive_in_xz_relation':expensive_x_z,
+                   'weight':weight,'quotient_length':n,'pure_axis_degrees':pure,
+                   'global_sector_box_sides':sides,'global_sector_box_volume':prod(sides),
+                   'dense_cover_sector_box_sides':cover_sides,'dense_cover_sector_box_volume':prod(cover_sides)}
+            if periods in ((13,7,11),(19,13,17)):
+                E = {a for cost,a in shortest_representatives(periods,weight).values()}
+                require(all(all(a[i]<cover_sides[i] for i in range(3)) for a in E), 'complete cover fits its whole-sector box')
+                for p in (0,2):
+                    model = cyclotomic_model(periods,p)
+                    # Independent raw arithmetic on every excluded pure head.
+                    for head,tail in pairs[:2]:
+                        require(model['residue'](head)==model['residue'](tail), 'global-sector heads have exact quotient identities')
+                row['direct_cover_length'] = len(E)
+            sectors.append(row)
+
+    obstruction = []
+    for q in (1,2,3,6,10,16,32,64):
+        periods = r,s,t = 6*q+7,6*q+1,6*q+5
+        M = prod(periods)
+        scale = 2*M+1
+        weight = (t*scale**3+1,2*scale**3+scale,2*scale**3+scale**2)
+        targets = ((q,0,0),(0,q*q,0),(0,0,q*q))
+        lower_volume = (q+1)*(q*q+1)**2
+        row = {'parameter':q,'periods':periods,'cover_length':M,'weight':weight,
+               'unperturbed_ray':[t,2,2],'guaranteed_axis_monomials':targets,
+               'guaranteed_box_volume':lower_volume,
+               'box_to_cover_lower_ratio':str(Q(lower_volume,M))}
+        if q in (1,2,3,6):
+            best = shortest_representatives(periods,weight)
+            E = {a for cost,a in best.values()}
+            require(all(best[label(a,periods)][1]==a for a in targets), 'every uniform box-obstruction target is the actual unique shortest representative')
+            sides = [1+max(a[i] for a in E) for i in range(3)]
+            require(prod(sides)>=lower_volume, 'exact full cover obeys the uniform box-volume lower bound')
+            row.update({'actual_cover_box_sides':sides,'actual_cover_box_volume':prod(sides),
+                        'actual_box_to_cover_ratio':str(Q(prod(sides),M))})
+            # Enumerate all nonnegative representations of cost at most each
+            # target's unperturbed score. This checks the uniform proof's
+            # low-score alternatives, including every exact tie at X^q.
+            score = (t,2,2)
+            alternatives = []
+            for target in targets:
+                budget = dot(score,target)
+                candidates = [a for a in product(range(budget//t+1),range(budget//2+1),range(budget//2+1))
+                              if dot(score,a)<=budget and label(a,periods)==label(target,periods)]
+                expected = ([target] if target[0]==0 else
+                            [(q-2*j,2*j,(s+2)*j) for j in range(q//2+1)])
+                require(set(candidates)==set(expected), 'complete low-score representation enumeration agrees with the all-q proof')
+                require(all(dot(weight,a)>=dot(weight,target) for a in candidates), 'digit perturbation selects the target among every low-score tie')
+                alternatives.append({'target':target,'all_low_score_representations':sorted(candidates)})
+            row['independent_low_score_controls'] = alternatives
+        obstruction.append(row)
+    return {'global_sector_controls':sectors,'critical_ray_box_obstruction':obstruction,
+            'scope':'A classical common-box vertex bound now covers all positive weights, with O(n^(7/3)) for comparable periods with bounded normalized gaps, not a quadratic count or unrestricted improvement. The uniform box obstruction concerns the full group cover, not an asserted quotient basis or fan-count lower bound. Its infinitesimal perturbations lie at a single positive-ray degeneration; the already proved local linear refinement bound remains valid.'}
+
+
 def main():
     lattice, dual = periodic_and_dual_controls()
     index_controls = intrinsic_index_controls()
@@ -882,11 +982,12 @@ def main():
     surface_controls = cube_surface_controls(lattice,thin_controls)
     shell_controls = shell_volume_controls(lattice)
     gap_controls = period_gap_controls()
+    global_controls = global_gap_controls()
     sources = ('docs/periodic_quotient_arithmetic.md','scripts/run_periodic_quotient_checks.py',
                'scripts/run_cyclotomic_price_checks.py','scripts/run_interleaving_research.py',
                'scripts/run_nested_jet_checks.py')
     report = {'schema_version':1,'command':'python3 -B scripts/run_periodic_quotient_checks.py',
-              'scope':'Exact periodic-cover, arithmetic, fixed-cover trace and candidate-filter controls. Direct norm quotients verify the nonbox socle defect. Sector-wide surface budgets, thin-cover obstructions, socle-free dyadic shell bounds and their logarithmic obstruction are checked. Period-gap identities, common regional boxes and active-generator slab obstructions are independently checked by monic division and primal/dual bases. No unrestricted asymptotic separation, full nonbox refinement-fan count or novelty certificate.',
+              'scope':'Exact periodic-cover, arithmetic, fixed-cover trace and candidate-filter controls. Direct norm quotients verify the nonbox socle defect. Sector-wide surface budgets, thin-cover obstructions, socle-free dyadic shell bounds and their logarithmic obstruction are checked. Period-gap identities, common regional boxes and active-generator slab obstructions are independently checked by monic division and primal/dual bases. Four global price sectors and a uniform large-box obstruction at a positive arithmetic ray are checked. No unrestricted asymptotic separation, sharp nonbox refinement-fan count or novelty certificate.',
               'source_sha256':{p:sha256((ROOT/p).read_bytes()).hexdigest() for p in sources},
               'full_period_lattice_controls':lattice,'inverse_monomial_dual_controls':dual,
               'trivial_intrinsic_grading_controls':index_controls,
@@ -897,6 +998,7 @@ def main():
               'thin_cover_obstructions':thin_controls,
               'socle_free_shell_controls':shell_controls,
               'period_gap_controls':gap_controls,
+              'global_gap_controls':global_controls,
               'summary':{'full_period_cover_prices':len(lattice),'dual_quotient_price_field_controls':len(dual),
                          'nonbox_reflection_obstructions':sum(x['nonbox_reflection_has_no_constant'] for x in dual),
                          'all_field_pair_minimal_polynomial_controls':len(index_controls),
@@ -927,6 +1029,11 @@ def main():
                               'all_cheaper_active_prefix_checks':len(gap_controls['all_cheaper_prefix_controls']),
                               'complete_active_slab_bases':len(gap_controls['complete_binary_controls']),
                               'strict_active_slab_borders':sum(len(c['strict_border_certificates']) for c in gap_controls['complete_binary_controls'])})
+    report['summary'].update({'global_gap_price_sectors':len(global_controls['global_sector_controls']),
+                              'global_gap_direct_covers':sum('direct_cover_length' in c for c in global_controls['global_sector_controls']),
+                              'critical_ray_box_formulas':len(global_controls['critical_ray_box_obstruction']),
+                              'critical_ray_direct_covers':sum('actual_cover_box_sides' in c for c in global_controls['critical_ray_box_obstruction']),
+                              'complete_low_score_target_checks':sum(len(c.get('independent_low_score_controls',[])) for c in global_controls['critical_ray_box_obstruction'])})
     (ROOT/'results/research/periodic_quotient_checks.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report['summary'],sort_keys=True))
 

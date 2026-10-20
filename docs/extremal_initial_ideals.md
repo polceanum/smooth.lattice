@@ -2600,6 +2600,46 @@ price regions, unrestricted $G_3$ and the original publication criteria
 remain open. Further counting must retain period arithmetic together
 with the actual joint-shell ranks, or use another realizable family.
 
+## A global bound for comparable periods with bounded normalized gaps
+
+The [global period-gap argument](periodic_quotient_arithmetic.md#a-global-gap-bound-and-why-small-cover-boxes-cannot-make-it-quadratic)
+now handles **every** positive weight of the original three-period
+quotient for odd coprime periods $r>t>s$. Besides $X^{e_0s}=Y^{h_0t}$, the identity
+$X^{\delta_0r}=Z^{h_0t}$, with $\delta_0=(t-s)/(2g)$,
+gives four fixed price sectors. In each, the two expensive heads and
+the pure-axis degrees supply one common box. If the periods are
+comparable and $H=h_0$, their volumes give
+
+$$
+g(A)=O(\sqrt H\,n^{7/3}).
+$$
+
+For bounded normalized gaps this saves a power over the $O(n^{5/2})$
+pure-axis-box bound, throughout the full price domain. It also applies
+to every quotient of the same group cover whose dimension is comparable
+to its length. Actual gaps may grow; coprime arithmetic progressions
+have fixed normalized half-gaps. The result is a classical profile-volume
+corollary and leaves room for a polynomial fan separation; it does not
+improve the unrestricted $G_3$ bound or establish novelty.
+
+There is a matching obstruction to reducing just the large sector's
+cover-box scale. For $(r,s,t)=(6q+7,6q+1,6q+5)$, explicit prices
+refining $(t,2,2)$ make $X^q,Y^{q^2},Z^{q^2}$ all unique shortest
+representatives. A uniform integer-score proof considers every cheaper
+representation. Thus one actual cover needs a coordinate box of size
+$\Omega(M^{5/3})$, matching the sector's volume order. This is a cover
+statement, not membership of these axes in the original quotient basis.
+The associated positive grading nevertheless bounds every infinitesimal
+quotient refinement at that ray by $O(n)$, using the previous theorem.
+Large cover boxes therefore do not measure the local fan count.
+
+Forty sector controls, eight direct sector covers and twelve exhaustive
+low-score tests support these uniform proofs. The remaining task is to
+count coherent refinements globally using their ranks or prove a useful
+incidence bound for the arithmetic rays. No assertion that all remaining
+cones meet a small ray collection is made. The full original goal and
+all publication criteria remain unachieved.
+
 ## Reproduction
 
 From the repository root:
