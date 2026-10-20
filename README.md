@@ -200,6 +200,12 @@ all initial sets staying within one period in any coordinate presentation
 number only `O(n^2)`, regardless of prices or period balance. A separating
 family must draw its growth from bases reaching all three period thresholds.
 This does not count those remaining bases or establish novelty.
+The [periodic-cover and arithmetic study](docs/periodic_quotient_arithmetic.md)
+separates the quadratically bounded lattice cover from its circuit quotient.
+An exact coherent basis for periods `(5,7,11)` has index two and changes
+in characteristic two. Monomial substitution can amplify that index
+exponentially while leaving the number of initial ideals unchanged;
+torsion size alone is therefore insufficient for a counting separation.
 The additive prime-power class is now classified separately: at length
 `n=q^k`, every initial ideal is a prime-power box and the sharp maximum
 is `binomial(k+d-1,d-1)`. The proof uses established Frobenius reduction;

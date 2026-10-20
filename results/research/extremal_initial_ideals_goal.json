@@ -5,7 +5,7 @@
   "status": "active",
   "objective": "Achieve a substantial mathematical advance connected to the smooth-number exponent-lattice observations, with resolving a recognized quantitative problem as the success criterion rather than producing another manuscript. The concrete first target is the worst-case number G_3(n) of distinct monomial initial ideals of a length-n polynomial quotient in three variables, over all fields. Determine its sharp asymptotic growth, or prove an infinite realizable family with a polynomially larger number of orderings than the generic corner-cut scale, together with a consequential general theorem. Explain what algebraic dependencies add to the prime/smooth lattice geometry. First audit the strongest relevant primary literature and the repository's unfinished lattice-shadow work; distinguish a genuinely new theorem from a classical geometric corollary before using it. Success requires a complete uniform proof that settles this extremal question or a substantial recognized part of it, a rigorous consequence for algebraic or geometric complexity beyond restating the count, independently implemented reproducible supporting checks, and an honestly attributed paper. A draft, a bounded priority review, isolated examples, a minor refinement, or an unverified novelty claim cannot complete this goal. If this target is already settled or a route fails, record the evidence and choose a comparably consequential problem still directly linked to the original mathematics; do not silently lower the success criterion. Preserve all existing manuscripts, core smooth-number kernels and auditor, previous research, and the paused ML work. Never send emails, messages to people or other tasks, author queries, or submissions. Publish only explicitly privacy-reviewed research files to the already authorized main branch.",
   "goal_complete": false,
-  "asymptotic_improvement_established_this_iteration": true,
+  "asymptotic_improvement_established_this_iteration": false,
   "novelty_established_this_iteration": false,
   "note": "docs/extremal_initial_ideals.md",
   "relationship_to_previous_work": "New active objective with a higher completion bar. Previous goal records, lattice-shadow candidate, manuscripts and paused ML results are preserved as historical research.",
@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Preserve every original sharp-G_3 or polynomial-separation criterion. The rank-deficit profile argument now counts all one-period-contained initial sets by O(n^2), at any prices and uniformly in period balance. In the original mixed-period family, the union of bases failing any one of the three pair-degree thresholds r,s,t therefore has only O(n^2) members. Do not spend the next turn classifying omissions in that already excluded set or fitting its finite counts. Derive a uniform count or an infinite realizable coherent lower family for bases reaching all three thresholds, with potentially different witnessing monomials, using the exact cost-prefix intersection/cycle-space-sum formula across multiple periods. A small exact simultaneous-crossing witness only establishes nonemptiness and is in a bounded-price regime; it is not an asymptotic candidate. For comparable periods, any still-viable separating sequence must also leave every fixed bounded-price-ratio region and the proved one-period price cones; unbalanced periods require their own uniform analysis. General fixed-defect factors of W^t-1 now have a quadratic one-period bound as well; do not replace the main endpoint with that supporting class. Keep the strongest-current unrestricted-bound comparison and all-field rational-shadow route active. The Silversmith bibliographic lead is identified and its relevant primary statements inspected; full numerical-priority and subsequent-work coverage remain unresolved. Classical lattice-volume, state-polytope and matroid facts are inputs, not novelty certificates. Preserve older research and send no messages or submissions.",
+  "next_proof_task": "Preserve every original sharp-G_3 or polynomial-separation criterion. The one-period union has O(n^2) states; the full periodic lattice cover also has O(n^2) states by a classical relative-volume specialization. The circuit quotient has intrinsic grading lattice exactly Z^3, so no residual finite index transfers that bound. The complementary algebra supplies a known inverse-monomial dual representation, but its actual maximum costs on a finite cover ground are not its global positive monomial costs. The next concrete target is a uniform upper bound or a realizable coherent lower family for circuit-quotient refinements inside a fixed full-period-cover cone, with its actual inverse-label costs. A uniform polylogarithmic refinement bound would exclude polynomial separation for this construction; a lower bound must count distinct quotient standard sets, not multiply overlay-cell counts. Keep characteristic-sensitive ranks: an exact coherent (5,7,11) basis changes modulo two even though the periods are odd. Do not pursue determinant magnitude, arbitrary simplicial basis counts or finite monomial repetition as a counting mechanism. All finite monomial affine self-map pullbacks are permuted powers and preserve the full fan count; their coherent indices can nevertheless grow exponentially. Maps finite only on the unit-valued quotient remain outside that exclusion. Continue the simultaneous-multiple-period prefix-intersection route and retain the strongest-current unrestricted-bound audit and all-field rational-shadow route. Even excluding the entire mixed-period family would not settle G_3; it would require a genuinely different realizable family or the full upper argument. No classical corollary, isolated witness, arithmetic-index family or manuscript replaces the endpoint. Preserve all older research and send no messages or submissions.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -97,7 +97,8 @@
     "Compare the exact regional theorem for F=K[x]/f, A=F[T]/g and generators x,uT,vT, its common integer weight list, and its explicit Vandermonde sharpness family with primary weighted elimination, interpolation and change-of-order results. The greedy/state dictionary, CRT, monic free-module structure, Vandermonde independence and final lattice-volume bound are established inputs. The FGLM publisher abstract was inspected, not its full paper. No novelty or strongest-current-bound certificate is supplied. The intervening-regime count and unbalanced coprime periods remain open.",
     "Assess exact priority of the uniform 2n weighted divisor-rectangle injection for a fixed finite Hilbert function, the resulting O(n) count for all nonnegative three-variable gradings with at least two positive degrees, pointwise sharp support-two examples, linear Hilbert-dependent weight lists and local linear refinement links. Inspected sources: Altmann--Sturmfels Proposition 3, Theorem 8 and Section 3; Kreuzer--Robbiano Proposition 2.2, Lemma 2.3 and Theorem 2.4; Haiman--Sturmfels Proposition 3.2, supportive-set definitions, Corollary 3.4 and Theorem 3.6. Their full numerical coverage and subsequent work are unassessed. The exact tower border criterion uses established border theory; the new exclusion identifies where additional bases must enter, not their number. No absence-of-search novelty inference is permitted.",
     "Compare the signed grading bound and exact prefix specialization with the numerical primary literature. The formerly unread NSF lead is identified as Silversmith, https://arxiv.org/pdf/1911.03569v3 and https://doi.org/10.1007/s00229-021-01280-z; its Theorem 3.7, Proposition 5.5 and Theorem 5.11 concern matroid strata, looped contraction and specified planar edges. They do not state the present three-price numerical count. Full subsequent coverage and the strongest current unrestricted comparison remain unresolved.",
-    "Assess exact priority of the profile-deficit slab and its quadratic one-period/fixed-defect consequence, including the global union over the three coordinate presentations. The final lattice-vertex estimate and the represented-matroid/state dictionary are classical. The result closes this regime as a polynomial-separation route; no novelty, unrestricted count or endpoint completion is inferred."
+    "Assess exact priority of the profile-deficit slab and its quadratic one-period/fixed-defect consequence, including the global union over the three coordinate presentations. The final lattice-vertex estimate and the represented-matroid/state dictionary are classical. The result closes this regime as a polynomial-separation route; no novelty, unrestricted count or endpoint completion is inferred.",
+    "Assess the exact cover-count specialization, inverse-label cost formulation, intrinsic-index obstruction and coherent arithmetic witness against primary lattice-ideal, cyclotomic/simplicial and modular Groebner literature. Martin--Reiner Theorem 1 and Arnold Theorems 5.11--5.13 are established inputs. Finite pure-power pullbacks and their unchanged fans are classical consequences, not novelty claims. The strongest current unrestricted comparison remains unresolved."
   ],
   "primary_sources": [
     {
@@ -635,21 +636,34 @@
       "exhaustive_profile_subsets": 1485,
       "exhaustive_independent_profile_bases": 562,
       "additional_period_boundary_controls": 4
+    },
+    "periodic_quotient_research": {
+      "command": "python3 -B scripts/run_periodic_quotient_checks.py",
+      "status": "passed",
+      "report": "results/research/periodic_quotient_checks.json",
+      "source_hashes_verified": true,
+      "full_period_cover_prices": 9,
+      "dual_quotient_price_field_controls": 27,
+      "nonbox_reflection_obstructions": 21,
+      "all_field_pair_minimal_polynomial_controls": 36,
+      "coherent_bad_prime_witnesses": 1,
+      "strict_arithmetic_border_checks": 90,
+      "direct_monomial_pullback_controls": 4
     }
   },
-  "preservation": "Only the six explicitly reviewed public research files change. All other tracked files, including manuscripts, PDFs, core kernels, previous scripts/reports and paused ML, are byte-preserved against an ignored baseline at f811aa5. The original objective and success criteria and all twenty-five earlier continuations remain exact. Every previous graded-report section and count is unchanged. Private baselines and local command logs remain ignored.",
+  "preservation": "Only the six explicitly reviewed public files change. All previous tracked files outside that list, including every prior research note/script/report, all manuscripts/PDFs, core kernels and paused ML, remain byte-preserved against an ignored baseline at ea61b19. The original objective and success criteria and all twenty-six earlier continuations remain exact. Private baselines and command logs remain ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
     "docs/extremal_initial_ideals.md",
-    "docs/nonnegative_graded_fans.md",
-    "scripts/run_graded_fan_checks.py",
-    "results/research/graded_fan_checks.json",
+    "docs/periodic_quotient_arithmetic.md",
+    "scripts/run_periodic_quotient_checks.py",
+    "results/research/periodic_quotient_checks.json",
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "bacbc151ff8416805c818f32d4a329a3ab3f58a4dd741713a98e18108d1063dd",
-    "docs/extremal_initial_ideals.md": "997c95c077ebbd2ec6d9059a91c3b1057af84b3829d598db2da1aa65971cc48b",
+    "README.md": "c9d1202dfeaa2a61a1df985c12458b5218f2d28a709df3cbcebc2e67a2eee0cf",
+    "docs/extremal_initial_ideals.md": "ea8aa608400086ea01845efb6715c789f0a4d368409724025a1fdbfaf195c177",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
     "results/research/profile_lattice_checks.json": "437b69bd81173c330b059d879df9f93281befb01e353f9e2c2e00f5a55746d17",
@@ -673,7 +687,10 @@
     "results/research/cyclotomic_price_checks.json": "ab48f68a64e8080bbdba2befc0d0b2166dceffa0c40d56e5e1d80c4c270fee1e",
     "docs/nonnegative_graded_fans.md": "88de976c7b8359dea3b00aa30965c7caf613633adc80ae2ef16b885b8c584e6d",
     "scripts/run_graded_fan_checks.py": "b3cc437c7274378d26c8a9ced7f7ec785905601bc83ec17ea6bb9db3a515554f",
-    "results/research/graded_fan_checks.json": "6d03769c1bf742dcb74d53502cbdb7c1f0cc9878b59b80426e699e0837fee055"
+    "results/research/graded_fan_checks.json": "6d03769c1bf742dcb74d53502cbdb7c1f0cc9878b59b80426e699e0837fee055",
+    "docs/periodic_quotient_arithmetic.md": "5d18bcb37f7ee7ab3cda4b00f923328d47bc0838d4fbfa9ddd19d8c6c5f15cbc",
+    "scripts/run_periodic_quotient_checks.py": "53b7f69372ff0805ab745a1f45e6482cb1b59933622e22acaa0f985180940d68",
+    "results/research/periodic_quotient_checks.json": "bd7ca0dfdaf0e469c7c4e6ebb87acea12f2caa62662d50cc5f23a0813724acda"
   },
   "continuations": [
     {
@@ -1927,8 +1944,56 @@
         "preservation": "Original objective and success criteria, all twenty-five previous continuations, and every old graded-report section and count are preserved. All tracked files outside the explicit six-file public list are byte-preserved."
       },
       "scope_limit": "The uniform one-period exclusion changes the next proof target; it does not count simultaneous multi-period bases, settle sharp unrestricted G_3, construct an infinite polynomial separation, establish current novelty or complete the paper/impact objective."
+    },
+    {
+      "title": "Periodic-cover index, exact coherent characteristic change and a monomial-pullback exclusion",
+      "recorded_on": "2026-10-20",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "ea61b19 proved the quadratic one-period profile-deficit exclusion and its union over all three coordinate presentations, with exact controls. The main goal remained open.",
+      "progress_classification": "Uniform structural proofs distinguish the full-period cover and circuit quotient, a genuine coherent arithmetic certificate invalidates characteristic-independent shortcuts, and a general finite-monomial-pullback argument excludes torsion amplification as a counting route. The next target is a specified cost-refinement problem, not another isolated-example search.",
+      "uniform_proofs": [
+        "The full periodic cover has length M=r*s*t, pure-axis orders rs,rt,st and profile lattice index M. Relative lattice volume gives the classical specialization g(B)=O(M^2), including all characteristics. The normalized-volume regularization uses a bounded lattice fundamental parallelepiped, not an assumed unit fundamental cube.",
+        "For coprime r,s the monic pair minimal polynomial is ((1-T^(rs))*(1-T))/((1-T^r)*(1-T^s)), of degree (r-1)*(s-1), over every field. Its constant and linear coefficients 1,-1 force the generator to have degree zero in any compatible group grading, by minimality of homogeneous components. Applying this in all three coordinates proves that the circuit quotient has intrinsic profile-difference lattice exactly Z^3. The cover index cannot be inherited through a residual finite grading.",
+        "The complement algebra C=B/((U-1)*(V-1)*(W-1)) has length M-n. Its inverse-monomial columns represent the known dual matroid, via the perfect coefficient-of-one pairing. It has a fixed degree-six carrier in X,Y,Z. Actual omissions maximize costs on inverse labels in the finite cover standard set. Reflection makes these finite-ground minimum costs, but for a nonbox cover ground the reflected ground lacks the constant monomial and cannot contain a global standard set of C. A low-degree carrier or a count of global C initial ideals cannot simply be transferred.",
+        "An exact positively coherent (5,7,11) basis at the stated near-total-degree weight has integral index two, rank 239 modulo two, and changes XY^11 to Y^12 in characteristic two. The new basis has index one. A cleared integer border relation has leading term 2*Y^12 over Q and leading monomial X*Y^11 modulo two. All strict borders, ordinary degree distributions and integer determinants are independently checked. Two divides none of the periods, so repeated roots are not needed. This is not a comparison of total fan counts or an infinite lower family.",
+        "For any ideal, substitution X->X^d multiplies length by d and sends its standard sets to residue-block lifts under the induced positive weight map. The full fan count is unchanged. In a finite free integral quotient a coherent basis index Delta becomes Delta^d. The exact witness therefore gives index 2^d and rank defect d at length 240d, with unchanged fan counts. This is a free-extension consequence, not a new flatness theorem or a counting separation.",
+        "Every finite monomial self-map of affine three-space sending variables to nonconstant monomials is a permutation of pure-power maps: each coordinate axis requires a pure-power image for the origin fiber to be finite. Hence all such finite monomial pullbacks preserve fan counts. Maps finite only on a particular unit-valued quotient and nonmonomial finite maps lie outside this elementary exclusion."
+      ],
+      "independent_controls": {
+        "command": "python3 -B scripts/run_periodic_quotient_checks.py",
+        "report": "results/research/periodic_quotient_checks.json",
+        "full_period_cover_prices": 9,
+        "dual_quotient_price_field_controls": 27,
+        "nonbox_reflection_obstructions": 21,
+        "all_field_pair_minimal_polynomial_controls": 36,
+        "coherent_bad_prime_witnesses": 1,
+        "strict_arithmetic_border_checks": 90,
+        "direct_monomial_pullback_controls": 4
+      },
+      "reading_scope": [
+        {
+          "source": "https://arxiv.org/pdf/math/0207135",
+          "scope": "Section 5 lattice-ideal introduction reopened; the state and relative-volume arguments remain established inputs, with no full current quantitative-priority certificate."
+        },
+        {
+          "source": "https://www-users.cse.umn.edu/~reiner/Papers/cyclotomic.pdf",
+          "scope": "Theorem 1, its tensor-complex proof, prime-power direct-sum reduction and Remark 6 reopened as primary text. The cyclotomic/simplicial duality is known; it does not count the specified positive costs."
+        },
+        {
+          "source": "https://www3.risc.jku.at/research/theorema/Groebner-Bases-Bibliography/gbbib_files/publication_355.pdf",
+          "scope": "Arnold Theorems 5.11--5.13 and relevant definitions inspected in the homogeneous setting. Good/unlucky-prime theory is established; the finite-free determinant test is proved separately."
+        }
+      ],
+      "verification": {
+        "research": "passed",
+        "build": "passed",
+        "smoke": "passed",
+        "source_hashes": "verified",
+        "preservation": "Original objective and success criteria, all twenty-six earlier continuations, every previous report/script/note, all core kernels and manuscripts remain unchanged outside the explicit six-file public list."
+      },
+      "scope_limit": "The cover bound is a classical geometric corollary, the coherent index witness alone is not a research endpoint, and the infinite index amplification has a proved constant fan count. There is no new unrestricted exponent, polynomially separating family, novelty certificate or completed-paper claim. The main goal is active."
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "One-period-contained states only, but at all prices: the original circuit tower has O(n^2) such initial ideals, improving and superseding the earlier O(n^2*sqrt(t)) regional corollary. The union over all three coordinate presentations remains O(n^2), excluding every basis that fails at least one period threshold from a polynomial-separation source. General fixed-defect periodic factors also have O_s(n^2) one-period counts. Simultaneous multi-period states, unrestricted G_3, novelty, and the honest-paper objective remain unresolved.",
-  "previous_goal_turn_classification": "Progress: f811aa5 established the signed grading extension and exact prefix/one-period mechanism with verified controls. This continuation uses its fixed rank deficit to prove a quadratic exclusion and changes the remaining target to simultaneous multi-period bases. No process was merely awaiting observation."
+  "asymptotic_improvement_scope_this_iteration": "No new unrestricted bound or separating count. A classical relative-volume specialization bounds the full periodic cover quadratically, while the actual circuit quotient has trivial intrinsic grading. Exact coherent characteristic dependence is proved, and all finite monomial affine pullbacks are excluded as fan-count amplification mechanisms despite exponential index growth.",
+  "previous_goal_turn_classification": "Progress: ea61b19 supplied a complete quadratic one-period exclusion, a general fixed-defect version and exact checks. This continuation establishes the cover/quotient index boundary, a coherent characteristic change and a uniform no-amplification result, changing the next counting action. No process was merely awaiting observation."
 }

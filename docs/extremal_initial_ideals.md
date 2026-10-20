@@ -2375,6 +2375,64 @@ recorded in the grading note.
 The strongest current unrestricted comparison, novelty and the main
 sharp-count or separation endpoint remain unresolved.
 
+## Periodic covers and coherent arithmetic
+
+The [periodic quotient study](periodic_quotient_arithmetic.md) separates
+two different ordering problems. The full periodic algebra has length
+$M=rst$, pure-axis orders $rs,rt,st$ and a profile lattice of index
+$M$. Relative volume gives the classical corollary $g(B)=O(M^2)$,
+uniformly in periods and characteristic. The circuit quotient has
+intrinsic profile lattice exactly $\mathbb Z^3$ in every field.
+The monic pair minimal polynomial has nonzero constant and linear
+terms $1,-1$, forcing each generator's group degree to be zero.
+Thus the cover's profile-index saving is unavailable. An ideal
+quotient does not give a general monotonicity
+theorem for numbers of initial ideals.
+
+The complementary algebra
+$C=B/((U-1)(V-1)(W-1))$, of length $M-n$, gives the known dual
+matroid through inverse monomials. It has the fixed degree-six
+carrier $(Z-XY)(Y-XZ)(X-YZ)$. However, the actual omitted columns
+solve a maximum-cost problem on inverse labels in the finite cover
+basis. After reflection the ground generally lacks the constant
+monomial, so it cannot contain a global standard set of $C$.
+Neither its low-degree carrier nor a count of its ordinary initial
+ideals resolves those costs without another argument.
+
+There is an actual coherent characteristic effect, not just possible
+abstract torsion. For periods $(5,7,11)$ and the stated positive
+near-total-degree weight, a rational standard set has integral index
+two and loses exactly one rank modulo two. The characteristic-two
+standard set replaces $XY^{11}$ by $Y^{12}$ and has index one.
+The full exact bases, cleared integral relation and strict border
+checks are saved. This rules out treating all coherent ranks in the
+candidate as characteristic independent; it gives no growth law or
+comparison of total fan counts.
+
+For every ideal, substitution $X\mapsto X^d$ multiplies length by
+$d$ and repeats standard monomials by exponent residues. It preserves
+the full fan under the corresponding diagonal change of weights,
+so the number of initial ideals is unchanged. An index-$\Delta$
+coherent integral lattice basis acquires index $\Delta^d$. Applying
+this to the witness yields arbitrarily large coherent torsion with
+no increase in fan count. This flat-extension consequence eliminates
+a tempting repetition mechanism for a lower-bound construction;
+these extensions are not asserted to be the original three-prime
+family. More generally every finite monomial self-map of affine
+three-space is a permutation of pure-power maps: finiteness of the
+origin fiber forces a pure power for each axis. All such pullbacks
+therefore preserve fan counts. Maps finite only on a unit-valued
+quotient and nonmonomial finite maps are outside this exclusion.
+The next mechanism must create genuinely more positive cost
+regions across multiple periods, not just larger determinants.
+
+The known cyclotomic/simplicial duality and good-prime framework are
+explicitly cited. Arnold's inspected homogeneous lucky-prime statements
+are distinguished from the elementary finite-free determinant test
+used here. No new duality, flatness theorem, unrestricted exponent,
+priority certificate or paper is claimed. The original goal remains
+active and unachieved.
+
 ## Reproduction
 
 From the repository root:
@@ -2388,6 +2446,7 @@ python3 -B scripts/run_bilinear_cographic_checks.py
 python3 -B scripts/run_cographic_structure_checks.py
 python3 -B scripts/run_cyclotomic_price_checks.py
 python3 -B scripts/run_graded_fan_checks.py
+python3 -B scripts/run_periodic_quotient_checks.py
 python3 -B scripts/run_additive_initial_ideals_checks.py
 python3 -B scripts/run_planar_dyadic_bound_checks.py
 python3 -B scripts/run_rational_shadow_bound_checks.py
