@@ -30,6 +30,7 @@ from run_structural_complexity_checks import (
     hyperbolic_cross, univariate_power_mod, univariate_product_mod,
 )
 from run_interleaving_research import minimal_excluded_border
+from run_planar_dyadic_bound_checks import convex_hull
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -944,6 +945,197 @@ def multicurve_controls():
             'finite_prefix_rank_fixtures': prefixes}
 
 
+def hook_threshold_group(r, n, A, B, level):
+    planar = [(a, b, 0) for a in range(level // A + 1) for b in range(level // B + 1)
+              if a < r or b < r]
+    cheap = [a for a in planar if A * a[0] + B * a[1] < level]
+    tied = [a for a in planar if A * a[0] + B * a[1] == level]
+    k, gain = len(cheap), len(tied)
+    if k >= n or gain < 2:
+        return None
+    capped_gain = min(gain, n - k)
+    changing_ranks = []
+    for take in range(1, min(gain - 1, n - k) + 1):
+        j = k + take
+        before = set(cheap + sorted(tied, key=lambda a: a[0])[:take])
+        after = set(cheap + sorted(tied, key=lambda a: a[0], reverse=True)[:take])
+        assert before != after and len(before) == len(after) == j
+        ground = [(a, b, 0) for a, b in hyperbolic_cross(j, 2) if a < r or b < r]
+        scale = 2 * j + 1
+        for basis, sign in ((before, 1), (after, -1)):
+            weight = (scale * A + sign, scale * B, 0)
+            assert set(sorted(ground, key=lambda a: (dot(a, weight), a))[:j]) == basis
+        changing_ranks.append(j)
+    assert capped_gain <= 2 * len(changing_ranks)
+
+    low_z, high_z = Fraction(level, n + 2), Fraction(level + 1)
+    carriers = {Fraction(A * (r - h), h) for h in range(1, r)}
+    events = {low_z, high_z} | carriers
+    events.update(Fraction(level - B * b, c) for b in range(level // B + 1)
+                  for c in range(1, n + 3) if level - B * b > 0)
+    events = sorted(z for z in events if low_z <= z <= high_z)
+    samples = sorted(set(events) | {(a + b) / 2 for a, b in zip(events, events[1:])})
+    strict_ranks, closed_ranks, critical, vertices = [], [], [], []
+    for z in samples:
+        denominator = z.denominator
+        weight = (A * denominator, B * denominator, z.numerator)
+        strict = subcurve_prefix_counts(r, weight, level * denominator - 1)[-1]
+        closed = subcurve_prefix_counts(r, weight, level * denominator)[-1]
+        strict_ranks.append(strict)
+        closed_ranks.append(closed)
+        critical.append(strict < n <= closed)
+        if z not in events or z in carriers:
+            continue
+        xy = [a for a in tied if multicurve_allowed(a, r, (A, B, z))]
+        yz = []
+        for b in range(level // B + 1):
+            c = Fraction(level - B * b) / z
+            if c > 0 and c.denominator == 1 and multicurve_allowed((0, b, int(c)), r, (A, B, z)):
+                yz.append((0, b, int(c)))
+        assert closed - strict == len(xy) + len(yz)
+        if strict < n < closed and len(xy) >= 2 and yz:
+            vertices.append({'z_price': str(z), 'strict_rank': strict, 'closed_rank': closed,
+                             'xy_threshold_points': xy, 'positive_z_threshold_points': yz})
+    assert all(a >= b for a, b in zip(strict_ranks, strict_ranks[1:]))
+    assert all(a >= b for a, b in zip(closed_ranks, closed_ranks[1:]))
+    indices = [i for i, value in enumerate(critical) if value]
+    assert not indices or indices == list(range(indices[0], indices[-1] + 1))
+    assert len(vertices) <= capped_gain + 2 <= 3 * capped_gain
+    return {'components': r, 'length': n, 'xy_price': [A, B], 'threshold': level,
+            'planar_strict_rank': k, 'planar_tie_rank': gain, 'capped_tie_rank': capped_gain,
+            'changing_planar_truncation_ranks': changing_ranks,
+            'complete_transverse_samples': len(samples), 'off_carrier_vertices': vertices}
+
+
+def hook_carrier_trace(r, n, A, B):
+    assert gcd(A, B) == 1 and (r * A) % (A + B) == 0
+    ground = tuple(a for a in hyperbolic_cross(n, 3) if multicurve_allowed(a, r, (A, 1, B)))
+    projected = {a: (A * a[0] + B * a[2], a[1]) for a in ground}
+    H = max(A, B) * n
+    assert all((p + 1) * (b + 1) <= H for p, b in projected.values())
+    events = {Fraction(0)}
+    for a, b in combinations(ground, 2):
+        dp, dy = (x - y for x, y in zip(projected[a], projected[b]))
+        if dp * dy < 0:
+            events.add(-Fraction(dp, dy))
+    events = sorted(events)
+    samples = [(a + b) / 2 for a, b in zip(events, events[1:])] + [events[-1] + 1]
+    path, bases = [], {}
+    for t in samples:
+        weight = (A * t.denominator, t.numerator, B * t.denominator)
+        selected = tuple(sorted(sorted(ground, key=lambda a: (dot(a, weight), a))[:n]))
+        profile = tuple(sum(projected[a][i] for a in selected) for i in range(2))
+        if not path or path[-1]['profile'] != profile:
+            if path:
+                assert path[-1]['profile'][0] < profile[0] and path[-1]['profile'][1] > profile[1]
+            path.append({'y_price': str(t), 'profile': profile})
+        bases[selected] = weight
+    cube = 0
+    while cube**3 < n * n * H:
+        cube += 1
+    bound = 1 + (H - 1).bit_length() * (n + 3 * cube)
+    assert len(path) <= bound
+    return {'components': r, 'length': n, 'primitive_axis_prices': [A, B],
+            'projected_hyperbolic_bound': H, 'complete_comparison_intervals': len(samples),
+            'distinct_projected_profiles': len(path), 'explicit_planar_upper_bound': bound,
+            'profile_path': path}, bases
+
+
+def hook_active_local_control(trace_bases):
+    r, n, level, prime = 3, 36, 6, 1000003
+    pool = [a for a in product(range(level + 1), repeat=3)
+            if not a[0] * a[2] and sum(a) <= level and multicurve_allowed(a, r, (1, 1, 1))]
+    cheap, tied = [a for a in pool if sum(a) < level], [a for a in pool if sum(a) == level]
+    assert len(cheap) == 34 and len(tied) == 9
+    take = n - len(cheap)
+    profiles = defaultdict(list)
+    for choice in combinations(tied, take):
+        profiles[tuple(sum(a[i] for a in choice) for i in range(2))].append(choice)
+    hull = convex_hull(profiles)
+    ground = tuple(hyperbolic_cross(n, 3))
+    local = {}
+    for index, p in enumerate(hull):
+        previous, following = hull[index - 1], hull[(index + 1) % len(hull)]
+        dx, dy = -(p[1] - previous[1]) - (following[1] - p[1]), (p[0] - previous[0]) + (following[0] - p[0])
+        assert all(dx * (q[0] - p[0]) + dy * (q[1] - p[1]) > 0 for q in hull if q != p)
+        assert len(profiles[p]) == 1
+        selected = tuple(sorted(cheap + list(profiles[p][0])))
+        scale = 100 * n * max(1, abs(dx), abs(dy))
+        weight = (scale + dx, scale + dy, scale)
+        allowed = [a for a in ground if multicurve_allowed(a, r, weight)]
+        assert tuple(sorted(sorted(allowed, key=lambda a: (dot(a, weight), a))[:n])) == selected
+        local[selected] = weight
+    all_bases = dict(trace_bases)
+    all_bases.update(local)
+    rng = Random(20261020 + n)
+    for attempt in range(1, 31):
+        nodes = rng.sample(range(2, prime), n)
+
+        def residue(a):
+            return tuple(pow(t, a[0] - a[1], prime) * pow(j, a[1], prime) * pow(t - 1, -a[2], prime) % prime
+                         for j in range(1, r + 1) for t in nodes[12 * (j - 1):12 * j])
+
+        columns = {a: residue(a) for a in ground}
+        if all(column_prefix_ranks(selected, columns, prime)[-1] == n for selected in all_bases):
+            break
+    else:
+        raise AssertionError('no active local/trace point witness found')
+    for selected, weight in local.items():
+        assert greedy(ground, columns, weight, prime) == set(selected)
+    for selected, weight in list(trace_bases.items())[::max(1, len(trace_bases) // 4)]:
+        assert greedy(ground, columns, weight, prime) == set(selected)
+    selected, weight = next(iter(local.items()))
+    inverse = field_inverse(selected, columns, prime)
+
+    def coordinates(a):
+        return [sum(x * y for x, y in zip(row, residue(a))) % prime for row in inverse]
+
+    polynomials = []
+    for a in minimal_excluded_border(selected):
+        polynomial = {a: 1}
+        for b, c in zip(selected, coordinates(a)):
+            if c:
+                polynomial[b] = -c
+        assert all(dot(a, weight) > dot(b, weight) for b in polynomial if b != a)
+        polynomials.append(polynomial)
+    pairs = pair_checks(polynomials, weight, prime)
+    for a in ground:
+        expected = {b: c for b, c in zip(selected, coordinates(a)) if c}
+        assert normal_form({a: 1}, polynomials, weight, prime) == expected
+    return {'components': r, 'length': n, 'characteristic': prime, 'points_per_component': 12,
+            'nodes_by_component': [nodes[i:i + 12] for i in range(0, n, 12)],
+            'generic_sample_attempts': attempt, 'threshold_weight': [1, 1, 1], 'threshold': level,
+            'strict_carrier_rank': len(cheap), 'closed_carrier_rank': len(cheap) + len(tied),
+            'local_exposed_bases': len(local), 'all_local_and_trace_basis_rank_checks': len(all_bases),
+            'ordinary_s_pairs': pairs, 'ordinary_normal_forms': len(ground),
+            'local_basis_witnesses': [{'basis': basis, 'strict_weight': weight} for basis, weight in local.items()]}
+
+
+def hook_charging_controls():
+    groups = []
+    for r, n in ((1, 8), (2, 16), (3, 36), (4, 64)):
+        for A, B, level in product(range(1, 4), range(1, 4), range(1, 13)):
+            if gcd(A, B) == 1:
+                group = hook_threshold_group(r, n, A, B, level)
+                if group is not None:
+                    groups.append(group)
+    assigned = defaultdict(set)
+    for group in groups:
+        key = (group['components'], group['length'], *group['xy_price'])
+        ranks = set(group['changing_planar_truncation_ranks'])
+        assert not (assigned[key] & ranks)
+        assigned[key].update(ranks)
+    traces, bases = [], {}
+    for A, B in ((1, 2), (2, 1)):
+        trace, selected = hook_carrier_trace(3, 36, A, B)
+        traces.append(trace)
+        bases.update(selected)
+    active = hook_active_local_control(bases)
+    return {'scope': 'Uniform O(n^2*log(n+1)) balanced multicomponent fan bound. Threshold charges share a monotone rank interval across all carrier sectors. The general unequal-size and unrestricted G_3 counts remain open; priority is not certified.',
+            'planar_tie_groups': groups, 'complete_carrier_traces': traces,
+            'active_local_point_quotient': active}
+
+
 def main():
     axes = [axis_controls(n) for n in (4, 5, 6, 7, 9, 12, 15, 21)]
     arithmetic = [arithmetic_controls(n) for n in (99, 303, 603)]
@@ -957,13 +1149,15 @@ def main():
                                  ((1, 0, 2), (0, 1, 3)), ((5, 3, 0), (7, 0, 3))]]
     unions = two_curve_controls()
     multicurves = multicurve_controls()
+    charging = hook_charging_controls()
     paths = ['scripts/run_algebraic_incidence_controls.py', 'docs/weighted_facet_incidence.md',
              'docs/initial_cone_height.md', 'scripts/run_extremal_initial_ideals_checks.py',
              'scripts/run_structural_complexity_checks.py', 'scripts/run_initial_cone_height_checks.py',
              'scripts/run_interleaving_research.py', 'docs/extremal_initial_ideals.md',
-             'docs/generic_multiaffine_bound.md']
+             'docs/generic_multiaffine_bound.md', 'docs/planar_dyadic_bound.md',
+             'docs/rational_shadow_bound.md', 'scripts/run_planar_dyadic_bound_checks.py']
     report = {'status': 'passed', 'command': 'python3 -B scripts/run_algebraic_incidence_controls.py',
-              'scope': 'Three-pole quotients give quartic incidence and generic two-curve unions have quadratic fans. Arbitrarily many scaled components have an exact generic prefix-rank formula with only square-root many capacity constraints. The full extremal count and priority remain open.',
+              'scope': 'Three-pole quotients give quartic incidence; scaled components have exact generic prefix ranks. Threshold charging now excludes polynomial amplification for the entire balanced component family uniformly in its size. Unequal-size and unrestricted extremal counts and priority remain open.',
               'summary': {'complete_axis_fans': len(axes), 'axis_cells': sum(a['positive_cells'] for a in axes),
                           'matrix_selection_controls': sum(a['independent_matrix_selections'] for a in axes),
                           'arithmetic_fixtures': len(arithmetic), 'complete_quotient_fans': len(interior),
@@ -989,12 +1183,21 @@ def main():
                           'multicurve_prefix_rank_checks': sum(a['generic_rank_formula_prefix_checks'] for a in multicurves['generic_point_quotients']),
                           'multicurve_normal_forms': sum(a['ordinary_normal_forms'] for a in multicurves['generic_point_quotients']),
                           'multicurve_direct_point_rank_queries': sum(a['direct_prefix_rank_queries'] for a in multicurves['finite_prefix_rank_fixtures']),
-                          **multicurves['rank_controls']},
+                          **multicurves['rank_controls'],
+                          'hook_charged_planar_groups': len(charging['planar_tie_groups']),
+                          'hook_transverse_rank_samples': sum(a['complete_transverse_samples'] for a in charging['planar_tie_groups']),
+                          'hook_charged_spatial_vertices': sum(len(a['off_carrier_vertices']) for a in charging['planar_tie_groups']),
+                          'hook_carrier_trace_intervals': sum(a['complete_comparison_intervals'] for a in charging['complete_carrier_traces']),
+                          'hook_active_local_bases': charging['active_local_point_quotient']['local_exposed_bases'],
+                          'hook_active_matrix_bases': charging['active_local_point_quotient']['all_local_and_trace_basis_rank_checks'],
+                          'hook_active_s_pairs': charging['active_local_point_quotient']['ordinary_s_pairs'],
+                          'hook_active_normal_forms': charging['active_local_point_quotient']['ordinary_normal_forms']},
               'uniform_axis_matroids': axes, 'arithmetic_lower_bound_controls': arithmetic,
               'interior_quotients': interior, 'three_pole_quotients': curves,
               'positive_plane_traces': planes,
               'generic_two_curve_unions': unions,
               'generic_multicurve_unions': multicurves,
+              'balanced_hook_threshold_charging': charging,
               'source_sha256': {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in paths}}
     (ROOT / 'results/research/algebraic_incidence_controls.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report['summary'], indent=2))

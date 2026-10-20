@@ -3289,8 +3289,10 @@ $O(n^{5/2}\log(n+1))$. A polynomial separation in this balanced
 construction could occur only with an increasing $r<\sqrt n$;
 bounded $r$, and also $r=n^{o(1)}$, cannot supply a fixed power gain.
 These are restricted bounds, not a new bound on unrestricted $G_3$.
-The intermediate balanced count and the general unbalanced count
-remain open here.
+The following threshold-charging theorem removes the extra component
+factor and excludes the intermediate balanced regime too. The sharp
+balanced order within logarithmic factors and the general unbalanced
+count remain open.
 
 ### An exact rank oracle without evaluation matrices
 
@@ -3344,6 +3346,227 @@ The uniform proofs above establish the claims beyond those fixtures.
 Classical inputs remain explicit; exact priority of this combined rank
 and counting formulation has not been established. No new paper or
 completed-goal claim follows from these restricted results alone.
+
+## Threshold charging closes the whole balanced component route
+
+The component factor in (V9) can be removed. For generic equal-sized
+samples on any number of the scaled curves, in every characteristic
+over a suitable infinite field,
+
+$$
+g(I)=O(n^2\log(n+1)),\qquad n=rm, \tag{W1}
+$$
+
+with an absolute constant independent of $r,m$ and the distinct nonzero
+component scalars. This supersedes the weaker restricted
+$O(n^{5/2}\log(n+1))$ bound. Thus the entire balanced generic family
+cannot give a polynomial separation from generic corner cuts. The proof
+uses the uniform truncation already established, rather than assigning
+independent choices to components or carrier sectors.
+
+### A reduction for carriers with two coordinate planes
+
+There is a more general statement behind (W1). Let $J\subseteq I$ in
+$K[x,y,z]$, with $xz-z-1\in J$ and $\dim K[x,y,z]/I=n$. For $w>0$,
+write $h_J(w,t)$ for the dimension of the carrier span of monomials
+of cost at most $t$. Require the uniform prefix property
+
+$$
+\dim\langle x^a:w\cdot a\le t\rangle_{K[x,y,z]/I}
+ =\min(n,h_J(w,t))\quad\text{for every }w>0,t. \tag{W2}
+$$
+
+Let $\mathcal Q$ be distinct primitive integer normals of planes
+covering all internal walls of the carrier's positive initial fan.
+Then
+
+$$
+g(I)=O\!\left(n\log(n+1)
+ \left[n+\sum_{q\in\mathcal Q}\|q\|_1^{1/3}\right]\right).
+\tag{W3}
+$$
+
+This is conditional on (W2) and the specified carrier-wall cover.
+Unequal generic samples satisfy (V5), and need not satisfy (W2).
+Consequently (W3) does not give a bound for that whole class or for
+unrestricted finite quotients.
+
+The universal head $xz$ puts every carrier-standard monomial on
+$E_{xy}\cup E_{yz}$, where $E_{xy}=\{z=0\}$ and
+$E_{yz}=\{x=0\}$ denote exponent planes. On the interior of a
+carrier cone, (W2) selects exactly the $n$ cheapest carrier-standard
+monomials. At a vertex of the finite positive fan off the carrier
+walls, the selection threshold contains noncollinear standard points.
+At least two of them lie in one exponent plane. If that plane is
+$E_{xy}$, some threshold point has positive $z$ exponent; otherwise
+all the threshold points would lie on one cost line in $E_{xy}$ and
+the exposed profile face would have dimension at most one. The
+$E_{yz}$ case is symmetric.
+
+### One planar tie has one monotone interval
+
+Fix a planar $xy$ tie direction $(A,B)>0$ and its cost level $t$.
+Let $U$ be the carrier span of $xy$ monomials of cost below $t$, with
+$k=\dim U$. Let $G$ be the rank gain on adding its whole planar cost
+level. A charged spatial vertex has $k<n$ and $G\ge2$: its two
+carrier-standard $xy$ points are independent modulo every strictly
+cheaper carrier monomial, hence modulo $U$.
+
+Vary $v=w_z>0$, keeping $w_x=A,w_y=B,t$ fixed. Let $h_-(v)$ and
+$h_+(v)$ be the carrier ranks of all monomials of cost respectively
+below and at most $t$. Both functions are nonincreasing: their raw
+monomial prefix sets shrink as $v$ increases. Therefore
+
+$$
+\mathcal I=\{v:h_-(v)<n\le h_+(v)\}
+$$
+
+is an interval. Away from transverse cost ties, its two ranks differ
+only by adding the planar tie space, so $h_+\le h_-+G$. Also
+$h_-\ge k$. Thus at ordinary points of $\mathcal I$, the integer
+$h_-$ lies among at most
+
+$$
+g_0=\min(G,n-k) \tag{W4}
+$$
+
+values, from $\max(k,n-G)$ through $n-1$.
+
+At a charged spatial vertex off carrier walls, the standard set of
+the carrier is locally fixed. At least one standard monomial with
+positive $z$ exponent leaves the strict prefix as $v$ increases
+through the vertex. Hence $h_-$ strictly drops there. Between the
+two endpoints of $\mathcal I$, the total number of such drops is
+bounded by its $g_0$ available rank values. Allowing both endpoints
+gives at most $g_0+2\le3g_0$ charged vertices for the fixed planar
+tie. Simultaneous departures only strengthen this bound.
+
+The interval and rank budget extend across **all** carrier sectors:
+they use nested spans in one fixed carrier algebra. Changing its
+monomial representation cannot reset the budget. Carrier-wall
+vertices themselves will be counted separately. The finite quotient
+has finitely many fan vertices. An interval extending to $0$ or
+infinity does not change the rank budget.
+
+### Charging the tie ranks to all planar truncations
+
+For $1\le j\le n$, take the rank-$j$ truncation of the functional
+matroid of $K[x,y]$ in the carrier. Every selected prefix is a
+monomial downset of size $j$, so it lies in $V_j^2$. This finite
+ground has rank at least $j$. Indeed $K[x,y]$ generates the finite
+quotient by $I$: from $(x-1)z=1$, the inverse $z$ is a polynomial
+in $x$ in any finite algebra. Thus the planar carrier image has
+dimension at least $n$. The same holds for $K[y,z]$.
+
+The [planar matroid theorem](planar_dyadic_bound.md) applies with
+rank and hyperbolic bound both $j$. Each positive-quadrant sweep
+therefore has $O(j\log(j+1))$ basis transitions.
+
+At our planar tie, contract the span of all cheaper monomials.
+Immediately before and after its weight ratio, the tie elements are
+processed in opposite orders of their $x$ exponents. For any
+$\ell<G$, the two greedy selections of $\ell$ independent elements
+cannot be the same set. If they were, the increasing-order prefix
+through its last selected element, and the decreasing-order suffix
+through its first, would together cover the whole tie block. Each
+part lies in the span of that common set, contradicting block rank
+$G>\ell$.
+
+Consequently this tie changes the rank-$j$ planar prefix for every
+
+$$
+j=k+\ell,\qquad1\le\ell\le\min(G-1,n-k).
+$$
+
+There are at least $g_0/2$ such ranks, since $G\ge2$.
+At one fixed weight ratio, different cost levels have disjoint
+rank intervals. They therefore cannot charge the same truncation
+transition twice. Summing over all planar ties gives
+
+$$
+\sum g_0\le2\sum_{j=1}^n
+ \#\{\text{rank-}j\text{ planar transitions}\}
+ =O(n^2\log(n+1)). \tag{W5}
+$$
+
+Combining (W4)--(W5) bounds all off-carrier interior fan vertices
+charged to $E_{xy}$. Repeat for $E_{yz}$. This step counts a fixed
+carrier's simultaneous rank changes, rather than adding independent
+sector bounds. It requires no general-position assumption about the
+number of monomials tied at a vertex.
+
+### Carrier and boundary vertices are visible in shadows
+
+Use the finite basis-profile polytope $P$ on the universal ground
+$V_n^3$. The established identification with the positive initial fan
+is [Babson--Onn--Thomas, Theorem 2.4](https://arxiv.org/pdf/math/0207135),
+whose statement and proof on PDF pp. 4--5 were rechecked. Their
+Definition 2.3 and Theorem 3.5 proof give the finite matroid projection
+framework. This dictionary is prior art.
+
+An interior fan vertex corresponds to a two-dimensional exposed
+face of $P$. If its weight belongs to $q^\perp$, project $P$ onto
+that plane. The face cannot collapse to a point under a projection
+with one-dimensional kernel; its image is a nondegenerate exposed
+segment. Thus each distinct such normal direction is a transition
+of the planar shadow. This includes lower-dimensional $P$: a
+projected segment has at most one such transition. The
+[rational-shadow theorem](rational_shadow_bound.md) bounds these by
+
+$$
+O(n\log(n+1)\|q\|_1^{1/3}). \tag{W6}
+$$
+
+On the boundary of the weight simplex, isolated subdivision vertices
+are likewise visible in the corresponding coordinate-plane shadow.
+If a supporting edge collapses, its normal wall coincides with the
+whole boundary plane, rather than making an isolated crossing; any
+junction then has a two-dimensional supporting face and is visible
+by the preceding argument. Coordinate projections preserve the
+hyperbolic bound $n$, so the three boundary edges have
+$O(n\log(n+1))$ subdivision vertices in total, besides their corners.
+
+Intersect the positive fan with the closed weight simplex. Its
+convex polygonal cells form a simple planar subdivision, and Euler's
+formula bounds its cell count by a constant times its total vertex
+count plus one. This remains valid for high-degree vertices; no
+bounded-incidence assumption is made. Adding (W5), (W6) over the
+carrier planes and the boundary bound proves (W3).
+
+### Applying the reduction to every balanced component count
+
+For the degree-$r$ scaled-curve carrier, its wall normals are the
+primitive versions of
+
+$$
+(r-h,0,-h),\qquad1\le h<r.
+$$
+
+Each has norm at most $r$, giving total shadow charge
+$O(nr^{4/3}\log(n+1))$. If $r<\sqrt n$, this is at most
+$O(n^{5/3}\log(n+1))$, below the threshold term (W5). If
+$r^2\ge n$, the already proved surface-fan equality gives (W1)
+directly. These two cases establish the uniform bound for all $r$.
+More generally, (W3) gives the same quadratic power for any carrier
+satisfying (W2) whose stated wall-normal budget
+$\sum\|q\|_1^{1/3}$ is $O(n)$.
+
+The independent controls replay 178 planar tie groups, their complete
+transverse rank events, planar truncation changes, and carrier traces.
+An active length-$36$ point quotient has carrier ranks $34$ below
+and $43$ at cost $6$ under $(1,1,1)$. Five exposed local bases and
+the carrier-trace bases are checked by exact finite-field evaluation;
+ordinary S-pairs and normal forms independently verify a local
+Gröbner basis. This exercises the regime where the carrier constraint
+affects selection, beyond the earlier surface-equality fixtures.
+
+The monotone rank interval, all-truncation charge and carrier-budget
+reduction have explicit proofs, with classical inputs identified.
+Their precise priority remains unassessed. This closes the balanced
+generic construction as a polynomial-amplification route. It does
+not settle the unequal-size nested constraints, special node sets,
+unrestricted $G_3$, or the original paper and significance criteria.
+No new manuscript is justified by this screening result alone.
 
 ## Reproduction
 
