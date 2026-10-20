@@ -195,7 +195,11 @@ degrees nonzero and gives an exact prefix-rank formula for the original
 mixed-period algebra. Its remaining difficulty is a sum of graph cycle
 spaces, which cannot be replaced by connectivity of their union. A wider
 price region restricts every basis to one period of candidate slots;
-counting their coherent omissions remains open.
+their fixed total rank deficit now gives an `O(n^2)` bound. More generally,
+all initial sets staying within one period in any coordinate presentation
+number only `O(n^2)`, regardless of prices or period balance. A separating
+family must draw its growth from bases reaching all three period thresholds.
+This does not count those remaining bases or establish novelty.
 The additive prime-power class is now classified separately: at length
 `n=q^k`, every initial ideal is a prime-power box and the sharp maximum
 is `binomial(k+d-1,d-1)`. The proof uses established Frobenius reduction;

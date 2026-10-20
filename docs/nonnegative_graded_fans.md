@@ -474,25 +474,137 @@ block condition $m>(D-1)\alpha$. It permits degree $t-1$, so it does
 not exclude the new columns in (G7). It excludes additional complete
 periods, rather than assuming they are harmless.
 
-A classical volume consequence provides a regional count. Use the
-finite monomial ground $a<D,b+c<t$, which contains all standard sets
-in this region. A rank-$n$ basis profile has coordinate ranges at most
-$n(D-1),n(t-1),n(t-1)$. The established three-dimensional lattice-
-polytope vertex bound, with a unit-cube regularization when needed,
-therefore gives
+The omissions also give a stronger count than the earlier rectangular
+volume estimate. In fact
 
 $$
-g_{\text{(G9)}}(A)=O(1+n^{3/2}\sqrt D\,t)
-                 =O(1+n^2\sqrt t).                     \tag{G10}
+g_{\text{(G9)}}(A)=O(n^2),                              \tag{G10}
 $$
 
-For comparable periods tending to infinity, $t=\Theta(n^{1/3})$,
-giving $O(n^{13/6})$ in this region. This is an explicitly classical
-volume corollary of the new range restriction; it remains above the
-generic scale and is not a polynomial-separation exclusion. The
-uncovered price range and the coherent omissions inside each auxiliary
-set still require a uniform analysis. No new lattice-vertex theorem,
-unrestricted exponent or faster rank algorithm is asserted.
+uniformly over the periods, their relative sizes and the field. This
+supersedes the valid but weaker $O(n^2\sqrt t)$ estimate. It excludes
+this whole price region as a source of a polynomial separation above
+the generic scale. An exact classification of the omissions is not
+needed for that exclusion.
+
+### The profile-deficit argument
+
+**Lemma 4.** Let a rank-$n$ represented matroid have ground vectors
+labelled by monomials $X^aY^bZ^c$ with $0\le a<D$ and $b+c<t$.
+Suppose the columns at each exact level $j=b+c$ have rank at most
+$D$, and $n=DR$ with $1\le R<t$ and $D\ge2$. Put $s=t-R$.
+The number of profiles exposed by generic linear monomial costs is
+
+$$
+O\!\left(1+n(t-1)\sqrt{D(D-1)s}\right).                \tag{G11}
+$$
+
+For every independent basis $B$, write $m_j=|\{e\in B:b+c=j\}|$.
+Its deficits $\delta_j=D-m_j$ are nonnegative and sum to $Ds$.
+Consequently
+
+$$
+\sum_{e\in B}(b+c)
+ =S-\sum_{j=0}^{t-1}j\delta_j,
+\qquad S=\frac{Dt(t-1)}2.
+$$
+
+The last profile coordinate therefore varies only in
+$[S-Ds(t-1),S]$. The integral coordinate change
+$(a,b,c)\mapsto(a,c,b+c)$ has determinant $-1$. In these
+coordinates the basis-profile polytope lies in an integer translate
+of a box of side lengths
+
+$$
+n(D-1),\qquad n(t-1),\qquad Ds(t-1).
+$$
+
+Its volume is at most $n^2D(D-1)s(t-1)^2$. The established
+three-dimensional lattice-vertex estimate gives (G11). Adding a unit
+cube handles lower-dimensional polytopes, changes these positive
+side bounds by at most a constant factor, and refines the normal fan.
+This is an elementary rank-deficit budget followed by a classical
+lattice-volume consequence; no new lattice-vertex or matroid-quotient
+theorem is claimed.
+
+Apply the lemma to **all** rank-$n$ bases in the finite ground
+$a<D,b+c<t$ for $A$. The level-$j$ vectors lie in $FW^j$, of
+dimension at most $D$. Every initial standard set in (G9) is a unique
+minimum basis in this ground for a suitable generic perturbation, so
+its profile is a vertex of that same polytope. Here $R=t-1$, $s=1$,
+and the box volume is
+
+$$
+n^2D(D-1)(t-1)^2=n^4(1-1/D)\le n^4.
+$$
+
+This proves (G10) when $D\ge2$. If $D=1$, $X$ is scalar and
+$Y,Z$ are scalar multiples of $W$, giving at most two standard sets.
+The thin-degree bound holds for arbitrary independent bases in this
+ground, not merely for the previously identified auxiliary slots.
+Both ends of its degree interval are attained by some monomial bases:
+take all $D$ columns $X^aY^j$ in every level except $j=t-1$ or
+except $j=0$. Such bases need not be monomial downsets; this endpoint
+observation is not a lower bound for positive-weight initial ideals.
+
+### A general periodic-factor consequence
+
+**Theorem 5.** Let $F=K[x]/f$ have dimension $D$, let $u,v\in F$
+be units, and let $g\in F[W]$ be a monic divisor of $W^t-1$ of
+degree $R=t-s$, with $1\le s<t$. Set
+$A=F[W]/g$, $X=x,Y=uW,Z=vW$, and $n=DR$. In (G9),
+
+$$
+g_{\text{(G9)}}(A)
+ =O\!\left(1+n(t-1)\sqrt{D(D-1)s}\right)
+ =O\!\left(1+n^2\frac{t-1}{R}\sqrt s\right)             \tag{G12}
+$$
+
+for $D\ge2$. In particular the bound is $O(n^2\sqrt s)$ if
+$R\ge t/2$, and $O_s(n^2)$ for every fixed defect $s$. No
+separability, radicality, constant-coefficient assumption on $g$, or
+restriction on the characteristic is needed.
+
+Indeed $W^t=1$, so the same cheaper-generator spanning argument
+used for (G9) excludes all levels at least $t$. The monic $f$ excludes
+$a\ge D$. Every level has rank at most $D$, and the monic $g$
+gives length $DR$. Lemma 4 applies. The case $D=1$ again has at
+most two standard sets. The original $g=S_t(W)$ has $s=1$ and
+therefore satisfies the uniform quadratic bound.
+
+The profile argument actually counts a larger family: all initial
+standard sets contained in $a<D,b+c<t$, at **any** positive price.
+Each is still a unique minimum basis in that same finite ground, so
+the proof does not need (G9) once containment is known. The price
+condition is only a sufficient test for containment. The same
+observation gives (G12) for every one-period-contained initial set
+of the general periodic-factor algebra.
+
+For the original three-period construction, apply this argument with
+each of $X,Y,Z$ as the coefficient coordinate. The union of all
+initial sets satisfying at least one of
+
+$$
+\max_{(a,b,c)\in B}(a+b)<r,\qquad
+\max_{(a,b,c)\in B}(a+c)<s,\qquad
+\max_{(a,b,c)\in B}(b+c)<t
+$$
+
+has only $O(n^2)$ members, uniformly even for unbalanced periods.
+Any family giving a polynomial separation must therefore have
+asymptotically more than quadratic many bases reaching **all three**
+period thresholds. Different monomials may witness the three maxima;
+no single monomial is required to reach them simultaneously.
+
+These exclusions do not count the remaining bases. Outside (G9),
+actual bases can reach another period; the $(3,5,7)$ controls with
+sufficiently cheap $Y$ include $Y^{11}$ and cannot use the $X$-coordinate
+one-period ground. They might still fit a different ground, so these
+controls alone do not establish simultaneous crossing of all three
+thresholds. The remaining candidate mechanism is the variation of
+cost-prefix intersections across multiple periods in every coordinate
+presentation. No global separation, unrestricted exponent or new
+rank-algorithm complexity is asserted.
 
 ## Prior-art boundary and verification
 
@@ -554,13 +666,19 @@ our strictly positive grading class. Definitions of generic coordinates/fans
 and the main degree-$d$ mechanism were inspected; the determinant appendix
 was not independently verified.
 
-An additional [NSF primary-PDF lead](https://par.nsf.gov/servlets/purl/10393536)
-mentions finite-colength homogeneous ideals and tropical matroids in
-indexed text. Its exact bibliographic metadata and full definitions
-were not retrieved successfully, so it remains an unresolved comparison
-and supports no novelty inference. None of these reading limits stops
-the current mathematical work or establishes that the new numerical
-statement was previously unknown.
+The formerly unidentified [NSF PDF](https://par.nsf.gov/servlets/purl/10393536)
+is Silversmith, *The matroid stratification of the Hilbert scheme of
+points on* $\mathbb P^1$, Manuscripta Mathematica 167 (2022),
+173--195, [DOI](https://doi.org/10.1007/s00229-021-01280-z).
+In [arXiv:1911.03569v3](https://arxiv.org/pdf/1911.03569v3),
+Theorem 3.7 describes strata using Schur polynomials; Proposition 5.5
+expresses adding a monomial ideal as looped contraction; Theorem 5.11
+describes specified planar $T$-graph edges. Those statements and their
+relevant definitions were inspected. They concern matroid strata and
+edge schemes, not the numerical three-price count proved here.
+This closes the bibliographic lead, not the full quantitative-priority
+audit; no equivalence with, or independence from, all subsequent work
+has been established.
 
 ```bash
 python3 -B scripts/run_graded_fan_checks.py
@@ -579,3 +697,9 @@ zero/opposite-sign boundary family, compare ordinary polynomial ranks
 with both subspace-intersection and graph-cycle-sum calculations on full
 finite cost balls, and verify the one-period range and exact omitted
 slots at specified prices. Characteristics dividing a period are included.
+The profile continuation additionally checks the degree-deficit identity,
+general monic factors of $W^t-1$ over nonreduced coefficient algebras,
+a factor with coefficients in $F$ rather than just $K$, every rank-sized
+subset of three small one-period grounds, and actual additional-period
+bases outside the price condition. These verify the mechanism and its
+boundary, not an asymptotic constant or a global fan count.

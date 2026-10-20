@@ -828,6 +828,191 @@ def one_period_region_controls():
             'models': records}
 
 
+def periodic_nilpotent_tower(D, t, defect, p, translated=False):
+    """F=K[x]/x^D, with an independently divided monic factor of W^t-1."""
+    one = (1,)+(0,)*(D-1)
+
+    def mul(a, b):
+        return tuple(scalar(sum(a[j]*b[i-j] for j in range(i+1)), p) for i in range(D))
+
+    def power(a, k):
+        result = one
+        for _ in range(k):
+            result = mul(result, a)
+        return result
+
+    u = tuple(int(i in (0, 1)) for i in range(D))
+    v = tuple(int(i in (0, 2)) for i in range(D))
+    if translated:
+        require(defect == 1 and power(u, t) == one, 'translated factor has period t in F')
+        g = [power(u, t-1-i) for i in range(t)]
+        factor = [tuple(scalar(-a, p) for a in u), one]
+    else:
+        require(t % defect == 0, 'geometric factor uses a divisor of t')
+        g = [one if i % defect == 0 else (0,)*D for i in range(t-defect+1)]
+        factor = [tuple(scalar(-a, p) for a in one)]+[(0,)*D]*(defect-1)+[one]
+    R = len(g)-1
+    for k in range(t+1):
+        coefficient = tuple(scalar(sum(mul(g[i], factor[k-i])[j]
+                                       for i in range(len(g)) if 0 <= k-i < len(factor)), p)
+                            for j in range(D))
+        expected = tuple(scalar(-a, p) for a in one) if k == 0 else one if k == t else (0,)*D
+        require(coefficient == expected, 'ordinary F-polynomial product is exactly W^t-1')
+
+    def multiply_f(vector, f):
+        result = [0]*(D*R)
+        for k in range(R):
+            coefficients = mul(tuple(vector[i*R+k] for i in range(D)), f)
+            for i, a in enumerate(coefficients):
+                result[i*R+k] = a
+        return tuple(result)
+
+    def multiply_w(vector):
+        result = [0]*(D*R)
+        last = tuple(vector[i*R+R-1] for i in range(D))
+        for k in range(R):
+            tail = mul(last, g[k])
+            for i in range(D):
+                result[i*R+k] = scalar((vector[i*R+k-1] if k else 0)-tail[i], p)
+        return tuple(result)
+
+    unit = (1,)+(0,)*(D*R-1)
+    w_period = unit
+    for _ in range(t):
+        w_period = multiply_w(w_period)
+    require(w_period == unit, 'monic-division arithmetic independently verifies W^t=1')
+
+    @cache
+    def residue(a):
+        if not any(a):
+            return unit
+        i = next(i for i, x in enumerate(a) if x)
+        vector = residue(tuple(x-(i == j) for j, x in enumerate(a)))
+        if i == 0:
+            return tuple(vector[(j-1)*R+k] if j else 0 for j in range(D) for k in range(R))
+        return multiply_w(multiply_f(vector, u if i == 1 else v))
+
+    inverse_u = tuple(scalar((-1)**i, p) for i in range(D))
+    require(mul(u, inverse_u) == one, 'coefficient unit inverse is verified')
+    h = mul(v, inverse_u)
+
+    @cache
+    def slot(a, c, cheap):
+        require(cheap == 0, 'specified nilpotent coefficient coordinate')
+        h_power = power(h, c)
+        return tuple(h_power[i-a] if i >= a else 0 for i in range(D))
+
+    return {'field': p, 'n': D*R, 'D': D, 'R': R, 'period': t, 'defect': defect,
+            'translated_factor': translated, 'g_coefficients': g, 'residue': residue, 'slot': slot}
+
+
+def profile_deficit_witness(basis, D, t, n):
+    require(len(basis) == n and all(0 <= a < D and b >= 0 and c >= 0 and b+c < t for a, b, c in basis),
+            'rank-sized monomial set belongs to the full one-period ground')
+    R, remainder = divmod(n, D)
+    require(not remainder and 0 < R < t, 'rank is D*(t-defect)')
+    counts = Counter(b+c for a, b, c in basis)
+    require(all(0 <= j < t and count <= D for j, count in counts.items()),
+            'actual independent columns obey every level rank cap')
+    deficits = [D-counts[j] for j in range(t)]
+    missing, center = D*t-n, D*t*(t-1)//2
+    degree = sum(b+c for a, b, c in basis)
+    require(sum(deficits) == missing, 'the total rank deficit is fixed')
+    require(degree == center-sum(j*d for j, d in enumerate(deficits)),
+            'degree profile equals the balanced center minus the weighted deficit')
+    require(center-missing*(t-1) <= degree <= center, 'profile lies in the thin integer slab')
+    volume = n*n*(D-1)*(t-1)*missing*(t-1)
+    if R == t-1:
+        require(volume <= n**4, 'circuit-quotient profile-box volume is at most n^4')
+    return {'level_counts': [counts[j] for j in range(t)], 'level_deficits': deficits,
+            'profile_in_unimodular_coordinates': [sum(a for a, b, c in basis), sum(c for a, b, c in basis), degree],
+            'degree_profile_interval': [center-missing*(t-1), center],
+            'integer_profile_box_volume_bound': volume}
+
+
+def profile_balance_controls(one_period):
+    circuit_records = []
+    for record in one_period['models']:
+        D, t, n = record['D'], record['periods'][2], record['n']
+        witness = profile_deficit_witness(record['standard_set'], D, t, n)
+        require(Counter(b+c for a, b, c in record['auxiliary_slots']) == {j: D for j in range(t)},
+                'auxiliary slot levels have exactly their full rank')
+        circuit_records.append({'periods': record['periods'], 'field': record['field'],
+                                'strict_weight': record['strict_weight'], **witness})
+    general, exhaustive = [], []
+    fixtures = [(D, t, s, p, False) for D, t, s, fields in
+                ((2, 3, 1, (0, 2, 3)), (3, 6, 2, (0, 2, 3)),
+                 (4, 6, 3, (0, 2, 3)), (5, 10, 2, (0, 2, 5))) for p in fields]
+    fixtures.append((3, 3, 1, 3, True))
+    for D, t, defect, p, translated in fixtures:
+        model = periodic_nilpotent_tower(D, t, defect, p, translated)
+        n, scale = model['n'], 2*model['n']+1
+        for template in ((t, D, D), (1, D, D+1), (t, D, 2*D)):
+            weight = tuple(x*scale**3+scale**i for i, x in enumerate(template))
+            require(t*min(weight[1:]) > (D-1)*weight[0], 'general periodic tower is in the one-period region')
+            basis = frontier_basis(model['residue'], n, weight, p)
+            auxiliary = tower_basis(model, 0, D, t, Q(weight[2]-weight[1], weight[0]))
+            require(basis <= auxiliary and len(auxiliary-basis) == D*defect,
+                    'general monic-divisor quotient has exactly D*defect omissions')
+            witness = profile_deficit_witness(basis, D, t, n)
+            general.append({'D': D, 'period': t, 'defect': defect, 'field': p, 'n': n,
+                            'translated_factor': translated,
+                            'monic_factor_coefficients': [[str(c) for c in row] for row in model['g_coefficients']],
+                            'strict_weight': weight, 'standard_set': sorted(basis),
+                            'strict_border_relations': border_certificate(basis, model['residue'], weight, p),
+                            **witness})
+        if D == 2 and t == 3:
+            ground = [(a, j-c, c) for a in range(D) for j in range(t) for c in range(j+1)]
+            columns = {a: model['residue'](a) for a in ground}
+            tested = bases = 0
+            degree_min, degree_max = n*t, 0
+            for subset in combinations(ground, n):
+                pivots = {}
+                for a in subset:
+                    insert(pivots, columns[a], p)
+                tested += 1
+                if len(pivots) == n:
+                    witness = profile_deficit_witness(subset, D, t, n)
+                    degree = witness['profile_in_unimodular_coordinates'][2]
+                    degree_min, degree_max = min(degree_min, degree), max(degree_max, degree)
+                    bases += 1
+            center = D*t*(t-1)//2
+            require((degree_min, degree_max) == (center-D*(t-1), center),
+                    'both degree-slab endpoints are attained by arbitrary monomial bases')
+            exhaustive.append({'D': D, 'period': t, 'defect': defect, 'field': p,
+                               'all_subsets_checked': tested, 'independent_bases': bases,
+                               'degree_profile_range': [degree_min, degree_max],
+                               'scope': 'Every rank-sized subset of the full finite one-period ground; bases need not be monomial downsets.'})
+    boundary = []
+    for p in (0, 2, 3, 7):
+        model, periods = cyclotomic_model((3, 5, 7), p), (3, 5, 7)
+        D, t, scale = 8, 7, 2*model['n']+1
+        weight = tuple(x*scale**3+scale**i for i, x in enumerate((1000, 1, 1000)))
+        basis = frontier_basis(model['residue'], model['n'], weight, p)
+        require(t*min(weight[1:]) <= (D-1)*weight[0] and max(b+c for a, b, c in basis) >= t,
+                'actual bases outside the region can enter an additional period')
+        boundary.append({'periods': periods, 'field': p, 'strict_weight': weight,
+                         'standard_set': sorted(basis), 'maximum_level': max(b+c for a, b, c in basis),
+                         'strict_border_relations': border_certificate(basis, model['residue'], weight, p)})
+    periods, p = (3, 5, 7), 101
+    model = cyclotomic_model(periods, p)
+    scale = 2*model['n']+1
+    weight = tuple(x*scale**3+scale**i for i, x in enumerate((2, 1, 1)))
+    basis = frontier_basis(model['residue'], model['n'], weight, p)
+    pair_maxima = [max(a+b for a, b, c in basis), max(a+c for a, b, c in basis),
+                   max(b+c for a, b, c in basis)]
+    require(all(a >= b for a, b in zip(pair_maxima, periods)),
+            'an actual positive-price basis can reach all three period thresholds')
+    simultaneous = {'periods': periods, 'field': p, 'strict_weight': weight,
+                    'standard_set': sorted(basis), 'pair_degree_maxima': pair_maxima,
+                    'strict_border_relations': border_certificate(basis, model['residue'], weight, p),
+                    'scope': 'One exact nonempty-boundary witness, at bounded price ratios; not an infinite lower family or a separation.'}
+    return {'scope': 'Exact rank-cap and profile-slab identities, general nonreduced periodic factors, exhaustive finite-ground bases, and actual outside-region controls. These do not constitute a global fan enumeration or a numerical test of an asymptotic constant.',
+            'circuit_profile_witnesses': circuit_records, 'general_periodic_factor_controls': general,
+            'exhaustive_ground_controls': exhaustive, 'additional_period_boundary_controls': boundary,
+            'simultaneous_period_boundary_control': simultaneous}
+
+
 def main():
     injections = injection_controls()
     fans = graded_fixtures()
@@ -840,6 +1025,7 @@ def main():
     primary = primary_parameter_controls()
     prefixes = tensor_prefix_controls()
     one_period = one_period_region_controls()
+    balance = profile_balance_controls(one_period)
     all_fans = fans+sharpness+[m['initial_form_fan'] for m in local]
     sources = ('docs/nonnegative_graded_fans.md', 'scripts/run_graded_fan_checks.py',
                'scripts/run_cyclotomic_price_checks.py', 'scripts/run_structural_complexity_checks.py',
@@ -874,8 +1060,13 @@ def main():
     summary.update({'one_period_region_models': len(one_period['models']),
                     'models_outside_older_block_condition': sum(not m['older_complete_block_condition'] for m in one_period['models']),
                     'one_period_strict_border_relations': sum(len(m['strict_border_relations']) for m in one_period['models'])})
+    summary.update({'balanced_circuit_profile_controls': len(balance['circuit_profile_witnesses']),
+                    'general_periodic_factor_price_controls': len(balance['general_periodic_factor_controls']),
+                    'exhaustive_profile_subsets': sum(m['all_subsets_checked'] for m in balance['exhaustive_ground_controls']),
+                    'exhaustive_independent_profile_bases': sum(m['independent_bases'] for m in balance['exhaustive_ground_controls']),
+                    'additional_period_boundary_controls': len(balance['additional_period_boundary_controls'])})
     report = {'schema_version': 1, 'command': 'python3 -B scripts/run_graded_fan_checks.py',
-              'scope': 'Finite controls of uniform nonnegative and signed-full-support grading bounds, local refinements, the zero/opposite-sign proof boundary, exact mixed-period prefix ranks and the one-period price restriction. Complete small graded fans use independent monomial comparisons and actual shared facets. No full mixed-period fan search, unrestricted G_3 resolution or novelty certificate.',
+              'scope': 'Finite controls of uniform grading bounds, local refinements, exact mixed-period prefix ranks, the one-period price restriction and the rank-deficit profile mechanism for its quadratic count. General nonreduced periodic factors and actual additional-period boundaries are included. Complete small graded fans use independent comparisons and actual facets. No full mixed-period fan search, unrestricted G_3 resolution or novelty certificate.',
               'source_sha256': {s: sha256((ROOT/s).read_bytes()).hexdigest() for s in sources},
               'hilbert_budget_controls': injections, 'actual_graded_quotients': fans,
               'pointwise_sharpness_controls': sharpness, 'local_refinement_controls': local,
@@ -884,6 +1075,7 @@ def main():
               'zero_opposite_proof_boundary': zero_opposite, 'primary_parameter_controls': primary,
               'mixed_period_prefix_rank_controls': prefixes,
               'one_period_price_controls': one_period,
+              'profile_balance_controls': balance,
               'summary': summary}
     (ROOT/'results/research/graded_fan_checks.json').write_text(json.dumps(report, indent=2)+'\n')
     print(json.dumps(summary, sort_keys=True))

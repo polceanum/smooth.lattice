@@ -2324,13 +2324,37 @@ inputs, not new general matroid claims.
 When $t\min(w_Y,w_Z)>(D-1)w_X$, every standard monomial has
 $a<D$ and $b+c<t$. Each standard set is contained in a $tD$-element
 auxiliary slot set and omits exactly $D$ elements. There are only
-$O(n)$ possible auxiliary sets, but their coherent omissions have
-not been counted. The established lattice-volume estimate gives the
-regional corollary $O(1+n^2\sqrt t)$, or $O(n^{13/6})$ for comparable
-periods. This remains above the generic scale and does not exclude
-a polynomial separation. The additional-period region also remains
-open. The next proof task is the uniform variation of these specific
-cost-prefix intersections and omissions, not a larger full-fan sweep.
+$O(n)$ possible auxiliary sets. Their fixed rank deficit gives a
+stronger count: if $m_j$ basis columns occur at level $j$, then
+$\delta_j=D-m_j\ge0$ and $\sum_j\delta_j=D$. Thus the total
+degree profile varies over an interval of length only $D(t-1)=n$.
+In the unimodular coordinates $(a,c,b+c)$, the basis-profile polytope
+lies in a box of volume at most $n^4$. The established lattice-vertex
+bound gives $O(n^2)$ states, superseding the earlier
+$O(n^2\sqrt t)$ corollary and excluding this whole region from a
+polynomial separation.
+
+The profile proof only needs containment in $a<D,b+c<t$, so it
+counts all initial sets with that property at any price. Permuting
+the three coordinate presentations shows that the union of all bases
+failing to reach at least one of the pair-degree thresholds $r,s,t$
+has only $O(n^2)$ members, even for unbalanced periods. A polynomially
+separating family must therefore get its asymptotic growth from bases
+reaching all three thresholds; the three witnessing monomials need
+not coincide. A small exact basis verifies that simultaneous crossing
+can occur, but lies in an already excluded bounded-price region and
+supplies no infinite lower family.
+
+The same profile-deficit calculation applies to
+$F[W]/g$, for a monic divisor $g$ of $W^t-1$ of degree
+$R=t-s$, including coefficients in nonreduced $F$. In a one-period
+ground its bound is
+$O(1+n(t-1)\sqrt{D(D-1)s})$; fixed $s$ gives $O_s(n^2)$.
+This is a rank budget followed by a classical lattice-volume estimate,
+not a new matroid-duality or lattice-vertex theorem. The main remaining
+candidate mechanism is cost-prefix variation across multiple periods
+in every coordinate presentation, outside the existing price-region
+exclusions. No larger full-fan sweep is justified by the new result.
 
 Independent checks cover signed Hilbert budgets, actual complete
 small signed fans, the zero/opposite-sign boundary, full cost-prefix
@@ -2346,7 +2370,8 @@ truncating at degree $d+1$ preserves its degree-$d$ mechanism but
 gives length $d(d+1)(d+5)/6$. Their generic-family theorem is not
 claimed to exclude Artinian ideals. This parameter normalization does
 not establish priority of the present bound. Exact inspected theorem
-scopes and an unread primary-PDF lead are recorded in the grading note.
+scopes and the now-identified Silversmith primary-PDF comparison are
+recorded in the grading note.
 The strongest current unrestricted comparison, novelty and the main
 sharp-count or separation endpoint remain unresolved.
 
