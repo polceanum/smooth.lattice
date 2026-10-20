@@ -4,9 +4,11 @@ The shared depth bound leaves room for a polynomially larger fan when
 relations propagate through a growing number of layers. This note
 makes one such class explicit. It gives an exact homogeneous initial
 ideal and a finite free-module description of **all** monomial ranks.
-It does not give a uniform count of the positive fan or establish novelty. The
-free-module and graded-initial mechanisms are classical; the main
-extremal goal and its publication gates remain open.
+For the explicit cubic, the subsequent [uniform classification](cubic_fan_classification.md)
+now proves the complete fan count and a matrix-free rank query over every
+field. The more general two-part class is not classified. The free-module
+and graded-initial mechanisms are classical; novelty, the main extremal
+goal and its publication gates remain open.
 
 Let $S=K[x,y,z]$, $\mathfrak m=(x,y,z)$, and
 
@@ -255,11 +257,18 @@ The classical profile-volume bound is still only $O(n_s^{9/4})$
 for this fixed-degree family: all standard monomials have total
 degree at most $s$, so profiles lie in a cube of side $n_s s$,
 and $n_s=\Theta(s^2)$. Thus a real quantitative window remains.
-Closing it requires a whole-triangle count of original monomial
-rank changes. Both (7) and the smaller integral kernel (9)--(10)
-retain the coupled coefficients needed for that proof.
+The [subsequent proof](cubic_fan_classification.md) closes the explicit
+cubic's whole-triangle count at linear growth, using its coupled original
+costs. Both (7) and the smaller integral kernel (9)--(10) remain valid
+rank models. The classical window is not attained by this cubic.
 
 ## A precise boundary-cover question
+
+The reduction below records the previously unresolved question. Its
+endpoint inequality is now proved for every cutoff and field in the
+[classification note](cubic_fan_classification.md), by matching two exact
+price-prefix rank formulas. The conditional argument is retained here
+to explain the role of the finite certificates.
 
 Set
 
@@ -387,11 +396,11 @@ classification finish the positive fan; lower-dimensional weight
 boundaries cannot hide an additional full-dimensional initial cone.
 All previous complete fan counts at cutoffs three and four agree.
 
-The uniform task is now explicit: prove (13) for arbitrary cutoff,
-or find a counterexample. Extending this table alone would not
-resolve it. A positive uniform proof would exclude this entire
-deep-relation family as a source of a polynomial separation; it
-would not settle unrestricted $G_3$ or complete the active goal.
+The arbitrary-cutoff statement is proved in the separate classification
+note. That proof excludes the entire full-support diagonal cubic family
+as a source of a polynomial separation and supplies an exact rank oracle.
+The table is retained as independently reproducible support; it did not
+prove the uniform result. Unrestricted $G_3$ and the active goal remain open.
 
 ## Prior-art boundary and reproduction
 

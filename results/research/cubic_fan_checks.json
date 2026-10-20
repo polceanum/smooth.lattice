@@ -1,0 +1,450 @@
+{
+  "status": "passed",
+  "command": "python3 -B scripts/run_cubic_fan_checks.py",
+  "counts": {
+    "binary_block_price_prefixes": 38880,
+    "binary_block_field_bases": 1296,
+    "independent_four_channel_prefix_ranks": 3480,
+    "original_field_price_prefix_ranks": 20470,
+    "original_field_basis_models": 600,
+    "strict_original_standard_set_equalities": 160,
+    "cutoff_price_multiset_identities": 36,
+    "matched_price_items": 21368,
+    "mixed_plane_superlevel_multisets": 272,
+    "retained_complete_fan_comparisons": 8,
+    "exact_stream_fan_counts": 18,
+    "fresh_odd_entire_sector_certificates": 28,
+    "fresh_odd_monic_integer_relations": 734
+  },
+  "binary_block_controls": {
+    "binary_block_price_prefixes": 38880,
+    "binary_block_field_bases": 1296
+  },
+  "original_monomial_rank_controls": {
+    "counts": {
+      "independent_four_channel_prefix_ranks": 3480,
+      "original_field_price_prefix_ranks": 20470,
+      "original_field_basis_models": 600,
+      "strict_original_standard_set_equalities": 160
+    },
+    "fixtures": [
+      {
+        "cutoff": 0,
+        "length": 1,
+        "characteristics": [
+          0,
+          2,
+          3,
+          5,
+          101
+        ],
+        "weights_per_field": 15
+      },
+      {
+        "cutoff": 1,
+        "length": 4,
+        "characteristics": [
+          0,
+          2,
+          3,
+          5,
+          101
+        ],
+        "weights_per_field": 15
+      },
+      {
+        "cutoff": 2,
+        "length": 9,
+        "characteristics": [
+          0,
+          2,
+          3,
+          5,
+          101
+        ],
+        "weights_per_field": 15
+      },
+      {
+        "cutoff": 3,
+        "length": 16,
+        "characteristics": [
+          0,
+          2,
+          3,
+          5,
+          101
+        ],
+        "weights_per_field": 15
+      },
+      {
+        "cutoff": 4,
+        "length": 25,
+        "characteristics": [
+          0,
+          2,
+          3,
+          5,
+          101
+        ],
+        "weights_per_field": 15
+      },
+      {
+        "cutoff": 6,
+        "length": 49,
+        "characteristics": [
+          0,
+          2,
+          3,
+          5,
+          101
+        ],
+        "weights_per_field": 15
+      },
+      {
+        "cutoff": 8,
+        "length": 81,
+        "characteristics": [
+          0,
+          2,
+          3,
+          5,
+          101
+        ],
+        "weights_per_field": 15
+      },
+      {
+        "cutoff": 10,
+        "length": 121,
+        "characteristics": [
+          0,
+          2,
+          3,
+          5,
+          101
+        ],
+        "weights_per_field": 15
+      }
+    ],
+    "scope": "Exact Gaussian ranks in original monomial columns, across entire price tiers, against both independent formulas and the stream standard sets. The original integral kernel is separately verified against full Macaulay kernels in the retained truncation report."
+  },
+  "cutoff_multiset_controls": {
+    "cutoff_price_multiset_identities": 36,
+    "matched_price_items": 21368,
+    "mixed_plane_superlevel_multisets": 272
+  },
+  "fan_controls": {
+    "counts": {
+      "retained_complete_fan_comparisons": 8,
+      "exact_stream_fan_counts": 18,
+      "fresh_odd_entire_sector_certificates": 28,
+      "fresh_odd_monic_integer_relations": 734
+    },
+    "fixtures": [
+      {
+        "cutoff": 3,
+        "length": 16,
+        "positive_fan_cells": 6,
+        "positive_ordered_walls": []
+      },
+      {
+        "cutoff": 4,
+        "length": 25,
+        "positive_fan_cells": 12,
+        "positive_ordered_walls": [
+          "1/3"
+        ]
+      },
+      {
+        "cutoff": 5,
+        "length": 36,
+        "positive_fan_cells": 12,
+        "positive_ordered_walls": [
+          "1/3"
+        ]
+      },
+      {
+        "cutoff": 6,
+        "length": 49,
+        "positive_fan_cells": 18,
+        "positive_ordered_walls": [
+          "1/3",
+          "1/2"
+        ]
+      },
+      {
+        "cutoff": 7,
+        "length": 64,
+        "positive_fan_cells": 24,
+        "positive_ordered_walls": [
+          "1/5",
+          "1/3",
+          "1/2"
+        ]
+      },
+      {
+        "cutoff": 8,
+        "length": 81,
+        "positive_fan_cells": 30,
+        "positive_ordered_walls": [
+          "1/5",
+          "1/3",
+          "1/2",
+          "3/5"
+        ]
+      },
+      {
+        "cutoff": 9,
+        "length": 100,
+        "positive_fan_cells": 30,
+        "positive_ordered_walls": [
+          "1/5",
+          "1/3",
+          "1/2",
+          "3/5"
+        ]
+      },
+      {
+        "cutoff": 10,
+        "length": 121,
+        "positive_fan_cells": 42,
+        "positive_ordered_walls": [
+          "1/7",
+          "1/5",
+          "1/3",
+          "1/2",
+          "3/5",
+          "2/3"
+        ]
+      },
+      {
+        "cutoff": 11,
+        "length": 144,
+        "positive_fan_cells": 48,
+        "positive_ordered_walls": [
+          "1/7",
+          "1/5",
+          "1/3",
+          "3/7",
+          "1/2",
+          "3/5",
+          "2/3"
+        ]
+      },
+      {
+        "cutoff": 12,
+        "length": 169,
+        "positive_fan_cells": 60,
+        "positive_ordered_walls": [
+          "1/7",
+          "1/5",
+          "1/4",
+          "1/3",
+          "3/7",
+          "1/2",
+          "3/5",
+          "2/3",
+          "5/7"
+        ]
+      },
+      {
+        "cutoff": 13,
+        "length": 196,
+        "positive_fan_cells": 66,
+        "positive_ordered_walls": [
+          "1/9",
+          "1/7",
+          "1/5",
+          "1/4",
+          "1/3",
+          "3/7",
+          "1/2",
+          "3/5",
+          "2/3",
+          "5/7"
+        ]
+      },
+      {
+        "cutoff": 14,
+        "length": 225,
+        "positive_fan_cells": 72,
+        "positive_ordered_walls": [
+          "1/9",
+          "1/7",
+          "1/5",
+          "1/4",
+          "1/3",
+          "3/7",
+          "1/2",
+          "3/5",
+          "2/3",
+          "5/7",
+          "3/4"
+        ]
+      },
+      {
+        "cutoff": 15,
+        "length": 256,
+        "positive_fan_cells": 78,
+        "positive_ordered_walls": [
+          "1/9",
+          "1/7",
+          "1/5",
+          "1/4",
+          "1/3",
+          "3/7",
+          "1/2",
+          "5/9",
+          "3/5",
+          "2/3",
+          "5/7",
+          "3/4"
+        ]
+      },
+      {
+        "cutoff": 16,
+        "length": 289,
+        "positive_fan_cells": 96,
+        "positive_ordered_walls": [
+          "1/11",
+          "1/9",
+          "1/7",
+          "1/5",
+          "1/4",
+          "1/3",
+          "2/5",
+          "3/7",
+          "1/2",
+          "5/9",
+          "3/5",
+          "2/3",
+          "5/7",
+          "3/4",
+          "7/9"
+        ]
+      },
+      {
+        "cutoff": 17,
+        "length": 324,
+        "positive_fan_cells": 102,
+        "positive_ordered_walls": [
+          "1/11",
+          "1/9",
+          "1/7",
+          "1/5",
+          "1/4",
+          "3/11",
+          "1/3",
+          "2/5",
+          "3/7",
+          "1/2",
+          "5/9",
+          "3/5",
+          "2/3",
+          "5/7",
+          "3/4",
+          "7/9"
+        ]
+      },
+      {
+        "cutoff": 18,
+        "length": 361,
+        "positive_fan_cells": 120,
+        "positive_ordered_walls": [
+          "1/11",
+          "1/9",
+          "1/7",
+          "1/6",
+          "1/5",
+          "1/4",
+          "3/11",
+          "1/3",
+          "2/5",
+          "3/7",
+          "5/11",
+          "1/2",
+          "5/9",
+          "3/5",
+          "2/3",
+          "5/7",
+          "3/4",
+          "7/9",
+          "4/5"
+        ]
+      },
+      {
+        "cutoff": 19,
+        "length": 400,
+        "positive_fan_cells": 132,
+        "positive_ordered_walls": [
+          "1/13",
+          "1/11",
+          "1/9",
+          "1/7",
+          "1/6",
+          "1/5",
+          "1/4",
+          "3/11",
+          "1/3",
+          "2/5",
+          "3/7",
+          "5/11",
+          "1/2",
+          "5/9",
+          "3/5",
+          "7/11",
+          "2/3",
+          "5/7",
+          "3/4",
+          "7/9",
+          "4/5"
+        ]
+      },
+      {
+        "cutoff": 20,
+        "length": 441,
+        "positive_fan_cells": 144,
+        "positive_ordered_walls": [
+          "1/13",
+          "1/11",
+          "1/9",
+          "1/7",
+          "1/6",
+          "1/5",
+          "3/13",
+          "1/4",
+          "3/11",
+          "1/3",
+          "2/5",
+          "3/7",
+          "5/11",
+          "1/2",
+          "5/9",
+          "3/5",
+          "7/11",
+          "2/3",
+          "5/7",
+          "3/4",
+          "7/9",
+          "4/5",
+          "9/11"
+        ]
+      }
+    ],
+    "scope": "The exact wall formula and coordinate-permutation count are checked against every retained all-field complete fan, with fresh original monic certificates at four intervening odd cutoffs. No fitted asymptotic is used."
+  },
+  "uniform_family_theorem": "For s>=3 over every field, the truncated full-support diagonal Markoff cubic has exactly 6*(1+M_s) monomial initial ideals, with epsilon(p,q)*(3*q+p)<=2*(s+1). Its count is 3*n/pi^2+O(sqrt(n)*log(n+1)).",
+  "algorithmic_consequence": "Original monomial price-prefix ranks use O(sqrt(n)) exact arithmetic/floor operations and constant auxiliary storage; a standard set uses O(n) comparisons. These are operation counts for the explicit family, not general bit-complexity or state-of-the-art performance claims.",
+  "scope": "Finite independent exact controls support the complete uniform proof in the note. The theorem closes this deep-relation family as a polynomial-amplification route; unrestricted G_3, novelty and publication gates remain open.",
+  "unrestricted_G3_improvement": false,
+  "novelty_established": false,
+  "goal_complete": false,
+  "source_sha256": {
+    "scripts/run_cubic_fan_checks.py": "42a01aaf57e597397ba446ccd9911cf1f1fd7df6eca62d72aa10d991ff93b322",
+    "docs/cubic_fan_classification.md": "a1263769ab1888e4e6f209b8f788a4c35a56ef98890bfdc9b889a5db11b0b385",
+    "scripts/run_hypersurface_truncation_checks.py": "700073c01784db06a953d351c500e0d66b0019c1152fe4b127cbf50f35cbcd7e",
+    "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
+    "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
+    "scripts/run_socle_stability_checks.py": "81e4476100f0be5457fcf7019186415d230cceac4096202b2844dce645e83f52",
+    "results/research/hypersurface_truncation_checks.json": "ecae48aadf32a1ab463a073223df3bd536e7dbc2199f5925db5c1fd080ec744a"
+  }
+}

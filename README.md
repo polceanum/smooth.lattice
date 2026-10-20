@@ -207,12 +207,18 @@ monomial rank; one explicit cubic has sparse commuting operators using
 `O(n)` stored coefficients. A simpler monic model now works over the
 integers and in every characteristic. Monic integer border certificates
 give its complete positive fans at eight specified cutoffs, through
-length 225. Each tested ordered region is covered by cones incident to
-one boundary ray. An explicit endpoint inequality would give a linear
-fan bound if proved uniformly; that proof is still missing. The cubic
-is the classical Markoff surface after a sign change, so its existing
-symmetries are proof tools rather than a new surface construction.
-These finite certificates give no unrestricted asymptotic or priority claim.
+length 225. A [uniform classification](docs/cubic_fan_classification.md)
+now proves the boundary cover for **every cutoff and field**. The full
+diagonal Markoff cubic family has exactly `6*(1+M_s)` initials, where
+`M_s` counts specified Farey fractions. This gives `3*n/pi^2 + O(sqrt(n)*log(n+1))`
+initial ideals. Original monomial price-prefix ranks have an exact
+`O(sqrt(n))` arithmetic query, and a standard set needs `O(n)` comparisons.
+The proof matches a Laurent three-stream model with a second exact
+rank formula at two equal prices, then uses cone convexity. This closes
+the entire deep-relation family as a polynomial-amplification route.
+The surface, freeness and cone mechanisms are established mathematics;
+priority of the classification, unrestricted `G_3` and the publication
+assessment remain open.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count
