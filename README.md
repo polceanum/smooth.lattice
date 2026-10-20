@@ -193,6 +193,13 @@ large fan. A disjoint-chain argument also bounds the entire class
 of arbitrary linear socle identifications by `O(n^(3/2))` in three
 variables, using the classical lattice-vertex theorem. The full
 count needs an aggregate mechanism that allows individual thin cones.
+A shared profile budget now handles propagating relations in finite
+monomial covers as well: coordinate annihilation depths `h_i` give
+`O(n^(3/2)*sqrt(h_1*h_2*h_3))` initials. For local quotients the
+canonical monomial cover makes this an intrinsic test; any polynomial
+separation needs depth product larger than `n` by a polynomial factor.
+This necessary condition leaves deep relations and multipoint quotients
+uncounted, and gives no new unrestricted exponent or novelty certificate.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count

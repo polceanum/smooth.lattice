@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Exact all-field socle constructions and sharp relative-cone stability controls."""
+"""Exact stability constructions and shared profile budgets for propagating relations."""
 from collections import defaultdict
 from fractions import Fraction
 from itertools import combinations, permutations, product
-from math import gcd, lcm, prod
+from math import comb, gcd, lcm, prod
 from pathlib import Path
 from random import Random
 import hashlib
@@ -12,8 +12,8 @@ import json
 from run_interleaving_research import minimal_excluded_border
 from run_initial_cone_height_checks import clean, normal_form
 from run_algebraic_incidence_controls import pair_checks
-from run_structural_complexity_checks import area2, clip, cross, determinant, dot, greedy, hyperbolic_cross
-from run_extremal_initial_ideals_checks import integer_weight
+from run_structural_complexity_checks import area2, clip, cross, determinant, dot, greedy, hyperbolic_cross, primitive
+from run_extremal_initial_ideals_checks import adjacent_weights, cone_for_basis, integer_weight, inverse_mod
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -324,10 +324,249 @@ def socle_budget_controls():
             'exact_linear_socle_models': examples}
 
 
+def depth_budget_controls():
+    """Test the profile inequality against all subsets, without matroid ranks."""
+    counts, digest = defaultdict(int), hashlib.sha256()
+    for d, last in ((2, 9), (3, 10), (4, 6)):
+        states = {frozenset({(0,)*d})}
+        for size in range(1, last+1):
+            for D in sorted(states, key=lambda s: tuple(sorted(s))):
+                counts['downsets'] += 1
+                for h in product((1, 2, 3), repeat=d):
+                    T = {a for a in D if all(tuple(x+(h[i] if j == i else 0)
+                                                  for j, x in enumerate(a)) not in D for i in range(d))}
+                    Q = D-T
+                    assert all(tuple(x-(i == j) for j, x in enumerate(a)) in Q
+                               for a in Q for i in range(d) if a[i])
+                    for i in range(d):
+                        fibers = defaultdict(list)
+                        for a in D:
+                            fibers[a[:i]+a[i+1:]].append(a)
+                        for line in fibers.values():
+                            tail = sorted(a[i] for a in line if a in T)
+                            core = sorted(a[i] for a in line if a in Q)
+                            assert core == list(range(len(core)))
+                            assert tail == list(range(len(core), len(line))) and len(tail) <= h[i]
+                            counts['coordinate_fibers'] += 1
+                        values = sorted((a[i] for a in T), reverse=True)
+                        partial = 0
+                        for r in range(len(T)+1):
+                            if r:
+                                partial += values[r-1]
+                            bound = h[i]*len(Q)+(h[i]-1)*r
+                            assert partial <= bound
+                            digest.update(repr((d, tuple(sorted(D)), h, i, r, partial, bound)).encode())
+                            counts['all_subset_coordinate_maxima'] += 1
+                    counts['anisotropic_supports'] += 1
+            if size < last:
+                states = {D | {a} for D in states for a in minimal_excluded_border(tuple(D))}
+    return {'counts': dict(counts), 'deterministic_certificate_sha256': digest.hexdigest(),
+            'dimensions_and_maximum_sizes': [[2, 9], [3, 10], [4, 6]],
+            'scope': 'For every support and every residual cardinality, compare the proposed bound with the direct sum of the largest coordinate values. This covers all subsets, including non-downsets and nonbases.'}
+
+
+def depth_rref(rows, p, order=None):
+    rows = [[x % p if p else Fraction(x) for x in row] for row in rows]
+    if not rows:
+        return [], []
+    pivots, k = [], 0
+    for j in (range(len(rows[0])) if order is None else order):
+        pivot = next((i for i in range(k, len(rows)) if rows[i][j]), None)
+        if pivot is None:
+            continue
+        rows[k], rows[pivot] = rows[pivot], rows[k]
+        inv = pow(rows[k][j], -1, p) if p else 1/rows[k][j]
+        rows[k] = [(x*inv) % p if p else x*inv for x in rows[k]]
+        for i in range(len(rows)):
+            if i != k and rows[i][j]:
+                c = rows[i][j]
+                rows[i] = [(x-c*y) % p if p else x-c*y for x, y in zip(rows[i], rows[k])]
+        pivots.append(j)
+        k += 1
+        if k == len(rows):
+            break
+    return rows[:k], pivots
+
+
+def depth_module(D, seeds, p, counts):
+    D = tuple(sorted(D))
+    index = {a: i for i, a in enumerate(D)}
+    m = len(D)
+
+    def shifted(poly, b):
+        row = [0]*m
+        for a, c in poly.items():
+            u = tuple(x+y for x, y in zip(a, b))
+            if u in index:
+                row[index[u]] += c
+        return row
+
+    # Generate the full polynomial ideal in the monomial reference algebra.
+    rows, pivots = depth_rref([shifted(f, b) for f in seeds for b in D], p)
+    free = [j for j in range(m) if j not in pivots]
+    n = len(free)
+    assert n > 0 and rows
+
+    def reduce(row):
+        row = [x % p if p else Fraction(x) for x in row]
+        for v, j in zip(rows, pivots):
+            c = row[j]
+            if c:
+                row = [(x-c*y) % p if p else x-c*y for x, y in zip(row, v)]
+        return row
+
+    def residue(a):
+        row = [int(index.get(a, -1) == j) for j in range(m)]
+        reduced = reduce(row)
+        return tuple(reduced[j] for j in free)
+
+    support = {a for row in rows for a, c in zip(D, row) if c}
+    h = tuple(max(next(t for t in range(1, m+1)
+                       if tuple(x+(t if j == i else 0) for j, x in enumerate(a)) not in index)
+                  for a in support) for i in range(3))
+    T = {a for a in D if all(tuple(x+(h[i] if j == i else 0) for j, x in enumerate(a)) not in index
+                            for i in range(3))}
+    Q = set(D)-T
+    assert support <= T and len(Q) <= n
+    assert all(any(residue(a)) for a in D), 'these covers equal the intrinsic monomial part'
+    reference = [D[j] for j in free]
+    maps = [[residue(tuple(x+(i == j) for j, x in enumerate(a))) for a in reference] for i in range(3)]
+
+    def apply(i, v):
+        return tuple(sum(c*maps[i][j][k] for j, c in enumerate(v)) % p if p
+                     else sum(c*maps[i][j][k] for j, c in enumerate(v)) for k in range(n))
+
+    for i, j in combinations(range(3), 2):
+        for k in range(n):
+            assert apply(i, maps[j][k]) == apply(j, maps[i][k])
+            counts['commutator_columns'] += 1
+    for a in D:
+        v = residue((0, 0, 0))
+        for i, power in enumerate(a):
+            for _ in range(power):
+                v = apply(i, v)
+        assert v == residue(a)
+        counts['cyclic_monomial_evaluations'] += 1
+    for row in rows:
+        f = dict(zip(D, row))
+        for i in range(3):
+            unit = tuple(int(j == i) for j in range(3))
+            assert not any(reduce(shifted(f, unit)))
+            counts['relation_stability_columns'] += 1
+            kill = tuple(h[i]*int(j == i) for j in range(3))
+            assert not any(shifted(f, kill))
+            counts['annihilation_columns'] += 1
+    # Minimality is checked in the reference algebra, before quotienting R out.
+    for i in range(3):
+        witness = tuple((h[i]-1)*int(j == i) for j in range(3))
+        assert any(any(shifted(dict(zip(D, row)), witness)) for row in rows)
+    return D, rows, residue, n, h, T, Q
+
+
+def depth_complete_fan(module, p, counts):
+    D, rows, residue, n, h, T, Q = module
+    columns = {a: residue(a) for a in D}
+    comparisons = sorted({primitive(tuple(x-y for x, y in zip(a, b))) for a, b in combinations(D, 2)
+                          if min(x-y for x, y in zip(a, b)) < 0 < max(x-y for x, y in zip(a, b))})
+    pending, states = [(1, n+1, (n+1)**2)], {}
+    while pending:
+        w = pending.pop()
+        B = frozenset(greedy(D, columns, w, p))
+        assert len(B) == n and Q <= B and B-Q <= T
+        assert all(tuple(x-(i == j) for j, x in enumerate(a)) in B for a in B for i in range(3) if a[i])
+        if B in states:
+            continue
+        polygon, normals = cone_for_basis(B, residue, p)
+        assert area2(polygon) > 0
+        order = sorted(range(len(D)), key=lambda j: (dot(w, D[j]), D[j]), reverse=True)
+        _, pivots = depth_rref(rows, p, order)
+        assert B == set(D)-{D[j] for j in pivots}, 'independent descending relation-row elimination'
+        moment = tuple(sum(a[i] for a in B-Q) for i in range(3))
+        budget = tuple(h[i]*len(Q)+(h[i]-1)*(n-len(Q)) for i in range(3))
+        assert all(a <= b for a, b in zip(moment, budget))
+        basis = tuple(sorted(B))
+        inv = inverse_mod([[residue(a)[i] for a in basis] for i in range(n)], p)
+        G = []
+        for u in minimal_excluded_border(basis):
+            v = residue(u)
+            coefficients = [sum(x*y for x, y in zip(row, v)) % p for row in inv]
+            G.append(clean({u: 1, **{a: -c for a, c in zip(basis, coefficients) if c}}, p))
+        counts['ordinary_s_pairs_depth_models'] += pair_checks(G, w, p)
+        for f in [*({a: 1} for a in minimal_excluded_border(D)),
+                  *(dict(zip(D, row)) for row in rows)]:
+            assert not normal_form(clean(f, p), G, w, p)
+            counts['ideal_generator_normal_forms'] += 1
+        states[B] = {'strict_weight': w, 'standard_basis': basis,
+                     'residual_profile': moment, 'coordinate_budget': budget,
+                     'simplex_double_area': str(area2(polygon))}
+        pending.extend(adjacent_weights(polygon, normals, comparisons))
+    assert sum(Fraction(s['simplex_double_area']) for s in states.values()) == 1
+    counts['complete_depth_fans'] += 1
+    counts['depth_fan_cells'] += len(states)
+    return sorted(states.values(), key=lambda s: s['standard_basis'])
+
+
+def relation_depth_controls():
+    counts, fixtures = defaultdict(int), []
+    f = {(2, 0, 0): 1, (0, 2, 0): 1, (0, 0, 2): 1, (1, 1, 1): 1}
+    g = {(1, 1, 0): 1, (0, 1, 1): 1, (1, 0, 1): 1, (3, 0, 0): 1}
+    cases = []
+    for S, D, seeds in ((3, 2, [f]), (3, 2, [f, g]),
+                         (4, 3, [{(3, 0, 0): 1, (0, 3, 0): 1, (0, 0, 3): 1, (1, 1, 2): 1}]),
+                         (4, 2, [f])):
+        ambient = {a for a in product(range(S+1), repeat=3) if sum(a) <= S}
+        cases.append((f'simplex_S{S}_degree{D}_seeds{len(seeds)}', ambient, seeds))
+    tops = ((3, 2, 0), (3, 0, 1), (0, 2, 1))
+    ambient = set().union(*(set(product(*(range(scale*(u[i]+1)) for i, scale in enumerate((3, 2, 1)))))
+                            for u in ((1, 1, 0), (1, 0, 1), (0, 1, 1))))
+    cases.append(('stretched_socle_3_2_1', ambient, [dict.fromkeys(tops, 1)]))
+    for label, ambient, seeds in cases:
+        for p in (0, 2, 3, 5, 101):
+            module = depth_module(ambient, seeds, p, counts)
+            D, rows, residue, n, h, T, Q = module
+            if label == 'stretched_socle_3_2_1':
+                assert h == (3, 2, 1) and len(D) == 42 and n == 36
+            elif len(seeds) == 1:
+                degree = min(sum(a) for a in seeds[0])
+                S = max(sum(a) for a in ambient)
+                assert len(rows) == comb(S-degree+3, 3) and h == (S-degree+1,)*3
+            record = {'model': label, 'characteristic': p, 'ambient_size': len(D), 'quotient_length': n,
+                      'relation_dimension': len(rows), 'intrinsic_coordinate_depths': h,
+                      'forced_core_size': len(Q), 'residual_rank': n-len(Q),
+                      'coordinate_budget': [h[i]*len(Q)+(h[i]-1)*(n-len(Q)) for i in range(3)],
+                      'ideal_seeds': [[{'exponent': a, 'coefficient': c} for a, c in sorted(seed.items())] for seed in seeds]}
+            if p and (label.startswith('simplex_S3') or p == 101):
+                record['complete_positive_fan'] = depth_complete_fan(module, p, counts)
+            fixtures.append(record)
+            counts['multilevel_quotient_models'] += 1
+    deep = []
+    for n in (3, 5, 8, 16):
+        D = {a for a in product(range(n), repeat=3) if sum(a) < n}
+        # The canonical monomial cover of (y-x,z-x,x^n) is m^n.
+        for i in range(3):
+            relation = ((1, 0, 0), (0, 1, 0))
+            assert all(tuple(a[j]+(n-2)*(j == i) for j in range(3)) in D for a in relation)
+            assert all(tuple(a[j]+(n-1)*(j == i) for j in range(3)) not in D for a in relation)
+        witnesses = []
+        for i in range(3):
+            w = tuple(1 if j == i else 2+j for j in range(3))
+            B = sorted(tuple(k*(j == i) for j in range(3)) for k in range(n))
+            for degree in range(n):
+                level = [a for a in D if sum(a) == degree]
+                assert min(level, key=lambda a: dot(a, w)) == B[degree]
+                counts['deep_diagonal_class_minima'] += 1
+            witnesses.append({'strict_weight': w, 'standard_basis': B})
+        deep.append({'length': n, 'canonical_cover_size': len(D), 'intrinsic_coordinate_depths': [n-1]*3,
+                     'number_initial_ideals': 3, 'all_initial_witnesses': witnesses})
+    return {'counts': dict(counts), 'actual_multilevel_models': fixtures, 'large_depth_small_fan_controls': deep,
+            'scope': 'Full ideal closures in finite monomial algebras; exact reference annihilator depths, commuting cyclic quotient matrices, row/column greedy comparison and ordinary polynomial division. Complete fans are field-specific bounded controls, not evidence of a uniform asymptotic lower rate.'}
+
+
 def main():
     if not __debug__:
         raise RuntimeError('Run without -O; exact assertions are required.')
     symbolic, family, scales, budget = symbolic_matrices(), family_controls(), asymptotic_controls(), socle_budget_controls()
+    depth_budget, depth = depth_budget_controls(), relation_depth_controls()
     sources = ('scripts/run_socle_stability_checks.py', 'docs/initial_cone_stability.md',
                'scripts/run_initial_cone_height_checks.py', 'scripts/run_algebraic_incidence_controls.py',
                'scripts/run_extremal_initial_ideals_checks.py', 'scripts/run_structural_complexity_checks.py',
@@ -337,14 +576,17 @@ def main():
               'socle_budget_downsets': budget['downsets_checked'],
               'socle_budget_chain_points': budget['proper_chain_points_checked'],
               'arbitrary_linear_socle_models': budget['linear_socle_quotient_models'],
-              'linear_socle_commutator_columns': budget['linear_socle_commutator_columns']}
+              'linear_socle_commutator_columns': budget['linear_socle_commutator_columns'],
+              **{f'depth_budget_{k}': v for k, v in depth_budget['counts'].items()},
+              **depth['counts']}
     report = {'status': 'passed', 'command': 'python3 -B scripts/run_socle_stability_checks.py', 'counts': counts,
               'symbolic_matrix_certificates': symbolic, 'all_field_family_controls': family,
               'scale_and_padding_controls': scales, 'general_socle_profile_budget': budget,
+              'anisotropic_profile_budget': depth_budget, 'propagating_relation_depth_controls': depth,
               'uniform_relative_margin_hypothesis_status': 'refuted_by_actual_all_field_quotients',
               'sharp_worst_relative_margin': {'dimension_2': 'Theta(n^-2)', 'dimension_3': 'Theta(n^-3)'},
               'unrestricted_G3_bound_changed': False, 'novelty_established': False, 'goal_complete': False,
-              'scope': 'Uniform proofs show sharp worst-cone relative stability in two and three variables, with constant-fan actual local quotients over every field. The proposed Omega(1/n) premise and an individual log-area floor Omega(1/n^2) are false. Socle-only quotients have a classical lattice-profile count O(n^(3/2)); hard cone conditioning is not a large-fan lower bound. Exact controls do not establish novelty or the main extremal endpoint.',
+              'scope': 'Uniform proofs show sharp worst-cone stability and refute the individual margin/area premises. A shared residual-profile budget extends the socle count to propagating relations: coordinate parent-annihilator depths h_i give O(n^(3/2)*sqrt(h_1*h_2*h_3)) initials, by the classical lattice-vertex theorem. The canonical monomial cover makes this a necessary depth-product test for local polynomial separation. Large depth alone can still give only three initials. Neither this restricted aggregate theorem nor finite agreement establishes novelty, a new unrestricted exponent or the main endpoint.',
               'source_sha256': {s: hashlib.sha256((ROOT/s).read_bytes()).hexdigest() for s in sources}}
     (ROOT/'results/research/socle_stability_checks.json').write_text(json.dumps(report, indent=2)+'\n')
     print(json.dumps(counts, indent=2))
