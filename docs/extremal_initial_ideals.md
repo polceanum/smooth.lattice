@@ -2678,6 +2678,36 @@ as the weight changes. No unrestricted exponent, polynomial separation,
 novelty certificate or paper endpoint follows from these diagnostics;
 all original goal criteria remain in force.
 
+## Collective arithmetic requires coherent cycle matrices
+
+The [integral cycle reduction](periodic_quotient_arithmetic.md#integral-cycle-extraction-and-the-coherence-boundary-for-torsion)
+now separates the graph-only part of each mixed-period prefix rank from
+a residual integer matrix. Exact zero-defect graph merges preserve the
+cycle sum over every field and over the integers. Forest coordinates
+then extract a base cycle space; only the remaining matrix can carry
+field-dependent rank. Families reducible to at most two cyclic clusters
+have graph-only rank. These are classical graph and integer-linear-algebra
+identities, with no uniform small-matrix or fan-count consequence yet.
+
+The coherent characteristic-two prefix for periods $(5,7,11)$ reduces
+by integer unit operations to $[2]$. The known cyclotomic
+coefficient-deletion construction instead supplies a rank obstruction
+$[3]$ in the same algebra. Its labels cannot have monomial downset
+representatives in $X=UV,Y=UW,Z=VW$: three absent pure powers restrict
+any such set to $20$ monomials, while it would need $240$. The same
+certificate excludes all $241$ one-deletion sets from the consecutive
+root-power list. Thus established arbitrary-basis torsion does not supply
+a positively coherent odd-prime witness here. Other odd-characteristic
+obstructions remain possible.
+
+The report adds $23,040$ graph/field comparisons, $180$ direct
+cost-prefix/field checks, exact cyclotomic division and two independently
+replayed integer core certificates. The next task is a uniform structural
+or exposed-change bound for these **cost-defined** residual matrices,
+with both price ratios varying. This identifies what the counting proof
+must retain; it does not change the unrestricted objective or establish
+novelty or publication readiness.
+
 ## Reproduction
 
 From the repository root:

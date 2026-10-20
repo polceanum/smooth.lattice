@@ -15,6 +15,7 @@ from run_cyclotomic_price_checks import (border_certificate, circuit_vector,
     solver, tensor, univariate_powers)
 from run_interleaving_research import minimal_excluded_border
 from run_nested_jet_checks import downsets
+from run_graded_fan_checks import graph_cycle_basis
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -1203,6 +1204,312 @@ def score_filtration_controls():
             'scope':'Exact rank filtration, inclusion excess, superadditivity and polynomial-minor controls. The all-field triangle family has no nonzero individual monomial defect but basis excess Theta(n^(3/2)). An explicit rational all-active family has zero defect on every monomial of a coherent basis but worst-order Theta(n^2) excess. Both sectors reduce to explicit planar prefix selection, bounding its whole fan by O(n^2*log(n+1)). The filtration/initial-matroid dictionary is classical; no general near-ray fan count, unrestricted improvement or novelty is inferred.'}
 
 
+@cache
+def integral_graph_data(r, s, mask):
+    edges = [e for i,e in enumerate(product(range(r),range(s))) if mask >> i & 1]
+    cycles, components = graph_cycle_basis(r,s,set(edges),0)
+    return tuple(tuple(int(x) for x in c) for c in cycles), components
+
+
+def cycle_gluing_reduction(r, s, masks):
+    """Integral forest coordinates; never replace a cycle sum by its union."""
+    edges = tuple(product(range(r),range(s)))
+
+    def z(mask):
+        return len(integral_graph_data(r,s,mask)[0])
+
+    def c(mask):
+        return integral_graph_data(r,s,mask)[1]
+
+    clusters = [(mask,[i]) for i,mask in enumerate(masks) if z(mask)]
+    merges = []
+    while True:
+        pair = None
+        for i,j in combinations(range(len(clusters)),2):
+            a,b = clusters[i][0],clusters[j][0]
+            defect = c(a&b)-c(a)-c(b)+c(a|b)
+            require(defect >= 0, 'two-graph gluing defect is nonnegative')
+            if not defect:
+                pair = i,j
+                break
+        if pair is None:
+            break
+        i,j = pair
+        a,ai = clusters[i]
+        b,bi = clusters[j]
+        merges.append({'left':ai,'right':bi,'union_mask':a|b})
+        clusters = [x for k,x in enumerate(clusters) if k not in pair]+[(a|b,sorted(ai+bi))]
+        clusters.sort(key=lambda x:x[1])
+    record = {'noncyclic_groups':[i for i,m in enumerate(masks) if not z(m)],
+              'zero_defect_merges':merges,
+              'clusters':[{'groups':ids,'edge_mask':m,'cycle_rank':z(m)} for m,ids in clusters]}
+    if len(clusters) <= 2:
+        rank = sum(z(m) for m,ids in clusters)
+        if len(clusters) == 2:
+            rank -= z(clusters[0][0]&clusters[1][0])
+        record.update({'graph_only':True,'extracted_rank':rank,'residual_rows':[],
+                       'residual_columns':[]})
+        return record
+    base = max(range(len(clusters)),key=lambda i:z(clusters[i][0]))
+    base_mask, base_ids = clusters[base]
+    union = 0
+    for mask,ids in clusters:
+        union |= mask
+    parent,forest = list(range(r+s)),set()
+
+    def find(i):
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+
+    for mask in (base_mask,union&~base_mask):
+        for i,(a,b) in enumerate(edges):
+            if mask >> i & 1:
+                x,y = find(a),find(r+b)
+                if x != y:
+                    parent[x] = y
+                    forest.add(i)
+    rows = [i for i in range(r*s) if union >> i & 1 and i not in forest and not base_mask >> i & 1]
+    require(len(rows) == z(union)-z(base_mask), 'forest extension extracts exactly the base cycle coordinates')
+    columns = [tuple(cycle[i] for i in rows)
+               for k,(mask,ids) in enumerate(clusters) if k != base
+               for cycle in integral_graph_data(r,s,mask)[0]
+               if any(cycle[i] for i in rows)]
+    require(all(x in (-1,0,1) for col in columns for x in col), 'residual cycle entries are integral signs')
+    record.update({'graph_only':False,'base_groups':base_ids,'extracted_rank':z(base_mask),
+                   'union_cycle_rank':z(union),'extended_forest':[edges[i] for i in sorted(forest)],
+                   'residual_rows':[edges[i] for i in rows],'residual_columns':columns})
+    return record
+
+
+def integer_unit_core(columns):
+    """Record unimodular operations, with Euclid for a one-column tail."""
+    original = [list(row) for row in zip(*columns)] if columns else []
+    a,ops = [row[:] for row in original],[]
+    m,n = len(a),len(columns)
+
+    def operate(op):
+        kind,i,j,*rest = op
+        if kind == 'row_swap':
+            a[i],a[j] = a[j],a[i]
+        elif kind == 'column_swap':
+            for row in a:
+                row[i],row[j] = row[j],row[i]
+        elif kind == 'row_negate':
+            a[i] = [-x for x in a[i]]
+        elif kind == 'row_add':
+            a[i] = [x+rest[0]*y for x,y in zip(a[i],a[j])]
+        elif kind == 'column_add':
+            for row in a:
+                row[i] += rest[0]*row[j]
+        else:
+            require(False, 'recognized integral row/column operation')
+        ops.append(op)
+
+    k = 0
+    while k < min(m,n):
+        unit = next(((i,j) for i in range(k,m) for j in range(k,n) if abs(a[i][j]) == 1),None)
+        if unit is None:
+            break
+        i,j = unit
+        if i != k:
+            operate(['row_swap',i,k])
+        if j != k:
+            operate(['column_swap',j,k])
+        if a[k][k] == -1:
+            operate(['row_negate',k,k])
+        for i in range(k+1,m):
+            if a[i][k]:
+                operate(['row_add',i,k,-a[i][k]])
+        for j in range(k+1,n):
+            if a[k][j]:
+                operate(['column_add',j,k,-a[k][j]])
+        k += 1
+    if n-k == 1:
+        for i in range(k+1,m):
+            while a[i][k]:
+                if a[k][k]:
+                    operate(['row_add',i,k,-(a[i][k]//a[k][k])])
+                if a[i][k]:
+                    operate(['row_swap',i,k])
+        if k < m and a[k][k] < 0:
+            operate(['row_negate',k,k])
+    # Independent replay avoids using the mutator as its own certificate.
+    replay = [row[:] for row in original]
+    for op in ops:
+        kind,i,j,*rest = op
+        if kind == 'row_swap':
+            replay[i],replay[j] = replay[j],replay[i]
+        elif kind == 'column_swap':
+            replay = [[row[j] if h == i else row[i] if h == j else x
+                       for h,x in enumerate(row)] for row in replay]
+        elif kind == 'row_negate':
+            replay[i] = [-x for x in replay[i]]
+        elif kind == 'row_add':
+            source = replay[j][:]
+            for h in range(n):
+                replay[i][h] += rest[0]*source[h]
+        elif kind == 'column_add':
+            for row in replay:
+                row[i] = row[i]+rest[0]*row[j]
+    require(a == replay, 'independent integral-operation replay equals the reduction')
+    require(all(a[i][j] == int(i == j) for i in range(m) for j in range(n) if i < k or j < k),
+            'extracted unit pivots form an exact identity direct summand')
+    rows = [i for i in range(k,m) if any(a[i][j] for j in range(k,n))]
+    cols = [j for j in range(k,n) if any(a[i][j] for i in range(k,m))]
+    return {'unit_pivots':k,'operations':ops,'core_rows':rows,'core_columns':cols,
+            'core_matrix':[[a[i][j] for j in cols] for i in rows]}
+
+
+def prefix_gluing_controls():
+    fields = (0,2,3,5,7)
+
+    def rank(columns,p):
+        pivots = {}
+        for col in columns:
+            insert(pivots,col,p)
+        return len(pivots)
+
+    def check(r,s,masks,p,expected=None,reduction=None):
+        reduced = reduction if reduction is not None else cycle_gluing_reduction(r,s,masks)
+        direct = rank([v for mask in masks for v in integral_graph_data(r,s,mask)[0]],p)
+        computed = reduced['extracted_rank']+rank(reduced['residual_columns'],p)
+        require(direct == computed, 'forest extraction preserves the full cycle-space sum in every checked field')
+        if expected is not None:
+            require(computed == expected, 'cycle rank has the independently expected value')
+        return computed
+
+    graph_tests = merges = 0
+    # Exhaust all triples on K_2,2, plus fixed nontrivial K_3,3 families.
+    for r,s,families in ((2,2,product(range(16),repeat=3)),
+                          (3,3,(((37*k+11)&511,(113*k+173)&511,(241*k+257)&511,
+                                 (419*k+47)&511) for k in range(512)))):
+        for masks in families:
+            reduced = cycle_gluing_reduction(r,s,masks)
+            merges += len(reduced['zero_defect_merges'])
+            for p in fields:
+                check(r,s,masks,p,reduction=reduced)
+                graph_tests += 1
+    prefixes = []
+    for periods,weight in product(((3,5,7),(3,4,5)),((1,1,1),(1,3,2))):
+        r,s,t = periods
+        maximum = t+2
+        monomials = [(a,b,c) for a in range(maximum//weight[0]+1)
+                     for b in range((maximum-a*weight[0])//weight[1]+1)
+                     for c in range((maximum-a*weight[0]-b*weight[1])//weight[2]+1)]
+        for cutoff in range(maximum+1):
+            ground = [a for a in monomials if dot(a,weight) <= cutoff]
+            groups = [set() for _ in range(t)]
+            for a in ground:
+                u,v,j = label(a,periods)
+                groups[j].add((u,v))
+            masks = [sum(1 << i for i,e in enumerate(product(range(r),range(s))) if e not in group)
+                     for group in groups]
+            reduced = cycle_gluing_reduction(r,s,masks)
+            dims = [len(g)+1-integral_graph_data(r,s,m)[1] for g,m in zip(groups,masks)]
+            ranks = {}
+            for p in fields:
+                model = cyclotomic_model(periods,p)
+                actual = rank([model['residue'](a) for a in ground],p)
+                predicted = sum(dims)-(r-1)*(s-1)+check(r,s,masks,p,reduction=reduced)
+                require(actual == predicted, 'full cost-ball rank equals graph contribution plus integral residual rank')
+                ranks[p] = actual
+            prefixes.append({'periods':periods,'weight':weight,'cutoff':cutoff,'monomials':len(ground),
+                             'coefficient_dimensions':dims,'graph_only':reduced['graph_only'],
+                             'extracted_cycle_rank':reduced['extracted_rank'],'polynomial_ranks':ranks})
+
+    def witness(labels,kind):
+        r,s,t = 5,7,11
+        groups = [{(u,v) for u,v,k in labels if k == j} for j in range(t)]
+        masks = [sum(1 << i for i,e in enumerate(product(range(r),range(s))) if e not in group)
+                 for group in groups]
+        reduced = cycle_gluing_reduction(r,s,masks)
+        core = integer_unit_core(reduced['residual_columns'])
+        expected_core = 2 if kind == 'positive_cost_prefix' else 3
+        require(core['core_matrix'] == [[expected_core]], 'the characteristic-sensitive core is exactly the asserted scalar')
+        dims = [len(g)+1-integral_graph_data(r,s,m)[1] for g,m in zip(groups,masks)]
+        controls = []
+        for p in fields:
+            cycles = check(r,s,masks,p,reduction=reduced)
+            core_columns = list(zip(*core['core_matrix']))
+            require(rank(reduced['residual_columns'],p) == core['unit_pivots']+rank(core_columns,p),
+                    'integer operations preserve residual rank after every specialization')
+            powers = [univariate_powers(m,p) for m in (r,s,t)]
+            direct = rank([tensor(*(f(k) for f,k in zip(powers,g))) for g in sorted(labels)],p)
+            require(direct == sum(dims)-(r-1)*(s-1)+cycles, 'ordinary monic label columns independently verify the witness rank')
+            controls.append({'field':p,'direct_polynomial_rank':direct,'cycle_sum_rank':cycles,
+                             'residual_rank':rank(reduced['residual_columns'],p)})
+        return {'kind':kind,'periods':[r,s,t],'distinct_labels':len(labels),
+                'coefficient_dimensions':dims,'graph_reduction':reduced,
+                'integral_core_certificate':core,'field_controls':controls}
+
+    periods = 5,7,11
+    L = 481
+    weight = tuple(L**3+L**i for i in range(3))
+    cutoff = weight[0]+11*weight[1]
+    best = shortest_representatives(periods,weight)
+    ground = [a for cost,a in best.values() if cost <= cutoff]
+    coherent = witness({label(a,periods) for a in ground},'positive_cost_prefix')
+    require(len(ground) == 295, 'the coherent arithmetic cutoff has exactly 295 full-cover labels')
+    for control in coherent['field_controls']:
+        p = control['field']
+        model = cyclotomic_model(periods,p)
+        require(rank([model['residue'](a) for a in ground],p) == control['direct_polynomial_rank'],
+                'actual monomial prefix representatives agree with ordinary reduced-label arithmetic')
+    coherent.update({'strict_weight':weight,'cutoff':cutoff,'prefix_representatives':sorted(ground),
+                     'scope':'Shortest representatives include exactly the labels of the full finite cost ball, including any repeated-label monomials.'})
+    # Exact monic polynomial division, not a table of cyclotomic coefficients.
+    def factors(degrees):
+        coefficients = [1]
+        for degree in degrees:
+            new = coefficients+[0]*degree
+            for i,c in enumerate(coefficients):
+                new[i+degree] -= c
+            coefficients = new
+        return coefficients
+
+    numerator,denominator = factors((385,5,7,11)),factors((1,35,55,77))
+    remainder = numerator[:]
+    coefficients = [0]*(len(numerator)-len(denominator)+1)
+    for i in reversed(range(len(coefficients))):
+        coefficient = remainder[i+len(denominator)-1]
+        require(denominator[-1] == 1, 'monic exact cyclotomic divisor')
+        coefficients[i] = coefficient
+        for j,c in enumerate(denominator):
+            remainder[i+j] -= coefficient*c
+    require(not any(remainder) and len(coefficients) == 241 and coefficients[-1] == 1,
+            'Phi_385 has exact monic integer division of degree 240')
+    require(coefficients[119] == -3 and max(map(abs,coefficients)) == 3,
+            'the recorded replacement coefficient is exactly minus three')
+    selected = [k for k in range(241) if k != 119]
+    abstract = witness({tuple(k%m for m in periods) for k in selected},'known_power_basis_replacement')
+    powers = [univariate_powers(m,0) for m in periods]
+    root_columns = [tensor(*(f(k) for f in powers)) for k in range(241)]
+    relation = [sum(coefficients[k]*v[i] for k,v in enumerate(root_columns)) for i in range(240)]
+    require(not any(relation), 'Phi_385 annihilates UVW by independent ordinary monic tensor arithmetic')
+    require(rank(root_columns[:240],0) == 240, 'the consecutive root powers give a rational basis')
+    # CRT recovery and equal integral ranks prove the stronger integral power-basis assertion.
+    axis = [next(k for k in range(385) if tuple(k%m for m in periods) == g)
+            for g in ((1,1,0),(1,0,1),(0,1,1))]
+    require(axis == [176,56,155], 'the original three generators have the displayed CRT exponents')
+    forbidden = [2,5,2]
+    forbidden_labels = [(a*b)%385 for a,b in zip(axis,forbidden)]
+    require(not set(forbidden_labels)&set(selected) and prod(forbidden) == 20 < 240,
+            'the known index-three basis cannot have distinct-label downset representatives')
+    require(all(k > 240 for k in forbidden_labels),
+            'the same three forbidden powers exclude every one-deletion set from root powers zero through 240')
+    abstract.update({'cyclotomic_coefficients':coefficients,'replacement_index':119,
+                     'selected_root_powers':selected,'axis_root_powers':axis,
+                     'forbidden_axis_powers':forbidden,'forbidden_root_labels':forbidden_labels,
+                     'downset_box_capacity':prod(forbidden),'excluded_one_deletion_sets':241,'index':3,
+                     'source':'https://arxiv.org/pdf/1012.1844v4',
+                     'scope':'Musiker--Reiner Proposition 4 and Corollary 5 give the known coefficient/index construction. Every one-deletion label set from powers zero through 240 fails the same downset obstruction in X=UV,Y=UW,Z=VW, including this index-three example. Other odd-prime coherent examples are not ruled out.'})
+    return {'arbitrary_graph_field_checks':graph_tests,'zero_defect_merges_checked':merges,
+            'full_cost_prefixes':prefixes,'coherent_two_core':coherent,'noncoherent_three_core':abstract,
+            'scope':'Integral graph-cycle extraction and unit operations are classical linear algebra, not a new matroid-duality theorem or fan bound. The explicit noncoherence certificate excludes the 241 standard coefficient-deletion label sets at periods (5,7,11), not all odd-prime constructions. No odd-characteristic invariance, exhaustive characteristic classification or new asymptotic G_3 bound is claimed.'}
+
+
 def main():
     lattice, dual = periodic_and_dual_controls()
     index_controls = intrinsic_index_controls()
@@ -1217,11 +1524,12 @@ def main():
     gap_controls = period_gap_controls()
     global_controls = global_gap_controls()
     score_controls = score_filtration_controls()
+    gluing_controls = prefix_gluing_controls()
     sources = ('docs/periodic_quotient_arithmetic.md','scripts/run_periodic_quotient_checks.py',
                'scripts/run_cyclotomic_price_checks.py','scripts/run_interleaving_research.py',
-               'scripts/run_nested_jet_checks.py')
+               'scripts/run_nested_jet_checks.py','scripts/run_graded_fan_checks.py')
     report = {'schema_version':1,'command':'python3 -B scripts/run_periodic_quotient_checks.py',
-              'scope':'Exact periodic-cover, arithmetic, fixed-cover trace and candidate-filter controls. Direct norm quotients verify the nonbox socle defect. Sector-wide surface budgets, thin-cover obstructions, socle-free dyadic shell bounds and their logarithmic obstruction are checked. Period-gap identities, common regional boxes and active-generator slab obstructions are independently checked by monic division and primal/dual bases. Four global price sectors and a uniform large-box obstruction at a positive arithmetic ray are checked. Score filtrations, polynomial minors and coherent collective-defect obstructions are independently verified. No unrestricted asymptotic separation, sharp nonbox refinement-fan count or novelty certificate.',
+              'scope':'Exact periodic-cover, arithmetic, fixed-cover trace and candidate-filter controls. Direct norm quotients verify the nonbox socle defect. Sector-wide surface budgets, thin-cover obstructions, socle-free dyadic shell bounds and their logarithmic obstruction are checked. Period-gap identities, common regional boxes and active-generator slab obstructions are independently checked by monic division and primal/dual bases. Four global price sectors and a uniform large-box obstruction at a positive arithmetic ray are checked. Score filtrations, polynomial minors and coherent collective-defect obstructions are independently verified. Integral cycle-space extraction is checked against raw cycle spans and ordinary monic prefix ranks; known coefficient-deletion torsion is separated from positive coherence. No unrestricted asymptotic separation, sharp nonbox refinement-fan count or novelty certificate.',
               'source_sha256':{p:sha256((ROOT/p).read_bytes()).hexdigest() for p in sources},
               'full_period_lattice_controls':lattice,'inverse_monomial_dual_controls':dual,
               'trivial_intrinsic_grading_controls':index_controls,
@@ -1234,6 +1542,7 @@ def main():
               'period_gap_controls':gap_controls,
               'global_gap_controls':global_controls,
               'score_filtration_controls':score_controls,
+              'prefix_gluing_controls':gluing_controls,
               'summary':{'full_period_cover_prices':len(lattice),'dual_quotient_price_field_controls':len(dual),
                          'nonbox_reflection_obstructions':sum(x['nonbox_reflection_has_no_constant'] for x in dual),
                          'all_field_pair_minimal_polynomial_controls':len(index_controls),
@@ -1284,6 +1593,11 @@ def main():
                               'strict_active_score_borders':sum(len(c['strict_border_certificates']) for c in score_controls['all_active_quadratic_excess_obstructions']),
                               'score_split_ideal_relations':sum(c['displayed_ideal_relations_checked'] for c in score_controls['all_active_quadratic_excess_obstructions']),
                               'direct_independent_score_minors':sum(b['direct_determinant_polynomial'] is not None for c in all_score for b in c['full_basis_controls'])})
+    report['summary'].update({'cycle_gluing_graph_field_checks':gluing_controls['arbitrary_graph_field_checks'],
+                              'zero_defect_cycle_merges':gluing_controls['zero_defect_merges_checked'],
+                              'cycle_gluing_cost_prefix_field_checks':sum(len(c['polynomial_ranks']) for c in gluing_controls['full_cost_prefixes']),
+                              'integral_scalar_core_certificates':2,
+                              'excluded_cyclotomic_coefficient_deletion_sets':gluing_controls['noncoherent_three_core']['excluded_one_deletion_sets']})
     (ROOT/'results/research/periodic_quotient_checks.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report['summary'],sort_keys=True))
 

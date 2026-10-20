@@ -1,13 +1,14 @@
 {
   "schema_version": 1,
   "command": "python3 -B scripts/run_periodic_quotient_checks.py",
-  "scope": "Exact periodic-cover, arithmetic, fixed-cover trace and candidate-filter controls. Direct norm quotients verify the nonbox socle defect. Sector-wide surface budgets, thin-cover obstructions, socle-free dyadic shell bounds and their logarithmic obstruction are checked. Period-gap identities, common regional boxes and active-generator slab obstructions are independently checked by monic division and primal/dual bases. Four global price sectors and a uniform large-box obstruction at a positive arithmetic ray are checked. Score filtrations, polynomial minors and coherent collective-defect obstructions are independently verified. No unrestricted asymptotic separation, sharp nonbox refinement-fan count or novelty certificate.",
+  "scope": "Exact periodic-cover, arithmetic, fixed-cover trace and candidate-filter controls. Direct norm quotients verify the nonbox socle defect. Sector-wide surface budgets, thin-cover obstructions, socle-free dyadic shell bounds and their logarithmic obstruction are checked. Period-gap identities, common regional boxes and active-generator slab obstructions are independently checked by monic division and primal/dual bases. Four global price sectors and a uniform large-box obstruction at a positive arithmetic ray are checked. Score filtrations, polynomial minors and coherent collective-defect obstructions are independently verified. Integral cycle-space extraction is checked against raw cycle spans and ordinary monic prefix ranks; known coefficient-deletion torsion is separated from positive coherence. No unrestricted asymptotic separation, sharp nonbox refinement-fan count or novelty certificate.",
   "source_sha256": {
-    "docs/periodic_quotient_arithmetic.md": "5283e2a493d463e36f35586b290cbb57303ebd089dbc89b72376dfa7c53ff79f",
-    "scripts/run_periodic_quotient_checks.py": "91802c5deb2de2a919055df68293598c3d15bbed52761f2b17677eb4b2fe860b",
+    "docs/periodic_quotient_arithmetic.md": "a3629c3bcd1c78b79e009340648341bc16be5b4d8a98dbf0bbf4045a974f3721",
+    "scripts/run_periodic_quotient_checks.py": "bbde969588fb5f236bd364cdac7ecd6e903c258ef293d46253de3b07d56c644a",
     "scripts/run_cyclotomic_price_checks.py": "de90c77f6d91e700a4f7b5adbbdad98024f69594df2fe1e0de933aaa5e0770ef",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
-    "scripts/run_nested_jet_checks.py": "aa1c4a9b69de0d0cfa54c381c4f83ebaa983cdbfd7b298af40b32603a079648c"
+    "scripts/run_nested_jet_checks.py": "aa1c4a9b69de0d0cfa54c381c4f83ebaa983cdbfd7b298af40b32603a079648c",
+    "scripts/run_graded_fan_checks.py": "b3cc437c7274378d26c8a9ced7f7ec785905601bc83ec17ea6bb9db3a515554f"
   },
   "full_period_lattice_controls": [
     {
@@ -212680,6 +212681,5465 @@
     "exhaustive_small_triangle_subsets": 879,
     "scope": "Exact rank filtration, inclusion excess, superadditivity and polynomial-minor controls. The all-field triangle family has no nonzero individual monomial defect but basis excess Theta(n^(3/2)). An explicit rational all-active family has zero defect on every monomial of a coherent basis but worst-order Theta(n^2) excess. Both sectors reduce to explicit planar prefix selection, bounding its whole fan by O(n^2*log(n+1)). The filtration/initial-matroid dictionary is classical; no general near-ray fan count, unrestricted improvement or novelty is inferred."
   },
+  "prefix_gluing_controls": {
+    "arbitrary_graph_field_checks": 23040,
+    "zero_defect_merges_checked": 242,
+    "full_cost_prefixes": [
+      {
+        "periods": [
+          3,
+          5,
+          7
+        ],
+        "weight": [
+          1,
+          1,
+          1
+        ],
+        "cutoff": 0,
+        "monomials": 1,
+        "coefficient_dimensions": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 8,
+        "polynomial_ranks": {
+          "0": 1,
+          "2": 1,
+          "3": 1,
+          "5": 1,
+          "7": 1
+        }
+      },
+      {
+        "periods": [
+          3,
+          5,
+          7
+        ],
+        "weight": [
+          1,
+          1,
+          1
+        ],
+        "cutoff": 1,
+        "monomials": 4,
+        "coefficient_dimensions": [
+          2,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 8,
+        "polynomial_ranks": {
+          "0": 4,
+          "2": 4,
+          "3": 4,
+          "5": 4,
+          "7": 4
+        }
+      },
+      {
+        "periods": [
+          3,
+          5,
+          7
+        ],
+        "weight": [
+          1,
+          1,
+          1
+        ],
+        "cutoff": 2,
+        "monomials": 10,
+        "coefficient_dimensions": [
+          3,
+          4,
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 8,
+        "polynomial_ranks": {
+          "0": 10,
+          "2": 10,
+          "3": 10,
+          "5": 10,
+          "7": 10
+        }
+      },
+      {
+        "periods": [
+          3,
+          5,
+          7
+        ],
+        "weight": [
+          1,
+          1,
+          1
+        ],
+        "cutoff": 3,
+        "monomials": 20,
+        "coefficient_dimensions": [
+          4,
+          6,
+          6,
+          4,
+          0,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 8,
+        "polynomial_ranks": {
+          "0": 20,
+          "2": 20,
+          "3": 20,
+          "5": 20,
+          "7": 20
+        }
+      },
+      {
+        "periods": [
+          3,
+          5,
+          7
+        ],
+        "weight": [
+          1,
+          1,
+          1
+        ],
+        "cutoff": 4,
+        "monomials": 35,
+        "coefficient_dimensions": [
+          5,
+          8,
+          7,
+          8,
+          5,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 8,
+        "polynomial_ranks": {
+          "0": 33,
+          "2": 33,
+          "3": 33,
+          "5": 33,
+          "7": 33
+        }
+      },
+      {
+        "periods": [
+          3,
+          5,
+          7
+        ],
+        "weight": [
+          1,
+          1,
+          1
+        ],
+        "cutoff": 5,
+        "monomials": 56,
+        "coefficient_dimensions": [
+          6,
+          8,
+          8,
+          8,
+          8,
+          6,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 8,
+        "polynomial_ranks": {
+          "0": 44,
+          "2": 44,
+          "3": 44,
+          "5": 44,
+          "7": 44
+        }
+      },
+      {
+        "periods": [
+          3,
+          5,
+          7
+        ],
+        "weight": [
+          1,
+          1,
+          1
+        ],
+        "cutoff": 6,
+        "monomials": 84,
+        "coefficient_dimensions": [
+          7,
+          8,
+          8,
+          8,
+          8,
+          8,
+          7
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 2,
+        "polynomial_ranks": {
+          "0": 48,
+          "2": 48,
+          "3": 48,
+          "5": 48,
+          "7": 48
+        }
+      },
+      {
+        "periods": [
+          3,
+          5,
+          7
+        ],
+        "weight": [
+          1,
+          1,
+          1
+        ],
+        "cutoff": 7,
+        "monomials": 120,
+        "coefficient_dimensions": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 0,
+        "polynomial_ranks": {
+          "0": 48,
+          "2": 48,
+          "3": 48,
+          "5": 48,
+          "7": 48
+        }
+      },
+      {
+        "periods": [
+          3,
+          5,
+          7
+        ],
+        "weight": [
+          1,
+          1,
+          1
+        ],
+        "cutoff": 8,
+        "monomials": 165,
+        "coefficient_dimensions": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 0,
+        "polynomial_ranks": {
+          "0": 48,
+          "2": 48,
+          "3": 48,
+          "5": 48,
+          "7": 48
+        }
+      },
+      {
+        "periods": [
+          3,
+          5,
+          7
+        ],
+        "weight": [
+          1,
+          1,
+          1
+        ],
+        "cutoff": 9,
+        "monomials": 220,
+        "coefficient_dimensions": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 0,
+        "polynomial_ranks": {
+          "0": 48,
+          "2": 48,
+          "3": 48,
+          "5": 48,
+          "7": 48
+        }
+      },
+      {
+        "periods": [
+          3,
+          5,
+          7
+        ],
+        "weight": [
+          1,
+          3,
+          2
+        ],
+        "cutoff": 0,
+        "monomials": 1,
+        "coefficient_dimensions": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 8,
+        "polynomial_ranks": {
+          "0": 1,
+          "2": 1,
+          "3": 1,
+          "5": 1,
+          "7": 1
+        }
+      },
+      {
+        "periods": [
+          3,
+          5,
+          7
+        ],
+        "weight": [
+          1,
+          3,
+          2
+        ],
+        "cutoff": 1,
+        "monomials": 2,
+        "coefficient_dimensions": [
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 8,
+        "polynomial_ranks": {
+          "0": 2,
+          "2": 2,
+          "3": 2,
+          "5": 2,
+          "7": 2
+        }
+      },
+      {
+        "periods": [
+          3,
+          5,
+          7
+        ],
+        "weight": [
+          1,
+          3,
+          2
+        ],
+        "cutoff": 2,
+        "monomials": 4,
+        "coefficient_dimensions": [
+          3,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 8,
+        "polynomial_ranks": {
+          "0": 4,
+          "2": 4,
+          "3": 4,
+          "5": 4,
+          "7": 4
+        }
+      },
+      {
+        "periods": [
+          3,
+          5,
+          7
+        ],
+        "weight": [
+          1,
+          3,
+          2
+        ],
+        "cutoff": 3,
+        "monomials": 7,
+        "coefficient_dimensions": [
+          4,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 8,
+        "polynomial_ranks": {
+          "0": 7,
+          "2": 7,
+          "3": 7,
+          "5": 7,
+          "7": 7
+        }
+      },
+      {
+        "periods": [
+          3,
+          5,
+          7
+        ],
+        "weight": [
+          1,
+          3,
+          2
+        ],
+        "cutoff": 4,
+        "monomials": 11,
+        "coefficient_dimensions": [
+          5,
+          5,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 8,
+        "polynomial_ranks": {
+          "0": 11,
+          "2": 11,
+          "3": 11,
+          "5": 11,
+          "7": 11
+        }
+      },
+      {
+        "periods": [
+          3,
+          5,
+          7
+        ],
+        "weight": [
+          1,
+          3,
+          2
+        ],
+        "cutoff": 5,
+        "monomials": 16,
+        "coefficient_dimensions": [
+          6,
+          7,
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 8,
+        "polynomial_ranks": {
+          "0": 16,
+          "2": 16,
+          "3": 16,
+          "5": 16,
+          "7": 16
+        }
+      },
+      {
+        "periods": [
+          3,
+          5,
+          7
+        ],
+        "weight": [
+          1,
+          3,
+          2
+        ],
+        "cutoff": 6,
+        "monomials": 23,
+        "coefficient_dimensions": [
+          7,
+          8,
+          6,
+          1,
+          0,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 8,
+        "polynomial_ranks": {
+          "0": 22,
+          "2": 22,
+          "3": 22,
+          "5": 22,
+          "7": 22
+        }
+      },
+      {
+        "periods": [
+          3,
+          5,
+          7
+        ],
+        "weight": [
+          1,
+          3,
+          2
+        ],
+        "cutoff": 7,
+        "monomials": 31,
+        "coefficient_dimensions": [
+          8,
+          8,
+          8,
+          3,
+          0,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 8,
+        "polynomial_ranks": {
+          "0": 27,
+          "2": 27,
+          "3": 27,
+          "5": 27,
+          "7": 27
+        }
+      },
+      {
+        "periods": [
+          3,
+          5,
+          7
+        ],
+        "weight": [
+          1,
+          3,
+          2
+        ],
+        "cutoff": 8,
+        "monomials": 41,
+        "coefficient_dimensions": [
+          8,
+          8,
+          8,
+          6,
+          1,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 8,
+        "polynomial_ranks": {
+          "0": 31,
+          "2": 31,
+          "3": 31,
+          "5": 31,
+          "7": 31
+        }
+      },
+      {
+        "periods": [
+          3,
+          5,
+          7
+        ],
+        "weight": [
+          1,
+          3,
+          2
+        ],
+        "cutoff": 9,
+        "monomials": 53,
+        "coefficient_dimensions": [
+          8,
+          8,
+          8,
+          8,
+          3,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 8,
+        "polynomial_ranks": {
+          "0": 35,
+          "2": 35,
+          "3": 35,
+          "5": 35,
+          "7": 35
+        }
+      },
+      {
+        "periods": [
+          3,
+          4,
+          5
+        ],
+        "weight": [
+          1,
+          1,
+          1
+        ],
+        "cutoff": 0,
+        "monomials": 1,
+        "coefficient_dimensions": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 6,
+        "polynomial_ranks": {
+          "0": 1,
+          "2": 1,
+          "3": 1,
+          "5": 1,
+          "7": 1
+        }
+      },
+      {
+        "periods": [
+          3,
+          4,
+          5
+        ],
+        "weight": [
+          1,
+          1,
+          1
+        ],
+        "cutoff": 1,
+        "monomials": 4,
+        "coefficient_dimensions": [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 6,
+        "polynomial_ranks": {
+          "0": 4,
+          "2": 4,
+          "3": 4,
+          "5": 4,
+          "7": 4
+        }
+      },
+      {
+        "periods": [
+          3,
+          4,
+          5
+        ],
+        "weight": [
+          1,
+          1,
+          1
+        ],
+        "cutoff": 2,
+        "monomials": 10,
+        "coefficient_dimensions": [
+          3,
+          4,
+          3,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 6,
+        "polynomial_ranks": {
+          "0": 10,
+          "2": 10,
+          "3": 10,
+          "5": 10,
+          "7": 10
+        }
+      },
+      {
+        "periods": [
+          3,
+          4,
+          5
+        ],
+        "weight": [
+          1,
+          1,
+          1
+        ],
+        "cutoff": 3,
+        "monomials": 20,
+        "coefficient_dimensions": [
+          4,
+          6,
+          6,
+          4,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 6,
+        "polynomial_ranks": {
+          "0": 20,
+          "2": 20,
+          "3": 20,
+          "5": 20,
+          "7": 20
+        }
+      },
+      {
+        "periods": [
+          3,
+          4,
+          5
+        ],
+        "weight": [
+          1,
+          1,
+          1
+        ],
+        "cutoff": 4,
+        "monomials": 35,
+        "coefficient_dimensions": [
+          5,
+          6,
+          6,
+          6,
+          5
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 2,
+        "polynomial_ranks": {
+          "0": 24,
+          "2": 24,
+          "3": 24,
+          "5": 24,
+          "7": 24
+        }
+      },
+      {
+        "periods": [
+          3,
+          4,
+          5
+        ],
+        "weight": [
+          1,
+          1,
+          1
+        ],
+        "cutoff": 5,
+        "monomials": 56,
+        "coefficient_dimensions": [
+          6,
+          6,
+          6,
+          6,
+          6
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 0,
+        "polynomial_ranks": {
+          "0": 24,
+          "2": 24,
+          "3": 24,
+          "5": 24,
+          "7": 24
+        }
+      },
+      {
+        "periods": [
+          3,
+          4,
+          5
+        ],
+        "weight": [
+          1,
+          1,
+          1
+        ],
+        "cutoff": 6,
+        "monomials": 84,
+        "coefficient_dimensions": [
+          6,
+          6,
+          6,
+          6,
+          6
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 0,
+        "polynomial_ranks": {
+          "0": 24,
+          "2": 24,
+          "3": 24,
+          "5": 24,
+          "7": 24
+        }
+      },
+      {
+        "periods": [
+          3,
+          4,
+          5
+        ],
+        "weight": [
+          1,
+          1,
+          1
+        ],
+        "cutoff": 7,
+        "monomials": 120,
+        "coefficient_dimensions": [
+          6,
+          6,
+          6,
+          6,
+          6
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 0,
+        "polynomial_ranks": {
+          "0": 24,
+          "2": 24,
+          "3": 24,
+          "5": 24,
+          "7": 24
+        }
+      },
+      {
+        "periods": [
+          3,
+          4,
+          5
+        ],
+        "weight": [
+          1,
+          3,
+          2
+        ],
+        "cutoff": 0,
+        "monomials": 1,
+        "coefficient_dimensions": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 6,
+        "polynomial_ranks": {
+          "0": 1,
+          "2": 1,
+          "3": 1,
+          "5": 1,
+          "7": 1
+        }
+      },
+      {
+        "periods": [
+          3,
+          4,
+          5
+        ],
+        "weight": [
+          1,
+          3,
+          2
+        ],
+        "cutoff": 1,
+        "monomials": 2,
+        "coefficient_dimensions": [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 6,
+        "polynomial_ranks": {
+          "0": 2,
+          "2": 2,
+          "3": 2,
+          "5": 2,
+          "7": 2
+        }
+      },
+      {
+        "periods": [
+          3,
+          4,
+          5
+        ],
+        "weight": [
+          1,
+          3,
+          2
+        ],
+        "cutoff": 2,
+        "monomials": 4,
+        "coefficient_dimensions": [
+          3,
+          1,
+          0,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 6,
+        "polynomial_ranks": {
+          "0": 4,
+          "2": 4,
+          "3": 4,
+          "5": 4,
+          "7": 4
+        }
+      },
+      {
+        "periods": [
+          3,
+          4,
+          5
+        ],
+        "weight": [
+          1,
+          3,
+          2
+        ],
+        "cutoff": 3,
+        "monomials": 7,
+        "coefficient_dimensions": [
+          4,
+          3,
+          0,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 6,
+        "polynomial_ranks": {
+          "0": 7,
+          "2": 7,
+          "3": 7,
+          "5": 7,
+          "7": 7
+        }
+      },
+      {
+        "periods": [
+          3,
+          4,
+          5
+        ],
+        "weight": [
+          1,
+          3,
+          2
+        ],
+        "cutoff": 4,
+        "monomials": 11,
+        "coefficient_dimensions": [
+          5,
+          5,
+          1,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 6,
+        "polynomial_ranks": {
+          "0": 11,
+          "2": 11,
+          "3": 11,
+          "5": 11,
+          "7": 11
+        }
+      },
+      {
+        "periods": [
+          3,
+          4,
+          5
+        ],
+        "weight": [
+          1,
+          3,
+          2
+        ],
+        "cutoff": 5,
+        "monomials": 16,
+        "coefficient_dimensions": [
+          6,
+          6,
+          3,
+          0,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 6,
+        "polynomial_ranks": {
+          "0": 15,
+          "2": 15,
+          "3": 15,
+          "5": 15,
+          "7": 15
+        }
+      },
+      {
+        "periods": [
+          3,
+          4,
+          5
+        ],
+        "weight": [
+          1,
+          3,
+          2
+        ],
+        "cutoff": 6,
+        "monomials": 23,
+        "coefficient_dimensions": [
+          6,
+          6,
+          5,
+          1,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 6,
+        "polynomial_ranks": {
+          "0": 18,
+          "2": 18,
+          "3": 18,
+          "5": 18,
+          "7": 18
+        }
+      },
+      {
+        "periods": [
+          3,
+          4,
+          5
+        ],
+        "weight": [
+          1,
+          3,
+          2
+        ],
+        "cutoff": 7,
+        "monomials": 31,
+        "coefficient_dimensions": [
+          6,
+          6,
+          6,
+          3,
+          0
+        ],
+        "graph_only": true,
+        "extracted_cycle_rank": 6,
+        "polynomial_ranks": {
+          "0": 21,
+          "2": 21,
+          "3": 21,
+          "5": 21,
+          "7": 21
+        }
+      }
+    ],
+    "coherent_two_core": {
+      "kind": "positive_cost_prefix",
+      "periods": [
+        5,
+        7,
+        11
+      ],
+      "distinct_labels": 295,
+      "coefficient_dimensions": [
+        22,
+        18,
+        23,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        23,
+        18
+      ],
+      "graph_reduction": {
+        "noncyclic_groups": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "zero_defect_merges": [],
+        "clusters": [
+          {
+            "groups": [
+              0
+            ],
+            "edge_mask": 28700705284,
+            "cycle_rank": 2
+          },
+          {
+            "groups": [
+              1
+            ],
+            "edge_mask": 23039928617,
+            "cycle_rank": 6
+          },
+          {
+            "groups": [
+              2
+            ],
+            "edge_mask": 11319414992,
+            "cycle_rank": 1
+          },
+          {
+            "groups": [
+              9
+            ],
+            "edge_mask": 19908831265,
+            "cycle_rank": 1
+          },
+          {
+            "groups": [
+              10
+            ],
+            "edge_mask": 14450709714,
+            "cycle_rank": 6
+          }
+        ],
+        "graph_only": false,
+        "base_groups": [
+          1
+        ],
+        "extracted_rank": 6,
+        "union_cycle_rank": 24,
+        "extended_forest": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        "residual_rows": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "residual_columns": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0
+          ],
+          [
+            0,
+            0,
+            -1,
+            1,
+            1,
+            0,
+            0,
+            -1,
+            1,
+            0,
+            0,
+            -1,
+            -1,
+            0,
+            1,
+            -1,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            -1,
+            -1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            -1,
+            0,
+            1,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            -1,
+            0,
+            1,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "integral_core_certificate": {
+        "unit_pivots": 9,
+        "operations": [
+          [
+            "column_swap",
+            5,
+            0
+          ],
+          [
+            "row_add",
+            2,
+            0,
+            1
+          ],
+          [
+            "row_add",
+            4,
+            0,
+            -1
+          ],
+          [
+            "row_add",
+            6,
+            0,
+            1
+          ],
+          [
+            "row_add",
+            10,
+            0,
+            -1
+          ],
+          [
+            "column_add",
+            6,
+            0,
+            -1
+          ],
+          [
+            "column_add",
+            7,
+            0,
+            -1
+          ],
+          [
+            "row_swap",
+            2,
+            1
+          ],
+          [
+            "column_swap",
+            2,
+            1
+          ],
+          [
+            "row_negate",
+            1,
+            1
+          ],
+          [
+            "row_add",
+            3,
+            1,
+            -1
+          ],
+          [
+            "row_add",
+            4,
+            1,
+            -1
+          ],
+          [
+            "row_add",
+            7,
+            1,
+            1
+          ],
+          [
+            "row_add",
+            8,
+            1,
+            -1
+          ],
+          [
+            "row_add",
+            11,
+            1,
+            1
+          ],
+          [
+            "row_add",
+            12,
+            1,
+            1
+          ],
+          [
+            "row_add",
+            14,
+            1,
+            -1
+          ],
+          [
+            "row_add",
+            15,
+            1,
+            1
+          ],
+          [
+            "row_add",
+            17,
+            1,
+            -1
+          ],
+          [
+            "column_add",
+            4,
+            1,
+            1
+          ],
+          [
+            "column_add",
+            7,
+            1,
+            1
+          ],
+          [
+            "row_swap",
+            4,
+            2
+          ],
+          [
+            "column_swap",
+            4,
+            2
+          ],
+          [
+            "row_add",
+            7,
+            2,
+            1
+          ],
+          [
+            "row_add",
+            8,
+            2,
+            -1
+          ],
+          [
+            "row_add",
+            10,
+            2,
+            1
+          ],
+          [
+            "row_add",
+            12,
+            2,
+            1
+          ],
+          [
+            "row_add",
+            14,
+            2,
+            -1
+          ],
+          [
+            "row_add",
+            15,
+            2,
+            1
+          ],
+          [
+            "row_add",
+            17,
+            2,
+            -1
+          ],
+          [
+            "column_add",
+            9,
+            2,
+            -1
+          ],
+          [
+            "row_swap",
+            6,
+            3
+          ],
+          [
+            "column_swap",
+            6,
+            3
+          ],
+          [
+            "row_add",
+            7,
+            3,
+            1
+          ],
+          [
+            "column_add",
+            7,
+            3,
+            -1
+          ],
+          [
+            "row_swap",
+            8,
+            4
+          ],
+          [
+            "column_swap",
+            6,
+            4
+          ],
+          [
+            "row_add",
+            12,
+            4,
+            -1
+          ],
+          [
+            "row_add",
+            14,
+            4,
+            1
+          ],
+          [
+            "row_add",
+            15,
+            4,
+            1
+          ],
+          [
+            "column_add",
+            7,
+            4,
+            -1
+          ],
+          [
+            "column_add",
+            9,
+            4,
+            1
+          ],
+          [
+            "row_swap",
+            9,
+            5
+          ],
+          [
+            "row_add",
+            11,
+            5,
+            1
+          ],
+          [
+            "row_add",
+            16,
+            5,
+            1
+          ],
+          [
+            "row_add",
+            17,
+            5,
+            -1
+          ],
+          [
+            "column_add",
+            6,
+            5,
+            -1
+          ],
+          [
+            "row_swap",
+            10,
+            6
+          ],
+          [
+            "column_swap",
+            7,
+            6
+          ],
+          [
+            "row_negate",
+            6,
+            6
+          ],
+          [
+            "row_add",
+            11,
+            6,
+            1
+          ],
+          [
+            "row_add",
+            12,
+            6,
+            2
+          ],
+          [
+            "row_add",
+            14,
+            6,
+            -2
+          ],
+          [
+            "row_add",
+            17,
+            6,
+            -1
+          ],
+          [
+            "column_add",
+            8,
+            6,
+            -1
+          ],
+          [
+            "column_add",
+            9,
+            6,
+            1
+          ],
+          [
+            "row_swap",
+            11,
+            7
+          ],
+          [
+            "column_swap",
+            8,
+            7
+          ],
+          [
+            "row_add",
+            12,
+            7,
+            -2
+          ],
+          [
+            "row_add",
+            14,
+            7,
+            2
+          ],
+          [
+            "row_add",
+            17,
+            7,
+            1
+          ],
+          [
+            "column_add",
+            9,
+            7,
+            1
+          ],
+          [
+            "row_swap",
+            17,
+            8
+          ],
+          [
+            "row_negate",
+            8,
+            8
+          ],
+          [
+            "row_swap",
+            12,
+            9
+          ],
+          [
+            "row_add",
+            14,
+            9,
+            1
+          ]
+        ],
+        "core_rows": [
+          9
+        ],
+        "core_columns": [
+          9
+        ],
+        "core_matrix": [
+          [
+            2
+          ]
+        ]
+      },
+      "field_controls": [
+        {
+          "field": 0,
+          "direct_polynomial_rank": 240,
+          "cycle_sum_rank": 16,
+          "residual_rank": 10
+        },
+        {
+          "field": 2,
+          "direct_polynomial_rank": 239,
+          "cycle_sum_rank": 15,
+          "residual_rank": 9
+        },
+        {
+          "field": 3,
+          "direct_polynomial_rank": 240,
+          "cycle_sum_rank": 16,
+          "residual_rank": 10
+        },
+        {
+          "field": 5,
+          "direct_polynomial_rank": 240,
+          "cycle_sum_rank": 16,
+          "residual_rank": 10
+        },
+        {
+          "field": 7,
+          "direct_polynomial_rank": 240,
+          "cycle_sum_rank": 16,
+          "residual_rank": 10
+        }
+      ],
+      "strict_weight": [
+        111284642,
+        111285122,
+        111516002
+      ],
+      "cutoff": 1335420984,
+      "prefix_representatives": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          5
+        ],
+        [
+          0,
+          0,
+          6
+        ],
+        [
+          0,
+          0,
+          7
+        ],
+        [
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          0,
+          9
+        ],
+        [
+          0,
+          0,
+          10
+        ],
+        [
+          0,
+          0,
+          11
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          1,
+          4
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          1,
+          6
+        ],
+        [
+          0,
+          1,
+          7
+        ],
+        [
+          0,
+          1,
+          8
+        ],
+        [
+          0,
+          1,
+          9
+        ],
+        [
+          0,
+          1,
+          10
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          2,
+          2
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          2,
+          5
+        ],
+        [
+          0,
+          2,
+          6
+        ],
+        [
+          0,
+          2,
+          7
+        ],
+        [
+          0,
+          2,
+          8
+        ],
+        [
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          3,
+          1
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          0,
+          3,
+          3
+        ],
+        [
+          0,
+          3,
+          4
+        ],
+        [
+          0,
+          3,
+          5
+        ],
+        [
+          0,
+          3,
+          6
+        ],
+        [
+          0,
+          3,
+          7
+        ],
+        [
+          0,
+          4,
+          0
+        ],
+        [
+          0,
+          4,
+          1
+        ],
+        [
+          0,
+          4,
+          2
+        ],
+        [
+          0,
+          4,
+          3
+        ],
+        [
+          0,
+          4,
+          4
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          0,
+          4,
+          6
+        ],
+        [
+          0,
+          4,
+          7
+        ],
+        [
+          0,
+          5,
+          0
+        ],
+        [
+          0,
+          5,
+          1
+        ],
+        [
+          0,
+          5,
+          2
+        ],
+        [
+          0,
+          5,
+          3
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          0,
+          5,
+          5
+        ],
+        [
+          0,
+          5,
+          6
+        ],
+        [
+          0,
+          6,
+          0
+        ],
+        [
+          0,
+          6,
+          1
+        ],
+        [
+          0,
+          6,
+          2
+        ],
+        [
+          0,
+          6,
+          3
+        ],
+        [
+          0,
+          6,
+          4
+        ],
+        [
+          0,
+          6,
+          5
+        ],
+        [
+          0,
+          7,
+          0
+        ],
+        [
+          0,
+          7,
+          1
+        ],
+        [
+          0,
+          7,
+          2
+        ],
+        [
+          0,
+          7,
+          3
+        ],
+        [
+          0,
+          7,
+          4
+        ],
+        [
+          0,
+          8,
+          0
+        ],
+        [
+          0,
+          8,
+          1
+        ],
+        [
+          0,
+          8,
+          2
+        ],
+        [
+          0,
+          9,
+          0
+        ],
+        [
+          0,
+          9,
+          1
+        ],
+        [
+          0,
+          10,
+          0
+        ],
+        [
+          0,
+          10,
+          1
+        ],
+        [
+          0,
+          11,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          2
+        ],
+        [
+          1,
+          0,
+          3
+        ],
+        [
+          1,
+          0,
+          4
+        ],
+        [
+          1,
+          0,
+          5
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          1,
+          3
+        ],
+        [
+          1,
+          1,
+          4
+        ],
+        [
+          1,
+          1,
+          5
+        ],
+        [
+          1,
+          2,
+          0
+        ],
+        [
+          1,
+          2,
+          1
+        ],
+        [
+          1,
+          2,
+          2
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          2,
+          4
+        ],
+        [
+          1,
+          2,
+          5
+        ],
+        [
+          1,
+          3,
+          0
+        ],
+        [
+          1,
+          3,
+          1
+        ],
+        [
+          1,
+          3,
+          2
+        ],
+        [
+          1,
+          3,
+          3
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          1,
+          3,
+          5
+        ],
+        [
+          1,
+          4,
+          0
+        ],
+        [
+          1,
+          4,
+          1
+        ],
+        [
+          1,
+          4,
+          2
+        ],
+        [
+          1,
+          4,
+          3
+        ],
+        [
+          1,
+          4,
+          4
+        ],
+        [
+          1,
+          4,
+          5
+        ],
+        [
+          1,
+          5,
+          0
+        ],
+        [
+          1,
+          5,
+          1
+        ],
+        [
+          1,
+          5,
+          2
+        ],
+        [
+          1,
+          5,
+          3
+        ],
+        [
+          1,
+          5,
+          4
+        ],
+        [
+          1,
+          5,
+          5
+        ],
+        [
+          1,
+          6,
+          0
+        ],
+        [
+          1,
+          6,
+          1
+        ],
+        [
+          1,
+          6,
+          2
+        ],
+        [
+          1,
+          6,
+          3
+        ],
+        [
+          1,
+          6,
+          4
+        ],
+        [
+          1,
+          7,
+          0
+        ],
+        [
+          1,
+          7,
+          1
+        ],
+        [
+          1,
+          7,
+          2
+        ],
+        [
+          1,
+          7,
+          3
+        ],
+        [
+          1,
+          8,
+          0
+        ],
+        [
+          1,
+          8,
+          1
+        ],
+        [
+          1,
+          8,
+          2
+        ],
+        [
+          1,
+          9,
+          0
+        ],
+        [
+          1,
+          9,
+          1
+        ],
+        [
+          1,
+          10,
+          0
+        ],
+        [
+          1,
+          11,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          1
+        ],
+        [
+          2,
+          0,
+          2
+        ],
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          2,
+          0,
+          4
+        ],
+        [
+          2,
+          0,
+          5
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          2,
+          1,
+          1
+        ],
+        [
+          2,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          1,
+          5
+        ],
+        [
+          2,
+          2,
+          0
+        ],
+        [
+          2,
+          2,
+          1
+        ],
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          3
+        ],
+        [
+          2,
+          2,
+          4
+        ],
+        [
+          2,
+          2,
+          5
+        ],
+        [
+          2,
+          3,
+          0
+        ],
+        [
+          2,
+          3,
+          1
+        ],
+        [
+          2,
+          3,
+          2
+        ],
+        [
+          2,
+          3,
+          3
+        ],
+        [
+          2,
+          3,
+          4
+        ],
+        [
+          2,
+          3,
+          5
+        ],
+        [
+          2,
+          4,
+          0
+        ],
+        [
+          2,
+          4,
+          1
+        ],
+        [
+          2,
+          4,
+          2
+        ],
+        [
+          2,
+          4,
+          3
+        ],
+        [
+          2,
+          4,
+          4
+        ],
+        [
+          2,
+          4,
+          5
+        ],
+        [
+          2,
+          5,
+          0
+        ],
+        [
+          2,
+          5,
+          1
+        ],
+        [
+          2,
+          5,
+          2
+        ],
+        [
+          2,
+          5,
+          3
+        ],
+        [
+          2,
+          5,
+          4
+        ],
+        [
+          2,
+          6,
+          0
+        ],
+        [
+          2,
+          6,
+          1
+        ],
+        [
+          2,
+          6,
+          2
+        ],
+        [
+          2,
+          6,
+          3
+        ],
+        [
+          2,
+          7,
+          0
+        ],
+        [
+          2,
+          7,
+          1
+        ],
+        [
+          2,
+          7,
+          2
+        ],
+        [
+          2,
+          8,
+          0
+        ],
+        [
+          2,
+          8,
+          1
+        ],
+        [
+          2,
+          9,
+          0
+        ],
+        [
+          2,
+          10,
+          0
+        ],
+        [
+          3,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          1
+        ],
+        [
+          3,
+          0,
+          2
+        ],
+        [
+          3,
+          0,
+          3
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          0,
+          5
+        ],
+        [
+          3,
+          1,
+          0
+        ],
+        [
+          3,
+          1,
+          1
+        ],
+        [
+          3,
+          1,
+          2
+        ],
+        [
+          3,
+          1,
+          3
+        ],
+        [
+          3,
+          1,
+          4
+        ],
+        [
+          3,
+          1,
+          5
+        ],
+        [
+          3,
+          2,
+          0
+        ],
+        [
+          3,
+          2,
+          1
+        ],
+        [
+          3,
+          2,
+          2
+        ],
+        [
+          3,
+          2,
+          3
+        ],
+        [
+          3,
+          2,
+          4
+        ],
+        [
+          3,
+          2,
+          5
+        ],
+        [
+          3,
+          3,
+          0
+        ],
+        [
+          3,
+          3,
+          1
+        ],
+        [
+          3,
+          3,
+          2
+        ],
+        [
+          3,
+          3,
+          3
+        ],
+        [
+          3,
+          3,
+          4
+        ],
+        [
+          3,
+          3,
+          5
+        ],
+        [
+          3,
+          4,
+          0
+        ],
+        [
+          3,
+          4,
+          1
+        ],
+        [
+          3,
+          4,
+          2
+        ],
+        [
+          3,
+          4,
+          3
+        ],
+        [
+          3,
+          4,
+          4
+        ],
+        [
+          3,
+          5,
+          0
+        ],
+        [
+          3,
+          5,
+          1
+        ],
+        [
+          3,
+          5,
+          2
+        ],
+        [
+          3,
+          5,
+          3
+        ],
+        [
+          3,
+          6,
+          0
+        ],
+        [
+          3,
+          6,
+          1
+        ],
+        [
+          3,
+          6,
+          2
+        ],
+        [
+          3,
+          7,
+          0
+        ],
+        [
+          3,
+          7,
+          1
+        ],
+        [
+          3,
+          8,
+          0
+        ],
+        [
+          3,
+          9,
+          0
+        ],
+        [
+          4,
+          0,
+          0
+        ],
+        [
+          4,
+          0,
+          1
+        ],
+        [
+          4,
+          0,
+          2
+        ],
+        [
+          4,
+          0,
+          3
+        ],
+        [
+          4,
+          0,
+          4
+        ],
+        [
+          4,
+          0,
+          5
+        ],
+        [
+          4,
+          1,
+          0
+        ],
+        [
+          4,
+          1,
+          1
+        ],
+        [
+          4,
+          1,
+          2
+        ],
+        [
+          4,
+          1,
+          3
+        ],
+        [
+          4,
+          1,
+          4
+        ],
+        [
+          4,
+          1,
+          5
+        ],
+        [
+          4,
+          2,
+          0
+        ],
+        [
+          4,
+          2,
+          1
+        ],
+        [
+          4,
+          2,
+          2
+        ],
+        [
+          4,
+          2,
+          3
+        ],
+        [
+          4,
+          2,
+          4
+        ],
+        [
+          4,
+          2,
+          5
+        ],
+        [
+          4,
+          3,
+          0
+        ],
+        [
+          4,
+          3,
+          1
+        ],
+        [
+          4,
+          3,
+          2
+        ],
+        [
+          4,
+          3,
+          3
+        ],
+        [
+          4,
+          3,
+          4
+        ],
+        [
+          4,
+          4,
+          0
+        ],
+        [
+          4,
+          4,
+          1
+        ],
+        [
+          4,
+          4,
+          2
+        ],
+        [
+          4,
+          4,
+          3
+        ],
+        [
+          4,
+          5,
+          0
+        ],
+        [
+          4,
+          5,
+          1
+        ],
+        [
+          4,
+          5,
+          2
+        ],
+        [
+          4,
+          6,
+          0
+        ],
+        [
+          4,
+          6,
+          1
+        ],
+        [
+          4,
+          7,
+          0
+        ],
+        [
+          4,
+          8,
+          0
+        ],
+        [
+          5,
+          0,
+          0
+        ],
+        [
+          5,
+          0,
+          1
+        ],
+        [
+          5,
+          0,
+          2
+        ],
+        [
+          5,
+          0,
+          3
+        ],
+        [
+          5,
+          0,
+          4
+        ],
+        [
+          5,
+          0,
+          5
+        ],
+        [
+          5,
+          1,
+          0
+        ],
+        [
+          5,
+          1,
+          1
+        ],
+        [
+          5,
+          1,
+          2
+        ],
+        [
+          5,
+          1,
+          3
+        ],
+        [
+          5,
+          1,
+          4
+        ],
+        [
+          5,
+          1,
+          5
+        ],
+        [
+          5,
+          2,
+          0
+        ],
+        [
+          5,
+          2,
+          1
+        ],
+        [
+          5,
+          2,
+          2
+        ],
+        [
+          5,
+          2,
+          3
+        ],
+        [
+          5,
+          2,
+          4
+        ],
+        [
+          5,
+          3,
+          0
+        ],
+        [
+          5,
+          3,
+          1
+        ],
+        [
+          5,
+          3,
+          2
+        ],
+        [
+          5,
+          3,
+          3
+        ],
+        [
+          5,
+          4,
+          0
+        ],
+        [
+          5,
+          4,
+          1
+        ],
+        [
+          5,
+          4,
+          2
+        ],
+        [
+          6,
+          0,
+          0
+        ],
+        [
+          6,
+          1,
+          0
+        ],
+        [
+          6,
+          2,
+          0
+        ],
+        [
+          6,
+          3,
+          0
+        ],
+        [
+          6,
+          4,
+          0
+        ],
+        [
+          7,
+          0,
+          0
+        ],
+        [
+          7,
+          1,
+          0
+        ],
+        [
+          7,
+          2,
+          0
+        ],
+        [
+          7,
+          3,
+          0
+        ],
+        [
+          7,
+          4,
+          0
+        ],
+        [
+          8,
+          0,
+          0
+        ],
+        [
+          8,
+          1,
+          0
+        ],
+        [
+          8,
+          2,
+          0
+        ],
+        [
+          8,
+          3,
+          0
+        ],
+        [
+          8,
+          4,
+          0
+        ],
+        [
+          9,
+          0,
+          0
+        ],
+        [
+          9,
+          1,
+          0
+        ],
+        [
+          9,
+          2,
+          0
+        ],
+        [
+          9,
+          3,
+          0
+        ],
+        [
+          10,
+          0,
+          0
+        ],
+        [
+          10,
+          1,
+          0
+        ],
+        [
+          10,
+          2,
+          0
+        ],
+        [
+          11,
+          0,
+          0
+        ],
+        [
+          11,
+          1,
+          0
+        ],
+        [
+          12,
+          0,
+          0
+        ]
+      ],
+      "scope": "Shortest representatives include exactly the labels of the full finite cost ball, including any repeated-label monomials."
+    },
+    "noncoherent_three_core": {
+      "kind": "known_power_basis_replacement",
+      "periods": [
+        5,
+        7,
+        11
+      ],
+      "distinct_labels": 240,
+      "coefficient_dimensions": [
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        21,
+        21
+      ],
+      "graph_reduction": {
+        "noncyclic_groups": [],
+        "zero_defect_merges": [],
+        "clusters": [
+          {
+            "groups": [
+              0
+            ],
+            "edge_mask": 15173365766,
+            "cycle_rank": 2
+          },
+          {
+            "groups": [
+              1
+            ],
+            "edge_mask": 1997555312,
+            "cycle_rank": 2
+          },
+          {
+            "groups": [
+              2
+            ],
+            "edge_mask": 30071468174,
+            "cycle_rank": 2
+          },
+          {
+            "groups": [
+              3
+            ],
+            "edge_mask": 1712377441,
+            "cycle_rank": 2
+          },
+          {
+            "groups": [
+              4
+            ],
+            "edge_mask": 25785409932,
+            "cycle_rank": 2
+          },
+          {
+            "groups": [
+              5
+            ],
+            "edge_mask": 3993095233,
+            "cycle_rank": 2
+          },
+          {
+            "groups": [
+              6
+            ],
+            "edge_mask": 26068386204,
+            "cycle_rank": 2
+          },
+          {
+            "groups": [
+              7
+            ],
+            "edge_mask": 7717624899,
+            "cycle_rank": 2
+          },
+          {
+            "groups": [
+              8
+            ],
+            "edge_mask": 17475306424,
+            "cycle_rank": 2
+          },
+          {
+            "groups": [
+              9
+            ],
+            "edge_mask": 6914553859,
+            "cycle_rank": 3
+          },
+          {
+            "groups": [
+              10
+            ],
+            "edge_mask": 18045486896,
+            "cycle_rank": 3
+          }
+        ],
+        "graph_only": false,
+        "base_groups": [
+          9
+        ],
+        "extracted_rank": 3,
+        "union_cycle_rank": 24,
+        "extended_forest": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        "residual_rows": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            6
+          ]
+        ],
+        "residual_columns": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            -1,
+            0,
+            1,
+            0,
+            0,
+            -1,
+            1,
+            1,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            -1,
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            -1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            -1,
+            0,
+            0,
+            1,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            -1,
+            0,
+            1,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            -1,
+            0,
+            0,
+            1,
+            0,
+            -1,
+            0,
+            0,
+            1,
+            0,
+            -1,
+            0,
+            1,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            -1,
+            1,
+            0,
+            0,
+            -1,
+            1,
+            0,
+            1,
+            0,
+            -1,
+            0,
+            0,
+            -1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "integral_core_certificate": {
+        "unit_pivots": 20,
+        "operations": [
+          [
+            "column_swap",
+            1,
+            0
+          ],
+          [
+            "row_add",
+            13,
+            0,
+            -1
+          ],
+          [
+            "row_add",
+            19,
+            0,
+            -1
+          ],
+          [
+            "column_add",
+            9,
+            0,
+            1
+          ],
+          [
+            "column_add",
+            12,
+            0,
+            -1
+          ],
+          [
+            "column_add",
+            13,
+            0,
+            -1
+          ],
+          [
+            "column_swap",
+            4,
+            1
+          ],
+          [
+            "row_add",
+            5,
+            1,
+            -1
+          ],
+          [
+            "row_add",
+            10,
+            1,
+            -1
+          ],
+          [
+            "row_add",
+            13,
+            1,
+            -1
+          ],
+          [
+            "row_add",
+            19,
+            1,
+            -1
+          ],
+          [
+            "column_add",
+            5,
+            1,
+            -1
+          ],
+          [
+            "column_add",
+            9,
+            1,
+            -1
+          ],
+          [
+            "column_add",
+            12,
+            1,
+            1
+          ],
+          [
+            "column_add",
+            17,
+            1,
+            -1
+          ],
+          [
+            "row_add",
+            3,
+            2,
+            1
+          ],
+          [
+            "row_add",
+            16,
+            2,
+            1
+          ],
+          [
+            "column_add",
+            3,
+            2,
+            1
+          ],
+          [
+            "column_add",
+            13,
+            2,
+            1
+          ],
+          [
+            "column_add",
+            16,
+            2,
+            -1
+          ],
+          [
+            "column_add",
+            17,
+            2,
+            1
+          ],
+          [
+            "column_add",
+            19,
+            2,
+            1
+          ],
+          [
+            "row_negate",
+            3,
+            3
+          ],
+          [
+            "row_add",
+            4,
+            3,
+            -1
+          ],
+          [
+            "row_add",
+            7,
+            3,
+            1
+          ],
+          [
+            "row_add",
+            8,
+            3,
+            -1
+          ],
+          [
+            "row_add",
+            9,
+            3,
+            -1
+          ],
+          [
+            "row_add",
+            12,
+            3,
+            1
+          ],
+          [
+            "row_add",
+            15,
+            3,
+            1
+          ],
+          [
+            "row_add",
+            18,
+            3,
+            -1
+          ],
+          [
+            "column_add",
+            7,
+            3,
+            -1
+          ],
+          [
+            "column_add",
+            13,
+            3,
+            -1
+          ],
+          [
+            "column_add",
+            17,
+            3,
+            -1
+          ],
+          [
+            "column_swap",
+            6,
+            4
+          ],
+          [
+            "row_negate",
+            4,
+            4
+          ],
+          [
+            "row_add",
+            9,
+            4,
+            1
+          ],
+          [
+            "row_add",
+            12,
+            4,
+            -1
+          ],
+          [
+            "column_add",
+            7,
+            4,
+            -1
+          ],
+          [
+            "column_add",
+            11,
+            4,
+            -1
+          ],
+          [
+            "column_add",
+            13,
+            4,
+            -1
+          ],
+          [
+            "column_add",
+            14,
+            4,
+            -1
+          ],
+          [
+            "column_add",
+            15,
+            4,
+            -1
+          ],
+          [
+            "column_add",
+            17,
+            4,
+            -1
+          ],
+          [
+            "column_swap",
+            8,
+            5
+          ],
+          [
+            "row_add",
+            6,
+            5,
+            1
+          ],
+          [
+            "row_add",
+            13,
+            5,
+            -1
+          ],
+          [
+            "column_add",
+            12,
+            5,
+            -1
+          ],
+          [
+            "column_add",
+            13,
+            5,
+            -1
+          ],
+          [
+            "column_swap",
+            12,
+            6
+          ],
+          [
+            "row_add",
+            10,
+            6,
+            -1
+          ],
+          [
+            "row_add",
+            13,
+            6,
+            1
+          ],
+          [
+            "row_add",
+            14,
+            6,
+            1
+          ],
+          [
+            "row_add",
+            15,
+            6,
+            -1
+          ],
+          [
+            "column_add",
+            19,
+            6,
+            1
+          ],
+          [
+            "column_swap",
+            13,
+            7
+          ],
+          [
+            "row_add",
+            8,
+            7,
+            1
+          ],
+          [
+            "row_add",
+            10,
+            7,
+            -1
+          ],
+          [
+            "row_add",
+            11,
+            7,
+            1
+          ],
+          [
+            "row_add",
+            13,
+            7,
+            1
+          ],
+          [
+            "row_add",
+            14,
+            7,
+            1
+          ],
+          [
+            "row_add",
+            15,
+            7,
+            -1
+          ],
+          [
+            "row_add",
+            16,
+            7,
+            1
+          ],
+          [
+            "row_add",
+            18,
+            7,
+            1
+          ],
+          [
+            "column_add",
+            18,
+            7,
+            -1
+          ],
+          [
+            "column_add",
+            19,
+            7,
+            -1
+          ],
+          [
+            "column_swap",
+            11,
+            8
+          ],
+          [
+            "row_negate",
+            8,
+            8
+          ],
+          [
+            "row_add",
+            12,
+            8,
+            1
+          ],
+          [
+            "row_add",
+            16,
+            8,
+            1
+          ],
+          [
+            "row_add",
+            17,
+            8,
+            1
+          ],
+          [
+            "column_add",
+            13,
+            8,
+            -1
+          ],
+          [
+            "column_add",
+            14,
+            8,
+            -1
+          ],
+          [
+            "column_add",
+            17,
+            8,
+            -1
+          ],
+          [
+            "column_add",
+            19,
+            8,
+            1
+          ],
+          [
+            "column_swap",
+            13,
+            9
+          ],
+          [
+            "row_negate",
+            9,
+            9
+          ],
+          [
+            "row_add",
+            12,
+            9,
+            -1
+          ],
+          [
+            "row_add",
+            15,
+            9,
+            -1
+          ],
+          [
+            "column_add",
+            14,
+            9,
+            1
+          ],
+          [
+            "column_add",
+            15,
+            9,
+            1
+          ],
+          [
+            "column_add",
+            19,
+            9,
+            1
+          ],
+          [
+            "column_add",
+            20,
+            9,
+            1
+          ],
+          [
+            "column_swap",
+            12,
+            10
+          ],
+          [
+            "row_negate",
+            10,
+            10
+          ],
+          [
+            "column_add",
+            13,
+            10,
+            -1
+          ],
+          [
+            "column_add",
+            16,
+            10,
+            -1
+          ],
+          [
+            "column_add",
+            18,
+            10,
+            -1
+          ],
+          [
+            "column_swap",
+            13,
+            11
+          ],
+          [
+            "row_add",
+            14,
+            11,
+            -1
+          ],
+          [
+            "row_add",
+            19,
+            11,
+            1
+          ],
+          [
+            "row_add",
+            20,
+            11,
+            -1
+          ],
+          [
+            "column_add",
+            16,
+            11,
+            -1
+          ],
+          [
+            "column_add",
+            18,
+            11,
+            -1
+          ],
+          [
+            "column_swap",
+            14,
+            12
+          ],
+          [
+            "row_add",
+            15,
+            12,
+            -1
+          ],
+          [
+            "row_add",
+            16,
+            12,
+            -1
+          ],
+          [
+            "row_add",
+            17,
+            12,
+            -1
+          ],
+          [
+            "row_add",
+            18,
+            12,
+            1
+          ],
+          [
+            "column_swap",
+            17,
+            13
+          ],
+          [
+            "row_negate",
+            13,
+            13
+          ],
+          [
+            "row_add",
+            14,
+            13,
+            -1
+          ],
+          [
+            "row_add",
+            17,
+            13,
+            -1
+          ],
+          [
+            "row_add",
+            18,
+            13,
+            1
+          ],
+          [
+            "row_add",
+            19,
+            13,
+            1
+          ],
+          [
+            "row_add",
+            20,
+            13,
+            -1
+          ],
+          [
+            "column_add",
+            18,
+            13,
+            1
+          ],
+          [
+            "column_swap",
+            16,
+            14
+          ],
+          [
+            "row_negate",
+            14,
+            14
+          ],
+          [
+            "row_add",
+            16,
+            14,
+            -1
+          ],
+          [
+            "row_add",
+            19,
+            14,
+            -1
+          ],
+          [
+            "row_add",
+            20,
+            14,
+            1
+          ],
+          [
+            "column_add",
+            19,
+            14,
+            -1
+          ],
+          [
+            "row_add",
+            18,
+            15,
+            1
+          ],
+          [
+            "column_add",
+            19,
+            15,
+            -1
+          ],
+          [
+            "column_add",
+            20,
+            15,
+            -1
+          ],
+          [
+            "column_swap",
+            18,
+            16
+          ],
+          [
+            "row_add",
+            17,
+            16,
+            -1
+          ],
+          [
+            "column_add",
+            19,
+            16,
+            1
+          ],
+          [
+            "column_swap",
+            18,
+            17
+          ],
+          [
+            "row_negate",
+            17,
+            17
+          ],
+          [
+            "row_add",
+            18,
+            17,
+            -1
+          ],
+          [
+            "column_add",
+            19,
+            17,
+            1
+          ],
+          [
+            "column_swap",
+            20,
+            18
+          ],
+          [
+            "row_add",
+            20,
+            18,
+            -1
+          ],
+          [
+            "column_add",
+            19,
+            18,
+            -3
+          ],
+          [
+            "row_negate",
+            19,
+            19
+          ],
+          [
+            "row_add",
+            20,
+            19,
+            2
+          ],
+          [
+            "column_add",
+            20,
+            19,
+            -1
+          ]
+        ],
+        "core_rows": [
+          20
+        ],
+        "core_columns": [
+          20
+        ],
+        "core_matrix": [
+          [
+            3
+          ]
+        ]
+      },
+      "field_controls": [
+        {
+          "field": 0,
+          "direct_polynomial_rank": 240,
+          "cycle_sum_rank": 24,
+          "residual_rank": 21
+        },
+        {
+          "field": 2,
+          "direct_polynomial_rank": 240,
+          "cycle_sum_rank": 24,
+          "residual_rank": 21
+        },
+        {
+          "field": 3,
+          "direct_polynomial_rank": 239,
+          "cycle_sum_rank": 23,
+          "residual_rank": 20
+        },
+        {
+          "field": 5,
+          "direct_polynomial_rank": 240,
+          "cycle_sum_rank": 24,
+          "residual_rank": 21
+        },
+        {
+          "field": 7,
+          "direct_polynomial_rank": 240,
+          "cycle_sum_rank": 24,
+          "residual_rank": 21
+        }
+      ],
+      "cyclotomic_coefficients": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        -1,
+        -1,
+        -1,
+        -1,
+        -2,
+        -1,
+        -1,
+        -1,
+        -1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        -1,
+        -1,
+        -1,
+        -1,
+        -2,
+        -1,
+        -1,
+        -1,
+        -1,
+        0,
+        0,
+        1,
+        1,
+        2,
+        2,
+        2,
+        1,
+        1,
+        0,
+        0,
+        -1,
+        -1,
+        -1,
+        -1,
+        -2,
+        -1,
+        -1,
+        -1,
+        0,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        -1,
+        -1,
+        -1,
+        -2,
+        -2,
+        -1,
+        -1,
+        -1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        -1,
+        -2,
+        -1,
+        -1,
+        -1,
+        0,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        0,
+        -1,
+        -2,
+        -2,
+        -3,
+        -3,
+        -3,
+        -2,
+        -2,
+        -1,
+        0,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        0,
+        -1,
+        -1,
+        -1,
+        -2,
+        -1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        -1,
+        -1,
+        -1,
+        -2,
+        -2,
+        -1,
+        -1,
+        -1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        0,
+        -1,
+        -1,
+        -1,
+        -2,
+        -1,
+        -1,
+        -1,
+        -1,
+        0,
+        0,
+        1,
+        1,
+        2,
+        2,
+        2,
+        1,
+        1,
+        0,
+        0,
+        -1,
+        -1,
+        -1,
+        -1,
+        -2,
+        -1,
+        -1,
+        -1,
+        -1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        -1,
+        -1,
+        -1,
+        -1,
+        -2,
+        -1,
+        -1,
+        -1,
+        -1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "replacement_index": 119,
+      "selected_root_powers": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239,
+        240
+      ],
+      "axis_root_powers": [
+        176,
+        56,
+        155
+      ],
+      "forbidden_axis_powers": [
+        2,
+        5,
+        2
+      ],
+      "forbidden_root_labels": [
+        352,
+        280,
+        310
+      ],
+      "downset_box_capacity": 20,
+      "excluded_one_deletion_sets": 241,
+      "index": 3,
+      "source": "https://arxiv.org/pdf/1012.1844v4",
+      "scope": "Musiker--Reiner Proposition 4 and Corollary 5 give the known coefficient/index construction. Every one-deletion label set from powers zero through 240 fails the same downset obstruction in X=UV,Y=UW,Z=VW, including this index-three example. Other odd-prime coherent examples are not ruled out."
+    },
+    "scope": "Integral graph-cycle extraction and unit operations are classical linear algebra, not a new matroid-duality theorem or fan bound. The explicit noncoherence certificate excludes the 241 standard coefficient-deletion label sets at periods (5,7,11), not all odd-prime constructions. No odd-characteristic invariance, exhaustive characteristic classification or new asymptotic G_3 bound is claimed."
+  },
   "summary": {
     "full_period_cover_prices": 9,
     "dual_quotient_price_field_controls": 27,
@@ -212730,6 +218190,11 @@
     "score_split_sector_frontiers": 105,
     "strict_active_score_borders": 90,
     "score_split_ideal_relations": 60,
-    "direct_independent_score_minors": 543
+    "direct_independent_score_minors": 543,
+    "cycle_gluing_graph_field_checks": 23040,
+    "zero_defect_cycle_merges": 242,
+    "cycle_gluing_cost_prefix_field_checks": 180,
+    "integral_scalar_core_certificates": 2,
+    "excluded_cyclotomic_coefficient_deletion_sets": 241
   }
 }

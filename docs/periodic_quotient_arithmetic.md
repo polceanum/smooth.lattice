@@ -1632,6 +1632,186 @@ or a genuine incidence budget for their exposed cones. None of this
 changes the unrestricted exponent, proves current novelty or supplies
 the requested paper endpoint.
 
+## Integral cycle extraction and the coherence boundary for torsion
+
+The [prefix identity (G7)--(G8)](nonnegative_graded_fans.md#an-exact-prefix-formula-for-the-original-mixed-period-algebra)
+retains the collective information missing from individual score defects.
+For a finite monomial list $E$, let $S_j$ be its distinct coefficient
+labels in group $j$, put $H_j=K_{r,s}\setminus S_j$, and write
+$z(H)=|E(H)|-(r+s)+c(H)$. All graphs have the same vertex set;
+$c(H)$ includes isolated vertices. Then
+
+$$
+\operatorname{rank}_A(E)
+ =\sum_j\bigl(|S_j|+1-c(H_j)\bigr)-D
+   +\dim_K\sum_j\mathcal Z_K(H_j),\quad D=(r-1)(s-1). \tag{Q45}
+$$
+
+This is the established cographic representation and an elementary tensor
+kernel calculation. It holds in every characteristic, including those
+dividing a period. The cycle-space sum is not generally determined by
+connectivity of the union. The following reduction extracts its graph-only
+part without making that substitution.
+
+### Exact merges and an integral residual matrix
+
+For two spanning subgraphs define
+
+$$
+\delta(H,H')=c(H\cap H')-c(H)-c(H')+c(H\cup H').       \tag{Q46}
+$$
+
+Since $\mathcal Z_K(H)\cap\mathcal Z_K(H')=
+\mathcal Z_K(H\cap H')$, ordinary dimension counting gives
+
+$$
+z(H\cup H')-\dim_K(\mathcal Z_K(H)+\mathcal Z_K(H'))
+ =\delta(H,H')\ge0.                                  \tag{Q47}
+$$
+
+Thus a pair with zero defect may be replaced by its union over every
+field. The replacement also preserves the integer cycle lattice. Indeed,
+the sum is a full-rank sublattice of the union's cycle lattice, and its
+reduction has full rank modulo every prime by (Q47). No prime can divide
+its index. Integral graph cycles are saturated in the edge lattice, so
+this argument uses compatible integral coordinates. Acyclic graphs may
+be discarded. If exact pair merges leave at most two graphs, the whole
+rank is graph-only: for two survivors it is
+$z(H)+z(H')-z(H\cap H')$. A field-dependent rank therefore needs at
+least three surviving cyclic clusters. Failure of one greedy merge order
+does not prove that all possible merge orders fail.
+
+For any remaining family choose one graph $H_*$, take a spanning forest
+of it, and extend that forest to a spanning forest $T$ of the union
+$H_\cup$ of the remaining graphs. In the integral fundamental-cycle
+basis of $H_\cup$, a cycle's coordinates are its entries on the chords
+outside $T$. The base cycles have identity coordinates on the chords of
+$H_*$ and zero coordinates on the other chords. Delete those base
+coordinates. For each other graph, restrict its integral fundamental
+cycles to the remaining chords. The resulting matrix $R$, with columns
+so obtained, has entries in $\{0,1,-1\}$ and
+$z(H_\cup)-z(H_*)$ rows. Zero columns may be discarded. Over every field,
+
+$$
+\dim_K\sum_j\mathcal Z_K(H_j)=z(H_*)+\operatorname{rank}_K R.
+                                                               \tag{Q48}
+$$
+
+The coordinate extraction is integral and unimodular: a spanning-forest
+cycle basis is an integer basis, and the extracted base cycles are
+coordinate vectors. No division by a period or characteristic is used.
+Combining (Q45) and (Q48) gives an exact integer residual-matrix problem
+for each prefix. Unit row and column pivots split off identity blocks;
+Euclidean operations can reduce a one-column remainder to its gcd.
+These operations preserve rank after specialization to every field.
+
+These are classical graph-cycle and integer-linear-algebra tools, not a
+new matroid duality or a new asymptotic rank algorithm. The earlier (G8)
+already worked in $rs$ edge coordinates rather than the full quotient
+dimension. The additional extraction identifies which remaining
+dependencies can carry arithmetic, without claiming a small residual
+matrix uniformly over prices.
+
+### The coherent arithmetic witness reduces to the scalar two
+
+Use the existing $(r,s,t)=(5,7,11)$ witness and strict weight
+$w=(111284642,111285122,111516002)$. At
+
+$$
+C=w_X+11w_Y=1335420984
+$$
+
+the full cost prefix has $295$ distinct labels. Replacing all monomials
+of a label by its shortest representative preserves this rank. The
+nonzero-cycle groups are $0,1,2,9,10$, with cycle ranks $2,6,1,1,6$.
+Their coefficient dimensions sum to $248$, and $D=24$. There is no
+zero-defect pair merge. Taking group $1$ as the base gives an $18$-row,
+$10$-column residual matrix. Nine integer unit pivots and Euclidean row
+operations leave exactly $[2]$. Consequently the prefix rank is
+
+$$
+248-24+6+9+\operatorname{rank}_K[2]
+ =239+\operatorname{rank}_K[2].                       \tag{Q49}
+$$
+
+This is $239$ in characteristic two and $240$ in every other
+characteristic. It explains the already known coherent index-two
+example; it is not a new assertion that the entire fan is stable in odd
+characteristic. The report stores the integer matrix and a complete
+unimodular-operation certificate, independently replayed by the checker.
+
+### Known odd torsion does not supply a coherent example here
+
+In [Musiker--Reiner, Proposition 4 and Corollary 5](https://arxiv.org/pdf/1012.1844v4),
+deleting one power from $1,T,\ldots,T^{\phi(m)}$ gives a quotient
+lattice whose cyclic order is the magnitude of the corresponding
+cyclotomic coefficient. Theorem 1 interprets these groups as simplicial
+homology. The inspected source is version 4, dated 15 August 2022;
+its Remark 22 corrects part of Theorem 21 in older versions. We use
+Proposition 4 and Corollary 5 directly, with no claim that all versions
+are equivalent. The earlier [Martin--Reiner duality](https://www-users.cse.umn.edu/~reiner/Papers/cyclotomic.pdf)
+already connects cyclotomic and simplicial matroids. Arbitrary-basis
+torsion is therefore established prior work, with no positive-price
+coherence conclusion supplied by those statements.
+
+For a direct comparison in precisely the same algebra, take $T=UVW$.
+CRT recovers $U,V,W$ from powers of $T$. Exact integral division gives
+
+$$
+\Phi_{385}(T)=
+\frac{(1-T^{385})(1-T^5)(1-T^7)(1-T^{11})}
+ {(1-T)(1-T^{35})(1-T^{55})(1-T^{77})},\qquad [T^{119}]\Phi_{385}=-3.
+                                                               \tag{Q50}
+$$
+
+The degree is $240$. The displayed polynomial annihilates $T$ in the
+free integral tensor algebra. CRT recovery makes the resulting map
+$\mathbb Z[T]/\Phi_{385}\to A_{\mathbb Z}$ surjective; equal free
+rank $240$ makes it an isomorphism. Thus $1,T,\ldots,T^{239}$ is an
+integral basis. Replacing $T^{119}$ by $T^{240}$ gives index three by
+the known coefficient formula. Its cycle matrix has $21$ rows and
+$21$ columns; twenty unit pivots leave $[3]$. This is ordinary known
+odd torsion, verified here in the common representation.
+
+It cannot be a monomial downset in the original generators. CRT gives
+
+$$
+X=T^{176},\quad Y=T^{56},\quad Z=T^{155},\qquad
+X^2=T^{352},\quad Y^5=T^{280},\quad Z^2=T^{310}.        \tag{Q51}
+$$
+
+Every one-deletion label set from $\{T^0,\ldots,T^{240}\}$ omits
+all three labels on the right of (Q51), regardless of the deleted
+index. Any downset with these distinct labels must therefore lie in
+$0\le a<2,0\le b<5,0\le c<2$, of capacity $20$. Such a downset
+cannot have $240$ monomials. This excludes all $241$ standard
+coefficient-deletion sets for these periods, including the index-three
+example, from the positively coherent class. It does not exclude other
+coherent odd-prime examples or the general constructions in the cited
+literature.
+
+### Verification and the remaining structural question
+
+The checker compares (Q48) with raw cycle-space spans for all graph
+triples on $K_{2,2}$ and $512$ fixed four-graph families on $K_{3,3}$,
+over $\mathbb Q,\mathbb F_2,\mathbb F_3,\mathbb F_5,\mathbb F_7$:
+$23,040$ graph/field checks. It also compares (Q45)--(Q48) with ordinary
+monic polynomial arithmetic at $36$ full cost-ball prefixes, giving
+$180$ prefix/field checks, including characteristics dividing periods.
+Both scalar cores have independently replayed integral certificates.
+The cyclotomic comparison uses exact integer polynomial division,
+ordinary monic annihilation and the explicit downset obstruction.
+
+This continuation narrows the next proof task: control the residual
+cycle matrices for cost-defined prefixes as both price ratios vary.
+Their arbitrary-subset analogues already carry the torsion studied in
+the literature, while the standard coefficient-deletion construction
+fails even the downset test here. Neither a connectivity-only rank
+formula nor importing arbitrary torsion addresses this coherence
+restriction. A uniform residual-rank or exposed-change bound is still
+needed; no new unrestricted exponent, odd-characteristic invariance,
+polynomial separation, novelty certificate or paper endpoint follows.
+
 ## Exact reproduction
 
 ```bash
@@ -1664,3 +1844,7 @@ The filtration continuation adds exact score-prefix ranks, individual and
 collective defects, polynomial-minor valuations, finite neighbourhoods and
 two explicit algebraic obstructions to replacing collective rank by a
 columnwise filter.
+The cycle continuation adds integral graph extraction, independent
+polynomial-prefix ranks, replayable scalar-core certificates and a
+downset obstruction to the published coefficient-deletion construction
+in the same mixed-period embedding.

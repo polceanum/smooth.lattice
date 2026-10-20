@@ -247,6 +247,13 @@ quadratic total excess; its whole specified sector still has only
 the whole explicit family by `O(n^2 log n)`. Prefix ranks and determinant valuations
 detect the missing collective dependence. These are supporting identities
 and obstructions, with no unrestricted counting or novelty conclusion.
+An integral cycle-space reduction now extracts graph-only prefix ranks
+and isolates the remaining arithmetic matrix. The coherent characteristic-two
+witness reduces to the scalar `2`. A known cyclotomic construction gives
+the scalar `3`, but its entire coefficient-deletion family for these
+periods cannot have monomial downset representatives in the original
+embedding. Arbitrary torsion therefore does not resolve the positive-weight
+coherence problem. A uniform count of the residual changes remains open.
 The exact box-residual transfer
 is identified with established linkage, while every nonbox group cover
 has a residual/initial mismatch measured by its number of maximal monomials.

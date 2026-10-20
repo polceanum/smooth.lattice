@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Preserve the full sharp-G_3 or polynomial-separation objective and every original success criterion. The global O(sqrt(H)*n^(7/3)) comparable-period bound and all previous exclusions remain valid. Score excess is now exactly the sum of collective prefix-rank deficits, with a finite star-stability criterion and a determinant-valuation certificate. Its individual monomial inclusion-defect filter is valid, but even a coherent all-active basis can have maximal-order Theta(n^2) excess while every selected monomial has defect zero. The explicit line/point counterexample has an entire O(n^2*log(n+1)) fan by two exact sector rules, and the all-field truncated-plane counterexample is graded with a linear whole fan. Do not run larger fans of either diagnostic family, infer growth from excess, or replace collective ranks by filtered degrees of single monomials. The abstract loop-free initial-matroid distinction and valuation rescaling are established mathematics, not a paper result. For the original mixed-period algebra, retain the exact tensor/cycle-space prefix representation and analyse the simultaneous ranks as prices move away from an arithmetic ray such as (t,2,2). A useful next theorem must control genuinely perturbed prefixes or their exposed cones in both price parameters; the fixed-score Hilbert function or excess alone does not do this. Determine a concrete rank/charging budget for those periodic prefixes, or an exact coherent obstruction to that budget, before any wider search. The generic counterexample is not asserted periodic and cannot be used to abandon that family without its own rank analysis. Keep the unrestricted rational-shadow route and genuinely different realizable nonlinear lower constructions available. Complete strongest-current and exact-priority comparisons without treating empty searches as novelty. No larger line-sweep framework, messages, submissions or lowered endpoint.",
+  "next_proof_task": "Keep the full sharp-G_3 or realizable polynomial-separation objective and all original success criteria. For the original mixed-period algebra, use the exact cycle-space prefix identity and integral residual-matrix extraction. Connectivity and two-graph merge defects alone miss the already certified coherent scalar-two obstruction. Published cyclotomic coefficient deletion gives scalar-three torsion, but all 241 such sets at (5,7,11) fail the necessary monomial-downset condition and cannot be imported as coherent examples. Do not infer odd-characteristic invariance from finite negative searches, novelty from missing search hits, or fan growth from scalar size. The next substantive theorem must restrict these residual matrices for actual cost-defined prefixes as both weight ratios vary, or uniformly bound their exposed changes; arbitrary graph/subset rank statements alone are insufficient. Seek a concrete cost-specific rank/charging theorem or a genuinely coherent obstruction before any wider computation. Preserve the global period-gap bound, every previous family exclusion and the unrestricted rational-shadow route. The new extraction is classical supporting machinery and does not itself merit lowering the goal to a paper about the certificate. No larger search framework, outbound messages, submissions or lowered success criteria.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -102,7 +102,8 @@
     "Compare the fixed-cover upper-shell specialization, oriented cube-circuit filter and proposed surviving-candidate bound with parametric matroid and simplicial-tree optimization literature. Hrubes--Yehudayoff Theorem 4/Lemma 5 and Sabariego--Santos Section 4/Theorems 5.1/5.3 are established inspected frameworks, not numerical-priority certificates. A line trace or finite refinement count does not settle the full cone or unrestricted G_3.",
     "Compare the explicit gap-dependent common-box regions and all-field active-generator slab construction against primary weighted lattice-routing and lattice-ideal literature. The basis-profile dictionary and final volume estimate are established; no new lattice theorem or unrestricted count is asserted. Distinguish cube-only counterexamples from joint-shell or fan-count lower bounds, and finite prime triples from an unproved infinite prime constellation.",
     "Compare the global four-sector bound O(sqrt(H)*n^(7/3)) for comparable dense periodic quotients, and the uniform shortest-cover box obstruction at (t,2,2), against primary weighted lattice-ideal and routing literature. The state-profile/vertex step and successive-initial/graded-refinement arguments are established inputs. No sharpness for the actual fan, quotient-axis obstruction, current novelty or new unrestricted result is inferred.",
-    "The score-prefix deficit, forced-element minimum excess, optimal-face matroid and polynomial determinant-rescaling identities are classical. Feichtner--Sturmfels Section 2 and Proposition 2.5 were inspected with the max/min convention reversed. Assess exact priority only of any proposed quantitative realization or fan-count consequence, including the explicit maximal-order all-active excess example and its two-sector O(n^2*log(n+1)) screen. No novelty is inferred from the construction or failed searches, and its behaviour is not assumed to describe the periodic tensor quotient."
+    "The score-prefix deficit, forced-element minimum excess, optimal-face matroid and polynomial determinant-rescaling identities are classical. Feichtner--Sturmfels Section 2 and Proposition 2.5 were inspected with the max/min convention reversed. Assess exact priority only of any proposed quantitative realization or fan-count consequence, including the explicit maximal-order all-active excess example and its two-sector O(n^2*log(n+1)) screen. No novelty is inferred from the construction or failed searches, and its behaviour is not assumed to describe the periodic tensor quotient.",
+    "Before claiming a coherent arithmetic theorem, compare genuinely cost-defined cycle residuals with cyclotomic/simplicial torsion beyond the standard coefficient-deletion sets. Musiker--Reiner arXiv:1012.1844v4 Proposition 4 and Corollary 5 already supply the arbitrary index construction; our explicit (5,7,11) downset certificate excludes that construction here but does not establish a broader novelty boundary or odd-characteristic stability."
   ],
   "primary_sources": [
     {
@@ -411,6 +412,12 @@
       "url": "https://www.math.purdue.edu/~bulrich/papers/monomiallinkagenewnew06.pdf",
       "published": "https://doi.org/10.1112/blms/bdl008",
       "scope": "November 25, 2006 manuscript: Section 3 definitions and Lemma 3.1 proof. Published precedent for the box-residual initial-colon identity; numbering is version-specific."
+    },
+    {
+      "authors": "Musiker--Reiner",
+      "title": "The cyclotomic polynomial topologically",
+      "url": "https://arxiv.org/pdf/1012.1844v4",
+      "scope": "Version 4, 15 August 2022: Proposition 4 and Corollary 5 proofs, Theorem 1 and Remark 22. Known coefficient-deletion index/torsion construction; no positive-price coherence conclusion is inferred."
     }
   ],
   "verification": {
@@ -702,10 +709,15 @@
       "score_split_sector_frontiers": 105,
       "strict_active_score_borders": 90,
       "score_split_ideal_relations": 60,
-      "direct_independent_score_minors": 543
+      "direct_independent_score_minors": 543,
+      "cycle_gluing_graph_field_checks": 23040,
+      "zero_defect_cycle_merges": 242,
+      "cycle_gluing_cost_prefix_field_checks": 180,
+      "integral_scalar_core_certificates": 2,
+      "excluded_cyclotomic_coefficient_deletion_sets": 241
     }
   },
-  "preservation": "Only the six explicitly privacy-reviewed public research files change. All 298 unlisted tracked files, including manuscripts/PDFs, core kernels, auditor, public CLI, previous research and paused ML artifacts, are byte-preserved against the ignored baseline at 08243a5. Every earlier periodic report section/count, the original objective and criteria, and all thirty-two previous continuations are preserved. Local baselines, probes and logs remain ignored.",
+  "preservation": "Only the six explicitly privacy-reviewed research files change. All 298 unlisted tracked files, including manuscripts/PDFs, core kernels, auditor, public CLI, previous research and paused ML artifacts, are byte-preserved against the ignored baseline at 9e2911a. Every earlier periodic-report section/count, original objective and success criteria, and all thirty-three previous continuations are preserved. Local baselines, probes and logs remain ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
@@ -716,8 +728,8 @@
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "06f36e98946f367381e73a15ce8f68f61727b8813ce44f0ce1b2d8f3d019fc17",
-    "docs/extremal_initial_ideals.md": "ba229254a2c169907e400a58410b04ee79dae28e133497904f52813b3d03b217",
+    "README.md": "a120444d76e04866d6e7418ab1911403aa2dd7348a0196e572bbbef761ecea39",
+    "docs/extremal_initial_ideals.md": "deabf5223d3d1cf93ba7da328c37a4b0a69b8f58e35d20a18f2fbfb23b8834de",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
     "results/research/profile_lattice_checks.json": "437b69bd81173c330b059d879df9f93281befb01e353f9e2c2e00f5a55746d17",
@@ -742,9 +754,9 @@
     "docs/nonnegative_graded_fans.md": "88de976c7b8359dea3b00aa30965c7caf613633adc80ae2ef16b885b8c584e6d",
     "scripts/run_graded_fan_checks.py": "b3cc437c7274378d26c8a9ced7f7ec785905601bc83ec17ea6bb9db3a515554f",
     "results/research/graded_fan_checks.json": "6d03769c1bf742dcb74d53502cbdb7c1f0cc9878b59b80426e699e0837fee055",
-    "docs/periodic_quotient_arithmetic.md": "5283e2a493d463e36f35586b290cbb57303ebd089dbc89b72376dfa7c53ff79f",
-    "scripts/run_periodic_quotient_checks.py": "91802c5deb2de2a919055df68293598c3d15bbed52761f2b17677eb4b2fe860b",
-    "results/research/periodic_quotient_checks.json": "e01aa75ad09812c93c28d4632f0bf1753551195eae2f0459bf5e15837c67c551",
+    "docs/periodic_quotient_arithmetic.md": "a3629c3bcd1c78b79e009340648341bc16be5b4d8a98dbf0bbf4045a974f3721",
+    "scripts/run_periodic_quotient_checks.py": "bbde969588fb5f236bd364cdac7ecd6e903c258ef293d46253de3b07d56c644a",
+    "results/research/periodic_quotient_checks.json": "f35c72562a5eb2fb881b8d12339778551596e4bd957d50469503868140aeb928",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
     "scripts/run_nested_jet_checks.py": "aa1c4a9b69de0d0cfa54c381c4f83ebaa983cdbfd7b298af40b32603a079648c"
   },
@@ -2322,8 +2334,50 @@
         "preservation": "Every old periodic-report section/count, all thirty-two prior continuations, original objective and criteria, and all 298 unlisted tracked files are preserved."
       },
       "scope_limit": "These exact identities and extremal-order counterexamples change the proposed proof mechanism, and the whole example family is excluded from polynomial fan separation. They do not improve unrestricted G_3, count finite-distance periodic refinements, prove a current-priority statement or finish a paper. Large collective excess is not itself a fan-count lower bound. All original impact criteria remain in force, with the main goal active."
+    },
+    {
+      "title": "Integral collective-prefix rank extraction and the coherence boundary of cyclotomic coefficient torsion",
+      "recorded_on": "2026-10-20",
+      "previous_turn_classification": "no progress",
+      "previous_evidence": "The intervening presentation-only turn checked that credits had already been removed and made no mathematical changes. The current clean mathematical baseline was revalidated at 9e2911a; its full objective, proofs and report sections remain preserved.",
+      "progress_classification": "An all-field integral forest reduction isolates the remaining collective cycle matrix of every periodic prefix; its abstract content is classical. Replayable integer certificates reduce the existing coherent rank obstruction to the scalar two and a known cyclotomic coefficient construction to the scalar three. An exact downset obstruction excludes all 241 standard coefficient-deletion sets for the same periods from positive coherence. Thus arbitrary published torsion cannot be imported as the required coherent obstruction by that construction. The unrestricted count is unchanged.",
+      "uniform_proofs": [
+        "For spanning subgraphs on the same vertices, the cycle-space intersection is the cycle space of their intersection. The loss from replacing their cycle sum by union cycles is c(intersection)-c(H)-c(Hprime)+c(union), over every field. Zero loss permits an exact merge of integer cycle lattices as well. Dropping acyclic groups and making such merges preserves the sum. At most two surviving cyclic groups have graph-only rank. A failed greedy merge order does not prove that every merge order fails.",
+        "Choose a base graph and extend one of its spanning forests to the union. Fundamental cycles have integral chord coordinates. The base cycle space supplies unit coordinates, and projection to the other chords gives a zero/plus/minus-one residual matrix R. The full cycle-sum rank is z(base)+rank_K(R), in every characteristic. Combined with the existing tensor/cographic identity this gives the exact prefix rank. This is classical graph and integral linear algebra, with no uniform small-core, speedup or fan-count claim.",
+        "At the existing strict weight (111284642,111285122,111516002) and cutoff wX+11*wY, periods (5,7,11) have 295 distinct prefix labels. Five groups carry nonzero cycle spaces. An 18-by-10 residual matrix has nine integer unit pivots and Euclidean remainder [2], giving exact prefix rank 239+rank_K([2]). Its integer operation certificate is independently replayed; this explains the already known characteristic-two witness, rather than proving odd-characteristic stability of the whole family.",
+        "In the same free integral algebra, CRT recovers U,V,W from T=UVW and exact monic division verifies Phi_385. Consecutive powers through T^239 form an integral basis. The published coefficient-deletion formula replaces T^119 by T^240 with index three, because coefficient 119 is -3. Its 21-by-21 residual matrix has twenty unit pivots and remainder [3]. This is an explicit realization of established prior work, not a new arbitrary-basis torsion theorem.",
+        "CRT gives X=T^176,Y=T^56,Z=T^155. All one-deletion subsets of powers zero through 240 omit the labels of X^2,Y^5,Z^2, namely 352,280,310 modulo 385. A distinct-label downset would therefore fit a 2-by-5-by-2 box of capacity twenty, but each proposed set has 240 labels. This excludes all 241 sets from positive coherence in this embedding, not all possible coherent odd-prime torsion."
+      ],
+      "independent_controls": {
+        "command": "python3 -B scripts/run_periodic_quotient_checks.py",
+        "report": "results/research/periodic_quotient_checks.json",
+        "status": "passed",
+        "cycle_gluing_graph_field_checks": 23040,
+        "zero_defect_cycle_merges": 242,
+        "cycle_gluing_cost_prefix_field_checks": 180,
+        "integral_scalar_core_certificates": 2,
+        "excluded_cyclotomic_coefficient_deletion_sets": 241
+      },
+      "reading_scope": [
+        {
+          "source": "https://arxiv.org/pdf/1012.1844v4",
+          "scope": "Inspected Proposition 4 and Corollary 5 with proofs, Theorem 1, its coefficient-deletion use and Remark 22. This is the version dated 15 August 2022; Remark 22 records a correction to part of Theorem 21 in older versions. The coefficient/index result is used directly, without asserting full journal/preprint equivalence or positive coherence."
+        },
+        {
+          "source": "https://www-users.cse.umn.edu/~reiner/Papers/cyclotomic.pdf",
+          "scope": "The existing Theorem 1 cyclotomic/simplicial duality and its arbitrary-basis torsion interpretation remain established inputs. No novelty is claimed for cycle-space duality, lattice index or elementary forest extraction."
+        }
+      ],
+      "verification": {
+        "research": "passed",
+        "build": "passed",
+        "smoke": "passed",
+        "source_hashes": "verified",
+        "preservation": "Every prior periodic-report section/count, all thirty-three previous continuations, original objective and success criteria, and all 298 unlisted tracked files are preserved against 9e2911a."
+      },
+      "scope_limit": "No new unrestricted G_3 bound, coherent odd-prime construction, characteristic classification, polynomial separation, current-priority certificate or paper endpoint. Both price parameters and cost-defined residual ranks still need a uniform structural or exposed-change theorem; the original impact criteria remain in force."
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "No unrestricted G_3 exponent or polynomial separation. Exact collective-score identities and finite stability are established with their classical boundary; uniform coherent counterexamples show individual degree defects can miss the maximal possible excess order. Both sectors of the explicit rational example give a whole-family O(n^2*log(n+1)) exclusion. None of this establishes current novelty or a paper endpoint.",
-  "previous_goal_turn_classification": "Progress: 08243a5 proved an all-weight restricted bound and a uniform cover-box obstruction. This continuation gives the exact collective-score invariant, verified counterexamples to a columnwise replacement and a complete bound that closes the explicit counterexample family."
+  "asymptotic_improvement_scope_this_iteration": "No unrestricted exponent improvement or polynomial separation. Classical integral cycle extraction gives exact field-sensitive prefix cores. The standard cyclotomic coefficient-deletion sets for (5,7,11) are excluded from positive coherence by a common downset-capacity certificate. Current novelty and the paper endpoint remain unestablished.",
+  "previous_goal_turn_classification": "No progress: the presentation-only turn changed no mathematics. This continuation revalidates 9e2911a and adds exact integral collective-prefix certificates plus a concrete coherence obstruction to the standard prior-art construction."
 }
