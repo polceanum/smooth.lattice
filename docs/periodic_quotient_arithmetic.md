@@ -253,6 +253,157 @@ sets; the number of overlay cells of two fans cannot simply be
 multiplied. Characteristic differences and torsion orders alone do not
 provide that count.
 
+## What can be proved inside a fixed cover cone
+
+Fix a full-period cover standard set $E$ of size $M$, and let
+$A$ have length $n=M-k$. The omitted set $O=E\setminus\operatorname{Std}(A)$
+is a rank-$k$ maximum basis in the inverse-label dual representation.
+It is also an upset in the monomial downset $E$.
+
+This gives a coefficient-independent pruning rule. Define
+
+$$
+U_k(E)=\{a\in E: |\{b\in E:b\ge a\}|\le k\}.
+$$
+
+Every actual omitted set lies in $U_k(E)$, since it contains all
+elements of $E$ above each of its members. Restricting the dual
+optimization to this shell preserves its optimum throughout the cover
+cone. If $s$ is a maximal monomial of $E$ above $a\in U_k(E)$,
+then the whole box $[a,s]$ lies in that upper interval, so
+
+$$
+\prod_i(s_i-a_i+1)\le k.
+$$
+
+Writing $\sigma$ for the number of maximal monomials of $E$ and
+$V_k=\{u\ge0:\prod_i(u_i+1)\le k\}$, we obtain
+
+$$
+U_k(E)\subseteq\bigcup_{s\text{ maximal}}(s-V_k),\qquad
+|U_k(E)|=O(\sigma k\log^2(k+1)).                         \tag{Q6}
+$$
+
+The intersection with nonnegative exponents and $E$ is implicit on
+the right. This is an elementary shifted divisor-box argument. It
+does not assert that $\sigma$ is small, that every shell subset is
+realizable, or that shell size counts coherent bases.
+
+There is also a uniform trace bound. On the line
+$w(\alpha)=(\alpha,\beta,\gamma)$, with $\beta,\gamma$ fixed,
+the omitted profile maximizes
+$\alpha\sum_{a\in O}a_X+\beta\sum a_Y+\gamma\sum a_Z$.
+Its integral $X$-slope strictly increases whenever the unique generic
+optimum changes. Consequently any interval of this line inside the
+fixed cover cone has at most
+
+$$
+1+k\bigl(\max_{a\in E}a_X-\min_{a\in E}a_X\bigr)         \tag{Q7}
+$$
+
+distinct generic states. Equal-slope affine pieces cannot exchange
+optimality on open intervals. Ties at isolated comparison events do
+not create additional strict states of the line; other directions
+of tie refinement are not counted here.
+
+The existing [rational-shadow theorem](rational_shadow_bound.md) can
+likewise be applied with rank $k$, not $n$, because $E\subset V_M$.
+For any rank-two integer projection $T$, put
+$\Delta(T)=\sum_{i<j}|\det(T_i,T_j)|/\gcd_{i<j}|\det(T_i,T_j)|$.
+The projected dual basis polytope has at most
+
+$$
+O\!\left(\log(M+1)
+ [1+k+(k^2M\Delta(T))^{1/3}]\right)                      \tag{Q8}
+$$
+
+vertices. Restrictions to the cover cone cannot increase the number
+of uniquely optimal projected vertices. The projection height remains
+in the formula: it cannot be dropped for an arbitrary rational price
+line. This is an application of the earlier proved bound, not a new
+unrestricted exponent, and line traces do not count a two-dimensional
+fan.
+
+There is a further pruning rule that uses the actual dual matroid,
+not its regularity. Suppose $r,s,t>2$. The three integer directions
+
+$$
+v_1=(1,1,-1),\quad v_2=(1,-1,1),\quad v_3=(-1,1,1)
+$$
+
+change exactly one period label by two. For a weight avoiding
+$w\cdot v_i=0$, put $d_i=\operatorname{sign}(w\cdot v_i)v_i$.
+If all eight monomials
+
+$$
+a+\epsilon_1d_1+\epsilon_2d_2+\epsilon_3d_3,
+\qquad \epsilon_i\in\{0,1\},                            \tag{Q9}
+$$
+
+belong to $E$, they form a circuit in the inverse-label complement
+representation. Indeed the alternating sum is a product of three
+coordinate differences, a multiple of $(U-1)(V-1)(W-1)$ in $B$.
+In the tensor product of the three two-point coordinate spaces, its
+intersection with the augmentation product is one-dimensional.
+Thus the eight columns have rank seven and every seven are independent,
+over every field, including characteristic two.
+
+The base corner $a$ is uniquely cheapest among these columns, so the
+classical matroid cycle property excludes it from every maximum-cost
+dual basis. Each sign sector has a coefficient-independent candidate
+set obtained by these eight-corner membership tests. Once $E$ is
+given, its construction takes $O(M)$ set-membership operations. No
+bound of $O(k)$, polylogarithmic size or sublinear cover construction
+is proved. The three sign planes give a constant number of positive
+price sectors, but they do not count the quotient's cones.
+This extends the earlier four-cycle cost-domination mechanism to the
+known simplicial dual representation; it does not assume that all its
+circuits are cubes or that the matroid is regular. Bounding the surviving
+candidate geometry uniformly is an unresolved part of the full-cone
+problem.
+
+### Complete finite traces and their limits
+
+The exact checker fixes the cover at
+$w_0=(L^3+1,L^3+L,L^3+L^2)$, with $L=2n+1$, and varies only
+$w_X$. The cover's strict binomial borders determine its entire open
+line interval. Every pair-comparison event of its finite ground is
+enumerated; one sample in every complementary interval determines
+the whole generic trace. Each new quotient state is independently
+verified by ordinary polynomial arithmetic and strict borders, and
+the fixed cover is checked by another shortest-path computation.
+Both the upper-shell and cube exclusions are checked against every
+generic interval's optimum. Sample cube circuits are independently
+verified by their alternating relations and all eight rank-seven tests.
+
+For $(3,5,7)$ there are three quotient states in each checked field
+$\mathbb Q,\mathbb F_2$. They stay within an already excluded
+one-period class. For $(5,7,11)$ there are thirteen states in each
+field, all reaching all three period thresholds. These thirteen
+states belong to one fixed cover cone; a cover diagram therefore
+does not determine the quotient diagram. The saved trace covers all
+310 generic comparison intervals there. Equality of these two finite
+counts is not equality of their state sets or full fans. These prices
+are bounded in ratio, so the data do not supply a separating family.
+
+Two primary comparisons guard against stronger inferences.
+[Hrubeš--Yehudayoff, Theorem 4 and Lemma 5](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CCC.2021.9)
+relate line breakpoints and planar shadows, and bound greedy-like
+optimization by pair comparisons. Those statements and proofs were
+inspected; the trace enumeration uses that established principle.
+[Sabariego--Santos, Section 4 and Theorems 5.1/5.3](https://arxiv.org/pdf/0705.3631)
+give unbounded coherent minimum-distance diagrams for triple-loop
+networks. Their diagrams first minimize total route length and then
+resolve ties, whereas a full positive-weight fan allows varying route
+costs. The inspected result does not settle refinements of the present
+circuit quotient. Neither that paper nor these finite traces proves
+or refutes the desired polylogarithmic refinement bound.
+
+The next step remains a structural count for the full two-dimensional
+refinement fan, preferably using the shell and cost constraints
+together. Further one-dimensional sweeps or a larger numerical growth
+fit cannot establish the unrestricted goal.
+
 ## Exact reproduction
 
 ```bash
@@ -264,6 +415,8 @@ representation in several fields, actual quotient omissions and the
 nonbox reflection obstruction. It independently computes the two integer
 determinants, modular rank, cleared relation, strict borders and direct
 degree-two/three substituted frontiers. Its report records the exact
-models and relevant source hashes. This is neither a full fan sweep nor
+models and relevant source hashes. The continuation adds complete
+generic fixed-cover line traces, independent polynomial checks and
+the upper-shell and integral-slope invariants. This is neither a full fan sweep nor
 a numerical estimate of asymptotic growth; the current-priority audit
 and main endpoint remain incomplete.

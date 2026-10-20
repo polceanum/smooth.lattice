@@ -2433,6 +2433,54 @@ used here. No new duality, flatness theorem, unrestricted exponent,
 priority certificate or paper is claimed. The original goal remains
 active and unachieved.
 
+## Fixed-cover traces and the remaining dimension gap
+
+The [periodic quotient continuation](periodic_quotient_arithmetic.md#what-can-be-proved-inside-a-fixed-cover-cone)
+gives two uniform controls for a cover standard set $E$ of size $M$
+and quotient corank $k=M-n$. Every omitted monomial lies in the
+coefficient-independent upper shell
+$U_k(E)=\{a\in E:|\{b\in E:b\ge a\}|\le k\}$.
+If $E$ has $\sigma$ maximal monomials, shifted divisor boxes give
+$|U_k(E)|=O(\sigma k\log^2(k+1))$. The factor $\sigma$ is retained;
+no assertion that it is bounded or that shell subsets are coherent
+is used. Restricting the actual dual optimum to this shell is exact.
+For periods greater than two, eight appropriately shifted cover
+monomials also form a circuit of the inverse-label dual matroid over
+every field. Its uniquely cheapest corner is excluded from a maximum
+basis. This gives a linear number of membership tests once the cover is
+explicitly given. No uniform $O(k)$ size bound, full-cone count or
+sublinear cover construction is claimed; a nonregular matroid need
+not have only these cube circuits.
+
+Along a coordinate-price line inside a fixed cover cone, the optimal
+omission's integral coordinate sum is strictly monotone at each
+generic state change. There are at most $1+k(\max_E a_X-\min_E a_X)$
+such states. The earlier rational-shadow theorem can also be applied
+with rank $k$ and hyperbolic height $M$, retaining the projection's
+arithmetic height. Neither is a full two-dimensional refinement count.
+The pruning rule, monotone slope argument and shadow application are
+supporting tools, not a new global bound or algorithmic-priority claim.
+
+Complete exact line traces in one fixed cover cone give three states
+for $(3,5,7)$ and thirteen for $(5,7,11)$, in both checked fields
+$\mathbb Q$ and $\mathbb F_2$. Every latter state reaches all three
+period thresholds. All 310 generic comparison intervals on that line
+are covered; each distinct state has independent ordinary polynomial
+and strict-border checks, and the cover is independently replayed.
+Other directions of tie refinement are not counted. The prices here
+are bounded in ratio, so this is not a separating sequence or growth
+estimate. Equal finite counts in the two fields do not identify their
+state sets or their full fans.
+
+Hrubeš--Yehudayoff's inspected Theorem 4 and Lemma 5 give the
+established line-breakpoint/shadow and greedy-comparison framework.
+Sabariego--Santos's inspected triple-loop results concern coherent
+minimum-distance diagrams at total-degree ties; they do not settle
+this circuit quotient's positive-cost refinements. The exact current
+priority and unrestricted extremal question remain unresolved. The
+next proof must control the two-dimensional refinement geometry,
+rather than infer it from these one-dimensional traces.
+
 ## Reproduction
 
 From the repository root:

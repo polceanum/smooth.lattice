@@ -4,7 +4,7 @@ from collections import Counter
 from fractions import Fraction as Q
 from functools import cache
 from hashlib import sha256
-from itertools import product
+from itertools import combinations, product
 from math import lcm, prod
 from pathlib import Path
 import json
@@ -12,6 +12,7 @@ import json
 from run_cyclotomic_price_checks import (border_certificate, circuit_vector,
     cyclotomic_model, frontier_basis, insert, label, scalar, shortest_representatives,
     tensor)
+from run_interleaving_research import minimal_excluded_border
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -271,23 +272,158 @@ def arithmetic_controls():
             'pullback_controls':lifts}
 
 
+def fixed_cover_trace(periods, fields):
+    M, n = prod(periods), prod(m-1 for m in periods)
+    scale = 2*n+1
+    center = tuple(scale**3+scale**i for i in range(3))
+    best = shortest_representatives(periods,center)
+    ground = frozenset(a for cost,a in best.values())
+    k = M-n
+    upper_sizes = {a:sum(all(x<=y for x,y in zip(a,b)) for b in ground) for a in ground}
+    shell = frozenset(a for a,count in upper_sizes.items() if count <= k)
+    socles = frozenset(a for a in ground if all(tuple(x+(i==j) for j,x in enumerate(a)) not in ground for i in range(3)))
+    directions = ((1,1,-1),(1,-1,1),(-1,1,1))
+    cube_cache = {}
+    def cube_candidates(weight):
+        values = [dot(weight,v) for v in directions]
+        if any(not x for x in values):
+            return ground,[]
+        signs = tuple(1 if x>0 else -1 for x in values)
+        if signs not in cube_cache:
+            steps = [tuple(sign*x for x in v) for sign,v in zip(signs,directions)]
+            cubes = []
+            for a in sorted(ground):
+                corners = [tuple(a[i]+sum(e[j]*steps[j][i] for j in range(3)) for i in range(3))
+                           for e in product((0,1),repeat=3)]
+                if all(b in ground for b in corners):
+                    require(len({label(b,periods) for b in corners}) == 8, 'local cube has eight distinct period labels')
+                    cubes.append(corners)
+            cube_cache[signs] = (ground-{corners[0] for corners in cubes},cubes)
+        return cube_cache[signs]
+    beta,gamma = center[1:]
+    lower,upper,cover_relations = Q(0),None,[]
+    for head in minimal_excluded_border(sorted(ground)):
+        tail = best[label(head,periods)][1]
+        dx,dy,dz = (a-b for a,b in zip(head,tail))
+        constant = beta*dy+gamma*dz
+        require(dx*center[0]+constant > 0, 'center lies strictly inside its cover cone')
+        if dx > 0:
+            lower = max(lower,Q(-constant,dx))
+        elif dx < 0:
+            bound = Q(-constant,dx)
+            upper = bound if upper is None else min(upper,bound)
+        else:
+            require(constant > 0, 'constant cover inequalities stay strict on the line')
+        cover_relations.append({'head':head,'tail':tail})
+    require(lower < center[0] and (upper is None or center[0] < upper), 'nonempty full open cover-line interval')
+    points = set()
+    for a,b in combinations(ground,2):
+        dx,dy,dz = (x-y for x,y in zip(a,b))
+        if not dx:
+            require(beta*dy+gamma*dz, 'parallel costs are distinct throughout the trace')
+            continue
+        crossing = Q(-beta*dy-gamma*dz,dx)
+        if lower < crossing and (upper is None or crossing < upper):
+            points.add(crossing)
+    endpoints = [lower]+sorted(points)
+    if upper is not None:
+        endpoints.append(upper)
+    intervals = list(zip(endpoints,endpoints[1:]))
+    if upper is None:
+        intervals.append((endpoints[-1],None))
+    results = []
+    for p in fields:
+        A,C = cyclotomic_model(periods,p),complement_model(periods,p)
+        columns = {a:C['column'](tuple((-x)%m for x,m in zip(label(a,periods),periods))) for a in ground}
+        previous,states,coverage,last_slope = None,[],[],None
+        for left,right in intervals:
+            alpha = left+1 if right is None else (left+right)/2
+            weight = (alpha.numerator,beta*alpha.denominator,gamma*alpha.denominator)
+            omitted = maximum_basis(ground,columns.__getitem__,M-n,weight,p)
+            cube_ground,cubes = cube_candidates(weight)
+            require(omitted <= cube_ground, 'a strict-minimum cube-circuit column never enters the actual maximum basis')
+            require(omitted <= shell, 'actual omissions lie in the coefficient-independent upper k-shell')
+            require(maximum_basis(shell & cube_ground,columns.__getitem__,M-n,weight,p) == omitted,
+                    'upper-shell and cube pruning preserve the actual dual optimum')
+            basis = ground-omitted
+            if basis != previous:
+                require(frozenset(a for cost,a in shortest_representatives(periods,weight).values()) == ground,
+                        'independent shortest-path computation confirms the fixed cover at each new quotient state')
+                actual = frontier_basis(A['residue'],n,weight,p)
+                require(actual == basis, 'ordinary polynomial frontier independently confirms each trace state')
+                border = border_certificate(basis,A['residue'],weight,p)
+                slope = sum(a[0] for a in omitted)
+                for cube in cubes:
+                    require(all(dot(weight,cube[0])<dot(weight,a) for a in cube[1:]), 'the excluded cube corner is uniquely cheapest')
+                for cube in cubes[:3]:
+                    circuit = [columns[a] for a in cube]
+                    require(all(not scalar(sum((-1)**sum(e)*v[i] for e,v in zip(product((0,1),repeat=3),circuit)),p)
+                                for i in range(C['n'])), 'alternating cube relation vanishes in ordinary complement coordinates')
+                    for deleted in range(8):
+                        pivots = {}
+                        for i,v in enumerate(circuit):
+                            if i != deleted:
+                                insert(pivots,v,p)
+                        require(len(pivots) == 7, 'every checked cube has every seven columns independent')
+                for a in omitted:
+                    require(all(b in omitted for b in ground if all(x<=y for x,y in zip(a,b))),
+                            'omissions are an upset of the fixed standard downset')
+                    require(all(prod(y-x+1 for x,y in zip(a,s)) <= k
+                                for s in socles if all(x<=y for x,y in zip(a,s))),
+                            'each containing socle supplies a shifted hyperbolic-cross bound')
+                require(last_slope is None or slope > last_slope, 'distinct optimum pieces have strictly increasing integral omission slope')
+                pair_maxima = [max(a+b for a,b,c in basis),max(a+c for a,b,c in basis),max(b+c for a,b,c in basis)]
+                states.append({'first_comparison_interval_left':str(left),'alpha_witness':str(alpha),
+                               'strict_weight':weight,'standard_set':sorted(basis),'omission_X_profile':slope,
+                               'pair_degree_maxima':pair_maxima,
+                               'all_three_thresholds_reached':all(a>=b for a,b in zip(pair_maxima,periods)),
+                               'cube_candidates':len(cube_ground),'joint_shell_cube_candidates':len(shell & cube_ground),
+                               'strict_cube_exclusions':len(cubes),
+                               'strict_border_count':len(border),
+                               'strict_border_sha256':sha256(json.dumps(border,sort_keys=True).encode()).hexdigest()})
+                previous,last_slope = basis,slope
+            coverage.append({'left':str(left),'right':str(right) if right is not None else 'infinity',
+                             'state_index':len(states)-1})
+        spread = max(a[0] for a in ground)-min(a[0] for a in ground)
+        require(len(states) <= 1+k*spread, 'uniform corank integer-slope trace bound')
+        results.append({'field':p,'complete_trace':True,'comparison_intervals':coverage,
+                        'distinct_states':states,'integer_slope_state_bound':1+k*spread})
+    return {'periods':periods,'length':n,'cover_length':M,'cover_standard_set':sorted(ground),
+            'fixed_beta_gamma':[beta,gamma],
+            'corank':k,'upper_k_shell_size':len(shell),'cover_socle_count':len(socles),
+            'open_alpha_interval':[str(lower),str(upper) if upper is not None else 'infinity'],
+            'strict_cover_binomial_border':cover_relations,'all_pair_crossings_in_interval':len(points),
+            'fields':results,
+            'scope':'Complete exact generic comparison-interval traces inside one fixed cover cone, with upper-shell pruning. Other directions of tie refinement, the full two-dimensional refinement fan and asymptotic growth are not counted.'}
+
+
 def main():
     lattice, dual = periodic_and_dual_controls()
     index_controls = intrinsic_index_controls()
     arithmetic = arithmetic_controls()
+    traces = [fixed_cover_trace((3,5,7),(0,2)),fixed_cover_trace((5,7,11),(0,2))]
+    require(any(len(f['distinct_states']) > 1 for t in traces for f in t['fields']),
+            'a fixed original three-period cover cone has actual quotient refinements')
     sources = ('docs/periodic_quotient_arithmetic.md','scripts/run_periodic_quotient_checks.py',
-               'scripts/run_cyclotomic_price_checks.py')
+               'scripts/run_cyclotomic_price_checks.py','scripts/run_interleaving_research.py')
     report = {'schema_version':1,'command':'python3 -B scripts/run_periodic_quotient_checks.py',
-              'scope':'Exact controls for the periodic lattice cover, known dual quotient, characteristic-sensitive coherent bases and monomial-pullback obstruction. No full fan enumeration, asymptotic separation or novelty certificate.',
+              'scope':'Exact controls for the periodic lattice cover, known dual quotient, coherent characteristic changes, monomial-pullback obstruction and complete generic line traces within fixed cover cones. Upper-shell pruning and integer-slope budgets are checked. No full refinement-fan enumeration, asymptotic separation or novelty certificate.',
               'source_sha256':{p:sha256((ROOT/p).read_bytes()).hexdigest() for p in sources},
               'full_period_lattice_controls':lattice,'inverse_monomial_dual_controls':dual,
               'trivial_intrinsic_grading_controls':index_controls,
               'coherent_arithmetic_witness':arithmetic,
+              'fixed_cover_trace_controls':traces,
               'summary':{'full_period_cover_prices':len(lattice),'dual_quotient_price_field_controls':len(dual),
                          'nonbox_reflection_obstructions':sum(x['nonbox_reflection_has_no_constant'] for x in dual),
                          'all_field_pair_minimal_polynomial_controls':len(index_controls),
                          'coherent_bad_prime_witnesses':1,'strict_arithmetic_border_checks':sum(arithmetic['strict_border_counts'].values()),
                          'direct_monomial_pullback_controls':len(arithmetic['pullback_controls'])}}
+    report['summary'].update({'complete_fixed_cover_traces':sum(len(t['fields']) for t in traces),
+                              'fixed_cover_comparison_intervals':sum(len(f['comparison_intervals']) for t in traces for f in t['fields']),
+                              'fixed_cover_distinct_state_checks':sum(len(f['distinct_states']) for t in traces for f in t['fields']),
+                              'trace_states_reaching_all_periods':sum(s['all_three_thresholds_reached'] for t in traces for f in t['fields'] for s in f['distinct_states']),
+                              'strict_trace_border_checks':sum(s['strict_border_count'] for t in traces for f in t['fields'] for s in f['distinct_states']),
+                              'upper_shell_pruned_cover_monomials':sum(t['cover_length']-t['upper_k_shell_size'] for t in traces)})
     (ROOT/'results/research/periodic_quotient_checks.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report['summary'],sort_keys=True))
 

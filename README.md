@@ -206,6 +206,13 @@ An exact coherent basis for periods `(5,7,11)` has index two and changes
 in characteristic two. Monomial substitution can amplify that index
 exponentially while leaving the number of initial ideals unchanged;
 torsion size alone is therefore insufficient for a counting separation.
+Exact traces now verify thirteen quotient states inside a single fixed
+cover cone for `(5,7,11)`, including states that cross all three period
+thresholds. A coefficient-independent upper-shell rule prunes candidate
+omissions. These finite line traces do not bound the full refinement fan.
+Local eight-column cube circuits provide another field-independent
+pruning rule, including in characteristic two; a uniform bound on the
+remaining candidates is still missing.
 The additive prime-power class is now classified separately: at length
 `n=q^k`, every initial ideal is a prime-power box and the sharp maximum
 is `binomial(k+d-1,d-1)`. The proof uses established Frobenius reduction;
