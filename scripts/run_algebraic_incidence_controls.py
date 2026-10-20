@@ -3136,6 +3136,263 @@ def supercritical_proximity_controls(point):
             'scope': 'Exact layerwise proximity, pooling-energy and compressed staircase controls, including irregular gaps, lex ties and heavy last components. The compressed algorithm has a global exchange certificate and independent skyline colength/profile checks. Known nested resource-allocation algorithms already avoid expansion in total resources; this is a specialized arithmetic-stream reduction, not a new general optimization class or a universal G_3 theorem.'}
 
 
+def boundary_partial_certificate(sizes, weight):
+    """Lock layer boundary prefixes and both same-type orders; not sufficient."""
+    result = compressed_component_staircase(sizes, weight)
+    layers = component_layer_streams(sizes, weight)
+    width, r, normals = result['proximity_width'], len(sizes), set()
+    candidates, prefixes = [[], []], []
+
+    def add(first, second):
+        z = tuple(b - a for a, b in zip(first, second))
+        factor = gcd(*z)
+        if factor:
+            z = tuple(v//factor for v in z)
+            assert dot(z, weight) > 0
+            normals.add(z)
+
+    axes = sorted([(j*weight[0], (j, 0, 0)) for j in range(1, r + 1)] +
+                  [(j*weight[2], (0, 0, j)) for j in range(1, r + 1)])
+    for first, second in zip(axes, axes[1:]):
+        add(first[1], second[1])
+    for layer, (size, streams) in enumerate(zip(sizes, layers)):
+        lo, hi = max(0, size - width), size + width
+        for take in range(lo, hi + 1):
+            head = layer_stream_prefix(streams, take)
+            prefixes.append((layer, take, head['counts']))
+            for k, stream in zip(head['counts'], streams):
+                if k:
+                    last = tuple(v + (k - 1)*d for v, d in zip(stream[2], stream[3]))
+                    for kk, other in zip(head['counts'], streams):
+                        following = tuple(v + kk*d for v, d in zip(other[2], other[3]))
+                        add(last, following)
+        first, last = layer_stream_prefix(streams, lo), layer_stream_prefix(streams, hi)
+        for i, (stream, a, b) in enumerate(zip(streams, first['counts'], last['counts'])):
+            for k in range(a, b):
+                exponent = tuple(v + k*d for v, d in zip(stream[2], stream[3]))
+                candidates[int(i == 2)].append((dot(exponent, weight), exponent, layer))
+    orders = []
+    for items in candidates:
+        items.sort()
+        orders.append(tuple((a, j) for _, a, j in items))
+        for first, second in zip(items, items[1:]):
+            add(first[1], second[1])
+    signature = (tuple(a for _, a in axes), tuple(prefixes), tuple(orders))
+    return result, tuple(sorted(normals)), signature
+
+
+def transition_interaction_controls():
+    """Exact truncated-line incidence controls and a mixed-exchange obstruction."""
+    counts, line_fixtures = defaultdict(int), []
+    # Independent direct line intersections versus the invertible coefficient map.
+    for L, H, center, width in ((4, 1, Fraction(1), Fraction(1, 2)),
+                                 (6, 2, Fraction(3, 2), Fraction(1)),
+                                 (8, 2, Fraction(7, 3), Fraction(1, 2))):
+        fixed_maximum, total = 0, 0
+        for d, e in product([v for v in range(-H, H + 1) if v], repeat=2):
+            for a, aa in product(range(L + 1), repeat=2):
+                det = a*e - aa*d
+                if not det:
+                    counts['singular_coefficient_maps'] += 1
+                    continue
+                found = 0
+                for b, bb in product(range(L + 1), repeat=2):
+                    rho = Fraction(b*e - bb*d, det)
+                    eta = Fraction(a*bb - aa*b, det)
+                    if rho <= 0 or eta <= 0:
+                        continue
+                    h, D = rho/(1 + rho), max(abs(d), abs(e))
+                    if D*abs(eta - center*h) > width*h:
+                        continue
+                    assert a*rho + d*eta == b and aa*rho + e*eta == bb
+                    assert eta == (b - a*rho)/d == (bb - aa*rho)/e
+                    M, C = max(a, aa), center + width
+                    R = (L + C*H)/M
+                    assert rho <= R and abs(det) <= 2*M*D
+                    area_upper = abs(det)*2*width*R/D
+                    assert area_upper <= 4*width*(1 + C)*L
+                    # Coefficient-independent Davenport control; not a fitted exponent.
+                    found += 1
+                    counts['mapped_integer_intersections'] += 1
+                fixed_maximum = max(fixed_maximum, found)
+                total += found
+                counts['nonsingular_coefficient_maps'] += 1
+        # At a vertical every a,d leaves only a bounded interval for integer b.
+        vertical_hits = 0
+        verticals = sorted({Fraction(b, a) for a, b in product(range(1, L + 1), repeat=2)})
+        for rho, a, d in product(verticals, range(L + 1),
+                                  [v for v in range(-H, H + 1) if v]):
+            h = rho/(1 + rho)
+            candidates = [b for b in range(L + 1)
+                          if (b - a*rho)/d > 0 and
+                          abs(b - a*rho - d*center*h) <= width*h]
+            assert len(candidates) <= 2*width + 1
+            vertical_hits += len(candidates)
+            counts['vertical_integer_interval_controls'] += 1
+        assert vertical_hits <= len(verticals)*(L + 1)*(2*H)*(2*width + 1)
+        line_fixtures.append({'coefficient_limit': L, 'denominator_limit': H,
+                              'critical_center': str(center), 'strip_constant': str(width),
+                              'ordered_integer_intersections': total,
+                              'maximum_per_fixed_slope_pair': fixed_maximum,
+                              'verticals': [str(v) for v in verticals],
+                              'active_line_vertical_intersections': vertical_hits})
+    # Different-center networks require counting their mutual intersections too.
+    L, H, width = 4, 2, Fraction(1, 2)
+    for a, aa, b, bb, d, e in product(range(L + 1), range(L + 1), range(L + 1),
+                                     range(L + 1), (-2, -1, 1, 2), (-2, -1, 1, 2)):
+        det = a*e - aa*d
+        if not det:
+            continue
+        rho, eta = Fraction(b*e - bb*d, det), Fraction(a*bb - aa*b, det)
+        if rho <= 0 or eta <= 0:
+            continue
+        h = rho/(1 + rho)
+        if abs(d)*abs(eta - h) > width*h or abs(e)*abs(eta - Fraction(3, 2)*h) > width*h:
+            continue
+        D, M, C = max(abs(d), abs(e)), max(a, aa), Fraction(2)
+        center = Fraction(1) if abs(d) >= abs(e) else Fraction(3, 2)
+        assert D*abs(eta - center*h) <= width*h
+        R = (L + C*H)/M
+        assert rho <= R and abs(det)*2*width*R/D <= 4*width*(1 + C)*L
+        counts['different_center_integer_intersections'] += 1
+    assert counts['different_center_integer_intersections'] > 0
+    # The bounded-degree area estimate is uniform at extreme aspect ratios.
+    for L in (16, 64, 256):
+        H = isqrt(L)
+        for a, aa, d, e in ((1, 0, H, H - 1), (L, L - 1, 1, -H),
+                             (0, 1, -H, H), (1, 1, H, -H)):
+            det, M, D = a*e - aa*d, max(a, aa), max(abs(d), abs(e))
+            assert det
+            C, width = Fraction(11, 3), Fraction(2, 3)
+            R = (L + C*H)/M
+            assert abs(det)*2*width*R/D <= 4*width*(1 + C)*L
+            counts['all_aspect_jacobian_area_controls'] += 1
+
+    sizes, weights = (21, 16, 11, 6), ((19, 35, 47), (62, 115, 153))
+    results, signatures, normal_sets, selected_sets = [], [], [], []
+    for weight in weights:
+        result, normals, signature = boundary_partial_certificate(sizes, weight)
+        assert result['proximity_width'] == 4
+        results.append(result)
+        signatures.append(signature)
+        normal_sets.append(normals)
+        # Enumerate the finite carrier grid directly, independently of the AP kernel.
+        n, r = sum(sizes), len(sizes)
+        axes = sorted([(0, (0, 0, 0))] + [(j*weight[0], (j, 0, 0)) for j in range(1, n)] +
+                      [(j*weight[2], (0, 0, j)) for j in range(1, n)])[:n]
+        ground = sorted((cost + b*weight[1], (a[0], b, a[2]), min(i, b), i, b)
+                        for i, (cost, a) in enumerate(axes) for b in range(n))
+        capacities, running = [0], 0
+        for size in sizes:
+            running += size
+            capacities.append(running)
+        outside, selected = [0]*(r + 1), []
+        for _, a, layer, _, _ in ground:
+            if layer < r and all(outside[s] < n - capacities[s] for s in range(layer + 1)):
+                selected.append(a)
+                for s in range(layer + 1):
+                    outside[s] += 1
+                if len(selected) == n:
+                    break
+        assert len(selected) == n and result['energy'] == sum(dot(a, weight) for a in selected)
+        assert result['minimal_initial_generators'] == tuple(sorted(minimal_excluded_border(selected)))
+        selected_sets.append(set(selected))
+        direct_prefixes, direct_types = [], [[], []]
+        for j, size in enumerate(sizes):
+            items = [(cost, a, int(i == j and b > j)) for cost, a, layer, i, b in ground if layer == j]
+            for k in range(size - 4, size + 5):
+                direct_prefixes.append(tuple(sorted(a for _, a, _ in items[:k])))
+                counts['direct_layer_boundary_prefixes'] += 1
+            for cost, a, typ in items[size - 4:size + 4]:
+                direct_types[typ].append((cost, a, j))
+        direct = (tuple(direct_prefixes), tuple(tuple((a, j) for _, a, j in sorted(items))
+                                               for items in direct_types))
+        if len(selected_sets) == 1:
+            first_direct = direct
+        else:
+            assert direct == first_direct
+        counts['direct_mixed_witness_bases'] += 1
+    assert signatures[0] == signatures[1] and normal_sets[0] == normal_sets[1]
+    normals = normal_sets[0]
+    assert len(normals) == 97 and all(dot(z, w) > 0 for z, w in product(normals, weights))
+    remove, insert = (0, 6, 0), (0, 2, 3)
+    assert selected_sets[0] - selected_sets[1] == {remove}
+    assert selected_sets[1] - selected_sets[0] == {insert}
+    assert results[0]['allocation'] == [22, 16, 10, 6] and results[1]['allocation'] == list(sizes)
+    assert results[0]['integer_profile'] == (158, 89, 23)
+    assert results[1]['integer_profile'] == (158, 85, 26)
+    assert dot(insert, weights[0]) - dot(remove, weights[0]) == 1
+    assert dot(insert, weights[1]) - dot(remove, weights[1]) == -1
+
+    # One actual finite point ideal independently realizes both bases.
+    prime, rng, n = 1000003, Random(20261020 + 4800), sum(sizes)
+    bases = [tuple(sorted(s)) for s in selected_sets]
+    for attempt in range(1, 31):
+        nodes = rng.sample(range(2, prime), n)
+        components, start = [], 0
+        for j, size in enumerate(sizes, 1):
+            components.extend((j, node) for node in nodes[start:start + size])
+            start += size
+
+        def residue(a):
+            return tuple(pow(t, a[0] - a[1], prime)*pow(j, a[1], prime)*
+                         pow(t - 1, -a[2], prime) % prime for j, t in components)
+
+        columns = {a: residue(a) for a in set().union(*selected_sets)}
+        try:
+            inverses = [field_inverse(basis, columns, prime) for basis in bases]
+        except StopIteration:
+            continue
+        break
+    else:
+        raise AssertionError('mixed-exchange point witness sampling failed')
+    point_certificates, middle = [], tuple(a + b for a, b in zip(*weights))
+    for weight, basis, inverse, result in zip(weights, bases, inverses, results):
+        border = result['minimal_initial_generators']
+        minimum_gap = None
+        Q = 1 + max(max(a) for a in (*basis, *border))
+        strict = tuple((Q**3 + 1)*w + t for w, t in zip(weight, (Q*Q, Q, 1)))
+        for a in border:
+            column = residue(a)
+            coords = [sum(x*y for x, y in zip(row, column)) % prime for row in inverse]
+            assert all(sum(coords[j]*columns[b][i] for j, b in enumerate(basis)) % prime == column[i]
+                       for i in range(n))
+            for b, value in zip(basis, coords):
+                if value:
+                    assert dot(a, weight) > dot(b, weight)
+                    gap = dot(a, weight) - dot(b, weight)
+                    minimum_gap = gap if minimum_gap is None else min(minimum_gap, gap)
+                    assert dot(a, strict) > dot(b, strict)
+                    assert dot(a, middle) >= dot(b, middle)
+                    if dot(a, middle) == dot(b, middle):
+                        assert (a[0] - b[0]) == 0 and 3*(a[1] - b[1]) + 4*(a[2] - b[2]) == 0
+                        counts['mixed_common_wall_zero_terms'] += 1
+            counts['mixed_point_border_relations'] += 1
+        assert minimum_gap == 1
+        point_certificates.append({'weight': weight, 'strict_witness_weight': strict,
+                                   'minimum_original_weight_gap': minimum_gap,
+                                   'selected': basis, 'minimal_initial_generators': border})
+        counts['mixed_point_matrix_bases'] += 1
+    assert counts['mixed_common_wall_zero_terms'] == 2
+    blocks, start = [], 0
+    for size in sizes:
+        blocks.append(nodes[start:start + size])
+        start += size
+    return {'counts': dict(counts), 'truncated_line_fixtures': line_fixtures,
+            'mixed_exchange_witness': {'component_sizes': sizes, 'length': n,
+                'weights': weights, 'allocations': [r['allocation'] for r in results],
+                'integer_profiles': [r['integer_profile'] for r in results],
+                'removed': remove, 'inserted': insert, 'exchange_normal': (0, -4, 3),
+                'partial_certificate_normals': normals,
+                'layer_prefix_signature': signatures[0][1],
+                'same_type_boundary_orders': signatures[0][2],
+                'common_wall_weight': middle,
+                'point_ideal': {'characteristic': prime, 'component_scalars': (1, 2, 3, 4),
+                    'nodes_by_component': blocks, 'generic_sample_attempts': attempt,
+                    'positive_basis_certificates': point_certificates}},
+            'scope': 'The classical bounded-degree lattice-point estimate gives a uniform O(L^3 H^2 + V L H) arrangement bound for small-y-coefficient lines truncated near a harmonic curve. This controls the same-type exchange network in the intermediate regime, not the complete fan. Exact boundary signatures fail to determine the optimum even after both same-type orders are fixed: a length-54 actual point ideal has a strict mixed row-column wall. This finite obstruction does not prove an asymptotic lower separation or settle unrestricted G_3.'}
+
+
 def main():
     axes = [axis_controls(n) for n in (4, 5, 6, 7, 9, 12, 15, 21)]
     arithmetic = [arithmetic_controls(n) for n in (99, 303, 603)]
@@ -3160,6 +3417,7 @@ def main():
     subcritical = subcritical_surface_controls(critical['point_ideal'])
     caps = critical_cap_controls(critical['point_ideal'])
     proximity = supercritical_proximity_controls(critical['point_ideal'])
+    transition = transition_interaction_controls()
     paths = ['scripts/run_algebraic_incidence_controls.py', 'docs/weighted_facet_incidence.md',
              'docs/initial_cone_height.md', 'scripts/run_extremal_initial_ideals_checks.py',
              'scripts/run_structural_complexity_checks.py', 'scripts/run_initial_cone_height_checks.py',
@@ -3167,7 +3425,7 @@ def main():
              'docs/generic_multiaffine_bound.md', 'docs/planar_dyadic_bound.md',
              'docs/rational_shadow_bound.md', 'scripts/run_planar_dyadic_bound_checks.py']
     report = {'status': 'passed', 'command': 'python3 -B scripts/run_algebraic_incidence_controls.py',
-              'scope': 'Higher-slope critical energy excess is quadratic, giving quadratic-power counts for the whole subcritical side and O(r^(-1/2)) critical bands. When the reference layer prices decrease, every actual layer count is within ceil(3+1/sigma) of its quota and pooling saves at most O(r) normalized cost. Three-AP boundary bands yield an exact compressed staircase algorithm with a global exchange certificate. Existing nested-allocation algorithms are prior art. Intermediate shrinking supercritical margins, arbitrary G_3 and current priority remain unresolved; all previous sections are preserved.',
+              'scope': 'A uniform all-aspect truncated-line arrangement bound controls the same-type exchange network even in shrinking supercritical margins, using classical bounded-degree lattice-point geometry. A length-54 actual point ideal proves that layer boundary prefixes and both same-type orders still miss a mixed row-column wall. The full mixed network, unrestricted G_3 and current priority remain unresolved; every previous section is preserved.',
               'summary': {'complete_axis_fans': len(axes), 'axis_cells': sum(a['positive_cells'] for a in axes),
                           'matrix_selection_controls': sum(a['independent_matrix_selections'] for a in axes),
                           'arithmetic_fixtures': len(arithmetic), 'complete_quotient_fans': len(interior),
@@ -3219,7 +3477,8 @@ def main():
                           **{'critical_' + k: v for k, v in critical['counts'].items()},
                           **{'subcritical_' + k: v for k, v in subcritical['counts'].items()},
                           **{'cap_' + k: v for k, v in caps['counts'].items()},
-                          **{'proximity_' + k: v for k, v in proximity['counts'].items()}},
+                          **{'proximity_' + k: v for k, v in proximity['counts'].items()},
+                          **{'transition_' + k: v for k, v in transition['counts'].items()}},
               'uniform_axis_matroids': axes, 'arithmetic_lower_bound_controls': arithmetic,
               'interior_quotients': interior, 'three_pole_quotients': curves,
               'positive_plane_traces': planes,
@@ -3234,6 +3493,7 @@ def main():
               'subcritical_final_surface_prefixes': subcritical,
               'critical_support_energy_caps': caps,
               'higher_slope_boundary_proximity': proximity,
+              'transition_boundary_interactions': transition,
               'source_sha256': {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in paths}}
     (ROOT / 'results/research/algebraic_incidence_controls.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report['summary'], indent=2))

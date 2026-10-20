@@ -148,6 +148,13 @@ CLI. Existing efficient nested-allocation methods are established prior
 work. The intermediate shrinking supercritical region, unbounded profile
 deviations and unrestricted `G_3` remain open; sparse corrections alone
 give no bound on the number of initial ideals.
+A uniform truncated-line incidence bound now controls the complete
+same-type candidate exchange network through the remaining transition
+region, across all aspects. Mixed row-column comparisons are still
+essential: a length-54 point ideal has two adjacent initials with
+identical layer boundary prefixes and identical same-type boundary
+orders. Their separate arithmetic network and its interactions with
+the simpler walls still require a uniform count.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count

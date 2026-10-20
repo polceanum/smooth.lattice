@@ -6132,6 +6132,265 @@ would not prove the needed theorem. No unrestricted $G_3$ improvement,
 polynomial lower separation, novelty certificate, new paper or completed
 goal is claimed.
 
+## AF. A uniform same-type wall network and an essential mixed exchange
+
+The proximity theorem does lead to a coherent arithmetic count for one
+whole class of candidate walls, including shrinking margins. It does
+not by itself count the full fan. A small actual quotient shows exactly
+why adding the independently selected layer prefixes is still
+insufficient.
+
+### Truncated lines near a harmonic curve
+
+Put $h(\rho)=\rho/(1+\rho)$. Fix real constants $A,\sigma_0>0$.
+For integers $L,H\ge1$, $H\le L$, consider the lines
+
+$$
+ \eta=\frac{b-a\rho}{d},\quad
+ 0\le a,b\le L,\quad0<|d|\le H, \tag{AF1}
+$$
+
+retaining only their portions in the positive quadrant satisfying
+
+$$
+ |\eta-\sigma_0h(\rho)|\le\frac{A h(\rho)}{|d|}.
+ \tag{AF2}
+$$
+
+Add any $V$ vertical lines. The resulting candidate network has
+
+$$
+ O_{A,\sigma_0}(1+L^3H^2+VLH) \tag{AF3}
+$$
+
+regions, **uniformly over the entire positive aspect axis**.
+In particular $H^2=O(L)$ and $V=O(L^2)$ give $O(L^4)$.
+This is a consequence of classical bounded-degree lattice-point
+counting, with the area cancellation below; it is not asserted to be
+a new general lattice-point theorem.
+
+Here is the proof. Fix $a,a',d,e$ and suppose
+$\Delta=ae-a'd\ne0$. An intersection of their two lines corresponds
+bijectively to an integer pair
+
+$$
+ (b,b')=(a\rho+d\eta,\ a'\rho+e\eta)\in[0,L]^2.
+ \tag{AF4}
+$$
+
+Write $D=\max(|d|,|e|)$, $M=\max(a,a')>0$ and
+$C=\sigma_0+A$. Simultaneous activity implies
+$|\eta-\sigma_0h|\le Ah/D$ and $0\le\eta\le C$.
+Consequently
+
+$$
+ 0\le\rho\le R:=\frac{L+CH}{M},\qquad
+ |\Delta|\le2MD.
+$$
+
+The linear map (AF4) has Jacobian $|\Delta|$. Its image of that
+truncated strip, intersected with $[0,L]^2$, therefore has area at most
+
+$$
+ |\Delta|\int_0^R\frac{2Ah(\rho)}D\,d\rho
+ \le4AMR\le4A(1+C)L. \tag{AF5}
+$$
+
+After the invertible linear change, its defining inequalities still
+have bounded number and degree: multiply the harmonic inequalities
+by $1+\rho>0$, and then substitute the inverse of (AF4).
+The planar bounded-degree lattice estimate gives area plus $O(L+1)$,
+since both coordinate projections lie in $[0,L]$. Thus there are
+$O_{A,\sigma_0}(L)$ integer pairs for these fixed four coefficients.
+The coefficient-independent estimate is established in
+[Davenport, *On a Principle of Lipschitz*, theorem and the bounded-degree
+application on printed pp. 180--181](https://people.math.sc.edu/thornef/math788g/davenport-lemma.pdf).
+The statement and its induction proof on pp. 181--183 were inspected.
+The use of all projection dimensions is part of that published theorem.
+
+Summing over $O(L^2)$ pairs $a,a'$ and $O(H^2)$ pairs $d,e$
+gives $O(L^3H^2)$ isolated line intersections. If $\Delta=0$,
+the lines are parallel or coincident. Divide $(a,b,d)$ by its gcd
+first: coincident lines then have just the widest allowed portion,
+because a smaller denominator weakens (AF2). No infinite coincidence
+is counted as isolated events.
+
+At any fixed $\rho$, each pair $a,d$ leaves
+$|b-a\rho-d\sigma_0h|\le Ah$. That interval contains at most
+$2A+1$ integers $b$, giving $O(LH)$ active intersections with a
+vertical line. Each line's truncation has boundedly many components:
+its boundary equations become quadratics after multiplying by
+$1+\rho$. There are $O(L^2H)$ such components and endpoints.
+Compactifying by $p=\rho/(1+\rho)$ gives a finite planar graph;
+Euler's bound proves (AF3). The additional truncation curves for the
+$H$ distinct absolute denominators may also be inserted if desired:
+their $O(L^2H^2)$ line intersections fit the same budget.
+
+The same estimate holds for a fixed finite collection of centers.
+For an intersection from different centers, use the strip of the line
+with larger absolute denominator $D$ in (AF4)--(AF5), and drop the
+other strip condition. Its center is one of the fixed collection,
+so the same $O(L)$ lattice bound applies before summing. This also
+counts intersections between the different-center networks; separately
+counting their regions and adding them would not suffice.
+
+The Jacobian cancellation in (AF5) is important. Applying a bounded
+aspect estimate separately with constants depending on aspect would
+not give the uniform result.
+
+### Application to the remaining supercritical region
+
+Fix $a\ge1,c>4$ and the linear component profile. Set
+$\delta=c-K>0$ and restrict for now to $\delta\ge r^{-1/2}$.
+For a generic relative point of a true exchange wall inside one fixed
+axis flag, let the selected item be in layer $s$ and the inserted item
+in layer $t$. Their common cost $T$ is respectively the last selected
+and first omitted cost in those layers: replacing a more expensive
+selected item, or inserting a cheaper omitted one, would contradict
+optimality with the same layer-count change.
+
+Let $C_*=c+3$, so $C_0\le C_*$ in this harmonic window.
+Applying (AE6) and (AE10) to those two endpoint items gives
+
+$$
+ \delta|s-t|\le D_*:=3C_*+1. \tag{AF6}
+$$
+
+For example the selected cost is between
+$\lambda_s-(C_*+1)/\gamma$ and
+$\lambda_s+(2C_*-1)/\gamma$; the first omitted cost is between
+$\lambda_t-C_*/\gamma$ and
+$\lambda_t+2C_*/\gamma$. Their reference-price difference is
+$\delta|s-t|/\gamma$, which proves (AF6).
+
+Classify each layer's three rays as two **rows**, including the diagonal
+anchor, and one **column**, strictly above that anchor. For a row-row
+exchange the absolute difference of $y$ exponents is $|s-t|$.
+For a column-column exchange, equality of costs and (Z2) give
+
+$$
+ |d|\sigma=|v_{s-1}-v_{t-1}|/h\le|s-t|+1.
+$$
+
+Since $1/c<\sigma<c$, every same-type exchange with $d\ne0$
+therefore has
+
+$$
+ \delta|d|\le D_1:=c(D_*+c),\qquad
+ |d|\le D_1\sqrt r. \tag{AF7}
+$$
+
+Its line has the form (AF1), with nonnegative pure-axis coefficients;
+same-axis exchanges allow one coefficient to be zero. Zero $d$
+gives an axis-order vertical. At the selected cost the full-rank
+cutoff (AE2) bounds all exponents by $O_{a,c}(r)$, uniformly in aspect.
+Thus take $L=O_{a,c}(r)$ and $H=O_c(\sqrt r)$; $H\le L$ for
+large $r$, and the finitely many smaller sizes affect only constants.
+All relevant axis-order verticals number $V=O_{a,c}(r^2)$.
+
+On $K<c$, the distance of $\sigma$ to its nearer critical root is
+at most $2c\delta/(\sigma_+-\sigma_-)$. Indeed
+$\delta=(\sigma_+-\sigma)(\sigma-\sigma_-)/\sigma$, and
+the farther root is at distance at least half their separation.
+Equation (AF7) therefore puts the candidate line in one of the two
+truncations (AF2), for fixed $A_c$ and centers $\sigma_\pm$.
+The finite-center version of (AF3) gives an
+$O_{a,c}(r^4)=O_{a,c}(n^2)$
+**candidate same-type network**, across all aspects and with no
+fixed-margin assumption.
+
+This counts the maximal allowed line portions, not the cells of the
+complete initial fan. Mixed walls can subdivide them further; their
+intersections with that network have not been counted. The statement
+does imply a quadratic bound for any classification determined by
+these same-type comparisons and the axis flags alone. The following
+example shows why the actual staircase is not such a classification,
+even if all individual layer boundary prefixes are additionally known.
+
+### An actual mixed wall invisible to the simpler certificate
+
+Take component sizes $(21,16,11,6)$, so $r=4,c=5,a=6,n=54$.
+At the two integer weights
+
+$$
+ w^-=(19,35,47),\qquad w^+=(62,115,153), \tag{AF8}
+$$
+
+the harmonic ratios are inside $K<5$ and the proximity width is four.
+The first four axis anchors have the same labels and order.
+For every layer $s$, **all** its prefixes at ranks
+$m_s-4,\ldots,m_s+4$ are the same at the two weights. Across the
+resulting 32 boundary candidates, the complete order of row items
+is unchanged, and the complete order of column items is unchanged.
+A common list of 97 strict linear inequalities certifies these facts
+throughout the straight segment joining (AF8).
+
+Nevertheless the two optimal allocations and integer profiles are
+
+$$
+\begin{array}{c|c|c}
+ & (q_1,q_2,q_3,q_4)&(X,Y,Z)\\ \hline
+ w^-&(22,16,10,6)&(158,89,23)\\
+ w^+&(21,16,11,6)&(158,85,26).
+\end{array} \tag{AF9}
+$$
+
+The standard sets differ only by replacing $y^6$ with $y^2z^3$.
+The cost difference is $3w_z-4w_y$, which is $1$ at $w^-$ and
+$-1$ at $w^+$. The former item is in the first layer's column;
+the latter is in the third layer's $z$ row. The missing comparison
+is therefore a mixed exchange. It is not implied by the 97 simpler
+inequalities. The common wall contains the positive weight
+$w^0=w^-+w^+=(81,150,200)$.
+
+The report supplies one actual length-$54$ point ideal over
+$\mathbb F_{1000003}$ on the scaled curves, with every node listed.
+For both displayed weights its selected evaluation matrix is
+invertible. The 27 minimal-border relations have strictly cheaper
+tails at the respective original weight, with minimum cost gap one.
+At $w^0$ every tail is weakly cheaper; the only two zero terms,
+one in each basis certificate, have direction parallel to
+$(0,-4,3)$. Thus these are actual adjacent initial cones with that
+common facet, not just two feasible auxiliary allocations. The
+staircase colength is independently checked by both the direct grid
+and the compressed skylines. No field-uniform characteristic claim
+is inferred from this one finite-field certificate.
+
+This finite example disproves the proposed simpler decision certificate.
+It supplies no asymptotic lower separation, and its weights are in the
+already bounded critical neighborhood at this size. In particular it
+does not establish that mixed exchanges produce excessive growth in
+the unresolved intermediate regime. That question still needs a
+uniform mixed-wall count or a growing realizable lower construction.
+
+### Verification and remaining objective
+
+The exact arithmetic controls check 2,052 nonsingular coefficient maps,
+6,502 ordered integer intersections, 128 singular cases and 2,302
+vertical integer intervals. Another 236 intersections check the
+different-center argument, including its larger-denominator choice.
+Twelve further Jacobian-area controls
+include extreme aspect ranges. They verify the changes of variables
+and explicit area inequality; a finite count is not a proof of the
+uniform exponent. The proof of (AF3) uses the established
+coefficient-independent lattice estimate and the displayed summation.
+
+Independent finite-grid enumeration checks both mixed-witness bases
+and 72 individual layer boundary prefixes. The common 97 comparisons,
+two point-basis inverses, 27 vanishing strict border relations and the
+two common-wall zero terms are all recorded reproducibly.
+
+The original sharp or polynomially separated $G_3$ objective remains
+active. The next count must address mixed row-column exchanges and
+their intersections, coherently with the axis flags and the newly
+bounded same-type network. Counting the latter alone, multiplying its
+regions by the layer-prefix count, or extrapolating the length-$54$
+example would not settle that problem. Classical lattice geometry,
+the matroid exchange criterion and generic sampling remain prior
+inputs; exact priority of the specialized combination is unestablished.
+No new unrestricted exponent, polynomial lower separation, paper or
+goal completion is claimed.
+
 ## Reproduction
 
 From the repository root:
