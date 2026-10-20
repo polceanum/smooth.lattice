@@ -2735,6 +2735,51 @@ must use actual simultaneous order comparisons or another global
 argument. The main endpoint, strongest-current comparison and publication
 criteria remain unchanged and unachieved.
 
+## A global partial count isolates the remaining large-wall cells
+
+The [product-threshold shadow reduction](rational_shadow_bound.md#a-partial-count-from-primitive-wall-products)
+gives an all-field estimate for every finite three-variable quotient:
+the cells incident to an interior wall with primitive direction $q$
+satisfying $\prod_i(|q_i|+1)\le T$ number
+$O(nT^{4/3}\log(n+1))$. A projected vertex's fiber can contain an
+entire edge; two support calls recover its endpoints, so collapsed
+edges are counted rather than mistaken for strict vertex visibility.
+An elementary weighted hyperbolic-cross sum avoids extra logarithms
+in $T$. All within-box optimal exchanges in the dyadic cover fit
+$T=8n$, giving $O(n^{7/3}\log(n+1))$ for their incident states.
+
+This is a partial count, with a theoretical support-oracle enumeration
+bound of the same order. It also bounds the union of reduced bases for
+those states by $O(n^{5/3}T^{4/3}\log(n+1))$. Projection fibers,
+primitive-direction zonotopes and planar oracle enumeration are
+classical; exact priority of this combined threshold statement remains
+unassessed. It does not change the unrestricted bound.
+
+After the earlier boundary cells are covered, let $R_T(I)$ count cells
+having no incident interior wall below the product threshold. Then
+
+$$
+g(I)=O(n^{5/3}\log(n+1)+nT^{4/3}\log(n+1))+R_T(I).
+$$
+
+The exception cannot vanish uniformly. In the actual three-pole quotient
+family, a direct gcd sieve gives at least $5n^2/2048$ entirely interior
+cells whose every primitive wall product is at least
+$n^2/(64\cdot4096^2)$. Its whole fan still has only
+$\binom{n+1}{2}$ cells. Thus a quadratic exception term can be necessary,
+without implying a power separation. At $T\asymp n^{3/4}$ the counted
+part has the generic quadratic power; bounding $R_T$ at a comparable
+scale is the new concrete global task, not an established conclusion.
+
+Exact controls cover $1,550$ projection fibers, $3,100$ endpoint
+support calls, $53,769$ within-box directions and all six facets of
+$163$ interior allocation cells. The new controls also exposed and
+corrected an old octahedron fixture that had collapsed through late
+generator evaluation; the original visibility certificates increase
+from $28$ to $34$. The uniform proof and all other old checks remain
+preserved. The full extremal, priority and publication criteria remain
+unachieved.
+
 ## Reproduction
 
 From the repository root:

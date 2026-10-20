@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Retain the full sharp-G_3 or realizable polynomial-separation objective and every original success criterion. The original periodic algebra has both the certified coherent scalar-two prefix and an exact determinant-three downset basis that fails every global monomial order. Thus neither the standard cyclotomic coefficient construction nor weakening to arbitrary downsets resolves the genuine cost-prefix problem. Its flat substitutions amplify index and modular rank loss without creating coherent states; do not spend effort enlarging that diagnostic family, infer odd-characteristic invariance from finite negative probes, or infer many states from arithmetic multiplicity. A substantive next theorem must control genuinely cost-defined collective residual ranks or count their feasible exposed exchanges as both weight ratios vary, using simultaneous monomial-order comparisons. Alternatively pursue a stronger global quotient-sensitive count on the rational-shadow route. Katoh--Tokuyama concave-surface levels do not provide a general two-parameter matroid transfer; that extension is explicitly outside their proof. Preserve all old exclusions, exact formulas and the unrestricted objective; complete the strongest-current and exact-priority assessment before claiming a new bound. No larger fan-search framework, messages, submissions or lowered endpoint.",
+  "next_proof_task": "Preserve the full sharp-G_3 or realizable polynomial-separation objective and all success criteria. The new global reduction is g(I)<=O(n^(5/3)*log(n+1)+n*T^(4/3)*log(n+1))+R_T(I), where R_T counts entirely interior initial cells with no incident wall whose primitive direction product is at most T. Projection fibers recover collapsed edges correctly; at T=O(n), the counted part is O(n^(7/3)*log(n+1)), and at T around n^(3/4) it has the generic quadratic power up to a logarithm. The known three-pole family has Omega(n^2) such exceptions even for thresholds of order n, so neither vanishing exceptions nor one within-box wall per cell is available. A substantive next theorem must give a uniform quotient-sensitive upper bound for R_T or a realizable larger family of these exception cells; the reduction alone and its classical inputs do not settle the problem. Use actual simultaneous monomial-order/rank constraints, not arbitrary downsets, arithmetic index, modular defect or normal height alone. The existing periodic tensor/cycle formulas remain available to study genuine cost prefixes, but larger scalar-core diagnostics or flat repetitions cannot count new cones. Complete strongest-current and exact-priority comparisons for any proposed bound. Preserve every earlier proof and exclusion, correct the explicitly identified octahedron verification fixture, avoid a larger fan-search framework, and send no messages or submissions. Do not lower the endpoint to the partial bound.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -104,7 +104,8 @@
     "Compare the global four-sector bound O(sqrt(H)*n^(7/3)) for comparable dense periodic quotients, and the uniform shortest-cover box obstruction at (t,2,2), against primary weighted lattice-ideal and routing literature. The state-profile/vertex step and successive-initial/graded-refinement arguments are established inputs. No sharpness for the actual fan, quotient-axis obstruction, current novelty or new unrestricted result is inferred.",
     "The score-prefix deficit, forced-element minimum excess, optimal-face matroid and polynomial determinant-rescaling identities are classical. Feichtner--Sturmfels Section 2 and Proposition 2.5 were inspected with the max/min convention reversed. Assess exact priority only of any proposed quantitative realization or fan-count consequence, including the explicit maximal-order all-active excess example and its two-sector O(n^2*log(n+1)) screen. No novelty is inferred from the construction or failed searches, and its behaviour is not assumed to describe the periodic tensor quotient.",
     "Before claiming a coherent arithmetic theorem, compare genuinely cost-defined cycle residuals with cyclotomic/simplicial torsion beyond the standard coefficient-deletion sets. Musiker--Reiner arXiv:1012.1844v4 Proposition 4 and Corollary 5 already supply the arbitrary index construction; our explicit (5,7,11) downset certificate excludes that construction here but does not establish a broader novelty boundary or odd-characteristic stability.",
-    "The exact odd-torsion downset and all-order contradiction are verified at periods (5,7,11); their classical flat amplification is not a fan result. If a cost-specific arithmetic theorem is proposed, it must distinguish such downset bases by actual simultaneous order constraints. Katoh--Tokuyama (2002) Theorems 4/12 concern concave-surface levels; Section 4 leaves the general two-parameter matroid extension outside that argument. Current strongest-bound assessment remains open."
+    "The exact odd-torsion downset and all-order contradiction are verified at periods (5,7,11); their classical flat amplification is not a fan result. If a cost-specific arithmetic theorem is proposed, it must distinguish such downset bases by actual simultaneous order constraints. Katoh--Tokuyama (2002) Theorems 4/12 concern concave-surface levels; Section 4 leaves the general two-parameter matroid extension outside that argument. Current strongest-bound assessment remains open.",
+    "Assess the exact product-threshold partial count L_T(I)=O(n*T^(4/3)*log(n+1)) and its fiber-endpoint oracle reduction against projected matroid polytope and edge-complexity literature. Deza--Manoussakis--Onn Theorem 4.1 supplies the established projected-edge/primitive-zonotope framework. The weighted product moment and use of the existing rational-shadow theorem are elementary given those inputs; absence of matching searches is not novelty. No uniform bound on the remainder R_T has been proved."
   ],
   "primary_sources": [
     {
@@ -431,6 +432,12 @@
       "title": "A polyhedral characterization of border bases",
       "url": "https://arxiv.org/pdf/0912.1502v5",
       "scope": "Braun--Pokutta introduction and Section 2 inspected. Admissible monomial downsets supporting border bases form an established larger class than those induced by term orders. No novelty is claimed for that general distinction; the explicit determinant-three certificate is scoped to the original mixed-period algebra."
+    },
+    {
+      "authors": "Deza--Manoussakis--Onn",
+      "title": "Primitive Zonotopes",
+      "url": "https://arxiv.org/pdf/1512.08018v4",
+      "scope": "Theorem 4.1 and proof: established bounded-cube utility projection refinement, primitive edge directions and parallel-pair matroid realization. Scoped comparison for the partial product-threshold count, not a novelty certificate."
     }
   ],
   "verification": {
@@ -474,7 +481,7 @@
       "interval_states": 936,
       "independent_full_basis_hulls": 40,
       "short_integer_vectors": 1330,
-      "strict_vertex_visibility_certificates": 28,
+      "strict_vertex_visibility_certificates": 34,
       "oblique_lattice_direction_cases": 15,
       "weighted_dyadic_pair_sums": 60,
       "projected_ground_cover_checks": 1464
@@ -732,9 +739,25 @@
       "opposite_monomial_order_certificates": 2,
       "odd_downset_pullback_field_checks": 15,
       "odd_downset_pullback_relation_checks": 6
+    },
+    "wall_product_research": {
+      "command": "python3 -B scripts/run_rational_shadow_bound_checks.py",
+      "report": "results/research/rational_shadow_bound_checks.json",
+      "status": "passed",
+      "source_hashes_verified": true,
+      "polytope_kernel_checks": 401,
+      "shadow_vertex_fibers": 1550,
+      "collapsed_edge_fibers": 64,
+      "two_endpoint_oracle_checks": 3100,
+      "positive_endpoint_objectives": 296,
+      "weighted_product_direction_moments": 8,
+      "same_box_primitive_direction_checks": 53769,
+      "complete_central_axis_cells": 163,
+      "uniform_gcd_sieve_controls": 5,
+      "corrected_strict_vertex_visibility_certificates": 34
     }
   },
-  "preservation": "Only the six explicitly privacy-reviewed research files change. All 298 unlisted tracked files, including manuscripts/PDFs, core kernels, auditor, CLI, earlier research and paused ML artifacts, are byte-preserved against the ignored baseline at 96b9f4e. All earlier periodic-report sections/counts, the original objective and success criteria, and all thirty-four previous continuations are preserved. Local probes, baselines and logs remain ignored.",
+  "preservation": "Only the six explicitly privacy-reviewed research files change. All 298 unlisted tracked files, including manuscripts/PDFs, core kernels, auditor, CLI, earlier periodic research and paused ML artifacts, are byte-preserved against the ignored baseline at 88db7ea. Old rational-shadow sections/counts remain exact except the explicit six-vertex octahedron correction and aggregate 28-to-34 visibility count; the other four geometry fixtures are unchanged. The original objective and success criteria and all thirty-five earlier continuations remain exact. Local baselines and logs stay ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
@@ -745,8 +768,8 @@
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "08744d3a7ca8a9b8282d92ef88c0b5f64a3196dff7a577ae62061366cd26fa60",
-    "docs/extremal_initial_ideals.md": "30c71cfde7b7e644959d22da3dd8bf2dc0d164a84042ce481c37a9adac9d5176",
+    "README.md": "3141736f8c8d9d6da3ecd1db6a273ccd43bfc4c15211ffc0780e28b647e8d38f",
+    "docs/extremal_initial_ideals.md": "acd61260cef8bc26abf4b944e8f3c373433d1132967e4521097e8f17479ac296",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
     "results/research/profile_lattice_checks.json": "437b69bd81173c330b059d879df9f93281befb01e353f9e2c2e00f5a55746d17",
@@ -775,7 +798,13 @@
     "scripts/run_periodic_quotient_checks.py": "5792a53596cc55e0d045021292c1ac191af76b77867a2d8b4bb309889f455b2c",
     "results/research/periodic_quotient_checks.json": "22a195f8358d214aab9701afae4b7ae5d3efc972d9ad16a4a7ce033127150821",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
-    "scripts/run_nested_jet_checks.py": "aa1c4a9b69de0d0cfa54c381c4f83ebaa983cdbfd7b298af40b32603a079648c"
+    "scripts/run_nested_jet_checks.py": "aa1c4a9b69de0d0cfa54c381c4f83ebaa983cdbfd7b298af40b32603a079648c",
+    "docs/rational_shadow_bound.md": "8869f63ae2fd2e4371e65ebf8158d3ccbb9aaef254ba2fd637688e665e98458a",
+    "scripts/run_rational_shadow_bound_checks.py": "34a9af3d9382ec8cdfbea45fe5304f43bfe955191285bdabd42f2f92c87cbe82",
+    "results/research/rational_shadow_bound_checks.json": "ac839c0a60148b0dc9924ded3548ab45adf5b472da6f4bc287ab6bc1af3f470a",
+    "docs/weighted_facet_incidence.md": "61ccaf62917fdf59b7f2480a80148750236e3507959e810403e302a43e31bc13",
+    "scripts/run_algebraic_incidence_controls.py": "4490e0abad272e7cc4f6c541ba01537c059aac13386d2a4b7481d5d48c760379",
+    "results/research/algebraic_incidence_controls.json": "76acec9b0810c7599d7549a5aee409edb7ac6d9a611c7f8533eaff9f84c7267f"
   },
   "continuations": [
     {
@@ -2432,8 +2461,52 @@
         "preservation": "Every old periodic-report section/count, all thirty-four earlier continuations, original objective and criteria, and all 298 unlisted tracked files are preserved against 96b9f4e."
       },
       "scope_limit": "This is a diagnostic counterexample and an established flat amplification, not a new asymptotic count, coherent odd-prime witness, complete characteristic classification, strongest-current or novelty certificate, or paper endpoint. All original impact criteria and the unrestricted goal remain active."
+    },
+    {
+      "title": "A global product-threshold partial count and a necessary quadratic family of large-wall exceptions",
+      "recorded_on": "2026-10-20",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "88db7ea verified a determinant-three downset, its exact all-order contradiction and a classical flat extension that preserves the fan count. That counterexample rules out the downset/torsion surrogate but does not improve G_3. The current clean baseline and every prior report were revalidated.",
+      "progress_classification": "A uniform partial count now bounds all initial cells incident to a wall with primitive product at most T by O(n*T^(4/3)*log(n+1)), together with a support-oracle reduction and a reduced-basis union bound for those cells. It correctly counts collapsed projection edges through their fibers. A direct uniform gcd sieve gives quadratically many actual interior cells with only quadratic-product walls, so the remaining term cannot simply be omitted. This isolates a concrete global remainder count, rather than another arbitrary-basis rank surrogate. The full G_3 exponent is unchanged.",
+      "uniform_proofs": [
+        "For any three-dimensional polytope, the number of vertices incident to edges parallel to a fixed nonzero q is at most twice the number of vertices of its projection along q. Each exposed vertex fiber is a point or a segment. This includes endpoints of collapsed edges, which need not be strictly visible individually. The statement covers lower-dimensional polytopes as well and is elementary classical projection geometry.",
+        "For rho(q)=product_i(|q_i|+1), the sum of 1+||q||_1^(1/3) over nonzero primitive integer directions up to sign with rho(q)<=T is O(T^(4/3)), without additional logarithms in T. Overcounting all signs and setting u_i=|q_i|+1 reduces this to sum_(u1*u2*u3<=T) u1^(1/3)<=16*T^(4/3), by the convergent exponent-4/3 sums. Combining this with the existing all-field rational-shadow theorem proves L_T(I)=O(n*T^(4/3)*log(n+1)) for all positive initial cells incident to an interior wall below that product threshold.",
+        "For labels in one dyadic box of product at most 8n, a nonzero difference has primitive product at most 8n. Thus any actual within-box optimal matroid wall exchange contributes only O(n^(7/3)*log(n+1)) incident states overall. This does not assert a within-box exchange for every wall or one for every cone. After the previous boundary cover, g(I)<=O(n^(5/3)*log(n+1)+n*T^(4/3)*log(n+1))+R_T(I), where R_T counts nonboundary cells with no incident product-small wall. That remainder has not been bounded above.",
+        "Classical planar support enumeration plus two fiber endpoint support calls per projected vertex gives O(n*T^(4/3)*log(n+1)) greedy calls to a superset of the specified initial states. If w is a positive integer exposing objective and the profile coordinate widths are at most R, epsilon=1/(2*(R+1)*||q||_1+1) keeps w plus/minus epsilon*q positive, preserves the exposed fiber and selects its endpoints. This is a theoretical support-oracle reduction, not a newly implemented enumeration algorithm or a field-operation bound. The previous border-generator count gives O(n^(5/3)*T^(4/3)*log(n+1)) reduced-basis polynomials for this part of the fan.",
+        "In the known three-pole quotient, a positive allocation a1+a2+a3=n-1 has six actual facet directions prim((ai+1)*ei-aj*ej), i!=j. Choose a1,a2 in [ceil(n/4),floor(3n/8)] for n>=16; there are at least n^2/256 choices and each ai lies between n/8 and n/2. For each of the six pairs, at most n^2/G allocations have gcd(ai+1,aj)>G, since the pair map is injective into positive integers at most n and sum_(d>G) floor(n/d)^2<=n^2/G. With G=4096, at least 5*n^2/2048 entirely interior cells have every primitive wall product at least n^2/(64*G^2). Consequently R_T is Omega(n^2) for T below that quadratic threshold, while the whole known fan remains exactly binomial(n+1,2). This is a new all-wall property of an existing obstruction family, not a new fan total or separating lower construction."
+      ],
+      "independent_controls": {
+        "command": "python3 -B scripts/run_rational_shadow_bound_checks.py",
+        "report": "results/research/rational_shadow_bound_checks.json",
+        "status": "passed",
+        "polytope_kernel_checks": 401,
+        "shadow_vertex_fibers": 1550,
+        "collapsed_edge_fibers": 64,
+        "two_endpoint_oracle_checks": 3100,
+        "positive_endpoint_objectives": 296,
+        "weighted_product_direction_moments": 8,
+        "same_box_primitive_direction_checks": 53769,
+        "complete_central_axis_cells": 163,
+        "uniform_gcd_sieve_controls": 5,
+        "corrected_strict_vertex_visibility_certificates": 34
+      },
+      "verification_correction": "The new fiber check exposed a legacy octahedron fixture written as late-evaluated generators. It had collapsed to one point and provided no octahedron vertex checks. Eager tuples restore all six intended vertices, increasing the old strict short-shadow visibility count from 28 to 34. The other four geometry fixtures, all old matroid/number-theory controls and every uniform proof remain unchanged. This is an explicit verification correction, not a new mathematical bound.",
+      "reading_scope": [
+        {
+          "source": "https://arxiv.org/pdf/1512.08018v4",
+          "scope": "Deza--Manoussakis--Onn Theorem 4.1 and its projected-edge, primitive-zonotope and parallel-pair construction proof inspected. Bounded-cube utility refinement and ordinary support enumeration are established. No claim that the statement supplies the product-threshold partial count, or that elementary fiber geometry is new. Exact priority of the combined reduction remains unassessed."
+        }
+      ],
+      "verification": {
+        "research": "passed",
+        "build": "passed",
+        "smoke": "passed",
+        "source_hashes": "verified",
+        "preservation": "All old rational-shadow report sections and counts are preserved except the explicitly corrected octahedron fixture and its aggregate visibility count. The other four geometry fixtures match exactly; all thirty-five earlier continuations, original objective and success criteria, and all 298 unlisted tracked files are preserved against 88db7ea."
+      },
+      "scope_limit": "No bound on R_T(I), new unrestricted G_3 exponent, polynomial separation, current novelty certificate, strongest-current assessment or paper endpoint. Taking T around n^(3/4) makes the counted part quadratic up to a logarithm, but obtaining the corresponding remainder bound is still a substantive open proof task. All original impact criteria remain in force."
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "No unrestricted exponent change or polynomial separation. An exact index-three downset and two contradictory normal-form comparisons yield an infinite flat family with exponential index and linear modular rank loss that is never coherent. The result excludes a structural shortcut; its abstract amplification is classical and does not provide the main paper endpoint.",
-  "previous_goal_turn_classification": "Progress: 96b9f4e supplied integral collective-rank and coherence-boundary certificates. This continuation preserves them and disproves weakening their cost-specific task to arbitrary monomial downsets."
+  "asymptotic_improvement_scope_this_iteration": "The unrestricted bound stays O(n^(23/8)*log(n+1)^(3/8)). A uniform all-field partial bound L_T(I)=O(n*T^(4/3)*log(n+1)), its support-oracle reduction and the corresponding reduced-basis union bound are proved. Quadratically many large-wall interior exceptions exist uniformly in an already classified actual quotient family. The unknown remainder R_T prevents an unrestricted improvement or completion.",
+  "previous_goal_turn_classification": "Progress: 88db7ea supplied a verified arithmetic downset obstruction and count-preserving amplification. This continuation changes the global counting reduction itself, while keeping its unbounded remainder explicit."
 }

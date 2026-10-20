@@ -353,6 +353,200 @@ the shadows retain a quantitative arithmetic dependence. It does not
 give a theorem about the distribution of primes. The gap to the generic
 three-variable scale and the current-priority audit remain open.
 
+## A partial count from primitive wall products
+
+There is a second way to use the height-dependent shadow theorem.
+For a nonzero primitive integer vector $q$ put
+
+$$
+\rho(q)=\prod_{i=1}^3(|q_i|+1).
+$$
+
+Let $L_T(I)$ be the number of positive initial cells incident to at
+least one interior wall whose primitive direction has $\rho(q)\le T$.
+Here a wall corresponds to an actual edge of the basis-profile
+polytope, and its direction is that edge's primitive integer direction;
+it is not a primitive facet normal of the profile polytope. For every
+field, every colength-$n$ three-variable ideal, and integer $T\ge1$,
+
+$$
+L_T(I)=O\!\left(nT^{4/3}\log(n+1)\right).               \tag{10}
+$$
+
+In particular $L_{Cn}(I)=O_C(n^{7/3}\log(n+1))$ for fixed $C$.
+This is a uniform count for part of a fan, not a replacement for the
+unrestricted bound (1). The distinction between wall directions and
+facet-normal heights is essential.
+
+### Collapsed edges are counted through projection fibers
+
+For any polytope $P\subset\mathbb R^3$, let $s_q(P)$ be the number
+of vertices of its orthogonal projection along $q$. The number of
+vertices of $P$ incident to an edge parallel to $q$ is at most
+
+$$
+2s_q(P).                                                \tag{11}
+$$
+
+Indeed the relative interior of the normal cone of such an edge is
+an open subset of $q^\perp$. A generic objective there strictly
+exposes a vertex of the projection. The fiber above a projected vertex
+is a face of $P$ contained in a line parallel to $q$: it is a point
+or a segment and has at most two vertices. This proves (11), including
+lower-dimensional polytopes. It does not assert that either endpoint
+is strictly visible in the projection. An edge parallel to the kernel
+collapses to a point; counting strict vertex visibility alone would
+miss its endpoints.
+
+Apply (11) to the residue-matroid profile polytope $B$ on $V_n^3$.
+Every positive wall is dual to a profile edge, and the existing
+positive greedy dictionary identifies its endpoints with its two
+incident initial standard sets. Theorem 1 gives
+
+$$
+s_q(B)=O\!\left(n(1+\|q\|_1^{1/3})\log(n+1)\right).     \tag{12}
+$$
+
+No regularizing cube is needed in (11)--(12).
+
+### A weighted product-direction sum
+
+Summing (12) over product-bounded primitive directions does not cost an
+additional logarithm in $T$:
+
+$$
+\sum_{\substack{q\text{ primitive, up to sign}\\
+                  q\ne0,\ \rho(q)\le T}}
+       (1+\|q\|_1^{1/3})=O(T^{4/3}).                   \tag{13}
+$$
+
+To verify this, overcount by all signs and put $u_i=|q_i|+1\ge1$.
+For a nonzero integer $q$, $1+\|q\|_1^{1/3}$ is at most
+$2\sum_i u_i^{1/3}$. For one coordinate,
+
+$$
+\begin{split}
+\sum_{u_1u_2u_3\le T}u_1^{1/3}
+&\le T^{4/3}\sum_{u_2,u_3\ge1}(u_2u_3)^{-4/3}\\
+&\le16T^{4/3},
+\end{split}
+$$
+
+using $\sum_{k\le M}k^{1/3}\le M^{4/3}$ and
+$\sum_{k\ge1}k^{-4/3}\le1+\int_1^\infty x^{-4/3}dx=4$.
+Allowing all eight signs and all three coordinates gives an absolute
+constant; $1536T^{4/3}$ is a convenient conservative bound.
+Combining (11)--(13) proves (10). This argument uses the already
+proved shadow theorem and elementary lattice summation, not a new
+general lattice-polytope theorem.
+
+It also applies to within-box exchanges in the earlier dyadic cover.
+If two monomial labels lie in one anchored box of side lengths $b_i$,
+their nonzero difference has primitive direction $q$ satisfying
+$\rho(q)\le\prod_i(b_i+1)\le8n$. If an actual wall admits such an
+optimal matroid exchange, its profile edge is parallel to that
+difference, so both incident states are counted by $L_{8n}(I)$.
+This does not show that every wall, or one wall of every cell, admits
+a within-box exchange.
+
+### An explicit support-oracle reduction
+
+The proof gives an enumeration reduction with
+$O(nT^{4/3}\log(n+1))$ greedy support calls. Enumerate the primitive
+directions in (13), construct each projected polygon by the classical
+output-sensitive planar support method, and recover its relevant
+vertex fibers with two further support calls per vertex. Select a
+strict rational objective $w\in q^\perp$ exposing a projected vertex;
+for the positive fan retain those whose exposing cone meets strictly
+positive objectives. Scale such a $w$ to a positive integer vector.
+If the profile coordinate widths are at most $R$, put
+
+$$
+\epsilon=\frac1{2(R+1)\|q\|_1+1}.                      \tag{14}
+$$
+
+The objectives $w\pm\epsilon q$ stay positive and select the two
+fiber endpoints. An objective gap to any different projected vertex
+is an integer of magnitude at least one; the perturbation changes
+any profile difference by at most $\epsilon R\|q\|_1<1/2$.
+Within the fiber, the two signs select its two extrema along $q$.
+Point fibers are returned twice. Thus the procedure includes all
+states counted in (10), possibly together with additional strictly
+visible states, under the same output bound. It may return repeats,
+which can be removed by their standard sets.
+
+This is a support-oracle reduction, not a new implemented fan-enumeration
+algorithm or a field-operation complexity claim. A greedy call still
+requires residue-matroid independence decisions on $V_n^3$.
+The earlier border-generator estimate consequently bounds the union of
+reduced basis polynomials from these states by
+$O(n^{5/3}T^{4/3}\log(n+1))$. For $T=O(n)$ this is
+$O(n^3\log(n+1))$, only for the specified part of the fan.
+
+### The remaining cells cannot simply be discarded
+
+Let $R_T(I)$ count nonboundary positive cells having no incident
+interior wall with $\rho(q)\le T$. The previous three-plane boundary
+cover and (10) give the exact remaining target
+
+$$
+g(I)=O\!\left(n^{5/3}\log(n+1)+nT^{4/3}\log(n+1)\right)
+       +R_T(I).                                        \tag{15}
+$$
+
+Controlling $R_T$, rather than asserting that it vanishes, is necessary.
+The [three-pole quotients](weighted_facet_incidence.md#quartic-incidence-is-sharp-for-actual-finite-quotients)
+already have quadratically many cells whose **every** primitive wall
+product is of quadratic order in $n$.
+
+Here is a uniform arithmetic certificate. Their cells are indexed by
+allocations $(a_1,a_2,a_3)$ with $\sum a_i=n-1$. When all $a_i>0$,
+the six transfer comparisons are actual facets, with directions
+
+$$
+q_{ij}=\operatorname{prim}((a_i+1)e_i-a_j e_j),\quad i\ne j. \tag{16}
+$$
+
+Each is realized by tying the next excluded point on axis $i$ to the
+last included point on axis $j$, with all other threshold inequalities
+strict. The cells are entirely interior: a zero weight on any axis
+would make its next excluded point cheaper than all positive-weight
+selected endpoints, forcing all weights to vanish.
+
+For $n\ge16$ choose $a_1,a_2$ independently in
+$[\lceil n/4\rceil,\lfloor3n/8\rfloor]$ and set
+$a_3=n-1-a_1-a_2$. There are at least $n^2/256$ choices, and
+$n/8\le a_i\le n/2$. Put $G=4096$. For each ordered pair $i\ne j$,
+the map from the allocation to $(a_i+1,a_j)$ is injective into
+$\{1,\ldots,n\}^2$. The number with gcd greater than $G$ is at most
+
+$$
+\sum_{d>G}^{n}\lfloor n/d\rfloor^2\le n^2/G.
+$$
+
+The union bound over six pairs leaves at least
+$n^2/256-6n^2/4096=5n^2/2048$ allocations with every such gcd
+at most $G$. For all six primitive directions of each such cell,
+
+$$
+\rho(q_{ij})\ge\frac{n^2}{64G^2}.                     \tag{17}
+$$
+
+This is an explicit infinite realizable exception family, over every
+field, with $R_T(I)=\Omega(n^2)$ whenever $T<n^2/(64G^2)$.
+Its entire fan remains exactly $\binom{n+1}{2}$, by the previously
+proved coefficient-independent classification. The new observation
+concerns all incident wall products, not a new total fan count or a
+power-separated lower family.
+
+For $T=O(n)$, equation (15) reduces the next improvement to a count of
+these remaining cells, while (17) shows that a quadratic exception term
+can be necessary. Taking $T\asymp n^{3/4}$ would make the enumerated
+part quadratic up to a logarithm; a matching upper bound on $R_T$
+is still unproved and would be a substantive new step. Neither the
+partial estimate nor the reformulation establishes such an upper bound,
+current novelty, the sharp $G_3$ endpoint or the requested paper.
+
 ## Verification and prior-art boundary
 
 The greedy token/convex-chain viewpoint is classical; see
@@ -360,6 +554,14 @@ The greedy token/convex-chain viewpoint is classical; see
 The universal ground, state dictionary, historical $O(n^3)$ bound and
 universal-basis union argument are from
 [Babson--Onn--Thomas, Theorem 2.4 and Corollary 2.5](https://arxiv.org/pdf/math/0207135).
+The projected-edge direction principle and enumeration by primitive
+zonotopes are also established in
+[Deza--Manoussakis--Onn, Theorem 4.1 and its proof](https://arxiv.org/pdf/1512.08018v4).
+The inspected statement bounds utilities in a coordinate cube and
+refines the entire projected matroid polytope. It is not asserted to
+give the product-threshold partial count (10), nor is the elementary
+fiber argument claimed as a new projection principle. Exact priority
+of the combined partial bound remains unassessed.
 The lattice triangle and short integer relation arguments above are
 elementary classical inputs. The product cover, height-dependent
 charging theorem (2), and its combination (8) are the exact statements
@@ -405,7 +607,7 @@ The report checks 340 quadrant sweeps on 17 matroid/quotient models
 and five rational kernel directions, replaying every comparison
 interval by direct greedy selection. It independently enumerates
 40 full basis-profile hulls, tests 1,330 short integer relations,
-and certifies 28 vertices of five lattice polytopes by strict
+and certifies 34 vertices of five lattice polytopes by strict
 objectives in short rational shadow planes. The controls also
 exercise 15 oblique-lattice direction examples, including thin
 unimodular shears, and verify 60 weighted dyadic pair sums with
@@ -413,3 +615,13 @@ exact rational cube-root enclosures. In dimensions two through
 four, 1,464 projected ground points are checked against the
 cover and its shared boundary-line bound. None of these finite
 numbers is used to infer the uniform growth law.
+
+The wall-product continuation checks $1,550$ vertex fibers in $401$
+polytope/kernel pairs, including $64$ collapsed edges, with $3,100$
+independent endpoint support calls. It verifies $53,769$ within-box
+primitive differences, all six facets of $163$ interior axis-allocation
+cells, weighted direction sums by exact cube-root enclosures, and the
+uniform gcd-sieve inequalities. The octahedron fixture in the original
+checker had used late-evaluated generators and collapsed to a point;
+it now contains its six intended vertices. This corrects the visibility
+certificate count from $28$ to $34$ without changing the uniform proof.

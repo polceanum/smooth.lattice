@@ -16,6 +16,7 @@ import json
 from run_extremal_initial_ideals_checks import rectangle_model
 from run_planar_dyadic_bound_checks import convex_hull, matrix_oracle
 from run_structural_complexity_checks import cross, determinant, dot, hyperbolic_cross, primitive
+from run_structural_complexity_checks import area2, clip
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -316,7 +317,7 @@ def geometry_controls():
     cube = tuple(product((0, 1), repeat=3))
     fixtures = [('cube', cube),
                 ('skew_cube', [project(((1, 3, 0), (0, 1, 2), (0, 0, 1)), a) for a in cube]),
-                ('octahedron', [(s * int(i == j) for i in range(3)) for j in range(3) for s in (-1, 1)]),
+                ('octahedron', [tuple(s * int(i == j) for i in range(3)) for j in range(3) for s in (-1, 1)]),
                 ('non_simple_pyramid', [(0, 0, 0), (3, 0, 0), (3, 3, 0), (0, 3, 0), (1, 1, 4)]),
                 ('integer_cloud', [(0, 0, 0), (4, 0, 0), (0, 4, 0), (0, 0, 4), (3, 2, 1), (2, 3, 3), (1, 2, 4)])]
     result, visible = [], 0
@@ -438,6 +439,147 @@ def dyadic_cover_controls():
             'cube_root_enclosures': 'exact rational upper and lower bounds with denominator 4096; no floating-point comparison'}
 
 
+def product_directions(T):
+    directions = set()
+    for a in range(T):
+        for b in range(T//(a+1)):
+            for c in range(T//((a+1)*(b+1))):
+                for signs in product((-1,1),repeat=3):
+                    q = (signs[0]*a,signs[1]*b,signs[2]*c)
+                    if any(q) and gcd(*q) == 1:
+                        directions.add(primitive(q))
+    return sorted(directions)
+
+
+def wall_product_controls(geometry):
+    moments = []
+    scale = 4096
+    for T in (1,2,4,8,16,32,64,128):
+        directions = product_directions(T)
+        assert all(prod(abs(x)+1 for x in q) <= T and gcd(*q) == 1 for q in directions)
+        upper = sum(scale+floor_cuberoot(sum(abs(x) for x in q)*scale**3)+1 for q in directions)
+        lower_rhs = 1536*T*floor_cuberoot(T*scale**3)
+        assert upper <= lower_rhs, 'exact cube-root enclosures verify the weighted product-direction moment'
+        moments.append({'T':T,'primitive_directions_up_to_sign':len(directions),
+                        'weighted_moment_upper_numerator':upper,'denominator':scale,
+                        'uniform_rhs_lower_numerator':lower_rhs})
+
+    fixtures,ledger,examples = [],[],[]
+    for item in geometry['fixtures']:
+        vertices = sorted({tuple(p) for f in item['facets'] for p in f['vertices']})
+        edges = {tuple(sorted((tuple(a),tuple(b)))) for f in item['facets']
+                 for a,b in zip(f['vertices'],f['vertices'][1:]+f['vertices'][:1])}
+        fixtures.append((item['name'],vertices,edges))
+    fixtures += [('segment',[(0,0,0),(4,8,0)],{((0,0,0),(4,8,0))}),
+                 ('point',[(3,2,1)],set()),
+                 ('planar_square',[(0,0,0),(2,0,0),(2,3,0),(0,3,0)],
+                  {((0,0,0),(2,0,0)),((2,0,0),(2,3,0)),((0,3,0),(2,3,0)),((0,0,0),(0,3,0))})]
+    counts = {'polytope_kernel_checks':0,'shadow_vertex_fibers':0,'collapsed_edge_fibers':0,
+              'two_endpoint_oracle_checks':0,'positive_endpoint_objectives':0}
+    summaries = []
+    for name,vertices,edges in fixtures:
+        kernels = {primitive(q) for q in product(range(-2,3),repeat=3) if any(q)}
+        kernels |= {primitive(tuple(x-y for x,y in zip(a,b))) for a,b in edges}
+        widths = [max(p[i] for p in vertices)-min(p[i] for p in vertices) for i in range(3)]
+        R = max(widths)
+        for q in sorted(kernels):
+            A = kernel_projection(q)
+            hull = convex_hull(project(A,p) for p in vertices)
+            recovered = set()
+            for j,y in enumerate(hull):
+                if len(hull) >= 3:
+                    before,after = hull[j-1],hull[(j+1)%len(hull)]
+                    u,v = tuple(a-b for a,b in zip(y,before)),tuple(a-b for a,b in zip(after,y))
+                    objective = (u[1]+v[1],-u[0]-v[0])
+                elif len(hull) == 2:
+                    objective = tuple(a-b for a,b in zip(y,hull[1-j]))
+                else:
+                    objective = (1,0)
+                assert all(dot(objective,y)>dot(objective,z) for z in hull if z!=y)
+                w = tuple(sum(objective[k]*A[k][i] for k in range(2)) for i in range(3))
+                fiber = {p for p in vertices if project(A,p)==y}
+                assert 1 <= len(fiber) <= 2, 'a vertex fiber has at most two original vertices, not necessarily one'
+                epsilon = Fraction(1,2*(R+1)*sum(abs(x) for x in q)+1)
+                endpoints = set()
+                for sign in (-1,1):
+                    perturbed = tuple(w[i]+sign*epsilon*q[i] for i in range(3))
+                    endpoint = max(vertices,key=lambda p:dot(perturbed,p))
+                    assert all(dot(perturbed,endpoint)>dot(perturbed,p) for p in vertices if p!=endpoint)
+                    endpoints.add(endpoint)
+                    counts['two_endpoint_oracle_checks'] += 1
+                    if min(w)>0:
+                        assert min(perturbed)>0, 'the explicit perturbation preserves positive objectives'
+                        counts['positive_endpoint_objectives'] += 1
+                assert endpoints==fiber, 'two ordinary support calls recover the complete exposed fiber'
+                recovered |= endpoints
+                counts['shadow_vertex_fibers'] += 1
+                if len(fiber)==2:
+                    counts['collapsed_edge_fibers'] += 1
+                    if len(examples)<8:
+                        examples.append({'fixture':name,'kernel':q,'shadow_vertex':y,
+                                         'fiber':sorted(fiber),'objective':w,'epsilon':str(epsilon)})
+                ledger.append((name,q,y,sorted(fiber)))
+            incident = {p for edge in edges if primitive(tuple(x-y for x,y in zip(*edge)))==q for p in edge}
+            assert incident <= recovered and len(incident)<=2*len(hull), 'every parallel-edge endpoint is covered by a shadow fiber'
+            counts['polytope_kernel_checks'] += 1
+        summaries.append({'name':name,'vertices':len(vertices),'edges':len(edges),'kernels':len(kernels)})
+
+    box_checks = 0
+    for H in (3,7,16,31):
+        ground = tuple(hyperbolic_cross(H,3))
+        for box in cover(((1,0,0),(0,1,1)),H):
+            points = [a for a in ground if all(x<=b for x,b in zip(a,box['sides']))]
+            for a,b in combinations(points,2):
+                q = primitive(tuple(x-y for x,y in zip(a,b)))
+                assert prod(abs(x)+1 for x in q)<=prod(x+1 for x in box['sides'])<=8*H
+                box_checks += 1
+
+    axis_controls = []
+    for n in (6,9,12,16):
+        r = n-1
+        for a in range(1,r-1):
+            for b in range(1,r-a):
+                allocation = (a,b,r-a-b)
+                normals = [tuple((allocation[i]+1 if k==i else 0)-(allocation[j] if k==j else 0)
+                                 for k in range(3)) for i,j in product(range(3),repeat=2) if i!=j]
+                polygon = [tuple(Fraction(i==j) for i in range(3)) for j in range(3)]
+                for normal in normals:
+                    polygon = clip(polygon,normal,1)
+                assert polygon and area2(polygon)>0 and all(min(p)>0 for p in polygon)
+                actual = {primitive(normal) for normal in normals if any(
+                    not dot(normal,p) and not dot(normal,q) for p,q in zip(polygon,polygon[1:]+polygon[:1]))}
+                assert actual=={primitive(v) for v in normals}, 'all six transfer comparisons are actual interior facets'
+                products = [prod(abs(x)+1 for x in v) for v in actual]
+                axis_controls.append({'n':n,'allocation':allocation,'interior_facets':len(actual),
+                                      'minimum_primitive_wall_product':min(products)})
+    sieves = []
+    G = 4096
+    for n in (16,32,64,128,256):
+        lo,hi = (n+3)//4,3*n//8
+        allocations = [(a,b,n-1-a-b) for a in range(lo,hi+1) for b in range(lo,hi+1)]
+        assert len(allocations)*256>=n*n
+        good = 0
+        for allocation in allocations:
+            assert all(n<=8*a and 2*a<=n for a in allocation)
+            pairs = [(allocation[i]+1,allocation[j]) for i,j in product(range(3),repeat=2) if i!=j]
+            if all(gcd(a,b)<=G for a,b in pairs):
+                good += 1
+                assert all(64*G*G*(a//gcd(a,b)+1)*(b//gcd(a,b)+1)>=n*n for a,b in pairs)
+        assert (len(allocations)-good)*G<=6*n*n and good*2048>=5*n*n
+        # Check the integer tail inequality used in the uniform sieve at nontrivial cutoffs too.
+        for cutoff in (1,2,4,8):
+            tail = sum((n//d)**2 for d in range(cutoff+1,n+1))
+            assert cutoff*tail<=n*n
+        sieves.append({'n':n,'central_rectangle_allocations':len(allocations),
+                       'good_allocations_at_G_4096':good,'gcd_cutoff':G})
+    return {'weighted_direction_moments':moments,'projection_fiber_summary':counts,
+            'projection_fiber_fixtures':summaries,'collapsed_fiber_examples':examples,
+            'fiber_ledger_sha256':hashlib.sha256(json.dumps(ledger).encode()).hexdigest(),
+            'same_box_direction_checks':box_checks,'complete_central_axis_cells':axis_controls,
+            'uniform_axis_gcd_sieve_controls':sieves,
+            'scope':'Uniform partial count O(n*T^(4/3)*log(n+1)) for initial cells incident to an interior wall with primitive direction product at most T. Exact fiber recovery includes endpoints of collapsed edges. The known three-pole quotient has quadratically many interior cells whose every primitive wall product is Omega(n^2). No bound for all remaining cells, unrestricted G_3 improvement, new enumeration implementation or novelty certificate.'}
+
+
 def main():
     if not __debug__:
         raise RuntimeError('Run without -O: exact assertions are required.')
@@ -446,11 +588,12 @@ def main():
     geometry = geometry_controls()
     directions = lattice_direction_controls()
     dyadic = dyadic_cover_controls()
+    walls = wall_product_controls(geometry)
     power, log_power = Fraction(9, 8), Fraction(-3, 8)
     assert 1 + Fraction(5, 3) * power == 4 - power == Fraction(23, 8)
     assert 1 + Fraction(5, 3) * log_power == -log_power == Fraction(3, 8)
     assert Fraction(23, 8) + Fraction(2, 3) == Fraction(85, 24)
-    sources = ('scripts/run_rational_shadow_bound_checks.py', 'scripts/run_planar_dyadic_bound_checks.py',
+    sources = ('docs/rational_shadow_bound.md','scripts/run_rational_shadow_bound_checks.py', 'scripts/run_planar_dyadic_bound_checks.py',
                'scripts/run_extremal_initial_ideals_checks.py', 'scripts/run_structural_complexity_checks.py')
     report = {'schema_version': 1, 'status': 'passed',
               'command': 'python3 -B scripts/run_rational_shadow_bound_checks.py',
@@ -461,8 +604,9 @@ def main():
               'short_integer_relations': short, 'lattice_polytope_visibility': geometry,
               'oblique_lattice_direction_controls': directions,
               'shared_lines_and_weighted_dyadic_sums': dyadic,
+              'partial_wall_product_count':walls,
               'sharp_asymptotic_growth_established': False, 'novelty_established': False, 'goal_complete': False,
-              'scope': 'Exact supporting checks for a uniform rational-shadow theorem and a three-variable upper bound. These do not settle the sharp extremal target, establish current novelty, or imply a running-time bound.',
+              'scope': 'Exact supporting checks for a uniform rational-shadow theorem and a three-variable upper bound. A partial wall-product count, explicit projection-fiber recovery and a uniform large-wall exception family are also checked. These do not settle the sharp extremal target, establish current novelty, or imply an implemented running-time bound.',
               'source_sha256': {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in sources}}
     out = ROOT / 'results/research/rational_shadow_bound_checks.json'
     out.write_text(json.dumps(report, indent=2) + '\n')
@@ -471,6 +615,7 @@ def main():
                       'short_integer_vectors': short['integer_vectors_checked'],
                       'strict_vertex_visibility_certificates': geometry['strict_short_shadow_vertex_certificates'],
                       'oblique_direction_cases': directions['cases'], 'goal_complete': False,
+                      'wall_product_fiber_checks':walls['projection_fiber_summary']['shadow_vertex_fibers'],
                       'output': str(out.relative_to(ROOT))}))
 
 

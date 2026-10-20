@@ -14627,7 +14627,7 @@
   },
   "lattice_polytope_visibility": {
     "polytope_fixtures": 5,
-    "strict_short_shadow_vertex_certificates": 28,
+    "strict_short_shadow_vertex_certificates": 34,
     "fixtures": [
       {
         "name": "cube",
@@ -16005,38 +16005,621 @@
         "name": "octahedron",
         "points": [
           [
+            -1,
+            0,
+            0
+          ],
+          [
+            0,
+            -1,
+            0
+          ],
+          [
+            0,
+            0,
+            -1
+          ],
+          [
             0,
             0,
             1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            0
           ]
         ],
-        "facets": [],
-        "vertex_visibility": [],
+        "facets": [
+          {
+            "normal": [
+              -1,
+              -1,
+              -1
+            ],
+            "level": 1,
+            "vertices": [
+              [
+                0,
+                -1,
+                0
+              ],
+              [
+                0,
+                0,
+                -1
+              ],
+              [
+                -1,
+                0,
+                0
+              ]
+            ],
+            "twice_normalized_area": 1
+          },
+          {
+            "normal": [
+              -1,
+              -1,
+              1
+            ],
+            "level": 1,
+            "vertices": [
+              [
+                0,
+                -1,
+                0
+              ],
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ]
+            ],
+            "twice_normalized_area": 1
+          },
+          {
+            "normal": [
+              -1,
+              1,
+              -1
+            ],
+            "level": 1,
+            "vertices": [
+              [
+                0,
+                0,
+                -1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                -1,
+                0,
+                0
+              ]
+            ],
+            "twice_normalized_area": 1
+          },
+          {
+            "normal": [
+              -1,
+              1,
+              1
+            ],
+            "level": 1,
+            "vertices": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ]
+            ],
+            "twice_normalized_area": 1
+          },
+          {
+            "normal": [
+              1,
+              -1,
+              -1
+            ],
+            "level": 1,
+            "vertices": [
+              [
+                0,
+                -1,
+                0
+              ],
+              [
+                0,
+                0,
+                -1
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "twice_normalized_area": 1
+          },
+          {
+            "normal": [
+              1,
+              -1,
+              1
+            ],
+            "level": 1,
+            "vertices": [
+              [
+                0,
+                -1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ]
+            ],
+            "twice_normalized_area": 1
+          },
+          {
+            "normal": [
+              1,
+              1,
+              -1
+            ],
+            "level": 1,
+            "vertices": [
+              [
+                0,
+                0,
+                -1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "twice_normalized_area": 1
+          },
+          {
+            "normal": [
+              1,
+              1,
+              1
+            ],
+            "level": 1,
+            "vertices": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ]
+            ],
+            "twice_normalized_area": 1
+          }
+        ],
+        "vertex_visibility": [
+          {
+            "vertex": [
+              -1,
+              0,
+              0
+            ],
+            "incident_normals": [
+              [
+                -1,
+                -1,
+                -1
+              ],
+              [
+                -1,
+                -1,
+                1
+              ],
+              [
+                -1,
+                1,
+                -1
+              ],
+              [
+                -1,
+                1,
+                1
+              ]
+            ],
+            "chosen_normals": [
+              [
+                -1,
+                -1,
+                -1
+              ],
+              [
+                -1,
+                -1,
+                1
+              ],
+              [
+                -1,
+                1,
+                -1
+              ]
+            ],
+            "h": 1,
+            "strict_objective": [
+              -3,
+              -1,
+              -1
+            ],
+            "short_kernel": [
+              2,
+              -3,
+              -3
+            ],
+            "kernel_bound": 3
+          },
+          {
+            "vertex": [
+              0,
+              -1,
+              0
+            ],
+            "incident_normals": [
+              [
+                -1,
+                -1,
+                -1
+              ],
+              [
+                -1,
+                -1,
+                1
+              ],
+              [
+                1,
+                -1,
+                -1
+              ],
+              [
+                1,
+                -1,
+                1
+              ]
+            ],
+            "chosen_normals": [
+              [
+                -1,
+                -1,
+                -1
+              ],
+              [
+                -1,
+                -1,
+                1
+              ],
+              [
+                1,
+                -1,
+                -1
+              ]
+            ],
+            "h": 1,
+            "strict_objective": [
+              -1,
+              -3,
+              -1
+            ],
+            "short_kernel": [
+              1,
+              0,
+              -1
+            ],
+            "kernel_bound": 3
+          },
+          {
+            "vertex": [
+              0,
+              0,
+              -1
+            ],
+            "incident_normals": [
+              [
+                -1,
+                -1,
+                -1
+              ],
+              [
+                -1,
+                1,
+                -1
+              ],
+              [
+                1,
+                -1,
+                -1
+              ],
+              [
+                1,
+                1,
+                -1
+              ]
+            ],
+            "chosen_normals": [
+              [
+                -1,
+                -1,
+                -1
+              ],
+              [
+                -1,
+                1,
+                -1
+              ],
+              [
+                1,
+                -1,
+                -1
+              ]
+            ],
+            "h": 1,
+            "strict_objective": [
+              -1,
+              -1,
+              -3
+            ],
+            "short_kernel": [
+              3,
+              3,
+              -2
+            ],
+            "kernel_bound": 3
+          },
+          {
+            "vertex": [
+              0,
+              0,
+              1
+            ],
+            "incident_normals": [
+              [
+                -1,
+                -1,
+                1
+              ],
+              [
+                -1,
+                1,
+                1
+              ],
+              [
+                1,
+                -1,
+                1
+              ],
+              [
+                1,
+                1,
+                1
+              ]
+            ],
+            "chosen_normals": [
+              [
+                -1,
+                -1,
+                1
+              ],
+              [
+                -1,
+                1,
+                1
+              ],
+              [
+                1,
+                -1,
+                1
+              ]
+            ],
+            "h": 1,
+            "strict_objective": [
+              -1,
+              -1,
+              3
+            ],
+            "short_kernel": [
+              3,
+              3,
+              2
+            ],
+            "kernel_bound": 3
+          },
+          {
+            "vertex": [
+              0,
+              1,
+              0
+            ],
+            "incident_normals": [
+              [
+                -1,
+                1,
+                -1
+              ],
+              [
+                -1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                -1
+              ],
+              [
+                1,
+                1,
+                1
+              ]
+            ],
+            "chosen_normals": [
+              [
+                -1,
+                1,
+                -1
+              ],
+              [
+                -1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                -1
+              ]
+            ],
+            "h": 1,
+            "strict_objective": [
+              -1,
+              3,
+              -1
+            ],
+            "short_kernel": [
+              3,
+              2,
+              3
+            ],
+            "kernel_bound": 3
+          },
+          {
+            "vertex": [
+              1,
+              0,
+              0
+            ],
+            "incident_normals": [
+              [
+                1,
+                -1,
+                -1
+              ],
+              [
+                1,
+                -1,
+                1
+              ],
+              [
+                1,
+                1,
+                -1
+              ],
+              [
+                1,
+                1,
+                1
+              ]
+            ],
+            "chosen_normals": [
+              [
+                1,
+                -1,
+                -1
+              ],
+              [
+                1,
+                -1,
+                1
+              ],
+              [
+                1,
+                1,
+                -1
+              ]
+            ],
+            "h": 1,
+            "strict_objective": [
+              3,
+              -1,
+              -1
+            ],
+            "short_kernel": [
+              2,
+              3,
+              3
+            ],
+            "kernel_bound": 3
+          }
+        ],
         "thresholds": [
           {
             "h": 1,
             "bad_vertices": 0,
-            "good_vertices": 0
+            "good_vertices": 6
           },
           {
             "h": 2,
             "bad_vertices": 0,
-            "good_vertices": 0
+            "good_vertices": 6
           },
           {
             "h": 4,
             "bad_vertices": 0,
-            "good_vertices": 0
+            "good_vertices": 6
           },
           {
             "h": 8,
             "bad_vertices": 0,
-            "good_vertices": 0
+            "good_vertices": 6
           },
           {
             "h": 16,
             "bad_vertices": 0,
-            "good_vertices": 0
+            "good_vertices": 6
           }
         ]
       },
@@ -18377,12 +18960,2039 @@
     "projected_ground_cover_checks": 1464,
     "cube_root_enclosures": "exact rational upper and lower bounds with denominator 4096; no floating-point comparison"
   },
+  "partial_wall_product_count": {
+    "weighted_direction_moments": [
+      {
+        "T": 1,
+        "primitive_directions_up_to_sign": 0,
+        "weighted_moment_upper_numerator": 0,
+        "denominator": 4096,
+        "uniform_rhs_lower_numerator": 6291456
+      },
+      {
+        "T": 2,
+        "primitive_directions_up_to_sign": 3,
+        "weighted_moment_upper_numerator": 24579,
+        "denominator": 4096,
+        "uniform_rhs_lower_numerator": 15851520
+      },
+      {
+        "T": 4,
+        "primitive_directions_up_to_sign": 9,
+        "weighted_moment_upper_numerator": 80121,
+        "denominator": 4096,
+        "uniform_rhs_lower_numerator": 39942144
+      },
+      {
+        "T": 8,
+        "primitive_directions_up_to_sign": 37,
+        "weighted_moment_upper_numerator": 367361,
+        "denominator": 4096,
+        "uniform_rhs_lower_numerator": 100663296
+      },
+      {
+        "T": 16,
+        "primitive_directions_up_to_sign": 121,
+        "weighted_moment_upper_numerator": 1323293,
+        "denominator": 4096,
+        "uniform_rhs_lower_numerator": 253648896
+      },
+      {
+        "T": 32,
+        "primitive_directions_up_to_sign": 421,
+        "weighted_moment_upper_numerator": 5096045,
+        "denominator": 4096,
+        "uniform_rhs_lower_numerator": 639123456
+      },
+      {
+        "T": 64,
+        "primitive_directions_up_to_sign": 1237,
+        "weighted_moment_upper_numerator": 16489229,
+        "denominator": 4096,
+        "uniform_rhs_lower_numerator": 1610612736
+      },
+      {
+        "T": 128,
+        "primitive_directions_up_to_sign": 3529,
+        "weighted_moment_upper_numerator": 52069565,
+        "denominator": 4096,
+        "uniform_rhs_lower_numerator": 4058382336
+      }
+    ],
+    "projection_fiber_summary": {
+      "polytope_kernel_checks": 401,
+      "shadow_vertex_fibers": 1550,
+      "collapsed_edge_fibers": 64,
+      "two_endpoint_oracle_checks": 3100,
+      "positive_endpoint_objectives": 296
+    },
+    "projection_fiber_fixtures": [
+      {
+        "name": "cube",
+        "vertices": 8,
+        "edges": 12,
+        "kernels": 49
+      },
+      {
+        "name": "skew_cube",
+        "vertices": 8,
+        "edges": 12,
+        "kernels": 50
+      },
+      {
+        "name": "octahedron",
+        "vertices": 6,
+        "edges": 12,
+        "kernels": 49
+      },
+      {
+        "name": "non_simple_pyramid",
+        "vertices": 5,
+        "edges": 8,
+        "kernels": 52
+      },
+      {
+        "name": "integer_cloud",
+        "vertices": 7,
+        "edges": 15,
+        "kernels": 54
+      },
+      {
+        "name": "segment",
+        "vertices": 2,
+        "edges": 1,
+        "kernels": 49
+      },
+      {
+        "name": "point",
+        "vertices": 1,
+        "edges": 0,
+        "kernels": 49
+      },
+      {
+        "name": "planar_square",
+        "vertices": 4,
+        "edges": 4,
+        "kernels": 49
+      }
+    ],
+    "collapsed_fiber_examples": [
+      {
+        "fixture": "cube",
+        "kernel": [
+          0,
+          0,
+          1
+        ],
+        "shadow_vertex": [
+          -1,
+          -1
+        ],
+        "fiber": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "objective": [
+          1,
+          1,
+          0
+        ],
+        "epsilon": "1/5"
+      },
+      {
+        "fixture": "cube",
+        "kernel": [
+          0,
+          0,
+          1
+        ],
+        "shadow_vertex": [
+          0,
+          -1
+        ],
+        "fiber": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ]
+        ],
+        "objective": [
+          -1,
+          1,
+          0
+        ],
+        "epsilon": "1/5"
+      },
+      {
+        "fixture": "cube",
+        "kernel": [
+          0,
+          0,
+          1
+        ],
+        "shadow_vertex": [
+          0,
+          0
+        ],
+        "fiber": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "objective": [
+          -1,
+          -1,
+          0
+        ],
+        "epsilon": "1/5"
+      },
+      {
+        "fixture": "cube",
+        "kernel": [
+          0,
+          0,
+          1
+        ],
+        "shadow_vertex": [
+          -1,
+          0
+        ],
+        "fiber": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ],
+        "objective": [
+          1,
+          -1,
+          0
+        ],
+        "epsilon": "1/5"
+      },
+      {
+        "fixture": "cube",
+        "kernel": [
+          0,
+          1,
+          0
+        ],
+        "shadow_vertex": [
+          -1,
+          -1
+        ],
+        "fiber": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "objective": [
+          1,
+          0,
+          1
+        ],
+        "epsilon": "1/5"
+      },
+      {
+        "fixture": "cube",
+        "kernel": [
+          0,
+          1,
+          0
+        ],
+        "shadow_vertex": [
+          0,
+          -1
+        ],
+        "fiber": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            1
+          ]
+        ],
+        "objective": [
+          -1,
+          0,
+          1
+        ],
+        "epsilon": "1/5"
+      },
+      {
+        "fixture": "cube",
+        "kernel": [
+          0,
+          1,
+          0
+        ],
+        "shadow_vertex": [
+          0,
+          0
+        ],
+        "fiber": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "objective": [
+          -1,
+          0,
+          -1
+        ],
+        "epsilon": "1/5"
+      },
+      {
+        "fixture": "cube",
+        "kernel": [
+          0,
+          1,
+          0
+        ],
+        "shadow_vertex": [
+          -1,
+          0
+        ],
+        "fiber": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        "objective": [
+          1,
+          0,
+          -1
+        ],
+        "epsilon": "1/5"
+      }
+    ],
+    "fiber_ledger_sha256": "0d95faec060e5e27a724858a3108f674b0a69e461544eb1651dfc6f9f15ca267",
+    "same_box_direction_checks": 53769,
+    "complete_central_axis_cells": [
+      {
+        "n": 6,
+        "allocation": [
+          1,
+          1,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 6,
+        "allocation": [
+          1,
+          2,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 6,
+        "allocation": [
+          1,
+          3,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 6,
+        "allocation": [
+          2,
+          1,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 6,
+        "allocation": [
+          2,
+          2,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 6,
+        "allocation": [
+          3,
+          1,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 9,
+        "allocation": [
+          1,
+          1,
+          6
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 9,
+        "allocation": [
+          1,
+          2,
+          5
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 9,
+        "allocation": [
+          1,
+          3,
+          4
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 9,
+        "allocation": [
+          1,
+          4,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 9,
+        "allocation": [
+          1,
+          5,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 9,
+        "allocation": [
+          1,
+          6,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 9,
+        "allocation": [
+          2,
+          1,
+          5
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 9,
+        "allocation": [
+          2,
+          2,
+          4
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 12
+      },
+      {
+        "n": 9,
+        "allocation": [
+          2,
+          3,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 9,
+        "allocation": [
+          2,
+          4,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 12
+      },
+      {
+        "n": 9,
+        "allocation": [
+          2,
+          5,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 9,
+        "allocation": [
+          3,
+          1,
+          4
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 9,
+        "allocation": [
+          3,
+          2,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 9,
+        "allocation": [
+          3,
+          3,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 9,
+        "allocation": [
+          3,
+          4,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 9,
+        "allocation": [
+          4,
+          1,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 9,
+        "allocation": [
+          4,
+          2,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 12
+      },
+      {
+        "n": 9,
+        "allocation": [
+          4,
+          3,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 9,
+        "allocation": [
+          5,
+          1,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 9,
+        "allocation": [
+          5,
+          2,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 9,
+        "allocation": [
+          6,
+          1,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 12,
+        "allocation": [
+          1,
+          1,
+          9
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 12,
+        "allocation": [
+          1,
+          2,
+          8
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 12,
+        "allocation": [
+          1,
+          3,
+          7
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 10
+      },
+      {
+        "n": 12,
+        "allocation": [
+          1,
+          4,
+          6
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 12,
+        "allocation": [
+          1,
+          5,
+          5
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 14
+      },
+      {
+        "n": 12,
+        "allocation": [
+          1,
+          6,
+          4
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 12,
+        "allocation": [
+          1,
+          7,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 10
+      },
+      {
+        "n": 12,
+        "allocation": [
+          1,
+          8,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 12,
+        "allocation": [
+          1,
+          9,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 12,
+        "allocation": [
+          2,
+          1,
+          8
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 12,
+        "allocation": [
+          2,
+          2,
+          7
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 10
+      },
+      {
+        "n": 12,
+        "allocation": [
+          2,
+          3,
+          6
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 12,
+        "allocation": [
+          2,
+          4,
+          5
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 12,
+        "allocation": [
+          2,
+          5,
+          4
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 12,
+        "allocation": [
+          2,
+          6,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 12,
+        "allocation": [
+          2,
+          7,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 10
+      },
+      {
+        "n": 12,
+        "allocation": [
+          2,
+          8,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 12,
+        "allocation": [
+          3,
+          1,
+          7
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 10
+      },
+      {
+        "n": 12,
+        "allocation": [
+          3,
+          2,
+          6
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 12,
+        "allocation": [
+          3,
+          3,
+          5
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 12,
+        "allocation": [
+          3,
+          4,
+          4
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 12,
+        "allocation": [
+          3,
+          5,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 12,
+        "allocation": [
+          3,
+          6,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 12,
+        "allocation": [
+          3,
+          7,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 10
+      },
+      {
+        "n": 12,
+        "allocation": [
+          4,
+          1,
+          6
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 12,
+        "allocation": [
+          4,
+          2,
+          5
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 12,
+        "allocation": [
+          4,
+          3,
+          4
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 12,
+        "allocation": [
+          4,
+          4,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 12,
+        "allocation": [
+          4,
+          5,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 12,
+        "allocation": [
+          4,
+          6,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 12,
+        "allocation": [
+          5,
+          1,
+          5
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 14
+      },
+      {
+        "n": 12,
+        "allocation": [
+          5,
+          2,
+          4
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 12,
+        "allocation": [
+          5,
+          3,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 12,
+        "allocation": [
+          5,
+          4,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 12,
+        "allocation": [
+          5,
+          5,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 14
+      },
+      {
+        "n": 12,
+        "allocation": [
+          6,
+          1,
+          4
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 12,
+        "allocation": [
+          6,
+          2,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 12,
+        "allocation": [
+          6,
+          3,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 12,
+        "allocation": [
+          6,
+          4,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 12,
+        "allocation": [
+          7,
+          1,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 10
+      },
+      {
+        "n": 12,
+        "allocation": [
+          7,
+          2,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 10
+      },
+      {
+        "n": 12,
+        "allocation": [
+          7,
+          3,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 10
+      },
+      {
+        "n": 12,
+        "allocation": [
+          8,
+          1,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 12,
+        "allocation": [
+          8,
+          2,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 12,
+        "allocation": [
+          9,
+          1,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          1,
+          1,
+          13
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          1,
+          2,
+          12
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          1,
+          3,
+          11
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 10
+      },
+      {
+        "n": 16,
+        "allocation": [
+          1,
+          4,
+          10
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          1,
+          5,
+          9
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          1,
+          6,
+          8
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 8
+      },
+      {
+        "n": 16,
+        "allocation": [
+          1,
+          7,
+          7
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 18
+      },
+      {
+        "n": 16,
+        "allocation": [
+          1,
+          8,
+          6
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 8
+      },
+      {
+        "n": 16,
+        "allocation": [
+          1,
+          9,
+          5
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          1,
+          10,
+          4
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          1,
+          11,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 10
+      },
+      {
+        "n": 16,
+        "allocation": [
+          1,
+          12,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          1,
+          13,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          2,
+          1,
+          12
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          2,
+          2,
+          11
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 12
+      },
+      {
+        "n": 16,
+        "allocation": [
+          2,
+          3,
+          10
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          2,
+          4,
+          9
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 8
+      },
+      {
+        "n": 16,
+        "allocation": [
+          2,
+          5,
+          8
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 8
+      },
+      {
+        "n": 16,
+        "allocation": [
+          2,
+          6,
+          7
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          2,
+          7,
+          6
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          2,
+          8,
+          5
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 8
+      },
+      {
+        "n": 16,
+        "allocation": [
+          2,
+          9,
+          4
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 8
+      },
+      {
+        "n": 16,
+        "allocation": [
+          2,
+          10,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          2,
+          11,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 12
+      },
+      {
+        "n": 16,
+        "allocation": [
+          2,
+          12,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          3,
+          1,
+          11
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 10
+      },
+      {
+        "n": 16,
+        "allocation": [
+          3,
+          2,
+          10
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          3,
+          3,
+          9
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 20
+      },
+      {
+        "n": 16,
+        "allocation": [
+          3,
+          4,
+          8
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          3,
+          5,
+          7
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          3,
+          6,
+          6
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 12
+      },
+      {
+        "n": 16,
+        "allocation": [
+          3,
+          7,
+          5
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          3,
+          8,
+          4
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          3,
+          9,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 20
+      },
+      {
+        "n": 16,
+        "allocation": [
+          3,
+          10,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          3,
+          11,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 10
+      },
+      {
+        "n": 16,
+        "allocation": [
+          4,
+          1,
+          10
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          4,
+          2,
+          9
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 8
+      },
+      {
+        "n": 16,
+        "allocation": [
+          4,
+          3,
+          8
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          4,
+          4,
+          7
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          4,
+          5,
+          6
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          4,
+          6,
+          5
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          4,
+          7,
+          4
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          4,
+          8,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          4,
+          9,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 8
+      },
+      {
+        "n": 16,
+        "allocation": [
+          4,
+          10,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          5,
+          1,
+          9
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          5,
+          2,
+          8
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 8
+      },
+      {
+        "n": 16,
+        "allocation": [
+          5,
+          3,
+          7
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          5,
+          4,
+          6
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          5,
+          5,
+          5
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 42
+      },
+      {
+        "n": 16,
+        "allocation": [
+          5,
+          6,
+          4
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          5,
+          7,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          5,
+          8,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 8
+      },
+      {
+        "n": 16,
+        "allocation": [
+          5,
+          9,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          6,
+          1,
+          8
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 8
+      },
+      {
+        "n": 16,
+        "allocation": [
+          6,
+          2,
+          7
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          6,
+          3,
+          6
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 12
+      },
+      {
+        "n": 16,
+        "allocation": [
+          6,
+          4,
+          5
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          6,
+          5,
+          4
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          6,
+          6,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 12
+      },
+      {
+        "n": 16,
+        "allocation": [
+          6,
+          7,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          6,
+          8,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 8
+      },
+      {
+        "n": 16,
+        "allocation": [
+          7,
+          1,
+          7
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 18
+      },
+      {
+        "n": 16,
+        "allocation": [
+          7,
+          2,
+          6
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          7,
+          3,
+          5
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          7,
+          4,
+          4
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          7,
+          5,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          7,
+          6,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          7,
+          7,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 18
+      },
+      {
+        "n": 16,
+        "allocation": [
+          8,
+          1,
+          6
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 8
+      },
+      {
+        "n": 16,
+        "allocation": [
+          8,
+          2,
+          5
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 8
+      },
+      {
+        "n": 16,
+        "allocation": [
+          8,
+          3,
+          4
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          8,
+          4,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          8,
+          5,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 8
+      },
+      {
+        "n": 16,
+        "allocation": [
+          8,
+          6,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 8
+      },
+      {
+        "n": 16,
+        "allocation": [
+          9,
+          1,
+          5
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          9,
+          2,
+          4
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 8
+      },
+      {
+        "n": 16,
+        "allocation": [
+          9,
+          3,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 20
+      },
+      {
+        "n": 16,
+        "allocation": [
+          9,
+          4,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 8
+      },
+      {
+        "n": 16,
+        "allocation": [
+          9,
+          5,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          10,
+          1,
+          4
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          10,
+          2,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          10,
+          3,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          10,
+          4,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      },
+      {
+        "n": 16,
+        "allocation": [
+          11,
+          1,
+          3
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 10
+      },
+      {
+        "n": 16,
+        "allocation": [
+          11,
+          2,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 12
+      },
+      {
+        "n": 16,
+        "allocation": [
+          11,
+          3,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 10
+      },
+      {
+        "n": 16,
+        "allocation": [
+          12,
+          1,
+          2
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          12,
+          2,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 4
+      },
+      {
+        "n": 16,
+        "allocation": [
+          13,
+          1,
+          1
+        ],
+        "interior_facets": 6,
+        "minimum_primitive_wall_product": 6
+      }
+    ],
+    "uniform_axis_gcd_sieve_controls": [
+      {
+        "n": 16,
+        "central_rectangle_allocations": 9,
+        "good_allocations_at_G_4096": 9,
+        "gcd_cutoff": 4096
+      },
+      {
+        "n": 32,
+        "central_rectangle_allocations": 25,
+        "good_allocations_at_G_4096": 25,
+        "gcd_cutoff": 4096
+      },
+      {
+        "n": 64,
+        "central_rectangle_allocations": 81,
+        "good_allocations_at_G_4096": 81,
+        "gcd_cutoff": 4096
+      },
+      {
+        "n": 128,
+        "central_rectangle_allocations": 289,
+        "good_allocations_at_G_4096": 289,
+        "gcd_cutoff": 4096
+      },
+      {
+        "n": 256,
+        "central_rectangle_allocations": 1089,
+        "good_allocations_at_G_4096": 1089,
+        "gcd_cutoff": 4096
+      }
+    ],
+    "scope": "Uniform partial count O(n*T^(4/3)*log(n+1)) for initial cells incident to an interior wall with primitive direction product at most T. Exact fiber recovery includes endpoints of collapsed edges. The known three-pole quotient has quadratically many interior cells whose every primitive wall product is Omega(n^2). No bound for all remaining cells, unrestricted G_3 improvement, new enumeration implementation or novelty certificate."
+  },
   "sharp_asymptotic_growth_established": false,
   "novelty_established": false,
   "goal_complete": false,
-  "scope": "Exact supporting checks for a uniform rational-shadow theorem and a three-variable upper bound. These do not settle the sharp extremal target, establish current novelty, or imply a running-time bound.",
+  "scope": "Exact supporting checks for a uniform rational-shadow theorem and a three-variable upper bound. A partial wall-product count, explicit projection-fiber recovery and a uniform large-wall exception family are also checked. These do not settle the sharp extremal target, establish current novelty, or imply an implemented running-time bound.",
   "source_sha256": {
-    "scripts/run_rational_shadow_bound_checks.py": "b292ce76d1b8d6aa812fff56afad56346c274fc65df9c2d1179318547b5c1a68",
+    "docs/rational_shadow_bound.md": "8869f63ae2fd2e4371e65ebf8158d3ccbb9aaef254ba2fd637688e665e98458a",
+    "scripts/run_rational_shadow_bound_checks.py": "34a9af3d9382ec8cdfbea45fe5304f43bfe955191285bdabd42f2f92c87cbe82",
     "scripts/run_planar_dyadic_bound_checks.py": "27642dbe7cf5c21e0eacb671b644bd00b97e758422d341cffa82c16df0b224bc",
     "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
     "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f"

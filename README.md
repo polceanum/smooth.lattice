@@ -69,6 +69,13 @@ It bounds rational matroid shadows by their normalized integer height,
 then uses short integer relations to cover vertices with bounded facet
 normals. This is a uniform upper-bound improvement; sharp growth,
 current novelty and the goal's publication assessment remain open.
+A product-threshold refinement now counts every initial cell incident
+to a wall with primitive direction product at most `T` by
+`O(n*T^(4/3)*log(n+1))`, with an explicit support-oracle reduction.
+For `T=O(n)` this is `O(n^(7/3)*log n)` for that part of the fan.
+The remaining cells need a separate bound: the known rational-curve
+family already has quadratically many interior cells whose every wall
+has quadratic primitive product. No unrestricted improvement follows yet.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count
