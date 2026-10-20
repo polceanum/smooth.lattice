@@ -174,6 +174,14 @@ explicit output still has size `n`. A classical corank/box bound also
 excludes the equal-period three-circuit extension from polynomial
 separation. The equal-period phase count remains conjectural; distinct
 prime periods require a different coherence argument.
+The [mixed-period price study](docs/cyclotomic_price_regions.md) proves
+that their smallest common coordinate box has exactly `n^2` monomials,
+so the global small-box shortcut cannot close that family. A general
+finite-algebra tower theorem gives an `O(n)` common weight list in each
+cheap-coordinate region, over every field. Comparable periods with bounded
+price ratios have only `O(n^2)` states by a classical box argument.
+The intermediate price regimes remain open; no polynomial separation or
+publication conclusion follows from these regional exclusions.
 The additive prime-power class is now classified separately: at length
 `n=q^k`, every initial ideal is a prime-power box and the sharp maximum
 is `binomial(k+d-1,d-1)`. The proof uses established Frobenius reduction;

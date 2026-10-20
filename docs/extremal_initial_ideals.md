@@ -2128,6 +2128,72 @@ consequence, strongest-primary comparison and honest-paper requirements
 remain unchanged. None is replaced by the compressed algorithm or the
 finite count conjecture.
 
+## Mixed periods: exact box obstruction and a general tower region
+
+The [price-region continuation](cyclotomic_price_regions.md) gives a
+structural test of the remaining three-prime construction before full-fan
+experiments. It works more generally with pairwise coprime periods
+$r,s,t$ over any field, including characteristics dividing the periods.
+For $A=K[U,V,W]/(S_r(U),S_s(V),S_t(W))$ with generators
+$X=UV,Y=UW,Z=VW$, the quotient length is
+$n=(r-1)(s-1)(t-1)$. The three pure-axis minimal-polynomial degrees
+are $(r-1)(s-1),(r-1)(t-1),(s-1)(t-1)$. Each pure extent occurs
+in a positive initial standard set, so their smallest common coordinate
+box has **exactly $n^2$ monomials**. This rules out a common-$O(n)$-box
+exclusion, without asserting a lower bound on the number of initials.
+
+There is a coefficient-independent regional theorem beyond this example.
+If $F=K[x]/f$ has dimension $D$, $u,v\in F$ are units, and
+$A=F[T]/g$ is a monic degree-$R$ extension, use generators
+$X=x,Y=uT,Z=vT$. In the strict region
+$\min(w_Y,w_Z)>(D-1)w_X$, each $T$-degree block finishes before
+the next one starts. Its selected columns are the greedy basis of
+$x^a(v/u)^c$ for $a<D,c\le k$, with cost $a+\rho c$ and
+$\rho=(w_Z-w_Y)/w_X$. The only possible breakpoints are
+$j/h$, $|j|<D,1\le h<R$. Consequently fewer than $2n=2DR$
+integer weights of height at most $2n$ cover the whole region when
+$D,R\ge2$. The edge cases are stated separately. The result needs
+neither a field extension nor separability; a coefficient-dependent
+monic $g$ and nilpotents in $F$ do not change its proof.
+The linear order is sharp along an explicit family of length $n=2D$:
+take $f=\prod_{i=0}^{D-1}(x-2^i)$, $g=T^2$, $u=1$, $v=x^D$.
+Ordinary Vandermonde interpolation makes every $D$ of its $2D$
+degree-one columns independent. The fan has exactly $D+1$ states,
+with breakpoints $\rho=D-2j-1$. This proves sharpness of the regional
+order, not a lower bound above the generic scale.
+
+This covers all three sufficiently cheap-coordinate regions of the
+mixed circuit product with only $O(n)$ states in total. Also every
+periodic label has a representative in $[0,r+s+t]^3$, by rounding
+in the explicit index-four kernel sublattice. For comparable periods
+and bounded price ratios this bounds all relevant standard sets by a
+common $O(n)$-element box. The classical dual-profile vertex estimate
+then gives $O(n^2)$ states in that region. The global $n^2$-element
+box and the regional $O(n)$-element box have different quantifiers.
+
+A polynomial separation in the comparable-period family would therefore
+have to arise with unbounded price ratios **outside** the cheap-coordinate
+regions. The range is nonempty: balanced periods of size $q$ and prices
+proportional to $(1,q,q)$ lie there for large $q$. The next question is
+how to control tower blocks before their previous layers have finished,
+or prove many coherent exchanges in this specific intermediate range.
+Unbalanced periods remain a separate case. Abstract simplicial-tree
+counts still provide no coherent lower bound.
+
+The new controls compare 1,033 algebraic predictions with a separate frontier
+greedy algorithm using ordinary monic polynomial multiplication, and
+check 2,067 strict minimal-border relations. They include eight explicit
+linear-sharpness models with additional controls outside the tower region,
+nonreduced coefficient-dependent towers and complete rational-interval coverage
+for specified bounded regions, not a full-fan search. They also check
+615 constructive label representatives and 36 pure-axis ranks, including
+period two and a rank-one tower extension.
+The circuit/simplicial dictionary, greedy dictionary and final volume
+bound remain established inputs. Priority of the regional common-list
+theorem and the strongest-current unrestricted comparison are unverified.
+The full objective, further-consequence requirement and honest-paper
+criterion are unchanged; none is completed by these exclusions.
+
 ## Reproduction
 
 From the repository root:
@@ -2139,6 +2205,7 @@ python3 -B scripts/run_bilinear_rectangle_checks.py
 python3 -B scripts/run_rectangle_boundary_checks.py
 python3 -B scripts/run_bilinear_cographic_checks.py
 python3 -B scripts/run_cographic_structure_checks.py
+python3 -B scripts/run_cyclotomic_price_checks.py
 python3 -B scripts/run_additive_initial_ideals_checks.py
 python3 -B scripts/run_planar_dyadic_bound_checks.py
 python3 -B scripts/run_rational_shadow_bound_checks.py
