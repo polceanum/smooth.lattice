@@ -219,6 +219,18 @@ the entire deep-relation family as a polynomial-amplification route.
 The surface, freeness and cone mechanisms are established mathematics;
 priority of the classification, unrestricted `G_3` and the publication
 assessment remain open.
+For [higher interaction order](docs/higher_interaction_fans.md), the family
+`(x^2+y^2+z^2+x*y*z^r)+m^(s+1)` now obeys the all-field bound
+`O(n^(9/4)/r)`, uniformly in both parameters, with `n=(s+1)^2`.
+Thus `r>=sqrt(s)` cannot give a polynomial gain over the quadratic scale.
+Its boundary fan has an exact Farey count, but an all-field cone witness
+refutes the proposed equal-price-plane cover for the full ideal.
+An explicit infinite subfamily realizes `Z/m` as torsion of a coherent
+price-prefix quotient for every integer `m>=2`; its standard set changes
+in precisely the characteristics dividing `m` at that prefix.
+The algebra remains integrally free. This arithmetic change does not
+establish a larger fan: the same subfamily already has an `O(n^2)` bound.
+The full small-order regime, current priority and the main goal remain open.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count
