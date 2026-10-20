@@ -1920,6 +1920,285 @@ def pooled_block_controls():
             'scope': 'Complete one-dimensional trace, not a whole fan. Short-block rank-q and rank-(q-1) signatures, critical walls, compact and global logarithmic line-curve branches and integer-product counts are checked. Three actual pooled bases have exact point certificates. Uniform bounded-width theorems are proved separately.'}
 
 
+def three_drop_controls():
+    """Independent grids check the two-step hook bound and sharp reduction."""
+    def partitions(n, maximum):
+        if not n:
+            yield ()
+        for first in range(min(n, maximum), 0, -1):
+            for rest in partitions(n - first, first):
+                yield (first,) + rest
+
+    profiles = [p for n in range(1, 13) for p in partitions(n, n)]
+    counts = defaultdict(int)
+    for weight in product(range(1, 6), repeat=3):
+        x, y, z = weight
+        for cost in range(25):
+            axes = sorted([0] + [a*x for a in range(1, cost//x + 1)] +
+                          [c*z for c in range(1, cost//z + 1)])
+            hooks = [0] * 12
+            for i, price in enumerate(axes):
+                for b in range((cost - price)//y + 1):
+                    if min(i, b) < 12:
+                        hooks[min(i, b)] += 1
+            for s, value in enumerate(hooks):
+                if s + 1 < len(hooks) and hooks[s + 1]:
+                    assert value - hooks[s + 1] >= 2
+                    counts['one_step_hook_inequalities'] += 1
+                if s + 2 < len(hooks) and hooks[s + 2]:
+                    assert value - hooks[s + 2] >= 6
+                    counts['two_step_hook_inequalities'] += 1
+            d = [0]
+            for value in hooks:
+                d.append(d[-1] + value)
+            assert d[1:] == subcurve_prefix_counts(12, weight, cost)
+            counts['direct_hook_grids'] += 1
+            for sizes in profiles:
+                r, capacities = len(sizes), [0]
+                for size in sizes:
+                    capacities.append(capacities[-1] + size)
+                values = [a - b for a, b in zip(capacities, d)]
+                jumps = [s for s in range(1, r) if sizes[s - 1] - sizes[s] > 3]
+                assert max(values) == max(values[s] for s in [0, *jumps, r])
+                if not jumps:
+                    assert max(values) == max(0, values[-1])
+                    counts['three_drop_endpoint_queries'] += 1
+                counts['three_drop_reduced_rank_queries'] += 1
+    return {'counts': dict(counts), 'lengths': [1, 12], 'integer_prices': [1, 5],
+            'integer_costs': [0, 24],
+            'scope': 'The uniform proof strengthens the old drop-two reduction: only adjacent size drops greater than three can add capacity constraints. The drop-four critical family below makes this universal integer threshold sharp. This does not settle unrestricted G_3.'}
+
+
+def critical_point_control():
+    """Actual point ideal, strict border certificate and all critical bases."""
+    sizes, r, M, weight = (14, 10, 6, 2), 4, 7, (117, 36, 52)
+    n, prime, h = sum(sizes), 1000003, weight[1]
+    axes, a, c = [(0, (0, 0, 0))], 1, 1
+    while len(axes) <= M + 2:
+        if a*weight[0] < c*weight[2]:
+            axes.append((a*weight[0], (a, 0, 0)))
+            a += 1
+        else:
+            axes.append((c*weight[2], (0, 0, c)))
+            c += 1
+    cheap = tuple(sorted((a[0], b, a[2]) for i, (price, a) in enumerate(axes)
+                         for b in range(M + 1) if price + b*h < M*h and min(i, b) < r))
+    critical = tuple((axes[i][1][0], M - i, axes[i][1][2])
+                     for s in range(1, r + 1) for i in (s - 1, M - s + 1))
+    feasible = [B for B in combinations(range(2*r), r)
+                if all(sum(i < 2*s for i in B) >= s for s in range(r + 1))]
+    chosen = min(feasible, key=lambda B: sum(dot(critical[i], weight) for i in B))
+    basis = cheap + tuple(critical[i] for i in chosen)
+    assert len(cheap) == n - r and len(basis) == n and len(feasible) == 42
+    rng = Random(20261020 + 4400)
+    for attempt in range(1, 31):
+        nodes = rng.sample(range(2, prime), n)
+        components, start = [], 0
+        for j, size in enumerate(sizes, 1):
+            components.extend((j, node) for node in nodes[start:start + size])
+            start += size
+
+        def residue(a):
+            return tuple(pow(t, a[0] - a[1], prime)*pow(j, a[1], prime)*
+                         pow(t - 1, -a[2], prime) % prime for j, t in components)
+
+        columns = {a: residue(a) for a in set(cheap + critical)}
+        try:
+            inverse = field_inverse(basis, columns, prime)
+        except StopIteration:
+            continue
+        break
+    else:
+        raise AssertionError('no critical harmonic point witness')
+    border = sorted(minimal_excluded_border(basis))
+    coefficients = 0
+    for a in border:
+        column = residue(a)
+        coordinates = [sum(x*y for x, y in zip(row, column)) % prime for row in inverse]
+        assert all(sum(coordinates[j]*columns[b][i] for j, b in enumerate(basis)) % prime == column[i]
+                   for i in range(n))
+        assert all(dot(a, weight) > dot(b, weight) for b, value in zip(basis, coordinates) if value)
+        coefficients += sum(bool(value) for value in coordinates)
+    pool = tuple((a[0], b, a[2]) for _, a in axes for b in range(M + 1)
+                 if dot((a[0], b, a[2]), weight) <= 266)
+    rank = column_prefix_ranks(pool, {a: residue(a) for a in pool}, prime)[-1]
+    assert rank == 31 and subcurve_prefix_counts(r, weight, 266)[-1] == n
+    # A separate all-subset comparison, not just the positive greedy basis.
+    projected = {i: tuple(sum(x*y for x, y in zip(row, columns[a])) % prime
+                         for row in inverse[len(cheap):]) for i, a in enumerate(critical)}
+    actual, mismatches = [], []
+    for B in combinations(range(2*r), r):
+        actual_rank = column_prefix_ranks(B, projected, prime)[-1]
+        if actual_rank == r:
+            actual.append(B)
+        if (actual_rank == r) != (B in feasible):
+            mismatches.append({'subset': B, 'actual_rank': actual_rank, 'auxiliary_basis': B in feasible})
+    assert not mismatches and len(actual) == 42
+    start, blocks = 0, []
+    for size in sizes:
+        blocks.append(nodes[start:start + size])
+        start += size
+    return {'component_sizes': sizes, 'length': n, 'weight': weight, 'cost': 266,
+            'harmonic_ratio': '4/13', 'fractional_cost': '7/18',
+            'prefix_rank': rank, 'carrier_truncation_rank': n,
+            'characteristic': prime, 'component_scalars': list(range(1, r + 1)),
+            'nodes_by_component': blocks, 'generic_sample_attempts': attempt,
+            'common_cheaper_monomials': cheap, 'critical_pairs_in_layer_order': critical,
+            'selected_critical_indices': chosen, 'selected': basis,
+            'minimal_initial_generators': border, 'minimal_border_relations': len(border),
+            'strictly_lower_nonzero_coefficients': coefficients,
+            'contracted_critical_subsets': comb(2*r, r), 'actual_critical_bases': len(actual),
+            'auxiliary_critical_bases': len(feasible), 'critical_basis_mismatches': mismatches,
+            'scope': 'Invertible evaluation basis and strict vanishing border relations certify this actual initial ideal. Raw evaluation independently gives the rank defect. All 70 critical four-subsets agree with the shifted auxiliary matroid in this fixture; that finite agreement is not a uniform identification of arbitrary residue subsets.'}
+
+
+def critical_rotation_controls():
+    """Exact merged axes, rotation coding, classical shifted model and family."""
+    counts, family = defaultdict(int), []
+    ratios = ((101, 257), (99, 263), (17, 271), (149, 277))
+    for r, last, (A, D) in product(range(1, 9), range(1, 9), ratios):
+        B, sizes = D - A, tuple(last + 4*(r - s) for s in range(1, r + 1))
+        n, h = sum(sizes), A*B
+        weight = (D*B, h, D*A)
+        limit = 2*r + last + 3
+        axes = sorted([0] + [i*weight[j] for j in (0, 2) for i in range(1, limit + 2)])[:limit + 1]
+        epsilon = []
+        for i, price in enumerate(axes):
+            x = i*A % D
+            e = min(Fraction(x, B), Fraction(D - x, A))
+            assert Fraction(price, h) == i + e
+            epsilon.append(e)
+            counts['merged_axis_tent_identities'] += 1
+        exceptional = 2*r + last//2 - 2
+        queries = {(M, theta) for M in range(2*r + last + 3)
+                   for theta in (Fraction(0), Fraction(1, 3), Fraction(1, 2), Fraction(2, 3))}
+        if last % 2 == 0:
+            events = sorted({Fraction(0), Fraction(1), *epsilon[:exceptional + 1]})
+            queries.update((exceptional, e) for e in events if e < 1)
+            queries.update((exceptional, (a + b)/2) for a, b in zip(events, events[1:]))
+            cheap = subcurve_prefix_counts(r, weight, exceptional*h - 1)
+            old = 0
+            for size, d in zip(sizes, cheap):
+                assert d - old == size - 1
+                old = d
+            critical = [(i, exceptional - i) for s in range(1, r + 1)
+                        for i in (s - 1, exceptional - s + 1)]
+            assert len(set(critical)) == 2*r and cheap[-1] == n - r
+            assert all(exceptional*h <= axes[i] + b*h < (exceptional + 1)*h for i, b in critical)
+            counts['critical_pair_and_contraction_fixtures'] += 1
+        capacities = [0]
+        for size in sizes:
+            capacities.append(capacities[-1] + size)
+        for M, theta in sorted(queries):
+            scale = theta.denominator
+            cost = (M*scale + theta.numerator)*h
+            scaled = tuple(scale*w for w in weight)
+            hooks = [0]*r
+            for i, price in enumerate(axes[:M + 1]):
+                for b in range((cost - scale*price)//(scale*h) + 1):
+                    if min(i, b) < r:
+                        hooks[min(i, b)] += 1
+            d = [0]
+            for value in hooks:
+                d.append(d[-1] + value)
+            assert d[1:] == subcurve_prefix_counts(r, scaled, cost)
+            S = []
+            for i in range(M + 1):
+                value = epsilon[i] <= theta
+                angle = (Fraction((i*scale + theta.numerator)*A, scale*D)) % 1
+                assert value == (angle <= theta)
+                S.append(int(value))
+                counts['rotation_interval_identities'] += 1
+            for s, value in enumerate(hooks, 1):
+                if value:
+                    assert value == 2*M - 4*s + 3 + S[s - 1] + S[M - s + 1]
+                    counts['harmonic_hook_identities'] += 1
+            H = [a - b for a, b in zip(capacities, d)]
+            expected = n - max(H)
+            assert generic_multicurve_prefix_rank(component_capacity_profile(sizes), scaled, cost) == expected
+            if last % 2 or M != exceptional:
+                assert max(H) == max(0, H[-1])
+                counts['outside_exceptional_slab_endpoint_queries'] += 1
+            else:
+                walk = [0]
+                for i in range(r):
+                    walk.append(walk[-1] + 1 - S[i] - S[M - i])
+                assert H == walk
+                counts['complete_critical_slab_queries'] += 1
+            counts['independent_grid_rank_queries'] += 1
+    # Enumerate every subset as well as every basis of the small shifted models.
+    shifted = []
+    for r in range(1, 7):
+        bases = [sum(1 << i for i in indices) for indices in combinations(range(2*r), r)
+                 if all(sum(i < 2*s for i in indices) >= s for s in range(r + 1))]
+        catalan = comb(2*r + 2, r + 1)//(r + 2)
+        assert len(bases) == catalan
+        for mask in range(1 << (2*r)):
+            rank = max((mask & basis).bit_count() for basis in bases)
+            assert rank == min(r - s + (mask & ((1 << (2*s)) - 1)).bit_count()
+                               for s in range(r + 1))
+            counts['classical_shifted_subset_ranks'] += 1
+        shifted.append({'rank': r, 'elements': 2*r, 'bases': len(bases),
+                        'all_subsets_checked': 1 << (2*r)})
+    for t in (1, 2, 3, 5, 8, 16, 32, 64):
+        r, A, D = 25*t, 160*t - 1, 200*t
+        B, M = D - A, 2*r + 1
+        h, sizes = A*B, tuple(6 + 4*(r - s) for s in range(1, r + 1))
+        n, weight = sum(sizes), (D*B, A*B, D*A)
+        assert n == 1250*t*t + 100*t and gcd(A, D) == 1
+
+        def eps(i):
+            x = i*A % D
+            return min(Fraction(x, B), Fraction(D - x, A))
+
+        S = [int(eps(i) <= Fraction(1, 2)) for i in range(M + 1)]
+        for i, value in enumerate(S):
+            residue_rule = (i % 5 == 0 or (i % 5 == 1 and i <= 40*t - 4) or
+                            (i % 5 == 4 and i >= 20*t + 4))
+            assert value == residue_rule
+            counts['infinite_family_residue_word_entries'] += 1
+        walk = [0]
+        for i in range(r):
+            walk.append(walk[-1] + 1 - S[i] - S[M - i])
+        assert max(walk) == 2*t + 1 and walk[-1] == t + 1
+        assert walk.index(max(walk)) == 10*t + 5
+        assert max(i for i, value in enumerate(walk) if value == max(walk)) == 20*t
+        cost = (2*M + 1)*h
+        scaled = tuple(2*w for w in weight)
+        capacities = [0]
+        for size in sizes:
+            capacities.append(capacities[-1] + size)
+        direct = [0] + subcurve_prefix_counts(r, scaled, cost)
+        assert walk == [a - b for a, b in zip(capacities, direct)]
+        actual_rank = generic_multicurve_prefix_rank(component_capacity_profile(sizes), scaled, cost)
+        carrier_rank = min(n, direct[-1])
+        assert actual_rank == n - 2*t - 1 and carrier_rank == n - t - 1
+        final_theta = Fraction(85*t + 1, A)
+        final_cost = M*h + (85*t + 1)*B
+        before = [a - b for a, b in zip(capacities, [0] + subcurve_prefix_counts(r, weight, final_cost - 1))]
+        after = [a - b for a, b in zip(capacities, [0] + subcurve_prefix_counts(r, weight, final_cost))]
+        assert max(before) == 1 and before.index(1) == 5*t + 5
+        assert max(after) == 0 and after.index(0) == 0
+        counts['infinite_family_rank_and_large_block_fixtures'] += 1
+        family.append({'parameter': t, 'components': r, 'last_size': 6, 'size_drop': 4,
+                       'length': n, 'p': str(Fraction(A, D)), 'weight': scaled, 'cost': cost,
+                       'actual_prefix_rank': actual_rank, 'carrier_truncation_rank': carrier_rank,
+                       'rank_defect': carrier_rank - actual_rank,
+                       'first_active_index': walk.index(max(walk)),
+                       'last_active_index': max(i for i, value in enumerate(walk) if value == max(walk)),
+                       'final_phase_theta': str(final_theta),
+                       'final_canonical_phase_drop': [before.index(1), 0]})
+    point = critical_point_control()
+    counts['point_matrix_bases'] = 1
+    counts['point_border_relations'] = point['minimal_border_relations']
+    counts['point_contracted_critical_subsets'] = point['contracted_critical_subsets']
+    return {'counts': dict(counts), 'rational_axis_ratios': [f'{a}/{d}' for a, d in ratios],
+            'component_range': [1, 8], 'last_size_range': [1, 8],
+            'classical_shifted_models': shifted, 'infinite_critical_family': family,
+            'point_ideal': point,
+            'scope': 'Exact harmonic-curve identities, odd-last-size endpoint collapse, complete exceptional-unit samples for even last size, and independent generic-prefix ranks. The rank defect and a final canonical block both grow linearly with r in a proved infinite family. The auxiliary critical rule is the established shifted matroid SM(2,4,...,2r), a minor of C_(r+1); its Catalan number of feasible bases is not a count of coherent initial ideals. No full two-parameter critical-neighborhood or unrestricted G_3 bound is claimed.'}
+
+
 def main():
     axes = [axis_controls(n) for n in (4, 5, 6, 7, 9, 12, 15, 21)]
     arithmetic = [arithmetic_controls(n) for n in (99, 303, 603)]
@@ -1939,6 +2218,8 @@ def main():
                'simultaneous_two_cost_point_faces': [unequal_point_controls(t) for t in (1, 2)]}
     steep = steep_component_controls()
     pooled = pooled_block_controls()
+    three_drop = three_drop_controls()
+    critical = critical_rotation_controls()
     paths = ['scripts/run_algebraic_incidence_controls.py', 'docs/weighted_facet_incidence.md',
              'docs/initial_cone_height.md', 'scripts/run_extremal_initial_ideals_checks.py',
              'scripts/run_structural_complexity_checks.py', 'scripts/run_initial_cone_height_checks.py',
@@ -1946,7 +2227,7 @@ def main():
              'docs/generic_multiaffine_bound.md', 'docs/planar_dyadic_bound.md',
              'docs/rational_shadow_bound.md', 'scripts/run_planar_dyadic_bound_checks.py']
     report = {'status': 'passed', 'command': 'python3 -B scripts/run_algebraic_incidence_controls.py',
-              'scope': 'Short-block certificates give O_(H,R)(L^4) states on compact aspects and O_(H,u,v)(L^4 log(L+1)) on a bounded harmonic-ratio window, without aspect bounds. Fixed supercritical margins of linear profiles therefore have quadratic-power counts globally. Growing widths, critical/subcritical regimes, unrestricted G_3 and exact priority remain unresolved.',
+              'scope': 'Drop-three profiles have uniform carrier truncation; drop four is sharp. The critical harmonic curve has an exact rotation-word and classical shifted-matroid selection model. A proved infinite family has growing rank defects and canonical blocks. Existing bounded-width global counts are preserved. Two-parameter critical neighborhoods, unrestricted G_3 and exact priority remain unresolved.',
               'summary': {'complete_axis_fans': len(axes), 'axis_cells': sum(a['positive_cells'] for a in axes),
                           'matrix_selection_controls': sum(a['independent_matrix_selections'] for a in axes),
                           'arithmetic_fixtures': len(arithmetic), 'complete_quotient_fans': len(interior),
@@ -1993,7 +2274,9 @@ def main():
                           'steep_point_border_relations': sum(a['minimal_border_relations'] for a in steep['point_ideals']),
                           **{'steep_' + k: steep['layer_wall_counting'][k] for k in
                              ('curve_pair_checks', 'affine_piece_pair_checks', 'exact_wall_quota_checks')},
-                          **{'pooled_' + k: v for k, v in pooled['counts'].items()}},
+                          **{'pooled_' + k: v for k, v in pooled['counts'].items()},
+                          **{'three_drop_' + k: v for k, v in three_drop['counts'].items()},
+                          **{'critical_' + k: v for k, v in critical['counts'].items()}},
               'uniform_axis_matroids': axes, 'arithmetic_lower_bound_controls': arithmetic,
               'interior_quotients': interior, 'three_pole_quotients': curves,
               'positive_plane_traces': planes,
@@ -2003,6 +2286,8 @@ def main():
               'unequal_component_phases': unequal,
               'steep_component_profiles': steep,
               'pooled_component_blocks': pooled,
+              'three_drop_capacity_reduction': three_drop,
+              'critical_harmonic_rotation': critical,
               'source_sha256': {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in paths}}
     (ROOT / 'results/research/algebraic_incidence_controls.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report['summary'], indent=2))

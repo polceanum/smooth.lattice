@@ -4708,6 +4708,391 @@ mixed-intersection count is not established. No unrestricted $G_3$
 improvement, polynomial lower separation, new manuscript or completed
 goal follows from this restricted theorem alone.
 
+## AB. The sharp slow-drop boundary and the critical rotation model
+
+The complementary axis merge gives more information than the bounded
+rounding error in (Z2). It closes slope three, but it also produces an
+explicit obstruction at slope four: both rank defects and canonical
+block widths can grow with the component count. These statements concern
+the generic scaled-curve construction of Sections X--AA, with its
+simultaneous generic-prefix rank assumptions. They are not statements
+about every finite quotient. The characteristic can be arbitrary when
+the field and generic sampling choices are sufficiently large.
+
+### Only size drops greater than three need capacity constraints
+
+Retain $F_s=d_s-d_{s-1}$, the $s$-th diagonal hook of the weighted
+$(i,b)$ grid, and put $\mu=\min(w_x,w_z)$. The following improvement
+of (Y4) holds, including closed cost ties:
+
+$$
+ F_s-F_{s+1}\ge2\quad(F_{s+1}>0),\qquad
+ F_s-F_{s+2}\ge6\quad(F_{s+2}>0). \tag{AB1}
+$$
+
+For the second assertion, an interval of width less than $\mu$ contains
+at most one positive multiple from each axis. Hence the merged order
+statistics satisfy $v_{i+2}-v_i\ge\mu$. If $F_{s+2}>0$, its diagonal
+point exists, and neither hook's row or column formula requires a
+negative-part truncation. With $N(T)=1+\lfloor T/w_x\rfloor+
+\lfloor T/w_z\rfloor$ for $T\ge0$, subtraction gives
+
+$$
+\begin{aligned}
+ F_s-F_{s+2}
+ ={}&4+N(C-(s-1)w_y)-N(C-(s+1)w_y)\\
+ &+\left\lfloor\frac{C-v_{s-1}}{w_y}\right\rfloor
+   -\left\lfloor\frac{C-v_{s+1}}{w_y}\right\rfloor\\
+ \ge{}&4+\left\lfloor\frac{2w_y}{w_x}\right\rfloor
+        +\left\lfloor\frac{2w_y}{w_z}\right\rfloor
+        +\left\lfloor\frac{\mu}{w_y}\right\rfloor\ge6.
+\end{aligned} \tag{AB2}
+$$
+
+The last inequality uses $\lfloor2t\rfloor+\lfloor1/t\rfloor\ge2$
+for $t>0$, taking $t=w_y/\mu$. The one-step assertion is the earlier
+diagonal-hook inequality.
+
+Consequently, for every decreasing positive integer size profile,
+
+$$
+ R(C)=\min\left(n,d_r(C),
+       \min_{\substack{1\le s<r\\m_s-m_{s+1}>3}}
+                    (n-A_s+d_s(C))\right). \tag{AB3}
+$$
+
+To prove this without a convexity assumption stronger than (AB1), put
+$H_s=A_s-d_s$ and $u_s=H_s-H_{s-1}=m_s-F_s$. On an interval with
+all adjacent size drops at most three, nonempty hooks give
+$u_{s+1}\ge u_s-1$ and $u_{s+2}\ge u_s$. After the last nonempty
+hook every increment is positive. Suppose the first index attaining
+an interval maximum strictly above both endpoints is $a$. Integrality
+gives $u_a\ge1$. The next increment is nonnegative, and must be zero
+to avoid exceeding the maximum. If it reaches the endpoint, that
+endpoint already equals the maximum. Otherwise the following increment
+is positive, again exceeding the maximum. A vanished hook makes the
+corresponding increment positive and gives the same contradiction.
+Thus the maximum lies at interval endpoints. Splitting at the drops
+greater than three proves (AB3).
+
+The previous square-root compression remains available after this
+reduction; it does not justify discarding $d_r$ without the original
+surface endpoint. In particular,
+
+$$
+ m_s-m_{s+1}\le3\text{ for all }s
+ \quad\Longrightarrow\quad
+ R(C)=\min(n,d_r(C)). \tag{AB4}
+$$
+
+The established carrier-truncation fan theorem therefore gives
+$O(n^2\log(n+1))$ initials uniformly over all positive weights for
+every such profile, including slope three and profiles with a large
+last component. The earlier drop-two theorem is retained as a valid
+weaker statement. The threshold three in this universal integer
+criterion is sharp, as the family below shows. It does not assert that
+every profile containing a drop of four fails truncation.
+
+### Exact complementary merge on the critical harmonic curve
+
+Set $\alpha w_y=1$ and normalize $w_y=1$. Write
+
+$$
+ w(p)=\left(\frac1p,1,\frac1{1-p}\right),\qquad0<p<1,
+ \qquad U_i=v_i=i+\epsilon_i. \tag{AB5}
+$$
+
+For irrational $p$, the two positive arithmetic axes have precisely
+one merged point in every interval $(i,i+1)$, $i\ge1$, and $U_0=0$.
+This is classical Beatty complementarity; see the first page of
+[Fraenkel, *Iterates of Beatty sequences*, manuscript dated 31 August
+2020](https://www.wisdom.weizmann.ac.il/~fraenkel/Papers/Graham1973.pdf).
+The filename is not the manuscript's date. Here the precise remainder
+and its threshold coding are
+
+$$
+ \epsilon_i=\min\left(\frac{\{ip\}}{1-p},
+                       \frac{1-\{ip\}}p\right),\qquad
+ S_i(\theta):={\bf1}_{\epsilon_i\le\theta}
+       ={f1}_{\{(i+\theta)p\}\in[0,\theta]},
+ \quad0\le\theta<1. \tag{AB6}
+$$
+
+The remainder formula includes $i=0$. To check it, observe that
+$1+\lfloor ip\rfloor+\lfloor i(1-p)\rfloor=i$ for positive $i$;
+the next event comes when one of the two floors increases. More
+generally the exact count at $i+\theta$ is
+$1+\lfloor(i+\theta)p\rfloor+
+\lfloor(i+\theta)(1-p)\rfloor=i+S_i(\theta)$, which proves
+the rotation coding as well. Rational $p=A/D$ in lowest terms gives
+the same identities through $i<D-1$, before the first merged-axis
+collision can affect the required indices. This is the finite-prefix
+scope used in the exact witnesses.
+
+This is an interval coding of a rotation with an arbitrary interval
+length $\theta$. It must not be replaced by a uniformly balanced
+Sturmian-word assertion. The unbounded defect below directly rules
+out the constant-error conclusion that such a replacement would
+suggest here.
+
+At normalized cost $C=M+\theta$, every nonempty hook satisfies
+
+$$
+ F_s=2M-4s+3+S_{s-1}(\theta)+S_{M-s+1}(\theta). \tag{AB7}
+$$
+
+Indeed its row count is $M-s+1+S_{M-s+1}$ and its column floor is
+$M-s+S_{s-1}$. Subtracting the hook offsets proves (AB7).
+For $m_s=a+4(r-s)$ this gives
+
+$$
+ H_s-H_{s-1}=D-S_{s-1}-S_{M-s+1},\qquad
+ D=4r+a-2M-3. \tag{AB8}
+$$
+
+If $D\ge2$, these increments are nonnegative through the nonempty
+hooks and positive thereafter. If $D\le0$, then $M\ge2r-1$,
+all $r$ hooks are nonempty, and all increments are nonpositive.
+Only $D=1$ can put a maximum above both endpoints. Thus odd $a$
+has carrier truncation along the whole harmonic curve. For even
+$a\ge2$, every extra rank constraint is confined to the single unit
+
+$$
+ M=2r+a/2-2,\qquad M\le C<M+1. \tag{AB9}
+$$
+
+These are exact statements, stronger than the absence of a leading
+quadratic defect in (Z5). They do not cover a neighborhood of the
+harmonic curve.
+
+### The critical positive-selection model is classical
+
+For even $a$, the carrier monomials of cost strictly less than $M$
+form an independent set $E$ of size $n-r$. Its first $s$ layers
+contain $A_s-s$ elements, because each layer contributes $m_s-1$.
+The exceptional unit contains exactly two carrier monomials per layer:
+
+$$
+ q_{s,1}=t_{s-1}y^{M-s+1},\qquad
+ q_{s,2}=t_{M-s+1}y^{s-1},\qquad1\le s\le r. \tag{AB10}
+$$
+
+Contract $E$ in the **auxiliary nested matroid** of Section X. Its
+remaining bases choose $r$ of these $2r$ elements and satisfy
+$|B\cap\{q_{1,*},\ldots,q_{s,*}\}|\ge s$ for every $s$. Label
+the pairs consecutively $1,\ldots,2r$. A sorted basis has
+$b_j\le2j$, so the auxiliary matroid is the established
+$SM(2,4,\ldots,2r)$ of
+[Ardila, Theorem 4.1 and its proof, PDF pp. 9--10](https://arxiv.org/pdf/math/0209354).
+Equivalently it is $C_{r+1}/1\setminus(2r+2)$ after relabeling:
+the first Catalan element is a coloop and the last is a loop. Its
+number of feasible bases is the Catalan number $C_{r+1}$.
+That exponential number is **not** a count of coherent initials.
+
+The positive rank formula becomes the explicit walk
+
+$$
+ H_s(\theta)=s-\sum_{i=0}^{s-1}S_i(\theta)
+                  -\sum_{i=M-s+1}^{M}S_i(\theta),\qquad
+ R(M+\theta)=n-\max_{0\le s\le r}H_s(\theta). \tag{AB11}
+$$
+
+The shifted-matroid rank formula follows directly by completing the
+prefix quotas, or from the Catalan rank description in Ardila's
+Proposition 2.2. In a small open weight neighborhood that preserves
+the carrier flags and the cheaper/critical/higher separation, positive
+selection is exactly $E$ together with a minimum-weight basis of this
+fixed auxiliary model, using the actual monomial linear prices.
+This follows from the already-proved positive greedy equivalence;
+no identification of the actual residue matroid on all arbitrary
+critical subsets is needed. The finite point check below separately
+tests those subsets in one example.
+
+### A realizable infinite family with growing defect and block width
+
+For every integer $t\ge1$, take
+
+$$
+\begin{gathered}
+ r=25t,\quad a=6,\quad m_s=6+4(r-s),\quad
+ n=1250t^2+100t,\\
+ p=\frac{160t-1}{200t}=\frac45-\frac1{8r},\quad
+ M=50t+1,\quad\theta=\frac12.
+\end{gathered} \tag{AB12}
+$$
+
+The fraction is reduced and its denominator exceeds $M+1$, so
+(AB6)--(AB11) apply exactly without relevant collisions. Substituting
+into (AB6), for $0\le i\le M$ one obtains
+
+$$
+ S_i(1/2)=1\ \Longleftrightarrow\
+ \begin{cases}
+ i\equiv0\pmod5,\text{ or}\\
+ i\equiv1\pmod5\text{ and }i\le40t-4,\text{ or}\\
+ i\equiv4\pmod5\text{ and }i\ge20t+4.
+ \end{cases} \tag{AB13}
+$$
+
+Here is a direct check that supplies a uniform proof rather than an
+extrapolation from the saved examples. Put $A=160t-1$, $B=40t+1$.
+For residue zero, $\epsilon_i=i/A$ (apart from the separately correct
+$\epsilon_0=0$), hence it is below $1/2$. For residue one,
+$\epsilon_i=(40t+i)/A$, giving the first cutoff. For residue four,
+$\epsilon_i=(40t-i)/B$ below $40t$ and $(i-40t)/A$ above $40t$,
+giving the second cutoff. The two expressions in (AB6) are both
+greater than $1/2$ for residues two and three in this index range.
+
+Since $M\equiv1\pmod5$, the two summands in a walk increment
+pair residues $0,1$, residues $2,4$, and residue $3$ with itself.
+In five successive increments starting at $i=5q$, their values are
+
+$$
+\begin{cases}
+ (0,-1,0,1,1),&0\le q\le2t,\\
+ (-1,-1,0,1,1),&2t<q<4t,\\
+ (-1,-1,0,1,0),&4t\le q<5t.
+\end{cases}
+$$
+
+The five-step sums are $+1,0,-1$, respectively, and no intermediate
+step overshoots the larger block endpoint. Thus
+
+$$
+ \max_s H_s=2t+1,\quad H_r=t+1,\quad
+ R=n-2t-1,\quad\min(n,d_r)=n-t-1. \tag{AB14}
+$$
+
+The first maximizing index is $10t+5$ and the last is $20t$.
+The extra capacity defect is exactly $t=\Theta(\sqrt n)$.
+This disproves both drop-four universal truncation and any universal
+bounded critical rank defect. The generic point construction realizes
+these ranks over a suitable infinite field, by its finite simultaneous
+generic-prefix conditions. It supplies no prime-distribution theorem.
+
+There are also genuinely growing **canonical blocks**, not just
+growing rank defects. At
+
+$$
+ \theta_*=(85t+1)/(160t-1), \tag{AB15}
+$$
+
+the smallest maximizing index jumps from $5t+5$ to zero. For
+completeness this can be checked without following every preceding
+phase. Immediately before $\theta_*$, in a five-increment block,
+the first increment is zero for $q\le t$ and $-1$ for $q>t$;
+the second is $-1$; the third is $-1$ for $q<t$ and zero thereafter;
+the fourth is $+1$. The fifth is $+1$ through $q=t$ and changes
+at most once thereafter from $+1$ to zero. These assertions follow
+by substituting $\theta_*$ into (AB6): residue two is selected exactly
+through $i\le5t+1$, residue one through $i\le45t+1$, while residue
+four has a single lower cutoff between $5t+4$ and $25t$.
+Strict inequalities at the event exclude the residue-one index
+$45t+1$, and do not change the residue-two cutoff at an actual
+residue-two index. Consequently blocks $q<t$ return to height zero,
+block $q=t$ first reaches height one at $s=5t+5$, and every later
+block has nonpositive net change and no higher intermediate value.
+The entering element $i=45t+1$ belongs to layer $5t+1$. It lowers
+every $H_s$ with $s\ge5t+1$ by one; all remaining heights are
+nonpositive. This proves the asserted canonical jump. Its width
+$5t+5$ tends to infinity, so (AA12)'s fixed-width constant cannot
+extend to this family by being treated as uniform.
+
+Integer data for (AB14) require no approximate logs. With the above
+$A,B,D=200t$, use weights $2(DB,AB,DA)$ and cost $(2M+1)AB$.
+For (AB15) use weights $(DB,AB,DA)$ and consecutive integer costs
+$MAB+(85t+1)B-1$ and $MAB+(85t+1)B$. The report saves these
+rank witnesses for eight parameters through $t=64$, rather than
+building large evaluation matrices.
+
+### Counting the exact critical curve is not counting its neighborhood
+
+For fixed $a$, at most $O_a(r^3)=O_a(n^{3/2})$ distinct initial
+staircases have a strict positive-weight witness **on** (AB5).
+This elementary bound includes all $0<p<1$. For example, the
+rank is already full by normalized cost $B_r=2r+a+2$, by (AB8).
+Every coordinate price in (AB5) is at least one, so every selected
+exponent is at most $B_r$. Greedy selection on the fixed finite
+cube $[0,B_r]^3\cap\mathbb Z^3$ therefore suffices for the entire
+curve. Its pairwise comparison normals have integer coordinates
+in $[-B_r,B_r]$, giving $O_a(r^3)$ distinct normals. For a nonzero
+normal $q$, the comparison restricted to the curve is
+
+$$
+ q_x(1-p)+q_y p(1-p)+q_zp=0. \tag{AB16}
+$$
+
+This is a nonzero polynomial of degree at most two: an identically
+zero polynomial would force all three coordinates of $q$ to vanish.
+Thus the comparisons cut the parameter interval at $O_a(r^3)$
+points, and selection is constant between them. A staircase with
+a strict witness persists on an open curve interval; any ties
+irrelevant to its strict border inequalities can be avoided there.
+This proves the bound. The finite-ground greedy rule and polynomial
+root count are classical; the argument is included for scope.
+For rational $p$ whose denominator is too small for (AB6)'s stated
+finite-prefix identity, a strict witness persists at nearby irrational
+parameters. Its same selected basis therefore obeys the exponent
+bound by continuity. No complementary-sequence assertion beyond the
+first rational collision is needed.
+
+The curve bound gives no bound for weight regions whose distance
+from the curve shrinks with $r$. Cones can occur near the curve
+without containing a strict curve witness. Nor can one multiply
+the Catalan number of auxiliary bases, separate phase partitions,
+or counts from different component ideals to obtain a coherent
+lower bound in one ideal. The exact priority of the combined
+restricted statements is not established, and these supporting
+results do not meet the active goal's endpoint or paper criteria.
+
+### Independent controls and next mathematical question
+
+The extended checker preserves every earlier report section and adds
+3,125 independent Ferrers grids, 8,457 one-step and 5,982 two-step
+hook inequalities, and 846,875 drop-three rank reductions, including
+656,250 endpoint cases. It checks 4,480 axis remainder identities,
+193,856 rotation indicators, 77,488 exact harmonic hooks and 19,456
+independent grid/rank queries. The 3,072 exceptional-unit queries
+include all fractional-cost event points and intervening intervals
+for the stated 128 even-last-size fixtures. Every subset of each
+shifted auxiliary model through rank six is checked independently
+against all of its bases: 5,460 subset ranks in total.
+
+An actual length-$32$ ideal with sizes $(14,10,6,2)$ has weights
+$(117,36,52)$ and cost $266$, corresponding to $p=4/13$ and
+$\theta=7/18$. Direct evaluation gives rank $31$, while the
+carrier truncation gives $32$. An invertible evaluation basis and
+11 vanishing minimal-border relations with strictly lower tails
+certify its actual initial ideal over $\mathbb F_{1000003}$.
+After contracting the 28 cheaper columns, all 70 critical four-subsets
+give the same 42 bases as the auxiliary shifted matroid in this
+fixture. This is an additional finite comparison, not a theorem
+identifying all critical residue matroids. Exact nodes, bases,
+initial generators and commands are saved in the report.
+
+The link with the original exponent streams is explicit: the two
+complementary arithmetic axes and their cost ordering are unchanged.
+Algebraic evaluation dependencies impose the nested component capacities;
+(AB11) measures exactly how much those capacities remove from the
+ordinary carrier prefix rank. The added structure is therefore a shared
+constraint on which monomials can remain independent, rather than a
+change in the underlying prime-log ordering geometry. Neither the
+rank defect nor the rotation coding alone supplies a prime-specific
+consequence or a larger count of coherent states.
+
+The remaining issue is a **two-parameter** coherent count for growing
+blocks, particularly near small-denominator axis ratios and the
+critical harmonic curve. The family (AB12) approaches $4/5$ at
+distance $1/(8r)$ and exhibits blocks of order $r$. Thus rotation
+resonances, rather than an arbitrary bounded axis-error sequence,
+are now a concrete mechanism to control. A useful next proof must
+amortize their coherent regions uniformly as the denominator and
+block width vary, or extract a genuinely superquadratic family in
+one fixed ideal. Slopes at most three and fixed supercritical
+margins are already closed routes. Unrestricted sharp $G_3$ growth,
+a polynomial lower separation and current priority remain open;
+the full objective and all its original success criteria stay active.
+
 ## Reproduction
 
 From the repository root:

@@ -96,9 +96,9 @@ A monotone threshold charge now gives `O(n^2 log(n+1))` initial ideals
 for **every** balanced component count, closing that whole generic
 construction as a polynomial-amplification route. Unequal-size nested
 constraints now have an exact decreasing-phase block description.
-Only adjacent size drops greater than two can supply extra rank
+Only adjacent size drops greater than three can supply extra rank
 constraints. All slowly decreasing profiles, including linear slopes
-one and two, therefore obey the same `O(n^2 log(n+1))` fan bound.
+one through three, therefore obey the same `O(n^2 log(n+1))` fan bound.
 An infinite three-component family has a local parallelogram from two
 independent exchanges at different costs, verified in exact point ideals.
 It exposes the missing simultaneous-cost mechanism in the balanced proof;
@@ -116,8 +116,14 @@ A short-block certificate and mixed-intersection bound extend the
 quadratic count to fixed pooling widths on compact weight regions.
 Logarithmic coordinates give a global `O(n^2 log(n+1))` bound for every
 fixed margin above the curvature threshold of a linear profile, including
-genuine pooling and all positive aspect ratios. Growing blocks and the
-critical and subcritical regimes remain unresolved.
+genuine pooling and all positive aspect ratios. At slope four, the exact
+critical harmonic curve reduces to complementary-axis rotation words
+and a classical shifted-matroid selection model. An explicit infinite
+family has rank defects and canonical block widths of order `sqrt(n)`;
+the universal drop-three truncation threshold is therefore sharp.
+The exact curve itself has only `O(n^(3/2))` strict witnesses for each
+fixed last component size. Counting growing blocks in its two-parameter
+neighborhood and the remaining critical/subcritical regimes stays open.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count

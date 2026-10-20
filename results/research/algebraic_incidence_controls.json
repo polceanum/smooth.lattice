@@ -1,7 +1,7 @@
 {
   "status": "passed",
   "command": "python3 -B scripts/run_algebraic_incidence_controls.py",
-  "scope": "Short-block certificates give O_(H,R)(L^4) states on compact aspects and O_(H,u,v)(L^4 log(L+1)) on a bounded harmonic-ratio window, without aspect bounds. Fixed supercritical margins of linear profiles therefore have quadratic-power counts globally. Growing widths, critical/subcritical regimes, unrestricted G_3 and exact priority remain unresolved.",
+  "scope": "Drop-three profiles have uniform carrier truncation; drop four is sharp. The critical harmonic curve has an exact rotation-word and classical shifted-matroid selection model. A proved infinite family has growing rank defects and canonical blocks. Existing bounded-width global counts are preserved. Two-parameter critical neighborhoods, unrestricted G_3 and exact priority remain unresolved.",
   "summary": {
     "complete_axis_fans": 8,
     "axis_cells": 548,
@@ -77,7 +77,25 @@
     "pooled_global_logarithmic_line_curve_checks": 465,
     "pooled_integer_product_pair_counts": 240,
     "pooled_point_matrix_bases": 3,
-    "pooled_point_border_relations": 49
+    "pooled_point_border_relations": 49,
+    "three_drop_direct_hook_grids": 3125,
+    "three_drop_three_drop_endpoint_queries": 656250,
+    "three_drop_three_drop_reduced_rank_queries": 846875,
+    "three_drop_one_step_hook_inequalities": 8457,
+    "three_drop_two_step_hook_inequalities": 5982,
+    "critical_merged_axis_tent_identities": 4480,
+    "critical_rotation_interval_identities": 193856,
+    "critical_harmonic_hook_identities": 77488,
+    "critical_outside_exceptional_slab_endpoint_queries": 16384,
+    "critical_independent_grid_rank_queries": 19456,
+    "critical_critical_pair_and_contraction_fixtures": 128,
+    "critical_complete_critical_slab_queries": 3072,
+    "critical_classical_shifted_subset_ranks": 5460,
+    "critical_infinite_family_residue_word_entries": 6566,
+    "critical_infinite_family_rank_and_large_block_fixtures": 8,
+    "critical_point_matrix_bases": 1,
+    "critical_point_border_relations": 11,
+    "critical_point_contracted_critical_subsets": 70
   },
   "uniform_axis_matroids": [
     {
@@ -68024,15 +68042,786 @@
     },
     "scope": "Complete one-dimensional trace, not a whole fan. Short-block rank-q and rank-(q-1) signatures, critical walls, compact and global logarithmic line-curve branches and integer-product counts are checked. Three actual pooled bases have exact point certificates. Uniform bounded-width theorems are proved separately."
   },
+  "three_drop_capacity_reduction": {
+    "counts": {
+      "direct_hook_grids": 3125,
+      "three_drop_endpoint_queries": 656250,
+      "three_drop_reduced_rank_queries": 846875,
+      "one_step_hook_inequalities": 8457,
+      "two_step_hook_inequalities": 5982
+    },
+    "lengths": [
+      1,
+      12
+    ],
+    "integer_prices": [
+      1,
+      5
+    ],
+    "integer_costs": [
+      0,
+      24
+    ],
+    "scope": "The uniform proof strengthens the old drop-two reduction: only adjacent size drops greater than three can add capacity constraints. The drop-four critical family below makes this universal integer threshold sharp. This does not settle unrestricted G_3."
+  },
+  "critical_harmonic_rotation": {
+    "counts": {
+      "merged_axis_tent_identities": 4480,
+      "rotation_interval_identities": 193856,
+      "harmonic_hook_identities": 77488,
+      "outside_exceptional_slab_endpoint_queries": 16384,
+      "independent_grid_rank_queries": 19456,
+      "critical_pair_and_contraction_fixtures": 128,
+      "complete_critical_slab_queries": 3072,
+      "classical_shifted_subset_ranks": 5460,
+      "infinite_family_residue_word_entries": 6566,
+      "infinite_family_rank_and_large_block_fixtures": 8,
+      "point_matrix_bases": 1,
+      "point_border_relations": 11,
+      "point_contracted_critical_subsets": 70
+    },
+    "rational_axis_ratios": [
+      "101/257",
+      "99/263",
+      "17/271",
+      "149/277"
+    ],
+    "component_range": [
+      1,
+      8
+    ],
+    "last_size_range": [
+      1,
+      8
+    ],
+    "classical_shifted_models": [
+      {
+        "rank": 1,
+        "elements": 2,
+        "bases": 2,
+        "all_subsets_checked": 4
+      },
+      {
+        "rank": 2,
+        "elements": 4,
+        "bases": 5,
+        "all_subsets_checked": 16
+      },
+      {
+        "rank": 3,
+        "elements": 6,
+        "bases": 14,
+        "all_subsets_checked": 64
+      },
+      {
+        "rank": 4,
+        "elements": 8,
+        "bases": 42,
+        "all_subsets_checked": 256
+      },
+      {
+        "rank": 5,
+        "elements": 10,
+        "bases": 132,
+        "all_subsets_checked": 1024
+      },
+      {
+        "rank": 6,
+        "elements": 12,
+        "bases": 429,
+        "all_subsets_checked": 4096
+      }
+    ],
+    "infinite_critical_family": [
+      {
+        "parameter": 1,
+        "components": 25,
+        "last_size": 6,
+        "size_drop": 4,
+        "length": 1350,
+        "p": "159/200",
+        "weight": [
+          16400,
+          13038,
+          63600
+        ],
+        "cost": 671457,
+        "actual_prefix_rank": 1347,
+        "carrier_truncation_rank": 1348,
+        "rank_defect": 1,
+        "first_active_index": 15,
+        "last_active_index": 20,
+        "final_phase_theta": "86/159",
+        "final_canonical_phase_drop": [
+          10,
+          0
+        ]
+      },
+      {
+        "parameter": 2,
+        "components": 50,
+        "last_size": 6,
+        "size_drop": 4,
+        "length": 5200,
+        "p": "319/400",
+        "weight": [
+          64800,
+          51678,
+          255200
+        ],
+        "cost": 5245317,
+        "actual_prefix_rank": 5195,
+        "carrier_truncation_rank": 5197,
+        "rank_defect": 2,
+        "first_active_index": 25,
+        "last_active_index": 40,
+        "final_phase_theta": "171/319",
+        "final_canonical_phase_drop": [
+          15,
+          0
+        ]
+      },
+      {
+        "parameter": 3,
+        "components": 75,
+        "last_size": 6,
+        "size_drop": 4,
+        "length": 11550,
+        "p": "479/600",
+        "weight": [
+          145200,
+          115918,
+          574800
+        ],
+        "cost": 17561577,
+        "actual_prefix_rank": 11543,
+        "carrier_truncation_rank": 11546,
+        "rank_defect": 3,
+        "first_active_index": 35,
+        "last_active_index": 60,
+        "final_phase_theta": "256/479",
+        "final_canonical_phase_drop": [
+          20,
+          0
+        ]
+      },
+      {
+        "parameter": 5,
+        "components": 125,
+        "last_size": 6,
+        "size_drop": 4,
+        "length": 31750,
+        "p": "799/1000",
+        "weight": [
+          402000,
+          321198,
+          1598000
+        ],
+        "cost": 80781297,
+        "actual_prefix_rank": 31739,
+        "carrier_truncation_rank": 31744,
+        "rank_defect": 5,
+        "first_active_index": 55,
+        "last_active_index": 100,
+        "final_phase_theta": "426/799",
+        "final_canonical_phase_drop": [
+          30,
+          0
+        ]
+      },
+      {
+        "parameter": 8,
+        "components": 200,
+        "last_size": 6,
+        "size_drop": 4,
+        "length": 80800,
+        "p": "1279/1600",
+        "weight": [
+          1027200,
+          821118,
+          4092800
+        ],
+        "cost": 329678877,
+        "actual_prefix_rank": 80783,
+        "carrier_truncation_rank": 80791,
+        "rank_defect": 8,
+        "first_active_index": 85,
+        "last_active_index": 160,
+        "final_phase_theta": "681/1279",
+        "final_canonical_phase_drop": [
+          45,
+          0
+        ]
+      },
+      {
+        "parameter": 16,
+        "components": 400,
+        "last_size": 6,
+        "size_drop": 4,
+        "length": 321600,
+        "p": "2559/3200",
+        "weight": [
+          4102400,
+          3280638,
+          16377600
+        ],
+        "cost": 2629431357,
+        "actual_prefix_rank": 321567,
+        "carrier_truncation_rank": 321583,
+        "rank_defect": 16,
+        "first_active_index": 165,
+        "last_active_index": 320,
+        "final_phase_theta": "1361/2559",
+        "final_canonical_phase_drop": [
+          85,
+          0
+        ]
+      },
+      {
+        "parameter": 32,
+        "components": 800,
+        "last_size": 6,
+        "size_drop": 4,
+        "length": 1283200,
+        "p": "5119/6400",
+        "weight": [
+          16396800,
+          13114878,
+          65523200
+        ],
+        "cost": 21003477117,
+        "actual_prefix_rank": 1283135,
+        "carrier_truncation_rank": 1283167,
+        "rank_defect": 32,
+        "first_active_index": 325,
+        "last_active_index": 640,
+        "final_phase_theta": "2721/5119",
+        "final_canonical_phase_drop": [
+          165,
+          0
+        ]
+      },
+      {
+        "parameter": 64,
+        "components": 1600,
+        "last_size": 6,
+        "size_drop": 4,
+        "length": 5126400,
+        "p": "10239/12800",
+        "weight": [
+          65561600,
+          52444158,
+          262118400
+        ],
+        "cost": 167899971837,
+        "actual_prefix_rank": 5126271,
+        "carrier_truncation_rank": 5126335,
+        "rank_defect": 64,
+        "first_active_index": 645,
+        "last_active_index": 1280,
+        "final_phase_theta": "5441/10239",
+        "final_canonical_phase_drop": [
+          325,
+          0
+        ]
+      }
+    ],
+    "point_ideal": {
+      "component_sizes": [
+        14,
+        10,
+        6,
+        2
+      ],
+      "length": 32,
+      "weight": [
+        117,
+        36,
+        52
+      ],
+      "cost": 266,
+      "harmonic_ratio": "4/13",
+      "fractional_cost": "7/18",
+      "prefix_rank": 31,
+      "carrier_truncation_rank": 32,
+      "characteristic": 1000003,
+      "component_scalars": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "nodes_by_component": [
+        [
+          899277,
+          186801,
+          392600,
+          632424,
+          830251,
+          640973,
+          33491,
+          699815,
+          530639,
+          894129,
+          353197,
+          637380,
+          782022,
+          722425
+        ],
+        [
+          297337,
+          729751,
+          147886,
+          763824,
+          182165,
+          266256,
+          603884,
+          82308,
+          176114,
+          338595
+        ],
+        [
+          802703,
+          724524,
+          494032,
+          141099,
+          689255,
+          188172
+        ],
+        [
+          283170,
+          310341
+        ]
+      ],
+      "generic_sample_attempts": 1,
+      "common_cheaper_monomials": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          1,
+          4
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          2,
+          2
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          3,
+          1
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          0,
+          4,
+          0
+        ],
+        [
+          0,
+          4,
+          1
+        ],
+        [
+          0,
+          4,
+          2
+        ],
+        [
+          0,
+          5,
+          0
+        ],
+        [
+          0,
+          5,
+          1
+        ],
+        [
+          0,
+          6,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          2,
+          0
+        ],
+        [
+          1,
+          3,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ]
+      ],
+      "critical_pairs_in_layer_order": [
+        [
+          0,
+          7,
+          0
+        ],
+        [
+          0,
+          0,
+          5
+        ],
+        [
+          0,
+          6,
+          1
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          0,
+          5,
+          2
+        ],
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          1,
+          4,
+          0
+        ],
+        [
+          0,
+          3,
+          3
+        ]
+      ],
+      "selected_critical_indices": [
+        0,
+        1,
+        2,
+        6
+      ],
+      "selected": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          1,
+          4
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          2,
+          2
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          3,
+          1
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          0,
+          4,
+          0
+        ],
+        [
+          0,
+          4,
+          1
+        ],
+        [
+          0,
+          4,
+          2
+        ],
+        [
+          0,
+          5,
+          0
+        ],
+        [
+          0,
+          5,
+          1
+        ],
+        [
+          0,
+          6,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          2,
+          0
+        ],
+        [
+          1,
+          3,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          7,
+          0
+        ],
+        [
+          0,
+          0,
+          5
+        ],
+        [
+          0,
+          6,
+          1
+        ],
+        [
+          1,
+          4,
+          0
+        ]
+      ],
+      "minimal_initial_generators": [
+        [
+          0,
+          0,
+          6
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          3,
+          3
+        ],
+        [
+          0,
+          5,
+          2
+        ],
+        [
+          0,
+          7,
+          1
+        ],
+        [
+          0,
+          8,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          5,
+          0
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          3,
+          0,
+          0
+        ]
+      ],
+      "minimal_border_relations": 11,
+      "strictly_lower_nonzero_coefficients": 307,
+      "contracted_critical_subsets": 70,
+      "actual_critical_bases": 42,
+      "auxiliary_critical_bases": 42,
+      "critical_basis_mismatches": [],
+      "scope": "Invertible evaluation basis and strict vanishing border relations certify this actual initial ideal. Raw evaluation independently gives the rank defect. All 70 critical four-subsets agree with the shifted auxiliary matroid in this fixture; that finite agreement is not a uniform identification of arbitrary residue subsets."
+    },
+    "scope": "Exact harmonic-curve identities, odd-last-size endpoint collapse, complete exceptional-unit samples for even last size, and independent generic-prefix ranks. The rank defect and a final canonical block both grow linearly with r in a proved infinite family. The auxiliary critical rule is the established shifted matroid SM(2,4,...,2r), a minor of C_(r+1); its Catalan number of feasible bases is not a count of coherent initial ideals. No full two-parameter critical-neighborhood or unrestricted G_3 bound is claimed."
+  },
   "source_sha256": {
-    "scripts/run_algebraic_incidence_controls.py": "04e56457db429d6cbae8567af8d3fca3d1cc2a91aa2cfdc227f7327fd30d7076",
+    "scripts/run_algebraic_incidence_controls.py": "2c9f74b1f298f24c0f5cfd211f4832235580aea56b43a0dc7fa396c15beb0da3",
     "docs/weighted_facet_incidence.md": "61ccaf62917fdf59b7f2480a80148750236e3507959e810403e302a43e31bc13",
     "docs/initial_cone_height.md": "88088db9af60d5a43ac0682d40848de73c20a09120215f696ef90bb5cc1cafa8",
     "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
     "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
     "scripts/run_initial_cone_height_checks.py": "f804aff89da53a6139aed7cacc9fd802dee8fd8529ee48a0d240dd9740df3dab",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
-    "docs/extremal_initial_ideals.md": "d1074201bf22c0995acdcb3650219a2cc4cddb67a47ac7ebf5f941847ec97597",
+    "docs/extremal_initial_ideals.md": "cafecb57025368d59fd7806c30415a7b979941860a24f9d08f6e4fc119aa2fd3",
     "docs/generic_multiaffine_bound.md": "25d79382745c94da18f038cee7f0d6eccc202f0dc5b4cd6568ae9aa43ffd1a19",
     "docs/planar_dyadic_bound.md": "03c3e44166b2e95caaaedf042b2d79d345f7a1e056c46e134dfcd67b313aca45",
     "docs/rational_shadow_bound.md": "09b6e5e19cb03825e9d2151680e557cdf384256c5392cf70b6aca388e488c1ca",
