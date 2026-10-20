@@ -3568,6 +3568,375 @@ not settle the unequal-size nested constraints, special node sets,
 unrestricted $G_3$, or the original paper and significance criteria.
 No new manuscript is justified by this screening result alone.
 
+## Unequal components: capacity jumps, decreasing phases and distinct costs
+
+The unequal-size formula (V5) has a precise block structure. Only size
+drops greater than two can supply extra capacity constraints, so every
+slowly decreasing size profile still satisfies (W1). General unequal
+profiles need not have one selection threshold: even three components
+admit an exposed parallelogram produced
+by exchanges at **two different costs**, with neither exchange parallel
+to a coordinate plane. This section proves the structure and an infinite
+realizable family. The family's local face has four vertices for every
+parameter; it is not a growing lower bound for $G_3(n)$.
+
+### A nested model for positive selection
+
+Keep $m_1\ge\cdots\ge m_r>0$, $A_s=\sum_{j\le s}m_j$, $A_0=0$
+and $n=A_r$. On a domain where the first $r$ merged $x/z$ axis
+monomials have fixed order, the carrier-standard sets are nested:
+
+$$
+M_s=\{t_i y^b:\min(i,b)<s\},\qquad
+M_0=\varnothing\subset M_1\subset\cdots\subset M_r.
+$$
+
+On a sufficiently large finite subset of $M_r$, impose the independent
+set constraints
+
+$$
+|S\setminus M_s|\le n-A_s\quad(0\le s\le r). \tag{X1}
+$$
+
+These are classical nested, hence laminar, matroid constraints. Their
+rank on $P$ is
+
+$$
+R_{\rm nest}(P)=\min_{0\le s\le r}
+ \bigl(n-A_s+|P\cap M_s|\bigr). \tag{X2}
+$$
+
+For completeness, take a maximal independent subset $S$ of $P$.
+Every rejected element belongs to a saturated constraint set
+$M_r\setminus M_s$. Such sets form a chain; their largest saturated
+member contains all rejected elements. Its bound gives equality in
+(X2). If nothing was rejected, use $s=r$. The reverse inequality
+follows at once from (X1).
+
+For every actual cost prefix, (X2) is exactly the previously proved
+generic component rank formula. Consequently its positive greedy bases
+are the initial staircases of the generic point ideal. This identifies
+positive selections on a fixed flag domain, **not** the residue matroid
+on arbitrary subsets. A cheapest basis is a downset: replacing a
+monomial by an omitted proper divisor weakens every outside constraint
+in (X1) and strictly lowers its cost. Thus it lies in $V_n^3$.
+One can first work through any finite cost prefix containing a basis;
+the same argument justifies restriction to this universal finite ground.
+
+### The active index decreases, and outer blocks freeze first
+
+Let $d_s(C)$ count $M_s$ at cost at most $C$, and put
+$H_s(C)=A_s-d_s(C)$. For $s>t$,
+
+$$
+H_s(C)-H_t(C)=A_s-A_t-
+ \#\bigl((M_s\setminus M_t)\cap\{w\cdot a\le C\}\bigr)
+\tag{X3}
+$$
+
+is nonincreasing in $C$. Both the smallest and the largest index
+maximizing $H_s(C)$ are therefore nonincreasing. Indeed, an increase
+from $t$ to $s>t$ would require the difference in (X3) to pass from
+nonpositive to nonnegative. It must be zero at both endpoints, making
+both indices maximizing at both endpoints, contrary to the specified
+extremal choice. This is the scalar decreasing-differences case of
+classical monotone comparative statics, not a new optimization theorem.
+[Milgrom--Shannon, Theorem 5, p. 164](https://lonessmith.com/wp-content/uploads/2023/06/Milgrom-MonotoneComparativeStatics-1994.pdf)
+states the Topkis theorem in increasing-differences form. That statement
+and the preceding definitions were inspected; the 1978 original was not.
+Equation (X3) gives the elementary proof needed here.
+
+Resolve cost ties by a generic positive perturbation, and let $\kappa$
+be the **smallest** maximizing index just before a monomial is
+processed. Write $\nu=\min(i,b)$ for $t_i y^b$. Adding it increases
+$d_s$ exactly for $s>\nu$. Since
+$R=n-\max_s H_s$, its rank increment is one precisely when
+
+$$
+\nu<\kappa. \tag{X4}
+$$
+
+If skipped, the smallest active index stays unchanged; the largest
+need not. The smallest index starts at $r$, finishes at $0$ when
+rank reaches $n$, and can decrease only at a selected monomial.
+Write its distinct successive values as
+$r=s_0>s_1>\cdots>s_k=0$. The final staircase contains exactly
+
+$$
+A_{s_{j-1}}-A_{s_j}
+\quad\text{monomials of }M_{s_{j-1}}\setminus M_{s_j},
+\tag{X5}
+$$
+
+and they are the cheapest that many monomials of that block.
+When the index first drops to $t$, every processed member of $M_t$
+has been selected, while the active equality gives
+$R=n-A_t+d_t$. Thus the selected outside count is $n-A_t$:
+its quota is tight, and it can never change subsequently. Subtract
+this equality at consecutive phase changes to obtain (X5).
+Before a block freezes, every encountered member of it is selected
+by (X4); this proves the cheapest-block assertion.
+
+This is a necessary structural description of every positive basis.
+It does not say that arbitrary block partitions are attainable or
+that their choices vary independently with the same three prices.
+Counting phases or multiplying separate block fan counts would not
+bound the actual common refinement.
+
+### Only size drops greater than two can supply extra constraints
+
+There is a further uniform reduction. Define the size-jump indices
+
+$$
+\mathcal J=\{s:1\le s<r,\ m_s-m_{s+1}>2\}.
+$$
+
+Then the generic prefix rank is exactly
+
+$$
+R(C)=\min\left(n,d_r(C),
+ \min_{s\in\mathcal J}\bigl[n-A_s+d_s(C)\bigr]\right).
+\tag{Y1}
+$$
+
+In particular, if every adjacent size drop is at most two, then
+
+$$
+R(C)=\min(n,d_r(C))\quad\text{for all positive weights and costs}.
+\tag{Y2}
+$$
+
+Thus (W2) holds even though the samples need not be balanced. The same
+carrier-wall calculation and surface-equality argument used for (W1)
+give, uniformly over this entire class,
+
+$$
+g(I)=O(n^2\log(n+1)). \tag{Y3}
+$$
+
+This excludes, for example, all component profiles
+$m_s=a+c(r-s)$ with integers $a\ge1$ and $c\in\{0,1,2\}$,
+at every component count and characteristic with the stated generic
+node condition. It does not assert that the drop condition is necessary,
+that every larger drop becomes active, or that (Y3) holds for arbitrary
+unequal profiles.
+
+Here is the proof of (Y1). In the axis/row grid, a cost prefix is a
+Ferrers diagram
+
+$$
+\Pi_C=\{(i,b):v_i+bw_y\le C\}.
+$$
+
+The hook-layer counts $F_s=d_s-d_{s-1}$ are exactly its successive
+diagonal hook lengths, followed by zeros. If $F_{s+1}>0$, both
+diagonal boxes are present and
+
+$$
+F_s-F_{s+1}
+ =2+(\text{row length}_{s-1}-\text{row length}_s)
+     +(\text{column height}_{s-1}-\text{column height}_s)
+ \ge2. \tag{Y4}
+$$
+
+Rows and columns are indexed from zero here. This is the usual
+diagonal-hook fact: both arm and leg lengths strictly decrease.
+[Chern--Yee, Definitions 1--2 and the Frobenius-coordinate discussion,
+pp. 2, 4--5](https://www.combinatorics.org/ojs/index.php/eljc/article/download/v29i2p10/pdf/)
+were inspected for that classical notation and the sum of arm, leg
+and diagonal box. Their partition identities are not being used as
+a new fan theorem. Formula (Y4) also proves the required fact directly.
+
+Recall $H_s=A_s-d_s$. At an index outside $\mathcal J$ with
+$F_{s+1}>0$,
+
+$$
+H_{s+1}-2H_s+H_{s-1}
+ =(F_s-F_{s+1})-(m_s-m_{s+1})\ge0. \tag{Y5}
+$$
+
+Between consecutive jump indices, therefore, $H_s$ is discretely
+convex as long as the hooks are nonempty. After the last nonempty
+hook it strictly increases, since its increments are the positive
+$m_s$. On each such interval its maximum is attained at an endpoint:
+if the last nonempty hook falls inside, the increasing tail dominates
+that hook endpoint. Hence the full maximum is attained among
+$\{0,r\}\cup\mathcal J$. Substitution in $R=n-\max H_s$ proves
+(Y1), including zero hooks and closed cost ties. This is an elementary
+consequence of the exact component formula and classical hook geometry;
+the precise prior-art boundary of the combination is unassessed.
+
+Combining with (V8) leaves only indices
+$s\in(\mathcal J\cup\{r\})$ with $s^2<n$, together with the total-rank
+and enclosing-surface bounds. The endpoint $r$ must be retained when
+$r^2<n$; removing it would discard the carrier itself. This reduces
+the number of rank constraints, without a new runtime claim for
+computing the needed hook counts. It also does not bound fan cells
+when several steep drops remain.
+
+### A family with two simultaneous, independent cost thresholds
+
+For every integer $t\ge1$, use three scaled curves with component sizes
+
+$$
+(m_1,m_2,m_3)=(31t+14,\ 31t+3,\ 31t-9),\qquad n=93t+8.
+\tag{X6}
+$$
+
+At $w_*=(2,3,5)$ the first three merged axis monomials are $1,x,x^2$;
+all three carrier flags are constant nearby. Put $L_s=M_s\setminus
+M_{s-1}$. The layers are
+
+$$
+\begin{aligned}
+L_1&=\{1,x^a,y^b,z^c:a,b,c\ge1\},\\
+L_2&=\{x^ay:a\ge1\}\cup\{xy^b:b\ge2\}
+             \cup\{yz^c:c\ge1\},\\
+L_3&=\{x^ay^2:a\ge2\}\cup\{x^2y^b:b\ge3\}
+             \cup\{y^2z^c:c\ge1\}.
+\end{aligned}
+$$
+
+Choose the $m_s$ cheapest members of each layer. The three cutoff costs
+are, in decreasing order,
+
+$$
+T_1=30t+14>T_2=30t+8>T_3=30t+1. \tag{X7}
+$$
+
+In $L_1$, all monomials of cost at most $T_1$ number exactly $m_1$;
+the last is unique. In $L_2$ the strict prefix at $T_2$ has size
+$m_2-1$, with exactly these two boundary choices:
+
+$$
+P_2=\{(1,10t+2,0),\ (0,1,6t+1)\}.
+$$
+
+In $L_3$ the strict prefix at $T_3$ has size $m_3-1$, with choices
+
+$$
+P_3=\{(2,10t-1,0),\ (0,2,6t-1)\}. \tag{X8}
+$$
+
+These counts follow by counting the three arithmetic rays in each
+layer. For example, the strict $L_2$ ranges are
+$1\le a\le15t+2$, $2\le b\le10t+1$ and
+$1\le c\le6t$. The strict $L_3$ ranges are
+$2\le a\le15t-3$, $3\le b\le10t-2$ and
+$1\le c\le6t-2$. Congruences modulo $2,3,5$ exclude a third
+boundary point in either layer.
+
+Here the nested quotas are all tight. A short optimality argument
+also excludes other block counts: let a feasible basis have layer
+counts $c_s$ and write $\delta_s=c_s-m_s$. Feasibility gives
+$\sum_{j\le s}\delta_j\ge0$, with total zero. Relative to any
+chosen cheapest-layer basis, its excess cost is at least
+
+$$
+\sum_{s=1}^3 T_s\delta_s
+ =\sum_{s=1}^2(T_s-T_{s+1})
+          \sum_{j\le s}\delta_j\ge0. \tag{X9}
+$$
+
+The first inequality is the elementary cutoff bound for choosing
+$c_s$ members of a sorted list. Since the gaps in (X7) are strict,
+equality forces all $c_s=m_s$; then only the choices (X8) remain.
+
+Let the exchange directions be first endpoint minus second endpoint:
+
+$$
+q_2=(1,10t+1,-6t-1),\qquad
+q_3=(2,10t-3,1-6t).
+$$
+
+Both are primitive and have three nonzero coordinates, and
+
+$$
+q_2\times q_3=-(2t+1)(2,3,5). \tag{X10}
+$$
+
+For explicit strict witnesses take $\sigma_2,\sigma_3\in\{-1,1\}$,
+set
+
+$$
+\begin{aligned}
+d_x&=(10t+1)\sigma_3-(10t-3)\sigma_2,&
+d_y&=2\sigma_2-\sigma_3,\\
+K&=10n\max(1,|d_x|,|d_y|)+1,&
+w_\sigma&=(2K+d_x,3K+d_y,5K).
+\end{aligned}
+$$
+
+Then $q_s\cdot w_\sigma=(10t+5)\sigma_s$. Choose the first
+endpoint for $\sigma_s=-1$ and the second for $\sigma_s=1$.
+The perturbation preserves the carrier flags, all relevant strict
+base-cost gaps and the cutoff order. For monomials in $V_n^3$,
+the change in a cost difference is less than $2n\max(|d_x|,|d_y|)$,
+whereas a nonzero integer base-cost gap contributes at least $K$.
+Positive minimizing bases lie in that ground. Hence all four
+combinations are coherent for one fixed generic point ideal, and
+its exposed profile face at $w_*$ is a parallelogram. This does
+not assert that its full residue face matroid equals the nested
+model on arbitrary subsets.
+
+The generic prefix ranks at the six adjacent integer costs are
+
+$$
+\begin{array}{c|rrrrrr}
+C&T_3-1&T_3&T_2-1&T_2&T_1-1&T_1\\\hline
+R(C)&n-22&n-20&n-8&n-6&n-1&n.
+\end{array} \tag{X11}
+$$
+
+Thus both variable choices occur before full rank, at distinct
+costs. The final full-rank cutoff is unique. A vertex count based
+only on a noncollinear last threshold misses this family; neither
+active exchange direction is a same-plane tie.
+
+The general explanation is established matroid theory: at a weight
+flag, an exposed basis face is a direct sum of restriction/contraction
+minors for the separate cost levels. Under the profile projection,
+this gives a Minkowski sum. [Ardila--Klivans, Section 2,
+Propositions 1--2 and proofs, PDF pp. 3--4](https://arxiv.org/pdf/math/0311370)
+were inspected for these precise statements. The two cost blocks
+here give two independent segments. General projected segment sums
+in a two-dimensional face do not have $2^r$ coherent vertices;
+such a zonogon has at most $2r$. Neither the face decomposition nor
+the scalar monotonicity is a new theorem.
+
+### Verification and the unresolved aggregate count
+
+The existing algebraic-incidence checker now compares nested quota
+acceptance, active-index decisions and the independent floor-sum rank
+formula on all 66 component-size partitions of $1\le n\le8$ at
+27 price profiles each. Its 1,827 phase blocks are checked against
+the full two-plane prefix, including points outside $V_n^3$.
+It also checks extremal-index monotonicity without resolving ties.
+Independent Ferrers-grid construction checks (Y4) on 1,024 price/cost
+prefixes. All 271 component-size partitions through length 12 give
+277,504 checks of the jump reduction (Y1) and its combination with the
+square-root cutoff, including 175,104 slow-drop endpoint checks.
+
+For $t=1,2$ in (X6), lengths $101,194$, exact evaluations over
+$\mathbb F_{1000003}$ use one node configuration per ideal for
+all four bases. Eight invertible basis matrices and 96 vanishing
+minimal-border relations with strictly lower tails certify the actual
+initial ideals by inclusion and equal colength. Twelve raw evaluation
+prefix ranks independently check (X11). The report saves the nodes,
+common basis, boundary pairs, weights and initial generators. These
+are local face certificates, not whole-fan enumerations.
+
+The next problem is to count simultaneous changes at different cost
+levels when several steep size drops survive as the component count
+grows. Equation (X5) provides exact block quotas, (Y1) removes the
+other capacity constraints, and (X10)--(X11) show why one shared
+final-threshold budget does not suffice in general. A useful next
+theorem must bound the actual common
+refinement uniformly or produce a growing realizable lower family.
+The four local cones, large wall coordinates, phase count and
+classical lemmas do not themselves provide a power separation,
+establish current novelty, justify another paper or complete the goal.
+
 ## Reproduction
 
 From the repository root:

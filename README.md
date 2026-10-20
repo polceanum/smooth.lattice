@@ -95,7 +95,15 @@ oracle using classical floor sums. Balanced samples with at least
 A monotone threshold charge now gives `O(n^2 log(n+1))` initial ideals
 for **every** balanced component count, closing that whole generic
 construction as a polynomial-amplification route. Unequal-size nested
-constraints and the unrestricted count remain open.
+constraints now have an exact decreasing-phase block description.
+Only adjacent size drops greater than two can supply extra rank
+constraints. All slowly decreasing profiles, including linear slopes
+one and two, therefore obey the same `O(n^2 log(n+1))` fan bound.
+An infinite three-component family has a local parallelogram from two
+independent exchanges at different costs, verified in exact point ideals.
+It exposes the missing simultaneous-cost mechanism in the balanced proof;
+four local choices alone give no growing lower bound. Counting those
+interactions and the unrestricted count remain open.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count

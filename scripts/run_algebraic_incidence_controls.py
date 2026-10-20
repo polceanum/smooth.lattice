@@ -1136,6 +1136,245 @@ def hook_charging_controls():
             'active_local_point_quotient': active}
 
 
+def unequal_phase_controls():
+    """Compare nested quotas, active-prefix indices and the floor-sum oracle."""
+    def partitions(n, maximum):
+        if not n:
+            yield ()
+        for first in range(min(n, maximum), 0, -1):
+            for rest in partitions(n - first, first):
+                yield (first,) + rest
+
+    counts = defaultdict(int)
+    examples = []
+    for n in range(1, 9):
+        ground = tuple(hyperbolic_cross(n, 3))
+        for sizes in partitions(n, n):
+            r, capacities = len(sizes), [0]
+            for size in sizes:
+                capacities.append(capacities[-1] + size)
+            for base_weight in product(range(1, 4), repeat=3):
+                # Preserve integer cost gaps and resolve all ties on V_n^3.
+                weight = tuple((n**3 + 1) * b + d for b, d in
+                               zip(base_weight, (n*n, n, 1)))
+                allowed = {a: tuple(multicurve_allowed(a, s, weight)
+                                    for s in range(r + 1)) for a in ground}
+                ordered = sorted((a for a in ground if allowed[a][r]),
+                                 key=lambda a: dot(a, weight))
+                assert len({dot(a, weight) for a in ordered}) == len(ordered)
+                ranks, outside, selected = [0] * (r + 1), [0] * (r + 1), []
+                smallest, largest, phases = r, r, [r]
+                for a in ordered:
+                    feasible = all(outside[s] + (not allowed[a][s]) <= n - capacities[s]
+                                   for s in range(r + 1))
+                    predicted = allowed[a][smallest]
+                    assert feasible == predicted
+                    old_rank = n - max(c - d for c, d in zip(capacities, ranks))
+                    ranks = [d + member for d, member in zip(ranks, allowed[a])]
+                    values = [c - d for c, d in zip(capacities, ranks)]
+                    active = [s for s in range(r + 1) if values[s] == max(values)]
+                    assert min(active) <= smallest and max(active) <= largest
+                    assert n - max(values) - old_rank == int(predicted)
+                    assert generic_multicurve_prefix_rank(component_capacity_profile(sizes), weight,
+                                                          dot(a, weight)) == n - max(values)
+                    if feasible:
+                        selected.append(a)
+                        outside = [count + (not member) for count, member in zip(outside, allowed[a])]
+                    else:
+                        assert min(active) == smallest
+                    if min(active) != smallest:
+                        assert outside[min(active)] == n - capacities[min(active)]
+                        phases.append(min(active))
+                    smallest, largest = min(active), max(active)
+                    counts['prefix_decisions'] += 1
+                    if len(selected) == n:
+                        break
+                assert len(selected) == n and phases[-1] == 0
+                selected_set = set(selected)
+                assert all(tuple(v - int(i == j) for i, v in enumerate(a)) in selected_set
+                           for a in selected for j in range(3) if a[j])
+                for s, t in zip(phases, phases[1:]):
+                    block = [a for a in ordered if allowed[a][s] and not allowed[a][t]]
+                    take = capacities[s] - capacities[t]
+                    assert selected_set.intersection(block) == set(block[:take])
+                    cutoff = dot(block[take - 1], weight)
+                    # Search the entire two-plane cost prefix, including points
+                    # outside the universal hyperbolic ground used above.
+                    full = [(a, b, c) for b in range(cutoff//weight[1] + 1)
+                            for a, c in ([(a, 0) for a in range((cutoff - b*weight[1])//weight[0] + 1)] +
+                                         [(0, c) for c in range(1, (cutoff - b*weight[1])//weight[2] + 1)])]
+                    assert {a for a in full if multicurve_allowed(a, s, weight) and
+                            not multicurve_allowed(a, t, weight)} == set(block[:take])
+                    counts['frozen_blocks'] += 1
+                # The same extremal monotonicity must hold without resolving ties.
+                previous = (r, r)
+                for threshold in range(13):
+                    direct = [0] + subcurve_prefix_counts(r, base_weight, threshold)
+                    values = [c - d for c, d in zip(capacities, direct)]
+                    active = [s for s in range(r + 1) if values[s] == max(values)]
+                    assert min(active) <= previous[0] and max(active) <= previous[1]
+                    previous = min(active), max(active)
+                    counts['closed_tie_thresholds'] += 1
+                counts['price_profiles'] += 1
+                if sizes == (4, 2, 1) and base_weight in ((1, 2, 3), (3, 2, 1)):
+                    examples.append({'sizes': sizes, 'weight': weight,
+                                     'decreasing_active_indices': phases, 'selected': sorted(selected)})
+    return {'scope': 'A fixed carrier-flag domain has the same positive greedy outputs as a classical nested matroid. This is not an identification of the full residue matroid on arbitrary subsets or a fan-count bound.',
+            'counts': dict(counts), 'phase_witnesses': examples}
+
+
+def hook_capacity_jump_controls():
+    """Direct Ferrers hooks versus every capacity profile through length 12."""
+    def partitions(n, maximum):
+        if not n:
+            yield ()
+        for first in range(min(n, maximum), 0, -1):
+            for rest in partitions(n - first, first):
+                yield (first,) + rest
+
+    profiles = [sizes for n in range(1, 13) for sizes in partitions(n, n)]
+    queries, slow, raw = 0, 0, 0
+    for weight in product(range(1, 5), repeat=3):
+        x, y, z = weight
+        for threshold in range(16):
+            axes = sorted([0] + [a*x for a in range(1, threshold//x + 1)] +
+                          [c*z for c in range(1, threshold//z + 1)])
+            hooks = [0] * 12
+            for i, cost in enumerate(axes):
+                for b in range((threshold - cost)//y + 1):
+                    if min(i, b) < 12:
+                        hooks[min(i, b)] += 1
+            assert all(a >= b + 2 for a, b in zip(hooks, hooks[1:]) if b)
+            counts = [0]
+            for h in hooks:
+                counts.append(counts[-1] + h)
+            assert counts[1:] == subcurve_prefix_counts(12, weight, threshold)
+            raw += 1
+            for sizes in profiles:
+                r, capacities = len(sizes), [0]
+                for size in sizes:
+                    capacities.append(capacities[-1] + size)
+                jumps = [s for s in range(1, r) if sizes[s - 1] - sizes[s] > 2]
+                values = [capacity - count for capacity, count in zip(capacities, counts)]
+                assert max(values) == max(values[s] for s in [0, *jumps, r])
+                n = sum(sizes)
+                retained = [s for s in [*jumps, r] if s*s < n]
+                reduced = min([n, surface_prefix_count(weight, threshold)] +
+                              [n - capacities[s] + counts[s] for s in retained])
+                assert reduced == n - max(values)
+                if not jumps:
+                    assert max(values) == max(0, values[-1])
+                    slow += 1
+                queries += 1
+    return {'scope': 'Only size drops greater than two can supply additional capacity constraints; combine this exact reduction with the earlier square-root cutoff. With no such drops, uniform carrier truncation and the existing quadratic-power fan bound apply. Diagonal-hook facts are classical; no unrestricted bound or exact priority claim.',
+            'counts': {'hook_grid_prefixes': raw, 'capacity_jump_rank_queries': queries,
+                       'slow_drop_rank_queries': slow},
+            'lengths': [1, 12], 'integer_prices': [1, 4], 'integer_costs': [0, 15]}
+
+
+def unequal_threshold_family(t):
+    """Explicit two-cost parallelogram, uniformly for integer t >= 1."""
+    assert t >= 1
+    sizes = (31*t + 14, 31*t + 3, 31*t - 9)
+    n = sum(sizes)
+    first, middle, outer = 30*t + 14, 30*t + 8, 30*t + 1
+    primary = ({(0, 0, 0)} | {(a, 0, 0) for a in range(1, first//2 + 1)} |
+               {(0, b, 0) for b in range(1, first//3 + 1)} |
+               {(0, 0, c) for c in range(1, first//5 + 1)})
+    second = ({(a, 1, 0) for a in range(1, 15*t + 3)} |
+              {(1, b, 0) for b in range(2, 10*t + 2)} |
+              {(0, 1, c) for c in range(1, 6*t + 1)})
+    third = ({(a, 2, 0) for a in range(2, 15*t - 2)} |
+             {(2, b, 0) for b in range(3, 10*t - 1)} |
+             {(0, 2, c) for c in range(1, 6*t - 1)})
+    flip_pairs = [((1, 10*t + 2, 0), (0, 1, 6*t + 1)),
+                  ((2, 10*t - 1, 0), (0, 2, 6*t - 1))]
+    common = primary | second | third
+    assert [len(primary), len(second) + 1, len(third) + 1] == list(sizes)
+    assert len(common) == n - 2
+    directions = [tuple(a - b for a, b in zip(*pair)) for pair in flip_pairs]
+    assert all(gcd(*q) == 1 and all(q) for q in directions)
+    cross = tuple(directions[0][(i+1) % 3] * directions[1][(i+2) % 3] -
+                  directions[0][(i+2) % 3] * directions[1][(i+1) % 3] for i in range(3))
+    assert cross == tuple(-(2*t + 1)*v for v in (2, 3, 5))
+    cases = []
+    for s2, s3 in product((-1, 1), repeat=2):
+        dx, dy = (10*t + 1)*s3 - (10*t - 3)*s2, 2*s2 - s3
+        scale = 10*n*max(1, abs(dx), abs(dy)) + 1
+        weight = (2*scale + dx, 3*scale + dy, 5*scale)
+        selected = common | {flip_pairs[0][int(s2 > 0)], flip_pairs[1][int(s3 > 0)]}
+        assert [dot(q, weight) for q in directions] == [(10*t + 5)*s2, (10*t + 5)*s3]
+        assert all(tuple(v - int(i == j) for i, v in enumerate(a)) in selected
+                   for a in selected for j in range(3) if a[j])
+        cases.append((weight, tuple(sorted(selected))))
+    checks = [(outer - 1, n - 22), (outer, n - 20), (middle - 1, n - 8),
+              (middle, n - 6), (first - 1, n - 1), (first, n)]
+    assert all(generic_multicurve_prefix_rank(component_capacity_profile(sizes), (2, 3, 5), C) == R
+               for C, R in checks)
+    return sizes, common, flip_pairs, directions, cases, checks
+
+
+def unequal_point_controls(t):
+    sizes, common, flip_pairs, directions, cases, checks = unequal_threshold_family(t)
+    n, prime, rng = sum(sizes), 1000003, Random(20261020 + t)
+    basis_ground = common | {a for pair in flip_pairs for a in pair}
+    for attempt in range(1, 31):
+        nodes = rng.sample(range(2, prime), n)
+        components, start = [], 0
+        for j, size in enumerate(sizes, 1):
+            components.extend((j, node) for node in nodes[start:start + size])
+            start += size
+
+        def residue(a):
+            return tuple(pow(node, a[0] - a[1], prime) * pow(j, a[1], prime) *
+                         pow(node - 1, -a[2], prime) % prime for j, node in components)
+
+        columns = {a: residue(a) for a in basis_ground}
+        try:
+            inverses = [field_inverse(selected, columns, prime) for _, selected in cases]
+        except StopIteration:
+            continue
+        break
+    else:
+        raise AssertionError('no simultaneous unequal-component point witness')
+    certificates, total_border, strict_coefficients = [], 0, 0
+    for (weight, selected), inverse in zip(cases, inverses):
+        border = sorted(minimal_excluded_border(selected))
+        for a in border:
+            column = columns.setdefault(a, residue(a))
+            coordinates = [sum(x*y for x, y in zip(row, column)) % prime for row in inverse]
+            assert all(sum(coordinates[j] * columns[b][i] for j, b in enumerate(selected)) % prime == column[i]
+                       for i in range(n))
+            assert all(dot(a, weight) > dot(b, weight) for b, c in zip(selected, coordinates) if c)
+            strict_coefficients += sum(bool(c) for c in coordinates)
+        total_border += len(border)
+        certificates.append({'weight': weight, 'flip_choices': [next(i for i, a in enumerate(pair) if a in selected)
+                                                               for pair in flip_pairs],
+                             'minimal_initial_generators': border})
+    # Exact raw evaluation ranks, independently of the nested/floor-sum oracle.
+    ranks = []
+    for threshold, expected in checks:
+        pool = tuple((a, b, c) for b in range(threshold//3 + 1)
+                     for a, c in ([(a, 0) for a in range((threshold - 3*b)//2 + 1)] +
+                                  [(0, c) for c in range(1, (threshold - 3*b)//5 + 1)]))
+        direct_columns = {a: columns.get(a) or residue(a) for a in pool}
+        actual = column_prefix_ranks(pool, direct_columns, prime)[-1]
+        assert actual == expected
+        ranks.append({'cost': threshold, 'rank': actual})
+    start, nodes_by_component = 0, []
+    for size in sizes:
+        nodes_by_component.append(nodes[start:start + size])
+        start += size
+    return {'parameter': t, 'length': n, 'component_sizes': sizes, 'characteristic': prime,
+            'component_scalars': [1, 2, 3], 'nodes_by_component': nodes_by_component,
+            'generic_sample_attempts': attempt, 'common_selected_monomials': sorted(common),
+            'two_boundary_pairs': flip_pairs, 'primitive_exchange_directions': directions,
+            'four_local_certificates': certificates, 'direct_prefix_ranks': ranks,
+            'matrix_bases': len(cases), 'minimal_border_relations': total_border,
+            'strictly_lower_nonzero_coefficients': strict_coefficients,
+            'certificate': 'Four invertible evaluation bases and vanishing minimal-border relations with strictly lower tails prove the four actual initial ideals by inclusion and equal colength. No whole-fan enumeration or full residue-matroid equivalence is claimed.'}
+
+
 def main():
     axes = [axis_controls(n) for n in (4, 5, 6, 7, 9, 12, 15, 21)]
     arithmetic = [arithmetic_controls(n) for n in (99, 303, 603)]
@@ -1150,6 +1389,9 @@ def main():
     unions = two_curve_controls()
     multicurves = multicurve_controls()
     charging = hook_charging_controls()
+    unequal = {'phase_controls': unequal_phase_controls(),
+               'hook_capacity_compression': hook_capacity_jump_controls(),
+               'simultaneous_two_cost_point_faces': [unequal_point_controls(t) for t in (1, 2)]}
     paths = ['scripts/run_algebraic_incidence_controls.py', 'docs/weighted_facet_incidence.md',
              'docs/initial_cone_height.md', 'scripts/run_extremal_initial_ideals_checks.py',
              'scripts/run_structural_complexity_checks.py', 'scripts/run_initial_cone_height_checks.py',
@@ -1157,7 +1399,7 @@ def main():
              'docs/generic_multiaffine_bound.md', 'docs/planar_dyadic_bound.md',
              'docs/rational_shadow_bound.md', 'scripts/run_planar_dyadic_bound_checks.py']
     report = {'status': 'passed', 'command': 'python3 -B scripts/run_algebraic_incidence_controls.py',
-              'scope': 'Three-pole quotients give quartic incidence; scaled components have exact generic prefix ranks. Threshold charging now excludes polynomial amplification for the entire balanced component family uniformly in its size. Unequal-size and unrestricted extremal counts and priority remain open.',
+              'scope': 'Scaled components have exact generic prefix ranks. Only size drops greater than two supply additional constraints, so slowly decreasing sizes share the uniform quadratic-power fan bound. General unequal samples have decreasing phases and actual two-cost parallelogram faces. No growing lower separation, unrestricted bound or novelty certificate is inferred.',
               'summary': {'complete_axis_fans': len(axes), 'axis_cells': sum(a['positive_cells'] for a in axes),
                           'matrix_selection_controls': sum(a['independent_matrix_selections'] for a in axes),
                           'arithmetic_fixtures': len(arithmetic), 'complete_quotient_fans': len(interior),
@@ -1191,13 +1433,19 @@ def main():
                           'hook_active_local_bases': charging['active_local_point_quotient']['local_exposed_bases'],
                           'hook_active_matrix_bases': charging['active_local_point_quotient']['all_local_and_trace_basis_rank_checks'],
                           'hook_active_s_pairs': charging['active_local_point_quotient']['ordinary_s_pairs'],
-                          'hook_active_normal_forms': charging['active_local_point_quotient']['ordinary_normal_forms']},
+                          'hook_active_normal_forms': charging['active_local_point_quotient']['ordinary_normal_forms'],
+                          **{'unequal_' + k: v for k, v in unequal['phase_controls']['counts'].items()},
+                          **{'unequal_' + k: v for k, v in unequal['hook_capacity_compression']['counts'].items()},
+                          'unequal_point_matrix_bases': sum(a['matrix_bases'] for a in unequal['simultaneous_two_cost_point_faces']),
+                          'unequal_point_border_relations': sum(a['minimal_border_relations'] for a in unequal['simultaneous_two_cost_point_faces']),
+                          'unequal_direct_prefix_rank_queries': sum(len(a['direct_prefix_ranks']) for a in unequal['simultaneous_two_cost_point_faces'])},
               'uniform_axis_matroids': axes, 'arithmetic_lower_bound_controls': arithmetic,
               'interior_quotients': interior, 'three_pole_quotients': curves,
               'positive_plane_traces': planes,
               'generic_two_curve_unions': unions,
               'generic_multicurve_unions': multicurves,
               'balanced_hook_threshold_charging': charging,
+              'unequal_component_phases': unequal,
               'source_sha256': {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in paths}}
     (ROOT / 'results/research/algebraic_incidence_controls.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report['summary'], indent=2))
