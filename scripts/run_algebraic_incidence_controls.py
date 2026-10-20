@@ -12,7 +12,7 @@ from collections import defaultdict
 from fractions import Fraction
 from itertools import combinations, product
 from math import comb, gcd, isqrt
-from heapq import nlargest
+from heapq import heappop, heappush, nlargest
 from pathlib import Path
 from random import Random
 import hashlib
@@ -2199,6 +2199,220 @@ def critical_rotation_controls():
             'scope': 'Exact harmonic-curve identities, odd-last-size endpoint collapse, complete exceptional-unit samples for even last size, and independent generic-prefix ranks. The rank defect and a final canonical block both grow linearly with r in a proved infinite family. The auxiliary critical rule is the established shifted matroid SM(2,4,...,2r), a minor of C_(r+1); its Catalan number of feasible bases is not a count of coherent initial ideals. No full two-parameter critical-neighborhood or unrestricted G_3 bound is claimed.'}
 
 
+def surface_prefix_cut(n, weight):
+    """Exact cost of the n-th two-plane monomial, using the floor-sum oracle."""
+    lo, hi = -1, (n - 1)*min(weight)
+    while hi - lo > 1:
+        mid = (lo + hi)//2
+        if surface_prefix_count(weight, mid) >= n:
+            hi = mid
+        else:
+            lo = mid
+    return hi
+
+
+def direct_surface_prefix(n, weight):
+    """Independent heap merge of the actual two-plane grid, without floors."""
+    axes, a, c = [(0, (0, 0, 0))], 1, 1
+    while len(axes) < n:
+        if a*weight[0] < c*weight[2]:
+            axes.append((a*weight[0], (a, 0, 0)))
+            a += 1
+        else:
+            axes.append((c*weight[2], (0, 0, c)))
+            c += 1
+    pending, seen, selected = [(0, 0, 0)], {(0, 0)}, []
+    while len(selected) < n:
+        cost, i, b = heappop(pending)
+        axis = axes[i][1]
+        selected.append(((axis[0], b, axis[2]), i, b, cost))
+        for j, k in ((i + 1, b), (i, b + 1)):
+            if j < n and k < n and (j, k) not in seen:
+                seen.add((j, k))
+                heappush(pending, (axes[j][0] + k*weight[1], j, k))
+    return selected
+
+
+def subcritical_surface_controls(point):
+    """Subcritical localization and a uniform final-prefix collapse criterion."""
+    counts, fixtures = defaultdict(int), []
+    # Hook floors and every capacity maximum, independent of the final-prefix test.
+    for weight in product(range(1, 6), repeat=3):
+        x, y, z = weight
+        sigma = Fraction(y, x) + Fraction(y, z)
+        K, W = 2 + sigma + 1/sigma, 3 + 1/sigma
+        for cost in range(33):
+            d = [0] + subcurve_prefix_counts(7, weight, cost)
+            gamma = Fraction(1, x) + Fraction(1, z) + Fraction(1, y)
+            for s in range(1, 8):
+                hook = d[s] - d[s - 1]
+                if hook:
+                    eta = hook - gamma*cost + K*(s - 1)
+                    assert -2 - 1/sigma <= eta <= 1
+                    counts['nonempty_hook_floor_error_checks'] += 1
+            for r, last, slope in product(range(1, 8), (1, 2, 6), (1, 3, 4, 5, 9)):
+                delta = K - slope
+                if delta <= 0:
+                    continue
+                sizes = tuple(last + slope*(r - s) for s in range(1, r + 1))
+                capacities = [0]
+                for size in sizes:
+                    capacities.append(capacities[-1] + size)
+                H = [a - b for a, b in zip(capacities, d)]
+                keep = [0, r] + [s for s in range(1, r) if delta*(s + 1) < 2*W]
+                assert max(H) == max(H[s] for s in keep)
+                if max(H) > max(0, H[-1]):
+                    active = H.index(max(H))
+                    assert delta*(active + 1) < 2*W
+                    counts['strict_interior_maximum_localizations'] += 1
+                counts['localized_capacity_rank_queries'] += 1
+
+    def resolved(n, weight):
+        return tuple((n**3 + 1)*w + t for w, t in zip(weight, (n*n, n, 1)))
+
+    # Explicit heap-selected sets independently test final prefix membership.
+    for r, last, slope, base in product(range(1, 7), (1, 2, 6), (1, 3, 4, 5, 9),
+                                        ((2, 1, 3), (1, 2, 3), (13, 8, 21),
+                                         (101, 1, 103), (2, 100, 3))):
+        sizes = tuple(last + slope*(r - s) for s in range(1, r + 1))
+        n, capacities = sum(sizes), [0]
+        for size in sizes:
+            capacities.append(capacities[-1] + size)
+        weight = resolved(n, base)
+        selected = direct_surface_prefix(n, weight)
+        cost = surface_prefix_cut(n, weight)
+        assert selected[-1][-1] == cost and surface_prefix_count(weight, cost) == n
+        assert surface_prefix_count(weight, cost - 1) == n - 1
+        direct = [sum(min(i, b) < s for _, i, b, _ in selected) for s in range(1, r + 1)]
+        assert direct == subcurve_prefix_counts(r, weight, cost)
+        expected = min([n] + [n - a + d for a, d in zip(capacities[1:], direct)])
+        assert generic_multicurve_prefix_rank(component_capacity_profile(sizes), weight, cost) == expected
+        counts['independent_heap_final_prefixes'] += 1
+        counts['heap_final_prefixes_already_bases' if expected == n else
+               'heap_final_prefixes_with_dependencies'] += 1
+
+    def parameters(last, slope):
+        d = abs(Fraction(last) - Fraction(slope, 2))
+        R = max(32, -((-4*d)//slope) + 2)
+        M = int(256*d + 4096*slope)
+        return int(R), M
+
+    cases = []
+    for last, (slope, sigma), (A, D) in product(
+            (1, 6), ((1, Fraction(1)), (3, Fraction(1)), (4, Fraction(1, 2)),
+                     (4, Fraction(2)), (5, Fraction(4)), (9, Fraction(8))),
+            ((1, 3), (1, 101), (100, 101))):
+        R, M = parameters(last, slope)
+        K = 2 + sigma + 1/sigma
+        lo, hi = 0, R
+        while slope*K*hi*hi <= (slope*hi + M)**2:
+            hi *= 2
+        while hi - lo > 1:
+            mid = (lo + hi)//2
+            if slope*K*mid*mid > (slope*mid + M)**2:
+                hi = mid
+            else:
+                lo = mid
+        assert slope*K*lo*lo <= (slope*lo + M)**2
+        assert slope*K*hi*hi > (slope*hi + M)**2
+        r = max(R, hi + 2)
+        B, U, V = D - A, sigma.numerator, sigma.denominator
+        base = (V*D*B, U*A*B, V*D*A)
+        cases.append((last, slope, r, base, 'compact_gap', hi))
+    for last, slope, upper, (A, D) in product((1, 6), (1, 4, 9), (False, True),
+                                              ((1, 3), (1, 101), (100, 101))):
+        R, _ = parameters(last, slope)
+        sigma = Fraction(2048*slope) if upper else Fraction(1, 2048*slope)
+        B, U, V = D - A, sigma.numerator, sigma.denominator
+        cases.append((last, slope, R + 3, (V*D*B, U*A*B, V*D*A),
+                      'large_sigma' if upper else 'small_sigma', None))
+    for last, slope, r, base, branch, threshold_r in cases:
+        sizes = tuple(last + slope*(r - s) for s in range(1, r + 1))
+        n, capacities = sum(sizes), [0]
+        for size in sizes:
+            capacities.append(capacities[-1] + size)
+        weight = resolved(n, base)
+        x, y, z = weight
+        sigma = Fraction(y, x) + Fraction(y, z)
+        K = 2 + sigma + 1/sigma
+        R, M = parameters(last, slope)
+        assert r >= R
+        if branch == 'compact_gap':
+            assert slope*K*r*r > (slope*r + M)**2
+        elif branch == 'small_sigma':
+            assert sigma < Fraction(1, 1024*slope)
+        else:
+            assert sigma > 1024*slope
+        cost = surface_prefix_cut(n, weight)
+        assert surface_prefix_count(weight, cost) == n
+        assert surface_prefix_count(weight, cost - 1) == n - 1
+        d = subcurve_prefix_counts(r, weight, cost)
+        slack = [v - a for v, a in zip(d, capacities[1:])]
+        assert min(slack) >= 0 and d[-1] == n
+        counts[branch + '_full_basis_queries'] += 1
+        counts['large_profile_capacity_inequalities'] += r
+        fixtures.append({'last_size': last, 'slope': slope, 'components': r,
+                         'length': n, 'weight': weight, 'sigma': str(sigma),
+                         'nth_surface_cost': cost, 'surface_prefix_count': n,
+                         'surface_count_one_cost_earlier': n - 1,
+                         'minimum_capacity_slack': min(slack), 'carrier_rank': d[-1],
+                         'criterion_branch': branch, 'gap_constant_M': M,
+                         'unperturbed_first_sufficient_component_count': threshold_r})
+
+    # The old critical family also changes the FINAL n-point surface prefix.
+    critical_final = []
+    for t in (2, 3, 5, 8, 16, 32, 64):
+        r, A, D = 25*t, 160*t - 1, 200*t
+        B, n = D - A, 1250*t*t + 100*t
+        h, M = A*B, 2*r + 1
+        weight = (D*B, h, D*A)
+        cost = surface_prefix_cut(n, weight)
+        assert surface_prefix_count(weight, cost) == n
+        assert surface_prefix_count(weight, cost - 1) == n - 1
+        assert surface_prefix_count(tuple(2*w for w in weight), (2*M + 1)*h) == n - t + 2
+        d = subcurve_prefix_counts(r, weight, cost)
+        capacities = [sum(6 + 4*(r - j) for j in range(1, s + 1)) for s in range(1, r + 1)]
+        defect = max([0] + [a - v for a, v in zip(capacities, d)])
+        assert t + 3 <= defect <= 2*t + 1 and d[-1] == n - 3
+        critical_final.append({'parameter': t, 'length': n, 'weight': weight,
+                               'nth_surface_cost': cost, 'fractional_cost': str(Fraction(cost, h) - M),
+                               'surface_prefix_size': n, 'surface_prefix_evaluation_rank': n - defect,
+                               'carrier_prefix_rank': d[-1], 'rank_defect': defect,
+                               'extra_capacity_defect': defect - 3})
+        counts['critical_final_prefix_dependency_witnesses'] += 1
+
+    # The same length-32 point ideal has generic surface initials away from criticality.
+    n, r, prime = point['length'], len(point['component_sizes']), point['characteristic']
+    components = [(j, node) for j, nodes in zip(point['component_scalars'], point['nodes_by_component'])
+                  for node in nodes]
+
+    def residue(a):
+        return tuple(pow(node, a[0] - a[1], prime)*pow(j, a[1], prime)*
+                     pow(node - 1, -a[2], prime) % prime for j, node in components)
+
+    certificates = []
+    for base in ((101, 1, 103), (2, 100, 3), (3, 100, 2)):
+        weight = resolved(n, base)
+        selected = tuple(a for a, _, _, _ in direct_surface_prefix(n, weight))
+        columns = {a: residue(a) for a in selected}
+        inverse = field_inverse(selected, columns, prime)
+        border = sorted(minimal_excluded_border(selected))
+        for a in border:
+            column = residue(a)
+            coordinates = [sum(x*y for x, y in zip(row, column)) % prime for row in inverse]
+            assert all(sum(coordinates[j]*columns[b][i] for j, b in enumerate(selected)) % prime == column[i]
+                       for i in range(n))
+            assert all(dot(a, weight) > dot(b, weight) for b, value in zip(selected, coordinates) if value)
+        certificates.append({'weight': weight, 'selected': selected, 'minimal_initial_generators': border})
+        counts['point_surface_matrix_bases'] += 1
+        counts['point_surface_border_relations'] += len(border)
+    return {'counts': dict(counts), 'large_profile_fixtures': fixtures,
+            'critical_final_surface_prefixes': critical_final,
+            'point_ideal': {'configuration': 'critical_harmonic_rotation.point_ideal',
+                            'positive_basis_certificates': certificates},
+            'scope': 'All-field generic-component rank model, with explicit subcritical capacity localization and an eventual final-surface-prefix collapse criterion uniform over all positive aspects. Large matrix-free integer witnesses exercise the compact-gap and both extreme-sigma branches; independent heaps and three actual point bases are separate controls. Critical final-prefix dependencies grow as sqrt(n), but neither they nor the narrowing exceptional strip count the remaining coherent states. No unrestricted G_3 improvement or novelty certificate.'}
+
+
 def main():
     axes = [axis_controls(n) for n in (4, 5, 6, 7, 9, 12, 15, 21)]
     arithmetic = [arithmetic_controls(n) for n in (99, 303, 603)]
@@ -2220,6 +2434,7 @@ def main():
     pooled = pooled_block_controls()
     three_drop = three_drop_controls()
     critical = critical_rotation_controls()
+    subcritical = subcritical_surface_controls(critical['point_ideal'])
     paths = ['scripts/run_algebraic_incidence_controls.py', 'docs/weighted_facet_incidence.md',
              'docs/initial_cone_height.md', 'scripts/run_extremal_initial_ideals_checks.py',
              'scripts/run_structural_complexity_checks.py', 'scripts/run_initial_cone_height_checks.py',
@@ -2227,7 +2442,7 @@ def main():
              'docs/generic_multiaffine_bound.md', 'docs/planar_dyadic_bound.md',
              'docs/rational_shadow_bound.md', 'scripts/run_planar_dyadic_bound_checks.py']
     report = {'status': 'passed', 'command': 'python3 -B scripts/run_algebraic_incidence_controls.py',
-              'scope': 'Drop-three profiles have uniform carrier truncation; drop four is sharp. The critical harmonic curve has an exact rotation-word and classical shifted-matroid selection model. A proved infinite family has growing rank defects and canonical blocks. Existing bounded-width global counts are preserved. Two-parameter critical neighborhoods, unrestricted G_3 and exact priority remain unresolved.',
+              'scope': 'Subcritical linear profiles have an explicit all-aspect criterion forcing their final basis to be the ordinary surface prefix. For slope four, every exceptional initial lies in a harmonic strip of width O_a(r^(-1/2)), once r is sufficiently large. All fixed subcritical margins therefore have quadratic-power counts, complementing the preceding supercritical-margin theorem. Critical final surface prefixes really do have growing dependencies. The shrinking strip, unrestricted G_3 and exact priority remain unresolved.',
               'summary': {'complete_axis_fans': len(axes), 'axis_cells': sum(a['positive_cells'] for a in axes),
                           'matrix_selection_controls': sum(a['independent_matrix_selections'] for a in axes),
                           'arithmetic_fixtures': len(arithmetic), 'complete_quotient_fans': len(interior),
@@ -2276,7 +2491,8 @@ def main():
                              ('curve_pair_checks', 'affine_piece_pair_checks', 'exact_wall_quota_checks')},
                           **{'pooled_' + k: v for k, v in pooled['counts'].items()},
                           **{'three_drop_' + k: v for k, v in three_drop['counts'].items()},
-                          **{'critical_' + k: v for k, v in critical['counts'].items()}},
+                          **{'critical_' + k: v for k, v in critical['counts'].items()},
+                          **{'subcritical_' + k: v for k, v in subcritical['counts'].items()}},
               'uniform_axis_matroids': axes, 'arithmetic_lower_bound_controls': arithmetic,
               'interior_quotients': interior, 'three_pole_quotients': curves,
               'positive_plane_traces': planes,
@@ -2288,6 +2504,7 @@ def main():
               'pooled_component_blocks': pooled,
               'three_drop_capacity_reduction': three_drop,
               'critical_harmonic_rotation': critical,
+              'subcritical_final_surface_prefixes': subcritical,
               'source_sha256': {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in paths}}
     (ROOT / 'results/research/algebraic_incidence_controls.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report['summary'], indent=2))

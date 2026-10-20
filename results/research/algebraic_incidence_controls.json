@@ -1,7 +1,7 @@
 {
   "status": "passed",
   "command": "python3 -B scripts/run_algebraic_incidence_controls.py",
-  "scope": "Drop-three profiles have uniform carrier truncation; drop four is sharp. The critical harmonic curve has an exact rotation-word and classical shifted-matroid selection model. A proved infinite family has growing rank defects and canonical blocks. Existing bounded-width global counts are preserved. Two-parameter critical neighborhoods, unrestricted G_3 and exact priority remain unresolved.",
+  "scope": "Subcritical linear profiles have an explicit all-aspect criterion forcing their final basis to be the ordinary surface prefix. For slope four, every exceptional initial lies in a harmonic strip of width O_a(r^(-1/2)), once r is sufficiently large. All fixed subcritical margins therefore have quadratic-power counts, complementing the preceding supercritical-margin theorem. Critical final surface prefixes really do have growing dependencies. The shrinking strip, unrestricted G_3 and exact priority remain unresolved.",
   "summary": {
     "complete_axis_fans": 8,
     "axis_cells": 548,
@@ -95,7 +95,20 @@
     "critical_infinite_family_rank_and_large_block_fixtures": 8,
     "critical_point_matrix_bases": 1,
     "critical_point_border_relations": 11,
-    "critical_point_contracted_critical_subsets": 70
+    "critical_point_contracted_critical_subsets": 70,
+    "subcritical_nonempty_hook_floor_error_checks": 17201,
+    "subcritical_localized_capacity_rank_queries": 297990,
+    "subcritical_strict_interior_maximum_localizations": 2,
+    "subcritical_independent_heap_final_prefixes": 450,
+    "subcritical_heap_final_prefixes_already_bases": 342,
+    "subcritical_heap_final_prefixes_with_dependencies": 108,
+    "subcritical_compact_gap_full_basis_queries": 36,
+    "subcritical_large_profile_capacity_inequalities": 1666500,
+    "subcritical_small_sigma_full_basis_queries": 18,
+    "subcritical_large_sigma_full_basis_queries": 18,
+    "subcritical_critical_final_prefix_dependency_witnesses": 7,
+    "subcritical_point_surface_matrix_bases": 3,
+    "subcritical_point_surface_border_relations": 11
   },
   "uniform_axis_matroids": [
     {
@@ -68813,15 +68826,2162 @@
     },
     "scope": "Exact harmonic-curve identities, odd-last-size endpoint collapse, complete exceptional-unit samples for even last size, and independent generic-prefix ranks. The rank defect and a final canonical block both grow linearly with r in a proved infinite family. The auxiliary critical rule is the established shifted matroid SM(2,4,...,2r), a minor of C_(r+1); its Catalan number of feasible bases is not a count of coherent initial ideals. No full two-parameter critical-neighborhood or unrestricted G_3 bound is claimed."
   },
+  "subcritical_final_surface_prefixes": {
+    "counts": {
+      "nonempty_hook_floor_error_checks": 17201,
+      "localized_capacity_rank_queries": 297990,
+      "strict_interior_maximum_localizations": 2,
+      "independent_heap_final_prefixes": 450,
+      "heap_final_prefixes_already_bases": 342,
+      "heap_final_prefixes_with_dependencies": 108,
+      "compact_gap_full_basis_queries": 36,
+      "large_profile_capacity_inequalities": 1666500,
+      "small_sigma_full_basis_queries": 18,
+      "large_sigma_full_basis_queries": 18,
+      "critical_final_prefix_dependency_witnesses": 7,
+      "point_surface_matrix_bases": 3,
+      "point_surface_border_relations": 11
+    },
+    "large_profile_fixtures": [
+      {
+        "last_size": 1,
+        "slope": 1,
+        "components": 4227,
+        "length": 8935878,
+        "weight": [
+          4281174706177150367802,
+          1427058208775753848184,
+          2140587313163617368460
+        ],
+        "sigma": "1145528525563075493209965193091774612456026/1145528532684973168394057993223435544290615",
+        "nth_surface_cost": 6032175048495111489466136,
+        "surface_prefix_count": 8935878,
+        "surface_count_one_cost_earlier": 8935877,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 8935878,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 4224,
+        "unperturbed_first_sufficient_component_count": 4225
+      },
+      {
+        "last_size": 1,
+        "slope": 1,
+        "components": 4227,
+        "length": 8935878,
+        "weight": [
+          7206643954397361722776184,
+          71352910438787254551178,
+          72066439543175118071454
+        ],
+        "sigma": "129839292712177255246744318779826831317692854391/129839292712191482796025471165980529082240362884",
+        "nth_surface_cost": 301608752424753724085305828,
+        "surface_prefix_count": 8935878,
+        "surface_count_one_cost_earlier": 8935877,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 8935878,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 4224,
+        "unperturbed_first_sufficient_component_count": 4225
+      },
+      {
+        "last_size": 1,
+        "slope": 1,
+        "components": 4227,
+        "length": 8935878,
+        "weight": [
+          72066439623025033702337,
+          71352910438787254551178,
+          7206643954317511807145301
+        ],
+        "sigma": "519357170848709020986977275119307325270771417564/519357171418461343800827579721228081414942268437",
+        "nth_surface_cost": 301608752424753724085305729,
+        "surface_prefix_count": 8935878,
+        "surface_count_one_cost_earlier": 8935877,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 8935878,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 4224,
+        "unperturbed_first_sufficient_component_count": 4225
+      },
+      {
+        "last_size": 1,
+        "slope": 3,
+        "components": 26755,
+        "length": 1073731660,
+        "weight": [
+          7427429309566713024116131606,
+          2475809769471271116550323662,
+          3713714654206906673214888004
+        ],
+        "sigma": "6895838267149152276649613512075608913463280774492252955/6895838267505947309313483616386070236705181555753663606",
+        "nth_surface_cost": 114729024729622048161300100364260,
+        "surface_prefix_count": 1073731660,
+        "surface_count_one_cost_earlier": 1073731659,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 1073731660,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 12416,
+        "unperturbed_first_sufficient_component_count": 26753
+      },
+      {
+        "last_size": 1,
+        "slope": 3,
+        "components": 26755,
+        "length": 1073731660,
+        "weight": [
+          12502839335831072032834475965700,
+          123790488473563555774903331760,
+          125028393358299191331567896102
+        ],
+        "sigma": "39080247864397551298568616104651923661065526051966669935788/39080247864397586977733208022468696828134830206470842892535",
+        "nth_surface_cost": 5736479707677284094191469990133706,
+        "surface_prefix_count": 1073731660,
+        "surface_count_one_cost_earlier": 1073731659,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 1073731660,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 12416,
+        "unperturbed_first_sufficient_component_count": 26753
+      },
+      {
+        "last_size": 1,
+        "slope": 3,
+        "components": 26755,
+        "length": 1073731660,
+        "weight": [
+          125028393359452091009254251701,
+          123790488473563555774903331760,
+          12502839335829919133156789610101
+        ],
+        "sigma": "1563209914575902051942744644186076946442621042078666797431520/1563209914590173853355366496955073793275587836939976306031801",
+        "nth_surface_cost": 5736479707692528886650555368345923,
+        "surface_prefix_count": 1073731660,
+        "surface_count_one_cost_earlier": 1073731659,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 1073731660,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 12416,
+        "unperturbed_first_sufficient_component_count": 26753
+      },
+      {
+        "last_size": 1,
+        "slope": 4,
+        "components": 68581,
+        "length": 9406638541,
+        "weight": [
+          9988139850343273300943663901745,
+          1664689975042464742059846187385,
+          4994069925127394226151318646533
+        ],
+        "sigma": "4988146883441847362502985255937680580370937740910709999414606/9976293766913154693044770990205861588566330947532820659380017",
+        "nth_surface_cost": 322908237908862098341022683805587325,
+        "surface_prefix_count": 9406638541,
+        "surface_count_one_cost_earlier": 9406638540,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 9406638541,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 16640,
+        "unperturbed_first_sufficient_component_count": 68579
+      },
+      {
+        "last_size": 1,
+        "slope": 4,
+        "components": 68581,
+        "length": 9406638541,
+        "weight": [
+          16813368747928982379558080469933081,
+          83234498752123237102531384080741,
+          168133687479288938947094394433245
+        ],
+        "sigma": "52349883084043239660272804791074203867545358868525185611073538058/104699766168086484776083424328677522761227574261634264572002654735",
+        "nth_surface_cost": 16145423548272930214216708997670219315,
+        "surface_prefix_count": 9406638541,
+        "surface_count_one_cost_earlier": 9406638540,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 9406638541,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 16640,
+        "unperturbed_first_sufficient_component_count": 68579
+      },
+      {
+        "last_size": 1,
+        "slope": 4,
+        "components": 68581,
+        "length": 9406638541,
+        "weight": [
+          168133687479377423795735421041925,
+          83234498752123237102531384080741,
+          16813368747928893894709439443324401
+        ],
+        "sigma": "52349883084043239660272804791074203867545358868525185611073538058/104699766168141034817006320354146119905176194408965337702562833775",
+        "nth_surface_cost": 16145423548281376712411632240860048357,
+        "surface_prefix_count": 9406638541,
+        "surface_count_one_cost_earlier": 9406638540,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 9406638541,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 16640,
+        "unperturbed_first_sufficient_component_count": 68579
+      },
+      {
+        "last_size": 1,
+        "slope": 4,
+        "components": 68581,
+        "length": 9406638541,
+        "weight": [
+          4994069925215879074792345255213,
+          3329379950084929484110285736229,
+          2497034962563697113075659323267
+        ],
+        "sigma": "24940734417356536652920327019191261149908564007130809609751920/12470367208751918246662863879349140561450111220630233983940871",
+        "nth_surface_cost": 322907405563874577107739336933640760,
+        "surface_prefix_count": 9406638541,
+        "surface_count_one_cost_earlier": 9406638540,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 9406638541,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 16640,
+        "unperturbed_first_sufficient_component_count": 68579
+      },
+      {
+        "last_size": 1,
+        "slope": 4,
+        "components": 68581,
+        "length": 9406638541,
+        "weight": [
+          8406684373964535432203360748270881,
+          166468997504246474205053361522941,
+          84066843739644469473547197216623
+        ],
+        "sigma": "1413446843269174835819309653274129710773087155333537396622124829264/706723421634587491559535129856677655637346020660875909643240054863",
+        "nth_surface_cost": 16145382763368541673829623382348340136,
+        "surface_prefix_count": 9406638541,
+        "surface_count_one_cost_earlier": 9406638540,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 9406638541,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 16640,
+        "unperturbed_first_sufficient_component_count": 68579
+      },
+      {
+        "last_size": 1,
+        "slope": 4,
+        "components": 68581,
+        "length": 9406638541,
+        "weight": [
+          84066843739732954322188223825303,
+          166468997504246474205053361522941,
+          8406684373964446947354719721662201
+        ],
+        "sigma": "1413446843269174835819309653274129710773087155333537396622124829264/706723421635323917111994226200503717080652392649845396905802471903",
+        "nth_surface_cost": 16145382763385474576888908022139092063,
+        "surface_prefix_count": 9406638541,
+        "surface_count_one_cost_earlier": 9406638540,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 9406638541,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 16640,
+        "unperturbed_first_sufficient_component_count": 68579
+      },
+      {
+        "last_size": 1,
+        "slope": 5,
+        "components": 35355,
+        "length": 3124887030,
+        "weight": [
+          183085611469818694086691782906,
+          244114148613405033518364303038,
+          91542805730026887568214781004
+        ],
+        "sigma": "16760170562446825838704640138664100155724879666054638539645/4190042640686198799491966325621415387350458709194775179406",
+        "nth_surface_cost": 9649160980817873425253574958988058,
+        "surface_prefix_count": 3124887030,
+        "surface_count_one_cost_earlier": 3124887029,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 3124887030,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 20864,
+        "unperturbed_first_sufficient_component_count": 35353
+      },
+      {
+        "last_size": 1,
+        "slope": 5,
+        "components": 35355,
+        "length": 3124887030,
+        "weight": [
+          308194112624433619731940024931000,
+          12205707430670251675765095687430,
+          3081941126244238548129897627102
+        ],
+        "sigma": "189967222112718069949873715395472608930940918259445395690302893/47491805528179532385924243956137393106406142737275781063998100",
+        "nth_surface_cost": 482458110067497858902085630534104184,
+        "surface_prefix_count": 3124887030,
+        "surface_count_one_cost_earlier": 3124887029,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 3124887030,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 20864,
+        "unperturbed_first_sufficient_component_count": 35353
+      },
+      {
+        "last_size": 1,
+        "slope": 5,
+        "components": 35355,
+        "length": 3124887030,
+        "weight": [
+          3081941126254003467080159848001,
+          12205707430670251675765095687430,
+          308194112624423854812989762710101
+        ],
+        "sigma": "3799344442254361398997474307909452178618818365188907913806057860/949836110566570043343903109936022415279606721579377753987358101",
+        "nth_surface_cost": 482458110068301531261523799566741082,
+        "surface_prefix_count": 3124887030,
+        "surface_count_one_cost_earlier": 3124887029,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 3124887030,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 20864,
+        "unperturbed_first_sufficient_component_count": 35353
+      },
+      {
+        "last_size": 1,
+        "slope": 9,
+        "components": 69167,
+        "length": 21528090416,
+        "weight": [
+          59864281810442831463305277720838,
+          159638084826611660763610345871168,
+          29932140904989686393172903333892
+        ],
+        "sigma": "1791866118321561811667352802803787387689099523495902901867128080/223983264790773239392655185977084535532978647067128230185005187",
+        "nth_surface_cost": 11711329269571372744262907979534295324,
+        "surface_prefix_count": 21528090416,
+        "surface_count_one_cost_earlier": 21528090415,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 21528090416,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 37760,
+        "unperturbed_first_sufficient_component_count": 69165
+      },
+      {
+        "last_size": 1,
+        "slope": 9,
+        "components": 69167,
+        "length": 21528090416,
+        "weight": [
+          100771541046799074315692400695152756,
+          7981904241330583038179462417128016,
+          1007715410467986108570154412240998
+        ],
+        "sigma": "101549034849466635086664320162362259632426507631123203114771442101508/12693629356183329963845940050445140624934422393632512003761236986311",
+        "nth_surface_cost": 585566613137138425149593911508780394626,
+        "surface_prefix_count": 21528090416,
+        "surface_count_one_cost_earlier": 21528090415,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 21528090416,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 37760,
+        "unperturbed_first_sufficient_component_count": 69165
+      },
+      {
+        "last_size": 1,
+        "slope": 9,
+        "components": 69167,
+        "length": 21528090416,
+        "weight": [
+          1007715410468449567247113883294053,
+          7981904241330583038179462417128016,
+          100771541046798610857015441224099701
+        ],
+        "sigma": "812392278795733080693314561298898077059412061048985624918171536812064/101549034849512876121405349555245377835153180288462978831519172378153",
+        "nth_surface_cost": 585566613137368075875906368372686629143,
+        "surface_prefix_count": 21528090416,
+        "surface_count_one_cost_earlier": 21528090415,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 21528090416,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 37760,
+        "unperturbed_first_sufficient_component_count": 69165
+      },
+      {
+        "last_size": 6,
+        "slope": 1,
+        "components": 5507,
+        "length": 15193813,
+        "weight": [
+          21045128701916879991757,
+          7015042823688324031409,
+          10522564235532463256395
+        ],
+        "sigma": "20131701618295509540363522257034854484473288/20131701691906208645811258564538577543412365",
+        "nth_surface_cost": 38666916044170041331823416,
+        "surface_prefix_count": 15193813,
+        "surface_count_one_cost_earlier": 15193812,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 15193813,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 5504,
+        "unperturbed_first_sufficient_component_count": 5505
+      },
+      {
+        "last_size": 6,
+        "slope": 1,
+        "components": 5507,
+        "length": 15193813,
+        "weight": [
+          35425966259856811583338769,
+          350752141184415457073613,
+          354259662596259596298599
+        ],
+        "sigma": "12549990854362541405969521883080780242743821570584/12549990854363350580501288729192756817050697084631",
+        "nth_surface_cost": 1933345802208497974836554648,
+        "surface_prefix_count": 15193813,
+        "surface_count_one_cost_earlier": 15193812,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 15193813,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 5504,
+        "unperturbed_first_sufficient_component_count": 5505
+      },
+      {
+        "last_size": 6,
+        "slope": 1,
+        "components": 5507,
+        "length": 15193813,
+        "weight": [
+          354259662827111549777567,
+          350752141184415457073613,
+          35425966259625959629859801
+        ],
+        "sigma": "12549990854362541405969521883080780242743821570584/12549990862459722560266804146310647209452944884167",
+        "nth_surface_cost": 1933345802208497974836553064,
+        "surface_prefix_count": 15193813,
+        "surface_count_one_cost_earlier": 15193812,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 15193813,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 5504,
+        "unperturbed_first_sufficient_component_count": 5505
+      },
+      {
+        "last_size": 6,
+        "slope": 3,
+        "components": 28962,
+        "length": 1258326495,
+        "weight": [
+          11954496073816866687813409281,
+          3984832024077827041189801247,
+          5977248036116740559897212129
+        ],
+        "sigma": "6495908016075671751087687602818528115585023786251172570/6495908016362468363486630083054237283658361397704942659",
+        "nth_surface_cost": 199903083319888271301642398090741,
+        "surface_prefix_count": 1258326495,
+        "surface_count_one_cost_earlier": 1258326494,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 1258326495,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 13440,
+        "unperturbed_first_sufficient_component_count": 28960
+      },
+      {
+        "last_size": 6,
+        "slope": 3,
+        "components": 28962,
+        "length": 1258326495,
+        "weight": [
+          20123401721594609937221966482625,
+          199241601203891351997832064095,
+          201234017215930265516539474977
+        ],
+        "sigma": "809902593697289465063604383510631022171912734302491643300038/809902593697290096011041168455539956249015128494321778554925",
+        "nth_surface_cost": 9995106348010124630339951227689217,
+        "surface_prefix_count": 1258326495,
+        "surface_count_one_cost_earlier": 1258326494,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 1258326495,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 13440,
+        "unperturbed_first_sufficient_component_count": 28960
+      },
+      {
+        "last_size": 6,
+        "slope": 3,
+        "components": 28962,
+        "length": 1258326495,
+        "weight": [
+          201234017217513651084558460001,
+          199241601203891351997832064095,
+          20123401721593026551653947497601
+        ],
+        "sigma": "35836397951207498454141786881001372662474014792145647933630/35836397951486680998955490706185095359743969301952638955377",
+        "nth_surface_cost": 9995106348015470140072105349789196,
+        "surface_prefix_count": 1258326495,
+        "surface_count_one_cost_earlier": 1258326494,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 1258326495,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 13440,
+        "unperturbed_first_sufficient_component_count": 28960
+      },
+      {
+        "last_size": 6,
+        "slope": 4,
+        "components": 71746,
+        "length": 10295264016,
+        "weight": [
+          13094644456174202310873193521420,
+          2182440742678034974962636776210,
+          6547322228034104924857024536583
+        ],
+        "sigma": "4286742835794079811505515130480272462370294823355833471050863/8573485671611291849535630012948356055104110785185225338410786",
+        "nth_surface_cost": 442884882352396315502557815671011517,
+        "surface_prefix_count": 10295264016,
+        "surface_count_one_cost_earlier": 10295264015,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 10295264016,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 17408,
+        "unperturbed_first_sufficient_component_count": 71744
+      },
+      {
+        "last_size": 6,
+        "slope": 4,
+        "components": 71746,
+        "length": 10295264016,
+        "weight": [
+          22042651501048259239479808417607656,
+          109122037133901748747627370873716,
+          220426515010481532470186492731595
+        ],
+        "sigma": "607348106495828395886314962875311679495834800136532446495459756679/1214696212991656849603081736226633121027216063205809311565606272830",
+        "nth_surface_cost": 22144207016127190248509388217573186043,
+        "surface_prefix_count": 10295264016,
+        "surface_count_one_cost_earlier": 10295264015,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 10295264016,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 17408,
+        "unperturbed_first_sufficient_component_count": 71744
+      },
+      {
+        "last_size": 6,
+        "slope": 4,
+        "components": 71746,
+        "length": 10295264016,
+        "weight": [
+          220426515010587524931345637179850,
+          109122037133901748747627370873716,
+          22042651501048153247018649273159401
+        ],
+        "sigma": "1214696212991656791772629925750623358991669600273064892990919513358/2429392425984470194873282827162683502763192666789828699330577634925",
+        "nth_surface_cost": 22144207016133722881867535608672988362,
+        "surface_prefix_count": 10295264016,
+        "surface_count_one_cost_earlier": 10295264015,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 10295264016,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 17408,
+        "unperturbed_first_sufficient_component_count": 71744
+      },
+      {
+        "last_size": 6,
+        "slope": 4,
+        "components": 71746,
+        "length": 10295264016,
+        "weight": [
+          6547322228140097386016168984838,
+          4364881485356069949914978288404,
+          3273661114017052462428512268292
+        ],
+        "sigma": "5358428544771515047575559709235741893336764705604529158463065/2679214272400215165384612752685912610721387133029613792019587",
+        "nth_surface_cost": 442882699915114291324465127713286660,
+        "surface_prefix_count": 10295264016,
+        "surface_count_one_cost_earlier": 10295264015,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 10295264016,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 17408,
+        "unperturbed_first_sufficient_component_count": 71744
+      },
+      {
+        "last_size": 6,
+        "slope": 4,
+        "components": 71746,
+        "length": 10295264016,
+        "weight": [
+          11021325750524182615970483781027956,
+          218244074267803497495244446483416,
+          110213257505240766235093246365798
+        ],
+        "sigma": "303674053247915643707303471395941121459763387991496968483107872958/151837026623957836311286176216909013413168772710410302364705031111",
+        "nth_surface_cost": 22144152455108623297633988074165739136,
+        "surface_prefix_count": 10295264016,
+        "surface_count_one_cost_earlier": 10295264015,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 10295264016,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 17408,
+        "unperturbed_first_sufficient_component_count": 71744
+      },
+      {
+        "last_size": 6,
+        "slope": 4,
+        "components": 71746,
+        "length": 10295264016,
+        "weight": [
+          110213257505346758696252390814053,
+          218244074267803497495244446483416,
+          11021325750524076623509324636579701
+        ],
+        "sigma": "2429392425983325149658427771167528971678107103931975747864862983664/1214696212992819186157408764444689368014110722061492495117005338153",
+        "nth_surface_cost": 22144152455113818624110699166777430040,
+        "surface_prefix_count": 10295264016,
+        "surface_count_one_cost_earlier": 10295264015,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 10295264016,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 17408,
+        "unperturbed_first_sufficient_component_count": 71744
+      },
+      {
+        "last_size": 6,
+        "slope": 5,
+        "components": 36223,
+        "length": 3280391103,
+        "weight": [
+          211801058607243810326048254977,
+          282401411461977126053155988927,
+          105900529298241422268703349185
+        ],
+        "sigma": "89719376848220430847521213688221431503019034161150759114174/22429844212434971702545559982624981374429110252244745143745",
+        "nth_surface_cost": 11436904162988152614197717682273950,
+        "surface_prefix_count": 3280391103,
+        "surface_count_one_cost_earlier": 3280391102,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 3280391103,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 21376,
+        "unperturbed_first_sufficient_component_count": 36221
+      },
+      {
+        "last_size": 6,
+        "slope": 5,
+        "components": 36223,
+        "length": 3280391103,
+        "weight": [
+          356531781970756882603756583809409,
+          14120070573098856302497060282303,
+          3565317819707461216379679422529
+        ],
+        "sigma": "5084596462209577915005660701282724620566374543431270621445793214/1271149115552394858615110786293367993260827949048182200116775361",
+        "nth_surface_cost": 571846302427756721842040034467598482,
+        "surface_prefix_count": 3280391103,
+        "surface_count_one_cost_earlier": 3280391102,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 3280391103,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 21376,
+        "unperturbed_first_sufficient_component_count": 36221
+      },
+      {
+        "last_size": 6,
+        "slope": 5,
+        "components": 36223,
+        "length": 3280391103,
+        "weight": [
+          3565317819718222182168320979137,
+          14120070573098856302497060282303,
+          356531781970746121637967942252801
+        ],
+        "sigma": "5084596462209577915005660701282724620566374543431270621445793214/1271149115556193118660377889750308548176423796106790537900812737",
+        "nth_surface_cost": 571846302428488801105626987375257510,
+        "surface_prefix_count": 3280391103,
+        "surface_count_one_cost_earlier": 3280391102,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 3280391103,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 21376,
+        "unperturbed_first_sufficient_component_count": 36221
+      },
+      {
+        "last_size": 6,
+        "slope": 9,
+        "components": 68230,
+        "length": 20949100395,
+        "weight": [
+          55162937455714212300960053935281,
+          147101166547400926649621655178411,
+          27581468727637673746800132389629
+        ],
+        "sigma": "12171798674843036845764161404745719978543645491823344528463518010/1521474834359414451040255083520974342495824271318735111841600749",
+        "nth_surface_cost": 10645490771326839007593455885389236211,
+        "surface_prefix_count": 20949100395,
+        "surface_count_one_cost_earlier": 20949100394,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 20949100395,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 37248,
+        "unperturbed_first_sufficient_component_count": 68228
+      },
+      {
+        "last_size": 6,
+        "slope": 9,
+        "components": 68230,
+        "length": 20949100395,
+        "weight": [
+          92857611383047273812367805500903625,
+          7355058327370046332480056253001195,
+          928576113830468349475604457117477
+        ],
+        "sigma": "10612351989864602441675874919604128977161965732811873298399240634106/1326543998733075367284023970482107455146245093339377527142865848525",
+        "nth_surface_cost": 532274685665445745413008685395047199012,
+        "surface_prefix_count": 20949100395,
+        "surface_count_one_cost_earlier": 20949100394,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 20949100395,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 37248,
+        "unperturbed_first_sufficient_component_count": 68228
+      },
+      {
+        "last_size": 6,
+        "slope": 9,
+        "components": 68230,
+        "length": 20949100395,
+        "weight": [
+          928576113830907214282964246273501,
+          7355058327370046332480056253001195,
+          92857611383046834947560445711747601
+        ],
+        "sigma": "689802879341199158708931869774268383515527772632771764395950641216890/86225359917690243291815753985118906221098942683334936721882526621101",
+        "nth_surface_cost": 532274685665545638065001004310737343856,
+        "surface_prefix_count": 20949100395,
+        "surface_count_one_cost_earlier": 20949100394,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 20949100395,
+        "criterion_branch": "compact_gap",
+        "gap_constant_M": 37248,
+        "unperturbed_first_sufficient_component_count": 68228
+      },
+      {
+        "last_size": 1,
+        "slope": 1,
+        "components": 35,
+        "length": 630,
+        "weight": [
+          3072577945188,
+          500094632,
+          1536288774145
+        ],
+        "sigma": "576217376485470980114/1180091751219458880391065",
+        "nth_surface_cost": 314559523528,
+        "surface_prefix_count": 630,
+        "surface_count_one_cost_earlier": 629,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 630,
+        "criterion_branch": "small_sigma",
+        "gap_constant_M": 4224,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 1,
+        "slope": 1,
+        "components": 35,
+        "length": 630,
+        "weight": [
+          5172172206681700,
+          25004700730,
+          51721722062849
+        ],
+        "sigma": "13062190433352139236382077/26751365333518328090513816330",
+        "nth_surface_cost": 15727956759170,
+        "surface_prefix_count": 630,
+        "surface_count_one_cost_earlier": 629,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 630,
+        "criterion_branch": "small_sigma",
+        "gap_constant_M": 4224,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 1,
+        "slope": 1,
+        "components": 35,
+        "length": 630,
+        "weight": [
+          51721722459748,
+          25004700730,
+          5172172206284801
+        ],
+        "sigma": "65310952166760696181910385/133756827683742478821173345074",
+        "nth_surface_cost": 15727956759170,
+        "surface_prefix_count": 630,
+        "surface_count_one_cost_earlier": 629,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 630,
+        "criterion_branch": "small_sigma",
+        "gap_constant_M": 4224,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 1,
+        "slope": 1,
+        "components": 35,
+        "length": 630,
+        "weight": [
+          1500678906,
+          1024192516726,
+          750141004
+        ],
+        "sigma": "576318227079972203665/281430195307115406",
+        "nth_surface_cost": 315059221680,
+        "surface_prefix_count": 630,
+        "surface_count_one_cost_earlier": 629,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 630,
+        "criterion_branch": "large_sigma",
+        "gap_constant_M": 4224,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 1,
+        "slope": 1,
+        "components": 35,
+        "length": 630,
+        "weight": [
+          2525475107000,
+          51209625805430,
+          25254747102
+        ],
+        "sigma": "6531096067965123906968693/3189011756984069495700",
+        "nth_surface_cost": 15733707444546,
+        "surface_prefix_count": 630,
+        "surface_count_one_cost_earlier": 629,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 630,
+        "criterion_branch": "large_sigma",
+        "gap_constant_M": 4224,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 1,
+        "slope": 1,
+        "components": 35,
+        "length": 630,
+        "weight": [
+          25255144001,
+          51209625805430,
+          2525474710101
+        ],
+        "sigma": "130621921359302478139373860/63781227474484484254101",
+        "nth_surface_cost": 15733954712623,
+        "surface_prefix_count": 630,
+        "surface_count_one_cost_earlier": 629,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 630,
+        "criterion_branch": "large_sigma",
+        "gap_constant_M": 4224,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 1,
+        "slope": 4,
+        "components": 35,
+        "length": 2415,
+        "weight": [
+          692297244409377,
+          28169649167,
+          346148619288577
+        ],
+        "sigma": "29252655659293665435704318/239637735289592381100287786529",
+        "nth_surface_cost": 68001533089138,
+        "surface_prefix_count": 2415,
+        "surface_count_one_cost_earlier": 2414,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 2415,
+        "criterion_branch": "small_sigma",
+        "gap_constant_M": 16640,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 1,
+        "slope": 4,
+        "components": 35,
+        "length": 2415,
+        "weight": [
+          1165367018277371425,
+          1408482340015,
+          11653670182715393
+        ],
+        "sigma": "331562570705665877669339084454/2716160574563789557633570585169005",
+        "nth_surface_cost": 3400076368796210,
+        "surface_prefix_count": 2415,
+        "surface_count_one_cost_earlier": 2414,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 2415,
+        "criterion_branch": "small_sigma",
+        "gap_constant_M": 16640,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 1,
+        "slope": 4,
+        "components": 35,
+        "length": 2415,
+        "weight": [
+          11653670188547617,
+          1408482340015,
+          1165367018271539201
+        ],
+        "sigma": "1657812853528329388346695422270/13580802879547662466011845270634017",
+        "nth_surface_cost": 3400076368796210,
+        "surface_prefix_count": 2415,
+        "surface_count_one_cost_earlier": 2414,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 2415,
+        "criterion_branch": "small_sigma",
+        "gap_constant_M": 16640,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 1,
+        "slope": 4,
+        "components": 35,
+        "length": 2415,
+        "weight": [
+          84514772481,
+          230765746194799,
+          42254470129
+        ],
+        "sigma": "29253998865446158751185390/3571126929257645720049",
+        "nth_surface_cost": 68029696907690,
+        "surface_prefix_count": 2415,
+        "surface_count_one_cost_earlier": 2414,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 2415,
+        "criterion_branch": "large_sigma",
+        "gap_constant_M": 16640,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 1,
+        "slope": 4,
+        "components": 35,
+        "length": 2415,
+        "weight": [
+          142256721929825,
+          11538287309621615,
+          1422567160977
+        ],
+        "sigma": "331562583594371213303999377046/40473948209121137374487805",
+        "nth_surface_cost": 3401358081896007,
+        "surface_prefix_count": 2415,
+        "surface_count_one_cost_earlier": 2414,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 2415,
+        "criterion_branch": "large_sigma",
+        "gap_constant_M": 16640,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 1,
+        "slope": 4,
+        "components": 35,
+        "length": 2415,
+        "weight": [
+          1422572993201,
+          11538287309621615,
+          142256716097601
+        ],
+        "sigma": "1657812917971856066519996885230/202370562421909134625410801",
+        "nth_surface_cost": 3401372026743591,
+        "surface_prefix_count": 2415,
+        "surface_count_one_cost_earlier": 2414,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 2415,
+        "criterion_branch": "large_sigma",
+        "gap_constant_M": 16640,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 1,
+        "slope": 9,
+        "components": 35,
+        "length": 5390,
+        "weight": [
+          17317691884010692,
+          313181643392,
+          8658845927479297
+        ],
+        "sigma": "2033843700359215463794000672/37487806460801813653895539160881",
+        "nth_surface_cost": 1687735876239488,
+        "surface_prefix_count": 5390,
+        "surface_count_one_cost_earlier": 5389,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 5390,
+        "criterion_branch": "small_sigma",
+        "gap_constant_M": 37760,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 1,
+        "slope": 9,
+        "components": 35,
+        "length": 5390,
+        "weight": [
+          29151447955876015300,
+          15659081905490,
+          291514479558469633
+        ],
+        "sigma": "46104976031673392542069833498217/849806917923301003011220715809338490",
+        "nth_surface_cost": 84386792388685610,
+        "surface_prefix_count": 5390,
+        "surface_count_one_cost_earlier": 5389,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 5390,
+        "criterion_branch": "small_sigma",
+        "gap_constant_M": 37760,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 1,
+        "slope": 9,
+        "components": 35,
+        "length": 5390,
+        "weight": [
+          291514479587521732,
+          15659081905490,
+          29151447955846963201
+        ],
+        "sigma": "230524880158366962710349167491085/4249034590035725837299377312895892066",
+        "nth_surface_cost": 84386792388685610,
+        "surface_prefix_count": 5390,
+        "surface_count_one_cost_earlier": 5389,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 5390,
+        "criterion_branch": "small_sigma",
+        "gap_constant_M": 37760,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 1,
+        "slope": 9,
+        "components": 35,
+        "length": 5390,
+        "weight": [
+          939573966106,
+          5772563951658254,
+          469772457004
+        ],
+        "sigma": "2033885589360821807001962485/110346492648652159576606",
+        "nth_surface_cost": 1687892438015372,
+        "surface_prefix_count": 5390,
+        "surface_count_one_cost_earlier": 5389,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 5390,
+        "criterion_branch": "large_sigma",
+        "gap_constant_M": 37760,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 1,
+        "slope": 9,
+        "components": 35,
+        "length": 5390,
+        "weight": [
+          1581567300962200,
+          288628197582648590,
+          15815672719102
+        ],
+        "sigma": "23052488427142279308895585983209/1250677540762582442745997220",
+        "nth_surface_cost": 84392429629128272,
+        "surface_prefix_count": 5390,
+        "surface_count_one_cost_earlier": 5389,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 5390,
+        "criterion_branch": "large_sigma",
+        "gap_constant_M": 37760,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 1,
+        "slope": 9,
+        "components": 35,
+        "length": 5390,
+        "weight": [
+          15815701771201,
+          288628197582648590,
+          1581567271910101
+        ],
+        "sigma": "4080086447281819346707183359860/221359259324089539470290277",
+        "nth_surface_cost": 84392584651128536,
+        "surface_prefix_count": 5390,
+        "surface_count_one_cost_earlier": 5389,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 5390,
+        "criterion_branch": "large_sigma",
+        "gap_constant_M": 37760,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 6,
+        "slope": 1,
+        "components": 35,
+        "length": 805,
+        "weight": [
+          6410160276313,
+          1043321057,
+          3205079814145
+        ],
+        "sigma": "10031782454485416174106/20545075307044931885847385",
+        "nth_surface_cost": 838830129828,
+        "surface_prefix_count": 805,
+        "surface_count_one_cost_earlier": 804,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 805,
+        "criterion_branch": "small_sigma",
+        "gap_constant_M": 5504,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 6,
+        "slope": 1,
+        "components": 35,
+        "length": 805,
+        "weight": [
+          10790435374932825,
+          52166013405,
+          107904353742849
+        ],
+        "sigma": "12633843030629761617364666/25874110127468956176015535965",
+        "nth_surface_cost": 41941474777620,
+        "surface_prefix_count": 805,
+        "surface_count_one_cost_earlier": 804,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 805,
+        "criterion_branch": "small_sigma",
+        "gap_constant_M": 5504,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 6,
+        "slope": 1,
+        "components": 35,
+        "length": 805,
+        "weight": [
+          107904354390873,
+          52166013405,
+          10790435374284801
+        ],
+        "sigma": "63169215153148808086823330/129370551406515501108486335697",
+        "nth_surface_cost": 41941474777620,
+        "surface_prefix_count": 805,
+        "surface_count_one_cost_earlier": 804,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 805,
+        "criterion_branch": "small_sigma",
+        "gap_constant_M": 5504,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 6,
+        "slope": 1,
+        "components": 35,
+        "length": 805,
+        "weight": [
+          3130608781,
+          2136719876901,
+          1564980379
+        ],
+        "sigma": "10033158691932869993160/4899341316590107999",
+        "nth_surface_cost": 839003153308,
+        "surface_prefix_count": 805,
+        "surface_count_one_cost_earlier": 804,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 805,
+        "criterion_branch": "large_sigma",
+        "gap_constant_M": 5504,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 6,
+        "slope": 1,
+        "components": 35,
+        "length": 805,
+        "weight": [
+          5268767920625,
+          106835993805605,
+          52687672727
+        ],
+        "sigma": "113704599361631270363667592/55519823975281262658875",
+        "nth_surface_cost": 41992075163419,
+        "surface_prefix_count": 805,
+        "surface_count_one_cost_earlier": 804,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 805,
+        "criterion_branch": "large_sigma",
+        "gap_constant_M": 5504,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 6,
+        "slope": 1,
+        "components": 35,
+        "length": 805,
+        "weight": [
+          52688320751,
+          106835993805605,
+          5268767272601
+        ],
+        "sigma": "568522996808156351818337960/277602500021172942043351",
+        "nth_surface_cost": 41992591638547,
+        "surface_prefix_count": 805,
+        "surface_count_one_cost_earlier": 804,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 805,
+        "criterion_branch": "large_sigma",
+        "gap_constant_M": 5504,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 6,
+        "slope": 4,
+        "components": 35,
+        "length": 2590,
+        "weight": [
+          853965822565252,
+          34747960592,
+          426982907928577
+        ],
+        "sigma": "11127589001892999697796692/91157202547632629441934501601",
+        "nth_surface_cost": 89962469972688,
+        "surface_prefix_count": 2590,
+        "surface_count_one_cost_earlier": 2589,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 2590,
+        "criterion_branch": "small_sigma",
+        "gap_constant_M": 17408,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 6,
+        "slope": 4,
+        "components": 35,
+        "length": 2590,
+        "weight": [
+          1437509123366247300,
+          1737397902690,
+          14375091233595393
+        ],
+        "sigma": "3114198258511709348669285857/25511512095698197382504099973690",
+        "nth_surface_cost": 4498123170064410,
+        "surface_prefix_count": 2590,
+        "surface_count_one_cost_earlier": 2589,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 2590,
+        "criterion_branch": "small_sigma",
+        "gap_constant_M": 17408,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 6,
+        "slope": 4,
+        "components": 35,
+        "length": 2590,
+        "weight": [
+          14375091240303492,
+          1737397902690,
+          1437509123359539201
+        ],
+        "sigma": "46712973877675640230039287855/382672681612260441807376527984998",
+        "nth_surface_cost": 4498123170064410,
+        "surface_prefix_count": 2590,
+        "surface_count_one_cost_earlier": 2589,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 2590,
+        "criterion_branch": "small_sigma",
+        "gap_constant_M": 17408,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 6,
+        "slope": 4,
+        "components": 35,
+        "length": 2590,
+        "weight": [
+          104250582106,
+          284655271954974,
+          52121937004
+        ],
+        "sigma": "11128065488385354718638285/1358435568289815412606",
+        "nth_surface_cost": 89968252357478,
+        "surface_prefix_count": 2590,
+        "surface_count_one_cost_earlier": 2589,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 2590,
+        "criterion_branch": "large_sigma",
+        "gap_constant_M": 17408,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 6,
+        "slope": 4,
+        "components": 35,
+        "length": 2590,
+        "weight": [
+          175477194618200,
+          14232763597621790,
+          1754771879102
+        ],
+        "sigma": "126125034054886228438182570529/15396122326986308772442820",
+        "nth_surface_cost": 4499235098017528,
+        "surface_prefix_count": 2590,
+        "surface_count_one_cost_earlier": 2589,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 2590,
+        "criterion_branch": "large_sigma",
+        "gap_constant_M": 17408,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 6,
+        "slope": 4,
+        "components": 35,
+        "length": 2590,
+        "weight": [
+          1754778587201,
+          14232763597621790,
+          175477187910101
+        ],
+        "sigma": "2522500681097724568763651410580/307923611886891430577217301",
+        "nth_surface_cost": 4499252297583364,
+        "surface_prefix_count": 2590,
+        "surface_count_one_cost_earlier": 2589,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 2590,
+        "criterion_branch": "large_sigma",
+        "gap_constant_M": 17408,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 6,
+        "slope": 9,
+        "components": 35,
+        "length": 5565,
+        "weight": [
+          19059838607207817,
+          344687479817,
+          9529919288119297
+        ],
+        "sigma": "9854531597518481005487858138/181638723571270612618998366944649",
+        "nth_surface_cost": 1917841137701788,
+        "surface_prefix_count": 5565,
+        "surface_count_one_cost_earlier": 5564,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 5565,
+        "criterion_branch": "small_sigma",
+        "gap_constant_M": 37248,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 6,
+        "slope": 9,
+        "components": 35,
+        "length": 5565,
+        "weight": [
+          32084061603365932425,
+          17234373718165,
+          320840616033349633
+        ],
+        "sigma": "111695639029944333062933006636714/2058774017935173022454603842215310005",
+        "nth_surface_cost": 95892055367870060,
+        "surface_prefix_count": 5565,
+        "surface_count_one_cost_earlier": 5564,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 5565,
+        "criterion_branch": "small_sigma",
+        "gap_constant_M": 37248,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 6,
+        "slope": 9,
+        "components": 35,
+        "length": 5565,
+        "weight": [
+          320840616064318857,
+          17234373718165,
+          32084061603334963201
+        ],
+        "sigma": "558478195149721665314665033183570/10293870090659547417990264037225381257",
+        "nth_surface_cost": 95892055367870060,
+        "surface_prefix_count": 5565,
+        "surface_count_one_cost_earlier": 5564,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 5565,
+        "criterion_branch": "small_sigma",
+        "gap_constant_M": 37248,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 6,
+        "slope": 9,
+        "components": 35,
+        "length": 5565,
+        "weight": [
+          1034093391981,
+          6353279525418429,
+          517031211379
+        ],
+        "sigma": "3284909394633289906886440480/178219519711651838183933",
+        "nth_surface_cost": 1918185794216090,
+        "surface_prefix_count": 5565,
+        "surface_count_one_cost_earlier": 5564,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 5565,
+        "criterion_branch": "large_sigma",
+        "gap_constant_M": 37248,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 6,
+        "slope": 9,
+        "components": 35,
+        "length": 5565,
+        "weight": [
+          1740671775941825,
+          317663976270648765,
+          17406717449727
+        ],
+        "sigma": "37231880320444793742682414015552/2019958785102256801167608785",
+        "nth_surface_cost": 95893606430546043,
+        "surface_prefix_count": 5565,
+        "surface_count_one_cost_earlier": 5564,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 5565,
+        "criterion_branch": "large_sigma",
+        "gap_constant_M": 37248,
+        "unperturbed_first_sufficient_component_count": null
+      },
+      {
+        "last_size": 6,
+        "slope": 9,
+        "components": 35,
+        "length": 5565,
+        "weight": [
+          17406748418951,
+          317663976270648765,
+          1740671744972601
+        ],
+        "sigma": "9797863242222314142811161583040/531569037626570188413406343",
+        "nth_surface_cost": 95893777040001059,
+        "surface_prefix_count": 5565,
+        "surface_count_one_cost_earlier": 5564,
+        "minimum_capacity_slack": 0,
+        "carrier_rank": 5565,
+        "criterion_branch": "large_sigma",
+        "gap_constant_M": 37248,
+        "unperturbed_first_sufficient_component_count": null
+      }
+    ],
+    "critical_final_surface_prefixes": [
+      {
+        "parameter": 2,
+        "length": 5200,
+        "weight": [
+          32400,
+          25839,
+          127600
+        ],
+        "nth_surface_cost": 2622375,
+        "fractional_cost": "156/319",
+        "surface_prefix_size": 5200,
+        "surface_prefix_evaluation_rank": 5195,
+        "carrier_prefix_rank": 5197,
+        "rank_defect": 5,
+        "extra_capacity_defect": 2
+      },
+      {
+        "parameter": 3,
+        "length": 11550,
+        "weight": [
+          72600,
+          57959,
+          287400
+        ],
+        "nth_surface_cost": 8780970,
+        "fractional_cost": "241/479",
+        "surface_prefix_size": 11550,
+        "surface_prefix_evaluation_rank": 11544,
+        "carrier_prefix_rank": 11547,
+        "rank_defect": 6,
+        "extra_capacity_defect": 3
+      },
+      {
+        "parameter": 5,
+        "length": 31750,
+        "weight": [
+          201000,
+          160599,
+          799000
+        ],
+        "nth_surface_cost": 40391151,
+        "fractional_cost": "402/799",
+        "surface_prefix_size": 31750,
+        "surface_prefix_evaluation_rank": 31741,
+        "carrier_prefix_rank": 31747,
+        "rank_defect": 9,
+        "extra_capacity_defect": 6
+      },
+      {
+        "parameter": 8,
+        "length": 80800,
+        "weight": [
+          513600,
+          410559,
+          2046400
+        ],
+        "nth_surface_cost": 164843130,
+        "fractional_cost": "651/1279",
+        "surface_prefix_size": 80800,
+        "surface_prefix_evaluation_rank": 80788,
+        "carrier_prefix_rank": 80797,
+        "rank_defect": 12,
+        "extra_capacity_defect": 9
+      },
+      {
+        "parameter": 16,
+        "length": 321600,
+        "weight": [
+          2051200,
+          1640319,
+          8188800
+        ],
+        "nth_surface_cost": 1314733306,
+        "fractional_cost": "1307/2559",
+        "surface_prefix_size": 321600,
+        "surface_prefix_evaluation_rank": 321579,
+        "carrier_prefix_rank": 321597,
+        "rank_defect": 21,
+        "extra_capacity_defect": 18
+      },
+      {
+        "parameter": 32,
+        "length": 1283200,
+        "weight": [
+          8198400,
+          6557439,
+          32761600
+        ],
+        "nth_surface_cost": 10501818621,
+        "fractional_cost": "2622/5119",
+        "surface_prefix_size": 1283200,
+        "surface_prefix_evaluation_rank": 1283161,
+        "carrier_prefix_rank": 1283197,
+        "rank_defect": 39,
+        "extra_capacity_defect": 36
+      },
+      {
+        "parameter": 64,
+        "length": 5126400,
+        "weight": [
+          32780800,
+          26222079,
+          131059200
+        ],
+        "nth_surface_cost": 83950335495,
+        "fractional_cost": "1752/3413",
+        "surface_prefix_size": 5126400,
+        "surface_prefix_evaluation_rank": 5126326,
+        "carrier_prefix_rank": 5126397,
+        "rank_defect": 74,
+        "extra_capacity_defect": 71
+      }
+    ],
+    "point_ideal": {
+      "configuration": "critical_harmonic_rotation.point_ideal",
+      "positive_basis_certificates": [
+        {
+          "weight": [
+            3310693,
+            32801,
+            3375208
+          ],
+          "selected": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              3,
+              0
+            ],
+            [
+              0,
+              4,
+              0
+            ],
+            [
+              0,
+              5,
+              0
+            ],
+            [
+              0,
+              6,
+              0
+            ],
+            [
+              0,
+              7,
+              0
+            ],
+            [
+              0,
+              8,
+              0
+            ],
+            [
+              0,
+              9,
+              0
+            ],
+            [
+              0,
+              10,
+              0
+            ],
+            [
+              0,
+              11,
+              0
+            ],
+            [
+              0,
+              12,
+              0
+            ],
+            [
+              0,
+              13,
+              0
+            ],
+            [
+              0,
+              14,
+              0
+            ],
+            [
+              0,
+              15,
+              0
+            ],
+            [
+              0,
+              16,
+              0
+            ],
+            [
+              0,
+              17,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              19,
+              0
+            ],
+            [
+              0,
+              20,
+              0
+            ],
+            [
+              0,
+              21,
+              0
+            ],
+            [
+              0,
+              22,
+              0
+            ],
+            [
+              0,
+              23,
+              0
+            ],
+            [
+              0,
+              24,
+              0
+            ],
+            [
+              0,
+              25,
+              0
+            ],
+            [
+              0,
+              26,
+              0
+            ],
+            [
+              0,
+              27,
+              0
+            ],
+            [
+              0,
+              28,
+              0
+            ],
+            [
+              0,
+              29,
+              0
+            ],
+            [
+              0,
+              30,
+              0
+            ],
+            [
+              0,
+              31,
+              0
+            ]
+          ],
+          "minimal_initial_generators": [
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              32,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "weight": [
+            66562,
+            3276932,
+            98308
+          ],
+          "selected": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              3,
+              0,
+              0
+            ],
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              3
+            ],
+            [
+              5,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              4
+            ],
+            [
+              6,
+              0,
+              0
+            ],
+            [
+              7,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              5
+            ],
+            [
+              8,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              6
+            ],
+            [
+              9,
+              0,
+              0
+            ],
+            [
+              10,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              7
+            ],
+            [
+              11,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              8
+            ],
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              13,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              9
+            ],
+            [
+              14,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              10
+            ],
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              16,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              11
+            ],
+            [
+              17,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              12
+            ],
+            [
+              18,
+              0,
+              0
+            ],
+            [
+              19,
+              0,
+              0
+            ]
+          ],
+          "minimal_initial_generators": [
+            [
+              0,
+              0,
+              13
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              20,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "weight": [
+            99331,
+            3276932,
+            65539
+          ],
+          "selected": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              0,
+              3
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              4
+            ],
+            [
+              3,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              5
+            ],
+            [
+              0,
+              0,
+              6
+            ],
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              7
+            ],
+            [
+              5,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              8
+            ],
+            [
+              0,
+              0,
+              9
+            ],
+            [
+              6,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              10
+            ],
+            [
+              7,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              11
+            ],
+            [
+              0,
+              0,
+              12
+            ],
+            [
+              8,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              13
+            ],
+            [
+              9,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              14
+            ],
+            [
+              0,
+              0,
+              15
+            ],
+            [
+              10,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              16
+            ],
+            [
+              11,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              17
+            ],
+            [
+              0,
+              0,
+              18
+            ],
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              19
+            ]
+          ],
+          "minimal_initial_generators": [
+            [
+              0,
+              0,
+              20
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              13,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    "scope": "All-field generic-component rank model, with explicit subcritical capacity localization and an eventual final-surface-prefix collapse criterion uniform over all positive aspects. Large matrix-free integer witnesses exercise the compact-gap and both extreme-sigma branches; independent heaps and three actual point bases are separate controls. Critical final-prefix dependencies grow as sqrt(n), but neither they nor the narrowing exceptional strip count the remaining coherent states. No unrestricted G_3 improvement or novelty certificate."
+  },
   "source_sha256": {
-    "scripts/run_algebraic_incidence_controls.py": "2c9f74b1f298f24c0f5cfd211f4832235580aea56b43a0dc7fa396c15beb0da3",
+    "scripts/run_algebraic_incidence_controls.py": "5bc641c5ef0e9ead00cea778a99b9207e2a2640d379c283400d936be02e739e8",
     "docs/weighted_facet_incidence.md": "61ccaf62917fdf59b7f2480a80148750236e3507959e810403e302a43e31bc13",
     "docs/initial_cone_height.md": "88088db9af60d5a43ac0682d40848de73c20a09120215f696ef90bb5cc1cafa8",
     "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
     "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
     "scripts/run_initial_cone_height_checks.py": "f804aff89da53a6139aed7cacc9fd802dee8fd8529ee48a0d240dd9740df3dab",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
-    "docs/extremal_initial_ideals.md": "cafecb57025368d59fd7806c30415a7b979941860a24f9d08f6e4fc119aa2fd3",
+    "docs/extremal_initial_ideals.md": "afdb35e6893efdda6f16df74ae8ea36f6c96a00d4a5947a8f6e35e676accb622",
     "docs/generic_multiaffine_bound.md": "25d79382745c94da18f038cee7f0d6eccc202f0dc5b4cd6568ae9aa43ffd1a19",
     "docs/planar_dyadic_bound.md": "03c3e44166b2e95caaaedf042b2d79d345f7a1e056c46e134dfcd67b313aca45",
     "docs/rational_shadow_bound.md": "09b6e5e19cb03825e9d2151680e557cdf384256c5392cf70b6aca388e488c1ca",

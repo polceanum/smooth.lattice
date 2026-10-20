@@ -122,8 +122,14 @@ and a classical shifted-matroid selection model. An explicit infinite
 family has rank defects and canonical block widths of order `sqrt(n)`;
 the universal drop-three truncation threshold is therefore sharp.
 The exact curve itself has only `O(n^(3/2))` strict witnesses for each
-fixed last component size. Counting growing blocks in its two-parameter
-neighborhood and the remaining critical/subcritical regimes stays open.
+fixed last component size. A final-prefix criterion now closes every
+fixed subcritical margin as well: its initials are eventually ordinary
+surface prefixes, uniformly across all positive aspect ratios, giving
+`O(n^2 log(n+1))` states. At slope four, every exception lies in an
+explicit harmonic-ratio strip of width `O(n^(-1/4))`. The critical
+family still has a `sqrt(n)` rank deficit at the final surface prefix.
+Counting coherent states inside the shrinking strip, and across shrinking
+supercritical margins for higher slopes, remains open.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count

@@ -5093,6 +5093,304 @@ margins are already closed routes. Unrestricted sharp $G_3$ growth,
 a polynomial lower separation and current priority remain open;
 the full objective and all its original success criteria stay active.
 
+## AC. Final-prefix collapse outside a shrinking critical region
+
+The subcritical side now has an actual coherent-count exclusion, not
+only a leading rank law or a bounded number of active indices. Fix
+positive integers $a,c$ and let $m_s=a+c(r-s)$. For every fixed
+$\delta>0$, the initials with $K(w)\ge c+\delta$ number
+
+$$
+ O_{a,c,\delta}(n^2\log(n+1)), \tag{AC1}
+$$
+
+uniformly over **all** positive aspect ratios and all component counts.
+For sufficiently large $r$, every such weight selects exactly the
+first $n$ monomials of the enclosing two-plane carrier
+$K[x,y,z]/(xz-z-1)$. The explicit sufficient criterion below also
+applies when the margin shrinks with $r$. At slope four it confines
+every non-surface-prefix witness to a harmonic strip of width
+$O_a(r^{-1/2})=O_a(n^{-1/4})$.
+
+The generic scaled-component rank hypotheses of Sections V--AB remain
+in force. This is characteristic-independent within that construction,
+with sufficiently large fields or suitable extensions for the generic
+choices. It does not classify arbitrary quotients or count the remaining
+critical strip.
+
+### An exact subcritical capacity-index bound
+
+Write $\sigma=\alpha w_y$, and suppose $\Delta=K-c>0$.
+At every cost, the maximum of $H_s=A_s-d_s$ is attained among
+
+$$
+ s=0,r\quad\text{and}\quad
+ 1\le s<r\text{ with }\Delta(s+1)<2(3+\sigma^{-1}). \tag{AC2}
+$$
+
+Here is a uniform proof including vanished hooks. At an interior
+maximum $H_j>\max(0,H_r)$, its next increment $u_{j+1}$ is
+nonpositive. Hence $F_{j+1}>0$, and all earlier hooks are nonempty.
+The exact floor-error estimate used in (Z10) gives
+
+$$
+ u_s=\beta+\Delta(s-1)+e_s,\qquad
+ -1\le e_s\le2+\sigma^{-1},\qquad
+ \beta=cr+a-c-\gamma C.
+$$
+
+Using $u_{j+1}\le0$, for $s\le j$ this implies
+$u_s\le3+\sigma^{-1}-\Delta(j-s+1)$. Therefore
+
+$$
+ 0<H_j\le j(3+\sigma^{-1})-\Delta j(j+1)/2,
+$$
+
+which proves (AC2). It localizes extra constraints but does not alone
+count their interactions with the possible large outer block. The
+final-prefix argument below avoids that outer-block refinement.
+
+### An explicit all-aspect final-basis criterion
+
+Put
+
+$$
+ A=a-c/2,\quad d=|A|,\quad
+ R_{a,c}=\max\left(32,\left\lceil4d/c\right\rceil+2\right),
+ \qquad M_{a,c}=256d+4096c. \tag{AC3}
+$$
+
+The constants are deliberately conservative. For $r\ge R_{a,c}$,
+let $P_n(w)$ be the first $n$ two-plane monomials, with distinct
+prices near the cutoff. This prefix is a basis of the sampled
+quotient, and hence its actual selected standard set, if either
+
+$$
+ \sigma<\frac1{1024c},\qquad \sigma>1024c,
+ \qquad\text{or}\qquad
+ cK r^2>(cr+M_{a,c})^2. \tag{AC4}
+$$
+
+The third condition implies $K>c$; equivalently it is
+$r(\sqrt{cK}-c)>M_{a,c}$. Every condition is independent of the
+axis aspect $w_x/w_z$. The squared form gives an exact rational
+predicate for integer-price verification, with no numerical roots.
+
+It suffices to prove that $P_n$ satisfies all component capacities:
+$|P_n\cap M_s|\ge A_s$ and $P_n\subset M_r$. Then its $n$
+monomials are independent by the exact prefix-rank formula. All
+other monomials with $xz\ne0$ reduce to strictly cheaper two-plane
+monomials using $xz=z+1$. Thus this independent surface prefix
+is also the actual positive-weight standard set. This uses positive
+prefix ranks, not a full arbitrary-subset residue-matroid assertion.
+
+### Proof in the central harmonic-ratio range
+
+Retain $h=\alpha^{-1}$, $\kappa=w_y+h$,
+$\lambda=1/(2hw_y)$ and put $q=\sqrt K=\sqrt\sigma+1/\sqrt\sigma$.
+Let $C_n$ be the cost of the last point of $P_n$, and write
+$T=C_n/\sqrt{hw_y}$ and $L=2d/\sqrt c$. The surface-count
+sandwich from (Z3) gives
+
+$$
+ \sqrt{2n}-q\le T\le\sqrt{2n}+\sigma^{-1/2},\qquad
+ \left|\sqrt{2n}-\sqrt c\,r\right|\le L. \tag{AC5}
+$$
+
+The last inequality follows by rationalizing the difference, using
+$n=cr^2/2+Ar>0$. Assume
+$1/(1024c)\le\sigma\le1024c$. Then
+$q\le33\sqrt c$ and $2+\sigma^{-1}\le1026c$.
+The gap condition in (AC4) implies $q>\sqrt c$. Split the capacity
+indices at $\theta r$, where $\theta=\sqrt c/(q+\sqrt c)\ge1/34$.
+
+If $s\le\theta r$ and $F_s(C_n)>0$, summing the lower hook
+estimate gives
+
+$$
+\begin{aligned}
+ d_s(C_n)-A_s
+ &\ge s\left[\gamma C_n-(2+\sigma^{-1})+K/2
+                   -cr-A-(K-c)s/2\right]\\
+ &\ge s\left[\frac{r\sqrt c}{2}(q-\sqrt c)-C_1\right],\\
+ C_1&=qL+q^2/2+2+\sigma^{-1}+d
+       \le70d+1600c.
+\end{aligned} \tag{AC6}
+$$
+
+For the second line use $\gamma C_n=qT$ and (AC5), and
+$(K-c)\theta=\sqrt c(q-\sqrt c)$. The gap condition makes
+the bracket strictly positive, since $M_{a,c}/2=128d+2048c$.
+If $F_s=0$, the entire remaining grid lies inside $M_s$ and
+$d_s=n\ge A_s$ instead.
+
+For $s\ge\theta r$, count the points outside $M_s$. They have
+$i,b\ge s$ and $v_i\ge ih$. Translating by $(s,s)$ and enlarging
+each lattice point to its positive unit rectangle bounds this count by
+
+$$
+ n-d_s(C_n)\le\tfrac12(T-qs+q)_+^2. \tag{AC7}
+$$
+
+Writing $k=r-s$, (AC5) bounds the expression inside the positive
+part by
+$\sqrt c\,k-(q-\sqrt c)s+L+\sigma^{-1/2}+q$.
+The gap condition and $s\ge r/34$ imply
+
+$$
+ (q-\sqrt c)s>
+ \frac{M_{a,c}}{34\sqrt c}
+ >2L+\sigma^{-1/2}+q,
+$$
+
+because $2L+\sigma^{-1/2}+q\le(4d+65c)/\sqrt c$.
+Consequently (AC7) is at most
+$\tfrac12(\sqrt c\,k-L)_+^2\le ck^2/2+Ak=n-A_s$.
+For $A\ge0$ the last inequality is immediate. For $A<0$, the
+positive last component gives $d<c/2$, and for integer $k\ge1$
+expansion of the square reduces it to $k\ge2d/c$; $k=0$ gives
+zero directly. All remaining capacities, including $s=r$, follow.
+
+### Uniform treatment of the two extreme ranges
+
+The same constants do not rely on compactness at the ends. For
+$r\ge R_{a,c}$, one has $cr^2/4\le n\le cr^2$ and
+$m_1\le2cr$.
+
+If $\sigma<1/(1024c)$, (AC2) leaves at most the first capacity
+and the carrier endpoint, because $2(3+\sigma^{-1})/(K-c)\le3$.
+The number $N$ of merged axis points at cost $C_n$ satisfies
+
+$$
+ N\le2+\sqrt{2n\sigma}\le2+r/16\le r/8.
+$$
+
+Every column has at most as many points as the pure-$y$ column,
+whose size is $Q=\lfloor C_n/w_y\rfloor+1$. Hence
+$n\le NQ$, so $Q\ge2cr\ge m_1$. The first capacity is satisfied,
+and $N<r$ puts the whole prefix in $M_r$.
+
+If $\sigma>1024c$, (AC2) has no interior capacity, since
+$K-c\ge3+\sigma^{-1}$. Also
+$C_n/w_y\le\sigma^{-1}+\sqrt{2n/\sigma}\le1+r/16<r$.
+Every selected $y$ exponent is therefore below $r$, so again
+$P_n\subset M_r$. Both endpoints are satisfied. This completes
+the all-aspect proof of (AC4).
+
+Distinct prices at the cutoff are a dense condition. Any standard set
+with a strict weight witness persists under sufficiently small weight
+perturbations. The strict sufficient conditions above therefore cover
+such witnesses even when unrelated monomial prices happen to tie.
+No statement about counting different tie refinements at a non-strict
+witness is needed.
+
+### Coherent-count consequence and the remaining strip
+
+For a fixed $\delta>0$, $K\ge c+\delta$ makes
+$\sqrt{cK}-c$ uniformly positive. Thus all sufficiently large $r$
+satisfy (AC4), independently of every aspect ratio. The finitely
+many smaller lengths are bounded by a constant depending only on
+$a,c,\delta$. Ordinary two-plane prefixes lie on the orthant
+boundary and in its hyperbolic cross of size $O(n\log(n+1))$.
+The classical three-dimensional convex-position strict-set count
+therefore bounds their number by $O(n^2\log(n+1))$, proving (AC1).
+This is exactly the established input in the
+[multiaffine screening proof](generic_multiaffine_bound.md), using
+[Leroux--Rademacher, Section 2.5 and Proposition 2.13, PDF pp. 6--7](https://www.math.ucdavis.edu/~lrademac/algebraicksets.pdf).
+The strict-set count is not a new theorem here.
+
+For $c=4$, every weight at which the final basis differs from the
+ordinary surface prefix must, once $r\ge R_{a,4}$, satisfy
+
+$$
+ \frac{(\sigma-1)^2}{\sigma}=K-4
+ \le\frac{2M_{a,4}}r+\frac{M_{a,4}^2}{4r^2}. \tag{AC8}
+$$
+
+This is a shrinking strip of width $O_a(r^{-1/2})$, or
+$O_a(n^{-1/4})$ in the quotient length. Its complement has only
+$O(n^2\log(n+1))$ initials. For $c>4$, the **subcritical**
+exceptions satisfy $0<K-c\le2M_{a,c}/r+M_{a,c}^2/(cr^2)$;
+the two subcritical boundary strips around $K=c$ have width
+$O_{a,c}(1/r)$ in $\sigma$. The supercritical shrinking margins
+remain outside this proof. For $c<4$, $K\ge4>c$ shows that the
+entire fan is eventually the ordinary surface-prefix fan for fixed
+$a,c$.
+
+Small parameter measure does not bound the number of fan cells.
+Nothing in (AC8) bounds how many narrow cones can lie in the strip,
+and the constants from the earlier fixed-width theorem are still
+not uniform as block widths grow. The active goal remains the full
+extremal question; this is a construction exclusion outside a now
+quantified remaining region.
+
+### The critical dependencies survive at the final surface prefix
+
+The long-block family (AB12) does change the actual final prefix.
+For every $t\ge2$, let $P_n$ be the first $n=1250t^2+100t$
+monomials of the **whole** surface at that family's weights. Then
+
+$$
+ |P_n\cap M_r|=n-3,\qquad
+ t+3\le n-\operatorname{rank}_{\rm ev}(P_n)\le2t+1. \tag{AC9}
+$$
+
+To prove this from the exact word rather than sampled data, at
+$C=M+1/2$ (AB14) gives $d_r=n-t-1$. Exactly three surface
+points at this cost are outside $M_r$: the cheaper $(i,b)=(r,r)$
+and the two selected critical points $(r,r+1),(r+1,r)$.
+Thus the whole surface prefix has $n-t+2$ points. Before the end
+of the exceptional unit there are more than $n$ surface points,
+so reaching size $n$ adds $t-2$ carrier points and no further
+outside points. Each added point can lower $\max_s H_s$ by at
+most one. Its value $2t+1$ at $M+1/2$ is consequently between
+$t+3$ and $2t+1$ at size $n$, and the carrier count is $n-3$.
+For $t=2$, the selected set at $M+1/2$ already has size $n$,
+so the same argument applies. This proves (AC9) using the generic
+evaluation rank law. At least $t$ units of the deficit come from
+extra capacities beyond the carrier's three missing monomials.
+
+This excludes the possibility that the earlier critical defects all
+disappear before the final prefix. It supplies no growing count of
+different coherent bases: the distinction between a dependency at
+one weight and the number of initial ideals remains essential.
+
+### Exact controls and priority boundary
+
+The new checker verifies 17,201 hook-error bounds and 297,990
+subcritical capacity localizations, including strict interior maxima.
+An independent heap merge constructs 450 final surface prefixes;
+342 are already bases, while 108 have dependencies. Their exact
+memberships agree with the floor-sum and generic-rank oracles.
+
+Another 72 matrix-free large-profile fixtures exercise the compact
+gap and both extreme-$\sigma$ proof branches. They check 1,666,500
+capacity inequalities, with as many as 71,746 components and quotient
+length 21,528,090,416. Integer price perturbations make the final
+cutoff unique; the report saves the exact weights, cutoff costs,
+count one cost earlier, capacity slacks and criterion branches. These
+are exact checks of the mathematical rank model, not extensions
+of the public smooth-number auditor's certified range.
+
+Seven final-prefix witnesses through $t=64$ check (AC9). In the
+same length-$32$ point ideal used in Section AB, three additional
+surface-prefix bases are independently certified by invertible
+evaluation matrices and 11 vanishing minimal-border relations with
+strictly lower tails. Thus the report includes both the critical
+non-surface basis and specified surface-prefix initials of one
+actual ideal. These are not full-fan enumerations.
+
+The proof uses the existing component rank formula, elementary floor
+and area estimates, classical matroid greedy selection and the
+established convex-position count. Exact current priority of the
+combined explicit collapse criterion and critical concentration
+statement remains unestablished. Neither an unsuccessful search nor
+this restricted theorem is a novelty certificate or a reason to
+start another paper. The next count must work **inside** the shrinking
+critical region, with coherent rather than independent phase choices,
+or return to the unrestricted incidence/shadow problem with a stronger
+aggregate theorem. Every original goal criterion remains active.
+
 ## Reproduction
 
 From the repository root:
