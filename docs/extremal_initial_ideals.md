@@ -5762,6 +5762,376 @@ cap volumes. Applying that test elsewhere requires proving both
 hypotheses; it cannot be inferred from a small rank defect or a
 narrow parameter region alone.
 
+## AE. Higher-slope energy and uniform boundary proximity
+
+The next calculation separates two issues. The leading energy law closes
+the higher-slope subcritical side and its immediate critical neighborhood.
+A stronger discrete estimate confines pooling to a constant number of
+boundary items per layer throughout the supercritical region. The latter
+gives a compressed exact computation at one weight; it does not yet count
+all coherent choices as that weight varies.
+
+All statements in this section concern the generic scaled-curve component
+model of Sections V--X. They use equality of its **positive greedy bases**
+with the auxiliary nested selection model. They do not identify arbitrary
+subsets of the actual residue matroid with that auxiliary matroid.
+
+### Integrating the higher-slope rank law
+
+Fix integers $a,c\ge1$, let $m_s=a+c(r-s)$, and retain the notation
+of (Z1). Normalize $h=\alpha^{-1}=1$, so
+$\sigma=w_y$, $\gamma=1+1/\sigma$, $\kappa=1+\sigma$, and
+$K=\gamma\kappa$. The minimum basis cost $F_r$ satisfies
+
+$$
+ F_r(w)=r^3J_c(\sigma)+O_{a,c}(r^2),\qquad
+ J_c(\sigma)=
+ \begin{cases}
+  \displaystyle\frac{c\sqrt c}{3}\sqrt\sigma,&K\ge c,\\[2mm]
+  \displaystyle\frac{c(c+K)}{6\gamma},&K<c.
+ \end{cases} \tag{AE1}
+$$
+
+The error is uniform in every axis aspect and
+$1/(2c)\le\sigma\le2c$. Here are explicit sufficient constants:
+
+$$
+\begin{gathered}
+ d=|a-c/2|,\quad B=1+2c(c+a+1),\\
+ A_0=2c(2c+1),\quad B_0=c(2c+1)^2,\\
+ E=2dB+\tfrac12A_0B^2+(B_0+c/8)B,\qquad
+ |F_r-r^3J_c|\le Er^2. \tag{AE2}
+\end{gathered}
+$$
+
+Indeed the formal selection of $m_s$ column items in each layer is
+auxiliary-feasible and has maximum cost at most $Br$, by (Z2). Hence
+the actual cost-prefix rank is full by then. In this harmonic window
+(Z4) is at most $A_0C+B_0$. Integrating (Z7) and the additional
+$|n-cr^2/2|=dr$ correction from zero to $Br$ gives (AE2), enlarging
+terms of order $r$ to order $r^2$. Both comparison ranks are also full
+by $Br$. On the subcritical side the integral is that of a triangle,
+giving the first branch of (AE1). On the supercritical side (Z6) gives
+
+$$
+ \frac{c\kappa}{2}-\frac{\kappa^3}{6\sigma}
+       +\frac{(c-K)^2}{6\gamma}
+ =\frac{c(c+K)}{6\gamma}. \tag{AE3}
+$$
+
+Thus this law follows from the established finite rank estimate, rather
+than from fitting computed energies.
+
+Put $q=\sqrt K$. The supercritical excess above the surface comparator
+has the exact factorization
+
+$$
+ J_c(\sigma)-\frac{c\sqrt c}{3}\sqrt\sigma
+ =\frac{c\sqrt\sigma}{6q}(q-\sqrt c)^2
+ \quad(K<c). \tag{AE4}
+$$
+
+Equivalently its squared version, containing only rational functions, is
+
+$$
+ J_c(\sigma)^2-\frac{c^3\sigma}{9}
+ =\frac{c^2(c-K)^2}{36\gamma^2}. \tag{AE5}
+$$
+
+The excess vanishes quadratically at $K=c$. In the window above it is
+between zero and $(c/6)(c-K)^2$: rationalize the difference in (AE5),
+use $\gamma\ge1$ and
+$(c\sqrt c/3)\sqrt\sigma\ge c/6$.
+
+### The whole higher-slope subcritical side has the generic power
+
+For fixed $a\ge1$, $c>4$ and $A>0$, the number of initial ideals
+admitting a strict witness with
+
+$$
+ |K-c|\le A r^{-1/2}
+$$
+
+is $O_{a,c,A}(n^2)$. The number admitting a witness anywhere in
+$K\ge c$ is $O_{a,c}(n^2\log(n+1))$.
+
+To prove the first statement, the two roots of $K=c$ are
+
+$$
+ \sigma_\pm=\frac{c-2\pm\sqrt{c(c-4)}}2.
+$$
+
+They are simple when $c>4$, so the specified set has two
+$O_{c,A}(r^{-1/2})$ intervals in $\sigma$, both inside the compact
+window for large $r$. Equations (AE2)--(AE4) compare the true support
+function there to
+
+$$
+ F_0(w)=\frac{c\sqrt c}{3}r^3\sqrt{h w_y}
+$$
+
+with error $O_{a,c,A}(r^2)$. Apply the finite-difference cap argument
+of (AD13)--(AD17), scaling the $y$ coordinate additionally by the
+fixed center $\sigma_+$ or $\sigma_-$. Its Hessian bound remains
+$O_{a,c,A}(r^3)$ in each relative-aspect chart. The support comparison
+is needed only in the patch and its finite-difference probes, not in
+an entire fixed-size chart box. Take probe displacement $r^{-1/2}$.
+Both the patch and probes lie in an expanded band
+$|K-c|\le(A+C_c)r^{-1/2}$ for a fixed chart constant $C_c$, where
+(AE2)--(AE4) still give $O_{a,c,A}(r^2)$ error. The tangent estimate
+is error divided by probe displacement plus Hessian times that
+displacement, hence $O(r^{5/2})$. This avoids assuming a surface
+comparison away from the critical bands. A patch has tangent
+widths $O(r^{5/2})$, normal width $O(r^2)$, and actual integer-profile
+volume $O(p_0(1-p_0)r^7)$. The classical lattice-vertex estimate
+therefore gives $O(\sqrt{p_0(1-p_0)}r^{7/2})$ vertices per patch.
+There are $O(\sqrt r)$ patches per dyadic aspect interval; the weighted
+aspect sum is geometric. This gives $O(r^4)=O(n^2)$.
+
+The full-rank cutoff $Br$ makes $x$ absent when $p<1/(Br)$, and
+$z$ absent at the reflected endpoint. Those ends are planar and have
+$O(n\log(n+1))$ initials. The lower-dimensional cap cases use the
+relative-lattice argument already supplied in AD; zero ambient volume
+is not treated as zero vertex count. Different strict initials give
+different exposed integer profiles, as in that proof.
+
+For the second statement, (AC4) implies that every non-surface
+subcritical witness at large $r$ has
+$0\le K-c\le2M_{a,c}/r+M_{a,c}^2/(cr^2)$. It is in one of the
+just-counted bands. All other witnesses give ordinary surface prefixes,
+whose classical count is $O(n^2\log(n+1))$. Finitely many small
+lengths are absorbed in the constant. The double root at $c=4$ uses
+the separate proof in AD, not this simple-root argument.
+
+This does not close the intermediate supercritical regime where
+$c-K$ tends to zero more slowly than $r^{-1/2}$. The fixed-margin
+constants in (AA14) cannot be made uniform by invoking that theorem
+again.
+
+### A constant layerwise bound, independent of pooled-block width
+
+Return to an arbitrary decreasing positive integer profile $m_s$ and
+arbitrary positive weights. Define
+
+$$
+ E_0=2+\sigma^{-1},\quad C_0=3+\sigma^{-1},\quad
+ \lambda_s=\frac{m_s+K(s-1)}\gamma.
+$$
+
+**Proximity theorem.** Suppose the reference prices $\lambda_s$ are
+nonincreasing; equivalently every adjacent size gap is at least $K$.
+If $q_s$ is the exact optimal number selected in layer $L_s$, then
+
+$$
+ |q_s-m_s|\le C_0. \tag{AE6}
+$$
+
+Every canonical block $(t,s]$ also satisfies
+
+$$
+ \sum_{j=t+1}^{s-1}(m_j-m_{j+1}-K)\le C_0. \tag{AE7}
+$$
+
+For linear profiles this is
+$(c-K)(s-t-1)\le C_0$. Both bounds are independent of the last
+component size, the component count and the gap from criticality.
+
+Here is a proof that also handles ties. The hook estimate (AC3),
+extended to empty hooks, says for every real $T$
+
+$$
+ (\gamma T-K(j-1)-E_0)_+
+ \le F_j(T)\le(\gamma T-K(j-1)+1)_+. \tag{AE8}
+$$
+
+For an empty hook its anchor cost exceeds $T$. By (Z2),
+$\gamma T-K(j-1)\le\gamma h=1+\sigma^{-1}<E_0$,
+so the lower bound remains valid; the upper bound is automatic.
+The lower bound also holds for $F_j(T^-)$ by taking left limits.
+
+In a canonical block the chosen items form a uniform cheapest prefix.
+At its threshold $T$, each $q_j$ lies between $F_j(T^-)$ and
+$F_j(T)$. The cumulative quota inequalities and the two tight block
+endpoints give $q_{t+1}\ge m_{t+1}$ and $q_s\le m_s$.
+Applying (AE8) to these two layers yields
+
+$$
+ \lambda_{t+1}-1/\gamma\le T\le\lambda_s+E_0/\gamma.
+ \tag{AE9}
+$$
+
+Every intervening $\lambda_j$ lies between the two endpoint reference
+prices. Thus $\lambda_j-1/\gamma\le T\le\lambda_j+E_0/\gamma$;
+substitution into (AE8) gives (AE6). Subtracting the endpoint bounds
+in (AE9), and telescoping their reference-price difference, gives
+(AE7). A partial threshold tie does not change either inequality.
+
+### Pooling changes the total optimum by only linear normalized energy
+
+Let $C_s(k)$ sum the first $k$ item costs of layer $s$, in one fixed
+monomial tie refinement, and let $\tau_s(k)$ be its $k$th item cost.
+Equation (AE8) implies
+
+$$
+ \frac{k+K(s-1)-1}{\gamma}\le\tau_s(k)
+ \le\frac{k+K(s-1)+E_0}{\gamma}. \tag{AE10}
+$$
+
+The formal all-tight layer allocation is auxiliary-feasible, so its
+cost $F_{\rm tight}=\sum_s C_s(m_s)$ is at least the true positive
+optimum $F_r$. Under the same decreasing-reference-price condition,
+
+$$
+ 0\le F_{\rm tight}-F_r\le r C_0^2/\gamma. \tag{AE11}
+$$
+
+To prove this, the discrete convex function
+$C_s(k)-\lambda_s k$ has no negative increments after $k=m_s$,
+by the lower bound in (AE10). Its possible loss from stopping at
+$m_s$ is at most $C_0^2/\gamma$: only its last fewer than $C_0$
+increments can be positive before that index, each at most
+$C_0/\gamma$. Therefore for every $k\ge0$
+
+$$
+ C_s(k)\ge C_s(m_s)+\lambda_s(k-m_s)-C_0^2/\gamma.
+$$
+
+For every feasible allocation put
+$P_s=\sum_{j\le s}(q_j-m_j)\ge0$, with $P_r=0$.
+Summation by parts gives
+$\sum_s\lambda_s(q_s-m_s)=
+\sum_{s<r}(\lambda_s-\lambda_{s+1})P_s\ge0$.
+Sum the preceding convex inequalities to obtain (AE11).
+
+In a fixed harmonic window, or for a fixed slope with $K\le c$,
+the bound is $O(r)$ after normalizing $h=1$. Raw energies under a
+large integer price refinement must be scaled accordingly. The
+formal and actual layer-prefix unions also differ in at most
+$r\lceil C_0\rceil$ items. Neither the small energy saving nor this
+symmetric-difference bound counts the possible coherent changes.
+
+### An exact compressed staircase at one weight
+
+The proximity theorem gives a constructive consequence. Its input is an
+$r$-entry component-size profile and positive integer weights, with the
+generic component rank conditions promised and the decreasing reference
+prices checked. It does not read an explicitly listed $n$-point ideal
+or verify genericity from its coordinates. The output is its standard
+staircase as minimal monomial generators, an integer profile and exact
+cost, together with a global exchange certificate. It does not compute
+the polynomial coefficients of a reduced Groebner basis.
+
+Merge the first $r$ pure-axis anchors in cost order, breaking equal
+costs by exponent lex order. Each diagonal hook is three arithmetic
+progressions: its two pure-axis row rays and its anchor's $y$-column.
+Count a progression by an integer floor; find a merged order statistic
+by integer bisection, and resolve its at most three threshold items
+lexicographically. Arithmetic sums give the profile and total cost.
+
+Put $B_* =\lceil C_0\rceil$. Contract the first
+$\max(0,m_s-B_*)$ items of each layer, and retain only its items
+through index $m_s+B_*$. Equation (AE6) proves that this ground
+contains the whole optimum and that the contracted core belongs to
+it. There are at most $2B_*r$ remaining candidates and residual rank
+at most $B_*r$. Sort them by their actual $(\text{cost},\text{exponent})$
+keys and apply auxiliary matroid greedy. A prefix-minimum/range-add
+tree checks and updates all nested residual capacities in
+$O(\log(r+1))$ operations per candidate. If $r=1$ the layer quota
+already fixes the allocation, so no boundary list is needed.
+
+The implementation then checks optimality against the **whole**
+allocation, independently of the contraction argument. Split at every
+tight cumulative quota. Inside each resulting block, every unit
+transfer between distinct layers is feasible, so compare its largest
+selected key with its smallest next key. Across distinct blocks an
+outer-to-inner transfer is feasible and the reverse transfer violates
+a tight quota. Check every inner next-key minimum against the suffix
+maximum of all selected outer keys. These comparisons cover every
+feasible single exchange; classical matroid exchange optimality proves
+global optimality. Each comparison uses full three-progression order
+statistics, not only the retained candidate list.
+
+At most three selected chain endpoints per layer describe the output.
+Taking their downward closure gives the two $xy$ and $zy$ plane
+skylines. Exact rectangle sums give their areas and coordinate sums,
+subtracting the shared $y$-axis once. The implementation requires this
+independent colength to equal $n$ and its profile to equal the
+progression-sum profile. Plane boundary generators, together with
+$xz$ when both pure axes are present, yield at most $6r+3$ minimal
+initial generators, without expanding $n$ monomials.
+
+For largest integer weight $W$, the arithmetic operation bound is
+
+$$
+ O\bigl(r\log(2+nW)+rB_*\log(2+rB_*)\bigr),
+ \qquad\text{memory }O(rB_*). \tag{AE12}
+$$
+
+For $r\ge2$, the gap condition implies $B_*\le n+3$, so all bisection
+ranges have logarithm $O(\log(2+nW))$; the $r=1$ branch has the same
+bound without candidates. This is an arithmetic model, not a bound
+independent of the bit sizes of integer operations. Fixed slope
+$c\ge K$ bounds $B_*$ by a constant depending on $c$. There is no
+claim of sublinear processing of an explicit $n$-node input, a new
+prime unranking kernel, or a faster general nested-allocation solver.
+
+### Existing optimization results and independent checks
+
+The separable convex nested-allocation formulation is established.
+[Vidal--Gribel--Jaillet, Section 3.2, Theorems 4--6, and Section 3.3,
+PDF pp. 19--21](https://arxiv.org/pdf/1703.01484) treat integer
+optimization, continuous/integer proximity and efficient decomposition.
+Their Theorem 6 compares optima of the same objective; (AE6) compares
+the hook optimum with the prescribed quotas, so it is a different
+statement, not a claimed improvement of that theorem. Their algorithms
+already avoid enumerating the total resource under value-oracle
+assumptions. The present construction supplies exact three-progression
+oracles and a compressed monomial output. The paper's formulation and
+these theorem statements/proofs were inspected; no exact priority of
+this specialized boundary estimate is established. The quadratic case
+also has the established efficient methods of
+[Schoot Uiterkamp--Hurink--Gerards](https://arxiv.org/abs/2009.03880).
+Its stated optimization model was inspected; a hook's exact cumulative
+cost is not literally a quadratic objective.
+
+Independent heap/quota enumeration agrees with the compressed method on
+120 linear-profile fixtures containing 222,390 selected monomials,
+including 48 near-critical price profiles. All 120 energies satisfy
+the explicit support estimate and the exact identities (AE3), (AE5)
+where applicable; another 48 subcritical fixtures check its other
+branch using outward rational square-root intervals. Eight irregular
+gap profiles, three independently enumerated lex-tie controls and
+one outside-hypothesis rejection check the allocation scope. Thirty
+linear fixtures have a nonzero pooling gain.
+
+Five large inputs give the following exact outputs without basis
+expansion; the report saves the weights, profile, energy, generator
+digest and operation counts for reproduction:
+
+| Components | Slope | Last size | Colength | Boundary candidates | Generators |
+|---:|---:|---:|---:|---:|---:|
+| 128 | 5 | 1 | 40,768 | 1,021 | 333 |
+| 1,024 | 9 | 1 | 4,715,008 | 8,189 | 2,348 |
+| 10,000 | 5 | 1 | 249,985,000 | 79,997 | 25,881 |
+| 3 | 9 | 1,000,000,000,000 | 3,000,000,000,027 | 24 | 11 |
+| 128 | 9 | 1,000,000,000 | 128,000,073,152 | 1,024 | 298 |
+
+In the same actual length-$32$ generic point ideal used in AB--AD,
+three compressed bases are independently certified by invertible
+evaluation matrices and 32 vanishing minimal-border relations with
+strictly lower refined-weight tails. These point checks do not infer
+genericity for arbitrary future input data or enumerate a whole fan.
+
+The unresolved target remains the full extremal question. In this
+construction the intermediate shrinking supercritical margins need a
+coherent count of boundary interactions, uniform in their distance to
+$K=c$. The new per-layer bound permits arbitrarily long blocks but
+does not bound the number of changes in their moving boundary labels.
+Multiplying the all-tight fan count by independent correction choices
+would not prove the needed theorem. No unrestricted $G_3$ improvement,
+polynomial lower separation, novelty certificate, new paper or completed
+goal is claimed.
+
 ## Reproduction
 
 From the repository root:

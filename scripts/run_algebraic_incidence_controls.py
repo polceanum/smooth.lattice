@@ -2689,6 +2689,453 @@ def critical_cap_controls(point):
             'scope': 'Independent heap/quota bases versus exact floor-rank integration, including bounded irregular perturbations of slope four; outward rational square-root bounds; exact profile-cap, Hessian and nonunimodular volume controls; generalized final-prefix collapse, weighted dyadic covers and planar degeneracies; three actual point-basis certificates. These support a uniform proof using classical Andrews geometry. They are not whole-fan enumerations or a novelty certificate.'}
 
 
+def component_layer_streams(sizes, weight):
+    """Three arithmetic progressions per diagonal layer, with lex tie order."""
+    x, y, z = weight
+    anchors, a, c = [(0, (0, 0, 0))], 1, 1
+    while len(anchors) < len(sizes):
+        if a*x < c*z:
+            anchors.append((a*x, (a, 0, 0)))
+            a += 1
+        else:
+            anchors.append((c*z, (0, 0, c)))
+            c += 1
+    layers = []
+    for j, (cost, anchor) in enumerate(anchors):
+        ax = (cost + x - 1)//x
+        az = max(1, (cost + z - 1)//z)
+        if ax*x == cost and (ax, 0, 0) < anchor:
+            ax += 1
+        if az*z == cost and (0, 0, az) < anchor:
+            az += 1
+        layers.append(((ax*x + j*y, x, (ax, j, 0), (1, 0, 0)),
+                       (az*z + j*y, z, (0, j, az), (0, 0, 1)),
+                       (cost + (j + 1)*y, y, (anchor[0], j + 1, anchor[2]), (0, 1, 0))))
+    return layers
+
+
+def layer_stream_prefix(streams, take, counters=None):
+    """Exact order statistic and sum on three APs, without listing the prefix."""
+    if not take:
+        return {'counts': (0, 0, 0), 'profile': (0, 0, 0), 'endpoints': (), 'key': None}
+
+    def count(cost):
+        if counters is not None:
+            counters['arithmetic_progression_count_calls'] += 1
+        return sum(max(0, (cost - start)//step + 1) for start, step, _, _ in streams)
+
+    lo = min(s[0] for s in streams) - 1
+    hi = min(start + (take - 1)*step for start, step, _, _ in streams)
+    while hi - lo > 1:
+        mid = (lo + hi)//2
+        if count(mid) >= take:
+            hi = mid
+        else:
+            lo = mid
+    counts = [max(0, (hi - 1 - start)//step + 1) for start, step, _, _ in streams]
+    tied = []
+    for i, (start, step, a, direction) in enumerate(streams):
+        k = counts[i]
+        if start + k*step == hi:
+            tied.append((tuple(v + k*d for v, d in zip(a, direction)), i))
+    tied.sort()
+    remaining = take - sum(counts)
+    assert 1 <= remaining <= len(tied)
+    for _, i in tied[:remaining]:
+        counts[i] += 1
+    profile, endpoints = [0, 0, 0], []
+    for k, (_, _, a, direction) in zip(counts, streams):
+        if k:
+            endpoints.append(tuple(v + (k - 1)*d for v, d in zip(a, direction)))
+            for j in range(3):
+                profile[j] += k*a[j] + k*(k - 1)//2*direction[j]
+    return {'counts': tuple(counts), 'profile': tuple(profile),
+            'endpoints': tuple(endpoints), 'key': (hi, tied[remaining - 1][0])}
+
+
+def component_allocation_certificate(sizes, layers, allocation, counters=None):
+    """Global exchange certificate using tight cuts and three-AP endpoints."""
+    assert sum(allocation) == sum(sizes) and min(allocation) >= 0
+    surplus, start, blocks = 0, 0, []
+    for j, (need, take) in enumerate(zip(sizes, allocation)):
+        surplus += take - need
+        assert surplus >= 0
+        if surplus == 0:
+            selected = [layer_stream_prefix(layers[i], allocation[i], counters)['key']
+                        for i in range(start, j + 1) if allocation[i]]
+            following = [layer_stream_prefix(layers[i], allocation[i] + 1, counters)['key']
+                         for i in range(start, j + 1)]
+            maximum = max(selected) if selected else None
+            minimum = min(following)
+            assert maximum is None or maximum < minimum
+            blocks.append((start, j + 1, maximum, minimum))
+            start = j + 1
+    assert start == len(sizes) and surplus == 0
+    outer_maximum = None
+    for _, _, maximum, minimum in reversed(blocks):
+        assert outer_maximum is None or outer_maximum < minimum
+        if maximum is not None:
+            outer_maximum = maximum if outer_maximum is None else max(maximum, outer_maximum)
+    return blocks
+
+
+def staircase_from_chain_endpoints(endpoints):
+    """Two plane skylines give colength, profile and minimal generators."""
+    def skyline(points):
+        by_x = {}
+        for x, y in points:
+            by_x[x] = max(y, by_x.get(x, -1))
+        best, maximal = -1, []
+        for x, y in sorted(by_x.items(), reverse=True):
+            if y > best:
+                maximal.append((x, y))
+                best = y
+        maximal.reverse()
+        generators = [(0, maximal[0][1] + 1)]
+        generators += [(maximal[i - 1][0] + 1, maximal[i][1] + 1)
+                       for i in range(1, len(maximal))]
+        generators.append((maximal[-1][0] + 1, 0))
+        cardinality, X, Y, previous = 0, 0, 0, -1
+        for x, y in maximal:
+            width = x - previous
+            cardinality += width*(y + 1)
+            X += (previous + 1 + x)*width//2*(y + 1)
+            Y += width*y*(y + 1)//2
+            previous = x
+        return cardinality, (X, Y), generators
+
+    xy = skyline((a, b) for a, b, _ in endpoints)
+    zy = skyline((c, b) for _, b, c in endpoints)
+    top_y = max(b for _, b, _ in endpoints)
+    shared_y = top_y*(top_y + 1)//2
+    cardinality = xy[0] + zy[0] - top_y - 1
+    profile = (xy[1][0], xy[1][1] + zy[1][1] - shared_y, zy[1][0])
+    generators = {(a, b, 0) for a, b in xy[2]} | {(0, b, c) for c, b in zy[2]}
+    if max(a for a, _, _ in endpoints) and max(c for _, _, c in endpoints):
+        generators.add((1, 0, 1))
+    return cardinality, profile, tuple(sorted(generators))
+
+
+def compressed_component_staircase(sizes, weight):
+    """Boundary-band contraction; returns an O(r) staircase, never n terms."""
+    sizes = tuple(sizes)
+    assert sizes and min(sizes) > 0 and list(sizes) == sorted(sizes, reverse=True)
+    assert all(isinstance(w, int) and w > 0 for w in weight)
+    x, y, z = weight
+    sigma = Fraction(y, x) + Fraction(y, z)
+    K, gamma = 2 + sigma + 1/sigma, Fraction(1, x) + Fraction(1, y) + Fraction(1, z)
+    if any(a - b < K for a, b in zip(sizes, sizes[1:])):
+        raise ValueError('the decreasing reference-price condition is not satisfied')
+    width = -(-(3 + 1/sigma).numerator//(3 + 1/sigma).denominator)
+    r, n, counters = len(sizes), sum(sizes), defaultdict(int)
+    layers = component_layer_streams(sizes, weight)
+    core = list(sizes) if r == 1 else [max(0, size - width) for size in sizes]
+    remaining = n - sum(core)
+    free, prefix, candidates = [remaining], 0, []
+    for need, fixed in zip(sizes, core):
+        prefix += need - fixed
+        free.append(remaining - prefix)
+    for j, (size, fixed, streams) in enumerate(zip(sizes, core, layers)):
+        if not remaining:
+            break
+        head = layer_stream_prefix(streams, fixed, counters)
+        pending = []
+        for i, ((start, step, a, direction), k) in enumerate(zip(streams, head['counts'])):
+            exponent = tuple(v + k*d for v, d in zip(a, direction))
+            heappush(pending, (start + k*step, exponent, i, k))
+        for _ in range(size + width - fixed):
+            cost, exponent, i, k = heappop(pending)
+            candidates.append((cost, exponent, j))
+            start, step, a, direction = streams[i]
+            k += 1
+            exponent = tuple(v + k*d for v, d in zip(a, direction))
+            heappush(pending, (start + k*step, exponent, i, k))
+    assert len(candidates) <= 2*width*r and remaining <= width*r
+    tree, lazy = [0]*(4*(r + 1)), [0]*(4*(r + 1))
+
+    def build(v, lo, hi):
+        if lo == hi:
+            tree[v] = free[lo]
+            return
+        mid = (lo + hi)//2
+        build(2*v, lo, mid)
+        build(2*v + 1, mid + 1, hi)
+        tree[v] = min(tree[2*v], tree[2*v + 1])
+
+    def query(v, lo, hi, end):
+        if hi <= end:
+            return tree[v]
+        mid = (lo + hi)//2
+        answer = query(2*v, lo, mid, end)
+        if end > mid:
+            answer = min(answer, query(2*v + 1, mid + 1, hi, end))
+        return lazy[v] + answer
+
+    def decrement(v, lo, hi, end):
+        if hi <= end:
+            tree[v] -= 1
+            lazy[v] -= 1
+            return
+        mid = (lo + hi)//2
+        decrement(2*v, lo, mid, end)
+        if end > mid:
+            decrement(2*v + 1, mid + 1, hi, end)
+        tree[v] = lazy[v] + min(tree[2*v], tree[2*v + 1])
+
+    build(1, 0, r)
+    allocation, chosen = core[:], 0
+    for _, _, layer in sorted(candidates):
+        if query(1, 0, r, layer) > 0:
+            decrement(1, 0, r, layer)
+            allocation[layer] += 1
+            chosen += 1
+            if chosen == remaining:
+                break
+    assert chosen == remaining
+    blocks = component_allocation_certificate(sizes, layers, allocation, counters)
+    profile, endpoints, formal_profile, last_cost = [0]*3, [], [0]*3, 0
+    for size, take, streams in zip(sizes, allocation, layers):
+        head = layer_stream_prefix(streams, take, counters)
+        formal = layer_stream_prefix(streams, size, counters)
+        endpoints.extend(head['endpoints'])
+        for j in range(3):
+            profile[j] += head['profile'][j]
+            formal_profile[j] += formal['profile'][j]
+        if head['key'] is not None:
+            last_cost = max(last_cost, head['key'][0])
+    cardinality, independent_profile, generators = staircase_from_chain_endpoints(endpoints)
+    assert cardinality == n and tuple(profile) == independent_profile
+    gap = dot(formal_profile, weight) - dot(profile, weight)
+    assert 0 <= gap <= r*(3 + 1/sigma)**2/gamma
+    assert max(abs(a - b) for a, b in zip(allocation, sizes)) <= width
+    return {'allocation': allocation, 'integer_profile': tuple(profile),
+            'energy': dot(profile, weight), 'formal_layer_energy': dot(formal_profile, weight),
+            'energy_gain_from_pooling': gap, 'minimal_initial_generators': generators,
+            'colength': cardinality, 'last_selected_cost': last_cost,
+            'proximity_width': width, 'boundary_candidate_points': len(candidates),
+            'contracted_rank': remaining, 'tight_allocation_blocks': [(a, b) for a, b, _, _ in blocks],
+            'arithmetic_progression_count_calls': counters['arithmetic_progression_count_calls']}
+
+
+def supercritical_proximity_controls(point):
+    """Full enumeration versus a certified small boundary ground and skylines."""
+    counts, witnesses, large = defaultdict(int), [], []
+
+    def inside_sigma(slope, r):
+        if slope == 4:
+            return Fraction(1)
+        previous, current = 1, slope - 3
+        sigma = Fraction(current, previous)
+        while slope - (2 + sigma + 1/sigma) > Fraction(1, r*r):
+            previous, current = current, (slope - 2)*current - previous
+            sigma = Fraction(current, previous)
+        assert 0 < slope - (2 + sigma + 1/sigma) <= Fraction(1, r*r)
+        return sigma
+
+    def prices(n, slope, r, p, sigma, harmonic=False):
+        if harmonic:
+            D = 10**6*(n + r + 1)**2 + 3
+            A = max(1, min(D - 1, p.numerator*D//p.denominator))
+            while gcd(A, D) != 1:
+                A += 1
+            return (D*(D - A), A*(D - A), D*A)
+        target = (1/p, sigma, 1/(1 - p))
+        clear = lcm(*(v.denominator for v in target))
+        return tuple(10**6*(n**3 + 1)*int(v*clear) + t
+                     for v, t in zip(target, (n*n, n, 1)))
+
+    for r, slope, last, p, near in product((2, 4, 8, 16, 25, 50), (4, 5, 9),
+                                          (1, 6), (Fraction(1, 3), Fraction(1, 101)),
+                                          (False, True)):
+        if slope == 4 and near:
+            continue
+        sizes = tuple(last + slope*(r - s) for s in range(1, r + 1))
+        n = sum(sizes)
+        sigma = inside_sigma(slope, r) if near else Fraction(1)
+        weight = prices(n, slope, r, p, sigma, harmonic=(slope == 4))
+        result = compressed_component_staircase(sizes, weight)
+        _, selected, events = linear_profile_greedy_basis(r, last, slope, weight)
+        assert result['energy'] == sum(dot(a, weight) for a in selected)
+        assert result['integer_profile'] == tuple(sum(a[j] for a in selected) for j in range(3))
+        assert result['minimal_initial_generators'] == tuple(sorted(minimal_excluded_border(selected)))
+        assert result['last_selected_cost'] == events[-1]
+        x, y, z = weight
+        sigma = Fraction(y, x) + Fraction(y, z)
+        K = 2 + sigma + 1/sigma
+        assert K <= slope
+        gamma = Fraction(1, x) + Fraction(1, y) + Fraction(1, z)
+        lambdas = [(need + K*j)/gamma for j, need in enumerate(sizes)]
+        assert all(a >= b for a, b in zip(lambdas, lambdas[1:]))
+        delta = slope - K
+        maximum_deviation = max(abs(q - m) for q, m in zip(result['allocation'], sizes))
+        assert maximum_deviation <= 3 + 1/sigma
+        if delta:
+            for start, end in result['tight_allocation_blocks']:
+                assert delta*(end - start - 1) <= 3 + 1/sigma
+        counts['enumerated_basis_comparisons'] += 1
+        counts['enumerated_monomials'] += n
+        counts['near_critical_price_profiles' if near else 'regular_price_profiles'] += 1
+        counts['nonzero_pooling_energy_gains'] += int(result['energy_gain_from_pooling'] > 0)
+        # Exact higher-slope support law and its quadratic transition.
+        h = Fraction(x*z, x + z)
+        B = 1 + 2*slope*(slope + last + 1)
+        d = abs(last - Fraction(slope, 2))
+        Aerr, Berr = 2*slope*(2*slope + 1), slope*(2*slope + 1)**2
+        E = 2*d*B + Fraction(Aerr*B*B, 2) + (Berr + Fraction(slope, 8))*B
+        normalized = Fraction(result['energy'], h)
+        low, high = rational_sqrt_bounds(slope*sigma, bits=128)
+        surface_low, surface_high = Fraction(slope*r**3, 3)*low, Fraction(slope*r**3, 3)*high
+        if K < slope:
+            reference = r**3*Fraction(slope, 6)*(1 + sigma + slope/(1 + 1/sigma))
+            kappa, gamman = 1 + sigma, 1 + 1/sigma
+            integrated = (slope*kappa/2 - kappa**3/(6*sigma) +
+                          (slope - K)**2/(6*gamman))
+            assert integrated*r**3 == reference
+            assert (reference/r**3)**2 - Fraction(slope**3, 9)*sigma == \
+                Fraction(slope**2, 36)*(slope - K)**2/gamman**2
+            assert abs(normalized - reference) <= E*r*r
+            bound = Fraction(slope*r**3, 6)*(slope - K)**2
+            assert reference >= surface_high
+            assert reference - surface_low <= bound
+        else:
+            assert normalized - E*r*r <= surface_low <= surface_high <= normalized + E*r*r
+        counts['higher_slope_support_energy_checks'] += 1
+        if r in (8, 25) and near and last == 1 and p == Fraction(1, 3):
+            witnesses.append({'components': r, 'slope': slope, 'last_size': last,
+                              'weight': weight, 'allocation': result['allocation'],
+                              'proximity_width': result['proximity_width'],
+                              'formal_layer_energy': result['formal_layer_energy'],
+                              'actual_energy': result['energy'],
+                              'energy_gain': result['energy_gain_from_pooling'],
+                              'minimal_initial_generators': result['minimal_initial_generators'],
+                              'maximum_allocation_deviation': maximum_deviation})
+    # Check the other branch of the support law without invoking proximity.
+    for r, slope, last, p, upper in product((2, 4, 8), (5, 9), (1, 6),
+                                            (Fraction(1, 3), Fraction(1, 101)), (False, True)):
+        sigma = Fraction(slope + 1) if upper else Fraction(1, slope + 1)
+        n = sum(last + slope*(r - s) for s in range(1, r + 1))
+        weight = prices(n, slope, r, p, sigma)
+        _, selected, _ = linear_profile_greedy_basis(r, last, slope, weight)
+        x, y, z = weight
+        h = Fraction(x*z, x + z)
+        actual_sigma = Fraction(y, h)
+        assert 2 + actual_sigma + 1/actual_sigma > slope
+        B = 1 + 2*slope*(slope + last + 1)
+        d = abs(last - Fraction(slope, 2))
+        Aerr, Berr = 2*slope*(2*slope + 1), slope*(2*slope + 1)**2
+        E = 2*d*B + Fraction(Aerr*B*B, 2) + (Berr + Fraction(slope, 8))*B
+        energy = Fraction(sum(dot(a, weight) for a in selected), h)
+        lo, hi = rational_sqrt_bounds(slope*actual_sigma, bits=128)
+        factor = Fraction(slope*r**3, 3)
+        assert energy - E*r*r <= factor*lo <= factor*hi <= energy + E*r*r
+        counts['subcritical_support_energy_checks'] += 1
+    # Ties use the monomial lex refinement, independently enumerated as actual keys.
+    for sizes, weight in (((17, 13, 9, 5, 1), (2, 1, 2)),
+                           ((16, 11, 6, 1), (1, 1, 1)),
+                           ((28, 19, 10, 1), (2, 1, 2))):
+        n, r = sum(sizes), len(sizes)
+        axes = sorted([(0, (0, 0, 0))] + [(i*weight[0], (i, 0, 0)) for i in range(1, n)] +
+                      [(i*weight[2], (0, 0, i)) for i in range(1, n)])[:n]
+        ground = sorted((cost + b*weight[1], (a[0], b, a[2]), min(i, b))
+                        for i, (cost, a) in enumerate(axes) for b in range(n))
+        capacities, prefix = [0], 0
+        for size in sizes:
+            prefix += size
+            capacities.append(prefix)
+        outside, selected = [0]*(r + 1), []
+        for cost, a, layer in ground:
+            if layer < r and all(outside[s] + 1 <= n - capacities[s] for s in range(layer + 1)):
+                selected.append(a)
+                for s in range(layer + 1):
+                    outside[s] += 1
+            if len(selected) == n:
+                break
+        result = compressed_component_staircase(sizes, weight)
+        assert result['energy'] == sum(dot(a, weight) for a in selected)
+        assert result['minimal_initial_generators'] == tuple(sorted(minimal_excluded_border(selected)))
+        counts['independent_lex_tie_controls'] += 1
+    # Irregular gaps, as well as very large last components, satisfy the same theorem.
+    for r, last, pattern in product((4, 8), (1, 100), ((5, 8, 6), (9, 5, 7, 6))):
+        sizes = [last]
+        for j in range(r - 1):
+            sizes.append(sizes[-1] + pattern[j % len(pattern)])
+        sizes.reverse()
+        n = sum(sizes)
+        weight = prices(n, 5, r, Fraction(1, 3), Fraction(1))
+        result = compressed_component_staircase(sizes, weight)
+        _, selected, _ = linear_profile_greedy_basis(r, None, None, weight, sizes)
+        assert result['energy'] == sum(dot(a, weight) for a in selected)
+        assert result['minimal_initial_generators'] == tuple(sorted(minimal_excluded_border(selected)))
+        counts['irregular_gap_comparisons'] += 1
+    for r, slope, last in ((128, 5, 1), (1024, 9, 1), (10000, 5, 1),
+                            (3, 9, 10**12), (128, 9, 10**9)):
+        sizes = tuple(last + slope*(r - s) for s in range(1, r + 1))
+        n = sum(sizes)
+        weight = prices(n, slope, r, Fraction(1, 3), inside_sigma(slope, r))
+        result = compressed_component_staircase(sizes, weight)
+        assert len(result['minimal_initial_generators']) <= 6*r + 3
+        digest = hashlib.sha256(json.dumps(result['minimal_initial_generators']).encode()).hexdigest()
+        gamma = sum(Fraction(1, w) for w in weight)
+        large.append({'components': r, 'slope': slope, 'last_size': last, 'length': n,
+                      'weight': weight, 'integer_profile': result['integer_profile'],
+                      'minimum_energy': result['energy'], 'formal_layer_energy': result['formal_layer_energy'],
+                      'pooling_gain': result['energy_gain_from_pooling'],
+                      'pooling_gain_times_gamma_per_layer': str(Fraction(result['energy_gain_from_pooling'])*gamma/r),
+                      'maximum_layer_count_deviation': max(abs(a - b) for a, b in zip(result['allocation'], sizes)),
+                      'total_layer_count_changes': sum(abs(a - b) for a, b in zip(result['allocation'], sizes)),
+                      'boundary_candidate_points': result['boundary_candidate_points'],
+                      'contracted_rank': result['contracted_rank'],
+                      'proximity_width': result['proximity_width'],
+                      'arithmetic_progression_count_calls': result['arithmetic_progression_count_calls'],
+                      'initial_generator_count': len(result['minimal_initial_generators']),
+                      'initial_generators_sha256': digest,
+                      'first_allocations': result['allocation'][:8],
+                      'last_allocations': result['allocation'][-8:]})
+        counts['large_compressed_staircases'] += 1
+        counts['large_boundary_candidate_points'] += result['boundary_candidate_points']
+    try:
+        compressed_component_staircase((4, 1), (1, 1, 1))
+    except ValueError:
+        counts['outside_hypothesis_rejections'] += 1
+    else:
+        raise AssertionError('subcritical reference-price hypothesis was not enforced')
+    # The old actual critical point ideal independently certifies the compressed output.
+    sizes, prime = tuple(point['component_sizes']), point['characteristic']
+    components = [(j, node) for j, nodes in zip(point['component_scalars'], point['nodes_by_component'])
+                  for node in nodes]
+
+    def residue(a):
+        return tuple(pow(node, a[0] - a[1], prime)*pow(j, a[1], prime)*
+                     pow(node - 1, -a[2], prime) % prime for j, node in components)
+
+    certificates = []
+    for weight in ((117, 36, 52), (238, 42, 51), (228, 84, 133)):
+        result = compressed_component_staircase(sizes, weight)
+        _, selected, _ = linear_profile_greedy_basis(len(sizes), None, None, weight, sizes)
+        assert len({dot(a, weight) for a in selected}) == len(selected)
+        assert result['minimal_initial_generators'] == tuple(sorted(minimal_excluded_border(selected)))
+        columns = {a: residue(a) for a in selected}
+        inverse = field_inverse(selected, columns, prime)
+        Q = 1 + max(max(a) for a in (*selected, *result['minimal_initial_generators']))
+        strict = tuple((Q**3 + 1)*w + t for w, t in zip(weight, (Q*Q, Q, 1)))
+        for a in result['minimal_initial_generators']:
+            column = residue(a)
+            coordinates = [sum(x*y for x, y in zip(row, column)) % prime for row in inverse]
+            assert all(sum(coordinates[j]*columns[b][i] for j, b in enumerate(selected)) % prime == column[i]
+                       for i in range(sum(sizes)))
+            assert all(dot(a, strict) > dot(b, strict) for b, value in zip(selected, coordinates) if value)
+        certificates.append({'input_weight': weight, 'strict_witness_weight': strict,
+                             'selected': selected, 'minimal_initial_generators': result['minimal_initial_generators']})
+        counts['point_compressed_matrix_bases'] += 1
+        counts['point_compressed_border_relations'] += len(result['minimal_initial_generators'])
+    assert len(certificates) == 3 and counts['nonzero_pooling_energy_gains'] > 0
+    return {'counts': dict(counts), 'near_critical_witnesses': witnesses,
+            'large_compressed_witnesses': large,
+            'point_ideal': {'configuration': 'critical_harmonic_rotation.point_ideal',
+                            'positive_basis_certificates': certificates},
+            'scope': 'Exact layerwise proximity, pooling-energy and compressed staircase controls, including irregular gaps, lex ties and heavy last components. The compressed algorithm has a global exchange certificate and independent skyline colength/profile checks. Known nested resource-allocation algorithms already avoid expansion in total resources; this is a specialized arithmetic-stream reduction, not a new general optimization class or a universal G_3 theorem.'}
+
+
 def main():
     axes = [axis_controls(n) for n in (4, 5, 6, 7, 9, 12, 15, 21)]
     arithmetic = [arithmetic_controls(n) for n in (99, 303, 603)]
@@ -2712,6 +3159,7 @@ def main():
     critical = critical_rotation_controls()
     subcritical = subcritical_surface_controls(critical['point_ideal'])
     caps = critical_cap_controls(critical['point_ideal'])
+    proximity = supercritical_proximity_controls(critical['point_ideal'])
     paths = ['scripts/run_algebraic_incidence_controls.py', 'docs/weighted_facet_incidence.md',
              'docs/initial_cone_height.md', 'scripts/run_extremal_initial_ideals_checks.py',
              'scripts/run_structural_complexity_checks.py', 'scripts/run_initial_cone_height_checks.py',
@@ -2719,7 +3167,7 @@ def main():
              'docs/generic_multiaffine_bound.md', 'docs/planar_dyadic_bound.md',
              'docs/rational_shadow_bound.md', 'scripts/run_planar_dyadic_bound_checks.py']
     report = {'status': 'passed', 'command': 'python3 -B scripts/run_algebraic_incidence_controls.py',
-              'scope': 'Every decreasing positive component profile with |m_s-4(r-s)|<=D has O_D(n^2 log(n+1)) initials across all aspects, including irregular bounded perturbations. An integrated rank estimate gives a smooth support-energy approximation; relative-aspect integer caps and the classical Andrews bound count its shrinking critical strip by O_D(n^2), including unbounded blocks. Earlier sections are preserved. Higher slopes, unbounded profile deviations, unrestricted G_3 and exact current priority remain unresolved.',
+              'scope': 'Higher-slope critical energy excess is quadratic, giving quadratic-power counts for the whole subcritical side and O(r^(-1/2)) critical bands. When the reference layer prices decrease, every actual layer count is within ceil(3+1/sigma) of its quota and pooling saves at most O(r) normalized cost. Three-AP boundary bands yield an exact compressed staircase algorithm with a global exchange certificate. Existing nested-allocation algorithms are prior art. Intermediate shrinking supercritical margins, arbitrary G_3 and current priority remain unresolved; all previous sections are preserved.',
               'summary': {'complete_axis_fans': len(axes), 'axis_cells': sum(a['positive_cells'] for a in axes),
                           'matrix_selection_controls': sum(a['independent_matrix_selections'] for a in axes),
                           'arithmetic_fixtures': len(arithmetic), 'complete_quotient_fans': len(interior),
@@ -2770,7 +3218,8 @@ def main():
                           **{'three_drop_' + k: v for k, v in three_drop['counts'].items()},
                           **{'critical_' + k: v for k, v in critical['counts'].items()},
                           **{'subcritical_' + k: v for k, v in subcritical['counts'].items()},
-                          **{'cap_' + k: v for k, v in caps['counts'].items()}},
+                          **{'cap_' + k: v for k, v in caps['counts'].items()},
+                          **{'proximity_' + k: v for k, v in proximity['counts'].items()}},
               'uniform_axis_matroids': axes, 'arithmetic_lower_bound_controls': arithmetic,
               'interior_quotients': interior, 'three_pole_quotients': curves,
               'positive_plane_traces': planes,
@@ -2784,6 +3233,7 @@ def main():
               'critical_harmonic_rotation': critical,
               'subcritical_final_surface_prefixes': subcritical,
               'critical_support_energy_caps': caps,
+              'higher_slope_boundary_proximity': proximity,
               'source_sha256': {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in paths}}
     (ROOT / 'results/research/algebraic_incidence_controls.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report['summary'], indent=2))

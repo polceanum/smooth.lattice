@@ -1,7 +1,7 @@
 {
   "status": "passed",
   "command": "python3 -B scripts/run_algebraic_incidence_controls.py",
-  "scope": "Every decreasing positive component profile with |m_s-4(r-s)|<=D has O_D(n^2 log(n+1)) initials across all aspects, including irregular bounded perturbations. An integrated rank estimate gives a smooth support-energy approximation; relative-aspect integer caps and the classical Andrews bound count its shrinking critical strip by O_D(n^2), including unbounded blocks. Earlier sections are preserved. Higher slopes, unbounded profile deviations, unrestricted G_3 and exact current priority remain unresolved.",
+  "scope": "Higher-slope critical energy excess is quadratic, giving quadratic-power counts for the whole subcritical side and O(r^(-1/2)) critical bands. When the reference layer prices decrease, every actual layer count is within ceil(3+1/sigma) of its quota and pooling saves at most O(r) normalized cost. Three-AP boundary bands yield an exact compressed staircase algorithm with a global exchange certificate. Existing nested-allocation algorithms are prior art. Intermediate shrinking supercritical margins, arbitrary G_3 and current priority remain unresolved; all previous sections are preserved.",
   "summary": {
     "complete_axis_fans": 8,
     "axis_cells": 548,
@@ -126,7 +126,21 @@
     "cap_weighted_geometric_cover_sums": 10,
     "cap_lower_dimensional_lattice_controls": 4,
     "cap_point_cap_matrix_bases": 3,
-    "cap_point_cap_border_relations": 30
+    "cap_point_cap_border_relations": 30,
+    "proximity_enumerated_basis_comparisons": 120,
+    "proximity_enumerated_monomials": 222390,
+    "proximity_regular_price_profiles": 72,
+    "proximity_nonzero_pooling_energy_gains": 30,
+    "proximity_higher_slope_support_energy_checks": 120,
+    "proximity_near_critical_price_profiles": 48,
+    "proximity_subcritical_support_energy_checks": 48,
+    "proximity_independent_lex_tie_controls": 3,
+    "proximity_irregular_gap_comparisons": 8,
+    "proximity_large_compressed_staircases": 5,
+    "proximity_large_boundary_candidate_points": 90255,
+    "proximity_outside_hypothesis_rejections": 1,
+    "proximity_point_compressed_matrix_bases": 3,
+    "proximity_point_compressed_border_relations": 32
   },
   "uniform_axis_matroids": [
     {
@@ -73711,15 +73725,1933 @@
     },
     "scope": "Independent heap/quota bases versus exact floor-rank integration, including bounded irregular perturbations of slope four; outward rational square-root bounds; exact profile-cap, Hessian and nonunimodular volume controls; generalized final-prefix collapse, weighted dyadic covers and planar degeneracies; three actual point-basis certificates. These support a uniform proof using classical Andrews geometry. They are not whole-fan enumerations or a novelty certificate."
   },
+  "higher_slope_boundary_proximity": {
+    "counts": {
+      "enumerated_basis_comparisons": 120,
+      "enumerated_monomials": 222390,
+      "regular_price_profiles": 72,
+      "nonzero_pooling_energy_gains": 30,
+      "higher_slope_support_energy_checks": 120,
+      "near_critical_price_profiles": 48,
+      "subcritical_support_energy_checks": 48,
+      "independent_lex_tie_controls": 3,
+      "irregular_gap_comparisons": 8,
+      "large_compressed_staircases": 5,
+      "large_boundary_candidate_points": 90255,
+      "outside_hypothesis_rejections": 1,
+      "point_compressed_matrix_bases": 3,
+      "point_compressed_border_relations": 32
+    },
+    "near_critical_witnesses": [
+      {
+        "components": 8,
+        "slope": 5,
+        "last_size": 1,
+        "weight": [
+          97253790021904,
+          84286618000148,
+          48626895000001
+        ],
+        "allocation": [
+          36,
+          31,
+          27,
+          21,
+          16,
+          10,
+          6,
+          1
+        ],
+        "proximity_width": 4,
+        "formal_layer_energy": 82484181095308866,
+        "actual_energy": 82480939302309451,
+        "energy_gain": 3241792999415,
+        "minimal_initial_generators": [
+          [
+            0,
+            0,
+            18
+          ],
+          [
+            0,
+            1,
+            17
+          ],
+          [
+            0,
+            2,
+            15
+          ],
+          [
+            0,
+            3,
+            13
+          ],
+          [
+            0,
+            4,
+            11
+          ],
+          [
+            0,
+            5,
+            9
+          ],
+          [
+            0,
+            6,
+            8
+          ],
+          [
+            0,
+            7,
+            6
+          ],
+          [
+            0,
+            8,
+            4
+          ],
+          [
+            0,
+            9,
+            3
+          ],
+          [
+            0,
+            10,
+            1
+          ],
+          [
+            0,
+            11,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            9,
+            0
+          ],
+          [
+            2,
+            8,
+            0
+          ],
+          [
+            3,
+            7,
+            0
+          ],
+          [
+            4,
+            6,
+            0
+          ],
+          [
+            5,
+            5,
+            0
+          ],
+          [
+            6,
+            4,
+            0
+          ],
+          [
+            7,
+            3,
+            0
+          ],
+          [
+            8,
+            1,
+            0
+          ],
+          [
+            9,
+            0,
+            0
+          ]
+        ],
+        "maximum_allocation_deviation": 1
+      },
+      {
+        "components": 8,
+        "slope": 9,
+        "last_size": 1,
+        "weight": [
+          4323696246067600,
+          9877712562000260,
+          2161848123000001
+        ],
+        "allocation": [
+          64,
+          56,
+          46,
+          36,
+          28,
+          19,
+          10,
+          1
+        ],
+        "proximity_width": 4,
+        "formal_layer_energy": 13650137536673292763,
+        "actual_energy": 13649838744656292252,
+        "energy_gain": 298792017000511,
+        "minimal_initial_generators": [
+          [
+            0,
+            0,
+            38
+          ],
+          [
+            0,
+            1,
+            34
+          ],
+          [
+            0,
+            2,
+            29
+          ],
+          [
+            0,
+            3,
+            24
+          ],
+          [
+            0,
+            4,
+            20
+          ],
+          [
+            0,
+            5,
+            15
+          ],
+          [
+            0,
+            6,
+            11
+          ],
+          [
+            0,
+            7,
+            6
+          ],
+          [
+            0,
+            8,
+            2
+          ],
+          [
+            0,
+            9,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            8,
+            0
+          ],
+          [
+            3,
+            7,
+            0
+          ],
+          [
+            5,
+            6,
+            0
+          ],
+          [
+            8,
+            5,
+            0
+          ],
+          [
+            10,
+            4,
+            0
+          ],
+          [
+            12,
+            3,
+            0
+          ],
+          [
+            15,
+            2,
+            0
+          ],
+          [
+            17,
+            1,
+            0
+          ],
+          [
+            19,
+            0,
+            0
+          ]
+        ],
+        "maximum_allocation_deviation": 1
+      },
+      {
+        "components": 25,
+        "slope": 5,
+        "last_size": 1,
+        "weight": [
+          361750968854325625,
+          315645453214001525,
+          180875484426000001
+        ],
+        "allocation": [
+          121,
+          117,
+          111,
+          106,
+          100,
+          96,
+          92,
+          86,
+          81,
+          76,
+          71,
+          66,
+          61,
+          56,
+          51,
+          46,
+          41,
+          36,
+          31,
+          26,
+          20,
+          16,
+          11,
+          6,
+          1
+        ],
+        "proximity_width": 4,
+        "formal_layer_energy": 10713063427344803936291,
+        "actual_energy": 10712967669735457682696,
+        "energy_gain": 95757609346253595,
+        "minimal_initial_generators": [
+          [
+            0,
+            0,
+            59
+          ],
+          [
+            0,
+            1,
+            58
+          ],
+          [
+            0,
+            2,
+            56
+          ],
+          [
+            0,
+            3,
+            54
+          ],
+          [
+            0,
+            4,
+            52
+          ],
+          [
+            0,
+            5,
+            51
+          ],
+          [
+            0,
+            6,
+            49
+          ],
+          [
+            0,
+            7,
+            47
+          ],
+          [
+            0,
+            8,
+            45
+          ],
+          [
+            0,
+            9,
+            43
+          ],
+          [
+            0,
+            10,
+            42
+          ],
+          [
+            0,
+            11,
+            40
+          ],
+          [
+            0,
+            12,
+            38
+          ],
+          [
+            0,
+            13,
+            37
+          ],
+          [
+            0,
+            14,
+            35
+          ],
+          [
+            0,
+            15,
+            33
+          ],
+          [
+            0,
+            16,
+            31
+          ],
+          [
+            0,
+            17,
+            30
+          ],
+          [
+            0,
+            18,
+            28
+          ],
+          [
+            0,
+            19,
+            26
+          ],
+          [
+            0,
+            20,
+            24
+          ],
+          [
+            0,
+            21,
+            23
+          ],
+          [
+            0,
+            22,
+            21
+          ],
+          [
+            0,
+            23,
+            19
+          ],
+          [
+            0,
+            24,
+            17
+          ],
+          [
+            0,
+            25,
+            15
+          ],
+          [
+            0,
+            26,
+            14
+          ],
+          [
+            0,
+            27,
+            12
+          ],
+          [
+            0,
+            28,
+            10
+          ],
+          [
+            0,
+            29,
+            9
+          ],
+          [
+            0,
+            30,
+            7
+          ],
+          [
+            0,
+            31,
+            5
+          ],
+          [
+            0,
+            32,
+            3
+          ],
+          [
+            0,
+            33,
+            2
+          ],
+          [
+            0,
+            34,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            33,
+            0
+          ],
+          [
+            2,
+            32,
+            0
+          ],
+          [
+            3,
+            31,
+            0
+          ],
+          [
+            4,
+            30,
+            0
+          ],
+          [
+            5,
+            28,
+            0
+          ],
+          [
+            6,
+            27,
+            0
+          ],
+          [
+            7,
+            26,
+            0
+          ],
+          [
+            8,
+            25,
+            0
+          ],
+          [
+            9,
+            24,
+            0
+          ],
+          [
+            10,
+            23,
+            0
+          ],
+          [
+            11,
+            21,
+            0
+          ],
+          [
+            12,
+            20,
+            0
+          ],
+          [
+            13,
+            19,
+            0
+          ],
+          [
+            14,
+            18,
+            0
+          ],
+          [
+            15,
+            17,
+            0
+          ],
+          [
+            16,
+            16,
+            0
+          ],
+          [
+            17,
+            15,
+            0
+          ],
+          [
+            18,
+            13,
+            0
+          ],
+          [
+            19,
+            12,
+            0
+          ],
+          [
+            20,
+            11,
+            0
+          ],
+          [
+            21,
+            10,
+            0
+          ],
+          [
+            22,
+            9,
+            0
+          ],
+          [
+            23,
+            8,
+            0
+          ],
+          [
+            24,
+            7,
+            0
+          ],
+          [
+            25,
+            5,
+            0
+          ],
+          [
+            26,
+            4,
+            0
+          ],
+          [
+            27,
+            3,
+            0
+          ],
+          [
+            28,
+            2,
+            0
+          ],
+          [
+            29,
+            1,
+            0
+          ],
+          [
+            30,
+            0,
+            0
+          ]
+        ],
+        "maximum_allocation_deviation": 1
+      },
+      {
+        "components": 25,
+        "slope": 9,
+        "last_size": 1,
+        "weight": [
+          4977767719003425625,
+          11371973406812002725,
+          2488883859498000001
+        ],
+        "allocation": [
+          217,
+          208,
+          199,
+          190,
+          182,
+          171,
+          163,
+          154,
+          146,
+          136,
+          127,
+          118,
+          108,
+          100,
+          91,
+          82,
+          73,
+          64,
+          56,
+          45,
+          37,
+          28,
+          19,
+          10,
+          1
+        ],
+        "proximity_width": 4,
+        "formal_layer_energy": 567152871636313371543474,
+        "actual_energy": 567149654298641805365883,
+        "energy_gain": 3217337671566177591,
+        "minimal_initial_generators": [
+          [
+            0,
+            0,
+            127
+          ],
+          [
+            0,
+            1,
+            123
+          ],
+          [
+            0,
+            2,
+            118
+          ],
+          [
+            0,
+            3,
+            113
+          ],
+          [
+            0,
+            4,
+            109
+          ],
+          [
+            0,
+            5,
+            104
+          ],
+          [
+            0,
+            6,
+            100
+          ],
+          [
+            0,
+            7,
+            95
+          ],
+          [
+            0,
+            8,
+            91
+          ],
+          [
+            0,
+            9,
+            86
+          ],
+          [
+            0,
+            10,
+            81
+          ],
+          [
+            0,
+            11,
+            77
+          ],
+          [
+            0,
+            12,
+            72
+          ],
+          [
+            0,
+            13,
+            68
+          ],
+          [
+            0,
+            14,
+            63
+          ],
+          [
+            0,
+            15,
+            59
+          ],
+          [
+            0,
+            16,
+            54
+          ],
+          [
+            0,
+            17,
+            49
+          ],
+          [
+            0,
+            18,
+            45
+          ],
+          [
+            0,
+            19,
+            40
+          ],
+          [
+            0,
+            20,
+            36
+          ],
+          [
+            0,
+            21,
+            31
+          ],
+          [
+            0,
+            22,
+            27
+          ],
+          [
+            0,
+            23,
+            22
+          ],
+          [
+            0,
+            24,
+            17
+          ],
+          [
+            0,
+            25,
+            13
+          ],
+          [
+            0,
+            26,
+            8
+          ],
+          [
+            0,
+            27,
+            4
+          ],
+          [
+            0,
+            28,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            2,
+            27,
+            0
+          ],
+          [
+            4,
+            26,
+            0
+          ],
+          [
+            7,
+            25,
+            0
+          ],
+          [
+            9,
+            24,
+            0
+          ],
+          [
+            11,
+            23,
+            0
+          ],
+          [
+            13,
+            22,
+            0
+          ],
+          [
+            16,
+            21,
+            0
+          ],
+          [
+            18,
+            20,
+            0
+          ],
+          [
+            20,
+            19,
+            0
+          ],
+          [
+            23,
+            18,
+            0
+          ],
+          [
+            25,
+            17,
+            0
+          ],
+          [
+            27,
+            16,
+            0
+          ],
+          [
+            29,
+            15,
+            0
+          ],
+          [
+            32,
+            14,
+            0
+          ],
+          [
+            34,
+            13,
+            0
+          ],
+          [
+            36,
+            12,
+            0
+          ],
+          [
+            39,
+            11,
+            0
+          ],
+          [
+            41,
+            10,
+            0
+          ],
+          [
+            43,
+            9,
+            0
+          ],
+          [
+            46,
+            8,
+            0
+          ],
+          [
+            48,
+            7,
+            0
+          ],
+          [
+            50,
+            6,
+            0
+          ],
+          [
+            52,
+            5,
+            0
+          ],
+          [
+            55,
+            4,
+            0
+          ],
+          [
+            57,
+            3,
+            0
+          ],
+          [
+            59,
+            2,
+            0
+          ],
+          [
+            61,
+            1,
+            0
+          ],
+          [
+            64,
+            0,
+            0
+          ]
+        ],
+        "maximum_allocation_deviation": 1
+      }
+    ],
+    "large_compressed_witnesses": [
+      {
+        "components": 128,
+        "slope": 5,
+        "last_size": 1,
+        "length": 40768,
+        "weight": [
+          36182575415822484029824,
+          31575056449012178040768,
+          18091287707910411000001
+        ],
+        "integer_profile": [
+          697409,
+          2377797,
+          2790914
+        ],
+        "minimum_energy": 150804356379500229479216345026,
+        "formal_layer_energy": 150804452392064579609107418883,
+        "pooling_gain": 96012564350129891073857,
+        "pooling_gain_times_gamma_per_layer": "96024309415430125583122069077042187563797240983944145927850056001/1117226847739410117876321024803741790145444688232114405826570371072",
+        "maximum_layer_count_deviation": 1,
+        "total_layer_count_changes": 42,
+        "boundary_candidate_points": 1021,
+        "contracted_rank": 509,
+        "proximity_width": 4,
+        "arithmetic_progression_count_calls": 52073,
+        "initial_generator_count": 333,
+        "initial_generators_sha256": "9ca11648d4f25fa23540d3c052fcf6d247306849e4f6ad6d67fb035af91a677b",
+        "first_allocations": [
+          637,
+          631,
+          625,
+          621,
+          617,
+          611,
+          606,
+          601
+        ],
+        "last_allocations": [
+          36,
+          30,
+          26,
+          21,
+          16,
+          10,
+          6,
+          1
+        ]
+      },
+      {
+        "components": 1024,
+        "slope": 9,
+        "last_size": 1,
+        "length": 4715008,
+        "weight": [
+          605654347959413933035414440064,
+          1383738845173455008052117715008,
+          302827173979706955402057000001
+        ],
+        "integer_profile": [
+          1403947625,
+          1841137244,
+          5615781408
+        ],
+        "minimum_energy": 5098571320679360132595209827753835987360,
+        "formal_layer_energy": 5098571336066942795465598259434568088994,
+        "pooling_gain": 15387582662870388431680732101634,
+        "pooling_gain_times_gamma_per_layer": "1945748166318422113725862342412442443814477462625107913971573407771385679644802584853243/22812548034891949487679445071247702044923553901244682307099978987574926191011706663665664",
+        "maximum_layer_count_deviation": 1,
+        "total_layer_count_changes": 354,
+        "boundary_candidate_points": 8189,
+        "contracted_rank": 4093,
+        "proximity_width": 4,
+        "arithmetic_progression_count_calls": 561256,
+        "initial_generator_count": 2348,
+        "initial_generators_sha256": "061667a17ccac6bac92b4b565f007887c2e48a691d3157b2b8ff705ebea48e73",
+        "first_allocations": [
+          9208,
+          9199,
+          9191,
+          9181,
+          9172,
+          9163,
+          9153,
+          9145
+        ],
+        "last_allocations": [
+          64,
+          56,
+          45,
+          37,
+          28,
+          19,
+          10,
+          1
+        ]
+      },
+      {
+        "components": 10000,
+        "slope": 5,
+        "last_size": 1,
+        "length": 249985000,
+        "weight": [
+          513001398666301671812492533063000000,
+          447685032023272032625000028906985000,
+          256500699333150835875000016419000001
+        ],
+        "integer_profile": [
+          334972980719,
+          1151409691102,
+          1339892044448
+        ],
+        "minimum_energy": 1030993738489008955129264351519263917684048514448,
+        "formal_layer_energy": 1030993738606986419762061759647331137259575814596,
+        "pooling_gain": 117977464632797408128067219575527300148,
+        "pooling_gain_times_gamma_per_layer": "147807069625089903717283835266317393968828544734345961465418117160724125378495576231691051040141329531731/1550229797836677531575218083853149595885132674161406376921992568147339817743997839142555892345922500000000",
+        "maximum_layer_count_deviation": 1,
+        "total_layer_count_changes": 3748,
+        "boundary_candidate_points": 79997,
+        "contracted_rank": 39997,
+        "proximity_width": 4,
+        "arithmetic_progression_count_calls": 6591894,
+        "initial_generator_count": 25881,
+        "initial_generators_sha256": "383e4686a59f1e7487293958f06b027b76a2235abdb63373dcd472e02a29020c",
+        "first_allocations": [
+          49996,
+          49991,
+          49986,
+          49981,
+          49976,
+          49971,
+          49967,
+          49961
+        ],
+        "last_allocations": [
+          36,
+          31,
+          26,
+          20,
+          16,
+          11,
+          6,
+          1
+        ]
+      },
+      {
+        "components": 3,
+        "slope": 9,
+        "last_size": 1000000000000,
+        "length": 3000000000027,
+        "weight": [
+          486000000013122000009118098000162354312000729,
+          1107000000029889000000269001000003807044000027,
+          243000000006561000000059049000000177156000001
+        ],
+        "integer_profile": [
+          126829636338987550928043,
+          24445450433473064735186,
+          507318545356042402293723
+        ],
+        "minimum_energy": 211978723417844361703574731833457678826620500135663168012753164687092,
+        "formal_layer_energy": 211978723417844361703574758833455062534343830418819911997240933791294,
+        "pooling_gain": 26999997383707723330283156743984487769104202,
+        "pooling_gain_times_gamma_per_layer": "2775302731223799520914289779208778715081963122113130379613724719700970366183487359319177328501702764118813916306216747254269411642742/43578162003529831122934076920452890871172123928029935770953975429288573097595877265078054647759072347582871909013924506124621016006561",
+        "maximum_layer_count_deviation": 1,
+        "total_layer_count_changes": 2,
+        "boundary_candidate_points": 24,
+        "contracted_rank": 12,
+        "proximity_width": 4,
+        "arithmetic_progression_count_calls": 2811,
+        "initial_generator_count": 11,
+        "initial_generators_sha256": "11d7f72ca5587bac96775079a67dccdaa5305ef8b69cad6e9634886c80946a9e",
+        "first_allocations": [
+          1000000000018,
+          1000000000010,
+          999999999999
+        ],
+        "last_allocations": [
+          1000000000018,
+          1000000000010,
+          999999999999
+        ]
+      },
+      {
+        "components": 128,
+        "slope": 9,
+        "last_size": 1000000000,
+        "length": 128000073152,
+        "weight": [
+          3535804334129601849763864333894163325215104,
+          8078243354132399955650826912232768268073152,
+          1767902167064800924873740157583622987000001
+        ],
+        "integer_profile": [
+          5415591938446007298,
+          1037508936502918886,
+          21662367762167810953
+        ],
+        "minimum_energy": 65826670029483558259062412658587720337980401939652145552988617,
+        "formal_layer_energy": 65826670029483558270443676075655757630720884408572472816797128,
+        "pooling_gain": 11381263417068037292740482468920327263808511,
+        "pooling_gain_times_gamma_per_layer": "8730778421294892297529569828350415399969640592473999820130138585539599893355719682479305969650176184034569713885347471118407511/100993489864577382475046572818580023425441855541031466279132261019966898541600505659759062941924501754709534228769189457006575616",
+        "maximum_layer_count_deviation": 1,
+        "total_layer_count_changes": 44,
+        "boundary_candidate_points": 1024,
+        "contracted_rank": 512,
+        "proximity_width": 4,
+        "arithmetic_progression_count_calls": 108983,
+        "initial_generator_count": 298,
+        "initial_generators_sha256": "decf7a53532c2fb408a8b6d9b32410baebb3fca574f910da63649ec520f91ab3",
+        "first_allocations": [
+          1000001144,
+          1000001134,
+          1000001125,
+          1000001116,
+          1000001106,
+          1000001098,
+          1000001089,
+          1000001081
+        ],
+        "last_allocations": [
+          1000000062,
+          1000000054,
+          1000000045,
+          1000000037,
+          1000000027,
+          1000000017,
+          1000000009,
+          999999999
+        ]
+      }
+    ],
+    "point_ideal": {
+      "configuration": "critical_harmonic_rotation.point_ideal",
+      "positive_basis_certificates": [
+        {
+          "input_weight": [
+            117,
+            36,
+            52
+          ],
+          "strict_witness_weight": [
+            85491,
+            26289,
+            37961
+          ],
+          "selected": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              3,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              0,
+              4,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              3
+            ],
+            [
+              0,
+              3,
+              1
+            ],
+            [
+              0,
+              2,
+              2
+            ],
+            [
+              0,
+              5,
+              0
+            ],
+            [
+              1,
+              2,
+              0
+            ],
+            [
+              0,
+              1,
+              3
+            ],
+            [
+              0,
+              4,
+              1
+            ],
+            [
+              0,
+              0,
+              4
+            ],
+            [
+              0,
+              3,
+              2
+            ],
+            [
+              0,
+              6,
+              0
+            ],
+            [
+              1,
+              3,
+              0
+            ],
+            [
+              0,
+              2,
+              3
+            ],
+            [
+              0,
+              5,
+              1
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              4
+            ],
+            [
+              0,
+              4,
+              2
+            ],
+            [
+              0,
+              7,
+              0
+            ],
+            [
+              0,
+              0,
+              5
+            ],
+            [
+              1,
+              4,
+              0
+            ],
+            [
+              0,
+              6,
+              1
+            ]
+          ],
+          "minimal_initial_generators": [
+            [
+              0,
+              0,
+              6
+            ],
+            [
+              0,
+              1,
+              5
+            ],
+            [
+              0,
+              2,
+              4
+            ],
+            [
+              0,
+              3,
+              3
+            ],
+            [
+              0,
+              5,
+              2
+            ],
+            [
+              0,
+              7,
+              1
+            ],
+            [
+              0,
+              8,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              5,
+              0
+            ],
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "input_weight": [
+            238,
+            42,
+            51
+          ],
+          "strict_witness_weight": [
+            173821,
+            30669,
+            37231
+          ],
+          "selected": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              3,
+              0
+            ],
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              0,
+              0,
+              3
+            ],
+            [
+              0,
+              4,
+              0
+            ],
+            [
+              0,
+              3,
+              1
+            ],
+            [
+              0,
+              2,
+              2
+            ],
+            [
+              0,
+              1,
+              3
+            ],
+            [
+              0,
+              0,
+              4
+            ],
+            [
+              0,
+              5,
+              0
+            ],
+            [
+              0,
+              4,
+              1
+            ],
+            [
+              0,
+              3,
+              2
+            ],
+            [
+              0,
+              2,
+              3
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              4
+            ],
+            [
+              0,
+              6,
+              0
+            ],
+            [
+              0,
+              0,
+              5
+            ],
+            [
+              0,
+              5,
+              1
+            ],
+            [
+              0,
+              4,
+              2
+            ],
+            [
+              0,
+              3,
+              3
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              4
+            ],
+            [
+              0,
+              7,
+              0
+            ],
+            [
+              0,
+              1,
+              5
+            ],
+            [
+              0,
+              6,
+              1
+            ],
+            [
+              0,
+              0,
+              6
+            ]
+          ],
+          "minimal_initial_generators": [
+            [
+              0,
+              0,
+              7
+            ],
+            [
+              0,
+              1,
+              6
+            ],
+            [
+              0,
+              2,
+              5
+            ],
+            [
+              0,
+              3,
+              4
+            ],
+            [
+              0,
+              4,
+              3
+            ],
+            [
+              0,
+              5,
+              2
+            ],
+            [
+              0,
+              7,
+              1
+            ],
+            [
+              0,
+              8,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              2,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "input_weight": [
+            228,
+            84,
+            133
+          ],
+          "strict_witness_weight": [
+            166521,
+            61329,
+            97091
+          ],
+          "selected": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              3,
+              0
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              4,
+              0
+            ],
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              0,
+              3,
+              1
+            ],
+            [
+              1,
+              2,
+              0
+            ],
+            [
+              0,
+              0,
+              3
+            ],
+            [
+              0,
+              5,
+              0
+            ],
+            [
+              0,
+              2,
+              2
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              0,
+              4,
+              1
+            ],
+            [
+              1,
+              3,
+              0
+            ],
+            [
+              0,
+              1,
+              3
+            ],
+            [
+              0,
+              6,
+              0
+            ],
+            [
+              0,
+              3,
+              2
+            ],
+            [
+              0,
+              0,
+              4
+            ],
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              0,
+              5,
+              1
+            ],
+            [
+              1,
+              4,
+              0
+            ],
+            [
+              0,
+              2,
+              3
+            ],
+            [
+              0,
+              7,
+              0
+            ],
+            [
+              0,
+              4,
+              2
+            ],
+            [
+              0,
+              1,
+              4
+            ],
+            [
+              2,
+              2,
+              0
+            ]
+          ],
+          "minimal_initial_generators": [
+            [
+              0,
+              0,
+              5
+            ],
+            [
+              0,
+              2,
+              4
+            ],
+            [
+              0,
+              3,
+              3
+            ],
+            [
+              0,
+              5,
+              2
+            ],
+            [
+              0,
+              6,
+              1
+            ],
+            [
+              0,
+              8,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              5,
+              0
+            ],
+            [
+              2,
+              3,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    "scope": "Exact layerwise proximity, pooling-energy and compressed staircase controls, including irregular gaps, lex ties and heavy last components. The compressed algorithm has a global exchange certificate and independent skyline colength/profile checks. Known nested resource-allocation algorithms already avoid expansion in total resources; this is a specialized arithmetic-stream reduction, not a new general optimization class or a universal G_3 theorem."
+  },
   "source_sha256": {
-    "scripts/run_algebraic_incidence_controls.py": "f203840cf9f77b94f457d5c807fbd9a8473f6a577f39e8e972395243de3523c2",
+    "scripts/run_algebraic_incidence_controls.py": "d982f8980ed24e87ab7efb1141ad4fb0a9708547f2109d1ee20b6f04f109cfec",
     "docs/weighted_facet_incidence.md": "61ccaf62917fdf59b7f2480a80148750236e3507959e810403e302a43e31bc13",
     "docs/initial_cone_height.md": "88088db9af60d5a43ac0682d40848de73c20a09120215f696ef90bb5cc1cafa8",
     "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
     "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
     "scripts/run_initial_cone_height_checks.py": "f804aff89da53a6139aed7cacc9fd802dee8fd8529ee48a0d240dd9740df3dab",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
-    "docs/extremal_initial_ideals.md": "9e007ae4aa1d4022819e814dbf7ebabe90790c4c74bc7a2f775019ac8a49e656",
+    "docs/extremal_initial_ideals.md": "3011dbb010f423e5e0da4245c4717fb7d79c5c76a134ead7930fd7c837634bed",
     "docs/generic_multiaffine_bound.md": "25d79382745c94da18f038cee7f0d6eccc202f0dc5b4cd6568ae9aa43ffd1a19",
     "docs/planar_dyadic_bound.md": "03c3e44166b2e95caaaedf042b2d79d345f7a1e056c46e134dfcd67b313aca45",
     "docs/rational_shadow_bound.md": "09b6e5e19cb03825e9d2151680e557cdf384256c5392cf70b6aca388e488c1ca",

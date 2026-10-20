@@ -134,8 +134,20 @@ count the whole shrinking strip, giving `O(n^2 log(n+1))` initials for
 **every** decreasing profile with `|m_s-4(r-s)| <= D`, for fixed `D`.
 This includes bounded irregular perturbations and unbounded block widths,
 across all positive aspects. The entire class is therefore excluded as a
-polynomial-amplification route. Higher slopes with shrinking supercritical
-margins, unbounded profile deviations and unrestricted `G_3` remain open.
+polynomial-amplification route. For every higher fixed linear slope, a
+quadratic energy comparison also closes the entire subcritical side and
+critical bands of width `O(r^(-1/2))` in `K`, where `r` counts components.
+On the supercritical side a uniform proximity theorem confines each
+layer's change to a constant number of boundary monomials, even when a
+pooled block grows without bound. It bounds the total pooling saving by
+`O(r)` in normalized cost and gives an exact compressed research algorithm
+for the generic component model, with a global exchange certificate and
+`O(r)` output generators. This algorithm assumes the generic rank rule;
+it neither inspects arbitrary point sets nor extends the prime unranking
+CLI. Existing efficient nested-allocation methods are established prior
+work. The intermediate shrinking supercritical region, unbounded profile
+deviations and unrestricted `G_3` remain open; sparse corrections alone
+give no bound on the number of initial ideals.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count
