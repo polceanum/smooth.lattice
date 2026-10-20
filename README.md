@@ -254,6 +254,11 @@ the scalar `3`, but its entire coefficient-deletion family for these
 periods cannot have monomial downset representatives in the original
 embedding. Arbitrary torsion therefore does not resolve the positive-weight
 coherence problem. A uniform count of the residual changes remains open.
+An explicit downset basis in the same algebra does have index `3`, but
+two of its normal forms impose contradictory monomial comparisons.
+Flat substitution gives unbounded indices and linear modular rank loss
+with the same failure of coherence. Downset structure alone therefore
+does not supply the order constraints needed for the count.
 The exact box-residual transfer
 is identified with established linkage, while every nonbox group cover
 has a residual/initial mismatch measured by its number of maximal monomials.

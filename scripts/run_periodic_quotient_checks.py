@@ -1510,6 +1510,102 @@ def prefix_gluing_controls():
             'scope':'Integral graph-cycle extraction and unit operations are classical linear algebra, not a new matroid-duality theorem or fan bound. The explicit noncoherence certificate excludes the 241 standard coefficient-deletion label sets at periods (5,7,11), not all odd-prime constructions. No odd-characteristic invariance, exhaustive characteristic classification or new asymptotic G_3 bound is claimed.'}
 
 
+def downset_odd_torsion_controls():
+    """A fixed exact counterexample; no fan enumeration or growth fit."""
+    heights = ((10,10,9,8,8,7,5,5,3,1,1,1,1),
+               (6,6,6,6,6,5,5,5,3,1,1,1,1),
+               (6,6,6,6,6,5,5,3,1,1,1,1,1),
+               (5,5,5,4,4,2,2,2,1,1),(4,3,3,3),(4,3,2),
+               (1,1,1),(1,1,1),(1,1,1),(1,1,1),(1,1,1),(1,1),(1,))
+    basis = frozenset((a,b,c) for a,row in enumerate(heights) for b,h in enumerate(row) for c in range(h))
+    require(len(basis) == 240 and all(tuple(x-(i==j) for j,x in enumerate(a)) in basis
+            for a in basis for i in range(3) if a[i]), 'the displayed height array is a 240-monomial downset')
+    periods = 5,7,11
+    model = cyclotomic_model(periods,0)
+    ordered = sorted(basis)
+    columns = [model['residue'](a) for a in ordered]
+    determinant = bareiss(columns)
+    require(determinant == 3, 'ordinary integral tensor columns have determinant exactly three')
+    solve = solver(columns,0)
+    relations = []
+    for head,tail in (((0,0,10),(0,5,5)),((0,9,1),(0,4,6))):
+        require(head not in basis and tail in basis and all(
+            not head[i] or tuple(x-(i==j) for j,x in enumerate(head)) in basis for i in range(3)),
+            'both order-obstruction heads are minimal outside the downset')
+        coordinates = solve(model['residue'](head))
+        require(coordinates[ordered.index(tail)] == -1, 'each distinguished tail has nonzero unit coefficient minus one')
+        terms = [(ordered[j],Q(c)) for j,c in sorted(coordinates.items())]
+        denominators = lcm(*(c.denominator for a,c in terms))
+        require(denominators in (1,3), 'normal-form denominators use no prime other than three')
+        direct = model['residue'](head)
+        require(all(sum(c*model['residue'](a)[i] for a,c in terms) == direct[i] for i in range(240)),
+                'full normal forms replay by independent ordinary monic arithmetic')
+        relations.append({'head':head,'distinguished_tail':tail,'distinguished_coefficient':-1,
+                          'normal':tuple(x-y for x,y in zip(head,tail)),
+                          'common_denominator':denominators,
+                          'tail':[{'exponent':a,'coefficient':str(c)} for a,c in terms]})
+    require(tuple(-x for x in relations[0]['normal']) == relations[1]['normal'],
+            'the two required strict monomial comparisons have opposite directions')
+
+    r,s,t = periods
+    labels = [set() for _ in range(t)]
+    for a in basis:
+        u,v,j = label(a,periods)
+        labels[j].add((u,v))
+    masks = [sum(1 << i for i,e in enumerate(product(range(r),range(s))) if e not in group)
+             for group in labels]
+    reduced = cycle_gluing_reduction(r,s,masks)
+    core = integer_unit_core(reduced['residual_columns'])
+    require(len(reduced['residual_rows']) == len(reduced['residual_columns']) == 15
+            and reduced['extracted_rank'] == 9 and core['unit_pivots'] == 14
+            and core['core_matrix'] == [[3]], 'a separate cycle reduction isolates the same odd obstruction')
+
+    lifts = []
+    for degree in (1,2,3):
+        lifted = frozenset((degree*a+i,b,c) for a,b,c in basis for i in range(degree))
+        require(len(lifted) == 240*degree and all(tuple(x-(i==j) for j,x in enumerate(a)) in lifted
+                for a in lifted for i in range(3) if a[i]), 'every flat pullback remains an actual downset')
+
+        @cache
+        def residue(a):
+            q,remainder = divmod(a[0],degree)
+            v = tuple(int(x) for x in model['residue']((q,a[1],a[2])))
+            return tuple(x if block == remainder else 0 for block in range(degree) for x in v)
+
+        # Verify the direct-sum determinant proof, without a large redundant determinant.
+        for remainder in range(degree):
+            for a,col in zip(ordered,columns):
+                target = (degree*a[0]+remainder,a[1],a[2])
+                lifted_column = residue(target)
+                require(lifted_column[240*remainder:240*(remainder+1)] == col
+                        and not any(lifted_column[:240*remainder]+lifted_column[240*(remainder+1):]),
+                        'permuting lifted columns gives exactly degree copies of the integral base matrix')
+        ranks = {}
+        for p in (0,2,3,5,7):
+            pivots = {}
+            for a in sorted(lifted):
+                insert(pivots,residue(a),p)
+            expected = (239 if p == 3 else 240)*degree
+            require(len(pivots) == expected, 'direct pullback columns have exactly the proved characteristic-dependent rank')
+            ranks[p] = len(pivots)
+        for relation in relations:
+            head = tuple(degree*x if i == 0 else x for i,x in enumerate(relation['head']))
+            terms = [(tuple(degree*x if i == 0 else x for i,x in enumerate(term['exponent'])),Q(term['coefficient']))
+                     for term in relation['tail']]
+            require(head not in lifted and all(a in lifted for a,c in terms), 'pulled-back normal forms still have standard tails')
+            direct = residue(head)
+            require(all(sum(c*residue(a)[i] for a,c in terms) == direct[i] for i in range(240*degree)),
+                    'ordinary flat arithmetic independently verifies both opposite-order relations')
+        lifts.append({'degree_in_X':degree,'length':240*degree,'absolute_index':3**degree,
+                      'direct_field_ranks':ranks,'rank_loss_in_characteristic_three':degree,
+                      'opposite_order_relations_checked':2})
+    return {'periods':periods,'height_rows_in_X_then_Y':heights,'length':240,
+            'integer_determinant':determinant,'opposite_order_certificate':relations,
+            'cycle_reduction':reduced,'integral_core_certificate':core,
+            'flat_pullback_controls':lifts,
+            'scope':'An exact odd-torsion downset in the original algebra, with no global monomial order selecting it in any field. All fields other than characteristic three preserve the two unit-coefficient contradictory comparisons; characteristic three loses basis rank. Flat monomial substitution extends the obstruction to every positive degree, but cannot turn it into a coherent fan family. This is a diagnostic counterexample and classical amplification, not a new fan bound, characteristic classification or publication endpoint.'}
+
+
 def main():
     lattice, dual = periodic_and_dual_controls()
     index_controls = intrinsic_index_controls()
@@ -1525,11 +1621,12 @@ def main():
     global_controls = global_gap_controls()
     score_controls = score_filtration_controls()
     gluing_controls = prefix_gluing_controls()
+    downset_controls = downset_odd_torsion_controls()
     sources = ('docs/periodic_quotient_arithmetic.md','scripts/run_periodic_quotient_checks.py',
                'scripts/run_cyclotomic_price_checks.py','scripts/run_interleaving_research.py',
                'scripts/run_nested_jet_checks.py','scripts/run_graded_fan_checks.py')
     report = {'schema_version':1,'command':'python3 -B scripts/run_periodic_quotient_checks.py',
-              'scope':'Exact periodic-cover, arithmetic, fixed-cover trace and candidate-filter controls. Direct norm quotients verify the nonbox socle defect. Sector-wide surface budgets, thin-cover obstructions, socle-free dyadic shell bounds and their logarithmic obstruction are checked. Period-gap identities, common regional boxes and active-generator slab obstructions are independently checked by monic division and primal/dual bases. Four global price sectors and a uniform large-box obstruction at a positive arithmetic ray are checked. Score filtrations, polynomial minors and coherent collective-defect obstructions are independently verified. Integral cycle-space extraction is checked against raw cycle spans and ordinary monic prefix ranks; known coefficient-deletion torsion is separated from positive coherence. No unrestricted asymptotic separation, sharp nonbox refinement-fan count or novelty certificate.',
+              'scope':'Exact periodic-cover, arithmetic, fixed-cover trace and candidate-filter controls. Direct norm quotients verify the nonbox socle defect. Sector-wide surface budgets, thin-cover obstructions, socle-free dyadic shell bounds and their logarithmic obstruction are checked. Period-gap identities, common regional boxes and active-generator slab obstructions are independently checked by monic division and primal/dual bases. Four global price sectors and a uniform large-box obstruction at a positive arithmetic ray are checked. Score filtrations, polynomial minors and coherent collective-defect obstructions are independently verified. Integral cycle-space extraction is checked against raw cycle spans and ordinary monic prefix ranks; known coefficient-deletion torsion is separated from positive coherence. A determinant-three downset, opposite-order normal forms and flat-pullback rank losses test the necessity of actual order comparisons. No unrestricted asymptotic separation, sharp nonbox refinement-fan count or novelty certificate.',
               'source_sha256':{p:sha256((ROOT/p).read_bytes()).hexdigest() for p in sources},
               'full_period_lattice_controls':lattice,'inverse_monomial_dual_controls':dual,
               'trivial_intrinsic_grading_controls':index_controls,
@@ -1543,6 +1640,7 @@ def main():
               'global_gap_controls':global_controls,
               'score_filtration_controls':score_controls,
               'prefix_gluing_controls':gluing_controls,
+              'noncoherent_downset_odd_torsion':downset_controls,
               'summary':{'full_period_cover_prices':len(lattice),'dual_quotient_price_field_controls':len(dual),
                          'nonbox_reflection_obstructions':sum(x['nonbox_reflection_has_no_constant'] for x in dual),
                          'all_field_pair_minimal_polynomial_controls':len(index_controls),
@@ -1598,6 +1696,10 @@ def main():
                               'cycle_gluing_cost_prefix_field_checks':sum(len(c['polynomial_ranks']) for c in gluing_controls['full_cost_prefixes']),
                               'integral_scalar_core_certificates':2,
                               'excluded_cyclotomic_coefficient_deletion_sets':gluing_controls['noncoherent_three_core']['excluded_one_deletion_sets']})
+    report['summary'].update({'odd_torsion_downset_determinants':1,
+                              'opposite_monomial_order_certificates':len(downset_controls['opposite_order_certificate']),
+                              'odd_downset_pullback_field_checks':sum(len(c['direct_field_ranks']) for c in downset_controls['flat_pullback_controls']),
+                              'odd_downset_pullback_relation_checks':sum(c['opposite_order_relations_checked'] for c in downset_controls['flat_pullback_controls'])})
     (ROOT/'results/research/periodic_quotient_checks.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report['summary'],sort_keys=True))
 

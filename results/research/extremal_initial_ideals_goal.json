@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Keep the full sharp-G_3 or realizable polynomial-separation objective and all original success criteria. For the original mixed-period algebra, use the exact cycle-space prefix identity and integral residual-matrix extraction. Connectivity and two-graph merge defects alone miss the already certified coherent scalar-two obstruction. Published cyclotomic coefficient deletion gives scalar-three torsion, but all 241 such sets at (5,7,11) fail the necessary monomial-downset condition and cannot be imported as coherent examples. Do not infer odd-characteristic invariance from finite negative searches, novelty from missing search hits, or fan growth from scalar size. The next substantive theorem must restrict these residual matrices for actual cost-defined prefixes as both weight ratios vary, or uniformly bound their exposed changes; arbitrary graph/subset rank statements alone are insufficient. Seek a concrete cost-specific rank/charging theorem or a genuinely coherent obstruction before any wider computation. Preserve the global period-gap bound, every previous family exclusion and the unrestricted rational-shadow route. The new extraction is classical supporting machinery and does not itself merit lowering the goal to a paper about the certificate. No larger search framework, outbound messages, submissions or lowered success criteria.",
+  "next_proof_task": "Retain the full sharp-G_3 or realizable polynomial-separation objective and every original success criterion. The original periodic algebra has both the certified coherent scalar-two prefix and an exact determinant-three downset basis that fails every global monomial order. Thus neither the standard cyclotomic coefficient construction nor weakening to arbitrary downsets resolves the genuine cost-prefix problem. Its flat substitutions amplify index and modular rank loss without creating coherent states; do not spend effort enlarging that diagnostic family, infer odd-characteristic invariance from finite negative probes, or infer many states from arithmetic multiplicity. A substantive next theorem must control genuinely cost-defined collective residual ranks or count their feasible exposed exchanges as both weight ratios vary, using simultaneous monomial-order comparisons. Alternatively pursue a stronger global quotient-sensitive count on the rational-shadow route. Katoh--Tokuyama concave-surface levels do not provide a general two-parameter matroid transfer; that extension is explicitly outside their proof. Preserve all old exclusions, exact formulas and the unrestricted objective; complete the strongest-current and exact-priority assessment before claiming a new bound. No larger fan-search framework, messages, submissions or lowered endpoint.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -103,7 +103,8 @@
     "Compare the explicit gap-dependent common-box regions and all-field active-generator slab construction against primary weighted lattice-routing and lattice-ideal literature. The basis-profile dictionary and final volume estimate are established; no new lattice theorem or unrestricted count is asserted. Distinguish cube-only counterexamples from joint-shell or fan-count lower bounds, and finite prime triples from an unproved infinite prime constellation.",
     "Compare the global four-sector bound O(sqrt(H)*n^(7/3)) for comparable dense periodic quotients, and the uniform shortest-cover box obstruction at (t,2,2), against primary weighted lattice-ideal and routing literature. The state-profile/vertex step and successive-initial/graded-refinement arguments are established inputs. No sharpness for the actual fan, quotient-axis obstruction, current novelty or new unrestricted result is inferred.",
     "The score-prefix deficit, forced-element minimum excess, optimal-face matroid and polynomial determinant-rescaling identities are classical. Feichtner--Sturmfels Section 2 and Proposition 2.5 were inspected with the max/min convention reversed. Assess exact priority only of any proposed quantitative realization or fan-count consequence, including the explicit maximal-order all-active excess example and its two-sector O(n^2*log(n+1)) screen. No novelty is inferred from the construction or failed searches, and its behaviour is not assumed to describe the periodic tensor quotient.",
-    "Before claiming a coherent arithmetic theorem, compare genuinely cost-defined cycle residuals with cyclotomic/simplicial torsion beyond the standard coefficient-deletion sets. Musiker--Reiner arXiv:1012.1844v4 Proposition 4 and Corollary 5 already supply the arbitrary index construction; our explicit (5,7,11) downset certificate excludes that construction here but does not establish a broader novelty boundary or odd-characteristic stability."
+    "Before claiming a coherent arithmetic theorem, compare genuinely cost-defined cycle residuals with cyclotomic/simplicial torsion beyond the standard coefficient-deletion sets. Musiker--Reiner arXiv:1012.1844v4 Proposition 4 and Corollary 5 already supply the arbitrary index construction; our explicit (5,7,11) downset certificate excludes that construction here but does not establish a broader novelty boundary or odd-characteristic stability.",
+    "The exact odd-torsion downset and all-order contradiction are verified at periods (5,7,11); their classical flat amplification is not a fan result. If a cost-specific arithmetic theorem is proposed, it must distinguish such downset bases by actual simultaneous order constraints. Katoh--Tokuyama (2002) Theorems 4/12 concern concave-surface levels; Section 4 leaves the general two-parameter matroid extension outside that argument. Current strongest-bound assessment remains open."
   ],
   "primary_sources": [
     {
@@ -418,6 +419,18 @@
       "title": "The cyclotomic polynomial topologically",
       "url": "https://arxiv.org/pdf/1012.1844v4",
       "scope": "Version 4, 15 August 2022: Proposition 4 and Corollary 5 proofs, Theorem 1 and Remark 22. Known coefficient-deletion index/torsion construction; no positive-price coherence conclusion is inferred."
+    },
+    {
+      "authors": "Katoh--Tokuyama",
+      "title": "K-Levels of Concave Surfaces",
+      "url": "https://link.springer.com/content/pdf/10.1007/s00454-001-0086-z.pdf",
+      "scope": "2002 primary paper: Theorems 4 and 12 with relevant arguments, Proposition 5 and concluding Section 4. Concave-surface level bounds do not directly count arbitrary two-parameter matroid bases."
+    },
+    {
+      "authors": "Braun--Pokutta",
+      "title": "A polyhedral characterization of border bases",
+      "url": "https://arxiv.org/pdf/0912.1502v5",
+      "scope": "Braun--Pokutta introduction and Section 2 inspected. Admissible monomial downsets supporting border bases form an established larger class than those induced by term orders. No novelty is claimed for that general distinction; the explicit determinant-three certificate is scoped to the original mixed-period algebra."
     }
   ],
   "verification": {
@@ -714,10 +727,14 @@
       "zero_defect_cycle_merges": 242,
       "cycle_gluing_cost_prefix_field_checks": 180,
       "integral_scalar_core_certificates": 2,
-      "excluded_cyclotomic_coefficient_deletion_sets": 241
+      "excluded_cyclotomic_coefficient_deletion_sets": 241,
+      "odd_torsion_downset_determinants": 1,
+      "opposite_monomial_order_certificates": 2,
+      "odd_downset_pullback_field_checks": 15,
+      "odd_downset_pullback_relation_checks": 6
     }
   },
-  "preservation": "Only the six explicitly privacy-reviewed research files change. All 298 unlisted tracked files, including manuscripts/PDFs, core kernels, auditor, public CLI, previous research and paused ML artifacts, are byte-preserved against the ignored baseline at 9e2911a. Every earlier periodic-report section/count, original objective and success criteria, and all thirty-three previous continuations are preserved. Local baselines, probes and logs remain ignored.",
+  "preservation": "Only the six explicitly privacy-reviewed research files change. All 298 unlisted tracked files, including manuscripts/PDFs, core kernels, auditor, CLI, earlier research and paused ML artifacts, are byte-preserved against the ignored baseline at 96b9f4e. All earlier periodic-report sections/counts, the original objective and success criteria, and all thirty-four previous continuations are preserved. Local probes, baselines and logs remain ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
@@ -728,8 +745,8 @@
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "a120444d76e04866d6e7418ab1911403aa2dd7348a0196e572bbbef761ecea39",
-    "docs/extremal_initial_ideals.md": "deabf5223d3d1cf93ba7da328c37a4b0a69b8f58e35d20a18f2fbfb23b8834de",
+    "README.md": "08744d3a7ca8a9b8282d92ef88c0b5f64a3196dff7a577ae62061366cd26fa60",
+    "docs/extremal_initial_ideals.md": "30c71cfde7b7e644959d22da3dd8bf2dc0d164a84042ce481c37a9adac9d5176",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
     "results/research/profile_lattice_checks.json": "437b69bd81173c330b059d879df9f93281befb01e353f9e2c2e00f5a55746d17",
@@ -754,9 +771,9 @@
     "docs/nonnegative_graded_fans.md": "88de976c7b8359dea3b00aa30965c7caf613633adc80ae2ef16b885b8c584e6d",
     "scripts/run_graded_fan_checks.py": "b3cc437c7274378d26c8a9ced7f7ec785905601bc83ec17ea6bb9db3a515554f",
     "results/research/graded_fan_checks.json": "6d03769c1bf742dcb74d53502cbdb7c1f0cc9878b59b80426e699e0837fee055",
-    "docs/periodic_quotient_arithmetic.md": "a3629c3bcd1c78b79e009340648341bc16be5b4d8a98dbf0bbf4045a974f3721",
-    "scripts/run_periodic_quotient_checks.py": "bbde969588fb5f236bd364cdac7ecd6e903c258ef293d46253de3b07d56c644a",
-    "results/research/periodic_quotient_checks.json": "f35c72562a5eb2fb881b8d12339778551596e4bd957d50469503868140aeb928",
+    "docs/periodic_quotient_arithmetic.md": "eeeab9020807503fe342e4370443c77c332aef1f54eec663f3ff774c99c1e58d",
+    "scripts/run_periodic_quotient_checks.py": "5792a53596cc55e0d045021292c1ac191af76b77867a2d8b4bb309889f455b2c",
+    "results/research/periodic_quotient_checks.json": "22a195f8358d214aab9701afae4b7ae5d3efc972d9ad16a4a7ce033127150821",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
     "scripts/run_nested_jet_checks.py": "aa1c4a9b69de0d0cfa54c381c4f83ebaa983cdbfd7b298af40b32603a079648c"
   },
@@ -2376,8 +2393,47 @@
         "preservation": "Every prior periodic-report section/count, all thirty-three previous continuations, original objective and success criteria, and all 298 unlisted tracked files are preserved against 9e2911a."
       },
       "scope_limit": "No new unrestricted G_3 bound, coherent odd-prime construction, characteristic classification, polynomial separation, current-priority certificate or paper endpoint. Both price parameters and cost-defined residual ranks still need a uniform structural or exposed-change theorem; the original impact criteria remain in force."
+    },
+    {
+      "title": "Odd torsion in actual downsets and a uniform all-order obstruction",
+      "recorded_on": "2026-10-20",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "96b9f4e saved and verified the integral cycle reduction, scalar-two coherent prefix, scalar-three published coefficient example and the common downset obstruction excluding all 241 coefficient-deletion label sets for (5,7,11). Its clean worktree and complete report baseline were revalidated.",
+      "progress_classification": "The proposed structural weakening from positive coherence to a monomial downset is disproved inside the original algebra. A 240-monomial downset has exact index three, but two unit-coefficient normal-form comparisons are contradictory in every field where it is a basis. Classical flat substitution gives unbounded index and a linear rank loss while retaining this all-order obstruction. The published concave-surface statements independently confirm a previously scoped preprint exclusion; full version equivalence is not assumed. The unrestricted G_3 bound is unchanged.",
+      "uniform_proofs": [
+        "The displayed decreasing height array defines an actual 240-monomial downset in the original integral tensor algebra at periods (5,7,11), with X=UV,Y=UW,Z=VW. Direct fraction-free elimination gives determinant exactly three. Independently, the complement-graph reduction gives a 15-by-15 residual matrix with fourteen unit pivots and core [3]. The basis rank is therefore 239 in characteristic three and 240 in every other characteristic. This disproves a power-of-two index claim for all monomial downset bases, not for positively coherent bases.",
+        "The exact normal forms of Z^10 and Y^9*Z contain respectively -Y^5*Z^5 and -Y^4*Z^6, with complete tails in the downset and denominators dividing three. Both displayed coefficients are units. If this downset were an initial standard set, monomial cancellation would require both Z^5>Y^5 and Y^5>Z^5. Thus no global monomial order selects it in any characteristic other than three; characteristic three already loses basis rank. This is an exact all-order certificate, not failure of one tested weight or a numerical feasibility decision.",
+        "For every d>=1, flat substitution X=T^d gives a free integral quotient of length 240d. Replacing each monomial X^a*Y^b*Z^c by T^(da+i)*Y^b*Z^c for 0<=i<d preserves the downset property. The column matrix is a permuted direct sum of d copies, giving index 3^d and characteristic-three rank 239d, with rank 240d in every other characteristic. The same two contradictory comparisons persist, so none of these bases is coherent over any field. The amplification is classical flat algebra, not an initial-fan lower construction. The earlier free-pullback identity (Q5) already shows that each fixed field has exactly the same initial-ideal count for every d; that count-preservation theorem is reused, not claimed again."
+      ],
+      "independent_controls": {
+        "command": "python3 -B scripts/run_periodic_quotient_checks.py",
+        "report": "results/research/periodic_quotient_checks.json",
+        "status": "passed",
+        "odd_torsion_downset_determinants": 1,
+        "opposite_monomial_order_certificates": 2,
+        "odd_downset_pullback_field_checks": 15,
+        "odd_downset_pullback_relation_checks": 6
+      },
+      "reading_scope": [
+        {
+          "source": "https://link.springer.com/content/pdf/10.1007/s00454-001-0086-z.pdf",
+          "scope": "Katoh--Tokuyama (2002): inspected the introduction, Theorem 4, Proposition 5, the sweep/tangency argument, Theorem 12 with its intersection-count proof, and concluding Section 4. The source distinguishes its concave-surface levels from general two-parameter matroids, leaves that extension open and warns of additional projected transition crossings. Its bound cannot be imported here without a new transfer theorem. This scoped audit does not establish the strongest current unrestricted result. The earlier preprint audit had already excluded that transfer; the journal source now confirms the specified statements directly, without a full version-equivalence claim."
+        },
+        {
+          "source": "https://arxiv.org/pdf/0912.1502v5",
+          "scope": "Braun--Pokutta introduction and Section 2 inspected. Admissible monomial downsets supporting border bases form an established larger class than those induced by term orders. No novelty is claimed for that general distinction; the explicit determinant-three certificate is scoped to the original mixed-period algebra."
+        }
+      ],
+      "verification": {
+        "research": "passed",
+        "build": "passed",
+        "smoke": "passed",
+        "source_hashes": "verified",
+        "preservation": "Every old periodic-report section/count, all thirty-four earlier continuations, original objective and criteria, and all 298 unlisted tracked files are preserved against 96b9f4e."
+      },
+      "scope_limit": "This is a diagnostic counterexample and an established flat amplification, not a new asymptotic count, coherent odd-prime witness, complete characteristic classification, strongest-current or novelty certificate, or paper endpoint. All original impact criteria and the unrestricted goal remain active."
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "No unrestricted exponent improvement or polynomial separation. Classical integral cycle extraction gives exact field-sensitive prefix cores. The standard cyclotomic coefficient-deletion sets for (5,7,11) are excluded from positive coherence by a common downset-capacity certificate. Current novelty and the paper endpoint remain unestablished.",
-  "previous_goal_turn_classification": "No progress: the presentation-only turn changed no mathematics. This continuation revalidates 9e2911a and adds exact integral collective-prefix certificates plus a concrete coherence obstruction to the standard prior-art construction."
+  "asymptotic_improvement_scope_this_iteration": "No unrestricted exponent change or polynomial separation. An exact index-three downset and two contradictory normal-form comparisons yield an infinite flat family with exponential index and linear modular rank loss that is never coherent. The result excludes a structural shortcut; its abstract amplification is classical and does not provide the main paper endpoint.",
+  "previous_goal_turn_classification": "Progress: 96b9f4e supplied integral collective-rank and coherence-boundary certificates. This continuation preserves them and disproves weakening their cost-specific task to arbitrary monomial downsets."
 }

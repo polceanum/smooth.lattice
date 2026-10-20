@@ -1812,6 +1812,149 @@ restriction. A uniform residual-rank or exposed-change bound is still
 needed; no new unrestricted exponent, odd-characteristic invariance,
 polynomial separation, novelty certificate or paper endpoint follows.
 
+## Downset bases can carry odd torsion without any coherent order
+
+The obstruction in (Q51) rules out the standard coefficient-deletion
+sets because they cannot even be downsets. It does **not** justify
+replacing positive coherence by the downset condition. There is an
+explicit counterexample inside the same original algebra, without
+changing the periods or the generators.
+
+For $(r,s,t)=(5,7,11)$, define a downset $E$ by column heights
+$E=\{(a,b,c):0\le c<h_{a,b}\}$. Row $a$ of the following array
+lists $h_{a,0},h_{a,1},\ldots$; every omitted entry is zero:
+
+```text
+10 10 9 8 8 7 5 5 3 1 1 1 1
+ 6  6 6 6 6 5 5 5 3 1 1 1 1
+ 6  6 6 6 6 5 5 3 1 1 1 1 1
+ 5  5 5 4 4 2 2 2 1 1
+ 4  3 3 3
+ 4  3 2
+ 1  1 1
+ 1  1 1
+ 1  1 1
+ 1  1 1
+ 1  1 1
+ 1  1
+ 1
+```
+
+Rows and columns are nonincreasing, and the heights sum to $240$.
+Relative to the standard integral tensor basis of
+$A_{\mathbb Z}=\mathbb Z[U,V,W]/(S_5(U),S_7(V),S_{11}(W))$,
+the columns of the monomials of $E$ have determinant exactly $3$.
+This is checked by fraction-free integer elimination. Independently,
+the cycle extraction (Q48) leaves a $15$-by-$15$ matrix: fourteen
+integer unit pivots leave the scalar $[3]$. Consequently
+
+$$
+\operatorname{rank}_K E=
+ \begin{cases}239,&\operatorname{char}K=3,\\
+               240,&\operatorname{char}K\ne3.
+ \end{cases}                                           \tag{Q52}
+$$
+
+Thus downset bases of this algebra need not have index a power of two.
+This statement concerns ordinary monomial vector bases, with no claim
+that they arise from any monomial order.
+
+In fact this particular $E$ is never an initial standard set over any
+field. Over $\mathbb Q$, two of its unique normal forms have the terms
+
+$$
+\begin{split}
+\operatorname{NF}_E(Z^{10})&=-Y^5Z^5+\cdots,\\
+\operatorname{NF}_E(Y^9Z)&=-Y^4Z^6+\cdots.              \tag{Q53}
+\end{split}
+$$
+
+The report records the complete normal forms and checks them by direct
+ordinary monic arithmetic. Both displayed tails belong to $E$, both
+heads are minimal outside it, and all denominators in these two normal
+forms divide $3$. Their displayed coefficients are the units $-1$.
+If $E$ were an initial standard set, the first relation would require
+$Z^{10}>Y^5Z^5$, hence $Z^5>Y^5$ by cancellation. The second would
+require $Y^9Z>Y^4Z^6$, hence $Y^5>Z^5$. These strict comparisons are
+contradictory for every multiplicative monomial order, regardless of
+any positive-weight representation. In every characteristic other
+than three, the normal forms specialize and the two unit coefficients
+remain nonzero, so the same contradiction applies. In characteristic
+three (Q52) already prevents $E$ from being a standard basis.
+
+This is a stronger exclusion than failure of one proposed weight.
+It also separates two issues: odd torsion is compatible with a
+downward-closed monomial basis in the original algebra, while such a
+basis need not satisfy even two of the order comparisons needed for
+coherence. The earlier coherent scalar-two witness remains valid.
+No theorem that all genuinely coherent torsion is two-primary has
+been proved or disproved by this example.
+
+The general distinction between a downset supporting a border basis and
+one arising from a monomial order is established; see
+[Braun--Pokutta, introduction and Section 2](https://arxiv.org/pdf/0912.1502v5).
+The claim here is the exact arithmetic certificate inside this particular
+mixed-period algebra, not a new abstract distinction between border and
+Gröbner bases. Its current priority is not established.
+
+### The obstruction persists at arbitrarily large length
+
+The classical flat substitution used earlier extends this diagnostic
+uniformly. Let $I_{\mathbb Z}$ be the kernel presenting the original
+algebra in $X,Y,Z$. For each integer $d\ge1$ put
+
+$$
+A_d=\mathbb Z[T,Y,Z]/I_{\mathbb Z}(T^d,Y,Z),\qquad
+E_d=\{T^{da+i}Y^bZ^c:(a,b,c)\in E,\ 0\le i<d\}.       \tag{Q54}
+$$
+
+The extension $\mathbb Z[X,Y,Z]\subset\mathbb Z[T,Y,Z]$ with
+$X=T^d$ is free on $1,T,\ldots,T^{d-1}$. Hence $A_d$ is free
+of rank $240d$ over $\mathbb Z$. The set $E_d$ is a downset:
+decreasing the $T$ exponent either stays in the same remainder block
+or uses the predecessor in the $X$ coordinate of $E$. Its integer
+column matrix, after reordering by the remainder $i$, is a direct sum
+of $d$ copies of the original matrix. Therefore its index is $3^d$,
+and its rank is $239d$ in characteristic three and $240d$ in every
+other characteristic. This gives a linear rank loss at unbounded length.
+
+Substitution in (Q53) leaves the two displayed heads and tails unchanged;
+the other terms acquire $T$ exponents divisible by $d$. They still
+belong to $E_d$. The same contradictory comparisons show that $E_d$
+is never an initial standard set over any field. The checker verifies
+the downsets, direct-sum matrices, field ranks and both complete
+normal-form identities for $d=1,2,3$. Freeness and the two comparisons
+prove the assertion for all $d$, without fitting a computational trend.
+
+The earlier free-pullback identity (Q5) also gives
+$g(A_d\otimes K)=g(A_{\mathbb Z}\otimes K)$ for each fixed field $K$.
+Thus the initial-ideal count stays fixed as $d$ grows, despite the
+unbounded index and linear modular rank loss. This uses the already
+proved count-preservation theorem, rather than a new fan computation.
+
+This amplification is established flat algebra, not a new source of
+many coherent states. It closes a possible shortcut in the rank study:
+neither a monomial downset, a large arithmetic index nor a large modular
+rank loss supplies the positive-order constraints needed for a counting
+argument. The next theorem must use those constraints collectively.
+
+### A related geometric theorem does not bypass this restriction
+
+[Katoh--Tokuyama, *K-Levels of Concave Surfaces*](https://link.springer.com/content/pdf/10.1007/s00454-001-0086-z.pdf),
+Theorem 4 and Theorem 12, bound tangencies and vertices of levels of
+concave polyhedral surfaces. Their concluding Section 4 explicitly
+leaves the corresponding general two-parameter matroid bound open;
+their proof does not cover even transversal matroids. They also warn
+that projecting transition loci can create additional crossings.
+The inspected results therefore cannot be imported as a general
+two-parameter residue-matroid count. This is a scoped source comparison,
+not a claim about the strongest bound available today.
+
+The uniform $G_3$ endpoint, its current priority audit and the further
+consequence required for an honest paper remain open. This continuation
+provides a verified counterexample to a proposed structural weakening;
+it does not change the unrestricted exponent or establish novelty.
+
 ## Exact reproduction
 
 ```bash
@@ -1848,3 +1991,7 @@ The cycle continuation adds integral graph extraction, independent
 polynomial-prefix ranks, replayable scalar-core certificates and a
 downset obstruction to the published coefficient-deletion construction
 in the same mixed-period embedding.
+The downset continuation adds a determinant-three monomial downset,
+two exact contradictory normal-form comparisons, an independent scalar
+cycle certificate and direct flat-pullback checks. It performs no new
+fan enumeration or asymptotic fitting.

@@ -2708,6 +2708,33 @@ with both price ratios varying. This identifies what the counting proof
 must retain; it does not change the unrestricted objective or establish
 novelty or publication readiness.
 
+## Odd torsion survives the downset test but can fail every order
+
+The [downset continuation](periodic_quotient_arithmetic.md#downset-bases-can-carry-odd-torsion-without-any-coherent-order)
+now rules out weakening positive coherence to an ordinary monomial
+downset. An explicit $240$-monomial downset in the original
+$(5,7,11)$ algebra has determinant $3$ and loses exactly one rank in
+characteristic three. A separate integral cycle reduction leaves the
+scalar $[3]$. Thus the earlier exclusion of standard cyclotomic
+coefficient-deletion sets does not imply that downsets avoid odd torsion.
+
+Two complete normal forms prove this basis is never coherent: one
+requires $Z^5>Y^5$, while the other requires $Y^5>Z^5$. The relevant
+coefficients are units in every characteristic other than three;
+characteristic three already loses basis rank. Classical flat substitution
+gives downsets at every length $240d$ with index $3^d$ and rank loss $d$,
+while preserving the same contradiction. This is a uniform obstruction
+to that proposed shortcut, with no claim of many coherent initial ideals.
+
+The checker adds an independent determinant, a replayed scalar core,
+two full normal-form identities and fifteen pullback field-rank checks.
+A primary comparison with Katoh--Tokuyama Theorems 4 and 12 and
+Section 4 also identifies why concave-surface level bounds cannot simply
+be used for arbitrary two-parameter matroids. The necessary next count
+must use actual simultaneous order comparisons or another global
+argument. The main endpoint, strongest-current comparison and publication
+criteria remain unchanged and unachieved.
+
 ## Reproduction
 
 From the repository root:
