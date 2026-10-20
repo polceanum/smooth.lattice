@@ -112,6 +112,16 @@ samples all these fans. This closes the whole nested route to a power
 separation; the unrestricted spatial target and exact priority remain
 unresolved. Further lower constructions need dependencies outside that
 single additive valuation order.
+A [rectangle rank comparison](docs/rectangle_rank_structure.md) now shows
+that all mixed multiplication-image ranks stay fixed as nonlinear terms
+vary, although the initial fans can differ. Those invariants therefore
+miss the selected monomial spans needed for this count. For a square
+rectangle of length `n=q^2`, nonlinear terms starting in degree
+`D>=q` affect an exact direct summand of rank `(2q-D)^2`.
+Classical lattice geometry then gives
+`g(I_F)=O(1+q^(3/2)*(2q-D)^3)`, ruling out a power separation from
+shallow terminal perturbations. General low-order nonlinear terms,
+the unrestricted endpoint and the priority assessment remain open.
 The additive prime-power class is now classified separately: at length
 `n=q^k`, every initial ideal is a prime-power box and the sharp maximum
 is `binomial(k+d-1,d-1)`. The proof uses established Frobenius reduction;

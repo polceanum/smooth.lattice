@@ -1815,6 +1815,37 @@ conditions do not supply that global count. Any next proposed inequality
 must use the common quotient or additional global state geometry, and must
 give a quantitative estimate rather than another necessary condition.
 
+## Rectangle ranks and high-order perturbations
+
+The [rectangle rank comparison](rectangle_rank_structure.md) makes two
+further distinctions precise. For every $F=\alpha x+\beta y+H$ in a
+rectangular algebra, with $\alpha\beta\ne0$, a coordinate-ideal-preserving
+automorphism sends $x+y$ to $F$. Hence the image dimensions of all lists
+of mixed monomial multiplication operators are fixed, over every field.
+They do not determine the selected monomial ranks or the fan: already
+$(x^2,y^2,z-x-y)$ and $(x^2,y^2,z-x-y-xy)$ have respectively five and
+six initial ideals over $\mathbb Q$.
+
+For any homogeneous plane algebra with top degree $S$, a perturbation
+starting at degree $D$ with $2D>S+1$ leaves every component strictly
+between degrees $S-D+1$ and $D$ unchanged. The low and high components
+together form an exact direct summand of rank $R$. The full monomial
+matroid is the direct sum of this part and the unchanged degree pieces.
+The homogeneous graph has at most six initial ideals, so the classical
+three-dimensional lattice-vertex bound gives
+$g(I_F)=O((1+RS)^{3/2})$. In a square rectangle, $S=2q-2$ and
+$R=(2q-D)^2$ for $D\ge q$. Any construction with
+$g(I_F)\ge c n^{2+\epsilon}$ therefore needs
+$2q-D=\Omega(n^{5/12+\epsilon/3})$, where $n=q^2$.
+
+This is a uniform restriction on terminal perturbations, not a new
+unrestricted exponent or a completed novelty assessment. General
+low-order nonlinear terms remain outside the compression. The next
+lower theorem needs an exact selected-column rank or coherent-exchange
+description for such terms. Strong Lefschetz and Jordan classifications
+are established inputs, and the final lattice estimate is classical;
+neither supplies that missing description.
+
 ## Reproduction
 
 From the repository root:
@@ -1829,6 +1860,7 @@ python3 -B scripts/run_weighted_facet_incidence_checks.py
 python3 -B scripts/run_algebraic_incidence_controls.py
 python3 -B scripts/run_nested_chain_checks.py
 python3 -B scripts/run_nested_prefix_checks.py
+python3 -B scripts/run_rectangle_rank_checks.py
 ./build.sh
 python3 tests/test_smoke.py
 ```
