@@ -55,9 +55,15 @@ including quotients of embedding dimension three. The ambient truncation
 and actual quotient length are computed separately. This supplies a
 constructive route to simultaneous dependencies, rather than assuming
 that an arbitrary linear matroid admits commuting multiplication.
-Classical ordered interpolation proves the rule. A uniform count of its
-exposed profiles remains to be proved; neither the construction nor its
-finite fan checks settle the spatial extremal target or establish novelty.
+Classical ordered interpolation proves the rule. Balanced valuations reduce
+to slab prefixes, whose fixed-height count is $\Theta_h(n^2\log(n+1))$
+for $h\ge2$. A classical relative-box argument keeps their count within
+the generic power scale even as height varies. For general valuations,
+an infinite length-$M^2$ family has coherent bounding boxes of $M^3$
+points and exact layer-rank defects. Thus neither lattice convexity nor
+a uniform linear box product extends that slab proof. Counting these
+interacting rank layers remains open; the restricted result and large
+footprint do not settle the spatial extremal target or establish novelty.
 
 ## Connection to the original observations
 

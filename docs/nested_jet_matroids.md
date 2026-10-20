@@ -253,6 +253,298 @@ realizable departure from smooth-number prefixes, rather than inferring
 one from an isolated finite example. It gives $g(I_{2q,1,q})\ge C_2(q)$,
 which is not a spatial extremal lower bound of the required strength.
 
+## Balanced valuations give exactly bounded-height lattice prefixes
+
+Let
+
+$$
+\mathcal S_h=\mathbb N_0^2\times\{0,\ldots,h-1\},
+$$
+
+and let $S_h(n)$ count its distinct $n$-element prefixes under strict
+positive linear costs. These are cuts relative to the slab; they need
+not be corner cuts of the whole orthant.
+
+**Theorem 2.** For every $h,q\ge1$, the fixed quotient $I_{hq,1,q}$
+has exactly the positive prefix fan of $\mathcal S_h$ at cardinality
+$n=hq$. Thus $g(I_{hq,1,q})=S_h(hq)$.
+
+To prove it, consider any $n$-element downset $D\subset\mathcal S_h$.
+Write its planar layers as $D_c$, with sizes
+$a_0\ge\cdots\ge a_{h-1}\ge0$ summing to $hq$. The first $c$
+layers have at least $qc$ elements, because their average is at least
+the average of all $h$ layers. In each $D_c$, its $j$th monomial in
+increasing total degree has degree at most $j-1$, by the divisor-chain
+argument above. Assign it the distinct index
+$a_0+\cdots+a_{c-1}+j-1$. This index is at least its valuation
+$qc+\deg u$. The indices run from zero to $n-1$, so the sorted
+valuations satisfy (2). Hence **every** such downset is a basis.
+Moreover $z^h=0$ in this quotient. The cheapest $n$ slab monomials
+are a downset, already a basis, so greedy selection gives exactly that
+prefix at every strict objective. No coefficients are chosen after the
+objective is known.
+
+### The same fan has radical point realizations
+
+The slab description is not confined to local jets. For any $n,h$, choose
+$h$ distinct elements $\zeta_i$ of an infinite field, and place
+$q_i=\lfloor n/h\rfloor+1$ points on each of the first $n\bmod h$
+planes $z=\zeta_i$, and $q_i=\lfloor n/h\rfloor$ on the others.
+There is a nonempty Zariski-open choice of the planar point coordinates
+for which every $n$-element downset in $\mathcal S_h$ is an evaluation
+basis. In particular rational, distinct point realizations exist over
+$\mathbb Q$.
+
+Here is the determinant proof of that assertion. For one downset, group
+its monomials by their $(x,y)$ exponent. Each group has $k\le h$
+columns with $z$ powers $0,\ldots,k-1$. Assign the group's $k$ columns
+to distinct planes by taking the next $k$ slots in a cyclic list of the
+$h$ planes. After all $n$ columns, plane loads are exactly the prescribed
+$q_i$. Assign the columns to different point rows in those planes.
+In the determinant polynomial in the independent planar row coordinates,
+the coefficient of the resulting row-by-row $(x,y)$ monomial is, up to
+sign, a product of ordinary Vandermonde determinants in the assigned
+distinct $\zeta_i$. It is nonzero. Other assignments of $(x,y)$ groups
+give different monomials in the separate row variables, so cannot cancel
+this coefficient. Thus each evaluation determinant is a nonzero polynomial.
+There are finitely many downsets of size $n$, so the product of these
+determinants is nonzero. Over an infinite field its nonvanishing locus,
+also requiring distinct points, is nonempty.
+
+The point ideal contains $\prod_i(z-\zeta_i)$, whose head is $z^h$
+for every global order. Monomials beyond the slab reduce to cheaper
+ones within it. Consequently its positive fan is also exactly the slab
+prefix fan. These outside monomials are generally nonzero in the point
+quotient; the jet's nilpotence is not asserted for the point ideal.
+
+## Uniform slab bounds and a sharp fixed-height count
+
+For all $n\ge2$ and $h\ge2$ there is an absolute upper bound
+
+$$
+S_h(n)=O\!\left(n^2\log(n+1)
+             (1+\log(\min(h,n)))\right).                  \tag{8}
+$$
+
+For each fixed $h\ge2$, the sharp order is
+
+$$
+S_h(n)=\Theta_h(n^2\log(n+1)),                            \tag{9}
+$$
+
+whereas $S_1(n)=C_2(n)=\Theta(n\log(n+1))$. In particular no
+choice of height in the balanced family gives a polynomial separation
+above the generic three-variable scale. This conclusion is uniform in
+height; it is not inferred from the finite fan counts.
+
+### The upper bound is a classical geometric corollary
+
+More generally consider a positive linear cut of a box
+$\prod_i\{0,\ldots,H_i-1\}$, allowing infinite side bounds. Let $\ell_i$ be the
+number of included points on the $i$th coordinate axis, including zero.
+Then $D$ lies in their product box, and contains the smaller box with
+side lengths $\lceil\ell_i/d\rceil$. Indeed, if the cutting level is
+$T$, every point of the smaller box has cost at most
+$d^{-1}\sum_i w_i(\ell_i-1)<T$. The ambient box contains these points.
+Therefore
+
+$$
+n\le\prod_i\ell_i\le d^d n.                              \tag{10}
+$$
+
+Put $j_i=\lceil\log_2\ell_i\rceil$. The dyadic product
+$2^{\sum j_i}$ is between $n$ and $2^d d^d n$, so its exponent lies
+in a fixed-width interval about $\log_2n$. For a slab in dimension
+three, $j_3\le\lceil\log_2h\rceil$. There are at most
+
+$$
+O\!\left(\log(n+1)(1+\log(\min(h,n)))\right)
+$$
+
+possible triples. In one triple all relevant prefix monomials lie in
+the fixed box with side counts $2^{j_i}$, intersected with the original
+slab. Its volume in lattice-point counts is $O(n)$. Differences of its
+points have at most $\prod_i(2^{j_i+1}-1)=O(n)$ possible integer
+values. Their central comparison planes have $O(n^2)$ chambers in
+three-dimensional weight space. On a chamber the entire box ordering,
+and hence the prefix, is fixed. Every strict prefix persists under a
+small perturbation avoiding all these comparison planes. Multiplying
+the two counts proves (8). The same argument gives the familiar
+$O_d(n^{d-1}\log^{d-1}(n+1))$ bound for relative cuts of arbitrary
+axis boxes. Intersecting the dyadic box with the original caps is
+essential: adding cheaper points beyond a cap would change the prefix.
+
+This uses the established product/dyadic/arrangement mechanism. It is
+**not** a new lattice-polytope theorem or an unrestricted ideal bound.
+Compare [Wagner's thesis, Section 3.4, especially Observations 3.13--3.14
+and its subsequent product encoding](https://ti.inf.ethz.ch/ew/research/phdtheses/wagner03.pdf),
+and the repository's existing ordered-prefix proof. The specified
+primary argument was inspected. Its unbounded-orthant statement and
+the relative-box version are distinguished; the short proof above
+supplies the latter as a direct geometric corollary.
+
+### Two layers give an exact prefix-pair formula
+
+At fixed generic positive planar weights let
+$\beta_1=0<\beta_2<\cdots$ be the ordered planar monomial costs.
+Every two-layer prefix has $a$ lower-layer terms and $b$ upper-layer
+terms, with $a+b=n$ and $a\ge b$. Conversely every such pair occurs
+for these planar weights: when $b\ge1$, choose the $z$ cost $u$ in
+
+$$
+\max(0,\beta_a-\beta_{b+1})
+       <u<\beta_{a+1}-\beta_b.                            \tag{11}
+$$
+
+This interval is nonempty and makes the first $a$ planar monomials at
+height zero and the first $b$ at height one strictly precede every
+excluded slab monomial. For $b=0$ take $u>\beta_n$.
+
+Let $\mathcal B_r$ be the finite set of positive planar weight ratios
+at which the $r$-element corner cut changes, and put
+$\mathcal B_0=\varnothing$. Then
+
+$$
+S_2(n)=\sum_{b=0}^{\lfloor n/2\rfloor}
+       \left(1+|\mathcal B_{n-b}\cup\mathcal B_b|\right). \tag{12}
+$$
+
+For fixed $b$, the pair of planar prefixes changes exactly at that union.
+Each pair has a connected parameter interval, so cannot recur in a
+disjoint interval. Since $1+|\mathcal B_r|=C_2(r)$ for $r\ge1$,
+(12) and the known planar estimate already prove (9) for $h=2$.
+The published planar count is due to
+[Corteel--Rémond--Schaeffer--Thomas (1999)](https://doi.org/10.1006/aama.1999.0646).
+The interleaving and this application of that count do not settle the
+priority of (12).
+
+For completeness the lower bound extends to every $h\ge2$, uniformly.
+Take $1\le b\le\lfloor(n-2)/5\rfloor$ and $a=n-b$. The planar counting
+function $N(T)=\#\{v:w\cdot v<T\}$ obeys $N(2T)\le4N(T)$,
+by mapping $v$ to $\lfloor v/2\rfloor$. Hence
+$\beta_a\ge2\beta_{b+1}>2\beta_b$. There is a choice in (11)
+also satisfying $u>\beta_a/2$ and $u>\beta_b$, because its upper
+endpoint exceeds each of these lower requirements. Then $2u$ exceeds
+the cost of every selected monomial, so all layers at height at least
+two are excluded. For every planar cut of size $a$, choose generic
+weights in its parameter interval and its corresponding prefix of size
+$b$. This gives at least $C_2(a)$ slab cuts with that upper-layer count.
+Different $b$ give different sets. Summing over a linear number of $b$
+proves $S_h(n)=\Omega(n^2\log(n+1))$ and completes (9).
+
+This resembles Wagner's established dimension-lifting lower argument
+(thesis Lemma 3.5 and Theorem 3.6); the doubling estimate keeps the lift
+within two layers. Its restricted sharpness is not the sharp $G_3(n)$
+theorem required by the active goal.
+
+### A further algebraic output bound
+
+A slab downset with planar layer sizes $a_c$ has at most
+$O(h+\sum_c\sqrt{a_c})=O(h+\sqrt{hn})$ minimal outside monomials.
+At height $c<h$ every such monomial projects to a minimal outside
+monomial of the planar layer; the latter number is $O(1+\sqrt{a_c})$
+by the usual antichain-chain packing bound. At height $h$ only the
+possible generator $z^h$ needs to be added. Each reduced basis has
+one polynomial per minimal initial generator. Thus the slab point and
+balanced-jet ideals satisfy, for fixed $h\ge2$,
+
+$$
+|\mathcal U(I)|=O_h(n^{5/2}\log(n+1)).                   \tag{13}
+$$
+
+This is an output-cardinality consequence of (9) and a classical union
+bound. It is not a new Gröbner-basis algorithm or a field-operation bound.
+
+## General valuations are not covered by the slab argument
+
+The reduction just proved uses $L=hq$ and $m=(1,1,q)$. A general
+nested quotient need not have convex initial standard sets. At $L=8$,
+$m=(1,3,4)$ and strict weight $(3,2,1)$, its standard set is
+
+$$
+\{1,x,x^2,y,y^2,z,xz,yz\}.                               \tag{14}
+$$
+
+It includes $x^2,y^2$ and excludes their lattice midpoint $xy$.
+The checker independently verifies (14) by rational quotient columns,
+border polynomials and all S-pairs; every border inequality has positive
+margin. Thus lattice convexity, which would force a bounding-box product
+of $O(n)$, cannot be assumed for the whole nested family. This is a
+diagnostic counterexample to that proof shortcut, not an asymptotic
+lower construction.
+
+### An infinite family also rules out a uniform small bounding box
+
+The midpoint example does not by itself disprove a bounding-box product
+bound established by some other method. The following family does.
+For $M\ge2$ set $L=n=M^2$, $m=(1,M,M)$ and take the strict weight
+
+$$
+w=((M+1)^3,M+1,M+2).                                    \tag{15}
+$$
+
+Its initial standard set has exactly $M$ axis points in each coordinate
+direction, counting zero. Its bounding box therefore contains
+$M^3=n^{3/2}$ lattice points. A uniform $O(n)$ bounding-box product
+for all nested initial sets is false.
+
+Here is the proof. All nonzero monomials in $y,z$ have total degree
+at most $M-1$. The whole triangle of $\binom{M+1}{2}$ such monomials
+is independent: its degree-$d$ columns have valuation $Md$ and meet
+(2), since
+
+$$
+Md-\binom{d+1}{2}\le M(M-1)/2\quad(0\le d<M).
+$$
+
+They all precede $x$ at (15), so all are selected. Every basis also
+contains $1,x,\ldots,x^{M-1}$: these are the only monomial columns
+with nonzero images needed to span the first $M$ coefficient positions
+modulo $t^M$. The $M^2$ monomials
+$x^a y^d$, $0\le a,d<M$, have all valuations $0,\ldots,M^2-1$
+once each and hence are independent. They all precede $x^M$ at (15).
+Thus the entire quotient is spanned before $x^M$ is reached, and no
+monomial with $x$ exponent at least $M$ is selected. Since $y^M,z^M$
+are zero, all three claimed axis lengths are exactly $M$. Different
+$x$ layers are completely separated by (15); within a layer the costs
+are distinct because $M+1,M+2$ are coprime and the planar degrees
+are less than $M$. The weight is consequently strict on all nonzero
+ground monomials, not an unresolved tie.
+
+The layer ranks are also explicit. Let $R_r$ be the rank of all nonzero
+monomials with $x$ exponent at most $r$, for $0\le r<M$. Then
+
+$$
+R_r=M^2-\delta_r,\qquad
+\delta_r=\max_{0\le d\le M}
+       \left(Md-(r+1)\binom{d+1}{2}\right).               \tag{16}
+$$
+
+At a threshold $k=Md+s$, $0\le s\le M$, the number of those
+monomials below $k$ is
+
+$$
+(r+1)\binom{d+1}{2}+(d+1)\min(s,r+1).
+$$
+
+The deficit $k$ minus this number is nonincreasing up to $s=r+1$ and
+then increases. Its maximum is therefore at a multiple of $M$;
+applying (3) proves (16). In the lexicographic layer order at (15),
+the number of selected monomials in layer zero is $R_0$ and in
+layer $r\ge1$ is $R_r-R_{r-1}$. This is an exact formula, not a fit
+to the finite data. It identifies a square-root valuation regime with
+large coherent footprints and simultaneous rank constraints, without
+asserting that its number of initial ideals has a larger power.
+
+The balanced slab subfamily cannot provide the required polynomial
+separation and is parked as a source of that lower bound. The family
+(15)--(16) remains outside that reduction. The next task is to count
+how its rank-defect layers can interact as the objective varies, or to
+prove a uniform structural bound for general valuations. Neither the
+large footprint nor the fixed-height count is a lower bound of the
+required strength. Priority is unassessed and the unrestricted goal
+remains open. No paper is proposed on these results alone.
+
 ## A combinatorial oracle, and the remaining counting problem
 
 The original smooth-number order still scans exponents by $w\cdot u$,
@@ -297,6 +589,7 @@ Run from the repository root:
 
 ```bash
 python3 -B scripts/run_nested_jet_checks.py
+python3 -B scripts/run_nested_slab_checks.py
 ./build.sh
 python3 tests/test_smoke.py
 ```
@@ -314,6 +607,22 @@ basis-exchange rule, with ordinary S-pair checks on the smaller fans.
 Two full comparison arrangements independently check the fan traversal.
 The exact report includes all standard sets, strict objectives and cells.
 These are supporting controls, not an asymptotic fit or a priority proof.
+
+The [slab report](../results/research/nested_slab_checks.json) adds exact
+rational rank checks on every slab downset in five balanced jet fixtures,
+and modular evaluation determinants for every slab downset of eight
+radical point fixtures. Nonzero modular determinants also certify the
+integer point lifts over $\mathbb Q$. Scalar prefix fans and matrix-derived
+cones agree, and four two-layer fans are independently reconstructed from
+the planar prefix-pair formula. It checks the small midpoint counterexample
+with all S-pairs, the large-footprint and layer-defect formulas, and the
+matrix layer ranks in the smallest members. The earlier checker is
+replayed with its previous mathematical results unchanged.
+
+These checks accompany the uniform proofs. The upper bound (8) is a
+classical geometric corollary; exact priority of the slab realizations,
+prefix-pair formula and fixed-height consequences is unassessed. A failed
+search is not evidence of novelty. No additional manuscript is created.
 
 All previous manuscripts, smooth-number kernels and the paused ML work
 are preserved. The sharp $G_3(n)$ question and the active goal remain open.

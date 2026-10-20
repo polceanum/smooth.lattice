@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Preserve the original sharp-growth or polynomial-separation endpoint. Use the explicit characteristic-zero family in docs/nested_jet_matroids.md as a constructive test of simultaneous dependencies: ambient truncation L, positive additive valuations m, exact rank rule v_i<=L-r+i-1, and true quotient length n=L-max_k(k-nu_m(k)). The family includes non-binomial quotients of embedding dimension three at every length n=L-2 for m=(3,4,5), L>=10. Prove a uniform bound on its exposed monomial profiles in terms of the true length, or a power-separated lower construction, before extending the finite fan screen. Determine whether nested scheduling constraints add asymptotic complexity to the generic exponent-lattice fan; do not infer a bound for all Schubert matroids or all quotients from this special multiplicative realization. Compare the exact construction with ordered Hermite-Birkhoff interpolation, Schubert/lattice-path matroids, parametric scheduling and generic-jet literature. The interpolation and rank classes are classical, and their use does not establish novelty. Retain the previous obstructions: full weighted incidence can be quartic, any plane cover can need linearly many members, and individual difficult cones retain quadratic certificate height. Do not return to those disproved shortcuts, fit finite counts, or treat this new realization theorem, a draft, minor refinement or an unverified priority claim as goal completion. Continue the strongest-current-primary-bound audit and preserve every original success criterion.",
+  "next_proof_task": "Preserve the original sharp-growth or polynomial-separation endpoint. The balanced valuation subfamily L=h*q,m=(1,1,q) is now exactly the slab-prefix problem. Its fixed-height count is Theta_h(n^2*log(n+1)) for h>=2, and a classical dyadic relative-box argument gives O(n^2*log(n+1)*(1+log(min(h,n)))) uniformly in height. It cannot supply a polynomial separation and is parked for that lower-bound route. Do not mistake this classical corollary or the radical parallel-plane realizations for an unrestricted initial-ideal theorem or a novelty certificate. General nested constraints remain outside that reduction. The concrete next family is L=n=M^2,m=(1,M,M): at strict weight ((M+1)^3,M+1,M+2) a coherent standard set has all three axis counts M, hence a box of n^(3/2) points. Its x-layer prefix ranks are R_r=M^2-max_{0<=d<=M}(M*d-(r+1)*binomial(d+1,2)). Count how these rank-defect layers interact when leaving the lexicographic weight region, seeking either a power-separated family or a uniform structural bound applicable beyond that example. The large footprint describes a standard set, not many different initial ideals; no counting lower exponent follows from it. The L=8,m=(1,3,4) midpoint hole also rules out assuming lattice convexity. Preserve the full objective, all source comparisons, the exact true-length formula for general L,m, and the earlier quartic-incidence and linear-cover obstructions. Do not fit finite fan counts, expand coefficient screens, return to disproved small-moment or cover shortcuts, create another manuscript as a substitute, or complete the goal for this restricted classification. Continue the strongest-current-primary-bound audit and precise construction-priority comparison.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -84,7 +84,8 @@
     "Complete the precise comparison with van der Hoeven--Lecerf heterogeneous quasi-reduction before claiming a new dyadic weight-cover principle. Distinguish its versioned source and monomial reduction regions from a cover of all Groebner cones.",
     "Assess priority of the boundary-plane reduction, weighted interior-facet incidence formulation and exact local surface-tail example. The next unconditional count requires a stronger incidence theorem, not an unproved area or aspect bound. Classical ingredients and the binomial subclass boundary remain credited.",
     "Compare the exact three-pole curve fan, coefficient-independent pure-axis basis classification, quartic incidence sharpness and linear all-plane trace bound with existing curve-interpolation and Groebner-fan literature. Partial fractions, Vandermonde interpolation, primitive normal calculations and the elementary coprime sieve are classical. The proof-budget obstruction is scoped to separately summing the current arithmetic shadow envelope; no universal enumeration lower bound or novelty certificate is claimed.",
-    "Compare the exact multiplicative realization and exposed-profile counts in docs/nested_jet_matroids.md with generic-jet and ordered interpolation constructions, parametric scheduling, and Schubert/lattice-path matroid optimization. Classical poisedness and the nested rank rule are not new; ordinary matrix representations do not automatically imply a cyclic polynomial quotient. No asymptotic bound for this family or the unrestricted spatial target has yet been established."
+    "Compare the exact multiplicative realization and exposed-profile counts in docs/nested_jet_matroids.md with generic-jet and ordered interpolation constructions, parametric scheduling, and Schubert/lattice-path matroid optimization. Classical poisedness and the nested rank rule are not new; ordinary matrix representations do not automatically imply a cyclic polynomial quotient. No asymptotic bound for this family or the unrestricted spatial target has yet been established.",
+    "Assess the exact slab-prefix realization, prefix-pair formula, sharp fixed-height consequence, and the general-valuation layer-defect family in docs/nested_jet_matroids.md against bounded-height lattice-cut, generic interpolation and nested scheduling literature. The relative-box upper and planar count are classical inputs; neither a bounded keyword search nor the proof itself establishes priority. A uniform count of the broader nested family, especially L=M^2,m=(1,M,M), remains unproved."
   ],
   "primary_sources": [
     {
@@ -246,6 +247,16 @@
       "authors": "Benedetti-Velasquez and Knauer",
       "url": "https://link.springer.com/article/10.1007/s00493-024-00085-4",
       "scope": "Section 2.1 and Remark 3 inspected for classical Schubert/lattice-path matroids and generic matrix representations. Their matroid quotients are distinguished from polynomial quotients with commuting multiplication."
+    },
+    {
+      "authors": "Wagner",
+      "url": "https://ti.inf.ethz.ch/ew/research/phdtheses/wagner03.pdf",
+      "scope": "Current continuation inspected Section 3.3, Lemma 3.5/Theorem 3.6, and Section 3.4, Observations 3.13-3.14 with the subsequent product encoding. These provide classical lifting and volume/product context; the relative capped-box corollary is proved explicitly in the repository."
+    },
+    {
+      "authors": "Corteel, Remond, Schaeffer and Thomas",
+      "url": "https://doi.org/10.1006/aama.1999.0646",
+      "scope": "The established planar corner-cut count Theta(n*log(n)) is a classical input, also stated and used in the inspected Wagner primary argument. This continuation does not claim a new full-proof audit of the 1999 paper."
     }
   ],
   "verification": {
@@ -910,8 +921,53 @@
         "smoke": "passed",
         "prior_manuscripts_research_core_and_paused_ML": "byte-unchanged outside the reviewed public list; objective, success criteria and all prior continuations preserved"
       }
+    },
+    {
+      "title": "Balanced nested quotients are slab prefixes; general nested fans have large coherent boxes",
+      "recorded_on": "2026-10-20",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "f04e8b1 supplied a complete multiplicative realization theorem with exact rank and length rules, independently checked full fans and preserved original goal criteria. This turn tests its uniform counting consequences.",
+      "progress_classification": "uniform_restricted_count_and_radical_realization_with_classical_upper_bound_identified; infinite_obstruction_to_extending_box_count_and_exact_layer_rank_formula; unrestricted_endpoint_open",
+      "uniform_proofs": [
+        "For L=n=h*q and m=(1,1,q), every n-element monomial downset of z-height less than h is a quotient basis. Decreasing planar layer sizes have prefix sums at least q*c; the explicit valuation-index assignment proves the P\u00f3lya inequalities. The same fixed ideal therefore has exactly the scalar positive prefix fan of N_0^2 times {0,...,h-1}.",
+        "For every n,h, generic rational points distributed as evenly as possible among h distinct parallel planes realize the same slab fan. A cyclic assignment of each fixed-(x,y) monomial group to distinct planes gives a nonzero product of ordinary Vandermonde determinants as one coefficient of its evaluation determinant. Simultaneous unisolvence follows from a finite nonzero polynomial product over any infinite field. The univariate plane equation reduces higher z powers; they need not be zero.",
+        "For positive cuts relative to any anchored axis box, included axis counts satisfy n<=product(lengths)<=d^d*n. A bounded-width dyadic product shell and the classical central-comparison arrangement give O_d(n^(d-1)*log(n+1)^(d-1)) prefixes uniformly in the caps. For three-dimensional slabs the refined bound is O(n^2*log(n+1)*(1+log(min(h,n)))). This is a classical geometric corollary, not a new unrestricted ideal bound.",
+        "The two-layer count is exactly the sum over b=0,...,floor(n/2) of 1+|B_(n-b) union B_b|, where B_r is the planar critical-ratio set for rank r. Every pair is feasible by an explicit interval for the z cost. The known planar Theta(n*log(n)) count gives Theta(n^2*log(n)) for two layers. A lattice-doubling count keeps a linear range of these pairs in two layers for any h>=2. Thus the order is Theta_h(n^2*log(n+1)) for every fixed h>=2.",
+        "A slab downset has O(h+sqrt(h*n)) minimal outside monomials. Combining this classical packing/union bound with the fixed-height count yields universal reduced-basis cardinality O_h(n^(5/2)*log(n+1)) for these slab point and balanced-jet ideals. No field-operation or enumeration speedup is claimed.",
+        "General valuations are not lattice convex: L=8,m=(1,3,4),weight=(3,2,1) gives {1,x,x^2,y,y^2,z,xz,yz}, excluding the midpoint xy of x^2,y^2. This diagnoses a failed extension of the geometric proof, rather than an asymptotic lower count.",
+        "For every M>=2, L=n=M^2,m=(1,M,M),weight=((M+1)^3,M+1,M+2) gives a coherent standard set with axis counts (M,M,M), so its box has n^(3/2) points. The entire y,z triangle of degrees below M is independent and precedes x; low-valuation projection forces x^0 through x^(M-1); a distinct-valuation rectangular basis spans before x^M. The x-layer prefix rank is M^2-delta_r, delta_r=max_d(M*d-(r+1)*binomial(d+1,2)). Counting actual valuation thresholds proves the formula. The selected layer sizes are rank increments in this lexicographic region; no initial-ideal growth law is inferred."
+      ],
+      "independent_controls": {
+        "command": "python3 -B scripts/run_nested_slab_checks.py",
+        "report": "results/research/nested_slab_checks.json",
+        "balanced_jet_all_downset_bases": 225,
+        "radical_point_all_downset_bases": 408,
+        "complete_slab_fans": 8,
+        "slab_initial_ideals": 190,
+        "independent_two_layer_formulas": 4,
+        "ordinary_s_pairs": 586,
+        "large_footprint_fixtures": 6,
+        "independent_large_footprint_layer_ranks": 9,
+        "checks": "All slab downsets in five rational jet fixtures; all slab downsets in eight modular point fixtures with nonzero integer determinant lifts to Q; exact scalar fan traversal versus matrix-derived border cones and S-pairs; four independent planar prefix-pair reconstructions; the exact midpoint counterexample; six large-box and layer-defect fixtures with independent matrix layer ranks in the smallest three members. The original nested-jet checker is replayed with all previous mathematical results unchanged."
+      },
+      "literature_boundary": "Wagner thesis Section 3.3 (Lemma 3.5 and Theorem 3.6) and Section 3.4 (Observations 3.13-3.14 and product encoding) were inspected as classical lower/upper mechanisms. The known planar count is attributed to Corteel--Remond--Schaeffer--Thomas; its primary proof is not newly re-audited here. Elizalde--Galvan v1 Sections 7 and 8 distinguish size-constrained full-orthant partitions from boxed width/height counts; the working final/preprint assumption is retained. The relative-box upper is explicitly treated as a classical corollary. Exact priority of slab realizations, the prefix-pair formula and fixed-height consequences is unassessed; an unsuccessful search establishes no novelty.",
+      "effect_on_next_action": "Preserve the original sharp-growth or polynomial-separation endpoint. The balanced valuation subfamily L=h*q,m=(1,1,q) is now exactly the slab-prefix problem. Its fixed-height count is Theta_h(n^2*log(n+1)) for h>=2, and a classical dyadic relative-box argument gives O(n^2*log(n+1)*(1+log(min(h,n)))) uniformly in height. It cannot supply a polynomial separation and is parked for that lower-bound route. Do not mistake this classical corollary or the radical parallel-plane realizations for an unrestricted initial-ideal theorem or a novelty certificate. General nested constraints remain outside that reduction. The concrete next family is L=n=M^2,m=(1,M,M): at strict weight ((M+1)^3,M+1,M+2) a coherent standard set has all three axis counts M, hence a box of n^(3/2) points. Its x-layer prefix ranks are R_r=M^2-max_{0<=d<=M}(M*d-(r+1)*binomial(d+1,2)). Count how these rank-defect layers interact when leaving the lexicographic weight region, seeking either a power-separated family or a uniform structural bound applicable beyond that example. The large footprint describes a standard set, not many different initial ideals; no counting lower exponent follows from it. The L=8,m=(1,3,4) midpoint hole also rules out assuming lattice convexity. Preserve the full objective, all source comparisons, the exact true-length formula for general L,m, and the earlier quartic-incidence and linear-cover obstructions. Do not fit finite fan counts, expand coefficient screens, return to disproved small-moment or cover shortcuts, create another manuscript as a substitute, or complete the goal for this restricted classification. Continue the strongest-current-primary-bound audit and precise construction-priority comparison.",
+      "new_unrestricted_counting_exponent": false,
+      "uniform_restricted_count_established": true,
+      "balanced_family_power_separation_excluded": true,
+      "linear_box_product_refuted_for_general_nested_family": true,
+      "sharp_or_separated_endpoint_achieved": false,
+      "novelty_established": false,
+      "goal_complete": false,
+      "verification": {
+        "new_research": "passed",
+        "original_nested_research_replay": "passed",
+        "build": "passed",
+        "smoke": "passed",
+        "preservation": "passed: all tracked files outside the reviewed public list are byte-unchanged; objective, success criteria and prior continuations are preserved; old nested-check results differ only in their refreshed note hash"
+      }
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "No new unconditional counting exponent. An explicit characteristic-zero multiplicative realization gives exact monomial ranks and lengths, including an infinite non-binomial embedding-dimension-three family. Its spatial exposed-profile growth and novelty remain open.",
-  "previous_goal_turn_classification": "progress: ada0da1 saved uniform actual-quotient incidence and cover obstructions; the intervening 7877a60 credits cleanup is preserved as a separate editorial change."
+  "asymptotic_improvement_scope_this_iteration": "No new unrestricted counting exponent. The balanced subfamily is exactly a slab-prefix fan with sharp fixed-height order Theta_h(n^2*log(n+1)), uniformly within the generic power scale by a classical geometric corollary. General nested valuations admit nonconvex standard sets and coherent boxes of n^(3/2) points; their interaction count remains open.",
+  "previous_goal_turn_classification": "progress: f04e8b1 proved explicit multiplicative nested-matroid realizations with exact ranks, actual quotient lengths, and independent full-fan checks. The objective and all completion criteria are preserved."
 }

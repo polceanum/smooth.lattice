@@ -90,8 +90,14 @@ including an infinite family of embedding dimension three. It replaces
 coefficient searches by a classical scheduling oracle on a realizable
 exponent lattice. The proof also gives a curvilinear family with exactly
 the generic positive fan and an infinite family of non-corner-cut standard
-sets. No new spatial counting exponent or priority claim follows yet;
-the next task is a uniform count of the interacting nested constraints.
+sets. Balanced valuations now reduce exactly to bounded-height lattice
+prefixes: their fixed-height count is `Theta_h(n^2 log(n+1))` for `h>=2`,
+and a classical geometric bound excludes a power separation at any height.
+General valuations need a different argument. A family of length `n=M^2`
+has a coherent box of `n^(3/2)` points and explicit layer-rank defects.
+Counting the interactions of these layers remains open; neither their
+large footprint nor the restricted count establishes a new spatial bound
+or a priority claim.
 The additive prime-power class is now classified separately: at length
 `n=q^k`, every initial ideal is a prime-power box and the sharp maximum
 is `binomial(k+d-1,d-1)`. The proof uses established Frobenius reduction;
