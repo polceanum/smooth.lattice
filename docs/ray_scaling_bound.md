@@ -251,7 +251,15 @@ enumeration of common-ray components cannot supply the requested
 power separation. The main goal, the rational-shadow gap and all
 publication criteria remain active.
 
-## A uniform relative-margin question that would settle the upper count
+## The refuted uniform relative-margin question
+
+**Current status:** the uniform hypothesis below is false, even for
+actual local quotients over every field. The
+[sharp stability theorem](initial_cone_stability.md) gives worst margins
+of order $n^{-2}$ in two variables and $n^{-3}$ in three, with constant
+initial-fan counts. The conditional packing implication below remains
+correct; it cannot be applied to all quotients. The original formulation
+and finite diagnostics are retained to identify the failed premise.
 
 There is a more direct candidate for the unrestricted problem. For an
 open positive initial cone $C$, let $Z$ be its reduced-basis comparison
@@ -265,12 +273,12 @@ $$
 where absolute value is coordinatewise. If there are no comparisons,
 the cone is the positive orthant and may be assigned margin one.
 
-**Unproved uniform hypothesis.** There is an absolute $\kappa>0$
+**Refuted uniform hypothesis.** There is an absolute $\kappa>0$
 such that every positive initial cone of every length-$n$
 three-variable quotient over every field has
 $\mu(C)\ge\kappa/n$.
 
-This is a new proof target, not a theorem inferred from finite checks.
+This was a proposed proof target, not a theorem inferred from finite checks.
 It asks for a robust witness somewhere in the cone, rather than at
 its smallest integer witness.
 
@@ -315,9 +323,8 @@ Thus every cone contains a logarithmic square of radius
 $\kappa/(4n)$ centered in the stated box. Squares from different
 initial cones are disjoint. Area packing proves (11).
 
-The known generic lower scale would then match (11). The necessary
-hypothesis, its exact priority and a consequential publication result
-are all still unproved; the conditional implication is not an
+The known generic lower scale would then match (11). The uniform
+hypothesis has now been refuted. The conditional implication is not an
 improvement to the established unrestricted bound.
 
 The old hard integer-weight examples do not refute this hypothesis.
@@ -368,10 +375,11 @@ multiplication constraints.
 
 The checker also erodes all 98 previously certified nonlinear
 rectangle cones by $s=1/(16n)$ and finds strict witnesses. This is
-only a feasibility diagnostic on those saved models. The next
-substantive task is to prove the hypothesis uniformly, derive a
-weaker aggregate packing sufficient for (11), or find an actual
-quotient counterexample. Further common-ray screens cannot decide it.
+only a feasibility diagnostic on those saved models. The subsequent
+actual quotient counterexample shows why these finite successes were
+insufficient. Any continuation must use an aggregate count that permits
+thin cones, or another global mechanism; further common-ray screens
+cannot repair the refuted premise.
 
 ## Reproduction
 

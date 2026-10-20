@@ -184,11 +184,15 @@ case is a published tropical hyperplane-arrangement theorem. It is
 retained as a structural reduction, with no standalone novelty claim.
 An actual length-six quotient has two initials with identical pure-axis
 counts, identifying precisely why mixed monomials need additional data.
-The next uniform target is a relative margin of order `1/n` inside
-every actual initial cone. A proved packing implication would give
-`G_3(n)=O(n^2 log^2(n+1))` if that hypothesis holds. The hypothesis
-remains unproved; a representable matroid counterexample shows that
-rank and the exponent bounds alone cannot establish it.
+The proposed relative margin of order `1/n` is now refuted by
+[actual all-field quotient families](docs/initial_cone_stability.md).
+The sharp worst-cone margin is `Theta(n^-2)` in two variables and
+`Theta(n^-3)` in three. The examples have only three and seven
+initial ideals, respectively, so poor stability does not imply a
+large fan. A disjoint-chain argument also bounds the entire class
+of arbitrary linear socle identifications by `O(n^(3/2))` in three
+variables, using the classical lattice-vertex theorem. The full
+count needs an aggregate mechanism that allows individual thin cones.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count

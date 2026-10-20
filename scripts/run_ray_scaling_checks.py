@@ -275,7 +275,7 @@ def mixed_control():
 
 
 def margin_controls():
-    """A conditional full-count route, finite quotient probes and a matroid obstruction."""
+    """Historical diagnostics for a packing premise now refuted by actual quotients."""
     old = json.loads((ROOT/'results/research/extremal_initial_ideals_checks.json').read_text())
     checked, witnesses = 0, []
     for model in old['rectangular_complete_intersections']:
@@ -345,7 +345,7 @@ def margin_controls():
                         'log_cell_area_upper': str(Fraction(1, M*(M+2)*(M+3)*(M+5)))})
     return {'complete_actual_quotient_cells_checked': checked, 'quotient_models': witnesses,
             'infinite_hard_cone_margin_witnesses': hard, 'abstract_matroid_needles': needles,
-            'scope': 'The uniform all-quotient margin hypothesis is unproved. Saved complete rectangle fans pass margin 1/(16n), and a symbolic witness gives 1/(4n) for the known interior hard-cone family. An infinite representable rank-n matroid on distinct hyperbolic-n axis weights has log cells of area O(n^-4), refuting a rank/lattice-only margin argument. Its selected basis is not a downset and it is not asserted to be a quotient matroid.'}
+            'scope': 'These historical feasibility diagnostics remain valid, but the uniform premise has since been refuted by the actual all-field socle families in docs/initial_cone_stability.md. Saved rectangle fans pass margin 1/(16n), and the older interior hard-cone family has a 1/(4n) witness. The abstract matroid needles are retained as earlier rank/lattice-only obstructions; the stronger actual-quotient refutation is checked separately.'}
 
 
 def main():
@@ -355,7 +355,7 @@ def main():
     margins = margin_controls()
     sources = ('scripts/run_ray_scaling_checks.py', 'docs/ray_scaling_bound.md',
                'scripts/run_structural_complexity_checks.py', 'scripts/run_extremal_initial_ideals_checks.py',
-               'results/research/extremal_initial_ideals_checks.json')
+               'results/research/extremal_initial_ideals_checks.json', 'docs/initial_cone_stability.md')
     report = {'status': 'passed', 'command': 'python3 -B scripts/run_ray_scaling_checks.py',
               'counts': {**abstract['counts'], **poles['counts'],
                          'relative_margin_actual_initial_cones': margins['complete_actual_quotient_cells_checked'],
@@ -364,8 +364,9 @@ def main():
                          'abstract_margin_one_over_16n_failures': sum(r['margin_one_over_16n_fails'] for r in margins['abstract_matroid_needles'])},
               'abstract_ray_matroids': abstract, 'sharp_pole_quotients': poles, 'mixed_quotient_obstruction': mixed,
               'conditional_relative_margin_route': margins,
-              'scope': 'Classical greedy invariance gives a sharp positive common-ray ceiling and bounded-facet traversal. The partition case matches published tropical coarse types. A proved conditional logarithmic packing implication would give the sharp generic upper scale if every actual quotient cone had relative margin Omega(1/n); that hypothesis remains unproved. Exact saved quotient cones and the symbolic hard-cone family support feasibility, while an infinite abstract rank-n hyperbolic-n matroid family refutes a rank/lattice-only argument. No unconditional unrestricted exponent, novelty certificate or completed goal is claimed.',
+              'scope': 'Classical greedy invariance gives a sharp positive common-ray ceiling and bounded-facet traversal; the partition case matches published tropical coarse types. The relative-margin packing implication remains conditional, and its universal Omega(1/n) premise is now refuted by actual all-field quotient families. Earlier finite diagnostics are preserved as historical controls. No unrestricted exponent, novelty certificate or completed goal is claimed.',
               'uniform_relative_margin_hypothesis_proved': False,
+              'uniform_relative_margin_hypothesis_status': 'refuted_by_actual_all_field_quotients',
               'novelty_established': False, 'goal_complete': False,
               'source_sha256': {s: hashlib.sha256((ROOT/s).read_bytes()).hexdigest() for s in sources}}
     (ROOT/'results/research/ray_scaling_checks.json').write_text(json.dumps(report, indent=2)+'\n')
