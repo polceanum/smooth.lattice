@@ -211,8 +211,14 @@ cover cone for `(5,7,11)`, including states that cross all three period
 thresholds. A coefficient-independent upper-shell rule prunes candidate
 omissions. These finite line traces do not bound the full refinement fan.
 Local eight-column cube circuits provide another field-independent
-pruning rule, including in characteristic two; a uniform bound on the
-remaining candidates is still missing.
+pruning rule, including in characteristic two. A uniform boundary-layer
+argument now bounds its survivors by three times the sum of the cover
+projection areas. An infinite thin-cover family shows why a corank-only
+cube bound fails even after all three period thresholds are reached.
+Those examples omit a generator; the joint shell/circuit count for states
+using all three generators remains open. The exact box-residual transfer
+is identified with established linkage, while every nonbox group cover
+has a residual/initial mismatch measured by its number of maximal monomials.
 The additive prime-power class is now classified separately: at length
 `n=q^k`, every initial ideal is a prime-power box and the sharp maximum
 is `binomial(k+d-1,d-1)`. The proof uses established Frobenius reduction;

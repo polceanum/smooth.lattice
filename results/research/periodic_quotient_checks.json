@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "command": "python3 -B scripts/run_periodic_quotient_checks.py",
-  "scope": "Exact controls for the periodic lattice cover, known dual quotient, coherent characteristic changes, monomial-pullback obstruction and complete generic line traces within fixed cover cones. Upper-shell pruning and integer-slope budgets are checked. No full refinement-fan enumeration, asymptotic separation or novelty certificate.",
+  "scope": "Exact periodic-cover, arithmetic, fixed-cover trace and candidate-filter controls. Direct norm quotients verify the nonbox socle defect. Sector-wide surface budgets, common-period box cube counts and infinite-family thin-cover formulas are checked. No unrestricted asymptotic separation, full nonbox refinement-fan count or novelty certificate.",
   "source_sha256": {
-    "docs/periodic_quotient_arithmetic.md": "655cb21806cbe854aa3dbc25fabe07102089d4038abed89a052ea5ce84768f8e",
-    "scripts/run_periodic_quotient_checks.py": "233c80e0a90a49be8e170f978e07d3d05529731e22abf4a9eb444df3eada17ed",
+    "docs/periodic_quotient_arithmetic.md": "d094f73523bb199a76f5a71188c06035950040b0b76b95f5061d836f3073ad44",
+    "scripts/run_periodic_quotient_checks.py": "157405ff49035208f047eac21d4f16d53f8ad0b48f6731b9f17854ba7756c640",
     "scripts/run_cyclotomic_price_checks.py": "de90c77f6d91e700a4f7b5adbbdad98024f69594df2fe1e0de933aaa5e0770ef",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1"
   },
@@ -63562,6 +63562,6796 @@
       "scope": "Complete exact generic comparison-interval traces inside one fixed cover cone, with upper-shell pruning. Other directions of tie refinement, the full two-dimensional refinement fan and asymptotic growth are not counted."
     }
   ],
+  "nonbox_linkage_defects": [
+    {
+      "periods": [
+        2,
+        3,
+        5
+      ],
+      "field": 0,
+      "strict_weight": [
+        226982,
+        227042,
+        230702
+      ],
+      "cover_length": 30,
+      "cover_socles": [
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          2,
+          2
+        ],
+        [
+          0,
+          3,
+          1
+        ],
+        [
+          0,
+          4,
+          0
+        ],
+        [
+          1,
+          0,
+          4
+        ],
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          3,
+          0,
+          2
+        ],
+        [
+          4,
+          0,
+          1
+        ],
+        [
+          5,
+          0,
+          0
+        ]
+      ],
+      "box_cover": false,
+      "norm_initial_monomial": [
+        1,
+        0,
+        4
+      ],
+      "initial_annihilator_dimension": 1,
+      "annihilator_of_initial_point_ideal_dimension": 9,
+      "dimension_defect": 8,
+      "strict_border_count": 12
+    },
+    {
+      "periods": [
+        2,
+        3,
+        5
+      ],
+      "field": 2,
+      "strict_weight": [
+        226982,
+        227042,
+        230702
+      ],
+      "cover_length": 30,
+      "cover_socles": [
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          2,
+          2
+        ],
+        [
+          0,
+          3,
+          1
+        ],
+        [
+          0,
+          4,
+          0
+        ],
+        [
+          1,
+          0,
+          4
+        ],
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          3,
+          0,
+          2
+        ],
+        [
+          4,
+          0,
+          1
+        ],
+        [
+          5,
+          0,
+          0
+        ]
+      ],
+      "box_cover": false,
+      "norm_initial_monomial": [
+        1,
+        0,
+        4
+      ],
+      "initial_annihilator_dimension": 1,
+      "annihilator_of_initial_point_ideal_dimension": 9,
+      "dimension_defect": 8,
+      "strict_border_count": 12
+    },
+    {
+      "periods": [
+        2,
+        3,
+        5
+      ],
+      "field": 0,
+      "strict_weight": [
+        1588868,
+        227042,
+        684664
+      ],
+      "cover_length": 30,
+      "cover_socles": [
+        [
+          0,
+          7,
+          2
+        ],
+        [
+          0,
+          8,
+          1
+        ],
+        [
+          0,
+          9,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          2,
+          0,
+          0
+        ]
+      ],
+      "box_cover": false,
+      "norm_initial_monomial": [
+        2,
+        0,
+        0
+      ],
+      "initial_annihilator_dimension": 1,
+      "annihilator_of_initial_point_ideal_dimension": 5,
+      "dimension_defect": 4,
+      "strict_border_count": 7
+    },
+    {
+      "periods": [
+        2,
+        3,
+        5
+      ],
+      "field": 2,
+      "strict_weight": [
+        1588868,
+        227042,
+        684664
+      ],
+      "cover_length": 30,
+      "cover_socles": [
+        [
+          0,
+          7,
+          2
+        ],
+        [
+          0,
+          8,
+          1
+        ],
+        [
+          0,
+          9,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          2,
+          0,
+          0
+        ]
+      ],
+      "box_cover": false,
+      "norm_initial_monomial": [
+        2,
+        0,
+        0
+      ],
+      "initial_annihilator_dimension": 1,
+      "annihilator_of_initial_point_ideal_dimension": 5,
+      "dimension_defect": 4,
+      "strict_border_count": 7
+    },
+    {
+      "periods": [
+        2,
+        3,
+        5
+      ],
+      "field": 0,
+      "strict_weight": [
+        226982,
+        2042890,
+        457683
+      ],
+      "cover_length": 30,
+      "cover_socles": [
+        [
+          5,
+          0,
+          4
+        ]
+      ],
+      "box_cover": true,
+      "norm_initial_monomial": [
+        5,
+        0,
+        4
+      ],
+      "initial_annihilator_dimension": 1,
+      "annihilator_of_initial_point_ideal_dimension": 1,
+      "dimension_defect": 0,
+      "strict_border_count": 4
+    },
+    {
+      "periods": [
+        2,
+        3,
+        5
+      ],
+      "field": 2,
+      "strict_weight": [
+        226982,
+        2042890,
+        457683
+      ],
+      "cover_length": 30,
+      "cover_socles": [
+        [
+          5,
+          0,
+          4
+        ]
+      ],
+      "box_cover": true,
+      "norm_initial_monomial": [
+        5,
+        0,
+        4
+      ],
+      "initial_annihilator_dimension": 1,
+      "annihilator_of_initial_point_ideal_dimension": 1,
+      "dimension_defect": 0,
+      "strict_border_count": 4
+    },
+    {
+      "periods": [
+        3,
+        4,
+        5
+      ],
+      "field": 0,
+      "strict_weight": [
+        1771562,
+        1771682,
+        1786202
+      ],
+      "cover_length": 60,
+      "cover_socles": [
+        [
+          0,
+          3,
+          3
+        ],
+        [
+          0,
+          5,
+          0
+        ],
+        [
+          1,
+          0,
+          5
+        ],
+        [
+          1,
+          1,
+          3
+        ],
+        [
+          1,
+          3,
+          2
+        ],
+        [
+          2,
+          3,
+          1
+        ],
+        [
+          2,
+          4,
+          0
+        ],
+        [
+          4,
+          2,
+          1
+        ],
+        [
+          5,
+          0,
+          1
+        ]
+      ],
+      "box_cover": false,
+      "norm_initial_monomial": [
+        4,
+        2,
+        1
+      ],
+      "initial_annihilator_dimension": 1,
+      "annihilator_of_initial_point_ideal_dimension": 9,
+      "dimension_defect": 8,
+      "strict_border_count": 11
+    },
+    {
+      "periods": [
+        3,
+        4,
+        5
+      ],
+      "field": 2,
+      "strict_weight": [
+        1771562,
+        1771682,
+        1786202
+      ],
+      "cover_length": 60,
+      "cover_socles": [
+        [
+          0,
+          3,
+          3
+        ],
+        [
+          0,
+          5,
+          0
+        ],
+        [
+          1,
+          0,
+          5
+        ],
+        [
+          1,
+          1,
+          3
+        ],
+        [
+          1,
+          3,
+          2
+        ],
+        [
+          2,
+          3,
+          1
+        ],
+        [
+          2,
+          4,
+          0
+        ],
+        [
+          4,
+          2,
+          1
+        ],
+        [
+          5,
+          0,
+          1
+        ]
+      ],
+      "box_cover": false,
+      "norm_initial_monomial": [
+        4,
+        2,
+        1
+      ],
+      "initial_annihilator_dimension": 1,
+      "annihilator_of_initial_point_ideal_dimension": 9,
+      "dimension_defect": 8,
+      "strict_border_count": 11
+    },
+    {
+      "periods": [
+        3,
+        4,
+        5
+      ],
+      "field": 0,
+      "strict_weight": [
+        12400928,
+        1771682,
+        5329324
+      ],
+      "cover_length": 60,
+      "cover_socles": [
+        [
+          0,
+          3,
+          3
+        ],
+        [
+          0,
+          14,
+          0
+        ],
+        [
+          1,
+          3,
+          2
+        ],
+        [
+          1,
+          10,
+          0
+        ],
+        [
+          2,
+          3,
+          1
+        ],
+        [
+          2,
+          6,
+          0
+        ],
+        [
+          3,
+          2,
+          0
+        ]
+      ],
+      "box_cover": false,
+      "norm_initial_monomial": [
+        3,
+        2,
+        0
+      ],
+      "initial_annihilator_dimension": 1,
+      "annihilator_of_initial_point_ideal_dimension": 7,
+      "dimension_defect": 6,
+      "strict_border_count": 10
+    },
+    {
+      "periods": [
+        3,
+        4,
+        5
+      ],
+      "field": 2,
+      "strict_weight": [
+        12400928,
+        1771682,
+        5329324
+      ],
+      "cover_length": 60,
+      "cover_socles": [
+        [
+          0,
+          3,
+          3
+        ],
+        [
+          0,
+          14,
+          0
+        ],
+        [
+          1,
+          3,
+          2
+        ],
+        [
+          1,
+          10,
+          0
+        ],
+        [
+          2,
+          3,
+          1
+        ],
+        [
+          2,
+          6,
+          0
+        ],
+        [
+          3,
+          2,
+          0
+        ]
+      ],
+      "box_cover": false,
+      "norm_initial_monomial": [
+        3,
+        2,
+        0
+      ],
+      "initial_annihilator_dimension": 1,
+      "annihilator_of_initial_point_ideal_dimension": 7,
+      "dimension_defect": 6,
+      "strict_border_count": 10
+    },
+    {
+      "periods": [
+        3,
+        4,
+        5
+      ],
+      "field": 0,
+      "strict_weight": [
+        1771562,
+        15944170,
+        3557763
+      ],
+      "cover_length": 60,
+      "cover_socles": [
+        [
+          4,
+          1,
+          3
+        ],
+        [
+          6,
+          0,
+          4
+        ],
+        [
+          11,
+          0,
+          0
+        ]
+      ],
+      "box_cover": false,
+      "norm_initial_monomial": [
+        4,
+        1,
+        3
+      ],
+      "initial_annihilator_dimension": 1,
+      "annihilator_of_initial_point_ideal_dimension": 3,
+      "dimension_defect": 2,
+      "strict_border_count": 7
+    },
+    {
+      "periods": [
+        3,
+        4,
+        5
+      ],
+      "field": 2,
+      "strict_weight": [
+        1771562,
+        15944170,
+        3557763
+      ],
+      "cover_length": 60,
+      "cover_socles": [
+        [
+          4,
+          1,
+          3
+        ],
+        [
+          6,
+          0,
+          4
+        ],
+        [
+          11,
+          0,
+          0
+        ]
+      ],
+      "box_cover": false,
+      "norm_initial_monomial": [
+        4,
+        1,
+        3
+      ],
+      "initial_annihilator_dimension": 1,
+      "annihilator_of_initial_point_ideal_dimension": 3,
+      "dimension_defect": 2,
+      "strict_border_count": 7
+    },
+    {
+      "periods": [
+        3,
+        5,
+        7
+      ],
+      "field": 0,
+      "strict_weight": [
+        9393932,
+        9394142,
+        9438452
+      ],
+      "cover_length": 105,
+      "cover_socles": [
+        [
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          4,
+          4
+        ],
+        [
+          0,
+          8,
+          0
+        ],
+        [
+          1,
+          4,
+          3
+        ],
+        [
+          1,
+          7,
+          0
+        ],
+        [
+          2,
+          3,
+          3
+        ],
+        [
+          2,
+          4,
+          2
+        ],
+        [
+          2,
+          5,
+          1
+        ],
+        [
+          2,
+          6,
+          0
+        ],
+        [
+          3,
+          2,
+          3
+        ],
+        [
+          6,
+          2,
+          0
+        ],
+        [
+          7,
+          1,
+          0
+        ],
+        [
+          8,
+          0,
+          0
+        ]
+      ],
+      "box_cover": false,
+      "norm_initial_monomial": [
+        0,
+        0,
+        8
+      ],
+      "initial_annihilator_dimension": 1,
+      "annihilator_of_initial_point_ideal_dimension": 14,
+      "dimension_defect": 13,
+      "strict_border_count": 15
+    },
+    {
+      "periods": [
+        3,
+        5,
+        7
+      ],
+      "field": 2,
+      "strict_weight": [
+        9393932,
+        9394142,
+        9438452
+      ],
+      "cover_length": 105,
+      "cover_socles": [
+        [
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          4,
+          4
+        ],
+        [
+          0,
+          8,
+          0
+        ],
+        [
+          1,
+          4,
+          3
+        ],
+        [
+          1,
+          7,
+          0
+        ],
+        [
+          2,
+          3,
+          3
+        ],
+        [
+          2,
+          4,
+          2
+        ],
+        [
+          2,
+          5,
+          1
+        ],
+        [
+          2,
+          6,
+          0
+        ],
+        [
+          3,
+          2,
+          3
+        ],
+        [
+          6,
+          2,
+          0
+        ],
+        [
+          7,
+          1,
+          0
+        ],
+        [
+          8,
+          0,
+          0
+        ]
+      ],
+      "box_cover": false,
+      "norm_initial_monomial": [
+        0,
+        0,
+        8
+      ],
+      "initial_annihilator_dimension": 1,
+      "annihilator_of_initial_point_ideal_dimension": 14,
+      "dimension_defect": 13,
+      "strict_border_count": 15
+    },
+    {
+      "periods": [
+        3,
+        5,
+        7
+      ],
+      "field": 0,
+      "strict_weight": [
+        65757518,
+        9394142,
+        28226314
+      ],
+      "cover_length": 105,
+      "cover_socles": [
+        [
+          0,
+          12,
+          4
+        ],
+        [
+          0,
+          20,
+          0
+        ],
+        [
+          1,
+          7,
+          3
+        ]
+      ],
+      "box_cover": false,
+      "norm_initial_monomial": [
+        0,
+        12,
+        4
+      ],
+      "initial_annihilator_dimension": 1,
+      "annihilator_of_initial_point_ideal_dimension": 3,
+      "dimension_defect": 2,
+      "strict_border_count": 7
+    },
+    {
+      "periods": [
+        3,
+        5,
+        7
+      ],
+      "field": 2,
+      "strict_weight": [
+        65757518,
+        9394142,
+        28226314
+      ],
+      "cover_length": 105,
+      "cover_socles": [
+        [
+          0,
+          12,
+          4
+        ],
+        [
+          0,
+          20,
+          0
+        ],
+        [
+          1,
+          7,
+          3
+        ]
+      ],
+      "box_cover": false,
+      "norm_initial_monomial": [
+        0,
+        12,
+        4
+      ],
+      "initial_annihilator_dimension": 1,
+      "annihilator_of_initial_point_ideal_dimension": 3,
+      "dimension_defect": 2,
+      "strict_border_count": 7
+    },
+    {
+      "periods": [
+        3,
+        5,
+        7
+      ],
+      "field": 0,
+      "strict_weight": [
+        9393932,
+        84545590,
+        18832383
+      ],
+      "cover_length": 105,
+      "cover_socles": [
+        [
+          14,
+          0,
+          6
+        ]
+      ],
+      "box_cover": true,
+      "norm_initial_monomial": [
+        14,
+        0,
+        6
+      ],
+      "initial_annihilator_dimension": 1,
+      "annihilator_of_initial_point_ideal_dimension": 1,
+      "dimension_defect": 0,
+      "strict_border_count": 4
+    },
+    {
+      "periods": [
+        3,
+        5,
+        7
+      ],
+      "field": 2,
+      "strict_weight": [
+        9393932,
+        84545590,
+        18832383
+      ],
+      "cover_length": 105,
+      "cover_socles": [
+        [
+          14,
+          0,
+          6
+        ]
+      ],
+      "box_cover": true,
+      "norm_initial_monomial": [
+        14,
+        0,
+        6
+      ],
+      "initial_annihilator_dimension": 1,
+      "annihilator_of_initial_point_ideal_dimension": 1,
+      "dimension_defect": 0,
+      "strict_border_count": 4
+    }
+  ],
+  "cube_surface_controls": [
+    {
+      "model": "periodic_cover",
+      "periods": [
+        2,
+        3,
+        5
+      ],
+      "ground_size": 30,
+      "weight_sector_witness": [
+        3,
+        3,
+        3
+      ],
+      "projection_sizes": [
+        15,
+        20,
+        10
+      ],
+      "negative_spans": [
+        1,
+        1,
+        1
+      ],
+      "positive_spans": [
+        2,
+        2,
+        2
+      ],
+      "bottom_union_size": 30,
+      "top_union_size": 30,
+      "surface_union_size": 30,
+      "cube_candidates": 30,
+      "projection_bound": 135
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        2,
+        3,
+        5
+      ],
+      "ground_size": 30,
+      "weight_sector_witness": [
+        7,
+        1,
+        3
+      ],
+      "projection_sizes": [
+        15,
+        20,
+        10
+      ],
+      "negative_spans": [
+        0,
+        2,
+        2
+      ],
+      "positive_spans": [
+        3,
+        1,
+        1
+      ],
+      "bottom_union_size": 29,
+      "top_union_size": 30,
+      "surface_union_size": 30,
+      "cube_candidates": 30,
+      "projection_bound": 135
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        2,
+        3,
+        5
+      ],
+      "ground_size": 30,
+      "weight_sector_witness": [
+        1,
+        7,
+        3
+      ],
+      "projection_sizes": [
+        15,
+        20,
+        10
+      ],
+      "negative_spans": [
+        2,
+        0,
+        2
+      ],
+      "positive_spans": [
+        1,
+        3,
+        1
+      ],
+      "bottom_union_size": 27,
+      "top_union_size": 30,
+      "surface_union_size": 30,
+      "cube_candidates": 30,
+      "projection_bound": 135
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        2,
+        3,
+        5
+      ],
+      "ground_size": 30,
+      "weight_sector_witness": [
+        1,
+        3,
+        7
+      ],
+      "projection_sizes": [
+        15,
+        20,
+        10
+      ],
+      "negative_spans": [
+        2,
+        2,
+        0
+      ],
+      "positive_spans": [
+        1,
+        1,
+        3
+      ],
+      "bottom_union_size": 30,
+      "top_union_size": 30,
+      "surface_union_size": 30,
+      "cube_candidates": 30,
+      "projection_bound": 135
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        2,
+        3,
+        5
+      ],
+      "ground_size": 30,
+      "weight_sector_witness": [
+        3,
+        3,
+        3
+      ],
+      "projection_sizes": [
+        27,
+        6,
+        12
+      ],
+      "negative_spans": [
+        1,
+        1,
+        1
+      ],
+      "positive_spans": [
+        2,
+        2,
+        2
+      ],
+      "bottom_union_size": 30,
+      "top_union_size": 30,
+      "surface_union_size": 30,
+      "cube_candidates": 30,
+      "projection_bound": 135
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        2,
+        3,
+        5
+      ],
+      "ground_size": 30,
+      "weight_sector_witness": [
+        7,
+        1,
+        3
+      ],
+      "projection_sizes": [
+        27,
+        6,
+        12
+      ],
+      "negative_spans": [
+        0,
+        2,
+        2
+      ],
+      "positive_spans": [
+        3,
+        1,
+        1
+      ],
+      "bottom_union_size": 24,
+      "top_union_size": 30,
+      "surface_union_size": 30,
+      "cube_candidates": 30,
+      "projection_bound": 135
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        2,
+        3,
+        5
+      ],
+      "ground_size": 30,
+      "weight_sector_witness": [
+        1,
+        7,
+        3
+      ],
+      "projection_sizes": [
+        27,
+        6,
+        12
+      ],
+      "negative_spans": [
+        2,
+        0,
+        2
+      ],
+      "positive_spans": [
+        1,
+        3,
+        1
+      ],
+      "bottom_union_size": 30,
+      "top_union_size": 30,
+      "surface_union_size": 30,
+      "cube_candidates": 30,
+      "projection_bound": 135
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        2,
+        3,
+        5
+      ],
+      "ground_size": 30,
+      "weight_sector_witness": [
+        1,
+        3,
+        7
+      ],
+      "projection_sizes": [
+        27,
+        6,
+        12
+      ],
+      "negative_spans": [
+        2,
+        2,
+        0
+      ],
+      "positive_spans": [
+        1,
+        1,
+        3
+      ],
+      "bottom_union_size": 30,
+      "top_union_size": 30,
+      "surface_union_size": 30,
+      "cube_candidates": 30,
+      "projection_bound": 135
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        2,
+        3,
+        5
+      ],
+      "ground_size": 30,
+      "weight_sector_witness": [
+        3,
+        3,
+        3
+      ],
+      "projection_sizes": [
+        5,
+        30,
+        6
+      ],
+      "negative_spans": [
+        1,
+        1,
+        1
+      ],
+      "positive_spans": [
+        2,
+        2,
+        2
+      ],
+      "bottom_union_size": 30,
+      "top_union_size": 30,
+      "surface_union_size": 30,
+      "cube_candidates": 30,
+      "projection_bound": 123
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        2,
+        3,
+        5
+      ],
+      "ground_size": 30,
+      "weight_sector_witness": [
+        7,
+        1,
+        3
+      ],
+      "projection_sizes": [
+        5,
+        30,
+        6
+      ],
+      "negative_spans": [
+        0,
+        2,
+        2
+      ],
+      "positive_spans": [
+        3,
+        1,
+        1
+      ],
+      "bottom_union_size": 30,
+      "top_union_size": 30,
+      "surface_union_size": 30,
+      "cube_candidates": 30,
+      "projection_bound": 123
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        2,
+        3,
+        5
+      ],
+      "ground_size": 30,
+      "weight_sector_witness": [
+        1,
+        7,
+        3
+      ],
+      "projection_sizes": [
+        5,
+        30,
+        6
+      ],
+      "negative_spans": [
+        2,
+        0,
+        2
+      ],
+      "positive_spans": [
+        1,
+        3,
+        1
+      ],
+      "bottom_union_size": 18,
+      "top_union_size": 30,
+      "surface_union_size": 30,
+      "cube_candidates": 30,
+      "projection_bound": 123
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        2,
+        3,
+        5
+      ],
+      "ground_size": 30,
+      "weight_sector_witness": [
+        1,
+        3,
+        7
+      ],
+      "projection_sizes": [
+        5,
+        30,
+        6
+      ],
+      "negative_spans": [
+        2,
+        2,
+        0
+      ],
+      "positive_spans": [
+        1,
+        1,
+        3
+      ],
+      "bottom_union_size": 30,
+      "top_union_size": 30,
+      "surface_union_size": 30,
+      "cube_candidates": 30,
+      "projection_bound": 123
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        4,
+        5
+      ],
+      "ground_size": 60,
+      "weight_sector_witness": [
+        3,
+        3,
+        3
+      ],
+      "projection_sizes": [
+        20,
+        20,
+        23
+      ],
+      "negative_spans": [
+        1,
+        1,
+        1
+      ],
+      "positive_spans": [
+        2,
+        2,
+        2
+      ],
+      "bottom_union_size": 46,
+      "top_union_size": 60,
+      "surface_union_size": 60,
+      "cube_candidates": 60,
+      "projection_bound": 189
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        4,
+        5
+      ],
+      "ground_size": 60,
+      "weight_sector_witness": [
+        7,
+        1,
+        3
+      ],
+      "projection_sizes": [
+        20,
+        20,
+        23
+      ],
+      "negative_spans": [
+        0,
+        2,
+        2
+      ],
+      "positive_spans": [
+        3,
+        1,
+        1
+      ],
+      "bottom_union_size": 54,
+      "top_union_size": 56,
+      "surface_union_size": 60,
+      "cube_candidates": 60,
+      "projection_bound": 189
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        4,
+        5
+      ],
+      "ground_size": 60,
+      "weight_sector_witness": [
+        1,
+        7,
+        3
+      ],
+      "projection_sizes": [
+        20,
+        20,
+        23
+      ],
+      "negative_spans": [
+        2,
+        0,
+        2
+      ],
+      "positive_spans": [
+        1,
+        3,
+        1
+      ],
+      "bottom_union_size": 60,
+      "top_union_size": 57,
+      "surface_union_size": 60,
+      "cube_candidates": 60,
+      "projection_bound": 189
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        4,
+        5
+      ],
+      "ground_size": 60,
+      "weight_sector_witness": [
+        1,
+        3,
+        7
+      ],
+      "projection_sizes": [
+        20,
+        20,
+        23
+      ],
+      "negative_spans": [
+        2,
+        2,
+        0
+      ],
+      "positive_spans": [
+        1,
+        1,
+        3
+      ],
+      "bottom_union_size": 51,
+      "top_union_size": 59,
+      "surface_union_size": 60,
+      "cube_candidates": 60,
+      "projection_bound": 189
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        4,
+        5
+      ],
+      "ground_size": 60,
+      "weight_sector_witness": [
+        3,
+        3,
+        3
+      ],
+      "projection_sizes": [
+        27,
+        10,
+        36
+      ],
+      "negative_spans": [
+        1,
+        1,
+        1
+      ],
+      "positive_spans": [
+        2,
+        2,
+        2
+      ],
+      "bottom_union_size": 51,
+      "top_union_size": 60,
+      "surface_union_size": 60,
+      "cube_candidates": 60,
+      "projection_bound": 219
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        4,
+        5
+      ],
+      "ground_size": 60,
+      "weight_sector_witness": [
+        7,
+        1,
+        3
+      ],
+      "projection_sizes": [
+        27,
+        10,
+        36
+      ],
+      "negative_spans": [
+        0,
+        2,
+        2
+      ],
+      "positive_spans": [
+        3,
+        1,
+        1
+      ],
+      "bottom_union_size": 54,
+      "top_union_size": 60,
+      "surface_union_size": 60,
+      "cube_candidates": 60,
+      "projection_bound": 219
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        4,
+        5
+      ],
+      "ground_size": 60,
+      "weight_sector_witness": [
+        1,
+        7,
+        3
+      ],
+      "projection_sizes": [
+        27,
+        10,
+        36
+      ],
+      "negative_spans": [
+        2,
+        0,
+        2
+      ],
+      "positive_spans": [
+        1,
+        3,
+        1
+      ],
+      "bottom_union_size": 60,
+      "top_union_size": 57,
+      "surface_union_size": 60,
+      "cube_candidates": 60,
+      "projection_bound": 219
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        4,
+        5
+      ],
+      "ground_size": 60,
+      "weight_sector_witness": [
+        1,
+        3,
+        7
+      ],
+      "projection_sizes": [
+        27,
+        10,
+        36
+      ],
+      "negative_spans": [
+        2,
+        2,
+        0
+      ],
+      "positive_spans": [
+        1,
+        1,
+        3
+      ],
+      "bottom_union_size": 52,
+      "top_union_size": 60,
+      "surface_union_size": 60,
+      "cube_candidates": 60,
+      "projection_bound": 219
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        4,
+        5
+      ],
+      "ground_size": 60,
+      "weight_sector_witness": [
+        3,
+        3,
+        3
+      ],
+      "projection_sizes": [
+        9,
+        40,
+        17
+      ],
+      "negative_spans": [
+        1,
+        1,
+        1
+      ],
+      "positive_spans": [
+        2,
+        2,
+        2
+      ],
+      "bottom_union_size": 48,
+      "top_union_size": 60,
+      "surface_union_size": 60,
+      "cube_candidates": 60,
+      "projection_bound": 198
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        4,
+        5
+      ],
+      "ground_size": 60,
+      "weight_sector_witness": [
+        7,
+        1,
+        3
+      ],
+      "projection_sizes": [
+        9,
+        40,
+        17
+      ],
+      "negative_spans": [
+        0,
+        2,
+        2
+      ],
+      "positive_spans": [
+        3,
+        1,
+        1
+      ],
+      "bottom_union_size": 60,
+      "top_union_size": 54,
+      "surface_union_size": 60,
+      "cube_candidates": 60,
+      "projection_bound": 198
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        4,
+        5
+      ],
+      "ground_size": 60,
+      "weight_sector_witness": [
+        1,
+        7,
+        3
+      ],
+      "projection_sizes": [
+        9,
+        40,
+        17
+      ],
+      "negative_spans": [
+        2,
+        0,
+        2
+      ],
+      "positive_spans": [
+        1,
+        3,
+        1
+      ],
+      "bottom_union_size": 39,
+      "top_union_size": 60,
+      "surface_union_size": 60,
+      "cube_candidates": 60,
+      "projection_bound": 198
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        4,
+        5
+      ],
+      "ground_size": 60,
+      "weight_sector_witness": [
+        1,
+        3,
+        7
+      ],
+      "projection_sizes": [
+        9,
+        40,
+        17
+      ],
+      "negative_spans": [
+        2,
+        2,
+        0
+      ],
+      "positive_spans": [
+        1,
+        1,
+        3
+      ],
+      "bottom_union_size": 60,
+      "top_union_size": 56,
+      "surface_union_size": 60,
+      "cube_candidates": 60,
+      "projection_bound": 198
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        5,
+        7
+      ],
+      "ground_size": 105,
+      "weight_sector_witness": [
+        3,
+        3,
+        3
+      ],
+      "projection_sizes": [
+        35,
+        26,
+        39
+      ],
+      "negative_spans": [
+        1,
+        1,
+        1
+      ],
+      "positive_spans": [
+        2,
+        2,
+        2
+      ],
+      "bottom_union_size": 74,
+      "top_union_size": 98,
+      "surface_union_size": 105,
+      "cube_candidates": 103,
+      "projection_bound": 300
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        5,
+        7
+      ],
+      "ground_size": 105,
+      "weight_sector_witness": [
+        7,
+        1,
+        3
+      ],
+      "projection_sizes": [
+        35,
+        26,
+        39
+      ],
+      "negative_spans": [
+        0,
+        2,
+        2
+      ],
+      "positive_spans": [
+        3,
+        1,
+        1
+      ],
+      "bottom_union_size": 83,
+      "top_union_size": 99,
+      "surface_union_size": 105,
+      "cube_candidates": 103,
+      "projection_bound": 300
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        5,
+        7
+      ],
+      "ground_size": 105,
+      "weight_sector_witness": [
+        1,
+        7,
+        3
+      ],
+      "projection_sizes": [
+        35,
+        26,
+        39
+      ],
+      "negative_spans": [
+        2,
+        0,
+        2
+      ],
+      "positive_spans": [
+        1,
+        3,
+        1
+      ],
+      "bottom_union_size": 90,
+      "top_union_size": 92,
+      "surface_union_size": 105,
+      "cube_candidates": 103,
+      "projection_bound": 300
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        5,
+        7
+      ],
+      "ground_size": 105,
+      "weight_sector_witness": [
+        1,
+        3,
+        7
+      ],
+      "projection_sizes": [
+        35,
+        26,
+        39
+      ],
+      "negative_spans": [
+        2,
+        2,
+        0
+      ],
+      "positive_spans": [
+        1,
+        1,
+        3
+      ],
+      "bottom_union_size": 84,
+      "top_union_size": 96,
+      "surface_union_size": 105,
+      "cube_candidates": 103,
+      "projection_bound": 300
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        5,
+        7
+      ],
+      "ground_size": 105,
+      "weight_sector_witness": [
+        3,
+        3,
+        3
+      ],
+      "projection_sizes": [
+        73,
+        9,
+        29
+      ],
+      "negative_spans": [
+        1,
+        1,
+        1
+      ],
+      "positive_spans": [
+        2,
+        2,
+        2
+      ],
+      "bottom_union_size": 84,
+      "top_union_size": 105,
+      "surface_union_size": 105,
+      "cube_candidates": 105,
+      "projection_bound": 333
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        5,
+        7
+      ],
+      "ground_size": 105,
+      "weight_sector_witness": [
+        7,
+        1,
+        3
+      ],
+      "projection_sizes": [
+        73,
+        9,
+        29
+      ],
+      "negative_spans": [
+        0,
+        2,
+        2
+      ],
+      "positive_spans": [
+        3,
+        1,
+        1
+      ],
+      "bottom_union_size": 60,
+      "top_union_size": 105,
+      "surface_union_size": 105,
+      "cube_candidates": 105,
+      "projection_bound": 333
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        5,
+        7
+      ],
+      "ground_size": 105,
+      "weight_sector_witness": [
+        1,
+        7,
+        3
+      ],
+      "projection_sizes": [
+        73,
+        9,
+        29
+      ],
+      "negative_spans": [
+        2,
+        0,
+        2
+      ],
+      "positive_spans": [
+        1,
+        3,
+        1
+      ],
+      "bottom_union_size": 105,
+      "top_union_size": 90,
+      "surface_union_size": 105,
+      "cube_candidates": 105,
+      "projection_bound": 333
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        5,
+        7
+      ],
+      "ground_size": 105,
+      "weight_sector_witness": [
+        1,
+        3,
+        7
+      ],
+      "projection_sizes": [
+        73,
+        9,
+        29
+      ],
+      "negative_spans": [
+        2,
+        2,
+        0
+      ],
+      "positive_spans": [
+        1,
+        1,
+        3
+      ],
+      "bottom_union_size": 105,
+      "top_union_size": 98,
+      "surface_union_size": 105,
+      "cube_candidates": 105,
+      "projection_bound": 333
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        5,
+        7
+      ],
+      "ground_size": 105,
+      "weight_sector_witness": [
+        3,
+        3,
+        3
+      ],
+      "projection_sizes": [
+        7,
+        105,
+        15
+      ],
+      "negative_spans": [
+        1,
+        1,
+        1
+      ],
+      "positive_spans": [
+        2,
+        2,
+        2
+      ],
+      "bottom_union_size": 105,
+      "top_union_size": 105,
+      "surface_union_size": 105,
+      "cube_candidates": 105,
+      "projection_bound": 381
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        5,
+        7
+      ],
+      "ground_size": 105,
+      "weight_sector_witness": [
+        7,
+        1,
+        3
+      ],
+      "projection_sizes": [
+        7,
+        105,
+        15
+      ],
+      "negative_spans": [
+        0,
+        2,
+        2
+      ],
+      "positive_spans": [
+        3,
+        1,
+        1
+      ],
+      "bottom_union_size": 105,
+      "top_union_size": 105,
+      "surface_union_size": 105,
+      "cube_candidates": 105,
+      "projection_bound": 381
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        5,
+        7
+      ],
+      "ground_size": 105,
+      "weight_sector_witness": [
+        1,
+        7,
+        3
+      ],
+      "projection_sizes": [
+        7,
+        105,
+        15
+      ],
+      "negative_spans": [
+        2,
+        0,
+        2
+      ],
+      "positive_spans": [
+        1,
+        3,
+        1
+      ],
+      "bottom_union_size": 40,
+      "top_union_size": 105,
+      "surface_union_size": 105,
+      "cube_candidates": 105,
+      "projection_bound": 381
+    },
+    {
+      "model": "periodic_cover",
+      "periods": [
+        3,
+        5,
+        7
+      ],
+      "ground_size": 105,
+      "weight_sector_witness": [
+        1,
+        3,
+        7
+      ],
+      "projection_sizes": [
+        7,
+        105,
+        15
+      ],
+      "negative_spans": [
+        2,
+        2,
+        0
+      ],
+      "positive_spans": [
+        1,
+        1,
+        3
+      ],
+      "bottom_union_size": 105,
+      "top_union_size": 105,
+      "surface_union_size": 105,
+      "cube_candidates": 105,
+      "projection_bound": 381
+    },
+    {
+      "model": "common_period_box",
+      "periods": [
+        3,
+        3,
+        3
+      ],
+      "ground_size": 27,
+      "weight_sector_witness": [
+        3,
+        3,
+        3
+      ],
+      "projection_sizes": [
+        9,
+        9,
+        9
+      ],
+      "negative_spans": [
+        1,
+        1,
+        1
+      ],
+      "positive_spans": [
+        2,
+        2,
+        2
+      ],
+      "bottom_union_size": 19,
+      "top_union_size": 26,
+      "surface_union_size": 27,
+      "cube_candidates": 27,
+      "projection_bound": 81
+    },
+    {
+      "model": "common_period_box",
+      "periods": [
+        3,
+        3,
+        3
+      ],
+      "ground_size": 27,
+      "weight_sector_witness": [
+        7,
+        1,
+        3
+      ],
+      "projection_sizes": [
+        9,
+        9,
+        9
+      ],
+      "negative_spans": [
+        0,
+        2,
+        2
+      ],
+      "positive_spans": [
+        3,
+        1,
+        1
+      ],
+      "bottom_union_size": 24,
+      "top_union_size": 27,
+      "surface_union_size": 27,
+      "cube_candidates": 27,
+      "projection_bound": 81
+    },
+    {
+      "model": "common_period_box",
+      "periods": [
+        3,
+        3,
+        3
+      ],
+      "ground_size": 27,
+      "weight_sector_witness": [
+        1,
+        7,
+        3
+      ],
+      "projection_sizes": [
+        9,
+        9,
+        9
+      ],
+      "negative_spans": [
+        2,
+        0,
+        2
+      ],
+      "positive_spans": [
+        1,
+        3,
+        1
+      ],
+      "bottom_union_size": 24,
+      "top_union_size": 27,
+      "surface_union_size": 27,
+      "cube_candidates": 27,
+      "projection_bound": 81
+    },
+    {
+      "model": "common_period_box",
+      "periods": [
+        3,
+        3,
+        3
+      ],
+      "ground_size": 27,
+      "weight_sector_witness": [
+        1,
+        3,
+        7
+      ],
+      "projection_sizes": [
+        9,
+        9,
+        9
+      ],
+      "negative_spans": [
+        2,
+        2,
+        0
+      ],
+      "positive_spans": [
+        1,
+        1,
+        3
+      ],
+      "bottom_union_size": 24,
+      "top_union_size": 27,
+      "surface_union_size": 27,
+      "cube_candidates": 27,
+      "projection_bound": 81
+    },
+    {
+      "model": "common_period_box",
+      "periods": [
+        5,
+        5,
+        5
+      ],
+      "ground_size": 125,
+      "weight_sector_witness": [
+        3,
+        3,
+        3
+      ],
+      "projection_sizes": [
+        25,
+        25,
+        25
+      ],
+      "negative_spans": [
+        1,
+        1,
+        1
+      ],
+      "positive_spans": [
+        2,
+        2,
+        2
+      ],
+      "bottom_union_size": 61,
+      "top_union_size": 98,
+      "surface_union_size": 117,
+      "cube_candidates": 117,
+      "projection_bound": 225
+    },
+    {
+      "model": "common_period_box",
+      "periods": [
+        5,
+        5,
+        5
+      ],
+      "ground_size": 125,
+      "weight_sector_witness": [
+        7,
+        1,
+        3
+      ],
+      "projection_sizes": [
+        25,
+        25,
+        25
+      ],
+      "negative_spans": [
+        0,
+        2,
+        2
+      ],
+      "positive_spans": [
+        3,
+        1,
+        1
+      ],
+      "bottom_union_size": 80,
+      "top_union_size": 93,
+      "surface_union_size": 117,
+      "cube_candidates": 117,
+      "projection_bound": 225
+    },
+    {
+      "model": "common_period_box",
+      "periods": [
+        5,
+        5,
+        5
+      ],
+      "ground_size": 125,
+      "weight_sector_witness": [
+        1,
+        7,
+        3
+      ],
+      "projection_sizes": [
+        25,
+        25,
+        25
+      ],
+      "negative_spans": [
+        2,
+        0,
+        2
+      ],
+      "positive_spans": [
+        1,
+        3,
+        1
+      ],
+      "bottom_union_size": 80,
+      "top_union_size": 93,
+      "surface_union_size": 117,
+      "cube_candidates": 117,
+      "projection_bound": 225
+    },
+    {
+      "model": "common_period_box",
+      "periods": [
+        5,
+        5,
+        5
+      ],
+      "ground_size": 125,
+      "weight_sector_witness": [
+        1,
+        3,
+        7
+      ],
+      "projection_sizes": [
+        25,
+        25,
+        25
+      ],
+      "negative_spans": [
+        2,
+        2,
+        0
+      ],
+      "positive_spans": [
+        1,
+        1,
+        3
+      ],
+      "bottom_union_size": 80,
+      "top_union_size": 93,
+      "surface_union_size": 117,
+      "cube_candidates": 117,
+      "projection_bound": 225
+    },
+    {
+      "model": "common_period_box",
+      "periods": [
+        7,
+        7,
+        7
+      ],
+      "ground_size": 343,
+      "weight_sector_witness": [
+        3,
+        3,
+        3
+      ],
+      "projection_sizes": [
+        49,
+        49,
+        49
+      ],
+      "negative_spans": [
+        1,
+        1,
+        1
+      ],
+      "positive_spans": [
+        2,
+        2,
+        2
+      ],
+      "bottom_union_size": 127,
+      "top_union_size": 218,
+      "surface_union_size": 279,
+      "cube_candidates": 279,
+      "projection_bound": 441
+    },
+    {
+      "model": "common_period_box",
+      "periods": [
+        7,
+        7,
+        7
+      ],
+      "ground_size": 343,
+      "weight_sector_witness": [
+        7,
+        1,
+        3
+      ],
+      "projection_sizes": [
+        49,
+        49,
+        49
+      ],
+      "negative_spans": [
+        0,
+        2,
+        2
+      ],
+      "positive_spans": [
+        3,
+        1,
+        1
+      ],
+      "bottom_union_size": 168,
+      "top_union_size": 199,
+      "surface_union_size": 279,
+      "cube_candidates": 279,
+      "projection_bound": 441
+    },
+    {
+      "model": "common_period_box",
+      "periods": [
+        7,
+        7,
+        7
+      ],
+      "ground_size": 343,
+      "weight_sector_witness": [
+        1,
+        7,
+        3
+      ],
+      "projection_sizes": [
+        49,
+        49,
+        49
+      ],
+      "negative_spans": [
+        2,
+        0,
+        2
+      ],
+      "positive_spans": [
+        1,
+        3,
+        1
+      ],
+      "bottom_union_size": 168,
+      "top_union_size": 199,
+      "surface_union_size": 279,
+      "cube_candidates": 279,
+      "projection_bound": 441
+    },
+    {
+      "model": "common_period_box",
+      "periods": [
+        7,
+        7,
+        7
+      ],
+      "ground_size": 343,
+      "weight_sector_witness": [
+        1,
+        3,
+        7
+      ],
+      "projection_sizes": [
+        49,
+        49,
+        49
+      ],
+      "negative_spans": [
+        2,
+        2,
+        0
+      ],
+      "positive_spans": [
+        1,
+        1,
+        3
+      ],
+      "bottom_union_size": 168,
+      "top_union_size": 199,
+      "surface_union_size": 279,
+      "cube_candidates": 279,
+      "projection_bound": 441
+    },
+    {
+      "model": "common_period_box",
+      "periods": [
+        11,
+        11,
+        11
+      ],
+      "ground_size": 1331,
+      "weight_sector_witness": [
+        3,
+        3,
+        3
+      ],
+      "projection_sizes": [
+        121,
+        121,
+        121
+      ],
+      "negative_spans": [
+        1,
+        1,
+        1
+      ],
+      "positive_spans": [
+        2,
+        2,
+        2
+      ],
+      "bottom_union_size": 331,
+      "top_union_size": 602,
+      "surface_union_size": 819,
+      "cube_candidates": 819,
+      "projection_bound": 1089
+    },
+    {
+      "model": "common_period_box",
+      "periods": [
+        11,
+        11,
+        11
+      ],
+      "ground_size": 1331,
+      "weight_sector_witness": [
+        7,
+        1,
+        3
+      ],
+      "projection_sizes": [
+        121,
+        121,
+        121
+      ],
+      "negative_spans": [
+        0,
+        2,
+        2
+      ],
+      "positive_spans": [
+        3,
+        1,
+        1
+      ],
+      "bottom_union_size": 440,
+      "top_union_size": 531,
+      "surface_union_size": 819,
+      "cube_candidates": 819,
+      "projection_bound": 1089
+    },
+    {
+      "model": "common_period_box",
+      "periods": [
+        11,
+        11,
+        11
+      ],
+      "ground_size": 1331,
+      "weight_sector_witness": [
+        1,
+        7,
+        3
+      ],
+      "projection_sizes": [
+        121,
+        121,
+        121
+      ],
+      "negative_spans": [
+        2,
+        0,
+        2
+      ],
+      "positive_spans": [
+        1,
+        3,
+        1
+      ],
+      "bottom_union_size": 440,
+      "top_union_size": 531,
+      "surface_union_size": 819,
+      "cube_candidates": 819,
+      "projection_bound": 1089
+    },
+    {
+      "model": "common_period_box",
+      "periods": [
+        11,
+        11,
+        11
+      ],
+      "ground_size": 1331,
+      "weight_sector_witness": [
+        1,
+        3,
+        7
+      ],
+      "projection_sizes": [
+        121,
+        121,
+        121
+      ],
+      "negative_spans": [
+        2,
+        2,
+        0
+      ],
+      "positive_spans": [
+        1,
+        1,
+        3
+      ],
+      "bottom_union_size": 440,
+      "top_union_size": 531,
+      "surface_union_size": 819,
+      "cube_candidates": 819,
+      "projection_bound": 1089
+    },
+    {
+      "model": "common_period_box",
+      "periods": [
+        17,
+        17,
+        17
+      ],
+      "ground_size": 4913,
+      "weight_sector_witness": [
+        3,
+        3,
+        3
+      ],
+      "projection_sizes": [
+        289,
+        289,
+        289
+      ],
+      "negative_spans": [
+        1,
+        1,
+        1
+      ],
+      "positive_spans": [
+        2,
+        2,
+        2
+      ],
+      "bottom_union_size": 817,
+      "top_union_size": 1538,
+      "surface_union_size": 2169,
+      "cube_candidates": 2169,
+      "projection_bound": 2601
+    },
+    {
+      "model": "common_period_box",
+      "periods": [
+        17,
+        17,
+        17
+      ],
+      "ground_size": 4913,
+      "weight_sector_witness": [
+        7,
+        1,
+        3
+      ],
+      "projection_sizes": [
+        289,
+        289,
+        289
+      ],
+      "negative_spans": [
+        0,
+        2,
+        2
+      ],
+      "positive_spans": [
+        3,
+        1,
+        1
+      ],
+      "bottom_union_size": 1088,
+      "top_union_size": 1329,
+      "surface_union_size": 2169,
+      "cube_candidates": 2169,
+      "projection_bound": 2601
+    },
+    {
+      "model": "common_period_box",
+      "periods": [
+        17,
+        17,
+        17
+      ],
+      "ground_size": 4913,
+      "weight_sector_witness": [
+        1,
+        7,
+        3
+      ],
+      "projection_sizes": [
+        289,
+        289,
+        289
+      ],
+      "negative_spans": [
+        2,
+        0,
+        2
+      ],
+      "positive_spans": [
+        1,
+        3,
+        1
+      ],
+      "bottom_union_size": 1088,
+      "top_union_size": 1329,
+      "surface_union_size": 2169,
+      "cube_candidates": 2169,
+      "projection_bound": 2601
+    },
+    {
+      "model": "common_period_box",
+      "periods": [
+        17,
+        17,
+        17
+      ],
+      "ground_size": 4913,
+      "weight_sector_witness": [
+        1,
+        3,
+        7
+      ],
+      "projection_sizes": [
+        289,
+        289,
+        289
+      ],
+      "negative_spans": [
+        2,
+        2,
+        0
+      ],
+      "positive_spans": [
+        1,
+        1,
+        3
+      ],
+      "bottom_union_size": 1088,
+      "top_union_size": 1329,
+      "surface_union_size": 2169,
+      "cube_candidates": 2169,
+      "projection_bound": 2601
+    },
+    {
+      "model": "thin_cover",
+      "periods": [
+        11,
+        5,
+        6
+      ],
+      "ground_size": 330,
+      "weight_sector_witness": [
+        3,
+        3,
+        3
+      ],
+      "projection_sizes": [
+        36,
+        30,
+        330
+      ],
+      "negative_spans": [
+        1,
+        1,
+        1
+      ],
+      "positive_spans": [
+        2,
+        2,
+        2
+      ],
+      "bottom_union_size": 330,
+      "top_union_size": 330,
+      "surface_union_size": 330,
+      "cube_candidates": 330,
+      "projection_bound": 1188
+    },
+    {
+      "model": "thin_cover",
+      "periods": [
+        11,
+        5,
+        6
+      ],
+      "ground_size": 330,
+      "weight_sector_witness": [
+        7,
+        1,
+        3
+      ],
+      "projection_sizes": [
+        36,
+        30,
+        330
+      ],
+      "negative_spans": [
+        0,
+        2,
+        2
+      ],
+      "positive_spans": [
+        3,
+        1,
+        1
+      ],
+      "bottom_union_size": 330,
+      "top_union_size": 330,
+      "surface_union_size": 330,
+      "cube_candidates": 330,
+      "projection_bound": 1188
+    },
+    {
+      "model": "thin_cover",
+      "periods": [
+        11,
+        5,
+        6
+      ],
+      "ground_size": 330,
+      "weight_sector_witness": [
+        1,
+        7,
+        3
+      ],
+      "projection_sizes": [
+        36,
+        30,
+        330
+      ],
+      "negative_spans": [
+        2,
+        0,
+        2
+      ],
+      "positive_spans": [
+        1,
+        3,
+        1
+      ],
+      "bottom_union_size": 330,
+      "top_union_size": 330,
+      "surface_union_size": 330,
+      "cube_candidates": 330,
+      "projection_bound": 1188
+    },
+    {
+      "model": "thin_cover",
+      "periods": [
+        11,
+        5,
+        6
+      ],
+      "ground_size": 330,
+      "weight_sector_witness": [
+        1,
+        3,
+        7
+      ],
+      "projection_sizes": [
+        36,
+        30,
+        330
+      ],
+      "negative_spans": [
+        2,
+        2,
+        0
+      ],
+      "positive_spans": [
+        1,
+        1,
+        3
+      ],
+      "bottom_union_size": 128,
+      "top_union_size": 330,
+      "surface_union_size": 330,
+      "cube_candidates": 330,
+      "projection_bound": 1188
+    },
+    {
+      "model": "thin_cover",
+      "periods": [
+        13,
+        6,
+        7
+      ],
+      "ground_size": 546,
+      "weight_sector_witness": [
+        3,
+        3,
+        3
+      ],
+      "projection_sizes": [
+        49,
+        42,
+        546
+      ],
+      "negative_spans": [
+        1,
+        1,
+        1
+      ],
+      "positive_spans": [
+        2,
+        2,
+        2
+      ],
+      "bottom_union_size": 546,
+      "top_union_size": 546,
+      "surface_union_size": 546,
+      "cube_candidates": 546,
+      "projection_bound": 1911
+    },
+    {
+      "model": "thin_cover",
+      "periods": [
+        13,
+        6,
+        7
+      ],
+      "ground_size": 546,
+      "weight_sector_witness": [
+        7,
+        1,
+        3
+      ],
+      "projection_sizes": [
+        49,
+        42,
+        546
+      ],
+      "negative_spans": [
+        0,
+        2,
+        2
+      ],
+      "positive_spans": [
+        3,
+        1,
+        1
+      ],
+      "bottom_union_size": 546,
+      "top_union_size": 546,
+      "surface_union_size": 546,
+      "cube_candidates": 546,
+      "projection_bound": 1911
+    },
+    {
+      "model": "thin_cover",
+      "periods": [
+        13,
+        6,
+        7
+      ],
+      "ground_size": 546,
+      "weight_sector_witness": [
+        1,
+        7,
+        3
+      ],
+      "projection_sizes": [
+        49,
+        42,
+        546
+      ],
+      "negative_spans": [
+        2,
+        0,
+        2
+      ],
+      "positive_spans": [
+        1,
+        3,
+        1
+      ],
+      "bottom_union_size": 546,
+      "top_union_size": 546,
+      "surface_union_size": 546,
+      "cube_candidates": 546,
+      "projection_bound": 1911
+    },
+    {
+      "model": "thin_cover",
+      "periods": [
+        13,
+        6,
+        7
+      ],
+      "ground_size": 546,
+      "weight_sector_witness": [
+        1,
+        3,
+        7
+      ],
+      "projection_sizes": [
+        49,
+        42,
+        546
+      ],
+      "negative_spans": [
+        2,
+        2,
+        0
+      ],
+      "positive_spans": [
+        1,
+        1,
+        3
+      ],
+      "bottom_union_size": 178,
+      "top_union_size": 546,
+      "surface_union_size": 546,
+      "cube_candidates": 546,
+      "projection_bound": 1911
+    },
+    {
+      "model": "thin_cover",
+      "periods": [
+        15,
+        7,
+        8
+      ],
+      "ground_size": 840,
+      "weight_sector_witness": [
+        3,
+        3,
+        3
+      ],
+      "projection_sizes": [
+        64,
+        56,
+        840
+      ],
+      "negative_spans": [
+        1,
+        1,
+        1
+      ],
+      "positive_spans": [
+        2,
+        2,
+        2
+      ],
+      "bottom_union_size": 840,
+      "top_union_size": 840,
+      "surface_union_size": 840,
+      "cube_candidates": 840,
+      "projection_bound": 2880
+    },
+    {
+      "model": "thin_cover",
+      "periods": [
+        15,
+        7,
+        8
+      ],
+      "ground_size": 840,
+      "weight_sector_witness": [
+        7,
+        1,
+        3
+      ],
+      "projection_sizes": [
+        64,
+        56,
+        840
+      ],
+      "negative_spans": [
+        0,
+        2,
+        2
+      ],
+      "positive_spans": [
+        3,
+        1,
+        1
+      ],
+      "bottom_union_size": 840,
+      "top_union_size": 840,
+      "surface_union_size": 840,
+      "cube_candidates": 840,
+      "projection_bound": 2880
+    },
+    {
+      "model": "thin_cover",
+      "periods": [
+        15,
+        7,
+        8
+      ],
+      "ground_size": 840,
+      "weight_sector_witness": [
+        1,
+        7,
+        3
+      ],
+      "projection_sizes": [
+        64,
+        56,
+        840
+      ],
+      "negative_spans": [
+        2,
+        0,
+        2
+      ],
+      "positive_spans": [
+        1,
+        3,
+        1
+      ],
+      "bottom_union_size": 840,
+      "top_union_size": 840,
+      "surface_union_size": 840,
+      "cube_candidates": 840,
+      "projection_bound": 2880
+    },
+    {
+      "model": "thin_cover",
+      "periods": [
+        15,
+        7,
+        8
+      ],
+      "ground_size": 840,
+      "weight_sector_witness": [
+        1,
+        3,
+        7
+      ],
+      "projection_sizes": [
+        64,
+        56,
+        840
+      ],
+      "negative_spans": [
+        2,
+        2,
+        0
+      ],
+      "positive_spans": [
+        1,
+        1,
+        3
+      ],
+      "bottom_union_size": 236,
+      "top_union_size": 840,
+      "surface_union_size": 840,
+      "cube_candidates": 840,
+      "projection_bound": 2880
+    },
+    {
+      "model": "thin_cover",
+      "periods": [
+        23,
+        11,
+        12
+      ],
+      "ground_size": 3036,
+      "weight_sector_witness": [
+        3,
+        3,
+        3
+      ],
+      "projection_sizes": [
+        144,
+        132,
+        3036
+      ],
+      "negative_spans": [
+        1,
+        1,
+        1
+      ],
+      "positive_spans": [
+        2,
+        2,
+        2
+      ],
+      "bottom_union_size": 3036,
+      "top_union_size": 3036,
+      "surface_union_size": 3036,
+      "cube_candidates": 3036,
+      "projection_bound": 9936
+    },
+    {
+      "model": "thin_cover",
+      "periods": [
+        23,
+        11,
+        12
+      ],
+      "ground_size": 3036,
+      "weight_sector_witness": [
+        7,
+        1,
+        3
+      ],
+      "projection_sizes": [
+        144,
+        132,
+        3036
+      ],
+      "negative_spans": [
+        0,
+        2,
+        2
+      ],
+      "positive_spans": [
+        3,
+        1,
+        1
+      ],
+      "bottom_union_size": 3036,
+      "top_union_size": 3036,
+      "surface_union_size": 3036,
+      "cube_candidates": 3036,
+      "projection_bound": 9936
+    },
+    {
+      "model": "thin_cover",
+      "periods": [
+        23,
+        11,
+        12
+      ],
+      "ground_size": 3036,
+      "weight_sector_witness": [
+        1,
+        7,
+        3
+      ],
+      "projection_sizes": [
+        144,
+        132,
+        3036
+      ],
+      "negative_spans": [
+        2,
+        0,
+        2
+      ],
+      "positive_spans": [
+        1,
+        3,
+        1
+      ],
+      "bottom_union_size": 3036,
+      "top_union_size": 3036,
+      "surface_union_size": 3036,
+      "cube_candidates": 3036,
+      "projection_bound": 9936
+    },
+    {
+      "model": "thin_cover",
+      "periods": [
+        23,
+        11,
+        12
+      ],
+      "ground_size": 3036,
+      "weight_sector_witness": [
+        1,
+        3,
+        7
+      ],
+      "projection_sizes": [
+        144,
+        132,
+        3036
+      ],
+      "negative_spans": [
+        2,
+        2,
+        0
+      ],
+      "positive_spans": [
+        1,
+        1,
+        3
+      ],
+      "bottom_union_size": 548,
+      "top_union_size": 3036,
+      "surface_union_size": 3036,
+      "cube_candidates": 3036,
+      "projection_bound": 9936
+    },
+    {
+      "model": "thin_cover",
+      "periods": [
+        35,
+        17,
+        18
+      ],
+      "ground_size": 10710,
+      "weight_sector_witness": [
+        3,
+        3,
+        3
+      ],
+      "projection_sizes": [
+        324,
+        306,
+        10710
+      ],
+      "negative_spans": [
+        1,
+        1,
+        1
+      ],
+      "positive_spans": [
+        2,
+        2,
+        2
+      ],
+      "bottom_union_size": 10710,
+      "top_union_size": 10710,
+      "surface_union_size": 10710,
+      "cube_candidates": 10710,
+      "projection_bound": 34020
+    },
+    {
+      "model": "thin_cover",
+      "periods": [
+        35,
+        17,
+        18
+      ],
+      "ground_size": 10710,
+      "weight_sector_witness": [
+        7,
+        1,
+        3
+      ],
+      "projection_sizes": [
+        324,
+        306,
+        10710
+      ],
+      "negative_spans": [
+        0,
+        2,
+        2
+      ],
+      "positive_spans": [
+        3,
+        1,
+        1
+      ],
+      "bottom_union_size": 10710,
+      "top_union_size": 10710,
+      "surface_union_size": 10710,
+      "cube_candidates": 10710,
+      "projection_bound": 34020
+    },
+    {
+      "model": "thin_cover",
+      "periods": [
+        35,
+        17,
+        18
+      ],
+      "ground_size": 10710,
+      "weight_sector_witness": [
+        1,
+        7,
+        3
+      ],
+      "projection_sizes": [
+        324,
+        306,
+        10710
+      ],
+      "negative_spans": [
+        2,
+        0,
+        2
+      ],
+      "positive_spans": [
+        1,
+        3,
+        1
+      ],
+      "bottom_union_size": 10710,
+      "top_union_size": 10710,
+      "surface_union_size": 10710,
+      "cube_candidates": 10710,
+      "projection_bound": 34020
+    },
+    {
+      "model": "thin_cover",
+      "periods": [
+        35,
+        17,
+        18
+      ],
+      "ground_size": 10710,
+      "weight_sector_witness": [
+        1,
+        3,
+        7
+      ],
+      "projection_sizes": [
+        324,
+        306,
+        10710
+      ],
+      "negative_spans": [
+        2,
+        2,
+        0
+      ],
+      "positive_spans": [
+        1,
+        1,
+        3
+      ],
+      "bottom_union_size": 1256,
+      "top_union_size": 10710,
+      "surface_union_size": 10710,
+      "cube_candidates": 10710,
+      "projection_bound": 34020
+    }
+  ],
+  "thin_cover_obstructions": [
+    {
+      "parameter": 5,
+      "periods": [
+        11,
+        5,
+        6
+      ],
+      "length": 200,
+      "cover_length": 330,
+      "corank": 130,
+      "strict_weight": [
+        386887207,
+        322406406,
+        12831773039
+      ],
+      "cover_socles": [
+        [
+          4,
+          35,
+          0
+        ],
+        [
+          29,
+          5,
+          0
+        ]
+      ],
+      "below_threshold_ground_counts": [
+        66,
+        180,
+        180
+      ],
+      "cube_candidates": 330,
+      "candidate_to_corank_ratio": "33/13",
+      "cover_standard_set_sha256": "217b8aa91292c185db8ee2a34a24a678167f9ad46814f565e3ae89484d9068bc",
+      "direct_quotient_controls": [
+        {
+          "field": 0,
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              3,
+              0
+            ],
+            [
+              0,
+              4,
+              0
+            ],
+            [
+              0,
+              5,
+              0
+            ],
+            [
+              0,
+              6,
+              0
+            ],
+            [
+              0,
+              7,
+              0
+            ],
+            [
+              0,
+              8,
+              0
+            ],
+            [
+              0,
+              9,
+              0
+            ],
+            [
+              0,
+              10,
+              0
+            ],
+            [
+              0,
+              11,
+              0
+            ],
+            [
+              0,
+              12,
+              0
+            ],
+            [
+              0,
+              13,
+              0
+            ],
+            [
+              0,
+              14,
+              0
+            ],
+            [
+              0,
+              15,
+              0
+            ],
+            [
+              0,
+              16,
+              0
+            ],
+            [
+              0,
+              17,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              19,
+              0
+            ],
+            [
+              0,
+              20,
+              0
+            ],
+            [
+              0,
+              21,
+              0
+            ],
+            [
+              0,
+              22,
+              0
+            ],
+            [
+              0,
+              23,
+              0
+            ],
+            [
+              0,
+              24,
+              0
+            ],
+            [
+              0,
+              25,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              2,
+              0
+            ],
+            [
+              1,
+              3,
+              0
+            ],
+            [
+              1,
+              4,
+              0
+            ],
+            [
+              1,
+              5,
+              0
+            ],
+            [
+              1,
+              6,
+              0
+            ],
+            [
+              1,
+              7,
+              0
+            ],
+            [
+              1,
+              8,
+              0
+            ],
+            [
+              1,
+              9,
+              0
+            ],
+            [
+              1,
+              10,
+              0
+            ],
+            [
+              1,
+              11,
+              0
+            ],
+            [
+              1,
+              12,
+              0
+            ],
+            [
+              1,
+              13,
+              0
+            ],
+            [
+              1,
+              14,
+              0
+            ],
+            [
+              1,
+              15,
+              0
+            ],
+            [
+              1,
+              16,
+              0
+            ],
+            [
+              1,
+              17,
+              0
+            ],
+            [
+              1,
+              18,
+              0
+            ],
+            [
+              1,
+              19,
+              0
+            ],
+            [
+              1,
+              20,
+              0
+            ],
+            [
+              1,
+              21,
+              0
+            ],
+            [
+              1,
+              22,
+              0
+            ],
+            [
+              1,
+              23,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              2,
+              2,
+              0
+            ],
+            [
+              2,
+              3,
+              0
+            ],
+            [
+              2,
+              4,
+              0
+            ],
+            [
+              2,
+              5,
+              0
+            ],
+            [
+              2,
+              6,
+              0
+            ],
+            [
+              2,
+              7,
+              0
+            ],
+            [
+              2,
+              8,
+              0
+            ],
+            [
+              2,
+              9,
+              0
+            ],
+            [
+              2,
+              10,
+              0
+            ],
+            [
+              2,
+              11,
+              0
+            ],
+            [
+              2,
+              12,
+              0
+            ],
+            [
+              2,
+              13,
+              0
+            ],
+            [
+              2,
+              14,
+              0
+            ],
+            [
+              2,
+              15,
+              0
+            ],
+            [
+              2,
+              16,
+              0
+            ],
+            [
+              2,
+              17,
+              0
+            ],
+            [
+              2,
+              18,
+              0
+            ],
+            [
+              2,
+              19,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ],
+            [
+              3,
+              1,
+              0
+            ],
+            [
+              3,
+              2,
+              0
+            ],
+            [
+              3,
+              3,
+              0
+            ],
+            [
+              3,
+              4,
+              0
+            ],
+            [
+              3,
+              5,
+              0
+            ],
+            [
+              3,
+              6,
+              0
+            ],
+            [
+              3,
+              7,
+              0
+            ],
+            [
+              3,
+              8,
+              0
+            ],
+            [
+              3,
+              9,
+              0
+            ],
+            [
+              3,
+              10,
+              0
+            ],
+            [
+              3,
+              11,
+              0
+            ],
+            [
+              3,
+              12,
+              0
+            ],
+            [
+              3,
+              13,
+              0
+            ],
+            [
+              3,
+              14,
+              0
+            ],
+            [
+              3,
+              15,
+              0
+            ],
+            [
+              3,
+              16,
+              0
+            ],
+            [
+              3,
+              17,
+              0
+            ],
+            [
+              3,
+              18,
+              0
+            ],
+            [
+              3,
+              19,
+              0
+            ],
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              4,
+              1,
+              0
+            ],
+            [
+              4,
+              2,
+              0
+            ],
+            [
+              4,
+              3,
+              0
+            ],
+            [
+              4,
+              4,
+              0
+            ],
+            [
+              4,
+              5,
+              0
+            ],
+            [
+              4,
+              6,
+              0
+            ],
+            [
+              4,
+              7,
+              0
+            ],
+            [
+              4,
+              8,
+              0
+            ],
+            [
+              4,
+              9,
+              0
+            ],
+            [
+              4,
+              10,
+              0
+            ],
+            [
+              4,
+              11,
+              0
+            ],
+            [
+              4,
+              12,
+              0
+            ],
+            [
+              4,
+              13,
+              0
+            ],
+            [
+              4,
+              14,
+              0
+            ],
+            [
+              4,
+              15,
+              0
+            ],
+            [
+              4,
+              16,
+              0
+            ],
+            [
+              4,
+              17,
+              0
+            ],
+            [
+              4,
+              18,
+              0
+            ],
+            [
+              4,
+              19,
+              0
+            ],
+            [
+              5,
+              0,
+              0
+            ],
+            [
+              5,
+              1,
+              0
+            ],
+            [
+              5,
+              2,
+              0
+            ],
+            [
+              5,
+              3,
+              0
+            ],
+            [
+              5,
+              4,
+              0
+            ],
+            [
+              5,
+              5,
+              0
+            ],
+            [
+              6,
+              0,
+              0
+            ],
+            [
+              6,
+              1,
+              0
+            ],
+            [
+              6,
+              2,
+              0
+            ],
+            [
+              6,
+              3,
+              0
+            ],
+            [
+              6,
+              4,
+              0
+            ],
+            [
+              6,
+              5,
+              0
+            ],
+            [
+              7,
+              0,
+              0
+            ],
+            [
+              7,
+              1,
+              0
+            ],
+            [
+              7,
+              2,
+              0
+            ],
+            [
+              7,
+              3,
+              0
+            ],
+            [
+              7,
+              4,
+              0
+            ],
+            [
+              7,
+              5,
+              0
+            ],
+            [
+              8,
+              0,
+              0
+            ],
+            [
+              8,
+              1,
+              0
+            ],
+            [
+              8,
+              2,
+              0
+            ],
+            [
+              8,
+              3,
+              0
+            ],
+            [
+              8,
+              4,
+              0
+            ],
+            [
+              8,
+              5,
+              0
+            ],
+            [
+              9,
+              0,
+              0
+            ],
+            [
+              9,
+              1,
+              0
+            ],
+            [
+              9,
+              2,
+              0
+            ],
+            [
+              9,
+              3,
+              0
+            ],
+            [
+              9,
+              4,
+              0
+            ],
+            [
+              9,
+              5,
+              0
+            ],
+            [
+              10,
+              0,
+              0
+            ],
+            [
+              10,
+              1,
+              0
+            ],
+            [
+              10,
+              2,
+              0
+            ],
+            [
+              10,
+              3,
+              0
+            ],
+            [
+              10,
+              4,
+              0
+            ],
+            [
+              10,
+              5,
+              0
+            ],
+            [
+              11,
+              0,
+              0
+            ],
+            [
+              11,
+              1,
+              0
+            ],
+            [
+              11,
+              2,
+              0
+            ],
+            [
+              11,
+              3,
+              0
+            ],
+            [
+              11,
+              4,
+              0
+            ],
+            [
+              11,
+              5,
+              0
+            ],
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              12,
+              1,
+              0
+            ],
+            [
+              12,
+              2,
+              0
+            ],
+            [
+              12,
+              3,
+              0
+            ],
+            [
+              12,
+              4,
+              0
+            ],
+            [
+              12,
+              5,
+              0
+            ],
+            [
+              13,
+              0,
+              0
+            ],
+            [
+              13,
+              1,
+              0
+            ],
+            [
+              13,
+              2,
+              0
+            ],
+            [
+              13,
+              3,
+              0
+            ],
+            [
+              13,
+              4,
+              0
+            ],
+            [
+              13,
+              5,
+              0
+            ],
+            [
+              14,
+              0,
+              0
+            ],
+            [
+              14,
+              1,
+              0
+            ],
+            [
+              14,
+              2,
+              0
+            ],
+            [
+              14,
+              3,
+              0
+            ],
+            [
+              14,
+              4,
+              0
+            ],
+            [
+              14,
+              5,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              15,
+              1,
+              0
+            ],
+            [
+              15,
+              2,
+              0
+            ],
+            [
+              15,
+              3,
+              0
+            ],
+            [
+              15,
+              4,
+              0
+            ],
+            [
+              15,
+              5,
+              0
+            ],
+            [
+              16,
+              0,
+              0
+            ],
+            [
+              16,
+              1,
+              0
+            ],
+            [
+              16,
+              2,
+              0
+            ],
+            [
+              16,
+              3,
+              0
+            ],
+            [
+              16,
+              4,
+              0
+            ],
+            [
+              16,
+              5,
+              0
+            ],
+            [
+              17,
+              0,
+              0
+            ],
+            [
+              17,
+              1,
+              0
+            ],
+            [
+              17,
+              2,
+              0
+            ],
+            [
+              17,
+              3,
+              0
+            ],
+            [
+              17,
+              4,
+              0
+            ],
+            [
+              17,
+              5,
+              0
+            ],
+            [
+              18,
+              0,
+              0
+            ],
+            [
+              18,
+              1,
+              0
+            ],
+            [
+              18,
+              2,
+              0
+            ],
+            [
+              18,
+              3,
+              0
+            ],
+            [
+              18,
+              4,
+              0
+            ],
+            [
+              18,
+              5,
+              0
+            ],
+            [
+              19,
+              0,
+              0
+            ],
+            [
+              19,
+              1,
+              0
+            ],
+            [
+              19,
+              2,
+              0
+            ],
+            [
+              19,
+              3,
+              0
+            ],
+            [
+              19,
+              4,
+              0
+            ],
+            [
+              19,
+              5,
+              0
+            ]
+          ],
+          "strict_border_count": 6,
+          "strict_border_sha256": "d1282c589ac787ef37889d2f79b6f29d969ace641c3ec36fafa37591e43fc05a"
+        },
+        {
+          "field": 2,
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              3,
+              0
+            ],
+            [
+              0,
+              4,
+              0
+            ],
+            [
+              0,
+              5,
+              0
+            ],
+            [
+              0,
+              6,
+              0
+            ],
+            [
+              0,
+              7,
+              0
+            ],
+            [
+              0,
+              8,
+              0
+            ],
+            [
+              0,
+              9,
+              0
+            ],
+            [
+              0,
+              10,
+              0
+            ],
+            [
+              0,
+              11,
+              0
+            ],
+            [
+              0,
+              12,
+              0
+            ],
+            [
+              0,
+              13,
+              0
+            ],
+            [
+              0,
+              14,
+              0
+            ],
+            [
+              0,
+              15,
+              0
+            ],
+            [
+              0,
+              16,
+              0
+            ],
+            [
+              0,
+              17,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              19,
+              0
+            ],
+            [
+              0,
+              20,
+              0
+            ],
+            [
+              0,
+              21,
+              0
+            ],
+            [
+              0,
+              22,
+              0
+            ],
+            [
+              0,
+              23,
+              0
+            ],
+            [
+              0,
+              24,
+              0
+            ],
+            [
+              0,
+              25,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              2,
+              0
+            ],
+            [
+              1,
+              3,
+              0
+            ],
+            [
+              1,
+              4,
+              0
+            ],
+            [
+              1,
+              5,
+              0
+            ],
+            [
+              1,
+              6,
+              0
+            ],
+            [
+              1,
+              7,
+              0
+            ],
+            [
+              1,
+              8,
+              0
+            ],
+            [
+              1,
+              9,
+              0
+            ],
+            [
+              1,
+              10,
+              0
+            ],
+            [
+              1,
+              11,
+              0
+            ],
+            [
+              1,
+              12,
+              0
+            ],
+            [
+              1,
+              13,
+              0
+            ],
+            [
+              1,
+              14,
+              0
+            ],
+            [
+              1,
+              15,
+              0
+            ],
+            [
+              1,
+              16,
+              0
+            ],
+            [
+              1,
+              17,
+              0
+            ],
+            [
+              1,
+              18,
+              0
+            ],
+            [
+              1,
+              19,
+              0
+            ],
+            [
+              1,
+              20,
+              0
+            ],
+            [
+              1,
+              21,
+              0
+            ],
+            [
+              1,
+              22,
+              0
+            ],
+            [
+              1,
+              23,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              2,
+              2,
+              0
+            ],
+            [
+              2,
+              3,
+              0
+            ],
+            [
+              2,
+              4,
+              0
+            ],
+            [
+              2,
+              5,
+              0
+            ],
+            [
+              2,
+              6,
+              0
+            ],
+            [
+              2,
+              7,
+              0
+            ],
+            [
+              2,
+              8,
+              0
+            ],
+            [
+              2,
+              9,
+              0
+            ],
+            [
+              2,
+              10,
+              0
+            ],
+            [
+              2,
+              11,
+              0
+            ],
+            [
+              2,
+              12,
+              0
+            ],
+            [
+              2,
+              13,
+              0
+            ],
+            [
+              2,
+              14,
+              0
+            ],
+            [
+              2,
+              15,
+              0
+            ],
+            [
+              2,
+              16,
+              0
+            ],
+            [
+              2,
+              17,
+              0
+            ],
+            [
+              2,
+              18,
+              0
+            ],
+            [
+              2,
+              19,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ],
+            [
+              3,
+              1,
+              0
+            ],
+            [
+              3,
+              2,
+              0
+            ],
+            [
+              3,
+              3,
+              0
+            ],
+            [
+              3,
+              4,
+              0
+            ],
+            [
+              3,
+              5,
+              0
+            ],
+            [
+              3,
+              6,
+              0
+            ],
+            [
+              3,
+              7,
+              0
+            ],
+            [
+              3,
+              8,
+              0
+            ],
+            [
+              3,
+              9,
+              0
+            ],
+            [
+              3,
+              10,
+              0
+            ],
+            [
+              3,
+              11,
+              0
+            ],
+            [
+              3,
+              12,
+              0
+            ],
+            [
+              3,
+              13,
+              0
+            ],
+            [
+              3,
+              14,
+              0
+            ],
+            [
+              3,
+              15,
+              0
+            ],
+            [
+              3,
+              16,
+              0
+            ],
+            [
+              3,
+              17,
+              0
+            ],
+            [
+              3,
+              18,
+              0
+            ],
+            [
+              3,
+              19,
+              0
+            ],
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              4,
+              1,
+              0
+            ],
+            [
+              4,
+              2,
+              0
+            ],
+            [
+              4,
+              3,
+              0
+            ],
+            [
+              4,
+              4,
+              0
+            ],
+            [
+              4,
+              5,
+              0
+            ],
+            [
+              4,
+              6,
+              0
+            ],
+            [
+              4,
+              7,
+              0
+            ],
+            [
+              4,
+              8,
+              0
+            ],
+            [
+              4,
+              9,
+              0
+            ],
+            [
+              4,
+              10,
+              0
+            ],
+            [
+              4,
+              11,
+              0
+            ],
+            [
+              4,
+              12,
+              0
+            ],
+            [
+              4,
+              13,
+              0
+            ],
+            [
+              4,
+              14,
+              0
+            ],
+            [
+              4,
+              15,
+              0
+            ],
+            [
+              4,
+              16,
+              0
+            ],
+            [
+              4,
+              17,
+              0
+            ],
+            [
+              4,
+              18,
+              0
+            ],
+            [
+              4,
+              19,
+              0
+            ],
+            [
+              5,
+              0,
+              0
+            ],
+            [
+              5,
+              1,
+              0
+            ],
+            [
+              5,
+              2,
+              0
+            ],
+            [
+              5,
+              3,
+              0
+            ],
+            [
+              5,
+              4,
+              0
+            ],
+            [
+              5,
+              5,
+              0
+            ],
+            [
+              6,
+              0,
+              0
+            ],
+            [
+              6,
+              1,
+              0
+            ],
+            [
+              6,
+              2,
+              0
+            ],
+            [
+              6,
+              3,
+              0
+            ],
+            [
+              6,
+              4,
+              0
+            ],
+            [
+              6,
+              5,
+              0
+            ],
+            [
+              7,
+              0,
+              0
+            ],
+            [
+              7,
+              1,
+              0
+            ],
+            [
+              7,
+              2,
+              0
+            ],
+            [
+              7,
+              3,
+              0
+            ],
+            [
+              7,
+              4,
+              0
+            ],
+            [
+              7,
+              5,
+              0
+            ],
+            [
+              8,
+              0,
+              0
+            ],
+            [
+              8,
+              1,
+              0
+            ],
+            [
+              8,
+              2,
+              0
+            ],
+            [
+              8,
+              3,
+              0
+            ],
+            [
+              8,
+              4,
+              0
+            ],
+            [
+              8,
+              5,
+              0
+            ],
+            [
+              9,
+              0,
+              0
+            ],
+            [
+              9,
+              1,
+              0
+            ],
+            [
+              9,
+              2,
+              0
+            ],
+            [
+              9,
+              3,
+              0
+            ],
+            [
+              9,
+              4,
+              0
+            ],
+            [
+              9,
+              5,
+              0
+            ],
+            [
+              10,
+              0,
+              0
+            ],
+            [
+              10,
+              1,
+              0
+            ],
+            [
+              10,
+              2,
+              0
+            ],
+            [
+              10,
+              3,
+              0
+            ],
+            [
+              10,
+              4,
+              0
+            ],
+            [
+              10,
+              5,
+              0
+            ],
+            [
+              11,
+              0,
+              0
+            ],
+            [
+              11,
+              1,
+              0
+            ],
+            [
+              11,
+              2,
+              0
+            ],
+            [
+              11,
+              3,
+              0
+            ],
+            [
+              11,
+              4,
+              0
+            ],
+            [
+              11,
+              5,
+              0
+            ],
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              12,
+              1,
+              0
+            ],
+            [
+              12,
+              2,
+              0
+            ],
+            [
+              12,
+              3,
+              0
+            ],
+            [
+              12,
+              4,
+              0
+            ],
+            [
+              12,
+              5,
+              0
+            ],
+            [
+              13,
+              0,
+              0
+            ],
+            [
+              13,
+              1,
+              0
+            ],
+            [
+              13,
+              2,
+              0
+            ],
+            [
+              13,
+              3,
+              0
+            ],
+            [
+              13,
+              4,
+              0
+            ],
+            [
+              13,
+              5,
+              0
+            ],
+            [
+              14,
+              0,
+              0
+            ],
+            [
+              14,
+              1,
+              0
+            ],
+            [
+              14,
+              2,
+              0
+            ],
+            [
+              14,
+              3,
+              0
+            ],
+            [
+              14,
+              4,
+              0
+            ],
+            [
+              14,
+              5,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              15,
+              1,
+              0
+            ],
+            [
+              15,
+              2,
+              0
+            ],
+            [
+              15,
+              3,
+              0
+            ],
+            [
+              15,
+              4,
+              0
+            ],
+            [
+              15,
+              5,
+              0
+            ],
+            [
+              16,
+              0,
+              0
+            ],
+            [
+              16,
+              1,
+              0
+            ],
+            [
+              16,
+              2,
+              0
+            ],
+            [
+              16,
+              3,
+              0
+            ],
+            [
+              16,
+              4,
+              0
+            ],
+            [
+              16,
+              5,
+              0
+            ],
+            [
+              17,
+              0,
+              0
+            ],
+            [
+              17,
+              1,
+              0
+            ],
+            [
+              17,
+              2,
+              0
+            ],
+            [
+              17,
+              3,
+              0
+            ],
+            [
+              17,
+              4,
+              0
+            ],
+            [
+              17,
+              5,
+              0
+            ],
+            [
+              18,
+              0,
+              0
+            ],
+            [
+              18,
+              1,
+              0
+            ],
+            [
+              18,
+              2,
+              0
+            ],
+            [
+              18,
+              3,
+              0
+            ],
+            [
+              18,
+              4,
+              0
+            ],
+            [
+              18,
+              5,
+              0
+            ],
+            [
+              19,
+              0,
+              0
+            ],
+            [
+              19,
+              1,
+              0
+            ],
+            [
+              19,
+              2,
+              0
+            ],
+            [
+              19,
+              3,
+              0
+            ],
+            [
+              19,
+              4,
+              0
+            ],
+            [
+              19,
+              5,
+              0
+            ]
+          ],
+          "strict_border_count": 6,
+          "strict_border_sha256": "cc08b61ae267c953e03233597615392f04dd9d40fa52562dfd8f406dbc5d96c4"
+        },
+        {
+          "field": 3,
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              3,
+              0
+            ],
+            [
+              0,
+              4,
+              0
+            ],
+            [
+              0,
+              5,
+              0
+            ],
+            [
+              0,
+              6,
+              0
+            ],
+            [
+              0,
+              7,
+              0
+            ],
+            [
+              0,
+              8,
+              0
+            ],
+            [
+              0,
+              9,
+              0
+            ],
+            [
+              0,
+              10,
+              0
+            ],
+            [
+              0,
+              11,
+              0
+            ],
+            [
+              0,
+              12,
+              0
+            ],
+            [
+              0,
+              13,
+              0
+            ],
+            [
+              0,
+              14,
+              0
+            ],
+            [
+              0,
+              15,
+              0
+            ],
+            [
+              0,
+              16,
+              0
+            ],
+            [
+              0,
+              17,
+              0
+            ],
+            [
+              0,
+              18,
+              0
+            ],
+            [
+              0,
+              19,
+              0
+            ],
+            [
+              0,
+              20,
+              0
+            ],
+            [
+              0,
+              21,
+              0
+            ],
+            [
+              0,
+              22,
+              0
+            ],
+            [
+              0,
+              23,
+              0
+            ],
+            [
+              0,
+              24,
+              0
+            ],
+            [
+              0,
+              25,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              2,
+              0
+            ],
+            [
+              1,
+              3,
+              0
+            ],
+            [
+              1,
+              4,
+              0
+            ],
+            [
+              1,
+              5,
+              0
+            ],
+            [
+              1,
+              6,
+              0
+            ],
+            [
+              1,
+              7,
+              0
+            ],
+            [
+              1,
+              8,
+              0
+            ],
+            [
+              1,
+              9,
+              0
+            ],
+            [
+              1,
+              10,
+              0
+            ],
+            [
+              1,
+              11,
+              0
+            ],
+            [
+              1,
+              12,
+              0
+            ],
+            [
+              1,
+              13,
+              0
+            ],
+            [
+              1,
+              14,
+              0
+            ],
+            [
+              1,
+              15,
+              0
+            ],
+            [
+              1,
+              16,
+              0
+            ],
+            [
+              1,
+              17,
+              0
+            ],
+            [
+              1,
+              18,
+              0
+            ],
+            [
+              1,
+              19,
+              0
+            ],
+            [
+              1,
+              20,
+              0
+            ],
+            [
+              1,
+              21,
+              0
+            ],
+            [
+              1,
+              22,
+              0
+            ],
+            [
+              1,
+              23,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              2,
+              2,
+              0
+            ],
+            [
+              2,
+              3,
+              0
+            ],
+            [
+              2,
+              4,
+              0
+            ],
+            [
+              2,
+              5,
+              0
+            ],
+            [
+              2,
+              6,
+              0
+            ],
+            [
+              2,
+              7,
+              0
+            ],
+            [
+              2,
+              8,
+              0
+            ],
+            [
+              2,
+              9,
+              0
+            ],
+            [
+              2,
+              10,
+              0
+            ],
+            [
+              2,
+              11,
+              0
+            ],
+            [
+              2,
+              12,
+              0
+            ],
+            [
+              2,
+              13,
+              0
+            ],
+            [
+              2,
+              14,
+              0
+            ],
+            [
+              2,
+              15,
+              0
+            ],
+            [
+              2,
+              16,
+              0
+            ],
+            [
+              2,
+              17,
+              0
+            ],
+            [
+              2,
+              18,
+              0
+            ],
+            [
+              2,
+              19,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ],
+            [
+              3,
+              1,
+              0
+            ],
+            [
+              3,
+              2,
+              0
+            ],
+            [
+              3,
+              3,
+              0
+            ],
+            [
+              3,
+              4,
+              0
+            ],
+            [
+              3,
+              5,
+              0
+            ],
+            [
+              3,
+              6,
+              0
+            ],
+            [
+              3,
+              7,
+              0
+            ],
+            [
+              3,
+              8,
+              0
+            ],
+            [
+              3,
+              9,
+              0
+            ],
+            [
+              3,
+              10,
+              0
+            ],
+            [
+              3,
+              11,
+              0
+            ],
+            [
+              3,
+              12,
+              0
+            ],
+            [
+              3,
+              13,
+              0
+            ],
+            [
+              3,
+              14,
+              0
+            ],
+            [
+              3,
+              15,
+              0
+            ],
+            [
+              3,
+              16,
+              0
+            ],
+            [
+              3,
+              17,
+              0
+            ],
+            [
+              3,
+              18,
+              0
+            ],
+            [
+              3,
+              19,
+              0
+            ],
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              4,
+              1,
+              0
+            ],
+            [
+              4,
+              2,
+              0
+            ],
+            [
+              4,
+              3,
+              0
+            ],
+            [
+              4,
+              4,
+              0
+            ],
+            [
+              4,
+              5,
+              0
+            ],
+            [
+              4,
+              6,
+              0
+            ],
+            [
+              4,
+              7,
+              0
+            ],
+            [
+              4,
+              8,
+              0
+            ],
+            [
+              4,
+              9,
+              0
+            ],
+            [
+              4,
+              10,
+              0
+            ],
+            [
+              4,
+              11,
+              0
+            ],
+            [
+              4,
+              12,
+              0
+            ],
+            [
+              4,
+              13,
+              0
+            ],
+            [
+              4,
+              14,
+              0
+            ],
+            [
+              4,
+              15,
+              0
+            ],
+            [
+              4,
+              16,
+              0
+            ],
+            [
+              4,
+              17,
+              0
+            ],
+            [
+              4,
+              18,
+              0
+            ],
+            [
+              4,
+              19,
+              0
+            ],
+            [
+              5,
+              0,
+              0
+            ],
+            [
+              5,
+              1,
+              0
+            ],
+            [
+              5,
+              2,
+              0
+            ],
+            [
+              5,
+              3,
+              0
+            ],
+            [
+              5,
+              4,
+              0
+            ],
+            [
+              5,
+              5,
+              0
+            ],
+            [
+              6,
+              0,
+              0
+            ],
+            [
+              6,
+              1,
+              0
+            ],
+            [
+              6,
+              2,
+              0
+            ],
+            [
+              6,
+              3,
+              0
+            ],
+            [
+              6,
+              4,
+              0
+            ],
+            [
+              6,
+              5,
+              0
+            ],
+            [
+              7,
+              0,
+              0
+            ],
+            [
+              7,
+              1,
+              0
+            ],
+            [
+              7,
+              2,
+              0
+            ],
+            [
+              7,
+              3,
+              0
+            ],
+            [
+              7,
+              4,
+              0
+            ],
+            [
+              7,
+              5,
+              0
+            ],
+            [
+              8,
+              0,
+              0
+            ],
+            [
+              8,
+              1,
+              0
+            ],
+            [
+              8,
+              2,
+              0
+            ],
+            [
+              8,
+              3,
+              0
+            ],
+            [
+              8,
+              4,
+              0
+            ],
+            [
+              8,
+              5,
+              0
+            ],
+            [
+              9,
+              0,
+              0
+            ],
+            [
+              9,
+              1,
+              0
+            ],
+            [
+              9,
+              2,
+              0
+            ],
+            [
+              9,
+              3,
+              0
+            ],
+            [
+              9,
+              4,
+              0
+            ],
+            [
+              9,
+              5,
+              0
+            ],
+            [
+              10,
+              0,
+              0
+            ],
+            [
+              10,
+              1,
+              0
+            ],
+            [
+              10,
+              2,
+              0
+            ],
+            [
+              10,
+              3,
+              0
+            ],
+            [
+              10,
+              4,
+              0
+            ],
+            [
+              10,
+              5,
+              0
+            ],
+            [
+              11,
+              0,
+              0
+            ],
+            [
+              11,
+              1,
+              0
+            ],
+            [
+              11,
+              2,
+              0
+            ],
+            [
+              11,
+              3,
+              0
+            ],
+            [
+              11,
+              4,
+              0
+            ],
+            [
+              11,
+              5,
+              0
+            ],
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              12,
+              1,
+              0
+            ],
+            [
+              12,
+              2,
+              0
+            ],
+            [
+              12,
+              3,
+              0
+            ],
+            [
+              12,
+              4,
+              0
+            ],
+            [
+              12,
+              5,
+              0
+            ],
+            [
+              13,
+              0,
+              0
+            ],
+            [
+              13,
+              1,
+              0
+            ],
+            [
+              13,
+              2,
+              0
+            ],
+            [
+              13,
+              3,
+              0
+            ],
+            [
+              13,
+              4,
+              0
+            ],
+            [
+              13,
+              5,
+              0
+            ],
+            [
+              14,
+              0,
+              0
+            ],
+            [
+              14,
+              1,
+              0
+            ],
+            [
+              14,
+              2,
+              0
+            ],
+            [
+              14,
+              3,
+              0
+            ],
+            [
+              14,
+              4,
+              0
+            ],
+            [
+              14,
+              5,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              15,
+              1,
+              0
+            ],
+            [
+              15,
+              2,
+              0
+            ],
+            [
+              15,
+              3,
+              0
+            ],
+            [
+              15,
+              4,
+              0
+            ],
+            [
+              15,
+              5,
+              0
+            ],
+            [
+              16,
+              0,
+              0
+            ],
+            [
+              16,
+              1,
+              0
+            ],
+            [
+              16,
+              2,
+              0
+            ],
+            [
+              16,
+              3,
+              0
+            ],
+            [
+              16,
+              4,
+              0
+            ],
+            [
+              16,
+              5,
+              0
+            ],
+            [
+              17,
+              0,
+              0
+            ],
+            [
+              17,
+              1,
+              0
+            ],
+            [
+              17,
+              2,
+              0
+            ],
+            [
+              17,
+              3,
+              0
+            ],
+            [
+              17,
+              4,
+              0
+            ],
+            [
+              17,
+              5,
+              0
+            ],
+            [
+              18,
+              0,
+              0
+            ],
+            [
+              18,
+              1,
+              0
+            ],
+            [
+              18,
+              2,
+              0
+            ],
+            [
+              18,
+              3,
+              0
+            ],
+            [
+              18,
+              4,
+              0
+            ],
+            [
+              18,
+              5,
+              0
+            ],
+            [
+              19,
+              0,
+              0
+            ],
+            [
+              19,
+              1,
+              0
+            ],
+            [
+              19,
+              2,
+              0
+            ],
+            [
+              19,
+              3,
+              0
+            ],
+            [
+              19,
+              4,
+              0
+            ],
+            [
+              19,
+              5,
+              0
+            ]
+          ],
+          "strict_border_count": 6,
+          "strict_border_sha256": "75f1e23c21815a53f4a52c2b7fec619bf49bb0fd2a82cdc86385907f55105cd7"
+        }
+      ],
+      "scope": "An infinite-family obstruction to a uniform O(k) cube-only candidate bound, even when all three pair-degree thresholds are reached. Z is absent. The two-socle shell bound survives; the quotient states are planar, not a separating family."
+    },
+    {
+      "parameter": 6,
+      "periods": [
+        13,
+        6,
+        7
+      ],
+      "length": 360,
+      "cover_length": 546,
+      "corank": 186,
+      "strict_weight": [
+        2623637528,
+        2248832887,
+        121062166217
+      ],
+      "cover_socles": [
+        [
+          5,
+          48,
+          0
+        ],
+        [
+          41,
+          6,
+          0
+        ]
+      ],
+      "below_threshold_ground_counts": [
+        91,
+        294,
+        294
+      ],
+      "cube_candidates": 546,
+      "candidate_to_corank_ratio": "91/31",
+      "cover_standard_set_sha256": "becb2546fa323fa761f1bcd8dc8f8ba6683a0a74f8894e2f6955f014e77efcc0",
+      "direct_quotient_controls": [],
+      "scope": "An infinite-family obstruction to a uniform O(k) cube-only candidate bound, even when all three pair-degree thresholds are reached. Z is absent. The two-socle shell bound survives; the quotient states are planar, not a separating family."
+    },
+    {
+      "parameter": 7,
+      "periods": [
+        15,
+        7,
+        8
+      ],
+      "length": 588,
+      "cover_length": 840,
+      "corank": 252,
+      "strict_weight": [
+        13044257865,
+        11413726808,
+        797330336095
+      ],
+      "cover_socles": [
+        [
+          6,
+          63,
+          0
+        ],
+        [
+          55,
+          7,
+          0
+        ]
+      ],
+      "below_threshold_ground_counts": [
+        120,
+        448,
+        448
+      ],
+      "cube_candidates": 840,
+      "candidate_to_corank_ratio": "10/3",
+      "cover_standard_set_sha256": "0e510114116c681b8ca45ce1a02b577bea9c402d19f04927e13f996e168483af",
+      "direct_quotient_controls": [],
+      "scope": "An infinite-family obstruction to a uniform O(k) cube-only candidate bound, even when all three pair-degree thresholds are reached. Z is absent. The two-socle shell bound survives; the quotient states are planar, not a separating family."
+    },
+    {
+      "parameter": 11,
+      "periods": [
+        23,
+        11,
+        12
+      ],
+      "length": 2420,
+      "cover_length": 3036,
+      "corank": 616,
+      "strict_weight": [
+        1361402343853,
+        1247952153372,
+        192071181370727
+      ],
+      "cover_socles": [
+        [
+          10,
+          143,
+          0
+        ],
+        [
+          131,
+          11,
+          0
+        ]
+      ],
+      "below_threshold_ground_counts": [
+        276,
+        1584,
+        1584
+      ],
+      "cube_candidates": 3036,
+      "candidate_to_corank_ratio": "69/14",
+      "cover_standard_set_sha256": "a18a60f03ed74e8953d814035709e2d06798e4d20b8932262967752a07a90902",
+      "direct_quotient_controls": [],
+      "scope": "An infinite-family obstruction to a uniform O(k) cube-only candidate bound, even when all three pair-degree thresholds are reached. Z is absent. The two-socle shell bound survives; the quotient states are planar, not a separating family."
+    },
+    {
+      "parameter": 17,
+      "periods": [
+        35,
+        17,
+        18
+      ],
+      "length": 9248,
+      "cover_length": 10710,
+      "corank": 1462,
+      "strict_weight": [
+        113913814490515,
+        107585269259538,
+        36572663002679015
+      ],
+      "cover_socles": [
+        [
+          16,
+          323,
+          0
+        ],
+        [
+          305,
+          17,
+          0
+        ]
+      ],
+      "below_threshold_ground_counts": [
+        630,
+        5508,
+        5508
+      ],
+      "cube_candidates": 10710,
+      "candidate_to_corank_ratio": "315/43",
+      "cover_standard_set_sha256": "1813c9ee06d339185651196a37249010712f7697e4dbea05bddbcd9af042102e",
+      "direct_quotient_controls": [],
+      "scope": "An infinite-family obstruction to a uniform O(k) cube-only candidate bound, even when all three pair-degree thresholds are reached. Z is absent. The two-socle shell bound survives; the quotient states are planar, not a separating family."
+    }
+  ],
   "summary": {
     "full_period_cover_prices": 9,
     "dual_quotient_price_field_controls": 27,
@@ -63575,6 +70365,12 @@
     "fixed_cover_distinct_state_checks": 32,
     "trace_states_reaching_all_periods": 26,
     "strict_trace_border_checks": 856,
-    "upper_shell_pruned_cover_monomials": 32
+    "upper_shell_pruned_cover_monomials": 32,
+    "linkage_defect_field_controls": 18,
+    "positive_nonbox_defects": 14,
+    "cube_surface_sector_controls": 76,
+    "box_cube_formula_controls": 20,
+    "thin_cover_formula_controls": 5,
+    "thin_simultaneous_threshold_quotient_controls": 3
   }
 }

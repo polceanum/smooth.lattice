@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exact controls for periodic lattice covers, dual quotients and bad primes."""
+"""Exact periodic-cover, residual-fan and coherent-arithmetic controls."""
 from collections import Counter
 from fractions import Fraction as Q
 from functools import cache
@@ -397,6 +397,119 @@ def fixed_cover_trace(periods, fields):
             'scope':'Complete exact generic comparison-interval traces inside one fixed cover cone, with upper-shell pruning. Other directions of tie refinement, the full two-dimensional refinement fan and asymptotic growth are not counted.'}
 
 
+
+def thin_cover_controls():
+    records = []
+    for q in (5,6,7,11,17):
+        r,s,t = 2*q+1,q,q+1
+        periods = (r,s,t)
+        M,n = prod(periods),prod(m-1 for m in periods)
+        scale = 2*n+1
+        alpha,beta = t*scale**3+1,s*scale**3+scale
+        h = (r*beta*t)//(alpha*s+beta*t)
+        require(h==q, 'strict balanced arm threshold has the uniform stated value')
+        ground = frozenset((i+s*u,j+t*v,0) for i in range(s) for j in range(t)
+                           for u,v in [(u,0) for u in range(h+1)]+[(0,v) for v in range(1,r-h)])
+        gamma = 1+max(alpha*a+beta*b for a,b,c in ground)
+        weight = (alpha,beta,gamma)
+        require(len(ground)==M and {a for cost,a in shortest_representatives(periods,weight).values()}==ground,
+                'independent shortest paths confirm the exact infinite-family thin cover formula')
+        socles = [a for a in ground if all(tuple(x+(i==j) for j,x in enumerate(a)) not in ground for i in range(3))]
+        require(len(socles)==2, 'the two-arm cover has exactly two maximal monomials')
+        small_counts = [sum(a+b<r for a,b,c in ground),sum(a+c<s for a,b,c in ground),sum(b+c<t for a,b,c in ground)]
+        require(all(count<n for count in small_counts), 'every length-n subset of this cover reaches each period threshold')
+        require(M-n==q*(5*q+1), 'thin-family corank is quadratic while every cube candidate survives')
+        direct = []
+        if q==5:
+            for p in (0,2,3):
+                A = cyclotomic_model(periods,p)
+                basis = frontier_basis(A['residue'],n,weight,p)
+                border = border_certificate(basis,A['residue'],weight,p)
+                require(basis<=ground and all(max((a+b,a+c,b+c)[i] for a,b,c in basis)>=periods[i] for i in range(3)),
+                        'direct quotient arithmetic confirms a simultaneous-threshold state in the thin cover')
+                direct.append({'field':p,'standard_set':sorted(basis),'strict_border_count':len(border),
+                               'strict_border_sha256':sha256(json.dumps(border,sort_keys=True).encode()).hexdigest()})
+        records.append({'parameter':q,'periods':periods,'length':n,'cover_length':M,'corank':M-n,
+                        'strict_weight':weight,'cover_socles':sorted(socles),'below_threshold_ground_counts':small_counts,
+                        'cube_candidates':M,'candidate_to_corank_ratio':str(Q(M,M-n)),
+                        'cover_standard_set_sha256':sha256(json.dumps(sorted(ground)).encode()).hexdigest(),
+                        'direct_quotient_controls':direct,
+                        'scope':'An infinite-family obstruction to a uniform O(k) cube-only candidate bound, even when all three pair-degree thresholds are reached. Z is absent. The two-socle shell bound survives; the quotient states are planar, not a separating family.'})
+    return records
+
+
+
+def nonbox_linkage_controls(covers):
+    records = []
+    for cover in covers:
+        periods,weight = tuple(cover['periods']),tuple(cover['strict_weight'])
+        ground = frozenset(tuple(a) for a in cover['standard_set'])
+        M = len(ground)
+        socles = sorted(a for a in ground if all(tuple(x+(i==j) for j,x in enumerate(a)) not in ground for i in range(3)))
+        require(socles, 'every finite cover has at least one maximal monomial')
+        head = max(ground,key=lambda a:dot(weight,a))
+        require(head in socles, 'the norm element has a unique socle head at strict positive prices')
+        labels = list(product(*(range(m) for m in periods)))
+        index = {g:i for i,g in enumerate(labels[:-1])}
+        for p in (0,2):
+            @cache
+            def residue(a):
+                g = label(a,periods)
+                return tuple(scalar(int(i==index[g]),p) for i in range(M-1)) if g in index else (scalar(-1,p),)*(M-1)
+            # This is the ordinary quotient by the group norm, a one-dimensional ideal.
+            basis = frontier_basis(residue,M-1,weight,p)
+            require(basis==ground-{head}, 'direct norm-quotient arithmetic confirms the one-dimensional initial annihilator')
+            require(all(not scalar(sum(residue(a)[i] for a in ground),p) for i in range(M-1)),
+                    'the sum over distinct group labels vanishes, including in ramified characteristic')
+            border = border_certificate(basis,residue,weight,p)
+            records.append({'periods':periods,'field':p,'strict_weight':weight,'cover_length':M,
+                            'cover_socles':socles,'box_cover':len(socles)==1,'norm_initial_monomial':head,
+                            'initial_annihilator_dimension':1,'annihilator_of_initial_point_ideal_dimension':len(socles),
+                            'dimension_defect':len(socles)-1,'strict_border_count':len(border)})
+    return records
+
+
+
+def cube_surface_controls(covers, thin):
+    """Check the dimension-independent coordinate-boundary charging argument."""
+    grounds = [('periodic_cover',tuple(c['periods']),frozenset(tuple(a) for a in c['standard_set'])) for c in covers]
+    grounds += [('common_period_box',(q,q,q),frozenset(product(range(q),repeat=3))) for q in (3,5,7,11,17)]
+    for c in thin:
+        q = c['parameter']
+        r,s,t = c['periods']
+        ground = frozenset((i+s*u,j+t*v,0) for i in range(s) for j in range(t)
+                           for u,v in [(u,0) for u in range(q+1)]+[(0,v) for v in range(1,q+1)])
+        grounds.append(('thin_cover',tuple(c['periods']),ground))
+    records = []
+    for model,periods,ground in grounds:
+        require(all(tuple(x-(i==j) for j,x in enumerate(a)) in ground for a in ground for i,x in enumerate(a) if x),
+                'the geometric surface control is applied to a downset')
+        projections = [len({tuple(x for j,x in enumerate(a) if j!=i) for a in ground}) for i in range(3)]
+        for weight in ((3,3,3),(7,1,3),(1,7,3),(1,3,7)):
+            directions = ((1,1,-1),(1,-1,1),(-1,1,1))
+            steps = [tuple((1 if dot(weight,v)>0 else -1)*x for x in v) for v in directions]
+            negative = tuple(sum(max(-v[i],0) for v in steps) for i in range(3))
+            positive = tuple(sum(max(v[i],0) for v in steps) for i in range(3))
+            low = {a for a in ground if any(a[i]<negative[i] for i in range(3))}
+            high = {a for a in ground if tuple(x+y for x,y in zip(a,positive)) not in ground}
+            surface = low|high
+            candidates = {a for a in ground if not all(tuple(a[i]+sum(e[j]*steps[j][i] for j in range(3)) for i in range(3)) in ground
+                                                      for e in product((0,1),repeat=3))}
+            require(candidates<=surface, 'cube survivors lie in the explicit bottom/top surface union')
+            require(len(low)<=sum(x*y for x,y in zip(negative,projections)), 'bottom slices obey their projection budgets')
+            require(len(high)<=sum(x*y for x,y in zip(positive,projections)), 'diagonal top layers obey the telescoping projection budgets')
+            require(len(surface)<=3*sum(projections), 'the full sector candidate set has a uniform projection-area bound')
+            if model=='common_period_box':
+                q = periods[0]
+                require(len(candidates)==q**3-(q-3)**3 and len(candidates)<=3*(q**3-(q-1)**3),
+                        'box cube count equals the exact formula and is at most three times corank')
+            records.append({'model':model,'periods':periods,'ground_size':len(ground),'weight_sector_witness':weight,
+                            'projection_sizes':projections,'negative_spans':negative,'positive_spans':positive,
+                            'bottom_union_size':len(low),'top_union_size':len(high),'surface_union_size':len(surface),
+                            'cube_candidates':len(candidates),'projection_bound':3*sum(projections)})
+    return records
+
+
 def main():
     lattice, dual = periodic_and_dual_controls()
     index_controls = intrinsic_index_controls()
@@ -404,15 +517,21 @@ def main():
     traces = [fixed_cover_trace((3,5,7),(0,2)),fixed_cover_trace((5,7,11),(0,2))]
     require(any(len(f['distinct_states']) > 1 for t in traces for f in t['fields']),
             'a fixed original three-period cover cone has actual quotient refinements')
+    nonbox_controls = nonbox_linkage_controls(lattice)
+    thin_controls = thin_cover_controls()
+    surface_controls = cube_surface_controls(lattice,thin_controls)
     sources = ('docs/periodic_quotient_arithmetic.md','scripts/run_periodic_quotient_checks.py',
                'scripts/run_cyclotomic_price_checks.py','scripts/run_interleaving_research.py')
     report = {'schema_version':1,'command':'python3 -B scripts/run_periodic_quotient_checks.py',
-              'scope':'Exact controls for the periodic lattice cover, known dual quotient, coherent characteristic changes, monomial-pullback obstruction and complete generic line traces within fixed cover cones. Upper-shell pruning and integer-slope budgets are checked. No full refinement-fan enumeration, asymptotic separation or novelty certificate.',
+              'scope':'Exact periodic-cover, arithmetic, fixed-cover trace and candidate-filter controls. Direct norm quotients verify the nonbox socle defect. Sector-wide surface budgets, common-period box cube counts and infinite-family thin-cover formulas are checked. No unrestricted asymptotic separation, full nonbox refinement-fan count or novelty certificate.',
               'source_sha256':{p:sha256((ROOT/p).read_bytes()).hexdigest() for p in sources},
               'full_period_lattice_controls':lattice,'inverse_monomial_dual_controls':dual,
               'trivial_intrinsic_grading_controls':index_controls,
               'coherent_arithmetic_witness':arithmetic,
               'fixed_cover_trace_controls':traces,
+              'nonbox_linkage_defects':nonbox_controls,
+              'cube_surface_controls':surface_controls,
+              'thin_cover_obstructions':thin_controls,
               'summary':{'full_period_cover_prices':len(lattice),'dual_quotient_price_field_controls':len(dual),
                          'nonbox_reflection_obstructions':sum(x['nonbox_reflection_has_no_constant'] for x in dual),
                          'all_field_pair_minimal_polynomial_controls':len(index_controls),
@@ -424,6 +543,12 @@ def main():
                               'trace_states_reaching_all_periods':sum(s['all_three_thresholds_reached'] for t in traces for f in t['fields'] for s in f['distinct_states']),
                               'strict_trace_border_checks':sum(s['strict_border_count'] for t in traces for f in t['fields'] for s in f['distinct_states']),
                               'upper_shell_pruned_cover_monomials':sum(t['cover_length']-t['upper_k_shell_size'] for t in traces)})
+    report['summary'].update({'linkage_defect_field_controls':len(nonbox_controls),
+                              'positive_nonbox_defects':sum(c['dimension_defect']>0 for c in nonbox_controls),
+                              'cube_surface_sector_controls':len(surface_controls),
+                              'box_cube_formula_controls':sum(c['model']=='common_period_box' for c in surface_controls),
+                              'thin_cover_formula_controls':len(thin_controls),
+                              'thin_simultaneous_threshold_quotient_controls':sum(len(c['direct_quotient_controls']) for c in thin_controls)})
     (ROOT/'results/research/periodic_quotient_checks.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report['summary'],sort_keys=True))
 

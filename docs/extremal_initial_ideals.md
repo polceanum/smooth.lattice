@@ -2481,6 +2481,44 @@ priority and unrestricted extremal question remain unresolved. The
 next proof must control the two-dimensional refinement geometry,
 rather than infer it from these one-dimensional traces.
 
+
+## Boundary geometry and the established linkage limit
+
+The [periodic-cover continuation](periodic_quotient_arithmetic.md#the-exact-prior-art-boundary-for-box-residuals)
+now identifies the precise primary source for the old box-residual
+(RC1)--(RC3) reduction: Huneke--Ulrich's inspected Lemma 3.1 for
+linkage through regular initial monomials. The equal odd-period
+$O(n^{3/2})$ exclusion was already proved in (D10); neither fact is a
+new count in this continuation.
+
+A general downset boundary argument gives an actual sector-wide cube
+candidate bound $3\sum_i|\pi_i(E)|$. Surviving base corners lie in
+boundedly many bottom and top coordinate-fiber layers. The proof charges
+each first exit of a fixed positive step path to one fiber boundary;
+it requires no convexity or bound on the number of cover socles.
+Projection sizes cannot simply be replaced by corank. The infinite
+pairwise-coprime family $(2q+1,q,q+1)$ has explicit two-arm planar
+covers of size $M=\Theta(q^3)$, corank $k=\Theta(q^2)$, and no
+local cube exclusions, although every length-$n$ quotient standard set
+inside them reaches all three pair-degree thresholds. These examples
+are planar and their two-socle upper-shell bound survives. In general,
+all states omitting a variable number only $O(n\log(n+1))$: restrict
+to the corresponding colength-$n$ planar elimination quotient and apply
+the existing all-field planar theorem, then sum over three variables. They refute
+the cube-only shortcut, not the joint filter or a genuinely
+three-variable count.
+
+For every nonbox full group cover, degeneration already obstructs
+transferring global residual fans: the initial annihilator of the
+augmentation ideal has dimension one, whereas the annihilator of its
+initial ideal is the monomial socle of dimension $\sigma>1$.
+The exact defect is $\sigma-1$, over every field. This isolates a
+structural failure of the established box linkage argument; it is not
+an assertion that every residual or every nonbox cone has the same
+fan complexity. Independent norm quotients, corner tests and shortest
+paths support these proofs. The unrestricted extremal and priority
+requirements remain unchanged and unachieved.
+
 ## Reproduction
 
 From the repository root:
