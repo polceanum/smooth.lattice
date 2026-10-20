@@ -624,6 +624,253 @@ for genuinely three-variable states and the unrestricted extremal goal
 remain open. The exact box linkage input is published prior art; there
 is no new sharp exponent, separating family or completed-paper claim.
 
+
+## A socle-free upper-shell bound
+
+The number of maximal monomials in (Q6) can be removed. For every fixed
+$d\ge2$, every nonempty finite downset $E\subset\mathbb N_0^d$ of size
+$M$, and every integer $1\le k\le M$, put
+
+$$
+u_E(a)=|\{b\in E:b\ge a\}|,\qquad
+U_k(E)=\{a\in E:u_E(a)\le k\}.
+$$
+
+Then
+
+$$
+|U_k(E)|\le C_d M^{(d-1)/d} k^{1/d}
+                    (1+\log(M+1))^{(d-1)/d}.             \tag{Q16}
+$$
+
+This is an internally proved combinatorial bound and a supporting tool
+for the refinement problem. It does not count fan regions or establish
+novelty of a published theorem. The proof uses elementary dyadic covering,
+coordinate-fiber boundaries and Hölder's inequality. The logarithmic
+exponent in this particular $M,k$ form is necessary uniformly; an explicit
+monomial-algebra family below shows why. This is not a claim of sharpness
+at every fixed pair $(M,k)$; for instance $k=1$ also admits the classical
+log-free socle packing bound.
+
+### A small outer cover with bounded total volume
+
+Use the integer intervals
+$I_j=\{2^j-1,\ldots,2^{j+1}-2\}$, of size $2^j$, and their
+product cells. Let $\mathcal J$ be the indices of cells meeting $E$,
+and $\mathcal A$ its coordinatewise maximal indices. If $j\in\mathcal J$,
+its lower corner $(2^{j_i}-1)_i$ belongs to $E$. Its anchored divisor
+box has $2^{\sum j_i}$ points, so $\sum j_i\le L=\lfloor\log_2M\rfloor$.
+Maximal indices with the same first $d-1$ coordinates cannot differ in
+the last. Hence
+
+$$
+m:=|\mathcal A|\le\binom{L+d-1}{d-1}.
+$$
+
+For each $j\in\mathcal A$, take the **outer** anchored box
+$B_j=\prod_i\{0,\ldots,2^{j_i+1}-2\}$, with volume $V_j$.
+These boxes cover $E$, since any occupied cell lies below a maximal
+occupied cell. They need not be contained in $E$.
+
+Their total volume nevertheless satisfies
+
+$$
+\sum_{j\in\mathcal A} V_j\le8^dM.                        \tag{Q17}
+$$
+
+To see this, let $h_i=\max(j_i-1,0)$. The whole predecessor cell
+$\prod_i I_{h_i}$ lies below the occupied cell's lower corner and is
+therefore inside $E$. Each outer side is at most four times the
+corresponding predecessor-cell side, so $V_j\le4^d\prod_i|I_{h_i}|$.
+Different predecessor cells are disjoint, and clamping the indices zero
+and one can repeat any cell at most $2^d$ times. Summing proves (Q17).
+This total-volume control matters: covering by polylogarithmically many
+boxes of volume $O(M)$ separately would lose an extra logarithmic factor.
+
+### An adaptive integer exit step
+
+Let a downset $F$ lie in a box with integer sides $b_1,\ldots,b_d$
+and volume $V=\prod_i b_i$. Set
+
+$$
+t=(k/V)^{1/d},\qquad h_i=\lfloor tb_i\rfloor.
+$$
+
+If $a+h\in F$, the entire integer box $[a,a+h]$ lies in $F$, with
+$\prod_i(h_i+1)>t^dV=k$ elements. Thus $U_k(F)$ lies in the exit
+boundary $\{a\in F:a+h\notin F\}$. Move by $h_i$ positive unit
+steps in each coordinate. The first-exit charge used in (Q12) gives
+
+$$
+|U_k(F)|\le\sum_i h_i\prod_{j\ne i}b_j
+ \le d k^{1/d}V^{(d-1)/d}.                               \tag{Q18}
+$$
+
+Zero steps in thin coordinates are allowed and are essential: rounding
+every side upward would add a boundary term as large as $V$. The argument
+also works if $k\ge V$, when the bound may simply be trivial.
+
+Apply (Q18) to $F_j=E\cap B_j$. Each original shell point in $B_j$
+has at most $k$ upper points in $F_j$, so
+
+$$
+|U_k(E)|\le d k^{1/d}\sum_j V_j^{(d-1)/d}
+ \le d k^{1/d}m^{1/d}\Bigl(\sum_jV_j\Bigr)^{(d-1)/d}.
+$$
+
+Equations (Q17) and the bound on $m$ prove (Q16), including its
+uniformity over the shape and socle count of $E$.
+
+### The logarithm cannot be removed in this form
+
+For $L\ge0$, define the dyadic downset
+
+$$
+D_L=\{a\ge0:\sum_i\lfloor\log_2(a_i+1)\rfloor\le L\},
+\qquad H=2^L.
+$$
+
+Its exact cardinality and top-cell mass are
+
+$$
+M_L=\sum_{s=0}^L2^s\binom{s+d-1}{d-1},\qquad
+T_L=2^L\binom{L+d-1}{d-1},\qquad T_L\le M_L<2T_L.       \tag{Q19}
+$$
+
+If $a$ belongs to a cell indexed by $j$ with $\sum j_i=L$, every
+$b\in D_L$ above it stays in that same cell: its dyadic indices are
+at least $j$ coordinatewise and cannot have larger total sum. There are
+only $2^L=H$ points in the cell, so $u_{D_L}(a)\le H$.
+Consequently
+
+$$
+|U_H(D_L)|\ge T_L>M_L/2.
+$$
+
+For fixed $d$, $M_L=\Theta_d(H L^{d-1})$ and
+$\log M_L=\Theta_d(L)$. Any uniform estimate with the powers
+$M^{(d-1)/d}k^{1/d}$ and a factor $(1+\log M)^\beta$ therefore
+requires $\beta\ge(d-1)/d$. The witness is a realizable monomial
+quotient over every field, but it has only one initial ideal. Its shell
+size is not an extremal fan lower bound. No claim that $D_L$ is a full
+periodic group cover is used.
+
+### Algebraic and fixed-cover consequences
+
+For any finite quotient algebra $A=K[x_1,\ldots,x_d]/I$ with a
+monomial downset basis $E$, multiplication by $x^a$, $a\in E$, has
+rank at least $u_E(a)$. Indeed the distinct standard products
+$x^{a+b}$, for $b\in E$ with $a+b\in E$, are independent, and
+$b\mapsto a+b$ bijects this set with the upper interval above $a$.
+Thus (Q16) bounds how many monomials in **any** such basis can have
+multiplication rank at most $k$, uniformly over fields and coefficients.
+For a monomial quotient rank equals $u_E(a)$, and (Q19) supplies the
+logarithmic obstruction in this algebraic formulation too. The assertion
+is about basis monomials, not the span of all arbitrary elements of
+small multiplication rank.
+
+For a fixed three-dimensional periodic cover of size $M$ and corank $k$,
+all actual omissions lie in the same coefficient-independent set
+
+$$
+|U_k(E)|=O\!\left(M^{2/3}k^{1/3}\log^{2/3}(M+1)\right).  \tag{Q20}
+$$
+
+For comparable periods tending to infinity, $k=O(M^{2/3})$, so this
+is $O(M^{8/9}\log^{2/3}(M+1))=o(M)$, without a restriction on prices
+inside the cover cone. More generally it is $o(M)$ whenever
+$(k/M)\log^2(M+1)\to0$. Restricting the known inverse-label maximum
+basis problem to this shell preserves its optimum at every price in
+the cover cone. Given the shell, greedy selection uses at most its
+cardinality in independence tests. This is a reduction in coefficient
+rank tests, not a sublinear construction of the cover or an unproved
+overall running-time improvement. The present checker uses direct
+counts; standard orthant-counting methods are a separate implementation
+choice. The joint cube/shell ground can only be smaller.
+
+The full two-dimensional refinement count remains missing. A sublinear
+candidate list alone gives neither a sharp state count nor a separating
+family, and the cover itself varies across prices. Every original
+extremal and publication criterion remains in force.
+
+
+### General downset geometry alone cannot improve the power
+
+There is an obstruction even after combining the shell with the actual
+cube test and retaining all three variables. For integers $R\ge2,L\ge1$,
+put
+
+$$
+E_{R,L}=\{(a,b,c)\ge0:a+\lfloor b/L\rfloor+\lfloor c/L\rfloor<R\}.
+$$
+
+This is a three-dimensional monomial downset containing $X,Y,Z$, with
+
+$$
+M=L^2\binom{R+2}{3},\qquad k=L^2.
+$$
+
+Its top $X$ layer consists of $a=R-i-j-1$, where
+$i=\lfloor b/L\rfloor$, $j=\lfloor c/L\rfloor$, $i+j<R$.
+It has $T=L^2\binom{R+1}{2}$ points. An upper point of $E_{R,L}$
+above such a point must keep $a,i,j$ fixed; its remaining $b,c$ rectangle
+has at most $L^2=k$ points. Thus every top-layer point is in $U_k(E)$.
+In the all-positive cube sign sector, the eight corners include
+$a+2e_X$, which is outside the downset at every top-layer point.
+All $T$ points therefore survive the **joint** shell/cube filter.
+
+As $R\to\infty$,
+
+$$
+T=\Theta(M^{2/3}k^{1/3}).                               \tag{Q21}
+$$
+
+Taking $L=R^3$ gives $k=\Theta(M^{2/3})$ and
+$T=\Theta(M^{8/9})$, the same power as the upper-shell bound at the
+periodic candidate's natural corank scale. Hence general downset
+geometry, even with all variables present and both filters imposed,
+cannot give an $O(k\,\operatorname{polylog}M)$ candidate bound or a
+smaller uniform power of $M$ at that scale.
+
+These examples are ordinary monomial quotients and have one initial
+ideal. They are **not** asserted to be standard domains of a periodic
+group cover. Thus this is not a counterexample to a bound using the
+actual period labels, tiling and representative-cost constraints.
+It pinpoints the information the next proof must use beyond abstract
+shell and boundary geometry.
+
+### Prior comparison and exact checks
+
+Related polylogarithmic aspect families are established in
+[van der Hoeven--Lecerf, inspected PDF, Lemma 4.1, Lemma 4.2 and Corollary 4.3](https://www.texmacs.org/joris/genamp/genamp.pdf),
+Sections 4.1--4.2, pp. 8--10. Those statements and proofs were reopened:
+they balance shifted exponents for heterogeneous quasi-reduction.
+They are relevant prior art for the dyadic method, not a checked
+statement of this upper-interval distribution estimate. A complete
+comparison with discrete boundary and multiplication-rank bounds is
+still required; unsuccessful searches do not establish novelty.
+[Hausbrandt--Ruzika v2, Observation 3.1, Theorems 3.2/3.6 and Corollary 3.4](https://arxiv.org/html/2503.08178v2#S3)
+were also rechecked. Their general pair-comparison arrangement gives
+$O(s^4)$ regions on a ground of $s$ elements with two price parameters.
+Putting $s=O(M^{8/9}\log^{2/3}M)$ in that bound does not improve the
+current unrestricted count, even before summing cover cones. The shell
+reduction still needs a quotient-sensitive two-dimensional counting
+argument.
+
+The checker independently constructs the outer boxes and their fully
+contained predecessor cells, computes every upper interval by dominance
+counts, and compares it to the rank of the monomial multiplication
+matrix through its distinct nonzero columns. Adaptive steps are computed
+by exact integer roots and checked against actual exit boundaries.
+All thresholds are tested for all 377 downsets of lengths at most nine
+in dimension two, seven in dimension three, and five in dimension four,
+giving 2,211 threshold checks and 4,161 adaptive box-boundary checks. Separate periodic covers and
+dyadic crosses verify the same mechanism; the infinite family has exact
+integer cardinality formulas. Five staircase-block fixtures directly check
+the joint shell/cube obstruction with all three variables, and five
+additional exact formulas check its natural-corank scale. These data support the uniform proof,
+not a completed priority audit or the main goal.
+
 ## Exact reproduction
 
 ```bash
@@ -643,4 +890,6 @@ and main endpoint remain incomplete. The residual continuation adds direct
 norm-quotient checks of nonbox socle defects, sector-wide projection
 budgets and an infinite thin-cover obstruction to cube-only pruning.
 The exact box linkage precedent and earlier symmetric-family exclusion
-are cross-referenced rather than claimed again.
+are cross-referenced rather than claimed again. The shell continuation
+adds exact dyadic covers, integer exit steps, principal multiplication
+counts and logarithmic-obstruction formulas.

@@ -209,7 +209,13 @@ torsion size alone is therefore insufficient for a counting separation.
 Exact traces now verify thirteen quotient states inside a single fixed
 cover cone for `(5,7,11)`, including states that cross all three period
 thresholds. A coefficient-independent upper-shell rule prunes candidate
-omissions. These finite line traces do not bound the full refinement fan.
+omissions. A socle-free shell theorem now bounds their common candidate
+set by `O(M^(2/3) k^(1/3) log(M+1)^(2/3))`, where `M` is cover length
+and `k` its quotient corank. For comparable large periods this is
+`O(M^(8/9) log(M+1)^(2/3))`. The same theorem bounds low-rank basis
+monomial multipliers in arbitrary finite quotient algebras; dyadic
+monomial quotients show that its logarithm cannot be removed uniformly.
+These bounds and finite line traces do not count the full refinement fan.
 Local eight-column cube circuits provide another field-independent
 pruning rule, including in characteristic two. A uniform boundary-layer
 argument now bounds its survivors by three times the sum of the cover

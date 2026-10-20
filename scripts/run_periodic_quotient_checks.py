@@ -5,7 +5,7 @@ from fractions import Fraction as Q
 from functools import cache
 from hashlib import sha256
 from itertools import combinations, product
-from math import lcm, prod
+from math import comb, lcm, prod
 from pathlib import Path
 import json
 
@@ -13,6 +13,7 @@ from run_cyclotomic_price_checks import (border_certificate, circuit_vector,
     cyclotomic_model, frontier_basis, insert, label, scalar, shortest_representatives,
     tensor)
 from run_interleaving_research import minimal_excluded_border
+from run_nested_jet_checks import downsets
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -510,6 +511,141 @@ def cube_surface_controls(covers, thin):
     return records
 
 
+
+def integer_root(value, degree):
+    low, high = 0, 1
+    while high**degree <= value:
+        high *= 2
+    while high-low > 1:
+        middle = (low+high)//2
+        if middle**degree <= value:
+            low = middle
+        else:
+            high = middle
+    return low
+
+
+def dyadic_outer_cover(ground):
+    d,M = len(next(iter(ground))),len(ground)
+    indices = {tuple((x+1).bit_length()-1 for x in a) for a in ground}
+    maximal = sorted(j for j in indices if not any(j!=h and all(x<=y for x,y in zip(j,h)) for h in indices))
+    require(len(maximal)<=comb(M.bit_length()-1+d-1,d-1), 'maximal dyadic cells obey the logarithmic antichain bound')
+    predecessors,boxes = Counter(),[]
+    for j in maximal:
+        lower = tuple(2**x-1 for x in j)
+        require(lower in ground and 2**sum(j)<=M, 'every occupied dyadic cell has its full anchored predecessor box inside the downset')
+        h = tuple(max(x-1,0) for x in j)
+        predecessor = tuple(product(*(range(2**x-1,2**(x+1)-1) for x in h)))
+        require(set(predecessor)<=ground, 'each half-scale predecessor cell is completely inside the ground')
+        predecessors[h] += 1
+        sides = tuple(2**(x+1)-1 for x in j)
+        require(prod(sides)<=4**d*len(predecessor), 'outer box volume is bounded by its half-scale interior cell')
+        boxes.append(sides)
+    require(max(predecessors.values())<=2**d, 'clamped predecessor indices have bounded multiplicity')
+    require(sum(prod(b) for b in boxes)<=8**d*M, 'the logarithmic outer cover has total volume O_d(M)')
+    require(all(any(all(x<y for x,y in zip(a,b)) for b in boxes) for a in ground), 'all original monomials are covered')
+    return maximal,boxes
+
+
+def shell_volume_controls(covers):
+    records,aggregates,sharpness = [],[],[]
+    def check(ground, ks, keep):
+        d,M = len(next(iter(ground))),len(ground)
+        maximal,boxes = dyadic_outer_cover(ground)
+        # Direct dominance counts and monomial multiplication images are independent constructions.
+        counts = {a:sum(all(x<=y for x,y in zip(a,b)) for b in ground) for a in ground}
+        require(all(counts[a]==sum(tuple(x+y for x,y in zip(a,b)) in ground for b in ground) for a in ground),
+                'principal monomial multiplication rank equals the upper-interval count')
+        entries = []
+        total_volume = sum(prod(b) for b in boxes)
+        for k in ks:
+            shell = {a for a,u in counts.items() if u<=k}
+            budget,box_rows = 0,[]
+            for sides in boxes:
+                V = prod(sides)
+                steps = tuple(integer_root((k*x**d)//V,d) for x in sides)
+                require(prod(x+1 for x in steps)>k, 'adaptive integer box step has more than k divisors')
+                require(all(x**d*V<=k*y**d for x,y in zip(steps,sides)), 'all real-root step budgets are verified by integer powers')
+                inside = {a for a in ground if all(x<y for x,y in zip(a,sides))}
+                boundary = {a for a in inside if tuple(x+y for x,y in zip(a,steps)) not in inside}
+                require(shell & inside <= boundary, 'the actual shell in each box lies in its computed exit boundary')
+                charge = sum(h*(V//b) for h,b in zip(steps,sides))
+                require(len(boundary)<=charge, 'coordinate-fiber exit charging obeys its exact integer budget')
+                budget += len(boundary)
+                if keep:
+                    box_rows.append({'sides':sides,'integer_steps':steps,'exit_boundary_size':len(boundary),'fiber_charge':charge})
+            require(len(shell)<=budget, 'the box union covers every low-rank monomial')
+            require(len(shell)**d<=d**d*k*len(boxes)*total_volume**(d-1), 'the summed Holder bound is checked without floating roots')
+            entries.append({'corank_threshold':k,'shell_size':len(shell),'exit_boundary_sum':budget,'box_checks':box_rows})
+        if keep:
+            return {'dimension':d,'length':M,'ground':sorted(ground),'maximal_dyadic_indices':maximal,
+                    'outer_box_sides':boxes,'total_outer_volume':total_volume,
+                    'upper_interval_histogram':dict(sorted(Counter(counts.values()).items())), 'threshold_checks':entries}
+        return len(entries),sum(len(boxes) for k in ks)
+    for d,maximum in ((2,9),(3,7),(4,5)):
+        models,thresholds,box_checks = 0,0,0
+        digest = sha256()
+        for n in range(1,maximum+1):
+            for ground in downsets(n,d):
+                t,b = check(ground,range(1,n+1),False)
+                models += 1; thresholds += t; box_checks += b
+                digest.update(json.dumps(sorted(ground)).encode())
+        aggregates.append({'dimension':d,'maximum_length':maximum,'all_downsets':models,
+                           'all_corank_threshold_checks':thresholds,'adaptive_box_boundary_checks':box_checks,
+                           'grounds_sha256':digest.hexdigest()})
+    for cover in covers:
+        ground = frozenset(tuple(a) for a in cover['standard_set'])
+        M = len(ground)
+        k = M-prod(m-1 for m in cover['periods'])
+        result = check(ground,sorted({1,k,max(1,M//2),M}),True)
+        result.update({'model':'periodic_cover','periods':cover['periods'],'quotient_corank':k})
+        records.append(result)
+    for d in (2,3,4):
+        for L in range(5):
+            ground = frozenset(tuple(a) for j in product(range(L+1),repeat=d) if sum(j)<=L
+                               for a in product(*(range(2**h-1,2**(h+1)-1) for h in j)))
+            M = sum(2**h*comb(h+d-1,d-1) for h in range(L+1))
+            H,top = 2**L,2**L*comb(L+d-1,d-1)
+            require(len(ground)==M and top<=M<2*top, 'dyadic-cross length and top-cell formulas agree with the enumerated ground')
+            result = check(ground,sorted({1,H,M}),True)
+            actual = next(c['shell_size'] for c in result['threshold_checks'] if c['corank_threshold']==H)
+            require(actual>=top, 'at least half the dyadic-cross algebra consists of monomials of multiplication rank at most 2^L')
+            result.update({'model':'dyadic_cross','dyadic_level':L,'top_cell_mass':top})
+            records.append(result)
+        for L in (8,16,32,64):
+            H,top = 2**L,2**L*comb(L+d-1,d-1)
+            M = sum(2**h*comb(h+d-1,d-1) for h in range(L+1))
+            require(top<=M<2*top, 'the infinite-family exact formulas retain a positive top-cell proportion')
+            sharpness.append({'dimension':d,'dyadic_level':L,'length':M,'rank_threshold':H,'guaranteed_shell_size':top,
+                              'powered_no_log_ratio':str(Q(top**d,M**(d-1)*H))})
+    joint,formulas = [],[]
+    directions = ((1,1,-1),(1,-1,1),(-1,1,1))
+    for R,L in ((2,1),(2,2),(3,2),(4,3),(5,2)):
+        ground = frozenset((a,b,c) for b in range(R*L) for c in range(R*L)
+                           for a in range(max(0,R-b//L-c//L)))
+        top = frozenset((R-b//L-c//L-1,b,c) for b in range(R*L) for c in range(R*L) if b//L+c//L<R)
+        M,k,T = L*L*comb(R+2,3),L*L,L*L*comb(R+1,2)
+        require(len(ground)==M and len(top)==T, 'staircase-block length and top-layer formulas')
+        require(all(tuple(int(i==j) for j in range(3)) in ground for i in range(3)), 'every obstruction uses all three coordinate generators')
+        for a in top:
+            upper = sum(all(x<=y for x,y in zip(a,b)) for b in ground)
+            images = sum(tuple(x+y for x,y in zip(a,b)) in ground for b in ground)
+            require(upper==images and upper<=k, 'every top-layer monomial has multiplication rank at most k')
+            require(not all(tuple(a[i]+sum(e[j]*directions[j][i] for j in range(3)) for i in range(3)) in ground
+                            for e in product((0,1),repeat=3)), 'every top-layer monomial survives the actual oriented cube test')
+        joint.append({'height':R,'block_side':L,'length':M,'rank_threshold':k,'guaranteed_joint_candidates':T,
+                      'ground':sorted(ground),'top_layer':sorted(top),
+                      'powered_scale_ratio':str(Q(T**3,M*M*k)),
+                      'scope':'An arbitrary-downset obstruction using all three variables; it is a monomial quotient, not an asserted periodic group cover or a fan-count lower bound.'})
+    for R in (2,4,8,16,32):
+        L = R**3
+        M,k,T = L*L*comb(R+2,3),L*L,L*L*comb(R+1,2)
+        formulas.append({'height':R,'block_side':L,'length':M,'rank_threshold':k,'guaranteed_joint_candidates':T,
+                         'powered_scale_ratio':str(Q(T**3,M*M*k))})
+    return {'exhaustive_downsets':aggregates,'explicit_controls':records,'infinite_family_integer_formulas':sharpness,
+            'joint_cube_shell_obstructions':joint,'joint_cube_shell_integer_formulas':formulas}
+
+
 def main():
     lattice, dual = periodic_and_dual_controls()
     index_controls = intrinsic_index_controls()
@@ -520,10 +656,12 @@ def main():
     nonbox_controls = nonbox_linkage_controls(lattice)
     thin_controls = thin_cover_controls()
     surface_controls = cube_surface_controls(lattice,thin_controls)
+    shell_controls = shell_volume_controls(lattice)
     sources = ('docs/periodic_quotient_arithmetic.md','scripts/run_periodic_quotient_checks.py',
-               'scripts/run_cyclotomic_price_checks.py','scripts/run_interleaving_research.py')
+               'scripts/run_cyclotomic_price_checks.py','scripts/run_interleaving_research.py',
+               'scripts/run_nested_jet_checks.py')
     report = {'schema_version':1,'command':'python3 -B scripts/run_periodic_quotient_checks.py',
-              'scope':'Exact periodic-cover, arithmetic, fixed-cover trace and candidate-filter controls. Direct norm quotients verify the nonbox socle defect. Sector-wide surface budgets, common-period box cube counts and infinite-family thin-cover formulas are checked. No unrestricted asymptotic separation, full nonbox refinement-fan count or novelty certificate.',
+              'scope':'Exact periodic-cover, arithmetic, fixed-cover trace and candidate-filter controls. Direct norm quotients verify the nonbox socle defect. Sector-wide surface budgets, thin-cover obstructions, socle-free dyadic shell bounds and their logarithmic obstruction are checked. No unrestricted asymptotic separation, full nonbox refinement-fan count or novelty certificate.',
               'source_sha256':{p:sha256((ROOT/p).read_bytes()).hexdigest() for p in sources},
               'full_period_lattice_controls':lattice,'inverse_monomial_dual_controls':dual,
               'trivial_intrinsic_grading_controls':index_controls,
@@ -532,6 +670,7 @@ def main():
               'nonbox_linkage_defects':nonbox_controls,
               'cube_surface_controls':surface_controls,
               'thin_cover_obstructions':thin_controls,
+              'socle_free_shell_controls':shell_controls,
               'summary':{'full_period_cover_prices':len(lattice),'dual_quotient_price_field_controls':len(dual),
                          'nonbox_reflection_obstructions':sum(x['nonbox_reflection_has_no_constant'] for x in dual),
                          'all_field_pair_minimal_polynomial_controls':len(index_controls),
@@ -549,6 +688,13 @@ def main():
                               'box_cube_formula_controls':sum(c['model']=='common_period_box' for c in surface_controls),
                               'thin_cover_formula_controls':len(thin_controls),
                               'thin_simultaneous_threshold_quotient_controls':sum(len(c['direct_quotient_controls']) for c in thin_controls)})
+    report['summary'].update({'socle_free_exhaustive_downsets':sum(c['all_downsets'] for c in shell_controls['exhaustive_downsets']),
+                              'socle_free_exhaustive_thresholds':sum(c['all_corank_threshold_checks'] for c in shell_controls['exhaustive_downsets']),
+                              'socle_free_adaptive_box_checks':sum(c['adaptive_box_boundary_checks'] for c in shell_controls['exhaustive_downsets']),
+                              'socle_free_explicit_fixtures':len(shell_controls['explicit_controls']),
+                              'dyadic_sharpness_formula_controls':len(shell_controls['infinite_family_integer_formulas']),
+                              'joint_shell_cube_downset_controls':len(shell_controls['joint_cube_shell_obstructions']),
+                              'joint_shell_cube_formula_controls':len(shell_controls['joint_cube_shell_integer_formulas'])})
     (ROOT/'results/research/periodic_quotient_checks.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report['summary'],sort_keys=True))
 

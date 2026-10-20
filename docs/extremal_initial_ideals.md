@@ -2519,6 +2519,51 @@ fan complexity. Independent norm quotients, corner tests and shortest
 paths support these proofs. The unrestricted extremal and priority
 requirements remain unchanged and unachieved.
 
+
+## A uniform upper-shell estimate without a socle factor
+
+The [new shell proof](periodic_quotient_arithmetic.md#a-socle-free-upper-shell-bound)
+gives, for every finite downset $E\subset\mathbb N_0^d$ of size $M$,
+
+$$
+|\{a\in E:|E\cap(a+\mathbb N_0^d)|\le k\}|
+ =O_d\!\left(M^{(d-1)/d}k^{1/d}\log^{(d-1)/d}(M+1)\right).
+$$
+
+Maximal occupied dyadic cells supply $O_d(\log^{d-1}(M+1))$ outer
+boxes with total volume $O_d(M)$. An adaptive integer exit step bounds
+the shell inside a box of volume $V$ by $d k^{1/d}V^{(d-1)/d}$;
+Hölder sums these budgets. This removes the unknown number of maximal
+monomials from the previous shell bound. Dyadic-cross monomial algebras
+have at least half their basis at multiplication rank at most $2^L$
+while their length is $\Theta_d(2^L L^{d-1})$. Thus the displayed
+logarithmic exponent is necessary for these $M,k$ powers, though the
+estimate is not claimed sharp at every pair of parameters.
+
+The same bound controls basis monomials of multiplication rank at most
+$k$ in every finite quotient with a downset basis: its standard products
+already give at least the upper-interval rank. For a fixed comparable
+three-period cover, all omissions therefore lie in one common set of
+$O(M^{8/9}\log^{2/3}(M+1))$ monomials throughout the cover cone,
+independently of fields and prices. Given that set, this bounds greedy
+independence-oracle calls; constructing the cover and shell remains a
+separate cost. The logarithmic witness is a monomial quotient with one
+initial ideal and is not a fan-count separation.
+
+A staircase-block monomial family also has
+$\Theta(M^{8/9})$ surviving **joint** shell/cube candidates at corank
+$\Theta(M^{2/3})$, while containing all three variables. Thus a smaller
+power cannot follow from arbitrary downset geometry alone. These
+one-initial monomial quotients are not asserted periodic group covers;
+the next improvement needs their actual tiling or label-cost constraints.
+
+This is a uniform supporting theorem and an algebraic consequence, not
+the requested unrestricted extremal advance. Related dyadic weights in
+van der Hoeven--Lecerf and the general parametric-matroid arrangement
+in Hausbrandt--Ruzika are explicitly compared. Neither supplies the
+missing quotient-specific two-dimensional count. Exact priority and all
+original success criteria remain open.
+
 ## Reproduction
 
 From the repository root:
