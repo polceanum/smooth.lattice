@@ -204,9 +204,15 @@ For [two-part hypersurface truncations](docs/hypersurface_truncations.md),
 an exact homogeneous-initial formula now retains the powers created by
 propagating relations. A free-module reduction preserves every original
 monomial rank; one explicit cubic has sparse commuting operators using
-`O(n)` stored coefficients. Its three outer cones are classified, while
-the remaining positive triangle still needs a uniform count. The rank
-reduction and bounded checks supply no asymptotic fan or priority claim.
+`O(n)` stored coefficients. A simpler monic model now works over the
+integers and in every characteristic. Monic integer border certificates
+give its complete positive fans at eight specified cutoffs, through
+length 225. Each tested ordered region is covered by cones incident to
+one boundary ray. An explicit endpoint inequality would give a linear
+fan bound if proved uniformly; that proof is still missing. The cubic
+is the classical Markoff surface after a sign change, so its existing
+symmetries are proof tools rather than a new surface construction.
+These finite certificates give no unrestricted asymptotic or priority claim.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count

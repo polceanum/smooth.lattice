@@ -12,7 +12,21 @@
     "cyclic_free_basis_vectors": 880,
     "independent_macaulay_relations": 200,
     "independent_full_kernel_equalities": 16,
-    "saved_original_basis_replays": 30
+    "saved_original_basis_replays": 30,
+    "integral_operator_columns": 1320,
+    "integral_independent_macaulay_relations": 500,
+    "integral_independent_full_kernel_equalities": 40,
+    "old_and_integral_column_equalities": 1740,
+    "whole_sector_normal_checks": 8339,
+    "boundary_integer_border_relations": 1069,
+    "boundary_integer_tail_coefficients": 3399,
+    "boundary_integer_quotient_witness_terms": 6066,
+    "original_integer_border_relations": 1069,
+    "original_integer_tail_coefficients": 17082,
+    "original_integer_quotient_witness_terms": 18311,
+    "all_field_complete_positive_fans": 8,
+    "certified_ordered_central_sectors": 42,
+    "complete_positive_fan_cells": 252
   },
   "homogeneous_initial_formula": {
     "counts": {
@@ -2174,13 +2188,7887 @@
     ],
     "scope": "Replay existing complete fans in an independently constructed algebra. No larger fan search or extrapolated asymptotic count."
   },
+  "integral_two_channel_rank_model": {
+    "counts": {
+      "integral_operator_columns": 1320,
+      "integral_independent_macaulay_relations": 500,
+      "integral_independent_full_kernel_equalities": 40,
+      "old_and_integral_column_equalities": 1740
+    },
+    "fixtures": [
+      {
+        "cutoff": 2,
+        "z_square_coefficient": 0,
+        "length": 9,
+        "coefficient_ring": "Z",
+        "maximum_operator_column_support": 1
+      },
+      {
+        "cutoff": 2,
+        "z_square_coefficient": 1,
+        "length": 9,
+        "coefficient_ring": "Z",
+        "maximum_operator_column_support": 2
+      },
+      {
+        "cutoff": 3,
+        "z_square_coefficient": 0,
+        "length": 16,
+        "coefficient_ring": "Z",
+        "maximum_operator_column_support": 2
+      },
+      {
+        "cutoff": 3,
+        "z_square_coefficient": 1,
+        "length": 16,
+        "coefficient_ring": "Z",
+        "maximum_operator_column_support": 3
+      },
+      {
+        "cutoff": 4,
+        "z_square_coefficient": 0,
+        "length": 25,
+        "coefficient_ring": "Z",
+        "maximum_operator_column_support": 2
+      },
+      {
+        "cutoff": 4,
+        "z_square_coefficient": 1,
+        "length": 25,
+        "coefficient_ring": "Z",
+        "maximum_operator_column_support": 3
+      },
+      {
+        "cutoff": 6,
+        "z_square_coefficient": 0,
+        "length": 49,
+        "coefficient_ring": "Z",
+        "maximum_operator_column_support": 2
+      },
+      {
+        "cutoff": 6,
+        "z_square_coefficient": 1,
+        "length": 49,
+        "coefficient_ring": "Z",
+        "maximum_operator_column_support": 3
+      },
+      {
+        "cutoff": 10,
+        "z_square_coefficient": 0,
+        "length": 121,
+        "coefficient_ring": "Z",
+        "maximum_operator_column_support": 2
+      },
+      {
+        "cutoff": 10,
+        "z_square_coefficient": 1,
+        "length": 121,
+        "coefficient_ring": "Z",
+        "maximum_operator_column_support": 3
+      }
+    ],
+    "scope": "A classical monic-division basis gives a smaller integral model. Full independent Macaulay kernels cover both cubics over Q and F_2,F_3,F_5,F_101; explicit column maps preserve the previous six-channel model. No cost-ray or new asymptotic theorem follows from this basis alone."
+  },
+  "all_field_cubic_boundary_certificates": {
+    "counts": {
+      "whole_sector_normal_checks": 8339,
+      "boundary_integer_border_relations": 1069,
+      "boundary_integer_tail_coefficients": 3399,
+      "boundary_integer_quotient_witness_terms": 6066,
+      "original_integer_border_relations": 1069,
+      "original_integer_tail_coefficients": 17082,
+      "original_integer_quotient_witness_terms": 18311,
+      "all_field_complete_positive_fans": 8,
+      "certified_ordered_central_sectors": 42,
+      "complete_positive_fan_cells": 252
+    },
+    "fixtures": [
+      {
+        "cutoff": 3,
+        "length": 16,
+        "coefficient_ring": "Z",
+        "valid_over_every_field": true,
+        "exact_interval_walk_step": "1/640",
+        "complete_positive_fan_cells": 6,
+        "ordered_central_sectors": [
+          {
+            "lambda_interval": [
+              "0",
+              "1"
+            ],
+            "strict_weight": [
+              "5/2",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                1,
+                3
+              ],
+              [
+                0,
+                2,
+                2
+              ],
+              [
+                0,
+                3,
+                1
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                1,
+                0,
+                3
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                3,
+                0
+              ],
+              [
+                2,
+                0,
+                1
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 3,
+            "lambda_lower_facet_witnesses": [
+              [
+                2,
+                -2,
+                0
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -1,
+                1,
+                1
+              ]
+            ],
+            "original_normal_count": 5,
+            "original_normals_sha256": "1eda0c8d704075e9b2b02f0ad0e6935e7ba42260ff91c88185b0986bcecc16c8",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "0",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  2,
+                  -2,
+                  0
+                ]
+              },
+              {
+                "lambda": "1",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -1,
+                  1,
+                  1
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 11
+          }
+        ]
+      },
+      {
+        "cutoff": 4,
+        "length": 25,
+        "coefficient_ring": "Z",
+        "valid_over_every_field": true,
+        "exact_interval_walk_step": "1/1250",
+        "complete_positive_fan_cells": 12,
+        "ordered_central_sectors": [
+          {
+            "lambda_interval": [
+              "0",
+              "1/3"
+            ],
+            "strict_weight": [
+              "13/6",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                5
+              ],
+              [
+                0,
+                1,
+                4
+              ],
+              [
+                0,
+                2,
+                3
+              ],
+              [
+                0,
+                3,
+                1
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                1,
+                0,
+                4
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                4,
+                0
+              ],
+              [
+                2,
+                0,
+                2
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                1
+              ],
+              [
+                3,
+                1,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 6,
+            "lambda_lower_facet_witnesses": [
+              [
+                2,
+                -2,
+                0
+              ],
+              [
+                4,
+                -4,
+                0
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -3,
+                3,
+                1
+              ]
+            ],
+            "original_normal_count": 14,
+            "original_normals_sha256": "4c25f5323545a0c26d89f4051abf0ca25d6b030d3f38979cee837d4b561d159a",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "0",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1/3",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -3,
+                  3,
+                  1
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 13
+          },
+          {
+            "lambda_interval": [
+              "1/3",
+              "1"
+            ],
+            "strict_weight": [
+              "8/3",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                5
+              ],
+              [
+                0,
+                1,
+                4
+              ],
+              [
+                0,
+                2,
+                3
+              ],
+              [
+                0,
+                3,
+                2
+              ],
+              [
+                0,
+                4,
+                1
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                1,
+                0,
+                4
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                4,
+                0
+              ],
+              [
+                2,
+                0,
+                2
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 4,
+            "lambda_lower_facet_witnesses": [
+              [
+                3,
+                -3,
+                -1
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -1,
+                1,
+                1
+              ]
+            ],
+            "original_normal_count": 7,
+            "original_normals_sha256": "776d7aef5cb11536c0e290e940baae310fcd7e77b2af366ecfe162bf81635d54",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "1/3",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  3,
+                  -3,
+                  -1
+                ]
+              },
+              {
+                "lambda": "1",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -1,
+                  1,
+                  1
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 12
+          }
+        ]
+      },
+      {
+        "cutoff": 5,
+        "length": 36,
+        "coefficient_ring": "Z",
+        "valid_over_every_field": true,
+        "exact_interval_walk_step": "1/2160",
+        "complete_positive_fan_cells": 12,
+        "ordered_central_sectors": [
+          {
+            "lambda_interval": [
+              "0",
+              "1/3"
+            ],
+            "strict_weight": [
+              "13/6",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                6
+              ],
+              [
+                0,
+                1,
+                5
+              ],
+              [
+                0,
+                2,
+                4
+              ],
+              [
+                0,
+                3,
+                2
+              ],
+              [
+                0,
+                4,
+                1
+              ],
+              [
+                0,
+                6,
+                0
+              ],
+              [
+                1,
+                0,
+                5
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                5,
+                0
+              ],
+              [
+                2,
+                0,
+                3
+              ],
+              [
+                2,
+                3,
+                0
+              ],
+              [
+                3,
+                0,
+                2
+              ],
+              [
+                3,
+                2,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 9,
+            "lambda_lower_facet_witnesses": [
+              [
+                2,
+                -2,
+                0
+              ],
+              [
+                4,
+                -4,
+                0
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -3,
+                3,
+                1
+              ]
+            ],
+            "original_normal_count": 24,
+            "original_normals_sha256": "bded666762a1bcaef232fba9493ffae321dc266d18b3715ed196dc9ba1c6434c",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "0",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1/3",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -3,
+                  3,
+                  1
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 14
+          },
+          {
+            "lambda_interval": [
+              "1/3",
+              "1"
+            ],
+            "strict_weight": [
+              "8/3",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                6
+              ],
+              [
+                0,
+                1,
+                5
+              ],
+              [
+                0,
+                2,
+                4
+              ],
+              [
+                0,
+                3,
+                3
+              ],
+              [
+                0,
+                4,
+                2
+              ],
+              [
+                0,
+                5,
+                1
+              ],
+              [
+                0,
+                6,
+                0
+              ],
+              [
+                1,
+                0,
+                5
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                5,
+                0
+              ],
+              [
+                2,
+                0,
+                3
+              ],
+              [
+                2,
+                3,
+                0
+              ],
+              [
+                3,
+                0,
+                1
+              ],
+              [
+                3,
+                1,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 6,
+            "lambda_lower_facet_witnesses": [
+              [
+                3,
+                -3,
+                -1
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -1,
+                1,
+                1
+              ]
+            ],
+            "original_normal_count": 13,
+            "original_normals_sha256": "bc2df96c5be35da385d2d2faee86cab2404fbe796aa58c8f0712879b6cd92410",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "1/3",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  3,
+                  -3,
+                  -1
+                ]
+              },
+              {
+                "lambda": "1",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -1,
+                  1,
+                  1
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 15
+          }
+        ]
+      },
+      {
+        "cutoff": 6,
+        "length": 49,
+        "coefficient_ring": "Z",
+        "valid_over_every_field": true,
+        "exact_interval_walk_step": "1/3430",
+        "complete_positive_fan_cells": 18,
+        "ordered_central_sectors": [
+          {
+            "lambda_interval": [
+              "0",
+              "1/3"
+            ],
+            "strict_weight": [
+              "13/6",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                7
+              ],
+              [
+                0,
+                1,
+                6
+              ],
+              [
+                0,
+                2,
+                5
+              ],
+              [
+                0,
+                3,
+                3
+              ],
+              [
+                0,
+                4,
+                2
+              ],
+              [
+                0,
+                5,
+                1
+              ],
+              [
+                0,
+                7,
+                0
+              ],
+              [
+                1,
+                0,
+                6
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                6,
+                0
+              ],
+              [
+                2,
+                0,
+                4
+              ],
+              [
+                2,
+                4,
+                0
+              ],
+              [
+                3,
+                0,
+                3
+              ],
+              [
+                3,
+                3,
+                0
+              ],
+              [
+                4,
+                0,
+                1
+              ],
+              [
+                4,
+                1,
+                0
+              ],
+              [
+                5,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 13,
+            "lambda_lower_facet_witnesses": [
+              [
+                2,
+                -2,
+                0
+              ],
+              [
+                4,
+                -4,
+                0
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -3,
+                3,
+                1
+              ]
+            ],
+            "original_normal_count": 40,
+            "original_normals_sha256": "070d10e0d209c32b85dd5ed61274ae295a30ec8b1b4535f716fd7b7f30aed64c",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "0",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1/3",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -3,
+                  3,
+                  1
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 17
+          },
+          {
+            "lambda_interval": [
+              "1/3",
+              "1/2"
+            ],
+            "strict_weight": [
+              "29/12",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                7
+              ],
+              [
+                0,
+                1,
+                6
+              ],
+              [
+                0,
+                2,
+                5
+              ],
+              [
+                0,
+                3,
+                4
+              ],
+              [
+                0,
+                4,
+                2
+              ],
+              [
+                0,
+                6,
+                1
+              ],
+              [
+                0,
+                7,
+                0
+              ],
+              [
+                1,
+                0,
+                6
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                6,
+                0
+              ],
+              [
+                2,
+                0,
+                4
+              ],
+              [
+                2,
+                4,
+                0
+              ],
+              [
+                3,
+                0,
+                2
+              ],
+              [
+                3,
+                2,
+                0
+              ],
+              [
+                4,
+                0,
+                1
+              ],
+              [
+                4,
+                1,
+                0
+              ],
+              [
+                5,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 11,
+            "lambda_lower_facet_witnesses": [
+              [
+                3,
+                -3,
+                -1
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -4,
+                4,
+                2
+              ]
+            ],
+            "original_normal_count": 32,
+            "original_normals_sha256": "03d9c3a1e960c31ef69d744eccf75b8625a83021545cd58cd1ea7f383d64dae4",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "1/3",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1/2",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -4,
+                  4,
+                  2
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 17
+          },
+          {
+            "lambda_interval": [
+              "1/2",
+              "1"
+            ],
+            "strict_weight": [
+              "11/4",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                7
+              ],
+              [
+                0,
+                1,
+                6
+              ],
+              [
+                0,
+                2,
+                5
+              ],
+              [
+                0,
+                3,
+                4
+              ],
+              [
+                0,
+                4,
+                3
+              ],
+              [
+                0,
+                5,
+                2
+              ],
+              [
+                0,
+                6,
+                1
+              ],
+              [
+                0,
+                7,
+                0
+              ],
+              [
+                1,
+                0,
+                6
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                6,
+                0
+              ],
+              [
+                2,
+                0,
+                4
+              ],
+              [
+                2,
+                4,
+                0
+              ],
+              [
+                3,
+                0,
+                2
+              ],
+              [
+                3,
+                2,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 9,
+            "lambda_lower_facet_witnesses": [
+              [
+                4,
+                -4,
+                -2
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -1,
+                1,
+                1
+              ]
+            ],
+            "original_normal_count": 20,
+            "original_normals_sha256": "da606187e6c13ce844c98ad9629001de8dcf9797fb4a1ef73a01652fb59b2047",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "1/2",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  4,
+                  -4,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -1,
+                  1,
+                  1
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 16
+          }
+        ]
+      },
+      {
+        "cutoff": 8,
+        "length": 81,
+        "coefficient_ring": "Z",
+        "valid_over_every_field": true,
+        "exact_interval_walk_step": "1/7290",
+        "complete_positive_fan_cells": 30,
+        "ordered_central_sectors": [
+          {
+            "lambda_interval": [
+              "0",
+              "1/5"
+            ],
+            "strict_weight": [
+              "21/10",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                9
+              ],
+              [
+                0,
+                1,
+                8
+              ],
+              [
+                0,
+                2,
+                7
+              ],
+              [
+                0,
+                3,
+                5
+              ],
+              [
+                0,
+                4,
+                4
+              ],
+              [
+                0,
+                5,
+                2
+              ],
+              [
+                0,
+                6,
+                1
+              ],
+              [
+                0,
+                9,
+                0
+              ],
+              [
+                1,
+                0,
+                8
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                8,
+                0
+              ],
+              [
+                2,
+                0,
+                6
+              ],
+              [
+                2,
+                6,
+                0
+              ],
+              [
+                3,
+                0,
+                5
+              ],
+              [
+                3,
+                5,
+                0
+              ],
+              [
+                4,
+                0,
+                3
+              ],
+              [
+                4,
+                3,
+                0
+              ],
+              [
+                5,
+                0,
+                2
+              ],
+              [
+                5,
+                2,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 24,
+            "lambda_lower_facet_witnesses": [
+              [
+                2,
+                -2,
+                0
+              ],
+              [
+                4,
+                -4,
+                0
+              ],
+              [
+                6,
+                -6,
+                0
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -5,
+                5,
+                1
+              ]
+            ],
+            "original_normal_count": 88,
+            "original_normals_sha256": "fb3fdf1e6497c652c79b41eb75e97349158fe6fe350067f8975a54c87ad26342",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "0",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1/5",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -5,
+                  5,
+                  1
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 20
+          },
+          {
+            "lambda_interval": [
+              "1/5",
+              "1/3"
+            ],
+            "strict_weight": [
+              "34/15",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                9
+              ],
+              [
+                0,
+                1,
+                8
+              ],
+              [
+                0,
+                2,
+                7
+              ],
+              [
+                0,
+                3,
+                5
+              ],
+              [
+                0,
+                4,
+                4
+              ],
+              [
+                0,
+                5,
+                3
+              ],
+              [
+                0,
+                6,
+                2
+              ],
+              [
+                0,
+                7,
+                1
+              ],
+              [
+                0,
+                9,
+                0
+              ],
+              [
+                1,
+                0,
+                8
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                8,
+                0
+              ],
+              [
+                2,
+                0,
+                6
+              ],
+              [
+                2,
+                6,
+                0
+              ],
+              [
+                3,
+                0,
+                5
+              ],
+              [
+                3,
+                5,
+                0
+              ],
+              [
+                4,
+                0,
+                3
+              ],
+              [
+                4,
+                3,
+                0
+              ],
+              [
+                5,
+                0,
+                1
+              ],
+              [
+                5,
+                1,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 25,
+            "lambda_lower_facet_witnesses": [
+              [
+                5,
+                -5,
+                -1
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -3,
+                3,
+                1
+              ]
+            ],
+            "original_normal_count": 95,
+            "original_normals_sha256": "8ed47b547058d27adaa936689c72dec276c63ed000bd23b33a503a4cb065bc36",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "1/5",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1/3",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -3,
+                  3,
+                  1
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 21
+          },
+          {
+            "lambda_interval": [
+              "1/3",
+              "1/2"
+            ],
+            "strict_weight": [
+              "29/12",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                9
+              ],
+              [
+                0,
+                1,
+                8
+              ],
+              [
+                0,
+                2,
+                7
+              ],
+              [
+                0,
+                3,
+                6
+              ],
+              [
+                0,
+                4,
+                4
+              ],
+              [
+                0,
+                5,
+                3
+              ],
+              [
+                0,
+                6,
+                2
+              ],
+              [
+                0,
+                8,
+                1
+              ],
+              [
+                0,
+                9,
+                0
+              ],
+              [
+                1,
+                0,
+                8
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                8,
+                0
+              ],
+              [
+                2,
+                0,
+                6
+              ],
+              [
+                2,
+                6,
+                0
+              ],
+              [
+                3,
+                0,
+                4
+              ],
+              [
+                3,
+                4,
+                0
+              ],
+              [
+                4,
+                0,
+                3
+              ],
+              [
+                4,
+                3,
+                0
+              ],
+              [
+                5,
+                0,
+                1
+              ],
+              [
+                5,
+                1,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 22,
+            "lambda_lower_facet_witnesses": [
+              [
+                3,
+                -3,
+                -1
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -4,
+                4,
+                2
+              ]
+            ],
+            "original_normal_count": 79,
+            "original_normals_sha256": "264dc39de07933687cab0a58c5513687b82177a330971cd6c00fec266ac07921",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "1/3",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1/2",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -4,
+                  4,
+                  2
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 21
+          },
+          {
+            "lambda_interval": [
+              "1/2",
+              "3/5"
+            ],
+            "strict_weight": [
+              "51/20",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                9
+              ],
+              [
+                0,
+                1,
+                8
+              ],
+              [
+                0,
+                2,
+                7
+              ],
+              [
+                0,
+                3,
+                6
+              ],
+              [
+                0,
+                4,
+                5
+              ],
+              [
+                0,
+                5,
+                3
+              ],
+              [
+                0,
+                7,
+                2
+              ],
+              [
+                0,
+                8,
+                1
+              ],
+              [
+                0,
+                9,
+                0
+              ],
+              [
+                1,
+                0,
+                8
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                8,
+                0
+              ],
+              [
+                2,
+                0,
+                6
+              ],
+              [
+                2,
+                6,
+                0
+              ],
+              [
+                3,
+                0,
+                4
+              ],
+              [
+                3,
+                4,
+                0
+              ],
+              [
+                4,
+                0,
+                2
+              ],
+              [
+                4,
+                2,
+                0
+              ],
+              [
+                5,
+                0,
+                1
+              ],
+              [
+                5,
+                1,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 20,
+            "lambda_lower_facet_witnesses": [
+              [
+                4,
+                -4,
+                -2
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -5,
+                5,
+                3
+              ]
+            ],
+            "original_normal_count": 69,
+            "original_normals_sha256": "7159aee7f56733a7e1855a6dec75e5bfbfeabe6f2c66f78e89d93260ed0aa28d",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "1/2",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "3/5",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -5,
+                  5,
+                  3
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 21
+          },
+          {
+            "lambda_interval": [
+              "3/5",
+              "1"
+            ],
+            "strict_weight": [
+              "14/5",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                9
+              ],
+              [
+                0,
+                1,
+                8
+              ],
+              [
+                0,
+                2,
+                7
+              ],
+              [
+                0,
+                3,
+                6
+              ],
+              [
+                0,
+                4,
+                5
+              ],
+              [
+                0,
+                5,
+                4
+              ],
+              [
+                0,
+                6,
+                3
+              ],
+              [
+                0,
+                7,
+                2
+              ],
+              [
+                0,
+                8,
+                1
+              ],
+              [
+                0,
+                9,
+                0
+              ],
+              [
+                1,
+                0,
+                8
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                8,
+                0
+              ],
+              [
+                2,
+                0,
+                6
+              ],
+              [
+                2,
+                6,
+                0
+              ],
+              [
+                3,
+                0,
+                4
+              ],
+              [
+                3,
+                4,
+                0
+              ],
+              [
+                4,
+                0,
+                2
+              ],
+              [
+                4,
+                2,
+                0
+              ],
+              [
+                5,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 15,
+            "lambda_lower_facet_witnesses": [
+              [
+                5,
+                -5,
+                -3
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -1,
+                1,
+                1
+              ]
+            ],
+            "original_normal_count": 41,
+            "original_normals_sha256": "6a30a9033ccb79dbd53b013711a632ba9ad3824797a728291f7e3b4a3a173d13",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "3/5",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  5,
+                  -5,
+                  -3
+                ]
+              },
+              {
+                "lambda": "1",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -1,
+                  1,
+                  1
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 20
+          }
+        ]
+      },
+      {
+        "cutoff": 10,
+        "length": 121,
+        "coefficient_ring": "Z",
+        "valid_over_every_field": true,
+        "exact_interval_walk_step": "1/13310",
+        "complete_positive_fan_cells": 42,
+        "ordered_central_sectors": [
+          {
+            "lambda_interval": [
+              "0",
+              "1/7"
+            ],
+            "strict_weight": [
+              "29/14",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                11
+              ],
+              [
+                0,
+                1,
+                10
+              ],
+              [
+                0,
+                2,
+                9
+              ],
+              [
+                0,
+                3,
+                7
+              ],
+              [
+                0,
+                4,
+                6
+              ],
+              [
+                0,
+                5,
+                4
+              ],
+              [
+                0,
+                6,
+                3
+              ],
+              [
+                0,
+                7,
+                1
+              ],
+              [
+                0,
+                11,
+                0
+              ],
+              [
+                1,
+                0,
+                10
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                10,
+                0
+              ],
+              [
+                2,
+                0,
+                8
+              ],
+              [
+                2,
+                8,
+                0
+              ],
+              [
+                3,
+                0,
+                7
+              ],
+              [
+                3,
+                7,
+                0
+              ],
+              [
+                4,
+                0,
+                5
+              ],
+              [
+                4,
+                5,
+                0
+              ],
+              [
+                5,
+                0,
+                4
+              ],
+              [
+                5,
+                4,
+                0
+              ],
+              [
+                6,
+                0,
+                2
+              ],
+              [
+                6,
+                2,
+                0
+              ],
+              [
+                7,
+                0,
+                1
+              ],
+              [
+                7,
+                1,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 38,
+            "lambda_lower_facet_witnesses": [
+              [
+                2,
+                -2,
+                0
+              ],
+              [
+                4,
+                -4,
+                0
+              ],
+              [
+                6,
+                -6,
+                0
+              ],
+              [
+                8,
+                -8,
+                0
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -7,
+                7,
+                1
+              ]
+            ],
+            "original_normal_count": 181,
+            "original_normals_sha256": "087f519b8c4a064e6df95fe08fc398c864bc5bf1c444a9bb167a5c8b90233245",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "0",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1/7",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -7,
+                  7,
+                  1
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 25
+          },
+          {
+            "lambda_interval": [
+              "1/7",
+              "1/5"
+            ],
+            "strict_weight": [
+              "76/35",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                11
+              ],
+              [
+                0,
+                1,
+                10
+              ],
+              [
+                0,
+                2,
+                9
+              ],
+              [
+                0,
+                3,
+                7
+              ],
+              [
+                0,
+                4,
+                6
+              ],
+              [
+                0,
+                5,
+                4
+              ],
+              [
+                0,
+                6,
+                3
+              ],
+              [
+                0,
+                7,
+                2
+              ],
+              [
+                0,
+                8,
+                1
+              ],
+              [
+                0,
+                11,
+                0
+              ],
+              [
+                1,
+                0,
+                10
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                10,
+                0
+              ],
+              [
+                2,
+                0,
+                8
+              ],
+              [
+                2,
+                8,
+                0
+              ],
+              [
+                3,
+                0,
+                7
+              ],
+              [
+                3,
+                7,
+                0
+              ],
+              [
+                4,
+                0,
+                5
+              ],
+              [
+                4,
+                5,
+                0
+              ],
+              [
+                5,
+                0,
+                4
+              ],
+              [
+                5,
+                4,
+                0
+              ],
+              [
+                6,
+                0,
+                2
+              ],
+              [
+                6,
+                2,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 37,
+            "lambda_lower_facet_witnesses": [
+              [
+                7,
+                -7,
+                -1
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -5,
+                5,
+                1
+              ]
+            ],
+            "original_normal_count": 165,
+            "original_normals_sha256": "3ff94673d48b50144d892519398adeeb1456f36800aad083efda224b1e45b069",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "1/7",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1/5",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -5,
+                  5,
+                  1
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 24
+          },
+          {
+            "lambda_interval": [
+              "1/5",
+              "1/3"
+            ],
+            "strict_weight": [
+              "34/15",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                11
+              ],
+              [
+                0,
+                1,
+                10
+              ],
+              [
+                0,
+                2,
+                9
+              ],
+              [
+                0,
+                3,
+                7
+              ],
+              [
+                0,
+                4,
+                6
+              ],
+              [
+                0,
+                5,
+                5
+              ],
+              [
+                0,
+                6,
+                3
+              ],
+              [
+                0,
+                7,
+                2
+              ],
+              [
+                0,
+                9,
+                1
+              ],
+              [
+                0,
+                11,
+                0
+              ],
+              [
+                1,
+                0,
+                10
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                10,
+                0
+              ],
+              [
+                2,
+                0,
+                8
+              ],
+              [
+                2,
+                8,
+                0
+              ],
+              [
+                3,
+                0,
+                7
+              ],
+              [
+                3,
+                7,
+                0
+              ],
+              [
+                4,
+                0,
+                5
+              ],
+              [
+                4,
+                5,
+                0
+              ],
+              [
+                5,
+                0,
+                3
+              ],
+              [
+                5,
+                3,
+                0
+              ],
+              [
+                6,
+                0,
+                2
+              ],
+              [
+                6,
+                2,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 38,
+            "lambda_lower_facet_witnesses": [
+              [
+                5,
+                -5,
+                -1
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -6,
+                6,
+                2
+              ],
+              [
+                -3,
+                3,
+                1
+              ]
+            ],
+            "original_normal_count": 173,
+            "original_normals_sha256": "24692bc707e90085378421774d79022e9c7c374113b55ec2b4865ca6c020ebaf",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "1/5",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1/3",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -6,
+                  6,
+                  2
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 24
+          },
+          {
+            "lambda_interval": [
+              "1/3",
+              "1/2"
+            ],
+            "strict_weight": [
+              "29/12",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                11
+              ],
+              [
+                0,
+                1,
+                10
+              ],
+              [
+                0,
+                2,
+                9
+              ],
+              [
+                0,
+                3,
+                8
+              ],
+              [
+                0,
+                4,
+                6
+              ],
+              [
+                0,
+                5,
+                5
+              ],
+              [
+                0,
+                6,
+                4
+              ],
+              [
+                0,
+                7,
+                3
+              ],
+              [
+                0,
+                8,
+                2
+              ],
+              [
+                0,
+                10,
+                1
+              ],
+              [
+                0,
+                11,
+                0
+              ],
+              [
+                1,
+                0,
+                10
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                10,
+                0
+              ],
+              [
+                2,
+                0,
+                8
+              ],
+              [
+                2,
+                8,
+                0
+              ],
+              [
+                3,
+                0,
+                6
+              ],
+              [
+                3,
+                6,
+                0
+              ],
+              [
+                4,
+                0,
+                5
+              ],
+              [
+                4,
+                5,
+                0
+              ],
+              [
+                5,
+                0,
+                3
+              ],
+              [
+                5,
+                3,
+                0
+              ],
+              [
+                6,
+                0,
+                1
+              ],
+              [
+                6,
+                1,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 35,
+            "lambda_lower_facet_witnesses": [
+              [
+                3,
+                -3,
+                -1
+              ],
+              [
+                6,
+                -6,
+                -2
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -4,
+                4,
+                2
+              ]
+            ],
+            "original_normal_count": 152,
+            "original_normals_sha256": "9a1c80c9f2863182893a9d8f8053a20fc02d723bccf31ca98c9c90e8782e685f",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "1/3",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1/2",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -4,
+                  4,
+                  2
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 25
+          },
+          {
+            "lambda_interval": [
+              "1/2",
+              "3/5"
+            ],
+            "strict_weight": [
+              "51/20",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                11
+              ],
+              [
+                0,
+                1,
+                10
+              ],
+              [
+                0,
+                2,
+                9
+              ],
+              [
+                0,
+                3,
+                8
+              ],
+              [
+                0,
+                4,
+                7
+              ],
+              [
+                0,
+                5,
+                5
+              ],
+              [
+                0,
+                6,
+                4
+              ],
+              [
+                0,
+                7,
+                3
+              ],
+              [
+                0,
+                9,
+                2
+              ],
+              [
+                0,
+                10,
+                1
+              ],
+              [
+                0,
+                11,
+                0
+              ],
+              [
+                1,
+                0,
+                10
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                10,
+                0
+              ],
+              [
+                2,
+                0,
+                8
+              ],
+              [
+                2,
+                8,
+                0
+              ],
+              [
+                3,
+                0,
+                6
+              ],
+              [
+                3,
+                6,
+                0
+              ],
+              [
+                4,
+                0,
+                4
+              ],
+              [
+                4,
+                4,
+                0
+              ],
+              [
+                5,
+                0,
+                3
+              ],
+              [
+                5,
+                3,
+                0
+              ],
+              [
+                6,
+                0,
+                1
+              ],
+              [
+                6,
+                1,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 32,
+            "lambda_lower_facet_witnesses": [
+              [
+                4,
+                -4,
+                -2
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -5,
+                5,
+                3
+              ]
+            ],
+            "original_normal_count": 133,
+            "original_normals_sha256": "cef2441131ae60228d86842e22959df13bb5014791d0a382bab20ded34b2c5ab",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "1/2",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "3/5",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -5,
+                  5,
+                  3
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 25
+          },
+          {
+            "lambda_interval": [
+              "3/5",
+              "2/3"
+            ],
+            "strict_weight": [
+              "79/30",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                11
+              ],
+              [
+                0,
+                1,
+                10
+              ],
+              [
+                0,
+                2,
+                9
+              ],
+              [
+                0,
+                3,
+                8
+              ],
+              [
+                0,
+                4,
+                7
+              ],
+              [
+                0,
+                5,
+                6
+              ],
+              [
+                0,
+                6,
+                4
+              ],
+              [
+                0,
+                8,
+                3
+              ],
+              [
+                0,
+                9,
+                2
+              ],
+              [
+                0,
+                10,
+                1
+              ],
+              [
+                0,
+                11,
+                0
+              ],
+              [
+                1,
+                0,
+                10
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                10,
+                0
+              ],
+              [
+                2,
+                0,
+                8
+              ],
+              [
+                2,
+                8,
+                0
+              ],
+              [
+                3,
+                0,
+                6
+              ],
+              [
+                3,
+                6,
+                0
+              ],
+              [
+                4,
+                0,
+                4
+              ],
+              [
+                4,
+                4,
+                0
+              ],
+              [
+                5,
+                0,
+                2
+              ],
+              [
+                5,
+                2,
+                0
+              ],
+              [
+                6,
+                0,
+                1
+              ],
+              [
+                6,
+                1,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 27,
+            "lambda_lower_facet_witnesses": [
+              [
+                5,
+                -5,
+                -3
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -6,
+                6,
+                4
+              ]
+            ],
+            "original_normal_count": 104,
+            "original_normals_sha256": "efdf7ffc5241a09f90ccb3f5dd387d56bb5190795c39cf8a6bb4de87fcf09f6d",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "3/5",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "2/3",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -6,
+                  6,
+                  4
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 25
+          },
+          {
+            "lambda_interval": [
+              "2/3",
+              "1"
+            ],
+            "strict_weight": [
+              "17/6",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                11
+              ],
+              [
+                0,
+                1,
+                10
+              ],
+              [
+                0,
+                2,
+                9
+              ],
+              [
+                0,
+                3,
+                8
+              ],
+              [
+                0,
+                4,
+                7
+              ],
+              [
+                0,
+                5,
+                6
+              ],
+              [
+                0,
+                6,
+                5
+              ],
+              [
+                0,
+                7,
+                4
+              ],
+              [
+                0,
+                8,
+                3
+              ],
+              [
+                0,
+                9,
+                2
+              ],
+              [
+                0,
+                10,
+                1
+              ],
+              [
+                0,
+                11,
+                0
+              ],
+              [
+                1,
+                0,
+                10
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                10,
+                0
+              ],
+              [
+                2,
+                0,
+                8
+              ],
+              [
+                2,
+                8,
+                0
+              ],
+              [
+                3,
+                0,
+                6
+              ],
+              [
+                3,
+                6,
+                0
+              ],
+              [
+                4,
+                0,
+                4
+              ],
+              [
+                4,
+                4,
+                0
+              ],
+              [
+                5,
+                0,
+                2
+              ],
+              [
+                5,
+                2,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 23,
+            "lambda_lower_facet_witnesses": [
+              [
+                6,
+                -6,
+                -4
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -1,
+                1,
+                1
+              ]
+            ],
+            "original_normal_count": 73,
+            "original_normals_sha256": "bc8378e7876b6fd42b60de586cccc95480f756322c65e7859ddf81481bcdfea8",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "2/3",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  6,
+                  -6,
+                  -4
+                ]
+              },
+              {
+                "lambda": "1",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -1,
+                  1,
+                  1
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 24
+          }
+        ]
+      },
+      {
+        "cutoff": 12,
+        "length": 169,
+        "coefficient_ring": "Z",
+        "valid_over_every_field": true,
+        "exact_interval_walk_step": "1/21970",
+        "complete_positive_fan_cells": 60,
+        "ordered_central_sectors": [
+          {
+            "lambda_interval": [
+              "0",
+              "1/7"
+            ],
+            "strict_weight": [
+              "29/14",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                13
+              ],
+              [
+                0,
+                1,
+                12
+              ],
+              [
+                0,
+                2,
+                11
+              ],
+              [
+                0,
+                3,
+                9
+              ],
+              [
+                0,
+                4,
+                8
+              ],
+              [
+                0,
+                5,
+                6
+              ],
+              [
+                0,
+                6,
+                5
+              ],
+              [
+                0,
+                7,
+                3
+              ],
+              [
+                0,
+                8,
+                2
+              ],
+              [
+                0,
+                9,
+                1
+              ],
+              [
+                0,
+                13,
+                0
+              ],
+              [
+                1,
+                0,
+                12
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                12,
+                0
+              ],
+              [
+                2,
+                0,
+                10
+              ],
+              [
+                2,
+                10,
+                0
+              ],
+              [
+                3,
+                0,
+                9
+              ],
+              [
+                3,
+                9,
+                0
+              ],
+              [
+                4,
+                0,
+                7
+              ],
+              [
+                4,
+                7,
+                0
+              ],
+              [
+                5,
+                0,
+                6
+              ],
+              [
+                5,
+                6,
+                0
+              ],
+              [
+                6,
+                0,
+                4
+              ],
+              [
+                6,
+                4,
+                0
+              ],
+              [
+                7,
+                0,
+                3
+              ],
+              [
+                7,
+                3,
+                0
+              ],
+              [
+                8,
+                0,
+                1
+              ],
+              [
+                8,
+                1,
+                0
+              ],
+              [
+                9,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 53,
+            "lambda_lower_facet_witnesses": [
+              [
+                2,
+                -2,
+                0
+              ],
+              [
+                4,
+                -4,
+                0
+              ],
+              [
+                6,
+                -6,
+                0
+              ],
+              [
+                8,
+                -8,
+                0
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -7,
+                7,
+                1
+              ]
+            ],
+            "original_normal_count": 294,
+            "original_normals_sha256": "57b6e773382b33f84627595a21e357b6e0374cf84038c2751630a174918e86cc",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "0",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1/7",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -7,
+                  7,
+                  1
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 29
+          },
+          {
+            "lambda_interval": [
+              "1/7",
+              "1/5"
+            ],
+            "strict_weight": [
+              "76/35",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                13
+              ],
+              [
+                0,
+                1,
+                12
+              ],
+              [
+                0,
+                2,
+                11
+              ],
+              [
+                0,
+                3,
+                9
+              ],
+              [
+                0,
+                4,
+                8
+              ],
+              [
+                0,
+                5,
+                6
+              ],
+              [
+                0,
+                6,
+                5
+              ],
+              [
+                0,
+                7,
+                4
+              ],
+              [
+                0,
+                8,
+                2
+              ],
+              [
+                0,
+                10,
+                1
+              ],
+              [
+                0,
+                13,
+                0
+              ],
+              [
+                1,
+                0,
+                12
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                12,
+                0
+              ],
+              [
+                2,
+                0,
+                10
+              ],
+              [
+                2,
+                10,
+                0
+              ],
+              [
+                3,
+                0,
+                9
+              ],
+              [
+                3,
+                9,
+                0
+              ],
+              [
+                4,
+                0,
+                7
+              ],
+              [
+                4,
+                7,
+                0
+              ],
+              [
+                5,
+                0,
+                6
+              ],
+              [
+                5,
+                6,
+                0
+              ],
+              [
+                6,
+                0,
+                4
+              ],
+              [
+                6,
+                4,
+                0
+              ],
+              [
+                7,
+                0,
+                2
+              ],
+              [
+                7,
+                2,
+                0
+              ],
+              [
+                8,
+                0,
+                1
+              ],
+              [
+                8,
+                1,
+                0
+              ],
+              [
+                9,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 53,
+            "lambda_lower_facet_witnesses": [
+              [
+                7,
+                -7,
+                -1
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -5,
+                5,
+                1
+              ]
+            ],
+            "original_normal_count": 289,
+            "original_normals_sha256": "5ddd36328d3842ff063bcced91f9cce4b586779906be521d9f52249f598f2773",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "1/7",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1/5",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -5,
+                  5,
+                  1
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 29
+          },
+          {
+            "lambda_interval": [
+              "1/5",
+              "1/4"
+            ],
+            "strict_weight": [
+              "89/40",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                13
+              ],
+              [
+                0,
+                1,
+                12
+              ],
+              [
+                0,
+                2,
+                11
+              ],
+              [
+                0,
+                3,
+                9
+              ],
+              [
+                0,
+                4,
+                8
+              ],
+              [
+                0,
+                5,
+                7
+              ],
+              [
+                0,
+                6,
+                5
+              ],
+              [
+                0,
+                7,
+                4
+              ],
+              [
+                0,
+                8,
+                2
+              ],
+              [
+                0,
+                11,
+                1
+              ],
+              [
+                0,
+                13,
+                0
+              ],
+              [
+                1,
+                0,
+                12
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                12,
+                0
+              ],
+              [
+                2,
+                0,
+                10
+              ],
+              [
+                2,
+                10,
+                0
+              ],
+              [
+                3,
+                0,
+                9
+              ],
+              [
+                3,
+                9,
+                0
+              ],
+              [
+                4,
+                0,
+                7
+              ],
+              [
+                4,
+                7,
+                0
+              ],
+              [
+                5,
+                0,
+                5
+              ],
+              [
+                5,
+                5,
+                0
+              ],
+              [
+                6,
+                0,
+                4
+              ],
+              [
+                6,
+                4,
+                0
+              ],
+              [
+                7,
+                0,
+                2
+              ],
+              [
+                7,
+                2,
+                0
+              ],
+              [
+                8,
+                0,
+                1
+              ],
+              [
+                8,
+                1,
+                0
+              ],
+              [
+                9,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 54,
+            "lambda_lower_facet_witnesses": [
+              [
+                5,
+                -5,
+                -1
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -8,
+                8,
+                2
+              ]
+            ],
+            "original_normal_count": 309,
+            "original_normals_sha256": "354d713187b6f00349b9837e301c9e3bcceaf6c1a861eb7d2f0694bc860639a5",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "1/5",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1/4",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -8,
+                  8,
+                  2
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 29
+          },
+          {
+            "lambda_interval": [
+              "1/4",
+              "1/3"
+            ],
+            "strict_weight": [
+              "55/24",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                13
+              ],
+              [
+                0,
+                1,
+                12
+              ],
+              [
+                0,
+                2,
+                11
+              ],
+              [
+                0,
+                3,
+                9
+              ],
+              [
+                0,
+                4,
+                8
+              ],
+              [
+                0,
+                5,
+                7
+              ],
+              [
+                0,
+                6,
+                5
+              ],
+              [
+                0,
+                7,
+                4
+              ],
+              [
+                0,
+                8,
+                3
+              ],
+              [
+                0,
+                9,
+                2
+              ],
+              [
+                0,
+                11,
+                1
+              ],
+              [
+                0,
+                13,
+                0
+              ],
+              [
+                1,
+                0,
+                12
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                12,
+                0
+              ],
+              [
+                2,
+                0,
+                10
+              ],
+              [
+                2,
+                10,
+                0
+              ],
+              [
+                3,
+                0,
+                9
+              ],
+              [
+                3,
+                9,
+                0
+              ],
+              [
+                4,
+                0,
+                7
+              ],
+              [
+                4,
+                7,
+                0
+              ],
+              [
+                5,
+                0,
+                5
+              ],
+              [
+                5,
+                5,
+                0
+              ],
+              [
+                6,
+                0,
+                4
+              ],
+              [
+                6,
+                4,
+                0
+              ],
+              [
+                7,
+                0,
+                2
+              ],
+              [
+                7,
+                2,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 54,
+            "lambda_lower_facet_witnesses": [
+              [
+                8,
+                -8,
+                -2
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -6,
+                6,
+                2
+              ],
+              [
+                -3,
+                3,
+                1
+              ]
+            ],
+            "original_normal_count": 287,
+            "original_normals_sha256": "ca5d94ff275f444e9fe99867fa55977a4c0b2eae88c2753bb8af014833552c72",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "1/4",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1/3",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -6,
+                  6,
+                  2
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 28
+          },
+          {
+            "lambda_interval": [
+              "1/3",
+              "3/7"
+            ],
+            "strict_weight": [
+              "50/21",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                13
+              ],
+              [
+                0,
+                1,
+                12
+              ],
+              [
+                0,
+                2,
+                11
+              ],
+              [
+                0,
+                3,
+                10
+              ],
+              [
+                0,
+                4,
+                8
+              ],
+              [
+                0,
+                5,
+                7
+              ],
+              [
+                0,
+                6,
+                6
+              ],
+              [
+                0,
+                7,
+                4
+              ],
+              [
+                0,
+                8,
+                3
+              ],
+              [
+                0,
+                10,
+                2
+              ],
+              [
+                0,
+                12,
+                1
+              ],
+              [
+                0,
+                13,
+                0
+              ],
+              [
+                1,
+                0,
+                12
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                12,
+                0
+              ],
+              [
+                2,
+                0,
+                10
+              ],
+              [
+                2,
+                10,
+                0
+              ],
+              [
+                3,
+                0,
+                8
+              ],
+              [
+                3,
+                8,
+                0
+              ],
+              [
+                4,
+                0,
+                7
+              ],
+              [
+                4,
+                7,
+                0
+              ],
+              [
+                5,
+                0,
+                5
+              ],
+              [
+                5,
+                5,
+                0
+              ],
+              [
+                6,
+                0,
+                3
+              ],
+              [
+                6,
+                3,
+                0
+              ],
+              [
+                7,
+                0,
+                2
+              ],
+              [
+                7,
+                2,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 50,
+            "lambda_lower_facet_witnesses": [
+              [
+                3,
+                -3,
+                -1
+              ],
+              [
+                6,
+                -6,
+                -2
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -7,
+                7,
+                3
+              ]
+            ],
+            "original_normal_count": 250,
+            "original_normals_sha256": "ee08cfa604130d40dd9aa10594aeea9a58dec648024ffe7b3a515c9a1eda307e",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "1/3",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "3/7",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -7,
+                  7,
+                  3
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 28
+          },
+          {
+            "lambda_interval": [
+              "3/7",
+              "1/2"
+            ],
+            "strict_weight": [
+              "69/28",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                13
+              ],
+              [
+                0,
+                1,
+                12
+              ],
+              [
+                0,
+                2,
+                11
+              ],
+              [
+                0,
+                3,
+                10
+              ],
+              [
+                0,
+                4,
+                8
+              ],
+              [
+                0,
+                5,
+                7
+              ],
+              [
+                0,
+                6,
+                6
+              ],
+              [
+                0,
+                7,
+                5
+              ],
+              [
+                0,
+                8,
+                4
+              ],
+              [
+                0,
+                9,
+                3
+              ],
+              [
+                0,
+                10,
+                2
+              ],
+              [
+                0,
+                12,
+                1
+              ],
+              [
+                0,
+                13,
+                0
+              ],
+              [
+                1,
+                0,
+                12
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                12,
+                0
+              ],
+              [
+                2,
+                0,
+                10
+              ],
+              [
+                2,
+                10,
+                0
+              ],
+              [
+                3,
+                0,
+                8
+              ],
+              [
+                3,
+                8,
+                0
+              ],
+              [
+                4,
+                0,
+                7
+              ],
+              [
+                4,
+                7,
+                0
+              ],
+              [
+                5,
+                0,
+                5
+              ],
+              [
+                5,
+                5,
+                0
+              ],
+              [
+                6,
+                0,
+                3
+              ],
+              [
+                6,
+                3,
+                0
+              ],
+              [
+                7,
+                0,
+                1
+              ],
+              [
+                7,
+                1,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 52,
+            "lambda_lower_facet_witnesses": [
+              [
+                7,
+                -7,
+                -3
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -4,
+                4,
+                2
+              ]
+            ],
+            "original_normal_count": 255,
+            "original_normals_sha256": "4d6277da9ee97fe47f02ec0403332e65b1c52a93ce3ec16c96d9f1398d79212d",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "3/7",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1/2",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -4,
+                  4,
+                  2
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 29
+          },
+          {
+            "lambda_interval": [
+              "1/2",
+              "3/5"
+            ],
+            "strict_weight": [
+              "51/20",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                13
+              ],
+              [
+                0,
+                1,
+                12
+              ],
+              [
+                0,
+                2,
+                11
+              ],
+              [
+                0,
+                3,
+                10
+              ],
+              [
+                0,
+                4,
+                9
+              ],
+              [
+                0,
+                5,
+                7
+              ],
+              [
+                0,
+                6,
+                6
+              ],
+              [
+                0,
+                7,
+                5
+              ],
+              [
+                0,
+                8,
+                4
+              ],
+              [
+                0,
+                9,
+                3
+              ],
+              [
+                0,
+                11,
+                2
+              ],
+              [
+                0,
+                12,
+                1
+              ],
+              [
+                0,
+                13,
+                0
+              ],
+              [
+                1,
+                0,
+                12
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                12,
+                0
+              ],
+              [
+                2,
+                0,
+                10
+              ],
+              [
+                2,
+                10,
+                0
+              ],
+              [
+                3,
+                0,
+                8
+              ],
+              [
+                3,
+                8,
+                0
+              ],
+              [
+                4,
+                0,
+                6
+              ],
+              [
+                4,
+                6,
+                0
+              ],
+              [
+                5,
+                0,
+                5
+              ],
+              [
+                5,
+                5,
+                0
+              ],
+              [
+                6,
+                0,
+                3
+              ],
+              [
+                6,
+                3,
+                0
+              ],
+              [
+                7,
+                0,
+                1
+              ],
+              [
+                7,
+                1,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 49,
+            "lambda_lower_facet_witnesses": [
+              [
+                4,
+                -4,
+                -2
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -5,
+                5,
+                3
+              ]
+            ],
+            "original_normal_count": 235,
+            "original_normals_sha256": "1359a8911e96d5dff4f706c68469ce29cdd1a46005486f3103fe787c641f7eb9",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "1/2",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "3/5",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -5,
+                  5,
+                  3
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 29
+          },
+          {
+            "lambda_interval": [
+              "3/5",
+              "2/3"
+            ],
+            "strict_weight": [
+              "79/30",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                13
+              ],
+              [
+                0,
+                1,
+                12
+              ],
+              [
+                0,
+                2,
+                11
+              ],
+              [
+                0,
+                3,
+                10
+              ],
+              [
+                0,
+                4,
+                9
+              ],
+              [
+                0,
+                5,
+                8
+              ],
+              [
+                0,
+                6,
+                6
+              ],
+              [
+                0,
+                7,
+                5
+              ],
+              [
+                0,
+                8,
+                4
+              ],
+              [
+                0,
+                10,
+                3
+              ],
+              [
+                0,
+                11,
+                2
+              ],
+              [
+                0,
+                12,
+                1
+              ],
+              [
+                0,
+                13,
+                0
+              ],
+              [
+                1,
+                0,
+                12
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                12,
+                0
+              ],
+              [
+                2,
+                0,
+                10
+              ],
+              [
+                2,
+                10,
+                0
+              ],
+              [
+                3,
+                0,
+                8
+              ],
+              [
+                3,
+                8,
+                0
+              ],
+              [
+                4,
+                0,
+                6
+              ],
+              [
+                4,
+                6,
+                0
+              ],
+              [
+                5,
+                0,
+                4
+              ],
+              [
+                5,
+                4,
+                0
+              ],
+              [
+                6,
+                0,
+                3
+              ],
+              [
+                6,
+                3,
+                0
+              ],
+              [
+                7,
+                0,
+                1
+              ],
+              [
+                7,
+                1,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 43,
+            "lambda_lower_facet_witnesses": [
+              [
+                5,
+                -5,
+                -3
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -6,
+                6,
+                4
+              ]
+            ],
+            "original_normal_count": 198,
+            "original_normals_sha256": "36452d30a0098ce9a3218d48aff2121c5dc3f66192a1b137509bc990a3b3a182",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "3/5",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "2/3",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -6,
+                  6,
+                  4
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 29
+          },
+          {
+            "lambda_interval": [
+              "2/3",
+              "5/7"
+            ],
+            "strict_weight": [
+              "113/42",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                13
+              ],
+              [
+                0,
+                1,
+                12
+              ],
+              [
+                0,
+                2,
+                11
+              ],
+              [
+                0,
+                3,
+                10
+              ],
+              [
+                0,
+                4,
+                9
+              ],
+              [
+                0,
+                5,
+                8
+              ],
+              [
+                0,
+                6,
+                7
+              ],
+              [
+                0,
+                7,
+                5
+              ],
+              [
+                0,
+                9,
+                4
+              ],
+              [
+                0,
+                10,
+                3
+              ],
+              [
+                0,
+                11,
+                2
+              ],
+              [
+                0,
+                12,
+                1
+              ],
+              [
+                0,
+                13,
+                0
+              ],
+              [
+                1,
+                0,
+                12
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                12,
+                0
+              ],
+              [
+                2,
+                0,
+                10
+              ],
+              [
+                2,
+                10,
+                0
+              ],
+              [
+                3,
+                0,
+                8
+              ],
+              [
+                3,
+                8,
+                0
+              ],
+              [
+                4,
+                0,
+                6
+              ],
+              [
+                4,
+                6,
+                0
+              ],
+              [
+                5,
+                0,
+                4
+              ],
+              [
+                5,
+                4,
+                0
+              ],
+              [
+                6,
+                0,
+                2
+              ],
+              [
+                6,
+                2,
+                0
+              ],
+              [
+                7,
+                0,
+                1
+              ],
+              [
+                7,
+                1,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 39,
+            "lambda_lower_facet_witnesses": [
+              [
+                6,
+                -6,
+                -4
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -7,
+                7,
+                5
+              ]
+            ],
+            "original_normal_count": 168,
+            "original_normals_sha256": "95811e4e0f7bd7a89d84b6ea41653feec4b440eeb323f47ac4279349a6d5f6ee",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "2/3",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "5/7",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -7,
+                  7,
+                  5
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 29
+          },
+          {
+            "lambda_interval": [
+              "5/7",
+              "1"
+            ],
+            "strict_weight": [
+              "20/7",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                13
+              ],
+              [
+                0,
+                1,
+                12
+              ],
+              [
+                0,
+                2,
+                11
+              ],
+              [
+                0,
+                3,
+                10
+              ],
+              [
+                0,
+                4,
+                9
+              ],
+              [
+                0,
+                5,
+                8
+              ],
+              [
+                0,
+                6,
+                7
+              ],
+              [
+                0,
+                7,
+                6
+              ],
+              [
+                0,
+                8,
+                5
+              ],
+              [
+                0,
+                9,
+                4
+              ],
+              [
+                0,
+                10,
+                3
+              ],
+              [
+                0,
+                11,
+                2
+              ],
+              [
+                0,
+                12,
+                1
+              ],
+              [
+                0,
+                13,
+                0
+              ],
+              [
+                1,
+                0,
+                12
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                12,
+                0
+              ],
+              [
+                2,
+                0,
+                10
+              ],
+              [
+                2,
+                10,
+                0
+              ],
+              [
+                3,
+                0,
+                8
+              ],
+              [
+                3,
+                8,
+                0
+              ],
+              [
+                4,
+                0,
+                6
+              ],
+              [
+                4,
+                6,
+                0
+              ],
+              [
+                5,
+                0,
+                4
+              ],
+              [
+                5,
+                4,
+                0
+              ],
+              [
+                6,
+                0,
+                2
+              ],
+              [
+                6,
+                2,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 32,
+            "lambda_lower_facet_witnesses": [
+              [
+                7,
+                -7,
+                -5
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -1,
+                1,
+                1
+              ]
+            ],
+            "original_normal_count": 115,
+            "original_normals_sha256": "16c91af02ad575bea70e45793e6c244fef1f02f4f59bdaaf7d745de2c57837c1",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "5/7",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  7,
+                  -7,
+                  -5
+                ]
+              },
+              {
+                "lambda": "1",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -1,
+                  1,
+                  1
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 28
+          }
+        ]
+      },
+      {
+        "cutoff": 14,
+        "length": 225,
+        "coefficient_ring": "Z",
+        "valid_over_every_field": true,
+        "exact_interval_walk_step": "1/33750",
+        "complete_positive_fan_cells": 72,
+        "ordered_central_sectors": [
+          {
+            "lambda_interval": [
+              "0",
+              "1/9"
+            ],
+            "strict_weight": [
+              "37/18",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                15
+              ],
+              [
+                0,
+                1,
+                14
+              ],
+              [
+                0,
+                2,
+                13
+              ],
+              [
+                0,
+                3,
+                11
+              ],
+              [
+                0,
+                4,
+                10
+              ],
+              [
+                0,
+                5,
+                8
+              ],
+              [
+                0,
+                6,
+                7
+              ],
+              [
+                0,
+                7,
+                5
+              ],
+              [
+                0,
+                8,
+                4
+              ],
+              [
+                0,
+                9,
+                2
+              ],
+              [
+                0,
+                10,
+                1
+              ],
+              [
+                0,
+                15,
+                0
+              ],
+              [
+                1,
+                0,
+                14
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                14,
+                0
+              ],
+              [
+                2,
+                0,
+                12
+              ],
+              [
+                2,
+                12,
+                0
+              ],
+              [
+                3,
+                0,
+                11
+              ],
+              [
+                3,
+                11,
+                0
+              ],
+              [
+                4,
+                0,
+                9
+              ],
+              [
+                4,
+                9,
+                0
+              ],
+              [
+                5,
+                0,
+                8
+              ],
+              [
+                5,
+                8,
+                0
+              ],
+              [
+                6,
+                0,
+                6
+              ],
+              [
+                6,
+                6,
+                0
+              ],
+              [
+                7,
+                0,
+                5
+              ],
+              [
+                7,
+                5,
+                0
+              ],
+              [
+                8,
+                0,
+                3
+              ],
+              [
+                8,
+                3,
+                0
+              ],
+              [
+                9,
+                0,
+                2
+              ],
+              [
+                9,
+                2,
+                0
+              ],
+              [
+                10,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 72,
+            "lambda_lower_facet_witnesses": [
+              [
+                2,
+                -2,
+                0
+              ],
+              [
+                4,
+                -4,
+                0
+              ],
+              [
+                6,
+                -6,
+                0
+              ],
+              [
+                8,
+                -8,
+                0
+              ],
+              [
+                10,
+                -10,
+                0
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -9,
+                9,
+                1
+              ]
+            ],
+            "original_normal_count": 443,
+            "original_normals_sha256": "fdb659be96da65c719e644ba6c908ec36dbeb6feaa24c0eacedab563f522851b",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "0",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1/9",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -9,
+                  9,
+                  1
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 32
+          },
+          {
+            "lambda_interval": [
+              "1/9",
+              "1/7"
+            ],
+            "strict_weight": [
+              "134/63",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                15
+              ],
+              [
+                0,
+                1,
+                14
+              ],
+              [
+                0,
+                2,
+                13
+              ],
+              [
+                0,
+                3,
+                11
+              ],
+              [
+                0,
+                4,
+                10
+              ],
+              [
+                0,
+                5,
+                8
+              ],
+              [
+                0,
+                6,
+                7
+              ],
+              [
+                0,
+                7,
+                5
+              ],
+              [
+                0,
+                8,
+                4
+              ],
+              [
+                0,
+                9,
+                3
+              ],
+              [
+                0,
+                10,
+                2
+              ],
+              [
+                0,
+                11,
+                1
+              ],
+              [
+                0,
+                15,
+                0
+              ],
+              [
+                1,
+                0,
+                14
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                14,
+                0
+              ],
+              [
+                2,
+                0,
+                12
+              ],
+              [
+                2,
+                12,
+                0
+              ],
+              [
+                3,
+                0,
+                11
+              ],
+              [
+                3,
+                11,
+                0
+              ],
+              [
+                4,
+                0,
+                9
+              ],
+              [
+                4,
+                9,
+                0
+              ],
+              [
+                5,
+                0,
+                8
+              ],
+              [
+                5,
+                8,
+                0
+              ],
+              [
+                6,
+                0,
+                6
+              ],
+              [
+                6,
+                6,
+                0
+              ],
+              [
+                7,
+                0,
+                5
+              ],
+              [
+                7,
+                5,
+                0
+              ],
+              [
+                8,
+                0,
+                3
+              ],
+              [
+                8,
+                3,
+                0
+              ],
+              [
+                9,
+                0,
+                1
+              ],
+              [
+                9,
+                1,
+                0
+              ],
+              [
+                10,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 73,
+            "lambda_lower_facet_witnesses": [
+              [
+                9,
+                -9,
+                -1
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -7,
+                7,
+                1
+              ]
+            ],
+            "original_normal_count": 458,
+            "original_normals_sha256": "11b2a7338a86f2e8f79f2be68eebbb8e2734ad880cccff74961eac0ec4348952",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "1/9",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1/7",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -7,
+                  7,
+                  1
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 33
+          },
+          {
+            "lambda_interval": [
+              "1/7",
+              "1/5"
+            ],
+            "strict_weight": [
+              "76/35",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                15
+              ],
+              [
+                0,
+                1,
+                14
+              ],
+              [
+                0,
+                2,
+                13
+              ],
+              [
+                0,
+                3,
+                11
+              ],
+              [
+                0,
+                4,
+                10
+              ],
+              [
+                0,
+                5,
+                8
+              ],
+              [
+                0,
+                6,
+                7
+              ],
+              [
+                0,
+                7,
+                6
+              ],
+              [
+                0,
+                8,
+                4
+              ],
+              [
+                0,
+                9,
+                3
+              ],
+              [
+                0,
+                10,
+                2
+              ],
+              [
+                0,
+                12,
+                1
+              ],
+              [
+                0,
+                15,
+                0
+              ],
+              [
+                1,
+                0,
+                14
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                14,
+                0
+              ],
+              [
+                2,
+                0,
+                12
+              ],
+              [
+                2,
+                12,
+                0
+              ],
+              [
+                3,
+                0,
+                11
+              ],
+              [
+                3,
+                11,
+                0
+              ],
+              [
+                4,
+                0,
+                9
+              ],
+              [
+                4,
+                9,
+                0
+              ],
+              [
+                5,
+                0,
+                8
+              ],
+              [
+                5,
+                8,
+                0
+              ],
+              [
+                6,
+                0,
+                6
+              ],
+              [
+                6,
+                6,
+                0
+              ],
+              [
+                7,
+                0,
+                4
+              ],
+              [
+                7,
+                4,
+                0
+              ],
+              [
+                8,
+                0,
+                3
+              ],
+              [
+                8,
+                3,
+                0
+              ],
+              [
+                9,
+                0,
+                1
+              ],
+              [
+                9,
+                1,
+                0
+              ],
+              [
+                10,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 72,
+            "lambda_lower_facet_witnesses": [
+              [
+                7,
+                -7,
+                -1
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -5,
+                5,
+                1
+              ]
+            ],
+            "original_normal_count": 447,
+            "original_normals_sha256": "31a334d0b48925e9a6ca9383f78e9d11b71c3479e9a3531f51ff9d40717c97fa",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "1/7",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1/5",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -5,
+                  5,
+                  1
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 33
+          },
+          {
+            "lambda_interval": [
+              "1/5",
+              "1/4"
+            ],
+            "strict_weight": [
+              "89/40",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                15
+              ],
+              [
+                0,
+                1,
+                14
+              ],
+              [
+                0,
+                2,
+                13
+              ],
+              [
+                0,
+                3,
+                11
+              ],
+              [
+                0,
+                4,
+                10
+              ],
+              [
+                0,
+                5,
+                9
+              ],
+              [
+                0,
+                6,
+                7
+              ],
+              [
+                0,
+                7,
+                6
+              ],
+              [
+                0,
+                8,
+                4
+              ],
+              [
+                0,
+                9,
+                3
+              ],
+              [
+                0,
+                10,
+                2
+              ],
+              [
+                0,
+                13,
+                1
+              ],
+              [
+                0,
+                15,
+                0
+              ],
+              [
+                1,
+                0,
+                14
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                14,
+                0
+              ],
+              [
+                2,
+                0,
+                12
+              ],
+              [
+                2,
+                12,
+                0
+              ],
+              [
+                3,
+                0,
+                11
+              ],
+              [
+                3,
+                11,
+                0
+              ],
+              [
+                4,
+                0,
+                9
+              ],
+              [
+                4,
+                9,
+                0
+              ],
+              [
+                5,
+                0,
+                7
+              ],
+              [
+                5,
+                7,
+                0
+              ],
+              [
+                6,
+                0,
+                6
+              ],
+              [
+                6,
+                6,
+                0
+              ],
+              [
+                7,
+                0,
+                4
+              ],
+              [
+                7,
+                4,
+                0
+              ],
+              [
+                8,
+                0,
+                3
+              ],
+              [
+                8,
+                3,
+                0
+              ],
+              [
+                9,
+                0,
+                1
+              ],
+              [
+                9,
+                1,
+                0
+              ],
+              [
+                10,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 73,
+            "lambda_lower_facet_witnesses": [
+              [
+                5,
+                -5,
+                -1
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -8,
+                8,
+                2
+              ]
+            ],
+            "original_normal_count": 462,
+            "original_normals_sha256": "acb015892daca37dc190e0fae9032de54c04f8cc6dcf19c9a9257fa8e65bfa8a",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "1/5",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1/4",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -8,
+                  8,
+                  2
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 33
+          },
+          {
+            "lambda_interval": [
+              "1/4",
+              "1/3"
+            ],
+            "strict_weight": [
+              "55/24",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                15
+              ],
+              [
+                0,
+                1,
+                14
+              ],
+              [
+                0,
+                2,
+                13
+              ],
+              [
+                0,
+                3,
+                11
+              ],
+              [
+                0,
+                4,
+                10
+              ],
+              [
+                0,
+                5,
+                9
+              ],
+              [
+                0,
+                6,
+                7
+              ],
+              [
+                0,
+                7,
+                6
+              ],
+              [
+                0,
+                8,
+                5
+              ],
+              [
+                0,
+                9,
+                3
+              ],
+              [
+                0,
+                11,
+                2
+              ],
+              [
+                0,
+                13,
+                1
+              ],
+              [
+                0,
+                15,
+                0
+              ],
+              [
+                1,
+                0,
+                14
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                14,
+                0
+              ],
+              [
+                2,
+                0,
+                12
+              ],
+              [
+                2,
+                12,
+                0
+              ],
+              [
+                3,
+                0,
+                11
+              ],
+              [
+                3,
+                11,
+                0
+              ],
+              [
+                4,
+                0,
+                9
+              ],
+              [
+                4,
+                9,
+                0
+              ],
+              [
+                5,
+                0,
+                7
+              ],
+              [
+                5,
+                7,
+                0
+              ],
+              [
+                6,
+                0,
+                6
+              ],
+              [
+                6,
+                6,
+                0
+              ],
+              [
+                7,
+                0,
+                4
+              ],
+              [
+                7,
+                4,
+                0
+              ],
+              [
+                8,
+                0,
+                2
+              ],
+              [
+                8,
+                2,
+                0
+              ],
+              [
+                9,
+                0,
+                1
+              ],
+              [
+                9,
+                1,
+                0
+              ],
+              [
+                10,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 74,
+            "lambda_lower_facet_witnesses": [
+              [
+                8,
+                -8,
+                -2
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -9,
+                9,
+                3
+              ],
+              [
+                -6,
+                6,
+                2
+              ],
+              [
+                -3,
+                3,
+                1
+              ]
+            ],
+            "original_normal_count": 455,
+            "original_normals_sha256": "3cfe04af22b153b9004d08442ffe5572aed22d2e3402cc9d2507dd82b56c811e",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "1/4",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1/3",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -9,
+                  9,
+                  3
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 33
+          },
+          {
+            "lambda_interval": [
+              "1/3",
+              "3/7"
+            ],
+            "strict_weight": [
+              "50/21",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                15
+              ],
+              [
+                0,
+                1,
+                14
+              ],
+              [
+                0,
+                2,
+                13
+              ],
+              [
+                0,
+                3,
+                12
+              ],
+              [
+                0,
+                4,
+                10
+              ],
+              [
+                0,
+                5,
+                9
+              ],
+              [
+                0,
+                6,
+                8
+              ],
+              [
+                0,
+                7,
+                6
+              ],
+              [
+                0,
+                8,
+                5
+              ],
+              [
+                0,
+                9,
+                4
+              ],
+              [
+                0,
+                10,
+                3
+              ],
+              [
+                0,
+                12,
+                2
+              ],
+              [
+                0,
+                14,
+                1
+              ],
+              [
+                0,
+                15,
+                0
+              ],
+              [
+                1,
+                0,
+                14
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                14,
+                0
+              ],
+              [
+                2,
+                0,
+                12
+              ],
+              [
+                2,
+                12,
+                0
+              ],
+              [
+                3,
+                0,
+                10
+              ],
+              [
+                3,
+                10,
+                0
+              ],
+              [
+                4,
+                0,
+                9
+              ],
+              [
+                4,
+                9,
+                0
+              ],
+              [
+                5,
+                0,
+                7
+              ],
+              [
+                5,
+                7,
+                0
+              ],
+              [
+                6,
+                0,
+                5
+              ],
+              [
+                6,
+                5,
+                0
+              ],
+              [
+                7,
+                0,
+                4
+              ],
+              [
+                7,
+                4,
+                0
+              ],
+              [
+                8,
+                0,
+                2
+              ],
+              [
+                8,
+                2,
+                0
+              ],
+              [
+                9,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 68,
+            "lambda_lower_facet_witnesses": [
+              [
+                3,
+                -3,
+                -1
+              ],
+              [
+                6,
+                -6,
+                -2
+              ],
+              [
+                9,
+                -9,
+                -3
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -7,
+                7,
+                3
+              ]
+            ],
+            "original_normal_count": 396,
+            "original_normals_sha256": "2470f9587b9b4c733d9b1f177b3eae512b7d5008fd06ea492e96b6a82db2e83e",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "1/3",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "3/7",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -7,
+                  7,
+                  3
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 32
+          },
+          {
+            "lambda_interval": [
+              "3/7",
+              "1/2"
+            ],
+            "strict_weight": [
+              "69/28",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                15
+              ],
+              [
+                0,
+                1,
+                14
+              ],
+              [
+                0,
+                2,
+                13
+              ],
+              [
+                0,
+                3,
+                12
+              ],
+              [
+                0,
+                4,
+                10
+              ],
+              [
+                0,
+                5,
+                9
+              ],
+              [
+                0,
+                6,
+                8
+              ],
+              [
+                0,
+                7,
+                7
+              ],
+              [
+                0,
+                8,
+                5
+              ],
+              [
+                0,
+                9,
+                4
+              ],
+              [
+                0,
+                11,
+                3
+              ],
+              [
+                0,
+                12,
+                2
+              ],
+              [
+                0,
+                14,
+                1
+              ],
+              [
+                0,
+                15,
+                0
+              ],
+              [
+                1,
+                0,
+                14
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                14,
+                0
+              ],
+              [
+                2,
+                0,
+                12
+              ],
+              [
+                2,
+                12,
+                0
+              ],
+              [
+                3,
+                0,
+                10
+              ],
+              [
+                3,
+                10,
+                0
+              ],
+              [
+                4,
+                0,
+                9
+              ],
+              [
+                4,
+                9,
+                0
+              ],
+              [
+                5,
+                0,
+                7
+              ],
+              [
+                5,
+                7,
+                0
+              ],
+              [
+                6,
+                0,
+                5
+              ],
+              [
+                6,
+                5,
+                0
+              ],
+              [
+                7,
+                0,
+                3
+              ],
+              [
+                7,
+                3,
+                0
+              ],
+              [
+                8,
+                0,
+                2
+              ],
+              [
+                8,
+                2,
+                0
+              ],
+              [
+                9,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 70,
+            "lambda_lower_facet_witnesses": [
+              [
+                7,
+                -7,
+                -3
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -8,
+                8,
+                4
+              ],
+              [
+                -4,
+                4,
+                2
+              ]
+            ],
+            "original_normal_count": 408,
+            "original_normals_sha256": "5bf02e006fdbb161ab67eabcfad8ec0ddc8b112164e32e0f95a7343150dff694",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "3/7",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "1/2",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -8,
+                  8,
+                  4
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 32
+          },
+          {
+            "lambda_interval": [
+              "1/2",
+              "3/5"
+            ],
+            "strict_weight": [
+              "51/20",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                15
+              ],
+              [
+                0,
+                1,
+                14
+              ],
+              [
+                0,
+                2,
+                13
+              ],
+              [
+                0,
+                3,
+                12
+              ],
+              [
+                0,
+                4,
+                11
+              ],
+              [
+                0,
+                5,
+                9
+              ],
+              [
+                0,
+                6,
+                8
+              ],
+              [
+                0,
+                7,
+                7
+              ],
+              [
+                0,
+                8,
+                6
+              ],
+              [
+                0,
+                9,
+                5
+              ],
+              [
+                0,
+                10,
+                4
+              ],
+              [
+                0,
+                11,
+                3
+              ],
+              [
+                0,
+                13,
+                2
+              ],
+              [
+                0,
+                14,
+                1
+              ],
+              [
+                0,
+                15,
+                0
+              ],
+              [
+                1,
+                0,
+                14
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                14,
+                0
+              ],
+              [
+                2,
+                0,
+                12
+              ],
+              [
+                2,
+                12,
+                0
+              ],
+              [
+                3,
+                0,
+                10
+              ],
+              [
+                3,
+                10,
+                0
+              ],
+              [
+                4,
+                0,
+                8
+              ],
+              [
+                4,
+                8,
+                0
+              ],
+              [
+                5,
+                0,
+                7
+              ],
+              [
+                5,
+                7,
+                0
+              ],
+              [
+                6,
+                0,
+                5
+              ],
+              [
+                6,
+                5,
+                0
+              ],
+              [
+                7,
+                0,
+                3
+              ],
+              [
+                7,
+                3,
+                0
+              ],
+              [
+                8,
+                0,
+                1
+              ],
+              [
+                8,
+                1,
+                0
+              ],
+              [
+                9,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 67,
+            "lambda_lower_facet_witnesses": [
+              [
+                4,
+                -4,
+                -2
+              ],
+              [
+                8,
+                -8,
+                -4
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -5,
+                5,
+                3
+              ]
+            ],
+            "original_normal_count": 363,
+            "original_normals_sha256": "c4c96f604b42a6dfdccd7a319ffb7511c1e355adb6c19affb8d28d8a47899819",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "1/2",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "3/5",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -5,
+                  5,
+                  3
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 33
+          },
+          {
+            "lambda_interval": [
+              "3/5",
+              "2/3"
+            ],
+            "strict_weight": [
+              "79/30",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                15
+              ],
+              [
+                0,
+                1,
+                14
+              ],
+              [
+                0,
+                2,
+                13
+              ],
+              [
+                0,
+                3,
+                12
+              ],
+              [
+                0,
+                4,
+                11
+              ],
+              [
+                0,
+                5,
+                10
+              ],
+              [
+                0,
+                6,
+                8
+              ],
+              [
+                0,
+                7,
+                7
+              ],
+              [
+                0,
+                8,
+                6
+              ],
+              [
+                0,
+                9,
+                5
+              ],
+              [
+                0,
+                10,
+                4
+              ],
+              [
+                0,
+                12,
+                3
+              ],
+              [
+                0,
+                13,
+                2
+              ],
+              [
+                0,
+                14,
+                1
+              ],
+              [
+                0,
+                15,
+                0
+              ],
+              [
+                1,
+                0,
+                14
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                14,
+                0
+              ],
+              [
+                2,
+                0,
+                12
+              ],
+              [
+                2,
+                12,
+                0
+              ],
+              [
+                3,
+                0,
+                10
+              ],
+              [
+                3,
+                10,
+                0
+              ],
+              [
+                4,
+                0,
+                8
+              ],
+              [
+                4,
+                8,
+                0
+              ],
+              [
+                5,
+                0,
+                6
+              ],
+              [
+                5,
+                6,
+                0
+              ],
+              [
+                6,
+                0,
+                5
+              ],
+              [
+                6,
+                5,
+                0
+              ],
+              [
+                7,
+                0,
+                3
+              ],
+              [
+                7,
+                3,
+                0
+              ],
+              [
+                8,
+                0,
+                1
+              ],
+              [
+                8,
+                1,
+                0
+              ],
+              [
+                9,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 61,
+            "lambda_lower_facet_witnesses": [
+              [
+                5,
+                -5,
+                -3
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -6,
+                6,
+                4
+              ]
+            ],
+            "original_normal_count": 320,
+            "original_normals_sha256": "612ecd2295bec062d1b9d3599132a09a1d3258a2751e04862894873cbfbd4c93",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "3/5",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "2/3",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -6,
+                  6,
+                  4
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 33
+          },
+          {
+            "lambda_interval": [
+              "2/3",
+              "5/7"
+            ],
+            "strict_weight": [
+              "113/42",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                15
+              ],
+              [
+                0,
+                1,
+                14
+              ],
+              [
+                0,
+                2,
+                13
+              ],
+              [
+                0,
+                3,
+                12
+              ],
+              [
+                0,
+                4,
+                11
+              ],
+              [
+                0,
+                5,
+                10
+              ],
+              [
+                0,
+                6,
+                9
+              ],
+              [
+                0,
+                7,
+                7
+              ],
+              [
+                0,
+                8,
+                6
+              ],
+              [
+                0,
+                9,
+                5
+              ],
+              [
+                0,
+                11,
+                4
+              ],
+              [
+                0,
+                12,
+                3
+              ],
+              [
+                0,
+                13,
+                2
+              ],
+              [
+                0,
+                14,
+                1
+              ],
+              [
+                0,
+                15,
+                0
+              ],
+              [
+                1,
+                0,
+                14
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                14,
+                0
+              ],
+              [
+                2,
+                0,
+                12
+              ],
+              [
+                2,
+                12,
+                0
+              ],
+              [
+                3,
+                0,
+                10
+              ],
+              [
+                3,
+                10,
+                0
+              ],
+              [
+                4,
+                0,
+                8
+              ],
+              [
+                4,
+                8,
+                0
+              ],
+              [
+                5,
+                0,
+                6
+              ],
+              [
+                5,
+                6,
+                0
+              ],
+              [
+                6,
+                0,
+                4
+              ],
+              [
+                6,
+                4,
+                0
+              ],
+              [
+                7,
+                0,
+                3
+              ],
+              [
+                7,
+                3,
+                0
+              ],
+              [
+                8,
+                0,
+                1
+              ],
+              [
+                8,
+                1,
+                0
+              ],
+              [
+                9,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 56,
+            "lambda_lower_facet_witnesses": [
+              [
+                6,
+                -6,
+                -4
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -7,
+                7,
+                5
+              ]
+            ],
+            "original_normal_count": 279,
+            "original_normals_sha256": "324561580db34868cfa3a908090feae4c628fdd17db08e11cbcae11570585836",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "2/3",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "5/7",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -7,
+                  7,
+                  5
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 33
+          },
+          {
+            "lambda_interval": [
+              "5/7",
+              "3/4"
+            ],
+            "strict_weight": [
+              "153/56",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                15
+              ],
+              [
+                0,
+                1,
+                14
+              ],
+              [
+                0,
+                2,
+                13
+              ],
+              [
+                0,
+                3,
+                12
+              ],
+              [
+                0,
+                4,
+                11
+              ],
+              [
+                0,
+                5,
+                10
+              ],
+              [
+                0,
+                6,
+                9
+              ],
+              [
+                0,
+                7,
+                8
+              ],
+              [
+                0,
+                8,
+                6
+              ],
+              [
+                0,
+                10,
+                5
+              ],
+              [
+                0,
+                11,
+                4
+              ],
+              [
+                0,
+                12,
+                3
+              ],
+              [
+                0,
+                13,
+                2
+              ],
+              [
+                0,
+                14,
+                1
+              ],
+              [
+                0,
+                15,
+                0
+              ],
+              [
+                1,
+                0,
+                14
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                14,
+                0
+              ],
+              [
+                2,
+                0,
+                12
+              ],
+              [
+                2,
+                12,
+                0
+              ],
+              [
+                3,
+                0,
+                10
+              ],
+              [
+                3,
+                10,
+                0
+              ],
+              [
+                4,
+                0,
+                8
+              ],
+              [
+                4,
+                8,
+                0
+              ],
+              [
+                5,
+                0,
+                6
+              ],
+              [
+                5,
+                6,
+                0
+              ],
+              [
+                6,
+                0,
+                4
+              ],
+              [
+                6,
+                4,
+                0
+              ],
+              [
+                7,
+                0,
+                2
+              ],
+              [
+                7,
+                2,
+                0
+              ],
+              [
+                8,
+                0,
+                1
+              ],
+              [
+                8,
+                1,
+                0
+              ],
+              [
+                9,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 49,
+            "lambda_lower_facet_witnesses": [
+              [
+                7,
+                -7,
+                -5
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -8,
+                8,
+                6
+              ]
+            ],
+            "original_normal_count": 228,
+            "original_normals_sha256": "c8026b2ef6491b27285a7981a086c9c3b591ac579ebe5371384c1427ceebd81b",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "5/7",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  0,
+                  2,
+                  -2
+                ]
+              },
+              {
+                "lambda": "3/4",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -8,
+                  8,
+                  6
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 33
+          },
+          {
+            "lambda_interval": [
+              "3/4",
+              "1"
+            ],
+            "strict_weight": [
+              "23/8",
+              "2",
+              "1"
+            ],
+            "standard_basis_border": [
+              [
+                0,
+                0,
+                15
+              ],
+              [
+                0,
+                1,
+                14
+              ],
+              [
+                0,
+                2,
+                13
+              ],
+              [
+                0,
+                3,
+                12
+              ],
+              [
+                0,
+                4,
+                11
+              ],
+              [
+                0,
+                5,
+                10
+              ],
+              [
+                0,
+                6,
+                9
+              ],
+              [
+                0,
+                7,
+                8
+              ],
+              [
+                0,
+                8,
+                7
+              ],
+              [
+                0,
+                9,
+                6
+              ],
+              [
+                0,
+                10,
+                5
+              ],
+              [
+                0,
+                11,
+                4
+              ],
+              [
+                0,
+                12,
+                3
+              ],
+              [
+                0,
+                13,
+                2
+              ],
+              [
+                0,
+                14,
+                1
+              ],
+              [
+                0,
+                15,
+                0
+              ],
+              [
+                1,
+                0,
+                14
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                14,
+                0
+              ],
+              [
+                2,
+                0,
+                12
+              ],
+              [
+                2,
+                12,
+                0
+              ],
+              [
+                3,
+                0,
+                10
+              ],
+              [
+                3,
+                10,
+                0
+              ],
+              [
+                4,
+                0,
+                8
+              ],
+              [
+                4,
+                8,
+                0
+              ],
+              [
+                5,
+                0,
+                6
+              ],
+              [
+                5,
+                6,
+                0
+              ],
+              [
+                6,
+                0,
+                4
+              ],
+              [
+                6,
+                4,
+                0
+              ],
+              [
+                7,
+                0,
+                2
+              ],
+              [
+                7,
+                2,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "boundary_normal_count": 43,
+            "lambda_lower_facet_witnesses": [
+              [
+                8,
+                -8,
+                -6
+              ]
+            ],
+            "lambda_upper_facet_witnesses": [
+              [
+                -1,
+                1,
+                1
+              ]
+            ],
+            "original_normal_count": 172,
+            "original_normals_sha256": "37a3bb92533d4b60dc04de7a84c4c10bd8e23c88104e6f927f80e8f1985f429b",
+            "minimum_boundary_ray_slack": 0,
+            "endpoint_witnesses": [
+              {
+                "lambda": "3/4",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  8,
+                  -8,
+                  -6
+                ]
+              },
+              {
+                "lambda": "1",
+                "minimum_slack": "0",
+                "normal_attaining_minimum": [
+                  -1,
+                  1,
+                  1
+                ]
+              }
+            ],
+            "monic_integer_certificates": true,
+            "original_integer_border_relations": 32
+          }
+        ]
+      }
+    ],
+    "scope": "Complete continuous positive fans at the eight stated cutoffs, over every field: monic integer border relations, exact integer membership witnesses, rational cone endpoints and symmetry/outer-cone coverage. No mesh or selected-characteristic inference is used. The uniform boundary-cover conjecture and an asymptotic fan count for the cubic remain unproved."
+  },
   "new_asymptotic_fan_bound": false,
   "novelty_established": false,
   "goal_complete": false,
-  "scope": "Exact truncation and all-subset rank reductions for a defined deep hypersurface class. The finite-free and graded initial ingredients are classical mechanisms. Neither a full positive-fan count, polynomial separation, unrestricted improvement nor completed priority assessment is asserted.",
+  "scope": "Exact truncation and all-subset rank reductions, plus complete positive fans at eight stated cubic cutoffs over every field by monic integer certificates. The finite-free and monic-division ingredients are classical mechanisms. No uniform full-fan count, polynomial separation, unrestricted improvement or completed priority assessment is asserted.",
   "source_sha256": {
-    "scripts/run_hypersurface_truncation_checks.py": "ca2e57d8e5bffcdafc5317032719204f09821dcdbb78c4f1181e3ceccf27d767",
-    "docs/hypersurface_truncations.md": "5d4682dbc69d7cea15dfaff6be5f9f00e2d298a4bb1d97cce96c0d090438b95d",
+    "scripts/run_hypersurface_truncation_checks.py": "700073c01784db06a953d351c500e0d66b0019c1152fe4b127cbf50f35cbcd7e",
+    "docs/hypersurface_truncations.md": "09d15b57db4c2a48e3a274da932c0e057898dede1b9fa1d9f82f10dd56d527bb",
     "scripts/run_socle_stability_checks.py": "81e4476100f0be5457fcf7019186415d230cceac4096202b2844dce645e83f52",
     "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",

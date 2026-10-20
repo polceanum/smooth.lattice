@@ -4,7 +4,7 @@ The shared depth bound leaves room for a polynomially larger fan when
 relations propagate through a growing number of layers. This note
 makes one such class explicit. It gives an exact homogeneous initial
 ideal and a finite free-module description of **all** monomial ranks.
-It does not count the entire positive fan or establish novelty. The
+It does not give a uniform count of the positive fan or establish novelty. The
 free-module and graded-initial mechanisms are classical; the main
 extremal goal and its publication gates remain open.
 
@@ -185,6 +185,52 @@ change does not turn the cost $a w_x+b w_y+c w_z$ into a cost
 on one free-module label. The earlier common-ray theorem cannot
 be applied to infer a fan count from (7).
 
+## A smaller integral model
+
+For this particular cubic, classical monic division is simpler than
+the parameter construction (5)--(7). It also removes the restriction on
+the characteristic. More generally, suppose
+
+$$
+F=x^d+\sum_{a<d} c_{abc}x^a y^b z^c,
+\qquad a+b+c\ge d
+$$
+
+for every nonzero displayed coefficient, over any coefficient ring.
+The usual monic normal form has $x$-exponent below $d$. Each
+replacement of $x^d$ strictly decreases $x$-exponent and never
+decreases total degree. Therefore the image of $\mathfrak m^{s+1}$
+in that free module is precisely the span of its standard monomials
+of degree greater than $s$. This proves, over the coefficient ring,
+
+$$
+S/((F)+\mathfrak m^{s+1})
+\quad\text{has basis}\quad
+\{x^i y^j z^k:i<d,\ i+j+k\le s\}.                    \tag{9}
+$$
+
+No division by a field element is required. In particular, for
+
+$$
+f_c=x^2+y^2+c z^2+xyz,\qquad c\in\mathbb Z,
+$$
+
+(9) gives $(s+1)^2$ original monomials over $\mathbb Z$.
+The only multiplication rule beyond shifts and the cutoff is
+
+$$
+x(xy^jz^k)=-y^{j+2}z^k-cy^jz^{k+2}-xy^{j+1}z^{k+1}.    \tag{10}
+$$
+
+All three multiplication matrices have at most three nonzero entries
+per column, so they use $O(n_s)$ integer coefficients. The module has
+two channels over $\mathbb Z[y,z]$ before truncation. This supersedes
+the six-channel construction as a rank implementation for this cubic;
+the previous identities and checks remain valid. It is a classical
+monic-division simplification, not a new mathematical complexity bound.
+Original monomials with $x$-exponent at least two still have mixed
+columns. Nothing here supplies independent original-cost rays.
+
 ## Where the unknown count is located
 
 For any $f$ as above, suppose its strict leading monomial $u$
@@ -210,10 +256,142 @@ for this fixed-degree family: all standard monomials have total
 degree at most $s$, so profiles lie in a cube of side $n_s s$,
 and $n_s=\Theta(s^2)$. Thus a real quantitative window remains.
 Closing it requires a whole-triangle count of original monomial
-rank changes. The exact kernel (7), including its coupled
-coefficients, is available for that proof. Increasing the small
-enumeration or treating the six channels as independent prices
-does not close the window.
+rank changes. Both (7) and the smaller integral kernel (9)--(10)
+retain the coupled coefficients needed for that proof.
+
+## A precise boundary-cover question
+
+Set
+
+$$
+J_s=(x^2+y^2+xyz)+\mathfrak m^{s+1},\qquad v=(1,1,0).
+$$
+
+For the original cubic $I_s$, the highest-$v$ initial ideal is
+exactly $J_s$. The generators give inclusion, and (9) proves equality
+of colengths. This equality and the standard refinement lemma imply
+that each positive initial cone of $J_s$ lifts to a cone of $I_s$
+incident to $v$. They do **not** imply that those incident cones
+cover the positive triangle.
+
+By symmetry it is enough to consider $w_x>w_y>w_z>0$ in the triangle.
+After rescaling, write
+
+$$
+w=(u+\lambda,u,1),\qquad u>1,\quad 0<\lambda<1.         \tag{11}
+$$
+
+$J_s$ is homogeneous for $v$. Its degree-$k$ quotient summand has
+dimension $2(s-k+1)$ for $1\le k\le s$, and the degree-zero summand
+has dimension $s+1$. All of its monomial bases have the same total
+$v$-degree. Thus its greedy standard basis in (11) depends only on
+$\lambda$, not $u$.
+
+For a direct independent description of each summand, put $t=x/y$
+as a **vector-space label**, without inverting the nilpotent variable
+in the original quotient. For $L=s-k+1$ its monomial columns are
+
+$$
+x^a y^{k-a}z^c\longmapsto t^a z^c
+\quad\text{in}\quad
+K[t,z]/(t^2+zt+1,z^L),\qquad 0\le a\le k.               \tag{12}
+$$
+
+The basis is $1,t$ over $K[z]/z^L$. Formula (12) follows from the
+monic relation $x^2=-y^2-xyz$ and preserves the entire degree-$k$
+column space. It is a finite block-rank identity, not localization of
+$S/J_s$.
+
+Let $B$ be a greedy basis of $J_s$ on an open interval
+$(\ell,h)\subset(0,1)$, and write the reduced original border
+relations as $x^a-\sum_{b\in B}c_{ab}x^b$. Here $a$ runs over the
+minimal excluded border. For each nonzero coefficient put
+$z=a-b=(z_x,z_y,z_z)$ and $A=z_x+z_y$. The refinement at $v$
+already proves $A\ge0$. The following explicit condition is
+sufficient for this **entire** sector, including arbitrarily large $u$:
+
+$$
+\boxed{ A+\ell z_x+z_z\ge0,\qquad
+        A+h z_x+z_z\ge0\quad\text{for every border tail}.} \tag{13}
+$$
+
+Indeed its cone inequality is
+
+$$
+z\cdot w=A(u-1)+(A+\lambda z_x+z_z).                     \tag{14}
+$$
+
+The second term is affine in $\lambda$, so its endpoint values
+control the whole interval. If $A>0$ the first term is strictly
+positive for $u>1$. If $A=0$, the corresponding tail is a border tail
+of the homogeneous initial $J_s$, and its inequality is strict in
+the open interval. Thus all these relations retain their designated
+heads. Inclusion of the border ideal and equality of colengths give
+the original initial ideal with standard set $B$.
+
+**Conditional consequence.** If (13) holds for every $s$ and every
+sector basis over every field, the whole cubic family has only
+$O(n_s)$ positive monomial initial ideals. To see this directly,
+all sector endpoints come from the boundary border normals,
+$z_x+z_y=0$, and have the form $-z_z/z_x$. Standard monomials have
+degree at most $s$, and minimal border monomials have degree at most
+$s+1$. There are only $O(s^2)$ such distinct fractions in $(0,1)$.
+Permuting coordinates covers the six ordered central regions, and
+(8) adds just three outer cones. Since $n_s=(s+1)^2$, the conclusion
+follows. The nonnegative-grading theorem gives another bound of the
+same order for each boundary star. This is a conditional reduction,
+not a proof that the cubic family satisfies the hypothesis uniformly.
+
+There is also a uniform parity restriction on the boundary walls:
+$z_x+z_z$ is even. Both the $v$-grading and the parity of the sum of
+the $x$- and $z$-exponents are preserved by the relation in (12).
+Consequently a primitive fraction $p/q$ with opposite parities in
+$p,q$ must be represented by an even multiple of $(q,-q,-p)$.
+This explains a restriction on candidate Farey fractions; it does
+not say that every permitted fraction is an actual wall.
+
+## Complete finite certificates, over every field
+
+The checker now verifies (13) on every boundary sector at the
+following cutoffs. This is a continuous cone certificate, not a mesh
+of sampled weights.
+
+| Cutoff $s$ | Length $n_s$ | Ordered central sectors | Entire positive fan |
+|---|---|---|---|
+| 3 | 16 | 1 | 6 |
+| 4 | 25 | 2 | 12 |
+| 5 | 36 | 2 | 12 |
+| 6 | 49 | 3 | 18 |
+| 8 | 81 | 5 | 30 |
+| 10 | 121 | 7 | 42 |
+| 12 | 169 | 10 | 60 |
+| 14 | 225 | 12 | 72 |
+
+These finite counts hold over **every field**, including characteristic
+two. Every minimal border relation was obtained with integer tail
+coefficients and leading coefficient one. An explicit integer
+quotient $Q$ verifies that the relation minus $f_cQ$ has only terms
+of degree greater than $s$. Reducing those identities into any field
+therefore retains all designated heads. Each standard set has the
+known length $(s+1)^2$, so inclusion proves equality of the initial
+ideals in every characteristic. The same monic argument certifies
+the boundary sectors. The saved border generators, rational interval
+endpoints, critical normal witnesses and reproduction command
+determine the exact finite certificates.
+
+The intervals exhaust $(0,1)$: a next test point is taken just past
+the exact preceding endpoint, with step below the minimum possible
+gap between fractions of denominators at most $s+1$. Formula (13)
+covers every $u>1$. Coordinate permutations and the outer-cone
+classification finish the positive fan; lower-dimensional weight
+boundaries cannot hide an additional full-dimensional initial cone.
+All previous complete fan counts at cutoffs three and four agree.
+
+The uniform task is now explicit: prove (13) for arbitrary cutoff,
+or find a counterexample. Extending this table alone would not
+resolve it. A positive uniform proof would exclude this entire
+deep-relation family as a source of a polynomial separation; it
+would not settle unrestricted $G_3$ or complete the active goal.
 
 ## Prior-art boundary and reproduction
 
@@ -236,13 +414,45 @@ comparisons are not a novelty certificate for (2), (4) or (7).
 Their classical free-module ingredients and complete subsequent
 priority coverage still need assessment before any paper claim.
 
+The cone inequalities and refinement mechanism are established
+Gröbner-fan theory. In [Fukuda--Jensen--Thomas, Proposition 2.6,
+Lemma 2.10, Corollary 2.11, Lemma 2.13 and Corollary 2.14, with proofs](https://arxiv.org/pdf/math/0509544),
+the reduced-basis inequalities describe a cone and its closure, and
+initials of its basis give refinements. Those passages were read;
+the general fan-convexity argument in (13)--(14) is not claimed as
+a new theorem. Its application still needs the unproved uniform
+border inequality.
+
+After $z\mapsto-z$, the cubic itself is the classical Markoff surface
+$x^2+y^2+z^2-xyz=0$. [Goldman, introduction, Section 1 and
+Section 5.2](https://math.umd.edu/~wmg/RemarkableFamily.pdf) identifies
+this member of the relative character-variety family and gives its
+Vieta involutions. These specific passages were inspected. In the
+present sign convention they are $x\mapsto-x-yz$ and its permutations.
+They preserve $f$ and $\mathfrak m$, hence act on every truncated
+quotient. This established symmetry is a possible proof tool, not
+evidence that (13) is known or true. The cited passages concern
+surface geometry and automorphisms, not the count of initials of
+these finite truncations; no whole-literature novelty assessment is
+inferred from this comparison.
+
 The checker compares full homogeneous initial row spaces with (4)
 over the rationals and several prime fields, including two.
 The explicit model (7) is checked only where $2$ is invertible.
 Commuting cyclic operators, all free-basis vectors, original
 equations, strict filtration and independent Macaulay kernels
 verify the complete monomial-rank transfer. Existing complete
-fan witnesses are replayed; no larger fan search is performed.
+fan witnesses are also replayed; the additional complete finite
+certificates are described above.
+
+The additional integral model is compared against forty full Macaulay
+kernels, covering both $f_0$ and $f_1$ over the rationals and four prime
+fields, and against every original monomial column of the earlier
+six-channel model at the stated cutoffs. Separately, 42 entire ordered
+sectors and 1,069 original monic integer border relations certify the
+eight all-field fans above. The earlier checks are retained unchanged;
+neither selected finite fields nor the integral rank basis alone is
+used as proof of characteristic-independent fan counts.
 
 ~~~bash
 python3 -B scripts/run_hypersurface_truncation_checks.py

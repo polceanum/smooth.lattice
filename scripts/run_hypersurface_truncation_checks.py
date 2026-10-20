@@ -2,14 +2,16 @@
 """Exact truncation and rank controls; no asymptotic fan claim from samples."""
 from collections import defaultdict
 from fractions import Fraction
-from itertools import combinations, product
+from functools import lru_cache
+from itertools import combinations, permutations, product
 from math import comb
 from pathlib import Path
 import hashlib
 import json
 
 from run_socle_stability_checks import depth_rref
-from run_structural_complexity_checks import greedy
+from run_structural_complexity_checks import dot, greedy
+from run_interleaving_research import minimal_excluded_border
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -174,6 +176,230 @@ def compressed_model(s, p):
     return basis, (X, Y, Z), L, U, apply, evaluate, sum_terms
 
 
+def integral_cubic_model(s, z_square=1):
+    """Monic division over Z, with x-exponent <2 and total degree <=s."""
+    basis = tuple(a for a in simplex(s) if a[0] < 2)
+    index = {a: i for i, a in enumerate(basis)}
+
+    @lru_cache(None)
+    def evaluate(a):
+        x, y, z = a
+        if x+y+z > s:
+            return {}
+        if x < 2:
+            return {index[a]: 1}
+        out = defaultdict(int)
+        for b, c in (((x-2, y+2, z), -1),
+                     ((x-2, y, z+2), -z_square),
+                     ((x-1, y+1, z+1), -1)):
+            for k, value in evaluate(b).items():
+                out[k] += c*value
+        return {k: value for k, value in out.items() if value}
+
+    return basis, evaluate
+
+
+def sparse_basis_reduce(vector, pivots):
+    """Exact column elimination, retaining a representation in chosen columns."""
+    vector = {k: Fraction(c) for k, c in vector.items() if c}
+    coefficients = defaultdict(Fraction)
+    for k, (row, representation) in sorted(pivots.items()):
+        value = vector.get(k, 0)
+        if not value:
+            continue
+        for j, c in row.items():
+            vector[j] = vector.get(j, 0)-value*c
+            if not vector[j]:
+                del vector[j]
+        for a, c in representation.items():
+            coefficients[a] += value*c
+    return vector, {a: c for a, c in coefficients.items() if c}
+
+
+def sparse_basis(points, evaluate):
+    pivots, chosen = {}, []
+    for a in points:
+        vector, coefficients = sparse_basis_reduce(evaluate(a), pivots)
+        if not vector:
+            continue
+        k = min(vector)
+        value = vector[k]
+        representation = {b: -c/value for b, c in coefficients.items()}
+        representation[a] = 1/value
+        pivots[k] = ({j: c/value for j, c in vector.items()}, representation)
+        chosen.append(a)
+    return tuple(chosen), pivots
+
+
+def integral_membership_witness(polynomial, s, z_square):
+    """Return Q with polynomial-f*Q in m^(s+1), checking multiplication anew."""
+    work, quotient = dict(polynomial), defaultdict(int)
+    f = {(2, 0, 0): 1, (0, 2, 0): 1, (1, 1, 1): 1}
+    if z_square:
+        f[(0, 0, 2)] = z_square
+    while True:
+        a = max((a for a, c in work.items() if c and a[0] >= 2 and sum(a) <= s), default=None)
+        if a is None:
+            break
+        value = work[a]
+        b = (a[0]-2, a[1], a[2])
+        quotient[b] += value
+        for exponent, c in f.items():
+            v = add(b, exponent)
+            work[v] = work.get(v, 0)-value*c
+            if not work[v]:
+                del work[v]
+    assert all(sum(a) > s for a in work), 'integer ideal membership, including cutoff terms'
+    reconstructed = poly_mul(f, quotient, 0)
+    for a in set(polynomial) | set(reconstructed):
+        if sum(a) <= s:
+            assert polynomial.get(a, 0) == reconstructed.get(a, 0)
+    return {a: c for a, c in quotient.items() if c}
+
+
+def integral_border_relations(chosen, pivots, evaluate, s, z_square):
+    normals, relations, coefficients, witness_terms = set(), 0, 0, 0
+    chosen_set = set(chosen)
+    assert all(tuple(x-(i == j) for i, x in enumerate(a)) in chosen_set
+               for a in chosen for j in range(3) if a[j])
+    for a in minimal_excluded_border(chosen):
+        remainder, representation = sparse_basis_reduce(evaluate(a), pivots)
+        assert not remainder
+        assert all(c.denominator == 1 for c in representation.values()), 'monic integer certificate'
+        polynomial = {a: 1}
+        for b, c in representation.items():
+            polynomial[b] = -int(c)
+            normal = tuple(x-y for x, y in zip(a, b))
+            assert any(normal)
+            normals.add(normal)
+        witness = integral_membership_witness(polynomial, s, z_square)
+        relations += 1
+        coefficients += len(representation)
+        witness_terms += len(witness)
+    return normals, (relations, coefficients, witness_terms)
+
+
+def integral_model_controls():
+    counts, fixtures = defaultdict(int), []
+    for s, z_square in product((2, 3, 4, 6, 10), (0, 1)):
+        basis, evaluate = integral_cubic_model(s, z_square)
+        assert len(basis) == (s+1)**2
+        maps = [[evaluate(add(a, tuple(int(i == j) for i in range(3))))
+                 for a in basis] for j in range(3)]
+        assert max(len(v) for M in maps for v in M) <= 3
+        counts['integral_operator_columns'] += 3*len(basis)
+        for p in (0, 2, 3, 5, 101):
+            ground = simplex(s)
+            if s <= 6:
+                f = {(2, 0, 0): 1, (0, 2, 0): 1, (1, 1, 1): 1}
+                if z_square:
+                    f[(0, 0, 2)] = 1
+                rows = relation_rows(ground, [f], p)
+                assert len(ground)-len(rows) == len(basis)
+                for row in rows:
+                    result = defaultdict(int)
+                    for a, c in zip(ground, row):
+                        for k, value in evaluate(a).items():
+                            result[k] += c*value
+                    assert not any(value % p if p else value for value in result.values())
+                    counts['integral_independent_macaulay_relations'] += 1
+                # The original standard monomials themselves give an identity submatrix.
+                assert all(evaluate(a) == {k: 1} for k, a in enumerate(basis))
+                counts['integral_independent_full_kernel_equalities'] += 1
+            if z_square and p != 2:
+                free, _, _, _, _, previous, _ = compressed_model(s, p)
+                transfer = [previous(a) for a in basis]
+                for a in ground:
+                    result = defaultdict(int)
+                    for k, c in evaluate(a).items():
+                        for j, value in transfer[k].items():
+                            result[j] += c*value
+                    result = {j: (value % p if p else value)
+                              for j, value in result.items() if (value % p if p else value)}
+                    assert result == previous(a)
+                    counts['old_and_integral_column_equalities'] += 1
+        fixtures.append({'cutoff': s, 'z_square_coefficient': z_square,
+                         'length': len(basis), 'coefficient_ring': 'Z',
+                         'maximum_operator_column_support': max(len(v) for M in maps for v in M)})
+    return {'counts': dict(counts), 'fixtures': fixtures,
+            'scope': 'A classical monic-division basis gives a smaller integral model. Full independent Macaulay kernels cover both cubics over Q and F_2,F_3,F_5,F_101; explicit column maps preserve the previous six-channel model. No cost-ray or new asymptotic theorem follows from this basis alone.'}
+
+
+def cubic_boundary_certificates():
+    counts, fixtures = defaultdict(int), []
+    for s in (3, 4, 5, 6, 8, 10, 12, 14):
+        ground = simplex(s)
+        basis, boundary = integral_cubic_model(s, 0)
+        _, original = integral_cubic_model(s, 1)
+        epsilon = Fraction(1, 10*(s+1)**3)
+        lam, sectors, all_bases = epsilon, [], set()
+        while lam < 1:
+            weight = (s+1+lam, s+1, Fraction(1))
+            chosen, pivots = sparse_basis(sorted(ground, key=lambda a: (dot(weight, a), a)), boundary)
+            assert len(chosen) == len(basis)
+            chosen_original, original_pivots = sparse_basis(chosen, original)
+            assert chosen_original == chosen
+            z0, stats0 = integral_border_relations(chosen, pivots, boundary, s, 0)
+            z1, stats1 = integral_border_relations(chosen, original_pivots, original, s, 1)
+            lo, hi = Fraction(0), Fraction(1)
+            for x, y, z in z0:
+                assert x+y == 0, 'boundary grading is preserved exactly'
+                assert (x+z) % 2 == 0, 'boundary parity grading is preserved'
+                if x > 0:
+                    lo = max(lo, Fraction(-z, x))
+                elif x < 0:
+                    hi = min(hi, Fraction(-z, x))
+                else:
+                    assert z > 0
+            assert lo < lam < hi
+            assert not sectors or lo == Fraction(sectors[-1]['lambda_interval'][1])
+            endpoint_witnesses = []
+            for end in (lo, hi):
+                value, normal = min((x+y+x*end+z, (x, y, z)) for x, y, z in z1)
+                endpoint_witnesses.append({'lambda': str(end), 'minimum_slack': str(value),
+                                           'normal_attaining_minimum': normal})
+            for x, y, z in z1:
+                assert x+y >= 0, 'every lifted cone contains the boundary ray'
+                for end in (lo, hi):
+                    value = x+y+x*end+z
+                    assert value >= 0, 'entire ordered sector, at u=1 and both lambda endpoints'
+                counts['whole_sector_normal_checks'] += 1
+            for perm in permutations(range(3)):
+                all_bases.add(frozenset(tuple(a[i] for i in perm) for a in chosen))
+            for prefix, stats in (('boundary', stats0), ('original', stats1)):
+                for name, value in zip(('integer_border_relations', 'integer_tail_coefficients', 'integer_quotient_witness_terms'), stats):
+                    counts[prefix+'_'+name] += value
+            sectors.append({'lambda_interval': [str(lo), str(hi)],
+                            'strict_weight': [str(v) for v in (Fraction(2)+(lo+hi)/2, Fraction(2), Fraction(1))],
+                            'standard_basis_border': sorted(minimal_excluded_border(chosen)),
+                            'boundary_normal_count': len(z0),
+                            'lambda_lower_facet_witnesses': sorted((x, y, z) for x, y, z in z0
+                                                                  if x > 0 and Fraction(-z, x) == lo),
+                            'lambda_upper_facet_witnesses': sorted((x, y, z) for x, y, z in z0
+                                                                  if x < 0 and Fraction(-z, x) == hi),
+                            'original_normal_count': len(z1),
+                            'original_normals_sha256': hashlib.sha256(json.dumps(sorted(z1)).encode()).hexdigest(),
+                            'minimum_boundary_ray_slack': min(x+y for x, y, z in z1),
+                            'endpoint_witnesses': endpoint_witnesses,
+                            'monic_integer_certificates': True,
+                            'original_integer_border_relations': stats1[0]})
+            lam = hi+epsilon
+        assert sectors[0]['lambda_interval'][0] == '0' and sectors[-1]['lambda_interval'][1] == '1'
+        # The three outer cones have exactly the elementary bases (x_i^2,m^(s+1)).
+        for i in range(3):
+            all_bases.add(frozenset(a for a in ground if a[i] < 2))
+        fixtures.append({'cutoff': s, 'length': len(basis), 'coefficient_ring': 'Z',
+                         'valid_over_every_field': True,
+                         'exact_interval_walk_step': str(epsilon),
+                         'complete_positive_fan_cells': len(all_bases),
+                         'ordered_central_sectors': sectors})
+        counts['all_field_complete_positive_fans'] += 1
+        counts['certified_ordered_central_sectors'] += len(sectors)
+        counts['complete_positive_fan_cells'] += len(all_bases)
+    return {'counts': dict(counts), 'fixtures': fixtures,
+            'scope': 'Complete continuous positive fans at the eight stated cutoffs, over every field: monic integer border relations, exact integer membership witnesses, rational cone endpoints and symmetry/outer-cone coverage. No mesh or selected-characteristic inference is used. The uniform boundary-cover conjecture and an asymptotic fan count for the cubic remain unproved.'}
+
+
 def compressed_controls():
     counts, fixtures = defaultdict(int), []
     for p, s in product((0, 3, 5, 101), (2, 3, 4, 6, 10)):
@@ -260,16 +486,20 @@ def main():
     if not __debug__:
         raise RuntimeError('Run without -O; exact assertions are required.')
     initial, compressed, fans = initial_formula_controls(), compressed_controls(), saved_fan_controls()
+    integral, boundary = integral_model_controls(), cubic_boundary_certificates()
     sources = ('scripts/run_hypersurface_truncation_checks.py', 'docs/hypersurface_truncations.md',
                'scripts/run_socle_stability_checks.py', 'scripts/run_structural_complexity_checks.py',
                'scripts/run_interleaving_research.py', 'results/research/socle_stability_checks.json')
     report = {'status': 'passed', 'command': 'python3 -B scripts/run_hypersurface_truncation_checks.py',
               'counts': {**initial['counts'], **compressed['counts'],
-                         'saved_original_basis_replays': fans['original_basis_replays']},
+                         'saved_original_basis_replays': fans['original_basis_replays'],
+                         **integral['counts'], **boundary['counts']},
               'homogeneous_initial_formula': initial, 'six_channel_rank_model': compressed,
-              'existing_fan_replays': fans, 'new_asymptotic_fan_bound': False,
+              'existing_fan_replays': fans, 'integral_two_channel_rank_model': integral,
+              'all_field_cubic_boundary_certificates': boundary,
+              'new_asymptotic_fan_bound': False,
               'novelty_established': False, 'goal_complete': False,
-              'scope': 'Exact truncation and all-subset rank reductions for a defined deep hypersurface class. The finite-free and graded initial ingredients are classical mechanisms. Neither a full positive-fan count, polynomial separation, unrestricted improvement nor completed priority assessment is asserted.',
+              'scope': 'Exact truncation and all-subset rank reductions, plus complete positive fans at eight stated cubic cutoffs over every field by monic integer certificates. The finite-free and monic-division ingredients are classical mechanisms. No uniform full-fan count, polynomial separation, unrestricted improvement or completed priority assessment is asserted.',
               'source_sha256': {s: hashlib.sha256((ROOT/s).read_bytes()).hexdigest() for s in sources}}
     (ROOT/'results/research/hypersurface_truncation_checks.json').write_text(json.dumps(report, indent=2)+'\n')
     print(json.dumps(report['counts'], indent=2))
