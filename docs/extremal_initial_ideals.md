@@ -1932,6 +1932,52 @@ as a lower-bound route. The unrestricted $G_3$ target, its success
 criteria, the quotient-sensitive upper route and every earlier result
 remain in force; this restricted corollary does not complete the goal.
 
+## Bilinear rectangles separate Frobenius torsion from characteristic zero
+
+The [bilinear rectangle proof](bilinear_rectangle_fans.md) supplies an exact
+nonuniform rank model and classifies its matching-characteristic prime-power
+subclass. Translation takes $(x^r,y^s,z-x-y-xy)$ to
+$((X-1)^r,(Y-1)^s,Z-XY)$ and preserves every global initial ideal.
+It does not preserve arbitrary selected-column ranks; it preserves ranks
+on monomial downsets by a unit triangular column change.
+
+The translated columns are
+$\binom{a+c}{i}\binom{b+c}{j}$ for $0\le i<r,0\le j<s$.
+In characteristic zero this is rectangular polynomial interpolation at
+the integer nodes $(a+c,b+c)$. In characteristic $p$, full prime-power
+side lengths collapse these columns to independent periodic residue
+classes. This makes the field dependence explicit through established
+Frobenius/Lucas arithmetic. The earlier invariance of operator-image
+ranks as $F$ varies within one field still does not determine these
+selected-column ranks.
+
+For the torsion ideal $(X^r-1,Y^s-1,Z-XY)$ with $2\le r\mid s$,
+the exact all-field count is $\binom{r+1}{2}+1$ when $r=s$, and
+$\binom{r+2}{2}$ when $r<s$. The proof reduces each shortest
+representative to at most two candidates and gives a complete list of
+positive weights of height $O(rs)$, improving to $O(r)$ for equal sides.
+Thus local bilinear rectangles with prime-power sides in the matching
+characteristic have only $O(n)$ initial ideals. Scaling extends this
+conclusion to every nonzero choice of the three coefficients of
+$\alpha x+\beta y+\gamma xy$.
+
+The checker independently verifies 12 complete torsion fans, 121 initial
+ideals, 2,123 ordinary binomial S-pairs and 31,259 normal forms. Direct
+local products, translation expansions and Pascal columns agree on
+12,054 downset-prefix ranks. Rational border bases and exact full-cone
+coverage certify 6, 16 and 32 characteristic-zero states for square
+sides 2, 3 and 4, compared with 4, 7 and 11 in their prime-power
+characteristics. These finite controls give no asymptotic law in
+characteristic zero.
+
+The lattice/shortest-path dictionary and interpolation are classical;
+the exact restricted classification has no completed priority audit.
+This closes the prime-power bilinear route, while leaving the structured
+characteristic-zero interpolation count and general mixed nonlinear
+rectangles open. Generic tensor-code rank results do not automatically
+apply to these fixed integer nodes. The unrestricted objective and all
+earlier criteria remain unchanged; this is not goal completion.
+
 ## Reproduction
 
 From the repository root:
@@ -1939,6 +1985,7 @@ From the repository root:
 ```bash
 python3 -B scripts/run_extremal_initial_ideals_checks.py
 python3 -B scripts/run_generic_multiaffine_checks.py
+python3 -B scripts/run_bilinear_rectangle_checks.py
 python3 -B scripts/run_additive_initial_ideals_checks.py
 python3 -B scripts/run_planar_dyadic_bound_checks.py
 python3 -B scripts/run_rational_shadow_bound_checks.py

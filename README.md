@@ -141,6 +141,14 @@ This is a corollary of classical convex-position geometry and generic
 interpolation. Explicit reduced point quotients realize the toric model;
 special configurations and local rectangle algebras can violate its rank
 rule and remain outside the bound. The unrestricted endpoint stays open.
+The [bilinear rectangle continuation](docs/bilinear_rectangle_fans.md)
+now classifies one nonuniform class exactly. For square side `q=p^a>=2`
+in characteristic `p`, `z=x+y+xy` has exactly `binomial(q+1,2)+1`
+initial ideals, only linear in its length `q^2`. Unequal prime-power
+sides also have an exact count. Translation and a rectangular Pascal
+matrix explain the arithmetic; arbitrary column ranks do not survive
+translation. Characteristic zero instead gives a structured tensor
+interpolation problem and remains outside this torsion classification.
 The additive prime-power class is now classified separately: at length
 `n=q^k`, every initial ideal is a prime-power box and the sharp maximum
 is `binomial(k+d-1,d-1)`. The proof uses established Frobenius reduction;
