@@ -14,6 +14,10 @@ Gröbner basis of its unit-power graph ideal has coefficients in
 $\{0,1,-1\}$ and specializes correctly to every characteristic.
 These are structural transfer results. The unrestricted count and
 polynomial lower separation remain open; exact priority is unsettled.
+The simultaneous rank minimum and its complete frequency-set
+classification below make the remaining prior-art comparison precise.
+The balanced-basis criterion and general cross-field representability
+already belong to the sampling and Bhargava-greedoid literature.
 
 ## The prime digit rank rule
 
@@ -222,6 +226,153 @@ has only three nonzero vectors. A literal all-field integral lift
 preserving these ranks cannot exist. The Fourier construction instead
 permits a suitable extension field.
 
+## Universal sampling, simultaneous minima and all equality cases
+
+Here work in characteristic zero, with a primitive $M=p^s$ root.
+Call a set $B\subseteq[0,M)$ **balanced** if its counts in the
+congruence classes modulo $p^j$ differ by at most one, for every
+$0\le j\le s$. The Pascal bases of size $n$ are exactly these sets.
+Indeed the ordinary binomial evaluation determinant is the integer
+$$
+ \det[\tbinom aj]_{0\le j<n,\ a\in B}
+ =\frac{\prod_{a<b\in B}(b-a)}{\prod_{j=0}^{n-1}j!}. \tag{DL10}
+$$
+Its $p$-valuation is a sum, over $j\ge1$, of the excess numbers
+of pairs in equal classes modulo $p^j$, relative to the interval
+$[0,n)$. At each level the sum of $\binom{c}{2}$ over class counts
+is minimized exactly by balanced counts. Every excess is nonnegative;
+the determinant is nonzero modulo $p$ exactly when all vanish.
+
+This criterion is established prior art. Osgood--Siripuram--Wu,
+Theorem 4 and its Lemmas 1--3, identify the same sets with universal
+complex Fourier sampling. Their Schur quotient (13) and valuation
+argument (14) give precisely the determinant test above. Thus the
+Pascal basis sets are known objects, even though the frequency set
+$E_{n,M}$ itself is usually not a universal sampling set.
+
+For a frequency set $J\subseteq[0,M)$ of size $n$, write
+$r_J(S)=\operatorname{rank}(\zeta^{ia})_{i\in J,a\in S}$.
+
+**Theorem 3 (simultaneous minimum and equality classification).**
+For every $S\subseteq[0,M)$,
+$$
+ \min_{|J|=n}r_J(S)=R_{n,M}(S). \tag{DL11}
+$$
+One choice $J=E_{n,M}$ attains every minimum simultaneously.
+All frequency sets attaining every minimum have the following exact
+recursive description. Write $n=qh+r$, $h=M/p$. If $r=0$, choose
+$q$ whole congruence classes modulo $p$. If $r>0$, choose $q$
+whole classes, one further class containing $r$ entries, and leave
+the others empty. After subtracting that further class's residue
+and dividing by $p$, its $r$ entries must satisfy the same rule
+at period $h$. Empty and full sets start the recursion.
+
+**Proof of the minimum.** Every balanced $n$-set $B$ is a basis
+for every $J$, by the cited universal-sampling theorem. Therefore
+$r_J(S)\ge\max_B|B\cap S|=R_{n,M}(S)$. Theorem 1 supplies equality
+for $E_{n,M}$. Equivalently, specialize the monic quotient
+$\mathbb Z[\zeta][X]/\prod_{i\in J}(X-\zeta^i)$ at the prime
+over $p$. It becomes $K[X]/(X-1)^n$, and specialization cannot
+increase any power-column rank. This gives the same inequality
+without introducing a new uncertainty principle.
+
+By rank-nullity, the largest dimension of a space of signals supported
+on a prescribed $S$ and vanishing on $n$ Fourier coordinates is
+exactly $|S|-R_{n,M}(S)$. The same $E_{n,M}$ realizes this maximum
+for every $S$. This is the corresponding subspace-loss consequence,
+not a claim that the scalar uncertainty tradeoff is new.
+
+**Proof of the equality classification.** Suppose the labelled
+column matroid is the Pascal matroid. On the $p$ columns
+$H=\{0,h,\ldots,(p-1)h\}$ the Fourier rank is the number of
+occupied residue classes of $J$ modulo $p$. The Pascal rank there
+is $\lceil n/h\rceil$.
+
+The dual Fourier matroid is represented by the rows $-J^c$.
+The Pascal matroid is dual to the rank-$(M-n)$ Pascal matroid:
+complements of balanced sets are balanced. Thus the number of
+occupied classes of $J^c$ is $\lceil(M-n)/h\rceil$.
+Let $f,t,e$ be the numbers of full, partial and empty classes.
+Then
+$$
+ f+t=\lceil n/h\rceil,\qquad
+ e+t=\lceil(M-n)/h\rceil,\qquad f+t+e=p. \tag{DL12}
+$$
+If $r=0$ these equations force $t=0,f=q$. Otherwise they force
+$t=1,f=q$. This proves the top-level necessity.
+
+For these full classes, perform the Fourier block separation in
+Theorem 1. The $q$ full row residues need not be consecutive.
+The prime-order Fourier theorem makes their $q$-row matrix, and
+that matrix with the partial class's row appended, full spark over
+characteristic zero. Hence the rank on any $S$ is
+$$
+ \sum_u\min(q,l_u)+r_{J'}(\{u:l_u\ge q+1\}), \tag{DL13}
+$$
+where $J'$ is the scaled partial class. To see necessity of the
+smaller equality, take $q$ columns in every fiber and one extra
+column exactly in a prescribed set $U$ of fibers. The rank is
+$qh+r_{J'}(U)$, while the Pascal rank is $qh+R_{r,h}(U)$.
+Thus the smaller matroids must coincide. Conversely (DL13) and
+the inductive equality give (DL2) on every subset. This proves
+both directions, including $q=0$. $\square$
+
+The number $C_p(n,M)$ of simultaneous minimizing frequency sets is
+therefore exactly
+$$
+ C_p(n,M)=
+ \begin{cases}
+ 1,&n=0\text{ or }n=M,\\
+ \binom pq,&r=0,\\
+ \binom pq(p-q)C_p(r,h),&0<r<h.
+ \end{cases} \tag{DL14}
+$$
+This counts frequency choices with one common labelled matroid,
+not distinct coherent fans. It is not a fan lower bound.
+
+There is an arithmetic interpretation: these are exactly the root
+choices whose full power-column matroid is preserved when all roots
+coalesce at the prime over $p$. They consequently give the same
+unit-power graph fans as the characteristic-$p$ truncation. A
+nonminimizing row set gains some bases in characteristic zero;
+that alone need not change a particular three-generator fan.
+
+The characteristic-zero scope of Theorem 3 is essential. At period
+seven, rows and columns $\{0,1,3\}$ have rank three over $\mathbb C$
+but rank two over $\mathbb F_8$, with its primitive root satisfying
+$T^3+T+1=0$. The corresponding minor in the power-basis remainder
+matrix has absolute norm eight. Thus a clustered set can have a bad
+prime other than $p$.
+Already at period four the universal row set $\{0,1\}$ has the
+power-basis minor $1+i$, of norm two. Universal sampling does not
+assert unit minors or the all-residue-prime result for the canonical
+construction above.
+
+For another exact priority boundary, maximizing
+$-\sum_{a<b\in B}v_p(a-b)$ produces the same balanced sets.
+They are a constant-weight Bhargava greedoid. Grinberg's
+Theorems 4.7 and 5.1 give their simultaneous Gaussian-elimination
+representation over exactly the fields of size at least $p$;
+the largest equidistant congruence-tree clique has size $p$.
+Thus general representability of this entire flag is established.
+The explicit algebraic root choices, their equality classification,
+and their specialization details still require their own precise
+priority comparison. None resolves the coherent-count problem.
+
+In fact rank minimization does not maximize the coherent count, even
+in this class. At $M=8,n=3$ compare rows $\{0,2,4\}$ with
+$\{0,1,2\}$ in the graph ideal (DL6). With $k=1$ both have five
+initial cones; with $k=2$ they have five and six respectively.
+There are only six downsets of size three: the three pure chains
+and the origin with two coordinate variables. For $k=1$ the pair
+$Y,Z$ is dependent in both models. For $k=2$ the only dependent
+candidate in the minimizing model is $\{1,Z,Z^2\}$, whereas all
+six are bases in the other model. Every independent candidate can
+be made the three cheapest monomials, so these counts are exact.
+The checker separately traverses the entire four fans and verifies
+their complex matroids by exact Fourier minors. This is a finite
+scope guard, not an asymptotic comparison or a fan monotonicity law.
+
 ## Literature boundary and verification
 
 Fourier realizations of cyclic representations are established.
@@ -239,17 +390,30 @@ from the reducible product (DL7). Fourier transforms, Vandermonde
 blocks, cyclic-code duality, regular matroids and monic specialization
 are classical.
 
-[Osgood--Siripuram--Wu, arXiv:1204.0992v1](https://arxiv.org/pdf/1204.0992),
-Theorem 4 characterizes universal Fourier sampling sets by balanced
-counts in every prime-power congruence class; Section IV.C uses digit
-reversal and identifies the corresponding interval counts. Those
-statements, definitions, and the proof of the elementary digit-reversal
-identity were inspected. Universal sampling requires every maximal
-minor to be nonzero, whereas these frequency sets can deliberately
-fail that condition: $E_{5,8}=\{0,1,2,4,6\}$ has parity counts $4,1$.
-The paper's full rank and coding comparisons have not been audited.
-Precise coverage of (DL3)--(DL9) remains unassessed; these comparisons
-establish no novelty claim or publication decision.
+[Osgood--Siripuram--Wu, arXiv:1204.0992v1](https://arxiv.org/pdf/1204.0992v1),
+Theorem 4, its proof and Lemmas 2--3, and Section IV.C's elementary
+digit-reversal identity were inspected. Lemma 1's external proof was
+not re-audited. The balanced-basis identification above replaces the
+earlier incomplete comparison of that theorem with these columns.
+
+[Grinberg, arXiv:2001.05535v5](https://arxiv.org/html/2001.05535v5),
+Definitions 1.1, 2.2, 2.5, 2.7 and 4.4, Example 2.4,
+Proposition 1.4, and Theorems 4.7 and 5.1
+were inspected. The proof of the last two through their valadic
+construction was not audited here. The fixed-cardinality matroid
+theorem is also in [Grinberg--Petrov, Theorem 7.1](https://arxiv.org/pdf/1909.01965v4).
+Its statement and the final deduction from the strong-greedoid
+theorem were inspected; the full earlier proof was not audited.
+
+[Delvaux--Van Barel, 2008](https://doi.org/10.1016/j.laa.2008.04.043)
+studies prime-power Fourier rank defects and hierarchical blocks.
+Only its publisher abstract and metadata were retrieved. The
+author-preprint [TW470](https://www.cs.kuleuven.be/publicaties/rapporten/tw/TW470.pdf)
+was identified but its full text was unavailable in this audit.
+No equivalence with the September 2006 report is assumed. Its
+theorems must be compared with (DL11)--(DL14) before any novelty
+or publication claim. The complete strongest-current audit remains
+open; an unsuccessful access attempt is no evidence of a gap.
 
 In the binary case the root ordering itself is also established:
 [Chkifa, arXiv:1503.01731v2](https://arxiv.org/pdf/1503.01731v2),
@@ -273,6 +437,10 @@ The [report](../results/research/prime_digit_lift_checks.json) records
 exact cyclotomic determinant tests, all subset ranks at specified
 small periods, cross-characteristic finite Fourier matrices, exhaustive
 integer minors, complete positive fans, integral basis specializations,
-and odd-prime minor witnesses. The uniform transfer and unimodularity
-statements rest on the proofs above. Sharp unrestricted $G_3$, an
+and odd-prime minor witnesses. It also exhausts every frequency set
+and column subset at periods $2,3,4,5,8,9$, checking the simultaneous
+rank minima, every equality case, and the recurrence (DL14). The
+two bad-prime guards use exact cyclotomic norms and direct
+$\mathbb F_8$ arithmetic. The uniform statements rest on the proofs
+above. Sharp unrestricted $G_3$, an
 infinite polynomial separation, and the full priority audit remain open.

@@ -4,7 +4,7 @@ from collections import Counter, defaultdict
 from fractions import Fraction as Q
 from functools import lru_cache
 from itertools import combinations, permutations
-from math import comb
+from math import comb, factorial, prod
 from pathlib import Path
 import hashlib
 import json
@@ -69,6 +69,174 @@ def cyclotomic_norm(poly, M, p):
     return determinant([[columns[j][i] for j in range(d)] for i in range(d)])
 
 
+def balanced(S, M, p):
+    """The congruence-count definition, independent of the rank recursion."""
+    modulus = p
+    while modulus <= M:
+        counts = Counter(a % modulus for a in S)
+        lo, rem = divmod(len(S), modulus)
+        if any(c < lo or c > lo+bool(rem) for c in counts.values()):
+            return False
+        if lo and len(counts) < modulus:
+            return False
+        modulus *= p
+    return True
+
+
+def pascal_basis_determinant(S):
+    numerator = prod(b-a for a, b in combinations(S, 2))
+    denominator = prod(factorial(j) for j in range(len(S)))
+    assert numerator % denominator == 0
+    return numerator//denominator
+
+
+def clustered(S, M, p):
+    """At most one partially occupied child at each congruence level."""
+    if not S or len(S) == M:
+        return True
+    h = M//p
+    children = [tuple((a-u)//p for a in S if a % p == u) for u in range(p)]
+    partial = [child for child in children if 0 < len(child) < h]
+    return len(partial) <= 1 and all(clustered(child, h, p) for child in partial)
+
+
+def clustered_count(n, M, p):
+    if n in (0, M):
+        return 1
+    h = M//p
+    q, r = divmod(n, h)
+    return comb(p, q)*((p-q)*clustered_count(r, h, p) if r else 1)
+
+
+def fourier_minor(rows, cols, M, p):
+    n = len(rows)
+    if n <= M//2:
+        return root_determinant(rows, cols, M, p)
+    return root_determinant(tuple((-i) % M for i in range(M) if i not in rows),
+                            tuple(i for i in range(M) if i not in cols), M, p)
+
+
+def extremal_row_controls(counts):
+    """Every frequency set and every column subset in the fixed small periods."""
+    fixtures = []
+    for p, M in ((2, 2), (3, 3), (2, 4), (5, 5), (2, 8), (3, 9)):
+        for n in range(1, M+1):
+            candidates = tuple(combinations(range(M), n))
+            target = tuple(balanced(B, M, p) for B in candidates)
+            for B, is_basis in zip(candidates, target):
+                assert (pascal_basis_determinant(B) % p != 0) == is_basis
+                assert is_basis == (digit_rank(n, M, p, B) == n)
+                counts['independent_balanced_Pascal_basis_criteria'] += 1
+            target_masks = tuple(sum(1 << a for a in B)
+                                 for B, good in zip(candidates, target) if good)
+            minimum = [n]*(1 << M)
+            smallest_rows, nonminimum_witnesses = [], []
+            for J in candidates:
+                actual = tuple(any(fourier_minor(J, B, M, p)) for B in candidates)
+                assert all(not t or a for t, a in zip(target, actual))
+                counts['exact_arbitrary_Fourier_maximal_minors'] += len(candidates)
+                is_smallest = actual == target
+                assert is_smallest == clustered(J, M, p)
+                counts['independent_complete_frequency_matroid_classifications'] += 1
+                if is_smallest:
+                    smallest_rows.append(J)
+                elif len(nonminimum_witnesses) < 2:
+                    B = next(B for B, a, t in zip(candidates, actual, target) if a and not t)
+                    nonminimum_witnesses.append({'rows': J, 'extra_basis': B,
+                                                 'exact_nonzero_minor': fourier_minor(J, B, M, p)})
+                masks = tuple(sum(1 << a for a in B)
+                              for B, good in zip(candidates, actual) if good)
+                for S in range(1 << M):
+                    actual_rank = max((S & B).bit_count() for B in masks)
+                    expected_rank = max((S & B).bit_count() for B in target_masks)
+                    assert actual_rank >= expected_rank
+                    minimum[S] = min(minimum[S], actual_rank)
+                    counts['independent_arbitrary_frequency_subset_rank_bounds'] += 1
+            assert len(smallest_rows) == clustered_count(n, M, p)
+            for S, minimum_rank in enumerate(minimum):
+                labels = tuple(a for a in range(M) if S >> a & 1)
+                assert minimum_rank == digit_rank(n, M, p, labels)
+                counts['exhaustive_simultaneous_Fourier_rank_minima'] += 1
+            fixtures.append({'prime': p, 'period': M, 'rank': n,
+                             'all_row_sets_examined': len(candidates),
+                             'simultaneous_minimizing_row_sets': smallest_rows,
+                             'predicted_number': clustered_count(n, M, p),
+                             'nonminimum_witnesses': nonminimum_witnesses})
+    # Universal complex sampling does not imply unit minors or good reduction
+    # at every other prime. This direct power-basis minor is 1+i.
+    assert balanced((0, 1), 4, 2)
+    assert cyclotomic_norm((1, 1), 4, 2) == 2
+    # A second guard uses all roots of order seven in F_8. Even a clustered
+    # complex minimizer can gain dependencies in characteristic two.
+    def mul(a, b):
+        out = 0
+        while b:
+            if b & 1:
+                out ^= a
+            a <<= 1
+            if a & 8:
+                a ^= 11  # T^3+T+1
+            b >>= 1
+        return out
+    powers = [1]
+    for _ in range(7):
+        powers.append(mul(powers[-1], 2))
+    assert powers[-1] == 1 and len(set(powers[:-1])) == 7
+    J = B = (0, 1, 3)
+    matrix = [[powers[i*j % 7] for j in B] for i in J]
+    value = 0
+    for permutation, _ in signed_permutations(3):
+        term = 1
+        for row, col in enumerate(permutation):
+            term = mul(term, matrix[row][col])
+        value ^= term
+    assert value == 0
+    assert len({tuple(row) for row in matrix}) == 3
+    # A 2-by-2 minor is nonzero, so the reduced rank is exactly two.
+    assert mul(matrix[0][0], matrix[1][1]) ^ mul(matrix[0][1], matrix[1][0])
+    reference = root_determinant(J, (0, 1, 2), 7, 7)
+    special = root_determinant(J, B, 7, 7)
+    reference_norm = abs(cyclotomic_norm(reference, 7, 7))
+    special_norm = abs(cyclotomic_norm(special, 7, 7))
+    assert special_norm == 8*reference_norm
+    counts['independent_finite_characteristic_scope_guards'] += 2
+    return fixtures, {'universal_rows_mod_4': [0, 1],
+                      'power_basis_minor': '1+i', 'absolute_norm': 2,
+                      'period_7_rows': J, 'period_7_columns': B,
+                      'period_7_power_basis_minor_absolute_norm': 8,
+                      'complex_rank': 3, 'F8_rank': 2,
+                      'F8_defining_polynomial': [1, 1, 0, 1]}
+
+
+def coherent_extremality_guards(counts):
+    """Rank minimization is not a maximum coherent-fan count."""
+    n, M, ell = 3, 8, 97
+    zeta = next(pow(a, (ell-1)//M, ell) for a in range(2, ell)
+                if pow(pow(a, (ell-1)//M, ell), M//2, ell) != 1)
+    assert pow(zeta, M, ell) == 1
+    fixtures = []
+    for J in ((0, 2, 4), (0, 1, 2)):
+        columns = [tuple(pow(zeta, i*a, ell) for i in J) for a in range(M)]
+        for B in combinations(range(M), n):
+            assert (rank([columns[a] for a in B], ell) == n) == any(fourier_minor(J, B, M, 2))
+            counts['independent_complex_vs_finite_field_guard_matroid_bases'] += 1
+        for k in (1, 2):
+            def ev(a):
+                v = columns[(a[0]-a[1]-k*a[2]) % M]
+                return {j: c for j, c in enumerate(v) if c}
+            actual = fan(n, ev, ell, counts)
+            expected = 6 if J == (0, 1, 2) and k == 2 else 5
+            assert len(actual) == expected
+            fixtures.append({'period': M, 'rank': n, 'rows': J, 'k': k,
+                             'checking_field': ell, 'primitive_root': zeta,
+                             'complex_matroid_entirely_verified': True,
+                             'entire_complex_fan_count': len(actual),
+                             'complete_cones': [{'basis': sorted(B),
+                                 'cone': [list(map(str, v)) for v in poly]}
+                                               for B, poly in actual.items()]})
+    return fixtures
+
+
 def exact_fourier_controls(counts):
     fixtures = []
     for p, M in ((2, 2), (3, 3), (2, 4), (5, 5), (2, 8), (3, 9)):
@@ -91,6 +259,7 @@ def exact_fourier_controls(counts):
                 root_minor = root_determinant(rows, cols, M, p)
                 nonzero = any(root_minor)
                 direct = rank([pascal[a] for a in B], p) == n
+                assert direct == balanced(B, M, p)
                 assert nonzero == direct
                 counts['exact_cyclotomic_vs_Pascal_maximal_minors'] += 1
                 if nonzero:
@@ -280,6 +449,8 @@ def odd_prime_controls(counts):
 def main():
     counts = defaultdict(int)
     exact = exact_fourier_controls(counts)
+    extremal, guards = extremal_row_controls(counts)
+    coherent_guards = coherent_extremality_guards(counts)
     modular = modular_fourier_controls(counts)
     integral = dyadic_minor_controls(counts)
     fans = dyadic_fan_controls(counts)
@@ -291,6 +462,8 @@ def main():
               'counts': dict(sorted(counts.items())), 'exact_cyclotomic_fixtures': exact,
               'cross_characteristic_fixtures': modular, 'dyadic_integral_fixtures': integral,
               'complete_fan_fixtures': fans, 'odd_prime_obstructions': odd,
+              'extremal_frequency_fixtures': extremal, 'frequency_scope_guards': guards,
+              'coherent_extremality_guards': coherent_guards,
               'source_sha256': {name: hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in names},
               'unrestricted_G3_improved': False, 'polynomial_lower_separation_proved': False,
               'novelty_established': False, 'goal_complete': False}
