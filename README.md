@@ -651,7 +651,7 @@ identifies the same optimal support parameter in generic point-ideal state
 fans. An explicit finite quotient shows why the sharper bound does not
 extend to arbitrary ideals. Research interval checks preserve the core
 CLI and its independent rank auditor.
-An anonymous [review manuscript](paper/interleaving_support/main.tex) and
+A [review manuscript](paper/interleaving_support/main.tex) and
 [PDF](output/pdf/interleaving_support.pdf) now collect the sharp law,
 sparse certificates and generic-state-fan consequence with complete proofs.
 The [audit](results/research/interleaving_support_audit.json) states the
@@ -689,7 +689,7 @@ normals at five boundary heights each. The fresh internal proof audit found
 no unresolved logical step. The earlier cumulative construction is preserved
 in the note. The count also gives order log n for the mean number of
 completions of a coordinate slice, addressing Wagner's suggested route. The
-[anonymous mathematical manuscript](paper/corner_cut_growth/main.tex) gives
+[mathematical manuscript](paper/corner_cut_growth/main.tex) gives
 the complete proof, explicit constants and source comparisons separately
 from the earlier structural note. It also
 proves the same growth order for complete ordered prefixes and a sharp

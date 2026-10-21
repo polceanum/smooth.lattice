@@ -1304,7 +1304,7 @@ law and subsequent uses of the cited framework. The goal remains active.
 The fifth iteration supplied sparse prefix certificates, the exact
 face/facet parameter and its generic-state-fan consequence. It also
 delimited arbitrary quotient algebras. This sixth iteration consolidates
-those results into the anonymous manuscript
+those results into the manuscript
 [Interaction support in smooth-number orders and corner-cut fans](../paper/interleaving_support/main.tex),
 with an [eight-page PDF](../output/pdf/interleaving_support.pdf).
 Its uniform proofs do not depend on the separate infinite-stream or
