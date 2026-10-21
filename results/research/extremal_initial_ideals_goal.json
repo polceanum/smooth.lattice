@@ -7,7 +7,7 @@
   "goal_complete": false,
   "asymptotic_improvement_established_this_iteration": false,
   "novelty_established_this_iteration": false,
-  "note": "The generic cyclic interleaving family now has a uniform quadratic-logarithmic count in every period/rank scaling. A threshold split repairs the false unconditional small-axis-box shortcut and closes the former intermediate window. This is a family theorem, not a new unrestricted G_3 exponent or evidence of publication significance. The original main goal and its success criteria remain active and unchanged.",
+  "note": "The unrestricted objective remains active. Exact all-weight tower sensitivity and moment budgets now isolate high-degree coherent exchanges as the remaining mechanism. Nilpotent tag towers have a global linear count; cheap coprime circuit regions are integrally unimodular. A uniform repeated-period family confirms coherent characteristic dependence and exponentially growing integer index with a constant fan, so nonregularity and determinant size alone cannot supply the required amplification.",
   "relationship_to_previous_work": "New active objective with a higher completion bar. Previous goal records, lattice-shadow candidate, manuscripts and paused ML results are preserved as historical research.",
   "definitions": {
     "G_d_n": "Maximum number of monomial initial ideals of a colength-n ideal in d variables, over all fields.",
@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Keep the unrestricted three-variable sharp-growth or actual polynomial-separation target and all acceptance criteria. Generic uniform-rank residue interleavings cannot amplify the count polynomially. A further linked construction must introduce actual algebraic rank defects or a different proved mechanism; investigate those through the arbitrary-planar-base strong-grading reduction and the collective incidence budget, before a larger search. Seek a uniform theorem explaining their joint effect, not isolated examples. Assess the exact priority of the new threshold argument independently.",
+  "next_proof_task": "Retain the unrestricted sharp-growth or polynomial-separation target and every acceptance criterion. Use (O1)--(O4) to count the actual high-column coherent extensions in the pairwise-coprime three-circuit model, especially comparable periods and prices near (1,q,q), or prove a uniform exclusion. Its low basis is now explicit and high-column mass is bounded. A nonregular minor, an enlarged determinant, repeated-period power inflation or further finite counts cannot replace the needed growing coherent exchange mechanism. Keep the collective incidence route available if the tower is excluded; assess exact priority independently before manuscript claims.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -138,7 +138,8 @@
     "The cubic unimodular socle family refutes O(n) minimum primitive plane product for individual cones. Any product-threshold improvement must bound exceptional cones collectively; the family has only seven initials and is not a lower-count amplifier.",
     "Audit the exact combination of the arithmetic rational-plane transfer with the hyperbolic shadow theorem. Primitive-plane counting, Minkowski and facet incidence are classical. The dimension-four refinement does not resolve G_3; retain stronger earlier powers in d>=5. Any sharp three-variable proof needs more than substituting a nonnegative height exponent into the unchanged surface/plane budget.",
     "Compare the specialized generic cyclic interleaving rank model, fixed-direction vertical facet charge and exact large-period stabilization with finite-group graded Hilbert-scheme and parametric rank-selection literature. Haiman--Sturmfels supplies established grading/orbit machinery; no unsuccessful search establishes novelty. The former generic scaling window is closed by the threshold dichotomy; nonuniform planar bases remain a distinct problem. No unrestricted cubic half-moment bound is proved.",
-    "Assess the uniform generic cyclic count against prior finite-group graded and lattice-prefix results. Its threshold split uses the classical Andrews bound; no failed keyword search establishes novelty. The generic intermediate parameter window is now closed, including m and r/m both growing. Distinguish the nonuniform-planar-base problem and unrestricted collective-incidence problem from this excluded generic family."
+    "Assess the uniform generic cyclic count against prior finite-group graded and lattice-prefix results. Its threshold split uses the classical Andrews bound; no failed keyword search establishes novelty. The generic intermediate parameter window is now closed, including m and r/m both growing. Distinguish the nonuniform-planar-base problem and unrestricted collective-incidence problem from this excluded generic family.",
+    "Compare the all-weight tower sensitivity application with existing matroid sensitivity and modular lucky-prime work. Count the coherent high-column extensions subject to (O2), using actual tensor-circuit ranks. The cheap-coordinate coprime regions are integral; the equal-period coherent index-two control and its constant-fan lifts do not establish a distinct-prime count or arithmetic theorem there."
   ],
   "primary_sources": [
     {
@@ -708,6 +709,20 @@
       "url": "https://arxiv.org/pdf/math/0201271",
       "version": "arXiv:math/0201271v1; this record concerns additional passages beyond the earlier supportive-degree comparison",
       "scope": "Introduction grading/Hilbert-function definitions and Section 5, Remark 5.1 with surrounding group-algebra/orbit discussion inspected. Finite abelian grading and its Hilbert-scheme framework are established. The orbit/toric comparison there has one-dimensional pieces; the current generic cyclic cover has r-dimensional pieces. No full-paper proof or strongest-current novelty audit is claimed."
+    },
+    {
+      "authors": "Elizabeth A. Arnold",
+      "title": "Modular algorithms for computing Grobner bases",
+      "url": "https://www3.risc.jku.at/research/theorema/Groebner-Bases-Bibliography/gbbib_files/publication_355.pdf",
+      "version": "Journal of Symbolic Computation 35 (2003), 403--419",
+      "scope": "Section 3 conventions and Section 5 lucky/Hilbert-lucky definitions, torsion distinction, Theorems 5.11--5.13 and displayed proofs inspected. The paper fixes homogeneous ideals for these comparisons. The present finite-free integral column criterion has a separate elementary proof; no new general modular-specialization theorem is claimed. Full algorithms and timing sections were not audited."
+    },
+    {
+      "authors": "Houshan Fu, Yujiao Ma and Suijie Wang",
+      "title": "Represented Tensor Products of Binary Matroids: targeted three-factor proof comparison",
+      "url": "https://arxiv.org/html/2609.29227v1#S5.SS5",
+      "version": "arXiv:2609.29227v1",
+      "scope": "Theorem 4.7 with the surrounding higher-product reduction, and Section 5.5 explicit contractions to U_(2,4) outside characteristic two and Fano in characteristic two inspected as printed. These prove established nonregularity of the abstract three-circuit configuration; they do not assert coherence or a large monomial initial fan in the present generators. This adds to the earlier two-factor comparison, without a full classification audit."
     }
   ],
   "verification": {
@@ -1722,19 +1737,41 @@
       "build": "./build.sh passed",
       "smoke": "python3 tests/test_smoke.py passed",
       "scope": "The direct heap agrees with all 167 complete-fan bases and 81 additional independent finite-ground sorts. There are 287 threshold controls: 159 explicit large-threshold integer rectangles and fixed-volume covers, 128 two-layer profile controls. Three independent degree-tier enumerations check the infinite box-obstruction formula at s=3,4,5. Earlier quotient/field, whole mapped-cone and rank controls remain intact. These support the written uniform proof; no growth extrapolation or unrestricted theorem follows."
+    },
+    "cyclotomic_overlap_research": {
+      "command": "python3 -B scripts/run_cyclotomic_overlap_checks.py",
+      "report": "results/research/cyclotomic_overlap_checks.json",
+      "status": "passed",
+      "source_hashes_verified": true,
+      "counts": {
+        "independent_restricted_greedy_equalities": 108,
+        "outside_column_deletion_controls": 108,
+        "exact_excess_budget_controls": 108,
+        "strict_border_relations": 753,
+        "positive_overlap_cases": 50,
+        "complete_small_tensor_fans": 4,
+        "exhausted_downsets": 640,
+        "coherent_small_tensor_states": 33,
+        "lifted_whole_polynomial_annihilations": 171,
+        "independent_lifted_integer_blocks": 1377,
+        "lifted_modular_polynomial_annihilations": 18
+      },
+      "build": "./build.sh passed",
+      "smoke": "python3 tests/test_smoke.py passed",
+      "scope": "108 comparisons against independent restricted and unrestricted polynomial-column greedy computations, including 50 cases with high columns; all excess and displacement bounds checked. Four complete length-eight fans exhaust 160 downsets each with exact rational cone coverage, determinant and border certificates. 1377 independent lifted integer blocks, 171 whole lifted rational polynomial annihilations and 18 modular annihilations support the uniform power-lift proof. None is a full intermediate coprime-period fan count."
     }
   },
-  "preservation": "Five explicitly privacy-reviewed existing public research files change. All 72 earlier continuations, the original objective and success criteria, all 90 source hashes outside the four updated research/readme files, and all 356 unlisted previously tracked files remain unchanged against 2e0c593. Core CLI, kernels, auditor, manuscripts/PDFs, prior research and paused ML remain intact. Exploratory traces, baselines and logs stay ignored.",
+  "preservation": "Five explicitly privacy-reviewed public research files: three new artifacts plus README and this goal record. All 73 earlier continuations, the original objective and criteria, all 93 old source hashes other than README, and all 359 unlisted previously tracked files are unchanged against aa59270. Core CLI, kernels, auditor, manuscripts/PDFs, previous research and paused ML are intact. Exploratory comparisons, source notes, baselines and logs remain ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
-    "docs/cyclic_interleaving_fans.md",
-    "scripts/run_cyclic_interleaving_checks.py",
-    "results/research/cyclic_interleaving_checks.json",
+    "docs/cyclotomic_overlap.md",
+    "scripts/run_cyclotomic_overlap_checks.py",
+    "results/research/cyclotomic_overlap_checks.json",
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "5767b562bb5dc4e092940a820387e8b18221d1ce3cd606d97594b8a6e08ed4fd",
+    "README.md": "96b41065f55b93efe0acc29bd819ee8c253a3cf4f1f955044c62ceb92fc695b2",
     "docs/extremal_initial_ideals.md": "6e84b6ea470841a89760a2e16080a9314ba747499b1a5a733460120fe501a92b",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
@@ -1827,7 +1864,10 @@
     "results/research/rational_plane_transfer_checks.json": "36cd656cfc8ff93f6f58488bc1d2ef9a0005529c4e1ef42bdb6a66b42b217a60",
     "docs/cyclic_interleaving_fans.md": "cb450ce85049be7d0ba94a0237a2e507b8c877e4c13431cd1fb557658c61da40",
     "scripts/run_cyclic_interleaving_checks.py": "51784ed58e5675b3d187c36bf36f146e8988a92a4b0e0baf2b5c04e39c8e7d12",
-    "results/research/cyclic_interleaving_checks.json": "d81925ef42addae1be6fd2a069943c74015dd3b81152932d339dd281908a59b0"
+    "results/research/cyclic_interleaving_checks.json": "d81925ef42addae1be6fd2a069943c74015dd3b81152932d339dd281908a59b0",
+    "docs/cyclotomic_overlap.md": "1c567f37034b8277688644136b784ed1e5378a144e0122dcfbdd113438bc4a8f",
+    "scripts/run_cyclotomic_overlap_checks.py": "ca7ab4a0c31414854d7f5c780f1cf36ee15fb2f8f7cfe91c1524708a2fbf9604",
+    "results/research/cyclotomic_overlap_checks.json": "e0dd100930503a94dafd92f34655c5c9867d4cc1c47d71e55c9aab7fa4c826a8"
   },
   "continuations": [
     {
@@ -6407,10 +6447,64 @@
       },
       "preservation": "Five explicitly privacy-reviewed existing public research files change. All 72 earlier continuations, the original objective and success criteria, all 90 source hashes outside the four updated research/readme files, and all 356 unlisted previously tracked files remain unchanged against 2e0c593. Core CLI, kernels, auditor, manuscripts/PDFs, prior research and paused ML remain intact. Exploratory traces, baselines and logs stay ignored.",
       "scope_limit": "The original unrestricted G_3 objective is not completed. No matching lower bound, recognized-problem resolution, current novelty certificate or publication significance is established by this generic-family result."
+    },
+    {
+      "title": "Exact all-price tower overlap budgets and coherent arithmetic separation",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "Progress: aa59270 closed the entire generic cyclic family by a uniform O(n^2*log(n+1)^2) proof, with an exact heap oracle and an actual counterexample to the unconditional box shortcut. Current clean main, 361 tracked files, 94 source hashes and all 73 prior continuations were revalidated before this iteration.",
+      "progress_classification": "uniform full-basis sensitivity and moment bounds for overlapping layers, a global nilpotent-tower exclusion, and a uniform constant-fan family distinguishing coherent arithmetic index from ordering count",
+      "uniform_result": {
+        "proof": "docs/cyclotomic_overlap.md",
+        "checker": "scripts/run_cyclotomic_overlap_checks.py",
+        "report": "results/research/cyclotomic_overlap_checks.json",
+        "scope": "Finite monic algebra towers A=F[T]/g, F=K[x]/f, deg f=D, deg_T g=R, generators X=x,Y=u*T,Z=v*T with u,v units; n=D*R. All fields, arbitrary positive weights, no reducedness assumption.",
+        "exact_low_background": "Restrict to a<D,b+c<R. Its minimum basis C_rho is the direct sum of D-column slot bases, rho=(gamma-beta)/alpha, without a layer-separation hypothesis.",
+        "exact_full_basis_reduction": "B=(C_rho minus Q) union H, H the selected columns of tag degree >=R, |Q|=|H|. Minimum-basis sensitivity rejects all previously rejected low columns even after high columns are added.",
+        "degree_excess": "For sorted tag degrees d_i, d_i>=floor(i/D). With J0=n*(R-1)/2 and E=sum d_i-J0, E>=0.",
+        "all_weight_moment_budget": "alpha*mu_x + min(beta,gamma)*E + abs(beta-gamma)*mu_exp <= alpha*n*(D-1)/2.",
+        "high_column_count": "If M=|H|=D*q+s, 0<=s<D, then E>=D*q*(q+1)/2+s*(q+1)>=M^2/(2*D), hence M^2<=D*n*(D-1)*alpha/min(beta,gamma).",
+        "all_weight_degree_cutoff": "Every selected tag degree <=R-1+floor((D-1)*alpha/min(beta,gamma)).",
+        "nilpotent_tag_corollary": "When g(T)=T^R, the whole positive fan at all prices has at most 2*(D-1)*(R-1)+2<2*n initials for D,R>=2. Degenerate one-dimensional cases have at most two.",
+        "coherent_integrality_in_cheap_regions": "For the pairwise-coprime three-circuit construction, all bases in the three earlier cheap-coordinate regions have integer index one, using the established two-circuit unimodularity theorem blockwise. Regional initials agree over all characteristics.",
+        "general_arithmetic_boundary": "In a finite integral algebra free over Z, a strict rational standard basis with determinant d persists modulo p exactly when p does not divide d. This is an elementary finite-column form of the established lucky-prime/base-change principle, not a new general modular theorem.",
+        "coherent_arithmetic_witness": "Equal periods (3,3,3), length 8, at weight (269002,209961,210033): standard set {1,X,X^2,Y,Y^2,Z,Z^2,YZ} has index 2 and rank 7 modulo 2. Exact exhaustive cones give 9 rational initials (6 index-one, 3 index-two), 6 in characteristic 2 and the rational fan in every odd characteristic.",
+        "uniform_power_lift": "For every odd k, S_3(U^k),S_3(V^k),S_3(W^k) with pair-product generators gives I_k=I_1(X^k,Y^k,Z^k), length 8*k^3, the same positive fan, and coherent cokernel (Z/2)^(k^3) on three cones. Index 2^(k^3) grows while fan counts stay 9 or 6; substituted coefficients do not grow.",
+        "scope_limit": "The coherent defect has repeated periods. No characteristic change, full fan count or amplification for three distinct coprime prime periods is proved. Neither abstract nonregularity nor coherent determinant size establishes many orderings.",
+        "distinct_prime_full_fan_classified": false,
+        "unrestricted_G3_improved": false,
+        "polynomial_lower_family_established": false,
+        "novelty_established": false,
+        "goal_complete": false
+      },
+      "verification": {
+        "command": "python3 -B scripts/run_cyclotomic_overlap_checks.py",
+        "report": "results/research/cyclotomic_overlap_checks.json",
+        "status": "passed",
+        "source_hashes_verified": true,
+        "counts": {
+          "independent_restricted_greedy_equalities": 108,
+          "outside_column_deletion_controls": 108,
+          "exact_excess_budget_controls": 108,
+          "strict_border_relations": 753,
+          "positive_overlap_cases": 50,
+          "complete_small_tensor_fans": 4,
+          "exhausted_downsets": 640,
+          "coherent_small_tensor_states": 33,
+          "lifted_whole_polynomial_annihilations": 171,
+          "independent_lifted_integer_blocks": 1377,
+          "lifted_modular_polynomial_annihilations": 18
+        },
+        "build": "./build.sh passed",
+        "smoke": "python3 tests/test_smoke.py passed",
+        "scope": "108 comparisons against independent restricted and unrestricted polynomial-column greedy computations, including 50 cases with high columns; all excess and displacement bounds checked. Four complete length-eight fans exhaust 160 downsets each with exact rational cone coverage, determinant and border certificates. 1377 independent lifted integer blocks, 171 whole lifted rational polynomial annihilations and 18 modular annihilations support the uniform power-lift proof. None is a full intermediate coprime-period fan count."
+      },
+      "preservation": "Five explicitly privacy-reviewed public research files: three new artifacts plus README and this goal record. All 73 earlier continuations, the original objective and criteria, all 93 old source hashes other than README, and all 359 unlisted previously tracked files are unchanged against aa59270. Core CLI, kernels, auditor, manuscripts/PDFs, previous research and paused ML are intact. Exploratory comparisons, source notes, baselines and logs remain ignored.",
+      "scope_limit": "The original unrestricted G3 goal is unachieved. The repeated-period arithmetic witness is not a distinct-prime cyclotomic-field theorem. Main sharp growth, a qualifying consequence, current priority and an honest research paper remain unresolved."
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "O(n^2*log(n+1)^2) uniformly for the generic cyclic quotient family. The arbitrary-planar-base converse retains only the earlier O(n^(5/2)) estimate, and unrestricted G_3 is unchanged.",
-  "previous_goal_turn_classification": "Progress: 2e0c593 established actual cyclic quotient ranks, fixed-period collective facet charges, comparable-period bounds and whole-fan period stabilization, leaving the growing intermediate generic regime open. That regime is closed by the present threshold dichotomy; no earlier generic parameter gate is being presented as an unrestricted result.",
+  "asymptotic_improvement_scope_this_iteration": "A global O(n) count for the nilpotent-tag tower subclass and exact uniform overlap/arithmetic reductions. No new unrestricted G3 exponent or polynomially separating realizable family.",
+  "previous_goal_turn_classification": "Progress: aa59270 closed the entire generic cyclic family by a uniform O(n^2*log(n+1)^2) proof, with an exact heap oracle and an actual counterexample to the unconditional box shortcut. Current clean main, 361 tracked files, 94 source hashes and all 73 prior continuations were revalidated before this iteration.",
   "uniform_relative_margin_hypothesis_status": "refuted_by_actual_all_field_quotients",
   "secondary_extremal_parameter_resolved": {
     "relative_margin_dimension_2": "Theta(n^-2)",
@@ -6981,7 +7075,7 @@
     "novelty_established": false,
     "goal_complete": false
   },
-  "algorithmic_consequence_established_this_iteration": true,
+  "algorithmic_consequence_established_this_iteration": false,
   "exact_vertex_oracle_established_this_iteration": true,
   "oracle_fan_enumeration": {
     "proof": "docs/oracle_fan_enumeration.md",
@@ -7089,6 +7183,29 @@
     "unconditional_box_obstruction": "For every s>=3, m=s^3,r=s^4 and weights (L,L+1,L+2*m), L=8*m^3, give strict actual bases containing x^m,y^(m-1),z^(s^2). The axis-box volume/length is >s. Both m and r/m grow; these lie in the two-layer branch.",
     "exact_full_basis_selection": "Accessible-lattice min-heaps pop exactly r times in each color, using O(n*log(r+1)) exact arithmetic/comparison operations and O(r) queue/seen working storage plus O(n) if retaining output. This uses standard best-first enumeration; no bit-complexity, new general heap technique or smooth-number random-access claim.",
     "classical_inputs": "Andrews lattice-vertex theorem and the existing state-profile dictionary; source scopes and the established grading framework remain recorded. No new lattice-vertex exponent or completed priority assessment.",
+    "unrestricted_G3_improved": false,
+    "polynomial_lower_family_established": false,
+    "novelty_established": false,
+    "goal_complete": false
+  },
+  "cyclotomic_overlap": {
+    "proof": "docs/cyclotomic_overlap.md",
+    "checker": "scripts/run_cyclotomic_overlap_checks.py",
+    "report": "results/research/cyclotomic_overlap_checks.json",
+    "scope": "Finite monic algebra towers A=F[T]/g, F=K[x]/f, deg f=D, deg_T g=R, generators X=x,Y=u*T,Z=v*T with u,v units; n=D*R. All fields, arbitrary positive weights, no reducedness assumption.",
+    "exact_low_background": "Restrict to a<D,b+c<R. Its minimum basis C_rho is the direct sum of D-column slot bases, rho=(gamma-beta)/alpha, without a layer-separation hypothesis.",
+    "exact_full_basis_reduction": "B=(C_rho minus Q) union H, H the selected columns of tag degree >=R, |Q|=|H|. Minimum-basis sensitivity rejects all previously rejected low columns even after high columns are added.",
+    "degree_excess": "For sorted tag degrees d_i, d_i>=floor(i/D). With J0=n*(R-1)/2 and E=sum d_i-J0, E>=0.",
+    "all_weight_moment_budget": "alpha*mu_x + min(beta,gamma)*E + abs(beta-gamma)*mu_exp <= alpha*n*(D-1)/2.",
+    "high_column_count": "If M=|H|=D*q+s, 0<=s<D, then E>=D*q*(q+1)/2+s*(q+1)>=M^2/(2*D), hence M^2<=D*n*(D-1)*alpha/min(beta,gamma).",
+    "all_weight_degree_cutoff": "Every selected tag degree <=R-1+floor((D-1)*alpha/min(beta,gamma)).",
+    "nilpotent_tag_corollary": "When g(T)=T^R, the whole positive fan at all prices has at most 2*(D-1)*(R-1)+2<2*n initials for D,R>=2. Degenerate one-dimensional cases have at most two.",
+    "coherent_integrality_in_cheap_regions": "For the pairwise-coprime three-circuit construction, all bases in the three earlier cheap-coordinate regions have integer index one, using the established two-circuit unimodularity theorem blockwise. Regional initials agree over all characteristics.",
+    "general_arithmetic_boundary": "In a finite integral algebra free over Z, a strict rational standard basis with determinant d persists modulo p exactly when p does not divide d. This is an elementary finite-column form of the established lucky-prime/base-change principle, not a new general modular theorem.",
+    "coherent_arithmetic_witness": "Equal periods (3,3,3), length 8, at weight (269002,209961,210033): standard set {1,X,X^2,Y,Y^2,Z,Z^2,YZ} has index 2 and rank 7 modulo 2. Exact exhaustive cones give 9 rational initials (6 index-one, 3 index-two), 6 in characteristic 2 and the rational fan in every odd characteristic.",
+    "uniform_power_lift": "For every odd k, S_3(U^k),S_3(V^k),S_3(W^k) with pair-product generators gives I_k=I_1(X^k,Y^k,Z^k), length 8*k^3, the same positive fan, and coherent cokernel (Z/2)^(k^3) on three cones. Index 2^(k^3) grows while fan counts stay 9 or 6; substituted coefficients do not grow.",
+    "scope_limit": "The coherent defect has repeated periods. No characteristic change, full fan count or amplification for three distinct coprime prime periods is proved. Neither abstract nonregularity nor coherent determinant size establishes many orderings.",
+    "distinct_prime_full_fan_classified": false,
     "unrestricted_G3_improved": false,
     "polynomial_lower_family_established": false,
     "novelty_established": false,

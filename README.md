@@ -112,6 +112,16 @@ direct priority queue selects an entire basis in `O(n*log(r+1))` exact
 operations. This excludes polynomial amplification throughout the generic
 cyclic family; it does not improve unrestricted `G_3`. Its sharper
 conclusions require generic planar columns, and exact priority remains open.
+An [overlap reduction](docs/cyclotomic_overlap.md) now treats arbitrary
+positive weights in the remaining finite-algebra tower model. High tag
+degrees can only delete from a known low-degree greedy basis, with explicit
+excess-degree and affected-column budgets. Nilpotent tag towers have a
+linear whole-fan bound. A separate actual circuit-product family has a
+coherent index `2^(n/8)` but only nine initial ideals, dropping to six in
+characteristic two. This confirms a coherent arithmetic effect while
+excluding determinant size alone as an amplification mechanism. The
+distinct-prime intermediate count remains open; the equal-period witness
+does not settle it.
 Fixed internal list orders give exact rank-oracle formulas, but a
 polylogarithmic cover by two-list domains is impossible even for that
 quadratic family. Three-list ranks require a signed correction with
