@@ -246,4 +246,3 @@ orders, general rational numerators, all fixed curves or unrestricted
 \(G_3\). The next broad step is a controlled joint-rank defect in place
 of the second exact transport, retaining the two tag moments and every
 actual crossing. The original goal and its publication criteria remain active.
-
