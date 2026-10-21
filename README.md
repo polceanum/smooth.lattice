@@ -297,6 +297,15 @@ A coherent block has rank four over every field despite a support matching
 of size five, excluding that shortcut. Exact priority of the new theorem,
 the unrestricted count and the original publication goal remain open.
 
+An [affine liaison-addition comparison](docs/liaison_fan_composition.md)
+composes two three-variable quotient fans with exact length accounting.
+The algebraic construction is classical; the fan is their common refinement,
+so branch counts need not multiply. Ordinary box-prefix refinements stay
+within `O(N^2*log(N+1)^4)`, while this gluing of two arbitrary balanced
+nonlinear rectangles has only `O(N^(3/2))` initials in its true length.
+These immediate composition routes therefore do not give the desired
+power gain. Neither statement changes the unrestricted bound.
+
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count

@@ -1,0 +1,939 @@
+{
+  "status": "passed",
+  "command": "python3 -B scripts/run_liaison_fan_checks.py",
+  "counts": {
+    "branch_filtration_column_terms_checked": 112,
+    "cyclic_commuting_multiplication_columns": 183,
+    "integer_generator_membership_replays": 488,
+    "independent_macaulay_kernel_rows": 376,
+    "independent_initial_set_and_moment_equalities": 72,
+    "independent_full_kernel_models": 8,
+    "complete_identical_fan_cone_equalities": 16,
+    "nonmonomial_tag_point_membership_replays": 128,
+    "nonmonomial_tag_independent_initial_sets": 12,
+    "sharp_integer_box_reflection_witnesses": 96,
+    "actual_box_cut_wall_product_checks": 120,
+    "complete_box_cut_fans": 3
+  },
+  "local_composition_fixtures": [
+    {
+      "side": 2,
+      "branch_lengths": [
+        4,
+        4
+      ],
+      "box_length": 8,
+      "glued_length": 16,
+      "sum_branch_moments": 8,
+      "common_refinement_is_product_claimed": false
+    },
+    {
+      "side": 3,
+      "branch_lengths": [
+        9,
+        9
+      ],
+      "box_length": 27,
+      "glued_length": 45,
+      "sum_branch_moments": 36,
+      "common_refinement_is_product_claimed": false
+    }
+  ],
+  "complete_identical_fan_fixtures": [
+    {
+      "characteristic": 0,
+      "branch_length": 4,
+      "glued_length": 20,
+      "branch_initials": 6,
+      "glued_initials": 6,
+      "product_of_counts_is_actual": false,
+      "branch_standard_sets_and_cones": [
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              1,
+              0
+            ]
+          ],
+          "weight_simplex_polygon": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "2/5",
+              "2/5",
+              "1/5"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ],
+          "weight_simplex_polygon": [
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ],
+            [
+              "2/5",
+              "2/5",
+              "1/5"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "weight_simplex_polygon": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ],
+          "weight_simplex_polygon": [
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ],
+            [
+              "2/5",
+              "2/5",
+              "1/5"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "weight_simplex_polygon": [
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ]
+          ],
+          "weight_simplex_polygon": [
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "characteristic": 2,
+      "branch_length": 4,
+      "glued_length": 20,
+      "branch_initials": 4,
+      "glued_initials": 4,
+      "product_of_counts_is_actual": false,
+      "branch_standard_sets_and_cones": [
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "weight_simplex_polygon": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ],
+          "weight_simplex_polygon": [
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "weight_simplex_polygon": [
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ]
+          ],
+          "weight_simplex_polygon": [
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "characteristic": 3,
+      "branch_length": 4,
+      "glued_length": 20,
+      "branch_initials": 6,
+      "glued_initials": 6,
+      "product_of_counts_is_actual": false,
+      "branch_standard_sets_and_cones": [
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              1,
+              0
+            ]
+          ],
+          "weight_simplex_polygon": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "2/5",
+              "2/5",
+              "1/5"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ],
+          "weight_simplex_polygon": [
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ],
+            [
+              "2/5",
+              "2/5",
+              "1/5"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "weight_simplex_polygon": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ],
+          "weight_simplex_polygon": [
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ],
+            [
+              "2/5",
+              "2/5",
+              "1/5"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "weight_simplex_polygon": [
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ]
+          ],
+          "weight_simplex_polygon": [
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "sharp_box_wall_fixtures": [
+    {
+      "primitive_direction": [
+        1,
+        -1,
+        0
+      ],
+      "symbolic_positive_weight": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          -1,
+          -1,
+          2
+        ]
+      ],
+      "box_cardinality": 4,
+      "selected_cardinality": 2
+    },
+    {
+      "primitive_direction": [
+        3,
+        -2,
+        1
+      ],
+      "symbolic_positive_weight": [
+        [
+          2,
+          4,
+          2
+        ],
+        [
+          -8,
+          -4,
+          16
+        ]
+      ],
+      "box_cardinality": 24,
+      "selected_cardinality": 12
+    }
+  ],
+  "nonmonomial_tag_point_fixture": {
+    "field_characteristics": [
+      0,
+      101
+    ],
+    "univariate_tags": [
+      "x^2-1",
+      "y^2-1",
+      "z^2-1"
+    ],
+    "box_length": 8,
+    "branch_lengths": [
+      4,
+      4
+    ],
+    "glued_length": 16,
+    "points": [
+      [
+        -1,
+        -1,
+        -1
+      ],
+      [
+        -1,
+        -1,
+        1
+      ],
+      [
+        -1,
+        1,
+        -1
+      ],
+      [
+        -1,
+        1,
+        1
+      ],
+      [
+        1,
+        -1,
+        -1
+      ],
+      [
+        1,
+        -1,
+        1
+      ],
+      [
+        1,
+        1,
+        -1
+      ],
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        2,
+        -1,
+        -1
+      ],
+      [
+        3,
+        -1,
+        1
+      ],
+      [
+        4,
+        1,
+        -1
+      ],
+      [
+        5,
+        1,
+        1
+      ],
+      [
+        -1,
+        6,
+        -1
+      ],
+      [
+        -1,
+        7,
+        1
+      ],
+      [
+        1,
+        8,
+        -1
+      ],
+      [
+        1,
+        9,
+        1
+      ]
+    ]
+  },
+  "uniform_results": {
+    "operation_and_additive_length": "Classical liaison addition in a finite affine chart; length abc+m1+m2.",
+    "all_global_order_initial_formula": "(L3), with exact common refinement and disjoint recovery of both branch standard sets.",
+    "unrestricted_product_of_branch_counts": false,
+    "box_cut_refinement_bound": "O(M^2*log(M+1)^4), independently of the number of input fans.",
+    "local_moment_bound": "O((1+S1+S2)^(3/2)), with the fixed box/tag profiles removed as translations.",
+    "balanced_arbitrary_nonlinear_rectangle_gluing": "N=q^3+2*q^2; g(H)=O(N^(3/2)) over all fields."
+  },
+  "unrestricted_G3_improvement": false,
+  "novelty_established": false,
+  "goal_complete": false,
+  "scope": "A classical construction, exact fan-composition tool and two uniform feasibility exclusions. The finite checks do not supply a larger asymptotic lower family or a priority certificate.",
+  "source_sha256": {
+    "docs/liaison_fan_composition.md": "4bf7754d29da53f4258bfd84704bee404b9fb0a4da94722f7953b3a0ce3a89ae",
+    "scripts/run_liaison_fan_checks.py": "59129e88d900f283ed245f7762f3f75f9b498442fe10f7f0b2e2757493359539",
+    "docs/extremal_initial_ideals.md": "6e84b6ea470841a89760a2e16080a9314ba747499b1a5a733460120fe501a92b",
+    "docs/generic_multiaffine_bound.md": "25d79382745c94da18f038cee7f0d6eccc202f0dc5b4cd6568ae9aa43ffd1a19",
+    "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
+    "scripts/run_higher_seed_checks.py": "92f0c67e86e3be54c71cbe6efac168c767c9768bb8058b6dc36d24b91acac926",
+    "scripts/run_higher_interaction_checks.py": "cdc31d1b582e71c4536056429bf7eabeb2fcb312f313713135a2eaee68578916",
+    "scripts/run_hypersurface_truncation_checks.py": "700073c01784db06a953d351c500e0d66b0019c1152fe4b127cbf50f35cbcd7e",
+    "scripts/run_signed_face_checks.py": "8367cf40b049331649f6f3ed799e43982b14a1d40cfb620791249d2c63375867",
+    "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
+    "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
+    "scripts/run_socle_stability_checks.py": "81e4476100f0be5457fcf7019186415d230cceac4096202b2844dce645e83f52"
+  }
+}
