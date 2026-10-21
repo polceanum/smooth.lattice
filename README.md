@@ -92,6 +92,16 @@ These do not settle the number of coherent orderings. Coefficient bit
 costs, current-best priority and practical speed remain unestablished.
 The separate exact geometry budget is `O(n^(23/4)*log(n+1)^(7/4))`
 and can dominate the field-operation term.
+A [face lemma for elementary quotients](docs/adjacent_rank_fans.md) now shows
+that consecutive truncations and every one-dimensional linear quotient
+have nested exposed-face directions and a linear-size common refinement
+in three cost coordinates. A new child ray requires the removed relation
+to join components of one cost layer. The truncation case bounds the
+refined exact greedy threshold uniformly in the larger quotient length.
+The same note identifies the prime-digit matroid's classical tensor
+composition and connects a finite-group norm quotient to the existing
+lattice gap fan. The corank-one family remains excluded by the earlier
+quadratic polylogarithmic bound; no unrestricted counting gain follows.
 A product-threshold refinement now counts every initial cell incident
 to a wall with primitive direction product at most `T` by
 `O(n*T^(4/3)*log(n+1))`, with an explicit support-oracle reduction.
