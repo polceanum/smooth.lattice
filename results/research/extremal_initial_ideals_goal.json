@@ -7,7 +7,7 @@
   "goal_complete": false,
   "asymptotic_improvement_established_this_iteration": false,
   "novelty_established_this_iteration": false,
-  "note": "The unrestricted impact goal remains active. Two high interactions in a single cyclic quotient now have an exact coupled-kernel theorem: replacing independent forms by a repeated form changes complete-prefix ranks uniformly. This is a structural distinction, not a larger fan or evidence of publication significance.",
+  "note": "The unrestricted impact goal remains active. The proposed first-order two-interaction family, and all fixed-degree full-pure-power tangent equations with a bounded interaction depth, now have a uniform O(n^2) fan bound by an ideal power witness and classical lattice geometry. The earlier rank distinction is retained but does not amplify this family beyond the generic power. The generic-coordinate corollary is not substituted for the fixed-coordinate extremal target.",
   "relationship_to_previous_work": "New active objective with a higher completion bar. Previous goal records, lattice-shadow candidate, manuscripts and paused ML results are preserved as historical research.",
   "definitions": {
     "G_d_n": "Maximum number of monomial initial ideals of a colength-n ideal in d variables, over all fields.",
@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Preserve the unrestricted G_3 objective and every original acceptance criterion. The two-interaction family now has exact columns and a uniform coupled-kernel rank criterion; repeated-form universality is false, but a one-dimensional prefix defect does not amplify fan counts. The substantive lower-route task is to prove how many simultaneous, distinct positive-weight initial cones an actual coupled cyclic quotient realizes as its length grows, or give a uniform exclusion and move to a more promising construction. Use the full two-parameter selected-column mechanism, not arbitrary matroid examples, a count of possible walls, different quotients at one weight, or more isolated rank witnesses. Do not reopen the closed single-interaction family, generic box-prefix refinements or balanced rectangle glues. The alternative remains a stronger unrestricted aggregate-shadow/incidence bound respecting the known quartic-moment counterexamples. Continue the strongest-current primary comparison; elementary new calculations and unsuccessful keyword searches are no novelty certificate. Preserve all previous results and the unchanged impact/publication requirements; no messages or submissions.",
+  "next_proof_task": "Preserve unrestricted original-coordinate G_3 and all original acceptance criteria. Do not add more near-cutoff interactions to the first-order quadratic family: (P7)--(P8) exclude the entire bounded-depth class with full pure-power tangent support, regardless of term count or field. A hypersurface lower route now needs interaction depth growing at least as in (P9), missing pure tangent vertices, or another genuine realization mechanism; the already closed single-interaction family remains excluded even at unbounded depth. The two fixed interactions with s growing beyond 2*r+1 are not classified, but need a quantitative count of simultaneous positive cones before more samples. The generic-linear-coordinate O(n^(8/3)) corollary should receive a focused primary-source comparison, without being substituted for G_3 in the given coordinates. Alternatively improve the unrestricted aggregate-shadow bound while respecting the quartic-incidence counterexamples. Coordinate normal-form entry hyperplanes alone do not refine the actual fan, by (P11). Preserve all proofs, scripts/reports, manuscripts/PDFs, kernels/auditor and paused ML; no messages or submissions. No family exclusion, classical corollary or unverified priority claim completes this goal.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -132,7 +132,8 @@
     "If prime-digit decomposition is used to prove (B8), separate the classical Lucas factorization and Rowland coefficient-valuation counts from the unproved ranks of shifted selected matrices. Coherent carry constraints and linear dependence remain to be controlled; no novelty or rank theorem follows from entrywise self-similarity alone.",
     "Compare the integral coherent core cokernel theorem, the all-nonzero-binary-form seed consequence, the global defect pairing and the full all-field 25*n+14 family bound with current filtered-module, binomial-matrix and sparse-ideal literature. All elementary row changes and finite abelian-group cancellation are classical inputs. The new uniform proof excludes this entire family as a power-gain route; it does not settle G_3 or certify publication significance.",
     "The proposed affine fan composition is positively identified as classical liaison addition; do not claim its operation or additive length as new. Assess only the exact separate-univariate all-order initial formula and any future quantitative consequence against existing Groebner/liaison literature. The box-prefix and local moment bounds are screening tools, not a new unrestricted theorem or a priority certificate.",
-    "Determine whether the two-interaction coupled-column mechanism supports an amplified count of simultaneous positive-weight cones; (C4) is an exact prefix-rank theorem only. Exact priority and the strongest current unrestricted comparison remain open."
+    "Determine whether the two-interaction coupled-column mechanism supports an amplified count of simultaneous positive-weight cones; (C4) is an exact prefix-rank theorem only. Exact priority and the strongest current unrestricted comparison remain open.",
+    "Audit the exact priority and strongest applicable bound for the generic-linear-coordinate O(n^(8/3)) consequence; it is coordinate dependent and cannot settle the stated original-coordinate G_3 problem. A further lower route must escape the new bounded-depth power-carrier exclusion, not add more terms within it."
   ],
   "primary_sources": [
     {
@@ -639,6 +640,13 @@
       "url": "https://arxiv.org/pdf/2506.24028",
       "version": "arXiv:2506.24028v1",
       "scope": "Section 2 characteristic-zero convention, Theorem 4.11 and Corollary 4.14 with proofs inspected. The factorial count applies to variable powers plus a power of their sum. The explicit basis construction was not independently audited; no unrestricted extension is inferred."
+    },
+    {
+      "authors": "Travis Dillon",
+      "title": "Small lattice polytopes have few vertices",
+      "url": "https://arxiv.org/pdf/2606.30856",
+      "version": "arXiv:2606.30856v1",
+      "scope": "Theorem 1 and Sections 1--2.2 rechecked as a primary proof retelling of the classical Andrews/Konyagin--Sevastyanov theorem. Full-dimensional volume and planar bounds are established inputs, not new exponents. The original 1963 AMS PDF returned 403 and was not read; its DOI is recorded in the proof note. No priority conclusion for the new application follows."
     }
   ],
   "verification": {
@@ -1519,19 +1527,40 @@
       "build": "./build.sh passed",
       "smoke": "python3 tests/test_smoke.py passed",
       "scope": "Integer recurrence versus closed columns, independently eliminated full Macaulay kernels and prefix ranks, reduced coupled systems, exact extra relations and support-lattice minors. Uniform proofs are separate from finite verification; no fan count is inferred from ranks."
+    },
+    "power_carriers": {
+      "command": "python3 -B scripts/run_power_carrier_checks.py",
+      "report": "results/research/power_carrier_checks.json",
+      "status": "passed",
+      "source_hashes_verified": true,
+      "counts": {
+        "integer_power_membership_witnesses": 4,
+        "independent_hypersurface_kernel_rows": 1504,
+        "independent_order_and_moment_controls": 96,
+        "independent_macaulay_initial_sets": 54,
+        "complete_fan_cones_and_slab_caps": 119,
+        "complete_positive_fans": 3,
+        "actual_missing_entry_wall_adjacent_cones": 2,
+        "independent_coordinate_normal_form_equalities": 360,
+        "finite_field_coordinate_matrices_checked": 512,
+        "coordinate_extension_positive_controls": 2
+      },
+      "build": "./build.sh passed",
+      "smoke": "python3 tests/test_smoke.py passed",
+      "scope": "Exact polynomial multiplier replay, independent hypersurface kernels and moment caps, three complete positive fans with total area one, independent Macaulay initial sets, an active wall absent from all entry lists, and finite-field coordinate-open controls. These checks do not prove the classical asymptotic vertex theorem, sharpness or novelty."
     }
   },
-  "preservation": "Five explicitly reviewed research files against e33fe46: README, a new two-interaction rank note, its independent checker/report and this active goal. All 66 earlier continuations and all earlier mathematical sources/reports are preserved; all 341 other previously tracked files remain byte-identical. Core CLI, kernels, auditor, manuscripts/PDFs and paused ML are unchanged. Baselines and logs remain ignored under results/local/.",
+  "preservation": "Five explicitly reviewed research files against 7955855: README, a new power-carrier proof note, its independent checker/report and this active goal. All 67 earlier continuations and all earlier mathematical sources/reports are preserved; all 344 other previously tracked files remain byte-identical. Core CLI, kernels, auditor, manuscripts/PDFs and paused ML are unchanged. Baselines and logs remain ignored under results/local/.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
-    "docs/two_interaction_ranks.md",
-    "scripts/run_two_interaction_checks.py",
-    "results/research/two_interaction_checks.json",
+    "docs/power_carrier_bounds.md",
+    "scripts/run_power_carrier_checks.py",
+    "results/research/power_carrier_checks.json",
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "b60e078eae09dfeead48c118e45122ccd97690c8c9d34de69223dd86330200fd",
+    "README.md": "c94b6cc8ad87e7c774dde5e9f261709fdb440d471a7e2bb5bb330f78dcf5ece7",
     "docs/extremal_initial_ideals.md": "6e84b6ea470841a89760a2e16080a9314ba747499b1a5a733460120fe501a92b",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
@@ -1609,7 +1638,10 @@
     "results/research/liaison_fan_checks.json": "4589858343d14dd827849d56fbce0893da6118ebee788ec572b59ebec883d117",
     "docs/two_interaction_ranks.md": "de9c395fa613d7f9d0a189130bfe1c8c8fcb4e2a6f9aee01a9721c667d7004ad",
     "scripts/run_two_interaction_checks.py": "1a06b532e520a539b5c0bf1fa2a1b3b79e0cfd42e18d3f31f5515b0baf1a17fa",
-    "results/research/two_interaction_checks.json": "586d3293cc8aa002775cfc85d6db511a94f8a36ce3b78267ce382d35f9ef598b"
+    "results/research/two_interaction_checks.json": "586d3293cc8aa002775cfc85d6db511a94f8a36ce3b78267ce382d35f9ef598b",
+    "docs/power_carrier_bounds.md": "147199d8453db28285ebe3448e5bc0916121bb62ea8b9450f035dc46a401320b",
+    "scripts/run_power_carrier_checks.py": "0247edb76f5d866eab944098007b485ee8be1c8793311a589bb7573be1629731",
+    "results/research/power_carrier_checks.json": "9565bce325fcef7039a413aaae3716df5dbee36d8af05f6ec3b4a07835198599"
   },
   "continuations": [
     {
@@ -5757,10 +5789,78 @@
         "smoke": "python3 tests/test_smoke.py passed",
         "scope": "Integer recurrence versus closed columns, independently eliminated full Macaulay kernels and prefix ranks, reduced coupled systems, exact extra relations and support-lattice minors. Uniform proofs are separate from finite verification; no fan count is inferred from ranks."
       }
+    },
+    {
+      "title": "Power carriers exclude bounded-depth hypersurface perturbations uniformly",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "progress: 7955855 proved exact division-free columns and the uniform binary-divisibility criterion for two-interaction prefix ranks, including an infinite all-field rank distinction. Revalidated clean main, all 346 tracked files, 79 source hashes and 67 continuations before this iteration. The full objective and acceptance criteria remain unchanged.",
+      "progress_classification": "uniform whole-class O(n^2) exclusion, a generic-coordinate counting corollary, and an exact counterexample to the coordinate-entry-wall shortcut",
+      "uniform_proofs": [
+        "Any ideal element of degree m with every pure top coefficient nonzero puts each initial standard set in one of three coordinate slabs. Classical volume and integer-level vertex bounds give (P1).",
+        "The elementary identity q^e=(-h)^e in the quotient, with e=ceil((s+1)/D), supplies a carrier. The local tangent Hilbert budget gives O_a(sqrt(e)*n^2), hence O(n^2) at bounded interaction depth for arbitrarily many higher terms over every field.",
+        "A lower family of power 2+epsilon in this class needs unbounded e=Omega(n^(2*epsilon)); the first-order two-interaction family is excluded despite its proved rank distinction.",
+        "A low-degree relation and a nonempty open set of linear changes give O(n^(8/3)) after coordinate preprocessing, over an extension when needed. This does not bound the originally specified coordinate fan."
+      ],
+      "classical_boundary": "The power identity and vertex tools already appear in the repository or primary literature. The new quantitative application is not presented as a new general geometric theorem; exact priority remains unassessed.",
+      "independent_controls": {
+        "integer_power_membership_witnesses": 4,
+        "independent_hypersurface_kernel_rows": 1504,
+        "independent_order_and_moment_controls": 96,
+        "independent_macaulay_initial_sets": 54,
+        "complete_fan_cones_and_slab_caps": 119,
+        "complete_positive_fans": 3,
+        "actual_missing_entry_wall_adjacent_cones": 2,
+        "independent_coordinate_normal_form_equalities": 360,
+        "finite_field_coordinate_matrices_checked": 512,
+        "coordinate_extension_positive_controls": 2
+      },
+      "complete_fan_counts": [
+        {
+          "r": 3,
+          "characteristic": 0,
+          "length": 64,
+          "initial_ideals": 27
+        },
+        {
+          "r": 3,
+          "characteristic": 2,
+          "length": 64,
+          "initial_ideals": 27
+        },
+        {
+          "r": 5,
+          "characteristic": 101,
+          "length": 144,
+          "initial_ideals": 65
+        }
+      ],
+      "scope_limit": "A broad proof-based feasibility exclusion and a coordinate-dependent corollary. Neither meets the original unrestricted endpoint, consequence and publication requirements.",
+      "verification": {
+        "command": "python3 -B scripts/run_power_carrier_checks.py",
+        "report": "results/research/power_carrier_checks.json",
+        "status": "passed",
+        "source_hashes_verified": true,
+        "counts": {
+          "integer_power_membership_witnesses": 4,
+          "independent_hypersurface_kernel_rows": 1504,
+          "independent_order_and_moment_controls": 96,
+          "independent_macaulay_initial_sets": 54,
+          "complete_fan_cones_and_slab_caps": 119,
+          "complete_positive_fans": 3,
+          "actual_missing_entry_wall_adjacent_cones": 2,
+          "independent_coordinate_normal_form_equalities": 360,
+          "finite_field_coordinate_matrices_checked": 512,
+          "coordinate_extension_positive_controls": 2
+        },
+        "build": "./build.sh passed",
+        "smoke": "python3 tests/test_smoke.py passed",
+        "scope": "Exact polynomial multiplier replay, independent hypersurface kernels and moment caps, three complete positive fans with total area one, independent Macaulay initial sets, an active wall absent from all entry lists, and finite-field coordinate-open controls. These checks do not prove the classical asymptotic vertex theorem, sharpness or novelty."
+      }
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "No unrestricted or family fan-count improvement. The new all-field theorem gives exact ranks and a uniform failure of a repeated-form extension of transport.",
-  "previous_goal_turn_classification": "progress: e33fe46 proved the affine liaison fan-composition formula and two uniform quantitative feasibility gates, positively matching the construction to classical liaison addition. Revalidated all 343 tracked files, 76 goal source hashes and 66 continuations before this iteration; the objective and acceptance criteria remain unchanged.",
+  "asymptotic_improvement_scope_this_iteration": "Uniform O(n^2) exclusion of fixed-degree full-pure-power tangent equations with perturbations starting at a fixed positive fraction of the truncation. An O(n^(8/3)) corollary holds after suitable generic linear coordinate changes, over an extension if necessary; it is not an original-coordinate unrestricted G_3 bound. Classical geometry and elementary power membership are explicit inputs; priority is unassessed.",
+  "previous_goal_turn_classification": "progress: 7955855 proved exact division-free columns and the uniform binary-divisibility criterion for two-interaction prefix ranks, including an infinite all-field rank distinction. Revalidated clean main, all 346 tracked files, 79 source hashes and 67 continuations before this iteration. The full objective and acceptance criteria remain unchanged.",
   "uniform_relative_margin_hypothesis_status": "refuted_by_actual_all_field_quotients",
   "secondary_extremal_parameter_resolved": {
     "relative_margin_dimension_2": "Theta(n^-2)",
@@ -5866,7 +5966,7 @@
       "novelty_established": false
     }
   },
-  "family_asymptotic_improvement_established_this_iteration": false,
+  "family_asymptotic_improvement_established_this_iteration": true,
   "higher_interaction_reduction": {
     "proof": "docs/higher_interaction_fans.md",
     "fields": "every field",
@@ -5920,7 +6020,7 @@
     "every_fixed_finite_prime_set_can_fail_simultaneously": true,
     "simultaneous_budget": "K<product(p^e_p), e_2=e_3=2, other e_p=1, by explicit residue classes and CRT; length<(6*product(p^e_p)+6)^2"
   },
-  "rank_model_established_this_iteration": true,
+  "rank_model_established_this_iteration": false,
   "extreme_cone_classification_established_this_iteration": false,
   "signed_face_reduction": {
     "proof": "docs/signed_face_reduction.md",
@@ -6309,6 +6409,25 @@
     "fan_consequence": "The two quotients have different realized standard sets at some generic nearby weights. No inequality between their total numbers of initial ideals follows.",
     "unrestricted_G3_improvement": false,
     "fan_count_established": false,
+    "novelty_established": false,
+    "goal_complete": false
+  },
+  "power_carrier_bounds": {
+    "proof": "docs/power_carrier_bounds.md",
+    "checker": "scripts/run_power_carrier_checks.py",
+    "report": "results/research/power_carrier_checks.json",
+    "pure_carrier_hypothesis": "I contains a degree-m polynomial with all three pure degree-m coefficients nonzero; S bounds all initial-standard total degree moments.",
+    "all_field_bound": "g(I)=O(min((S+1)*sqrt(b+1),(b+1)*(S+1)^(2/3))); b=min(S,(m-1)*n). Group by largest variable, then apply classical lattice-vertex bounds to bounded-coordinate profile hulls.",
+    "truncated_hypersurface": "For fixed-degree homogeneous q with all pure coefficients nonzero and h starting at degree D>deg(q), I=(q+h,m^(s+1)) contains q^e for e=ceil((s+1)/D). Its length is Theta_a(s^2), so g(I)=O_a(sqrt(e)*n^2).",
+    "bounded_interaction_depth_decision": "If D>=c*s for fixed c>0, g(I)=O_(a,c)(n^2), independently of the number or coefficients of higher terms and characteristic. Do not expand this family to seek a power gain.",
+    "necessary_growth_condition": "A putative n^(2+epsilon) lower family within these pure-tangent hypersurfaces needs e=Omega(n^(2*epsilon)), hence D=O(n^(1/2-2*epsilon)) for fixed tangent degree.",
+    "two_interaction_application": "q=x^2+y^2+z^2, s=2*r+1, D=r+2 gives q^2 in I and the uniform O(n^2) fan bound. Arbitrary Q missing a pure coefficient is outside this application.",
+    "generic_coordinate_corollary": "Every length-n three-variable ideal has a nonzero relation of degree O(n^(1/3)). A nonempty open set of linear changes makes its three pure top coefficients nonzero, giving O(n^(8/3)) initials after such a change, over a finite extension if needed for a finite field.",
+    "generic_coordinate_scope_limit": "No claim of invariance under linear changes, no bound on original-coordinate G_3, no arithmetic-operation bound, and no novelty certificate.",
+    "entry_wall_obstruction": "At r=3 over Q, an actual wall X+Y=3*Z is absent from every coordinate normal-form entry list. An exact ideal multiplier, both full adjacent cones and their one-monomial exchange are saved.",
+    "classical_inputs": "Andrews lattice-vertex exponents, the Babson--Onn--Thomas state dictionary, the existing relative-socle layer argument, and the already used elementary power identity.",
+    "unrestricted_G3_improvement": false,
+    "strongest_current_unrestricted_audit_complete": false,
     "novelty_established": false,
     "goal_complete": false
   }

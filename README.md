@@ -315,6 +315,18 @@ characteristic-two example. The independent-form equation has full-rank
 support lattice of constant index. It escapes the previous rank identity,
 but no increase in the total number of initial ideals is proved.
 
+A [power-carrier bound](docs/power_carrier_bounds.md) now closes the
+first-order two-interaction construction: the square of its quadratic
+part belongs to the ideal, forcing every initial basis into a bounded
+coordinate slab. Classical lattice geometry gives `O(n^2)` initials
+for every fixed-degree tangent equation with all pure coefficients
+nonzero and perturbations beginning at a fixed fraction of the cutoff,
+regardless of the number of terms or characteristic. Polynomial growth
+beyond that scale requires an unbounded number of interaction layers.
+An auxiliary `O(n^(8/3))` bound holds after suitable generic linear
+coordinate changes; it does not bound the original-coordinate `G_3`.
+These are applications of established tools with priority unassessed.
+
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count
