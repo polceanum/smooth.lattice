@@ -108,6 +108,11 @@ chain have crossing edges. A uniform socle family also permits unbounded
 component mergers with only three child initial ideals. A global bound
 must account for the length cost and interactions across multiplication
 layers; the socle deletion rule alone does not supply it.
+The [incidence note](docs/weighted_facet_incidence.md) now gives a
+sufficient bound through visible edge lengths and a rank-sensitive
+estimate for one small box. An explicit classical zonotope control shows
+why the global argument must retain rank; profile-box and normal-height
+constraints alone would give a false cubic estimate.
 A product-threshold refinement now counts every initial cell incident
 to a wall with primitive direction product at most `T` by
 `O(n*T^(4/3)*log(n+1))`, with an explicit support-oracle reduction.

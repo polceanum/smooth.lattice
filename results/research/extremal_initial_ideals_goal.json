@@ -7,7 +7,7 @@
   "goal_complete": false,
   "asymptotic_improvement_established_this_iteration": false,
   "novelty_established_this_iteration": false,
-  "note": "Actual ideal flags now expose two limits on the elementary-quotient approach: nonadjacent fans can cross even along an actual composition chain, and one socle relation can merge arbitrarily many components while its fan has only three cells. The eigenline/socle deletion rule is proved and independently checked. A concrete square-root incidence budget is formulated with a proved conditional consequence, but the budget, sharp unrestricted growth, polynomial lower separation, exact novelty and publication significance remain open.",
+  "note": "The square-root incidence target now has a proved sufficient visible-edge-length reduction and a rank-sensitive one-box skeleton bound. An explicit classical zonotope control shows that the usual integral profile box, small primitive edge directions and normal-height bound alone do not imply the proposed cubic budget. Its rank exceeds its geometric length parameter, so it is not an ideal counterexample. A collective rank-preserving hyperbolic localization, the actual cubic budget, sharp unrestricted growth, a polynomial lower separation and the publication assessment remain open.",
   "relationship_to_previous_work": "New active objective with a higher completion bar. Previous goal records, lattice-shadow candidate, manuscripts and paused ML results are preserved as historical research.",
   "definitions": {
     "G_d_n": "Maximum number of monomial initial ideals of a colength-n ideal in d variables, over all fields.",
@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Keep the full unrestricted G3 objective, original success criteria and strongest-priority audit. The actual length-14/13/12 ideal chain now refutes iterating pairwise face nesting; the uniform simplex socle family refutes a constant bound on merger arity. Common-eigenline and positive-filter socle properties hold but do not alone restrict local quotient matroids: arbitrary relation flags on maximal corners are realizable and already satisfy the earlier O(n^(3/2)) count. Seek a genuinely collective length-sensitive incidence budget across multiplication layers. A concrete candidate is U(I)=sum_w ceil(sqrt(height(w)))*incident_cells(w)=O(n^3*log(n+1)^C) for fixed C; the conditional shadow reduction would imply n^(33/13), and actual three-pole curves require the cubic power. This budget is unproved and must be proved or refuted on actual algebras, not inferred from finite counts or local merger arity. Alternatively construct a growing higher-codimension prime-digit or other actual dependency family with a uniform coherent lower bound. Do not reopen the corank-one binomial family, mistake a partial incidence improvement for sharp growth, or claim a new general Tutte substitution. Preserve all previous mathematics, manuscripts, kernels/auditor and paused ML; no outbound messages.",
+  "next_proof_task": "Keep the full unrestricted G3 objective, sharp-growth or polynomial-lower-separation endpoint and original publication criteria. Pursue the collective square-root incidence budget U=O(n^3*log(n+1)^C) for actual length-n algebras on V_n^3; it remains unproved. The visible l1 edge skeleton gives a sufficient budget U<=4*length, and a uniform O(r^2*a*b*c) skeleton estimate is now proved for projected rank-r matroids with all labels in one anchored box. The missing step is a rank-preserving localization over the hyperbolic cover, accounting for exchanges and dependencies across different boxes. The full basis polytope is not the Minkowski sum of restriction polytopes, so adding the one-box bounds is invalid. A broader U=O(r^2*H*polylog(H)) estimate would suffice if proved, but do not assume it. The explicit classical grid zonotope has U=Theta(n_geom^(10/3)) while its rank is Theta(n_geom^(4/3)); it refutes a geometry-only argument, not the actual ideal budget. Use the previously proved actual ideal-chain crossings and unbounded merger arity as required controls. Seek a collective proof or an actual growing higher-codimension family, rather than more isolated geometric examples. Preserve exact priority limits, all old mathematics, manuscripts/PDFs, CLI/kernels/auditor and paused ML; never send outbound messages. No minor lemma or unproved incidence condition completes the goal.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -145,7 +145,8 @@
     "The entire generic rational-function family regular at zero and infinity is now bounded by O(n^2*log(n+1)); its previous intermediate pole-order range is closed. Audit the exact sensitive-wall combination and random-access consequence separately from classical Laurent/evaluation/concavity/floor-sum inputs. For special samples, a shifted-approximant reduction must preserve actual rank dependencies, the exponent cost order and all relevant shifts; Theorem 1.3 of arXiv:1602.00651v1 is a single-shift coefficient-basis algorithm, not an imported all-fan count. No further small generic sweeps or unrestricted-success claim follows.",
     "Neiger--Schost Theorem 1.7 and Propositions 3.7/3.14 apply to arbitrary commuting matrices and orders; their input-conversion Theorem 1.9 has an additional leading-module hypothesis and is not imported. The exact prime-digit rank, basis and rank-generating recursions for single-root length-p^s cyclic codes need comparison with Sobhani 2016, Nedeloaia 2003, Bhullar--Gupta--Sonia 2010 and Zhao et al. 2025 Theorem 17. The latter retains a distribution term for a smaller set; the compact recursion must be matched against full existing methods, not declared new from that statement alone. The main all-coherent-profile count and arbitrary special-sample incidence problem remain open.",
     "Theorem 2 of docs/adjacent_rank_fans.md proves projected face-direction nesting for an arbitrary one-dimensional linear quotient: only the pivot cost minor changes; support in one connected component refines components, while support in several components coarsens them. Exact priority against flag-matroid and elementary-quotient geometry remains open. The cost-threshold exponent and gap-fan corank-one bound are inherited, not new powers. The latter was already excluded by BE1--BE3; an initially considered weaker socle-product estimate was not promoted as an improvement. The Pascal basis decomposition matches the published uniform tensor operation, with the r=0 direct-sum boundary handled separately. The full code-specific comparison with Sobhani and earlier squaring methods is still necessary. Main G3 growth and a separating family remain open.",
-    "Compare the exact elementary-quotient projected face statement with full flag-matroid/strong-map literature. The newly read elementary-quotient and realization facts, and point-separator normal forms, are established inputs. The actual socle flags do not certify a new general algorithm or counting theorem. Prove or refute the collective square-root incidence budget before reporting a new unrestricted power."
+    "Compare the exact elementary-quotient projected face statement with full flag-matroid/strong-map literature. The newly read elementary-quotient and realization facts, and point-separator normal forms, are established inputs. The actual socle flags do not certify a new general algorithm or counting theorem. Prove or refute the collective square-root incidence budget before reporting a new unrestricted power.",
+    "Determine whether a collective rank-preserving hyperbolic localization can bound the visible skeleton or square-root incidence. The one-box estimate is not additive over matroid restrictions. The classical primitive-zonotope projection comparison is now explicit about its larger rank; it does not settle the actual algebraic budget. Exact priority of the elementary skeleton estimate remains unverified."
   ],
   "primary_sources": [
     {
@@ -2010,19 +2011,53 @@
         "status": "passed"
       },
       "scope": "Independent commuting-action and cyclic-column checks for actual socle algebras; complete exact profile fans and reduced-border polynomial identities in four characteristics; adjacent overlays and separator deletions including ties. Uniform proofs, not bounded checks, supply the all-field claims. No growth fit or novelty conclusion."
+    },
+    "square_root_incidence_research": {
+      "command": "python3 -B scripts/run_weighted_facet_incidence_checks.py",
+      "status": "passed",
+      "report": "results/research/weighted_facet_incidence_checks.json",
+      "source_hashes_verified": true,
+      "box_counts": {
+        "independent_integer_corner_normal_bounds": 206,
+        "independent_facet_half_incidence_perimeter_bounds": 65,
+        "independent_boxed_matroid_skeletons": 4,
+        "nonvertical_integer_edge_steps": 129
+      },
+      "zonotope_counts": {
+        "independent_subset_sum_face_polygons": 9234,
+        "independent_integer_corner_normal_bounds": 44096,
+        "independent_facet_half_incidence_perimeter_bounds": 9364,
+        "complete_primitive_grid_zonotopes": 4,
+        "independent_positive_facet_line_buckets": 3748,
+        "selected_positive_high_normal_facets": 525
+      },
+      "old_report_blocks_preserved": [
+        "summary",
+        "quartic_area_family",
+        "existing_rectangle_controls"
+      ],
+      "build": {
+        "command": "./build.sh",
+        "status": "passed"
+      },
+      "smoke": {
+        "command": "python3 tests/test_smoke.py",
+        "status": "passed"
+      },
+      "scope": "Complete small projected matroid hulls, integer corner inequalities and projected edge-point counts; independent pair-normal and primitive-grid-line enumeration for four full zonotopes; exact Minkowski polygons compared with subset-sum hulls, and separate zone/surface edge-length identities. Uniform proofs supply asymptotic statements. No growth fit, actual ideal realization of the zonotope or novelty conclusion."
     }
   },
   "preservation": "Five explicitly privacy-reviewed public files change: two existing files and three new research artifacts. All 78 prior continuations, 105 old primary-source records, the full objective and success criteria, 98 unchanged research hashes and all 365 unlisted previously tracked files remain unchanged against 5fe82a6. The complete old oracle report and checker are untouched. Core CLI/kernels and auditor, manuscripts/PDFs, prior mathematics and paused ML are preserved. Exploratory notes, full preservation and privacy audit, baselines and logs stay ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
-    "docs/adjacent_rank_fans.md",
-    "scripts/run_adjacent_rank_checks.py",
-    "results/research/adjacent_rank_checks.json",
+    "docs/weighted_facet_incidence.md",
+    "scripts/run_weighted_facet_incidence_checks.py",
+    "results/research/weighted_facet_incidence_checks.json",
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "86e8e0324c30f44d3924f898d4a0dec2d11aef52a52b91b36ec4afb664e09d30",
+    "README.md": "8cca6b1b6060a8af61ca063d025308783f243c4cb82b9c4b1cfffa8aa501fd4e",
     "docs/extremal_initial_ideals.md": "6e84b6ea470841a89760a2e16080a9314ba747499b1a5a733460120fe501a92b",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
@@ -2056,7 +2091,7 @@
     "docs/rational_shadow_bound.md": "09b6e5e19cb03825e9d2151680e557cdf384256c5392cf70b6aca388e488c1ca",
     "scripts/run_rational_shadow_bound_checks.py": "0c27d91102f4c551099358296d147155165a4c451d1aca5d0a311e1e3d5128be",
     "results/research/rational_shadow_bound_checks.json": "8efff61a84ac099f065cfdb2778b250f0d83fb395d80fc12a320100d7397e2c7",
-    "docs/weighted_facet_incidence.md": "61ccaf62917fdf59b7f2480a80148750236e3507959e810403e302a43e31bc13",
+    "docs/weighted_facet_incidence.md": "57423655e0aa6abc785c149dae1ba8d13d760dc001d06edffa3fee55cdd3fb9e",
     "scripts/run_algebraic_incidence_controls.py": "93e6f0e5d147da43cdfacc16e4419703c59993c10dc03199ef6385df4d420eeb",
     "results/research/algebraic_incidence_controls.json": "db140030689a8384f545c8d9b8ec91194522e5826696f7ca47d3f10cb217bffb",
     "docs/ray_scaling_bound.md": "bc67337e30982df70c417b35bd506f54a133fed2f7eb1f8820507a938dbaeb64",
@@ -7195,10 +7230,86 @@
         "results/research/adjacent_rank_checks.json",
         "results/research/extremal_initial_ideals_goal.json"
       ]
+    },
+    {
+      "title": "Rank-sensitive skeleton bounds and the limit of geometric incidence charging",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "Progress: 6b2b866 proved and saved the actual ideal-chain crossing, unbounded merger arity and positive-filter socle deletion rule, and formulated the unproved collective incidence target. Revalidated clean main, all 370 tracked files, all 102 research hashes, all 80 previous continuations, 112 scoped primary-source records and the unchanged objective/criteria before this continuation.",
+      "progress_classification": "uniform_one_box_skeleton_bound_and_rank_qualified_geometric_counterfamily",
+      "structural_result": {
+        "visible_skeleton_reduction": "For primitive positive minimum-facet normals, U=sum ceil(sqrt(height(w)))*f0(F_w) is at most four times the l1 length of the edges incident to these facets. It is sufficient and cannot be reversed.",
+        "one_box_rank_sensitive_bound": "For any rank-r matroid with integer labels in an anchored box of positive integer sides a,b,c, the entire projected basis-polytope l1 skeleton length is O(r^2*a*b*c); hence so is U. The proof uses inherited primitive exchange directions, integer projections of nonvertical edge points and the planar lattice bound for vertical edges.",
+        "global_localization_gap": "V_n^3 has a logarithmic box cover of individual volume O(n), but its full basis polytope is not the Minkowski sum of restriction polytopes. Inter-box exchanges and dependencies cannot be omitted. No global cubic incidence budget is established.",
+        "classical_zonotope_control": "For generators (a,-b,1), K<=a<=4K, 6K<=b<=9K, positive square-root incidence is Theta(K^5). The translated box width is Theta(K^3), so the geometric n=ceil(sqrt(width)) gives U=Theta(n^(10/3)) despite the usual profile-box and primitive-direction/normal-height constraints.",
+        "rank_scope": "The classical parallel-pair realization has rank r=(3K+1)^2=Theta(K^2), larger than geometric n=Theta(K^(3/2)), and hyperbolic label parameter H=9K+2. Its U=Theta(r^2*H) respects the rank-sensitive candidate. It is not a length-n ideal realization or a counterexample to the actual cubic budget. The parallel-pair construction repeats exponent labels on independent ground elements: only 2*(3K+1) distinct labels support rank (3K+1)^2. Thus it cannot be an actual monomial-column configuration even at that larger rank.",
+        "priority": "Primitive-zonotope constructions and their parallel-pair matroid realizations are established in Deza--Manoussakis--Onn Theorem 4.1; projected-edge inheritance is established in Onn--Rozenblit Theorem 2.3. Their displayed proofs were rechecked at the precise steps used. No exact novelty of the elementary skeleton lemma is asserted.",
+        "unrestricted_G3_improved": false,
+        "polynomial_lower_separation_proved": false,
+        "novelty_established": false,
+        "goal_complete": false
+      },
+      "verification": {
+        "command": "python3 -B scripts/run_weighted_facet_incidence_checks.py",
+        "status": "passed",
+        "report": "results/research/weighted_facet_incidence_checks.json",
+        "source_hashes_verified": true,
+        "box_counts": {
+          "independent_integer_corner_normal_bounds": 206,
+          "independent_facet_half_incidence_perimeter_bounds": 65,
+          "independent_boxed_matroid_skeletons": 4,
+          "nonvertical_integer_edge_steps": 129
+        },
+        "zonotope_counts": {
+          "independent_subset_sum_face_polygons": 9234,
+          "independent_integer_corner_normal_bounds": 44096,
+          "independent_facet_half_incidence_perimeter_bounds": 9364,
+          "complete_primitive_grid_zonotopes": 4,
+          "independent_positive_facet_line_buckets": 3748,
+          "selected_positive_high_normal_facets": 525
+        },
+        "old_report_blocks_preserved": [
+          "summary",
+          "quartic_area_family",
+          "existing_rectangle_controls"
+        ],
+        "build": {
+          "command": "./build.sh",
+          "status": "passed"
+        },
+        "smoke": {
+          "command": "python3 tests/test_smoke.py",
+          "status": "passed"
+        },
+        "scope": "Complete small projected matroid hulls, integer corner inequalities and projected edge-point counts; independent pair-normal and primitive-grid-line enumeration for four full zonotopes; exact Minkowski polygons compared with subset-sum hulls, and separate zone/surface edge-length identities. Uniform proofs supply asymptotic statements. No growth fit, actual ideal realization of the zonotope or novelty conclusion."
+      },
+      "primary_comparison": [
+        {
+          "url": "https://arxiv.org/pdf/1512.08018v4",
+          "scope": "Definitions in Section 2.1 and Theorem 4.1 with the displayed parallel-pair construction rechecked; the construction has one rank unit per generator. This is already an established source in the previous primary-source list."
+        },
+        {
+          "url": "https://arxiv.org/pdf/1208.5639",
+          "scope": "The projected-edge lifting argument in the displayed proof of Theorem 2.3 rechecked; no new version or stronger vertex theorem is inferred."
+        }
+      ],
+      "unrestricted_G3_improved": false,
+      "polynomial_lower_separation_proved": false,
+      "novelty_established": false,
+      "goal_complete": false,
+      "next_proof_task": "Keep the full unrestricted G3 objective, sharp-growth or polynomial-lower-separation endpoint and original publication criteria. Pursue the collective square-root incidence budget U=O(n^3*log(n+1)^C) for actual length-n algebras on V_n^3; it remains unproved. The visible l1 edge skeleton gives a sufficient budget U<=4*length, and a uniform O(r^2*a*b*c) skeleton estimate is now proved for projected rank-r matroids with all labels in one anchored box. The missing step is a rank-preserving localization over the hyperbolic cover, accounting for exchanges and dependencies across different boxes. The full basis polytope is not the Minkowski sum of restriction polytopes, so adding the one-box bounds is invalid. A broader U=O(r^2*H*polylog(H)) estimate would suffice if proved, but do not assume it. The explicit classical grid zonotope has U=Theta(n_geom^(10/3)) while its rank is Theta(n_geom^(4/3)); it refutes a geometry-only argument, not the actual ideal budget. Use the previously proved actual ideal-chain crossings and unbounded merger arity as required controls. Seek a collective proof or an actual growing higher-codimension family, rather than more isolated geometric examples. Preserve exact priority limits, all old mathematics, manuscripts/PDFs, CLI/kernels/auditor and paused ML; never send outbound messages. No minor lemma or unproved incidence condition completes the goal.",
+      "preservation": "Five reviewed existing public files change. The full objective and success criteria, all 80 previous continuations, all 112 previous primary-source records, 99 unmodified research hashes and all 365 unlisted tracked files are preserved against 6b2b866. All earlier weighted-incidence report model blocks are exactly preserved. The adjacent-rank and oracle sources/reports, manuscripts/PDFs, CLI/kernels/auditor and paused ML are untouched. Historical reports retain their source-version hashes; the new report and goal track the current files. Private baselines, audits and logs remain ignored.",
+      "public_files": [
+        "README.md",
+        "docs/weighted_facet_incidence.md",
+        "scripts/run_weighted_facet_incidence_checks.py",
+        "results/research/weighted_facet_incidence_checks.json",
+        "results/research/extremal_initial_ideals_goal.json"
+      ]
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "No new unrestricted exponent or lower separation. The actual ideal-chain and unbounded merger examples rule out two local shortcuts. The square-root weighted-incidence implication is conditional on an unproved cubic polylogarithmic budget; exponent 33/13 is not an established count.",
-  "previous_goal_turn_classification": "No progress: the intervening presentation check changed no authoritative files. Revalidated clean main d9f4c37, all 370 tracked files, all 102 research hashes, the full objective and success criteria, 110 primary-source records and 79 prior continuations before this mathematical continuation.",
+  "asymptotic_improvement_scope_this_iteration": "The local skeleton estimate O(r^2*a*b*c) and the sufficient incidence reduction are proved. The global cubic incidence budget is still unproved, so exponent 33/13 remains conditional. The grid-zonotope asymptotic is a classical-construction control outside the actual rank/colength scope, not a lower bound for G3.",
+  "previous_goal_turn_classification": "Progress: 6b2b866 proved and saved the actual ideal-chain crossing, unbounded merger arity and positive-filter socle deletion rule, and formulated the unproved collective incidence target. Revalidated clean main, all 370 tracked files, all 102 research hashes, all 80 previous continuations, 112 scoped primary-source records and the unchanged objective/criteria before this continuation.",
   "uniform_relative_margin_hypothesis_status": "refuted_by_actual_all_field_quotients",
   "secondary_extremal_parameter_resolved": {
     "relative_margin_dimension_2": "Theta(n^-2)",
@@ -8009,5 +8120,20 @@
     "proof": "docs/adjacent_rank_fans.md",
     "checker": "scripts/run_adjacent_rank_checks.py",
     "report": "results/research/adjacent_rank_checks.json"
+  },
+  "square_root_incidence": {
+    "visible_skeleton_reduction": "For primitive positive minimum-facet normals, U=sum ceil(sqrt(height(w)))*f0(F_w) is at most four times the l1 length of the edges incident to these facets. It is sufficient and cannot be reversed.",
+    "one_box_rank_sensitive_bound": "For any rank-r matroid with integer labels in an anchored box of positive integer sides a,b,c, the entire projected basis-polytope l1 skeleton length is O(r^2*a*b*c); hence so is U. The proof uses inherited primitive exchange directions, integer projections of nonvertical edge points and the planar lattice bound for vertical edges.",
+    "global_localization_gap": "V_n^3 has a logarithmic box cover of individual volume O(n), but its full basis polytope is not the Minkowski sum of restriction polytopes. Inter-box exchanges and dependencies cannot be omitted. No global cubic incidence budget is established.",
+    "classical_zonotope_control": "For generators (a,-b,1), K<=a<=4K, 6K<=b<=9K, positive square-root incidence is Theta(K^5). The translated box width is Theta(K^3), so the geometric n=ceil(sqrt(width)) gives U=Theta(n^(10/3)) despite the usual profile-box and primitive-direction/normal-height constraints.",
+    "rank_scope": "The classical parallel-pair realization has rank r=(3K+1)^2=Theta(K^2), larger than geometric n=Theta(K^(3/2)), and hyperbolic label parameter H=9K+2. Its U=Theta(r^2*H) respects the rank-sensitive candidate. It is not a length-n ideal realization or a counterexample to the actual cubic budget. The parallel-pair construction repeats exponent labels on independent ground elements: only 2*(3K+1) distinct labels support rank (3K+1)^2. Thus it cannot be an actual monomial-column configuration even at that larger rank.",
+    "priority": "Primitive-zonotope constructions and their parallel-pair matroid realizations are established in Deza--Manoussakis--Onn Theorem 4.1; projected-edge inheritance is established in Onn--Rozenblit Theorem 2.3. Their displayed proofs were rechecked at the precise steps used. No exact novelty of the elementary skeleton lemma is asserted.",
+    "unrestricted_G3_improved": false,
+    "polynomial_lower_separation_proved": false,
+    "novelty_established": false,
+    "goal_complete": false,
+    "proof": "docs/weighted_facet_incidence.md",
+    "checker": "scripts/run_weighted_facet_incidence_checks.py",
+    "report": "results/research/weighted_facet_incidence_checks.json"
   }
 }

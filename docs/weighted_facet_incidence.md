@@ -515,3 +515,141 @@ three-pole quotient and point-ideal fans, complete positive-plane
 traces, and the nine-cone controls. The uniform proofs above establish the
 obstructions. Computation establishes neither the desired improved
 quotient bound nor priority.
+
+## Square-root incidence and the visible edge skeleton
+
+The [current counting reduction](adjacent_rank_fans.md#a-concrete-unrestricted-proof-obligation)
+uses $U(P)=\sum_{w>0}\lceil\sqrt{\|w\|_\infty}\rceil f_0(F_w)$,
+over primitive positive minimum-facet normals. For a full-dimensional
+lattice polytope let $\ell_+(P)$ be the sum of the $\ell_1$ lengths of
+edges incident to these facets, each edge counted once. Then
+
+$$
+                              U(P)\le4\ell_+(P).             \tag{19}
+$$
+
+At a polygon vertex of $F_w$, its two incident edge vectors $u,v$ are
+nonparallel integer vectors in $w^\perp$. Their cross product is a nonzero
+integer multiple of $w$. Thus
+$\|w\|_\infty\le\|u\|_1\|v\|_1$ and
+$\sqrt{\|w\|_\infty}\le(\|u\|_1+\|v\|_1)/2$.
+Sum over vertices, use $\lceil\sqrt h\rceil\le2\sqrt h$ for $h\ge1$,
+and note that an edge is incident to at most two counted facets.
+Without the ceiling the constant is two. The polygon argument also
+handles a two-dimensional profile polytope; smaller dimension has no
+two-dimensional exposed face to charge.
+
+Consequently a cubic polylogarithmic bound for this visible skeleton
+would suffice for the proposed incidence bound. This is a sufficient
+reduction, not an equivalence: long edges can have small primitive
+directions. No unrestricted skeleton bound is proved here.
+
+### A rank-sensitive estimate inside one box
+
+Let a rank-$r\ge1$ matroid have integer labels in the anchored box with
+integer sides $a,b,c\ge1$. Its projected basis polytope $P$ satisfies
+
+$$
+                 \ell_1(\operatorname{edges}P)=O(r^2abc),
+                 \qquad U(P)=O(r^2abc).                      \tag{20}
+$$
+
+Permute coordinates so $a\ge b\ge c$. Every primitive projected edge
+direction has coordinate magnitudes at most $a,b,c$: an edge of its
+preimage matroid face projects nontrivially along it, and a matroid edge
+exchanges two elements. This is the established projected-edge argument
+in [Onn--Rozenblit, proof of Theorem 2.3](https://arxiv.org/pdf/1208.5639).
+It does not assume that a whole projected edge is a single exchange.
+
+The profile box has sides $ra,rb,rc$. Project along the first axis.
+Each projected integer pair has at most two polytope vertices above it,
+so $f_0(P)\le2(rb+1)(rc+1)$; planarity gives $O(r^2bc)$ edges.
+For each nonvertical edge its lattice length $k$ is the gcd of its
+coordinate differences. Its $k-1$ relative-interior lattice points project
+to endpoints of the corresponding vertical fibers. Otherwise all supporting
+facets at that edge would contain the vertical direction, forcing the edge
+to be vertical. In a vertical affine plane this is the polygon endpoint
+statement. These interior points are disjoint between edges, so there are
+at most $2(rb+1)(rc+1)$ in total. Hence $\sum k=O(r^2bc)$ on nonvertical
+edges. Their primitive directions have $\ell_1$ length at most $3a$.
+
+Every vertical edge projects to a different vertex of the integer shadow
+polygon. The classical planar lattice-direction bound gives
+$O(1+(r^2bc)^{1/3})$ such vertices, each edge of length at most $ra$.
+Their total length is
+$O(ra+r^{5/3}a(bc)^{1/3})=O(r^2abc)$. This proves (20), including
+lower-dimensional cases and the harmless single-point case. These are
+elementary lattice and matroid inputs, not a new general vertex theorem.
+
+The universal ground $V_n^3$ needs logarithmically many boxes of volume
+$O(n)$; it is not contained in one such box. Its basis polytope is not the
+Minkowski sum of the polytopes of restrictions to those boxes. Dependencies
+and exchanges involve different boxes, so summing (20) over the cover is
+not justified. A collective localization must retain the full rank.
+
+### The geometric constraints alone do not imply the cubic budget
+
+For an integer $K\ge1$ put
+
+$$
+ G_K=\{(a,-b,1):K\le a\le4K,\ 6K\le b\le9K\},\quad
+ Z_K=\sum_{g\in G_K}[0,g],\quad m=(3K+1)^2.                  \tag{21}
+$$
+
+Translate in the second coordinate to get a nonnegative polytope.
+Its largest coordinate width is $R=\sum_{g\in G_K}b=\Theta(K^3)$.
+Write $n_K=\lceil\sqrt R\rceil$. It lies in $[0,n_K^2]^3$;
+primitive edge directions have height $O(K)\le n_K$, and all primitive
+facet normals have height $O(K^2)=O(n_K^{4/3})$. Nevertheless
+
+$$
+                      U(Z_K)=\Theta(K^5)
+                            =\Theta(n_K^{10/3}).              \tag{22}
+$$
+
+Choose $a\in[K,2K]$, $b\in[6K,7K]$, and coprime $u,v\in[K,2K]$.
+The generators with grid labels $(a,b)$ and $(a+u,b+v)$ are independent
+and annihilated by the strictly positive primitive normal
+
+$$
+                 w=(v,u,bu-av),\quad
+                 2K^2\le w_3\le13K^2.                        \tag{23}
+$$
+
+There are $\Omega(K^2)$ coprime pairs in that interval: pairs with a
+common divisor are at most
+$\sum_{d=2}^{2K}(K/d+1)^2\le(3/4)K^2+O(K\log(K+1))+O(K)$,
+using $\sum_{d\ge2}d^{-2}\le1/4+\int_2^\infty x^{-2}dx=3/4$.
+Each selected line contains at most four grid labels, since its primitive
+horizontal increment is $u\ge K$ in a grid of horizontal width $3K$.
+At most six selected pairs yield the same facet. We obtain $\Omega(K^4)$
+positive facets, each with at least four vertices and height
+$\Omega(K^2)$, proving the lower bound in (22).
+
+For the upper bound an unoriented facet plane contains a set $S$ of
+mutually nonparallel generators and gives a polygon with $2|S|$ vertices.
+Each generator belongs to at most $m-1$ such planes. Thus the total
+facet-vertex incidence count is $O(m^2)$, and all primitive normals have
+height $O(K^2)$. This proves $U=O(K^5)$.
+
+There is a classical matroid realization: use the labels $(a,0,1),(0,b,0)$
+on a parallel pair for every generator and take their direct sum.
+Its basis polytope projects to the translated $Z_K$, with rank
+$r_K=m=\Theta(K^2)$ and hyperbolic label parameter $H=9K+2$.
+This positive/negative-generator construction is the one in
+[Deza--Manoussakis--Onn, Theorem 4.1 and its proof](https://arxiv.org/pdf/1512.08018).
+Its definitions and displayed proof were inspected; no new matroid
+realization principle is claimed.
+
+Crucially $r_K\gg n_K$. Thus (22) is **not** a counterexample for a
+length-$n_K$ polynomial quotient. The parallel-pair construction also
+assigns repeated exponent labels to different ground elements: it has only
+$2(3K+1)$ distinct labels but rank $(3K+1)^2$. Actual monomial columns
+cannot have this property, even if the larger rank were used as the length.
+Nor does it refute the rank-sensitive
+candidate $U=O(r^2H\operatorname{polylog}H)$: here $r_K^2H=\Theta(K^5)$,
+the correct order. It shows that the integer profile box, small primitive
+edge directions and the normal-height bound alone cannot give a cubic
+estimate. A proof must retain the rank and the full exponent configuration,
+or actual multiplication. No new unrestricted upper bound, polynomial
+lower separation or publication claim follows from these controls.
