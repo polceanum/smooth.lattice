@@ -78,7 +78,8 @@ stronger in dimensions five and above. No current-best or sharp-growth
 claim follows from this extension.
 An [exact enumeration consequence](docs/oracle_fan_enumeration.md) now
 computes all initial sets, their state fan and reduced bases in
-`O(n^(omega+23/8)*log(n+1)^(11/8))` field operations, given one reduced
+`O(n^(omega+23/8)*log(n+1)^(11/8))` field and exact geometric arithmetic
+operations together, given one reduced
 Gröbner basis or commuting coordinate matrices with a cyclic vector.
 Here `omega` is a feasible matrix multiplication exponent; there is also
 a one-time `O(n^3*log(n+1)^2)` input conversion cost. It applies in the
@@ -90,8 +91,11 @@ formulation preserving every quotient's special dependencies and an
 exact base-prime rank recursion for nonreduced unit-power quotients.
 These do not settle the number of coherent orderings. Coefficient bit
 costs, current-best priority and practical speed remain unestablished.
-The separate exact geometry budget is `O(n^(23/4)*log(n+1)^(7/4))`
-and can dominate the field-operation term.
+Direct traversal of positive cones uses at most `6g+1` basis queries and
+`O((g+1)*n^(5/3)*log(n+1))` geometry, removing the earlier quadratic
+dependence on the output count `g`. Cone traversal and fast conversion
+are published tools; the note proves their explicit all-field composition
+and retains the earlier hull-reconstruction method as a reference.
 A [face lemma for elementary quotients](docs/adjacent_rank_fans.md) now shows
 that consecutive truncations and every one-dimensional linear quotient
 have nested exposed-face directions and a linear-size common refinement

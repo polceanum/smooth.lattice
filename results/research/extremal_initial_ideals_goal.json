@@ -5,9 +5,9 @@
   "status": "active",
   "objective": "Achieve a substantial mathematical advance connected to the smooth-number exponent-lattice observations, with resolving a recognized quantitative problem as the success criterion rather than producing another manuscript. The concrete first target is the worst-case number G_3(n) of distinct monomial initial ideals of a length-n polynomial quotient in three variables, over all fields. Determine its sharp asymptotic growth, or prove an infinite realizable family with a polynomially larger number of orderings than the generic corner-cut scale, together with a consequential general theorem. Explain what algebraic dependencies add to the prime/smooth lattice geometry. First audit the strongest relevant primary literature and the repository's unfinished lattice-shadow work; distinguish a genuinely new theorem from a classical geometric corollary before using it. Success requires a complete uniform proof that settles this extremal question or a substantial recognized part of it, a rigorous consequence for algebraic or geometric complexity beyond restating the count, independently implemented reproducible supporting checks, and an honestly attributed paper. A draft, a bounded priority review, isolated examples, a minor refinement, or an unverified novelty claim cannot complete this goal. If this target is already settled or a route fails, record the evidence and choose a comparably consequential problem still directly linked to the original mathematics; do not silently lower the success criterion. Preserve all existing manuscripts, core smooth-number kernels and auditor, previous research, and the paused ML work. Never send emails, messages to people or other tasks, author queries, or submissions. Publish only explicitly privacy-reviewed research files to the already authorized main branch.",
   "goal_complete": false,
-  "asymptotic_improvement_established_this_iteration": false,
+  "asymptotic_improvement_established_this_iteration": true,
   "novelty_established_this_iteration": false,
-  "note": "The square-root incidence target now has a proved sufficient visible-edge-length reduction and a rank-sensitive one-box skeleton bound. An explicit classical zonotope control shows that the usual integral profile box, small primitive edge directions and normal-height bound alone do not imply the proposed cubic budget. Its rank exceeds its geometric length parameter, so it is not an ideal counterexample. A collective rank-preserving hyperbolic localization, the actual cubic budget, sharp unrestricted growth, a polynomial lower separation and the publication assessment remain open.",
+  "note": "The existing unrestricted counting theorem now has a full arithmetic enumeration consequence: direct positive-cone traversal removes the previous output-quadratic geometry budget. This combines classical Groebner-fan adjacency with exact planar polarity and the published fast Neiger--Schost conversion, over every field in the original coordinates. All old oracle, fixed-module and prime-digit controls are preserved. No new unrestricted count, polynomial lower family, exact novelty or publication significance is established; the main goal remains active.",
   "relationship_to_previous_work": "New active objective with a higher completion bar. Previous goal records, lattice-shadow candidate, manuscripts and paused ML results are preserved as historical research.",
   "definitions": {
     "G_d_n": "Maximum number of monomial initial ideals of a colength-n ideal in d variables, over all fields.",
@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Keep the full unrestricted G3 objective, sharp-growth or polynomial-lower-separation endpoint and original publication criteria. Pursue the collective square-root incidence budget U=O(n^3*log(n+1)^C) for actual length-n algebras on V_n^3; it remains unproved. The visible l1 edge skeleton gives a sufficient budget U<=4*length, and a uniform O(r^2*a*b*c) skeleton estimate is now proved for projected rank-r matroids with all labels in one anchored box. The missing step is a rank-preserving localization over the hyperbolic cover, accounting for exchanges and dependencies across different boxes. The full basis polytope is not the Minkowski sum of restriction polytopes, so adding the one-box bounds is invalid. A broader U=O(r^2*H*polylog(H)) estimate would suffice if proved, but do not assume it. The explicit classical grid zonotope has U=Theta(n_geom^(10/3)) while its rank is Theta(n_geom^(4/3)); it refutes a geometry-only argument, not the actual ideal budget. Use the previously proved actual ideal-chain crossings and unbounded merger arity as required controls. Seek a collective proof or an actual growing higher-codimension family, rather than more isolated geometric examples. Preserve exact priority limits, all old mathematics, manuscripts/PDFs, CLI/kernels/auditor and paused ML; never send outbound messages. No minor lemma or unproved incidence condition completes the goal.",
+  "next_proof_task": "Keep the full unrestricted G3 objective and all original success criteria. The original sharp-growth or polynomial-lower-separation problem remains open. The complete enumeration consequence now has no output-quadratic geometry term: classical positive-cone traversal, explicit O(n^6) neighboring weights, planar polarity and the published Neiger--Schost backend give O(n^3*L^2+(g+1)*n^omega*L) combined field/geometric arithmetic. Treat this as a composition of existing tools, not a new general traversal method or goal completion. Return to the collective rank-preserving hyperbolic incidence or visible-skeleton budget, handling inter-box exchanges without adding restriction polytopes; alternatively prove an actual growing higher-codimension coherent lower family. Retain rank and distinct monomial columns, the actual ideal-chain crossing and unbounded merger controls. The classical geometric zonotope does not refute the actual cubic budget. Complete the strongest-current comparison of the quantitative shadow input and full arithmetic composition before a publication claim. Preserve every earlier proof, model/control block, manuscript/PDF, CLI/kernel/auditor and paused ML result. No outbound messages or submissions.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -146,7 +146,8 @@
     "Neiger--Schost Theorem 1.7 and Propositions 3.7/3.14 apply to arbitrary commuting matrices and orders; their input-conversion Theorem 1.9 has an additional leading-module hypothesis and is not imported. The exact prime-digit rank, basis and rank-generating recursions for single-root length-p^s cyclic codes need comparison with Sobhani 2016, Nedeloaia 2003, Bhullar--Gupta--Sonia 2010 and Zhao et al. 2025 Theorem 17. The latter retains a distribution term for a smaller set; the compact recursion must be matched against full existing methods, not declared new from that statement alone. The main all-coherent-profile count and arbitrary special-sample incidence problem remain open.",
     "Theorem 2 of docs/adjacent_rank_fans.md proves projected face-direction nesting for an arbitrary one-dimensional linear quotient: only the pivot cost minor changes; support in one connected component refines components, while support in several components coarsens them. Exact priority against flag-matroid and elementary-quotient geometry remains open. The cost-threshold exponent and gap-fan corank-one bound are inherited, not new powers. The latter was already excluded by BE1--BE3; an initially considered weaker socle-product estimate was not promoted as an improvement. The Pascal basis decomposition matches the published uniform tensor operation, with the r=0 direct-sum boundary handled separately. The full code-specific comparison with Sobhani and earlier squaring methods is still necessary. Main G3 growth and a separating family remain open.",
     "Compare the exact elementary-quotient projected face statement with full flag-matroid/strong-map literature. The newly read elementary-quotient and realization facts, and point-separator normal forms, are established inputs. The actual socle flags do not certify a new general algorithm or counting theorem. Prove or refute the collective square-root incidence budget before reporting a new unrestricted power.",
-    "Determine whether a collective rank-preserving hyperbolic localization can bound the visible skeleton or square-root incidence. The one-box estimate is not additive over matroid restrictions. The classical primitive-zonotope projection comparison is now explicit about its larger rank; it does not settle the actual algebraic budget. Exact priority of the elementary skeleton estimate remains unverified."
+    "Determine whether a collective rank-preserving hyperbolic localization can bound the visible skeleton or square-root incidence. The one-box estimate is not additive over matroid restrictions. The classical primitive-zonotope projection comparison is now explicit about its larger rank; it does not settle the actual algebraic budget. Exact priority of the elementary skeleton estimate remains unverified.",
+    "The revised all-field arithmetic enumeration consequence composes established positive-cone traversal and fast conversion. Compare it with the strongest later specialized enumeration bounds before claiming priority. The elementary exact-neighbor formula and planar polarity remove a repository geometry overhead; they do not certify a new general Groebner traversal method. The main collective incidence and sharp-count questions remain open."
   ],
   "primary_sources": [
     {
@@ -802,6 +803,12 @@
       "title": "Efficiently Computing Groebner Bases of Ideals of Points",
       "url": "https://arxiv.org/pdf/0711.3475",
       "scope": "Section 2 definition of separators and Lemma 3.4 with displayed proof inspected: unique reduced separator expression in standard monomials for rational radical point ideals. This is the classical point-ideal counterpart of the kernel-normal-form observation, not an all-fields nonradical fan-count theorem. No priority or runtime improvement over EssGB is claimed."
+    },
+    {
+      "authors": "Fukuda--Jensen--Thomas",
+      "title": "Computing Groebner fans",
+      "url": "https://arxiv.org/pdf/math/0509544",
+      "scope": "Proposition 2.6, Sections 4.1--4.2 and Algorithm 4.2 inspected for cone inequalities, shared positive facets and neighboring bases. Section 5/Theorem 5.1 explicitly assume a positive homogeneous grading and leave flip cost separate. General traversal is classical; the present bounded-colength argument recomputes neighboring bases and supplies its own planar arithmetic budget without that input-grading assumption."
     }
   ],
   "verification": {
@@ -2045,19 +2052,55 @@
         "status": "passed"
       },
       "scope": "Complete small projected matroid hulls, integer corner inequalities and projected edge-point counts; independent pair-normal and primitive-grid-line enumeration for four full zonotopes; exact Minkowski polygons compared with subset-sum hulls, and separate zone/surface edge-length identities. Uniform proofs supply asymptotic statements. No growth fit, actual ideal realization of the zonotope or novelty conclusion."
+    },
+    "direct_positive_cone_enumeration_research": {
+      "command": "python3 -B scripts/run_oracle_enumeration_checks.py",
+      "status": "passed",
+      "report": "results/research/oracle_enumeration_checks.json",
+      "source_hashes_verified": true,
+      "direct_walk_counts": {
+        "compressed_rank_profile_stages": 623,
+        "compressed_candidate_rows": 3146,
+        "compressed_basis_calls": 102,
+        "direct_walk_basis_queries": 102,
+        "independent_polynomial_matrix_annihilations": 425,
+        "recovered_reduced_basis_polynomials": 136,
+        "polar_hull_clipping_and_state_polytope_equalities": 39,
+        "independent_complete_walks_and_state_halfspaces": 10,
+        "walk_initial_ideals": 39,
+        "all_bounded_integer_sign_preservations": 36420,
+        "edge_midpoints_with_additional_bounded_integer_ties": 66,
+        "equal_rank_label_changes": 129,
+        "independent_whole_shared_edge_neighbors": 92
+      },
+      "old_report_blocks_preserved": [
+        "counts",
+        "fixtures",
+        "faithful_fixed_module_prefix_ranks",
+        "prime_digit_rank_law"
+      ],
+      "build": {
+        "command": "./build.sh",
+        "status": "passed"
+      },
+      "smoke": {
+        "command": "python3 tests/test_smoke.py",
+        "status": "passed"
+      },
+      "scope": "Ten actual quotient fixtures, 39 complete cones, 102 basis queries and 92 directed shared-edge neighbors. Independent full-ground selection, exhaustive monomial-basis polytopes, the old spatial reconstruction, polar hulls and clipping agree. All bounded integer normals are checked for sign preservation, including inactive midpoint ties. The checker uses elementary field arithmetic and exhaustive validation loops; it does not benchmark the fast backend."
     }
   },
   "preservation": "Five explicitly privacy-reviewed public files change: two existing files and three new research artifacts. All 78 prior continuations, 105 old primary-source records, the full objective and success criteria, 98 unchanged research hashes and all 365 unlisted previously tracked files remain unchanged against 5fe82a6. The complete old oracle report and checker are untouched. Core CLI/kernels and auditor, manuscripts/PDFs, prior mathematics and paused ML are preserved. Exploratory notes, full preservation and privacy audit, baselines and logs stay ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
-    "docs/weighted_facet_incidence.md",
-    "scripts/run_weighted_facet_incidence_checks.py",
-    "results/research/weighted_facet_incidence_checks.json",
+    "docs/oracle_fan_enumeration.md",
+    "scripts/run_oracle_enumeration_checks.py",
+    "results/research/oracle_enumeration_checks.json",
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "8cca6b1b6060a8af61ca063d025308783f243c4cb82b9c4b1cfffa8aa501fd4e",
+    "README.md": "fef597a2c972e9e606845fdff5378c6baa692428118821fd307d34c466b74787",
     "docs/extremal_initial_ideals.md": "6e84b6ea470841a89760a2e16080a9314ba747499b1a5a733460120fe501a92b",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
@@ -2139,9 +2182,9 @@
     "docs/power_carrier_bounds.md": "147199d8453db28285ebe3448e5bc0916121bb62ea8b9450f035dc46a401320b",
     "scripts/run_power_carrier_checks.py": "0247edb76f5d866eab944098007b485ee8be1c8793311a589bb7573be1629731",
     "results/research/power_carrier_checks.json": "9565bce325fcef7039a413aaae3716df5dbee36d8af05f6ec3b4a07835198599",
-    "docs/oracle_fan_enumeration.md": "ebc8de24c93bcece14e63c3eebf10c2470621bf2284e3585c9fd0e6c0391ed4f",
-    "scripts/run_oracle_enumeration_checks.py": "ad3cbf3c309e9f03303199c2aed935835f7284702aec6769f246f8f1c9b72384",
-    "results/research/oracle_enumeration_checks.json": "be9ee1ac9e57a159c12caf9d8043158bf7192ce297f141e3c9ece3dc06b42338",
+    "docs/oracle_fan_enumeration.md": "de560e5bd7181ea310b4f36f7e444ee8987fd6915405deee3a079c04516017b8",
+    "scripts/run_oracle_enumeration_checks.py": "71b6540cd4e328ddd34bd1589becc0d17b7285a70ed18f31463c91c7f397fa2a",
+    "results/research/oracle_enumeration_checks.json": "38999ba29185fef3ebb2b245ff6b44f73e0c1a42b6f6d98b83663826a25bdadb",
     "docs/multiplicative_shadow_obstruction.md": "d8e6899f18910ef235276914b92e4a8248257d738c306f38702da3e62e0ae0de",
     "scripts/run_multiplicative_shadow_checks.py": "979e1d62db275ffa3c541a2d9c110d0fc51fdb3eb660d0763898d75728866b63",
     "results/research/multiplicative_shadow_checks.json": "934efd1d899425e25b283ca43315b8f7d348c33ff1d1cb989198a57c38062612",
@@ -7306,10 +7349,80 @@
         "results/research/weighted_facet_incidence_checks.json",
         "results/research/extremal_initial_ideals_goal.json"
       ]
+    },
+    {
+      "title": "Complete arithmetic enumeration by direct positive-cone traversal",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "Progress: 8ad2641 proved the visible-skeleton sufficient bound and rank-sensitive one-box estimate, and saved a classical zonotope control with its rank and repeated-label limitations explicit. Revalidated clean main, all 370 tracked files, all 102 research hashes, all 81 prior continuations, 112 scoped source records and the unchanged objective/criteria.",
+      "progress_classification": "proved_output_linear_geometry_traversal_and_full_arithmetic_counting_consequence",
+      "structural_result": {
+        "direct_traversal": "The convex initial-ideal cells in the positive weight triangle have a simple connected planar adjacency graph, at most 3*g edges. Recompute bases across both directions of every interior edge, and process each newly found cone once: at most 6*g+1 basis queries.",
+        "cone_size": "Every length-n staircase has O(n^(2/3)) minimal excluded monomials by disjoint proper-divisor chains and antichain projection. Reduced bases therefore give O(n^(5/3)) bounded integer cone inequalities.",
+        "exact_geometry": "Normalize at a known strict interior point, take a two-dimensional polar hull using sorted monotone chains, and recover the whole cone in O(n^(5/3)*log(n+1)) exact operations. The full positive fan and all state-polyhedron facet halfspaces are recovered without spatial hull rebuilding.",
+        "adjacent_weight": "At an edge midpoint p with least common denominator D and inward normal eta, u=sum(eta)*(1,1,1)-3*eta and W=2*(1+18*n^2)*D*p+u give the actual other cone. Every bounded integer comparison nonzero at p preserves sign; inactive ties at p need not be avoided. Weights have height O(n^6), hence O(log(n+1)) bits.",
+        "algorithmic_consequence": "Combined field and geometric arithmetic is O(n^3*L^2+(g+1)*n^omega*L), L=1+log(n+1). With the existing shadow count this is O(n^(omega+23/8)*L^(11/8)); separate geometry is O(n^(109/24)*L^(11/8)), now below the field term. No coefficient-bit or practical speedup bound follows.",
+        "classical_comparison": "Classical g=O(n^3) with the same published traversal and conversion gives O(n^(omega+3)*L), plus preprocessing. The shadow count supplies the same additional 1/8 power saving; its significance is no longer lost to a slower geometry backend. General Groebner traversal is established in Fukuda--Jensen--Thomas.",
+        "global_count_status": "No collective hyperbolic incidence bound, new unrestricted G3 exponent or polynomially separating actual family is established. The speculative shifted-module nearest-site viewpoint was saved only in ignored exploratory notes and is not used in this theorem.",
+        "new_unrestricted_G3_count": false,
+        "polynomial_lower_separation_proved": false,
+        "novelty_established": false,
+        "goal_complete": false
+      },
+      "verification": {
+        "command": "python3 -B scripts/run_oracle_enumeration_checks.py",
+        "status": "passed",
+        "report": "results/research/oracle_enumeration_checks.json",
+        "source_hashes_verified": true,
+        "direct_walk_counts": {
+          "compressed_rank_profile_stages": 623,
+          "compressed_candidate_rows": 3146,
+          "compressed_basis_calls": 102,
+          "direct_walk_basis_queries": 102,
+          "independent_polynomial_matrix_annihilations": 425,
+          "recovered_reduced_basis_polynomials": 136,
+          "polar_hull_clipping_and_state_polytope_equalities": 39,
+          "independent_complete_walks_and_state_halfspaces": 10,
+          "walk_initial_ideals": 39,
+          "all_bounded_integer_sign_preservations": 36420,
+          "edge_midpoints_with_additional_bounded_integer_ties": 66,
+          "equal_rank_label_changes": 129,
+          "independent_whole_shared_edge_neighbors": 92
+        },
+        "old_report_blocks_preserved": [
+          "counts",
+          "fixtures",
+          "faithful_fixed_module_prefix_ranks",
+          "prime_digit_rank_law"
+        ],
+        "build": {
+          "command": "./build.sh",
+          "status": "passed"
+        },
+        "smoke": {
+          "command": "python3 tests/test_smoke.py",
+          "status": "passed"
+        },
+        "scope": "Ten actual quotient fixtures, 39 complete cones, 102 basis queries and 92 directed shared-edge neighbors. Independent full-ground selection, exhaustive monomial-basis polytopes, the old spatial reconstruction, polar hulls and clipping agree. All bounded integer normals are checked for sign preservation, including inactive midpoint ties. The checker uses elementary field arithmetic and exhaustive validation loops; it does not benchmark the fast backend."
+      },
+      "algorithmic_asymptotic_improvement_established": true,
+      "unrestricted_G3_improved": false,
+      "polynomial_lower_separation_proved": false,
+      "novelty_established": false,
+      "goal_complete": false,
+      "next_proof_task": "Keep the full unrestricted G3 objective and all original success criteria. The original sharp-growth or polynomial-lower-separation problem remains open. The complete enumeration consequence now has no output-quadratic geometry term: classical positive-cone traversal, explicit O(n^6) neighboring weights, planar polarity and the published Neiger--Schost backend give O(n^3*L^2+(g+1)*n^omega*L) combined field/geometric arithmetic. Treat this as a composition of existing tools, not a new general traversal method or goal completion. Return to the collective rank-preserving hyperbolic incidence or visible-skeleton budget, handling inter-box exchanges without adding restriction polytopes; alternatively prove an actual growing higher-codimension coherent lower family. Retain rank and distinct monomial columns, the actual ideal-chain crossing and unbounded merger controls. The classical geometric zonotope does not refute the actual cubic budget. Complete the strongest-current comparison of the quantitative shadow input and full arithmetic composition before a publication claim. Preserve every earlier proof, model/control block, manuscript/PDF, CLI/kernel/auditor and paused ML result. No outbound messages or submissions.",
+      "preservation": "Five reviewed existing public files change. All 81 previous continuations, all 112 previous scoped source records, the complete objective/criteria, 99 unmodified research hashes and all 365 unlisted tracked files are preserved against 8ad2641. Every old oracle model/count block, fixed-module prefix control and prime-digit control is unchanged. The earlier hull algorithm and its cost remain explicit references. Adjacent-rank/weighted-incidence artifacts, all manuscripts/PDFs, CLI/kernels/auditor and paused ML are untouched. Private baselines, speculative notes, audits and logs remain ignored.",
+      "public_files": [
+        "README.md",
+        "docs/oracle_fan_enumeration.md",
+        "scripts/run_oracle_enumeration_checks.py",
+        "results/research/oracle_enumeration_checks.json",
+        "results/research/extremal_initial_ideals_goal.json"
+      ]
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "The local skeleton estimate O(r^2*a*b*c) and the sufficient incidence reduction are proved. The global cubic incidence budget is still unproved, so exponent 33/13 remains conditional. The grid-zonotope asymptotic is a classical-construction control outside the actual rank/colength scope, not a lower bound for G3.",
-  "previous_goal_turn_classification": "Progress: 6b2b866 proved and saved the actual ideal-chain crossing, unbounded merger arity and positive-filter socle deletion rule, and formulated the unproved collective incidence target. Revalidated clean main, all 370 tracked files, all 102 research hashes, all 80 previous continuations, 112 scoped primary-source records and the unchanged objective/criteria before this continuation.",
+  "asymptotic_improvement_scope_this_iteration": "Algorithmic only: exact geometry improves from O((g+1)^2*log(g+2)+(g+1)*n*L^2) to O((g+1)*n^(5/3)*L). The existing shadow field bound now controls field and geometric arithmetic together. The unrestricted G3 count is unchanged; exponent 33/13 is still conditional on the unproved incidence budget.",
+  "previous_goal_turn_classification": "Progress: 8ad2641 proved the visible-skeleton sufficient bound and rank-sensitive one-box estimate, and saved a classical zonotope control with its rank and repeated-label limitations explicit. Revalidated clean main, all 370 tracked files, all 102 research hashes, all 81 prior continuations, 112 scoped source records and the unchanged objective/criteria.",
   "uniform_relative_margin_hypothesis_status": "refuted_by_actual_all_field_quotients",
   "secondary_extremal_parameter_resolved": {
     "relative_margin_dimension_2": "Theta(n^-2)",
@@ -7889,24 +8002,27 @@
     "input_scope": "One marked reduced Groebner basis under a known global monomial order, or commuting coordinate-multiplication matrices with a cyclic vector. Arbitrary generators require additional initial-basis computation.",
     "truncated_state": "Q=(B(I)+R_+^3) intersect {sum<=n^2+1}; all state vertices lie below the cut; new vertices come only from coordinate-ray edges. Q is a full-dimensional integer polytope with at most 4*g vertices.",
     "exact_vertex_oracle": "Formulas (O7)--(O9) use lexicographic greedy keys, including zero and boundary directions. Symbolic negative coordinate perturbations and one extra tie term return a genuine polytope vertex and an actual initial-basis label in every characteristic.",
-    "support_queries": "At most 12*g+1, including initialization, by attributed vertex/facet oracle reconstruction and three-dimensional Euler bounds.",
+    "support_queries": "Direct positive-cone traversal uses at most 6*g+1 basis queries, including initialization. The retained alternative spatial reconstruction uses at most 12*g+1 vertex queries.",
     "field_operations": "O(n^3*L^2+(g+1)*n^omega*L), L=1+log(n+1)",
-    "geometric_operations": "O((g+1)^2*log(g+2)+(g+1)*n*L^2)",
+    "geometric_operations": "O((g+1)*n^(5/3)*L) exact rational/integer operations and cost comparisons; neighboring integer weights have O(log(n+1)) bits.",
     "unrestricted_shadow_consequence": "O(n^(omega+23/8)*L^(11/8)) field operations",
-    "classical_boundary": "The strongest applicable inspected conversion is Neiger--Schost: its composition with classical g=O(n^3) gives O(n^(omega+3)*L) field operations, plus one-time O(n^3*L^2) preprocessing. Geometry is separately O(n^6*L). The shadow input supplies only the further 1/8 field exponent saving; exact geometry can dominate the faster field term. The old dense comparison is retained as reference.",
+    "classical_boundary": "Fukuda--Jensen--Thomas positive-cone traversal and Neiger--Schost conversion are established. Their bounded-colength composition with classical g=O(n^3) gives O(n^(omega+3)*L) field/geometric arithmetic, plus O(n^3*L^2) preprocessing; the existing shadow count supplies the further 1/8 saving. The former quadratic geometry term is retained as a reference. Exact strongest-current priority remains unestablished.",
     "output_representation": "All marked reduced bases and the state fan; their union is a universal basis, possibly represented with repeated polynomials. No minimum-size or canonical duplicate-free output claim.",
-    "verification_implementation_limit": "The checker implements published Krylov compression with elementary field arithmetic and independently compares full-ground sparse elimination; it does not implement fast matrix multiplication or the asymptotically fast hull backend. All ten old fixture outputs, complete cones and recovered bases are preserved exactly.",
+    "verification_implementation_limit": "The checker retains elementary Krylov compression and independent exhaustive reference checks, adds exact polar-cone traversal and bounded-integer sign tests, and preserves every old fixture, count, fixed-module and digit control. It does not implement fast matrix multiplication or benchmark the claimed arithmetic bound.",
     "new_unrestricted_G3_count": false,
     "bit_complexity_bound": false,
     "practical_speedup": false,
     "strongest_current_audit_complete": false,
     "novelty_established": false,
     "goal_complete": false,
-    "unrestricted_shadow_geometric_consequence": "O(n^(23/4)*L^(7/4)) rational geometric operations and comparisons; this may dominate the fast field-operation term",
-    "combined_unit_cost_consequence": "O(n^(omega+23/8)*L^(11/8)+n^(23/4)*L^(7/4)); not a bit-complexity bound",
+    "unrestricted_shadow_geometric_consequence": "O(n^(109/24)*L^(11/8)), below the field term.",
+    "combined_unit_cost_consequence": "O(n^(omega+23/8)*L^(11/8)) field and exact geometric arithmetic operations together, with the existing counting input. No coefficient-bit bound.",
     "dense_reference_field_operations": "O((g+1)*n^3*L^2)",
     "dense_reference_shadow_consequence": "O(n^(47/8)*L^(19/8)) field operations",
-    "fixed_module": "One K[T]-module on m=sum_j floor(n/j)=O(n*L) generators, indexed by (b+1)*(c+1)<=n, preserves every actual quotient basis. Its induced two-parameter shifts and exact chain-prefix shifts preserve original monomial selection and all positive-cost prefix ranks. No all-shift degree-profile count is imported."
+    "fixed_module": "One K[T]-module on m=sum_j floor(n/j)=O(n*L) generators, indexed by (b+1)*(c+1)<=n, preserves every actual quotient basis. Its induced two-parameter shifts and exact chain-prefix shifts preserve original monomial selection and all positive-cost prefix ranks. No all-shift degree-profile count is imported.",
+    "geometric_reference_operations": "O((g+1)^2*log(g+2)+(g+1)*n*L^2)",
+    "unrestricted_shadow_geometric_reference": "O(n^(23/4)*L^(7/4)) rational geometric operations and comparisons; this may dominate the fast field-operation term",
+    "combined_unit_cost_reference": "O(n^(omega+23/8)*L^(11/8)+n^(23/4)*L^(7/4)); not a bit-complexity bound"
   },
   "multiplicative_shadow_obstruction": {
     "proof": "docs/multiplicative_shadow_obstruction.md",
@@ -8135,5 +8251,21 @@
     "proof": "docs/weighted_facet_incidence.md",
     "checker": "scripts/run_weighted_facet_incidence_checks.py",
     "report": "results/research/weighted_facet_incidence_checks.json"
+  },
+  "direct_positive_cone_enumeration": {
+    "direct_traversal": "The convex initial-ideal cells in the positive weight triangle have a simple connected planar adjacency graph, at most 3*g edges. Recompute bases across both directions of every interior edge, and process each newly found cone once: at most 6*g+1 basis queries.",
+    "cone_size": "Every length-n staircase has O(n^(2/3)) minimal excluded monomials by disjoint proper-divisor chains and antichain projection. Reduced bases therefore give O(n^(5/3)) bounded integer cone inequalities.",
+    "exact_geometry": "Normalize at a known strict interior point, take a two-dimensional polar hull using sorted monotone chains, and recover the whole cone in O(n^(5/3)*log(n+1)) exact operations. The full positive fan and all state-polyhedron facet halfspaces are recovered without spatial hull rebuilding.",
+    "adjacent_weight": "At an edge midpoint p with least common denominator D and inward normal eta, u=sum(eta)*(1,1,1)-3*eta and W=2*(1+18*n^2)*D*p+u give the actual other cone. Every bounded integer comparison nonzero at p preserves sign; inactive ties at p need not be avoided. Weights have height O(n^6), hence O(log(n+1)) bits.",
+    "algorithmic_consequence": "Combined field and geometric arithmetic is O(n^3*L^2+(g+1)*n^omega*L), L=1+log(n+1). With the existing shadow count this is O(n^(omega+23/8)*L^(11/8)); separate geometry is O(n^(109/24)*L^(11/8)), now below the field term. No coefficient-bit or practical speedup bound follows.",
+    "classical_comparison": "Classical g=O(n^3) with the same published traversal and conversion gives O(n^(omega+3)*L), plus preprocessing. The shadow count supplies the same additional 1/8 power saving; its significance is no longer lost to a slower geometry backend. General Groebner traversal is established in Fukuda--Jensen--Thomas.",
+    "global_count_status": "No collective hyperbolic incidence bound, new unrestricted G3 exponent or polynomially separating actual family is established. The speculative shifted-module nearest-site viewpoint was saved only in ignored exploratory notes and is not used in this theorem.",
+    "new_unrestricted_G3_count": false,
+    "polynomial_lower_separation_proved": false,
+    "novelty_established": false,
+    "goal_complete": false,
+    "proof": "docs/oracle_fan_enumeration.md",
+    "checker": "scripts/run_oracle_enumeration_checks.py",
+    "report": "results/research/oracle_enumeration_checks.json"
   }
 }

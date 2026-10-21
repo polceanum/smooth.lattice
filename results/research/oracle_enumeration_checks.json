@@ -11839,15 +11839,5197 @@
     },
     "scope": "Exact rank, minimum-cost basis, subset-rank and code-weight recursions for the truncated Pascal matrix over prime characteristic. Independent controls use arbitrary column subsets, actual unit-power quotients and polynomial-generated codewords. This is repeated-root cyclic-code structure; strongest priority and the comparison with existing weight-distribution algorithms remain open. No novelty, coherent-fan lower bound or improvement of unrestricted G3 is asserted."
   },
+  "direct_positive_cone_traversal": {
+    "counts": {
+      "compressed_rank_profile_stages": 623,
+      "compressed_candidate_rows": 3146,
+      "compressed_basis_calls": 102,
+      "direct_walk_basis_queries": 102,
+      "independent_polynomial_matrix_annihilations": 425,
+      "recovered_reduced_basis_polynomials": 136,
+      "polar_hull_clipping_and_state_polytope_equalities": 39,
+      "independent_complete_walks_and_state_halfspaces": 10,
+      "walk_initial_ideals": 39,
+      "all_bounded_integer_sign_preservations": 36420,
+      "edge_midpoints_with_additional_bounded_integer_ties": 66,
+      "equal_rank_label_changes": 129,
+      "independent_whole_shared_edge_neighbors": 92
+    },
+    "fixtures": [
+      {
+        "model": "one_point",
+        "length": 1,
+        "characteristic": 0,
+        "initial_ideals": 1,
+        "undirected_adjacencies": 0,
+        "basis_queries": 1,
+        "complete_cells": [
+          {
+            "profile": [
+              0,
+              0,
+              0
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "strict_weight": [
+              1,
+              2,
+              4
+            ],
+            "inequality_count": 0,
+            "polygon": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          }
+        ],
+        "directed_neighbor_trace": [],
+        "state_halfspaces": [
+          {
+            "normal": [
+              0,
+              0,
+              1
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              0,
+              1,
+              0
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              1,
+              0,
+              0
+            ],
+            "minimum": 0
+          }
+        ]
+      },
+      {
+        "model": "double_point",
+        "length": 2,
+        "characteristic": 0,
+        "initial_ideals": 3,
+        "undirected_adjacencies": 3,
+        "basis_queries": 7,
+        "complete_cells": [
+          {
+            "profile": [
+              1,
+              0,
+              0
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "strict_weight": [
+              1,
+              3,
+              9
+            ],
+            "inequality_count": 2,
+            "polygon": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              0,
+              0,
+              1
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ]
+            ],
+            "strict_weight": [
+              149,
+              584,
+              143
+            ],
+            "inequality_count": 2,
+            "polygon": [
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              0,
+              1,
+              0
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "strict_weight": [
+              584,
+              143,
+              149
+            ],
+            "inequality_count": 2,
+            "polygon": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ]
+            ]
+          }
+        ],
+        "directed_neighbor_trace": [
+          {
+            "from_profile": [
+              1,
+              0,
+              0
+            ],
+            "to_profile": [
+              0,
+              0,
+              1
+            ],
+            "neighbor_weight": [
+              149,
+              584,
+              143
+            ],
+            "shared_edge": [
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              0,
+              1
+            ],
+            "to_profile": [
+              1,
+              0,
+              0
+            ],
+            "neighbor_weight": [
+              143,
+              584,
+              149
+            ],
+            "shared_edge": [
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              0,
+              1
+            ],
+            "to_profile": [
+              0,
+              1,
+              0
+            ],
+            "neighbor_weight": [
+              584,
+              143,
+              149
+            ],
+            "shared_edge": [
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              1,
+              0
+            ],
+            "to_profile": [
+              1,
+              0,
+              0
+            ],
+            "neighbor_weight": [
+              143,
+              149,
+              584
+            ],
+            "shared_edge": [
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              1,
+              0
+            ],
+            "to_profile": [
+              0,
+              0,
+              1
+            ],
+            "neighbor_weight": [
+              584,
+              149,
+              143
+            ],
+            "shared_edge": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              0,
+              0
+            ],
+            "to_profile": [
+              0,
+              1,
+              0
+            ],
+            "neighbor_weight": [
+              149,
+              143,
+              584
+            ],
+            "shared_edge": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ]
+            ]
+          }
+        ],
+        "state_halfspaces": [
+          {
+            "normal": [
+              0,
+              0,
+              1
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              0,
+              1,
+              0
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              1,
+              0,
+              0
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              1,
+              1,
+              1
+            ],
+            "minimum": 1
+          }
+        ]
+      },
+      {
+        "model": "double_point",
+        "length": 2,
+        "characteristic": 2,
+        "initial_ideals": 3,
+        "undirected_adjacencies": 3,
+        "basis_queries": 7,
+        "complete_cells": [
+          {
+            "profile": [
+              1,
+              0,
+              0
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "strict_weight": [
+              1,
+              3,
+              9
+            ],
+            "inequality_count": 2,
+            "polygon": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              0,
+              0,
+              1
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ]
+            ],
+            "strict_weight": [
+              149,
+              584,
+              143
+            ],
+            "inequality_count": 2,
+            "polygon": [
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              0,
+              1,
+              0
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "strict_weight": [
+              584,
+              143,
+              149
+            ],
+            "inequality_count": 2,
+            "polygon": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ]
+            ]
+          }
+        ],
+        "directed_neighbor_trace": [
+          {
+            "from_profile": [
+              1,
+              0,
+              0
+            ],
+            "to_profile": [
+              0,
+              0,
+              1
+            ],
+            "neighbor_weight": [
+              149,
+              584,
+              143
+            ],
+            "shared_edge": [
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              0,
+              1
+            ],
+            "to_profile": [
+              1,
+              0,
+              0
+            ],
+            "neighbor_weight": [
+              143,
+              584,
+              149
+            ],
+            "shared_edge": [
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              0,
+              1
+            ],
+            "to_profile": [
+              0,
+              1,
+              0
+            ],
+            "neighbor_weight": [
+              584,
+              143,
+              149
+            ],
+            "shared_edge": [
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              1,
+              0
+            ],
+            "to_profile": [
+              1,
+              0,
+              0
+            ],
+            "neighbor_weight": [
+              143,
+              149,
+              584
+            ],
+            "shared_edge": [
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              1,
+              0
+            ],
+            "to_profile": [
+              0,
+              0,
+              1
+            ],
+            "neighbor_weight": [
+              584,
+              149,
+              143
+            ],
+            "shared_edge": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              0,
+              0
+            ],
+            "to_profile": [
+              0,
+              1,
+              0
+            ],
+            "neighbor_weight": [
+              149,
+              143,
+              584
+            ],
+            "shared_edge": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ]
+            ]
+          }
+        ],
+        "state_halfspaces": [
+          {
+            "normal": [
+              0,
+              0,
+              1
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              0,
+              1,
+              0
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              1,
+              0,
+              0
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              1,
+              1,
+              1
+            ],
+            "minimum": 1
+          }
+        ]
+      },
+      {
+        "model": "curvilinear_three",
+        "length": 3,
+        "characteristic": 0,
+        "initial_ideals": 6,
+        "undirected_adjacencies": 9,
+        "basis_queries": 19,
+        "complete_cells": [
+          {
+            "profile": [
+              3,
+              0,
+              0
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "strict_weight": [
+              1,
+              4,
+              16
+            ],
+            "inequality_count": 4,
+            "polygon": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              1,
+              0,
+              1
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "strict_weight": [
+              331,
+              2281,
+              648
+            ],
+            "inequality_count": 6,
+            "polygon": [
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              0,
+              0,
+              3
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ]
+            ],
+            "strict_weight": [
+              656,
+              2283,
+              321
+            ],
+            "inequality_count": 4,
+            "polygon": [
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              0,
+              1,
+              1
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "strict_weight": [
+              2281,
+              648,
+              331
+            ],
+            "inequality_count": 6,
+            "polygon": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              0,
+              3,
+              0
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ]
+            ],
+            "strict_weight": [
+              2283,
+              321,
+              656
+            ],
+            "inequality_count": 4,
+            "polygon": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              1,
+              1,
+              0
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "strict_weight": [
+              648,
+              331,
+              2281
+            ],
+            "inequality_count": 6,
+            "polygon": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ]
+            ]
+          }
+        ],
+        "directed_neighbor_trace": [
+          {
+            "from_profile": [
+              3,
+              0,
+              0
+            ],
+            "to_profile": [
+              1,
+              0,
+              1
+            ],
+            "neighbor_weight": [
+              331,
+              2281,
+              648
+            ],
+            "shared_edge": [
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              0,
+              1
+            ],
+            "to_profile": [
+              3,
+              0,
+              0
+            ],
+            "neighbor_weight": [
+              321,
+              2283,
+              656
+            ],
+            "shared_edge": [
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              0,
+              1
+            ],
+            "to_profile": [
+              0,
+              0,
+              3
+            ],
+            "neighbor_weight": [
+              656,
+              2283,
+              321
+            ],
+            "shared_edge": [
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              0,
+              3
+            ],
+            "to_profile": [
+              1,
+              0,
+              1
+            ],
+            "neighbor_weight": [
+              648,
+              2281,
+              331
+            ],
+            "shared_edge": [
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              0,
+              3
+            ],
+            "to_profile": [
+              0,
+              1,
+              1
+            ],
+            "neighbor_weight": [
+              2281,
+              648,
+              331
+            ],
+            "shared_edge": [
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              1,
+              1
+            ],
+            "to_profile": [
+              0,
+              3,
+              0
+            ],
+            "neighbor_weight": [
+              2283,
+              321,
+              656
+            ],
+            "shared_edge": [
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              3,
+              0
+            ],
+            "to_profile": [
+              1,
+              1,
+              0
+            ],
+            "neighbor_weight": [
+              648,
+              331,
+              2281
+            ],
+            "shared_edge": [
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              1,
+              0
+            ],
+            "to_profile": [
+              3,
+              0,
+              0
+            ],
+            "neighbor_weight": [
+              321,
+              656,
+              2283
+            ],
+            "shared_edge": [
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              1,
+              0
+            ],
+            "to_profile": [
+              1,
+              0,
+              1
+            ],
+            "neighbor_weight": [
+              2608,
+              3589,
+              3583
+            ],
+            "shared_edge": [
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              1,
+              0
+            ],
+            "to_profile": [
+              0,
+              1,
+              1
+            ],
+            "neighbor_weight": [
+              3589,
+              2608,
+              3583
+            ],
+            "shared_edge": [
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              1,
+              0
+            ],
+            "to_profile": [
+              0,
+              3,
+              0
+            ],
+            "neighbor_weight": [
+              656,
+              321,
+              2283
+            ],
+            "shared_edge": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              3,
+              0
+            ],
+            "to_profile": [
+              0,
+              1,
+              1
+            ],
+            "neighbor_weight": [
+              2281,
+              331,
+              648
+            ],
+            "shared_edge": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              1,
+              1
+            ],
+            "to_profile": [
+              1,
+              1,
+              0
+            ],
+            "neighbor_weight": [
+              3583,
+              2608,
+              3589
+            ],
+            "shared_edge": [
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              1,
+              1
+            ],
+            "to_profile": [
+              1,
+              0,
+              1
+            ],
+            "neighbor_weight": [
+              3583,
+              3589,
+              2608
+            ],
+            "shared_edge": [
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              1,
+              1
+            ],
+            "to_profile": [
+              0,
+              0,
+              3
+            ],
+            "neighbor_weight": [
+              2283,
+              656,
+              321
+            ],
+            "shared_edge": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              0,
+              1
+            ],
+            "to_profile": [
+              0,
+              1,
+              1
+            ],
+            "neighbor_weight": [
+              3589,
+              3583,
+              2608
+            ],
+            "shared_edge": [
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              0,
+              1
+            ],
+            "to_profile": [
+              1,
+              1,
+              0
+            ],
+            "neighbor_weight": [
+              2608,
+              3583,
+              3589
+            ],
+            "shared_edge": [
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              3,
+              0,
+              0
+            ],
+            "to_profile": [
+              1,
+              1,
+              0
+            ],
+            "neighbor_weight": [
+              331,
+              648,
+              2281
+            ],
+            "shared_edge": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ]
+            ]
+          }
+        ],
+        "state_halfspaces": [
+          {
+            "normal": [
+              0,
+              0,
+              1
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              0,
+              1,
+              0
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              1,
+              0,
+              0
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              1,
+              1,
+              1
+            ],
+            "minimum": 2
+          },
+          {
+            "normal": [
+              1,
+              2,
+              2
+            ],
+            "minimum": 3
+          },
+          {
+            "normal": [
+              2,
+              1,
+              2
+            ],
+            "minimum": 3
+          },
+          {
+            "normal": [
+              2,
+              2,
+              1
+            ],
+            "minimum": 3
+          }
+        ]
+      },
+      {
+        "model": "curvilinear_three",
+        "length": 3,
+        "characteristic": 2,
+        "initial_ideals": 5,
+        "undirected_adjacencies": 6,
+        "basis_queries": 13,
+        "complete_cells": [
+          {
+            "profile": [
+              3,
+              0,
+              0
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "strict_weight": [
+              1,
+              4,
+              16
+            ],
+            "inequality_count": 3,
+            "polygon": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              0,
+              0,
+              3
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ]
+            ],
+            "strict_weight": [
+              329,
+              1956,
+              323
+            ],
+            "inequality_count": 3,
+            "polygon": [
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              0,
+              1,
+              1
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "strict_weight": [
+              1629,
+              648,
+              331
+            ],
+            "inequality_count": 5,
+            "polygon": [
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              1,
+              1,
+              0
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "strict_weight": [
+              4235,
+              4564,
+              4241
+            ],
+            "inequality_count": 5,
+            "polygon": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ],
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              0,
+              3,
+              0
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ]
+            ],
+            "strict_weight": [
+              656,
+              321,
+              2283
+            ],
+            "inequality_count": 4,
+            "polygon": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ]
+            ]
+          }
+        ],
+        "directed_neighbor_trace": [
+          {
+            "from_profile": [
+              3,
+              0,
+              0
+            ],
+            "to_profile": [
+              0,
+              0,
+              3
+            ],
+            "neighbor_weight": [
+              329,
+              1956,
+              323
+            ],
+            "shared_edge": [
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              0,
+              3
+            ],
+            "to_profile": [
+              3,
+              0,
+              0
+            ],
+            "neighbor_weight": [
+              323,
+              1956,
+              329
+            ],
+            "shared_edge": [
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              0,
+              3
+            ],
+            "to_profile": [
+              0,
+              1,
+              1
+            ],
+            "neighbor_weight": [
+              1629,
+              648,
+              331
+            ],
+            "shared_edge": [
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              1,
+              1
+            ],
+            "to_profile": [
+              1,
+              1,
+              0
+            ],
+            "neighbor_weight": [
+              4235,
+              4564,
+              4241
+            ],
+            "shared_edge": [
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ],
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              1,
+              0
+            ],
+            "to_profile": [
+              3,
+              0,
+              0
+            ],
+            "neighbor_weight": [
+              321,
+              656,
+              1631
+            ],
+            "shared_edge": [
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              1,
+              0
+            ],
+            "to_profile": [
+              0,
+              1,
+              1
+            ],
+            "neighbor_weight": [
+              4241,
+              4564,
+              4235
+            ],
+            "shared_edge": [
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ],
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              1,
+              0
+            ],
+            "to_profile": [
+              0,
+              3,
+              0
+            ],
+            "neighbor_weight": [
+              656,
+              321,
+              2283
+            ],
+            "shared_edge": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              3,
+              0
+            ],
+            "to_profile": [
+              1,
+              1,
+              0
+            ],
+            "neighbor_weight": [
+              648,
+              331,
+              2281
+            ],
+            "shared_edge": [
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              3,
+              0
+            ],
+            "to_profile": [
+              0,
+              1,
+              1
+            ],
+            "neighbor_weight": [
+              2281,
+              331,
+              648
+            ],
+            "shared_edge": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              1,
+              1
+            ],
+            "to_profile": [
+              0,
+              0,
+              3
+            ],
+            "neighbor_weight": [
+              1631,
+              656,
+              321
+            ],
+            "shared_edge": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              1,
+              1
+            ],
+            "to_profile": [
+              0,
+              3,
+              0
+            ],
+            "neighbor_weight": [
+              2283,
+              321,
+              656
+            ],
+            "shared_edge": [
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              3,
+              0,
+              0
+            ],
+            "to_profile": [
+              1,
+              1,
+              0
+            ],
+            "neighbor_weight": [
+              331,
+              648,
+              1629
+            ],
+            "shared_edge": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ]
+            ]
+          }
+        ],
+        "state_halfspaces": [
+          {
+            "normal": [
+              0,
+              0,
+              1
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              0,
+              1,
+              0
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              1,
+              0,
+              0
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              1,
+              2,
+              1
+            ],
+            "minimum": 3
+          },
+          {
+            "normal": [
+              2,
+              1,
+              2
+            ],
+            "minimum": 3
+          }
+        ]
+      },
+      {
+        "model": "curvilinear_three",
+        "length": 3,
+        "characteristic": 3,
+        "initial_ideals": 6,
+        "undirected_adjacencies": 9,
+        "basis_queries": 19,
+        "complete_cells": [
+          {
+            "profile": [
+              3,
+              0,
+              0
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "strict_weight": [
+              1,
+              4,
+              16
+            ],
+            "inequality_count": 4,
+            "polygon": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              1,
+              0,
+              1
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "strict_weight": [
+              331,
+              2281,
+              648
+            ],
+            "inequality_count": 6,
+            "polygon": [
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              0,
+              0,
+              3
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ]
+            ],
+            "strict_weight": [
+              656,
+              2283,
+              321
+            ],
+            "inequality_count": 4,
+            "polygon": [
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              0,
+              1,
+              1
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "strict_weight": [
+              2281,
+              648,
+              331
+            ],
+            "inequality_count": 6,
+            "polygon": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              0,
+              3,
+              0
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ]
+            ],
+            "strict_weight": [
+              2283,
+              321,
+              656
+            ],
+            "inequality_count": 4,
+            "polygon": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              1,
+              1,
+              0
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "strict_weight": [
+              648,
+              331,
+              2281
+            ],
+            "inequality_count": 6,
+            "polygon": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ]
+            ]
+          }
+        ],
+        "directed_neighbor_trace": [
+          {
+            "from_profile": [
+              3,
+              0,
+              0
+            ],
+            "to_profile": [
+              1,
+              0,
+              1
+            ],
+            "neighbor_weight": [
+              331,
+              2281,
+              648
+            ],
+            "shared_edge": [
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              0,
+              1
+            ],
+            "to_profile": [
+              3,
+              0,
+              0
+            ],
+            "neighbor_weight": [
+              321,
+              2283,
+              656
+            ],
+            "shared_edge": [
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              0,
+              1
+            ],
+            "to_profile": [
+              0,
+              0,
+              3
+            ],
+            "neighbor_weight": [
+              656,
+              2283,
+              321
+            ],
+            "shared_edge": [
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              0,
+              3
+            ],
+            "to_profile": [
+              1,
+              0,
+              1
+            ],
+            "neighbor_weight": [
+              648,
+              2281,
+              331
+            ],
+            "shared_edge": [
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              0,
+              3
+            ],
+            "to_profile": [
+              0,
+              1,
+              1
+            ],
+            "neighbor_weight": [
+              2281,
+              648,
+              331
+            ],
+            "shared_edge": [
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              1,
+              1
+            ],
+            "to_profile": [
+              0,
+              3,
+              0
+            ],
+            "neighbor_weight": [
+              2283,
+              321,
+              656
+            ],
+            "shared_edge": [
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              3,
+              0
+            ],
+            "to_profile": [
+              1,
+              1,
+              0
+            ],
+            "neighbor_weight": [
+              648,
+              331,
+              2281
+            ],
+            "shared_edge": [
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              1,
+              0
+            ],
+            "to_profile": [
+              3,
+              0,
+              0
+            ],
+            "neighbor_weight": [
+              321,
+              656,
+              2283
+            ],
+            "shared_edge": [
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              1,
+              0
+            ],
+            "to_profile": [
+              1,
+              0,
+              1
+            ],
+            "neighbor_weight": [
+              2608,
+              3589,
+              3583
+            ],
+            "shared_edge": [
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              1,
+              0
+            ],
+            "to_profile": [
+              0,
+              1,
+              1
+            ],
+            "neighbor_weight": [
+              3589,
+              2608,
+              3583
+            ],
+            "shared_edge": [
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              1,
+              0
+            ],
+            "to_profile": [
+              0,
+              3,
+              0
+            ],
+            "neighbor_weight": [
+              656,
+              321,
+              2283
+            ],
+            "shared_edge": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              3,
+              0
+            ],
+            "to_profile": [
+              0,
+              1,
+              1
+            ],
+            "neighbor_weight": [
+              2281,
+              331,
+              648
+            ],
+            "shared_edge": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              1,
+              1
+            ],
+            "to_profile": [
+              1,
+              1,
+              0
+            ],
+            "neighbor_weight": [
+              3583,
+              2608,
+              3589
+            ],
+            "shared_edge": [
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "2/5",
+                "1/5",
+                "2/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              1,
+              1
+            ],
+            "to_profile": [
+              1,
+              0,
+              1
+            ],
+            "neighbor_weight": [
+              3583,
+              3589,
+              2608
+            ],
+            "shared_edge": [
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              1,
+              1
+            ],
+            "to_profile": [
+              0,
+              0,
+              3
+            ],
+            "neighbor_weight": [
+              2283,
+              656,
+              321
+            ],
+            "shared_edge": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              0,
+              1
+            ],
+            "to_profile": [
+              0,
+              1,
+              1
+            ],
+            "neighbor_weight": [
+              3589,
+              3583,
+              2608
+            ],
+            "shared_edge": [
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              0,
+              1
+            ],
+            "to_profile": [
+              1,
+              1,
+              0
+            ],
+            "neighbor_weight": [
+              2608,
+              3583,
+              3589
+            ],
+            "shared_edge": [
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              3,
+              0,
+              0
+            ],
+            "to_profile": [
+              1,
+              1,
+              0
+            ],
+            "neighbor_weight": [
+              331,
+              648,
+              2281
+            ],
+            "shared_edge": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ]
+            ]
+          }
+        ],
+        "state_halfspaces": [
+          {
+            "normal": [
+              0,
+              0,
+              1
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              0,
+              1,
+              0
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              1,
+              0,
+              0
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              1,
+              1,
+              1
+            ],
+            "minimum": 2
+          },
+          {
+            "normal": [
+              1,
+              2,
+              2
+            ],
+            "minimum": 3
+          },
+          {
+            "normal": [
+              2,
+              1,
+              2
+            ],
+            "minimum": 3
+          },
+          {
+            "normal": [
+              2,
+              2,
+              1
+            ],
+            "minimum": 3
+          }
+        ]
+      },
+      {
+        "model": "nonlinear_rectangle",
+        "length": 4,
+        "characteristic": 0,
+        "initial_ideals": 6,
+        "undirected_adjacencies": 8,
+        "basis_queries": 17,
+        "complete_cells": [
+          {
+            "profile": [
+              2,
+              2,
+              0
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "strict_weight": [
+              1,
+              5,
+              25
+            ],
+            "inequality_count": 3,
+            "polygon": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ],
+              [
+                "0",
+                "1/2",
+                "1/2"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              1,
+              1,
+              1
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "strict_weight": [
+              145,
+              145,
+              288
+            ],
+            "inequality_count": 8,
+            "polygon": [
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ],
+              [
+                "1/2",
+                "1/4",
+                "1/4"
+              ],
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ],
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ],
+              [
+                "0",
+                "1/2",
+                "1/2"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              2,
+              0,
+              2
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ]
+            ],
+            "strict_weight": [
+              144,
+              579,
+              433
+            ],
+            "inequality_count": 4,
+            "polygon": [
+              [
+                "0",
+                "1/2",
+                "1/2"
+              ],
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              1,
+              0,
+              3
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "strict_weight": [
+              581,
+              3468,
+              575
+            ],
+            "inequality_count": 4,
+            "polygon": [
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ],
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ],
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              0,
+              1,
+              3
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "strict_weight": [
+              5205,
+              5199,
+              1156
+            ],
+            "inequality_count": 4,
+            "polygon": [
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ],
+              [
+                "1/2",
+                "1/4",
+                "1/4"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              0,
+              2,
+              2
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ]
+            ],
+            "strict_weight": [
+              3468,
+              575,
+              581
+            ],
+            "inequality_count": 4,
+            "polygon": [
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1/2",
+                "1/4",
+                "1/4"
+              ]
+            ]
+          }
+        ],
+        "directed_neighbor_trace": [
+          {
+            "from_profile": [
+              2,
+              2,
+              0
+            ],
+            "to_profile": [
+              1,
+              1,
+              1
+            ],
+            "neighbor_weight": [
+              145,
+              145,
+              288
+            ],
+            "shared_edge": [
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ],
+              [
+                "0",
+                "1/2",
+                "1/2"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              1,
+              1
+            ],
+            "to_profile": [
+              2,
+              2,
+              0
+            ],
+            "neighbor_weight": [
+              72,
+              72,
+              145
+            ],
+            "shared_edge": [
+              [
+                "0",
+                "1/2",
+                "1/2"
+              ],
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              1,
+              1
+            ],
+            "to_profile": [
+              2,
+              0,
+              2
+            ],
+            "neighbor_weight": [
+              144,
+              579,
+              433
+            ],
+            "shared_edge": [
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ],
+              [
+                "0",
+                "1/2",
+                "1/2"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              2,
+              0,
+              2
+            ],
+            "to_profile": [
+              1,
+              0,
+              3
+            ],
+            "neighbor_weight": [
+              581,
+              3468,
+              575
+            ],
+            "shared_edge": [
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              0,
+              3
+            ],
+            "to_profile": [
+              2,
+              0,
+              2
+            ],
+            "neighbor_weight": [
+              575,
+              3468,
+              581
+            ],
+            "shared_edge": [
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              0,
+              3
+            ],
+            "to_profile": [
+              0,
+              1,
+              3
+            ],
+            "neighbor_weight": [
+              5205,
+              5199,
+              1156
+            ],
+            "shared_edge": [
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ],
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              1,
+              3
+            ],
+            "to_profile": [
+              1,
+              0,
+              3
+            ],
+            "neighbor_weight": [
+              5199,
+              5205,
+              1156
+            ],
+            "shared_edge": [
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              1,
+              3
+            ],
+            "to_profile": [
+              0,
+              2,
+              2
+            ],
+            "neighbor_weight": [
+              3468,
+              575,
+              581
+            ],
+            "shared_edge": [
+              [
+                "1/2",
+                "1/4",
+                "1/4"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              2,
+              2
+            ],
+            "to_profile": [
+              1,
+              1,
+              1
+            ],
+            "neighbor_weight": [
+              577,
+              145,
+              434
+            ],
+            "shared_edge": [
+              [
+                "1/2",
+                "1/4",
+                "1/4"
+              ],
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              2,
+              2
+            ],
+            "to_profile": [
+              0,
+              1,
+              3
+            ],
+            "neighbor_weight": [
+              3468,
+              581,
+              575
+            ],
+            "shared_edge": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1/2",
+                "1/4",
+                "1/4"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              1,
+              3
+            ],
+            "to_profile": [
+              1,
+              1,
+              1
+            ],
+            "neighbor_weight": [
+              10400,
+              7513,
+              5207
+            ],
+            "shared_edge": [
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ],
+              [
+                "1/2",
+                "1/4",
+                "1/4"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              0,
+              3
+            ],
+            "to_profile": [
+              1,
+              1,
+              1
+            ],
+            "neighbor_weight": [
+              7513,
+              10400,
+              5207
+            ],
+            "shared_edge": [
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ],
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              2,
+              0,
+              2
+            ],
+            "to_profile": [
+              1,
+              1,
+              1
+            ],
+            "neighbor_weight": [
+              145,
+              577,
+              434
+            ],
+            "shared_edge": [
+              [
+                "0",
+                "1/2",
+                "1/2"
+              ],
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              1,
+              1
+            ],
+            "to_profile": [
+              1,
+              0,
+              3
+            ],
+            "neighbor_weight": [
+              7515,
+              10408,
+              5197
+            ],
+            "shared_edge": [
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ],
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              1,
+              1
+            ],
+            "to_profile": [
+              0,
+              1,
+              3
+            ],
+            "neighbor_weight": [
+              10408,
+              7515,
+              5197
+            ],
+            "shared_edge": [
+              [
+                "1/2",
+                "1/4",
+                "1/4"
+              ],
+              [
+                "2/5",
+                "2/5",
+                "1/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              1,
+              1
+            ],
+            "to_profile": [
+              0,
+              2,
+              2
+            ],
+            "neighbor_weight": [
+              579,
+              144,
+              433
+            ],
+            "shared_edge": [
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ],
+              [
+                "1/2",
+                "1/4",
+                "1/4"
+              ]
+            ]
+          }
+        ],
+        "state_halfspaces": [
+          {
+            "normal": [
+              0,
+              0,
+              1
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              0,
+              1,
+              0
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              0,
+              1,
+              1
+            ],
+            "minimum": 2
+          },
+          {
+            "normal": [
+              1,
+              0,
+              0
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              1,
+              0,
+              1
+            ],
+            "minimum": 2
+          },
+          {
+            "normal": [
+              1,
+              1,
+              0
+            ],
+            "minimum": 1
+          },
+          {
+            "normal": [
+              1,
+              2,
+              1
+            ],
+            "minimum": 4
+          },
+          {
+            "normal": [
+              2,
+              1,
+              1
+            ],
+            "minimum": 4
+          },
+          {
+            "normal": [
+              2,
+              2,
+              1
+            ],
+            "minimum": 5
+          }
+        ]
+      },
+      {
+        "model": "nonlinear_rectangle",
+        "length": 4,
+        "characteristic": 2,
+        "initial_ideals": 4,
+        "undirected_adjacencies": 3,
+        "basis_queries": 7,
+        "complete_cells": [
+          {
+            "profile": [
+              2,
+              2,
+              0
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "strict_weight": [
+              1,
+              5,
+              25
+            ],
+            "inequality_count": 3,
+            "polygon": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ],
+              [
+                "0",
+                "1/2",
+                "1/2"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              1,
+              1,
+              1
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "strict_weight": [
+              145,
+              145,
+              288
+            ],
+            "inequality_count": 6,
+            "polygon": [
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ],
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "1/2",
+                "1/2"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              2,
+              0,
+              2
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ]
+            ],
+            "strict_weight": [
+              72,
+              145,
+              72
+            ],
+            "inequality_count": 3,
+            "polygon": [
+              [
+                "0",
+                "1/2",
+                "1/2"
+              ],
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              0,
+              2,
+              2
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ]
+            ],
+            "strict_weight": [
+              145,
+              72,
+              72
+            ],
+            "inequality_count": 3,
+            "polygon": [
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ]
+            ]
+          }
+        ],
+        "directed_neighbor_trace": [
+          {
+            "from_profile": [
+              2,
+              2,
+              0
+            ],
+            "to_profile": [
+              1,
+              1,
+              1
+            ],
+            "neighbor_weight": [
+              145,
+              145,
+              288
+            ],
+            "shared_edge": [
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ],
+              [
+                "0",
+                "1/2",
+                "1/2"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              1,
+              1
+            ],
+            "to_profile": [
+              2,
+              2,
+              0
+            ],
+            "neighbor_weight": [
+              72,
+              72,
+              145
+            ],
+            "shared_edge": [
+              [
+                "0",
+                "1/2",
+                "1/2"
+              ],
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              1,
+              1
+            ],
+            "to_profile": [
+              2,
+              0,
+              2
+            ],
+            "neighbor_weight": [
+              72,
+              145,
+              72
+            ],
+            "shared_edge": [
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "1/2",
+                "1/2"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              2,
+              0,
+              2
+            ],
+            "to_profile": [
+              1,
+              1,
+              1
+            ],
+            "neighbor_weight": [
+              145,
+              288,
+              145
+            ],
+            "shared_edge": [
+              [
+                "0",
+                "1/2",
+                "1/2"
+              ],
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              1,
+              1
+            ],
+            "to_profile": [
+              0,
+              2,
+              2
+            ],
+            "neighbor_weight": [
+              145,
+              72,
+              72
+            ],
+            "shared_edge": [
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ],
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              2,
+              2
+            ],
+            "to_profile": [
+              1,
+              1,
+              1
+            ],
+            "neighbor_weight": [
+              288,
+              145,
+              145
+            ],
+            "shared_edge": [
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ]
+            ]
+          }
+        ],
+        "state_halfspaces": [
+          {
+            "normal": [
+              0,
+              0,
+              1
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              0,
+              1,
+              0
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              0,
+              1,
+              1
+            ],
+            "minimum": 2
+          },
+          {
+            "normal": [
+              1,
+              0,
+              0
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              1,
+              0,
+              1
+            ],
+            "minimum": 2
+          },
+          {
+            "normal": [
+              1,
+              1,
+              0
+            ],
+            "minimum": 2
+          }
+        ]
+      },
+      {
+        "model": "monomial_box",
+        "length": 4,
+        "characteristic": 3,
+        "initial_ideals": 1,
+        "undirected_adjacencies": 0,
+        "basis_queries": 1,
+        "complete_cells": [
+          {
+            "profile": [
+              2,
+              2,
+              0
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "strict_weight": [
+              1,
+              5,
+              25
+            ],
+            "inequality_count": 0,
+            "polygon": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          }
+        ],
+        "directed_neighbor_trace": [],
+        "state_halfspaces": [
+          {
+            "normal": [
+              0,
+              0,
+              1
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              0,
+              1,
+              0
+            ],
+            "minimum": 2
+          },
+          {
+            "normal": [
+              1,
+              0,
+              0
+            ],
+            "minimum": 2
+          }
+        ]
+      },
+      {
+        "model": "three_distinct_points",
+        "length": 3,
+        "characteristic": 5,
+        "initial_ideals": 4,
+        "undirected_adjacencies": 5,
+        "basis_queries": 11,
+        "complete_cells": [
+          {
+            "profile": [
+              3,
+              0,
+              0
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "strict_weight": [
+              1,
+              4,
+              16
+            ],
+            "inequality_count": 8,
+            "polygon": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              1,
+              0,
+              1
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "strict_weight": [
+              331,
+              2281,
+              648
+            ],
+            "inequality_count": 8,
+            "polygon": [
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              0,
+              1,
+              1
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "strict_weight": [
+              1633,
+              1627,
+              652
+            ],
+            "inequality_count": 5,
+            "polygon": [
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ],
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ]
+            ]
+          },
+          {
+            "profile": [
+              1,
+              1,
+              0
+            ],
+            "standard_set": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "strict_weight": [
+              1627,
+              652,
+              1633
+            ],
+            "inequality_count": 6,
+            "polygon": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ]
+            ]
+          }
+        ],
+        "directed_neighbor_trace": [
+          {
+            "from_profile": [
+              3,
+              0,
+              0
+            ],
+            "to_profile": [
+              1,
+              0,
+              1
+            ],
+            "neighbor_weight": [
+              331,
+              2281,
+              648
+            ],
+            "shared_edge": [
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              0,
+              1
+            ],
+            "to_profile": [
+              3,
+              0,
+              0
+            ],
+            "neighbor_weight": [
+              321,
+              2283,
+              656
+            ],
+            "shared_edge": [
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              0,
+              1
+            ],
+            "to_profile": [
+              0,
+              1,
+              1
+            ],
+            "neighbor_weight": [
+              1633,
+              1627,
+              652
+            ],
+            "shared_edge": [
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              1,
+              1
+            ],
+            "to_profile": [
+              1,
+              0,
+              1
+            ],
+            "neighbor_weight": [
+              1627,
+              1633,
+              652
+            ],
+            "shared_edge": [
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              0,
+              1,
+              1
+            ],
+            "to_profile": [
+              1,
+              1,
+              0
+            ],
+            "neighbor_weight": [
+              1627,
+              652,
+              1633
+            ],
+            "shared_edge": [
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              1,
+              0
+            ],
+            "to_profile": [
+              3,
+              0,
+              0
+            ],
+            "neighbor_weight": [
+              321,
+              656,
+              2283
+            ],
+            "shared_edge": [
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              1,
+              0
+            ],
+            "to_profile": [
+              1,
+              0,
+              1
+            ],
+            "neighbor_weight": [
+              2608,
+              3589,
+              3583
+            ],
+            "shared_edge": [
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              1,
+              0
+            ],
+            "to_profile": [
+              0,
+              1,
+              1
+            ],
+            "neighbor_weight": [
+              1633,
+              652,
+              1627
+            ],
+            "shared_edge": [
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              1,
+              0,
+              1
+            ],
+            "to_profile": [
+              1,
+              1,
+              0
+            ],
+            "neighbor_weight": [
+              2608,
+              3583,
+              3589
+            ],
+            "shared_edge": [
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ]
+            ]
+          },
+          {
+            "from_profile": [
+              3,
+              0,
+              0
+            ],
+            "to_profile": [
+              1,
+              1,
+              0
+            ],
+            "neighbor_weight": [
+              331,
+              648,
+              2281
+            ],
+            "shared_edge": [
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1/5",
+                "2/5",
+                "2/5"
+              ]
+            ]
+          }
+        ],
+        "state_halfspaces": [
+          {
+            "normal": [
+              0,
+              0,
+              1
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              0,
+              1,
+              0
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              1,
+              0,
+              0
+            ],
+            "minimum": 0
+          },
+          {
+            "normal": [
+              1,
+              0,
+              1
+            ],
+            "minimum": 1
+          },
+          {
+            "normal": [
+              1,
+              1,
+              0
+            ],
+            "minimum": 1
+          },
+          {
+            "normal": [
+              1,
+              1,
+              1
+            ],
+            "minimum": 2
+          },
+          {
+            "normal": [
+              1,
+              2,
+              2
+            ],
+            "minimum": 3
+          }
+        ]
+      }
+    ],
+    "scope": "Complete positive-cone traversal independently compared with exhaustive monomial-basis polytopes, the older full reconstruction and direct ground elimination. The checker uses elementary field arithmetic; fast-field bounds rely on the cited Neiger--Schost backend."
+  },
   "uniform_results": {
     "truncated_state_vertices": "at most 4*g",
     "vertex_queries": "at most 12*g+1, including initialization",
     "field_operations": "O(n^3*L^2+(g+1)*n^omega*L), L=1+log(n+1)",
     "dense_reference_field_operations": "O((g+1)*n^3*L^2)",
-    "geometric_operations": "O((g+1)^2*log(g+2)+(g+1)*n*L^2)",
+    "oracle_reconstruction_geometric_reference": "O((g+1)^2*log(g+2)+(g+1)*n*L^2)",
+    "geometric_operations": "O((g+1)*n^(5/3)*L) exact integer/rational operations and cost comparisons via direct positive-cone traversal",
+    "direct_traversal_basis_queries": "at most 6*g+1, including initialization",
+    "direct_neighbor_weight_height": "O(n^6), hence O(log(n+1))-bit integer exponents/weights",
     "unrestricted_shadow_consequence": "O(n^(omega+23/8)*L^(11/8)) field operations",
-    "unrestricted_shadow_geometric_consequence": "O(n^(23/4)*L^(7/4)) rational geometric operations and comparisons; this may dominate the fast field-operation term",
-    "combined_unit_cost_consequence": "O(n^(omega+23/8)*L^(11/8)+n^(23/4)*L^(7/4)); not a bit-complexity bound",
+    "unrestricted_shadow_geometric_consequence": "O(n^(109/24)*L^(11/8)) rational geometric operations and comparisons",
+    "combined_unit_cost_consequence": "O(n^(omega+23/8)*L^(11/8)) field and geometric arithmetic operations combined, plus one-time preprocessing already dominated asymptotically; not a coefficient-bit bound",
     "dense_reference_shadow_consequence": "O(n^(47/8)*L^(19/8)) field operations",
     "classical_count_composition": "O(n^(omega+3)*L) field operations, plus one-time O(n^3*L^2) preprocessing",
     "dense_reference_classical_composition": "O(n^6*L^2)",
@@ -11859,10 +17041,10 @@
   "bit_complexity_bound_established": false,
   "practical_speedup_established": false,
   "goal_complete": false,
-  "scope": "Corrected primary baseline using Neiger--Schost Theorem 1.7 and Proposition 3.7 for arbitrary commuting matrices and monomial orders. Fixed-module compression is checked against independent full-ground elimination, including nongeneric and nonreduced quotients. The checker uses elementary arithmetic and a slow exact small hull routine; the theorem uses published fast linear algebra. No new kernel algorithm, unrestricted count, current-best priority, bit cost or practical speedup is established.",
+  "scope": "Neiger--Schost Theorem 1.7 and Proposition 3.7 apply to arbitrary commuting matrices and monomial orders. Direct positive-cone traversal, using classical Groebner cone descriptions and adjacency, is independently compared with exhaustive state polytopes and the retained older oracle reconstruction. Exact polar hulls remove the previous quadratic output geometry budget. Field arithmetic in this checker is elementary; the theorem uses published fast linear algebra. No new general traversal method, unrestricted count, current-best priority, coefficient-bit cost or practical speedup is established.",
   "source_sha256": {
-    "docs/oracle_fan_enumeration.md": "ebc8de24c93bcece14e63c3eebf10c2470621bf2284e3585c9fd0e6c0391ed4f",
-    "scripts/run_oracle_enumeration_checks.py": "ad3cbf3c309e9f03303199c2aed935835f7284702aec6769f246f8f1c9b72384",
+    "docs/oracle_fan_enumeration.md": "de560e5bd7181ea310b4f36f7e444ee8987fd6915405deee3a079c04516017b8",
+    "scripts/run_oracle_enumeration_checks.py": "71b6540cd4e328ddd34bd1589becc0d17b7285a70ed18f31463c91c7f397fa2a",
     "docs/rational_shadow_bound.md": "09b6e5e19cb03825e9d2151680e557cdf384256c5392cf70b6aca388e488c1ca",
     "docs/power_carrier_bounds.md": "147199d8453db28285ebe3448e5bc0916121bb62ea8b9450f035dc46a401320b",
     "scripts/run_higher_interaction_checks.py": "cdc31d1b582e71c4536056429bf7eabeb2fcb312f313713135a2eaee68578916",
@@ -11873,6 +17055,7 @@
     "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
     "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
     "scripts/run_socle_stability_checks.py": "81e4476100f0be5457fcf7019186415d230cceac4096202b2844dce645e83f52",
-    "scripts/run_higher_seed_checks.py": "92f0c67e86e3be54c71cbe6efac168c767c9768bb8058b6dc36d24b91acac926"
+    "scripts/run_higher_seed_checks.py": "92f0c67e86e3be54c71cbe6efac168c767c9768bb8058b6dc36d24b91acac926",
+    "scripts/run_planar_dyadic_bound_checks.py": "27642dbe7cf5c21e0eacb671b644bd00b97e758422d341cffa82c16df0b224bc"
   }
 }

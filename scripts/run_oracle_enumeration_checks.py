@@ -8,7 +8,7 @@ from collections import defaultdict
 from fractions import Fraction as Q
 from functools import lru_cache
 from itertools import combinations, product
-from math import comb, gcd
+from math import comb, gcd, lcm
 from pathlib import Path
 import hashlib
 import json
@@ -16,6 +16,7 @@ import json
 from run_higher_interaction_checks import rank_trace
 from run_interleaving_research import minimal_excluded_border
 from run_liaison_fan_checks import rectangle_graph
+from run_planar_dyadic_bound_checks import convex_hull
 from run_signed_face_checks import field_basis, field_reduce
 from run_structural_complexity_checks import area2, clip, cross, determinant, dot, hyperbolic_cross
 
@@ -479,6 +480,146 @@ def verify_reduced_basis(B, ev, matrices, weight, p, counts):
     return records
 
 
+def polar_cone_polygon(normals, strict_weight):
+    """Exact planar intersection by polarity and a sorted monotone-chain hull."""
+    total = sum(strict_weight)
+    center = tuple(Q(x, total) for x in strict_weight)
+    constraints = tuple(normals)+((1, 0, 0), (0, 1, 0), (0, 0, 1))
+    dual = set()
+    for z in constraints:
+        slack = dot(z, center)
+        assert slack > 0
+        dual.add((Q(z[2]-z[0], slack), Q(z[2]-z[1], slack)))
+    hull = convex_hull(dual)
+    assert len(hull) >= 3
+    polygon = []
+    for a, b in zip(hull, hull[1:]+hull[:1]):
+        determinant2 = a[0]*b[1]-a[1]*b[0]
+        assert determinant2
+        x = center[0]+(b[1]-a[1])/determinant2
+        y = center[1]+(a[0]-b[0])/determinant2
+        v = (x, y, 1-x-y)
+        assert all(dot(z, v) >= 0 for z in constraints)
+        polygon.append(v)
+    assert area2(polygon) > 0
+    return polygon
+
+
+def exact_adjacent_weight(n, a, b, normal):
+    midpoint = tuple((x+y)/2 for x, y in zip(a, b))
+    denominator = lcm(*(x.denominator for x in midpoint))
+    step = tuple(sum(normal)-3*x for x in normal)
+    assert dot(normal, step) < 0 and sum(step) == 0
+    scale = 2*(1+18*n*n)
+    raw = tuple(scale*denominator*x+y for x, y in zip(midpoint, step))
+    assert all(x.denominator == 1 for x in raw) and min(raw) > 0
+    w = tuple(int(x) for x in raw)
+    factor = gcd(*w)
+    return tuple(x//factor for x in w), midpoint
+
+
+def adjacency_walk_controls(cases, references):
+    counts = defaultdict(int)
+    fixtures = []
+    for (label, model, p), reference in zip(cases, references):
+        n, ev, matrices, one = model
+        E = tuple(sorted(hyperbolic_cross(n, 3)))
+        known = {frozenset(map(tuple, c['standard_set'])): c
+                 for c in reference['all_initial_ideals_and_reduced_bases']}
+        queue = [((1, n+1, (n+1)**2), None, None)]
+        visited, graph, trace = {}, set(), []
+        queries = 0
+        while queue:
+            weight, previous, edge = queue.pop()
+            data = compressed_krylov(matrices, (one,),
+                                     lambda u: (dot(weight, u[0]),)+u[0], p, counts)
+            B = frozenset(a for a, j in data)
+            direct, _ = rank_trace(sorted(E, key=lambda a: (dot(weight, a), a)), ev, p, set())
+            assert B == frozenset(direct)
+            queries += 1
+            counts['direct_walk_basis_queries'] += 1
+            assert B in known
+            if previous is not None:
+                assert B != previous
+                graph.add(frozenset((B, previous)))
+                records = known[B]['reduced_basis']
+                normals = [tuple(x-y for x, y in zip(row['head'], t['exponent']))
+                           for row in records for t in row['tails']]
+                assert all(dot(z, weight) > 0 for z in normals)
+                assert all(dot(z, v) >= 0 for z in normals for v in edge)
+                counts['independent_whole_shared_edge_neighbors'] += 1
+                trace.append({'from_profile': tuple(sum(a[i] for a in previous) for i in range(3)),
+                              'to_profile': tuple(sum(a[i] for a in B) for i in range(3)),
+                              'neighbor_weight': weight,
+                              'shared_edge': [[str(x) for x in v] for v in edge]})
+            if B in visited:
+                continue
+            records = verify_reduced_basis(B, ev, matrices, weight, p, counts)
+            normals = tuple(sorted({tuple(x-y for x, y in zip(row['head'], t['exponent']))
+                                    for row in records for t in row['tails']}))
+            assert all(max(map(abs, z)) <= n for z in normals)
+            assert len(records)**3 <= 343*n*n
+            polygon = polar_cone_polygon(normals, weight)
+            clipped = [tuple(Q(i == j) for i in range(3)) for j in range(3)]
+            for z in normals:
+                clipped = clip(clipped, z, 1)
+            expected = [tuple(Q(x) for x in v) for v in known[B]['weight_simplex_polygon']]
+            assert area2(polygon) == area2(clipped) == area2(expected)
+            assert all(dot(z, v) >= 0 for z in normals for v in expected)
+            profile = tuple(sum(a[i] for a in B) for i in range(3))
+            visited[B] = {'profile': profile, 'standard_set': sorted(B),
+                          'strict_weight': weight, 'inequality_count': len(normals),
+                          'polygon': [[str(x) for x in v] for v in polygon]}
+            counts['polar_hull_clipping_and_state_polytope_equalities'] += 1
+            for a, b in zip(polygon, polygon[1:]+polygon[:1]):
+                if any(a[i] == b[i] == 0 for i in range(3)):
+                    continue
+                z = next(z for z in normals if dot(z, a) == dot(z, b) == 0)
+                adjacent, midpoint = exact_adjacent_weight(n, a, b, z)
+                assert dot(z, adjacent) < 0 and max(adjacent) <= 3000*n**6
+                has_other_tie = False
+                for q in product(range(-n, n+1), repeat=3):
+                    before, after = dot(q, midpoint), dot(q, adjacent)
+                    if before:
+                        assert before*after > 0
+                        counts['all_bounded_integer_sign_preservations'] += 1
+                    elif any(q) and cross(q, z) != (0, 0, 0):
+                        has_other_tie = True
+                counts['edge_midpoints_with_additional_bounded_integer_ties'] += int(has_other_tie)
+                queue.append((adjacent, B, (a, b)))
+        assert set(visited) == set(known)
+        assert queries == 1+2*len(graph) <= 6*len(visited)+1
+        assert sum(area2([tuple(Q(x) for x in v) for v in cell['polygon']])
+                   for cell in visited.values()) == 1
+        supporting = {}
+        for cell in visited.values():
+            for point in cell['polygon']:
+                point = tuple(Q(x) for x in point)
+                scale = lcm(*(x.denominator for x in point))
+                ray = tuple(int(x*scale) for x in point)
+                divisor = gcd(*ray)
+                ray = tuple(x//divisor for x in ray)
+                assert max(ray) <= 2*n*n
+                value = dot(ray, cell['profile'])
+                assert ray not in supporting or supporting[ray] == value
+                supporting[ray] = value
+        old_facets = {tuple(-x for x in row['normal']): -row['offset']
+                      for row in reference['cut_polytope_facets']
+                      if tuple(row['normal']) != (1, 1, 1)}
+        assert supporting == old_facets
+        counts['independent_complete_walks_and_state_halfspaces'] += 1
+        counts['walk_initial_ideals'] += len(visited)
+        fixtures.append({'model': label, 'length': n, 'characteristic': p,
+                         'initial_ideals': len(visited), 'undirected_adjacencies': len(graph),
+                         'basis_queries': queries, 'complete_cells': list(visited.values()),
+                         'directed_neighbor_trace': trace,
+                         'state_halfspaces': [{'normal': w, 'minimum': h}
+                                             for w, h in sorted(supporting.items())]})
+    assert counts['edge_midpoints_with_additional_bounded_integer_ties'] > 0
+    return {'counts': dict(counts), 'fixtures': fixtures,
+            'scope': 'Complete positive-cone traversal independently compared with exhaustive monomial-basis polytopes, the older full reconstruction and direct ground elimination. The checker uses elementary field arithmetic; fast-field bounds rely on the cited Neiger--Schost backend.'}
+
+
 def run_case(label, model, p, counts):
     n, ev, matrices, one = model
     E = tuple(sorted(hyperbolic_cross(n, 3)))
@@ -601,6 +742,7 @@ def main():
     fixtures = [run_case(label, model, p, counts) for label, model, p in cases]
     prefix=prefix_module_controls(cases)
     digits = prime_digit_controls()
+    walk = adjacency_walk_controls(cases, fixtures)
     assert [f['initial_ideals'] for f in fixtures[:9]] == [1, 3, 3, 6, 5, 6, 6, 4, 1]
     sources = ('docs/oracle_fan_enumeration.md', 'scripts/run_oracle_enumeration_checks.py',
                'docs/rational_shadow_bound.md', 'docs/power_carrier_bounds.md',
@@ -608,19 +750,23 @@ def main():
                'scripts/run_signed_face_checks.py', 'scripts/run_liaison_fan_checks.py',
                'scripts/run_interleaving_research.py', 'scripts/run_structural_complexity_checks.py',
                'scripts/run_extremal_initial_ideals_checks.py', 'scripts/run_socle_stability_checks.py',
-               'scripts/run_higher_seed_checks.py')
+               'scripts/run_higher_seed_checks.py', 'scripts/run_planar_dyadic_bound_checks.py')
     report = {'status': 'passed', 'command': 'python3 -B scripts/run_oracle_enumeration_checks.py',
               'counts': dict(counts), 'fixtures': fixtures,
               'faithful_fixed_module_prefix_ranks':prefix,
               'prime_digit_rank_law': digits,
+              'direct_positive_cone_traversal': walk,
               'uniform_results': {'truncated_state_vertices': 'at most 4*g',
                                   'vertex_queries': 'at most 12*g+1, including initialization',
                                   'field_operations': 'O(n^3*L^2+(g+1)*n^omega*L), L=1+log(n+1)',
                                   'dense_reference_field_operations':'O((g+1)*n^3*L^2)',
-                                  'geometric_operations': 'O((g+1)^2*log(g+2)+(g+1)*n*L^2)',
+                                  'oracle_reconstruction_geometric_reference': 'O((g+1)^2*log(g+2)+(g+1)*n*L^2)',
+                                  'geometric_operations': 'O((g+1)*n^(5/3)*L) exact integer/rational operations and cost comparisons via direct positive-cone traversal',
+                                  'direct_traversal_basis_queries': 'at most 6*g+1, including initialization',
+                                  'direct_neighbor_weight_height': 'O(n^6), hence O(log(n+1))-bit integer exponents/weights',
                                   'unrestricted_shadow_consequence': 'O(n^(omega+23/8)*L^(11/8)) field operations',
-                                  'unrestricted_shadow_geometric_consequence': 'O(n^(23/4)*L^(7/4)) rational geometric operations and comparisons; this may dominate the fast field-operation term',
-                                  'combined_unit_cost_consequence': 'O(n^(omega+23/8)*L^(11/8)+n^(23/4)*L^(7/4)); not a bit-complexity bound',
+                                  'unrestricted_shadow_geometric_consequence': 'O(n^(109/24)*L^(11/8)) rational geometric operations and comparisons',
+                                  'combined_unit_cost_consequence': 'O(n^(omega+23/8)*L^(11/8)) field and geometric arithmetic operations combined, plus one-time preprocessing already dominated asymptotically; not a coefficient-bit bound',
                                   'dense_reference_shadow_consequence':'O(n^(47/8)*L^(19/8)) field operations',
                                   'classical_count_composition': 'O(n^(omega+3)*L) field operations, plus one-time O(n^3*L^2) preprocessing',
                                   'dense_reference_classical_composition':'O(n^6*L^2)',
@@ -629,10 +775,10 @@ def main():
               'new_unrestricted_G3_count': False, 'novelty_established': False,
               'bit_complexity_bound_established': False, 'practical_speedup_established': False,
               'goal_complete': False,
-              'scope': 'Corrected primary baseline using Neiger--Schost Theorem 1.7 and Proposition 3.7 for arbitrary commuting matrices and monomial orders. Fixed-module compression is checked against independent full-ground elimination, including nongeneric and nonreduced quotients. The checker uses elementary arithmetic and a slow exact small hull routine; the theorem uses published fast linear algebra. No new kernel algorithm, unrestricted count, current-best priority, bit cost or practical speedup is established.',
+              'scope': 'Neiger--Schost Theorem 1.7 and Proposition 3.7 apply to arbitrary commuting matrices and monomial orders. Direct positive-cone traversal, using classical Groebner cone descriptions and adjacency, is independently compared with exhaustive state polytopes and the retained older oracle reconstruction. Exact polar hulls remove the previous quadratic output geometry budget. Field arithmetic in this checker is elementary; the theorem uses published fast linear algebra. No new general traversal method, unrestricted count, current-best priority, coefficient-bit cost or practical speedup is established.',
               'source_sha256': {f: hashlib.sha256((ROOT/f).read_bytes()).hexdigest() for f in sources}}
     (ROOT/'results/research/oracle_enumeration_checks.json').write_text(json.dumps(report, indent=2)+'\n')
-    print(json.dumps(report['counts'], indent=2))
+    print(json.dumps({'previous_counts': report['counts'], 'direct_walk': walk['counts']}, indent=2))
 
 
 if __name__ == '__main__':

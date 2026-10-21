@@ -3,9 +3,9 @@
 The rational-shadow theorem can be used to enumerate initial ideals,
 rather than merely bound how many exist. This note gives an exact
 reduction in the original coordinates, over every field. The polytope
-reconstruction and greedy linear algebra are published tools. They
-are attributed below; no new reconstruction algorithm or fastest-known
-implementation is claimed.
+reconstruction, cone traversal and greedy linear algebra are published
+tools. They are attributed below; no new general traversal algorithm or
+fastest-known implementation is claimed.
 
 Let $I\subset K[x,y,z]$ have positive colength $n$, presented by one
 marked reduced Gröbner basis under a known global monomial order,
@@ -22,10 +22,10 @@ bases using
 operations in $K$. Their union is a universal Gröbner basis; the
 output may represent the union as a list of reduced bases with repeated
 polynomials. No minimum-size or canonical duplicate-free output is
-asserted. Separately, one can use
+asserted. Direct traversal of the positive cones uses
 
 \[
- O((g+1)^2\log(g+2)+(g+1)nL^2)                            \tag{O2}
+ O((g+1)n^{5/3}L)                                       \tag{O2}
 \]
 
 exact rational geometric operations and cost comparisons. The input
@@ -42,9 +42,12 @@ gives
  \boxed{O\!\left(n^{\omega+23/8}L^{11/8}\right)}           \tag{O3}
 \]
 
-field operations. The separate rational geometric-operation budget
-from (O2) is $O(n^{23/4}L^{7/4})$ and can dominate when fast matrix
-multiplication is used. This is an arithmetic bound, not a bit-complexity, benchmark or
+field operations, and also bounds the combined number of field and exact
+geometric arithmetic operations. The latter budget is now
+$O(n^{109/24}L^{11/8})$, below the field term for every feasible
+$\omega\ge2$. The previous quadratic-in-$g$ hull-rebuilding budget is
+retained as a reference below. This is an arithmetic bound, not a
+coefficient-bit-complexity, benchmark or
 prime-random-access claim. Its current-best status and exact priority
 are unestablished. It does not resolve the sharp $G_3$ question.
 
@@ -154,7 +157,7 @@ These formulas hold for arbitrary, zero and boundary directions.
 They use field arithmetic only for independence. No ordering of the
 field and no characteristic-zero assumption are used.
 
-## Reconstruction and recovery of the bases
+## An alternative oracle reconstruction
 
 Find one initial profile $\mu_0$ by positive-cost greedy selection.
 The tetrahedron with vertices $\mu_0$ and
@@ -182,6 +185,96 @@ basis label with each returned profile recovers all $g$ labels below
 the cut. The cut facet is discarded to recover $\mathcal S$ and its
 normal fan. It never meets a state vertex, so its incident normal
 cones are unchanged.
+
+## Direct traversal removes the quadratic geometry overhead
+
+The positive weight triangle is subdivided into $g$ convex initial-ideal
+cells. Its adjacency graph is simple, planar and connected: two convex
+cells share at most one edge, and a generic path in the open triangle
+joins their interiors by crossing edges. It has at most $3g$ undirected
+adjacencies, including the small cases.
+
+Cone descriptions, flippable facets and neighboring-basis traversal are
+established in [Fukuda--Jensen--Thomas, Proposition 2.6, Sections 4.1--4.2
+and Algorithm 4.2](https://arxiv.org/pdf/math/0509544). Those statements
+and displayed arguments were inspected. Here a neighboring basis is
+recomputed with the fast conversion backend, rather than assigning a new
+complexity to a general Gröbner flip. The input ideal need not admit a
+positive homogeneous grading. This is a composition of existing tools.
+
+### The size of a cone description
+
+Let $D$ be an $n$-point standard set and $H$ its minimal excluded
+monomials. For each coordinate $i$, the proper downward $i$-chains
+from heads with $a_i>0$ are disjoint subsets of $D$: two heads with
+the same other coordinates would be comparable. Thus
+$\sum_{a\in H}a_i\le n$. Put $t=\lceil n^{1/3}\rceil$.
+Heads with all coordinates below $t$ number at most $t^2$, by antichain
+projection; the rest number at most $3n/t$. Hence $|H|=O(n^{2/3})$.
+
+There are at most $n$ terms in each reduced-basis tail, giving
+$M=O(n^{5/3})$ head-minus-tail inequalities. Divisor chains bound
+standard-monomial degrees by $n-1$ and minimal-head degrees by $n$.
+Every inequality normal therefore has integer coordinates of magnitude
+at most $n$.
+
+Add nonnegativity and intersect with $\sum w_i=1$. Compute this polygon
+in $O(M\log(M+1))$ exact operations as follows. Translate a known strict
+interior point $p$ to zero and divide each affine inequality by its positive
+slack there, obtaining $v_j\cdot(x-p)\le1$ in two coordinates. Sort the
+$v_j$ and compute their hull using the two monotone-chain stacks; after
+sorting each point is pushed and popped at most once. Intersect consecutive
+hull-vertex supporting lines to obtain the polar polygon. The triangle
+constraints ensure boundedness and put zero inside the dual. Redundant and
+parallel inequalities and flat profile polytopes are allowed.
+
+### An explicit neighboring weight
+
+For an edge outside the coordinate boundary, let $p$ be its midpoint,
+$D_p$ their least common denominator, and $\eta$ an inward
+current-cone normal tight along the edge. Put
+
+$$
+ u=(\eta_x+\eta_y+\eta_z)(1,1,1)-3\eta,\qquad
+ W=2(1+18n^2)D_p p+u.                                  \tag{O10a}
+$$
+
+Here $\sum u_i=0$, $\eta\cdot u<0$ and $|u_i|\le6n$.
+The weight $W$ is integral and strictly positive. For any integer normal
+$\zeta$ with $|\zeta_i|\le n$, a nonzero $\zeta\cdot p$ has
+magnitude at least $1/D_p$, while $|\zeta\cdot u|\le18n^2$.
+The perturbation therefore preserves every nonzero such comparison.
+It does not require avoiding inactive comparison walls through $p$.
+
+Consider the actual other cone along this edge. Its strict inequalities
+at $p$ stay strict by this estimate. Its tight inequalities are parallel
+to $-\eta$, because $p$ lies in the relative interior of the shared edge.
+Those become strict on the other side. Thus $W$ lies inside precisely
+that neighboring cone.
+
+Polygon endpoints are normalized primitive rays of height $O(n^2)$,
+by the two-row cofactor bound. Hence $D_p=O(n^4)$ and
+$\|W\|_\infty=O(n^6)$. Weights and fixed-dimensional geometry have
+$O(L)$ bits. A generic initial weight is $(1,n+1,(n+1)^2)$:
+base-$(n+1)$ encoding distinguishes every reduced-basis comparison.
+
+### Queries and output
+
+Start at that weight, compute its reduced basis and full cone, and query
+across every nonboundary edge by (O10a). Store discovered standard sets
+and process each once. Connectivity proves completeness. There is one
+initial query and two directed queries per undirected adjacency, at most
+$6g+1$ altogether. The Neiger--Schost backend below proves (O1).
+Cone computations, inequality scans and deterministic dictionary lookups
+give (O2); the existing $O((g+1)nL^2)$ oracle sorting cost is absorbed.
+A balanced dictionary on sorted standard sets suffices, using
+$\log(g+2)=O(L)$ from the classical cubic count.
+
+The polygons give the positive fan directly. Their nonnegative primitive
+vertex rays give all state-polyhedron facet normals, including normals
+with zero coordinates. Obtain each supporting constant from its incident
+profile. There are $O(g)$ such rays, so no spatial hull rebuilding is
+required. Coefficient bit growth over $K=\mathbb Q$ remains separate.
 
 ## Arithmetic and geometric costs
 
@@ -217,7 +310,14 @@ and the displayed complexity and recovery proofs were inspected.
 The checker implements the compression with elementary arithmetic;
 it does not implement fast matrix multiplication or certify timings.
 
-Equations (O6) and (O10) now prove (O1). For (O2), rebuild a
+Equations (O6) and (O10) give an alternative proof of (O1). The older
+oracle reconstruction uses the reference geometry budget
+
+\[
+ O((g+1)^2\log(g+2)+(g+1)nL^2).                           \tag{O2ref}
+\]
+
+For this reference method, rebuild a
 three-dimensional hull after each insertion in $O(k\log(k+2))$
 geometric operations on $k=O(g+1)$ points, using a standard exact
 hull routine. Summing gives $O((g+1)^2\log(g+2))$. The
@@ -250,11 +350,11 @@ power saving, with the displayed logarithmic change. All rows retain
 the originally specified coordinates. None asserts fastest-current
 status.
 
-The geometry is not free: its bound is $O(n^6L)$ with the classical
-count and $O(n^{23/4}L^{7/4})$ with the shadow count. Combining all
-unit-cost operation types therefore gives
-$O(n^{\omega+23/8}L^{11/8}+n^{23/4}L^{7/4})$, rather than the
-field-operation term alone. No coefficient-bit bound follows.
+The older geometry budget (O2ref) is $O(n^6L)$ with the classical count
+and $O(n^{23/4}L^{7/4})$ with the shadow count. Direct traversal (O2)
+reduces these to $O(n^{14/3}L)$ and $O(n^{109/24}L^{11/8})$.
+Both are below their fast field terms. Thus (O3) now bounds field and
+geometric unit-cost arithmetic together. No coefficient-bit bound follows.
 
 [Fukuda--Jensen--Thomas, Section 5 and Theorem 5.1](https://data.math.au.dk/publications/pp/2005/imf-pp-2005-15.pdf)
 already analyze output-sensitive Gröbner-fan traversal. That section
@@ -517,3 +617,9 @@ elimination. The fixed-module prefix formulation and prime-digit
 recursion are checked against direct ranks, including arbitrary
 Pascal subsets and polynomial columns of (O13). Exact witnesses,
 all small residue-basis counts and source hashes are in the report.
+The direct positive-cone traversal is checked separately against those
+exhaustive state polytopes and the older reconstruction. Polar hulls are
+compared with independent clipping, every selected neighbor is checked
+along its whole shared edge, and all bounded integer comparison normals
+are tested for the claimed sign preservation. Inactive midpoint ties are
+explicitly retained. The two algorithms recover identical state halfspaces.
