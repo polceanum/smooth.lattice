@@ -69,6 +69,13 @@ It bounds rational matroid shadows by their normalized integer height,
 then uses short integer relations to cover vertices with bounded facet
 normals. This is a uniform upper-bound improvement; sharp growth,
 current novelty and the goal's publication assessment remain open.
+A [rational-plane transfer](docs/rational_plane_transfer.md) extends this
+arithmetic mechanism to every fixed dimension and arbitrary hyperbolic
+matroid profiles. It gives `G_4(n)=O(n^(33/7)*log(n+1)^(9/35))`,
+improving the older repository power `52/11` by `1/77`. It reproduces
+the current three-variable bound; the earlier Dey-based powers remain
+stronger in dimensions five and above. No current-best or sharp-growth
+claim follows from this extension.
 An [exact enumeration consequence](docs/oracle_fan_enumeration.md) now
 computes all initial sets, their state fan and reduced bases in
 `O(n^(47/8)*log(n+1)^(19/8))` field operations, given one reduced

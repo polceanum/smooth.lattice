@@ -7,7 +7,7 @@
   "goal_complete": false,
   "asymptotic_improvement_established_this_iteration": false,
   "novelty_established_this_iteration": false,
-  "note": "The unrestricted goal remains active. An explicit all-field seven-initial family now requires primitive plane product Theta(n^(4/3)) to detect one cone. This uniformly refutes an individual O(n) certificate shortcut, without changing G_3 or refuting a collective exceptional-cone count. Published matroid projection comparisons are scoped; exact novelty and the publication endpoint remain open.",
+  "note": "The unrestricted three-variable goal remains active. A uniform rational-plane transfer now extends the arithmetic shadow mechanism to arbitrary fixed dimension and hyperbolic matroid profiles. It improves the older four-variable repository power from 52/11 to 33/7, reproduces the current three-variable result, and retains stronger older powers for d>=5. The unchanged transfer/surface budget cannot reach the generic three-variable power merely by a hypothetical height-independent linear shadow bound. Main-count, novelty and publication gates remain open.",
   "relationship_to_previous_work": "New active objective with a higher completion bar. Previous goal records, lattice-shadow candidate, manuscripts and paused ML results are preserved as historical research.",
   "definitions": {
     "G_d_n": "Maximum number of monomial initial ideals of a colength-n ideal in d variables, over all fields.",
@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Retain the original unrestricted sharp-growth or realizable polynomial-separation target and all acceptance criteria. Individual O(n) product-plane detection is now uniformly refuted by an actual seven-initial family, so do not infer an all-cone n^(7/3) count from that shortcut. Investigate a collective charge for the exceptional cones using shared quotient dependencies or state geometry. Complete the exact current-primary comparison for the hyperbolic shadow theorem and original-coordinate arithmetic consequence; bounded-coordinate matroid zonotopes are established prior art. Do not enlarge socle-only families for lower amplification: the existing whole-class bound excludes them. The unrestricted count, stronger realizable family and honest publication assessment remain open. Preserve all manuscripts, core algorithms, prior results and paused ML; no outbound messages or submissions.",
+  "next_proof_task": "Retain the original three-variable sharp-growth or actual separating-family target and all acceptance criteria. The new all-d rational-plane transfer is supporting work, not a substitute goal in dimension four. Its unchanged complete-plane/surface budget has best substituted three-variable power 14/5 even under a hypothetical linear height-independent shadow bound, so a sharp result requires another quotient-dependent collective charge, overlap mechanism or an amplified realizable family. Do not revive the refuted O(n) individual product certificate or excluded socle and bounded-interaction families. Keep the stronger Dey-based powers in d>=5. Finish the current-primary priority audit of hyperbolic shadows and finite-quotient enumeration; a classical lattice lemma or higher-dimensional refinement cannot complete the original goal. Preserve prior sources, manuscripts/PDFs, core CLI/kernels/auditor and paused ML. No outbound messages or submissions.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -135,7 +135,8 @@
     "Determine whether the two-interaction coupled-column mechanism supports an amplified count of simultaneous positive-weight cones; (C4) is an exact prefix-rank theorem only. Exact priority and the strongest current unrestricted comparison remain open.",
     "Audit the exact priority and strongest applicable bound for the generic-linear-coordinate O(n^(8/3)) consequence; it is coordinate dependent and cannot settle the stated original-coordinate G_3 problem. A further lower route must escape the new bounded-depth power-carrier exclusion, not add more terms within it.",
     "Compare the original-coordinate O(n^(47/8)*L^(19/8)) enumeration consequence against later primary algorithms and the priority of its rational-shadow input. Explicitly separate the classical O(n^6*L^2) composition from the additional shadow-derived 1/8 exponent saving; exact bit cost and practical speed remain unproved.",
-    "The cubic unimodular socle family refutes O(n) minimum primitive plane product for individual cones. Any product-threshold improvement must bound exceptional cones collectively; the family has only seven initials and is not a lower-count amplifier."
+    "The cubic unimodular socle family refutes O(n) minimum primitive plane product for individual cones. Any product-threshold improvement must bound exceptional cones collectively; the family has only seven initials and is not a lower-count amplifier.",
+    "Audit the exact combination of the arithmetic rational-plane transfer with the hyperbolic shadow theorem. Primitive-plane counting, Minkowski and facet incidence are classical. The dimension-four refinement does not resolve G_3; retain stronger earlier powers in d>=5. Any sharp three-variable proof needs more than substituting a nonnegative height exponent into the unchanged surface/plane budget."
   ],
   "primary_sources": [
     {
@@ -684,6 +685,20 @@
       "url": "https://optimization-online.org/wp-content/uploads/2015/12/5266.pdf",
       "version": "20 December 2015 preprint",
       "scope": "Section 3.1, Propositions 3.1 and 3.2 with proofs and Theorem 3.3 inspected. Primitive bounded-coordinate Euler zonotopes bound matroid projections; a uniform-matroid construction supplies the lower comparator. This is established direction-refinement machinery, not a verified hyperbolic shadow theorem or unrestricted finite-quotient count."
+    },
+    {
+      "authors": "Tal Horesh and Yakov Karasik",
+      "title": "Equidistribution of primitive lattices in R^n",
+      "url": "https://academic.oup.com/qjmath/article/74/4/1253/7191043",
+      "version": "Quarterly Journal of Mathematics 74(4), 2023, 1253--1294",
+      "scope": "Introduction, primitive-lattice/height definitions and Theorem 1.1 counting statement inspected. Bounded-covolume primitive-lattice counting is established classical work; no full equidistribution proof audit is claimed. The new note supplies its own elementary rank-two upper-count proof."
+    },
+    {
+      "authors": "Nils Hausbrandt and Stefan Ruzika",
+      "title": "Multi-parametric matroids -- Applications to interdiction and weight set decomposition",
+      "url": "https://arxiv.org/html/2503.08178v2",
+      "version": "arXiv:2503.08178v2, 12 March 2025",
+      "scope": "Theorem 3.2 and its full comparison-arrangement proof, Corollary 3.4 and surrounding definitions inspected in v2. The O(m^(2*p)) region count does not use a hyperbolic arithmetic budget. This scoped comparison does not establish an exhaustive strongest-current boundary."
     }
   ],
   "verification": {
@@ -1633,19 +1648,43 @@
       "smoke": "python3 tests/test_smoke.py passed",
       "scope": "Coefficientwise identities over Z[t], all seven cones in eight complete fans, integral sparse commuting multiplication on two actual quotients, 12102 primitive plane controls, and 1746 mixed-row controls. No large cubic-family quotient allocation or empirical asymptotic inference.",
       "repair": "An independent row-sum check found a transcription error in the expanded N(t)*ones vector. The vector and its absolute-sum coefficient were corrected; the uniform 20*t^2 budget and theorem constants are unchanged."
+    },
+    "rational_plane_transfer_research": {
+      "command": "python3 -B scripts/run_rational_plane_transfer_checks.py",
+      "report": "results/research/rational_plane_transfer_checks.json",
+      "status": "passed",
+      "source_hashes_verified": true,
+      "counts": {
+        "independent_normal_plane_enumerations": 3,
+        "complete_bounded_height_plane_enumerations": 9,
+        "reduced_primitive_basis_pairs": 10700,
+        "exact_plucker_and_dual_controls": 538,
+        "exact_short_containing_planes": 950,
+        "integer_sharpness_recurrence_controls": 900,
+        "independent_basis_determinants": 1140,
+        "full_projected_matroid_hulls": 16,
+        "generic_dimension_quadrant_sweeps": 64,
+        "interval_states": 112,
+        "regularizing_cube_shadow_controls": 16,
+        "exact_dimension_exponent_comparisons": 126
+      },
+      "build": "./build.sh passed",
+      "smoke": "python3 tests/test_smoke.py passed",
+      "scope": "Nine complete bounded-height plane enumerations in dimensions 3--5; separate 3D normal enumeration; exact 4D Plucker and dual controls; 950 short containing planes; 900 integer controls of the infinite sharpness mechanism; 1140 independent determinants; 16 full projected matroid hulls and cube controls; 64 sweeps; 126 exact exponent comparisons. No fitted growth, novelty or main-goal completion inferred.",
+      "repair": "An exact exponent comparison corrected an initially transcribed subtraction polynomial to 3*d^2-19*d+23 before publication. The bound and the dimension-specific comparison are verified exactly."
     }
   },
-  "preservation": "Only five explicitly reviewed research files change. All 69 earlier continuations, the full original objective and success criteria, all 84 prior source hashes other than the updated README, and all 350 unlisted previously tracked files remain unchanged against 8c8544a. Core kernels, CLI, auditor, manuscripts/PDFs, earlier research and paused ML are preserved; exploratory records and logs remain ignored.",
+  "preservation": "Five explicitly privacy-reviewed research files change. All 70 prior continuations, original objective and success criteria, all 87 earlier source hashes other than the updated README, and all 353 unlisted previously tracked files remain unchanged against 21eda43. Core CLI, kernels, auditor, manuscripts/PDFs, prior research and paused ML remain intact. Baselines and logs remain ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
-    "docs/multiplicative_shadow_obstruction.md",
-    "scripts/run_multiplicative_shadow_checks.py",
-    "results/research/multiplicative_shadow_checks.json",
+    "docs/rational_plane_transfer.md",
+    "scripts/run_rational_plane_transfer_checks.py",
+    "results/research/rational_plane_transfer_checks.json",
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "1aac7fe915fabd220cc378fc0d521c0f33d729b525c2f011d003f9015692e5ec",
+    "README.md": "a9c524741bfb89f38e3481ef98a1a89c9a628aa7d94b48338367b2a1180f2bfe",
     "docs/extremal_initial_ideals.md": "6e84b6ea470841a89760a2e16080a9314ba747499b1a5a733460120fe501a92b",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
@@ -1732,7 +1771,10 @@
     "results/research/oracle_enumeration_checks.json": "41d71c1d6ce6d65dc1408fe412a0d21d5c7d36387c217789e8dc03e361670ce2",
     "docs/multiplicative_shadow_obstruction.md": "d8e6899f18910ef235276914b92e4a8248257d738c306f38702da3e62e0ae0de",
     "scripts/run_multiplicative_shadow_checks.py": "979e1d62db275ffa3c541a2d9c110d0fc51fdb3eb660d0763898d75728866b63",
-    "results/research/multiplicative_shadow_checks.json": "934efd1d899425e25b283ca43315b8f7d348c33ff1d1cb989198a57c38062612"
+    "results/research/multiplicative_shadow_checks.json": "934efd1d899425e25b283ca43315b8f7d348c33ff1d1cb989198a57c38062612",
+    "docs/rational_plane_transfer.md": "bc55bb75ffb538b0c7de32951359564187cfdc6cddb0af2e2f7ae4de177147b8",
+    "scripts/run_rational_plane_transfer_checks.py": "4ae621544e7a94789f827a5404587d11274db2ccc9f5f56f5437c4ad5b5970b6",
+    "results/research/rational_plane_transfer_checks.json": "36cd656cfc8ff93f6f58488bc1d2ef9a0005529c4e1ef42bdb6a66b42b217a60"
   },
   "continuations": [
     {
@@ -6086,10 +6128,77 @@
         "repair": "An independent row-sum check found a transcription error in the expanded N(t)*ones vector. The vector and its absolute-sum coefficient were corrected; the uniform 20*t^2 budget and theorem constants are unchanged."
       },
       "preservation": "Only five explicitly reviewed research files change. All 69 earlier continuations, the full original objective and success criteria, all 84 prior source hashes other than the updated README, and all 350 unlisted previously tracked files remain unchanged against 8c8544a. Core kernels, CLI, auditor, manuscripts/PDFs, earlier research and paused ML are preserved; exploratory records and logs remain ignored."
+    },
+    {
+      "title": "A fixed-dimensional rational-plane transfer and its exact limits",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "Progress: 21eda43 proved an actual all-field seven-initial family with minimum detecting-plane product Theta(n^(4/3)), uniformly refuting the individual O(n) shortcut while preserving the aggregate-count question. Revalidated clean main, all 355 tracked files, 88 source hashes, 70 continuations and the unchanged objective/criteria before this iteration.",
+      "progress_classification": "uniform geometric transfer and arbitrary-matroid consequence, an improved four-variable specialization, sharp containing-plane exponent controls, and a quantified limitation of the remaining three-variable proof budget",
+      "uniform_result": {
+        "proof": "docs/rational_plane_transfer.md",
+        "checker": "scripts/run_rational_plane_transfer_checks.py",
+        "report": "results/research/rational_plane_transfer_checks.json",
+        "general_transfer": "For a full-dimensional lattice P in R^d, rational-plane shadows bounded by A*(1+height^theta) give f0(P)<=C*(A*h^((d-2)*(d+theta)/(d-1))+surface(P)/h).",
+        "classical_lattice_inputs": "A primitive integer objective w lies in a rational plane of covolume O_d(norm(w)^((d-2)/(d-1))); O_d(T^d) such planes have height at most T. Both are classical, with proofs supplied.",
+        "short_plane_sharpness": "For w=(1,t,...,t^(d-1)), the exact minimum primitive Plucker infinity height among containing planes is t^(d-2). The height exponent is therefore optimal; no novelty is asserted for this elementary observation.",
+        "general_matroid_bound": "With rank r, hyperbolic budget H, b=3*(d-1)/((d+1)*(3*d-5)), A=C_d*(1+log(H+1))*(1+r+(r^2*H)^(1/3)), the basis-profile vertex count is O_d(A+A^b*(1+r*H)^((d-1)*(1-b))). No representability assumption.",
+        "quotient_bound": "For every fixed d>=2 and field, G_d(n)<=O_d(n^e*(1+log(n+1))^b), e=2*d*(d-1)/(d+1)-(d-1)/((d+1)*(3*d-5)).",
+        "four_variable_improvement": "G_4(n)=O(n^(33/7)*log(n+1)^(9/35)); power gain 1/77 over the older repository 52/11 bound.",
+        "three_variable_count": "The existing 23/8 power and 3/8 logarithm are reproduced, not improved.",
+        "higher_dimensions": "For d>=5 retain the older, smaller Dey-based power. The new formula is not the best existing repository specialization in those dimensions.",
+        "three_variable_transfer_budget": "Substitution of A=O(n*polylog(n)) and theta>=0 in the same transfer and quartic surface budget gives power 4-6/(5+theta), at best 14/5. This is only a limit of that substitution, not an actual-count lower bound or a proof of the hypothetical height-independent shadow envelope.",
+        "new_three_variable_power": false,
+        "new_four_variable_power": true,
+        "current_best_certified": false,
+        "novelty_established": false,
+        "goal_complete": false,
+        "scope_limit": "A general geometric/matroid theorem and a higher-dimensional refinement. The original three-variable sharp-growth or separating-family target remains unchanged and unresolved."
+      },
+      "independent_controls": {
+        "independent_normal_plane_enumerations": 3,
+        "complete_bounded_height_plane_enumerations": 9,
+        "reduced_primitive_basis_pairs": 10700,
+        "exact_plucker_and_dual_controls": 538,
+        "exact_short_containing_planes": 950,
+        "integer_sharpness_recurrence_controls": 900,
+        "independent_basis_determinants": 1140,
+        "full_projected_matroid_hulls": 16,
+        "generic_dimension_quadrant_sweeps": 64,
+        "interval_states": 112,
+        "regularizing_cube_shadow_controls": 16,
+        "exact_dimension_exponent_comparisons": 126
+      },
+      "verification": {
+        "command": "python3 -B scripts/run_rational_plane_transfer_checks.py",
+        "report": "results/research/rational_plane_transfer_checks.json",
+        "status": "passed",
+        "source_hashes_verified": true,
+        "counts": {
+          "independent_normal_plane_enumerations": 3,
+          "complete_bounded_height_plane_enumerations": 9,
+          "reduced_primitive_basis_pairs": 10700,
+          "exact_plucker_and_dual_controls": 538,
+          "exact_short_containing_planes": 950,
+          "integer_sharpness_recurrence_controls": 900,
+          "independent_basis_determinants": 1140,
+          "full_projected_matroid_hulls": 16,
+          "generic_dimension_quadrant_sweeps": 64,
+          "interval_states": 112,
+          "regularizing_cube_shadow_controls": 16,
+          "exact_dimension_exponent_comparisons": 126
+        },
+        "build": "./build.sh passed",
+        "smoke": "python3 tests/test_smoke.py passed",
+        "scope": "Nine complete bounded-height plane enumerations in dimensions 3--5; separate 3D normal enumeration; exact 4D Plucker and dual controls; 950 short containing planes; 900 integer controls of the infinite sharpness mechanism; 1140 independent determinants; 16 full projected matroid hulls and cube controls; 64 sweeps; 126 exact exponent comparisons. No fitted growth, novelty or main-goal completion inferred.",
+        "repair": "An exact exponent comparison corrected an initially transcribed subtraction polynomial to 3*d^2-19*d+23 before publication. The bound and the dimension-specific comparison are verified exactly."
+      },
+      "preservation": "Five explicitly privacy-reviewed research files change. All 70 prior continuations, original objective and success criteria, all 87 earlier source hashes other than the updated README, and all 353 unlisted previously tracked files remain unchanged against 21eda43. Core CLI, kernels, auditor, manuscripts/PDFs, prior research and paused ML remain intact. Baselines and logs remain ignored.",
+      "scope_limit": "This is supporting progress, not a redefinition of the goal around dimension four. G_3 sharp growth, a polynomially separating actual family, the strongest-current priority audit and an honest paper remain unfinished."
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "No new unrestricted G_3 count. The existing rational-shadow theorem now has a uniform original-coordinate all-field enumeration consequence: O(n^(47/8)*L^(19/8)) field operations from one known-order reduced basis or commuting cyclic matrices, with L=1+log(n+1). Classical counting plus attributed oracle reconstruction already gives O(n^6*L^2); only the further 1/8 exponent saving comes from the shadow input. Current-best priority and coefficient bit complexity remain unestablished.",
-  "previous_goal_turn_classification": "Progress: the preceding turn proved the original-coordinate exact state oracle and an arithmetic enumeration consequence, while retaining established reconstruction and greedy methods as prior art. Revalidated clean main 8c8544a, all 352 tracked files, all 85 source hashes, 69 continuations and the unchanged objective and success criteria before this iteration.",
+  "asymptotic_improvement_scope_this_iteration": "A new four-variable power, not a new power for the goal target G_3. The general transfer also improves the classical baseline but does not replace the stronger older repository powers for d>=5.",
+  "previous_goal_turn_classification": "Progress: 21eda43 proved an actual all-field seven-initial family with minimum detecting-plane product Theta(n^(4/3)), uniformly refuting the individual O(n) shortcut while preserving the aggregate-count question. Revalidated clean main, all 355 tracked files, 88 source hashes, 70 continuations and the unchanged objective/criteria before this iteration.",
   "uniform_relative_margin_hypothesis_status": "refuted_by_actual_all_field_quotients",
   "secondary_extremal_parameter_resolved": {
     "relative_margin_dimension_2": "Theta(n^-2)",
@@ -6705,5 +6814,25 @@
     "novelty_established": false,
     "goal_complete": false,
     "scope_limit": "A uniform feasibility obstruction with only seven initials. It directs the main argument toward collective counting; it neither improves the unrestricted count nor meets the impact/publication endpoint."
+  },
+  "rational_plane_transfer": {
+    "proof": "docs/rational_plane_transfer.md",
+    "checker": "scripts/run_rational_plane_transfer_checks.py",
+    "report": "results/research/rational_plane_transfer_checks.json",
+    "general_transfer": "For a full-dimensional lattice P in R^d, rational-plane shadows bounded by A*(1+height^theta) give f0(P)<=C*(A*h^((d-2)*(d+theta)/(d-1))+surface(P)/h).",
+    "classical_lattice_inputs": "A primitive integer objective w lies in a rational plane of covolume O_d(norm(w)^((d-2)/(d-1))); O_d(T^d) such planes have height at most T. Both are classical, with proofs supplied.",
+    "short_plane_sharpness": "For w=(1,t,...,t^(d-1)), the exact minimum primitive Plucker infinity height among containing planes is t^(d-2). The height exponent is therefore optimal; no novelty is asserted for this elementary observation.",
+    "general_matroid_bound": "With rank r, hyperbolic budget H, b=3*(d-1)/((d+1)*(3*d-5)), A=C_d*(1+log(H+1))*(1+r+(r^2*H)^(1/3)), the basis-profile vertex count is O_d(A+A^b*(1+r*H)^((d-1)*(1-b))). No representability assumption.",
+    "quotient_bound": "For every fixed d>=2 and field, G_d(n)<=O_d(n^e*(1+log(n+1))^b), e=2*d*(d-1)/(d+1)-(d-1)/((d+1)*(3*d-5)).",
+    "four_variable_improvement": "G_4(n)=O(n^(33/7)*log(n+1)^(9/35)); power gain 1/77 over the older repository 52/11 bound.",
+    "three_variable_count": "The existing 23/8 power and 3/8 logarithm are reproduced, not improved.",
+    "higher_dimensions": "For d>=5 retain the older, smaller Dey-based power. The new formula is not the best existing repository specialization in those dimensions.",
+    "three_variable_transfer_budget": "Substitution of A=O(n*polylog(n)) and theta>=0 in the same transfer and quartic surface budget gives power 4-6/(5+theta), at best 14/5. This is only a limit of that substitution, not an actual-count lower bound or a proof of the hypothetical height-independent shadow envelope.",
+    "new_three_variable_power": false,
+    "new_four_variable_power": true,
+    "current_best_certified": false,
+    "novelty_established": false,
+    "goal_complete": false,
+    "scope_limit": "A general geometric/matroid theorem and a higher-dimensional refinement. The original three-variable sharp-growth or separating-family target remains unchanged and unresolved."
   }
 }
