@@ -1,0 +1,179 @@
+{
+  "status": "passed",
+  "command": "python3 -B scripts/run_higher_seed_transport_checks.py",
+  "counts": {
+    "independent_integral_shift_span_equalities": 2916,
+    "independent_canonical_regular_span_equalities": 1944,
+    "independent_integral_transport_equalities": 2592,
+    "independent_coefficient_identities": 58092,
+    "complete_pairing_instances": 864,
+    "bijectively_matched_defect_terms": 14695,
+    "zero_boundary_positive_terms": 25711,
+    "all_field_same_degree_pairing_obstructions": 1,
+    "independent_whole_core_smith_equalities": 96,
+    "independent_whole_core_field_equalities": 480,
+    "independent_noncoprime_original_seed_queries": 288,
+    "independent_original_border_inequalities": 466,
+    "independent_largest_z_face_basis_equalities": 36
+  },
+  "pairing_fixtures": [
+    {
+      "cutoff": 23,
+      "degree": 2,
+      "interaction": 3,
+      "binary_price": "3/7",
+      "price_cutoff": "0",
+      "positive_terms": 0,
+      "negative_terms": 0,
+      "zero_boundary_terms": 0
+    },
+    {
+      "cutoff": 23,
+      "degree": 2,
+      "interaction": 3,
+      "binary_price": "3/7",
+      "price_cutoff": "23/3",
+      "positive_terms": 18,
+      "negative_terms": 18,
+      "zero_boundary_terms": 0
+    },
+    {
+      "cutoff": 23,
+      "degree": 2,
+      "interaction": 3,
+      "binary_price": "3/7",
+      "price_cutoff": "46/3",
+      "positive_terms": 88,
+      "negative_terms": 49,
+      "zero_boundary_terms": 39
+    },
+    {
+      "cutoff": 23,
+      "degree": 2,
+      "interaction": 3,
+      "binary_price": "3/7",
+      "price_cutoff": "24",
+      "positive_terms": 121,
+      "negative_terms": 49,
+      "zero_boundary_terms": 72
+    }
+  ],
+  "nonunit_whole_core_fixtures": [
+    {
+      "cutoff": 5,
+      "degree": 1,
+      "interaction": 2,
+      "binary_price": "3/7",
+      "price_cutoff": "5/3",
+      "cokernel": {
+        "free_dimension": 8,
+        "nonunit_invariants": [
+          2
+        ]
+      }
+    },
+    {
+      "cutoff": 9,
+      "degree": 2,
+      "interaction": 3,
+      "binary_price": "3/7",
+      "price_cutoff": "3",
+      "cokernel": {
+        "free_dimension": 10,
+        "nonunit_invariants": [
+          2
+        ]
+      }
+    },
+    {
+      "cutoff": 11,
+      "degree": 2,
+      "interaction": 3,
+      "binary_price": "1/7",
+      "price_cutoff": "2",
+      "cokernel": {
+        "free_dimension": 10,
+        "nonunit_invariants": [
+          2
+        ]
+      }
+    },
+    {
+      "cutoff": 11,
+      "degree": 2,
+      "interaction": 3,
+      "binary_price": "3/7",
+      "price_cutoff": "11/3",
+      "cokernel": {
+        "free_dimension": 13,
+        "nonunit_invariants": [
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "cutoff": 14,
+      "degree": 2,
+      "interaction": 4,
+      "binary_price": "3/7",
+      "price_cutoff": "14/3",
+      "cokernel": {
+        "free_dimension": 18,
+        "nonunit_invariants": [
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "cutoff": 17,
+      "degree": 2,
+      "interaction": 3,
+      "binary_price": "3/7",
+      "price_cutoff": "17/3",
+      "cokernel": {
+        "free_dimension": 23,
+        "nonunit_invariants": [
+          2,
+          2
+        ]
+      }
+    }
+  ],
+  "uniform_results": {
+    "regular_canonical_integral_cokernels_isomorphic": true,
+    "all_field_core_rank_identity_B8": true,
+    "all_nonzero_equal_degree_form_seed_rank_law": true,
+    "original_full_signed_transfer_r_ge_2": true,
+    "original_full_family_fan_bound": "25*n+14, n=(s+1)^2, uniformly in r>=2 and field",
+    "arbitrary_positive_prices_or_downward_staircases": false,
+    "integral_universality_for_arbitrary_integer_forms": false
+  },
+  "unrestricted_G3_improvement": false,
+  "novelty_established": false,
+  "goal_complete": false,
+  "scope": "Uniform proofs close the whole higher-interaction family as an amplification route. Independent finite checks support the integral transport, exact global cancellation and original polynomial consequences. No unrestricted endpoint, new prime-distribution theorem or priority certificate.",
+  "source_sha256": {
+    "docs/higher_seed_transport.md": "a6e3240aed6d28b4b8b321c82d319f1117bffb06d92590773cfd515cc5e84b96",
+    "scripts/run_higher_seed_transport_checks.py": "dabde46b0939f2268c3b9870e28bc959f7684154093921adb9389cfa1d9137bd",
+    "docs/higher_seed_binomial_reduction.md": "401908b6be8319890078fb0347f6d7d1abe8d1a5be3c45f67e62101cc6bab12e",
+    "docs/three_point_rank_ideals.md": "3e741e4ac9c6e760065c380654e28bc633b10fe0426f1e575fe552b094a97aa2",
+    "docs/signed_face_reduction.md": "db15fda0a0ff0fa54bac63265ea5c443b4f9a9eca248a6cca8e2363bd75837f0",
+    "docs/middle_interaction_fans.md": "6850e0207c92485c1071921bac526d3307f2ecf57cfcaa15a2cd4a7da84d9025",
+    "docs/equal_degree_unit_fans.md": "4cff31c1c6c5c5bb2b3259a74a9c0da05f8acaa789ddce90b4947839d98dbbb9",
+    "docs/nonnegative_graded_fans.md": "88de976c7b8359dea3b00aa30965c7caf613633adc80ae2ef16b885b8c584e6d",
+    "docs/higher_interaction_fans.md": "687c95e06f5311b81de6c5eb51da9528febac5d8a7a25a9e0d203d7d374437e5",
+    "scripts/run_higher_seed_checks.py": "92f0c67e86e3be54c71cbe6efac168c767c9768bb8058b6dc36d24b91acac926",
+    "scripts/run_three_point_rank_checks.py": "7acad0f88a2adc94d5d717bc94bd222a0e05a772f79e461e7b255df3bbddacb1",
+    "scripts/run_higher_interaction_checks.py": "cdc31d1b582e71c4536056429bf7eabeb2fcb312f313713135a2eaee68578916",
+    "scripts/run_signed_face_checks.py": "8367cf40b049331649f6f3ed799e43982b14a1d40cfb620791249d2c63375867",
+    "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
+    "scripts/run_hypersurface_truncation_checks.py": "700073c01784db06a953d351c500e0d66b0019c1152fe4b127cbf50f35cbcd7e",
+    "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
+    "scripts/run_socle_stability_checks.py": "81e4476100f0be5457fcf7019186415d230cceac4096202b2844dce645e83f52"
+  }
+}
