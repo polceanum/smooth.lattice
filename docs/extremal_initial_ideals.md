@@ -169,6 +169,32 @@ establish the broader counting problem and bounds; they do not establish that
 this exact formulation is a published open problem or that no later theorem
 settles it. A complete current-priority audit remains part of the goal.
 
+The [primitive-wall spectrum](primitive_wall_spectrum.md) gives a separate
+exact local threshold: a primitive mixed direction $q$ requires and attains
+colength $\prod_i(q_i^++1)+\prod_i(q_i^-+1)-2$, over every field.
+Its minimal wall degeneration is rigid up to a nonzero coefficient. In
+three variables every larger length is realizable, and the universal
+direction spectrum has size asymptotic to
+$3n^2\log n/(2\zeta(3))$. It determines the exact common refinement of
+all length-$n$ fans. These are statements about directions across different
+ideals; they do not count coexisting walls in one ideal. Summing the current
+shadow envelope over that entire spectrum is too costly to improve the
+unrestricted bound. A collective incidence or rank argument remains necessary,
+and exact priority of this local theorem is unassessed.
+
+A [free-lattice comparison](free_wall_threshold.md) gives the sharp-order
+contrast: a direction's first possible ordinary corner cut has size
+comparable to the product of its two divisor volumes, while its minimum
+algebraic colength is their sum minus two. The largest first free size
+among directions allowed at length $n$ is $\Theta(n^2)$.
+This measures the earlier appearance of individual comparisons, not
+polynomial growth in the number of initial ideals.
+That note also bounds the number of initials in terms of the total
+primitive wall cost $V(I)$. A uniform $V(I)=O(n^3\operatorname{polylog}n)$
+would imply exponent $12/5$ by its threshold/shadow reduction. The cubic
+budget is unproved; an actual three-pole family has $V(I)=\Theta(n^3)$.
+This is a precise collective proof obligation, not a changed unrestricted bound.
+
 ## Finite field source comparison
 
 The full later primary version of Stigler and Zhang, *The Number of Gröbner

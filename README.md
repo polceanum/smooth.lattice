@@ -69,6 +69,12 @@ It bounds rational matroid shadows by their normalized integer height,
 then uses short integer relations to cover vertices with bounded facet
 normals. This is a uniform upper-bound improvement; sharp growth,
 current novelty and the goal's publication assessment remain open.
+An [exact wall threshold](docs/primitive_wall_spectrum.md) now characterizes
+every primitive direction possible at a given quotient length over every
+field. Its [comparison with free lattice sorting](docs/free_wall_threshold.md)
+shows that algebraic relations can make an individual comparison appear
+at a quadratically smaller length. These results do not bound how many
+walls coexist in one quotient; the unrestricted count remains open.
 A [rational-plane transfer](docs/rational_plane_transfer.md) extends this
 arithmetic mechanism to every fixed dimension and arbitrary hyperbolic
 matroid profiles. It gives `G_4(n)=O(n^(33/7)*log(n+1)^(9/35))`,

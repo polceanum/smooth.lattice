@@ -1,0 +1,1506 @@
+{
+  "status": "passed",
+  "command": "python3 -B scripts/run_primitive_wall_checks.py",
+  "counts": {
+    "independent_divisible_triple_equalities": 316,
+    "independent_complete_small_direction_counts": 64,
+    "exact_larger_direction_counts": 6,
+    "independent_fixed_dimension_direction_cubes": 29,
+    "independent_progression_and_three_variable_formula_equalities": 128,
+    "commuting_integer_multiplication_replays": 6354,
+    "cyclic_monomial_column_replays": 2189,
+    "independent_field_greedy_standard_sets": 1616,
+    "exact_compulsory_grading_footprints": 202,
+    "independent_saved_positive_adjacency_budget_checks": 92,
+    "independent_downset_pair_grading_tests": 17733,
+    "independent_equal_hilbert_function_thresholds": 2763,
+    "independent_minimum_length_rigidity_pairs": 102
+  },
+  "direction_counting": {
+    "small_exact_counts": [
+      {
+        "length": 1,
+        "full_support_per_singleton_sign": 0,
+        "two_support_per_coordinate_pair": 0,
+        "unoriented_directions": 0
+      },
+      {
+        "length": 2,
+        "full_support_per_singleton_sign": 0,
+        "two_support_per_coordinate_pair": 1,
+        "unoriented_directions": 3
+      },
+      {
+        "length": 3,
+        "full_support_per_singleton_sign": 0,
+        "two_support_per_coordinate_pair": 3,
+        "unoriented_directions": 9
+      },
+      {
+        "length": 4,
+        "full_support_per_singleton_sign": 1,
+        "two_support_per_coordinate_pair": 5,
+        "unoriented_directions": 18
+      },
+      {
+        "length": 5,
+        "full_support_per_singleton_sign": 2,
+        "two_support_per_coordinate_pair": 9,
+        "unoriented_directions": 33
+      },
+      {
+        "length": 6,
+        "full_support_per_singleton_sign": 5,
+        "two_support_per_coordinate_pair": 11,
+        "unoriented_directions": 48
+      },
+      {
+        "length": 7,
+        "full_support_per_singleton_sign": 8,
+        "two_support_per_coordinate_pair": 17,
+        "unoriented_directions": 75
+      },
+      {
+        "length": 8,
+        "full_support_per_singleton_sign": 13,
+        "two_support_per_coordinate_pair": 21,
+        "unoriented_directions": 102
+      },
+      {
+        "length": 9,
+        "full_support_per_singleton_sign": 19,
+        "two_support_per_coordinate_pair": 27,
+        "unoriented_directions": 138
+      },
+      {
+        "length": 10,
+        "full_support_per_singleton_sign": 26,
+        "two_support_per_coordinate_pair": 31,
+        "unoriented_directions": 171
+      },
+      {
+        "length": 11,
+        "full_support_per_singleton_sign": 34,
+        "two_support_per_coordinate_pair": 41,
+        "unoriented_directions": 225
+      },
+      {
+        "length": 12,
+        "full_support_per_singleton_sign": 45,
+        "two_support_per_coordinate_pair": 45,
+        "unoriented_directions": 270
+      },
+      {
+        "length": 16,
+        "full_support_per_singleton_sign": 102,
+        "two_support_per_coordinate_pair": 79,
+        "unoriented_directions": 543
+      },
+      {
+        "length": 32,
+        "full_support_per_singleton_sign": 641,
+        "two_support_per_coordinate_pair": 323,
+        "unoriented_directions": 2892
+      },
+      {
+        "length": 64,
+        "full_support_per_singleton_sign": 3584,
+        "two_support_per_coordinate_pair": 1259,
+        "unoriented_directions": 14529
+      }
+    ],
+    "larger_exact_counts": [
+      {
+        "length": 128,
+        "full_support_per_singleton_sign": 18676,
+        "two_support_per_coordinate_pair": 5021,
+        "unoriented_directions": 71091
+      },
+      {
+        "length": 256,
+        "full_support_per_singleton_sign": 92633,
+        "two_support_per_coordinate_pair": 19947,
+        "unoriented_directions": 337740
+      },
+      {
+        "length": 1024,
+        "full_support_per_singleton_sign": 2073421,
+        "two_support_per_coordinate_pair": 318963,
+        "unoriented_directions": 7177152
+      },
+      {
+        "length": 4096,
+        "full_support_per_singleton_sign": 42779655,
+        "two_support_per_coordinate_pair": 5100019,
+        "unoriented_directions": 143639022
+      },
+      {
+        "length": 16384,
+        "full_support_per_singleton_sign": 838937532,
+        "two_support_per_coordinate_pair": 81599337,
+        "unoriented_directions": 2761610607
+      },
+      {
+        "length": 65536,
+        "full_support_per_singleton_sign": 15898018122,
+        "two_support_per_coordinate_pair": 1305514925,
+        "unoriented_directions": 51610599141
+      }
+    ]
+  },
+  "actual_quotients": {
+    "primitive_directions_constructed": 101,
+    "selected_exact_models": [
+      {
+        "direction": [
+          1,
+          -1,
+          -1
+        ],
+        "minimum_length": 4,
+        "padding": 0,
+        "length": 4,
+        "padding_axis": 1,
+        "compulsory_divisors": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ],
+        "both_cones": [
+          {
+            "strict_weight": [
+              3,
+              2,
+              2
+            ],
+            "profile": [
+              1,
+              1,
+              1
+            ],
+            "omitted": [
+              0,
+              1,
+              1
+            ]
+          },
+          {
+            "strict_weight": [
+              5,
+              2,
+              2
+            ],
+            "profile": [
+              0,
+              2,
+              2
+            ],
+            "omitted": [
+              1,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "direction": [
+          1,
+          -1,
+          -1
+        ],
+        "minimum_length": 4,
+        "padding": 3,
+        "length": 7,
+        "padding_axis": 1,
+        "compulsory_divisors": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ],
+        "both_cones": [
+          {
+            "strict_weight": [
+              3,
+              2,
+              2
+            ],
+            "profile": [
+              1,
+              10,
+              1
+            ],
+            "omitted": [
+              0,
+              1,
+              1
+            ]
+          },
+          {
+            "strict_weight": [
+              5,
+              2,
+              2
+            ],
+            "profile": [
+              0,
+              11,
+              2
+            ],
+            "omitted": [
+              1,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "direction": [
+          2,
+          -1,
+          -1
+        ],
+        "minimum_length": 5,
+        "padding": 0,
+        "length": 5,
+        "padding_axis": 1,
+        "compulsory_divisors": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0
+          ]
+        ],
+        "both_cones": [
+          {
+            "strict_weight": [
+              3,
+              4,
+              4
+            ],
+            "profile": [
+              3,
+              1,
+              1
+            ],
+            "omitted": [
+              0,
+              1,
+              1
+            ]
+          },
+          {
+            "strict_weight": [
+              5,
+              4,
+              4
+            ],
+            "profile": [
+              1,
+              2,
+              2
+            ],
+            "omitted": [
+              2,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "direction": [
+          2,
+          -1,
+          -1
+        ],
+        "minimum_length": 5,
+        "padding": 3,
+        "length": 8,
+        "padding_axis": 1,
+        "compulsory_divisors": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0
+          ]
+        ],
+        "both_cones": [
+          {
+            "strict_weight": [
+              3,
+              4,
+              4
+            ],
+            "profile": [
+              3,
+              10,
+              1
+            ],
+            "omitted": [
+              0,
+              1,
+              1
+            ]
+          },
+          {
+            "strict_weight": [
+              5,
+              4,
+              4
+            ],
+            "profile": [
+              1,
+              11,
+              2
+            ],
+            "omitted": [
+              2,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "direction": [
+          3,
+          -2,
+          -3
+        ],
+        "minimum_length": 14,
+        "padding": 0,
+        "length": 14,
+        "padding_axis": 1,
+        "compulsory_divisors": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            0
+          ]
+        ],
+        "both_cones": [
+          {
+            "strict_weight": [
+              9,
+              6,
+              6
+            ],
+            "profile": [
+              6,
+              10,
+              15
+            ],
+            "omitted": [
+              0,
+              2,
+              3
+            ]
+          },
+          {
+            "strict_weight": [
+              11,
+              6,
+              6
+            ],
+            "profile": [
+              3,
+              12,
+              18
+            ],
+            "omitted": [
+              3,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "direction": [
+          3,
+          -2,
+          -3
+        ],
+        "minimum_length": 14,
+        "padding": 3,
+        "length": 17,
+        "padding_axis": 1,
+        "compulsory_divisors": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            0
+          ]
+        ],
+        "both_cones": [
+          {
+            "strict_weight": [
+              9,
+              6,
+              6
+            ],
+            "profile": [
+              6,
+              22,
+              15
+            ],
+            "omitted": [
+              0,
+              2,
+              3
+            ]
+          },
+          {
+            "strict_weight": [
+              11,
+              6,
+              6
+            ],
+            "profile": [
+              3,
+              24,
+              18
+            ],
+            "omitted": [
+              3,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "direction": [
+          1,
+          1,
+          -1,
+          -1
+        ],
+        "minimum_length": 6,
+        "padding": 0,
+        "length": 6,
+        "padding_axis": 0,
+        "compulsory_divisors": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            0
+          ]
+        ],
+        "both_cones": [
+          {
+            "strict_weight": [
+              3,
+              4,
+              4,
+              4
+            ],
+            "profile": [
+              2,
+              2,
+              1,
+              1
+            ],
+            "omitted": [
+              0,
+              0,
+              1,
+              1
+            ]
+          },
+          {
+            "strict_weight": [
+              5,
+              4,
+              4,
+              4
+            ],
+            "profile": [
+              1,
+              1,
+              2,
+              2
+            ],
+            "omitted": [
+              1,
+              1,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "direction": [
+          1,
+          1,
+          -1,
+          -1
+        ],
+        "minimum_length": 6,
+        "padding": 3,
+        "length": 9,
+        "padding_axis": 0,
+        "compulsory_divisors": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            0
+          ]
+        ],
+        "both_cones": [
+          {
+            "strict_weight": [
+              3,
+              4,
+              4,
+              4
+            ],
+            "profile": [
+              11,
+              2,
+              1,
+              1
+            ],
+            "omitted": [
+              0,
+              0,
+              1,
+              1
+            ]
+          },
+          {
+            "strict_weight": [
+              5,
+              4,
+              4,
+              4
+            ],
+            "profile": [
+              10,
+              1,
+              2,
+              2
+            ],
+            "omitted": [
+              1,
+              1,
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "fixed_dimension_counting": {
+    "complete_bounded_cube_counts": [
+      {
+        "dimension": 2,
+        "length": 1,
+        "unoriented_directions": 0
+      },
+      {
+        "dimension": 2,
+        "length": 2,
+        "unoriented_directions": 1
+      },
+      {
+        "dimension": 2,
+        "length": 3,
+        "unoriented_directions": 3
+      },
+      {
+        "dimension": 2,
+        "length": 4,
+        "unoriented_directions": 5
+      },
+      {
+        "dimension": 2,
+        "length": 5,
+        "unoriented_directions": 9
+      },
+      {
+        "dimension": 2,
+        "length": 6,
+        "unoriented_directions": 11
+      },
+      {
+        "dimension": 2,
+        "length": 7,
+        "unoriented_directions": 17
+      },
+      {
+        "dimension": 2,
+        "length": 8,
+        "unoriented_directions": 21
+      },
+      {
+        "dimension": 3,
+        "length": 1,
+        "unoriented_directions": 0
+      },
+      {
+        "dimension": 3,
+        "length": 2,
+        "unoriented_directions": 3
+      },
+      {
+        "dimension": 3,
+        "length": 3,
+        "unoriented_directions": 9
+      },
+      {
+        "dimension": 3,
+        "length": 4,
+        "unoriented_directions": 18
+      },
+      {
+        "dimension": 3,
+        "length": 5,
+        "unoriented_directions": 33
+      },
+      {
+        "dimension": 3,
+        "length": 6,
+        "unoriented_directions": 48
+      },
+      {
+        "dimension": 3,
+        "length": 7,
+        "unoriented_directions": 75
+      },
+      {
+        "dimension": 3,
+        "length": 8,
+        "unoriented_directions": 102
+      },
+      {
+        "dimension": 4,
+        "length": 1,
+        "unoriented_directions": 0
+      },
+      {
+        "dimension": 4,
+        "length": 2,
+        "unoriented_directions": 6
+      },
+      {
+        "dimension": 4,
+        "length": 3,
+        "unoriented_directions": 18
+      },
+      {
+        "dimension": 4,
+        "length": 4,
+        "unoriented_directions": 42
+      },
+      {
+        "dimension": 4,
+        "length": 5,
+        "unoriented_directions": 78
+      },
+      {
+        "dimension": 4,
+        "length": 6,
+        "unoriented_directions": 129
+      },
+      {
+        "dimension": 4,
+        "length": 7,
+        "unoriented_directions": 201
+      },
+      {
+        "dimension": 4,
+        "length": 8,
+        "unoriented_directions": 301
+      },
+      {
+        "dimension": 5,
+        "length": 1,
+        "unoriented_directions": 0
+      },
+      {
+        "dimension": 5,
+        "length": 2,
+        "unoriented_directions": 10
+      },
+      {
+        "dimension": 5,
+        "length": 3,
+        "unoriented_directions": 30
+      },
+      {
+        "dimension": 5,
+        "length": 4,
+        "unoriented_directions": 80
+      },
+      {
+        "dimension": 5,
+        "length": 5,
+        "unoriented_directions": 150
+      }
+    ],
+    "leading_rational_factors": [
+      {
+        "dimension": 2,
+        "leading_constant_times_zeta_d": "1/2"
+      },
+      {
+        "dimension": 3,
+        "leading_constant_times_zeta_d": "3/2"
+      },
+      {
+        "dimension": 4,
+        "leading_constant_times_zeta_d": "5/2"
+      },
+      {
+        "dimension": 5,
+        "leading_constant_times_zeta_d": "35/12"
+      },
+      {
+        "dimension": 6,
+        "leading_constant_times_zeta_d": "21/8"
+      }
+    ]
+  },
+  "independent_saved_fans": [
+    {
+      "model": "one_point",
+      "length": 1,
+      "characteristic": 0,
+      "wall_directions": [],
+      "minimum_colengths": []
+    },
+    {
+      "model": "double_point",
+      "length": 2,
+      "characteristic": 0,
+      "wall_directions": [
+        [
+          0,
+          1,
+          -1
+        ],
+        [
+          1,
+          -1,
+          0
+        ],
+        [
+          1,
+          0,
+          -1
+        ]
+      ],
+      "minimum_colengths": [
+        2,
+        2,
+        2
+      ]
+    },
+    {
+      "model": "double_point",
+      "length": 2,
+      "characteristic": 2,
+      "wall_directions": [
+        [
+          0,
+          1,
+          -1
+        ],
+        [
+          1,
+          -1,
+          0
+        ],
+        [
+          1,
+          0,
+          -1
+        ]
+      ],
+      "minimum_colengths": [
+        2,
+        2,
+        2
+      ]
+    },
+    {
+      "model": "curvilinear_three",
+      "length": 3,
+      "characteristic": 0,
+      "wall_directions": [
+        [
+          0,
+          1,
+          -2
+        ],
+        [
+          0,
+          1,
+          -1
+        ],
+        [
+          0,
+          2,
+          -1
+        ],
+        [
+          1,
+          -2,
+          0
+        ],
+        [
+          1,
+          -1,
+          0
+        ],
+        [
+          1,
+          0,
+          -2
+        ],
+        [
+          1,
+          0,
+          -1
+        ],
+        [
+          2,
+          -1,
+          0
+        ],
+        [
+          2,
+          0,
+          -1
+        ]
+      ],
+      "minimum_colengths": [
+        3,
+        2,
+        3,
+        3,
+        2,
+        3,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "model": "curvilinear_three",
+      "length": 3,
+      "characteristic": 2,
+      "wall_directions": [
+        [
+          0,
+          1,
+          -2
+        ],
+        [
+          0,
+          2,
+          -1
+        ],
+        [
+          1,
+          -2,
+          0
+        ],
+        [
+          1,
+          0,
+          -1
+        ],
+        [
+          2,
+          -1,
+          0
+        ]
+      ],
+      "minimum_colengths": [
+        3,
+        3,
+        3,
+        2,
+        3
+      ]
+    },
+    {
+      "model": "curvilinear_three",
+      "length": 3,
+      "characteristic": 3,
+      "wall_directions": [
+        [
+          0,
+          1,
+          -2
+        ],
+        [
+          0,
+          1,
+          -1
+        ],
+        [
+          0,
+          2,
+          -1
+        ],
+        [
+          1,
+          -2,
+          0
+        ],
+        [
+          1,
+          -1,
+          0
+        ],
+        [
+          1,
+          0,
+          -2
+        ],
+        [
+          1,
+          0,
+          -1
+        ],
+        [
+          2,
+          -1,
+          0
+        ],
+        [
+          2,
+          0,
+          -1
+        ]
+      ],
+      "minimum_colengths": [
+        3,
+        2,
+        3,
+        3,
+        2,
+        3,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "model": "nonlinear_rectangle",
+      "length": 4,
+      "characteristic": 0,
+      "wall_directions": [
+        [
+          0,
+          1,
+          -2
+        ],
+        [
+          0,
+          1,
+          -1
+        ],
+        [
+          1,
+          -1,
+          -1
+        ],
+        [
+          1,
+          -1,
+          0
+        ],
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          1,
+          0,
+          -2
+        ],
+        [
+          1,
+          0,
+          -1
+        ],
+        [
+          1,
+          1,
+          -1
+        ]
+      ],
+      "minimum_colengths": [
+        3,
+        2,
+        4,
+        2,
+        4,
+        3,
+        2,
+        4
+      ]
+    },
+    {
+      "model": "nonlinear_rectangle",
+      "length": 4,
+      "characteristic": 2,
+      "wall_directions": [
+        [
+          1,
+          -1,
+          -1
+        ],
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          1,
+          1,
+          -1
+        ]
+      ],
+      "minimum_colengths": [
+        4,
+        4,
+        4
+      ]
+    },
+    {
+      "model": "monomial_box",
+      "length": 4,
+      "characteristic": 3,
+      "wall_directions": [],
+      "minimum_colengths": []
+    },
+    {
+      "model": "three_distinct_points",
+      "length": 3,
+      "characteristic": 5,
+      "wall_directions": [
+        [
+          0,
+          1,
+          -1
+        ],
+        [
+          1,
+          -1,
+          0
+        ],
+        [
+          1,
+          0,
+          -1
+        ],
+        [
+          2,
+          -1,
+          0
+        ],
+        [
+          2,
+          0,
+          -1
+        ]
+      ],
+      "minimum_colengths": [
+        2,
+        2,
+        2,
+        3,
+        3
+      ]
+    }
+  ],
+  "independent_monomial_downset_hilbert_controls": [
+    {
+      "length": 1,
+      "all_monomial_downsets": 1,
+      "equal_grading_hilbert_pairs": 0,
+      "minimum_rigid_pairs": 0
+    },
+    {
+      "length": 2,
+      "all_monomial_downsets": 3,
+      "equal_grading_hilbert_pairs": 3,
+      "minimum_rigid_pairs": 3
+    },
+    {
+      "length": 3,
+      "all_monomial_downsets": 6,
+      "equal_grading_hilbert_pairs": 12,
+      "minimum_rigid_pairs": 6
+    },
+    {
+      "length": 4,
+      "all_monomial_downsets": 13,
+      "equal_grading_hilbert_pairs": 42,
+      "minimum_rigid_pairs": 9
+    },
+    {
+      "length": 5,
+      "all_monomial_downsets": 24,
+      "equal_grading_hilbert_pairs": 105,
+      "minimum_rigid_pairs": 15
+    },
+    {
+      "length": 6,
+      "all_monomial_downsets": 48,
+      "equal_grading_hilbert_pairs": 309,
+      "minimum_rigid_pairs": 15
+    },
+    {
+      "length": 7,
+      "all_monomial_downsets": 86,
+      "equal_grading_hilbert_pairs": 666,
+      "minimum_rigid_pairs": 27
+    },
+    {
+      "length": 8,
+      "all_monomial_downsets": 160,
+      "equal_grading_hilbert_pairs": 1626,
+      "minimum_rigid_pairs": 27
+    }
+  ],
+  "uniform_results": {
+    "minimum_colength": "prod(q_plus+1)+prod(q_minus+1)-2, for primitive mixed q",
+    "minimum_rigidity": "The wall degeneration is J_D+(x^q_plus-lambda*x^q_minus), lambda nonzero; D is the union of the two divisor boxes.",
+    "padding": "Every larger exact length in dimension at least three, over every field.",
+    "common_fan": "The exact common positive refinement of all length-n fans is the arrangement of all primitive mixed q with the minimum colength at most n.",
+    "three_variable_spectrum": "D3(n) ~ 3*n^2*log(n)/(2*zeta(3)).",
+    "fixed_dimension_spectrum": "D_d(n) ~ binom(2*d-2,d-1)*n^2*log(n)^(d-2)/(4*(d-2)!*zeta(d)); exact length for d>=3, length at most n for d=2.",
+    "universal_shadow_envelope_sum": "Theta(n^(10/3)*log(n+1)^2), a bound on the stated envelope budget, not actual shadow complexity."
+  },
+  "new_unrestricted_G3_count": false,
+  "polynomial_lower_separation_proved": false,
+  "novelty_established": false,
+  "goal_complete": false,
+  "scope": "The necessity and rigidity arguments are uniform proofs in the note. Finite controls replay explicit all-field cyclic commuting quotient models, exact primitive counts, and independently extracted directions from saved fan geometry. They do not enumerate all ideals, prove a collective incidence budget, or establish priority.",
+  "source_sha256": {
+    "docs/primitive_wall_spectrum.md": "f75a919acd5838f40fa99ce667ea0ab3c9f80a4b630c03ee1c0eb65e74369a5d",
+    "scripts/run_primitive_wall_checks.py": "ce4bdb6316b3acbfc15625b8f67dfadd69c95d691c81da2c47cda6538c867cdb",
+    "scripts/run_higher_interaction_checks.py": "cdc31d1b582e71c4536056429bf7eabeb2fcb312f313713135a2eaee68578916",
+    "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
+    "results/research/oracle_enumeration_checks.json": "06e79a6fd9b6453127a7a6499377dc995dc2290d51fd49d829936afa0b3c3078"
+  }
+}

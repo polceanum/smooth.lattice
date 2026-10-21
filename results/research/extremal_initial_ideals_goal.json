@@ -7,7 +7,7 @@
   "goal_complete": false,
   "asymptotic_improvement_established_this_iteration": false,
   "novelty_established_this_iteration": false,
-  "note": "The exact fixed-module degree valuation now has line and circular parking formulas for uniform arithmetic degree/residue quotients, with independent matrix-minimum controls and a nonuniform Pascal rank boundary. This is supporting structure from classical parking theory, not a new unrestricted count, a polynomially separating family or a publication endpoint. All existing asymptotic results are unchanged; the full substantial mathematical impact goal remains active.",
+  "note": "The minimum algebraic wall threshold and universal direction spectrum are now verified, including the fixed-dimensional asymptotic. The free comparison shows a sharp quadratic difference in the first length at which an individual direction can appear. A new parameterized shadow bound reduces an improved G3 exponent to a cubic total primitive-wall-cost budget, but that budget is unproved and the existing unrestricted bound is unchanged. No paper-level novelty or publication endpoint is claimed; the full goal remains active.",
   "relationship_to_previous_work": "New active objective with a higher completion bar. Previous goal records, lattice-shadow candidate, manuscripts and paused ML results are preserved as historical research.",
   "definitions": {
     "G_d_n": "Maximum number of monomial initial ideals of a colength-n ideal in d variables, over all fields.",
@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Preserve the original unrestricted G3 endpoint and every success criterion. Use the full degree valuation together with the coherent two-parameter shift plane and actual commuting multiplications. The parking correspondence gives an exact uniform arithmetic model, but counting all shifts, assuming independent distinct residues in the repeated-root family, or invoking a series-parallel label supplies no count. Seek a uniform bound on coherent exchanges using the actual interval/digit dependencies, or the rank-preserving hyperbolic skeleton/square-root-incidence budget; alternatively construct and prove an actual polynomially separating lower family. Classical parking and M-convexity are supporting tools, not success. Complete the strongest-current primary comparison before asserting novelty or a paper-level result.",
+  "next_proof_task": "Keep the original sharp unrestricted G3 or realizable polynomial-separation endpoint and every publication criterion. Prove or refute the uniform aggregate V(I)=sum_e nu(q_e)=O(n^3*polylog(n)) for actual length-n quotient fans; the proved threshold/shadow reduction would then give exponent 12/5, but the cubic budget is not a theorem. Count all adjacencies, including multiple walls of one primitive direction, and preserve shared rank and multiplication information rather than summing one-direction minimum lengths independently. The actual three-pole family attains cubic cost and is a necessary control. Compare with the older square-root-incidence route and retain its rank/ideal-chain counterguards. The universal spectrum or sharp quadratic first-occurrence comparison alone cannot bound coexisting walls or complete this goal. Continue the strongest current primary-bound and precise priority audit, including planar spine/arrow frameworks and cotangent-weight consequences, before a novelty or paper-level claim. An actual infinite polynomially separating lower family remains an alternative.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -844,6 +844,19 @@
       "url": "https://ics.uci.edu/~eppstein/pubs/Epp-WADS-21-slides.pdf",
       "version": "WADS 2021 presentation slides",
       "scope": "Slides 12-17, especially slide 16, inspected. The presentation distinguishes its parametric MST lower construction from an unresolved-at-that-time min/max-formula breakpoint question on series-parallel graphs. This is a historical scope warning only: no current-open-status assertion, complete later audit or equivalence with coherent Pascal matroid profiles is inferred."
+    },
+    {
+      "authors": "Altmann and Sturmfels",
+      "title": "The graph of monomial ideals",
+      "url": "https://www.math.fu-berlin.de/altmann/PAPER/graph.pdf",
+      "publication": "Journal of Pure and Applied Algebra 201 (2005), 250-263",
+      "scope": "Follow-up reading of Propositions 1 and 3, Lemma 13 and Algorithm 14 with displayed proofs. Socle moves, edge gradings and direction extraction are established. These are inputs; the local threshold and its counting consequences still require an exact priority comparison."
+    },
+    {
+      "authors": "Huibregtse",
+      "title": "The cotangent space at a monomial ideal of the Hilbert scheme of points of an affine space",
+      "url": "https://arxiv.org/html/math/0506575v1",
+      "scope": "Introduction Section 1.1 and Section 4.1 standard-arrow definition read. Cotangent arrow translations are existing local structure. The later proofs and any quantitative implication for the minimum wall threshold or the aggregate V budget remain unassessed; no such implication or novelty is asserted."
     }
   ],
   "verification": {
@@ -2211,20 +2224,88 @@
       },
       "source_hashes_verified": true,
       "scope": "Every finite allocation is independently minimized over quotient-matrix basis determinants. Formula, contact and cost bounds are checked against every distinct preference insertion order. Uniform assertions depend on the written proofs; no extrapolated growth, novelty or practical advantage is inferred."
+    },
+    "primitive_wall_spectrum": {
+      "command": "python3 -B scripts/run_primitive_wall_checks.py",
+      "status": "passed",
+      "counts": {
+        "independent_divisible_triple_equalities": 316,
+        "independent_complete_small_direction_counts": 64,
+        "exact_larger_direction_counts": 6,
+        "independent_fixed_dimension_direction_cubes": 29,
+        "independent_progression_and_three_variable_formula_equalities": 128,
+        "commuting_integer_multiplication_replays": 6354,
+        "cyclic_monomial_column_replays": 2189,
+        "independent_field_greedy_standard_sets": 1616,
+        "exact_compulsory_grading_footprints": 202,
+        "independent_saved_positive_adjacency_budget_checks": 92,
+        "independent_downset_pair_grading_tests": 17733,
+        "independent_equal_hilbert_function_thresholds": 2763,
+        "independent_minimum_length_rigidity_pairs": 102
+      },
+      "actual_primitive_directions": 101,
+      "field_controls": [
+        0,
+        2,
+        3,
+        5
+      ],
+      "build": {
+        "command": "./build.sh",
+        "status": "passed"
+      },
+      "smoke": {
+        "command": "python3 tests/test_smoke.py",
+        "status": "passed"
+      },
+      "scope": "Uniform necessity, rigidity and asymptotics rest on the written proofs. Independent finite controls test all downset pairs through length eight, minimal and padded commuting quotient models, exact primitive counting by two formulas, and directions extracted from saved exact fan geometry. No unrestricted count, novelty or practical speedup is inferred."
+    },
+    "free_wall_threshold_and_budget": {
+      "command": "python3 -B scripts/run_free_wall_checks.py",
+      "status": "passed",
+      "report": "results/research/free_wall_threshold_checks.json",
+      "counts": {
+        "socle_multiplication_commutators": 6669,
+        "socle_cyclic_column_replays": 768,
+        "independent_unrestricted_heap_cut_replays": 54,
+        "exact_two_endpoint_wall_witnesses": 27,
+        "direct_free_threshold_box_columns": 45456,
+        "universal_half_box_columns": 2189,
+        "independent_wall_threshold_partitions": 39,
+        "independent_undirected_saved_wall_costs": 46,
+        "independent_three_pole_allocation_edges": 16368,
+        "exact_three_pole_budget_equalities": 31
+      },
+      "free_wall_fixtures": 27,
+      "saved_exact_fan_fixtures": 10,
+      "build": {
+        "command": "./build.sh",
+        "status": "passed"
+      },
+      "smoke": {
+        "command": "python3 tests/test_smoke.py",
+        "status": "passed"
+      },
+      "source_hashes_verified": true,
+      "scope": "Independent direct lattice threshold enumeration and unrestricted heap replay verify finite actual free walls. Socle unit-column maps replay commuting cyclic algebras, valid over every field. The free witness size need not be the minimum mu; the uniform inequalities rest on the proof, not fitted ratios. Saved fan wall costs and all three-pole allocation edges through n=32 are checked independently. The parameterized bound retains V; its cubic hypothesis, a new unrestricted exponent, current priority and a universal-prefix algorithm are not established."
     }
   },
-  "preservation": "Five explicitly reviewed public files change. All 83 prior continuations, 116 prior primary-source records, the full objective and success criteria, all old oracle result blocks, manuscripts/PDFs, core CLI/kernels and auditor, previous research and paused ML are preserved. All 365 unlisted tracked files remain byte-identical to c4007d7. The parking checker is additive; existing functions remain unchanged except for main report assembly. Baselines, exploratory probes, logs and privacy records stay ignored.",
+  "preservation": "Nine explicitly privacy-reviewed public files integrate the pending wall-spectrum proof and the free comparison. All 85 prior continuation records, all 118 prior primary-source records, the full objective and success criteria, earlier report blocks, manuscripts/PDFs, core CLI/kernels and auditor, and paused ML remain preserved. All 367 tracked files outside the three changed tracked paths are byte-identical to 3073826. Baselines, logs and privacy records remain ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
-    "docs/oracle_fan_enumeration.md",
-    "scripts/run_oracle_enumeration_checks.py",
-    "results/research/oracle_enumeration_checks.json",
+    "docs/extremal_initial_ideals.md",
+    "docs/primitive_wall_spectrum.md",
+    "scripts/run_primitive_wall_checks.py",
+    "results/research/primitive_wall_checks.json",
+    "docs/free_wall_threshold.md",
+    "scripts/run_free_wall_checks.py",
+    "results/research/free_wall_threshold_checks.json",
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "aba6ec23bc974f8ef978ab0c3536d5f5355e363d83c34feada3cd5b7fc22831f",
-    "docs/extremal_initial_ideals.md": "6e84b6ea470841a89760a2e16080a9314ba747499b1a5a733460120fe501a92b",
+    "README.md": "2f2bbd813e73926dbaf107f8b0661046d466ec86e3c88567297929d913955f90",
+    "docs/extremal_initial_ideals.md": "868d3168970168bbac0d7f54ede5bd6a6ac409924613ff24110cbf28e0fab144",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
     "results/research/profile_lattice_checks.json": "437b69bd81173c330b059d879df9f93281befb01e353f9e2c2e00f5a55746d17",
@@ -2324,7 +2405,13 @@
     "scripts/run_pole_order_checks.py": "d5eb875676eee0e8b43defbd70b5450a246f1c88ffdc0d61259b1f7f7a76444f",
     "docs/adjacent_rank_fans.md": "d0ea32b9cbd520ab3c05acbb39121cf46d1151d5b97dd8f13833038fd245ee09",
     "scripts/run_adjacent_rank_checks.py": "687894b669b4b3ab7c97aaae38c052a7e2dcdcde9e83229c52dd1e39e5f555fb",
-    "results/research/adjacent_rank_checks.json": "1bf63d069a1ef76cf4d41836e7179eacf51f6a6232c6253b38ff98d882fd4890"
+    "results/research/adjacent_rank_checks.json": "1bf63d069a1ef76cf4d41836e7179eacf51f6a6232c6253b38ff98d882fd4890",
+    "docs/primitive_wall_spectrum.md": "f75a919acd5838f40fa99ce667ea0ab3c9f80a4b630c03ee1c0eb65e74369a5d",
+    "scripts/run_primitive_wall_checks.py": "ce4bdb6316b3acbfc15625b8f67dfadd69c95d691c81da2c47cda6538c867cdb",
+    "results/research/primitive_wall_checks.json": "b9d582e75ce261457a019ab69fdc7fa08df8a92d3aa9c20ee684c300114b0e9f",
+    "docs/free_wall_threshold.md": "7a964bdbab0ca635669d89484bd7caa8332acb36e972fb55aafb6e51d1fe9513",
+    "scripts/run_free_wall_checks.py": "0637266aa5b0c60eb2de874fa4f33c458600b36f27a9725fec9c72d34ee219ae",
+    "results/research/free_wall_threshold_checks.json": "05fae3629007b184559f046406e6695ae8898e9a58b20ae3ebf94801f833280d"
   },
   "continuations": [
     {
@@ -7685,10 +7772,137 @@
       },
       "effect_on_next_action": "Preserve the original unrestricted G3 endpoint and every success criterion. Use the full degree valuation together with the coherent two-parameter shift plane and actual commuting multiplications. The parking correspondence gives an exact uniform arithmetic model, but counting all shifts, assuming independent distinct residues in the repeated-root family, or invoking a series-parallel label supplies no count. Seek a uniform bound on coherent exchanges using the actual interval/digit dependencies, or the rank-preserving hyperbolic skeleton/square-root-incidence budget; alternatively construct and prove an actual polynomially separating lower family. Classical parking and M-convexity are supporting tools, not success. Complete the strongest-current primary comparison before asserting novelty or a paper-level result.",
       "unrestricted_goal_complete": false
+    },
+    {
+      "title": "Exact minimum-colength wall spectrum and fixed-dimensional direction asymptotics",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "The prior continuation saved an exact arithmetic parking valuation and its independent determinant/contact controls. Its proof, checker and report are preserved. Before this update all 102 tracked research source hashes were checked; the sole changed baseline source is the intentionally extended extremal overview. All 84 earlier continuations remain present.",
+      "progress_classification": "proved_uniform_minimum_wall_threshold_rigidity_exact_common_fan_and_sharp_direction_spectrum",
+      "prior_next_proof_task": "Preserve the original unrestricted G3 endpoint and every success criterion. Use the full degree valuation together with the coherent two-parameter shift plane and actual commuting multiplications. The parking correspondence gives an exact uniform arithmetic model, but counting all shifts, assuming independent distinct residues in the repeated-root family, or invoking a series-parallel label supplies no count. Seek a uniform bound on coherent exchanges using the actual interval/digit dependencies, or the rank-preserving hyperbolic skeleton/square-root-incidence budget; alternatively construct and prove an actual polynomially separating lower family. Classical parking and M-convexity are supporting tools, not success. Complete the strongest-current primary comparison before asserting novelty or a paper-level result.",
+      "structural_result": {
+        "proof": "docs/primitive_wall_spectrum.md",
+        "checker": "scripts/run_primitive_wall_checks.py",
+        "report": "results/research/primitive_wall_checks.json",
+        "minimum_colength": "prod(q_plus+1)+prod(q_minus+1)-2, for primitive mixed q",
+        "minimum_rigidity": "The wall degeneration is J_D+(x^q_plus-lambda*x^q_minus), lambda nonzero; D is the union of the two divisor boxes.",
+        "padding": "Every larger exact length in dimension at least three, over every field.",
+        "common_fan": "The exact common positive refinement of all length-n fans is the arrangement of all primitive mixed q with the minimum colength at most n.",
+        "three_variable_spectrum": "D3(n) ~ 3*n^2*log(n)/(2*zeta(3)).",
+        "fixed_dimension_spectrum": "D_d(n) ~ binom(2*d-2,d-1)*n^2*log(n)^(d-2)/(4*(d-2)!*zeta(d)); exact length for d>=3, length at most n for d=2.",
+        "universal_shadow_envelope_sum": "Theta(n^(10/3)*log(n+1)^2), a bound on the stated envelope budget, not actual shadow complexity.",
+        "classical_boundary": "Altmann--Sturmfels Propositions 1 and 3 supply the socle move and homogeneous edge-ideal framework; Lemma 13 and Algorithm 14 supply endpoint direction extraction. Product-divisor asymptotics, arithmetic-progression harmonic sums, Mobius inversion, Vandermonde convolution and zonotope refinement are classical inputs. Exact priority of the local threshold, equality rigidity and spectrum asymptotics is unassessed.",
+        "coexistence_gap": "The spectrum takes a union over different ideals, and each required universal hyperplane can already be realized by an ideal with two initials. Its size and exact common fan do not establish an individual fan count or the collective square-root-incidence bound.",
+        "unrestricted_G3_improved": false,
+        "polynomial_lower_separation_proved": false,
+        "novelty_established": false,
+        "goal_complete": false
+      },
+      "verification": {
+        "command": "python3 -B scripts/run_primitive_wall_checks.py",
+        "status": "passed",
+        "counts": {
+          "independent_divisible_triple_equalities": 316,
+          "independent_complete_small_direction_counts": 64,
+          "exact_larger_direction_counts": 6,
+          "independent_fixed_dimension_direction_cubes": 29,
+          "independent_progression_and_three_variable_formula_equalities": 128,
+          "commuting_integer_multiplication_replays": 6354,
+          "cyclic_monomial_column_replays": 2189,
+          "independent_field_greedy_standard_sets": 1616,
+          "exact_compulsory_grading_footprints": 202,
+          "independent_saved_positive_adjacency_budget_checks": 92,
+          "independent_downset_pair_grading_tests": 17733,
+          "independent_equal_hilbert_function_thresholds": 2763,
+          "independent_minimum_length_rigidity_pairs": 102
+        },
+        "actual_primitive_directions": 101,
+        "field_controls": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "build": {
+          "command": "./build.sh",
+          "status": "passed"
+        },
+        "smoke": {
+          "command": "python3 tests/test_smoke.py",
+          "status": "passed"
+        },
+        "scope": "Uniform necessity, rigidity and asymptotics rest on the written proofs. Independent finite controls test all downset pairs through length eight, minimal and padded commuting quotient models, exact primitive counting by two formulas, and directions extracted from saved exact fan geometry. No unrestricted count, novelty or practical speedup is inferred."
+      },
+      "primary_comparison": {
+        "source": "https://www.math.fu-berlin.de/altmann/PAPER/graph.pdf",
+        "scope": "Proposition 1 with proof, the edge-ideal definition and Proposition 3 with proof, Lemma 13 with proof and Algorithm 14 were rechecked at the exact classical steps used. No complete subsequent-priority or numerical-bound audit is claimed."
+      },
+      "effect_on_next_action": "Keep the full unrestricted G3 objective and every original success criterion. The minimum length for an individual primitive wall is now exactly the sum of its two sign-part divisor volumes minus two, with rigid minimal degeneration and an all-field realization at every larger length in dimension at least three. Across different length-n ideals the exact universal direction spectrum has size asymptotic to 3*n^2*log(n)/(2*zeta(3)); in fixed dimension d it has order n^2*log(n)^(d-2) with the proved constant. This is not a count of coexisting walls. Separately summing the current shadow envelopes over this entire spectrum pays n^(10/3)*log(n)^2 in three variables and cannot improve the current unrestricted bound. Seek a joint length/rank budget for directions meeting at actual fan rays or sharing multiplication layers, sufficient for the collective square-root-incidence bound; alternatively use the full module degree valuation restricted to the original positive two-parameter plane, or prove an actual polynomially separating coherent lower family. Do not replace the full valuation by cyclic-span ranks, enumerate all shifts, infer coexistence from individual realizability, or claim a minor local theorem completes the goal. Complete the strongest-current primary comparison before novelty or a paper claim. Preserve all previous mathematics, manuscripts/PDFs, core CLI/kernels/auditor and paused ML. No outbound messages or submissions.",
+      "unrestricted_goal_complete": false
+    },
+    {
+      "title": "Compare free wall thresholds and isolate a cubic collective cost target",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "Progress: main 3073826 completed and independently verified the exact arithmetic parking valuation. The current worktree also held the unfinished primitive-wall proof, checker and its additional continuation; these were preserved, audited and rerun before integration. The new free-lattice comparison and collective wall-cost reduction build on the verified threshold, without changing the unrestricted exponent.",
+      "progress_classification": "proved_sharp_free_algebraic_threshold_comparison_and_uniform_parameterized_wall_cost_reduction",
+      "prior_next_proof_task": "Keep the full unrestricted G3 objective and every original success criterion. The minimum length for an individual primitive wall is now exactly the sum of its two sign-part divisor volumes minus two, with rigid minimal degeneration and an all-field realization at every larger length in dimension at least three. Across different length-n ideals the exact universal direction spectrum has size asymptotic to 3*n^2*log(n)/(2*zeta(3)); in fixed dimension d it has order n^2*log(n)^(d-2) with the proved constant. This is not a count of coexisting walls. Separately summing the current shadow envelopes over this entire spectrum pays n^(10/3)*log(n)^2 in three variables and cannot improve the current unrestricted bound. Seek a joint length/rank budget for directions meeting at actual fan rays or sharing multiplication layers, sufficient for the collective square-root-incidence bound; alternatively use the full module degree valuation restricted to the original positive two-parameter plane, or prove an actual polynomially separating coherent lower family. Do not replace the full valuation by cyclic-span ranks, enumerate all shifts, infer coexistence from individual realizability, or claim a minor local theorem completes the goal. Complete the strongest-current primary comparison before novelty or a paper claim. Preserve all previous mathematics, manuscripts/PDFs, core CLI/kernels/auditor and paused ML. No outbound messages or submissions.",
+      "structural_result": {
+        "proof": "docs/free_wall_threshold.md",
+        "checker": "scripts/run_free_wall_checks.py",
+        "report": "results/research/free_wall_threshold_checks.json",
+        "free_threshold": "For a primitive mixed q in fixed dimension d>=2, the first possible ordinary corner-cut size mu_d(q) is between 2^(-d)*A(q)*B(q) and (2*d)^d*A(q)*B(q), with the lower inequality strict.",
+        "algebraic_threshold": "The minimum quotient length is nu(q)=A(q)+B(q)-2, from the separately verified primitive-wall theorem.",
+        "uniform_quadratic_comparison": "max_(nu(q)<=n) mu_d(q)=Theta_d(n^2), for the at-most-length spectrum; exact length gives the same spectrum in d>=3.",
+        "full_support_family": "q_k=(k^2,-k,-k-1) has nu=2*k^2+3*k+1 and mu_3=Theta(k^4). The algebraic realization has two initials, not a growing fan separation.",
+        "collective_parameter": "V(I) sums nu(q_e) once over every undirected adjacency of maximal positive initial cones, counting repeated directions separately.",
+        "uniform_parameterized_bound": "For every actual length-n three-variable quotient, g(I)=O(1+n*L^2+n^(3/10)*V(I)^(7/10)*L^(3/5)), L=1+log(n+1).",
+        "proof_mechanism": "Small-cost directions have the exact universal spectrum bound O(T^2*log(T+1)); parallel exposed edges inject into vertices of the corresponding rational shadow. Large-cost adjacencies are at most V/T. Connected adjacency and threshold optimization yield the bound.",
+        "unproved_sufficient_condition": "V(I)=O(n^3*L^C) uniformly would imply G3=O(n^(12/5)*L^((7*C+6)/10)). The cubic bound is unproved, and 12/5 is conditional.",
+        "necessary_cubic_control": "The actual three-pole allocation family has V=3*sum_(A,B>=1,A+B<=n)(A+B)/gcd(A,B)=Theta(n^3), with an elementary coprime-pair proof.",
+        "limits": "A first-occurrence minimum varies the weight and supplies neither an all-weight free-prefix algorithm nor a count of coexisting walls. The whole-class direction spectrum is not one ideal's fan.",
+        "unrestricted_G3_improved": false,
+        "polynomial_lower_separation_proved": false,
+        "cubic_wall_cost_budget_proved": false,
+        "novelty_established": false,
+        "goal_complete": false
+      },
+      "verification": {
+        "command": "python3 -B scripts/run_free_wall_checks.py",
+        "status": "passed",
+        "report": "results/research/free_wall_threshold_checks.json",
+        "counts": {
+          "socle_multiplication_commutators": 6669,
+          "socle_cyclic_column_replays": 768,
+          "independent_unrestricted_heap_cut_replays": 54,
+          "exact_two_endpoint_wall_witnesses": 27,
+          "direct_free_threshold_box_columns": 45456,
+          "universal_half_box_columns": 2189,
+          "independent_wall_threshold_partitions": 39,
+          "independent_undirected_saved_wall_costs": 46,
+          "independent_three_pole_allocation_edges": 16368,
+          "exact_three_pole_budget_equalities": 31
+        },
+        "free_wall_fixtures": 27,
+        "saved_exact_fan_fixtures": 10,
+        "build": {
+          "command": "./build.sh",
+          "status": "passed"
+        },
+        "smoke": {
+          "command": "python3 tests/test_smoke.py",
+          "status": "passed"
+        },
+        "source_hashes_verified": true,
+        "scope": "Independent direct lattice threshold enumeration and unrestricted heap replay verify finite actual free walls. Socle unit-column maps replay commuting cyclic algebras, valid over every field. The free witness size need not be the minimum mu; the uniform inequalities rest on the proof, not fitted ratios. Saved fan wall costs and all three-pole allocation edges through n=32 are checked independently. The parameterized bound retains V; its cubic hypothesis, a new unrestricted exponent, current priority and a universal-prefix algorithm are not established."
+      },
+      "literature_followup": "Maclagan--Silversmith published Definition 3.2 and Theorem 2.6 with proof were rechecked for their planar and infinite-field hypotheses. Huibregtse local arrow structure is an additional priority lead, not an imported global V theorem. Existing socle and state geometry are retained as prior art.",
+      "effect_on_next_action": "Keep the original sharp unrestricted G3 or realizable polynomial-separation endpoint and every publication criterion. Prove or refute the uniform aggregate V(I)=sum_e nu(q_e)=O(n^3*polylog(n)) for actual length-n quotient fans; the proved threshold/shadow reduction would then give exponent 12/5, but the cubic budget is not a theorem. Count all adjacencies, including multiple walls of one primitive direction, and preserve shared rank and multiplication information rather than summing one-direction minimum lengths independently. The actual three-pole family attains cubic cost and is a necessary control. Compare with the older square-root-incidence route and retain its rank/ideal-chain counterguards. The universal spectrum or sharp quadratic first-occurrence comparison alone cannot bound coexisting walls or complete this goal. Continue the strongest current primary-bound and precise priority audit, including planar spine/arrow frameworks and cotangent-weight consequences, before a novelty or paper-level claim. An actual infinite polynomially separating lower family remains an alternative.",
+      "unrestricted_goal_complete": false
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "None: the exact module completion and same-operator obstruction preserve the previous unrestricted G3 count and arithmetic consequence. No separating lower family or new publication assessment is obtained.",
-  "previous_goal_turn_classification": "Progress in the interrupted mathematical continuation: it left the exact parking correspondence, proof and additive checker in the worktree, with focused matrix checks passed. The intervening presentation-only turn confirmed existing omission of project credits and changed no mathematical state. Revalidated main c4007d7, all 370 baseline tracked files, all 102 baseline research hashes, 83 prior continuations and 116 primary-source records before completing the pending work.",
+  "asymptotic_improvement_scope_this_iteration": "Sharp asymptotics for the universal primitive-wall direction spectrum; no improved unrestricted G3 exponent or polynomial lower separation.",
+  "previous_goal_turn_classification": "Progress: main 3073826 completed and independently verified the exact arithmetic parking valuation. The current worktree also held the unfinished primitive-wall proof, checker and its additional continuation; these were preserved, audited and rerun before integration. The new free-lattice comparison and collective wall-cost reduction build on the verified threshold, without changing the unrestricted exponent.",
   "uniform_relative_margin_hypothesis_status": "refuted_by_actual_all_field_quotients",
   "secondary_extremal_parameter_resolved": {
     "relative_margin_dimension_2": "Theta(n^-2)",
@@ -8570,5 +8784,44 @@
     "new_fan_enumeration_bound": false,
     "novelty_established": false,
     "goal_complete": false
-  }
+  },
+  "primitive_wall_spectrum": {
+    "proof": "docs/primitive_wall_spectrum.md",
+    "checker": "scripts/run_primitive_wall_checks.py",
+    "report": "results/research/primitive_wall_checks.json",
+    "minimum_colength": "prod(q_plus+1)+prod(q_minus+1)-2, for primitive mixed q",
+    "minimum_rigidity": "The wall degeneration is J_D+(x^q_plus-lambda*x^q_minus), lambda nonzero; D is the union of the two divisor boxes.",
+    "padding": "Every larger exact length in dimension at least three, over every field.",
+    "common_fan": "The exact common positive refinement of all length-n fans is the arrangement of all primitive mixed q with the minimum colength at most n.",
+    "three_variable_spectrum": "D3(n) ~ 3*n^2*log(n)/(2*zeta(3)).",
+    "fixed_dimension_spectrum": "D_d(n) ~ binom(2*d-2,d-1)*n^2*log(n)^(d-2)/(4*(d-2)!*zeta(d)); exact length for d>=3, length at most n for d=2.",
+    "universal_shadow_envelope_sum": "Theta(n^(10/3)*log(n+1)^2), a bound on the stated envelope budget, not actual shadow complexity.",
+    "classical_boundary": "Altmann--Sturmfels Propositions 1 and 3 supply the socle move and homogeneous edge-ideal framework; Lemma 13 and Algorithm 14 supply endpoint direction extraction. Product-divisor asymptotics, arithmetic-progression harmonic sums, Mobius inversion, Vandermonde convolution and zonotope refinement are classical inputs. Exact priority of the local threshold, equality rigidity and spectrum asymptotics is unassessed.",
+    "coexistence_gap": "The spectrum takes a union over different ideals, and each required universal hyperplane can already be realized by an ideal with two initials. Its size and exact common fan do not establish an individual fan count or the collective square-root-incidence bound.",
+    "unrestricted_G3_improved": false,
+    "polynomial_lower_separation_proved": false,
+    "novelty_established": false,
+    "goal_complete": false
+  },
+  "free_wall_threshold_and_budget": {
+    "proof": "docs/free_wall_threshold.md",
+    "checker": "scripts/run_free_wall_checks.py",
+    "report": "results/research/free_wall_threshold_checks.json",
+    "free_threshold": "For a primitive mixed q in fixed dimension d>=2, the first possible ordinary corner-cut size mu_d(q) is between 2^(-d)*A(q)*B(q) and (2*d)^d*A(q)*B(q), with the lower inequality strict.",
+    "algebraic_threshold": "The minimum quotient length is nu(q)=A(q)+B(q)-2, from the separately verified primitive-wall theorem.",
+    "uniform_quadratic_comparison": "max_(nu(q)<=n) mu_d(q)=Theta_d(n^2), for the at-most-length spectrum; exact length gives the same spectrum in d>=3.",
+    "full_support_family": "q_k=(k^2,-k,-k-1) has nu=2*k^2+3*k+1 and mu_3=Theta(k^4). The algebraic realization has two initials, not a growing fan separation.",
+    "collective_parameter": "V(I) sums nu(q_e) once over every undirected adjacency of maximal positive initial cones, counting repeated directions separately.",
+    "uniform_parameterized_bound": "For every actual length-n three-variable quotient, g(I)=O(1+n*L^2+n^(3/10)*V(I)^(7/10)*L^(3/5)), L=1+log(n+1).",
+    "proof_mechanism": "Small-cost directions have the exact universal spectrum bound O(T^2*log(T+1)); parallel exposed edges inject into vertices of the corresponding rational shadow. Large-cost adjacencies are at most V/T. Connected adjacency and threshold optimization yield the bound.",
+    "unproved_sufficient_condition": "V(I)=O(n^3*L^C) uniformly would imply G3=O(n^(12/5)*L^((7*C+6)/10)). The cubic bound is unproved, and 12/5 is conditional.",
+    "necessary_cubic_control": "The actual three-pole allocation family has V=3*sum_(A,B>=1,A+B<=n)(A+B)/gcd(A,B)=Theta(n^3), with an elementary coprime-pair proof.",
+    "limits": "A first-occurrence minimum varies the weight and supplies neither an all-weight free-prefix algorithm nor a count of coexisting walls. The whole-class direction spectrum is not one ideal's fan.",
+    "unrestricted_G3_improved": false,
+    "polynomial_lower_separation_proved": false,
+    "cubic_wall_cost_budget_proved": false,
+    "novelty_established": false,
+    "goal_complete": false
+  },
+  "conditional_wall_budget_reduction_established_this_iteration": true
 }
