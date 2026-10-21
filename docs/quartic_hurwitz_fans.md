@@ -17,6 +17,10 @@ Here \(V\) sums primitive costs over all actual undirected wall pieces,
 with multiplicity, and \(\mathcal U\) is the union of reduced Gröbner
 bases. The constants are absolute; lower bounds apply for sufficiently
 large \(n\). The quotient length is \(n\).
+In characteristic two, the
+[Frobenius transport theorem](frobenius_pole_transport.md#the-quartic-logarithm-disappears-in-characteristic-two)
+removes all three logarithmic gaps: the respective orders are exactly
+quadratic, cubic and quadratic, uniformly in \(F\).
 
 These are all finite quotients of the one fixed curve: its ring is
 \(K[t,t^{-1},(t-1)^{-1}]\), a localization of a principal ideal domain.
@@ -185,7 +189,9 @@ contradicts optimality in the coordinate moving in the wrong direction.
 Thus at most \(2M+1\) distinct pairs appear per parity. Sum over \(b\).
 The lower witnesses below are all in this chart. The unresolved logarithm
 in (2) is confined to the other chart; an arbitrary hole set at each
-fixed \(b\) is insufficient to remove it.
+fixed \(b\) is insufficient to remove it. In characteristic two the
+additional periodicity \(\Delta_h(b+2)=\Delta_h(b)\) does remove it,
+as proved in the Frobenius transport note.
 
 ## Quadratic output and cubic wall cost are forced over every field
 
