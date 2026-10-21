@@ -437,6 +437,173 @@ order. This faithful reduction and ordinary interpolation-basis
 machinery do not bound how many degree profiles occur as shifts vary.
 A new all-profile count remains necessary for the main goal.
 
+## Exact convex completion, and why cyclic-span ranks lose the fan
+
+For a general surjective map $K[T]^m\to V$, $\dim_KV=n$, let
+$v_i$ be its seeds and $T$ its endomorphism. Write $D$ for the
+integer allocations $d\ge0$, $\sum_i d_i=n$, for which
+$\{T^av_i:0\le a<d_i\}$ is a basis, and put
+
+$$
+ q(d)=\sum_i\binom{d_i}{2},\qquad
+ f(S)=\dim_K\sum_{i\in S}K[T]v_i.
+$$
+
+The nearest-site formulation is exact **on $D$**:
+
+$$
+ q(d)+s\cdot d
+   =\tfrac12\|d+s\|_2^2-\tfrac12\|s\|_2^2-\tfrac n2.
+                                                               \tag{M1}
+$$
+
+Its ordinary convex hull is the classical polymatroid base polytope
+
+$$
+ \operatorname{conv}D
+ =P(f)=\{d\ge0:d(S)\le f(S),\ d([m])=n\}.                       \tag{M2}
+$$
+
+Here $f$ is submodular by the subspace dimension formula. For a
+proof of the equality, the inclusion from left to right is immediate.
+Order the seeds arbitrarily and take the successive rank increments
+of their cyclic subspaces. The previously generated space is
+$T$-stable. In its quotient, the next seed is cyclic, so its first
+rank-increment-many powers form a basis. Thus every greedy vertex
+of $P(f)$ belongs to $D$. The classical greedy description proves
+(M2). The subspace-rank and base-polytope framework is established;
+compare [Brandenburg--Loho--Smith, Sections 1.1 and 2.1](https://arxiv.org/html/2403.07751v1#S1.SS1).
+
+One cannot minimize $q+s\cdot d$ over all integer points of $P(f)$.
+The following exact completion retains the missing information. On
+the finite chain ground $E'=\{(a,i):0\le a<n,\ 1\le i\le m\}$,
+define
+
+$$
+ v(d)=\min\left\{\sum_{(a,i)\in B}a:
+      B\text{ is a column basis},\ |B\cap E'_i|=d_i\right\},       \tag{M3}
+$$
+
+with value $+\infty$ if there is no such basis. This is aggregation
+of a linear cost on the bases of one ordinary matroid. Hence $v$
+is an M-convex function, by the established aggregation theorem
+[Murota, Proposition 4.6(3), equation (4.4)](https://arxiv.org/pdf/2001.03018v4).
+Its domain is $P(f)\cap\mathbb Z^m$, and its convex extension is the
+lower convex envelope of $q$ on $D$. In particular,
+
+$$
+ q(d)\le v(d)\le\binom n2,\qquad
+ v(d)=q(d)\ \Longleftrightarrow\ d\in D,                        \tag{M4}
+$$
+
+for integer $d\in P(f)$, and for every real shift $s$,
+
+$$
+ \min_d(v(d)+s\cdot d)=\min_{d\in D}(q(d)+s\cdot d).             \tag{M5}
+$$
+
+To justify the convex-envelope assertion, first minimize the basis
+cost $a+s_i$, breaking ties by a fixed position order. Greedy selection
+is closed under division by $T$: a dependency expressing an omitted
+term by earlier terms, multiplied by $T$, precludes its successor
+from being selected. Cayley--Hamilton excludes powers $a\ge n$.
+This gives (M5), so both lower convex hulls agree. The aggregated
+M-convex function is convex-extensible and has no domain holes;
+thus its values at integer points equal that envelope. For a fixed
+allocation the smallest possible sum of distinct powers in chain $i$
+is $\binom{d_i}{2}$, with equality only for its prefix. This proves
+the lower bound and contact criterion in (M4). Every point of
+$P(f)=\operatorname{conv}D$ is a convex combination of allocations
+with $q(d)\le\binom n2$, proving the upper bound. M-convexity,
+aggregation and convex extensibility are classical tools, not new
+optimization results. The quadratic on $D$ need not itself satisfy
+the unit exchange axiom.
+
+Every $d\in D$ is uniquely selected by the nonnegative integer shift
+$s_i=n-d_i\in[0,n]$. Its $n$ prefix terms have shifted cost below
+$n$, and every other term has cost at least $n$. Thus $D$ is exactly
+the set of full-shift module standard profiles, not merely a larger
+feasible set. In (M7), even bounded shifts permit exponentially many
+profiles since $m\ge n$. An algorithm for one supplied shift does
+not provide a polynomial all-shift enumeration theorem. A counting
+argument for the original problem must retain the special
+two-parameter plane, rather than enumerate every module shift.
+
+This is consistent with the published shifted-Popov invariance result:
+[Jeannerod--Neiger--Schost--Villard, Definitions 1.1--1.2 and Lemmas 3.3--3.4](https://arxiv.org/html/1602.00651v1#S3)
+identify pivot degrees for a fixed shift and fixed row module. The
+same abstract quotient invariant factors do not imply the same embedded
+row module or the same pivot degrees. The displayed proofs of those
+lemmas were inspected; no new degree-invariance theorem is claimed.
+
+### Same operator and rank polytope, one initial ideal or every corner cut
+
+The loss in (M2) is already present for actual radical point ideals.
+For $n\ge2$, in characteristic zero put
+$F_n(x)=\prod_{j=1}^n(x-j)$ and consider
+
+$$
+ I_0=(F_n(x),y-1,z-1),\qquad
+ I_1=(F_n(x),y-x^n,z-x^{n^2}).                                \tag{M6}
+$$
+
+Both algebras have length $n$, with the **same** operator
+$T=\operatorname{diag}(1,\ldots,n)$ and cyclic vector $1$ in their
+evaluation representations. For the complete seed set $J_n$ of
+(O11), every individual seed is cyclic: its nonzero evaluations
+multiply an ordinary Vandermonde matrix by an invertible diagonal
+matrix. Hence both have
+$f(\varnothing)=0$, $f(S)=n$ for every nonempty $S$, the same
+polytope $P(f)=n\Delta_{m-1}$, and the same $K[T]$-quotient
+invariant factors, with single nonunit factor $F_n$.
+
+For $I_0$ all seeds are identical. Its only prefix allocations are
+$ne_i$, while $v_0(d)=\binom n2$ on every integer composition.
+Any two occupied prefixes duplicate their constant term; conversely,
+any allocation can distribute the independent powers $0,\ldots,n-1$
+among its chains. Since $y,z$ reduce to constants, $g(I_0)=1$.
+
+For $I_1$, a monomial with all coordinates below $n$ has column
+$(j^{a+nb+n^2c})_{j=1}^n$. The exponent codes are distinct. A
+generalized Vandermonde matrix at strictly increasing positive nodes
+is nonsingular: a nonzero polynomial with $r$ nonzero terms has at
+most $r-1$ distinct positive roots, by Rolle's theorem inductively
+after dividing by its lowest power. Thus every prefix allocation
+is feasible, $v_1=q$, and
+
+$$
+ |D_0|=m,\qquad |D_1|=\binom{n+m-1}{m-1},\qquad
+ g(I_1)=C_3(n).                                               \tag{M7}
+$$
+
+Indeed all columns on the universal ground $E$ are in uniform
+position, so every global order selects exactly its first $n$
+monomials. The last equality is with the established corner-cut
+class; it is not a new counting theorem. All of (M6)--(M7) also
+have a version in every characteristic over $k(t_1,\ldots,t_n)$:
+replace $j$ by algebraically independent $t_j$ in $F_n$ and the
+evaluation nodes. Distinct exponent codes give distinct determinant
+monomials with coefficients $\pm1$, which remain nonzero even in
+characteristic two. No positive-root argument is used there.
+
+The incorrect integer relaxation can have an unbounded value gap
+even on the original positive two-parameter shift plane. At
+$w=(n^2,1,n+1)$, divide costs by $w_x=n^2$. The relaxed first
+$n$ terms are $1,y,\ldots,y^{n-1}$ and their value is
+$\binom n2/n^2$. The true value for $I_0$ is $\binom n2$, a
+factor $n^2$ larger. The exact completion (M3) gives the true value.
+
+Thus knowing cyclic-span ranks, invariant factors, or the allocation
+polytope does not preserve the positive fan, even with the operator
+held fixed. The useful remaining object is the full valuation $v$,
+with its contact condition (M4), restricted to
+$s_{bc}=\beta b+\gamma c$ for $\beta,\gamma>0$. A new collective
+bound must exploit that valuation and the two additional commuting
+multiplications, or return to the rank-preserving hyperbolic incidence
+budget. The classical M-convex reformulation alone supplies no such
+bound. No unrestricted count, separating lower family, novelty or
+publication claim follows from this obstruction.
+
 ## An exact prime-digit rank law in a nonreduced family
 
 Let $K$ have prime characteristic $p$ and consider the actual length-$n$
@@ -623,3 +790,12 @@ compared with independent clipping, every selected neighbor is checked
 along its whole shared edge, and all bounded integer comparison normals
 are tested for the claimed sign preservation. Inactive midpoint ties are
 explicitly retained. The two algorithms recover identical state halfspaces.
+The additional module controls enumerate every basis on finite chain
+grounds, recover the grouped minimum-degree costs, and compare them with
+an independent exact convex-envelope calculation, the full unit exchange
+axiom and shifted greedy selection. The paired actual ideals are checked
+by integer determinants for every prefix allocation through length five;
+symbolic determinant coefficients exercise characteristics two, three,
+five and seven through length four. Those symbolic tests concern
+rational-function-field realizations, not specialization to those small
+finite fields. Four complete paired fans are independently reconstructed.

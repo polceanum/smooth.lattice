@@ -91,6 +91,15 @@ formulation preserving every quotient's special dependencies and an
 exact base-prime rank recursion for nonreduced unit-power quotients.
 These do not settle the number of coherent orderings. Coefficient bit
 costs, current-best priority and practical speed remain unestablished.
+The same note now identifies an exact classical M-convex completion of
+the module's chain allocations. Cyclic-span ranks and invariant factors
+alone lose the fan: two explicit radical families have the same operator
+and rank polytope, but one has a single initial ideal and the other all
+generic corner cuts. Their exact degree costs retain the distinction.
+This rules out the simple quadratic relaxation; it supplies no new
+unrestricted count or separating lower family.
+Even bounded unrestricted shifts can have exponentially many profiles,
+so a useful count must retain the original two-parameter weight plane.
 Direct traversal of positive cones uses at most `6g+1` basis queries and
 `O((g+1)*n^(5/3)*log(n+1))` geometry, removing the earlier quadratic
 dependence on the output count `g`. Cone traversal and fast conversion

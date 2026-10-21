@@ -7,8 +7,8 @@ theorem uses the cited three-dimensional hull algorithm, not this checker.
 from collections import defaultdict
 from fractions import Fraction as Q
 from functools import lru_cache
-from itertools import combinations, product
-from math import comb, gcd, lcm
+from itertools import combinations, permutations, product
+from math import comb, factorial, gcd, lcm
 from pathlib import Path
 import hashlib
 import json
@@ -189,6 +189,245 @@ def prefix_module_controls(cases):
                          'fixed_chain_generators':len(chains),'prefix_queries':rows})
     return {'counts':dict(counts),'fixtures':fixtures,
             'scope':'One fixed univariate module per actual commuting quotient, with query shifts from exact chain lengths. This is faithful for special and nonreduced samples, and is not the generic min(n,carrier-rank) formula.'}
+
+
+def weak_compositions(total, parts):
+    if parts == 1:
+        yield (total,)
+    else:
+        for first in range(total+1):
+            for tail in weak_compositions(total-first, parts-1):
+                yield (first,)+tail
+
+
+def bareiss_det(matrix):
+    """Independent exact integer determinant for the large Vandermonde entries."""
+    A = [list(row) for row in matrix]
+    sign, denominator = 1, 1
+    for k in range(len(A)-1):
+        pivot = next((i for i in range(k, len(A)) if A[i][k]), None)
+        if pivot is None:
+            return 0
+        if pivot != k:
+            A[k], A[pivot] = A[pivot], A[k]
+            sign = -sign
+        value = A[k][k]
+        for i in range(k+1, len(A)):
+            for j in range(k+1, len(A)):
+                numerator = A[i][j]*value-A[i][k]*A[k][j]
+                assert numerator % denominator == 0
+                A[i][j] = numerator//denominator
+            A[i][k] = 0
+        denominator = value
+    return sign*A[-1][-1]
+
+
+def paired_graph_model(n, moment):
+    exponents = (1, n, n*n) if moment else (1, 0, 0)
+    nodes = tuple(range(1, n+1))
+    def ev(a):
+        code = dot(exponents, a)
+        return {i: t**code for i, t in enumerate(nodes)}
+    matrices = tuple(tuple(tuple(t**e if i == j else 0 for i in range(n))
+                           for j, t in enumerate(nodes)) for e in exponents)
+    return n, ev, matrices, (1,)*n
+
+
+def module_profile_controls(cases):
+    """Exhaustive basis costs, independent lower envelopes, and an actual pair.
+
+    The source proves the uniform statements. These finite controls do not
+    assert a new M-convex theorem or any improvement of the G3 bound.
+    """
+    counts = defaultdict(int)
+    fixtures, paired = [], []
+
+    def energy(d):
+        return sum(comb(a, 2) for a in d)
+
+    def envelope(D, target):
+        # At most three sites suffice in the two-dimensional allocation plane.
+        best = None
+        def area(a, b, c):
+            return (b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0])
+        for size in (1, 2, 3):
+            for sites in combinations(D, size):
+                if size == 1:
+                    weights = (Q(1),) if sites[0] == target else ()
+                elif size == 2:
+                    a, b = sites
+                    j = next(j for j in range(2) if a[j] != b[j])
+                    t = Q(target[j]-a[j], b[j]-a[j])
+                    weights = (1-t, t) if 0 <= t <= 1 and all(
+                        target[k] == (1-t)*a[k]+t*b[k] for k in range(3)) else ()
+                else:
+                    a, b, c = sites
+                    den = area(a, b, c)
+                    weights = ((Q(area(target, b, c), den),
+                                Q(area(a, target, c), den),
+                                Q(area(a, b, target), den)) if den else ())
+                    if weights and min(weights) < 0:
+                        weights = ()
+                if weights:
+                    cost = sum(t*energy(d) for t, d in zip(weights, sites))
+                    best = cost if best is None else min(best, cost)
+        return best
+
+    profile_cases = list(cases)+[
+        ('same_operator_'+tag+'_'+str(n), paired_graph_model(n, moment), 0)
+        for n in (2, 3) for tag, moment in (('constant', False), ('moment', True))]
+    for name, model, p in profile_cases:
+        n, ev, matrices, one = model
+        chains = ((0, 0), (1, 0), (0, 1))
+        labels = tuple(product(range(n), range(3)))
+        columns = {u: image_from_matrices(matrices, one,
+                                          (u[0], *chains[u[1]]), p) for u in labels}
+        def independent(B):
+            chosen, _ = field_basis(B, lambda u: {
+                i: x for i, x in enumerate(columns[u]) if x}, p)
+            return len(chosen) == n
+        chosen, _ = field_basis(labels, lambda u: {
+            i: x for i, x in enumerate(columns[u]) if x}, p)
+        if len(chosen) < n:
+            # A small seed subcollection need not generate the full module.
+            continue
+        values, D = {}, set()
+        for B in combinations(labels, n):
+            counts['exhaustive_chain_ground_subsets'] += 1
+            if not independent(B):
+                continue
+            d = tuple(sum(i == j for a, i in B) for j in range(3))
+            cost = sum(a for a, i in B)
+            values[d] = min(values.get(d, cost), cost)
+            if all({a for a, i in B if i == j} == set(range(d[j])) for j in range(3)):
+                D.add(d)
+            counts['independent_full_chain_bases'] += 1
+        f = {}
+        for mask in range(8):
+            E = [u for u in labels if mask & (1 << u[1])]
+            selected, _ = field_basis(E, lambda u: {
+                i: x for i, x in enumerate(columns[u]) if x}, p)
+            f[mask] = len(selected)
+        domain = {d for d in weak_compositions(n, 3) if all(
+            sum(d[j] for j in range(3) if mask & (1 << j)) <= f[mask]
+            for mask in range(8))}
+        assert set(values) == domain
+        assert D == {d for d, value in values.items() if value == energy(d)}
+        for d, value in values.items():
+            assert energy(d) <= value <= comb(n, 2)
+            assert envelope(D, d) == value
+            counts['independent_convex_envelope_and_contact_equalities'] += 1
+        for d in D:
+            s = tuple(n-a for a in d)
+            ordered = sorted(labels, key=lambda u: (u[0]+s[u[1]], u[1]))
+            B, _ = field_basis(ordered, lambda u: {
+                i: x for i, x in enumerate(columns[u]) if x}, p)
+            expected = {(a, j) for j in range(3) for a in range(d[j])}
+            assert set(B) == expected
+            assert all((a+s[j] < n) == ((a, j) in expected) for a, j in labels)
+            counts['bounded_nonnegative_shift_isolating_witnesses'] += 1
+        for d, e in product(values, repeat=2):
+            for i in range(3):
+                if d[i] <= e[i]:
+                    continue
+                candidates = []
+                for j in range(3):
+                    if d[j] < e[j]:
+                        a = tuple(d[k]-(k == i)+(k == j) for k in range(3))
+                        b = tuple(e[k]+(k == i)-(k == j) for k in range(3))
+                        if a in values and b in values:
+                            candidates.append(values[a]+values[b])
+                assert candidates and min(candidates) <= values[d]+values[e]
+                counts['all_valuated_unit_exchange_axioms'] += 1
+        for i, j in product(range(-6, 7), repeat=2):
+            s = (Q(i, 2), Q(j, 3), Q(0))
+            target = min(value+dot(s, d) for d, value in values.items())
+            assert target == min(energy(d)+dot(s, d) for d in D)
+            ordered = sorted(labels, key=lambda u: (u[0]+s[u[1]], u[1]))
+            B, _ = field_basis(ordered, lambda u: {
+                k: x for k, x in enumerate(columns[u]) if x}, p)
+            d = tuple(sum(k == j for a, k in B) for j in range(3))
+            assert d in D and energy(d)+dot(s, d) == target
+            assert all({a for a, k in B if k == j} == set(range(d[j])) for j in range(3))
+            assert energy(d)+dot(s, d) == sum((a+b)**2 for a, b in zip(d, s))/2-sum(a*a for a in s)/2-Q(n, 2)
+            counts['shifted_value_greedy_and_nearest_site_equalities'] += 1
+        fixtures.append({'model': name, 'length': n, 'characteristic': p,
+                         'cyclic_span_rank_by_subset_mask': f,
+                         'valuated_profiles': [{'allocation': d, 'value': value,
+                                               'prefix_energy': energy(d), 'prefix_basis': d in D}
+                                              for d, value in sorted(values.items())]})
+
+    fan_cases = []
+    for n in range(2, 6):
+        chains = tuple((b, c) for b in range(n) for c in range(n) if (b+1)*(c+1) <= n)
+        m = len(chains)
+        models = [paired_graph_model(n, moment) for moment in (False, True)]
+        for model in models:
+            _, ev, matrices, one = model
+            for b, c in chains:
+                A = [[ev((a, b, c))[i] for a in range(n)] for i in range(n)]
+                assert bareiss_det(A)
+                counts['paired_individual_cyclic_seed_ranks'] += 1
+            assert all(apply(matrices[0], unit, 0) == tuple((i+1)*x for i, x in enumerate(unit))
+                       for unit in tuple(tuple(int(i == j) for i in range(n)) for j in range(n)))
+            for j in range(1, 3):
+                power = (n if j == 1 else n*n) if model is models[1] else 0
+                for unit in tuple(tuple(int(i == j) for i in range(n)) for j in range(n)):
+                    image = unit
+                    for _ in range(power):
+                        image = apply(matrices[0], image, 0)
+                    assert image == apply(matrices[j], unit, 0)
+                    counts['actual_graph_relation_matrix_annihilations'] += 1
+        compositions = list(weak_compositions(n, m))
+        actual = 0
+        for d in compositions:
+            B = tuple((a, b, c) for size, (b, c) in zip(d, chains) for a in range(size))
+            matrix0 = [[models[0][1](a)[i] for a in B] for i in range(n)]
+            matrix1 = [[models[1][1](a)[i] for a in B] for i in range(n)]
+            good0, good1 = bool(bareiss_det(matrix0)), bool(bareiss_det(matrix1))
+            assert good0 == (max(d) == n) and good1
+            actual += good0
+            counts['paired_all_prefix_allocation_determinants'] += 2
+            if n <= 4:
+                codes = [a+n*b+n*n*c for a, b, c in B]
+                terms = {}
+                for order in permutations(range(n)):
+                    monomial = tuple(codes[k] for k in order)
+                    sign = (-1)**sum(order[i] > order[j] for i in range(n) for j in range(i+1, n))
+                    terms[monomial] = terms.get(monomial, 0)+sign
+                assert len(terms) == factorial(n)
+                for characteristic in (2, 3, 5, 7):
+                    assert all(c % characteristic for c in terms.values())
+                    counts['symbolic_distinct_determinant_terms_mod_characteristic'] += 1
+        assert actual == m and len(compositions) == comb(n+m-1, m-1)
+        d0 = tuple(n if chain == (0, 0) else 0 for chain in chains)
+        relaxed = tuple(1 if c == 0 else 0 for b, c in chains)
+        assert sum(relaxed) == n
+        s = tuple(Q(b+(n+1)*c, n*n) for b, c in chains)
+        assert energy(d0)+dot(s, d0) == comb(n, 2)
+        assert energy(relaxed)+dot(s, relaxed) == Q(comb(n, 2), n*n)
+        assert min(energy(d)+dot(s, d) for d in compositions) == Q(comb(n, 2), n*n)
+        counts['all_composition_positive_relaxation_minima'] += 1
+        paired.append({'length': n, 'chain_generators': m,
+                       'common_diagonal_operator': list(range(1, n+1)),
+                       'common_nonempty_subset_rank': n,
+                       'constant_prefix_bases': actual,
+                       'moment_prefix_bases': len(compositions),
+                       'positive_weight': (n*n, 1, n+1),
+                       'constant_true_normalized_cost': str(Q(comb(n, 2))),
+                       'incorrect_quadratic_relaxation_cost': str(Q(comb(n, 2), n*n))})
+        if n <= 3:
+            for tag, model in zip(('constant', 'moment'), models):
+                counter = defaultdict(int)
+                fan_cases.append(run_case('paired_'+tag+'_'+str(n), model, 0, counter))
+    assert all(f['initial_ideals'] == 1 for f in fan_cases if 'constant' in f['model'])
+    counts['independent_complete_paired_fans'] = len(fan_cases)
+    return {'counts': dict(counts), 'valuated_completion_fixtures': fixtures,
+            'same_operator_same_rank_polytope_pairs': paired,
+            'independent_complete_positive_fans': fan_cases,
+            'uniform_scope': 'The cyclic-span rank polytope and the fixed K[T]-quotient invariant factors do not preserve the positive fan. The exact missing information is the classical aggregated matroid valuation, whose quadratic contact set is the feasible prefix set. The moment-graph family realizes the existing corner-cut class; it gives no supergeneric lower bound.',
+            'new_unrestricted_G3_count': False, 'novelty_established': False,
+            'goal_complete': False}
 
 
 def digit_rank(n, modulus, p, residues):
@@ -743,6 +982,7 @@ def main():
     prefix=prefix_module_controls(cases)
     digits = prime_digit_controls()
     walk = adjacency_walk_controls(cases, fixtures)
+    profiles = module_profile_controls(cases)
     assert [f['initial_ideals'] for f in fixtures[:9]] == [1, 3, 3, 6, 5, 6, 6, 4, 1]
     sources = ('docs/oracle_fan_enumeration.md', 'scripts/run_oracle_enumeration_checks.py',
                'docs/rational_shadow_bound.md', 'docs/power_carrier_bounds.md',
@@ -756,6 +996,7 @@ def main():
               'faithful_fixed_module_prefix_ranks':prefix,
               'prime_digit_rank_law': digits,
               'direct_positive_cone_traversal': walk,
+              'shifted_module_profile_obstruction': profiles,
               'uniform_results': {'truncated_state_vertices': 'at most 4*g',
                                   'vertex_queries': 'at most 12*g+1, including initialization',
                                   'field_operations': 'O(n^3*L^2+(g+1)*n^omega*L), L=1+log(n+1)',
@@ -778,7 +1019,8 @@ def main():
               'scope': 'Neiger--Schost Theorem 1.7 and Proposition 3.7 apply to arbitrary commuting matrices and monomial orders. Direct positive-cone traversal, using classical Groebner cone descriptions and adjacency, is independently compared with exhaustive state polytopes and the retained older oracle reconstruction. Exact polar hulls remove the previous quadratic output geometry budget. Field arithmetic in this checker is elementary; the theorem uses published fast linear algebra. No new general traversal method, unrestricted count, current-best priority, coefficient-bit cost or practical speedup is established.',
               'source_sha256': {f: hashlib.sha256((ROOT/f).read_bytes()).hexdigest() for f in sources}}
     (ROOT/'results/research/oracle_enumeration_checks.json').write_text(json.dumps(report, indent=2)+'\n')
-    print(json.dumps({'previous_counts': report['counts'], 'direct_walk': walk['counts']}, indent=2))
+    print(json.dumps({'previous_counts': report['counts'], 'direct_walk': walk['counts'],
+                      'module_profiles': profiles['counts']}, indent=2))
 
 
 if __name__ == '__main__':
