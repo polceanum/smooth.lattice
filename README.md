@@ -257,7 +257,14 @@ over every field. Each ordered middle-price region has at most `12*n+7`
 original cones and an exact rank query. Together with the cheapest-`z` result,
 only `O(n)` cones meet weights where `z` is not largest; generic
 characteristic-dependent changes are confined to the `z`-largest region.
-That region and the full family count remain open. For the fixed degree-five
+An [equal-degree unit rank theorem](docs/equal_degree_unit_fans.md) now
+closes that region for the entire `r=2` family: its full fan has
+`Theta(n)` initials, all coherent integral prefix quotients are torsion-free,
+and every positive-weight rank query takes `O(s+1)` exact arithmetic/floor
+operations with constant auxiliary storage. Its universal denominator is
+one. This excludes `r=2` as a growth-amplification route and locates the
+first exceptional-prime behavior at `r=3`; the full count for `r>=3` and
+the unrestricted extremal goal remain open. For the fixed degree-five
 equation, an integral prepared
 normal form now classifies the entire `z^2` cone in every characteristic.
 The exceptional-prime witnesses all enter this same elementary cone, so their
