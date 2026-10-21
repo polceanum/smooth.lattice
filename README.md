@@ -127,6 +127,11 @@ characteristic two. This confirms a coherent arithmetic effect while
 excluding determinant size alone as an amplification mechanism. The
 sharp distinct-prime count remains open; the equal-period witness
 does not settle it.
+A [growing-pole model](docs/pole_order_fans.md) has an exact generic
+selection rule in every characteristic. Its whole fan stabilizes to a
+generic cylinder when `n<=2k+1`; special samples can violate this identity.
+A remaining intermediate pole-order range still needs a coherent count.
+No polynomial lower gain is established by these reductions.
 Fixed internal list orders give exact rank-oracle formulas, but a
 polylogarithmic cover by two-list domains is impossible even for that
 quadratic family. Three-list ranks require a signed correction with
