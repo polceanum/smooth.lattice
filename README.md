@@ -269,6 +269,17 @@ equation, an integral prepared
 normal form now classifies the entire `z^2` cone in every characteristic.
 The exceptional-prime witnesses all enter this same elementary cone, so their
 rank changes do not demonstrate a fan-count gain.
+
+For the remaining higher interactions, an
+[exact binomial reduction](docs/higher_seed_binomial_reduction.md) computes
+the two-cheap-equal seed ranks, including their integral arithmetic.
+It gives a coefficient-independent formula for coprime binary forms and
+explicit upper/lower rank bounds for noncoprime forms. A precisely stated
+coherent-cutoff matrix identity would close the whole family; it remains
+unproved. Finite rank and Smith matches support that identity, while exact
+counterexamples exclude extending it to arbitrary downward staircases or
+the opposite price regime. No new full-family count follows yet.
+
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count

@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Keep every original unrestricted G_3 acceptance criterion. The full r=2 signed transfer is now proved, with a sharp Theta(n) all-field fan bound and no exceptional primes. Do not continue searching for amplification in this closed family. The higher-interaction route is now limited to 3<=r<sqrt(s), only where z is strictly largest. After x,y exchange and w_z=1 this is 0<u<1, 0<lambda<1-u with w=(u+lambda,u,1). The largest-z signed transfer remains unproved for r>=3. Its unresolved two-cheap-equal seed has a canonical lower degeneration z^2+Y^2+Y^2*z^r; finite equality checks are not a uniform theorem. The equal-degree unit theorem applies to (1+H)*z^d+Q with both binary degrees d, and cannot be imported when the high z exponent differs. Seek a structural rank identity or an actual field/cutoff failure there, and determine whether the arithmetic changes can create a growing fan. The r=3 every-prime and CRT witnesses still enter the same elementary z^2 cone and do not count as extra cones. If transfer closes the family, treat this as route exclusion and move to a comparably consequential unrestricted construction or bound. Retain the lattice-shadow and low-order two-parameter rectangle routes, the strongest-current primary audit and all earlier results. A restricted theorem, oracle, finite table, draft or unverified novelty claim cannot complete this goal. Never send messages or submissions.",
+  "next_proof_task": "Keep every original unrestricted G_3 acceptance criterion. The entire r=2 route is closed; do not search for amplification there. For the remaining 3<=r<sqrt(s), largest-z domain, investigate identity (B8) in docs/higher_seed_binomial_reduction.md at a=2: the regular and canonical finite binomial core matrices must have equal ranks at every coherent cutoff, over every field, with 0<u<Z. The exact block maps, original integral four-core decomposition and regular/canonical rank sandwich are now proved. Uniform regular/canonical seed equality is equivalent to this core identity, by inverting the homogeneous-channel convolution. If it holds, the rank sandwich and existing seed-to-cone lifting give full original signed transfer and a uniform O(n) family count. It is sufficient, not established as necessary for full signed transfer: a failure of the stronger core identity requires comparison with the actual square-deleted face before declaring transfer false. Arbitrary downward staircases and the opposite price regime have exact all-field counterexamples, so a general unfiltered change of basis or omitted cutoff condition cannot justify the conjecture. The Mobius change matches binomial slopes but retains a lower-index condition and different labels. Finite Smith matches do not prove any uniform rank or prime-power assertion. If this family closes, treat it as route exclusion rather than goal completion and return to a comparably consequential unrestricted construction or bound. Preserve the lattice-shadow and low-order two-parameter rectangle routes, all prior results, current primary-source limits and the original completion bar. No finite table, rank oracle, auxiliary theorem, draft or unverified novelty claim completes the goal. No messages or submissions. A possible structural route is the classical prime-digit factorization of the binomial entries, with carry-aware treatment of the selected indices. This must yield a rank theorem; further entry patterns or counts of nonzero coefficients alone are insufficient.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -127,7 +127,9 @@
     "Compare the specific fixed equation x^2+y^2+z^2+x*y*z^3, coherent cyclic prefix matrix with ternary-tree coefficient, and cutoff O(p)/length O(p^2) realization against current modular Groebner and integral standard-basis literature. Gessel--Xin Lemma 3.2 and pp. 10--11 already give exactly the coefficient law. Abbott--Bigatti--Robbiano Section 2.2 already gives finite bad-prime sets for each fixed ideal. Singh Section 4 already gives every-prime torsion in a fixed hypersurface local cohomology module. No identification of that module with this finite coherent prefix, novelty certificate or additional fan count is inferred. The simultaneous finite-prime realization now uses explicit stable residue classes, elementary factorial valuations and CRT; these arithmetic tools are classical, and the consequence concerns fixed finite rank sampling rather than all modular algorithms.",
     "Assess the exact signed-face Laurent blocks, their coupled cutoff, the explicit integral preparation for r=3 and the complete z^2 cone threshold against current standard-basis, filtered-module and preparation literature. The signed-grading linear bound is an earlier repository theorem with priority still open. Fukuda--Jensen--Thomas Proposition 2.6, Corollary 2.11, Lemmas 2.12--2.13 and Corollary 2.14, with proofs, already give the signed cone and successive-initial machinery. Gessel--Xin already gives the series coefficients. The uniform signed transfer (S7) is unproved; finite entire-region checks and unsuccessful searches are not evidence of a uniform theorem or novelty.",
     "Assess the exact positive-price noncoprime extension, canonical degeneration sandwich, Laurent interval flag and uniform original middle-z transfer against current primary work on filtered Hilbert functions and monomial rank flags. Specialization, field extension, monic division and cone convexity are classical. The negative-price and zero-form extensions fail at exact saved examples. The original largest-z transfer and unrestricted extremal priority remain open.",
-    "Assess the equal-degree unit rank law, its generic/canonical price-birth identity and the sharp full r=2 fan classification against current weighted Hilbert-function and filtered binary-form literature. Specialization, regular-sequence freeness, rational interval flags and monic base change are classical. The universal-denominator-one and integral prefix assertions require actual integer ideal membership, supplied by the monic reference quotient. These restricted results have no priority certificate and do not resolve unrestricted G_3."
+    "Assess the equal-degree unit rank law, its generic/canonical price-birth identity and the sharp full r=2 fan classification against current weighted Hilbert-function and filtered binary-form literature. Specialization, regular-sequence freeness, rational interval flags and monic base change are classical. The universal-denominator-one and integral prefix assertions require actual integer ideal membership, supplied by the monic reference quotient. These restricted results have no priority certificate and do not resolve unrestricted G_3.",
+    "Compare the exact regular/canonical binomial core reduction and coherent-cutoff rank identity with current filtered-module, polynomial-interpolation and determinant literature. Homogeneous freeness, specialization, binomial expansion and Smith form are classical. French unit triangular Hankel congruences were inspected only at the stated definitions/lemmas; no matching of the selected rectangular matrices has been established. Leading Hankel determinants alone do not prove every required rank, and unsuccessful searches establish no novelty.",
+    "If prime-digit decomposition is used to prove (B8), separate the classical Lucas factorization and Rowland coefficient-valuation counts from the unproved ranks of shifted selected matrices. Coherent carry constraints and linear dependence remain to be controlled; no novelty or rank theorem follows from entrywise self-similarity alone."
   ],
   "primary_sources": [
     {
@@ -579,6 +581,19 @@
       "title": "Ideals Modulo a Prime",
       "url": "https://arxiv.org/pdf/1801.06112v3",
       "scope": "Re-read Theorem 2.2 and proof, Example 2.2 and Section 2.2. Modular equality requires integer membership as well as integral reduced coefficients. The monic quotient supplies this for r=2. Universal-denominator finiteness is classical; this family’s precise priority remains open."
+    },
+    {
+      "authors": "Christopher French",
+      "title": "Transformations Preserving the Hankel Transform",
+      "url": "https://cs.uwaterloo.ca/journals/JIS/VOL10/French/french13.pdf",
+      "scope": "Inspected Example 1.2, Definitions 2.3-2.4 and Lemmas 2.9 and 2.14 with proofs. Their unit triangular Hankel congruences are classical; no identification with the required selected rectangular binomial ranks has been established. Neither application nor novelty is inferred."
+    },
+    {
+      "authors": "Eric Rowland",
+      "title": "A matrix generalization of a theorem of Fine",
+      "url": "https://arxiv.org/pdf/1704.05872",
+      "version": "arXiv:1704.05872v2",
+      "scope": "Inspected Section 1, Theorem 1 statement and displayed proof outline, including the carry recurrences. It counts individual coefficient valuations by digit matrices, not ranks of selected binomial matrices. Lemma 4 details and any rank extension have not been audited or established."
     }
   ],
   "verification": {
@@ -1348,19 +1363,46 @@
       "build": "./build.sh passed",
       "smoke": "python3 tests/test_smoke.py passed",
       "scope": "Uniform proofs of the equal-degree complete-tier law and full r=2 classification, with independent finite controls. No original r>=3 full fan theorem, unrestricted improvement or priority certificate."
+    },
+    "higher_seed_binomial_research": {
+      "command": "python3 -B scripts/run_higher_seed_checks.py",
+      "report": "results/research/higher_seed_checks.json",
+      "status": "passed",
+      "source_hashes_verified": true,
+      "counts": {
+        "regular_integral_block_column_equalities": 656,
+        "independent_core_block_rank_queries": 600,
+        "canonical_integral_block_column_equalities": 656,
+        "independent_core_macaulay_rows": 516,
+        "independent_core_full_kernel_equalities": 12,
+        "original_integral_core_column_equalities": 441,
+        "original_integral_reference_unit_pivots": 210,
+        "independent_original_rank_sandwiches": 384,
+        "finite_matching_bounds": 384,
+        "independent_original_field_models": 96,
+        "independent_determinantal_divisor_checks": 12,
+        "finite_integral_smith_signature_matches": 123,
+        "independent_complete_trace_controls": 6,
+        "finite_entire_seed_price_intervals": 640,
+        "all_field_noncoherent_rank_counterexamples": 1,
+        "all_field_price_scope_counterexamples": 1
+      },
+      "build": "./build.sh passed",
+      "smoke": "python3 tests/test_smoke.py passed",
+      "scope": "Exact uniform binomial reductions and bounds, with finite rank/Smith matches only. No uniform core rank identity, full r>=3 fan count, unrestricted improvement or priority certificate."
     }
   },
-  "preservation": "Five explicitly privacy-reviewed research files against 0474e63: README, a new equal-degree unit proof note, its new independent checker/report and this active goal. All 61 previous continuations and all earlier mathematical sources/reports are preserved; all 326 other previously tracked files remain byte-identical. Core CLI, kernels, auditor, manuscripts/PDFs and paused ML are unchanged. Exploratory probes, baselines and terminal logs stay ignored under results/local/.",
+  "preservation": "Five explicitly privacy-reviewed research files against 6d28c6e: README, a new higher-seed binomial proof note, its new independent checker/report and this active goal. All 62 previous continuations and all earlier mathematical sources/reports are preserved; all 329 other previously tracked files remain byte-identical. Core CLI, kernels, auditor, manuscripts/PDFs and paused ML are unchanged. Exploratory probes, baselines and terminal logs stay ignored under results/local/.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
-    "docs/equal_degree_unit_fans.md",
-    "scripts/run_equal_degree_unit_checks.py",
-    "results/research/equal_degree_unit_checks.json",
+    "docs/higher_seed_binomial_reduction.md",
+    "scripts/run_higher_seed_checks.py",
+    "results/research/higher_seed_checks.json",
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "10c56e29fd42a3d6d0e8f26db7c0116e30932aca18076a11679f0b2db817a4d5",
+    "README.md": "a89babf4073f1bd70ac394fac06ed7c0a37071f54bf9c3519fc5e0fbd1e10d2d",
     "docs/extremal_initial_ideals.md": "6e84b6ea470841a89760a2e16080a9314ba747499b1a5a733460120fe501a92b",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
@@ -1423,7 +1465,10 @@
     "results/research/middle_interaction_checks.json": "84d19a94aeebc57a1d9397fe93d5c1985bb508ef6d878f95ddcfc1ac2aef2526",
     "docs/equal_degree_unit_fans.md": "4cff31c1c6c5c5bb2b3259a74a9c0da05f8acaa789ddce90b4947839d98dbbb9",
     "scripts/run_equal_degree_unit_checks.py": "a9effdd6ec598c09001106b23934188c5318663c0fb3b4a689be2921c08af98a",
-    "results/research/equal_degree_unit_checks.json": "9ec08aee926963fde658b4954cfdf983bf4fcc2858c16c841ae3c8a94540d83a"
+    "results/research/equal_degree_unit_checks.json": "9ec08aee926963fde658b4954cfdf983bf4fcc2858c16c841ae3c8a94540d83a",
+    "docs/higher_seed_binomial_reduction.md": "401908b6be8319890078fb0347f6d7d1abe8d1a5be3c45f67e62101cc6bab12e",
+    "scripts/run_higher_seed_checks.py": "92f0c67e86e3be54c71cbe6efac168c767c9768bb8058b6dc36d24b91acac926",
+    "results/research/higher_seed_checks.json": "d02de5d0b65b8cb159d86b2899e62b136820ab326a891c91af83b61b384deabb"
   },
   "continuations": [
     {
@@ -5079,10 +5124,300 @@
         "smoke": "python3 tests/test_smoke.py passed",
         "scope": "Uniform proofs of the equal-degree complete-tier law and full r=2 classification, with independent finite controls. No original r>=3 full fan theorem, unrestricted improvement or priority certificate."
       }
+    },
+    {
+      "title": "Uniform binomial seed reduction, integral decomposition and coherent scope",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "progress: 6d28c6e proved the equal-degree noncoprime unit rank theorem, a sharp Theta(n) count for the entire r=2 family, integral coherent prefix torsion-freeness and a complete O(s+1) original rank query. Revalidated clean main, all 331 tracked hashes, all 64 goal source hashes, all 62 continuations and the unchanged objective/criteria before this iteration.",
+      "progress_classification": "exact uniform rank sandwich and arithmetic-preserving reduction of the remaining seed to one explicit core identity, with all-field counterexamples to two broader statements",
+      "uniform_proofs": [
+        "For degree-a coprime binary Q,H and r>a, the original complete-tier ranks equal an explicit homogeneous-channel sum of finite one-variable binomial block ranks. Characteristic dependence is preserved.",
+        "Any nonzero pair is bounded below by the canonical curve and above by the regular-pair model; no equality is assumed.",
+        "For the actual quadratic coefficient-one pair, an integral unit homogeneous decomposition preserves entire original prefix lattices, including prime-power torsion, in four weighted cores.",
+        "Uniform regular/canonical seed equality is equivalent to a single coherent-cutoff core identity, and would suffice to close the largest-z transfer and whole-family linear bound.",
+        "Exact all-field counterexamples exclude arbitrary downward-staircase equality and arbitrary price regimes. The original unresolved positive seed restriction remains essential."
+      ],
+      "unproved_step": "The coherent-cutoff core identity, full r>=3 transfer/count, unrestricted endpoint and priority remain open. Finite Smith agreement and a slope-matching Mobius substitution do not prove the identity.",
+      "reading_scope": [
+        "Inspected Example 1.2, Definitions 2.3-2.4 and Lemmas 2.9 and 2.14 with proofs. Their unit triangular Hankel congruences are classical; no identification with the required selected rectangular binomial ranks has been established. Neither application nor novelty is inferred.",
+        "The prior unrestricted and lower-construction audits remain open; no unsuccessful search was used as evidence of novelty.",
+        "Inspected Section 1, Theorem 1 statement and displayed proof outline, including the carry recurrences. It counts individual coefficient valuations by digit matrices, not ranks of selected binomial matrices. Lemma 4 details and any rank extension have not been audited or established."
+      ],
+      "independent_controls": {
+        "regular_integral_block_column_equalities": 656,
+        "independent_core_block_rank_queries": 600,
+        "canonical_integral_block_column_equalities": 656,
+        "independent_core_macaulay_rows": 516,
+        "independent_core_full_kernel_equalities": 12,
+        "original_integral_core_column_equalities": 441,
+        "original_integral_reference_unit_pivots": 210,
+        "independent_original_rank_sandwiches": 384,
+        "finite_matching_bounds": 384,
+        "independent_original_field_models": 96,
+        "independent_determinantal_divisor_checks": 12,
+        "finite_integral_smith_signature_matches": 123,
+        "independent_complete_trace_controls": 6,
+        "finite_entire_seed_price_intervals": 640,
+        "all_field_noncoherent_rank_counterexamples": 1,
+        "all_field_price_scope_counterexamples": 1
+      },
+      "scope_counterexamples": {
+        "noncoherent_staircase": {
+          "cutoff": 15,
+          "degree": 2,
+          "interaction": 3,
+          "selected_columns": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              0,
+              3
+            ],
+            [
+              0,
+              0,
+              4
+            ],
+            [
+              0,
+              0,
+              5
+            ],
+            [
+              0,
+              0,
+              6
+            ],
+            [
+              0,
+              0,
+              7
+            ],
+            [
+              0,
+              0,
+              8
+            ],
+            [
+              0,
+              0,
+              9
+            ],
+            [
+              0,
+              0,
+              10
+            ],
+            [
+              0,
+              0,
+              11
+            ],
+            [
+              0,
+              0,
+              12
+            ],
+            [
+              0,
+              0,
+              13
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ]
+          ],
+          "regular": {
+            "rank_over_every_field": 21,
+            "unit_invariants": 21,
+            "residual_zero": true
+          },
+          "canonical": {
+            "rank_over_every_field": 20,
+            "unit_invariants": 20,
+            "residual_zero": true
+          },
+          "coherent_positive_prefix": false
+        },
+        "opposite_price_side": {
+          "cutoff": 5,
+          "degree": 2,
+          "interaction": 3,
+          "weight": [
+            "9",
+            "9",
+            "4"
+          ],
+          "price_cutoff": "20",
+          "selected_original_columns": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              0,
+              3
+            ],
+            [
+              0,
+              0,
+              4
+            ],
+            [
+              0,
+              0,
+              5
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              2
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ]
+          ],
+          "regular": {
+            "rank_over_every_field": 15,
+            "unit_invariants": 15,
+            "residual_zero": true
+          },
+          "canonical": {
+            "rank_over_every_field": 14,
+            "unit_invariants": 14,
+            "residual_zero": true
+          },
+          "within_u_less_than_Z": false
+        }
+      },
+      "scope_limit": "A uniform reduction and exact scope obstructions, not a new full-family count or completion of the unrestricted goal.",
+      "verification": {
+        "command": "python3 -B scripts/run_higher_seed_checks.py",
+        "report": "results/research/higher_seed_checks.json",
+        "status": "passed",
+        "source_hashes_verified": true,
+        "counts": {
+          "regular_integral_block_column_equalities": 656,
+          "independent_core_block_rank_queries": 600,
+          "canonical_integral_block_column_equalities": 656,
+          "independent_core_macaulay_rows": 516,
+          "independent_core_full_kernel_equalities": 12,
+          "original_integral_core_column_equalities": 441,
+          "original_integral_reference_unit_pivots": 210,
+          "independent_original_rank_sandwiches": 384,
+          "finite_matching_bounds": 384,
+          "independent_original_field_models": 96,
+          "independent_determinantal_divisor_checks": 12,
+          "finite_integral_smith_signature_matches": 123,
+          "independent_complete_trace_controls": 6,
+          "finite_entire_seed_price_intervals": 640,
+          "all_field_noncoherent_rank_counterexamples": 1,
+          "all_field_price_scope_counterexamples": 1
+        },
+        "build": "./build.sh passed",
+        "smoke": "python3 tests/test_smoke.py passed",
+        "scope": "Exact uniform binomial reductions and bounds, with finite rank/Smith matches only. No uniform core rank identity, full r>=3 fan count, unrestricted improvement or priority certificate."
+      }
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "The entire r=2 family now has a sharp Theta(n) count in every field, rather than the prior O(n^(9/4)) fixed-r bound. Its coherent prefix quotients are torsion-free, all reduced rational bases are integral and its universal denominator is one. This closes one whole family as a power-gain route. The r>=3 full-family count and unrestricted G_3 remain unchanged.",
-  "previous_goal_turn_classification": "progress: 0474e63 proved the positive-price noncoprime binary-form rank law and full original middle-z transfer, leaving only the largest-z region unresolved. Revalidated clean main, all 328 tracked hashes, all 61 goal source hashes, all 61 continuations and the unchanged objective/criteria before this iteration.",
+  "asymptotic_improvement_scope_this_iteration": "No full-family or unrestricted fan-count change. A uniform exact binomial model now computes the remaining higher-interaction seed, including its integral prefix arithmetic. Explicit regular/canonical bounds and an invertible homogeneous-channel convolution reduce proposed coefficient universality to one coherent-cutoff core rank identity. That identity remains unproved; finite rank and Smith matching are not a theorem.",
+  "previous_goal_turn_classification": "progress: 6d28c6e proved the equal-degree noncoprime unit rank theorem, a sharp Theta(n) count for the entire r=2 family, integral coherent prefix torsion-freeness and a complete O(s+1) original rank query. Revalidated clean main, all 331 tracked hashes, all 64 goal source hashes, all 62 continuations and the unchanged objective/criteria before this iteration.",
   "uniform_relative_margin_hypothesis_status": "refuted_by_actual_all_field_quotients",
   "secondary_extremal_parameter_resolved": {
     "relative_margin_dimension_2": "Theta(n^-2)",
@@ -5218,9 +5553,10 @@
     "all_equal_price_plane_union_cover_proved": false,
     "original_z_middle_region_count": "At most 12*n+7 for each ordered middle-z region, over every field.",
     "original_z_middle_rank_query": "O(r^2*(s+1)) exact arithmetic/floor operations, constant auxiliary storage.",
-    "fixed_r2_full_fan_count": "Theta(n) in every field, with torsion-free coherent integral prefixes and O(s+1) original rank queries."
+    "fixed_r2_full_fan_count": "Theta(n) in every field, with torsion-free coherent integral prefixes and O(s+1) original rank queries.",
+    "remaining_seed_model": "The regular-pair seed has an exact homogeneous-channel binomial rank formula (B3)-(B5), all fields. A canonical lower bound brackets every nonzero pair; equality is conjectural for r>=3."
   },
-  "region_count_established_this_iteration": true,
+  "region_count_established_this_iteration": false,
   "arithmetic_obstruction_established_this_iteration": false,
   "fixed_equation_prime_obstruction": {
     "proof": "docs/fixed_equation_bad_primes.md",
@@ -5306,7 +5642,7 @@
     "unrestricted_G3_changed": false,
     "novelty_established": false,
     "uniform_middle_price_transfer_proved": true,
-    "remaining_transfer_scope": "Only r>=3 with z strictly largest; r=2 is now entirely transferred and counted.",
+    "remaining_transfer_scope": "For r>=3 with z largest only. A sufficient regular/canonical seed identity is now reduced to explicit coherent-cutoff binomial matrices; it remains unproved. The whole r=2 case stays closed.",
     "uniform_fixed_r2_original_transfer_proved": true
   },
   "middle_interaction_reduction": {
@@ -5328,8 +5664,8 @@
     "unrestricted_G3_changed": false,
     "novelty_established": false
   },
-  "fixed_r2_full_fan_bound_established_this_iteration": true,
-  "integral_prefix_torsion_freeness_established_this_iteration": true,
+  "fixed_r2_full_fan_bound_established_this_iteration": false,
+  "integral_prefix_torsion_freeness_established_this_iteration": false,
   "equal_degree_unit_reduction": {
     "proof": "docs/equal_degree_unit_fans.md",
     "complete_tier_equation": "((1+H)*z^d+Q)+m^(s+1), Q,H nonzero binary homogeneous forms of degree d>=1",
@@ -5351,5 +5687,31 @@
     "general_r_full_fan_bound_changed": false,
     "unrestricted_G3_changed": false,
     "novelty_established": false
+  },
+  "scope_counterexamples_established_this_iteration": true,
+  "higher_seed_binomial_reduction": {
+    "proof": "docs/higher_seed_binomial_reduction.md",
+    "parameter_scope": "r>a>=1, degree-a nonzero homogeneous binary Q,H; prices (u,u,Z), 0<u<Z; complete tiers",
+    "regular_pair_formula": "For coprime Q,H, the exact rank is the homogeneous-channel sum of regular binomial blocks (B4)-(B5), independent of coefficients but retaining characteristic dependence.",
+    "noncoprime_bracket": "Every nonzero pair lies between the canonical and regular sums (B3). The canonical lower bound is exact for Q=H=y^a.",
+    "original_integral_prefix_decomposition": "For Q=x^2+y^2,H=xy, an integral homogeneous unit basis 1,x,y,x^2 splits the actual original seed into G_s, two G_(s-1) and G_(s-2), including ambient free modules.",
+    "exact_block_query": "At rational prices, O_a(s^3*(1+s/r)^2) field operations, O_a(s^2) additional rational arithmetic/floor operations and O_a((1+s/r)^2) field elements of scratch; binomial generation and bit costs separate.",
+    "remaining_identity": "(B8): equality of regular/canonical core ranks for all s,T and 0<u<Z over every field.",
+    "equivalence": "The core identity is equivalent to uniform regular/canonical seed equality, via triangular inversion of the degree-channel convolution.",
+    "conditional_fan_consequence": "At a=2 the identity is sufficient for full original largest-z signed transfer and a uniform O(n) whole-family bound.",
+    "identity_necessary_for_full_transfer_established": false,
+    "uniform_core_identity_proved": false,
+    "uniform_core_smith_identity_proved": false,
+    "finite_full_seed_intervals": 640,
+    "finite_smith_signature_matches": 123,
+    "all_field_scope_counterexamples": [
+      "Original r=3,s=5 at weight (9,9,4), cutoff 20: regular rank 15, canonical rank 14, outside u<Z.",
+      "Weighted core s=15,a=2,r=3, selected 21-column downward staircase: regular rank 21, canonical rank 20; the staircase is not a coherent positive prefix."
+    ],
+    "general_r_full_signed_transfer_proved": false,
+    "general_r_full_fan_bound_changed": false,
+    "unrestricted_G3_changed": false,
+    "novelty_established": false,
+    "possible_digit_proof_route": "Classical Lucas entry factorization and negative-index digit complementation are available. The selected row/column shifts and cutoff carry constraints still need a rank argument; entry valuations or nonzero counts do not determine matrix rank."
   }
 }
