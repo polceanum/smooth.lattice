@@ -251,9 +251,14 @@ fan cones, an unrestricted count improvement or novelty.
 The [signed-face reduction](docs/signed_face_reduction.md) gives an exact
 Laurent-block model for the face obtained by deleting the cheapest variable's
 square. Its grading already bounds that face's fan linearly in the quotient
-length. Transferring this bound to the original region requires a precise
-signed-cone criterion that remains unproved; complete finite patch checks are
-supporting evidence. For the fixed degree-five equation, an integral prepared
+length. A [noncoprime whole-tier rank theorem](docs/middle_interaction_fans.md)
+now proves the transfer throughout the region where `z` has the middle price,
+over every field. Each ordered middle-price region has at most `12*n+7`
+original cones and an exact rank query. Together with the cheapest-`z` result,
+only `O(n)` cones meet weights where `z` is not largest; generic
+characteristic-dependent changes are confined to the `z`-largest region.
+That region and the full family count remain open. For the fixed degree-five
+equation, an integral prepared
 normal form now classifies the entire `z^2` cone in every characteristic.
 The exceptional-prime witnesses all enter this same elementary cone, so their
 rank changes do not demonstrate a fan-count gain.
