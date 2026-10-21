@@ -1,0 +1,8450 @@
+{
+  "schema_version": 1,
+  "all_checks_passed": true,
+  "scope": "Actual nonzero mixed-ideal rank theorem, unitriangular polynomial-column ground and complete dual fan encoding. Linear-factor fan counts depend only on mixed rank, not ambient quotient length. No sharp t exponent, unrestricted G3 improvement, polynomial separation or novelty established.",
+  "counters": {
+    "independent_actual_mixed_ideal_invariance": 54,
+    "independent_commuting_matrix_columns": 336,
+    "independent_expansion_operator_polynomial_columns": 568,
+    "independent_raw_monomial_successor_replays": 1704,
+    "guard_changed_singleton_ranks": 17,
+    "guard_ordinary_monomial_body_rank_above_actual_ideal": 7,
+    "independent_quotient_branch_and_lifted_corank_bounds": 18,
+    "direct_field_border_relations": 326,
+    "complete_direct_quotient_fans": 18,
+    "independent_unitriangular_basis_determinants": 137,
+    "independent_relative_body_divisor_boxes": 67,
+    "independent_mixed_relative_border_covers": 137,
+    "independent_prefix_triangular_span_inclusions": 2214,
+    "independent_full_prefix_rank_equalities": 2214,
+    "independent_entire_polynomial_dual_original_border_patches": 105,
+    "complete_carrier_order_chambers": 50,
+    "independent_primal_dual_carrier_compressions": 200,
+    "independent_entire_cone_equalities": 78,
+    "independent_global_linear_factor_encodings": 11,
+    "independent_polygon_adjacency_replays": 84,
+    "independent_exhaustive_order_ideal_basis_controls": 59,
+    "independent_positive_error_coherent_body_rectangles": 3
+  },
+  "complete_actual_fans": [
+    {
+      "kind": "long_axis_fixed_mixed_rank",
+      "lambda": 2,
+      "field": 0,
+      "relations": [
+        "xy=y^3+z^3",
+        "xz=y^3+lambda*z^3"
+      ],
+      "core_length": 3,
+      "length": 9,
+      "univariate_factors": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "degrees": [
+        1,
+        1,
+        1
+      ],
+      "mixed_ideal_rank": 2,
+      "mixed_ground_columns": 10,
+      "mixed_ground_outside_universal": 0,
+      "changed_monomial_polynomial_singleton_ranks": 0,
+      "ordinary_body_rank_above_actual_ideal": 0,
+      "largest_selected_body": 2,
+      "quotient_branch_ranks": [
+        2,
+        2,
+        2
+      ],
+      "quotient_branch_kernels": [
+        1,
+        1,
+        1
+      ],
+      "initial_ideals": 4,
+      "undirected_walls": 4,
+      "total_primitive_cost": 24,
+      "compilation": {
+        "carrier_order_planes": 0,
+        "carrier_order_chambers": 1,
+        "nonzero_body_columns_kept": 2,
+        "carrier_compressed_columns": 9,
+        "combined_columns": 11,
+        "dual_rank": 2,
+        "largest_dual_candidate_count": 4,
+        "global_encoding": true,
+        "chambers": [
+          {
+            "positive_chamber": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "full_cone_patches": 4
+          }
+        ]
+      },
+      "full_cones": [
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              3,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "1/4",
+              "3/4"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "3/4",
+              "0",
+              "1/4"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "3/4",
+              "1/4"
+            ],
+            [
+              "0",
+              "1/4",
+              "3/4"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              0,
+              3
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              2,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "3/4",
+              "1/4",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "3/4",
+              "1/4"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              0,
+              3
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              3,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "3/4",
+              "1/4",
+              "0"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ],
+            [
+              "3/4",
+              "0",
+              "1/4"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "long_axis_fixed_mixed_rank",
+      "lambda": 2,
+      "field": 0,
+      "relations": [
+        "xy=y^3+z^3",
+        "xz=y^3+lambda*z^3"
+      ],
+      "core_length": 8,
+      "length": 14,
+      "univariate_factors": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "degrees": [
+        1,
+        1,
+        1
+      ],
+      "mixed_ideal_rank": 2,
+      "mixed_ground_columns": 10,
+      "mixed_ground_outside_universal": 0,
+      "changed_monomial_polynomial_singleton_ranks": 0,
+      "ordinary_body_rank_above_actual_ideal": 0,
+      "largest_selected_body": 2,
+      "quotient_branch_ranks": [
+        7,
+        2,
+        2
+      ],
+      "quotient_branch_kernels": [
+        1,
+        1,
+        1
+      ],
+      "initial_ideals": 4,
+      "undirected_walls": 4,
+      "total_primitive_cost": 24,
+      "compilation": {
+        "carrier_order_planes": 0,
+        "carrier_order_chambers": 1,
+        "nonzero_body_columns_kept": 2,
+        "carrier_compressed_columns": 14,
+        "combined_columns": 16,
+        "dual_rank": 2,
+        "largest_dual_candidate_count": 4,
+        "global_encoding": true,
+        "chambers": [
+          {
+            "positive_chamber": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "full_cone_patches": 4
+          }
+        ]
+      },
+      "full_cones": [
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              3,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ],
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              5,
+              0,
+              0
+            ],
+            [
+              6,
+              0,
+              0
+            ],
+            [
+              7,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "1/4",
+              "3/4"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "3/4",
+              "0",
+              "1/4"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ],
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              5,
+              0,
+              0
+            ],
+            [
+              6,
+              0,
+              0
+            ],
+            [
+              7,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "3/4",
+              "1/4"
+            ],
+            [
+              "0",
+              "1/4",
+              "3/4"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              0,
+              3
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ],
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              5,
+              0,
+              0
+            ],
+            [
+              6,
+              0,
+              0
+            ],
+            [
+              7,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "3/4",
+              "1/4",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "3/4",
+              "1/4"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              0,
+              3
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              3,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ],
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              5,
+              0,
+              0
+            ],
+            [
+              6,
+              0,
+              0
+            ],
+            [
+              7,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "3/4",
+              "1/4",
+              "0"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ],
+            [
+              "3/4",
+              "0",
+              "1/4"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "long_axis_fixed_mixed_rank",
+      "lambda": 2,
+      "field": 2,
+      "relations": [
+        "xy=y^3+z^3",
+        "xz=y^3+lambda*z^3"
+      ],
+      "core_length": 4,
+      "length": 10,
+      "univariate_factors": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "degrees": [
+        1,
+        1,
+        1
+      ],
+      "mixed_ideal_rank": 2,
+      "mixed_ground_columns": 10,
+      "mixed_ground_outside_universal": 0,
+      "changed_monomial_polynomial_singleton_ranks": 0,
+      "ordinary_body_rank_above_actual_ideal": 0,
+      "largest_selected_body": 2,
+      "quotient_branch_ranks": [
+        3,
+        2,
+        2
+      ],
+      "quotient_branch_kernels": [
+        1,
+        1,
+        1
+      ],
+      "initial_ideals": 4,
+      "undirected_walls": 4,
+      "total_primitive_cost": 24,
+      "compilation": {
+        "carrier_order_planes": 0,
+        "carrier_order_chambers": 1,
+        "nonzero_body_columns_kept": 2,
+        "carrier_compressed_columns": 10,
+        "combined_columns": 12,
+        "dual_rank": 2,
+        "largest_dual_candidate_count": 4,
+        "global_encoding": true,
+        "chambers": [
+          {
+            "positive_chamber": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "full_cone_patches": 4
+          }
+        ]
+      },
+      "full_cones": [
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              3,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "1/4",
+              "3/4"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "3/4",
+              "0",
+              "1/4"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "3/4",
+              "1/4"
+            ],
+            [
+              "0",
+              "1/4",
+              "3/4"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              0,
+              3
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "3/4",
+              "1/4",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "3/4",
+              "1/4"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              0,
+              3
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              3,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "3/4",
+              "1/4",
+              "0"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ],
+            [
+              "3/4",
+              "0",
+              "1/4"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "coupled_tensor",
+      "r": 2,
+      "s": 2,
+      "extra_uv": true,
+      "field": 0,
+      "length": 4,
+      "univariate_factors": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "degrees": [
+        1,
+        1,
+        1
+      ],
+      "mixed_ideal_rank": 1,
+      "mixed_ground_columns": 3,
+      "mixed_ground_outside_universal": 0,
+      "changed_monomial_polynomial_singleton_ranks": 0,
+      "ordinary_body_rank_above_actual_ideal": 0,
+      "largest_selected_body": 1,
+      "quotient_branch_ranks": [
+        1,
+        1,
+        1
+      ],
+      "quotient_branch_kernels": [
+        1,
+        1,
+        1
+      ],
+      "initial_ideals": 6,
+      "undirected_walls": 8,
+      "total_primitive_cost": 24,
+      "compilation": {
+        "carrier_order_planes": 0,
+        "carrier_order_chambers": 1,
+        "nonzero_body_columns_kept": 3,
+        "carrier_compressed_columns": 5,
+        "combined_columns": 8,
+        "dual_rank": 4,
+        "largest_dual_candidate_count": 7,
+        "global_encoding": true,
+        "chambers": [
+          {
+            "positive_chamber": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "full_cone_patches": 6
+          }
+        ]
+      },
+      "full_cones": [
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ],
+            [
+              "2/5",
+              "2/5",
+              "1/5"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ],
+            [
+              "2/5",
+              "2/5",
+              "1/5"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              1,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "2/5",
+              "2/5",
+              "1/5"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "coupled_tensor",
+      "r": 2,
+      "s": 2,
+      "extra_uv": true,
+      "field": 2,
+      "length": 4,
+      "univariate_factors": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "degrees": [
+        1,
+        1,
+        1
+      ],
+      "mixed_ideal_rank": 1,
+      "mixed_ground_columns": 3,
+      "mixed_ground_outside_universal": 0,
+      "changed_monomial_polynomial_singleton_ranks": 0,
+      "ordinary_body_rank_above_actual_ideal": 0,
+      "largest_selected_body": 1,
+      "quotient_branch_ranks": [
+        1,
+        1,
+        1
+      ],
+      "quotient_branch_kernels": [
+        1,
+        1,
+        1
+      ],
+      "initial_ideals": 4,
+      "undirected_walls": 3,
+      "total_primitive_cost": 12,
+      "compilation": {
+        "carrier_order_planes": 0,
+        "carrier_order_chambers": 1,
+        "nonzero_body_columns_kept": 3,
+        "carrier_compressed_columns": 4,
+        "combined_columns": 7,
+        "dual_rank": 3,
+        "largest_dual_candidate_count": 6,
+        "global_encoding": true,
+        "chambers": [
+          {
+            "positive_chamber": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "full_cone_patches": 4
+          }
+        ]
+      },
+      "full_cones": [
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "coupled_tensor",
+      "r": 2,
+      "s": 2,
+      "extra_uv": true,
+      "field": 101,
+      "length": 4,
+      "univariate_factors": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "degrees": [
+        1,
+        1,
+        1
+      ],
+      "mixed_ideal_rank": 1,
+      "mixed_ground_columns": 3,
+      "mixed_ground_outside_universal": 0,
+      "changed_monomial_polynomial_singleton_ranks": 0,
+      "ordinary_body_rank_above_actual_ideal": 0,
+      "largest_selected_body": 1,
+      "quotient_branch_ranks": [
+        1,
+        1,
+        1
+      ],
+      "quotient_branch_kernels": [
+        1,
+        1,
+        1
+      ],
+      "initial_ideals": 6,
+      "undirected_walls": 8,
+      "total_primitive_cost": 24,
+      "compilation": {
+        "carrier_order_planes": 0,
+        "carrier_order_chambers": 1,
+        "nonzero_body_columns_kept": 3,
+        "carrier_compressed_columns": 5,
+        "combined_columns": 8,
+        "dual_rank": 4,
+        "largest_dual_candidate_count": 7,
+        "global_encoding": true,
+        "chambers": [
+          {
+            "positive_chamber": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "full_cone_patches": 6
+          }
+        ]
+      },
+      "full_cones": [
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ],
+            [
+              "2/5",
+              "2/5",
+              "1/5"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ],
+            [
+              "2/5",
+              "2/5",
+              "1/5"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              1,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "2/5",
+              "2/5",
+              "1/5"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/2",
+              "1/4",
+              "1/4"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "coupled_tensor",
+      "r": 3,
+      "s": 2,
+      "extra_uv": false,
+      "field": 0,
+      "length": 6,
+      "univariate_factors": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "degrees": [
+        1,
+        1,
+        1
+      ],
+      "mixed_ideal_rank": 3,
+      "mixed_ground_columns": 19,
+      "mixed_ground_outside_universal": 10,
+      "changed_monomial_polynomial_singleton_ranks": 0,
+      "ordinary_body_rank_above_actual_ideal": 0,
+      "largest_selected_body": 2,
+      "quotient_branch_ranks": [
+        1,
+        1,
+        1
+      ],
+      "quotient_branch_kernels": [
+        1,
+        1,
+        1
+      ],
+      "initial_ideals": 5,
+      "undirected_walls": 5,
+      "total_primitive_cost": 10,
+      "compilation": {
+        "carrier_order_planes": 0,
+        "carrier_order_chambers": 1,
+        "nonzero_body_columns_kept": 8,
+        "carrier_compressed_columns": 7,
+        "combined_columns": 15,
+        "dual_rank": 9,
+        "largest_dual_candidate_count": 14,
+        "global_encoding": true,
+        "chambers": [
+          {
+            "positive_chamber": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                2
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                1
+              ],
+              [
+                2,
+                1,
+                0
+              ]
+            ],
+            "full_cone_patches": 5
+          }
+        ]
+      },
+      "full_cones": [
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              2,
+              1,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ],
+            [
+              "1/3",
+              "1/3",
+              "1/3"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              1
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "1/3",
+              "1/3",
+              "1/3"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              0,
+              3
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "1/3",
+              "1/3",
+              "1/3"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              0,
+              3
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "1/3",
+              "1/3",
+              "1/3"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              2
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/3",
+              "1/3",
+              "1/3"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "coupled_tensor",
+      "r": 3,
+      "s": 2,
+      "extra_uv": false,
+      "field": 3,
+      "length": 6,
+      "univariate_factors": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "degrees": [
+        1,
+        1,
+        1
+      ],
+      "mixed_ideal_rank": 3,
+      "mixed_ground_columns": 19,
+      "mixed_ground_outside_universal": 10,
+      "changed_monomial_polynomial_singleton_ranks": 0,
+      "ordinary_body_rank_above_actual_ideal": 0,
+      "largest_selected_body": 2,
+      "quotient_branch_ranks": [
+        1,
+        1,
+        1
+      ],
+      "quotient_branch_kernels": [
+        1,
+        1,
+        1
+      ],
+      "initial_ideals": 4,
+      "undirected_walls": 4,
+      "total_primitive_cost": 8,
+      "compilation": {
+        "carrier_order_planes": 0,
+        "carrier_order_chambers": 1,
+        "nonzero_body_columns_kept": 8,
+        "carrier_compressed_columns": 6,
+        "combined_columns": 14,
+        "dual_rank": 8,
+        "largest_dual_candidate_count": 13,
+        "global_encoding": true,
+        "chambers": [
+          {
+            "positive_chamber": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                2
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                1
+              ],
+              [
+                2,
+                1,
+                0
+              ]
+            ],
+            "full_cone_patches": 4
+          }
+        ]
+      },
+      "full_cones": [
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              2,
+              1,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ],
+            [
+              "1/3",
+              "1/3",
+              "1/3"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              1
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "1/3",
+              "1/3",
+              "1/3"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              2
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "1/3",
+              "1/3",
+              "1/3"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              2
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "1/3",
+              "1/3",
+              "1/3"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "translated_nonlocal_positive_error",
+      "points": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          2,
+          3,
+          5
+        ],
+        [
+          3,
+          5,
+          7
+        ]
+      ],
+      "field": 0,
+      "length": 3,
+      "univariate_factors": [
+        [
+          -1,
+          1
+        ],
+        [
+          -2,
+          1
+        ],
+        [
+          -3,
+          1
+        ]
+      ],
+      "degrees": [
+        1,
+        1,
+        1
+      ],
+      "mixed_ideal_rank": 2,
+      "mixed_ground_columns": 10,
+      "mixed_ground_outside_universal": 10,
+      "changed_monomial_polynomial_singleton_ranks": 0,
+      "ordinary_body_rank_above_actual_ideal": 1,
+      "largest_selected_body": 0,
+      "quotient_branch_ranks": [
+        0,
+        0,
+        0
+      ],
+      "quotient_branch_kernels": [
+        0,
+        0,
+        0
+      ],
+      "initial_ideals": 5,
+      "undirected_walls": 6,
+      "total_primitive_cost": 16,
+      "compilation": {
+        "carrier_order_planes": 0,
+        "carrier_order_chambers": 1,
+        "nonzero_body_columns_kept": 10,
+        "carrier_compressed_columns": 7,
+        "combined_columns": 17,
+        "dual_rank": 14,
+        "largest_dual_candidate_count": 16,
+        "global_encoding": true,
+        "chambers": [
+          {
+            "positive_chamber": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                2
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                1
+              ],
+              [
+                2,
+                1,
+                0
+              ]
+            ],
+            "full_cone_patches": 5
+          }
+        ]
+      },
+      "full_cones": [
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ],
+            [
+              "2/5",
+              "1/5",
+              "2/5"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "2/5",
+              "1/5",
+              "2/5"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "2/5",
+              "1/5",
+              "2/5"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "translated_nonlocal_positive_error",
+      "points": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          2,
+          3,
+          5
+        ],
+        [
+          3,
+          5,
+          7
+        ]
+      ],
+      "field": 0,
+      "length": 3,
+      "univariate_factors": [
+        [
+          1,
+          -2,
+          1
+        ],
+        [
+          -2,
+          1
+        ],
+        [
+          -3,
+          1
+        ]
+      ],
+      "degrees": [
+        2,
+        1,
+        1
+      ],
+      "mixed_ideal_rank": 2,
+      "mixed_ground_columns": 11,
+      "mixed_ground_outside_universal": 11,
+      "changed_monomial_polynomial_singleton_ranks": 0,
+      "ordinary_body_rank_above_actual_ideal": 1,
+      "largest_selected_body": 0,
+      "quotient_branch_ranks": [
+        0,
+        0,
+        0
+      ],
+      "quotient_branch_kernels": [
+        0,
+        0,
+        0
+      ],
+      "initial_ideals": 5,
+      "undirected_walls": 6,
+      "total_primitive_cost": 16,
+      "compilation": {
+        "carrier_order_planes": 0,
+        "carrier_order_chambers": 1,
+        "nonzero_body_columns_kept": 11,
+        "carrier_compressed_columns": 7,
+        "combined_columns": 18,
+        "dual_rank": 15,
+        "largest_dual_candidate_count": 17,
+        "global_encoding": true,
+        "chambers": [
+          {
+            "positive_chamber": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                1
+              ],
+              [
+                2,
+                0,
+                2
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                1
+              ],
+              [
+                3,
+                1,
+                0
+              ]
+            ],
+            "full_cone_patches": 5
+          }
+        ]
+      },
+      "full_cones": [
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ],
+            [
+              "2/5",
+              "1/5",
+              "2/5"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "2/5",
+              "1/5",
+              "2/5"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "2/5",
+              "1/5",
+              "2/5"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "translated_nonlocal_positive_error",
+      "points": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          2,
+          3,
+          5
+        ],
+        [
+          3,
+          5,
+          7
+        ]
+      ],
+      "field": 7,
+      "length": 3,
+      "univariate_factors": [
+        [
+          -1,
+          1
+        ],
+        [
+          -2,
+          1
+        ],
+        [
+          -3,
+          1
+        ]
+      ],
+      "degrees": [
+        1,
+        1,
+        1
+      ],
+      "mixed_ideal_rank": 2,
+      "mixed_ground_columns": 10,
+      "mixed_ground_outside_universal": 10,
+      "changed_monomial_polynomial_singleton_ranks": 0,
+      "ordinary_body_rank_above_actual_ideal": 1,
+      "largest_selected_body": 0,
+      "quotient_branch_ranks": [
+        0,
+        0,
+        0
+      ],
+      "quotient_branch_kernels": [
+        0,
+        0,
+        0
+      ],
+      "initial_ideals": 5,
+      "undirected_walls": 6,
+      "total_primitive_cost": 16,
+      "compilation": {
+        "carrier_order_planes": 0,
+        "carrier_order_chambers": 1,
+        "nonzero_body_columns_kept": 10,
+        "carrier_compressed_columns": 7,
+        "combined_columns": 17,
+        "dual_rank": 14,
+        "largest_dual_candidate_count": 16,
+        "global_encoding": true,
+        "chambers": [
+          {
+            "positive_chamber": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                2
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                1
+              ],
+              [
+                2,
+                1,
+                0
+              ]
+            ],
+            "full_cone_patches": 5
+          }
+        ]
+      },
+      "full_cones": [
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ],
+            [
+              "2/5",
+              "1/5",
+              "2/5"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "2/5",
+              "1/5",
+              "2/5"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "2/5",
+              "1/5",
+              "2/5"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "translated_nonlocal_positive_error",
+      "points": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          2,
+          3,
+          5
+        ],
+        [
+          3,
+          5,
+          7
+        ]
+      ],
+      "field": 7,
+      "length": 3,
+      "univariate_factors": [
+        [
+          1,
+          -2,
+          1
+        ],
+        [
+          -2,
+          1
+        ],
+        [
+          -3,
+          1
+        ]
+      ],
+      "degrees": [
+        2,
+        1,
+        1
+      ],
+      "mixed_ideal_rank": 2,
+      "mixed_ground_columns": 11,
+      "mixed_ground_outside_universal": 11,
+      "changed_monomial_polynomial_singleton_ranks": 0,
+      "ordinary_body_rank_above_actual_ideal": 1,
+      "largest_selected_body": 0,
+      "quotient_branch_ranks": [
+        0,
+        0,
+        0
+      ],
+      "quotient_branch_kernels": [
+        0,
+        0,
+        0
+      ],
+      "initial_ideals": 5,
+      "undirected_walls": 6,
+      "total_primitive_cost": 16,
+      "compilation": {
+        "carrier_order_planes": 0,
+        "carrier_order_chambers": 1,
+        "nonzero_body_columns_kept": 11,
+        "carrier_compressed_columns": 7,
+        "combined_columns": 18,
+        "dual_rank": 15,
+        "largest_dual_candidate_count": 17,
+        "global_encoding": true,
+        "chambers": [
+          {
+            "positive_chamber": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                2,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                1
+              ],
+              [
+                2,
+                0,
+                2
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                1
+              ],
+              [
+                3,
+                1,
+                0
+              ]
+            ],
+            "full_cone_patches": 5
+          }
+        ]
+      },
+      "full_cones": [
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ],
+            [
+              "2/5",
+              "1/5",
+              "2/5"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "2/5",
+              "1/5",
+              "2/5"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "2/5",
+              "1/5",
+              "2/5"
+            ],
+            [
+              "1/4",
+              "1/2",
+              "1/4"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "coherent_selected_body_rectangle",
+      "field": 0,
+      "expected_mixed_rank": 1,
+      "length": 9,
+      "univariate_factors": [
+        [
+          1,
+          -2,
+          1
+        ],
+        [
+          1,
+          -2,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "degrees": [
+        2,
+        2,
+        1
+      ],
+      "mixed_ideal_rank": 1,
+      "mixed_ground_columns": 3,
+      "mixed_ground_outside_universal": 0,
+      "changed_monomial_polynomial_singleton_ranks": 5,
+      "ordinary_body_rank_above_actual_ideal": 1,
+      "largest_selected_body": 1,
+      "quotient_branch_ranks": [
+        6,
+        2,
+        0
+      ],
+      "quotient_branch_kernels": [
+        2,
+        2,
+        0
+      ],
+      "initial_ideals": 2,
+      "undirected_walls": 1,
+      "total_primitive_cost": 4,
+      "compilation": {
+        "carrier_order_planes": 6,
+        "carrier_order_chambers": 7,
+        "nonzero_body_columns_kept": 1,
+        "carrier_compressed_columns": 13,
+        "combined_columns": 14,
+        "dual_rank": 5,
+        "largest_dual_candidate_count": 10,
+        "global_encoding": false,
+        "chambers": [
+          {
+            "positive_chamber": [
+              [
+                "1/7",
+                "6/7",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/6",
+                "5/6",
+                "0"
+              ],
+              [
+                "1/7",
+                "6/7",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/5",
+                "4/5",
+                "0"
+              ],
+              [
+                "1/6",
+                "5/6",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/4",
+                "3/4",
+                "0"
+              ],
+              [
+                "1/5",
+                "4/5",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/3",
+                "2/3",
+                "0"
+              ],
+              [
+                "1/4",
+                "3/4",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                3,
+                1,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "1/3",
+                "2/3",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                3,
+                1,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                3,
+                1,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          }
+        ]
+      },
+      "full_cones": [
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ],
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              5,
+              0,
+              0
+            ],
+            [
+              6,
+              0,
+              0
+            ],
+            [
+              7,
+              0,
+              0
+            ],
+            [
+              8,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1/4",
+              "3/4",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              2,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              2,
+              2,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/4",
+              "3/4",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "coherent_selected_body_rectangle",
+      "field": 2,
+      "expected_mixed_rank": 1,
+      "length": 9,
+      "univariate_factors": [
+        [
+          1,
+          -2,
+          1
+        ],
+        [
+          1,
+          -2,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "degrees": [
+        2,
+        2,
+        1
+      ],
+      "mixed_ideal_rank": 1,
+      "mixed_ground_columns": 3,
+      "mixed_ground_outside_universal": 0,
+      "changed_monomial_polynomial_singleton_ranks": 5,
+      "ordinary_body_rank_above_actual_ideal": 1,
+      "largest_selected_body": 1,
+      "quotient_branch_ranks": [
+        6,
+        2,
+        0
+      ],
+      "quotient_branch_kernels": [
+        2,
+        2,
+        0
+      ],
+      "initial_ideals": 2,
+      "undirected_walls": 1,
+      "total_primitive_cost": 4,
+      "compilation": {
+        "carrier_order_planes": 6,
+        "carrier_order_chambers": 7,
+        "nonzero_body_columns_kept": 1,
+        "carrier_compressed_columns": 13,
+        "combined_columns": 14,
+        "dual_rank": 5,
+        "largest_dual_candidate_count": 10,
+        "global_encoding": false,
+        "chambers": [
+          {
+            "positive_chamber": [
+              [
+                "1/7",
+                "6/7",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/6",
+                "5/6",
+                "0"
+              ],
+              [
+                "1/7",
+                "6/7",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/5",
+                "4/5",
+                "0"
+              ],
+              [
+                "1/6",
+                "5/6",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/4",
+                "3/4",
+                "0"
+              ],
+              [
+                "1/5",
+                "4/5",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/3",
+                "2/3",
+                "0"
+              ],
+              [
+                "1/4",
+                "3/4",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                3,
+                1,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "1/3",
+                "2/3",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                3,
+                1,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                3,
+                1,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          }
+        ]
+      },
+      "full_cones": [
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ],
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              5,
+              0,
+              0
+            ],
+            [
+              6,
+              0,
+              0
+            ],
+            [
+              7,
+              0,
+              0
+            ],
+            [
+              8,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1/4",
+              "3/4",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              2,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              2,
+              2,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/4",
+              "3/4",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "coherent_selected_body_rectangle",
+      "field": 3,
+      "expected_mixed_rank": 1,
+      "length": 9,
+      "univariate_factors": [
+        [
+          1,
+          -2,
+          1
+        ],
+        [
+          1,
+          -2,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "degrees": [
+        2,
+        2,
+        1
+      ],
+      "mixed_ideal_rank": 1,
+      "mixed_ground_columns": 3,
+      "mixed_ground_outside_universal": 0,
+      "changed_monomial_polynomial_singleton_ranks": 5,
+      "ordinary_body_rank_above_actual_ideal": 1,
+      "largest_selected_body": 1,
+      "quotient_branch_ranks": [
+        6,
+        2,
+        0
+      ],
+      "quotient_branch_kernels": [
+        2,
+        2,
+        0
+      ],
+      "initial_ideals": 2,
+      "undirected_walls": 1,
+      "total_primitive_cost": 4,
+      "compilation": {
+        "carrier_order_planes": 6,
+        "carrier_order_chambers": 7,
+        "nonzero_body_columns_kept": 1,
+        "carrier_compressed_columns": 13,
+        "combined_columns": 14,
+        "dual_rank": 5,
+        "largest_dual_candidate_count": 10,
+        "global_encoding": false,
+        "chambers": [
+          {
+            "positive_chamber": [
+              [
+                "1/7",
+                "6/7",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/6",
+                "5/6",
+                "0"
+              ],
+              [
+                "1/7",
+                "6/7",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/5",
+                "4/5",
+                "0"
+              ],
+              [
+                "1/6",
+                "5/6",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/4",
+                "3/4",
+                "0"
+              ],
+              [
+                "1/5",
+                "4/5",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/3",
+                "2/3",
+                "0"
+              ],
+              [
+                "1/4",
+                "3/4",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                3,
+                1,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "1/3",
+                "2/3",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                3,
+                1,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                2,
+                0
+              ],
+              [
+                2,
+                2,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ],
+              [
+                3,
+                1,
+                0
+              ],
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ],
+              [
+                8,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          }
+        ]
+      },
+      "full_cones": [
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ],
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              5,
+              0,
+              0
+            ],
+            [
+              6,
+              0,
+              0
+            ],
+            [
+              7,
+              0,
+              0
+            ],
+            [
+              8,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1/4",
+              "3/4",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              2,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              2,
+              1,
+              0
+            ],
+            [
+              2,
+              2,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/4",
+              "3/4",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "irreducible_quadratic_grid_Q_i",
+      "field": 0,
+      "length": 4,
+      "univariate_factors": [
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          1
+        ]
+      ],
+      "degrees": [
+        2,
+        2,
+        2
+      ],
+      "mixed_ideal_rank": 0,
+      "mixed_ground_columns": 0,
+      "mixed_ground_outside_universal": 0,
+      "changed_monomial_polynomial_singleton_ranks": 2,
+      "ordinary_body_rank_above_actual_ideal": 0,
+      "largest_selected_body": 0,
+      "quotient_branch_ranks": [
+        2,
+        2,
+        0
+      ],
+      "quotient_branch_kernels": [
+        0,
+        0,
+        0
+      ],
+      "initial_ideals": 8,
+      "undirected_walls": 10,
+      "total_primitive_cost": 28,
+      "compilation": {
+        "carrier_order_planes": 6,
+        "carrier_order_chambers": 12,
+        "nonzero_body_columns_kept": 0,
+        "carrier_compressed_columns": 8,
+        "combined_columns": 8,
+        "dual_rank": 4,
+        "largest_dual_candidate_count": 8,
+        "global_encoding": false,
+        "chambers": [
+          {
+            "positive_chamber": [
+              [
+                "0",
+                "1/2",
+                "1/2"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1/4",
+                "1/4",
+                "1/2"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 2
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "0",
+                "1/2",
+                "1/2"
+              ],
+              [
+                "1/4",
+                "1/4",
+                "1/2"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 2
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/4",
+                "1/4",
+                "1/2"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 2
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "1/4",
+                "1/4",
+                "1/2"
+              ],
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 2
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/2",
+                "1/4",
+                "1/4"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 2
+          },
+          {
+            "positive_chamber": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1/2",
+                "1/4",
+                "1/4"
+              ],
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 2
+          },
+          {
+            "positive_chamber": [
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "1/2",
+                "1/2"
+              ],
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 2
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ],
+              [
+                "0",
+                "1/2",
+                "1/2"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 2
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "1/4",
+                "1/2",
+                "1/4"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "1/2",
+                "1/4",
+                "1/4"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "1/2",
+                "1/4",
+                "1/4"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 1
+          }
+        ]
+      },
+      "full_cones": [
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "1/7",
+              "3/7",
+              "3/7"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "1/7",
+              "3/7",
+              "3/7"
+            ],
+            [
+              "1/3",
+              "1/3",
+              "1/3"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "1/3",
+              "1/3",
+              "1/3"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "1/3",
+              "1/3",
+              "1/3"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/3",
+              "1/3",
+              "1/3"
+            ],
+            [
+              "3/7",
+              "1/7",
+              "3/7"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              3,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "3/7",
+              "1/7",
+              "3/7"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "3/7",
+              "1/7",
+              "3/7"
+            ],
+            [
+              "1/3",
+              "1/3",
+              "1/3"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "1/3",
+              "1/3",
+              "1/3"
+            ],
+            [
+              "1/7",
+              "3/7",
+              "3/7"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "sharp_product_extended_core",
+      "L": 1,
+      "field": 0,
+      "branch_length": 2,
+      "C": 6,
+      "lambda_x": 7,
+      "lambda_t": 8,
+      "core_length": 4,
+      "length": 8,
+      "univariate_factors": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "degrees": [
+        2,
+        1,
+        1
+      ],
+      "mixed_ideal_rank": 0,
+      "mixed_ground_columns": 0,
+      "mixed_ground_outside_universal": 0,
+      "changed_monomial_polynomial_singleton_ranks": 0,
+      "ordinary_body_rank_above_actual_ideal": 0,
+      "largest_selected_body": 0,
+      "quotient_branch_ranks": [
+        2,
+        2,
+        2
+      ],
+      "quotient_branch_kernels": [
+        2,
+        1,
+        1
+      ],
+      "initial_ideals": 4,
+      "undirected_walls": 4,
+      "total_primitive_cost": 8,
+      "compilation": {
+        "carrier_order_planes": 2,
+        "carrier_order_chambers": 4,
+        "nonzero_body_columns_kept": 0,
+        "carrier_compressed_columns": 8,
+        "combined_columns": 8,
+        "dual_rank": 0,
+        "largest_dual_candidate_count": 0,
+        "global_encoding": false,
+        "chambers": [
+          {
+            "positive_chamber": [
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ]
+            ],
+            "dual_candidate_labels": [],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ]
+            ],
+            "dual_candidate_labels": [],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ]
+            ],
+            "dual_candidate_labels": [],
+            "full_cone_patches": 1
+          },
+          {
+            "positive_chamber": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "1/3",
+                "1/3",
+                "1/3"
+              ],
+              [
+                "1/2",
+                "0",
+                "1/2"
+              ]
+            ],
+            "dual_candidate_labels": [],
+            "full_cone_patches": 1
+          }
+        ]
+      },
+      "full_cones": [
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "1/3",
+              "1/3",
+              "1/3"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "1/3",
+              "1/3",
+              "1/3"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "1/3",
+              "1/3",
+              "1/3"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ],
+            [
+              "1/3",
+              "1/3",
+              "1/3"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "linear_coordinate_cross_points",
+      "points": [
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0
+        ],
+        [
+          0,
+          4,
+          0
+        ],
+        [
+          0,
+          0,
+          5
+        ]
+      ],
+      "field": 0,
+      "length": 4,
+      "univariate_factors": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "degrees": [
+        1,
+        1,
+        1
+      ],
+      "mixed_ideal_rank": 0,
+      "mixed_ground_columns": 0,
+      "mixed_ground_outside_universal": 0,
+      "changed_monomial_polynomial_singleton_ranks": 0,
+      "ordinary_body_rank_above_actual_ideal": 0,
+      "largest_selected_body": 0,
+      "quotient_branch_ranks": [
+        2,
+        1,
+        1
+      ],
+      "quotient_branch_kernels": [
+        0,
+        0,
+        0
+      ],
+      "initial_ideals": 3,
+      "undirected_walls": 3,
+      "total_primitive_cost": 8,
+      "compilation": {
+        "carrier_order_planes": 0,
+        "carrier_order_chambers": 1,
+        "nonzero_body_columns_kept": 0,
+        "carrier_compressed_columns": 5,
+        "combined_columns": 5,
+        "dual_rank": 1,
+        "largest_dual_candidate_count": 4,
+        "global_encoding": true,
+        "chambers": [
+          {
+            "positive_chamber": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "dual_candidate_labels": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "full_cone_patches": 3
+          }
+        ]
+      },
+      "full_cones": [
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ],
+            [
+              "1/3",
+              "0",
+              "2/3"
+            ],
+            [
+              "1/5",
+              "2/5",
+              "2/5"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1/3",
+              "2/3",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "1/5",
+              "2/5",
+              "2/5"
+            ]
+          ]
+        },
+        {
+          "standard_set": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ],
+          "positive_cone": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "1/3",
+              "2/3",
+              "0"
+            ],
+            [
+              "1/5",
+              "2/5",
+              "2/5"
+            ],
+            [
+              "1/3",
+              "0",
+              "2/3"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "source_sha256": {
+    "docs/mixed_ideal_rank_fans.md": "34cf1893015af6c4d5d80543b7d7d03608726b233b3ab2a2083282b1a5207e91",
+    "scripts/run_mixed_ideal_rank_checks.py": "5bc42a9cd8adaa3aa0850767429a05b071f147082aea84ffd196ce13fea26bde",
+    "docs/univariate_cross_fans.md": "2d083ef52845c937b395d61b5916a97ee0d3841345f0a1af0f7a12f1511bb909",
+    "scripts/run_univariate_cross_checks.py": "9d0811efcf1c6861372890e8a409ef44a4b363c80ac010d95f8ebca88ae1d39e",
+    "scripts/run_coordinate_slice_budget_checks.py": "50e973948ce2c1ac46035ef9606e951b4171a8f541895a5dbec73c7e00221df6",
+    "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
+    "scripts/run_oracle_enumeration_checks.py": "139af7656f8dc4083fc463a0bb27354ee53b23e85bc3232b958236b15ee45ec2",
+    "scripts/run_planar_dyadic_bound_checks.py": "27642dbe7cf5c21e0eacb671b644bd00b97e758422d341cffa82c16df0b224bc",
+    "scripts/run_primitive_wall_checks.py": "ce4bdb6316b3acbfc15625b8f67dfadd69c95d691c81da2c47cda6538c867cdb",
+    "scripts/run_projection_tag_checks.py": "c003724cab6740a5bafc51e03b0f17f779eff80a463bdf92dae134d53617ccff",
+    "scripts/run_quadric_cross_checks.py": "8d521aa6295bcbc81a7a8140a2cb5af56c69e9469765c2bc17c987da4f0e6226",
+    "scripts/run_signed_face_checks.py": "8367cf40b049331649f6f3ed799e43982b14a1d40cfb620791249d2c63375867",
+    "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f"
+  }
+}
