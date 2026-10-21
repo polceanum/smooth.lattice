@@ -80,6 +80,17 @@ parallel wall multiplicity by its residual rank. A tagged construction
 also realizes every planar fan as parallel walls; generic rational planar
 ideals give multiplicity of order r log(r+1), ruling out a linear cap.
 The cubic total-cost proof is localized to intermediate wall costs.
+An explicit [radical point family](docs/wall_cost_products.md) has total
+wall cost of order N^3 log(N), so a logarithmic allowance is necessary.
+A [uniform free-prefix theorem](docs/wall_rank_filters.md) now bounds
+ordinary lattice scanning by the largest monomial box that does not span
+the quotient. Every quotient whose nonsaturating box volume is `O(n)`
+has the sharp generic fan order `O(n^2*log(n+1)^2)`, even with genuine
+monomial dependencies. Generic points on a broad multidegree-bounded
+hypersurface family satisfy this condition. The theorem also gives the
+corresponding enumeration bound and a necessary cheap-hull rank defect
+for every wall. Large box defects alone do not force a large fan; the
+unrestricted count, exact priority and publication decision remain open.
 A [rational-plane transfer](docs/rational_plane_transfer.md) extends this
 arithmetic mechanism to every fixed dimension and arbitrary hyperbolic
 matroid profiles. It gives `G_4(n)=O(n^(33/7)*log(n+1)^(9/35))`,

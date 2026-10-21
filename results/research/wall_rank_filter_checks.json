@@ -1,0 +1,4779 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "command": "python3 -B scripts/run_wall_rank_filter_checks.py",
+  "scope": "Exact saved actual fans verify necessary cheap-hull and contracted ranks. Socle and point columns contrast core independence with rank saturation. Exhaustive box ranks of a nonuniform quadric point ideal and independent free-prefix filtering support the uniform oversampling proof. Diagonal algebras check sharp worst-case scanning despite three initials. Polynomial division checks hypersurface box dimensions. Finite represented transversal direct sums verify the product identity, not the published asymptotic lower construction. No unrestricted improvement, separating ideal family or novelty established.",
+  "uniform_results": {
+    "scanning_parameter": "For fixed d, the largest nonsaturating anchored box volume s and worst free-prefix completion rank M obey 1+s/d^d<=M<=1+(d+1)^d*s, allowing infinity.",
+    "finiteness": "Uniform free-prefix completion is finite exactly when every coordinate separately is cyclic; the universal finite-case bound n^d is sharp in power.",
+    "whole_class_count": "Every quotient with s=O_d(n) has g=O_d(n^(d-1)*log(n+1)^(d-1)), by constant oversampling and the existing ordered-prefix theorem. This has the generic sharp order, using the existing generic lower theorem.",
+    "nonuniform_infinite_class": "Sufficiently generic n distinct points on an absolutely irreducible hypersurface of positive coordinate degrees d_i have rectangular rank saturation when n<=prod(d_i+1)-1. The characteristic-zero Fermat family has a four-term dependence.",
+    "enumeration_consequence": "For d=3 this class has the existing oracle-enumeration bound O(n^3*L^2+n^(omega+2)*L^3), excluding coefficient bit costs.",
+    "cheap_hull_obstruction": "Every actual q-wall has rank(L_q)<=n-1, and its image modulo the compulsory core has rank at most n-nu(q).",
+    "general_matroid_scope": "A direct sum of two published Eppstein transversal lower families gives Omega(r^(8/3)) positive profiles on Theta(r) elements and rank 2r. Therefore the ordinary spatial k-set bound does not extend to arbitrary represented matroids.",
+    "unrestricted_G3_improved": false,
+    "polynomial_lower_separation_proved": false,
+    "novelty_established": false,
+    "goal_complete": false
+  },
+  "counts": {
+    "cheap_hull_not_literal_endpoint_controls": 6,
+    "independent_actual_wall_cheap_hull_ranks": 221,
+    "independent_complete_direct_sum_spatial_cones": 36,
+    "independent_complete_spanning_box_diagrams": 11,
+    "independent_core_contracted_rank_equalities": 221,
+    "independent_core_only_false_positive_rejections": 3,
+    "independent_diagonal_scanning_and_initial_controls": 60,
+    "independent_hypersurface_box_dimensions": 118,
+    "independent_matching_representation_subsets": 148,
+    "independent_minimal_spanning_boxes": 39,
+    "independent_nonuniform_point_saturation_boxes": 512,
+    "independent_sharp_socle_rank_controls": 12,
+    "independent_strictly_cheaper_monomials": 758,
+    "independent_uniform_free_prefix_filter_replays": 56
+  },
+  "actual_quotient_fans": [
+    {
+      "model": "one_point",
+      "length": 1,
+      "characteristic": 0,
+      "initial_cells": 1,
+      "walls": [],
+      "minimal_spanning_boxes": [
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "model": "double_point",
+      "length": 2,
+      "characteristic": 0,
+      "initial_cells": 3,
+      "walls": [
+        {
+          "direction": [
+            1,
+            -1,
+            0
+          ],
+          "wall_weight": [
+            "1/6",
+            "1/6",
+            "2/3"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "1/6",
+            "2/3",
+            "1/6"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -1
+          ],
+          "wall_weight": [
+            "2/3",
+            "1/6",
+            "1/6"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        }
+      ],
+      "minimal_spanning_boxes": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "model": "double_point",
+      "length": 2,
+      "characteristic": 2,
+      "initial_cells": 3,
+      "walls": [
+        {
+          "direction": [
+            1,
+            -1,
+            0
+          ],
+          "wall_weight": [
+            "1/6",
+            "1/6",
+            "2/3"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "1/6",
+            "2/3",
+            "1/6"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -1
+          ],
+          "wall_weight": [
+            "2/3",
+            "1/6",
+            "1/6"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        }
+      ],
+      "minimal_spanning_boxes": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "model": "curvilinear_three",
+      "length": 3,
+      "characteristic": 0,
+      "initial_cells": 6,
+      "walls": [
+        {
+          "direction": [
+            2,
+            -1,
+            0
+          ],
+          "wall_weight": [
+            "1/10",
+            "1/5",
+            "7/10"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "1/10",
+            "7/10",
+            "1/5"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -1
+          ],
+          "wall_weight": [
+            "4/15",
+            "11/30",
+            "11/30"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            0
+          ],
+          "wall_weight": [
+            "11/30",
+            "11/30",
+            "4/15"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -2
+          ],
+          "wall_weight": [
+            "1/5",
+            "7/10",
+            "1/10"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -2
+          ],
+          "wall_weight": [
+            "7/10",
+            "1/5",
+            "1/10"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "11/30",
+            "4/15",
+            "11/30"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            2,
+            -1
+          ],
+          "wall_weight": [
+            "7/10",
+            "1/10",
+            "1/5"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -2,
+            0
+          ],
+          "wall_weight": [
+            "1/5",
+            "1/10",
+            "7/10"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        }
+      ],
+      "minimal_spanning_boxes": [
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "model": "curvilinear_three",
+      "length": 3,
+      "characteristic": 2,
+      "initial_cells": 5,
+      "walls": [
+        {
+          "direction": [
+            2,
+            -1,
+            0
+          ],
+          "wall_weight": [
+            "1/8",
+            "1/4",
+            "5/8"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "1/8",
+            "3/4",
+            "1/8"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -2
+          ],
+          "wall_weight": [
+            "5/8",
+            "1/4",
+            "1/8"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            2,
+            -1
+          ],
+          "wall_weight": [
+            "7/10",
+            "1/10",
+            "1/5"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "13/40",
+            "7/20",
+            "13/40"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -2,
+            0
+          ],
+          "wall_weight": [
+            "1/5",
+            "1/10",
+            "7/10"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        }
+      ],
+      "minimal_spanning_boxes": [
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "model": "curvilinear_three",
+      "length": 3,
+      "characteristic": 3,
+      "initial_cells": 6,
+      "walls": [
+        {
+          "direction": [
+            2,
+            -1,
+            0
+          ],
+          "wall_weight": [
+            "1/10",
+            "1/5",
+            "7/10"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "1/10",
+            "7/10",
+            "1/5"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -1
+          ],
+          "wall_weight": [
+            "4/15",
+            "11/30",
+            "11/30"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            0
+          ],
+          "wall_weight": [
+            "11/30",
+            "11/30",
+            "4/15"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -2
+          ],
+          "wall_weight": [
+            "1/5",
+            "7/10",
+            "1/10"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -2
+          ],
+          "wall_weight": [
+            "7/10",
+            "1/5",
+            "1/10"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "11/30",
+            "4/15",
+            "11/30"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            2,
+            -1
+          ],
+          "wall_weight": [
+            "7/10",
+            "1/10",
+            "1/5"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -2,
+            0
+          ],
+          "wall_weight": [
+            "1/5",
+            "1/10",
+            "7/10"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        }
+      ],
+      "minimal_spanning_boxes": [
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "model": "nonlinear_rectangle",
+      "length": 4,
+      "characteristic": 0,
+      "initial_cells": 6,
+      "walls": [
+        {
+          "direction": [
+            1,
+            1,
+            -1
+          ],
+          "wall_weight": [
+            "1/4",
+            "1/4",
+            "1/2"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            -1
+          ],
+          "wall_weight": [
+            "1/2",
+            "1/8",
+            "3/8"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -2
+          ],
+          "wall_weight": [
+            "9/20",
+            "13/40",
+            "9/40"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -2
+          ],
+          "wall_weight": [
+            "13/40",
+            "9/20",
+            "9/40"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            1
+          ],
+          "wall_weight": [
+            "1/8",
+            "1/2",
+            "3/8"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "1/8",
+            "3/4",
+            "1/8"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            0
+          ],
+          "wall_weight": [
+            "9/20",
+            "9/20",
+            "1/10"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -1
+          ],
+          "wall_weight": [
+            "3/4",
+            "1/8",
+            "1/8"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        }
+      ],
+      "minimal_spanning_boxes": [
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "model": "nonlinear_rectangle",
+      "length": 4,
+      "characteristic": 2,
+      "initial_cells": 4,
+      "walls": [
+        {
+          "direction": [
+            1,
+            1,
+            -1
+          ],
+          "wall_weight": [
+            "1/4",
+            "1/4",
+            "1/2"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            -1
+          ],
+          "wall_weight": [
+            "1/2",
+            "1/4",
+            "1/4"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            1
+          ],
+          "wall_weight": [
+            "1/4",
+            "1/2",
+            "1/4"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        }
+      ],
+      "minimal_spanning_boxes": [
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "model": "monomial_box",
+      "length": 4,
+      "characteristic": 3,
+      "initial_cells": 1,
+      "walls": [],
+      "minimal_spanning_boxes": [
+        [
+          1,
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "model": "three_distinct_points",
+      "length": 3,
+      "characteristic": 5,
+      "initial_cells": 4,
+      "walls": [
+        {
+          "direction": [
+            2,
+            -1,
+            0
+          ],
+          "wall_weight": [
+            "1/10",
+            "1/5",
+            "7/10"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "1/10",
+            "7/10",
+            "1/5"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -1
+          ],
+          "wall_weight": [
+            "4/15",
+            "11/30",
+            "11/30"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            0
+          ],
+          "wall_weight": [
+            "5/12",
+            "5/12",
+            "1/6"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "5/12",
+            "1/6",
+            "5/12"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        }
+      ],
+      "minimal_spanning_boxes": [
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "model": "rectangle_2_2",
+      "length": 4,
+      "characteristic": 101,
+      "initial_cells": 6,
+      "walls": [
+        {
+          "direction": [
+            1,
+            -1,
+            0
+          ],
+          "wall_weight": [
+            "9/20",
+            "9/20",
+            "1/10"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -2
+          ],
+          "wall_weight": [
+            "9/20",
+            "13/40",
+            "9/40"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -1
+          ],
+          "wall_weight": [
+            "3/4",
+            "1/8",
+            "1/8"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "1/8",
+            "3/4",
+            "1/8"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -2
+          ],
+          "wall_weight": [
+            "13/40",
+            "9/20",
+            "9/40"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            -1
+          ],
+          "wall_weight": [
+            "1/2",
+            "1/8",
+            "3/8"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            1,
+            -1
+          ],
+          "wall_weight": [
+            "1/4",
+            "1/4",
+            "1/2"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            1
+          ],
+          "wall_weight": [
+            "1/8",
+            "1/2",
+            "3/8"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        }
+      ],
+      "minimal_spanning_boxes": [
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "model": "rectangle_2_3",
+      "length": 6,
+      "characteristic": 101,
+      "initial_cells": 12,
+      "walls": [
+        {
+          "direction": [
+            1,
+            -1,
+            -1
+          ],
+          "wall_weight": [
+            "1/2",
+            "5/12",
+            "1/12"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -3
+          ],
+          "wall_weight": [
+            "23/44",
+            "10/33",
+            "23/132"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            2,
+            -3
+          ],
+          "wall_weight": [
+            "17/22",
+            "3/22",
+            "1/11"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 4,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            1
+          ],
+          "wall_weight": [
+            "5/12",
+            "1/2",
+            "1/12"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -2
+          ],
+          "wall_weight": [
+            "11/30",
+            "9/20",
+            "11/60"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -2
+          ],
+          "wall_weight": [
+            "9/20",
+            "11/30",
+            "11/60"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "1/10",
+            "4/5",
+            "1/10"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -3
+          ],
+          "wall_weight": [
+            "4/15",
+            "11/20",
+            "11/60"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -2,
+            0
+          ],
+          "wall_weight": [
+            "23/44",
+            "23/88",
+            "19/88"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -2
+          ],
+          "wall_weight": [
+            "15/28",
+            "11/56",
+            "15/56"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            2,
+            -1
+          ],
+          "wall_weight": [
+            "11/14",
+            "1/14",
+            "1/7"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -1
+          ],
+          "wall_weight": [
+            "5/12",
+            "7/24",
+            "7/24"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            0
+          ],
+          "wall_weight": [
+            "11/30",
+            "11/30",
+            "4/15"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            1,
+            -2
+          ],
+          "wall_weight": [
+            "1/6",
+            "1/2",
+            "1/3"
+          ],
+          "cheap_hull_size": 4,
+          "cheap_hull_rank": 4,
+          "core_size": 4,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            2
+          ],
+          "wall_weight": [
+            "1/10",
+            "19/30",
+            "4/15"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -2,
+            -1
+          ],
+          "wall_weight": [
+            "15/28",
+            "1/14",
+            "11/28"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "5/12",
+            "1/6",
+            "5/12"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            2,
+            -1
+          ],
+          "wall_weight": [
+            "1/4",
+            "1/6",
+            "7/12"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -2,
+            1
+          ],
+          "wall_weight": [
+            "1/6",
+            "1/3",
+            "1/2"
+          ],
+          "cheap_hull_size": 4,
+          "cheap_hull_rank": 4,
+          "core_size": 4,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        }
+      ],
+      "minimal_spanning_boxes": []
+    },
+    {
+      "model": "rectangle_3_3",
+      "length": 9,
+      "characteristic": 101,
+      "initial_cells": 26,
+      "walls": [
+        {
+          "direction": [
+            1,
+            -2,
+            0
+          ],
+          "wall_weight": [
+            "13/21",
+            "13/42",
+            "1/14"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -4
+          ],
+          "wall_weight": [
+            "54/91",
+            "47/182",
+            "27/182"
+          ],
+          "cheap_hull_size": 4,
+          "cheap_hull_rank": 4,
+          "core_size": 4,
+          "half_box_size": 3,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            2,
+            -3
+          ],
+          "wall_weight": [
+            "21/26",
+            "3/26",
+            "1/13"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 4,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            -1
+          ],
+          "wall_weight": [
+            "1/2",
+            "5/12",
+            "1/12"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -2
+          ],
+          "wall_weight": [
+            "15/28",
+            "13/42",
+            "13/84"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            1
+          ],
+          "wall_weight": [
+            "5/12",
+            "1/2",
+            "1/12"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -2
+          ],
+          "wall_weight": [
+            "11/30",
+            "9/20",
+            "11/60"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -2
+          ],
+          "wall_weight": [
+            "9/20",
+            "11/30",
+            "11/60"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            -1,
+            0
+          ],
+          "wall_weight": [
+            "13/42",
+            "13/21",
+            "1/14"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -2
+          ],
+          "wall_weight": [
+            "13/42",
+            "15/28",
+            "13/84"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            0,
+            -3
+          ],
+          "wall_weight": [
+            "3/26",
+            "21/26",
+            "1/13"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 4,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -4
+          ],
+          "wall_weight": [
+            "47/182",
+            "54/91",
+            "27/182"
+          ],
+          "cheap_hull_size": 4,
+          "cheap_hull_rank": 4,
+          "core_size": 4,
+          "half_box_size": 3,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -2,
+            -1
+          ],
+          "wall_weight": [
+            "79/130",
+            "14/65",
+            "23/130"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -3
+          ],
+          "wall_weight": [
+            "19/30",
+            "7/45",
+            "19/90"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            2,
+            -1
+          ],
+          "wall_weight": [
+            "5/6",
+            "1/18",
+            "1/9"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -1
+          ],
+          "wall_weight": [
+            "11/20",
+            "9/40",
+            "9/40"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            -1
+          ],
+          "wall_weight": [
+            "1/2",
+            "7/24",
+            "5/24"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            0
+          ],
+          "wall_weight": [
+            "31/80",
+            "31/80",
+            "9/40"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            1,
+            -3
+          ],
+          "wall_weight": [
+            "7/16",
+            "5/16",
+            "1/4"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            1
+          ],
+          "wall_weight": [
+            "7/24",
+            "1/2",
+            "5/24"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            1,
+            -3
+          ],
+          "wall_weight": [
+            "5/16",
+            "7/16",
+            "1/4"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            -1,
+            1
+          ],
+          "wall_weight": [
+            "14/65",
+            "79/130",
+            "23/130"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "9/40",
+            "11/20",
+            "9/40"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "1/18",
+            "5/6",
+            "1/9"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -3
+          ],
+          "wall_weight": [
+            "7/45",
+            "19/30",
+            "19/90"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -2,
+            -2
+          ],
+          "wall_weight": [
+            "2/3",
+            "1/18",
+            "5/18"
+          ],
+          "cheap_hull_size": 8,
+          "cheap_hull_rank": 8,
+          "core_size": 8,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -2
+          ],
+          "wall_weight": [
+            "7/12",
+            "1/8",
+            "7/24"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -2,
+            0
+          ],
+          "wall_weight": [
+            "9/20",
+            "9/40",
+            "13/40"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            2,
+            -2
+          ],
+          "wall_weight": [
+            "8/15",
+            "1/10",
+            "11/30"
+          ],
+          "cheap_hull_size": 7,
+          "cheap_hull_rank": 7,
+          "core_size": 6,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            0
+          ],
+          "wall_weight": [
+            "17/48",
+            "17/48",
+            "7/24"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "11/30",
+            "4/15",
+            "11/30"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -1
+          ],
+          "wall_weight": [
+            "4/15",
+            "11/30",
+            "11/30"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            -1,
+            0
+          ],
+          "wall_weight": [
+            "9/40",
+            "9/20",
+            "13/40"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -2
+          ],
+          "wall_weight": [
+            "1/8",
+            "7/12",
+            "7/24"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            -1,
+            2
+          ],
+          "wall_weight": [
+            "1/18",
+            "2/3",
+            "5/18"
+          ],
+          "cheap_hull_size": 8,
+          "cheap_hull_rank": 8,
+          "core_size": 8,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            1,
+            -2
+          ],
+          "wall_weight": [
+            "1/10",
+            "8/15",
+            "11/30"
+          ],
+          "cheap_hull_size": 7,
+          "cheap_hull_rank": 7,
+          "core_size": 6,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            -2,
+            -1
+          ],
+          "wall_weight": [
+            "11/30",
+            "1/10",
+            "8/15"
+          ],
+          "cheap_hull_size": 7,
+          "cheap_hull_rank": 7,
+          "core_size": 6,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            2,
+            -1
+          ],
+          "wall_weight": [
+            "13/40",
+            "9/40",
+            "9/20"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "9/40",
+            "13/40",
+            "9/20"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "7/24",
+            "1/8",
+            "7/12"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            2,
+            -1
+          ],
+          "wall_weight": [
+            "1/8",
+            "7/24",
+            "7/12"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            -2,
+            1
+          ],
+          "wall_weight": [
+            "1/10",
+            "11/30",
+            "8/15"
+          ],
+          "cheap_hull_size": 7,
+          "cheap_hull_rank": 7,
+          "core_size": 6,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            2,
+            -1
+          ],
+          "wall_weight": [
+            "1/6",
+            "1/6",
+            "2/3"
+          ],
+          "cheap_hull_size": 8,
+          "cheap_hull_rank": 8,
+          "core_size": 8,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        }
+      ],
+      "minimal_spanning_boxes": []
+    },
+    {
+      "model": "rectangle_3_4",
+      "length": 12,
+      "characteristic": 101,
+      "initial_cells": 54,
+      "walls": [
+        {
+          "direction": [
+            1,
+            -2,
+            -1
+          ],
+          "wall_weight": [
+            "31/48",
+            "7/24",
+            "1/16"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -5
+          ],
+          "wall_weight": [
+            "235/368",
+            "43/184",
+            "47/368"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 3,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            3,
+            -5
+          ],
+          "wall_weight": [
+            "19/23",
+            "5/46",
+            "3/46"
+          ],
+          "cheap_hull_size": 11,
+          "cheap_hull_rank": 11,
+          "core_size": 7,
+          "half_box_size": 6,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -2,
+            1
+          ],
+          "wall_weight": [
+            "11/18",
+            "1/3",
+            "1/18"
+          ],
+          "cheap_hull_size": 4,
+          "cheap_hull_rank": 4,
+          "core_size": 4,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            -2
+          ],
+          "wall_weight": [
+            "71/126",
+            "13/42",
+            "8/63"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -2
+          ],
+          "wall_weight": [
+            "67/112",
+            "15/56",
+            "15/112"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            -1
+          ],
+          "wall_weight": [
+            "1/2",
+            "7/16",
+            "1/16"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -3
+          ],
+          "wall_weight": [
+            "19/36",
+            "17/48",
+            "17/144"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -2
+          ],
+          "wall_weight": [
+            "15/28",
+            "13/42",
+            "13/84"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -2,
+            2
+          ],
+          "wall_weight": [
+            "25/52",
+            "79/208",
+            "29/208"
+          ],
+          "cheap_hull_size": 7,
+          "cheap_hull_rank": 7,
+          "core_size": 6,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -3
+          ],
+          "wall_weight": [
+            "25/52",
+            "14/39",
+            "25/156"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            1
+          ],
+          "wall_weight": [
+            "7/16",
+            "1/2",
+            "1/16"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            -1,
+            -2
+          ],
+          "wall_weight": [
+            "79/208",
+            "25/52",
+            "29/208"
+          ],
+          "cheap_hull_size": 7,
+          "cheap_hull_rank": 7,
+          "core_size": 6,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            0,
+            -5
+          ],
+          "wall_weight": [
+            "125/312",
+            "137/312",
+            "25/156"
+          ],
+          "cheap_hull_size": 8,
+          "cheap_hull_rank": 8,
+          "core_size": 6,
+          "half_box_size": 6,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            2,
+            -5
+          ],
+          "wall_weight": [
+            "137/312",
+            "125/312",
+            "25/156"
+          ],
+          "cheap_hull_size": 8,
+          "cheap_hull_rank": 8,
+          "core_size": 6,
+          "half_box_size": 6,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            -1,
+            -1
+          ],
+          "wall_weight": [
+            "1/3",
+            "11/18",
+            "1/18"
+          ],
+          "cheap_hull_size": 4,
+          "cheap_hull_rank": 4,
+          "core_size": 4,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -3
+          ],
+          "wall_weight": [
+            "17/48",
+            "19/36",
+            "17/144"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -3
+          ],
+          "wall_weight": [
+            "14/39",
+            "25/52",
+            "25/156"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            2
+          ],
+          "wall_weight": [
+            "13/42",
+            "71/126",
+            "8/63"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -2
+          ],
+          "wall_weight": [
+            "13/42",
+            "15/28",
+            "13/84"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            -1,
+            1
+          ],
+          "wall_weight": [
+            "7/24",
+            "31/48",
+            "1/16"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -2
+          ],
+          "wall_weight": [
+            "15/56",
+            "67/112",
+            "15/112"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            0,
+            -3
+          ],
+          "wall_weight": [
+            "1/10",
+            "5/6",
+            "1/15"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 4,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -5
+          ],
+          "wall_weight": [
+            "9/40",
+            "31/48",
+            "31/240"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 3,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -3,
+            0
+          ],
+          "wall_weight": [
+            "417/644",
+            "139/644",
+            "22/161"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            -3
+          ],
+          "wall_weight": [
+            "55/84",
+            "4/21",
+            "13/84"
+          ],
+          "cheap_hull_size": 7,
+          "cheap_hull_rank": 7,
+          "core_size": 7,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -1
+          ],
+          "wall_weight": [
+            "5/6",
+            "1/12",
+            "1/12"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            2,
+            -3
+          ],
+          "wall_weight": [
+            "103/168",
+            "13/56",
+            "13/84"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 4,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            -2
+          ],
+          "wall_weight": [
+            "97/168",
+            "15/56",
+            "13/84"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -1
+          ],
+          "wall_weight": [
+            "19/30",
+            "11/60",
+            "11/60"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -3,
+            1
+          ],
+          "wall_weight": [
+            "55/96",
+            "1/4",
+            "17/96"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -3
+          ],
+          "wall_weight": [
+            "93/160",
+            "9/40",
+            "31/160"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            3,
+            -4
+          ],
+          "wall_weight": [
+            "263/480",
+            "31/120",
+            "31/160"
+          ],
+          "cheap_hull_size": 9,
+          "cheap_hull_rank": 9,
+          "core_size": 6,
+          "half_box_size": 6,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            -1
+          ],
+          "wall_weight": [
+            "1/2",
+            "19/60",
+            "11/60"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            1,
+            -4
+          ],
+          "wall_weight": [
+            "31/60",
+            "17/60",
+            "1/5"
+          ],
+          "cheap_hull_size": 6,
+          "cheap_hull_rank": 6,
+          "core_size": 6,
+          "half_box_size": 3,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -2
+          ],
+          "wall_weight": [
+            "9/20",
+            "11/30",
+            "11/60"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            0
+          ],
+          "wall_weight": [
+            "49/120",
+            "49/120",
+            "11/60"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            2,
+            -3
+          ],
+          "wall_weight": [
+            "17/36",
+            "19/60",
+            "19/90"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 4,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -2
+          ],
+          "wall_weight": [
+            "19/45",
+            "11/30",
+            "19/90"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -2
+          ],
+          "wall_weight": [
+            "11/30",
+            "9/20",
+            "11/60"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -2
+          ],
+          "wall_weight": [
+            "11/30",
+            "19/45",
+            "19/90"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            1
+          ],
+          "wall_weight": [
+            "19/60",
+            "1/2",
+            "11/60"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            0,
+            -3
+          ],
+          "wall_weight": [
+            "19/60",
+            "17/36",
+            "19/90"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 4,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            2
+          ],
+          "wall_weight": [
+            "17/70",
+            "41/70",
+            "6/35"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            1,
+            -4
+          ],
+          "wall_weight": [
+            "1/4",
+            "11/20",
+            "1/5"
+          ],
+          "cheap_hull_size": 6,
+          "cheap_hull_rank": 6,
+          "core_size": 6,
+          "half_box_size": 3,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            -1,
+            2
+          ],
+          "wall_weight": [
+            "11/60",
+            "2/3",
+            "3/20"
+          ],
+          "cheap_hull_size": 8,
+          "cheap_hull_rank": 8,
+          "core_size": 8,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "11/60",
+            "19/30",
+            "11/60"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "1/22",
+            "19/22",
+            "1/11"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -4
+          ],
+          "wall_weight": [
+            "17/132",
+            "23/33",
+            "23/132"
+          ],
+          "cheap_hull_size": 4,
+          "cheap_hull_rank": 4,
+          "core_size": 4,
+          "half_box_size": 3,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -2,
+            -2
+          ],
+          "wall_weight": [
+            "2/3",
+            "5/36",
+            "7/36"
+          ],
+          "cheap_hull_size": 8,
+          "cheap_hull_rank": 8,
+          "core_size": 8,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -3
+          ],
+          "wall_weight": [
+            "53/78",
+            "11/117",
+            "53/234"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            3,
+            -1
+          ],
+          "wall_weight": [
+            "11/13",
+            "1/26",
+            "3/26"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            2,
+            -1
+          ],
+          "wall_weight": [
+            "31/48",
+            "17/144",
+            "17/72"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -2,
+            -1
+          ],
+          "wall_weight": [
+            "71/120",
+            "11/60",
+            "9/40"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            1,
+            -3
+          ],
+          "wall_weight": [
+            "29/48",
+            "7/48",
+            "1/4"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -1
+          ],
+          "wall_weight": [
+            "11/20",
+            "9/40",
+            "9/40"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -2,
+            0
+          ],
+          "wall_weight": [
+            "31/60",
+            "31/120",
+            "9/40"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            3,
+            -2
+          ],
+          "wall_weight": [
+            "149/264",
+            "23/132",
+            "23/88"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 4,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -2
+          ],
+          "wall_weight": [
+            "23/44",
+            "19/88",
+            "23/88"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -1
+          ],
+          "wall_weight": [
+            "13/28",
+            "15/56",
+            "15/56"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            -2,
+            -1
+          ],
+          "wall_weight": [
+            "55/126",
+            "13/42",
+            "16/63"
+          ],
+          "cheap_hull_size": 7,
+          "cheap_hull_rank": 7,
+          "core_size": 6,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -1
+          ],
+          "wall_weight": [
+            "8/21",
+            "13/42",
+            "13/42"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            0
+          ],
+          "wall_weight": [
+            "11/30",
+            "11/30",
+            "4/15"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            -2,
+            1
+          ],
+          "wall_weight": [
+            "13/42",
+            "55/126",
+            "16/63"
+          ],
+          "cheap_hull_size": 7,
+          "cheap_hull_rank": 7,
+          "core_size": 6,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "13/42",
+            "8/21",
+            "13/42"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            2,
+            -3
+          ],
+          "wall_weight": [
+            "47/182",
+            "81/182",
+            "27/91"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 4,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            -1,
+            1
+          ],
+          "wall_weight": [
+            "6/35",
+            "41/70",
+            "17/70"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            1,
+            -3
+          ],
+          "wall_weight": [
+            "17/91",
+            "47/91",
+            "27/91"
+          ],
+          "cheap_hull_size": 8,
+          "cheap_hull_rank": 8,
+          "core_size": 7,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            1,
+            -3
+          ],
+          "wall_weight": [
+            "1/10",
+            "27/40",
+            "9/40"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            -1,
+            3
+          ],
+          "wall_weight": [
+            "1/22",
+            "65/88",
+            "19/88"
+          ],
+          "cheap_hull_size": 11,
+          "cheap_hull_rank": 11,
+          "core_size": 11,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            1,
+            -3
+          ],
+          "wall_weight": [
+            "1/14",
+            "37/56",
+            "15/56"
+          ],
+          "cheap_hull_size": 8,
+          "cheap_hull_rank": 8,
+          "core_size": 7,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -3,
+            -2
+          ],
+          "wall_weight": [
+            "53/78",
+            "1/26",
+            "11/39"
+          ],
+          "cheap_hull_size": 11,
+          "cheap_hull_rank": 11,
+          "core_size": 11,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            -2
+          ],
+          "wall_weight": [
+            "31/48",
+            "1/16",
+            "7/24"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -3,
+            0
+          ],
+          "wall_weight": [
+            "23/44",
+            "23/132",
+            "10/33"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            1,
+            -2
+          ],
+          "wall_weight": [
+            "7/12",
+            "1/12",
+            "1/3"
+          ],
+          "cheap_hull_size": 4,
+          "cheap_hull_rank": 4,
+          "core_size": 4,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            -1,
+            -2
+          ],
+          "wall_weight": [
+            "55/126",
+            "16/63",
+            "13/42"
+          ],
+          "cheap_hull_size": 7,
+          "cheap_hull_rank": 7,
+          "core_size": 6,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            1,
+            -2
+          ],
+          "wall_weight": [
+            "17/36",
+            "7/36",
+            "1/3"
+          ],
+          "cheap_hull_size": 4,
+          "cheap_hull_rank": 4,
+          "core_size": 4,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -3,
+            0
+          ],
+          "wall_weight": [
+            "13/28",
+            "13/84",
+            "8/21"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            3,
+            -2
+          ],
+          "wall_weight": [
+            "23/42",
+            "1/14",
+            "8/21"
+          ],
+          "cheap_hull_size": 9,
+          "cheap_hull_rank": 9,
+          "core_size": 8,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -2,
+            0
+          ],
+          "wall_weight": [
+            "19/45",
+            "19/90",
+            "11/30"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "29/70",
+            "6/35",
+            "29/70"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "11/30",
+            "4/15",
+            "11/30"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            2,
+            -1
+          ],
+          "wall_weight": [
+            "11/30",
+            "19/90",
+            "19/45"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -1,
+            0
+          ],
+          "wall_weight": [
+            "13/42",
+            "13/42",
+            "8/21"
+          ],
+          "cheap_hull_size": 1,
+          "cheap_hull_rank": 1,
+          "core_size": 1,
+          "half_box_size": 1,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            1,
+            -2
+          ],
+          "wall_weight": [
+            "13/42",
+            "16/63",
+            "55/126"
+          ],
+          "cheap_hull_size": 7,
+          "cheap_hull_rank": 7,
+          "core_size": 6,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            -1,
+            0
+          ],
+          "wall_weight": [
+            "53/234",
+            "53/117",
+            "25/78"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            1,
+            -2
+          ],
+          "wall_weight": [
+            "5/18",
+            "7/18",
+            "1/3"
+          ],
+          "cheap_hull_size": 4,
+          "cheap_hull_rank": 4,
+          "core_size": 4,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            3,
+            -2
+          ],
+          "wall_weight": [
+            "47/182",
+            "27/91",
+            "81/182"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 4,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -2,
+            1
+          ],
+          "wall_weight": [
+            "5/18",
+            "1/3",
+            "7/18"
+          ],
+          "cheap_hull_size": 4,
+          "cheap_hull_rank": 4,
+          "core_size": 4,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            0,
+            -1
+          ],
+          "wall_weight": [
+            "53/234",
+            "25/78",
+            "53/117"
+          ],
+          "cheap_hull_size": 2,
+          "cheap_hull_rank": 2,
+          "core_size": 2,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            2,
+            -2
+          ],
+          "wall_weight": [
+            "1/9",
+            "5/12",
+            "17/36"
+          ],
+          "cheap_hull_size": 7,
+          "cheap_hull_rank": 7,
+          "core_size": 6,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            1,
+            -2,
+            2
+          ],
+          "wall_weight": [
+            "1/9",
+            "17/36",
+            "5/12"
+          ],
+          "cheap_hull_size": 7,
+          "cheap_hull_rank": 7,
+          "core_size": 6,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            -1,
+            1
+          ],
+          "wall_weight": [
+            "1/14",
+            "15/28",
+            "11/28"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            -3,
+            -1
+          ],
+          "wall_weight": [
+            "8/21",
+            "1/14",
+            "23/42"
+          ],
+          "cheap_hull_size": 9,
+          "cheap_hull_rank": 9,
+          "core_size": 8,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            3,
+            -1
+          ],
+          "wall_weight": [
+            "8/21",
+            "13/84",
+            "13/28"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            -1,
+            -1
+          ],
+          "wall_weight": [
+            "1/3",
+            "7/36",
+            "17/36"
+          ],
+          "cheap_hull_size": 4,
+          "cheap_hull_rank": 4,
+          "core_size": 4,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            -1,
+            -1
+          ],
+          "wall_weight": [
+            "1/3",
+            "1/12",
+            "7/12"
+          ],
+          "cheap_hull_size": 4,
+          "cheap_hull_rank": 4,
+          "core_size": 4,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            3,
+            -1
+          ],
+          "wall_weight": [
+            "4/15",
+            "11/60",
+            "11/20"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            -3,
+            1
+          ],
+          "wall_weight": [
+            "17/91",
+            "27/91",
+            "47/91"
+          ],
+          "cheap_hull_size": 8,
+          "cheap_hull_rank": 8,
+          "core_size": 7,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            1,
+            -1
+          ],
+          "wall_weight": [
+            "6/35",
+            "17/70",
+            "41/70"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            1,
+            -1
+          ],
+          "wall_weight": [
+            "4/15",
+            "1/10",
+            "19/30"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            1,
+            -1
+          ],
+          "wall_weight": [
+            "1/14",
+            "11/28",
+            "15/28"
+          ],
+          "cheap_hull_size": 5,
+          "cheap_hull_rank": 5,
+          "core_size": 5,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            0,
+            3,
+            -1
+          ],
+          "wall_weight": [
+            "1/10",
+            "9/40",
+            "27/40"
+          ],
+          "cheap_hull_size": 3,
+          "cheap_hull_rank": 3,
+          "core_size": 3,
+          "half_box_size": 2,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            -3,
+            1
+          ],
+          "wall_weight": [
+            "1/14",
+            "15/56",
+            "37/56"
+          ],
+          "cheap_hull_size": 8,
+          "cheap_hull_rank": 8,
+          "core_size": 7,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        },
+        {
+          "direction": [
+            2,
+            3,
+            -1
+          ],
+          "wall_weight": [
+            "1/6",
+            "1/8",
+            "17/24"
+          ],
+          "cheap_hull_size": 11,
+          "cheap_hull_rank": 11,
+          "core_size": 11,
+          "half_box_size": 4,
+          "cheap_hull_nullity": 0
+        }
+      ],
+      "minimal_spanning_boxes": []
+    }
+  ],
+  "core_vs_cheap_hull_contrasts": [
+    {
+      "direction": [
+        4,
+        -2,
+        -3
+      ],
+      "minimum_length": 15,
+      "cheap_hull_size": 22,
+      "socle_rank": 14,
+      "specialized_point_rank": 15,
+      "point_characteristic": 1000000007,
+      "point_exponent_codes": [
+        1,
+        5,
+        15
+      ]
+    },
+    {
+      "direction": [
+        7,
+        -2,
+        -3
+      ],
+      "minimum_length": 18,
+      "cheap_hull_size": 31,
+      "socle_rank": 17,
+      "specialized_point_rank": 18,
+      "point_characteristic": 1000000007,
+      "point_exponent_codes": [
+        1,
+        8,
+        24
+      ]
+    },
+    {
+      "direction": [
+        9,
+        -3,
+        -4
+      ],
+      "minimum_length": 28,
+      "cheap_hull_size": 68,
+      "socle_rank": 27,
+      "specialized_point_rank": 28,
+      "point_characteristic": 1000000007,
+      "point_exponent_codes": [
+        1,
+        10,
+        40
+      ]
+    }
+  ],
+  "hypersurface_dimension_checks": [
+    {
+      "coordinate_degree": 2,
+      "characteristic": 0,
+      "boxes": 27,
+      "point_length_threshold": 26
+    },
+    {
+      "coordinate_degree": 2,
+      "characteristic": 101,
+      "boxes": 27,
+      "point_length_threshold": 26
+    },
+    {
+      "coordinate_degree": 3,
+      "characteristic": 101,
+      "boxes": 64,
+      "point_length_threshold": 63
+    }
+  ],
+  "nonuniform_rectangular_saturated_point_ideal": {
+    "length": 8,
+    "characteristic": 1000000007,
+    "points": [
+      [
+        756025040,
+        473519292,
+        191987296
+      ],
+      [
+        139739614,
+        75543117,
+        739013292
+      ],
+      [
+        464107784,
+        471856610,
+        811834429
+      ],
+      [
+        624225917,
+        886253925,
+        743329838
+      ],
+      [
+        238603536,
+        160899705,
+        391035147
+      ],
+      [
+        691967096,
+        552395925,
+        901620270
+      ],
+      [
+        544129185,
+        635167919,
+        162460493
+      ],
+      [
+        766211904,
+        508406015,
+        626394900
+      ]
+    ],
+    "nonuniform_relation": "x^2+y^2+z^2-1",
+    "exhaustive_saturation_boxes": 512,
+    "filter_witnesses": [
+      {
+        "weight": [
+          87814000382,
+          83706382795,
+          116526833780
+        ],
+        "terms_scanned": 8,
+        "uniform_prefix_length": 448
+      },
+      {
+        "weight": [
+          77802648123,
+          101074564869,
+          47728473247
+        ],
+        "terms_scanned": 8,
+        "uniform_prefix_length": 448
+      },
+      {
+        "weight": [
+          116004274792,
+          72512729092,
+          81524764872
+        ],
+        "terms_scanned": 8,
+        "uniform_prefix_length": 448
+      },
+      {
+        "weight": [
+          89989284015,
+          42000423145,
+          53759651427
+        ],
+        "terms_scanned": 8,
+        "uniform_prefix_length": 448
+      },
+      {
+        "weight": [
+          84846937543,
+          90844422855,
+          47241174368
+        ],
+        "terms_scanned": 8,
+        "uniform_prefix_length": 448
+      },
+      {
+        "weight": [
+          98956752068,
+          116251052241,
+          117873097835
+        ],
+        "terms_scanned": 8,
+        "uniform_prefix_length": 448
+      },
+      {
+        "weight": [
+          114391842345,
+          115855245290,
+          58829670237
+        ],
+        "terms_scanned": 8,
+        "uniform_prefix_length": 448
+      },
+      {
+        "weight": [
+          84186144465,
+          118687486974,
+          107335293932
+        ],
+        "terms_scanned": 8,
+        "uniform_prefix_length": 448
+      }
+    ]
+  },
+  "diagonal_uniform_scanning_obstruction": [
+    {
+      "length": 2,
+      "nonsaturating_box_volume": 1,
+      "near_equal_weight": [
+        49,
+        56,
+        50
+      ],
+      "ordinary_terms_through_completion": 2,
+      "initial_ideals": 3
+    },
+    {
+      "length": 3,
+      "nonsaturating_box_volume": 2,
+      "near_equal_weight": [
+        100,
+        110,
+        101
+      ],
+      "ordinary_terms_through_completion": 5,
+      "initial_ideals": 3
+    },
+    {
+      "length": 4,
+      "nonsaturating_box_volume": 4,
+      "near_equal_weight": [
+        169,
+        182,
+        170
+      ],
+      "ordinary_terms_through_completion": 11,
+      "initial_ideals": 3
+    },
+    {
+      "length": 5,
+      "nonsaturating_box_volume": 8,
+      "near_equal_weight": [
+        256,
+        272,
+        257
+      ],
+      "ordinary_terms_through_completion": 21,
+      "initial_ideals": 3
+    },
+    {
+      "length": 6,
+      "nonsaturating_box_volume": 12,
+      "near_equal_weight": [
+        361,
+        380,
+        362
+      ],
+      "ordinary_terms_through_completion": 36,
+      "initial_ideals": 3
+    },
+    {
+      "length": 7,
+      "nonsaturating_box_volume": 18,
+      "near_equal_weight": [
+        484,
+        506,
+        485
+      ],
+      "ordinary_terms_through_completion": 57,
+      "initial_ideals": 3
+    },
+    {
+      "length": 8,
+      "nonsaturating_box_volume": 27,
+      "near_equal_weight": [
+        625,
+        650,
+        626
+      ],
+      "ordinary_terms_through_completion": 85,
+      "initial_ideals": 3
+    },
+    {
+      "length": 9,
+      "nonsaturating_box_volume": 36,
+      "near_equal_weight": [
+        784,
+        812,
+        785
+      ],
+      "ordinary_terms_through_completion": 121,
+      "initial_ideals": 3
+    },
+    {
+      "length": 10,
+      "nonsaturating_box_volume": 48,
+      "near_equal_weight": [
+        961,
+        992,
+        962
+      ],
+      "ordinary_terms_through_completion": 166,
+      "initial_ideals": 3
+    },
+    {
+      "length": 11,
+      "nonsaturating_box_volume": 64,
+      "near_equal_weight": [
+        1156,
+        1190,
+        1157
+      ],
+      "ordinary_terms_through_completion": 221,
+      "initial_ideals": 3
+    },
+    {
+      "length": 12,
+      "nonsaturating_box_volume": 80,
+      "near_equal_weight": [
+        1369,
+        1406,
+        1370
+      ],
+      "ordinary_terms_through_completion": 287,
+      "initial_ideals": 3
+    },
+    {
+      "length": 13,
+      "nonsaturating_box_volume": 100,
+      "near_equal_weight": [
+        1600,
+        1640,
+        1601
+      ],
+      "ordinary_terms_through_completion": 365,
+      "initial_ideals": 3
+    },
+    {
+      "length": 14,
+      "nonsaturating_box_volume": 125,
+      "near_equal_weight": [
+        1849,
+        1892,
+        1850
+      ],
+      "ordinary_terms_through_completion": 456,
+      "initial_ideals": 3
+    },
+    {
+      "length": 15,
+      "nonsaturating_box_volume": 150,
+      "near_equal_weight": [
+        2116,
+        2162,
+        2117
+      ],
+      "ordinary_terms_through_completion": 561,
+      "initial_ideals": 3
+    },
+    {
+      "length": 16,
+      "nonsaturating_box_volume": 180,
+      "near_equal_weight": [
+        2401,
+        2450,
+        2402
+      ],
+      "ordinary_terms_through_completion": 681,
+      "initial_ideals": 3
+    }
+  ],
+  "represented_transversal_products": [
+    {
+      "first_rank": 3,
+      "second_rank": 3,
+      "first_neighborhoods": [
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          1,
+          2,
+          4
+        ],
+        [
+          0,
+          2,
+          5
+        ]
+      ],
+      "second_neighborhoods": [
+        [
+          0,
+          1,
+          4
+        ],
+        [
+          1,
+          2,
+          5
+        ],
+        [
+          0,
+          3,
+          5
+        ]
+      ],
+      "first_labels": [
+        [
+          32,
+          1
+        ],
+        [
+          16,
+          2
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          2,
+          16
+        ],
+        [
+          1,
+          32
+        ]
+      ],
+      "second_labels": [
+        [
+          243,
+          1
+        ],
+        [
+          81,
+          3
+        ],
+        [
+          27,
+          9
+        ],
+        [
+          9,
+          27
+        ],
+        [
+          3,
+          81
+        ],
+        [
+          1,
+          243
+        ]
+      ],
+      "first_columns": [
+        {
+          "0": 2202,
+          "2": 9326
+        },
+        {
+          "0": 1034,
+          "1": 4180
+        },
+        {
+          "1": 1932,
+          "2": 8118
+        },
+        {
+          "0": 7365
+        },
+        {
+          "1": 7738
+        },
+        {
+          "2": 6220
+        }
+      ],
+      "second_columns": [
+        {
+          "0": 2202,
+          "2": 9326
+        },
+        {
+          "0": 1034,
+          "1": 4180
+        },
+        {
+          "1": 1932
+        },
+        {
+          "2": 8118
+        },
+        {
+          "0": 7365
+        },
+        {
+          "1": 7738,
+          "2": 6220
+        }
+      ],
+      "factor_positive_profiles": [
+        4,
+        4
+      ],
+      "direct_sum_positive_profiles": 16,
+      "total_simplex_area2": "1"
+    },
+    {
+      "first_rank": 2,
+      "second_rank": 3,
+      "first_neighborhoods": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          3,
+          4,
+          5
+        ]
+      ],
+      "second_neighborhoods": [
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          1,
+          2,
+          4
+        ],
+        [
+          0,
+          2,
+          5
+        ]
+      ],
+      "first_labels": [
+        [
+          32,
+          1
+        ],
+        [
+          16,
+          2
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          2,
+          16
+        ],
+        [
+          1,
+          32
+        ]
+      ],
+      "second_labels": [
+        [
+          243,
+          1
+        ],
+        [
+          81,
+          3
+        ],
+        [
+          27,
+          9
+        ],
+        [
+          9,
+          27
+        ],
+        [
+          3,
+          81
+        ],
+        [
+          1,
+          243
+        ]
+      ],
+      "first_columns": [
+        {
+          "0": 2202
+        },
+        {
+          "0": 9326
+        },
+        {
+          "0": 1034
+        },
+        {
+          "1": 4180
+        },
+        {
+          "1": 1932
+        },
+        {
+          "1": 8118
+        }
+      ],
+      "second_columns": [
+        {
+          "0": 2202,
+          "2": 9326
+        },
+        {
+          "0": 1034,
+          "1": 4180
+        },
+        {
+          "1": 1932,
+          "2": 8118
+        },
+        {
+          "0": 7365
+        },
+        {
+          "1": 7738
+        },
+        {
+          "2": 6220
+        }
+      ],
+      "factor_positive_profiles": [
+        5,
+        4
+      ],
+      "direct_sum_positive_profiles": 20,
+      "total_simplex_area2": "1"
+    }
+  ],
+  "source_sha256": {
+    "docs/wall_rank_filters.md": "2e2b19bfb674b5a764bd278c6e49feb5058b3dbd1d0bd5aafa16067fa456b614",
+    "scripts/run_wall_rank_filter_checks.py": "615d5bf45cff57b306211d0f4330c8ea0415c6cd94696701c2da0ad29b255f46",
+    "paper/corner_cut_growth/main.tex": "3a1575e04d497b2a87074b9f07095f8bc818099703b366a9e9151b79716db540",
+    "docs/oracle_fan_enumeration.md": "f3323de30299bcbb0b4755600266aa16d74128322b517492fc75ebbe370e0e15",
+    "scripts/run_free_wall_checks.py": "0637266aa5b0c60eb2de874fa4f33c458600b36f27a9725fec9c72d34ee219ae",
+    "scripts/run_wall_coexistence_checks.py": "12efc209c9a0daacb8e50eebe65902ca019a78fb78098ecc3e79ecf585cae282",
+    "scripts/run_primitive_wall_checks.py": "ce4bdb6316b3acbfc15625b8f67dfadd69c95d691c81da2c47cda6538c867cdb",
+    "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
+    "scripts/run_oracle_enumeration_checks.py": "139af7656f8dc4083fc463a0bb27354ee53b23e85bc3232b958236b15ee45ec2",
+    "scripts/run_signed_face_checks.py": "8367cf40b049331649f6f3ed799e43982b14a1d40cfb620791249d2c63375867",
+    "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
+    "results/research/oracle_enumeration_checks.json": "06e79a6fd9b6453127a7a6499377dc995dc2290d51fd49d829936afa0b3c3078",
+    "results/research/extremal_initial_ideals_checks.json": "33d876343f415a84976c1fb7a2556143db08bea9b6b729541fc34313cb6b4d6b"
+  }
+}

@@ -7,7 +7,7 @@
   "goal_complete": false,
   "asymptotic_improvement_established_this_iteration": false,
   "novelty_established_this_iteration": false,
-  "note": "Parallel walls now have one faithful compulsory-core contraction and a rank-sensitive translated-ground bound. Both extreme cost regimes satisfy the cubic aggregate budget; the middle range remains open. A sharper tagged construction realizes every planar fan as q-parallel walls at exact residual rank R+1, and the known planar count rules out even a uniform O(r) cap. That superlinear obstruction is already implicit in earlier repository fan products. The contraction agrees with global optimization only locally at each q-wall, as 118 exact outside-wall cost gaps verify. No new unrestricted exponent, polynomially separating lower family, novelty claim or paper endpoint is established; the full impact goal stays active.",
+  "note": "The logarithmic cubic wall-cost obstruction and all earlier results remain preserved. A new uniform theorem identifies worst free-prefix completion with the largest nonsaturating box volume s, within constants depending only on dimension. It gives the sharp generic fan order for the entire class s=O(n), including nonuniform generic point ideals on suitable hypersurfaces, and the corresponding existing enumeration consequence. Large s can coexist with only three initials. Every actual wall now has a necessary rank defect on its whole universally cheaper lattice hull. The ordinary spatial k-set bound provably does not extend to represented matroids. These results neither settle unrestricted G3 nor establish a polynomial separating ideal family or novelty; the full goal remains active.",
   "relationship_to_previous_work": "New active objective with a higher completion bar. Previous goal records, lattice-shadow candidate, manuscripts and paused ML results are preserved as historical research.",
   "definitions": {
     "G_d_n": "Maximum number of monomial initial ideals of a colength-n ideal in d variables, over all fields.",
@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Preserve the original sharp unrestricted G3 or actual polynomial-separation endpoint and every success criterion. Prove or refute the cubic collective V budget in the remaining middle range n^(3/5)<nu(q)<=n-n^(3/7), with rounding and actual undirected adjacency multiplicities retained. The two extreme portions are already controlled up to logarithms. Use joint rank or commuting-multiplication constraints across different compulsory cores in one quotient. Do not replace the forced-core matroid by a smaller algebra or assert support-function agreement at all weights: agreement is local at each wall and the saved outside-wall guards show strict gaps elsewhere. Do not assume p_I(q)=O(r), r=n-nu(q)+1: tagged planar embeddings and the earlier fan product give Theta(r*log(r+1)) lower families. The proved upper bound remains O(r^(4/3)*log(r+1)^2); improving one-direction bounds alone need not control the middle aggregate. Retain the three-pole cubic control, older square-root-incidence route and every counterguard; an actual infinite polynomially separating coherent lower family remains an alternative. Complete the strongest-current primary and precise-priority comparison before claiming novelty or a paper-level result. No partial cost-band bound, classical gluing corollary or draft completes this goal.",
+  "next_proof_task": "Preserve the original sharp unrestricted G3 or actual polynomial-separation endpoint and every success criterion. Prove or refute the cubic polylogarithmic collective V budget in the remaining middle range n^(3/5)<nu(q)<=n-n^(3/7), with rounding and actual undirected adjacency multiplicities retained. The two extreme portions are already controlled up to logarithms. Use joint rank or commuting-multiplication constraints across different compulsory cores in one quotient. Do not replace the forced-core matroid by a smaller algebra or assert support-function agreement at all weights: agreement is local at each wall and the saved outside-wall guards show strict gaps elsewhere. Do not assume p_I(q)=O(r), r=n-nu(q)+1: tagged planar embeddings and the earlier fan product give Theta(r*log(r+1)) lower families. The proved upper bound remains O(r^(4/3)*log(r+1)^2); improving one-direction bounds alone need not control the middle aggregate. Retain the three-pole cubic control, older square-root-incidence route and every counterguard; an actual infinite polynomially separating coherent lower family remains an alternative. Complete the strongest-current primary and precise-priority comparison before claiming novelty or a paper-level result. No partial cost-band bound, classical gluing corollary or draft completes this goal. The explicit radical product family now has V=Theta(N^3*log N) along prime branch lengths, entirely driven by walls of cost N/3. Thus a strict cubic estimate is false, and a logarithmic exponent below one is impossible. The entire common-coordinate product class is controlled by O(N^3*log(N+1)); use genuinely coupled three-variable dependencies or a new joint-rank argument to go beyond that class. The planar weighted budget W<=m*(m-1) is sharp but does not alone control full-support spatial directions. The new box-saturation theorem closes the entire class s(I)=O_d(n) at the sharp generic scale, including nonuniform generic point ideals on hypersurfaces with n<=prod(d_i+1)-1. A supergeneric power family must have superlinear nonsaturating box volume or a noncyclic coordinate. Use the exact cheap-hull rank condition, its core-contracted form and commuting box plateaus jointly across one quotient; do not infer a large fan from large box volume, since the diagonal algebra has sharp n^d scanning but only d initials. Arbitrary represented-matroid spatial k-set bounds cannot close the proof: the direct sum of two published transversal examples already has Omega(r^(8/3)) profiles at linear ground size and rank. Complete the exact interpolation/parametric prior-art assessment for the new uniform scanning and class-count reduction; this class theorem does not reduce the original completion criterion.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -148,7 +148,8 @@
     "Compare the exact elementary-quotient projected face statement with full flag-matroid/strong-map literature. The newly read elementary-quotient and realization facts, and point-separator normal forms, are established inputs. The actual socle flags do not certify a new general algorithm or counting theorem. Prove or refute the collective square-root incidence budget before reporting a new unrestricted power.",
     "Determine whether a collective rank-preserving hyperbolic localization can bound the visible skeleton or square-root incidence. The one-box estimate is not additive over matroid restrictions. The classical primitive-zonotope projection comparison is now explicit about its larger rank; it does not settle the actual algebraic budget. Exact priority of the elementary skeleton estimate remains unverified.",
     "The revised all-field arithmetic enumeration consequence composes established positive-cone traversal and fast conversion. Compare it with the strongest later specialized enumeration bounds before claiming priority. The elementary exact-neighbor formula and planar polarity remove a repository geometry overhead; they do not certify a new general Groebner traversal method. The main collective incidence and sharp-count questions remain open.",
-    "The cyclic-span rank polytope can be the same simplex for a one-cell fan and the entire generic corner-cut fan, with the same x operator and invariant factors. Retain the full aggregated valuation and its quadratic contact set in any module-based global proof. Classical M-convex aggregation and fixed-shift Popov invariance do not themselves provide a new all-shift count or a priority certificate."
+    "The cyclic-span rank polytope can be the same simplex for a one-cell fan and the entire generic corner-cut fan, with the same x operator and invariant factors. Retain the full aggregated valuation and its quadratic contact set in any module-based global proof. Classical M-convex aggregation and fixed-shift Popov invariance do not themselves provide a new all-shift count or a priority certificate.",
+    "Audit uniform free-prefix completion versus nonsaturating rectangular interpolation volume, the generic hypersurface class and its enumeration consequence against primary multivariate interpolation, structured Krylov and parametric Groebner literature. The prefix-count input is the existing manuscript theorem; generic evaluation and principal-ideal box dimensions are classical. Keyword searches are not novelty evidence. The unrestricted endpoint is unchanged."
   ],
   "primary_sources": [
     {
@@ -221,7 +222,7 @@
       "authors": "Eppstein",
       "title": "Geometric lower bounds for parametric matroid optimization",
       "url": "https://ics.uci.edu/~eppstein/pubs/Epp-DCG-98.pdf",
-      "scope": "Section 4, especially Theorems 5 and 7, Corollaries 1--2 and their constructions, already compared in the earlier research note and revisited here. The lower examples are transversal matroids from convex chains. They do not provide cyclic commuting quotient matrices, exponent-weight assignments within the universal monomial ground, or a colength overhead bound."
+      "scope": "Section 4, especially Theorems 5 and 7, Corollaries 1--2 and their constructions, already compared in the earlier research note and revisited here. The lower examples are transversal matroids from convex chains. They do not provide cyclic commuting quotient matrices, exponent-weight assignments within the universal monomial ground, or a colength overhead bound. Follow-up: Theorems 5 and 7 and Corollaries 1 and 2, with proofs on printed pages 9-11 of the February 1997 author version, read and visually inspected. They supply transversal rank-r, Theta(r)-element examples with Omega(r^(4/3)) one-parameter profiles. Their direct-sum consequence is elementary and is not asserted to be an actual finite algebra."
     },
     {
       "authors": "Milne",
@@ -870,6 +871,13 @@
       "title": "Geometric Lower Bounds for Parametric Matroid Optimization",
       "url": "https://ics.uci.edu/~eppstein/pubs/Epp-DCG-98.pdf",
       "scope": "Section 4, Theorem 4 and its complete convex-token and perturbation proof rechecked. It supplies the classical reduction used with Dey; its arbitrary-matroid lower construction is not asserted to be a monomial quotient."
+    },
+    {
+      "authors": "Sharir, Smorodinsky and Tardos",
+      "title": "An Improved Bound for k-Sets in Three Dimensions",
+      "url": "https://www.renyi.hu/~tardos/michashakhar.pdf",
+      "version": "Author-hosted August 7, 2000 preprint of the 2001 journal result",
+      "scope": "Theorem 1.1 and Section 2 overview, including ordinary halfspace selection, general-position perturbation and halving-triangle antipodality inspected. No full-proof audit of its later crossing lemmas or extension to arbitrary matroids is asserted. The latter extension is contradicted by the direct-sum consequence of Eppstein."
     }
   ],
   "verification": {
@@ -2349,21 +2357,89 @@
       },
       "source_hashes_verified": true,
       "scope": "Uniform proofs use the fixed compulsory monomial core, a relative divisor cover, one rank-preserving matroid contraction, the published Dey bound and the translated arithmetic shadow estimate. The tagged construction embeds every planar fan over every field; its superlinear residual lower family uses the established rational generic planar count. Whole embedded cones are checked independently from quotient columns, including local, nonlocal and characteristic-dependent cases. The middle collective cost budget, an improved unrestricted exponent and exact priority remain unproved."
+    },
+    "wall_cost_products": {
+      "command": "python3 -B scripts/run_wall_cost_product_checks.py",
+      "status": "passed",
+      "report": "results/research/wall_cost_product_checks.json",
+      "counts": {
+        "independent_complete_free_cut_intervals": 67,
+        "independent_complete_spatial_cone_equalities": 605,
+        "independent_complete_spatial_point_fans": 8,
+        "independent_full_ground_spatial_greedy_replays": 605,
+        "independent_hook_cost_formulas": 8,
+        "independent_planar_border_cones": 120,
+        "independent_planar_profile_jumps": 104,
+        "independent_planar_telescoping_budgets": 16,
+        "independent_point_generator_annihilations": 636,
+        "independent_spatial_border_relations": 4754,
+        "independent_spatial_undirected_wall_costs": 1090,
+        "independent_unrestricted_heap_cuts": 324
+      },
+      "complete_actual_fans": 8,
+      "tested_characteristics": [
+        0,
+        1000000007
+      ],
+      "build": {
+        "command": "./build.sh",
+        "status": "passed"
+      },
+      "smoke": {
+        "command": "python3 tests/test_smoke.py",
+        "status": "passed"
+      },
+      "source_hashes_verified": true,
+      "scope": "Exact complete finite fans support the uniform planar telescoping bound, existing fan-product cost identity and explicit radical rational family with V=Theta(N^3 log N) along prime branch lengths. Finite-field examples are individually verified specializations. No asymptotic law is fitted, unrestricted upper bound improved, polynomial fan separation proved, or novelty established."
+    },
+    "wall_rank_filter_research": {
+      "command": "python3 -B scripts/run_wall_rank_filter_checks.py",
+      "status": "passed",
+      "report": "results/research/wall_rank_filter_checks.json",
+      "counts": {
+        "cheap_hull_not_literal_endpoint_controls": 6,
+        "independent_actual_wall_cheap_hull_ranks": 221,
+        "independent_complete_direct_sum_spatial_cones": 36,
+        "independent_complete_spanning_box_diagrams": 11,
+        "independent_core_contracted_rank_equalities": 221,
+        "independent_core_only_false_positive_rejections": 3,
+        "independent_diagonal_scanning_and_initial_controls": 60,
+        "independent_hypersurface_box_dimensions": 118,
+        "independent_matching_representation_subsets": 148,
+        "independent_minimal_spanning_boxes": 39,
+        "independent_nonuniform_point_saturation_boxes": 512,
+        "independent_sharp_socle_rank_controls": 12,
+        "independent_strictly_cheaper_monomials": 758,
+        "independent_uniform_free_prefix_filter_replays": 56
+      },
+      "actual_quotient_fans": 14,
+      "build": {
+        "command": "./build.sh",
+        "status": "passed"
+      },
+      "smoke": {
+        "command": "python3 tests/test_smoke.py",
+        "status": "passed"
+      },
+      "scope": "Exact saved actual fans verify necessary cheap-hull and contracted ranks. Socle and point columns contrast core independence with rank saturation. Exhaustive box ranks of a nonuniform quadric point ideal and independent free-prefix filtering support the uniform oversampling proof. Diagonal algebras check sharp worst-case scanning despite three initials. Polynomial division checks hypersurface box dimensions. Finite represented transversal direct sums verify the product identity, not the published asymptotic lower construction. No unrestricted improvement, separating ideal family or novelty established."
     }
   },
-  "preservation": "Six explicitly reviewed public files complete the pending coexistence note and add the exact planar embedding and local-scope guards. All 87 prior continuation records, all 120 prior primary-source records, the full objective and success criteria, previous report values, manuscripts/PDFs, core CLI/kernels and auditor, and paused ML remain preserved. All 373 tracked files outside the three changed tracked paths are byte-identical to 63de2b2. Baselines, logs and privacy records remain ignored.",
+  "preservation": "This iteration changes only the explicit six-file research list. All 88 prior continuations, the objective and success criteria, all prior mathematical artifacts, manuscripts, core CLI/kernels and auditor, and paused ML are preserved. The new report records only repository-relative source hashes. Exploratory characteristic-two traces and audit baselines remain ignored under results/local/.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
     "docs/extremal_initial_ideals.md",
-    "docs/wall_coexistence.md",
-    "scripts/run_wall_coexistence_checks.py",
-    "results/research/wall_coexistence_checks.json",
-    "results/research/extremal_initial_ideals_goal.json"
+    "docs/wall_cost_products.md",
+    "scripts/run_wall_cost_product_checks.py",
+    "results/research/wall_cost_product_checks.json",
+    "results/research/extremal_initial_ideals_goal.json",
+    "docs/wall_rank_filters.md",
+    "scripts/run_wall_rank_filter_checks.py",
+    "results/research/wall_rank_filter_checks.json"
   ],
   "source_sha256": {
-    "README.md": "6c31e2685797cea7e188c9525034fa9b1cc7a32271b617ef0a2c306b5de359ba",
-    "docs/extremal_initial_ideals.md": "e7639ec629ae477a3d9a4c47436c1340838a90fc812fc70c28081eb058ae771f",
+    "README.md": "6549033fef56c252ffa65d7a9039bdf5e58b9f5b1c98708ccb328e154ab23882",
+    "docs/extremal_initial_ideals.md": "2a54c348da1448a8470bdaf5a31b20b34fbf20b7cd62c15227212271d1b0ca8b",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
     "results/research/profile_lattice_checks.json": "437b69bd81173c330b059d879df9f93281befb01e353f9e2c2e00f5a55746d17",
@@ -2472,7 +2548,13 @@
     "results/research/free_wall_threshold_checks.json": "05fae3629007b184559f046406e6695ae8898e9a58b20ae3ebf94801f833280d",
     "docs/wall_coexistence.md": "502b73f8c70a06da84b5de9ec59adcc3ea5d8cc9d8356b76875f0f96c91c4682",
     "scripts/run_wall_coexistence_checks.py": "12efc209c9a0daacb8e50eebe65902ca019a78fb78098ecc3e79ecf585cae282",
-    "results/research/wall_coexistence_checks.json": "03f1314e133354199caa2748d72485517097228f5f622b4e9a5ea1b05d817d1e"
+    "results/research/wall_coexistence_checks.json": "03f1314e133354199caa2748d72485517097228f5f622b4e9a5ea1b05d817d1e",
+    "docs/wall_cost_products.md": "86c853bdc904f384ef27435f93db2269bdfbf0c0c2ccf1a010bf3a1e393102e2",
+    "scripts/run_wall_cost_product_checks.py": "5ce334e52cdb1f6d7f51c2d33a7667b613f094a84f4c9573fc1df6607dd8d76c",
+    "results/research/wall_cost_product_checks.json": "455137511433765018bd18090372521e543e6093416eeb49f0dbc5f9902b0760",
+    "docs/wall_rank_filters.md": "2e2b19bfb674b5a764bd278c6e49feb5058b3dbd1d0bd5aafa16067fa456b614",
+    "scripts/run_wall_rank_filter_checks.py": "615d5bf45cff57b306211d0f4330c8ea0415c6cd94696701c2da0ad29b255f46",
+    "results/research/wall_rank_filter_checks.json": "266ea51ef13b2a58d6d69dfe3e7242d47523e79ed9c20418a86d67e80939a66c"
   },
   "continuations": [
     {
@@ -8125,10 +8207,127 @@
       },
       "effect_on_next_action": "Preserve the original sharp unrestricted G3 or actual polynomial-separation endpoint and every success criterion. Prove or refute the cubic collective V budget in the remaining middle range n^(3/5)<nu(q)<=n-n^(3/7), with rounding and actual undirected adjacency multiplicities retained. The two extreme portions are already controlled up to logarithms. Use joint rank or commuting-multiplication constraints across different compulsory cores in one quotient. Do not replace the forced-core matroid by a smaller algebra or assert support-function agreement at all weights: agreement is local at each wall and the saved outside-wall guards show strict gaps elsewhere. Do not assume p_I(q)=O(r), r=n-nu(q)+1: tagged planar embeddings and the earlier fan product give Theta(r*log(r+1)) lower families. The proved upper bound remains O(r^(4/3)*log(r+1)^2); improving one-direction bounds alone need not control the middle aggregate. Retain the three-pole cubic control, older square-root-incidence route and every counterguard; an actual infinite polynomially separating coherent lower family remains an alternative. Complete the strongest-current primary and precise-priority comparison before claiming novelty or a paper-level result. No partial cost-band bound, classical gluing corollary or draft completes this goal.",
       "unrestricted_goal_complete": false
+    },
+    {
+      "title": "A sharp planar wall-cost budget and a necessary spatial logarithm",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "Progress: 6e92ef8 saved and checked the compulsory-core contraction, exact planar embedding and local-only support guards. All 88 prior continuation records and the original completion criteria are preserved.",
+      "progress_classification": "proved_planar_weighted_budget_and_exact_product_cost_with_radical_middle_range_logarithmic_lower_family",
+      "prior_next_proof_task": "Preserve the original sharp unrestricted G3 or actual polynomial-separation endpoint and every success criterion. Prove or refute the cubic collective V budget in the remaining middle range n^(3/5)<nu(q)<=n-n^(3/7), with rounding and actual undirected adjacency multiplicities retained. The two extreme portions are already controlled up to logarithms. Use joint rank or commuting-multiplication constraints across different compulsory cores in one quotient. Do not replace the forced-core matroid by a smaller algebra or assert support-function agreement at all weights: agreement is local at each wall and the saved outside-wall guards show strict gaps elsewhere. Do not assume p_I(q)=O(r), r=n-nu(q)+1: tagged planar embeddings and the earlier fan product give Theta(r*log(r+1)) lower families. The proved upper bound remains O(r^(4/3)*log(r+1)^2); improving one-direction bounds alone need not control the middle aggregate. Retain the three-pole cubic control, older square-root-incidence route and every counterguard; an actual infinite polynomially separating coherent lower family remains an alternative. Complete the strongest-current primary and precise-priority comparison before claiming novelty or a paper-level result. No partial cost-band bound, classical gluing corollary or draft completes this goal.",
+      "uniform_results": {
+        "proof": "docs/wall_cost_products.md",
+        "checker": "scripts/run_wall_cost_product_checks.py",
+        "report": "results/research/wall_cost_product_checks.json",
+        "planar_budget": "For every length-m planar ideal over every field, the sum W of primitive positive wall costs is at most m*(m-1). The proof telescopes the monotone profile chain, retaining integer edge multiples.",
+        "sharp_planar_family": "T_m=(product_(j=1)^m(x-j),xy-1) has m hooks, W(T_m)=sum_(j=1)^(m-1) m/gcd(j,m). For prime m this equals m*(m-1), attaining the universal bound.",
+        "exact_product_cost": "For the existing common-coordinate product H of J1,J2, V(H)=g(J2)*W(J1)+g(J1)*W(J2), with every undirected repeated wall piece counted.",
+        "entire_product_class": "V(H)=O(N^3*log(N+1)), uniformly over fields and arbitrary planar branches of total product length N.",
+        "actual_rational_ideal": "H_m=(f_m(x),yz,xy^2-y,z^2-x^m*z), f_m=product_(j=1)^m(x-j). It is the radical ideal of the 3m points (j,0,0),(j,1/j,0),(j,0,j^m).",
+        "infinite_family": "Along prime p, N=3p, g(H_p)=p*C2(p)=Theta(N^2*log N), and V(H_p)=p*(p-1)*C2(p)+p*W(Q_p)=Theta(N^3*log N).",
+        "middle_cost_obstruction": "The (p-1)*C2(p) first-branch walls all have cost p=N/3 and compulsory-core residual rank 2p+1. The necessary logarithm occurs in the unresolved intermediate-cost range.",
+        "necessary_logarithm": "A uniform V=O(N^3*log(N+1)^C) estimate must have C>=1. Strict O(N^3) is false. The original cubic polylogarithmic conjecture is not refuted.",
+        "classical_boundary": "Monotone planar perimeter telescoping, hook Laurent interpolation, the earlier fan product and the published generic planar count are established inputs. This is a quantitative consequence, not a new gluing mechanism or a novelty certificate.",
+        "unrestricted_G3_improved": false,
+        "polynomial_lower_separation_proved": false,
+        "full_cubic_polylog_budget_proved": false,
+        "novelty_established": false,
+        "goal_complete": false
+      },
+      "verification": {
+        "command": "python3 -B scripts/run_wall_cost_product_checks.py",
+        "status": "passed",
+        "report": "results/research/wall_cost_product_checks.json",
+        "counts": {
+          "independent_complete_free_cut_intervals": 67,
+          "independent_complete_spatial_cone_equalities": 605,
+          "independent_complete_spatial_point_fans": 8,
+          "independent_full_ground_spatial_greedy_replays": 605,
+          "independent_hook_cost_formulas": 8,
+          "independent_planar_border_cones": 120,
+          "independent_planar_profile_jumps": 104,
+          "independent_planar_telescoping_budgets": 16,
+          "independent_point_generator_annihilations": 636,
+          "independent_spatial_border_relations": 4754,
+          "independent_spatial_undirected_wall_costs": 1090,
+          "independent_unrestricted_heap_cuts": 324
+        },
+        "complete_actual_fans": 8,
+        "tested_characteristics": [
+          0,
+          1000000007
+        ],
+        "build": {
+          "command": "./build.sh",
+          "status": "passed"
+        },
+        "smoke": {
+          "command": "python3 tests/test_smoke.py",
+          "status": "passed"
+        },
+        "source_hashes_verified": true,
+        "scope": "Exact complete finite fans support the uniform planar telescoping bound, existing fan-product cost identity and explicit radical rational family with V=Theta(N^3 log N) along prime branch lengths. Finite-field examples are individually verified specializations. No asymptotic law is fitted, unrestricted upper bound improved, polynomial fan separation proved, or novelty established."
+      },
+      "effect_on_next_action": "Preserve the original sharp unrestricted G3 or actual polynomial-separation endpoint and every success criterion. Prove or refute the cubic polylogarithmic collective V budget in the remaining middle range n^(3/5)<nu(q)<=n-n^(3/7), with rounding and actual undirected adjacency multiplicities retained. The two extreme portions are already controlled up to logarithms. Use joint rank or commuting-multiplication constraints across different compulsory cores in one quotient. Do not replace the forced-core matroid by a smaller algebra or assert support-function agreement at all weights: agreement is local at each wall and the saved outside-wall guards show strict gaps elsewhere. Do not assume p_I(q)=O(r), r=n-nu(q)+1: tagged planar embeddings and the earlier fan product give Theta(r*log(r+1)) lower families. The proved upper bound remains O(r^(4/3)*log(r+1)^2); improving one-direction bounds alone need not control the middle aggregate. Retain the three-pole cubic control, older square-root-incidence route and every counterguard; an actual infinite polynomially separating coherent lower family remains an alternative. Complete the strongest-current primary and precise-priority comparison before claiming novelty or a paper-level result. No partial cost-band bound, classical gluing corollary or draft completes this goal. The explicit radical product family now has V=Theta(N^3*log N) along prime branch lengths, entirely driven by walls of cost N/3. Thus a strict cubic estimate is false, and a logarithmic exponent below one is impossible. The entire common-coordinate product class is controlled by O(N^3*log(N+1)); use genuinely coupled three-variable dependencies or a new joint-rank argument to go beyond that class. The planar weighted budget W<=m*(m-1) is sharp but does not alone control full-support spatial directions.",
+      "unrestricted_goal_complete": false
+    },
+    {
+      "title": "Uniform free-prefix completion by box saturation, sharp generic-order nonuniform class, and cheap-hull ranks",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "no_progress",
+      "previous_evidence": "The preceding presentation-only response changed no mathematical state. Revalidated the active objective, the original completion criteria, all preserved source hashes and the already recorded wall-cost continuation. Independently reran its exact checker before extending the rank argument.",
+      "progress_classification": "complete_uniform_scanning_characterization_and_sharp_generic_order_class_bound_with_nonuniform_hypersurface_family",
+      "prior_next_proof_task": "Preserve the original sharp unrestricted G3 or actual polynomial-separation endpoint and every success criterion. Prove or refute the cubic polylogarithmic collective V budget in the remaining middle range n^(3/5)<nu(q)<=n-n^(3/7), with rounding and actual undirected adjacency multiplicities retained. The two extreme portions are already controlled up to logarithms. Use joint rank or commuting-multiplication constraints across different compulsory cores in one quotient. Do not replace the forced-core matroid by a smaller algebra or assert support-function agreement at all weights: agreement is local at each wall and the saved outside-wall guards show strict gaps elsewhere. Do not assume p_I(q)=O(r), r=n-nu(q)+1: tagged planar embeddings and the earlier fan product give Theta(r*log(r+1)) lower families. The proved upper bound remains O(r^(4/3)*log(r+1)^2); improving one-direction bounds alone need not control the middle aggregate. Retain the three-pole cubic control, older square-root-incidence route and every counterguard; an actual infinite polynomially separating coherent lower family remains an alternative. Complete the strongest-current primary and precise-priority comparison before claiming novelty or a paper-level result. No partial cost-band bound, classical gluing corollary or draft completes this goal. The explicit radical product family now has V=Theta(N^3*log N) along prime branch lengths, entirely driven by walls of cost N/3. Thus a strict cubic estimate is false, and a logarithmic exponent below one is impossible. The entire common-coordinate product class is controlled by O(N^3*log(N+1)); use genuinely coupled three-variable dependencies or a new joint-rank argument to go beyond that class. The planar weighted budget W<=m*(m-1) is sharp but does not alone control full-support spatial directions.",
+      "uniform_results": {
+        "scanning_parameter": "For fixed d, the largest nonsaturating anchored box volume s and worst free-prefix completion rank M obey 1+s/d^d<=M<=1+(d+1)^d*s, allowing infinity.",
+        "finiteness": "Uniform free-prefix completion is finite exactly when every coordinate separately is cyclic; the universal finite-case bound n^d is sharp in power.",
+        "whole_class_count": "Every quotient with s=O_d(n) has g=O_d(n^(d-1)*log(n+1)^(d-1)), by constant oversampling and the existing ordered-prefix theorem. This has the generic sharp order, using the existing generic lower theorem.",
+        "nonuniform_infinite_class": "Sufficiently generic n distinct points on an absolutely irreducible hypersurface of positive coordinate degrees d_i have rectangular rank saturation when n<=prod(d_i+1)-1. The characteristic-zero Fermat family has a four-term dependence.",
+        "enumeration_consequence": "For d=3 this class has the existing oracle-enumeration bound O(n^3*L^2+n^(omega+2)*L^3), excluding coefficient bit costs.",
+        "cheap_hull_obstruction": "Every actual q-wall has rank(L_q)<=n-1, and its image modulo the compulsory core has rank at most n-nu(q).",
+        "general_matroid_scope": "A direct sum of two published Eppstein transversal lower families gives Omega(r^(8/3)) positive profiles on Theta(r) elements and rank 2r. Therefore the ordinary spatial k-set bound does not extend to arbitrary represented matroids.",
+        "unrestricted_G3_improved": false,
+        "polynomial_lower_separation_proved": false,
+        "novelty_established": false,
+        "goal_complete": false
+      },
+      "verification": {
+        "command": "python3 -B scripts/run_wall_rank_filter_checks.py",
+        "status": "passed",
+        "report": "results/research/wall_rank_filter_checks.json",
+        "counts": {
+          "cheap_hull_not_literal_endpoint_controls": 6,
+          "independent_actual_wall_cheap_hull_ranks": 221,
+          "independent_complete_direct_sum_spatial_cones": 36,
+          "independent_complete_spanning_box_diagrams": 11,
+          "independent_core_contracted_rank_equalities": 221,
+          "independent_core_only_false_positive_rejections": 3,
+          "independent_diagonal_scanning_and_initial_controls": 60,
+          "independent_hypersurface_box_dimensions": 118,
+          "independent_matching_representation_subsets": 148,
+          "independent_minimal_spanning_boxes": 39,
+          "independent_nonuniform_point_saturation_boxes": 512,
+          "independent_sharp_socle_rank_controls": 12,
+          "independent_strictly_cheaper_monomials": 758,
+          "independent_uniform_free_prefix_filter_replays": 56
+        },
+        "actual_quotient_fans": 14,
+        "build": {
+          "command": "./build.sh",
+          "status": "passed"
+        },
+        "smoke": {
+          "command": "python3 tests/test_smoke.py",
+          "status": "passed"
+        },
+        "scope": "Exact saved actual fans verify necessary cheap-hull and contracted ranks. Socle and point columns contrast core independence with rank saturation. Exhaustive box ranks of a nonuniform quadric point ideal and independent free-prefix filtering support the uniform oversampling proof. Diagonal algebras check sharp worst-case scanning despite three initials. Polynomial division checks hypersurface box dimensions. Finite represented transversal direct sums verify the product identity, not the published asymptotic lower construction. No unrestricted improvement, separating ideal family or novelty established."
+      },
+      "unrestricted_goal_complete": false,
+      "effect_on_next_action": "Preserve the original sharp unrestricted G3 or actual polynomial-separation endpoint and every success criterion. Prove or refute the cubic polylogarithmic collective V budget in the remaining middle range n^(3/5)<nu(q)<=n-n^(3/7), with rounding and actual undirected adjacency multiplicities retained. The two extreme portions are already controlled up to logarithms. Use joint rank or commuting-multiplication constraints across different compulsory cores in one quotient. Do not replace the forced-core matroid by a smaller algebra or assert support-function agreement at all weights: agreement is local at each wall and the saved outside-wall guards show strict gaps elsewhere. Do not assume p_I(q)=O(r), r=n-nu(q)+1: tagged planar embeddings and the earlier fan product give Theta(r*log(r+1)) lower families. The proved upper bound remains O(r^(4/3)*log(r+1)^2); improving one-direction bounds alone need not control the middle aggregate. Retain the three-pole cubic control, older square-root-incidence route and every counterguard; an actual infinite polynomially separating coherent lower family remains an alternative. Complete the strongest-current primary and precise-priority comparison before claiming novelty or a paper-level result. No partial cost-band bound, classical gluing corollary or draft completes this goal. The explicit radical product family now has V=Theta(N^3*log N) along prime branch lengths, entirely driven by walls of cost N/3. Thus a strict cubic estimate is false, and a logarithmic exponent below one is impossible. The entire common-coordinate product class is controlled by O(N^3*log(N+1)); use genuinely coupled three-variable dependencies or a new joint-rank argument to go beyond that class. The planar weighted budget W<=m*(m-1) is sharp but does not alone control full-support spatial directions. The new box-saturation theorem closes the entire class s(I)=O_d(n) at the sharp generic scale, including nonuniform generic point ideals on hypersurfaces with n<=prod(d_i+1)-1. A supergeneric power family must have superlinear nonsaturating box volume or a noncyclic coordinate. Use the exact cheap-hull rank condition, its core-contracted form and commuting box plateaus jointly across one quotient; do not infer a large fan from large box volume, since the diagonal algebra has sharp n^d scanning but only d initials. Arbitrary represented-matroid spatial k-set bounds cannot close the proof: the direct sum of two published transversal examples already has Omega(r^(8/3)) profiles at linear ground size and rank. Complete the exact interpolation/parametric prior-art assessment for the new uniform scanning and class-count reduction; this class theorem does not reduce the original completion criterion."
     }
   ],
   "asymptotic_improvement_scope_this_iteration": "Uniform bounds for repeated parallel walls and two entire extreme-cost regions of every fan; the unrestricted G3 exponent and middle cost range remain unresolved.",
-  "previous_goal_turn_classification": "Progress: 63de2b2 completed and checked the primitive wall spectrum, free comparison and parameterized wall-cost reduction. The current worktree also contained the unfinished compulsory-core contraction and a further continuation. Those were preserved, audited and independently rerun before adding the planar embedding and explicit local-scope guards.",
+  "previous_goal_turn_classification": "no_progress",
   "uniform_relative_margin_hypothesis_status": "refuted_by_actual_all_field_quotients",
   "secondary_extremal_parameter_resolved": {
     "relative_margin_dimension_2": "Theta(n^-2)",
@@ -9105,5 +9304,41 @@
     }
   },
   "wall_coexistence_reduction_established_this_iteration": true,
-  "parallel_fan_embedding_established_this_iteration": true
+  "parallel_fan_embedding_established_this_iteration": true,
+  "wall_cost_products": {
+    "proof": "docs/wall_cost_products.md",
+    "checker": "scripts/run_wall_cost_product_checks.py",
+    "report": "results/research/wall_cost_product_checks.json",
+    "planar_budget": "For every length-m planar ideal over every field, the sum W of primitive positive wall costs is at most m*(m-1). The proof telescopes the monotone profile chain, retaining integer edge multiples.",
+    "sharp_planar_family": "T_m=(product_(j=1)^m(x-j),xy-1) has m hooks, W(T_m)=sum_(j=1)^(m-1) m/gcd(j,m). For prime m this equals m*(m-1), attaining the universal bound.",
+    "exact_product_cost": "For the existing common-coordinate product H of J1,J2, V(H)=g(J2)*W(J1)+g(J1)*W(J2), with every undirected repeated wall piece counted.",
+    "entire_product_class": "V(H)=O(N^3*log(N+1)), uniformly over fields and arbitrary planar branches of total product length N.",
+    "actual_rational_ideal": "H_m=(f_m(x),yz,xy^2-y,z^2-x^m*z), f_m=product_(j=1)^m(x-j). It is the radical ideal of the 3m points (j,0,0),(j,1/j,0),(j,0,j^m).",
+    "infinite_family": "Along prime p, N=3p, g(H_p)=p*C2(p)=Theta(N^2*log N), and V(H_p)=p*(p-1)*C2(p)+p*W(Q_p)=Theta(N^3*log N).",
+    "middle_cost_obstruction": "The (p-1)*C2(p) first-branch walls all have cost p=N/3 and compulsory-core residual rank 2p+1. The necessary logarithm occurs in the unresolved intermediate-cost range.",
+    "necessary_logarithm": "A uniform V=O(N^3*log(N+1)^C) estimate must have C>=1. Strict O(N^3) is false. The original cubic polylogarithmic conjecture is not refuted.",
+    "classical_boundary": "Monotone planar perimeter telescoping, hook Laurent interpolation, the earlier fan product and the published generic planar count are established inputs. This is a quantitative consequence, not a new gluing mechanism or a novelty certificate.",
+    "unrestricted_G3_improved": false,
+    "polynomial_lower_separation_proved": false,
+    "full_cubic_polylog_budget_proved": false,
+    "novelty_established": false,
+    "goal_complete": false
+  },
+  "wall_cost_logarithmic_obstruction_established_this_iteration": true,
+  "wall_rank_filters": {
+    "proof": "docs/wall_rank_filters.md",
+    "checker": "scripts/run_wall_rank_filter_checks.py",
+    "report": "results/research/wall_rank_filter_checks.json",
+    "scanning_parameter": "For fixed d, the largest nonsaturating anchored box volume s and worst free-prefix completion rank M obey 1+s/d^d<=M<=1+(d+1)^d*s, allowing infinity.",
+    "finiteness": "Uniform free-prefix completion is finite exactly when every coordinate separately is cyclic; the universal finite-case bound n^d is sharp in power.",
+    "whole_class_count": "Every quotient with s=O_d(n) has g=O_d(n^(d-1)*log(n+1)^(d-1)), by constant oversampling and the existing ordered-prefix theorem. This has the generic sharp order, using the existing generic lower theorem.",
+    "nonuniform_infinite_class": "Sufficiently generic n distinct points on an absolutely irreducible hypersurface of positive coordinate degrees d_i have rectangular rank saturation when n<=prod(d_i+1)-1. The characteristic-zero Fermat family has a four-term dependence.",
+    "enumeration_consequence": "For d=3 this class has the existing oracle-enumeration bound O(n^3*L^2+n^(omega+2)*L^3), excluding coefficient bit costs.",
+    "cheap_hull_obstruction": "Every actual q-wall has rank(L_q)<=n-1, and its image modulo the compulsory core has rank at most n-nu(q).",
+    "general_matroid_scope": "A direct sum of two published Eppstein transversal lower families gives Omega(r^(8/3)) positive profiles on Theta(r) elements and rank 2r. Therefore the ordinary spatial k-set bound does not extend to arbitrary represented matroids.",
+    "unrestricted_G3_improved": false,
+    "polynomial_lower_separation_proved": false,
+    "novelty_established": false,
+    "goal_complete": false
+  }
 }
