@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Exact overlap, coherent-integrality and power-substitution controls.
+"""Completed-layer counts, periodic carriers and coherent arithmetic controls.
 
-No full count for distinct coprime periods or unrestricted G3 follows.
+No sharp count for distinct coprime periods or unrestricted G3 follows.
 """
 from collections import Counter
 from fractions import Fraction as Q
+from functools import cache
 from itertools import product
 from math import floor, gcd, prod
 from pathlib import Path
@@ -13,7 +14,7 @@ import json
 
 from run_cyclotomic_price_checks import (
     border_certificate, cyclotomic_model, dot, frontier_basis,
-    generic_tower, insert, solver, tower_basis,
+    generic_tower, insert, solver, tower_basis, bounded_representative, label,
 )
 from run_interleaving_research import minimal_excluded_border
 from run_structural_complexity_checks import area2, clip, determinant, finite_staircases
@@ -65,7 +66,30 @@ def overlap_control(model, axis, D, R, template, counts):
     assert E >= 0 and 2*(alpha*mx+m*E+delta*mz) <= alpha*n*(D-1)
     kappa = floor(Q((D-1)*alpha, m))
     assert max(degrees) <= R-1+kappa
+    K = max(1, kappa)
+    completed = max(0, R-K)
+    early = frozenset(a for a in C if sum(a[i] for i in other) < completed)
+    assert len(early) == D*completed and early <= B
+    if model.get('periods'):
+        reference = tuple(product(*(range(t-1) for t in model['periods'])))
+        tag_root = (2, 1, 0)[axis]
+        keep = [i for i, row in enumerate(reference) if row[tag_root] >= completed]
+    else:
+        keep = [i for i in range(n) if i % R >= completed]
+    assert len(keep) == D*min(K, R)
+    assert all(all(not model['residue'](a)[i] for i in keep) for a in early)
+    projected = {}
+    for a in B-early:
+        assert insert(projected, tuple(model['residue'](a)[i] for i in keep), model['field'])
+    assert len(projected) == D*min(K, R)
+    Emax = (D*K*(3*K-1)//2 if K <= R else n*(R-1)//2+n*K)
+    assert E <= Emax
+    volume = (n*(D-1)//2+1)*(J0+Emax+1)*(Emax+1)
+    assert volume <= 64*n**3*D*K*K
+    counts['completed_layer_contractions'] += 1
+    counts['uniform_band_profile_volume_controls'] += 1
     M = len(H)
+    assert M <= D*min(kappa, R)
     q, s = divmod(M, D)
     required = D*q*(q+1)//2+s*(q+1)
     assert E >= required and M*M <= 2*D*E
@@ -76,11 +100,15 @@ def overlap_control(model, axis, D, R, template, counts):
     counts['exact_excess_budget_controls'] += 1
     counts['strict_border_relations'] += len(cert)
     counts['positive_overlap_cases'] += bool(H)
+    counts['positive_overlap_with_completed_layers'] += bool(H and completed)
     return {'periods': model.get('periods'), 'general_tower_relation': model.get('relation'),
             'characteristic': model['field'], 'axis': axis, 'D': D, 'R': R, 'length': n,
             'weight': w, 'rho': str(rho), 'baseline_tag_moment': J0,
             'excess_tag_moment': E, 'expensive_tag_moment': mz,
             'pure_axis_moment': mx, 'overlap_layers_bound': kappa,
+            'profile_band_parameter': K, 'completed_tag_layers': completed,
+            'residual_rank_after_contraction': D*min(K, R),
+            'uniform_excess_upper': Emax, 'regularized_profile_volume_upper': volume,
             'high_degree_columns': sorted(H), 'deleted_low_basis_columns': sorted(C-B),
             'high_column_count': M, 'minimum_excess_for_this_count': required,
             'standard_set': sorted(B), 'low_basis': sorted(C)}
@@ -101,7 +129,88 @@ def all_overlap_controls(counts):
         model = generic_tower(p, coupled)
         for w0 in templates:
             rows.append(overlap_control(model, 0, model['D'], model['R'], w0, counts))
+    for D, R in ((7, 5), (9, 8)):
+        for p in (0, 2, 3):
+            model = top_coupled_model(D, R, p)
+            for w0 in templates:
+                rows.append(overlap_control(model, 0, D, R, w0, counts))
     assert counts['positive_overlap_cases'] > 0
+    assert counts['positive_overlap_with_completed_layers'] > 0
+    return rows
+
+
+def top_coupled_model(D, R, p):
+    """Ordinary multiplication: x^D=1, T^R=x^(D-1)*T^(R-1)."""
+    def multiply(vector, axis):
+        out = [0]*(D*R)
+        for i, j in product(range(D), range(R)):
+            if axis == 0:
+                target = ((i+1) % D)*R+j
+            elif j < R-1:
+                target = i*R+j+1
+            else:
+                target = ((i-1) % D)*R+j
+            out[target] += vector[i*R+j]
+        return tuple(x % p if p else x for x in out)
+
+    @cache
+    def residue(a):
+        if not any(a):
+            return (1,)+(0,)*(D*R-1)
+        axis = next(i for i, x in enumerate(a) if x)
+        previous = tuple(x-int(i == axis) for i, x in enumerate(a))
+        return multiply(residue(previous), axis)
+
+    def slot(a, c, cheap):
+        assert cheap == 0
+        return tuple(int(i == a % D) for i in range(D))
+    return {'field': p, 'n': D*R, 'D': D, 'R': R, 'residue': residue, 'slot': slot,
+            'relation': f'x^{D}=1; T^{R}=x^{D-1}*T^{R-1}; u=v=1'}
+
+
+def periodic_carrier_controls(counts):
+    rows = []
+    templates = ((1, 1, 1), (1, 5, 5), (1, 1, 5), (1, 5, 25), (25, 1, 5), (5, 25, 1))
+    for periods in ((2, 3, 5), (3, 5, 7), (3, 5, 11), (5, 7, 9)):
+        S = sum(periods)
+        degree = 3*S+1
+        degrees = [(periods[i]-1)*(periods[j]-1) for i, j in ((0, 1), (0, 2), (1, 2))]
+        n = prod(t-1 for t in periods)
+        relations = []
+        for axis in range(3):
+            head = tuple(degree if i == axis else 0 for i in range(3))
+            tail = bounded_representative(head, periods)
+            assert min(tail) >= 0 and max(tail) <= S and sum(tail) < degree
+            assert label(head, periods) == label(tail, periods)
+            relations.append({'head': head, 'tail': tail})
+        for p in (0, 2, 3):
+            model = cyclotomic_model(periods, p)
+            for relation in relations:
+                a, b = (model['residue'](relation[k]) for k in ('head', 'tail'))
+                assert all((x-y) % p == 0 if p else x == y for x, y in zip(a, b))
+                counts['ordinary_periodic_carrier_equalities'] += 1
+        samples = []
+        if n <= 48:
+            for p in (0, 2):
+                model = cyclotomic_model(periods, p)
+                for template in templates:
+                    w = strict_weight(n, template)
+                    B = frontier_basis(model['residue'], n, w, p)
+                    h = max(range(3), key=lambda i: w[i])
+                    sides = list(degrees)
+                    sides[h] = min(sides[h], degree)
+                    assert all(all(a[i] < sides[i] for i in range(3)) for a in B)
+                    mu = tuple(sum(a[i] for a in B) for i in range(3))
+                    assert all(mu[i] <= n*(sides[i]-1)//2 for i in range(3))
+                    volume = prod(n*(a-1)//2+1 for a in sides)
+                    assert volume <= n**3*prod(sides)
+                    counts['all_price_periodic_profile_boxes'] += 1
+                    samples.append({'characteristic': p, 'weight': w, 'largest_price_axis': h,
+                                    'box_sides': sides, 'profile': mu,
+                                    'regularized_profile_volume_upper': volume})
+        rows.append({'periods': periods, 'length': n, 'axis_degrees': degrees,
+                     'pure_top_carrier_degree': degree, 'carrier_binomials': relations,
+                     'all_price_profile_controls': samples})
     return rows
 
 
@@ -262,6 +371,7 @@ def main():
         raise RuntimeError('Run without -O; exact assertions are required.')
     counts = Counter()
     overlaps = all_overlap_controls(counts)
+    carriers = periodic_carrier_controls(counts)
     fans, rational, witness = small_complete_fans(counts)
     lifts = power_lift_controls(rational, witness, counts)
     sources = ('docs/cyclotomic_overlap.md', 'scripts/run_cyclotomic_overlap_checks.py',
@@ -269,6 +379,7 @@ def main():
                'scripts/run_structural_complexity_checks.py', 'scripts/run_interleaving_research.py')
     report = {'status': 'passed', 'command': 'python3 -B scripts/run_cyclotomic_overlap_checks.py',
               'counts': dict(counts), 'all_weight_overlap_controls': overlaps,
+              'periodic_carrier_and_all_price_controls': carriers,
               'complete_equal_period_fans': fans, 'same_weight_characteristic_change': witness,
               'independent_power_lift_blocks': lifts,
               'uniform_results': {
@@ -276,12 +387,17 @@ def main():
                   'moment_budget': 'alpha*mu_x + m*(mu_tag-n*(R-1)/2) + abs(beta-gamma)*mu_exp <= alpha*n*(D-1)/2.',
                   'high_degree_count': 'If M=|H|=D*q+s, E>=D*q*(q+1)/2+s*(q+1); M^2<=2*D*E<=D*n*(D-1)*alpha/m.',
                   'degree_cutoff': 'tag degree <=R-1+floor((D-1)*alpha/m).',
+                  'completed_layer_theorem': 'For kappa=floor((D-1)*alpha/m), every C_rho layer j<R-kappa survives. At most D*min(kappa,R) columns enter. For kappa<=K, all changing columns have residual rank D*min(K,R).',
+                  'quadratic_excess_budget': 'E<=D*K*(3*K-1)/2 when 1<=K<=R; E<=n*(R-1)/2+n*K when K>=R.',
+                  'uniform_region_count': 'For every integer K>=1, m>(D-1)*alpha/(K+1) implies O(n^(3/2)*sqrt(D)*K) initials throughout that price region, without multiplying by the number of low backgrounds. In particular K=O(sqrt(R)) gives O(n^2).',
+                  'all_price_coprime_circuit_count': 'With M=3*(r+s+t)+1 and axis degrees D_i, g<=C*n^(3/2)*sum_i sqrt(min(D_i,M)*product_(j!=i) D_j), over every field.',
+                  'comparable_period_count': 'O_C(n^(7/3)) over every field and all positive prices when max(r,s,t)/min(r,s,t)<=C. This is a classical lattice-vertex application, not an unrestricted bound or a new vertex theorem.',
                   'nilpotent_tag_corollary': 'For g(T)=T^R, the whole positive fan, at all weights, has at most 2*(D-1)*(R-1)+2 states for D,R>=2; C_rho is its exact basis.',
                   'cheap_cyclotomic_regions': 'Coherent bases are integral with index one; pointwise regional initials are the same in every characteristic, by the established two-circuit unimodularity theorem.',
                   'power_lift': 'For every odd k, I_k=I_1(X^k,Y^k,Z^k), length 8*k^3; fan counts 9 outside characteristic two and 6 in characteristic two. Three rational cones have coherent integer index 2^(k^3).',
                   'distinct_prime_full_fan_classified': False,
                   'unrestricted_G3_improved': False, 'novelty_established': False, 'goal_complete': False},
-              'scope': 'Uniform overlap and arithmetic proofs with bounded exact controls. Equal-period coherent torsion and its power lifts do not establish an amplification or characteristic change for distinct coprime prime periods. Classical matroid sensitivity, lucky-prime and monomial-substitution principles are not claimed as new.',
+              'scope': 'Uniform completed-layer regional counts, an all-price upper bound for comparable periodic circuit algebras, and the earlier arithmetic proofs, with bounded exact controls. The all-price exponent is a classical lattice-volume application. Equal-period coherent torsion and its power lifts do not establish an amplification or characteristic change for distinct coprime prime periods. No unrestricted G3 bound, sharp family count or novelty certificate follows.',
               'source_sha256': {f: hashlib.sha256((ROOT/f).read_bytes()).hexdigest() for f in sources}}
     (ROOT/'results/research/cyclotomic_overlap_checks.json').write_text(json.dumps(report, indent=2)+'\n')
     print(json.dumps(dict(counts), indent=2))

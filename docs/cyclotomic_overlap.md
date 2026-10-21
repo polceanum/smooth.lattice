@@ -6,11 +6,13 @@ are complete. This note gives an exact reduction and a quantitative budget
 for that gap. It also distinguishes nonregular column dependencies from
 arithmetic changes that actually occur in coherent initial ideals.
 
-These are supporting structural results. No count of the intervening
-coprime-period fan, polynomial amplification, new unrestricted bound, or
-publication significance is established. The original extremal goal remains
-active. In particular, the equal-period example below must not be substituted
-for the cyclotomic field of three distinct primes.
+Completed layers now give a uniform regional count, including a quadratic
+bound on a wider price region. A separate classical volume argument gives
+an all-price upper bound \(O_C(n^{7/3})\) for comparable coprime periods.
+Neither result determines sharp growth or proves polynomial amplification.
+The unrestricted bound, priority assessment and publication goal remain open.
+In particular, the equal-period example below must not be substituted for
+the cyclotomic field of three distinct primes.
 
 ## The low-degree basis remains an exact background at every weight
 
@@ -116,10 +118,142 @@ so all selected tag degrees satisfy
 
 Equations (O1)--(O4) turn the remaining problem into a controlled extension
 of a known basis, with explicit numbers of affected columns and possible
-extra layers. They do not count the coherent extensions. For balanced
+extra layers. Alone they do not count all coherent extensions. For balanced
 periods of size \(q\), \(D\) has order \(q^2\), \(R\) order \(q\),
 and prices \((1,q,q)\) still allow a positive fraction of high columns
 in (O3). Thus the central unresolved scaling has not been assumed away.
+
+## Completed layers give a quadratic excess bound
+
+Put \(\kappa=\lfloor(D-1)\alpha/m\rfloor\). Every column chosen in
+the low-degree block \(j\) costs at most \(jm+(D-1)\alpha\): the
+\(D\) powers of \(x\) times the cheaper tag power already span that
+block within this cost. If \(j<R-\kappa\), this is strictly below
+\(Rm\), the cheapest possible cost of a high-degree column. Such a
+chosen low column has already been accepted before any high column is
+encountered, and therefore survives in the full basis. Thus
+
+\[
+ C_\rho\cap\{b+c<R-\kappa\}\subseteq B,\qquad
+ |H|\le D\min(\kappa,R).                                \tag{O5}
+\]
+
+This strengthens (O3) when \(\kappa\ll R\). For any fixed integer
+\(K\ge1\) with \(\kappa\le K\), the first
+\(L=\max(0,R-K)\) complete blocks persist. Their span is precisely
+\(F\oplus FT\oplus\cdots\oplus FT^{L-1}\), independent of
+\(\rho\). Contracting it leaves a column-matroid problem of rank
+\(D\min(K,R)\), with selected tag degrees at most \(R-1+K\).
+This is a vector-space contraction, generally not an algebra quotient.
+The explicit monic tower basis computes the contraction by dropping the
+first \(L\) tag rows; no multiplication law on the contracted space
+is being assumed.
+
+The completed blocks contribute the fixed tag moment
+\(D L(L-1)/2\). Bound the tag degree of every remaining column by
+\(R-1+K\), using (O4), and subtract \(J_0\). This gives
+
+\[
+ 0\le E\le E_K:={}
+ \begin{cases}
+   D K(3K-1)/2,&K\le R,\\
+   n(R-1)/2+nK,&K\ge R.
+ \end{cases}                                             \tag{O6}
+\]
+
+The two formulas agree at \(K=R\). In particular
+\(E_K\le\tfrac32 D K\min(K,R)\). The quadratic dependence on
+\(K\) for \(K\le R\), rather than the earlier bound proportional
+to \(nK\), is the changed quantitative input.
+
+## Count all profiles in the band together
+
+For every integer \(K\ge1\), consider all positive weights satisfying
+
+\[
+ \min(\beta,\gamma)>\frac{(D-1)\alpha}{K+1}.
+\]
+
+They have \(\kappa\le K\). Split them only according to which tag
+is more expensive. In either part, the affine integer coordinates
+\((\mu_x,\mu_e,E)\) are unimodular profile coordinates, since
+\(E=\mu_y+\mu_z-J_0\). By (O2) and (O6), they lie in the box
+
+\[
+ [0,n(D-1)/2]\ \times\ [0,J_0+E_K]\ \times\ [0,E_K].
+\]
+
+Its unit-cube regularization has volume at most
+\(64n^3DK^2\). Indeed
+\(J_0+E_K\ll n(R+K)\),
+\(E_K\ll DK\min(K,R)\), and
+\((R+K)\min(K,R)\le2RK\), with \(n=DR\).
+Every relevant standard-set profile remains a distinct strictly exposed
+vertex in the hull of this subcollection. Adding a unit cube handles a
+flat hull and cannot decrease its number of vertices. The classical
+three-dimensional lattice-vertex theorem now proves the uniform bound
+
+\[
+ \boxed{g_{\{\kappa\le K\}}(A)
+          =O\!\left(n^{3/2}\sqrt D\,K\right).}            \tag{O7}
+\]
+
+The constant is absolute. This counts the whole price region at once:
+there is no multiplier for the different one-parameter low bases.
+For \(K\le c\sqrt R\) with fixed \(c\), (O7) is \(O_c(n^2)\).
+For \(\kappa=0\), the earlier linear bound is sharper.
+In the coprime circuit family with comparable periods of size \(q\),
+this widens the quadratic cheap-axis exclusion from tag prices above
+order \(q^2\alpha\) to prices above order \(q^{3/2}\alpha\).
+At prices of order \((1,q,q)\), \(K=O(R)\) gives the regional
+bound \(O(n^2\sqrt R)=O(n^{13/6})\), with constants depending on
+the stated comparability and price lower bounds. This still permits a
+polynomial gain smaller than that upper power; it is not a lower bound.
+
+## An all-price bound for comparable coprime circuit periods
+
+There is a separate, simpler all-price estimate. In the circuit model
+let \(S=r+s+t\), \(M=3S+1\), and use the pure-axis degrees
+\(D_1=(r-1)(s-1)\), \(D_2=(r-1)(t-1)\),
+\(D_3=(s-1)(t-1)\). The earlier periodic representative lemma maps
+every group label to a nonnegative exponent vector with all coordinates
+at most \(S\).
+
+For each \(i\), apply that lemma to the label of \(x_i^M\), obtaining
+\(a^{(i)}\). Then the binomial
+\(x_i^M-x^{a^{(i)}}\) belongs to the periodic parent ideal, and
+\(|a^{(i)}|\le3S<M\). Summing the three binomials gives an actual
+carrier in the circuit ideal with pure top terms
+
+\[
+ X^M+Y^M+Z^M\quad\text{and only lower-degree remaining terms}. \tag{O8}
+\]
+
+Its pure coefficients are one in every characteristic. If \(x_i\)
+is the largest variable, its \(M\)-th power is the head. Every standard
+set in that sector therefore fits a fixed box with side counts
+\(\min(D_i,M)\) on that axis and \(D_j\) on the other two.
+Its integer profile hull, regularized by a unit cube, has volume
+\(O(n^3\min(D_i,M)\prod_{j\ne i}D_j)\). Summing the classical
+lattice-vertex estimate over the three possible largest variables gives
+
+\[
+ g(A)\le C n^{3/2}\sum_{i=1}^3
+       \sqrt{\min(D_i,M)\prod_{j\ne i}D_j}.              \tag{O9}
+\]
+
+This holds for every pairwise-coprime period triple and every field,
+including nonreduced specializations. If the ratio of the largest and
+smallest periods is at most a fixed \(C_p\), write their size as \(q\).
+Then \(n\asymp_{C_p}q^3\), \(D_i\asymp_{C_p}q^2\), and
+\(M=O_{C_p}(q)\). Equation (O9) becomes
+\(g(A)=O_{C_p}(n^{7/3})\) across **all** positive prices.
+
+This last exponent is a direct classical volume consequence of the
+previous representative and axis-degree lemmas. It is not a new
+lattice-vertex theorem, a sharp count, or an unrestricted \(G_3\)
+improvement. Unlike (O7), it does not use the completed-layer argument.
+Neither bound proves that any superquadratic growth is attained.
 
 ## Where characteristic dependence can occur
 
@@ -189,7 +323,7 @@ by \(S_3(U^k),S_3(V^k),S_3(W^k)\), and retain the pair-product generators.
 The length is \(8k^3\). If \(I_1\) denotes the relation ideal above, then
 
 \[
- I_k=I_1(X^k,Y^k,Z^k).                                   \tag{O5}
+ I_k=I_1(X^k,Y^k,Z^k).                                   \tag{O10}
 \]
 
 To verify this, the natural map from the power-substitution quotient onto
@@ -208,7 +342,7 @@ is an integral unit, so a lifted basis has the same index as \(D\) in
 each piece. Therefore the three index-two cones have cokernel
 
 \[
- (\mathbb Z/2)^{k^3},\qquad \text{index }2^{k^3},           \tag{O6}
+ (\mathbb Z/2)^{k^3},\qquad \text{index }2^{k^3},           \tag{O11}
 \]
 
 while the other six cones remain unimodular. The full fan still has nine
@@ -240,9 +374,17 @@ Arnold fixes homogeneous ideals for that comparison; the finite free-column
 argument above is supplied explicitly rather than assuming his hypotheses
 cover the present inhomogeneous presentation.
 
-The next requirement is a uniform bound or a growing coherent exchange
-mechanism for the high-column extension (O1), using the actual circuit
-relations and budget (O2). Counting all bases of a nonregular matroid,
+The next requirement is a sharp uniform bound or a growing coherent exchange
+mechanism for the high-column extension (O1), beyond the regional (O7)
+and the global comparable-period (O9), using the actual circuit relations.
+The volume step uses the established
+[Andrews theorem](https://doi.org/10.1090/S0002-9947-1963-0143105-7);
+its input is rechecked in
+[Dillon, Theorem 1](https://arxiv.org/pdf/2606.30856).
+The standard-profile vertex dictionary is established by
+[Babson--Onn--Thomas, Theorem 2.4](https://arxiv.org/pdf/math/0207135).
+These are mathematical inputs, not novelty claims for the application.
+Counting all bases of a nonregular matroid,
 extrapolating the small fan, or inflating a fixed coherent defect does not
 meet the main goal. Current priority of the additional tower application
 remains unestablished. No new manuscript is started on this evidence alone.
@@ -256,5 +398,9 @@ Run from the repository root:
 The checks compare the low-block rule with independently reduced full columns,
 verify (O1)--(O4) both inside and outside the earlier region, exhaust all small
 fan candidates with exact rational cone coverage, and compute the lifted
-integer blocks by ordinary monic polynomial division. Finite checks support
+integer blocks by ordinary monic polynomial division. They also verify the
+completed-layer inclusions, contract the retained span independently in the
+ordinary tensor/tower coordinates, check the full-band profile-volume bound,
+and replay the periodic carrier identities by ordinary monic reduction.
+Finite checks support
 the uniform algebraic arguments and have their scope recorded separately.
