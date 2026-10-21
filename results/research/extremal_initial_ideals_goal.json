@@ -7,7 +7,7 @@
   "goal_complete": false,
   "asymptotic_improvement_established_this_iteration": false,
   "novelty_established_this_iteration": false,
-  "note": "The unrestricted goal remains active. An exact capped-state vertex oracle and attributed polytope reconstruction now turn the internal counting theorem into an arithmetic bound for enumerating every initial ideal and marked reduced basis over every field in the original coordinates. This supplies a concrete algorithmic consequence; it does not settle sharp growth, certify novelty or justify a paper by itself.",
+  "note": "The unrestricted goal remains active. An explicit all-field seven-initial family now requires primitive plane product Theta(n^(4/3)) to detect one cone. This uniformly refutes an individual O(n) certificate shortcut, without changing G_3 or refuting a collective exceptional-cone count. Published matroid projection comparisons are scoped; exact novelty and the publication endpoint remain open.",
   "relationship_to_previous_work": "New active objective with a higher completion bar. Previous goal records, lattice-shadow candidate, manuscripts and paused ML results are preserved as historical research.",
   "definitions": {
     "G_d_n": "Maximum number of monomial initial ideals of a colength-n ideal in d variables, over all fields.",
@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Keep the original sharp or separating-family G_3 target and all acceptance criteria. The rational-shadow theorem now has an explicit original-coordinate arithmetic consequence, so the previously missing algorithmic application has a concrete candidate. Before any paper claim, audit the exact priority and strongest applicable later bounds for both the hyperbolic matroid shadow theorem and finite-quotient enumeration. Attribute oracle reconstruction and greedy basis conversion to established work; classical counting already gives exponent six, while the internal shadow bound supplies only the further 1/8 saving. Do not claim a bit or benchmark advantage from operation counts. The central count remains unchanged and needs a sharper unrestricted aggregate argument or an actual family above the generic power. Bounded-depth full-pure-power tangent perturbations remain excluded, and generic coordinate changes cannot replace the originally specified fan. Preserve all prior proofs/reports, manuscripts/PDFs, kernels/auditor and paused ML. No messages or submissions; no classical composition, draft or unverified novelty claim completes the goal.",
+  "next_proof_task": "Retain the original unrestricted sharp-growth or realizable polynomial-separation target and all acceptance criteria. Individual O(n) product-plane detection is now uniformly refuted by an actual seven-initial family, so do not infer an all-cone n^(7/3) count from that shortcut. Investigate a collective charge for the exceptional cones using shared quotient dependencies or state geometry. Complete the exact current-primary comparison for the hyperbolic shadow theorem and original-coordinate arithmetic consequence; bounded-coordinate matroid zonotopes are established prior art. Do not enlarge socle-only families for lower amplification: the existing whole-class bound excludes them. The unrestricted count, stronger realizable family and honest publication assessment remain open. Preserve all manuscripts, core algorithms, prior results and paused ML; no outbound messages or submissions.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -134,7 +134,8 @@
     "The proposed affine fan composition is positively identified as classical liaison addition; do not claim its operation or additive length as new. Assess only the exact separate-univariate all-order initial formula and any future quantitative consequence against existing Groebner/liaison literature. The box-prefix and local moment bounds are screening tools, not a new unrestricted theorem or a priority certificate.",
     "Determine whether the two-interaction coupled-column mechanism supports an amplified count of simultaneous positive-weight cones; (C4) is an exact prefix-rank theorem only. Exact priority and the strongest current unrestricted comparison remain open.",
     "Audit the exact priority and strongest applicable bound for the generic-linear-coordinate O(n^(8/3)) consequence; it is coordinate dependent and cannot settle the stated original-coordinate G_3 problem. A further lower route must escape the new bounded-depth power-carrier exclusion, not add more terms within it.",
-    "Compare the original-coordinate O(n^(47/8)*L^(19/8)) enumeration consequence against later primary algorithms and the priority of its rational-shadow input. Explicitly separate the classical O(n^6*L^2) composition from the additional shadow-derived 1/8 exponent saving; exact bit cost and practical speed remain unproved."
+    "Compare the original-coordinate O(n^(47/8)*L^(19/8)) enumeration consequence against later primary algorithms and the priority of its rational-shadow input. Explicitly separate the classical O(n^6*L^2) composition from the additional shadow-derived 1/8 exponent saving; exact bit cost and practical speed remain unproved.",
+    "The cubic unimodular socle family refutes O(n) minimum primitive plane product for individual cones. Any product-threshold improvement must bound exceptional cones collectively; the family has only seven initials and is not a lower-count amplifier."
   ],
   "primary_sources": [
     {
@@ -669,6 +670,20 @@
       "url": "https://data.math.au.dk/publications/pp/2005/imf-pp-2005-15.pdf",
       "version": "September 2005 preprint",
       "scope": "Section 5, Theorem 5.1 and Corollary 5.2 with their displayed complexity argument inspected. That analysis assumes a positive homogeneous grading and retains a separate flip-cost parameter. It is prior output-sensitive fan traversal; no claim is made that later Gfan methods are inapplicable."
+    },
+    {
+      "authors": "Shmuel Onn and Michal Rozenblit",
+      "title": "Convex Integer Optimization by Constantly Many Linear Counterparts",
+      "url": "https://arxiv.org/pdf/1208.5639",
+      "version": "arXiv:1208.5639v1, 28 August 2012",
+      "scope": "Theorems 2.3 and 4.1 and their proofs inspected. Coordinate-bounded edge directions give a zonotope refinement; unit exchanges specialize it to matroid bases and greedy optimization. Compared with the hyperbolic rank-sensitive bound in the new note. No later journal-version identity or complete current-priority audit is asserted."
+    },
+    {
+      "authors": "Antoine Deza, George Manoussakis and Shmuel Onn",
+      "title": "Euler Polytopes and Convex Matroid Optimization",
+      "url": "https://optimization-online.org/wp-content/uploads/2015/12/5266.pdf",
+      "version": "20 December 2015 preprint",
+      "scope": "Section 3.1, Propositions 3.1 and 3.2 with proofs and Theorem 3.3 inspected. Primitive bounded-coordinate Euler zonotopes bound matroid projections; a uniform-matroid construction supplies the lower comparator. This is established direction-refinement machinery, not a verified hyperbolic shadow theorem or unrestricted finite-quotient count."
     }
   ],
   "verification": {
@@ -1592,19 +1607,45 @@
       "build": "./build.sh passed",
       "smoke": "python3 tests/test_smoke.py passed",
       "scope": "Ten actual cyclic commuting quotient models over Q,F2,F3,F5; exhaustive independent determinant bases, explicit-support comparison including ties, full cut-state reconstruction, all 39 normal cones and initial sets, and 136 recovered reduced polynomials replayed on whole multiplication matrices. Uniform complexity and correctness rest on the proof; no finite speed fit or bit-cost inference."
+    },
+    "multiplicative_shadow_research": {
+      "command": "python3 -B scripts/run_multiplicative_shadow_checks.py",
+      "report": "results/research/multiplicative_shadow_checks.json",
+      "status": "passed",
+      "source_hashes_verified": true,
+      "counts": {
+        "coefficientwise_integer_matrix_identities": 3,
+        "exact_column_separation_controls": 3,
+        "complete_exact_positive_fans": 8,
+        "initial_cones": 56,
+        "explicit_divisor_union_monomials": 18839,
+        "integral_socle_relations": 42,
+        "independent_cyclic_monomial_transitions": 395619,
+        "sparse_commuting_multiplication_checks": 395493,
+        "exhaustive_primitive_plane_controls": 12102,
+        "strict_visibility_controls": 1106,
+        "boundary_only_planes_excluded": 56,
+        "large_integral_row_growth_controls": 967,
+        "mixed_row_expansion_and_product_controls": 1746,
+        "small_integral_row_coordinate_separations": 779
+      },
+      "build": "./build.sh passed",
+      "smoke": "python3 tests/test_smoke.py passed",
+      "scope": "Coefficientwise identities over Z[t], all seven cones in eight complete fans, integral sparse commuting multiplication on two actual quotients, 12102 primitive plane controls, and 1746 mixed-row controls. No large cubic-family quotient allocation or empirical asymptotic inference.",
+      "repair": "An independent row-sum check found a transcription error in the expanded N(t)*ones vector. The vector and its absolute-sum coefficient were corrected; the uniform 20*t^2 budget and theorem constants are unchanged."
     }
   },
-  "preservation": "Five explicitly reviewed research files against 7a9a3e1: README, a new oracle-enumeration proof note, its independent checker/report and this active goal. All 68 earlier continuations and all earlier mathematical sources/reports are preserved; all 347 other previously tracked files remain byte-identical. Core CLI, kernels, auditor, manuscripts/PDFs and paused ML are unchanged. Baselines and logs remain ignored under results/local/.",
+  "preservation": "Only five explicitly reviewed research files change. All 69 earlier continuations, the full original objective and success criteria, all 84 prior source hashes other than the updated README, and all 350 unlisted previously tracked files remain unchanged against 8c8544a. Core kernels, CLI, auditor, manuscripts/PDFs, earlier research and paused ML are preserved; exploratory records and logs remain ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
-    "docs/oracle_fan_enumeration.md",
-    "scripts/run_oracle_enumeration_checks.py",
-    "results/research/oracle_enumeration_checks.json",
+    "docs/multiplicative_shadow_obstruction.md",
+    "scripts/run_multiplicative_shadow_checks.py",
+    "results/research/multiplicative_shadow_checks.json",
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "52f226a93d3b81884f09670d1f5ff25051135a91d9333bfc0e096451e6bfdaeb",
+    "README.md": "1aac7fe915fabd220cc378fc0d521c0f33d729b525c2f011d003f9015692e5ec",
     "docs/extremal_initial_ideals.md": "6e84b6ea470841a89760a2e16080a9314ba747499b1a5a733460120fe501a92b",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
@@ -1688,7 +1729,10 @@
     "results/research/power_carrier_checks.json": "9565bce325fcef7039a413aaae3716df5dbee36d8af05f6ec3b4a07835198599",
     "docs/oracle_fan_enumeration.md": "1d7322de1b56dad0db1247a61ee19633d1f2fae3d56c0640187ab5fabe6cede8",
     "scripts/run_oracle_enumeration_checks.py": "a67b7db61f3fe6e69bb0bc62d792916737c7b35a3e3171c2b976e07866a883df",
-    "results/research/oracle_enumeration_checks.json": "41d71c1d6ce6d65dc1408fe412a0d21d5c7d36387c217789e8dc03e361670ce2"
+    "results/research/oracle_enumeration_checks.json": "41d71c1d6ce6d65dc1408fe412a0d21d5c7d36387c217789e8dc03e361670ce2",
+    "docs/multiplicative_shadow_obstruction.md": "d8e6899f18910ef235276914b92e4a8248257d738c306f38702da3e62e0ae0de",
+    "scripts/run_multiplicative_shadow_checks.py": "979e1d62db275ffa3c541a2d9c110d0fc51fdb3eb660d0763898d75728866b63",
+    "results/research/multiplicative_shadow_checks.json": "934efd1d899425e25b283ca43315b8f7d348c33ff1d1cb989198a57c38062612"
   },
   "continuations": [
     {
@@ -5960,10 +6004,92 @@
         "smoke": "python3 tests/test_smoke.py passed",
         "scope": "Ten actual cyclic commuting quotient models over Q,F2,F3,F5; exhaustive independent determinant bases, explicit-support comparison including ties, full cut-state reconstruction, all 39 normal cones and initial sets, and 136 recovered reduced polynomials replayed on whole multiplication matrices. Uniform complexity and correctness rest on the proof; no finite speed fit or bit-cost inference."
       }
+    },
+    {
+      "title": "A uniform obstruction to small-product individual shadow detection",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "Progress: the preceding turn proved the original-coordinate exact state oracle and an arithmetic enumeration consequence, while retaining established reconstruction and greedy methods as prior art. Revalidated clean main 8c8544a, all 352 tracked files, all 85 source hashes, 69 continuations and the unchanged objective and success criteria before this iteration.",
+      "progress_classification": "uniform realizable all-field cone-certificate lower and upper bounds, exact full-fan verification, and a scoped comparison with published matroid-projection proofs",
+      "uniform_proofs": [
+        "The six-endpoint socle construction has exactly seven global monomial initial ideals, with no hidden comparisons, over every field.",
+        "The explicit unimodular cubic matrix family has length Theta(t^6) and minimum primitive plane product Theta(t^8) for one positive cone.",
+        "Consequently an O(n) plane-product certificate per cone is impossible, although the family contributes only seven cells. An aggregate exceptional-cone count remains possible."
+      ],
+      "scoped_primary_audit": [
+        "Onn--Rozenblit arXiv:1208.5639v1 Theorem 2.3 and its proof, and Theorem 4.1 and its proof, inspected: coordinate-bounded edge directions, zonotope refinement and matroid greedy optimization are established.",
+        "Deza--Manoussakis--Onn 20 December 2015 Section 3.1 Propositions 3.1--3.2 with proofs and Theorem 3.3 inspected: primitive Euler-zonotope upper comparison and uniform-matroid lower construction. These statements do not settle the hyperbolic shadow bound; no exhaustive priority conclusion follows."
+      ],
+      "quantitative_obstruction": {
+        "proof": "docs/multiplicative_shadow_obstruction.md",
+        "checker": "scripts/run_multiplicative_shadow_checks.py",
+        "report": "results/research/multiplicative_shadow_checks.json",
+        "family": "M(t)=t*(3*Identity-all_ones)+B, B=[[2,-1,0],[0,1,-1],[-3,2,0]]; N(t)=M(t)^3; integer t>=1000.",
+        "realization": "Six incomparable socle monomials from the positive diagonal and negative off-diagonal rows of N(t), with three independent pair identifications, define an actual cyclic quotient over every field.",
+        "length": "192*t^6 <= n(t) <= 301*t^6",
+        "initial_ideals": 7,
+        "distinguished_cone": "N(t)^(-1)*R_(>0)^3",
+        "strict_visibility": "q^perp meets the cone interior if and only if p=q*N(t)^(-1) has both positive and negative entries. Merely touching a wall is insufficient.",
+        "minimum_primitive_plane_product": "Theta(t^8)=Theta(n(t)^(4/3)); product is the product of abs(q_i)+1.",
+        "uniform_constants": "t^8/256000000 <= minimum <= 18000*t^8, for t>=1000.",
+        "proof_mechanism": "Unimodular integral pullback, mixed-sign norm expansion through three factors, a small row-sum budget forcing two large coordinates, and positive common orthogonals preventing simultaneous cancellation of two leading coefficients.",
+        "explicit_upper_witness": "q=(1,-1,0)*N(t), primitive by unimodularity; N(t)^(-1)*(1,1,1)^T is a strictly positive witness on its plane.",
+        "refuted_shortcut": "A uniform O(n) primitive product plane detecting each positive initial cone.",
+        "aggregate_count_refuted": false,
+        "large_fan_construction": false,
+        "unrestricted_G3_improvement": false,
+        "strongest_current_audit_complete": false,
+        "novelty_established": false,
+        "goal_complete": false,
+        "scope_limit": "A uniform feasibility obstruction with only seven initials. It directs the main argument toward collective counting; it neither improves the unrestricted count nor meets the impact/publication endpoint."
+      },
+      "independent_controls": {
+        "coefficientwise_integer_matrix_identities": 3,
+        "exact_column_separation_controls": 3,
+        "complete_exact_positive_fans": 8,
+        "initial_cones": 56,
+        "explicit_divisor_union_monomials": 18839,
+        "integral_socle_relations": 42,
+        "independent_cyclic_monomial_transitions": 395619,
+        "sparse_commuting_multiplication_checks": 395493,
+        "exhaustive_primitive_plane_controls": 12102,
+        "strict_visibility_controls": 1106,
+        "boundary_only_planes_excluded": 56,
+        "large_integral_row_growth_controls": 967,
+        "mixed_row_expansion_and_product_controls": 1746,
+        "small_integral_row_coordinate_separations": 779
+      },
+      "verification": {
+        "command": "python3 -B scripts/run_multiplicative_shadow_checks.py",
+        "report": "results/research/multiplicative_shadow_checks.json",
+        "status": "passed",
+        "source_hashes_verified": true,
+        "counts": {
+          "coefficientwise_integer_matrix_identities": 3,
+          "exact_column_separation_controls": 3,
+          "complete_exact_positive_fans": 8,
+          "initial_cones": 56,
+          "explicit_divisor_union_monomials": 18839,
+          "integral_socle_relations": 42,
+          "independent_cyclic_monomial_transitions": 395619,
+          "sparse_commuting_multiplication_checks": 395493,
+          "exhaustive_primitive_plane_controls": 12102,
+          "strict_visibility_controls": 1106,
+          "boundary_only_planes_excluded": 56,
+          "large_integral_row_growth_controls": 967,
+          "mixed_row_expansion_and_product_controls": 1746,
+          "small_integral_row_coordinate_separations": 779
+        },
+        "build": "./build.sh passed",
+        "smoke": "python3 tests/test_smoke.py passed",
+        "scope": "Coefficientwise identities over Z[t], all seven cones in eight complete fans, integral sparse commuting multiplication on two actual quotients, 12102 primitive plane controls, and 1746 mixed-row controls. No large cubic-family quotient allocation or empirical asymptotic inference.",
+        "repair": "An independent row-sum check found a transcription error in the expanded N(t)*ones vector. The vector and its absolute-sum coefficient were corrected; the uniform 20*t^2 budget and theorem constants are unchanged."
+      },
+      "preservation": "Only five explicitly reviewed research files change. All 69 earlier continuations, the full original objective and success criteria, all 84 prior source hashes other than the updated README, and all 350 unlisted previously tracked files remain unchanged against 8c8544a. Core kernels, CLI, auditor, manuscripts/PDFs, earlier research and paused ML are preserved; exploratory records and logs remain ignored."
     }
   ],
   "asymptotic_improvement_scope_this_iteration": "No new unrestricted G_3 count. The existing rational-shadow theorem now has a uniform original-coordinate all-field enumeration consequence: O(n^(47/8)*L^(19/8)) field operations from one known-order reduced basis or commuting cyclic matrices, with L=1+log(n+1). Classical counting plus attributed oracle reconstruction already gives O(n^6*L^2); only the further 1/8 exponent saving comes from the shadow input. Current-best priority and coefficient bit complexity remain unestablished.",
-  "previous_goal_turn_classification": "progress: 7a9a3e1 applied power membership and classical profile geometry to exclude the entire bounded-depth full-pure-power tangent perturbation class by O(n^2), and proved a coordinate-dependent O(n^(8/3)) corollary. Revalidated clean main, all 349 tracked files, 82 source hashes and 68 continuations before this iteration. The original unrestricted objective and acceptance criteria remain unchanged.",
+  "previous_goal_turn_classification": "Progress: the preceding turn proved the original-coordinate exact state oracle and an arithmetic enumeration consequence, while retaining established reconstruction and greedy methods as prior art. Revalidated clean main 8c8544a, all 352 tracked files, all 85 source hashes, 69 continuations and the unchanged objective and success criteria before this iteration.",
   "uniform_relative_margin_hypothesis_status": "refuted_by_actual_all_field_quotients",
   "secondary_extremal_parameter_resolved": {
     "relative_margin_dimension_2": "Theta(n^-2)",
@@ -6556,5 +6682,28 @@
     "strongest_current_audit_complete": false,
     "novelty_established": false,
     "goal_complete": false
+  },
+  "multiplicative_shadow_obstruction": {
+    "proof": "docs/multiplicative_shadow_obstruction.md",
+    "checker": "scripts/run_multiplicative_shadow_checks.py",
+    "report": "results/research/multiplicative_shadow_checks.json",
+    "family": "M(t)=t*(3*Identity-all_ones)+B, B=[[2,-1,0],[0,1,-1],[-3,2,0]]; N(t)=M(t)^3; integer t>=1000.",
+    "realization": "Six incomparable socle monomials from the positive diagonal and negative off-diagonal rows of N(t), with three independent pair identifications, define an actual cyclic quotient over every field.",
+    "length": "192*t^6 <= n(t) <= 301*t^6",
+    "initial_ideals": 7,
+    "distinguished_cone": "N(t)^(-1)*R_(>0)^3",
+    "strict_visibility": "q^perp meets the cone interior if and only if p=q*N(t)^(-1) has both positive and negative entries. Merely touching a wall is insufficient.",
+    "minimum_primitive_plane_product": "Theta(t^8)=Theta(n(t)^(4/3)); product is the product of abs(q_i)+1.",
+    "uniform_constants": "t^8/256000000 <= minimum <= 18000*t^8, for t>=1000.",
+    "proof_mechanism": "Unimodular integral pullback, mixed-sign norm expansion through three factors, a small row-sum budget forcing two large coordinates, and positive common orthogonals preventing simultaneous cancellation of two leading coefficients.",
+    "explicit_upper_witness": "q=(1,-1,0)*N(t), primitive by unimodularity; N(t)^(-1)*(1,1,1)^T is a strictly positive witness on its plane.",
+    "refuted_shortcut": "A uniform O(n) primitive product plane detecting each positive initial cone.",
+    "aggregate_count_refuted": false,
+    "large_fan_construction": false,
+    "unrestricted_G3_improvement": false,
+    "strongest_current_audit_complete": false,
+    "novelty_established": false,
+    "goal_complete": false,
+    "scope_limit": "A uniform feasibility obstruction with only seven initials. It directs the main argument toward collective counting; it neither improves the unrestricted count nor meets the impact/publication endpoint."
   }
 }

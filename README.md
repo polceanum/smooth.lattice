@@ -85,6 +85,13 @@ For `T=O(n)` this is `O(n^(7/3)*log n)` for that part of the fan.
 The remaining cells need a separate bound: the known rational-curve
 family already has quadratically many interior cells whose every wall
 has quadratic primitive product. No unrestricted improvement follows yet.
+An [individual-shadow obstruction](docs/multiplicative_shadow_obstruction.md)
+also rules out detecting every cone with primitive plane product `O(n)`.
+An explicit all-field family has just seven initial ideals, but one cone's
+minimum detecting product is `Theta(n^(4/3))`. The uniform proof and
+exact quotient checks distinguish interior detection from touching a wall.
+This closes a proposed shortcut; a collective count of difficult cones
+and the unrestricted extremal problem remain open.
 Fixed internal list orders give exact rank-oracle formulas, but a
 polylogarithmic cover by two-list domains is impossible even for that
 quadratic family. Three-list ranks require a signed correction with
