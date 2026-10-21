@@ -430,6 +430,108 @@ def module_profile_controls(cases):
             'goal_complete': False}
 
 
+def parking_valuation_controls():
+    """Independent matrix bases versus line/circular parking costs.
+
+    Circular fixtures are ordinary Vandermonde quotients in fields whose
+    characteristic does not divide the orbit order. They are deliberately
+    separated from the nonuniform repeated-root Pascal matroids.
+    """
+    counts = defaultdict(int)
+    fixtures = []
+
+    def probe(preferences, modulus):
+        occupied, displacements, slots = set(), [], []
+        for release in preferences:
+            slot, distance = release, 0
+            while slot in occupied:
+                distance += 1
+                slot = (release+distance) % modulus if modulus else release+distance
+            occupied.add(slot)
+            displacements.append(distance)
+            slots.append(slot)
+        return sum(displacements), slots
+
+    def line_value(starts, allocation):
+        frontier, cost = min(starts), 0
+        for release, size in sorted(zip(starts, allocation)):
+            waiting = max(0, frontier-release)
+            cost += comb(size, 2)+size*waiting
+            frontier = max(frontier, release)+size
+        return cost
+
+    cases = [('line', n, 0, 0, 0, starts) for n in range(2, 6)
+             for starts in ((0, 0, 0), (0, 1, 2), (0, 2, 5),
+                            (0, 3, 4), (0, n, n*n))]
+    for modulus, p, root in ((3, 7, 2), (4, 5, 2), (5, 11, 3),
+                             (7, 29, 16), (8, 17, 2)):
+        assert pow(root, modulus, p) == 1
+        assert all(pow(root, k, p) != 1 for k in range(1, modulus))
+        for n in range(2, min(5, modulus)+1):
+            for starts in ((0, 0, modulus-1), (0, 1, modulus-1),
+                           (0, modulus-1, modulus-1),
+                           (0, 2 % modulus, 4 % modulus)):
+                cases.append(('circle', n, modulus, p, root, starts))
+    for kind, n, modulus, p, root, starts in cases:
+        labels = tuple(product(range(n), range(3)))
+        columns = {u: tuple(pow(root, row*(u[0]+starts[u[1]]), p) if p
+                            else (row+1)**(u[0]+starts[u[1]])
+                            for row in range(n)) for u in labels}
+        values, witnesses = {}, {}
+        for B in combinations(labels, n):
+            matrix = [[columns[u][i] for u in B] for i in range(n)]
+            det = bareiss_det(matrix)
+            counts['independent_vandermonde_basis_determinants'] += 1
+            if not (det % p if p else det):
+                continue
+            allocation = tuple(sum(j == i for a, j in B) for i in range(3))
+            value = sum(a for a, j in B)
+            if allocation not in values or value < values[allocation]:
+                values[allocation], witnesses[allocation] = value, B
+        assert set(values) == set(weak_compositions(n, 3))
+        rows = []
+        for d, value in sorted(values.items()):
+            preferences = tuple(release for release, size in zip(starts, d) for _ in range(size))
+            cost, slots = probe(preferences, modulus)
+            assert cost == value
+            if not modulus:
+                assert line_value(starts, d) == value
+                counts['closed_line_formula_equalities'] += 1
+            orders = sorted(set(permutations(preferences)))
+            for order in orders:
+                other, placements = probe(order, modulus)
+                assert other == value and len(set(placements)) == n
+                assert all((slot-release) % modulus < n if modulus else slot-release < n
+                           for slot, release in zip(placements, order))
+                counts['all_preference_insertion_orders'] += 1
+            arcs = [(release+a) % modulus if modulus else release+a
+                    for release, size in zip(starts, d) for a in range(size)]
+            q = sum(comb(size, 2) for size in d)
+            assert q <= value <= comb(n, 2)
+            assert (value == q) == (len(set(arcs)) == n)
+            counts['exact_valuation_and_prefix_contact_equalities'] += 1
+            rows.append({'allocation': d, 'degree_valuation': value,
+                         'prefix_energy': q, 'parking_slots': slots,
+                         'independent_minimum_basis': witnesses[d],
+                         'insertion_orders_checked': len(orders)})
+        fixtures.append({'model': kind, 'length': n, 'orbit_order': modulus,
+                         'characteristic': p, 'primitive_root': root,
+                         'seed_positions': starts, 'all_allocations': rows})
+    residues = (0, 2, 4, 6)
+    pascal = lambda a: {j: comb(a, j) % 2 for j in range(5) if j <= a and comb(a, j) % 2}
+    ordinary = lambda a: {j: pow(2, j*a, 17) for j in range(5)}
+    a, _ = field_basis(residues, pascal, 2)
+    b, _ = field_basis(residues, ordinary, 17)
+    assert len(a) == digit_rank(5, 8, 2, residues) == 3 and len(b) == 4
+    return {'counts': dict(counts), 'fixtures': fixtures,
+            'rank_scope_control': {'length': 5, 'orbit_order': 8, 'residues': residues,
+                                   'characteristic_two_repeated_root_rank': len(a),
+                                   'characteristic_seventeen_uniform_orbit_rank': len(b)},
+            'scope': 'The exact grouped basis-degree valuation equals classical line or circular parking displacement in uniform arithmetic degree/residue quotients. Every bounded value is independently minimized by quotient-matrix basis determinants and checked against all preference insertion orders. No parking rule is asserted for the nonuniform Pascal family, no new all-profile count is proved, and no general parking algorithm or priority claim is made.',
+            'new_unrestricted_G3_count': False, 'novelty_established': False,
+            'goal_complete': False}
+
+
 def digit_rank(n, modulus, p, residues):
     """Rank of selected columns binom(residue,j), 0 <= j < n, in F_p.
 
@@ -983,6 +1085,7 @@ def main():
     digits = prime_digit_controls()
     walk = adjacency_walk_controls(cases, fixtures)
     profiles = module_profile_controls(cases)
+    parking = parking_valuation_controls()
     assert [f['initial_ideals'] for f in fixtures[:9]] == [1, 3, 3, 6, 5, 6, 6, 4, 1]
     sources = ('docs/oracle_fan_enumeration.md', 'scripts/run_oracle_enumeration_checks.py',
                'docs/rational_shadow_bound.md', 'docs/power_carrier_bounds.md',
@@ -997,6 +1100,7 @@ def main():
               'prime_digit_rank_law': digits,
               'direct_positive_cone_traversal': walk,
               'shifted_module_profile_obstruction': profiles,
+              'arithmetic_parking_valuations': parking,
               'uniform_results': {'truncated_state_vertices': 'at most 4*g',
                                   'vertex_queries': 'at most 12*g+1, including initialization',
                                   'field_operations': 'O(n^3*L^2+(g+1)*n^omega*L), L=1+log(n+1)',
@@ -1020,7 +1124,8 @@ def main():
               'source_sha256': {f: hashlib.sha256((ROOT/f).read_bytes()).hexdigest() for f in sources}}
     (ROOT/'results/research/oracle_enumeration_checks.json').write_text(json.dumps(report, indent=2)+'\n')
     print(json.dumps({'previous_counts': report['counts'], 'direct_walk': walk['counts'],
-                      'module_profiles': profiles['counts']}, indent=2))
+                      'module_profiles': profiles['counts'],
+                      'parking_valuations': parking['counts']}, indent=2))
 
 
 if __name__ == '__main__':

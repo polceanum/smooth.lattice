@@ -604,6 +604,128 @@ budget. The classical M-convex reformulation alone supplies no such
 bound. No unrestricted count, separating lower family, novelty or
 publication claim follows from this obstruction.
 
+## Arithmetic seed positions give exact parking valuations
+
+The full valuation can be described without quotient linear algebra in
+the uniform arithmetic families. This gives a concrete constraint beyond
+the common simplex in (M2), rather than replacing the degree costs by
+$q$. The parking process itself is classical. No new unrestricted count
+or general parking theorem is asserted.
+
+### Positive monomial-curve samples: a line with release times
+
+Take $n$ distinct positive rational parameters $t_1<\cdots<t_n$ and
+the points $(t_j,t_j^A,t_j^B)$, with nonnegative integers $A,B$.
+The point ideal has length $n$ since the $x$ coordinates are distinct.
+Every set of at most $n$ monomial columns with distinct encoded degrees
+$a+Ab+Bc$ is independent, by the generalized Vandermonde argument
+above. For the seed $(b,c)$ write $r_{bc}=Ab+Bc$.
+
+More generally let $r_1\le\cdots\le r_m$ be integer seed positions,
+and let $d_i\ge0$, $\sum d_i=n$. In (M3), choosing $d_i$ terms
+from seed $i$ means assigning its $d_i$ jobs to distinct integer slots
+$r_i+a$, $0\le a<n$, with displacement cost $a$. All $n$ slots
+must be distinct across seeds. Put
+
+$$
+ E_0=r_1,\qquad L_i=\max(0,E_{i-1}-r_i),\qquad
+ E_i=\max(E_{i-1},r_i)+d_i.
+$$
+
+Then the exact degree valuation is
+
+$$
+ \boxed{v(d)=q(d)+\sum_{i=1}^m d_iL_i.}                       \tag{M8}
+$$
+
+Equivalently, sort the $n$ releases, with their multiplicities, as
+$\rho_1\le\cdots\le\rho_n$; put
+$u_1=\rho_1$, $u_j=\max(\rho_j,u_{j-1}+1)$. Then
+$v(d)=\sum_j(u_j-\rho_j)$. To prove optimality, uncross any assigned
+pair whose release order is reversed: the swap is feasible and
+preserves the sum of slots. For increasing releases, the earliest-slot
+recursion is componentwise minimal among increasing feasible slot lists.
+The possible displacements are at most $n-1$, so the finite chain ground
+in (M3) suffices. Grouping equal-seed releases gives (M8), including
+zero allocations and coincident seed positions.
+
+Consequently $v=q$ exactly when the occupied intervals
+$[r_i,r_i+d_i-1]$ are pairwise disjoint; empty intervals are ignored.
+The defect $v-q$ is the explicit inter-seed waiting cost. Both the
+identical-seed and separated-seed examples in (M6) are special cases.
+These interval constraints encode the coherent arithmetic starts
+$Ab+Bc$ of the two additional commuting multiplications.
+
+### Cyclic orbit segments: circular parking
+
+Let $M\ge n$, let $K$ contain a primitive $M$th root $\zeta$, and
+assume $\operatorname{char}K$ does not divide $M$. Consider the
+$n$ points
+
+$$
+ (\zeta^j,\zeta^{Aj},\zeta^{Bj}),\qquad 0\le j<n.              \tag{M9}
+$$
+
+Their ideal is
+$(\prod_{j=0}^{n-1}(x-\zeta^j),\ y-x^A,\ z-x^B)$.
+Columns have residues $a+Ab+Bc\pmod M$; any $n$ distinct residues
+give an ordinary Vandermonde matrix in the distinct nodes
+$\zeta^{a+Ab+Bc}$. Thus this is an actual commuting quotient with
+the uniform distinct-residue rank rule. It includes composite $M$.
+
+Give $d_i$ jobs preferred slot $r_i=Ab_i+Bc_i\pmod M$ in a circle
+of $M$ slots. In any order, park each job at its first unoccupied
+slot clockwise. Its displacement is the least nonnegative number of
+steps from its preference. Then
+
+$$
+ \boxed{v(d)=\text{total circular-parking displacement}.}     \tag{M10}
+$$
+
+Here is a deterministic optimality proof, also covering $n=M$.
+Fix any job order. After earlier jobs have been fixed greedily, let
+$c$ be the first available slot for the next job and $t$ its slot in
+an optimal completion. If $c$ is unused in the completion, moving
+the job there reduces or preserves cost. Otherwise exchange it with
+the job at $c$. The first job's saving is the clockwise distance
+from $c$ to $t$, while the second job's added displacement is at
+most that distance, by the triangle inequality for directed circular
+distance. So there is an optimal completion agreeing with this next
+greedy choice. Induction proves (M10) for every insertion order.
+Before the $j$th insertion only $j-1$ slots are occupied, so its
+displacement is at most $j-1<n$. This again justifies (M3)'s finite
+ground; it also constructs the bound $v\le\binom n2$ directly.
+
+The contact criterion is now disjointness of the cyclic arcs
+$r_i+\{0,\ldots,d_i-1\}\pmod M$. If these are disjoint they
+give a basis of cost $q$; conversely equality forces each chain to
+use its own first $d_i$ powers. Classical linear probing and its
+parking interpretation are described in
+[Flajolet--Poblete--Viola, pp. 490--491](https://algo.inria.fr/flajolet/Publications/FlPoVi98.pdf).
+Their random-input moment and limit laws are not used here and do not
+bound the number of coherent profiles in our deterministic weight plane.
+
+### The remaining counting problem is still two-dimensional
+
+For both models, substitute the exact parking valuation into (M5) with
+$s_{bc}=\beta b+\gamma c$, $\beta,\gamma>0$. The original count
+is the number of uniquely optimal profiles of this specific integer
+parking cost on that plane. Arbitrary release positions or all module
+shifts are a larger problem. The formula gives a faithful arithmetic
+model for the growing-parameter family; it does not yet bound that
+count by the generic scale or produce a separating family.
+
+It is also not the rank rule of the whole repeated-root family below.
+For example, $n=5$, characteristic two, $M=8$, the four distinct
+residues $\{0,2,4,6\}$ have rank three. Uniform circular parking
+would wrongly assign them rank four. The exact prime-digit rank law
+must be retained there. Although its binary matroids are series--parallel,
+that label alone supplies no new two-parameter count. For perspective,
+[Eppstein's WADS 2021 slides, slide 16](https://ics.uci.edu/~eppstein/pubs/Epp-WADS-21-slides.pdf)
+list a one-parameter min/max-formula breakpoint question as unresolved.
+This scoped historical comparison is not a claim about the strongest
+current bound, or an equivalence with the present coherent problem.
+
 ## An exact prime-digit rank law in a nonreduced family
 
 Let $K$ have prime characteristic $p$ and consider the actual length-$n$
@@ -799,3 +921,13 @@ symbolic determinant coefficients exercise characteristics two, three,
 five and seven through length four. Those symbolic tests concern
 rational-function-field realizations, not specialization to those small
 finite fields. Four complete paired fans are independently reconstructed.
+The parking controls additionally minimize every allocation cost by direct
+integer determinants of quotient-column matrices in 88 line and circular
+fixtures. They compare these minima with the closed line formula, every
+distinct insertion order of each preference multiset, and the exact
+prefix-contact criterion. Complete circles, composite periods, coincident
+preferences and wraparound are included. A separate rank comparison at
+length five distinguishes the nonuniform characteristic-two Pascal columns
+from the uniform characteristic-seventeen orbit columns on the same four
+residue labels. These checks verify bounded instances of (M8)--(M10);
+their uniform proofs are above, and no growth law follows from the tests.

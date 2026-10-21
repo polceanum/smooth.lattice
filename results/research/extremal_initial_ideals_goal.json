@@ -7,7 +7,7 @@
   "goal_complete": false,
   "asymptotic_improvement_established_this_iteration": false,
   "novelty_established_this_iteration": false,
-  "note": "The univariate-module route now has an exact classical M-convex completion and a uniform actual-ideal obstruction to using cyclic-span ranks or Smith invariants alone. Even a fixed diagonal operator allows one initial ideal or every generic corner cut. The full lifted degree costs must be retained. All previous counting and enumeration results remain unchanged; the substantial mathematical impact goal remains active.",
+  "note": "The exact fixed-module degree valuation now has line and circular parking formulas for uniform arithmetic degree/residue quotients, with independent matrix-minimum controls and a nonuniform Pascal rank boundary. This is supporting structure from classical parking theory, not a new unrestricted count, a polynomially separating family or a publication endpoint. All existing asymptotic results are unchanged; the full substantial mathematical impact goal remains active.",
   "relationship_to_previous_work": "New active objective with a higher completion bar. Previous goal records, lattice-shadow candidate, manuscripts and paused ML results are preserved as historical research.",
   "definitions": {
     "G_d_n": "Maximum number of monomial initial ideals of a colength-n ideal in d variables, over all fields.",
@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Keep the full unrestricted G3 objective and original success criteria. Do not replace feasible prefix allocations by integer points of their cyclic-span rank polytope with bare quadratic costs: the uniform same-operator pair disproves that step. The correct object is the full aggregated matroid valuation v, whose q-contact set recovers feasible prefixes. A useful new counting theorem must exploit this valuation together with the two additional commuting multiplications and coherent monomial labels, or prove the collective rank-preserving hyperbolic skeleton/square-root-incidence budget; alternatively construct an actual polynomially separating coherent lower family. Classical M-convexity, fixed-shift Popov invariance and an exact reformulation are supporting tools only. Complete the strongest-current comparison before a novelty or paper claim. Preserve all earlier mathematics, manuscripts/PDFs, core CLI/kernels/auditor and paused ML; no outbound messages or submissions. Do not enumerate all module shifts: bounded nonnegative shifts already have exponential output. The next counting proof must work on the original two-parameter positive plane.",
+  "next_proof_task": "Preserve the original unrestricted G3 endpoint and every success criterion. Use the full degree valuation together with the coherent two-parameter shift plane and actual commuting multiplications. The parking correspondence gives an exact uniform arithmetic model, but counting all shifts, assuming independent distinct residues in the repeated-root family, or invoking a series-parallel label supplies no count. Seek a uniform bound on coherent exchanges using the actual interval/digit dependencies, or the rank-preserving hyperbolic skeleton/square-root-incidence budget; alternatively construct and prove an actual polynomially separating lower family. Classical parking and M-convexity are supporting tools, not success. Complete the strongest-current primary comparison before asserting novelty or a paper-level result.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -830,6 +830,20 @@
       "title": "Fast computation of minimal interpolation bases in Popov form for arbitrary shifts",
       "url": "https://arxiv.org/html/1602.00651v1#S3",
       "scope": "Follow-up comparison: Definitions 1.1, 1.2 and 3.1, Lemmas 3.3 and 3.4 and their complete displayed proofs inspected. Pivot degree invariance holds for a fixed shift and fixed row module under left-unimodular equivalence. Equal abstract quotient invariant factors do not supply equal embedded modules or all-shift fan data."
+    },
+    {
+      "authors": "Flajolet, Poblete and Viola",
+      "title": "On the Analysis of Linear Probing Hashing",
+      "url": "https://algo.inria.fr/flajolet/Publications/FlPoVi98.pdf",
+      "publication": "Algorithmica 22 (1998), 490-515",
+      "scope": "Introduction, pp. 490-491, inspected for the classical circular linear-probing process, displacement cost and parking interpretation. The deterministic quotient valuation and exchange proof are stated separately. No random-input moment, limit law or average-case bound is transferred to coherent fan counting."
+    },
+    {
+      "authors": "Eppstein",
+      "title": "A Stronger Lower Bound on Parametric Minimum Spanning Trees",
+      "url": "https://ics.uci.edu/~eppstein/pubs/Epp-WADS-21-slides.pdf",
+      "version": "WADS 2021 presentation slides",
+      "scope": "Slides 12-17, especially slide 16, inspected. The presentation distinguishes its parametric MST lower construction from an unresolved-at-that-time min/max-formula breakpoint question on series-parallel graphs. This is a historical scope warning only: no current-open-status assertion, complete later audit or equivalence with coherent Pascal matroid profiles is inferred."
     }
   ],
   "verification": {
@@ -2146,9 +2160,60 @@
         "status": "passed"
       },
       "source_hashes_verified": true
+    },
+    "arithmetic_parking_valuations": {
+      "command": "python3 -B scripts/run_oracle_enumeration_checks.py",
+      "status": "passed",
+      "report": "results/research/oracle_enumeration_checks.json",
+      "counts": {
+        "independent_vandermonde_basis_determinants": 63921,
+        "closed_line_formula_equalities": 260,
+        "all_preference_insertion_orders": 5253,
+        "exact_valuation_and_prefix_contact_equalities": 1072
+      },
+      "finite_fixtures": 88,
+      "rank_scope_control": {
+        "length": 5,
+        "orbit_order": 8,
+        "residues": [
+          0,
+          2,
+          4,
+          6
+        ],
+        "characteristic_two_repeated_root_rank": 3,
+        "characteristic_seventeen_uniform_orbit_rank": 4
+      },
+      "old_report_blocks_preserved": [
+        "status",
+        "command",
+        "counts",
+        "fixtures",
+        "faithful_fixed_module_prefix_ranks",
+        "prime_digit_rank_law",
+        "direct_positive_cone_traversal",
+        "shifted_module_profile_obstruction",
+        "uniform_results",
+        "new_unrestricted_G3_count",
+        "novelty_established",
+        "bit_complexity_bound_established",
+        "practical_speedup_established",
+        "goal_complete",
+        "scope"
+      ],
+      "build": {
+        "command": "./build.sh",
+        "status": "passed"
+      },
+      "smoke": {
+        "command": "python3 tests/test_smoke.py",
+        "status": "passed"
+      },
+      "source_hashes_verified": true,
+      "scope": "Every finite allocation is independently minimized over quotient-matrix basis determinants. Formula, contact and cost bounds are checked against every distinct preference insertion order. Uniform assertions depend on the written proofs; no extrapolated growth, novelty or practical advantage is inferred."
     }
   },
-  "preservation": "Five explicitly reviewed public files change. All 82 prior continuations, 113 prior primary-source records, the full objective and success criteria, all old oracle result blocks, all mathematical manuscripts/PDFs, core CLI/kernels and auditor, previous research and paused ML are preserved. All 365 unlisted tracked files remain byte-identical to 4144df9. The new module tests are additive; existing checker functions are unchanged except for imports and main report assembly. Baselines, logs and the full privacy audit stay ignored.",
+  "preservation": "Five explicitly reviewed public files change. All 83 prior continuations, 116 prior primary-source records, the full objective and success criteria, all old oracle result blocks, manuscripts/PDFs, core CLI/kernels and auditor, previous research and paused ML are preserved. All 365 unlisted tracked files remain byte-identical to c4007d7. The parking checker is additive; existing functions remain unchanged except for main report assembly. Baselines, exploratory probes, logs and privacy records stay ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
@@ -2158,7 +2223,7 @@
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "49898194953da3bad2351b6238909f992df7b122ffcf31612586f4a3d22f2dbf",
+    "README.md": "aba6ec23bc974f8ef978ab0c3536d5f5355e363d83c34feada3cd5b7fc22831f",
     "docs/extremal_initial_ideals.md": "6e84b6ea470841a89760a2e16080a9314ba747499b1a5a733460120fe501a92b",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
@@ -2240,9 +2305,9 @@
     "docs/power_carrier_bounds.md": "147199d8453db28285ebe3448e5bc0916121bb62ea8b9450f035dc46a401320b",
     "scripts/run_power_carrier_checks.py": "0247edb76f5d866eab944098007b485ee8be1c8793311a589bb7573be1629731",
     "results/research/power_carrier_checks.json": "9565bce325fcef7039a413aaae3716df5dbee36d8af05f6ec3b4a07835198599",
-    "docs/oracle_fan_enumeration.md": "96fd777eaa5f5989f6875f83764365a9e036b28bed6825a13c8c82ae09bae7aa",
-    "scripts/run_oracle_enumeration_checks.py": "78ed976e1ab37e231ed90ae4b9540af1e52f5638c68b11ed8042dc9f25ac15fc",
-    "results/research/oracle_enumeration_checks.json": "627bc7bda2898b51bb928e234482366790055b3fc2014c4fe75c5667e368f8ff",
+    "docs/oracle_fan_enumeration.md": "f3323de30299bcbb0b4755600266aa16d74128322b517492fc75ebbe370e0e15",
+    "scripts/run_oracle_enumeration_checks.py": "139af7656f8dc4083fc463a0bb27354ee53b23e85bc3232b958236b15ee45ec2",
+    "results/research/oracle_enumeration_checks.json": "06e79a6fd9b6453127a7a6499377dc995dc2290d51fd49d829936afa0b3c3078",
     "docs/multiplicative_shadow_obstruction.md": "d8e6899f18910ef235276914b92e4a8248257d738c306f38702da3e62e0ae0de",
     "scripts/run_multiplicative_shadow_checks.py": "979e1d62db275ffa3c541a2d9c110d0fc51fdb3eb660d0763898d75728866b63",
     "results/research/multiplicative_shadow_checks.json": "934efd1d899425e25b283ca43315b8f7d348c33ff1d1cb989198a57c38062612",
@@ -7541,10 +7606,89 @@
         "source_hashes_verified": true
       },
       "unrestricted_goal_complete": false
+    },
+    {
+      "title": "Compute exact arithmetic degree valuations by classical parking",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "Progress in the interrupted mathematical continuation: it left the exact parking correspondence, proof and additive checker in the worktree, with focused matrix checks passed. The intervening presentation-only turn confirmed existing omission of project credits and changed no mathematical state. Revalidated main c4007d7, all 370 baseline tracked files, all 102 baseline research hashes, 83 prior continuations and 116 primary-source records before completing the pending work.",
+      "progress_classification": "proved_exact_uniform_arithmetic_parking_valuation_and_verified_nonuniform_rank_boundary",
+      "prior_next_proof_task": "Keep the full unrestricted G3 objective and original success criteria. Do not replace feasible prefix allocations by integer points of their cyclic-span rank polytope with bare quadratic costs: the uniform same-operator pair disproves that step. The correct object is the full aggregated matroid valuation v, whose q-contact set recovers feasible prefixes. A useful new counting theorem must exploit this valuation together with the two additional commuting multiplications and coherent monomial labels, or prove the collective rank-preserving hyperbolic skeleton/square-root-incidence budget; alternatively construct an actual polynomially separating coherent lower family. Classical M-convexity, fixed-shift Popov invariance and an exact reformulation are supporting tools only. Complete the strongest-current comparison before a novelty or paper claim. Preserve all earlier mathematics, manuscripts/PDFs, core CLI/kernels/auditor and paused ML; no outbound messages or submissions. Do not enumerate all module shifts: bounded nonnegative shifts already have exponential output. The next counting proof must work on the original two-parameter positive plane.",
+      "structural_result": {
+        "proof": "docs/oracle_fan_enumeration.md#arithmetic-seed-positions-give-exact-parking-valuations",
+        "checker": "scripts/run_oracle_enumeration_checks.py",
+        "report": "results/research/oracle_enumeration_checks.json",
+        "line_family": "Actual length-n ideals of n distinct positive rational points (t_j,t_j^A,t_j^B). Distinct encoded degrees give uniform columns by generalized Vandermonde independence; seeds have integer starts A*b+B*c.",
+        "exact_line_valuation": "For sorted starts r_i and an allocation d of n jobs, put E_0=r_1, L_i=max(0,E_(i-1)-r_i), E_i=max(E_(i-1),r_i)+d_i. The grouped minimum basis-degree cost is v(d)=sum_i binom(d_i,2)+sum_i d_i*L_i. Sorted earliest feasible scheduling proves the formula; all displacements are below n.",
+        "circular_family": "Actual n-point orbit segments (zeta^j,zeta^(A*j),zeta^(B*j)), 0<=j<n<=M, over any field containing a primitive Mth root zeta with characteristic not dividing M. Distinct residue columns give a Vandermonde matrix. Composite M is allowed.",
+        "exact_circular_valuation": "The grouped minimum degree cost equals the total displacement of ordinary clockwise parking, in every insertion order, including a full circle. A deterministic exchange proof supplies minimum cost and the displacement bound below n.",
+        "contact_sets": "v=q exactly when the prescribed chain prefixes form disjoint integer intervals or cyclic arcs. Overlaps retain arithmetic information discarded by cyclic-span ranks and the allocation polytope.",
+        "nonuniform_boundary": "For length five and period eight, residue labels 0,2,4,6 have rank three in characteristic-two truncated Pascal columns, but rank four in the characteristic-seventeen uniform orbit model. Distinctness and parking cannot replace the prime-digit rank recursion.",
+        "coherent_counting_target": "The original fan uses only shifts s_(b,c)=beta*b+gamma*c with beta,gamma>0. The exact valuation identifies this restricted optimization problem but does not count its uniquely optimal profiles.",
+        "classical_boundary": "The parking and linear-probing process is established. The explicit quotient-column correspondence and minimum-cost argument are provided here as supporting structure; no new general scheduling, parking or convex optimization theorem is claimed.",
+        "unrestricted_G3_improved": false,
+        "polynomial_lower_separation_proved": false,
+        "new_fan_enumeration_bound": false,
+        "novelty_established": false,
+        "goal_complete": false
+      },
+      "verification": {
+        "command": "python3 -B scripts/run_oracle_enumeration_checks.py",
+        "status": "passed",
+        "report": "results/research/oracle_enumeration_checks.json",
+        "counts": {
+          "independent_vandermonde_basis_determinants": 63921,
+          "closed_line_formula_equalities": 260,
+          "all_preference_insertion_orders": 5253,
+          "exact_valuation_and_prefix_contact_equalities": 1072
+        },
+        "finite_fixtures": 88,
+        "rank_scope_control": {
+          "length": 5,
+          "orbit_order": 8,
+          "residues": [
+            0,
+            2,
+            4,
+            6
+          ],
+          "characteristic_two_repeated_root_rank": 3,
+          "characteristic_seventeen_uniform_orbit_rank": 4
+        },
+        "old_report_blocks_preserved": [
+          "status",
+          "command",
+          "counts",
+          "fixtures",
+          "faithful_fixed_module_prefix_ranks",
+          "prime_digit_rank_law",
+          "direct_positive_cone_traversal",
+          "shifted_module_profile_obstruction",
+          "uniform_results",
+          "new_unrestricted_G3_count",
+          "novelty_established",
+          "bit_complexity_bound_established",
+          "practical_speedup_established",
+          "goal_complete",
+          "scope"
+        ],
+        "build": {
+          "command": "./build.sh",
+          "status": "passed"
+        },
+        "smoke": {
+          "command": "python3 tests/test_smoke.py",
+          "status": "passed"
+        },
+        "source_hashes_verified": true,
+        "scope": "Every finite allocation is independently minimized over quotient-matrix basis determinants. Formula, contact and cost bounds are checked against every distinct preference insertion order. Uniform assertions depend on the written proofs; no extrapolated growth, novelty or practical advantage is inferred."
+      },
+      "effect_on_next_action": "Preserve the original unrestricted G3 endpoint and every success criterion. Use the full degree valuation together with the coherent two-parameter shift plane and actual commuting multiplications. The parking correspondence gives an exact uniform arithmetic model, but counting all shifts, assuming independent distinct residues in the repeated-root family, or invoking a series-parallel label supplies no count. Seek a uniform bound on coherent exchanges using the actual interval/digit dependencies, or the rank-preserving hyperbolic skeleton/square-root-incidence budget; alternatively construct and prove an actual polynomially separating lower family. Classical parking and M-convexity are supporting tools, not success. Complete the strongest-current primary comparison before asserting novelty or a paper-level result.",
+      "unrestricted_goal_complete": false
     }
   ],
   "asymptotic_improvement_scope_this_iteration": "None: the exact module completion and same-operator obstruction preserve the previous unrestricted G3 count and arithmetic consequence. No separating lower family or new publication assessment is obtained.",
-  "previous_goal_turn_classification": "Progress on the explicit editorial request: 4144df9 updated presentation and reviewed artifacts without changing a mathematical result. Revalidated clean main, all 370 tracked files, 102 current source hashes, 82 prior mathematical continuations and 113 scoped primary-source records. The preceding mathematical turn f5212d8 completed the full arithmetic enumeration consequence without changing G3.",
+  "previous_goal_turn_classification": "Progress in the interrupted mathematical continuation: it left the exact parking correspondence, proof and additive checker in the worktree, with focused matrix checks passed. The intervening presentation-only turn confirmed existing omission of project credits and changed no mathematical state. Revalidated main c4007d7, all 370 baseline tracked files, all 102 baseline research hashes, 83 prior continuations and 116 primary-source records before completing the pending work.",
   "uniform_relative_margin_hypothesis_status": "refuted_by_actual_all_field_quotients",
   "secondary_extremal_parameter_resolved": {
     "relative_margin_dimension_2": "Theta(n^-2)",
@@ -8408,5 +8552,23 @@
     "novelty_established": false,
     "goal_complete": false,
     "bounded_shift_count_obstruction": "Every feasible prefix allocation d is uniquely selected at the bounded nonnegative integer shift s_i=n-d_i. Thus the moment-graph family already has exponentially many full-shift module profiles, despite the original positive two-parameter fan being the existing corner-cut class. A polynomial all-shift enumeration route is impossible in this input/output model; the restricted plane is essential."
+  },
+  "arithmetic_parking_valuations": {
+    "proof": "docs/oracle_fan_enumeration.md#arithmetic-seed-positions-give-exact-parking-valuations",
+    "checker": "scripts/run_oracle_enumeration_checks.py",
+    "report": "results/research/oracle_enumeration_checks.json",
+    "line_family": "Actual length-n ideals of n distinct positive rational points (t_j,t_j^A,t_j^B). Distinct encoded degrees give uniform columns by generalized Vandermonde independence; seeds have integer starts A*b+B*c.",
+    "exact_line_valuation": "For sorted starts r_i and an allocation d of n jobs, put E_0=r_1, L_i=max(0,E_(i-1)-r_i), E_i=max(E_(i-1),r_i)+d_i. The grouped minimum basis-degree cost is v(d)=sum_i binom(d_i,2)+sum_i d_i*L_i. Sorted earliest feasible scheduling proves the formula; all displacements are below n.",
+    "circular_family": "Actual n-point orbit segments (zeta^j,zeta^(A*j),zeta^(B*j)), 0<=j<n<=M, over any field containing a primitive Mth root zeta with characteristic not dividing M. Distinct residue columns give a Vandermonde matrix. Composite M is allowed.",
+    "exact_circular_valuation": "The grouped minimum degree cost equals the total displacement of ordinary clockwise parking, in every insertion order, including a full circle. A deterministic exchange proof supplies minimum cost and the displacement bound below n.",
+    "contact_sets": "v=q exactly when the prescribed chain prefixes form disjoint integer intervals or cyclic arcs. Overlaps retain arithmetic information discarded by cyclic-span ranks and the allocation polytope.",
+    "nonuniform_boundary": "For length five and period eight, residue labels 0,2,4,6 have rank three in characteristic-two truncated Pascal columns, but rank four in the characteristic-seventeen uniform orbit model. Distinctness and parking cannot replace the prime-digit rank recursion.",
+    "coherent_counting_target": "The original fan uses only shifts s_(b,c)=beta*b+gamma*c with beta,gamma>0. The exact valuation identifies this restricted optimization problem but does not count its uniquely optimal profiles.",
+    "classical_boundary": "The parking and linear-probing process is established. The explicit quotient-column correspondence and minimum-cost argument are provided here as supporting structure; no new general scheduling, parking or convex optimization theorem is claimed.",
+    "unrestricted_G3_improved": false,
+    "polynomial_lower_separation_proved": false,
+    "new_fan_enumeration_bound": false,
+    "novelty_established": false,
+    "goal_complete": false
   }
 }

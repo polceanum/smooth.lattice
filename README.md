@@ -98,6 +98,11 @@ and rank polytope, but one has a single initial ideal and the other all
 generic corner cuts. Their exact degree costs retain the distinction.
 This rules out the simple quadratic relaxation; it supplies no new
 unrestricted count or separating lower family.
+For uniform monomial-curve samples and cyclic orbit segments, those
+degree costs now have exact line and circular parking formulas. The
+formulas retain collisions between arithmetic seed positions; they do
+not apply to the nonuniform repeated-root Pascal ranks. Classical parking
+theory alone does not bound the number of coherent profiles.
 Even bounded unrestricted shifts can have exponentially many profiles,
 so a useful count must retain the original two-parameter weight plane.
 Direct traversal of positive cones uses at most `6g+1` basis queries and
