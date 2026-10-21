@@ -1,0 +1,5076 @@
+{
+  "schema_version": 1,
+  "all_checks_passed": true,
+  "scope": "Exact whole fans and actual commuting unit-coordinate quotients support a uniform all-field rank-indistinguishability theorem. The family is binomial and has a linear-volume monic carrier box; no supergeneric lower family, unrestricted bound, full mixed-wall budget or novelty is established.",
+  "uniform_theorem": {
+    "length": "n_k=(128*k^3+36*k^2+22*k-3)/3",
+    "same_data": "Identical labelled planar column matroids, elimination and colon ideals, planar quotient modulo x, and square-zero x-Jordan type.",
+    "fan_counts": "2 versus (k+1)^2",
+    "wall_costs": "2 versus 2*k*(k+1)*(9*k+5)",
+    "missing_sign_scope": "Every swapped-family wall has nonzero x component and opposite nonzero y,z signs; both controlled coordinate budgets vanish.",
+    "information_consequence": "These marginal data cannot determine the fan or cost. Symmetric approximation requires Omega(n_k^(1/3)) for the count and Omega(n_k^(1/2)) for cost."
+  },
+  "counters": {
+    "independent_commuting_unit_matrix_columns": 28176,
+    "independent_monomial_successor_replays": 28296,
+    "independent_socle_generator_identifications": 40,
+    "independent_monomial_kernel_border_replays": 96,
+    "independent_complete_planar_kernel_and_rank_formulas": 16,
+    "independent_square_zero_Jordan_types": 8,
+    "independent_mod_x_planar_quotient_kernels": 8,
+    "independent_full_ground_greedy_standard_sets": 62,
+    "independent_actual_border_normal_forms": 1264,
+    "independent_complete_actual_cone_equalities": 62,
+    "independent_polygon_adjacency_replays": 84,
+    "complete_actual_quotient_fans": 8,
+    "independent_positive_remaining_wall_crossings": 30,
+    "independent_equal_marginal_rank_and_Jordan_pairs": 4
+  },
+  "actual_quotient_pairs": [
+    {
+      "identity": {
+        "k": 1,
+        "kind": "identity",
+        "length": 61,
+        "lower_planar_length": 38,
+        "upper_planar_length": 25,
+        "lower_monomial_kernel_generators": [
+          [
+            0,
+            13
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        "upper_monomial_kernel_generators": [
+          [
+            0,
+            13
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "mod_x_planar_kernel_generators": [
+          [
+            0,
+            13
+          ],
+          [
+            1,
+            12
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        "mod_x_planar_length": 36,
+        "x_Jordan_blocks": {
+          "size_two": 25,
+          "size_one": 11
+        },
+        "permutation": [
+          0,
+          1
+        ],
+        "initial_ideals": 2,
+        "undirected_walls": 1,
+        "complete_area": "1",
+        "primitive_wall_cost": 2,
+        "directions": [
+          {
+            "direction": [
+              1,
+              -1,
+              0
+            ],
+            "pieces": 1,
+            "cost": 2
+          }
+        ],
+        "zero_component_cost": 0,
+        "singleton_x_sign_cost": 2,
+        "cells": [
+          {
+            "chosen_relation_tips": [
+              [
+                1,
+                0,
+                12
+              ],
+              [
+                1,
+                2,
+                5
+              ]
+            ],
+            "profile": [
+              25,
+              57,
+              277
+            ],
+            "positive_cone": [
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "standard_set_sha256": "d9d151cb7c4ea2b64b5a12e04b50538898e124ceae67d788fca54c9e9e340e4f"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                1,
+                12
+              ],
+              [
+                0,
+                3,
+                5
+              ]
+            ],
+            "profile": [
+              23,
+              59,
+              277
+            ],
+            "positive_cone": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "standard_set_sha256": "2b59953133743a412ada51101c3862b04e1e8d24841bfdb6719c6e7344ba238b"
+          }
+        ]
+      },
+      "swapped": {
+        "k": 1,
+        "kind": "swapped",
+        "length": 61,
+        "lower_planar_length": 38,
+        "upper_planar_length": 25,
+        "lower_monomial_kernel_generators": [
+          [
+            0,
+            13
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        "upper_monomial_kernel_generators": [
+          [
+            0,
+            13
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "mod_x_planar_kernel_generators": [
+          [
+            0,
+            13
+          ],
+          [
+            1,
+            12
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        "mod_x_planar_length": 36,
+        "x_Jordan_blocks": {
+          "size_two": 25,
+          "size_one": 11
+        },
+        "permutation": [
+          1,
+          0
+        ],
+        "initial_ideals": 4,
+        "undirected_walls": 4,
+        "complete_area": "1",
+        "primitive_wall_cost": 56,
+        "directions": [
+          {
+            "direction": [
+              1,
+              -3,
+              7
+            ],
+            "pieces": 2,
+            "cost": 18
+          },
+          {
+            "direction": [
+              1,
+              1,
+              -7
+            ],
+            "pieces": 2,
+            "cost": 10
+          }
+        ],
+        "zero_component_cost": 0,
+        "singleton_x_sign_cost": 0,
+        "cells": [
+          {
+            "chosen_relation_tips": [
+              [
+                1,
+                0,
+                12
+              ],
+              [
+                1,
+                2,
+                5
+              ]
+            ],
+            "profile": [
+              25,
+              57,
+              277
+            ],
+            "positive_cone": [
+              [
+                "0",
+                "7/8",
+                "1/8"
+              ],
+              [
+                "0",
+                "7/10",
+                "3/10"
+              ],
+              [
+                "7/16",
+                "7/16",
+                "1/8"
+              ]
+            ],
+            "standard_set_sha256": "d9d151cb7c4ea2b64b5a12e04b50538898e124ceae67d788fca54c9e9e340e4f"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                1,
+                0,
+                12
+              ],
+              [
+                0,
+                1,
+                12
+              ]
+            ],
+            "profile": [
+              24,
+              56,
+              284
+            ],
+            "positive_cone": [
+              [
+                "3/4",
+                "1/4",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "7/8",
+                "1/8"
+              ],
+              [
+                "7/16",
+                "7/16",
+                "1/8"
+              ]
+            ],
+            "standard_set_sha256": "0b5c09dbccf87ed4a6b0413d597af82f82f89c6a6d5245f6cf48c92e026388c4"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                5
+              ],
+              [
+                1,
+                2,
+                5
+              ]
+            ],
+            "profile": [
+              24,
+              60,
+              270
+            ],
+            "positive_cone": [
+              [
+                "0",
+                "7/10",
+                "3/10"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "7/8",
+                "0",
+                "1/8"
+              ],
+              [
+                "7/16",
+                "7/16",
+                "1/8"
+              ]
+            ],
+            "standard_set_sha256": "4234169ed81d3eb35997d34f33a006a325e13edb0879a872608952e11b276f81"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                5
+              ],
+              [
+                0,
+                1,
+                12
+              ]
+            ],
+            "profile": [
+              23,
+              59,
+              277
+            ],
+            "positive_cone": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "3/4",
+                "1/4",
+                "0"
+              ],
+              [
+                "7/16",
+                "7/16",
+                "1/8"
+              ],
+              [
+                "7/8",
+                "0",
+                "1/8"
+              ]
+            ],
+            "standard_set_sha256": "2b59953133743a412ada51101c3862b04e1e8d24841bfdb6719c6e7344ba238b"
+          }
+        ]
+      }
+    },
+    {
+      "identity": {
+        "k": 2,
+        "kind": "identity",
+        "length": 403,
+        "lower_planar_length": 228,
+        "upper_planar_length": 179,
+        "lower_monomial_kernel_generators": [
+          [
+            0,
+            49
+          ],
+          [
+            2,
+            34
+          ],
+          [
+            4,
+            21
+          ],
+          [
+            6,
+            10
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        "upper_monomial_kernel_generators": [
+          [
+            0,
+            49
+          ],
+          [
+            1,
+            34
+          ],
+          [
+            3,
+            21
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        "mod_x_planar_kernel_generators": [
+          [
+            0,
+            49
+          ],
+          [
+            1,
+            48
+          ],
+          [
+            2,
+            34
+          ],
+          [
+            3,
+            33
+          ],
+          [
+            4,
+            21
+          ],
+          [
+            5,
+            20
+          ],
+          [
+            6,
+            10
+          ],
+          [
+            7,
+            9
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        "mod_x_planar_length": 224,
+        "x_Jordan_blocks": {
+          "size_two": 179,
+          "size_one": 45
+        },
+        "permutation": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "initial_ideals": 2,
+        "undirected_walls": 1,
+        "complete_area": "1",
+        "primitive_wall_cost": 2,
+        "directions": [
+          {
+            "direction": [
+              1,
+              -1,
+              0
+            ],
+            "pieces": 1,
+            "cost": 2
+          }
+        ],
+        "zero_component_cost": 0,
+        "singleton_x_sign_cost": 2,
+        "cells": [
+          {
+            "chosen_relation_tips": [
+              [
+                1,
+                0,
+                48
+              ],
+              [
+                1,
+                2,
+                33
+              ],
+              [
+                1,
+                4,
+                20
+              ],
+              [
+                1,
+                6,
+                9
+              ]
+            ],
+            "profile": [
+              179,
+              881,
+              6682
+            ],
+            "positive_cone": [
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "standard_set_sha256": "0c685695c3cf2217e18075697c205026631425036bbbcb00efe976dd1e08671c"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                1,
+                48
+              ],
+              [
+                0,
+                3,
+                33
+              ],
+              [
+                0,
+                5,
+                20
+              ],
+              [
+                0,
+                7,
+                9
+              ]
+            ],
+            "profile": [
+              175,
+              885,
+              6682
+            ],
+            "positive_cone": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "standard_set_sha256": "265e70a12a3c3048e42a1f0c703f1033ebf447b1c4ab580e859c0c7cbee54c21"
+          }
+        ]
+      },
+      "swapped": {
+        "k": 2,
+        "kind": "swapped",
+        "length": 403,
+        "lower_planar_length": 228,
+        "upper_planar_length": 179,
+        "lower_monomial_kernel_generators": [
+          [
+            0,
+            49
+          ],
+          [
+            2,
+            34
+          ],
+          [
+            4,
+            21
+          ],
+          [
+            6,
+            10
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        "upper_monomial_kernel_generators": [
+          [
+            0,
+            49
+          ],
+          [
+            1,
+            34
+          ],
+          [
+            3,
+            21
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        "mod_x_planar_kernel_generators": [
+          [
+            0,
+            49
+          ],
+          [
+            1,
+            48
+          ],
+          [
+            2,
+            34
+          ],
+          [
+            3,
+            33
+          ],
+          [
+            4,
+            21
+          ],
+          [
+            5,
+            20
+          ],
+          [
+            6,
+            10
+          ],
+          [
+            7,
+            9
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        "mod_x_planar_length": 224,
+        "x_Jordan_blocks": {
+          "size_two": 179,
+          "size_one": 45
+        },
+        "permutation": [
+          1,
+          0,
+          3,
+          2
+        ],
+        "initial_ideals": 9,
+        "undirected_walls": 12,
+        "complete_area": "1",
+        "primitive_wall_cost": 276,
+        "directions": [
+          {
+            "direction": [
+              1,
+              -3,
+              11
+            ],
+            "pieces": 3,
+            "cost": 26
+          },
+          {
+            "direction": [
+              1,
+              -3,
+              15
+            ],
+            "pieces": 3,
+            "cost": 34
+          },
+          {
+            "direction": [
+              1,
+              1,
+              -15
+            ],
+            "pieces": 3,
+            "cost": 18
+          },
+          {
+            "direction": [
+              1,
+              1,
+              -11
+            ],
+            "pieces": 3,
+            "cost": 14
+          }
+        ],
+        "zero_component_cost": 0,
+        "singleton_x_sign_cost": 0,
+        "cells": [
+          {
+            "chosen_relation_tips": [
+              [
+                1,
+                0,
+                48
+              ],
+              [
+                1,
+                2,
+                33
+              ],
+              [
+                1,
+                4,
+                20
+              ],
+              [
+                1,
+                6,
+                9
+              ]
+            ],
+            "profile": [
+              179,
+              881,
+              6682
+            ],
+            "positive_cone": [
+              [
+                "0",
+                "11/12",
+                "1/12"
+              ],
+              [
+                "0",
+                "5/6",
+                "1/6"
+              ],
+              [
+                "3/8",
+                "13/24",
+                "1/12"
+              ]
+            ],
+            "standard_set_sha256": "0c685695c3cf2217e18075697c205026631425036bbbcb00efe976dd1e08671c"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                1,
+                0,
+                48
+              ],
+              [
+                1,
+                2,
+                33
+              ],
+              [
+                1,
+                4,
+                20
+              ],
+              [
+                0,
+                5,
+                20
+              ]
+            ],
+            "profile": [
+              178,
+              880,
+              6693
+            ],
+            "positive_cone": [
+              [
+                "0",
+                "15/16",
+                "1/16"
+              ],
+              [
+                "0",
+                "11/12",
+                "1/12"
+              ],
+              [
+                "3/8",
+                "13/24",
+                "1/12"
+              ],
+              [
+                "15/32",
+                "15/32",
+                "1/16"
+              ]
+            ],
+            "standard_set_sha256": "c9b8b164badb58c701c68850201fd5bb37d6fdcab21e64aad6579ba46b97a588"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                1,
+                0,
+                48
+              ],
+              [
+                0,
+                1,
+                48
+              ],
+              [
+                1,
+                4,
+                20
+              ],
+              [
+                0,
+                5,
+                20
+              ]
+            ],
+            "profile": [
+              177,
+              879,
+              6708
+            ],
+            "positive_cone": [
+              [
+                "3/4",
+                "1/4",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "15/16",
+                "1/16"
+              ],
+              [
+                "15/32",
+                "15/32",
+                "1/16"
+              ]
+            ],
+            "standard_set_sha256": "66c193502ee14740f4ec9ef3ec76efe9f50df37f9a4aad6e23e8712e936aee8c"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                33
+              ],
+              [
+                1,
+                2,
+                33
+              ],
+              [
+                1,
+                4,
+                20
+              ],
+              [
+                1,
+                6,
+                9
+              ]
+            ],
+            "profile": [
+              178,
+              884,
+              6667
+            ],
+            "positive_cone": [
+              [
+                "0",
+                "5/6",
+                "1/6"
+              ],
+              [
+                "0",
+                "11/14",
+                "3/14"
+              ],
+              [
+                "11/24",
+                "11/24",
+                "1/12"
+              ],
+              [
+                "3/8",
+                "13/24",
+                "1/12"
+              ]
+            ],
+            "standard_set_sha256": "a66185e9f1e5a3297873a4ee472b84a4f85714341c710963dd39af2385b28e9b"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                33
+              ],
+              [
+                1,
+                2,
+                33
+              ],
+              [
+                1,
+                4,
+                20
+              ],
+              [
+                0,
+                5,
+                20
+              ]
+            ],
+            "profile": [
+              177,
+              883,
+              6678
+            ],
+            "positive_cone": [
+              [
+                "11/24",
+                "11/24",
+                "1/12"
+              ],
+              [
+                "17/32",
+                "13/32",
+                "1/16"
+              ],
+              [
+                "15/32",
+                "15/32",
+                "1/16"
+              ],
+              [
+                "3/8",
+                "13/24",
+                "1/12"
+              ]
+            ],
+            "standard_set_sha256": "0e680ca37edd0d1b7b2f1bc740cffc2dd8d9d61f3ac0109cb04ee6c8eca2a7aa"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                33
+              ],
+              [
+                0,
+                1,
+                48
+              ],
+              [
+                1,
+                4,
+                20
+              ],
+              [
+                0,
+                5,
+                20
+              ]
+            ],
+            "profile": [
+              176,
+              882,
+              6693
+            ],
+            "positive_cone": [
+              [
+                "3/4",
+                "1/4",
+                "0"
+              ],
+              [
+                "15/32",
+                "15/32",
+                "1/16"
+              ],
+              [
+                "17/32",
+                "13/32",
+                "1/16"
+              ]
+            ],
+            "standard_set_sha256": "0314fb4df26eaba468ca9e757444850a9d8bab508b1c2a3476718ed2c0d9780b"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                33
+              ],
+              [
+                1,
+                2,
+                33
+              ],
+              [
+                0,
+                7,
+                9
+              ],
+              [
+                1,
+                6,
+                9
+              ]
+            ],
+            "profile": [
+              177,
+              887,
+              6656
+            ],
+            "positive_cone": [
+              [
+                "0",
+                "11/14",
+                "3/14"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "11/12",
+                "0",
+                "1/12"
+              ],
+              [
+                "11/24",
+                "11/24",
+                "1/12"
+              ]
+            ],
+            "standard_set_sha256": "12c184249ea00bae68d47e3c45feca9046574002da14844f246df539ecdde98d"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                33
+              ],
+              [
+                1,
+                2,
+                33
+              ],
+              [
+                0,
+                7,
+                9
+              ],
+              [
+                0,
+                5,
+                20
+              ]
+            ],
+            "profile": [
+              176,
+              886,
+              6667
+            ],
+            "positive_cone": [
+              [
+                "11/12",
+                "0",
+                "1/12"
+              ],
+              [
+                "15/16",
+                "0",
+                "1/16"
+              ],
+              [
+                "17/32",
+                "13/32",
+                "1/16"
+              ],
+              [
+                "11/24",
+                "11/24",
+                "1/12"
+              ]
+            ],
+            "standard_set_sha256": "cafc48ccccce879964b7d01935302da94326eca90608eff22a0527a5cb1c4b36"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                33
+              ],
+              [
+                0,
+                1,
+                48
+              ],
+              [
+                0,
+                7,
+                9
+              ],
+              [
+                0,
+                5,
+                20
+              ]
+            ],
+            "profile": [
+              175,
+              885,
+              6682
+            ],
+            "positive_cone": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "3/4",
+                "1/4",
+                "0"
+              ],
+              [
+                "17/32",
+                "13/32",
+                "1/16"
+              ],
+              [
+                "15/16",
+                "0",
+                "1/16"
+              ]
+            ],
+            "standard_set_sha256": "265e70a12a3c3048e42a1f0c703f1033ebf447b1c4ab580e859c0c7cbee54c21"
+          }
+        ]
+      }
+    },
+    {
+      "identity": {
+        "k": 3,
+        "kind": "identity",
+        "length": 1281,
+        "lower_planar_length": 698,
+        "upper_planar_length": 589,
+        "lower_monomial_kernel_generators": [
+          [
+            0,
+            109
+          ],
+          [
+            2,
+            86
+          ],
+          [
+            4,
+            65
+          ],
+          [
+            6,
+            46
+          ],
+          [
+            8,
+            29
+          ],
+          [
+            10,
+            14
+          ],
+          [
+            12,
+            0
+          ]
+        ],
+        "upper_monomial_kernel_generators": [
+          [
+            0,
+            109
+          ],
+          [
+            1,
+            86
+          ],
+          [
+            3,
+            65
+          ],
+          [
+            5,
+            46
+          ],
+          [
+            7,
+            29
+          ],
+          [
+            9,
+            14
+          ],
+          [
+            11,
+            0
+          ]
+        ],
+        "mod_x_planar_kernel_generators": [
+          [
+            0,
+            109
+          ],
+          [
+            1,
+            108
+          ],
+          [
+            2,
+            86
+          ],
+          [
+            3,
+            85
+          ],
+          [
+            4,
+            65
+          ],
+          [
+            5,
+            64
+          ],
+          [
+            6,
+            46
+          ],
+          [
+            7,
+            45
+          ],
+          [
+            8,
+            29
+          ],
+          [
+            9,
+            28
+          ],
+          [
+            10,
+            14
+          ],
+          [
+            11,
+            13
+          ],
+          [
+            12,
+            0
+          ]
+        ],
+        "mod_x_planar_length": 692,
+        "x_Jordan_blocks": {
+          "size_two": 589,
+          "size_one": 103
+        },
+        "permutation": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "initial_ideals": 2,
+        "undirected_walls": 1,
+        "complete_area": "1",
+        "primitive_wall_cost": 2,
+        "directions": [
+          {
+            "direction": [
+              1,
+              -1,
+              0
+            ],
+            "pieces": 1,
+            "cost": 2
+          }
+        ],
+        "zero_component_cost": 0,
+        "singleton_x_sign_cost": 2,
+        "cells": [
+          {
+            "chosen_relation_tips": [
+              [
+                1,
+                0,
+                108
+              ],
+              [
+                1,
+                2,
+                85
+              ],
+              [
+                1,
+                4,
+                64
+              ],
+              [
+                1,
+                6,
+                45
+              ],
+              [
+                1,
+                8,
+                28
+              ],
+              [
+                1,
+                10,
+                13
+              ]
+            ],
+            "profile": [
+              589,
+              4393,
+              46383
+            ],
+            "positive_cone": [
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "standard_set_sha256": "8bf24a9978495676332aafc674478214bf23dcb7277d5f3f1b388774b976f779"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                1,
+                108
+              ],
+              [
+                0,
+                3,
+                85
+              ],
+              [
+                0,
+                5,
+                64
+              ],
+              [
+                0,
+                7,
+                45
+              ],
+              [
+                0,
+                9,
+                28
+              ],
+              [
+                0,
+                11,
+                13
+              ]
+            ],
+            "profile": [
+              583,
+              4399,
+              46383
+            ],
+            "positive_cone": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "standard_set_sha256": "7131d54e26e656dcfa24314ed2c5cbf982a3ae687faf754d8d580c0ac32b3ba3"
+          }
+        ]
+      },
+      "swapped": {
+        "k": 3,
+        "kind": "swapped",
+        "length": 1281,
+        "lower_planar_length": 698,
+        "upper_planar_length": 589,
+        "lower_monomial_kernel_generators": [
+          [
+            0,
+            109
+          ],
+          [
+            2,
+            86
+          ],
+          [
+            4,
+            65
+          ],
+          [
+            6,
+            46
+          ],
+          [
+            8,
+            29
+          ],
+          [
+            10,
+            14
+          ],
+          [
+            12,
+            0
+          ]
+        ],
+        "upper_monomial_kernel_generators": [
+          [
+            0,
+            109
+          ],
+          [
+            1,
+            86
+          ],
+          [
+            3,
+            65
+          ],
+          [
+            5,
+            46
+          ],
+          [
+            7,
+            29
+          ],
+          [
+            9,
+            14
+          ],
+          [
+            11,
+            0
+          ]
+        ],
+        "mod_x_planar_kernel_generators": [
+          [
+            0,
+            109
+          ],
+          [
+            1,
+            108
+          ],
+          [
+            2,
+            86
+          ],
+          [
+            3,
+            85
+          ],
+          [
+            4,
+            65
+          ],
+          [
+            5,
+            64
+          ],
+          [
+            6,
+            46
+          ],
+          [
+            7,
+            45
+          ],
+          [
+            8,
+            29
+          ],
+          [
+            9,
+            28
+          ],
+          [
+            10,
+            14
+          ],
+          [
+            11,
+            13
+          ],
+          [
+            12,
+            0
+          ]
+        ],
+        "mod_x_planar_length": 692,
+        "x_Jordan_blocks": {
+          "size_two": 589,
+          "size_one": 103
+        },
+        "permutation": [
+          1,
+          0,
+          3,
+          2,
+          5,
+          4
+        ],
+        "initial_ideals": 16,
+        "undirected_walls": 24,
+        "complete_area": "1",
+        "primitive_wall_cost": 768,
+        "directions": [
+          {
+            "direction": [
+              1,
+              -3,
+              15
+            ],
+            "pieces": 4,
+            "cost": 34
+          },
+          {
+            "direction": [
+              1,
+              -3,
+              19
+            ],
+            "pieces": 4,
+            "cost": 42
+          },
+          {
+            "direction": [
+              1,
+              -3,
+              23
+            ],
+            "pieces": 4,
+            "cost": 50
+          },
+          {
+            "direction": [
+              1,
+              1,
+              -23
+            ],
+            "pieces": 4,
+            "cost": 26
+          },
+          {
+            "direction": [
+              1,
+              1,
+              -19
+            ],
+            "pieces": 4,
+            "cost": 22
+          },
+          {
+            "direction": [
+              1,
+              1,
+              -15
+            ],
+            "pieces": 4,
+            "cost": 18
+          }
+        ],
+        "zero_component_cost": 0,
+        "singleton_x_sign_cost": 0,
+        "cells": [
+          {
+            "chosen_relation_tips": [
+              [
+                1,
+                0,
+                108
+              ],
+              [
+                1,
+                2,
+                85
+              ],
+              [
+                1,
+                4,
+                64
+              ],
+              [
+                1,
+                6,
+                45
+              ],
+              [
+                1,
+                8,
+                28
+              ],
+              [
+                1,
+                10,
+                13
+              ]
+            ],
+            "profile": [
+              589,
+              4393,
+              46383
+            ],
+            "positive_cone": [
+              [
+                "0",
+                "15/16",
+                "1/16"
+              ],
+              [
+                "0",
+                "23/26",
+                "3/26"
+              ],
+              [
+                "11/32",
+                "19/32",
+                "1/16"
+              ]
+            ],
+            "standard_set_sha256": "8bf24a9978495676332aafc674478214bf23dcb7277d5f3f1b388774b976f779"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                1,
+                0,
+                108
+              ],
+              [
+                1,
+                2,
+                85
+              ],
+              [
+                1,
+                4,
+                64
+              ],
+              [
+                1,
+                6,
+                45
+              ],
+              [
+                1,
+                8,
+                28
+              ],
+              [
+                0,
+                9,
+                28
+              ]
+            ],
+            "profile": [
+              588,
+              4392,
+              46398
+            ],
+            "positive_cone": [
+              [
+                "0",
+                "19/20",
+                "1/20"
+              ],
+              [
+                "0",
+                "15/16",
+                "1/16"
+              ],
+              [
+                "11/32",
+                "19/32",
+                "1/16"
+              ],
+              [
+                "17/40",
+                "21/40",
+                "1/20"
+              ]
+            ],
+            "standard_set_sha256": "c5d7fba5fc6bfbd5de8a703e84098aa074e3f65fd5ab5ed9d48cf8bc58a8574b"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                1,
+                0,
+                108
+              ],
+              [
+                1,
+                2,
+                85
+              ],
+              [
+                1,
+                4,
+                64
+              ],
+              [
+                0,
+                5,
+                64
+              ],
+              [
+                1,
+                8,
+                28
+              ],
+              [
+                0,
+                9,
+                28
+              ]
+            ],
+            "profile": [
+              587,
+              4391,
+              46417
+            ],
+            "positive_cone": [
+              [
+                "0",
+                "23/24",
+                "1/24"
+              ],
+              [
+                "0",
+                "19/20",
+                "1/20"
+              ],
+              [
+                "17/40",
+                "21/40",
+                "1/20"
+              ],
+              [
+                "23/48",
+                "23/48",
+                "1/24"
+              ]
+            ],
+            "standard_set_sha256": "a0b1f1736910467c6046a11d3d04103691008cb039e5f05c253814dfa5d08626"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                1,
+                0,
+                108
+              ],
+              [
+                0,
+                1,
+                108
+              ],
+              [
+                1,
+                4,
+                64
+              ],
+              [
+                0,
+                5,
+                64
+              ],
+              [
+                1,
+                8,
+                28
+              ],
+              [
+                0,
+                9,
+                28
+              ]
+            ],
+            "profile": [
+              586,
+              4390,
+              46440
+            ],
+            "positive_cone": [
+              [
+                "3/4",
+                "1/4",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "23/24",
+                "1/24"
+              ],
+              [
+                "23/48",
+                "23/48",
+                "1/24"
+              ]
+            ],
+            "standard_set_sha256": "bc8882e7b9e2dbd9e1c102e214799443685cc889967141f171280785d4dcddd5"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                85
+              ],
+              [
+                1,
+                2,
+                85
+              ],
+              [
+                1,
+                4,
+                64
+              ],
+              [
+                1,
+                6,
+                45
+              ],
+              [
+                1,
+                8,
+                28
+              ],
+              [
+                1,
+                10,
+                13
+              ]
+            ],
+            "profile": [
+              588,
+              4396,
+              46360
+            ],
+            "positive_cone": [
+              [
+                "0",
+                "23/26",
+                "3/26"
+              ],
+              [
+                "0",
+                "19/22",
+                "3/22"
+              ],
+              [
+                "13/32",
+                "17/32",
+                "1/16"
+              ],
+              [
+                "11/32",
+                "19/32",
+                "1/16"
+              ]
+            ],
+            "standard_set_sha256": "4bc62a869bc85ed6b88cbef99557293d89bbb0a7be33b470b0ef0e83d7eaea4c"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                85
+              ],
+              [
+                1,
+                2,
+                85
+              ],
+              [
+                1,
+                4,
+                64
+              ],
+              [
+                1,
+                6,
+                45
+              ],
+              [
+                1,
+                8,
+                28
+              ],
+              [
+                0,
+                9,
+                28
+              ]
+            ],
+            "profile": [
+              587,
+              4395,
+              46375
+            ],
+            "positive_cone": [
+              [
+                "13/32",
+                "17/32",
+                "1/16"
+              ],
+              [
+                "19/40",
+                "19/40",
+                "1/20"
+              ],
+              [
+                "17/40",
+                "21/40",
+                "1/20"
+              ],
+              [
+                "11/32",
+                "19/32",
+                "1/16"
+              ]
+            ],
+            "standard_set_sha256": "4e309d06e814966273f1aca29d5c85f0416f42f78f6755c0f2b6336207bc3f8b"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                85
+              ],
+              [
+                1,
+                2,
+                85
+              ],
+              [
+                1,
+                4,
+                64
+              ],
+              [
+                0,
+                5,
+                64
+              ],
+              [
+                1,
+                8,
+                28
+              ],
+              [
+                0,
+                9,
+                28
+              ]
+            ],
+            "profile": [
+              586,
+              4394,
+              46394
+            ],
+            "positive_cone": [
+              [
+                "19/40",
+                "19/40",
+                "1/20"
+              ],
+              [
+                "25/48",
+                "7/16",
+                "1/24"
+              ],
+              [
+                "23/48",
+                "23/48",
+                "1/24"
+              ],
+              [
+                "17/40",
+                "21/40",
+                "1/20"
+              ]
+            ],
+            "standard_set_sha256": "43059533c581d0b636e168359ca2701afac94f31dbf32a1e4dde43bd5c99db3f"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                85
+              ],
+              [
+                0,
+                1,
+                108
+              ],
+              [
+                1,
+                4,
+                64
+              ],
+              [
+                0,
+                5,
+                64
+              ],
+              [
+                1,
+                8,
+                28
+              ],
+              [
+                0,
+                9,
+                28
+              ]
+            ],
+            "profile": [
+              585,
+              4393,
+              46417
+            ],
+            "positive_cone": [
+              [
+                "3/4",
+                "1/4",
+                "0"
+              ],
+              [
+                "23/48",
+                "23/48",
+                "1/24"
+              ],
+              [
+                "25/48",
+                "7/16",
+                "1/24"
+              ]
+            ],
+            "standard_set_sha256": "f2dc8b34f4b19f32409ba6942d5bacbe16d27c4a1b5dac1c5f392bb7ab23a2f1"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                85
+              ],
+              [
+                1,
+                2,
+                85
+              ],
+              [
+                0,
+                7,
+                45
+              ],
+              [
+                1,
+                6,
+                45
+              ],
+              [
+                1,
+                8,
+                28
+              ],
+              [
+                1,
+                10,
+                13
+              ]
+            ],
+            "profile": [
+              587,
+              4399,
+              46341
+            ],
+            "positive_cone": [
+              [
+                "0",
+                "19/22",
+                "3/22"
+              ],
+              [
+                "0",
+                "5/6",
+                "1/6"
+              ],
+              [
+                "15/32",
+                "15/32",
+                "1/16"
+              ],
+              [
+                "13/32",
+                "17/32",
+                "1/16"
+              ]
+            ],
+            "standard_set_sha256": "aa88769be643acc0b0dfe8158be497438af7771c501a99d501227f76a0068df9"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                85
+              ],
+              [
+                1,
+                2,
+                85
+              ],
+              [
+                0,
+                7,
+                45
+              ],
+              [
+                1,
+                6,
+                45
+              ],
+              [
+                1,
+                8,
+                28
+              ],
+              [
+                0,
+                9,
+                28
+              ]
+            ],
+            "profile": [
+              586,
+              4398,
+              46356
+            ],
+            "positive_cone": [
+              [
+                "15/32",
+                "15/32",
+                "1/16"
+              ],
+              [
+                "21/40",
+                "17/40",
+                "1/20"
+              ],
+              [
+                "19/40",
+                "19/40",
+                "1/20"
+              ],
+              [
+                "13/32",
+                "17/32",
+                "1/16"
+              ]
+            ],
+            "standard_set_sha256": "f2f0d3e82e718965171daf0e2d7580d69acd9de978be0a7b996716dd7daeab23"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                85
+              ],
+              [
+                1,
+                2,
+                85
+              ],
+              [
+                0,
+                7,
+                45
+              ],
+              [
+                0,
+                5,
+                64
+              ],
+              [
+                1,
+                8,
+                28
+              ],
+              [
+                0,
+                9,
+                28
+              ]
+            ],
+            "profile": [
+              585,
+              4397,
+              46375
+            ],
+            "positive_cone": [
+              [
+                "21/40",
+                "17/40",
+                "1/20"
+              ],
+              [
+                "9/16",
+                "19/48",
+                "1/24"
+              ],
+              [
+                "25/48",
+                "7/16",
+                "1/24"
+              ],
+              [
+                "19/40",
+                "19/40",
+                "1/20"
+              ]
+            ],
+            "standard_set_sha256": "98e16efa1e09ccf33a603af2ea2c8ce6e0b507224335bb82b9e6eee458a8f890"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                85
+              ],
+              [
+                0,
+                1,
+                108
+              ],
+              [
+                0,
+                7,
+                45
+              ],
+              [
+                0,
+                5,
+                64
+              ],
+              [
+                1,
+                8,
+                28
+              ],
+              [
+                0,
+                9,
+                28
+              ]
+            ],
+            "profile": [
+              584,
+              4396,
+              46398
+            ],
+            "positive_cone": [
+              [
+                "3/4",
+                "1/4",
+                "0"
+              ],
+              [
+                "25/48",
+                "7/16",
+                "1/24"
+              ],
+              [
+                "9/16",
+                "19/48",
+                "1/24"
+              ]
+            ],
+            "standard_set_sha256": "e1f237c290d7399b82bd09c367f29c61834e30c2205d93c4c6fbffeab956e309"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                85
+              ],
+              [
+                1,
+                2,
+                85
+              ],
+              [
+                0,
+                7,
+                45
+              ],
+              [
+                1,
+                6,
+                45
+              ],
+              [
+                0,
+                11,
+                13
+              ],
+              [
+                1,
+                10,
+                13
+              ]
+            ],
+            "profile": [
+              586,
+              4402,
+              46326
+            ],
+            "positive_cone": [
+              [
+                "0",
+                "5/6",
+                "1/6"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "15/16",
+                "0",
+                "1/16"
+              ],
+              [
+                "15/32",
+                "15/32",
+                "1/16"
+              ]
+            ],
+            "standard_set_sha256": "c15bf0e33bd96158c813c00e4fada1a4176c01fe449a11434b10f3f37204f1aa"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                85
+              ],
+              [
+                1,
+                2,
+                85
+              ],
+              [
+                0,
+                7,
+                45
+              ],
+              [
+                1,
+                6,
+                45
+              ],
+              [
+                0,
+                11,
+                13
+              ],
+              [
+                0,
+                9,
+                28
+              ]
+            ],
+            "profile": [
+              585,
+              4401,
+              46341
+            ],
+            "positive_cone": [
+              [
+                "15/16",
+                "0",
+                "1/16"
+              ],
+              [
+                "19/20",
+                "0",
+                "1/20"
+              ],
+              [
+                "21/40",
+                "17/40",
+                "1/20"
+              ],
+              [
+                "15/32",
+                "15/32",
+                "1/16"
+              ]
+            ],
+            "standard_set_sha256": "9a75896a7084b6489886b77251b45d73c50b2356821299f175aa4a57b12f5682"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                85
+              ],
+              [
+                1,
+                2,
+                85
+              ],
+              [
+                0,
+                7,
+                45
+              ],
+              [
+                0,
+                5,
+                64
+              ],
+              [
+                0,
+                11,
+                13
+              ],
+              [
+                0,
+                9,
+                28
+              ]
+            ],
+            "profile": [
+              584,
+              4400,
+              46360
+            ],
+            "positive_cone": [
+              [
+                "19/20",
+                "0",
+                "1/20"
+              ],
+              [
+                "23/24",
+                "0",
+                "1/24"
+              ],
+              [
+                "9/16",
+                "19/48",
+                "1/24"
+              ],
+              [
+                "21/40",
+                "17/40",
+                "1/20"
+              ]
+            ],
+            "standard_set_sha256": "7704de1c69127f96800bc0c976cd96ca30bf440a62e6b0b1745cec9785fcf17e"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                85
+              ],
+              [
+                0,
+                1,
+                108
+              ],
+              [
+                0,
+                7,
+                45
+              ],
+              [
+                0,
+                5,
+                64
+              ],
+              [
+                0,
+                11,
+                13
+              ],
+              [
+                0,
+                9,
+                28
+              ]
+            ],
+            "profile": [
+              583,
+              4399,
+              46383
+            ],
+            "positive_cone": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "3/4",
+                "1/4",
+                "0"
+              ],
+              [
+                "9/16",
+                "19/48",
+                "1/24"
+              ],
+              [
+                "23/24",
+                "0",
+                "1/24"
+              ]
+            ],
+            "standard_set_sha256": "7131d54e26e656dcfa24314ed2c5cbf982a3ae687faf754d8d580c0ac32b3ba3"
+          }
+        ]
+      }
+    },
+    {
+      "identity": {
+        "k": 4,
+        "kind": "identity",
+        "length": 2951,
+        "lower_planar_length": 1576,
+        "upper_planar_length": 1383,
+        "lower_monomial_kernel_generators": [
+          [
+            0,
+            193
+          ],
+          [
+            2,
+            162
+          ],
+          [
+            4,
+            133
+          ],
+          [
+            6,
+            106
+          ],
+          [
+            8,
+            81
+          ],
+          [
+            10,
+            58
+          ],
+          [
+            12,
+            37
+          ],
+          [
+            14,
+            18
+          ],
+          [
+            16,
+            0
+          ]
+        ],
+        "upper_monomial_kernel_generators": [
+          [
+            0,
+            193
+          ],
+          [
+            1,
+            162
+          ],
+          [
+            3,
+            133
+          ],
+          [
+            5,
+            106
+          ],
+          [
+            7,
+            81
+          ],
+          [
+            9,
+            58
+          ],
+          [
+            11,
+            37
+          ],
+          [
+            13,
+            18
+          ],
+          [
+            15,
+            0
+          ]
+        ],
+        "mod_x_planar_kernel_generators": [
+          [
+            0,
+            193
+          ],
+          [
+            1,
+            192
+          ],
+          [
+            2,
+            162
+          ],
+          [
+            3,
+            161
+          ],
+          [
+            4,
+            133
+          ],
+          [
+            5,
+            132
+          ],
+          [
+            6,
+            106
+          ],
+          [
+            7,
+            105
+          ],
+          [
+            8,
+            81
+          ],
+          [
+            9,
+            80
+          ],
+          [
+            10,
+            58
+          ],
+          [
+            11,
+            57
+          ],
+          [
+            12,
+            37
+          ],
+          [
+            13,
+            36
+          ],
+          [
+            14,
+            18
+          ],
+          [
+            15,
+            17
+          ],
+          [
+            16,
+            0
+          ]
+        ],
+        "mod_x_planar_length": 1568,
+        "x_Jordan_blocks": {
+          "size_two": 1383,
+          "size_one": 185
+        },
+        "permutation": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "initial_ideals": 2,
+        "undirected_walls": 1,
+        "complete_area": "1",
+        "primitive_wall_cost": 2,
+        "directions": [
+          {
+            "direction": [
+              1,
+              -1,
+              0
+            ],
+            "pieces": 1,
+            "cost": 2
+          }
+        ],
+        "zero_component_cost": 0,
+        "singleton_x_sign_cost": 2,
+        "cells": [
+          {
+            "chosen_relation_tips": [
+              [
+                1,
+                0,
+                192
+              ],
+              [
+                1,
+                2,
+                161
+              ],
+              [
+                1,
+                4,
+                132
+              ],
+              [
+                1,
+                6,
+                105
+              ],
+              [
+                1,
+                8,
+                80
+              ],
+              [
+                1,
+                10,
+                57
+              ],
+              [
+                1,
+                12,
+                36
+              ],
+              [
+                1,
+                14,
+                17
+              ]
+            ],
+            "profile": [
+              1383,
+              13793,
+              187188
+            ],
+            "positive_cone": [
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "standard_set_sha256": "6ef18d64341686932e19c7cfeff3b39c10c9b8b1a8bc3fee476781153d418868"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                1,
+                192
+              ],
+              [
+                0,
+                3,
+                161
+              ],
+              [
+                0,
+                5,
+                132
+              ],
+              [
+                0,
+                7,
+                105
+              ],
+              [
+                0,
+                9,
+                80
+              ],
+              [
+                0,
+                11,
+                57
+              ],
+              [
+                0,
+                13,
+                36
+              ],
+              [
+                0,
+                15,
+                17
+              ]
+            ],
+            "profile": [
+              1375,
+              13801,
+              187188
+            ],
+            "positive_cone": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "1/2",
+                "1/2",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "standard_set_sha256": "30de3b88e683de7be0637f5deccec4d14073d9a924df568a703063c357354e63"
+          }
+        ]
+      },
+      "swapped": {
+        "k": 4,
+        "kind": "swapped",
+        "length": 2951,
+        "lower_planar_length": 1576,
+        "upper_planar_length": 1383,
+        "lower_monomial_kernel_generators": [
+          [
+            0,
+            193
+          ],
+          [
+            2,
+            162
+          ],
+          [
+            4,
+            133
+          ],
+          [
+            6,
+            106
+          ],
+          [
+            8,
+            81
+          ],
+          [
+            10,
+            58
+          ],
+          [
+            12,
+            37
+          ],
+          [
+            14,
+            18
+          ],
+          [
+            16,
+            0
+          ]
+        ],
+        "upper_monomial_kernel_generators": [
+          [
+            0,
+            193
+          ],
+          [
+            1,
+            162
+          ],
+          [
+            3,
+            133
+          ],
+          [
+            5,
+            106
+          ],
+          [
+            7,
+            81
+          ],
+          [
+            9,
+            58
+          ],
+          [
+            11,
+            37
+          ],
+          [
+            13,
+            18
+          ],
+          [
+            15,
+            0
+          ]
+        ],
+        "mod_x_planar_kernel_generators": [
+          [
+            0,
+            193
+          ],
+          [
+            1,
+            192
+          ],
+          [
+            2,
+            162
+          ],
+          [
+            3,
+            161
+          ],
+          [
+            4,
+            133
+          ],
+          [
+            5,
+            132
+          ],
+          [
+            6,
+            106
+          ],
+          [
+            7,
+            105
+          ],
+          [
+            8,
+            81
+          ],
+          [
+            9,
+            80
+          ],
+          [
+            10,
+            58
+          ],
+          [
+            11,
+            57
+          ],
+          [
+            12,
+            37
+          ],
+          [
+            13,
+            36
+          ],
+          [
+            14,
+            18
+          ],
+          [
+            15,
+            17
+          ],
+          [
+            16,
+            0
+          ]
+        ],
+        "mod_x_planar_length": 1568,
+        "x_Jordan_blocks": {
+          "size_two": 1383,
+          "size_one": 185
+        },
+        "permutation": [
+          1,
+          0,
+          3,
+          2,
+          5,
+          4,
+          7,
+          6
+        ],
+        "initial_ideals": 25,
+        "undirected_walls": 40,
+        "complete_area": "1",
+        "primitive_wall_cost": 1640,
+        "directions": [
+          {
+            "direction": [
+              1,
+              -3,
+              19
+            ],
+            "pieces": 5,
+            "cost": 42
+          },
+          {
+            "direction": [
+              1,
+              -3,
+              23
+            ],
+            "pieces": 5,
+            "cost": 50
+          },
+          {
+            "direction": [
+              1,
+              -3,
+              27
+            ],
+            "pieces": 5,
+            "cost": 58
+          },
+          {
+            "direction": [
+              1,
+              -3,
+              31
+            ],
+            "pieces": 5,
+            "cost": 66
+          },
+          {
+            "direction": [
+              1,
+              1,
+              -31
+            ],
+            "pieces": 5,
+            "cost": 34
+          },
+          {
+            "direction": [
+              1,
+              1,
+              -27
+            ],
+            "pieces": 5,
+            "cost": 30
+          },
+          {
+            "direction": [
+              1,
+              1,
+              -23
+            ],
+            "pieces": 5,
+            "cost": 26
+          },
+          {
+            "direction": [
+              1,
+              1,
+              -19
+            ],
+            "pieces": 5,
+            "cost": 22
+          }
+        ],
+        "zero_component_cost": 0,
+        "singleton_x_sign_cost": 0,
+        "cells": [
+          {
+            "chosen_relation_tips": [
+              [
+                1,
+                0,
+                192
+              ],
+              [
+                1,
+                2,
+                161
+              ],
+              [
+                1,
+                4,
+                132
+              ],
+              [
+                1,
+                6,
+                105
+              ],
+              [
+                1,
+                8,
+                80
+              ],
+              [
+                1,
+                10,
+                57
+              ],
+              [
+                1,
+                12,
+                36
+              ],
+              [
+                1,
+                14,
+                17
+              ]
+            ],
+            "profile": [
+              1383,
+              13793,
+              187188
+            ],
+            "positive_cone": [
+              [
+                "0",
+                "19/20",
+                "1/20"
+              ],
+              [
+                "0",
+                "31/34",
+                "3/34"
+              ],
+              [
+                "13/40",
+                "5/8",
+                "1/20"
+              ]
+            ],
+            "standard_set_sha256": "6ef18d64341686932e19c7cfeff3b39c10c9b8b1a8bc3fee476781153d418868"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                1,
+                0,
+                192
+              ],
+              [
+                1,
+                2,
+                161
+              ],
+              [
+                1,
+                4,
+                132
+              ],
+              [
+                1,
+                6,
+                105
+              ],
+              [
+                1,
+                8,
+                80
+              ],
+              [
+                1,
+                10,
+                57
+              ],
+              [
+                1,
+                12,
+                36
+              ],
+              [
+                0,
+                13,
+                36
+              ]
+            ],
+            "profile": [
+              1382,
+              13792,
+              187207
+            ],
+            "positive_cone": [
+              [
+                "0",
+                "23/24",
+                "1/24"
+              ],
+              [
+                "0",
+                "19/20",
+                "1/20"
+              ],
+              [
+                "13/40",
+                "5/8",
+                "1/20"
+              ],
+              [
+                "19/48",
+                "9/16",
+                "1/24"
+              ]
+            ],
+            "standard_set_sha256": "3a13d546b99362fc004c204dcea0e5958c1d1d255d822b1882ad915f53d3baaa"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                1,
+                0,
+                192
+              ],
+              [
+                1,
+                2,
+                161
+              ],
+              [
+                1,
+                4,
+                132
+              ],
+              [
+                1,
+                6,
+                105
+              ],
+              [
+                1,
+                8,
+                80
+              ],
+              [
+                0,
+                9,
+                80
+              ],
+              [
+                1,
+                12,
+                36
+              ],
+              [
+                0,
+                13,
+                36
+              ]
+            ],
+            "profile": [
+              1381,
+              13791,
+              187230
+            ],
+            "positive_cone": [
+              [
+                "0",
+                "27/28",
+                "1/28"
+              ],
+              [
+                "0",
+                "23/24",
+                "1/24"
+              ],
+              [
+                "19/48",
+                "9/16",
+                "1/24"
+              ],
+              [
+                "25/56",
+                "29/56",
+                "1/28"
+              ]
+            ],
+            "standard_set_sha256": "e4a06a1374eeef5cff4708ebf23f233569b28e6632c07f565570d1cfd2ff7ed4"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                1,
+                0,
+                192
+              ],
+              [
+                1,
+                2,
+                161
+              ],
+              [
+                1,
+                4,
+                132
+              ],
+              [
+                0,
+                5,
+                132
+              ],
+              [
+                1,
+                8,
+                80
+              ],
+              [
+                0,
+                9,
+                80
+              ],
+              [
+                1,
+                12,
+                36
+              ],
+              [
+                0,
+                13,
+                36
+              ]
+            ],
+            "profile": [
+              1380,
+              13790,
+              187257
+            ],
+            "positive_cone": [
+              [
+                "0",
+                "31/32",
+                "1/32"
+              ],
+              [
+                "0",
+                "27/28",
+                "1/28"
+              ],
+              [
+                "25/56",
+                "29/56",
+                "1/28"
+              ],
+              [
+                "31/64",
+                "31/64",
+                "1/32"
+              ]
+            ],
+            "standard_set_sha256": "2c3452b784dda583eeffd50ac8c394924514073be2769dac070cf685592f1ac8"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                1,
+                0,
+                192
+              ],
+              [
+                0,
+                1,
+                192
+              ],
+              [
+                1,
+                4,
+                132
+              ],
+              [
+                0,
+                5,
+                132
+              ],
+              [
+                1,
+                8,
+                80
+              ],
+              [
+                0,
+                9,
+                80
+              ],
+              [
+                1,
+                12,
+                36
+              ],
+              [
+                0,
+                13,
+                36
+              ]
+            ],
+            "profile": [
+              1379,
+              13789,
+              187288
+            ],
+            "positive_cone": [
+              [
+                "3/4",
+                "1/4",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "31/32",
+                "1/32"
+              ],
+              [
+                "31/64",
+                "31/64",
+                "1/32"
+              ]
+            ],
+            "standard_set_sha256": "b601772ebf78844d9f2e587692325030f71f14102fa941b58bc9b592a6990215"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                161
+              ],
+              [
+                1,
+                2,
+                161
+              ],
+              [
+                1,
+                4,
+                132
+              ],
+              [
+                1,
+                6,
+                105
+              ],
+              [
+                1,
+                8,
+                80
+              ],
+              [
+                1,
+                10,
+                57
+              ],
+              [
+                1,
+                12,
+                36
+              ],
+              [
+                1,
+                14,
+                17
+              ]
+            ],
+            "profile": [
+              1382,
+              13796,
+              187157
+            ],
+            "positive_cone": [
+              [
+                "0",
+                "31/34",
+                "3/34"
+              ],
+              [
+                "0",
+                "9/10",
+                "1/10"
+              ],
+              [
+                "3/8",
+                "23/40",
+                "1/20"
+              ],
+              [
+                "13/40",
+                "5/8",
+                "1/20"
+              ]
+            ],
+            "standard_set_sha256": "1a6dec0d4342965015a4061df53c6ced7c187edc90510afa64a275913eb426d5"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                161
+              ],
+              [
+                1,
+                2,
+                161
+              ],
+              [
+                1,
+                4,
+                132
+              ],
+              [
+                1,
+                6,
+                105
+              ],
+              [
+                1,
+                8,
+                80
+              ],
+              [
+                1,
+                10,
+                57
+              ],
+              [
+                1,
+                12,
+                36
+              ],
+              [
+                0,
+                13,
+                36
+              ]
+            ],
+            "profile": [
+              1381,
+              13795,
+              187176
+            ],
+            "positive_cone": [
+              [
+                "3/8",
+                "23/40",
+                "1/20"
+              ],
+              [
+                "7/16",
+                "25/48",
+                "1/24"
+              ],
+              [
+                "19/48",
+                "9/16",
+                "1/24"
+              ],
+              [
+                "13/40",
+                "5/8",
+                "1/20"
+              ]
+            ],
+            "standard_set_sha256": "12c9faaf987a8a3c26f7afb832b9cd9081921ef441008c4e7ccbae72742b316f"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                161
+              ],
+              [
+                1,
+                2,
+                161
+              ],
+              [
+                1,
+                4,
+                132
+              ],
+              [
+                1,
+                6,
+                105
+              ],
+              [
+                1,
+                8,
+                80
+              ],
+              [
+                0,
+                9,
+                80
+              ],
+              [
+                1,
+                12,
+                36
+              ],
+              [
+                0,
+                13,
+                36
+              ]
+            ],
+            "profile": [
+              1380,
+              13794,
+              187199
+            ],
+            "positive_cone": [
+              [
+                "7/16",
+                "25/48",
+                "1/24"
+              ],
+              [
+                "27/56",
+                "27/56",
+                "1/28"
+              ],
+              [
+                "25/56",
+                "29/56",
+                "1/28"
+              ],
+              [
+                "19/48",
+                "9/16",
+                "1/24"
+              ]
+            ],
+            "standard_set_sha256": "bd74c03939b6b8192cc0a3f48ce6c7b7e6c6b0c4dd3248f4a4202ef3ee2216ec"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                161
+              ],
+              [
+                1,
+                2,
+                161
+              ],
+              [
+                1,
+                4,
+                132
+              ],
+              [
+                0,
+                5,
+                132
+              ],
+              [
+                1,
+                8,
+                80
+              ],
+              [
+                0,
+                9,
+                80
+              ],
+              [
+                1,
+                12,
+                36
+              ],
+              [
+                0,
+                13,
+                36
+              ]
+            ],
+            "profile": [
+              1379,
+              13793,
+              187226
+            ],
+            "positive_cone": [
+              [
+                "27/56",
+                "27/56",
+                "1/28"
+              ],
+              [
+                "33/64",
+                "29/64",
+                "1/32"
+              ],
+              [
+                "31/64",
+                "31/64",
+                "1/32"
+              ],
+              [
+                "25/56",
+                "29/56",
+                "1/28"
+              ]
+            ],
+            "standard_set_sha256": "2f753ffb6e465329c3893b1f99c62eafb310d100871b1814c7fd97e25c609314"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                161
+              ],
+              [
+                0,
+                1,
+                192
+              ],
+              [
+                1,
+                4,
+                132
+              ],
+              [
+                0,
+                5,
+                132
+              ],
+              [
+                1,
+                8,
+                80
+              ],
+              [
+                0,
+                9,
+                80
+              ],
+              [
+                1,
+                12,
+                36
+              ],
+              [
+                0,
+                13,
+                36
+              ]
+            ],
+            "profile": [
+              1378,
+              13792,
+              187257
+            ],
+            "positive_cone": [
+              [
+                "3/4",
+                "1/4",
+                "0"
+              ],
+              [
+                "31/64",
+                "31/64",
+                "1/32"
+              ],
+              [
+                "33/64",
+                "29/64",
+                "1/32"
+              ]
+            ],
+            "standard_set_sha256": "6664515e7d22bd56c30fcd02690d0719e698ea3265f6e7b3d11de58a2d0de7c4"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                161
+              ],
+              [
+                1,
+                2,
+                161
+              ],
+              [
+                0,
+                7,
+                105
+              ],
+              [
+                1,
+                6,
+                105
+              ],
+              [
+                1,
+                8,
+                80
+              ],
+              [
+                1,
+                10,
+                57
+              ],
+              [
+                1,
+                12,
+                36
+              ],
+              [
+                1,
+                14,
+                17
+              ]
+            ],
+            "profile": [
+              1381,
+              13799,
+              187130
+            ],
+            "positive_cone": [
+              [
+                "0",
+                "9/10",
+                "1/10"
+              ],
+              [
+                "0",
+                "23/26",
+                "3/26"
+              ],
+              [
+                "17/40",
+                "21/40",
+                "1/20"
+              ],
+              [
+                "3/8",
+                "23/40",
+                "1/20"
+              ]
+            ],
+            "standard_set_sha256": "ba1b7475ad5517d25a20b75a3868fed572ce0376f81d2b58fdc03e188a3e0ff8"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                161
+              ],
+              [
+                1,
+                2,
+                161
+              ],
+              [
+                0,
+                7,
+                105
+              ],
+              [
+                1,
+                6,
+                105
+              ],
+              [
+                1,
+                8,
+                80
+              ],
+              [
+                1,
+                10,
+                57
+              ],
+              [
+                1,
+                12,
+                36
+              ],
+              [
+                0,
+                13,
+                36
+              ]
+            ],
+            "profile": [
+              1380,
+              13798,
+              187149
+            ],
+            "positive_cone": [
+              [
+                "17/40",
+                "21/40",
+                "1/20"
+              ],
+              [
+                "23/48",
+                "23/48",
+                "1/24"
+              ],
+              [
+                "7/16",
+                "25/48",
+                "1/24"
+              ],
+              [
+                "3/8",
+                "23/40",
+                "1/20"
+              ]
+            ],
+            "standard_set_sha256": "a4be7b55cf1514cf85b15e5a12767f0f11985999b03540033bf99e04ffb42a1a"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                161
+              ],
+              [
+                1,
+                2,
+                161
+              ],
+              [
+                0,
+                7,
+                105
+              ],
+              [
+                1,
+                6,
+                105
+              ],
+              [
+                1,
+                8,
+                80
+              ],
+              [
+                0,
+                9,
+                80
+              ],
+              [
+                1,
+                12,
+                36
+              ],
+              [
+                0,
+                13,
+                36
+              ]
+            ],
+            "profile": [
+              1379,
+              13797,
+              187172
+            ],
+            "positive_cone": [
+              [
+                "23/48",
+                "23/48",
+                "1/24"
+              ],
+              [
+                "29/56",
+                "25/56",
+                "1/28"
+              ],
+              [
+                "27/56",
+                "27/56",
+                "1/28"
+              ],
+              [
+                "7/16",
+                "25/48",
+                "1/24"
+              ]
+            ],
+            "standard_set_sha256": "3ba997979fb56e929c52c960d781ccc6575d0d26dd33af8e2347d951d64be02e"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                161
+              ],
+              [
+                1,
+                2,
+                161
+              ],
+              [
+                0,
+                7,
+                105
+              ],
+              [
+                0,
+                5,
+                132
+              ],
+              [
+                1,
+                8,
+                80
+              ],
+              [
+                0,
+                9,
+                80
+              ],
+              [
+                1,
+                12,
+                36
+              ],
+              [
+                0,
+                13,
+                36
+              ]
+            ],
+            "profile": [
+              1378,
+              13796,
+              187199
+            ],
+            "positive_cone": [
+              [
+                "29/56",
+                "25/56",
+                "1/28"
+              ],
+              [
+                "35/64",
+                "27/64",
+                "1/32"
+              ],
+              [
+                "33/64",
+                "29/64",
+                "1/32"
+              ],
+              [
+                "27/56",
+                "27/56",
+                "1/28"
+              ]
+            ],
+            "standard_set_sha256": "bce3e0b5cd5122cd2f69311f0c066565399a02e0c5f4c73f9e687f63abfa4ee9"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                161
+              ],
+              [
+                0,
+                1,
+                192
+              ],
+              [
+                0,
+                7,
+                105
+              ],
+              [
+                0,
+                5,
+                132
+              ],
+              [
+                1,
+                8,
+                80
+              ],
+              [
+                0,
+                9,
+                80
+              ],
+              [
+                1,
+                12,
+                36
+              ],
+              [
+                0,
+                13,
+                36
+              ]
+            ],
+            "profile": [
+              1377,
+              13795,
+              187230
+            ],
+            "positive_cone": [
+              [
+                "3/4",
+                "1/4",
+                "0"
+              ],
+              [
+                "33/64",
+                "29/64",
+                "1/32"
+              ],
+              [
+                "35/64",
+                "27/64",
+                "1/32"
+              ]
+            ],
+            "standard_set_sha256": "ded95dc26ec1ea674bb12295fa2848ed43b1a5a7dea73c51944e31ae0250d396"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                161
+              ],
+              [
+                1,
+                2,
+                161
+              ],
+              [
+                0,
+                7,
+                105
+              ],
+              [
+                1,
+                6,
+                105
+              ],
+              [
+                0,
+                11,
+                57
+              ],
+              [
+                1,
+                10,
+                57
+              ],
+              [
+                1,
+                12,
+                36
+              ],
+              [
+                1,
+                14,
+                17
+              ]
+            ],
+            "profile": [
+              1380,
+              13802,
+              187107
+            ],
+            "positive_cone": [
+              [
+                "0",
+                "23/26",
+                "3/26"
+              ],
+              [
+                "0",
+                "19/22",
+                "3/22"
+              ],
+              [
+                "19/40",
+                "19/40",
+                "1/20"
+              ],
+              [
+                "17/40",
+                "21/40",
+                "1/20"
+              ]
+            ],
+            "standard_set_sha256": "492cde8b1886e279170e15fb19190aec8648e1193d57fc52f38c8425ffd84ba8"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                161
+              ],
+              [
+                1,
+                2,
+                161
+              ],
+              [
+                0,
+                7,
+                105
+              ],
+              [
+                1,
+                6,
+                105
+              ],
+              [
+                0,
+                11,
+                57
+              ],
+              [
+                1,
+                10,
+                57
+              ],
+              [
+                1,
+                12,
+                36
+              ],
+              [
+                0,
+                13,
+                36
+              ]
+            ],
+            "profile": [
+              1379,
+              13801,
+              187126
+            ],
+            "positive_cone": [
+              [
+                "19/40",
+                "19/40",
+                "1/20"
+              ],
+              [
+                "25/48",
+                "7/16",
+                "1/24"
+              ],
+              [
+                "23/48",
+                "23/48",
+                "1/24"
+              ],
+              [
+                "17/40",
+                "21/40",
+                "1/20"
+              ]
+            ],
+            "standard_set_sha256": "8a9075b1be90165f4518baade5aa3e8aeac9b833824f6b88300e61c2a5f2ca5f"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                161
+              ],
+              [
+                1,
+                2,
+                161
+              ],
+              [
+                0,
+                7,
+                105
+              ],
+              [
+                1,
+                6,
+                105
+              ],
+              [
+                0,
+                11,
+                57
+              ],
+              [
+                0,
+                9,
+                80
+              ],
+              [
+                1,
+                12,
+                36
+              ],
+              [
+                0,
+                13,
+                36
+              ]
+            ],
+            "profile": [
+              1378,
+              13800,
+              187149
+            ],
+            "positive_cone": [
+              [
+                "25/48",
+                "7/16",
+                "1/24"
+              ],
+              [
+                "31/56",
+                "23/56",
+                "1/28"
+              ],
+              [
+                "29/56",
+                "25/56",
+                "1/28"
+              ],
+              [
+                "23/48",
+                "23/48",
+                "1/24"
+              ]
+            ],
+            "standard_set_sha256": "683257bfcaf4d21e878d67bbaa0fc8988c1cca0a21b7e95d915c0435c387f845"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                161
+              ],
+              [
+                1,
+                2,
+                161
+              ],
+              [
+                0,
+                7,
+                105
+              ],
+              [
+                0,
+                5,
+                132
+              ],
+              [
+                0,
+                11,
+                57
+              ],
+              [
+                0,
+                9,
+                80
+              ],
+              [
+                1,
+                12,
+                36
+              ],
+              [
+                0,
+                13,
+                36
+              ]
+            ],
+            "profile": [
+              1377,
+              13799,
+              187176
+            ],
+            "positive_cone": [
+              [
+                "31/56",
+                "23/56",
+                "1/28"
+              ],
+              [
+                "37/64",
+                "25/64",
+                "1/32"
+              ],
+              [
+                "35/64",
+                "27/64",
+                "1/32"
+              ],
+              [
+                "29/56",
+                "25/56",
+                "1/28"
+              ]
+            ],
+            "standard_set_sha256": "73faed6527a3e4d983a13dcb23d93e69763ed96dce25320bd8b745c822c24ff9"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                161
+              ],
+              [
+                0,
+                1,
+                192
+              ],
+              [
+                0,
+                7,
+                105
+              ],
+              [
+                0,
+                5,
+                132
+              ],
+              [
+                0,
+                11,
+                57
+              ],
+              [
+                0,
+                9,
+                80
+              ],
+              [
+                1,
+                12,
+                36
+              ],
+              [
+                0,
+                13,
+                36
+              ]
+            ],
+            "profile": [
+              1376,
+              13798,
+              187207
+            ],
+            "positive_cone": [
+              [
+                "3/4",
+                "1/4",
+                "0"
+              ],
+              [
+                "35/64",
+                "27/64",
+                "1/32"
+              ],
+              [
+                "37/64",
+                "25/64",
+                "1/32"
+              ]
+            ],
+            "standard_set_sha256": "df8ae1b6ee9973f60e455fe03d7a4c58132d3fee01839a3c608f89cc1fd22ef4"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                161
+              ],
+              [
+                1,
+                2,
+                161
+              ],
+              [
+                0,
+                7,
+                105
+              ],
+              [
+                1,
+                6,
+                105
+              ],
+              [
+                0,
+                11,
+                57
+              ],
+              [
+                1,
+                10,
+                57
+              ],
+              [
+                0,
+                15,
+                17
+              ],
+              [
+                1,
+                14,
+                17
+              ]
+            ],
+            "profile": [
+              1379,
+              13805,
+              187088
+            ],
+            "positive_cone": [
+              [
+                "0",
+                "19/22",
+                "3/22"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "19/20",
+                "0",
+                "1/20"
+              ],
+              [
+                "19/40",
+                "19/40",
+                "1/20"
+              ]
+            ],
+            "standard_set_sha256": "d661c654cdda6ecadb35e9fd5630deb9b877ac2d13bd090394331877285e5723"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                161
+              ],
+              [
+                1,
+                2,
+                161
+              ],
+              [
+                0,
+                7,
+                105
+              ],
+              [
+                1,
+                6,
+                105
+              ],
+              [
+                0,
+                11,
+                57
+              ],
+              [
+                1,
+                10,
+                57
+              ],
+              [
+                0,
+                15,
+                17
+              ],
+              [
+                0,
+                13,
+                36
+              ]
+            ],
+            "profile": [
+              1378,
+              13804,
+              187107
+            ],
+            "positive_cone": [
+              [
+                "19/20",
+                "0",
+                "1/20"
+              ],
+              [
+                "23/24",
+                "0",
+                "1/24"
+              ],
+              [
+                "25/48",
+                "7/16",
+                "1/24"
+              ],
+              [
+                "19/40",
+                "19/40",
+                "1/20"
+              ]
+            ],
+            "standard_set_sha256": "64ac515e147c2af01bdad89fa2a7f841b46585f9ec9939a071c07f75dee53200"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                161
+              ],
+              [
+                1,
+                2,
+                161
+              ],
+              [
+                0,
+                7,
+                105
+              ],
+              [
+                1,
+                6,
+                105
+              ],
+              [
+                0,
+                11,
+                57
+              ],
+              [
+                0,
+                9,
+                80
+              ],
+              [
+                0,
+                15,
+                17
+              ],
+              [
+                0,
+                13,
+                36
+              ]
+            ],
+            "profile": [
+              1377,
+              13803,
+              187130
+            ],
+            "positive_cone": [
+              [
+                "23/24",
+                "0",
+                "1/24"
+              ],
+              [
+                "27/28",
+                "0",
+                "1/28"
+              ],
+              [
+                "31/56",
+                "23/56",
+                "1/28"
+              ],
+              [
+                "25/48",
+                "7/16",
+                "1/24"
+              ]
+            ],
+            "standard_set_sha256": "15561db67a81cad5c4a0114d7d64c5aef1fc1002ef8ef7965e7b9829af064ac2"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                161
+              ],
+              [
+                1,
+                2,
+                161
+              ],
+              [
+                0,
+                7,
+                105
+              ],
+              [
+                0,
+                5,
+                132
+              ],
+              [
+                0,
+                11,
+                57
+              ],
+              [
+                0,
+                9,
+                80
+              ],
+              [
+                0,
+                15,
+                17
+              ],
+              [
+                0,
+                13,
+                36
+              ]
+            ],
+            "profile": [
+              1376,
+              13802,
+              187157
+            ],
+            "positive_cone": [
+              [
+                "27/28",
+                "0",
+                "1/28"
+              ],
+              [
+                "31/32",
+                "0",
+                "1/32"
+              ],
+              [
+                "37/64",
+                "25/64",
+                "1/32"
+              ],
+              [
+                "31/56",
+                "23/56",
+                "1/28"
+              ]
+            ],
+            "standard_set_sha256": "f5eebb1dff065c013a586a14bde3945555a53d4ae18ac8ae73a23147bd415207"
+          },
+          {
+            "chosen_relation_tips": [
+              [
+                0,
+                3,
+                161
+              ],
+              [
+                0,
+                1,
+                192
+              ],
+              [
+                0,
+                7,
+                105
+              ],
+              [
+                0,
+                5,
+                132
+              ],
+              [
+                0,
+                11,
+                57
+              ],
+              [
+                0,
+                9,
+                80
+              ],
+              [
+                0,
+                15,
+                17
+              ],
+              [
+                0,
+                13,
+                36
+              ]
+            ],
+            "profile": [
+              1375,
+              13801,
+              187188
+            ],
+            "positive_cone": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "3/4",
+                "1/4",
+                "0"
+              ],
+              [
+                "37/64",
+                "25/64",
+                "1/32"
+              ],
+              [
+                "31/32",
+                "0",
+                "1/32"
+              ]
+            ],
+            "standard_set_sha256": "30de3b88e683de7be0637f5deccec4d14073d9a924df568a703063c357354e63"
+          }
+        ]
+      }
+    }
+  ],
+  "source_sha256": {
+    "docs/planar_layer_rank_obstruction.md": "db550d1b02e66c1bfe9440f063aba98439c00f397c338ba995107bced7f1d016",
+    "scripts/run_planar_layer_obstruction_checks.py": "2150f30ccd35c6037f9b1f2b8bc119ee8e437755e978d0ac982c108a80776c4f",
+    "docs/primitive_wall_spectrum.md": "f75a919acd5838f40fa99ce667ea0ab3c9f80a4b630c03ee1c0eb65e74369a5d",
+    "docs/rational_shadow_bound.md": "09b6e5e19cb03825e9d2151680e557cdf384256c5392cf70b6aca388e488c1ca",
+    "docs/square_zero_extension_fans.md": "34822c830428e04c37146c26ba9c0b1c7d38bcbb4ad591fd761328fdb557438b",
+    "scripts/run_coordinate_slice_budget_checks.py": "50e973948ce2c1ac46035ef9606e951b4171a8f541895a5dbec73c7e00221df6",
+    "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
+    "scripts/run_primitive_wall_checks.py": "ce4bdb6316b3acbfc15625b8f67dfadd69c95d691c81da2c47cda6538c867cdb",
+    "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f"
+  }
+}
