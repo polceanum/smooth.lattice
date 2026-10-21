@@ -248,6 +248,15 @@ one cutoff makes every sampled characteristic undercount a rational prefix
 rank, even if their maximum is used. Explicit residue classes and the Chinese
 remainder theorem give the simultaneous witness. This does not prove additional
 fan cones, an unrestricted count improvement or novelty.
+The [signed-face reduction](docs/signed_face_reduction.md) gives an exact
+Laurent-block model for the face obtained by deleting the cheapest variable's
+square. Its grading already bounds that face's fan linearly in the quotient
+length. Transferring this bound to the original region requires a precise
+signed-cone criterion that remains unproved; complete finite patch checks are
+supporting evidence. For the fixed degree-five equation, an integral prepared
+normal form now classifies the entire `z^2` cone in every characteristic.
+The exceptional-prime witnesses all enter this same elementary cone, so their
+rank changes do not demonstrate a fan-count gain.
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count
