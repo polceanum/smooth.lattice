@@ -20,9 +20,13 @@ Both are below the generic \(n^2\log^2 n\) target scale.
 The upper bounds are elementary consequences of established
 Minkowski-sum, normal-fan and antichain tools. We use them as a
 feasibility closure, without treating a classical corollary or an
-unassessed construction as a new publication result. Arbitrary
-overlapping socle relations and arbitrary quadratic-coordinate
-quotients are outside this closure.
+unassessed construction as a new publication result. The stronger
+[existing socle theorem](initial_cone_stability.md#a-whole-class-bound-socle-only-relations-have-small-fans)
+already bounds arbitrary overlapping socle relation spaces by
+\(O(n^{3/2})\) over every field. Overlap alone is therefore not an
+open separation route. Arbitrary quadratic-coordinate quotients and
+relations with surviving nonconstant multiples are outside these socle
+closures.
 
 ## Exact class and its state polytope
 
@@ -274,8 +278,9 @@ Park independent disjoint-support socle circuits as a separation route.
 The whole class is uniformly subgeneric; two-layer examples are only
 linear. Recrossing is real but does not change this decision. A counting
 argument by upper pairs must control weighted reuse, while a separating
-construction needs genuinely coupled dependencies, non-socle propagation,
-or another mechanism outside (S2).
+construction needs non-socle propagation or another mechanism outside
+the stronger arbitrary-socle closure. Coupling supports only inside the
+socle cannot suffice.
 
 The established state-polyhedron dictionary is in
 [Babson--Onn--Thomas, Theorem 2.4](https://arxiv.org/pdf/math/0207135).
