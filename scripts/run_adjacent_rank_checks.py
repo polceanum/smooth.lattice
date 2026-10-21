@@ -11,7 +11,11 @@ import hashlib
 import json
 
 from run_interleaving_research import minimal_excluded_border
-from run_oracle_enumeration_checks import digit_rank, digit_rank_enumerator
+from run_oracle_enumeration_checks import (
+    apply, digit_rank, digit_rank_enumerator, image_from_matrices,
+    verify_reduced_basis,
+)
+from run_signed_face_checks import field_basis, field_reduce
 from run_structural_complexity_checks import area2, clip, cross, determinant, dot
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -472,6 +476,181 @@ def tensor_controls():
     return dict(counts)
 
 
+def socle_algebra(domain, support, columns, p, counts):
+    """Construct actual quotient actions, then check them independently."""
+    fixed = tuple(sorted(set(domain)-set(support)))
+    size = len(fixed)+len(columns[0])
+    raw = {a: tuple(int(i == j) for i in range(size))
+           for j, a in enumerate(fixed)}
+    raw.update({a: (0,)*len(fixed)+tuple(v) for a, v in zip(support, columns)})
+    def evaluate(a):
+        return {i: c for i, c in enumerate(raw.get(a, ())) if c}
+    reference, pivots = field_basis(sorted(domain), evaluate, p)
+    assert len(reference) == size
+    def coordinates(a):
+        rem, co = field_reduce(evaluate(a), pivots, p)
+        assert not rem
+        return tuple(co.get(b, 0) for b in reference)
+    matrices = tuple(tuple(coordinates(tuple(x+(i == j) for j, x in enumerate(a)))
+                           for a in reference) for i in range(3))
+    one = coordinates((0, 0, 0))
+    for i, j in combinations(range(3), 2):
+        for k in range(size):
+            v = tuple(int(l == k) for l in range(size))
+            assert apply(matrices[i], apply(matrices[j], v, p), p) == apply(
+                matrices[j], apply(matrices[i], v, p), p)
+            counts['socle_commuting_multiplication_columns'] += 1
+    for a in sorted(set(domain) | set(minimal_excluded_border(tuple(domain)))):
+        assert image_from_matrices(matrices, one, a, p) == coordinates(a)
+        counts['socle_independent_cyclic_columns'] += 1
+    assert all(not any(coordinates(tuple(x+(i == j) for j, x in enumerate(a))))
+               for a in support for i in range(3))
+    return evaluate, matrices, coordinates, fixed
+
+
+def deletion_control(domain, parent, child, removed, p, w, counts):
+    B, pivots = field_basis(sorted(domain, key=lambda a: (dot(w, a), a)), parent, p)
+    C, _ = field_basis(sorted(domain, key=lambda a: (dot(w, a), a)), child, p)
+    rem, co = field_reduce(removed, pivots, p)
+    assert not rem and co
+    a = max(co, key=lambda b: (dot(w, b), b))
+    assert set(C) == set(B)-{a}
+    assert all(tuple(x+(i == j) for j, x in enumerate(a)) not in B for i in range(3))
+    counts['independent_kernel_deletion_and_socle_equalities'] += 1
+    return {'weight': list(map(str, w)), 'deleted': a,
+            'parent_profile': tuple(sum(b[i] for b in B) for i in range(3)),
+            'child_profile': tuple(sum(b[i] for b in C) for i in range(3)),
+            'kernel_normal_form': [{'exponent': b, 'coefficient': str(c)}
+                                   for b, c in sorted(co.items())]}
+
+
+def ideal_flag_controls():
+    counts = defaultdict(int)
+    S = ((3, 0, 0), (0, 3, 0), (0, 0, 4), (2, 2, 0))
+    D = tuple(sorted({a for v in S for a in product(*(range(x+1) for x in v))}))
+    column_sets = (((1, 0, 0), (0, 1, 0), (0, 0, 1), (1, -1, 1)),
+                   ((1, 0), (1, 0), (0, 1), (0, 1)), ((1,),)*4)
+    relations = (((1, -1, 1, -1),),
+                 ((1, -1, 0, 0), (0, 0, 1, -1)),
+                 ((1, -1, 0, 0), (1, 0, -1, 0), (1, 0, 0, -1)))
+    assert len(D) == 15
+    fixtures = []
+    for p in (0, 2, 3, 7):
+        models = []
+        fans = []
+        face_spans = []
+        witness_cells = []
+        for k, (columns, rows) in enumerate(zip(column_sets, relations)):
+            assert rank(rows, p) == k+1
+            assert all(not ((sum(c*v[i] for c, v in zip(row, columns))) % p if p
+                            else sum(c*v[i] for c, v in zip(row, columns)))
+                       for row in rows for i in range(3-k))
+            if k:
+                assert rank(list(relations[k-1])+list(rows), p) == len(rows)
+            model = socle_algebra(D, S, columns, p, counts)
+            models.append(model)
+            ev, matrices, coordinates, fixed = model
+            bases = [tuple(sorted(set(fixed) | {S[i] for i in B}))
+                     for B in combinations(range(4), 3-k)
+                     if rank([columns[i] for i in B], p) == 3-k]
+            profile_sets = {tuple(sum(a[i] for a in B) for i in range(3)): B for B in bases}
+            fan = point_fan(profile_sets)
+            fans.append(fan)
+            best = min(dot((1, 1, 1), v) for v in profile_sets)
+            face_spans.append(differences(v for v in profile_sets if sum(v) == best))
+            cells = []
+            for cell in fan:
+                w = tuple(sum(v[i] for v in cell['polygon'])/len(cell['polygon'])
+                          for i in range(3))
+                B, _ = field_basis(sorted(D, key=lambda a: (dot(w, a), a)), ev, p)
+                assert tuple(sorted(B)) == profile_sets[cell['profile']]
+                def ev_coordinates(a):
+                    return {i: c for i, c in enumerate(coordinates(a)) if c}
+                recovered = verify_reduced_basis(B, ev_coordinates, matrices, w, p, counts)
+                record = {'standard_set': sorted(B), 'weight': list(map(str, w)),
+                          'polygon': [[str(c) for c in v] for v in cell['polygon']],
+                          'reduced_basis_polynomials': len(recovered)}
+                if not p:
+                    record['reduced_basis'] = recovered
+                else:
+                    record['reduced_basis_sha256'] = hashlib.sha256(
+                        json.dumps(recovered, sort_keys=True).encode()).hexdigest()
+                cells.append(record)
+                counts['independent_actual_ideal_profile_and_border_cones'] += 1
+            witness_cells.append(cells)
+        assert [rank(s) for s in face_spans] == [1, 2, 1]
+        assert rank(face_spans[0]+face_spans[2]) == 2
+        assert [len(fan) for fan in fans] == [4, 4, 3]
+        deletions = []
+        for j, row in enumerate(((1, -1, 0, 0), (1, 0, -1, 0))):
+            parent, child = models[j][0], models[j+1][0]
+            removed = defaultdict(int)
+            for c, a in zip(row, S):
+                for i, value in parent(a).items():
+                    removed[i] += c*value
+            common = overlay(fans[j], fans[j+1], counts)
+            for _, _, poly in common:
+                w = tuple(sum(v[i] for v in poly)/len(poly) for i in range(3))
+                deletions.append(deletion_control(D, parent, child, dict(removed), p, w, counts))
+        outside = [poly for a, b in product(fans[0], fans[2])
+                   if (poly := intersect(a['polygon'], b['normals']))]
+        assert len(outside) == 9 and sum(area2(poly) for poly in outside) == 1
+        crossing = (Q(1, 3),)*3
+        assert crossing in {v for poly in outside for v in poly}
+        assert crossing not in {v for f in (fans[0], fans[2]) for c in f for v in c['polygon']}
+        counts['actual_nonadjacent_transverse_crossings'] += 1
+        fixtures.append({'characteristic': p, 'lengths': [14, 13, 12],
+                         'outside_face_dimensions': [1, 1], 'middle_face_dimension': 2,
+                         'outside_sum_dimension': 2, 'positive_fan_counts': [4, 4, 3],
+                         'outside_common_cells': 9, 'crossing_weight': [1, 1, 1],
+                         'complete_fans': witness_cells, 'deletions': deletions})
+    arity = []
+    for L in range(1, 5):
+        D = tuple(a for a in product(range(L+1), repeat=3) if sum(a) <= L)
+        S = tuple(a for a in D if sum(a) == L)
+        m = len(S)
+        columns = tuple(tuple(int(i == j) for i in range(m-1))
+                        if j < m-1 else (-1,)*(m-1) for j in range(m))
+        assert len(D) == comb(L+3, 3) and m == comb(L+2, 2)
+        for p in (0, 2, 3, 7):
+            ev, _, _, fixed = socle_algebra(D, S, columns, p, counts)
+            assert rank(columns, p) == m-1
+            assert all(rank([v for j, v in enumerate(columns) if j != i], p) == m-1
+                       for i in range(m))
+            fan = point_fan(tuple(-a[i] for i in range(3)) for a in S)
+            assert len(fan) == 3
+            for cell in fan:
+                w = tuple(sum(v[i] for v in cell['polygon'])/len(cell['polygon'])
+                          for i in range(3))
+                B, _ = field_basis(sorted(D, key=lambda a: (dot(w, a), a)), ev, p)
+                deleted = max(S, key=lambda a: (dot(w, a), a))
+                assert set(B) == set(D)-{deleted}
+                counts['simplex_relation_three_cell_equalities'] += 1
+            counts['simplex_full_component_mergers'] += 1
+        arity.append({'total_degree': L, 'parent_length': len(D), 'child_length': len(D)-1,
+                      'merged_components_at_equal_cost': m, 'child_initial_ideals': 3})
+    # Nonzero coordinate eigenvalues: actual separators of three rational points.
+    points = ((1, 1, 1), (2, 3, 4), (3, 2, 5))
+    E = ((0, 0, 0),)+tuple(tuple(j if i == k else 0 for i in range(3))
+                           for k in range(3) for j in (1, 2))
+    for p in (0, 2, 3, 7):
+        def evaluate(a):
+            return {i: value for i, point in enumerate(points)
+                    if (value := (point[0]**a[0]*point[1]**a[1]*point[2]**a[2]) % p
+                        if p else point[0]**a[0]*point[1]**a[1]*point[2]**a[2])}
+        for missing in range(3):
+            def child(a):
+                return {i: c for i, c in evaluate(a).items() if i != missing}
+            for w in product(range(1, 4), repeat=3):
+                deletion_control(E, evaluate, child, {missing: 1}, p, w, counts)
+                counts['rational_point_separator_deletions_including_ties'] += 1
+    return {'counts': dict(counts), 'actual_chain_support':
+            ((3, 0, 0), (0, 3, 0), (0, 0, 4), (2, 2, 0)),
+            'chain_relation_rows': relations, 'complete_chain_fixtures': fixtures,
+            'unbounded_merger_arity': arity,
+            'scope': 'Actual polynomial quotient actions and border identities, not arbitrary matroid data. Finite controls support the uniform socle and ideal-flag proofs; no unrestricted count follows.'}
+
+
 def main():
     if not __debug__:
         raise RuntimeError('Exact assertions must be enabled.')
@@ -479,15 +658,18 @@ def main():
     quotients = elementary_quotient_controls()
     groups = group_controls()
     tensor = tensor_controls()
+    flags = ideal_flag_controls()
     sources = ('docs/adjacent_rank_fans.md', 'scripts/run_adjacent_rank_checks.py',
                'docs/rational_shadow_bound.md', 'docs/profile_lattice_bound.md',
                'docs/interleaving_research.md',
                'docs/oracle_fan_enumeration.md', 'scripts/run_oracle_enumeration_checks.py',
-               'scripts/run_interleaving_research.py', 'scripts/run_structural_complexity_checks.py')
+               'scripts/run_interleaving_research.py', 'scripts/run_structural_complexity_checks.py',
+               'scripts/run_signed_face_checks.py')
     report = {'status': 'passed', 'command': 'python3 -B scripts/run_adjacent_rank_checks.py',
               'matroid_adjacent_faces': matroids, 'finite_group_gap_fans': groups,
               'elementary_linear_quotients': quotients,
               'prime_digit_tensor_counts': tensor,
+              'actual_ideal_flags': flags,
               'uniform_results': {
                   'adjacent_exposed_direction_spaces': 'Nested for every cost and every linear projection; inclusion reverses according as the last greedy rank increment is one or at least two.',
                   'elementary_quotient_exposed_direction_spaces': 'Nested for every actual one-dimensional linear quotient. Only the cost layer where the removed line first enters the prefix span changes; single-component support refines that component, multiple-component support merges components.',
@@ -497,14 +679,20 @@ def main():
                   'threshold_scope': 'The exact last greedy cost is linear on this O(a+b) refinement. The inherited O(k^(23/8)*log(k+1)^(3/8)) coarse power also follows from the previous shadow theorem on a direct sum; it is not a new unrestricted exponent.',
                   'norm_quotient_gap_fan': 'For every full-rank lattice of index m in Z^3, its faithful gap fan is the common refinement of the group ideal and its all-fields length-(m-1) norm quotient.',
                   'corank_one_boundary': 'The earlier binomial-extension envelope theorem already excludes polynomial amplification in this whole family and directly bounds the faithful gap diagram.',
-                  'tensor_priority_boundary': 'The Pascal basis recursion is an iterated pointed-uniform two-sum substitution. The general Tutte substitution is classical; the exact code-specific priority remains unassessed.'},
+                  'tensor_priority_boundary': 'The Pascal basis recursion is an iterated pointed-uniform two-sum substitution. The general Tutte substitution is classical; the exact code-specific priority remains unassessed.',
+                  'actual_kernel_socle_rule': 'After a rank-preserving field extension, every finite algebra has an ideal composition series. A positive-filter initial kernel line is socle; each ordered child deletes the leading supported monomial of the parent kernel normal form, necessarily a staircase corner.',
+                  'unbounded_merger_arity': 'A single socle relation in the degree-L simplex merges binom(L+2,2) singleton components at equal weight. The child still has exactly three initial ideals over every field.',
+                  'actual_nonadjacent_crossing': 'The explicit all-fields chain of lengths 14,13,12 has face dimensions 1,2,1 at weight (1,1,1), with nonparallel outside edges. Its outside fan overlay has a new interior vertex and nine cells; adjacent nesting does not iterate.',
+                  'local_realization_boundary': 'Arbitrary nested relation spaces on a downset maximal-corner support give actual ideal flags. They are already within the full-socle O(n^(3/2)) count, so a new global argument needs a length or multiplication-layer incidence budget.',
+                  'unrestricted_incidence_obligation': 'A cubic polylogarithmic bound for U=sum_w ceil(sqrt(height(w)))*incident_cells(w) would give G3=O(n^(33/13)*log(n+1)^((10*C+3)/13)). This budget is unproved. The general conditional reduction is established; no unrestricted improvement follows yet.'},
               'new_unrestricted_G3_count': False, 'polynomial_lower_separation': False,
               'novelty_established': False, 'goal_complete': False,
-              'scope': 'Exact finite controls for the uniform proofs. Exhaustive small projected faces and complete positive fans, actual integral group/norm quotients, shortest-path gap checks and uniform-gadget basis bijections. No growth fitting, generic-rank replacement, runtime benchmark or priority conclusion.',
+              'scope': 'Exact finite controls for the uniform proofs. Exhaustive small projected faces and complete positive fans, actual integral group/norm quotients, shortest-path gap checks, uniform-gadget basis bijections and actual socle ideal flags. The new matrix-action and border checks independently verify nonadjacent crossings, unbounded merger arity and separator deletions. No growth fitting, generic-rank replacement, runtime benchmark or priority conclusion.',
               'source_sha256': {f: hashlib.sha256((ROOT/f).read_bytes()).hexdigest() for f in sources}}
     (ROOT/'results/research/adjacent_rank_checks.json').write_text(json.dumps(report, indent=2)+'\n')
     print(json.dumps({'matroid': matroids['counts'], 'quotients': quotients['counts'],
-                      'groups': groups['counts'], 'tensor': tensor}, indent=2))
+                      'groups': groups['counts'], 'tensor': tensor,
+                      'actual_ideal_flags': flags['counts']}, indent=2))
 
 
 if __name__ == '__main__':

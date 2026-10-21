@@ -200,8 +200,145 @@ every field. It includes deleting one rational point from a finite
 point set. No assumption of generic ranks or diagonal multiplication
 matrices is made. A quotient by two dimensions need not have this
 property, as the nonadjacent uniform-matroid example above shows.
-That counterexample concerns general linear data; it has not been
-realized here as a pair of polynomial ideals.
+That example concerns general linear data. A separate actual ideal-chain
+counterexample is given below.
+
+## Actual ideal flags: a socle rule, and a limit on local arguments
+
+Every finite algebra admits an actual chain of one-dimensional ideal
+quotients after extension to an algebraic closure. Field extension preserves
+all ranks of finite monomial column sets and hence all initial staircases.
+The commuting coordinate actions have a common eigenvector: take an
+eigenspace for the first action, restrict the next action to it, and continue.
+Their common eigenline is an ideal. Repeat in the quotient. Thus this
+reduction uses polynomial ideals throughout; it does not presume that
+arbitrary matroid truncations are algebras.
+
+Let $J\subset I$ have lengths $n,n-1$ and write $I/J=Kv$.
+There are scalars $\lambda_i$ with $x_i v=\lambda_i v$.
+For a strictly positive weight, filter $A=K[x]/J$ by the spans of
+monomials of cost at most $t$. If $v$ first enters at cost $t$, its
+nonzero class in $F_tA/F_{<t}A$ is annihilated by every variable:
+$x_iv=\lambda_i v$ belongs to $F_tA\subset F_{<t+w_i}A$.
+Its associated graded initial form is therefore in the socle. Positivity
+is necessary for this argument.
+
+For a fixed global monomial order, let $D$ be the parent standard set and
+write the unique normal form
+
+$$
+ v=\sum_{a\in D}c_a x^a,\qquad
+ a_* = \max_{\prec}\{a:c_a\ne0\}.
+$$
+
+The child standard set is exactly $D\setminus\{a_*\}$. Indeed,
+$\operatorname{in}(J)\subset\operatorname{in}(I)$, so the child standard
+set is a subset of $D$ of size $n-1$. The displayed normal form belongs
+to $I$ and excludes $a_*$. This accounts for the whole difference.
+In particular $a_*$ is a maximal member of $D$: deleting a nonmaximal
+member would fail downward closure. On each open parent weight cone,
+the child therefore deletes a most expensive supported monomial, and
+only a socle corner of that parent staircase can be deleted. Ties are
+resolved by the specified global order. This is an elementary initial-
+ideal fact, not a new point-deletion algorithm.
+
+For point ideals the eigenline is the usual separator of the removed
+rational point. [Just--Stigler, Section 2 and Lemma 3.4](https://arxiv.org/pdf/0711.3475)
+defines separators and gives their unique reduced expression in the
+standard basis. That comparison concerns radical rational-point ideals;
+it does not provide a count of all weight cones for arbitrary algebras.
+[Denham--Schulze--Walther, Definition 2.17(e), Remark 2.18(b) and
+Lemma 2.19](https://doi.org/10.1007/s11005-020-01352-3)
+supplies the established elementary-quotient realization and the lifting
+of a matroid direct sum to a direct sum of its realizing spaces.
+Those definitions and the displayed proof of Lemma 2.19 were inspected.
+They account for inputs to Theorem 2; its exact projected-fan priority
+remains open. No configuration-hypersurface singularity theorem is used.
+
+### Multiplication does not bound the number of merged components
+
+Here is a uniform all-field control on a proposed shortcut. Put
+
+$$
+ D_L=\{a\in\mathbb Z_{\ge0}^3:|a|\le L\},\quad
+ S_L=\{a:|a|=L\},\quad
+ J_L=(x,y,z)^{L+1},\quad
+ I_L=J_L+\left(\sum_{a\in S_L}x^a\right),\qquad L\ge1.
+$$
+
+All variables kill the added relation. The parent length is
+$N=\binom{L+3}{3}$ and the child length is $N-1$, over every field.
+At $w=(1,1,1)$, the pivot minor has $m=\binom{L+2}{2}$ singleton
+coloop components. The quotient has the unique circuit with support
+$S_L$ and merges **all $m$ components**. Thus a single ideal quotient
+can merge $\Theta(N^{2/3})$ components, despite commuting actions and
+a socle kernel. There is no constant merger-arity bound from those
+hypotheses. Nevertheless the child has exactly three initial ideals:
+the largest supported monomial is $x^L,y^L$ or $z^L$ according to the
+largest variable weight, with the term order resolving ties.
+Counting merged components alone is not a count of new cells.
+
+More generally, if $S$ is a subset of the maximal corners of any finite
+downset $D$, **every** flag of linear subspaces $R_j\subseteq K^S$
+gives a flag of actual ideals $J_D+R_j$. All nonconstant multiples of
+the relation rows vanish. The residue matroids split into fixed coloops
+$D\setminus S$ and the arbitrary represented quotients $K^S/R_j$.
+This elementary construction is already within the repository's
+[full-socle moment bound](interleaving_research.md#all-socle-relation-spaces-have-a-small-moment-budget):
+its three-variable fans have $O(n^{3/2})$ cells. Consequently local
+component behavior alone does not impose the missing global restriction.
+A useful argument must also charge the downset size or interactions
+between distinct multiplication layers.
+
+### Nonadjacent fans can cross even in an actual ideal composition chain
+
+Let $D$ be the union of the divisor boxes of
+
+$$
+ a=x^3,\quad b=y^3,\quad c=z^4,\quad d=x^2y^2.
+$$
+
+There are fifteen monomials in $D$ and these four are maximal. With
+$C=J_D$ define nested ideals
+
+$$
+ J=C+(a-b+c-d),\quad
+ H=C+(a-b,c-d),\quad
+ I=C+(a-b,a-c,a-d).                                    \tag{A3b}
+$$
+
+Their relation spaces have ranks one, two and three over every field,
+and $J\subset H\subset I$. Their lengths are $14,13,12$.
+All relations lie in the parent monomial socle, so these are actual
+polynomial ideals. The three varying residue matroids are respectively
+$U_{3,4}$, $U_{1,2}\oplus U_{1,2}$ on the pairs $\{a,b\},\{c,d\}$,
+and $U_{1,4}$. The other eleven columns remain fixed coloops.
+
+At $w=(1,1,1)$ the costs of $a,b$ are three and those of $c,d$ are
+four. After subtracting the common fixed moment, the minimizing profile
+faces are
+
+$$
+ F_J=[a+b+c,a+b+d],\quad
+ F_H=[a,b]+[c,d],\quad
+ F_I=[a,b].                                             \tag{A3c}
+$$
+
+Here letters in profile sums denote exponent vectors. The outside
+faces are edges of nonparallel directions $(2,2,-4)$ and $(3,-3,0)$;
+their sum has dimension two. The middle face is the parallelogram
+spanned by these two directions. Both adjacent pairs satisfy Theorem 2,
+but the $J$ and $I$ fan edges cross at the strictly positive ray
+$(1,1,1)$. This is a new vertex of their common refinement, absent
+from both outside diagrams. Complete exact positive fans have respectively
+four, four and three cells; the outside overlay has nine cells.
+
+Thus the abstract nonadjacent counterexample above also has an actual,
+all-field ideal-chain counterpart. The obstruction survives the eigenline
+and socle conditions; pairwise face nesting cannot simply be iterated
+over an ideal composition series. It does not refute an aggregate
+incidence estimate, nor give a superquadratic lower family. The whole
+example belongs to the already bounded full-socle class.
 
 ## A linear overlay bound in three cost coordinates
 
@@ -371,6 +508,55 @@ already excluded by (A8). Several removed residue directions, growing
 codimension, or another genuine dependency mechanism would be needed.
 No higher-corank envelope bound or separating family is asserted here.
 
+## A concrete unrestricted proof obligation
+
+The preceding examples prevent deriving a count just from a bounded
+number of merged components or from a no-crossing claim for a full ideal
+flag. They leave a collective incidence question open. For each strictly
+positive primitive interior fan ray $w$, let $d(w)$ be its incident-cell
+count and put
+
+$$
+ U(I)=\sum_w\left\lceil\sqrt{\|w\|_\infty}\right\rceil d(w).
+$$
+
+Changing the high-ray charge in the existing
+[weighted-incidence reduction](weighted_facet_incidence.md#the-remaining-weighted-incidence)
+gives, for every integer $q\ge1$ and $L_n=\log(n+1)$,
+
+$$
+ g(I)=O\left(n^{5/3}L_n+nq^{10/3}L_n+U(I)/q\right).     \tag{A10}
+$$
+
+Indeed a cell incident to a ray of height greater than $q^2$ is charged
+at least $q$ in $U$. All other nonboundary cells have only rays of
+height at most $q^2$ and are covered by the established short-relation
+shadow bound with that threshold. Boundary cells use its existing
+$O(n^{5/3}L_n)$ bound. Optimizing the integer $q$, with $q=1$ when
+the formal optimum is smaller, yields
+
+$$
+ g(I)=O\left(n^{5/3}L_n+
+      n^{3/13}U(I)^{10/13}L_n^{3/13}\right).             \tag{A11}
+$$
+
+Thus a **currently unproved** budget $U(I)=O(n^3L_n^C)$, with fixed
+$C\ge0$, would imply the unrestricted bound
+$G_3(n)=O(n^{33/13}L_n^{(10C+3)/13})$. This is a precise proof
+target, not an established improvement. It still would not establish
+sharp growth or, by itself, complete the research goal.
+
+The cubic power in this proposed budget cannot be reduced uniformly:
+the actual three-pole curve family in the incidence note has
+$\Theta(n^2)$ rays of height $\Omega(n^2)$ along its stated infinite
+length subsequence, hence $U=\Omega(n^3)$. Conversely that family's
+quadratic fan count and the universal $O(n^2)$ ray-height bound give
+$U=O(n^3)$. The earlier first-moment budget is quartic and sharp there;
+using the square root avoids mistaking that counterexample for a
+refutation of the cubic question. No proof of the question is supplied.
+A useful composition-series argument must control this weighted sum,
+or give a comparably strong direct cell count, across all layers.
+
 ~~~bash
 python3 -B scripts/run_adjacent_rank_checks.py
 ./build.sh
@@ -381,7 +567,11 @@ The bounded checker compares projected exposed-face spaces by separate
 Gaussian calculations, including explicit nongeneric line projections,
 exhausts the small positive profile fans and
 checks the entire overlay. A nonadjacent-rank counterexample verifies
-the scope restriction. Actual group and norm quotients are checked by
+the abstract scope restriction. A separate actual ideal-chain control
+checks multiplication, cyclicity, border relations, complete positive
+fans and the crossing in (A3b)--(A3c) in several characteristics.
+The simplex socle family checks the unbounded merger arity, including
+the unchanged three-cell child fan. Actual group and norm quotients are checked by
 integral border relations, determinant-one bases, exhaustive downsets
 and independent shortest paths. Uniform block substitutions are checked
 against separately enumerated Pascal bases. These controls support the

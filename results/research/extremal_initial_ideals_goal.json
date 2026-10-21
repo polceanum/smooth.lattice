@@ -7,7 +7,7 @@
   "goal_complete": false,
   "asymptotic_improvement_established_this_iteration": false,
   "novelty_established_this_iteration": false,
-  "note": "A uniform face-direction nesting theorem now covers every one-dimensional linear quotient over every field, and separately all consecutive matroid truncations. It gives a linear-size common refinement in three cost coordinates and a necessary component-merger condition for new child rays. Actual group-algebra norm quotients identify the classical gap fan; the existing corank-one binomial-extension exclusion already bounds that family and is not reopened. The prime-digit matroid is an iterated pointed-uniform tensor composition, so the general enumerator substitution is classical. These structural tools do not establish a new unrestricted exponent, a polynomially separating family, exact novelty or completion of the main goal.",
+  "note": "Actual ideal flags now expose two limits on the elementary-quotient approach: nonadjacent fans can cross even along an actual composition chain, and one socle relation can merge arbitrarily many components while its fan has only three cells. The eigenline/socle deletion rule is proved and independently checked. A concrete square-root incidence budget is formulated with a proved conditional consequence, but the budget, sharp unrestricted growth, polynomial lower separation, exact novelty and publication significance remain open.",
   "relationship_to_previous_work": "New active objective with a higher completion bar. Previous goal records, lattice-shadow candidate, manuscripts and paused ML results are preserved as historical research.",
   "definitions": {
     "G_d_n": "Maximum number of monomial initial ideals of a colength-n ideal in d variables, over all fields.",
@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Keep the full unrestricted G3 objective and all original publication criteria. Audit the projected face-nesting theorem for elementary represented quotients against flag-matroid and quotient-normal-fan research before claiming novelty. Use its cost-layer component-merger condition to seek a collective incidence budget for actual monomial algebras, not arbitrary unconstrained matroid data. After a field extension preserving ranks, an actual ideal composition series gives common-eigenvector kernel lines; their positive-filter initial forms are socle and may restrict which mergers can occur. This is a proof route, not yet a counting theorem. Alternatively build an actual growing higher-codimension dependency family with a uniform coherent lower bound. Do not reopen the already-excluded corank-one binomial class or claim the classical Tutte tensor substitution as a new general algorithm. Pairwise no-crossing cannot simply be iterated over an entire chain: nonadjacent ranks can cross. Preserve the earlier code, manuscripts, audits and ML work, and continue the strongest-priority review.",
+  "next_proof_task": "Keep the full unrestricted G3 objective, original success criteria and strongest-priority audit. The actual length-14/13/12 ideal chain now refutes iterating pairwise face nesting; the uniform simplex socle family refutes a constant bound on merger arity. Common-eigenline and positive-filter socle properties hold but do not alone restrict local quotient matroids: arbitrary relation flags on maximal corners are realizable and already satisfy the earlier O(n^(3/2)) count. Seek a genuinely collective length-sensitive incidence budget across multiplication layers. A concrete candidate is U(I)=sum_w ceil(sqrt(height(w)))*incident_cells(w)=O(n^3*log(n+1)^C) for fixed C; the conditional shadow reduction would imply n^(33/13), and actual three-pole curves require the cubic power. This budget is unproved and must be proved or refuted on actual algebras, not inferred from finite counts or local merger arity. Alternatively construct a growing higher-codimension prime-digit or other actual dependency family with a uniform coherent lower bound. Do not reopen the corank-one binomial family, mistake a partial incidence improvement for sharp growth, or claim a new general Tutte substitution. Preserve all previous mathematics, manuscripts, kernels/auditor and paused ML; no outbound messages.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -144,7 +144,8 @@
     "Assess the exact growing-pole carrier/stabilization combination against existing rational-curve Groebner and generic-evaluation literature. The Laurent reductions, rank truncation and previous threshold/shadow tools are classical. Characteristic independence concerns all coherent generic choices, not arbitrary column ranks or special samples. Do not claim a new unrestricted theorem or publication significance from this reduction.",
     "The entire generic rational-function family regular at zero and infinity is now bounded by O(n^2*log(n+1)); its previous intermediate pole-order range is closed. Audit the exact sensitive-wall combination and random-access consequence separately from classical Laurent/evaluation/concavity/floor-sum inputs. For special samples, a shifted-approximant reduction must preserve actual rank dependencies, the exponent cost order and all relevant shifts; Theorem 1.3 of arXiv:1602.00651v1 is a single-shift coefficient-basis algorithm, not an imported all-fan count. No further small generic sweeps or unrestricted-success claim follows.",
     "Neiger--Schost Theorem 1.7 and Propositions 3.7/3.14 apply to arbitrary commuting matrices and orders; their input-conversion Theorem 1.9 has an additional leading-module hypothesis and is not imported. The exact prime-digit rank, basis and rank-generating recursions for single-root length-p^s cyclic codes need comparison with Sobhani 2016, Nedeloaia 2003, Bhullar--Gupta--Sonia 2010 and Zhao et al. 2025 Theorem 17. The latter retains a distribution term for a smaller set; the compact recursion must be matched against full existing methods, not declared new from that statement alone. The main all-coherent-profile count and arbitrary special-sample incidence problem remain open.",
-    "Theorem 2 of docs/adjacent_rank_fans.md proves projected face-direction nesting for an arbitrary one-dimensional linear quotient: only the pivot cost minor changes; support in one connected component refines components, while support in several components coarsens them. Exact priority against flag-matroid and elementary-quotient geometry remains open. The cost-threshold exponent and gap-fan corank-one bound are inherited, not new powers. The latter was already excluded by BE1--BE3; an initially considered weaker socle-product estimate was not promoted as an improvement. The Pascal basis decomposition matches the published uniform tensor operation, with the r=0 direct-sum boundary handled separately. The full code-specific comparison with Sobhani and earlier squaring methods is still necessary. Main G3 growth and a separating family remain open."
+    "Theorem 2 of docs/adjacent_rank_fans.md proves projected face-direction nesting for an arbitrary one-dimensional linear quotient: only the pivot cost minor changes; support in one connected component refines components, while support in several components coarsens them. Exact priority against flag-matroid and elementary-quotient geometry remains open. The cost-threshold exponent and gap-fan corank-one bound are inherited, not new powers. The latter was already excluded by BE1--BE3; an initially considered weaker socle-product estimate was not promoted as an improvement. The Pascal basis decomposition matches the published uniform tensor operation, with the r=0 direct-sum boundary handled separately. The full code-specific comparison with Sobhani and earlier squaring methods is still necessary. Main G3 growth and a separating family remain open.",
+    "Compare the exact elementary-quotient projected face statement with full flag-matroid/strong-map literature. The newly read elementary-quotient and realization facts, and point-separator normal forms, are established inputs. The actual socle flags do not certify a new general algorithm or counting theorem. Prove or refute the collective square-root incidence budget before reporting a new unrestricted power."
   ],
   "primary_sources": [
     {
@@ -788,6 +789,18 @@
       "title": "On the lattice programming gap of the group problems",
       "url": "https://arxiv.org/pdf/1404.6967",
       "scope": "Positive-cost full-rank lattice definition and Lemmas 2.1 and 3.1 with displayed arguments inspected: directed quotient-lattice diameter and simplex covering-radius identities. Varying-dimension hardness and extremal estimates are not used for a three-variable complexity claim."
+    },
+    {
+      "authors": "Denham--Schulze--Walther",
+      "title": "Matroid connectivity and singularities of configuration hypersurfaces",
+      "url": "https://doi.org/10.1007/s11005-020-01352-3",
+      "scope": "Version of record (2021), Definition 2.17(e), Remark 2.18(b), Lemma 2.19 and its displayed proof inspected. Elementary quotients are realized via a codimension-one configuration and direct-sum matroid decompositions lift to realizing spaces. These are established inputs to the earlier face proof, not a priority certification of its projected-fan statement. Configuration-hypersurface singularity theorems are not used."
+    },
+    {
+      "authors": "Just--Stigler",
+      "title": "Efficiently Computing Groebner Bases of Ideals of Points",
+      "url": "https://arxiv.org/pdf/0711.3475",
+      "scope": "Section 2 definition of separators and Lemma 3.4 with displayed proof inspected: unique reduced separator expression in standard monomials for rational radical point ideals. This is the classical point-ideal counterpart of the kernel-normal-form observation, not an all-fields nonradical fan-count theorem. No priority or runtime improvement over EssGB is claimed."
     }
   ],
   "verification": {
@@ -1963,6 +1976,40 @@
       "build": "./build.sh passed",
       "smoke": "python3 tests/test_smoke.py passed",
       "scope": "1079 independent adjacent-face comparisons and 945 actual elementary-projection comparisons. Exhaustive pivot-layer circuits distinguish 747 single-component from 198 multiple-component cases. Full positive overlays recover 11 rank-one births, 3 matrix-quotient merger births and 38 actual group-quotient merger births. Complete small group fans, 104 shortest-path gap comparisons, 492 integral border relations and 28 unit determinants verify actual realizations. Uniform tensor basis bijections and Tutte conversions are independently checked. No fitted growth or novelty inference."
+    },
+    "actual_ideal_flag_research": {
+      "command": "python3 -B scripts/run_adjacent_rank_checks.py",
+      "status": "passed",
+      "report": "results/research/adjacent_rank_checks.json",
+      "source_hashes_verified": true,
+      "counts": {
+        "socle_commuting_multiplication_columns": 1248,
+        "socle_independent_cyclic_columns": 748,
+        "independent_polynomial_matrix_annihilations": 3824,
+        "recovered_reduced_basis_polynomials": 292,
+        "independent_actual_ideal_profile_and_border_cones": 44,
+        "complete_adjacent_overlay_cells": 56,
+        "independent_kernel_deletion_and_socle_equalities": 380,
+        "actual_nonadjacent_transverse_crossings": 4,
+        "simplex_relation_three_cell_equalities": 48,
+        "simplex_full_component_mergers": 16,
+        "rational_point_separator_deletions_including_ties": 324
+      },
+      "previous_report_blocks_preserved": [
+        "matroid_adjacent_faces",
+        "finite_group_gap_fans",
+        "elementary_linear_quotients",
+        "prime_digit_tensor_counts"
+      ],
+      "build": {
+        "command": "./build.sh",
+        "status": "passed"
+      },
+      "smoke": {
+        "command": "python3 tests/test_smoke.py",
+        "status": "passed"
+      },
+      "scope": "Independent commuting-action and cyclic-column checks for actual socle algebras; complete exact profile fans and reduced-border polynomial identities in four characteristics; adjacent overlays and separator deletions including ties. Uniform proofs, not bounded checks, supply the all-field claims. No growth fit or novelty conclusion."
     }
   },
   "preservation": "Five explicitly privacy-reviewed public files change: two existing files and three new research artifacts. All 78 prior continuations, 105 old primary-source records, the full objective and success criteria, 98 unchanged research hashes and all 365 unlisted previously tracked files remain unchanged against 5fe82a6. The complete old oracle report and checker are untouched. Core CLI/kernels and auditor, manuscripts/PDFs, prior mathematics and paused ML are preserved. Exploratory notes, full preservation and privacy audit, baselines and logs stay ignored.",
@@ -1975,7 +2022,7 @@
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "78e0c24a3a21f0de4793227a03938f973840ebcd43c4f7136db1e643955bc079",
+    "README.md": "86e8e0324c30f44d3924f898d4a0dec2d11aef52a52b91b36ec4afb664e09d30",
     "docs/extremal_initial_ideals.md": "6e84b6ea470841a89760a2e16080a9314ba747499b1a5a733460120fe501a92b",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
@@ -2074,9 +2121,9 @@
     "results/research/cyclotomic_overlap_checks.json": "c0d9fc1714ab6067e7d71773e26878f47ca6fa110a2baf906454da4b4493d462",
     "docs/pole_order_fans.md": "21d916d96358efea935e88a38dd469b35f5913c2a19308aa42fe52200eb583b9",
     "scripts/run_pole_order_checks.py": "d5eb875676eee0e8b43defbd70b5450a246f1c88ffdc0d61259b1f7f7a76444f",
-    "docs/adjacent_rank_fans.md": "7fa509c0ea5089a914a5e3a2ed804e7ae116b731e0da97c214ad46e4faf63c2d",
-    "scripts/run_adjacent_rank_checks.py": "f414c6ad739de164b1b925340307d0aaae34029b0c14bc985d8471ec146f74b6",
-    "results/research/adjacent_rank_checks.json": "3f9fd0dea210066f791858a2daf8940a0f2452f6b05080345d69fce186134f21"
+    "docs/adjacent_rank_fans.md": "d0ea32b9cbd520ab3c05acbb39121cf46d1151d5b97dd8f13833038fd245ee09",
+    "scripts/run_adjacent_rank_checks.py": "687894b669b4b3ab7c97aaae38c052a7e2dcdcde9e83229c52dd1e39e5f555fb",
+    "results/research/adjacent_rank_checks.json": "1bf63d069a1ef76cf4d41836e7179eacf51f6a6232c6253b38ff98d882fd4890"
   },
   "continuations": [
     {
@@ -7083,10 +7130,75 @@
         "results/research/adjacent_rank_checks.json",
         "results/research/extremal_initial_ideals_goal.json"
       ]
+    },
+    {
+      "title": "Actual ideal flags and the collective incidence proof obligation",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "no_progress",
+      "previous_evidence": "No progress: the intervening presentation check changed no authoritative files. Revalidated clean main d9f4c37, all 370 tracked files, all 102 research hashes, the full objective and success criteria, 110 primary-source records and 79 prior continuations before this mathematical continuation.",
+      "progress_classification": "uniform_actual_ideal_flag_controls_and_two_local_counting_shortcuts_refuted",
+      "structural_result": {
+        "kernel_socle_rule": "After field extension preserving all monomial ranks, actual ideal composition series exist. For each one-dimensional quotient its positive-filter initial line is socle, and its ordered child deletes the leading supported monomial of the parent kernel normal form, necessarily a staircase corner.",
+        "unbounded_merger_arity": "For J=(x,y,z)^(L+1), quotient by the sum of all degree-L monomials merges binom(L+2,2)=Theta(N^(2/3)) singleton pivot components over every field. It has exactly three initial ideals. Merger arity alone is not a cell count.",
+        "actual_ideal_chain_crossing": "The displayed socle ideals of lengths 14,13,12 have face dimensions 1,2,1 at (1,1,1), with nonparallel outside edges. Their positive fan counts are 4,4,3 and the outside overlay has nine cells and a new interior vertex. This holds over every field.",
+        "local_realization_scope": "Every nested relation-space flag on maximal corners of a finite downset is an actual ideal flag. The existing full-socle moment theorem already bounds this class by O(n^(3/2)); it is not a polynomial-amplification route.",
+        "conditional_collective_target": "For U=sum ceil(sqrt(ray height))*incident_cells, the prior shadow reduction gives g=O(n^(5/3)*log(n+1)+n^(3/13)*U^(10/13)*log(n+1)^(3/13)). A cubic polylog U budget is unproved; it would give exponent 33/13. Actual three-pole curves have U=Theta(n^3) on the stated infinite subsequence.",
+        "unrestricted_G3_improved": false,
+        "polynomial_lower_separation_proved": false,
+        "novelty_established": false,
+        "goal_complete": false
+      },
+      "verification": {
+        "command": "python3 -B scripts/run_adjacent_rank_checks.py",
+        "status": "passed",
+        "report": "results/research/adjacent_rank_checks.json",
+        "source_hashes_verified": true,
+        "counts": {
+          "socle_commuting_multiplication_columns": 1248,
+          "socle_independent_cyclic_columns": 748,
+          "independent_polynomial_matrix_annihilations": 3824,
+          "recovered_reduced_basis_polynomials": 292,
+          "independent_actual_ideal_profile_and_border_cones": 44,
+          "complete_adjacent_overlay_cells": 56,
+          "independent_kernel_deletion_and_socle_equalities": 380,
+          "actual_nonadjacent_transverse_crossings": 4,
+          "simplex_relation_three_cell_equalities": 48,
+          "simplex_full_component_mergers": 16,
+          "rational_point_separator_deletions_including_ties": 324
+        },
+        "previous_report_blocks_preserved": [
+          "matroid_adjacent_faces",
+          "finite_group_gap_fans",
+          "elementary_linear_quotients",
+          "prime_digit_tensor_counts"
+        ],
+        "build": {
+          "command": "./build.sh",
+          "status": "passed"
+        },
+        "smoke": {
+          "command": "python3 tests/test_smoke.py",
+          "status": "passed"
+        },
+        "scope": "Independent commuting-action and cyclic-column checks for actual socle algebras; complete exact profile fans and reduced-border polynomial identities in four characteristics; adjacent overlays and separator deletions including ties. Uniform proofs, not bounded checks, supply the all-field claims. No growth fit or novelty conclusion."
+      },
+      "unrestricted_G3_improved": false,
+      "polynomial_lower_separation_proved": false,
+      "novelty_established": false,
+      "goal_complete": false,
+      "next_proof_task": "Keep the full unrestricted G3 objective, original success criteria and strongest-priority audit. The actual length-14/13/12 ideal chain now refutes iterating pairwise face nesting; the uniform simplex socle family refutes a constant bound on merger arity. Common-eigenline and positive-filter socle properties hold but do not alone restrict local quotient matroids: arbitrary relation flags on maximal corners are realizable and already satisfy the earlier O(n^(3/2)) count. Seek a genuinely collective length-sensitive incidence budget across multiplication layers. A concrete candidate is U(I)=sum_w ceil(sqrt(height(w)))*incident_cells(w)=O(n^3*log(n+1)^C) for fixed C; the conditional shadow reduction would imply n^(33/13), and actual three-pole curves require the cubic power. This budget is unproved and must be proved or refuted on actual algebras, not inferred from finite counts or local merger arity. Alternatively construct a growing higher-codimension prime-digit or other actual dependency family with a uniform coherent lower bound. Do not reopen the corank-one binomial family, mistake a partial incidence improvement for sharp growth, or claim a new general Tutte substitution. Preserve all previous mathematics, manuscripts, kernels/auditor and paused ML; no outbound messages.",
+      "preservation": "Five explicitly reviewed existing public files change. All 79 earlier continuations, 110 earlier primary-source records, the complete objective and success criteria, 99 unchanged research hashes and all 365 unlisted tracked files remain unchanged against d9f4c37. The older oracle checker/report, core CLI/kernels and auditor, manuscripts/PDFs, previous research and paused ML are untouched. Baselines, exploratory notes, privacy audit and logs stay ignored.",
+      "public_files": [
+        "README.md",
+        "docs/adjacent_rank_fans.md",
+        "scripts/run_adjacent_rank_checks.py",
+        "results/research/adjacent_rank_checks.json",
+        "results/research/extremal_initial_ideals_goal.json"
+      ]
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "The new instance-wise overlay bound is O(a+b) for the two elementary-quotient profile fans. The exact k-th-cost coarse exponent 23/8 is inherited from the previous rational-shadow theorem and also follows by a direct-sum construction. The gap-fan quadratic polylogarithmic corank-one bound already follows directly from the earlier envelope proof. Neither worst-case exponent is improved here.",
-  "previous_goal_turn_classification": "Progress: 5fe82a6 proved the actual fixed-module and prime-digit rank reductions, saved compact code enumerators, corrected the fast published enumeration backend and its separate geometry budget, and preserved the unrestricted objective. Clean main, 367 tracked files, 99 research hashes, 105 scoped primary-source records and 78 continuations were revalidated at the start of this continuation.",
+  "asymptotic_improvement_scope_this_iteration": "No new unrestricted exponent or lower separation. The actual ideal-chain and unbounded merger examples rule out two local shortcuts. The square-root weighted-incidence implication is conditional on an unproved cubic polylogarithmic budget; exponent 33/13 is not an established count.",
+  "previous_goal_turn_classification": "No progress: the intervening presentation check changed no authoritative files. Revalidated clean main d9f4c37, all 370 tracked files, all 102 research hashes, the full objective and success criteria, 110 primary-source records and 79 prior continuations before this mathematical continuation.",
   "uniform_relative_margin_hypothesis_status": "refuted_by_actual_all_field_quotients",
   "secondary_extremal_parameter_resolved": {
     "relative_margin_dimension_2": "Theta(n^-2)",
@@ -7877,11 +7989,25 @@
     "tensor_priority_boundary": "The Pascal basis recursion is an iterated pointed-uniform two-sum substitution. The general Tutte substitution is classical; the exact code-specific priority remains unassessed.",
     "fields": "Every field for represented elementary quotients; consecutive truncation lemma also holds for abstract matroids.",
     "actual_algebra_scope": "Any nested ideals of colengths n and n-1, using their common finite monomial ground and the kernel line. The group norm construction is an explicit all-fields realization.",
-    "counterexample_scope": "The nonadjacent-rank crossing is general projected matroid data; no polynomial-ideal realization is claimed.",
+    "counterexample_scope": "The original abstract nonadjacent example is preserved. A separate actual all-fields nested ideal chain of lengths 14,13,12 now realizes the same failure of nonadjacent face nesting; each adjacent pair retains the proved nesting property.",
     "strongest_current_priority_established": false,
     "new_unrestricted_G3_count": false,
     "polynomial_lower_separation": false,
     "novelty_established": false,
     "goal_complete": false
+  },
+  "actual_ideal_flags": {
+    "kernel_socle_rule": "After field extension preserving all monomial ranks, actual ideal composition series exist. For each one-dimensional quotient its positive-filter initial line is socle, and its ordered child deletes the leading supported monomial of the parent kernel normal form, necessarily a staircase corner.",
+    "unbounded_merger_arity": "For J=(x,y,z)^(L+1), quotient by the sum of all degree-L monomials merges binom(L+2,2)=Theta(N^(2/3)) singleton pivot components over every field. It has exactly three initial ideals. Merger arity alone is not a cell count.",
+    "actual_ideal_chain_crossing": "The displayed socle ideals of lengths 14,13,12 have face dimensions 1,2,1 at (1,1,1), with nonparallel outside edges. Their positive fan counts are 4,4,3 and the outside overlay has nine cells and a new interior vertex. This holds over every field.",
+    "local_realization_scope": "Every nested relation-space flag on maximal corners of a finite downset is an actual ideal flag. The existing full-socle moment theorem already bounds this class by O(n^(3/2)); it is not a polynomial-amplification route.",
+    "conditional_collective_target": "For U=sum ceil(sqrt(ray height))*incident_cells, the prior shadow reduction gives g=O(n^(5/3)*log(n+1)+n^(3/13)*U^(10/13)*log(n+1)^(3/13)). A cubic polylog U budget is unproved; it would give exponent 33/13. Actual three-pole curves have U=Theta(n^3) on the stated infinite subsequence.",
+    "unrestricted_G3_improved": false,
+    "polynomial_lower_separation_proved": false,
+    "novelty_established": false,
+    "goal_complete": false,
+    "proof": "docs/adjacent_rank_fans.md",
+    "checker": "scripts/run_adjacent_rank_checks.py",
+    "report": "results/research/adjacent_rank_checks.json"
   }
 }

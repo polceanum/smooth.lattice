@@ -102,6 +102,12 @@ The same note identifies the prime-digit matroid's classical tensor
 composition and connects a finite-group norm quotient to the existing
 lattice gap fan. The corank-one family remains excluded by the earlier
 quadratic polylogarithmic bound; no unrestricted counting gain follows.
+Actual ideal-chain controls now show that adjacent face nesting cannot
+be iterated: the first and last fans in an all-field length-14/13/12
+chain have crossing edges. A uniform socle family also permits unbounded
+component mergers with only three child initial ideals. A global bound
+must account for the length cost and interactions across multiplication
+layers; the socle deletion rule alone does not supply it.
 A product-threshold refinement now counts every initial cell incident
 to a wall with primitive direction product at most `T` by
 `O(n*T^(4/3)*log(n+1))`, with an explicit support-oracle reduction.
