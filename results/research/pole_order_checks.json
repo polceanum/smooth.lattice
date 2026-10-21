@@ -3,7 +3,7 @@
   "status": "passed",
   "command": "python3 -B scripts/run_pole_order_checks.py",
   "uniform_proof": "docs/pole_order_fans.md",
-  "scope": "Actual generic n-point quotients of XY=1,(X-1)^k*Z=1 over every characteristic. Numerical special samples are not assumed generic. Laurent identities, generic evaluation and the earlier threshold/shadow tools are classical inputs.",
+  "scope": "Generic n-point quotients of XY=1,P(X)*Z=Q(X), coprime Q/P of degree Q<=degree P with P(0) nonzero, in every characteristic. A uniform O(n^2*log(n+1)) bound closes the whole generic family. Numerical special samples are not assumed generic. Laurent identities, generic evaluation, monotone support slopes and Euclidean floor sums are classical inputs.",
   "carrier": {
     "cases": 176,
     "ordinary_s_pairs": 3696,
@@ -21046,18 +21046,3327 @@
       }
     ]
   },
+  "sensitive_wall_integer_budgets": {
+    "models": 6,
+    "sensitive_vertices": 12,
+    "insensitive_cylinder_vertex_equalities": 25,
+    "incident_completed_rectangles": 41,
+    "whole_wall_monotonicity_pairs": 29,
+    "off_carrier_vertices": 184,
+    "fixtures": [
+      {
+        "n": 5,
+        "k": 1,
+        "walls": [],
+        "insensitive_cylinder_vertices": []
+      },
+      {
+        "n": 5,
+        "k": 2,
+        "walls": [
+          {
+            "wall_i": 1,
+            "sensitive_integer_drop_sum": 2,
+            "events": [
+              {
+                "ray": [
+                  4,
+                  4,
+                  1
+                ],
+                "nth_cost": 4,
+                "carrier_head_cost": 5,
+                "Z_moment_before": 10,
+                "Z_moment_after": 6,
+                "drop": 4,
+                "sensitive": false
+              },
+              {
+                "ray": [
+                  3,
+                  3,
+                  1
+                ],
+                "nth_cost": 3,
+                "carrier_head_cost": 4,
+                "Z_moment_before": 6,
+                "Z_moment_after": 3,
+                "drop": 3,
+                "sensitive": false
+              },
+              {
+                "ray": [
+                  1,
+                  1,
+                  1
+                ],
+                "nth_cost": 2,
+                "carrier_head_cost": 2,
+                "Z_moment_before": 3,
+                "Z_moment_after": 1,
+                "drop": 2,
+                "incident_bases_checked": 3,
+                "sensitive": true
+              },
+              {
+                "ray": [
+                  1,
+                  1,
+                  2
+                ],
+                "nth_cost": 2,
+                "carrier_head_cost": 3,
+                "Z_moment_before": 1,
+                "Z_moment_after": 0,
+                "drop": 1,
+                "sensitive": false
+              }
+            ]
+          }
+        ],
+        "insensitive_cylinder_vertices": [
+          {
+            "ray": [
+              1,
+              1,
+              2
+            ],
+            "nth_cost": 2,
+            "carrier_head_cost": 3,
+            "Z_moment_before": 1,
+            "Z_moment_after": 0,
+            "drop": 1,
+            "sensitive": false
+          },
+          {
+            "ray": [
+              3,
+              3,
+              1
+            ],
+            "nth_cost": 3,
+            "carrier_head_cost": 4,
+            "Z_moment_before": 6,
+            "Z_moment_after": 3,
+            "drop": 3,
+            "sensitive": false
+          },
+          {
+            "ray": [
+              4,
+              4,
+              1
+            ],
+            "nth_cost": 4,
+            "carrier_head_cost": 5,
+            "Z_moment_before": 10,
+            "Z_moment_after": 6,
+            "drop": 4,
+            "sensitive": false
+          }
+        ]
+      },
+      {
+        "n": 6,
+        "k": 2,
+        "walls": [
+          {
+            "wall_i": 1,
+            "sensitive_integer_drop_sum": 5,
+            "events": [
+              {
+                "ray": [
+                  5,
+                  5,
+                  1
+                ],
+                "nth_cost": 5,
+                "carrier_head_cost": 6,
+                "Z_moment_before": 15,
+                "Z_moment_after": 10,
+                "drop": 5,
+                "sensitive": false
+              },
+              {
+                "ray": [
+                  4,
+                  4,
+                  1
+                ],
+                "nth_cost": 4,
+                "carrier_head_cost": 5,
+                "Z_moment_before": 10,
+                "Z_moment_after": 6,
+                "drop": 4,
+                "sensitive": false
+              },
+              {
+                "ray": [
+                  2,
+                  2,
+                  1
+                ],
+                "nth_cost": 3,
+                "carrier_head_cost": 3,
+                "Z_moment_before": 6,
+                "Z_moment_after": 4,
+                "drop": 2,
+                "incident_bases_checked": 3,
+                "sensitive": true
+              },
+              {
+                "ray": [
+                  1,
+                  1,
+                  1
+                ],
+                "nth_cost": 2,
+                "carrier_head_cost": 2,
+                "Z_moment_before": 4,
+                "Z_moment_after": 1,
+                "drop": 3,
+                "incident_bases_checked": 5,
+                "sensitive": true
+              },
+              {
+                "ray": [
+                  1,
+                  1,
+                  3
+                ],
+                "nth_cost": 3,
+                "carrier_head_cost": 4,
+                "Z_moment_before": 1,
+                "Z_moment_after": 0,
+                "drop": 1,
+                "sensitive": false
+              }
+            ]
+          }
+        ],
+        "insensitive_cylinder_vertices": [
+          {
+            "ray": [
+              1,
+              1,
+              3
+            ],
+            "nth_cost": 3,
+            "carrier_head_cost": 4,
+            "Z_moment_before": 1,
+            "Z_moment_after": 0,
+            "drop": 1,
+            "sensitive": false
+          },
+          {
+            "ray": [
+              4,
+              4,
+              1
+            ],
+            "nth_cost": 4,
+            "carrier_head_cost": 5,
+            "Z_moment_before": 10,
+            "Z_moment_after": 6,
+            "drop": 4,
+            "sensitive": false
+          },
+          {
+            "ray": [
+              5,
+              5,
+              1
+            ],
+            "nth_cost": 5,
+            "carrier_head_cost": 6,
+            "Z_moment_before": 15,
+            "Z_moment_after": 10,
+            "drop": 5,
+            "sensitive": false
+          }
+        ]
+      },
+      {
+        "n": 8,
+        "k": 2,
+        "walls": [
+          {
+            "wall_i": 1,
+            "sensitive_integer_drop_sum": 14,
+            "events": [
+              {
+                "ray": [
+                  7,
+                  7,
+                  1
+                ],
+                "nth_cost": 7,
+                "carrier_head_cost": 8,
+                "Z_moment_before": 28,
+                "Z_moment_after": 21,
+                "drop": 7,
+                "sensitive": false
+              },
+              {
+                "ray": [
+                  6,
+                  6,
+                  1
+                ],
+                "nth_cost": 6,
+                "carrier_head_cost": 7,
+                "Z_moment_before": 21,
+                "Z_moment_after": 15,
+                "drop": 6,
+                "sensitive": false
+              },
+              {
+                "ray": [
+                  4,
+                  4,
+                  1
+                ],
+                "nth_cost": 5,
+                "carrier_head_cost": 5,
+                "Z_moment_before": 15,
+                "Z_moment_after": 11,
+                "drop": 4,
+                "incident_bases_checked": 3,
+                "sensitive": true
+              },
+              {
+                "ray": [
+                  2,
+                  2,
+                  1
+                ],
+                "nth_cost": 4,
+                "carrier_head_cost": 3,
+                "Z_moment_before": 11,
+                "Z_moment_after": 7,
+                "drop": 4,
+                "incident_bases_checked": 4,
+                "sensitive": true
+              },
+              {
+                "ray": [
+                  3,
+                  3,
+                  2
+                ],
+                "nth_cost": 6,
+                "carrier_head_cost": 5,
+                "Z_moment_before": 7,
+                "Z_moment_after": 4,
+                "drop": 3,
+                "incident_bases_checked": 4,
+                "sensitive": true
+              },
+              {
+                "ray": [
+                  2,
+                  2,
+                  3
+                ],
+                "nth_cost": 6,
+                "carrier_head_cost": 5,
+                "Z_moment_before": 4,
+                "Z_moment_after": 2,
+                "drop": 2,
+                "incident_bases_checked": 4,
+                "sensitive": true
+              },
+              {
+                "ray": [
+                  1,
+                  1,
+                  2
+                ],
+                "nth_cost": 3,
+                "carrier_head_cost": 3,
+                "Z_moment_before": 2,
+                "Z_moment_after": 1,
+                "drop": 1,
+                "incident_bases_checked": 3,
+                "sensitive": true
+              },
+              {
+                "ray": [
+                  1,
+                  1,
+                  4
+                ],
+                "nth_cost": 4,
+                "carrier_head_cost": 5,
+                "Z_moment_before": 1,
+                "Z_moment_after": 0,
+                "drop": 1,
+                "sensitive": false
+              }
+            ]
+          }
+        ],
+        "insensitive_cylinder_vertices": [
+          {
+            "ray": [
+              1,
+              1,
+              4
+            ],
+            "nth_cost": 4,
+            "carrier_head_cost": 5,
+            "Z_moment_before": 1,
+            "Z_moment_after": 0,
+            "drop": 1,
+            "sensitive": false
+          },
+          {
+            "ray": [
+              6,
+              6,
+              1
+            ],
+            "nth_cost": 6,
+            "carrier_head_cost": 7,
+            "Z_moment_before": 21,
+            "Z_moment_after": 15,
+            "drop": 6,
+            "sensitive": false
+          },
+          {
+            "ray": [
+              7,
+              7,
+              1
+            ],
+            "nth_cost": 7,
+            "carrier_head_cost": 8,
+            "Z_moment_before": 28,
+            "Z_moment_after": 21,
+            "drop": 7,
+            "sensitive": false
+          }
+        ]
+      },
+      {
+        "n": 8,
+        "k": 3,
+        "walls": [
+          {
+            "wall_i": 1,
+            "sensitive_integer_drop_sum": 5,
+            "events": [
+              {
+                "ray": [
+                  2,
+                  4,
+                  1
+                ],
+                "nth_cost": 4,
+                "carrier_head_cost": 5,
+                "Z_moment_before": 13,
+                "Z_moment_after": 7,
+                "drop": 6,
+                "sensitive": false
+              },
+              {
+                "ray": [
+                  1,
+                  2,
+                  1
+                ],
+                "nth_cost": 3,
+                "carrier_head_cost": 3,
+                "Z_moment_before": 7,
+                "Z_moment_after": 4,
+                "drop": 3,
+                "incident_bases_checked": 3,
+                "sensitive": true
+              },
+              {
+                "ray": [
+                  1,
+                  2,
+                  2
+                ],
+                "nth_cost": 4,
+                "carrier_head_cost": 4,
+                "Z_moment_before": 4,
+                "Z_moment_after": 2,
+                "drop": 2,
+                "incident_bases_checked": 3,
+                "sensitive": true
+              },
+              {
+                "ray": [
+                  1,
+                  2,
+                  3
+                ],
+                "nth_cost": 4,
+                "carrier_head_cost": 5,
+                "Z_moment_before": 2,
+                "Z_moment_after": 1,
+                "drop": 1,
+                "sensitive": false
+              }
+            ]
+          },
+          {
+            "wall_i": 2,
+            "sensitive_integer_drop_sum": 5,
+            "events": [
+              {
+                "ray": [
+                  4,
+                  2,
+                  1
+                ],
+                "nth_cost": 4,
+                "carrier_head_cost": 5,
+                "Z_moment_before": 13,
+                "Z_moment_after": 7,
+                "drop": 6,
+                "sensitive": false
+              },
+              {
+                "ray": [
+                  2,
+                  1,
+                  1
+                ],
+                "nth_cost": 3,
+                "carrier_head_cost": 3,
+                "Z_moment_before": 7,
+                "Z_moment_after": 4,
+                "drop": 3,
+                "incident_bases_checked": 3,
+                "sensitive": true
+              },
+              {
+                "ray": [
+                  2,
+                  1,
+                  2
+                ],
+                "nth_cost": 4,
+                "carrier_head_cost": 4,
+                "Z_moment_before": 4,
+                "Z_moment_after": 2,
+                "drop": 2,
+                "incident_bases_checked": 3,
+                "sensitive": true
+              },
+              {
+                "ray": [
+                  2,
+                  1,
+                  3
+                ],
+                "nth_cost": 4,
+                "carrier_head_cost": 5,
+                "Z_moment_before": 2,
+                "Z_moment_after": 1,
+                "drop": 1,
+                "sensitive": false
+              }
+            ]
+          }
+        ],
+        "insensitive_cylinder_vertices": [
+          {
+            "ray": [
+              1,
+              2,
+              3
+            ],
+            "nth_cost": 4,
+            "carrier_head_cost": 5,
+            "Z_moment_before": 2,
+            "Z_moment_after": 1,
+            "drop": 1,
+            "sensitive": false
+          },
+          {
+            "ray": [
+              2,
+              1,
+              3
+            ],
+            "nth_cost": 4,
+            "carrier_head_cost": 5,
+            "Z_moment_before": 2,
+            "Z_moment_after": 1,
+            "drop": 1,
+            "sensitive": false
+          },
+          {
+            "ray": [
+              2,
+              4,
+              1
+            ],
+            "nth_cost": 4,
+            "carrier_head_cost": 5,
+            "Z_moment_before": 13,
+            "Z_moment_after": 7,
+            "drop": 6,
+            "sensitive": false
+          },
+          {
+            "ray": [
+              4,
+              2,
+              1
+            ],
+            "nth_cost": 4,
+            "carrier_head_cost": 5,
+            "Z_moment_before": 13,
+            "Z_moment_after": 7,
+            "drop": 6,
+            "sensitive": false
+          }
+        ]
+      },
+      {
+        "n": 8,
+        "k": 4,
+        "walls": [
+          {
+            "wall_i": 1,
+            "sensitive_integer_drop_sum": 0,
+            "events": [
+              {
+                "ray": [
+                  1,
+                  3,
+                  1
+                ],
+                "nth_cost": 3,
+                "carrier_head_cost": 4,
+                "Z_moment_before": 9,
+                "Z_moment_after": 4,
+                "drop": 5,
+                "sensitive": false
+              },
+              {
+                "ray": [
+                  1,
+                  3,
+                  6
+                ],
+                "nth_cost": 6,
+                "carrier_head_cost": 9,
+                "Z_moment_before": 1,
+                "Z_moment_after": 0,
+                "drop": 1,
+                "sensitive": false
+              }
+            ]
+          },
+          {
+            "wall_i": 2,
+            "sensitive_integer_drop_sum": 0,
+            "events": [
+              {
+                "ray": [
+                  7,
+                  7,
+                  1
+                ],
+                "nth_cost": 7,
+                "carrier_head_cost": 15,
+                "Z_moment_before": 28,
+                "Z_moment_after": 21,
+                "drop": 7,
+                "sensitive": false
+              },
+              {
+                "ray": [
+                  6,
+                  6,
+                  1
+                ],
+                "nth_cost": 6,
+                "carrier_head_cost": 13,
+                "Z_moment_before": 21,
+                "Z_moment_after": 15,
+                "drop": 6,
+                "sensitive": false
+              },
+              {
+                "ray": [
+                  4,
+                  4,
+                  1
+                ],
+                "nth_cost": 5,
+                "carrier_head_cost": 9,
+                "Z_moment_before": 15,
+                "Z_moment_after": 11,
+                "drop": 4,
+                "sensitive": false
+              },
+              {
+                "ray": [
+                  3,
+                  3,
+                  1
+                ],
+                "nth_cost": 4,
+                "carrier_head_cost": 7,
+                "Z_moment_before": 11,
+                "Z_moment_after": 8,
+                "drop": 3,
+                "sensitive": false
+              },
+              {
+                "ray": [
+                  3,
+                  3,
+                  2
+                ],
+                "nth_cost": 6,
+                "carrier_head_cost": 8,
+                "Z_moment_before": 8,
+                "Z_moment_after": 5,
+                "drop": 3,
+                "sensitive": false
+              },
+              {
+                "ray": [
+                  1,
+                  1,
+                  1
+                ],
+                "nth_cost": 2,
+                "carrier_head_cost": 3,
+                "Z_moment_before": 5,
+                "Z_moment_after": 3,
+                "drop": 2,
+                "sensitive": false
+              },
+              {
+                "ray": [
+                  1,
+                  1,
+                  2
+                ],
+                "nth_cost": 3,
+                "carrier_head_cost": 4,
+                "Z_moment_before": 3,
+                "Z_moment_after": 1,
+                "drop": 2,
+                "sensitive": false
+              },
+              {
+                "ray": [
+                  1,
+                  1,
+                  4
+                ],
+                "nth_cost": 4,
+                "carrier_head_cost": 6,
+                "Z_moment_before": 1,
+                "Z_moment_after": 0,
+                "drop": 1,
+                "sensitive": false
+              }
+            ]
+          },
+          {
+            "wall_i": 3,
+            "sensitive_integer_drop_sum": 0,
+            "events": [
+              {
+                "ray": [
+                  3,
+                  1,
+                  1
+                ],
+                "nth_cost": 3,
+                "carrier_head_cost": 4,
+                "Z_moment_before": 9,
+                "Z_moment_after": 4,
+                "drop": 5,
+                "sensitive": false
+              },
+              {
+                "ray": [
+                  3,
+                  1,
+                  6
+                ],
+                "nth_cost": 6,
+                "carrier_head_cost": 9,
+                "Z_moment_before": 1,
+                "Z_moment_after": 0,
+                "drop": 1,
+                "sensitive": false
+              }
+            ]
+          }
+        ],
+        "insensitive_cylinder_vertices": [
+          {
+            "ray": [
+              1,
+              1,
+              1
+            ],
+            "nth_cost": 2,
+            "carrier_head_cost": 3,
+            "Z_moment_before": 5,
+            "Z_moment_after": 3,
+            "drop": 2,
+            "sensitive": false
+          },
+          {
+            "ray": [
+              1,
+              1,
+              2
+            ],
+            "nth_cost": 3,
+            "carrier_head_cost": 4,
+            "Z_moment_before": 3,
+            "Z_moment_after": 1,
+            "drop": 2,
+            "sensitive": false
+          },
+          {
+            "ray": [
+              1,
+              1,
+              4
+            ],
+            "nth_cost": 4,
+            "carrier_head_cost": 6,
+            "Z_moment_before": 1,
+            "Z_moment_after": 0,
+            "drop": 1,
+            "sensitive": false
+          },
+          {
+            "ray": [
+              1,
+              3,
+              1
+            ],
+            "nth_cost": 3,
+            "carrier_head_cost": 4,
+            "Z_moment_before": 9,
+            "Z_moment_after": 4,
+            "drop": 5,
+            "sensitive": false
+          },
+          {
+            "ray": [
+              1,
+              3,
+              6
+            ],
+            "nth_cost": 6,
+            "carrier_head_cost": 9,
+            "Z_moment_before": 1,
+            "Z_moment_after": 0,
+            "drop": 1,
+            "sensitive": false
+          },
+          {
+            "ray": [
+              3,
+              1,
+              1
+            ],
+            "nth_cost": 3,
+            "carrier_head_cost": 4,
+            "Z_moment_before": 9,
+            "Z_moment_after": 4,
+            "drop": 5,
+            "sensitive": false
+          },
+          {
+            "ray": [
+              3,
+              1,
+              6
+            ],
+            "nth_cost": 6,
+            "carrier_head_cost": 9,
+            "Z_moment_before": 1,
+            "Z_moment_after": 0,
+            "drop": 1,
+            "sensitive": false
+          },
+          {
+            "ray": [
+              3,
+              3,
+              1
+            ],
+            "nth_cost": 4,
+            "carrier_head_cost": 7,
+            "Z_moment_before": 11,
+            "Z_moment_after": 8,
+            "drop": 3,
+            "sensitive": false
+          },
+          {
+            "ray": [
+              3,
+              3,
+              2
+            ],
+            "nth_cost": 6,
+            "carrier_head_cost": 8,
+            "Z_moment_before": 8,
+            "Z_moment_after": 5,
+            "drop": 3,
+            "sensitive": false
+          },
+          {
+            "ray": [
+              4,
+              4,
+              1
+            ],
+            "nth_cost": 5,
+            "carrier_head_cost": 9,
+            "Z_moment_before": 15,
+            "Z_moment_after": 11,
+            "drop": 4,
+            "sensitive": false
+          },
+          {
+            "ray": [
+              6,
+              6,
+              1
+            ],
+            "nth_cost": 6,
+            "carrier_head_cost": 13,
+            "Z_moment_before": 21,
+            "Z_moment_after": 15,
+            "drop": 6,
+            "sensitive": false
+          },
+          {
+            "ray": [
+              7,
+              7,
+              1
+            ],
+            "nth_cost": 7,
+            "carrier_head_cost": 15,
+            "Z_moment_before": 28,
+            "Z_moment_after": 21,
+            "drop": 7,
+            "sensitive": false
+          }
+        ]
+      }
+    ]
+  },
+  "general_denominator_controls": {
+    "denominator_polynomials": 9,
+    "carrier_field_sector_cases": 90,
+    "ordinary_s_pairs": 1323,
+    "cleared_relation_replays": 522,
+    "independent_generic_prefix_checks": 90,
+    "complete_generic_cone_equalities": 468,
+    "nonconstant_numerator_cases": 54,
+    "nonconstant_numerator_s_pairs": 666,
+    "nonconstant_numerator_prefix_checks": 324,
+    "nonconstant_numerator_cone_equalities": 360,
+    "numerator_fixtures": [
+      {
+        "P": [
+          1,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 0
+      },
+      {
+        "P": [
+          1,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 2
+      },
+      {
+        "P": [
+          1,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 3
+      },
+      {
+        "P": [
+          1,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          1
+        ],
+        "characteristic": 0
+      },
+      {
+        "P": [
+          1,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          1
+        ],
+        "characteristic": 2
+      },
+      {
+        "P": [
+          1,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          1
+        ],
+        "characteristic": 3
+      },
+      {
+        "P": [
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 0
+      },
+      {
+        "P": [
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 2
+      },
+      {
+        "P": [
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 3
+      },
+      {
+        "P": [
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          1
+        ],
+        "characteristic": 0
+      },
+      {
+        "P": [
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          1
+        ],
+        "characteristic": 2
+      },
+      {
+        "P": [
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          1
+        ],
+        "characteristic": 3
+      },
+      {
+        "P": [
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 0
+      },
+      {
+        "P": [
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 2
+      },
+      {
+        "P": [
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 3
+      },
+      {
+        "P": [
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          1
+        ],
+        "characteristic": 0
+      },
+      {
+        "P": [
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          1
+        ],
+        "characteristic": 2
+      },
+      {
+        "P": [
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          1
+        ],
+        "characteristic": 3
+      },
+      {
+        "P": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 0
+      },
+      {
+        "P": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 2
+      },
+      {
+        "P": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 3
+      },
+      {
+        "P": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "characteristic": 0
+      },
+      {
+        "P": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "characteristic": 2
+      },
+      {
+        "P": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "characteristic": 3
+      },
+      {
+        "P": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 0
+      },
+      {
+        "P": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 2
+      },
+      {
+        "P": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 3
+      },
+      {
+        "P": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "characteristic": 0
+      },
+      {
+        "P": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "characteristic": 2
+      },
+      {
+        "P": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "characteristic": 3
+      },
+      {
+        "P": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 0
+      },
+      {
+        "P": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 2
+      },
+      {
+        "P": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 3
+      },
+      {
+        "P": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "characteristic": 0
+      },
+      {
+        "P": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "characteristic": 2
+      },
+      {
+        "P": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "characteristic": 3
+      },
+      {
+        "P": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 0
+      },
+      {
+        "P": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 2
+      },
+      {
+        "P": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 3
+      },
+      {
+        "P": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "characteristic": 0
+      },
+      {
+        "P": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "characteristic": 2
+      },
+      {
+        "P": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "characteristic": 3
+      },
+      {
+        "P": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 0
+      },
+      {
+        "P": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 2
+      },
+      {
+        "P": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 3
+      },
+      {
+        "P": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "characteristic": 0
+      },
+      {
+        "P": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "characteristic": 2
+      },
+      {
+        "P": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "characteristic": 3
+      },
+      {
+        "P": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 0
+      },
+      {
+        "P": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 2
+      },
+      {
+        "P": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          1
+        ],
+        "characteristic": 3
+      },
+      {
+        "P": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "characteristic": 0
+      },
+      {
+        "P": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "characteristic": 2
+      },
+      {
+        "P": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "Q": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "characteristic": 3
+      }
+    ],
+    "fixtures": [
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          3,
+          3
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          3,
+          3
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          3,
+          3
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          1,
+          3
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          1,
+          3
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          1,
+          3
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          3,
+          3
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          3,
+          3
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          3,
+          3
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          1,
+          3
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          1,
+          3
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          1,
+          3
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          3,
+          3
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          3,
+          3
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          3,
+          3
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          1,
+          3
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          1,
+          3
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          1,
+          3
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          5,
+          4
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          5,
+          4
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          5,
+          4
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          3,
+          4
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          3,
+          4
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          3,
+          4
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "sector": 2,
+        "weights": [
+          5,
+          1,
+          4
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "sector": 2,
+        "weights": [
+          5,
+          1,
+          4
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "sector": 2,
+        "weights": [
+          5,
+          1,
+          4
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          5,
+          4
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          5,
+          4
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          5,
+          4
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          3,
+          4
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          3,
+          4
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          3,
+          4
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 2,
+        "weights": [
+          5,
+          1,
+          4
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 2,
+        "weights": [
+          5,
+          1,
+          4
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 2,
+        "weights": [
+          5,
+          1,
+          4
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          5,
+          4
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          5,
+          4
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          5,
+          4
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          3,
+          4
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          3,
+          4
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          3,
+          4
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "sector": 2,
+        "weights": [
+          5,
+          1,
+          4
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "sector": 2,
+        "weights": [
+          5,
+          1,
+          4
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "sector": 2,
+        "weights": [
+          5,
+          1,
+          4
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          9,
+          6
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          9,
+          6
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          9,
+          6
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          7,
+          6
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          7,
+          6
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          7,
+          6
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 2,
+        "weights": [
+          5,
+          5,
+          6
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 2,
+        "weights": [
+          5,
+          5,
+          6
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 2,
+        "weights": [
+          5,
+          5,
+          6
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 3,
+        "weights": [
+          7,
+          3,
+          6
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 3,
+        "weights": [
+          7,
+          3,
+          6
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 3,
+        "weights": [
+          7,
+          3,
+          6
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 4,
+        "weights": [
+          9,
+          1,
+          6
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 4,
+        "weights": [
+          9,
+          1,
+          6
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 4,
+        "weights": [
+          9,
+          1,
+          6
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          9,
+          6
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          9,
+          6
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          9,
+          6
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          7,
+          6
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          7,
+          6
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          7,
+          6
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 2,
+        "weights": [
+          5,
+          5,
+          6
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 2,
+        "weights": [
+          5,
+          5,
+          6
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 2,
+        "weights": [
+          5,
+          5,
+          6
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 3,
+        "weights": [
+          7,
+          3,
+          6
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 3,
+        "weights": [
+          7,
+          3,
+          6
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 3,
+        "weights": [
+          7,
+          3,
+          6
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 4,
+        "weights": [
+          9,
+          1,
+          6
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 4,
+        "weights": [
+          9,
+          1,
+          6
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "sector": 4,
+        "weights": [
+          9,
+          1,
+          6
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          9,
+          6
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          9,
+          6
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 0,
+        "weights": [
+          1,
+          9,
+          6
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          7,
+          6
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          7,
+          6
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 1,
+        "weights": [
+          3,
+          7,
+          6
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 2,
+        "weights": [
+          5,
+          5,
+          6
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 2,
+        "weights": [
+          5,
+          5,
+          6
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 2,
+        "weights": [
+          5,
+          5,
+          6
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 3,
+        "weights": [
+          7,
+          3,
+          6
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 3,
+        "weights": [
+          7,
+          3,
+          6
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 3,
+        "weights": [
+          7,
+          3,
+          6
+        ],
+        "characteristic": 3
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 4,
+        "weights": [
+          9,
+          1,
+          6
+        ],
+        "characteristic": 0
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 4,
+        "weights": [
+          9,
+          1,
+          6
+        ],
+        "characteristic": 2
+      },
+      {
+        "polynomial_low_to_high": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "sector": 4,
+        "weights": [
+          9,
+          1,
+          6
+        ],
+        "characteristic": 3
+      }
+    ],
+    "scope": "Monic degree-k integer denominators with constant one, sparse and geometric-sum cases, and coprime nonconstant monomial numerators of degree one or k, in several characteristics. The uniform proof covers all coprime Q/P regular at zero and infinity."
+  },
+  "exact_integer_rank_unrank": {
+    "exhaustive_small_prefix_counts": 18368,
+    "independent_sort_unrank_checks": 378,
+    "maximum_small_binary_queries": 29,
+    "large_closed_formula_checks": 7,
+    "large_witnesses": [
+      {
+        "rank": 1000000000000,
+        "k": 1,
+        "weights": [
+          1,
+          1,
+          1
+        ],
+        "monomial": [
+          333333333333,
+          0,
+          0
+        ],
+        "independent_check": "closed ordinary-degree Hilbert counts and direct within-degree order",
+        "refined_weights": [
+          1000000000001000000000000000000000000,
+          1000000000000000000000001000000000000,
+          1000000000000000000000000000000000001
+        ],
+        "cost": 333333333333333333333333000000000000000000000000,
+        "binary_rank_queries": 159
+      },
+      {
+        "rank": 1000000000000,
+        "k": 7,
+        "weights": [
+          1,
+          1,
+          1
+        ],
+        "monomial": [
+          0,
+          2,
+          111111111111
+        ],
+        "independent_check": "closed ordinary-degree Hilbert counts and direct within-degree order",
+        "refined_weights": [
+          1000000000001000000000000000000000000,
+          1000000000000000000000001000000000000,
+          1000000000000000000000000000000000001
+        ],
+        "cost": 111111111113000000000000000000000002111111111111,
+        "binary_rank_queries": 160
+      },
+      {
+        "rank": 1000000000000,
+        "k": 1000000,
+        "weights": [
+          1,
+          1,
+          1
+        ],
+        "monomial": [
+          3,
+          0,
+          1249995
+        ],
+        "independent_check": "closed ordinary-degree Hilbert counts and direct within-degree order",
+        "refined_weights": [
+          1000000000001000000000000000000000000,
+          1000000000000000000000001000000000000,
+          1000000000000000000000000000000000001
+        ],
+        "cost": 1249998000000000003000000000000000001249995,
+        "binary_rank_queries": 160
+      },
+      {
+        "rank": 1000000000000,
+        "k": 10000000000,
+        "weights": [
+          1,
+          1,
+          1
+        ],
+        "monomial": [
+          999999,
+          0,
+          0
+        ],
+        "independent_check": "closed ordinary-degree Hilbert counts and direct within-degree order",
+        "refined_weights": [
+          1000000000001000000000000000000000000,
+          1000000000000000000000001000000000000,
+          1000000000000000000000000000000000001
+        ],
+        "cost": 999999000000999999000000000000000000000000,
+        "binary_rank_queries": 160
+      },
+      {
+        "rank": 1000000000000000000,
+        "k": 10000000000000000,
+        "weights": [
+          1,
+          1,
+          1
+        ],
+        "monomial": [
+          999999999,
+          0,
+          0
+        ],
+        "independent_check": "closed ordinary-degree Hilbert counts and direct within-degree order",
+        "refined_weights": [
+          1000000000000000001000000000000000000000000000000000000,
+          1000000000000000000000000000000000001000000000000000000,
+          1000000000000000000000000000000000000000000000000000001
+        ],
+        "cost": 999999999000000000999999999000000000000000000000000000000000000,
+        "binary_rank_queries": 240
+      },
+      {
+        "rank": 1000000000000000000,
+        "k": 1000000000000000000000000,
+        "weights": [
+          1,
+          1,
+          1
+        ],
+        "monomial": [
+          999999999,
+          0,
+          0
+        ],
+        "independent_check": "closed ordinary-degree Hilbert counts and direct within-degree order",
+        "refined_weights": [
+          1000000000000000001000000000000000000000000000000000000,
+          1000000000000000000000000000000000001000000000000000000,
+          1000000000000000000000000000000000000000000000000000001
+        ],
+        "cost": 999999999000000000999999999000000000000000000000000000000000000,
+        "binary_rank_queries": 240
+      },
+      {
+        "rank": 1000000000000000123,
+        "k": 37,
+        "weights": [
+          1,
+          1,
+          1
+        ],
+        "monomial": [
+          16,
+          0,
+          25641025641025637
+        ],
+        "independent_check": "closed ordinary-degree Hilbert counts and direct within-degree order",
+        "refined_weights": [
+          1000000000000000370000000000000045633000000000001875996,
+          1000000000000000369000000000000045388000000000001860990,
+          1000000000000000369000000000000045387000000000001860868
+        ],
+        "cost": 25641025641025662461538461538467136769230769231364361564102564125088852,
+        "binary_rank_queries": 240
+      }
+    ],
+    "scope": "Exact integer costs and prescribed lex ties, generic rational-function quotients regular at zero and infinity only. Classical Euclidean floor sums; no bit-complexity, finite-special-sample or prime-log certification claim."
+  },
+  "uniform_family_bound": "O(n^2*log(n+1))",
   "unrestricted_G3_improved": false,
   "polynomial_lower_family_established": false,
   "novelty_established": false,
   "goal_complete": false,
   "source_sha256": {
-    "docs/pole_order_fans.md": "3d4e12a345b605e6e878d3b954f902e0e8b2e89ac6219c7b05ee4445f6acb284",
-    "scripts/run_pole_order_checks.py": "8cd61c82d7aecfc0b234a8f04c59d75d2bd45d5e4376458861280d5049933027",
+    "docs/pole_order_fans.md": "21d916d96358efea935e88a38dd469b35f5913c2a19308aa42fe52200eb583b9",
+    "scripts/run_pole_order_checks.py": "d5eb875676eee0e8b43defbd70b5450a246f1c88ffdc0d61259b1f7f7a76444f",
     "docs/extremal_initial_ideals.md": "6e84b6ea470841a89760a2e16080a9314ba747499b1a5a733460120fe501a92b",
     "docs/rational_shadow_bound.md": "09b6e5e19cb03825e9d2151680e557cdf384256c5392cf70b6aca388e488c1ca",
     "scripts/run_initial_cone_height_checks.py": "f804aff89da53a6139aed7cacc9fd802dee8fd8529ee48a0d240dd9740df3dab",
     "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
     "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
-    "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1"
+    "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
+    "scripts/run_algebraic_incidence_controls.py": "93e6f0e5d147da43cdfacc16e4419703c59993c10dc03199ef6385df4d420eeb"
   }
 }

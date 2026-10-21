@@ -7,7 +7,7 @@
   "goal_complete": false,
   "asymptotic_improvement_established_this_iteration": false,
   "novelty_established_this_iteration": false,
-  "note": "An actual growing-pole family now has exact all-characteristic generic selection and large-order fan stabilization, with a reduced special-sample counterfamily showing the scope is essential. A proved upper bound leaves a concrete intermediate parameter range. No unrestricted improvement, polynomial lower family, strongest-current priority or publication significance is established. The original goal remains active.",
+  "note": "The generic growing-pole route is now completely excluded as a source of polynomial amplification, including all coprime rational functions regular at zero and infinity. A sensitive-wall moment charge gives O(n^2*log(n+1)) uniformly in degree, and an exact integer-cost rank/unrank oracle avoids quotient matrices. Special samples retain actual rank dependencies; the unrestricted sharp-growth or separating-family objective, priority assessment and publication criteria remain unmet and active.",
   "relationship_to_previous_work": "New active objective with a higher completion bar. Previous goal records, lattice-shadow candidate, manuscripts and paused ML results are preserved as historical research.",
   "definitions": {
     "G_d_n": "Maximum number of monomial initial ideals of a colength-n ideal in d variables, over all fields.",
@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Preserve the unrestricted sharp-growth or polynomial-separation objective and every original acceptance criterion. The growing-pole rule now reduces a new actual family to coherent cuts on explicit Laurent strips. Count those cuts jointly for n^(3/4)<<k<(n-1)/2, proving a polynomial gain or a uniform quadratic exclusion; further small numerical sweeps are not the next task. Retain the prior coprime-circuit O(n^(7/3)) ceiling and completed-band exclusions. The unrestricted aggregate-incidence and strongest-primary-priority comparisons remain necessary; restricted upper bounds do not complete the goal.",
+  "next_proof_task": "Keep the full unrestricted G3 objective and every original criterion. Do not resume generic growing-pole parameter sweeps: the whole rational-function family regular at zero and infinity now has a uniform quadratic logarithmic bound. The unresolved algebraic information lies in non-generic quotient prefix ranks. Compare their faithful interpolation/approximant formulation with the inspected shifted-Popov primary framework before claiming a new algorithm or count. Seek either a genuine growing coherent-dependency lower family or an unrestricted collective-incidence theorem using budgets conditioned on where dependencies affect selection. The coprime-circuit and earlier shadow results remain preserved, and the strongest-current-priority audit remains necessary.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -141,7 +141,8 @@
     "Assess the uniform generic cyclic count against prior finite-group graded and lattice-prefix results. Its threshold split uses the classical Andrews bound; no failed keyword search establishes novelty. The generic intermediate parameter window is now closed, including m and r/m both growing. Distinguish the nonuniform-planar-base problem and unrestricted collective-incidence problem from this excluded generic family.",
     "Compare the all-weight tower sensitivity application with existing matroid sensitivity and modular lucky-prime work. Count the coherent high-column extensions subject to (O2), using actual tensor-circuit ranks. The cheap-coordinate coprime regions are integral; the equal-period coherent index-two control and its constant-fan lifts do not establish a distinct-prime count or arithmetic theorem there.",
     "Audit the completed-layer regional count (O5)--(O7) separately from the classical carrier/volume corollary (O8)--(O9). Contracting the retained span is a column-matroid operation, generally not an algebra quotient. Comparable-period polynomial amplification can have exponent at most 7/3, and the stated (1,q,q)-scale region at most 13/6; no such gain is proved. Count the remaining coherent extensions rather than enlarging the previous exact examples.",
-    "Assess the exact growing-pole carrier/stabilization combination against existing rational-curve Groebner and generic-evaluation literature. The Laurent reductions, rank truncation and previous threshold/shadow tools are classical. Characteristic independence concerns all coherent generic choices, not arbitrary column ranks or special samples. Do not claim a new unrestricted theorem or publication significance from this reduction."
+    "Assess the exact growing-pole carrier/stabilization combination against existing rational-curve Groebner and generic-evaluation literature. The Laurent reductions, rank truncation and previous threshold/shadow tools are classical. Characteristic independence concerns all coherent generic choices, not arbitrary column ranks or special samples. Do not claim a new unrestricted theorem or publication significance from this reduction.",
+    "The entire generic rational-function family regular at zero and infinity is now bounded by O(n^2*log(n+1)); its previous intermediate pole-order range is closed. Audit the exact sensitive-wall combination and random-access consequence separately from classical Laurent/evaluation/concavity/floor-sum inputs. For special samples, a shifted-approximant reduction must preserve actual rank dependencies, the exponent cost order and all relevant shifts; Theorem 1.3 of arXiv:1602.00651v1 is a single-shift coefficient-basis algorithm, not an imported all-fan count. No further small generic sweeps or unrestricted-success claim follows."
   ],
   "primary_sources": [
     {
@@ -725,6 +726,17 @@
       "url": "https://arxiv.org/html/2609.29227v1#S5.SS5",
       "version": "arXiv:2609.29227v1",
       "scope": "Theorem 4.7 with the surrounding higher-product reduction, and Section 5.5 explicit contractions to U_(2,4) outside characteristic two and Fano in characteristic two inspected as printed. These prove established nonregularity of the abstract three-circuit configuration; they do not assert coherence or a large monomial initial fan in the present generators. This adds to the earlier two-factor comparison, without a full classification audit."
+    },
+    {
+      "authors": "AtCoder Library",
+      "url": "https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp",
+      "scope": "The maintained primary implementation floor_sum_unsigned was inspected, including quotient extraction, transposed lattice count and modulus swap. It is an existing Euclidean floor-sum primitive, not a new project algorithm. Its fixed-width limits are not imported into the existing Python integer floor-sum routine."
+    },
+    {
+      "authors": "Jeannerod, Neiger, Schost and Villard",
+      "title": "Fast computation of minimal interpolation bases in Popov form for arbitrary shifts",
+      "url": "https://arxiv.org/html/1602.00651v1#S1.SS1",
+      "scope": "Section 1.1 module/Jordan data model, Problem 1, Definitions 1.1--1.2 and Theorem 1.3 statement inspected. The theorem assumes standard Jordan representation and computes an interpolation basis for a supplied shift. The full algorithm proof was not audited here, and no all-shift fan-count result or matching of special-sample exponent costs is imported."
     }
   ],
   "verification": {
@@ -1769,22 +1781,59 @@
     },
     "pole_order_research": {
       "command": "python3 -B scripts/run_pole_order_checks.py",
-      "report": "results/research/pole_order_checks.json",
       "status": "passed",
+      "report": "results/research/pole_order_checks.json",
       "source_hashes_verified": true,
       "counts": {
-        "cases": 176,
-        "ordinary_s_pairs": 3696,
-        "cleared_relation_replays": 1184,
-        "independent_carrier_rank_checks": 176,
-        "models": 9,
-        "independent_coefficient_greedy_checks": 940,
-        "unisolvent_evaluation_greedy_checks": 235,
-        "complete_characteristic_two_cone_equalities": 102,
-        "complete_cylinder_cone_equalities": 97,
-        "exhaustive_staircase_cone_tests": 58,
-        "special_sample_counterexamples": 3
+        "carrier": {
+          "cases": 176,
+          "ordinary_s_pairs": 3696,
+          "cleared_relation_replays": 1184,
+          "independent_carrier_rank_checks": 176
+        },
+        "generic_finite_quotients": {
+          "models": 9,
+          "independent_coefficient_greedy_checks": 940,
+          "unisolvent_evaluation_greedy_checks": 235,
+          "complete_characteristic_two_cone_equalities": 102,
+          "complete_cylinder_cone_equalities": 97,
+          "exhaustive_staircase_cone_tests": 58
+        },
+        "special_sample_counterexamples": {
+          "counterexamples": 3
+        },
+        "sensitive_wall_integer_budgets": {
+          "models": 6,
+          "sensitive_vertices": 12,
+          "insensitive_cylinder_vertex_equalities": 25,
+          "incident_completed_rectangles": 41,
+          "whole_wall_monotonicity_pairs": 29,
+          "off_carrier_vertices": 184
+        },
+        "general_denominator_controls": {
+          "denominator_polynomials": 9,
+          "carrier_field_sector_cases": 90,
+          "ordinary_s_pairs": 1323,
+          "cleared_relation_replays": 522,
+          "independent_generic_prefix_checks": 90,
+          "complete_generic_cone_equalities": 468,
+          "nonconstant_numerator_cases": 54,
+          "nonconstant_numerator_s_pairs": 666,
+          "nonconstant_numerator_prefix_checks": 324,
+          "nonconstant_numerator_cone_equalities": 360
+        },
+        "exact_integer_rank_unrank": {
+          "exhaustive_small_prefix_counts": 18368,
+          "independent_sort_unrank_checks": 378,
+          "maximum_small_binary_queries": 29,
+          "large_closed_formula_checks": 7
+        }
       },
+      "previous_report_blocks_preserved": [
+        "carrier",
+        "generic_finite_quotients",
+        "special_sample_counterexamples"
+      ],
       "build": {
         "command": "./build.sh",
         "status": "passed"
@@ -1795,7 +1844,7 @@
       }
     }
   },
-  "preservation": "Five explicitly privacy-reviewed public files change: a research note/checker/report, its README link, and this goal record. All 75 earlier continuations, the full original objective and success criteria, all 100 existing primary-source records, all 96 old source hashes outside README, and all 362 unlisted previously tracked files are preserved against 940c3c3. Core CLI/kernels/auditor, manuscripts/PDFs, earlier research and paused ML remain unchanged. Literature downloads, exploratory numerical samples, baselines and test logs stay ignored.",
+  "preservation": "Five explicitly privacy-reviewed existing public files change. All 76 prior continuations, the complete original objective and success criteria, all 100 prior primary-source records, all 96 old source hashes outside README and the two updated pole-model proof/checker sources, all three older exact pole report blocks, and all 362 unlisted previously tracked files remain unchanged against 648fe96. Core CLI/kernels/auditor, manuscripts/PDFs, prior research and paused ML are preserved. Exploratory work, proof audit, baselines and logs stay ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
@@ -1805,7 +1854,7 @@
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "fc7ef9d099769e955d9ff96c117fa449282a5ede8633eaab1c4a8a772a1afc22",
+    "README.md": "7bacf0588244826c7ba2948ed8dbb6c33845e5f67612d6a9f1fd5921035de0e1",
     "docs/extremal_initial_ideals.md": "6e84b6ea470841a89760a2e16080a9314ba747499b1a5a733460120fe501a92b",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
@@ -1902,8 +1951,8 @@
     "docs/cyclotomic_overlap.md": "24e156f7d5690c6211adb71fef4cfecaa318e1bcb1dc4821aac67891674bb4e3",
     "scripts/run_cyclotomic_overlap_checks.py": "fdbe0ab6e817d28b1de690b1ccae64fc64949e220bd8a6116b9dcc4ad3f0de49",
     "results/research/cyclotomic_overlap_checks.json": "c0d9fc1714ab6067e7d71773e26878f47ca6fa110a2baf906454da4b4493d462",
-    "docs/pole_order_fans.md": "3d4e12a345b605e6e878d3b954f902e0e8b2e89ac6219c7b05ee4445f6acb284",
-    "scripts/run_pole_order_checks.py": "8cd61c82d7aecfc0b234a8f04c59d75d2bd45d5e4376458861280d5049933027"
+    "docs/pole_order_fans.md": "21d916d96358efea935e88a38dd469b35f5913c2a19308aa42fe52200eb583b9",
+    "scripts/run_pole_order_checks.py": "d5eb875676eee0e8b43defbd70b5450a246f1c88ffdc0d61259b1f7f7a76444f"
   },
   "continuations": [
     {
@@ -6647,10 +6696,103 @@
       },
       "preservation": "Five explicitly privacy-reviewed public files change: a research note/checker/report, its README link, and this goal record. All 75 earlier continuations, the full original objective and success criteria, all 100 existing primary-source records, all 96 old source hashes outside README, and all 362 unlisted previously tracked files are preserved against 940c3c3. Core CLI/kernels/auditor, manuscripts/PDFs, earlier research and paused ML remain unchanged. Literature downloads, exploratory numerical samples, baselines and test logs stay ignored.",
       "scope_limit": "No sharp G3 result, actual polynomial lower separation, strongest-current priority or completed paper assessment. The original full goal remains active."
+    },
+    {
+      "title": "Uniform quadratic generic rational-function fans and exact integer-cost random access",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "Progress: 648fe96 established exact growing-pole carrier fans, generic characteristic independence, the n<=2*k+1 stabilization and a reduced special-sample counterfamily, leaving an intermediate range. Clean main, all 367 tracked files, 99 research hashes, 100 scoped primary-source records and 76 continuations were revalidated before this continuation.",
+      "progress_classification": "whole-family degree-independent exclusion via a sensitive-wall integer moment budget, a coefficient-independent rational-function extension and an exact polylogarithmic integer-cost research oracle",
+      "uniform_result": {
+        "proof": "docs/pole_order_fans.md",
+        "checker": "scripts/run_pole_order_checks.py",
+        "report": "results/research/pole_order_checks.json",
+        "scope": "Generic n-point quotients XY=1,P(X)*Z=Q(X), with coprime P,Q, degree P=k>=1, P(0) nonzero and degree Q<=k. The sampling parameters are algebraically independent over the coefficient field; every base-field characteristic is allowed.",
+        "coefficient_independence": "The entire generic fan depends only on n,k, not P,Q coefficients, roots or multiplicities. The two P endpoints determine every carrier head; after clearing the top denominator, coprimality cancels Q^C and a degree-<k numerator divisible by P must vanish. This extends the former pole-power model to rational functions regular at zero and infinity.",
+        "sensitive_wall_condition": "On A*alpha=B*beta=t0, A+B=k, the two strips have identical cost multisets. The wall can influence the finite prefix only when its nth cost T>=t0+gamma. Below this threshold the fan is locally that of the one generic cylinder.",
+        "new_moment_budget": "For every incident coherent basis at a sensitive weight, the common half-axis set times Z rows through floor(C/2) is strictly cheaper than T and independent. Thus k*(C+1)<=4*n and mu_Z<4*n^2/k. This bound is restricted to where the wall can actually affect selection.",
+        "whole_wall_count": "The minimum support function along gamma is concave with nonnegative integer slopes mu_Z. Every interior fan vertex gives a positive slope drop, since a two-dimensional exposed profile face cannot have constant mu_Z. All sensitive drops share one monotone budget, even if sensitivity is disconnected. There are <=4*n^2/k sensitive vertices per wall and <=4*n^2 in total.",
+        "uniform_family_bound": "g(I_n,P,Q)=O(n^2*log(n+1)), uniformly in denominator degree, coefficients and characteristic. The existing two-plane charge controls off-carrier and cylinder vertices. The former intermediate k window is closed for this entire generic family.",
+        "integer_cost_rank": "The rank of a cost prefix is an exact axis count plus two bounded Euclidean floor sums; generic finite quotient rank is min(n,R). This uses the existing integer floor-sum implementation and no quotient matrices.",
+        "integer_random_access": "For rank r<=n and positive integer weights of maximum W, clamp k to min(k,r), refine by r^3*w+(r^2,r,1), binary-search cost with exact ranks, and solve two bounded Diophantine equations. This uses O(log(r*W+1)^2) integer arithmetic operations after reading k, on O(log(r*W+1))-bit integers. It returns the monomial with increasing (cost,exponent-tuple) ties.",
+        "algorithm_scope": "Research oracle for generic rational-function quotients with the stated hypotheses and exact integer costs. It does not compute reduced-basis coefficients or interpolation modules, handle arbitrary special samples, replace the public smooth-number CLI, extend prime-log certification, or give a unit-cost bit-complexity bound.",
+        "preserved_scope_counterexample": "The earlier reduced f=(T-1)^k-2 example still refutes extending generic fan stabilization to arbitrary f. A proof for special samples needs actual interpolation dependencies, not the generic min(n,carrier rank) rule.",
+        "primary_boundary": "Euclidean floor sums, Laurent division, generic evaluation, support-function concavity and the earlier planar rank charge are existing inputs. The inspected Jeannerod--Neiger--Schost--Villard definitions and Theorem 1.3 compute a shifted interpolation basis with Jordan input; the exponent oracle is not claimed to improve that general-data algorithm. No exact current-priority or publication-significance conclusion is inferred.",
+        "unrestricted_G3_improved": false,
+        "polynomial_lower_family_established": false,
+        "novelty_established": false,
+        "goal_complete": false
+      },
+      "verification": {
+        "command": "python3 -B scripts/run_pole_order_checks.py",
+        "status": "passed",
+        "report": "results/research/pole_order_checks.json",
+        "source_hashes_verified": true,
+        "counts": {
+          "carrier": {
+            "cases": 176,
+            "ordinary_s_pairs": 3696,
+            "cleared_relation_replays": 1184,
+            "independent_carrier_rank_checks": 176
+          },
+          "generic_finite_quotients": {
+            "models": 9,
+            "independent_coefficient_greedy_checks": 940,
+            "unisolvent_evaluation_greedy_checks": 235,
+            "complete_characteristic_two_cone_equalities": 102,
+            "complete_cylinder_cone_equalities": 97,
+            "exhaustive_staircase_cone_tests": 58
+          },
+          "special_sample_counterexamples": {
+            "counterexamples": 3
+          },
+          "sensitive_wall_integer_budgets": {
+            "models": 6,
+            "sensitive_vertices": 12,
+            "insensitive_cylinder_vertex_equalities": 25,
+            "incident_completed_rectangles": 41,
+            "whole_wall_monotonicity_pairs": 29,
+            "off_carrier_vertices": 184
+          },
+          "general_denominator_controls": {
+            "denominator_polynomials": 9,
+            "carrier_field_sector_cases": 90,
+            "ordinary_s_pairs": 1323,
+            "cleared_relation_replays": 522,
+            "independent_generic_prefix_checks": 90,
+            "complete_generic_cone_equalities": 468,
+            "nonconstant_numerator_cases": 54,
+            "nonconstant_numerator_s_pairs": 666,
+            "nonconstant_numerator_prefix_checks": 324,
+            "nonconstant_numerator_cone_equalities": 360
+          },
+          "exact_integer_rank_unrank": {
+            "exhaustive_small_prefix_counts": 18368,
+            "independent_sort_unrank_checks": 378,
+            "maximum_small_binary_queries": 29,
+            "large_closed_formula_checks": 7
+          }
+        },
+        "previous_report_blocks_preserved": [
+          "carrier",
+          "generic_finite_quotients",
+          "special_sample_counterexamples"
+        ],
+        "build": {
+          "command": "./build.sh",
+          "status": "passed"
+        },
+        "smoke": {
+          "command": "python3 tests/test_smoke.py",
+          "status": "passed"
+        }
+      },
+      "preservation": "Five explicitly privacy-reviewed existing public files change. All 76 prior continuations, the complete original objective and success criteria, all 100 prior primary-source records, all 96 old source hashes outside README and the two updated pole-model proof/checker sources, all three older exact pole report blocks, and all 362 unlisted previously tracked files remain unchanged against 648fe96. Core CLI/kernels/auditor, manuscripts/PDFs, prior research and paused ML are preserved. Exploratory work, proof audit, baselines and logs stay ignored.",
+      "scope_limit": "The generic family is excluded; no unrestricted G3 improvement, polynomial lower separation, exact current-priority certificate or completed publication assessment is established. The original full objective remains active."
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "Exact generic growing-pole fans in every characteristic, stabilization to the cylinder for n<=2*k+1, and an all-parameter O(n^(7/3)*log(n+1)) family upper bound from the existing threshold/shadow theorem. An explicit reduced special-sample counterfamily prevents extending generic stabilization to arbitrary f. No unrestricted exponent or polynomial lower gain is established.",
-  "previous_goal_turn_classification": "No mathematical progress in the immediately preceding presentation-only turn: it confirmed existing credits removal without changing the research state. The last mathematical continuation, 940c3c3, remains verified progress. Clean main, all 364 tracked files, all 97 research hashes, 100 primary-source records and 75 continuations were revalidated before this continuation.",
+  "asymptotic_improvement_scope_this_iteration": "A coefficient- and degree-uniform O(n^2*log(n+1)) generic rational-function family bound closes its whole previous intermediate range. The same exact rank rule yields an integer-cost O(log(r*W+1)^2) arithmetic-operation random-access oracle. These restricted results do not improve unrestricted G3 or prove a polynomial lower separation.",
+  "previous_goal_turn_classification": "Progress: 648fe96 established exact growing-pole carrier fans, generic characteristic independence, the n<=2*k+1 stabilization and a reduced special-sample counterfamily, leaving an intermediate range. Clean main, all 367 tracked files, 99 research hashes, 100 scoped primary-source records and 76 continuations were revalidated before this continuation.",
   "uniform_relative_margin_hypothesis_status": "refuted_by_actual_all_field_quotients",
   "secondary_extremal_parameter_resolved": {
     "relative_margin_dimension_2": "Theta(n^-2)",
@@ -6922,7 +7064,7 @@
     "unrestricted_G3_changed": false,
     "novelty_established": false
   },
-  "scope_counterexamples_established_this_iteration": true,
+  "scope_counterexamples_established_this_iteration": false,
   "higher_seed_binomial_reduction": {
     "proof": "docs/higher_seed_binomial_reduction.md",
     "parameter_scope": "r>a>=1, degree-a nonzero homogeneous binary Q,H; prices (u,u,Z), 0<u<Z; complete tiers",
@@ -7221,7 +7363,7 @@
     "novelty_established": false,
     "goal_complete": false
   },
-  "algorithmic_consequence_established_this_iteration": false,
+  "algorithmic_consequence_established_this_iteration": true,
   "exact_vertex_oracle_established_this_iteration": false,
   "oracle_fan_enumeration": {
     "proof": "docs/oracle_fan_enumeration.md",
@@ -7385,17 +7527,21 @@
     "proof": "docs/pole_order_fans.md",
     "checker": "scripts/run_pole_order_checks.py",
     "report": "results/research/pole_order_checks.json",
-    "scope": "Generic n-point quotients of XY=1,(X-1)^k*Z=1 over F(t_1,...,t_n), every base-field characteristic. Numerical or arbitrary polynomial samples are not assumed generic.",
-    "carrier": "Exactly k positive carrier initial ideals (XY,X^a*Z,Y^b*Z), a+b=k+1. Standard positive Z layers are k consecutive Laurent powers. Endpoint coefficients and the pole-order independence proof work in all characteristics.",
-    "generic_selection": "Generic evaluation truncates carrier function rank at n. Select the n cheapest carrier-standard monomials. This determines the whole finite fan and proves characteristic independence, despite vanishing intermediate binomial coefficients.",
-    "stabilization": "If n<=2*k+1, the whole fan equals that of n generic points on XY=1. Before the first carrier head, 2*k+1 explicit independent canonical monomials are strictly cheaper. This is a sufficient threshold, not a claimed optimal one.",
-    "special_sample_counterfamily": "For k=n>=2 over Q, f=(T-1)^k-2 makes Z=1/2. The reduced quotient has exactly n initial ideals, whereas the generic cylinder has at least n+1. Thus the generic qualification cannot be dropped.",
-    "count_reduction": "The earlier two-plane threshold charge applies with XY=1: both coordinate-plane subalgebras generate the finite quotient, and the generic prefix hypothesis holds. The k-1 carrier walls give O(n*log(n+1)*(n+k^(4/3))). Stabilization gives O(n^2*log(n+1)) for k>=(n-1)/2, hence O(n^(7/3)*log(n+1)) uniformly.",
-    "remaining_window": "Any polynomial amplification in this family requires k/n^(3/4) unbounded and 2*k+1<n. A joint coherent-cut count in this range is unproved. No growth fit or lower amplification is inferred from finite counts.",
-    "primary_boundary": "Rechecked the scope of Onn--Sturmfels Corollary 5.4 and point maximum, and Babson--Onn--Thomas Corollary 2.5/proof. These classical volume and state results do not certify the priority of the stronger repository bound. No failed retrieval or unsuccessful search establishes novelty. Generic evaluation and Laurent reduction are classical.",
+    "scope": "Generic n-point quotients XY=1,P(X)*Z=Q(X), with coprime P,Q, degree P=k>=1, P(0) nonzero and degree Q<=k. The sampling parameters are algebraically independent over the coefficient field; every base-field characteristic is allowed.",
+    "coefficient_independence": "The entire generic fan depends only on n,k, not P,Q coefficients, roots or multiplicities. The two P endpoints determine every carrier head; after clearing the top denominator, coprimality cancels Q^C and a degree-<k numerator divisible by P must vanish. This extends the former pole-power model to rational functions regular at zero and infinity.",
+    "sensitive_wall_condition": "On A*alpha=B*beta=t0, A+B=k, the two strips have identical cost multisets. The wall can influence the finite prefix only when its nth cost T>=t0+gamma. Below this threshold the fan is locally that of the one generic cylinder.",
+    "new_moment_budget": "For every incident coherent basis at a sensitive weight, the common half-axis set times Z rows through floor(C/2) is strictly cheaper than T and independent. Thus k*(C+1)<=4*n and mu_Z<4*n^2/k. This bound is restricted to where the wall can actually affect selection.",
+    "whole_wall_count": "The minimum support function along gamma is concave with nonnegative integer slopes mu_Z. Every interior fan vertex gives a positive slope drop, since a two-dimensional exposed profile face cannot have constant mu_Z. All sensitive drops share one monotone budget, even if sensitivity is disconnected. There are <=4*n^2/k sensitive vertices per wall and <=4*n^2 in total.",
+    "uniform_family_bound": "g(I_n,P,Q)=O(n^2*log(n+1)), uniformly in denominator degree, coefficients and characteristic. The existing two-plane charge controls off-carrier and cylinder vertices. The former intermediate k window is closed for this entire generic family.",
+    "integer_cost_rank": "The rank of a cost prefix is an exact axis count plus two bounded Euclidean floor sums; generic finite quotient rank is min(n,R). This uses the existing integer floor-sum implementation and no quotient matrices.",
+    "integer_random_access": "For rank r<=n and positive integer weights of maximum W, clamp k to min(k,r), refine by r^3*w+(r^2,r,1), binary-search cost with exact ranks, and solve two bounded Diophantine equations. This uses O(log(r*W+1)^2) integer arithmetic operations after reading k, on O(log(r*W+1))-bit integers. It returns the monomial with increasing (cost,exponent-tuple) ties.",
+    "algorithm_scope": "Research oracle for generic rational-function quotients with the stated hypotheses and exact integer costs. It does not compute reduced-basis coefficients or interpolation modules, handle arbitrary special samples, replace the public smooth-number CLI, extend prime-log certification, or give a unit-cost bit-complexity bound.",
+    "preserved_scope_counterexample": "The earlier reduced f=(T-1)^k-2 example still refutes extending generic fan stabilization to arbitrary f. A proof for special samples needs actual interpolation dependencies, not the generic min(n,carrier rank) rule.",
+    "primary_boundary": "Euclidean floor sums, Laurent division, generic evaluation, support-function concavity and the earlier planar rank charge are existing inputs. The inspected Jeannerod--Neiger--Schost--Villard definitions and Theorem 1.3 compute a shifted interpolation basis with Jordan input; the exponent oracle is not claimed to improve that general-data algorithm. No exact current-priority or publication-significance conclusion is inferred.",
     "unrestricted_G3_improved": false,
     "polynomial_lower_family_established": false,
     "novelty_established": false,
     "goal_complete": false
-  }
+  },
+  "uniform_family_count_established_this_iteration": true
 }
