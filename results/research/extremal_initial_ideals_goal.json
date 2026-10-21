@@ -7,7 +7,7 @@
   "goal_complete": false,
   "asymptotic_improvement_established_this_iteration": false,
   "novelty_established_this_iteration": false,
-  "note": "The minimum algebraic wall threshold and universal direction spectrum are now verified, including the fixed-dimensional asymptotic. The free comparison shows a sharp quadratic difference in the first length at which an individual direction can appear. A new parameterized shadow bound reduces an improved G3 exponent to a cubic total primitive-wall-cost budget, but that budget is unproved and the existing unrestricted bound is unchanged. No paper-level novelty or publication endpoint is claimed; the full goal remains active.",
+  "note": "Parallel walls now have one faithful compulsory-core contraction and a rank-sensitive translated-ground bound. Both extreme cost regimes satisfy the cubic aggregate budget; the middle range remains open. A sharper tagged construction realizes every planar fan as q-parallel walls at exact residual rank R+1, and the known planar count rules out even a uniform O(r) cap. That superlinear obstruction is already implicit in earlier repository fan products. The contraction agrees with global optimization only locally at each q-wall, as 118 exact outside-wall cost gaps verify. No new unrestricted exponent, polynomially separating lower family, novelty claim or paper endpoint is established; the full impact goal stays active.",
   "relationship_to_previous_work": "New active objective with a higher completion bar. Previous goal records, lattice-shadow candidate, manuscripts and paused ML results are preserved as historical research.",
   "definitions": {
     "G_d_n": "Maximum number of monomial initial ideals of a colength-n ideal in d variables, over all fields.",
@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Keep the original sharp unrestricted G3 or realizable polynomial-separation endpoint and every publication criterion. Prove or refute the uniform aggregate V(I)=sum_e nu(q_e)=O(n^3*polylog(n)) for actual length-n quotient fans; the proved threshold/shadow reduction would then give exponent 12/5, but the cubic budget is not a theorem. Count all adjacencies, including multiple walls of one primitive direction, and preserve shared rank and multiplication information rather than summing one-direction minimum lengths independently. The actual three-pole family attains cubic cost and is a necessary control. Compare with the older square-root-incidence route and retain its rank/ideal-chain counterguards. The universal spectrum or sharp quadratic first-occurrence comparison alone cannot bound coexisting walls or complete this goal. Continue the strongest current primary-bound and precise priority audit, including planar spine/arrow frameworks and cotangent-weight consequences, before a novelty or paper-level claim. An actual infinite polynomially separating lower family remains an alternative.",
+  "next_proof_task": "Preserve the original sharp unrestricted G3 or actual polynomial-separation endpoint and every success criterion. Prove or refute the cubic collective V budget in the remaining middle range n^(3/5)<nu(q)<=n-n^(3/7), with rounding and actual undirected adjacency multiplicities retained. The two extreme portions are already controlled up to logarithms. Use joint rank or commuting-multiplication constraints across different compulsory cores in one quotient. Do not replace the forced-core matroid by a smaller algebra or assert support-function agreement at all weights: agreement is local at each wall and the saved outside-wall guards show strict gaps elsewhere. Do not assume p_I(q)=O(r), r=n-nu(q)+1: tagged planar embeddings and the earlier fan product give Theta(r*log(r+1)) lower families. The proved upper bound remains O(r^(4/3)*log(r+1)^2); improving one-direction bounds alone need not control the middle aggregate. Retain the three-pole cubic control, older square-root-incidence route and every counterguard; an actual infinite polynomially separating coherent lower family remains an alternative. Complete the strongest-current primary and precise-priority comparison before claiming novelty or a paper-level result. No partial cost-band bound, classical gluing corollary or draft completes this goal.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -857,6 +857,19 @@
       "title": "The cotangent space at a monomial ideal of the Hilbert scheme of points of an affine space",
       "url": "https://arxiv.org/html/math/0506575v1",
       "scope": "Introduction Section 1.1 and Section 4.1 standard-arrow definition read. Cotangent arrow translations are existing local structure. The later proofs and any quantitative implication for the minimum wall threshold or the aggregate V budget remain unassessed; no such implication or novelty is asserted."
+    },
+    {
+      "authors": "Dey",
+      "title": "Improved Bounds for Planar k-Sets and Related Problems",
+      "url": "https://link.springer.com/content/pdf/10.1007/PL00009354.pdf",
+      "publication": "Discrete and Computational Geometry 19 (1998), 373-382",
+      "scope": "Follow-up Section 4.1, Theorem 4.1, displayed polygon proof and following general-matroid application read. The classical O(m*r^(1/3)) bound applies to the one contracted matroid; no improved general parametric exponent is claimed."
+    },
+    {
+      "authors": "Eppstein",
+      "title": "Geometric Lower Bounds for Parametric Matroid Optimization",
+      "url": "https://ics.uci.edu/~eppstein/pubs/Epp-DCG-98.pdf",
+      "scope": "Section 4, Theorem 4 and its complete convex-token and perturbation proof rechecked. It supplies the classical reduction used with Dey; its arbitrary-matroid lower construction is not asserted to be a monomial quotient."
     }
   ],
   "verification": {
@@ -2288,24 +2301,69 @@
       },
       "source_hashes_verified": true,
       "scope": "Independent direct lattice threshold enumeration and unrestricted heap replay verify finite actual free walls. Socle unit-column maps replay commuting cyclic algebras, valid over every field. The free witness size need not be the minimum mu; the uniform inequalities rest on the proof, not fitted ratios. Saved fan wall costs and all three-pole allocation edges through n=32 are checked independently. The parameterized bound retains V; its cubic hypothesis, a new unrestricted exponent, current priority and a universal-prefix algorithm are not established."
+    },
+    "wall_coexistence": {
+      "command": "python3 -B scripts/run_wall_coexistence_checks.py",
+      "status": "passed",
+      "report": "results/research/wall_coexistence_checks.json",
+      "counts": {
+        "independent_relative_divisor_cardinalities": 3294,
+        "independent_core_relative_ground_covers": 288,
+        "independent_compulsory_core_pairs": 2763,
+        "independent_saturated_endpoint_pairs": 102,
+        "independent_complete_relative_ground_boxes": 16,
+        "residual_planar_greedy_support_queries": 2674,
+        "independent_residual_basis_eliminations": 19225,
+        "independent_exhaustive_residual_shadow_equalities": 86,
+        "independent_original_edge_minima_after_contraction": 442,
+        "independent_same_direction_contracted_shadows": 149,
+        "independent_original_parallel_edges": 221,
+        "independent_outside_wall_contraction_cost_gaps": 118,
+        "independent_socle_annihilation_edges": 54168,
+        "independent_actual_family_commuting_squares": 54036,
+        "independent_family_contracted_matrix_bases": 88,
+        "independent_near_saturation_direction_bands": 246,
+        "integer_planar_embedding_commuting_columns": 732,
+        "independent_planar_embedding_cyclic_columns": 1680,
+        "independent_planar_embedding_generator_annihilations": 112,
+        "independent_planar_border_cones": 172,
+        "independent_whole_embedded_cone_equalities": 344,
+        "independent_complete_planar_fan_embeddings": 61
+      },
+      "saved_actual_fans": 14,
+      "old_growing_family_fixtures": 8,
+      "complete_tagged_planar_fan_embeddings": 61,
+      "tested_characteristics": [
+        0,
+        2,
+        3,
+        5
+      ],
+      "build": {
+        "command": "./build.sh",
+        "status": "passed"
+      },
+      "smoke": {
+        "command": "python3 tests/test_smoke.py",
+        "status": "passed"
+      },
+      "source_hashes_verified": true,
+      "scope": "Uniform proofs use the fixed compulsory monomial core, a relative divisor cover, one rank-preserving matroid contraction, the published Dey bound and the translated arithmetic shadow estimate. The tagged construction embeds every planar fan over every field; its superlinear residual lower family uses the established rational generic planar count. Whole embedded cones are checked independently from quotient columns, including local, nonlocal and characteristic-dependent cases. The middle collective cost budget, an improved unrestricted exponent and exact priority remain unproved."
     }
   },
-  "preservation": "Nine explicitly privacy-reviewed public files integrate the pending wall-spectrum proof and the free comparison. All 85 prior continuation records, all 118 prior primary-source records, the full objective and success criteria, earlier report blocks, manuscripts/PDFs, core CLI/kernels and auditor, and paused ML remain preserved. All 367 tracked files outside the three changed tracked paths are byte-identical to 3073826. Baselines, logs and privacy records remain ignored.",
+  "preservation": "Six explicitly reviewed public files complete the pending coexistence note and add the exact planar embedding and local-scope guards. All 87 prior continuation records, all 120 prior primary-source records, the full objective and success criteria, previous report values, manuscripts/PDFs, core CLI/kernels and auditor, and paused ML remain preserved. All 373 tracked files outside the three changed tracked paths are byte-identical to 63de2b2. Baselines, logs and privacy records remain ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
     "docs/extremal_initial_ideals.md",
-    "docs/primitive_wall_spectrum.md",
-    "scripts/run_primitive_wall_checks.py",
-    "results/research/primitive_wall_checks.json",
-    "docs/free_wall_threshold.md",
-    "scripts/run_free_wall_checks.py",
-    "results/research/free_wall_threshold_checks.json",
+    "docs/wall_coexistence.md",
+    "scripts/run_wall_coexistence_checks.py",
+    "results/research/wall_coexistence_checks.json",
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "2f2bbd813e73926dbaf107f8b0661046d466ec86e3c88567297929d913955f90",
-    "docs/extremal_initial_ideals.md": "868d3168970168bbac0d7f54ede5bd6a6ac409924613ff24110cbf28e0fab144",
+    "README.md": "6c31e2685797cea7e188c9525034fa9b1cc7a32271b617ef0a2c306b5de359ba",
+    "docs/extremal_initial_ideals.md": "e7639ec629ae477a3d9a4c47436c1340838a90fc812fc70c28081eb058ae771f",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
     "results/research/profile_lattice_checks.json": "437b69bd81173c330b059d879df9f93281befb01e353f9e2c2e00f5a55746d17",
@@ -2411,7 +2469,10 @@
     "results/research/primitive_wall_checks.json": "b9d582e75ce261457a019ab69fdc7fa08df8a92d3aa9c20ee684c300114b0e9f",
     "docs/free_wall_threshold.md": "7a964bdbab0ca635669d89484bd7caa8332acb36e972fb55aafb6e51d1fe9513",
     "scripts/run_free_wall_checks.py": "0637266aa5b0c60eb2de874fa4f33c458600b36f27a9725fec9c72d34ee219ae",
-    "results/research/free_wall_threshold_checks.json": "05fae3629007b184559f046406e6695ae8898e9a58b20ae3ebf94801f833280d"
+    "results/research/free_wall_threshold_checks.json": "05fae3629007b184559f046406e6695ae8898e9a58b20ae3ebf94801f833280d",
+    "docs/wall_coexistence.md": "502b73f8c70a06da84b5de9ec59adcc3ea5d8cc9d8356b76875f0f96c91c4682",
+    "scripts/run_wall_coexistence_checks.py": "12efc209c9a0daacb8e50eebe65902ca019a78fb78098ecc3e79ecf585cae282",
+    "results/research/wall_coexistence_checks.json": "03f1314e133354199caa2748d72485517097228f5f622b4e9a5ea1b05d817d1e"
   },
   "continuations": [
     {
@@ -7899,10 +7960,175 @@
       "literature_followup": "Maclagan--Silversmith published Definition 3.2 and Theorem 2.6 with proof were rechecked for their planar and infinite-field hypotheses. Huibregtse local arrow structure is an additional priority lead, not an imported global V theorem. Existing socle and state geometry are retained as prior art.",
       "effect_on_next_action": "Keep the original sharp unrestricted G3 or realizable polynomial-separation endpoint and every publication criterion. Prove or refute the uniform aggregate V(I)=sum_e nu(q_e)=O(n^3*polylog(n)) for actual length-n quotient fans; the proved threshold/shadow reduction would then give exponent 12/5, but the cubic budget is not a theorem. Count all adjacencies, including multiple walls of one primitive direction, and preserve shared rank and multiplication information rather than summing one-direction minimum lengths independently. The actual three-pole family attains cubic cost and is a necessary control. Compare with the older square-root-incidence route and retain its rank/ideal-chain counterguards. The universal spectrum or sharp quadratic first-occurrence comparison alone cannot bound coexisting walls or complete this goal. Continue the strongest current primary-bound and precise priority audit, including planar spine/arrow frameworks and cotangent-weight consequences, before a novelty or paper-level claim. An actual infinite polynomially separating lower family remains an alternative.",
       "unrestricted_goal_complete": false
+    },
+    {
+      "title": "Contract compulsory wall cores and localize the collective budget to intermediate costs",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "The primitive-wall threshold and free-lattice comparison are saved with exact checkers and reports. Their collective V reduction remains explicitly conditional on an unproved cubic budget. All 108 existing research source hashes were checked; only the intentionally extended extremal overview differs. All 86 previous continuations and the original criteria are preserved.",
+      "progress_classification": "uniform_rank_preserving_parallel_wall_contraction_and_two_sided_cost_localization",
+      "prior_next_proof_task": "Keep the original sharp unrestricted G3 or realizable polynomial-separation endpoint and every publication criterion. Prove or refute the uniform aggregate V(I)=sum_e nu(q_e)=O(n^3*polylog(n)) for actual length-n quotient fans; the proved threshold/shadow reduction would then give exponent 12/5, but the cubic budget is not a theorem. Count all adjacencies, including multiple walls of one primitive direction, and preserve shared rank and multiplication information rather than summing one-direction minimum lengths independently. The actual three-pole family attains cubic cost and is a necessary control. Compare with the older square-root-incidence route and retain its rank/ideal-chain counterguards. The universal spectrum or sharp quadratic first-occurrence comparison alone cannot bound coexisting walls or complete this goal. Continue the strongest current primary-bound and precise priority audit, including planar spine/arrow frameworks and cotangent-weight consequences, before a novelty or paper-level claim. An actual infinite polynomially separating lower family remains an alternative.",
+      "structural_result": {
+        "proof": "docs/wall_coexistence.md",
+        "checker": "scripts/run_wall_coexistence_checks.py",
+        "report": "results/research/wall_coexistence_checks.json",
+        "compulsory_core": "Every endpoint of every q-parallel wall contains C_q=Div(q_plus) union Div(q_minus) minus the two tips.",
+        "single_contraction": "Rank r=n-nu(q)+1 on E(C_q,r), contained in at most six translates of V_r^3.",
+        "parallel_wall_bound": "O(min(r^(4/3)*L_r^2, r*(1+||q||_1^(1/3))*L_r)), L_r=1+log(r+1).",
+        "saturated_wall_bound": "At most one q-wall when nu(q)=n.",
+        "near_saturation_cell_bound": "O(n*R^(7/3)*log(n+1)*L_R^2) cells incident to a wall with n-R<nu(q)<=n.",
+        "sublinear_example": "R=floor(n^(3/4)) gives O(n^(11/4)*log(n+1)^3) for that part of the fan.",
+        "near_saturation_wall_cost": "V_R=O(n^2*R^(7/3)*log(n+1)*L_R^2); R=floor(n^(3/7)) gives O(n^3*log(n+1)^3) for that part only.",
+        "two_sided_cell_localization": "O(n^2*log(n+1)^3) cells are incident to a wall with nu(q)<=floor(n^(3/7)) or nu(q)>n-floor(n^(3/7)). A polynomial excess must have every incident cost in the middle.",
+        "two_sided_cubic_budget_localization": "The portions of V with nu(q)<=floor(n^(3/5)) and nu(q)>n-floor(n^(3/7)) both obey O(n^3*log(n+1)^3). No bound on the complementary middle portion is proved.",
+        "actual_lower_family": "n=a+b+2*m^2+m, (a,b)=(m^4+1,m^4+2), r=2*m^2+m+1, p_I(a,-b,0)=m+1.",
+        "rank_scope": "The compulsory core is independent in the original quotient. Its span is not claimed to be an ideal. The contraction is one vector matroid of rank r and must not be treated as a length-r algebra or replaced by a sum of restriction polytopes.",
+        "classical_boundary": "The O(m*r^(1/3)) parametric-matroid theorem is published by Dey, using the Eppstein convex-token reduction. The arithmetic alternative is the translated version of the existing rational-shadow argument. Exact priority of the common-core reduction and its simultaneous-wall consequences remains unassessed.",
+        "unrestricted_G3_improved": false,
+        "polynomial_lower_separation_proved": false,
+        "full_cubic_wall_budget_proved": false,
+        "novelty_established": false,
+        "goal_complete": false
+      },
+      "verification": {
+        "command": "python3 -B scripts/run_wall_coexistence_checks.py",
+        "status": "passed",
+        "counts": {
+          "independent_relative_divisor_cardinalities": 3294,
+          "independent_core_relative_ground_covers": 288,
+          "independent_compulsory_core_pairs": 2763,
+          "independent_saturated_endpoint_pairs": 102,
+          "independent_complete_relative_ground_boxes": 16,
+          "residual_planar_greedy_support_queries": 2674,
+          "independent_residual_basis_eliminations": 19225,
+          "independent_exhaustive_residual_shadow_equalities": 86,
+          "independent_original_edge_minima_after_contraction": 442,
+          "independent_same_direction_contracted_shadows": 149,
+          "independent_original_parallel_edges": 221,
+          "independent_socle_annihilation_edges": 54168,
+          "independent_actual_family_commuting_squares": 54036,
+          "independent_family_contracted_matrix_bases": 88,
+          "independent_near_saturation_direction_bands": 246
+        },
+        "actual_complete_saved_fans": 14,
+        "infinite_family_finite_controls": 8,
+        "build": {
+          "command": "./build.sh",
+          "status": "passed"
+        },
+        "smoke": {
+          "command": "python3 tests/test_smoke.py",
+          "status": "passed"
+        },
+        "source_hashes_verified": true,
+        "scope": "The common core, rank-sized relative cover, residual shadow injection, translated arithmetic bound and cost-band consequences have uniform written proofs. Finite controls check containment without assuming ideal realizability, replay actual quotient contractions, compare planar oracle hulls with exhaustive basis enumeration and verify a growing actual all-field socle family. They do not prove the missing middle-range budget, an unrestricted exponent or novelty."
+      },
+      "primary_comparison": [
+        {
+          "url": "https://link.springer.com/content/pdf/10.1007/PL00009354.pdf",
+          "scope": "Dey Section 4.1, Theorem 4.1, its displayed proof and the following general parametric-matroid application inspected in the publisher PDF; the exponent is classical."
+        },
+        {
+          "url": "https://ics.uci.edu/~eppstein/pubs/Epp-DCG-98.pdf",
+          "scope": "Section 4, Theorem 4 and its token-passing proof inspected, including perturbation and the rank/line counts. No new generic parametric bound is claimed."
+        }
+      ],
+      "effect_on_next_action": "Keep the original sharp unrestricted G3 or actual polynomial-separation endpoint and every success criterion. The full cubic collective wall-cost bound V(I)=sum_e nu(q_e)=O(n^3*polylog(n)) is still unproved. The compulsory-core theorem now controls all parallel walls of direction q through one rank-r contraction, r=n-nu(q)+1, on six translated hyperbolic crosses; use its actual rank without assuming an algebra quotient. The portions of V with nu(q)<=floor(n^(3/5)) and nu(q)>n-floor(n^(3/7)) are both cubic up to logarithms. The unresolved cost range is therefore n^(3/5)<nu(q)<=n-n^(3/7), with actual adjacency multiplicity retained. Seek a joint rank or multiplication budget for that middle range, or the full square-root-incidence budget; an actual infinite polynomially separating coherent lower family remains an alternative. The contraction itself loses multiplication and cannot justify applying G3(r); adding restriction polytopes is also invalid. The growing all-field family has Theta(sqrt(r)) parallel walls and rules out discarding residual rank. The three-pole family remains the cubic V control. Preserve the module valuation and original positive shift plane, all prior counterguards and every earlier proof/manuscript/kernel/auditor/paused ML result. Complete the strongest-current primary and precise-priority audit before novelty or a paper claim. No outbound messages or submissions. Partial cost-band bounds do not complete the goal.",
+      "unrestricted_goal_complete": false
+    },
+    {
+      "title": "Embed planar fans into parallel walls and enforce local contraction scope",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "Progress: 63de2b2 completed and checked the primitive wall spectrum, free comparison and parameterized wall-cost reduction. The current worktree also contained the unfinished compulsory-core contraction and a further continuation. Those were preserved, audited and independently rerun before adding the planar embedding and explicit local-scope guards.",
+      "progress_classification": "proved_all_order_planar_embedding_and_verified_local_only_forced_core_faithfulness",
+      "prior_next_proof_task": "Keep the original sharp unrestricted G3 or actual polynomial-separation endpoint and every success criterion. The full cubic collective wall-cost bound V(I)=sum_e nu(q_e)=O(n^3*polylog(n)) is still unproved. The compulsory-core theorem now controls all parallel walls of direction q through one rank-r contraction, r=n-nu(q)+1, on six translated hyperbolic crosses; use its actual rank without assuming an algebra quotient. The portions of V with nu(q)<=floor(n^(3/5)) and nu(q)>n-floor(n^(3/7)) are both cubic up to logarithms. The unresolved cost range is therefore n^(3/5)<nu(q)<=n-n^(3/7), with actual adjacency multiplicity retained. Seek a joint rank or multiplication budget for that middle range, or the full square-root-incidence budget; an actual infinite polynomially separating coherent lower family remains an alternative. The contraction itself loses multiplication and cannot justify applying G3(r); adding restriction polytopes is also invalid. The growing all-field family has Theta(sqrt(r)) parallel walls and rules out discarding residual rank. The three-pole family remains the cubic V control. Preserve the module valuation and original positive shift plane, all prior counterguards and every earlier proof/manuscript/kernel/auditor/paused ML result. Complete the strongest-current primary and precise-priority audit before novelty or a paper claim. No outbound messages or submissions. Partial cost-band bounds do not complete the goal.",
+      "planar_embedding": {
+        "proof": "docs/wall_coexistence.md#every-planar-fan-occurs-as-repeated-parallel-walls",
+        "checker": "scripts/run_wall_coexistence_checks.py",
+        "report": "results/research/wall_coexistence_checks.json",
+        "inputs": "Any colength-R planar ideal J in K[x,z], a monic pure-x annihilator f in J of degree s<=R, integers a>=R+1 and b>=1 with gcd(a,b)=1, and F=x^(a-s)*f.",
+        "actual_ideal": "H=(xy,yz,xF,y^(b+1),F-y^b,zJ) in K[x,y,z], over every field.",
+        "length_and_residual": "N=a+b+R; q=(a,-b,0) has minimum colength a+b and compulsory-core residual rank r=R+1.",
+        "all_global_initials": "in(H)=(xy,yz,x^(a+1),y^(b+1),z*in(J),in(x^a-y^b)) for every global monomial order.",
+        "full_fan_transfer": "g(H)=2*g(J); p_H(q)=g(J). Every planar cone meets the base comparison plane and both sides independently.",
+        "dimension_proof": "An exact tagged-module sequence has length R+a+1; adjoining the y-axis by a fiber product and identifying two independent socle classes gives length N. Leading inclusion and equality of lengths prove the all-order initial formula.",
+        "superlinear_residual_family": "Generic rational planar ideals give p_H(q)=Theta(r*log(r+1)). With a=R^2+1,b=R^2+2, N=2*R^2+R+3 and N-nu(q)=R. This refutes a uniform O(r) cap.",
+        "existing_product_boundary": "The superlinear lower bound is already implied by the earlier common-coordinate product in docs/extremal_initial_ideals.md: combine J with (x-y^b,y^(b+1)) and common f0=x^2*f. Its residual rank is R+s+3<=2R+3 and its q-wall count is g(J). The sharper formula here attains residual R+1; the asymptotic obstruction is not claimed as an independent new discovery.",
+        "finite_counterexample": {
+          "field": "Q",
+          "planar_length": 8,
+          "a": 9,
+          "b": 10,
+          "spatial_length": 27,
+          "residual_rank": 9,
+          "parallel_walls": 10,
+          "all_initial_ideals": 20
+        },
+        "unrestricted_G3_improved": false,
+        "polynomial_lower_separation_proved": false,
+        "novelty_established": false,
+        "goal_complete": false
+      },
+      "contraction_scope": {
+        "support_function_statement": "The forced-core and original minima agree on a neighborhood of each positive q-wall, because both adjacent global standard sets contain the core. Equality of exposed faces follows locally by directional derivatives.",
+        "invalid_extension": "They need not agree throughout the positive orthant; a global initial set away from the wall may omit the compulsory core.",
+        "independent_negative_controls": 118
+      },
+      "verification": {
+        "command": "python3 -B scripts/run_wall_coexistence_checks.py",
+        "status": "passed",
+        "report": "results/research/wall_coexistence_checks.json",
+        "counts": {
+          "independent_relative_divisor_cardinalities": 3294,
+          "independent_core_relative_ground_covers": 288,
+          "independent_compulsory_core_pairs": 2763,
+          "independent_saturated_endpoint_pairs": 102,
+          "independent_complete_relative_ground_boxes": 16,
+          "residual_planar_greedy_support_queries": 2674,
+          "independent_residual_basis_eliminations": 19225,
+          "independent_exhaustive_residual_shadow_equalities": 86,
+          "independent_original_edge_minima_after_contraction": 442,
+          "independent_same_direction_contracted_shadows": 149,
+          "independent_original_parallel_edges": 221,
+          "independent_outside_wall_contraction_cost_gaps": 118,
+          "independent_socle_annihilation_edges": 54168,
+          "independent_actual_family_commuting_squares": 54036,
+          "independent_family_contracted_matrix_bases": 88,
+          "independent_near_saturation_direction_bands": 246,
+          "integer_planar_embedding_commuting_columns": 732,
+          "independent_planar_embedding_cyclic_columns": 1680,
+          "independent_planar_embedding_generator_annihilations": 112,
+          "independent_planar_border_cones": 172,
+          "independent_whole_embedded_cone_equalities": 344,
+          "independent_complete_planar_fan_embeddings": 61
+        },
+        "saved_actual_fans": 14,
+        "old_growing_family_fixtures": 8,
+        "complete_tagged_planar_fan_embeddings": 61,
+        "tested_characteristics": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "build": {
+          "command": "./build.sh",
+          "status": "passed"
+        },
+        "smoke": {
+          "command": "python3 tests/test_smoke.py",
+          "status": "passed"
+        },
+        "source_hashes_verified": true,
+        "scope": "Uniform proofs use the fixed compulsory monomial core, a relative divisor cover, one rank-preserving matroid contraction, the published Dey bound and the translated arithmetic shadow estimate. The tagged construction embeds every planar fan over every field; its superlinear residual lower family uses the established rational generic planar count. Whole embedded cones are checked independently from quotient columns, including local, nonlocal and characteristic-dependent cases. The middle collective cost budget, an improved unrestricted exponent and exact priority remain unproved."
+      },
+      "effect_on_next_action": "Preserve the original sharp unrestricted G3 or actual polynomial-separation endpoint and every success criterion. Prove or refute the cubic collective V budget in the remaining middle range n^(3/5)<nu(q)<=n-n^(3/7), with rounding and actual undirected adjacency multiplicities retained. The two extreme portions are already controlled up to logarithms. Use joint rank or commuting-multiplication constraints across different compulsory cores in one quotient. Do not replace the forced-core matroid by a smaller algebra or assert support-function agreement at all weights: agreement is local at each wall and the saved outside-wall guards show strict gaps elsewhere. Do not assume p_I(q)=O(r), r=n-nu(q)+1: tagged planar embeddings and the earlier fan product give Theta(r*log(r+1)) lower families. The proved upper bound remains O(r^(4/3)*log(r+1)^2); improving one-direction bounds alone need not control the middle aggregate. Retain the three-pole cubic control, older square-root-incidence route and every counterguard; an actual infinite polynomially separating coherent lower family remains an alternative. Complete the strongest-current primary and precise-priority comparison before claiming novelty or a paper-level result. No partial cost-band bound, classical gluing corollary or draft completes this goal.",
+      "unrestricted_goal_complete": false
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "Sharp asymptotics for the universal primitive-wall direction spectrum; no improved unrestricted G3 exponent or polynomial lower separation.",
-  "previous_goal_turn_classification": "Progress: main 3073826 completed and independently verified the exact arithmetic parking valuation. The current worktree also held the unfinished primitive-wall proof, checker and its additional continuation; these were preserved, audited and rerun before integration. The new free-lattice comparison and collective wall-cost reduction build on the verified threshold, without changing the unrestricted exponent.",
+  "asymptotic_improvement_scope_this_iteration": "Uniform bounds for repeated parallel walls and two entire extreme-cost regions of every fan; the unrestricted G3 exponent and middle cost range remain unresolved.",
+  "previous_goal_turn_classification": "Progress: 63de2b2 completed and checked the primitive wall spectrum, free comparison and parameterized wall-cost reduction. The current worktree also contained the unfinished compulsory-core contraction and a further continuation. Those were preserved, audited and independently rerun before adding the planar embedding and explicit local-scope guards.",
   "uniform_relative_margin_hypothesis_status": "refuted_by_actual_all_field_quotients",
   "secondary_extremal_parameter_resolved": {
     "relative_margin_dimension_2": "Theta(n^-2)",
@@ -8823,5 +9049,61 @@
     "novelty_established": false,
     "goal_complete": false
   },
-  "conditional_wall_budget_reduction_established_this_iteration": true
+  "conditional_wall_budget_reduction_established_this_iteration": true,
+  "wall_coexistence": {
+    "proof": "docs/wall_coexistence.md",
+    "checker": "scripts/run_wall_coexistence_checks.py",
+    "report": "results/research/wall_coexistence_checks.json",
+    "compulsory_core": "Every endpoint of every q-parallel wall contains C_q=Div(q_plus) union Div(q_minus) minus the two tips.",
+    "single_contraction": "Rank r=n-nu(q)+1 on E(C_q,r), contained in at most six translates of V_r^3.",
+    "parallel_wall_bound": "O(min(r^(4/3)*L_r^2, r*(1+||q||_1^(1/3))*L_r)), L_r=1+log(r+1).",
+    "saturated_wall_bound": "At most one q-wall when nu(q)=n.",
+    "near_saturation_cell_bound": "O(n*R^(7/3)*log(n+1)*L_R^2) cells incident to a wall with n-R<nu(q)<=n.",
+    "sublinear_example": "R=floor(n^(3/4)) gives O(n^(11/4)*log(n+1)^3) for that part of the fan.",
+    "near_saturation_wall_cost": "V_R=O(n^2*R^(7/3)*log(n+1)*L_R^2); R=floor(n^(3/7)) gives O(n^3*log(n+1)^3) for that part only.",
+    "two_sided_cell_localization": "O(n^2*log(n+1)^3) cells are incident to a wall with nu(q)<=floor(n^(3/7)) or nu(q)>n-floor(n^(3/7)). A polynomial excess must have every incident cost in the middle.",
+    "two_sided_cubic_budget_localization": "The portions of V with nu(q)<=floor(n^(3/5)) and nu(q)>n-floor(n^(3/7)) both obey O(n^3*log(n+1)^3). No bound on the complementary middle portion is proved.",
+    "actual_lower_family": "n=a+b+2*m^2+m, (a,b)=(m^4+1,m^4+2), r=2*m^2+m+1, p_I(a,-b,0)=m+1.",
+    "rank_scope": "The compulsory core is independent in the original quotient. Its span is not claimed to be an ideal. The contraction is one vector matroid of rank r and must not be treated as a length-r algebra or replaced by a sum of restriction polytopes.",
+    "classical_boundary": "The O(m*r^(1/3)) parametric-matroid theorem is published by Dey, using the Eppstein convex-token reduction. The arithmetic alternative is the translated version of the existing rational-shadow argument. Exact priority of the common-core reduction and its simultaneous-wall consequences remains unassessed.",
+    "unrestricted_G3_improved": false,
+    "polynomial_lower_separation_proved": false,
+    "full_cubic_wall_budget_proved": false,
+    "novelty_established": false,
+    "goal_complete": false,
+    "planar_fan_embedding": {
+      "proof": "docs/wall_coexistence.md#every-planar-fan-occurs-as-repeated-parallel-walls",
+      "checker": "scripts/run_wall_coexistence_checks.py",
+      "report": "results/research/wall_coexistence_checks.json",
+      "inputs": "Any colength-R planar ideal J in K[x,z], a monic pure-x annihilator f in J of degree s<=R, integers a>=R+1 and b>=1 with gcd(a,b)=1, and F=x^(a-s)*f.",
+      "actual_ideal": "H=(xy,yz,xF,y^(b+1),F-y^b,zJ) in K[x,y,z], over every field.",
+      "length_and_residual": "N=a+b+R; q=(a,-b,0) has minimum colength a+b and compulsory-core residual rank r=R+1.",
+      "all_global_initials": "in(H)=(xy,yz,x^(a+1),y^(b+1),z*in(J),in(x^a-y^b)) for every global monomial order.",
+      "full_fan_transfer": "g(H)=2*g(J); p_H(q)=g(J). Every planar cone meets the base comparison plane and both sides independently.",
+      "dimension_proof": "An exact tagged-module sequence has length R+a+1; adjoining the y-axis by a fiber product and identifying two independent socle classes gives length N. Leading inclusion and equality of lengths prove the all-order initial formula.",
+      "superlinear_residual_family": "Generic rational planar ideals give p_H(q)=Theta(r*log(r+1)). With a=R^2+1,b=R^2+2, N=2*R^2+R+3 and N-nu(q)=R. This refutes a uniform O(r) cap.",
+      "existing_product_boundary": "The superlinear lower bound is already implied by the earlier common-coordinate product in docs/extremal_initial_ideals.md: combine J with (x-y^b,y^(b+1)) and common f0=x^2*f. Its residual rank is R+s+3<=2R+3 and its q-wall count is g(J). The sharper formula here attains residual R+1; the asymptotic obstruction is not claimed as an independent new discovery.",
+      "finite_counterexample": {
+        "field": "Q",
+        "planar_length": 8,
+        "a": 9,
+        "b": 10,
+        "spatial_length": 27,
+        "residual_rank": 9,
+        "parallel_walls": 10,
+        "all_initial_ideals": 20
+      },
+      "unrestricted_G3_improved": false,
+      "polynomial_lower_separation_proved": false,
+      "novelty_established": false,
+      "goal_complete": false
+    },
+    "local_support_scope": {
+      "support_function_statement": "The forced-core and original minima agree on a neighborhood of each positive q-wall, because both adjacent global standard sets contain the core. Equality of exposed faces follows locally by directional derivatives.",
+      "invalid_extension": "They need not agree throughout the positive orthant; a global initial set away from the wall may omit the compulsory core.",
+      "independent_negative_controls": 118
+    }
+  },
+  "wall_coexistence_reduction_established_this_iteration": true,
+  "parallel_fan_embedding_established_this_iteration": true
 }

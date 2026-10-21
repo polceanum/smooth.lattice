@@ -75,6 +75,11 @@ field. Its [comparison with free lattice sorting](docs/free_wall_threshold.md)
 shows that algebraic relations can make an individual comparison appear
 at a quadratically smaller length. These results do not bound how many
 walls coexist in one quotient; the unrestricted count remains open.
+A [compulsory-core contraction](docs/wall_coexistence.md) now bounds
+parallel wall multiplicity by its residual rank. A tagged construction
+also realizes every planar fan as parallel walls; generic rational planar
+ideals give multiplicity of order r log(r+1), ruling out a linear cap.
+The cubic total-cost proof is localized to intermediate wall costs.
 A [rational-plane transfer](docs/rational_plane_transfer.md) extends this
 arithmetic mechanism to every fixed dimension and arbitrary hyperbolic
 matroid profiles. It gives `G_4(n)=O(n^(33/7)*log(n+1)^(9/35))`,

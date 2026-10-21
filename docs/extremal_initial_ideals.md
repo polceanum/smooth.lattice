@@ -195,6 +195,24 @@ would imply exponent $12/5$ by its threshold/shadow reduction. The cubic
 budget is unproved; an actual three-pole family has $V(I)=\Theta(n^3)$.
 This is a precise collective proof obligation, not a changed unrestricted bound.
 
+The [parallel-wall contraction](wall_coexistence.md) now retains coexistence
+inside one quotient. Every endpoint of a wall normal to $q$ contains the
+same $\nu(q)-1$ compulsory monomials. Contracting this core leaves rank
+$r=n-\nu(q)+1$ on at most six translates of $V_r^3$, giving
+$O(r^{4/3}(1+\log(r+1))^2)$ parallel wall pieces by the published
+parametric-matroid bound. Together with the small-cost shadow estimate,
+this confines any polynomial excess to cells all of whose incident costs
+are between $n^{3/7}$ and $n-n^{3/7}$, up to rounding.
+The cubic total-cost budget is proved for its portions below $n^{3/5}$
+and above $n-n^{3/7}$; its middle portion remains unbounded by these
+arguments. A growing all-field socle family has $\Theta(\sqrt r)$
+parallel walls. More strongly, a tagged construction embeds every planar
+ideal's entire fan as parallel walls, with residual rank $r=R+1$ and
+exactly twice its number of initial ideals. Generic rational planar
+ideals therefore give $\Theta(r\log(r+1))$ parallel walls, so even a
+uniform $O(r)$ cap fails. The main exponent and exact-priority limits
+are unchanged.
+
 ## Finite field source comparison
 
 The full later primary version of Stigler and Zhang, *The Number of Gröbner
