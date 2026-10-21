@@ -1,0 +1,3848 @@
+{
+  "status": "passed",
+  "command": "python3 -B scripts/run_two_interaction_checks.py",
+  "counts": {
+    "full_rank_constant_index_support_lattices": 50,
+    "integer_recurrence_and_closed_column_equalities": 27200,
+    "full_prefix_ranks_and_coupled_system_equalities": 100,
+    "independent_macaulay_kernel_rows_replayed": 2880,
+    "independent_macaulay_prefix_ranks": 28,
+    "explicit_extra_relations_replayed": 32
+  },
+  "fixtures": [
+    {
+      "family": "independent",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 49,
+      "coupled_system_rank": 6,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false,
+      "independent_macaulay_rank": 49
+    },
+    {
+      "family": "independent",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 49,
+      "coupled_system_rank": 6,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false,
+      "independent_macaulay_rank": 49
+    },
+    {
+      "family": "independent",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 49,
+      "coupled_system_rank": 6,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false,
+      "independent_macaulay_rank": 49
+    },
+    {
+      "family": "independent",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 49,
+      "coupled_system_rank": 6,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false,
+      "independent_macaulay_rank": 49
+    },
+    {
+      "family": "repeated",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 48,
+      "coupled_system_rank": 5,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true,
+      "independent_macaulay_rank": 48
+    },
+    {
+      "family": "repeated",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 48,
+      "coupled_system_rank": 5,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true,
+      "independent_macaulay_rank": 48
+    },
+    {
+      "family": "repeated",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 48,
+      "coupled_system_rank": 5,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true,
+      "independent_macaulay_rank": 48
+    },
+    {
+      "family": "repeated",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 48,
+      "coupled_system_rank": 5,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true,
+      "independent_macaulay_rank": 48
+    },
+    {
+      "family": "characteristic_two",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 48,
+      "coupled_system_rank": 5,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false,
+      "independent_macaulay_rank": 48
+    },
+    {
+      "family": "characteristic_two",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 48,
+      "coupled_system_rank": 5,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true,
+      "independent_macaulay_rank": 48
+    },
+    {
+      "family": "characteristic_two",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 48,
+      "coupled_system_rank": 5,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false,
+      "independent_macaulay_rank": 48
+    },
+    {
+      "family": "characteristic_two",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 48,
+      "coupled_system_rank": 5,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false,
+      "independent_macaulay_rank": 48
+    },
+    {
+      "family": "first_test_only",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 48,
+      "coupled_system_rank": 5,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false,
+      "independent_macaulay_rank": 48
+    },
+    {
+      "family": "first_test_only",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 48,
+      "coupled_system_rank": 5,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false,
+      "independent_macaulay_rank": 48
+    },
+    {
+      "family": "first_test_only",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 48,
+      "coupled_system_rank": 5,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false,
+      "independent_macaulay_rank": 48
+    },
+    {
+      "family": "first_test_only",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 48,
+      "coupled_system_rank": 5,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false,
+      "independent_macaulay_rank": 48
+    },
+    {
+      "family": "mixed_coefficients",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 49,
+      "coupled_system_rank": 6,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false,
+      "independent_macaulay_rank": 49
+    },
+    {
+      "family": "mixed_coefficients",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 49,
+      "coupled_system_rank": 6,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false,
+      "independent_macaulay_rank": 49
+    },
+    {
+      "family": "mixed_coefficients",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 49,
+      "coupled_system_rank": 6,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false,
+      "independent_macaulay_rank": 49
+    },
+    {
+      "family": "mixed_coefficients",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 49,
+      "coupled_system_rank": 6,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false,
+      "independent_macaulay_rank": 49
+    },
+    {
+      "family": "independent",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 93,
+      "coupled_system_rank": 20,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false,
+      "independent_macaulay_rank": 93
+    },
+    {
+      "family": "independent",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 93,
+      "coupled_system_rank": 20,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false,
+      "independent_macaulay_rank": 93
+    },
+    {
+      "family": "independent",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 93,
+      "coupled_system_rank": 20,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false,
+      "independent_macaulay_rank": 93
+    },
+    {
+      "family": "independent",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 93,
+      "coupled_system_rank": 20,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false,
+      "independent_macaulay_rank": 93
+    },
+    {
+      "family": "repeated",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 92,
+      "coupled_system_rank": 19,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true,
+      "independent_macaulay_rank": 92
+    },
+    {
+      "family": "repeated",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 92,
+      "coupled_system_rank": 19,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true,
+      "independent_macaulay_rank": 92
+    },
+    {
+      "family": "repeated",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 92,
+      "coupled_system_rank": 19,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true,
+      "independent_macaulay_rank": 92
+    },
+    {
+      "family": "repeated",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 92,
+      "coupled_system_rank": 19,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true,
+      "independent_macaulay_rank": 92
+    },
+    {
+      "family": "characteristic_two",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 93,
+      "coupled_system_rank": 20,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "characteristic_two",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 92,
+      "coupled_system_rank": 19,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true
+    },
+    {
+      "family": "characteristic_two",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 93,
+      "coupled_system_rank": 20,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "characteristic_two",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 93,
+      "coupled_system_rank": 20,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "first_test_only",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 93,
+      "coupled_system_rank": 20,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "first_test_only",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 93,
+      "coupled_system_rank": 20,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "first_test_only",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 93,
+      "coupled_system_rank": 20,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "first_test_only",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 93,
+      "coupled_system_rank": 20,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "mixed_coefficients",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 93,
+      "coupled_system_rank": 20,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "mixed_coefficients",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 93,
+      "coupled_system_rank": 20,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "mixed_coefficients",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 93,
+      "coupled_system_rank": 20,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "mixed_coefficients",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 93,
+      "coupled_system_rank": 20,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "independent",
+      "r": 7,
+      "cutoff": 15,
+      "length": 256,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 10,
+      "selected_columns": 161,
+      "direct_rank": 153,
+      "coupled_system_rank": 42,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "independent",
+      "r": 7,
+      "cutoff": 15,
+      "length": 256,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 10,
+      "selected_columns": 161,
+      "direct_rank": 153,
+      "coupled_system_rank": 42,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "independent",
+      "r": 7,
+      "cutoff": 15,
+      "length": 256,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 10,
+      "selected_columns": 161,
+      "direct_rank": 153,
+      "coupled_system_rank": 42,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "independent",
+      "r": 7,
+      "cutoff": 15,
+      "length": 256,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 10,
+      "selected_columns": 161,
+      "direct_rank": 153,
+      "coupled_system_rank": 42,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "repeated",
+      "r": 7,
+      "cutoff": 15,
+      "length": 256,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 10,
+      "selected_columns": 161,
+      "direct_rank": 152,
+      "coupled_system_rank": 41,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true
+    },
+    {
+      "family": "repeated",
+      "r": 7,
+      "cutoff": 15,
+      "length": 256,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 10,
+      "selected_columns": 161,
+      "direct_rank": 152,
+      "coupled_system_rank": 41,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true
+    },
+    {
+      "family": "repeated",
+      "r": 7,
+      "cutoff": 15,
+      "length": 256,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 10,
+      "selected_columns": 161,
+      "direct_rank": 152,
+      "coupled_system_rank": 41,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true
+    },
+    {
+      "family": "repeated",
+      "r": 7,
+      "cutoff": 15,
+      "length": 256,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 10,
+      "selected_columns": 161,
+      "direct_rank": 152,
+      "coupled_system_rank": 41,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true
+    },
+    {
+      "family": "characteristic_two",
+      "r": 7,
+      "cutoff": 15,
+      "length": 256,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 10,
+      "selected_columns": 161,
+      "direct_rank": 153,
+      "coupled_system_rank": 42,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "characteristic_two",
+      "r": 7,
+      "cutoff": 15,
+      "length": 256,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 10,
+      "selected_columns": 161,
+      "direct_rank": 152,
+      "coupled_system_rank": 41,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true
+    },
+    {
+      "family": "characteristic_two",
+      "r": 7,
+      "cutoff": 15,
+      "length": 256,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 10,
+      "selected_columns": 161,
+      "direct_rank": 153,
+      "coupled_system_rank": 42,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "characteristic_two",
+      "r": 7,
+      "cutoff": 15,
+      "length": 256,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 10,
+      "selected_columns": 161,
+      "direct_rank": 153,
+      "coupled_system_rank": 42,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "first_test_only",
+      "r": 7,
+      "cutoff": 15,
+      "length": 256,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 10,
+      "selected_columns": 161,
+      "direct_rank": 153,
+      "coupled_system_rank": 42,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "first_test_only",
+      "r": 7,
+      "cutoff": 15,
+      "length": 256,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 10,
+      "selected_columns": 161,
+      "direct_rank": 153,
+      "coupled_system_rank": 42,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "first_test_only",
+      "r": 7,
+      "cutoff": 15,
+      "length": 256,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 10,
+      "selected_columns": 161,
+      "direct_rank": 153,
+      "coupled_system_rank": 42,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "first_test_only",
+      "r": 7,
+      "cutoff": 15,
+      "length": 256,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 10,
+      "selected_columns": 161,
+      "direct_rank": 153,
+      "coupled_system_rank": 42,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "mixed_coefficients",
+      "r": 7,
+      "cutoff": 15,
+      "length": 256,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 10,
+      "selected_columns": 161,
+      "direct_rank": 153,
+      "coupled_system_rank": 42,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "mixed_coefficients",
+      "r": 7,
+      "cutoff": 15,
+      "length": 256,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 10,
+      "selected_columns": 161,
+      "direct_rank": 153,
+      "coupled_system_rank": 42,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "mixed_coefficients",
+      "r": 7,
+      "cutoff": 15,
+      "length": 256,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 10,
+      "selected_columns": 161,
+      "direct_rank": 153,
+      "coupled_system_rank": 42,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "mixed_coefficients",
+      "r": 7,
+      "cutoff": 15,
+      "length": 256,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 10,
+      "selected_columns": 161,
+      "direct_rank": 153,
+      "coupled_system_rank": 42,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "independent",
+      "r": 9,
+      "cutoff": 19,
+      "length": 400,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 12,
+      "selected_columns": 252,
+      "direct_rank": 229,
+      "coupled_system_rank": 72,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "independent",
+      "r": 9,
+      "cutoff": 19,
+      "length": 400,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 12,
+      "selected_columns": 252,
+      "direct_rank": 229,
+      "coupled_system_rank": 72,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "independent",
+      "r": 9,
+      "cutoff": 19,
+      "length": 400,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 12,
+      "selected_columns": 252,
+      "direct_rank": 229,
+      "coupled_system_rank": 72,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "independent",
+      "r": 9,
+      "cutoff": 19,
+      "length": 400,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 12,
+      "selected_columns": 252,
+      "direct_rank": 229,
+      "coupled_system_rank": 72,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "repeated",
+      "r": 9,
+      "cutoff": 19,
+      "length": 400,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 12,
+      "selected_columns": 252,
+      "direct_rank": 228,
+      "coupled_system_rank": 71,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true
+    },
+    {
+      "family": "repeated",
+      "r": 9,
+      "cutoff": 19,
+      "length": 400,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 12,
+      "selected_columns": 252,
+      "direct_rank": 228,
+      "coupled_system_rank": 71,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true
+    },
+    {
+      "family": "repeated",
+      "r": 9,
+      "cutoff": 19,
+      "length": 400,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 12,
+      "selected_columns": 252,
+      "direct_rank": 228,
+      "coupled_system_rank": 71,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true
+    },
+    {
+      "family": "repeated",
+      "r": 9,
+      "cutoff": 19,
+      "length": 400,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 12,
+      "selected_columns": 252,
+      "direct_rank": 228,
+      "coupled_system_rank": 71,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true
+    },
+    {
+      "family": "characteristic_two",
+      "r": 9,
+      "cutoff": 19,
+      "length": 400,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 12,
+      "selected_columns": 252,
+      "direct_rank": 229,
+      "coupled_system_rank": 72,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "characteristic_two",
+      "r": 9,
+      "cutoff": 19,
+      "length": 400,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 12,
+      "selected_columns": 252,
+      "direct_rank": 228,
+      "coupled_system_rank": 71,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true
+    },
+    {
+      "family": "characteristic_two",
+      "r": 9,
+      "cutoff": 19,
+      "length": 400,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 12,
+      "selected_columns": 252,
+      "direct_rank": 229,
+      "coupled_system_rank": 72,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "characteristic_two",
+      "r": 9,
+      "cutoff": 19,
+      "length": 400,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 12,
+      "selected_columns": 252,
+      "direct_rank": 229,
+      "coupled_system_rank": 72,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "first_test_only",
+      "r": 9,
+      "cutoff": 19,
+      "length": 400,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 12,
+      "selected_columns": 252,
+      "direct_rank": 229,
+      "coupled_system_rank": 72,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "first_test_only",
+      "r": 9,
+      "cutoff": 19,
+      "length": 400,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 12,
+      "selected_columns": 252,
+      "direct_rank": 229,
+      "coupled_system_rank": 72,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "first_test_only",
+      "r": 9,
+      "cutoff": 19,
+      "length": 400,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 12,
+      "selected_columns": 252,
+      "direct_rank": 229,
+      "coupled_system_rank": 72,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "first_test_only",
+      "r": 9,
+      "cutoff": 19,
+      "length": 400,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 12,
+      "selected_columns": 252,
+      "direct_rank": 229,
+      "coupled_system_rank": 72,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "mixed_coefficients",
+      "r": 9,
+      "cutoff": 19,
+      "length": 400,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 12,
+      "selected_columns": 252,
+      "direct_rank": 229,
+      "coupled_system_rank": 72,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "mixed_coefficients",
+      "r": 9,
+      "cutoff": 19,
+      "length": 400,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 12,
+      "selected_columns": 252,
+      "direct_rank": 229,
+      "coupled_system_rank": 72,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "mixed_coefficients",
+      "r": 9,
+      "cutoff": 19,
+      "length": 400,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 12,
+      "selected_columns": 252,
+      "direct_rank": 229,
+      "coupled_system_rank": 72,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "mixed_coefficients",
+      "r": 9,
+      "cutoff": 19,
+      "length": 400,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 12,
+      "selected_columns": 252,
+      "direct_rank": 229,
+      "coupled_system_rank": 72,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "independent",
+      "r": 11,
+      "cutoff": 23,
+      "length": 576,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 14,
+      "selected_columns": 372,
+      "direct_rank": 321,
+      "coupled_system_rank": 110,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "independent",
+      "r": 11,
+      "cutoff": 23,
+      "length": 576,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 14,
+      "selected_columns": 372,
+      "direct_rank": 321,
+      "coupled_system_rank": 110,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "independent",
+      "r": 11,
+      "cutoff": 23,
+      "length": 576,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 14,
+      "selected_columns": 372,
+      "direct_rank": 321,
+      "coupled_system_rank": 110,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "independent",
+      "r": 11,
+      "cutoff": 23,
+      "length": 576,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 14,
+      "selected_columns": 372,
+      "direct_rank": 321,
+      "coupled_system_rank": 110,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "repeated",
+      "r": 11,
+      "cutoff": 23,
+      "length": 576,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 14,
+      "selected_columns": 372,
+      "direct_rank": 320,
+      "coupled_system_rank": 109,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true
+    },
+    {
+      "family": "repeated",
+      "r": 11,
+      "cutoff": 23,
+      "length": 576,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 14,
+      "selected_columns": 372,
+      "direct_rank": 320,
+      "coupled_system_rank": 109,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true
+    },
+    {
+      "family": "repeated",
+      "r": 11,
+      "cutoff": 23,
+      "length": 576,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 14,
+      "selected_columns": 372,
+      "direct_rank": 320,
+      "coupled_system_rank": 109,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true
+    },
+    {
+      "family": "repeated",
+      "r": 11,
+      "cutoff": 23,
+      "length": 576,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 14,
+      "selected_columns": 372,
+      "direct_rank": 320,
+      "coupled_system_rank": 109,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true
+    },
+    {
+      "family": "characteristic_two",
+      "r": 11,
+      "cutoff": 23,
+      "length": 576,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 14,
+      "selected_columns": 372,
+      "direct_rank": 321,
+      "coupled_system_rank": 110,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "characteristic_two",
+      "r": 11,
+      "cutoff": 23,
+      "length": 576,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 14,
+      "selected_columns": 372,
+      "direct_rank": 320,
+      "coupled_system_rank": 109,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true
+    },
+    {
+      "family": "characteristic_two",
+      "r": 11,
+      "cutoff": 23,
+      "length": 576,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 14,
+      "selected_columns": 372,
+      "direct_rank": 321,
+      "coupled_system_rank": 110,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "characteristic_two",
+      "r": 11,
+      "cutoff": 23,
+      "length": 576,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 14,
+      "selected_columns": 372,
+      "direct_rank": 321,
+      "coupled_system_rank": 110,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "first_test_only",
+      "r": 11,
+      "cutoff": 23,
+      "length": 576,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 14,
+      "selected_columns": 372,
+      "direct_rank": 321,
+      "coupled_system_rank": 110,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "first_test_only",
+      "r": 11,
+      "cutoff": 23,
+      "length": 576,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 14,
+      "selected_columns": 372,
+      "direct_rank": 321,
+      "coupled_system_rank": 110,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "first_test_only",
+      "r": 11,
+      "cutoff": 23,
+      "length": 576,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 14,
+      "selected_columns": 372,
+      "direct_rank": 321,
+      "coupled_system_rank": 110,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "first_test_only",
+      "r": 11,
+      "cutoff": 23,
+      "length": 576,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 14,
+      "selected_columns": 372,
+      "direct_rank": 321,
+      "coupled_system_rank": 110,
+      "delta": 0,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "mixed_coefficients",
+      "r": 11,
+      "cutoff": 23,
+      "length": 576,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 14,
+      "selected_columns": 372,
+      "direct_rank": 321,
+      "coupled_system_rank": 110,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "mixed_coefficients",
+      "r": 11,
+      "cutoff": 23,
+      "length": 576,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 14,
+      "selected_columns": 372,
+      "direct_rank": 321,
+      "coupled_system_rank": 110,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "mixed_coefficients",
+      "r": 11,
+      "cutoff": 23,
+      "length": 576,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 14,
+      "selected_columns": 372,
+      "direct_rank": 321,
+      "coupled_system_rank": 110,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    },
+    {
+      "family": "mixed_coefficients",
+      "r": 11,
+      "cutoff": 23,
+      "length": 576,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 14,
+      "selected_columns": 372,
+      "direct_rank": 321,
+      "coupled_system_rank": 110,
+      "delta": 0,
+      "H_divides_QL": false,
+      "H_squared_divides_QL_squared": false
+    }
+  ],
+  "exact_extra_relations": [
+    {
+      "family": "repeated",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 48,
+      "coupled_system_rank": 5,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true,
+      "relation": [
+        {
+          "exponent": [
+            0,
+            0,
+            3
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            4,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            1,
+            5,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            2,
+            0
+          ],
+          "coefficient": "2"
+        },
+        {
+          "exponent": [
+            3,
+            3,
+            0
+          ],
+          "coefficient": "2"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            5,
+            1,
+            0
+          ],
+          "coefficient": "1"
+        }
+      ]
+    },
+    {
+      "family": "repeated",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 48,
+      "coupled_system_rank": 5,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true,
+      "relation": [
+        {
+          "exponent": [
+            0,
+            0,
+            3
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            4,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            1,
+            5,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            5,
+            1,
+            0
+          ],
+          "coefficient": "1"
+        }
+      ]
+    },
+    {
+      "family": "repeated",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 48,
+      "coupled_system_rank": 5,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true,
+      "relation": [
+        {
+          "exponent": [
+            0,
+            0,
+            3
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            4,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            1,
+            5,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            2,
+            0
+          ],
+          "coefficient": "2"
+        },
+        {
+          "exponent": [
+            3,
+            3,
+            0
+          ],
+          "coefficient": "2"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            5,
+            1,
+            0
+          ],
+          "coefficient": "1"
+        }
+      ]
+    },
+    {
+      "family": "repeated",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 48,
+      "coupled_system_rank": 5,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true,
+      "relation": [
+        {
+          "exponent": [
+            0,
+            0,
+            3
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            4,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            1,
+            5,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            2,
+            0
+          ],
+          "coefficient": "2"
+        },
+        {
+          "exponent": [
+            3,
+            3,
+            0
+          ],
+          "coefficient": "2"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            5,
+            1,
+            0
+          ],
+          "coefficient": "1"
+        }
+      ]
+    },
+    {
+      "family": "characteristic_two",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 48,
+      "coupled_system_rank": 5,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false,
+      "relation": [
+        {
+          "exponent": [
+            0,
+            0,
+            3
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            6,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            1,
+            1,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            1,
+            3,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            2,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            4,
+            0
+          ],
+          "coefficient": "3"
+        },
+        {
+          "exponent": [
+            3,
+            1,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            4,
+            2,
+            0
+          ],
+          "coefficient": "3"
+        },
+        {
+          "exponent": [
+            6,
+            0,
+            0
+          ],
+          "coefficient": "1"
+        }
+      ]
+    },
+    {
+      "family": "characteristic_two",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 48,
+      "coupled_system_rank": 5,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true,
+      "relation": [
+        {
+          "exponent": [
+            0,
+            0,
+            3
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            6,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            1,
+            1,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            1,
+            3,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            2,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            4,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            3,
+            1,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            4,
+            2,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            6,
+            0,
+            0
+          ],
+          "coefficient": "1"
+        }
+      ]
+    },
+    {
+      "family": "characteristic_two",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 48,
+      "coupled_system_rank": 5,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false,
+      "relation": [
+        {
+          "exponent": [
+            0,
+            0,
+            3
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            6,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            1,
+            1,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            1,
+            3,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            2,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            3,
+            1,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            6,
+            0,
+            0
+          ],
+          "coefficient": "1"
+        }
+      ]
+    },
+    {
+      "family": "characteristic_two",
+      "r": 3,
+      "cutoff": 7,
+      "length": 64,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 6,
+      "selected_columns": 50,
+      "direct_rank": 48,
+      "coupled_system_rank": 5,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": false,
+      "relation": [
+        {
+          "exponent": [
+            0,
+            0,
+            3
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            6,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            1,
+            1,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            1,
+            3,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            2,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            4,
+            0
+          ],
+          "coefficient": "3"
+        },
+        {
+          "exponent": [
+            3,
+            1,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            4,
+            2,
+            0
+          ],
+          "coefficient": "3"
+        },
+        {
+          "exponent": [
+            6,
+            0,
+            0
+          ],
+          "coefficient": "1"
+        }
+      ]
+    },
+    {
+      "family": "repeated",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 0,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 92,
+      "coupled_system_rank": 19,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true,
+      "relation": [
+        {
+          "exponent": [
+            0,
+            0,
+            3
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            3
+          ],
+          "coefficient": "-1"
+        },
+        {
+          "exponent": [
+            0,
+            4,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            4,
+            1
+          ],
+          "coefficient": "-1"
+        },
+        {
+          "exponent": [
+            0,
+            4,
+            2
+          ],
+          "coefficient": "-1"
+        },
+        {
+          "exponent": [
+            0,
+            6,
+            0
+          ],
+          "coefficient": "-1"
+        },
+        {
+          "exponent": [
+            1,
+            7,
+            0
+          ],
+          "coefficient": "-1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            3
+          ],
+          "coefficient": "-1"
+        },
+        {
+          "exponent": [
+            2,
+            2,
+            0
+          ],
+          "coefficient": "2"
+        },
+        {
+          "exponent": [
+            2,
+            2,
+            1
+          ],
+          "coefficient": "-2"
+        },
+        {
+          "exponent": [
+            2,
+            2,
+            2
+          ],
+          "coefficient": "-2"
+        },
+        {
+          "exponent": [
+            2,
+            4,
+            0
+          ],
+          "coefficient": "-3"
+        },
+        {
+          "exponent": [
+            3,
+            5,
+            0
+          ],
+          "coefficient": "-3"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            1
+          ],
+          "coefficient": "-1"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            2
+          ],
+          "coefficient": "-1"
+        },
+        {
+          "exponent": [
+            4,
+            2,
+            0
+          ],
+          "coefficient": "-3"
+        },
+        {
+          "exponent": [
+            5,
+            3,
+            0
+          ],
+          "coefficient": "-3"
+        },
+        {
+          "exponent": [
+            6,
+            0,
+            0
+          ],
+          "coefficient": "-1"
+        },
+        {
+          "exponent": [
+            7,
+            1,
+            0
+          ],
+          "coefficient": "-1"
+        }
+      ]
+    },
+    {
+      "family": "repeated",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 92,
+      "coupled_system_rank": 19,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true,
+      "relation": [
+        {
+          "exponent": [
+            0,
+            0,
+            3
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            3
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            4,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            4,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            4,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            6,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            1,
+            7,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            3
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            4,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            3,
+            5,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            4,
+            2,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            5,
+            3,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            6,
+            0,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            7,
+            1,
+            0
+          ],
+          "coefficient": "1"
+        }
+      ]
+    },
+    {
+      "family": "repeated",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 3,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 92,
+      "coupled_system_rank": 19,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true,
+      "relation": [
+        {
+          "exponent": [
+            0,
+            0,
+            3
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            3
+          ],
+          "coefficient": "2"
+        },
+        {
+          "exponent": [
+            0,
+            4,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            4,
+            1
+          ],
+          "coefficient": "2"
+        },
+        {
+          "exponent": [
+            0,
+            4,
+            2
+          ],
+          "coefficient": "2"
+        },
+        {
+          "exponent": [
+            0,
+            6,
+            0
+          ],
+          "coefficient": "2"
+        },
+        {
+          "exponent": [
+            1,
+            7,
+            0
+          ],
+          "coefficient": "2"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            3
+          ],
+          "coefficient": "2"
+        },
+        {
+          "exponent": [
+            2,
+            2,
+            0
+          ],
+          "coefficient": "2"
+        },
+        {
+          "exponent": [
+            2,
+            2,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            2,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            1
+          ],
+          "coefficient": "2"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            2
+          ],
+          "coefficient": "2"
+        },
+        {
+          "exponent": [
+            6,
+            0,
+            0
+          ],
+          "coefficient": "2"
+        },
+        {
+          "exponent": [
+            7,
+            1,
+            0
+          ],
+          "coefficient": "2"
+        }
+      ]
+    },
+    {
+      "family": "repeated",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 5,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 92,
+      "coupled_system_rank": 19,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true,
+      "relation": [
+        {
+          "exponent": [
+            0,
+            0,
+            3
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            3
+          ],
+          "coefficient": "4"
+        },
+        {
+          "exponent": [
+            0,
+            4,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            4,
+            1
+          ],
+          "coefficient": "4"
+        },
+        {
+          "exponent": [
+            0,
+            4,
+            2
+          ],
+          "coefficient": "4"
+        },
+        {
+          "exponent": [
+            0,
+            6,
+            0
+          ],
+          "coefficient": "4"
+        },
+        {
+          "exponent": [
+            1,
+            7,
+            0
+          ],
+          "coefficient": "4"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            3
+          ],
+          "coefficient": "4"
+        },
+        {
+          "exponent": [
+            2,
+            2,
+            0
+          ],
+          "coefficient": "2"
+        },
+        {
+          "exponent": [
+            2,
+            2,
+            1
+          ],
+          "coefficient": "3"
+        },
+        {
+          "exponent": [
+            2,
+            2,
+            2
+          ],
+          "coefficient": "3"
+        },
+        {
+          "exponent": [
+            2,
+            4,
+            0
+          ],
+          "coefficient": "2"
+        },
+        {
+          "exponent": [
+            3,
+            5,
+            0
+          ],
+          "coefficient": "2"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            1
+          ],
+          "coefficient": "4"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            2
+          ],
+          "coefficient": "4"
+        },
+        {
+          "exponent": [
+            4,
+            2,
+            0
+          ],
+          "coefficient": "2"
+        },
+        {
+          "exponent": [
+            5,
+            3,
+            0
+          ],
+          "coefficient": "2"
+        },
+        {
+          "exponent": [
+            6,
+            0,
+            0
+          ],
+          "coefficient": "4"
+        },
+        {
+          "exponent": [
+            7,
+            1,
+            0
+          ],
+          "coefficient": "4"
+        }
+      ]
+    },
+    {
+      "family": "characteristic_two",
+      "r": 5,
+      "cutoff": 11,
+      "length": 144,
+      "characteristic": 2,
+      "prices": [
+        1,
+        1,
+        2
+      ],
+      "threshold": 8,
+      "selected_columns": 95,
+      "direct_rank": 92,
+      "coupled_system_rank": 19,
+      "delta": 1,
+      "H_divides_QL": true,
+      "H_squared_divides_QL_squared": true,
+      "relation": [
+        {
+          "exponent": [
+            0,
+            0,
+            3
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            2,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            0,
+            8,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            1,
+            1,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            1,
+            3,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            0,
+            3
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            2,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            2,
+            2,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            3,
+            1,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            3,
+            1,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            3,
+            3,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            1
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            4,
+            0,
+            2
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            4,
+            2,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            5,
+            1,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            6,
+            0,
+            0
+          ],
+          "coefficient": "1"
+        },
+        {
+          "exponent": [
+            8,
+            0,
+            0
+          ],
+          "coefficient": "1"
+        }
+      ]
+    }
+  ],
+  "uniform_results": {
+    "length": "4*(r+1)^2",
+    "complete_prefix_rank": "2*r^2+6*r+13-delta",
+    "r_3_kernel_condition": "H divides Q*L",
+    "odd_r_at_least_5_kernel_condition": "H^2 divides Q*L^2",
+    "repeated_form_rank_universality": false,
+    "two_independent_form_rank_gap": "One, for every odd r>=3 and every field."
+  },
+  "unrestricted_G3_improvement": false,
+  "fan_count_established": false,
+  "novelty_established": false,
+  "goal_complete": false,
+  "scope": "Uniform exact column and coupled-kernel proofs; finite independent checks. A rank difference does not give a larger total fan or establish publication significance.",
+  "source_sha256": {
+    "docs/two_interaction_ranks.md": "de9c395fa613d7f9d0a189130bfe1c8c8fcb4e2a6f9aee01a9721c667d7004ad",
+    "scripts/run_two_interaction_checks.py": "1a06b532e520a539b5c0bf1fa2a1b3b79e0cfd42e18d3f31f5515b0baf1a17fa",
+    "docs/higher_seed_transport.md": "a6e3240aed6d28b4b8b321c82d319f1117bffb06d92590773cfd515cc5e84b96",
+    "scripts/run_higher_interaction_checks.py": "cdc31d1b582e71c4536056429bf7eabeb2fcb312f313713135a2eaee68578916",
+    "scripts/run_higher_seed_checks.py": "92f0c67e86e3be54c71cbe6efac168c767c9768bb8058b6dc36d24b91acac926",
+    "scripts/run_hypersurface_truncation_checks.py": "700073c01784db06a953d351c500e0d66b0019c1152fe4b127cbf50f35cbcd7e",
+    "scripts/run_socle_stability_checks.py": "81e4476100f0be5457fcf7019186415d230cceac4096202b2844dce645e83f52",
+    "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f"
+  }
+}

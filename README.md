@@ -306,6 +306,15 @@ nonlinear rectangles has only `O(N^(3/2))` initials in its true length.
 These immediate composition routes therefore do not give the desired
 power gain. Neither statement changes the unrestricted bound.
 
+An [exact two-interaction calculation](docs/two_interaction_ranks.md)
+shows that replacing two binary forms by one repeated form changes
+complete-prefix ranks for every odd interaction exponent and every field.
+The rank is determined by a binary-polynomial divisibility condition,
+with a necessary distinction at the first cutoff and an explicit
+characteristic-two example. The independent-form equation has full-rank
+support lattice of constant index. It escapes the previous rank identity,
+but no increase in the total number of initial ideals is proved.
+
 A [five-cone construction](docs/initial_cone_height.md) shows why large
 necessary integer weights need not indicate a large fan: it requires
 quadratic weight height but only two projection planes. The next count

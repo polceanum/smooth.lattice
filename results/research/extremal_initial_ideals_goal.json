@@ -7,7 +7,7 @@
   "goal_complete": false,
   "asymptotic_improvement_established_this_iteration": false,
   "novelty_established_this_iteration": false,
-  "note": "docs/extremal_initial_ideals.md",
+  "note": "The unrestricted impact goal remains active. Two high interactions in a single cyclic quotient now have an exact coupled-kernel theorem: replacing independent forms by a repeated form changes complete-prefix ranks uniformly. This is a structural distinction, not a larger fan or evidence of publication significance.",
   "relationship_to_previous_work": "New active objective with a higher completion bar. Previous goal records, lattice-shadow candidate, manuscripts and paused ML results are preserved as historical research.",
   "definitions": {
     "G_d_n": "Maximum number of monomial initial ideals of a colength-n ideal in d variables, over all fields.",
@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Preserve the full unrestricted G_3 objective and every original acceptance criterion. The single-interaction family is already closed linearly. Liaison addition is now an exact composition tool, but it is classical and only realizes the common refinement of compatible branch cones; do not multiply branch counts without a uniform intersection count. Do not enumerate larger ordinary box-prefix compositions or balanced nonlinear-rectangle glues: their uniform bounds already exclude the desired power gain. A useful composition would need non-prefix dependencies, a true length budget, and branch moments at least of order N^(4/3+2*epsilon/3) for a putative N^(2+epsilon) count. The next substantive lower-route test should retain two coupled interactions in one actual cyclic quotient, rather than separating them into these excluded branches; derive its exact selected-column mechanism before any count claim. Alternatively pursue a stronger unrestricted aggregate-shadow/incidence argument, retaining the known quartic-moment counterexamples. Continue the strongest-current primary-source audit: the inspected 2025 pure-powers-plus-linear-form classification is restricted and does not resolve G_3. The old McMullen access/priority gap remains deferred, not a blocker or novelty certificate. Preserve all proofs, scripts/reports, manuscripts/PDFs, core kernels/auditor and paused ML. No bounded examples, classical corollary, draft, family exclusion or unverified novelty claim completes the goal. No messages or submissions.",
+  "next_proof_task": "Preserve the unrestricted G_3 objective and every original acceptance criterion. The two-interaction family now has exact columns and a uniform coupled-kernel rank criterion; repeated-form universality is false, but a one-dimensional prefix defect does not amplify fan counts. The substantive lower-route task is to prove how many simultaneous, distinct positive-weight initial cones an actual coupled cyclic quotient realizes as its length grows, or give a uniform exclusion and move to a more promising construction. Use the full two-parameter selected-column mechanism, not arbitrary matroid examples, a count of possible walls, different quotients at one weight, or more isolated rank witnesses. Do not reopen the closed single-interaction family, generic box-prefix refinements or balanced rectangle glues. The alternative remains a stronger unrestricted aggregate-shadow/incidence bound respecting the known quartic-moment counterexamples. Continue the strongest-current primary comparison; elementary new calculations and unsuccessful keyword searches are no novelty certificate. Preserve all previous results and the unchanged impact/publication requirements; no messages or submissions.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -131,7 +131,8 @@
     "Compare the exact regular/canonical binomial core reduction and coherent-cutoff rank identity with current filtered-module, polynomial-interpolation and determinant literature. Homogeneous freeness, specialization, binomial expansion and Smith form are classical. French unit triangular Hankel congruences were inspected only at the stated definitions/lemmas; no matching of the selected rectangular matrices has been established. Leading Hankel determinants alone do not prove every required rank, and unsuccessful searches establish no novelty.",
     "If prime-digit decomposition is used to prove (B8), separate the classical Lucas factorization and Rowland coefficient-valuation counts from the unproved ranks of shifted selected matrices. Coherent carry constraints and linear dependence remain to be controlled; no novelty or rank theorem follows from entrywise self-similarity alone.",
     "Compare the integral coherent core cokernel theorem, the all-nonzero-binary-form seed consequence, the global defect pairing and the full all-field 25*n+14 family bound with current filtered-module, binomial-matrix and sparse-ideal literature. All elementary row changes and finite abelian-group cancellation are classical inputs. The new uniform proof excludes this entire family as a power-gain route; it does not settle G_3 or certify publication significance.",
-    "The proposed affine fan composition is positively identified as classical liaison addition; do not claim its operation or additive length as new. Assess only the exact separate-univariate all-order initial formula and any future quantitative consequence against existing Groebner/liaison literature. The box-prefix and local moment bounds are screening tools, not a new unrestricted theorem or a priority certificate."
+    "The proposed affine fan composition is positively identified as classical liaison addition; do not claim its operation or additive length as new. Assess only the exact separate-univariate all-order initial formula and any future quantitative consequence against existing Groebner/liaison literature. The box-prefix and local moment bounds are screening tools, not a new unrestricted theorem or a priority certificate.",
+    "Determine whether the two-interaction coupled-column mechanism supports an amplified count of simultaneous positive-weight cones; (C4) is an exact prefix-rank theorem only. Exact priority and the strongest current unrestricted comparison remain open."
   ],
   "primary_sources": [
     {
@@ -1501,19 +1502,36 @@
       "build": "./build.sh passed",
       "smoke": "python3 tests/test_smoke.py passed",
       "scope": "Exact cyclic multiplication and independent Macaulay kernels; local initial/moment queries in characteristics 0,2,3,5; complete identical-branch fans; nonmonomial-tag point controls; and complete bounded box-cut wall checks. Uniform proofs are separate; no asymptotic growth is fitted from finite counts."
+    },
+    "two_interaction_ranks": {
+      "command": "python3 -B scripts/run_two_interaction_checks.py",
+      "report": "results/research/two_interaction_checks.json",
+      "status": "passed",
+      "source_hashes_verified": true,
+      "counts": {
+        "full_rank_constant_index_support_lattices": 50,
+        "integer_recurrence_and_closed_column_equalities": 27200,
+        "full_prefix_ranks_and_coupled_system_equalities": 100,
+        "independent_macaulay_kernel_rows_replayed": 2880,
+        "independent_macaulay_prefix_ranks": 28,
+        "explicit_extra_relations_replayed": 32
+      },
+      "build": "./build.sh passed",
+      "smoke": "python3 tests/test_smoke.py passed",
+      "scope": "Integer recurrence versus closed columns, independently eliminated full Macaulay kernels and prefix ranks, reduced coupled systems, exact extra relations and support-lattice minors. Uniform proofs are separate from finite verification; no fan count is inferred from ranks."
     }
   },
-  "preservation": "Five explicitly privacy-reviewed research files against 2c015cf: README, a new liaison-addition fan comparison note, its independent checker/report and this active goal. All 65 previous continuations and all earlier mathematical sources/reports are preserved; all 338 other previously tracked files remain byte-identical. Core CLI, kernels, auditor, manuscripts/PDFs and paused ML are unchanged. Baselines and terminal logs stay ignored under results/local/.",
+  "preservation": "Five explicitly reviewed research files against e33fe46: README, a new two-interaction rank note, its independent checker/report and this active goal. All 66 earlier continuations and all earlier mathematical sources/reports are preserved; all 341 other previously tracked files remain byte-identical. Core CLI, kernels, auditor, manuscripts/PDFs and paused ML are unchanged. Baselines and logs remain ignored under results/local/.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
-    "docs/liaison_fan_composition.md",
-    "scripts/run_liaison_fan_checks.py",
-    "results/research/liaison_fan_checks.json",
+    "docs/two_interaction_ranks.md",
+    "scripts/run_two_interaction_checks.py",
+    "results/research/two_interaction_checks.json",
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "1170ae95690bc87a70abcaa67e733cca89ffb2e3f24cedf01c8d217ef8bc7eb4",
+    "README.md": "b60e078eae09dfeead48c118e45122ccd97690c8c9d34de69223dd86330200fd",
     "docs/extremal_initial_ideals.md": "6e84b6ea470841a89760a2e16080a9314ba747499b1a5a733460120fe501a92b",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
@@ -1588,7 +1606,10 @@
     "results/research/higher_seed_transport_checks.json": "f840297ef73de9b25dd4f77f512c549eae3d6e3929c345fdfd88c63286802a4c",
     "docs/liaison_fan_composition.md": "4bf7754d29da53f4258bfd84704bee404b9fb0a4da94722f7953b3a0ce3a89ae",
     "scripts/run_liaison_fan_checks.py": "59129e88d900f283ed245f7762f3f75f9b498442fe10f7f0b2e2757493359539",
-    "results/research/liaison_fan_checks.json": "4589858343d14dd827849d56fbce0893da6118ebee788ec572b59ebec883d117"
+    "results/research/liaison_fan_checks.json": "4589858343d14dd827849d56fbce0893da6118ebee788ec572b59ebec883d117",
+    "docs/two_interaction_ranks.md": "de9c395fa613d7f9d0a189130bfe1c8c8fcb4e2a6f9aee01a9721c667d7004ad",
+    "scripts/run_two_interaction_checks.py": "1a06b532e520a539b5c0bf1fa2a1b3b79e0cfd42e18d3f31f5515b0baf1a17fa",
+    "results/research/two_interaction_checks.json": "586d3293cc8aa002775cfc85d6db511a94f8a36ce3b78267ce382d35f9ef598b"
   },
   "continuations": [
     {
@@ -5697,10 +5718,49 @@
         "smoke": "python3 tests/test_smoke.py passed",
         "scope": "Exact cyclic multiplication and independent Macaulay kernels; local initial/moment queries in characteristics 0,2,3,5; complete identical-branch fans; nonmonomial-tag point controls; and complete bounded box-cut wall checks. Uniform proofs are separate; no asymptotic growth is fitted from finite counts."
       }
+    },
+    {
+      "title": "Two coupled interactions: exact all-field prefix ranks and the limit of rank universality",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "progress: e33fe46 proved the affine liaison fan-composition formula and two uniform quantitative feasibility gates, positively matching the construction to classical liaison addition. Revalidated all 343 tracked files, 76 goal source hashes and 66 continuations before this iteration; the objective and acceptance criteria remain unchanged.",
+      "progress_classification": "uniform exact column theorem and complete coupled-kernel criterion, with a realizable infinite all-field counterexample to repeated-form rank universality",
+      "uniform_proofs": [
+        "The local quadratic tangent cone gives length 4*(r+1)^2. The cutoff permits at most one high substitution and yields exact division-free columns.",
+        "All selected columns reduce modulo the reference prefix to z^2 and z^3 binary multiples; their full kernel is the coupled recurrence (C9).",
+        "The kernel is zero or one-dimensional. Its nonzero condition is H|Q*L for r=3 and H^2|Q*L^2 for every larger odd r, proved in both directions with explicit geometric-series relations.",
+        "Independent versus repeated high forms differ in rank by one for every odd r>=3 and every field. The independent equation has a full-rank support lattice of index four."
+      ],
+      "independent_controls": {
+        "full_rank_constant_index_support_lattices": 50,
+        "integer_recurrence_and_closed_column_equalities": 27200,
+        "full_prefix_ranks_and_coupled_system_equalities": 100,
+        "independent_macaulay_kernel_rows_replayed": 2880,
+        "independent_macaulay_prefix_ranks": 28,
+        "explicit_extra_relations_replayed": 32
+      },
+      "scope_limit": "No total fan count, unrestricted asymptotic improvement, novelty certificate or publication assessment. An infinite rank distinction does not meet the original success criteria.",
+      "verification": {
+        "command": "python3 -B scripts/run_two_interaction_checks.py",
+        "report": "results/research/two_interaction_checks.json",
+        "status": "passed",
+        "source_hashes_verified": true,
+        "counts": {
+          "full_rank_constant_index_support_lattices": 50,
+          "integer_recurrence_and_closed_column_equalities": 27200,
+          "full_prefix_ranks_and_coupled_system_equalities": 100,
+          "independent_macaulay_kernel_rows_replayed": 2880,
+          "independent_macaulay_prefix_ranks": 28,
+          "explicit_extra_relations_replayed": 32
+        },
+        "build": "./build.sh passed",
+        "smoke": "python3 tests/test_smoke.py passed",
+        "scope": "Integer recurrence versus closed columns, independently eliminated full Macaulay kernels and prefix ranks, reduced coupled systems, exact extra relations and support-lattice minors. Uniform proofs are separate from finite verification; no fan count is inferred from ranks."
+      }
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "The unrestricted bound is unchanged. Exact affine liaison addition preserves cyclic commuting multiplication and composes the two full fans, with the true abc+m1+m2 length. Two broad immediate amplification routes are uniformly excluded: box-prefix refinements have only the quadratic power, and arbitrary balanced local-rectangle glues have O(N^(3/2)) initials. The operation and length are published mathematics; no priority or impact claim follows.",
-  "previous_goal_turn_classification": "progress: 2c015cf proved the complete regular/canonical seed cokernel identity integrally, including every prime-power torsion factor, and the full all-field bound 25*n+14 for every r>=2 in the single-interaction family. Revalidated clean main, all 340 tracked hashes, all 73 source hashes and all 65 continuations before this iteration. The unrestricted objective and acceptance criteria remain unchanged.",
+  "asymptotic_improvement_scope_this_iteration": "No unrestricted or family fan-count improvement. The new all-field theorem gives exact ranks and a uniform failure of a repeated-form extension of transport.",
+  "previous_goal_turn_classification": "progress: e33fe46 proved the affine liaison fan-composition formula and two uniform quantitative feasibility gates, positively matching the construction to classical liaison addition. Revalidated all 343 tracked files, 76 goal source hashes and 66 continuations before this iteration; the objective and acceptance criteria remain unchanged.",
   "uniform_relative_margin_hypothesis_status": "refuted_by_actual_all_field_quotients",
   "secondary_extremal_parameter_resolved": {
     "relative_margin_dimension_2": "Theta(n^-2)",
@@ -5806,7 +5866,7 @@
       "novelty_established": false
     }
   },
-  "family_asymptotic_improvement_established_this_iteration": true,
+  "family_asymptotic_improvement_established_this_iteration": false,
   "higher_interaction_reduction": {
     "proof": "docs/higher_interaction_fans.md",
     "fields": "every field",
@@ -5840,7 +5900,7 @@
     "remaining_seed_model": "The regular/canonical core identity is now proved integrally by (T4)-(T13), hence the bounds coincide for all nonzero binary pairs over every field.",
     "previous_uniform_fan_bound": "O(n^(9/4)/r)"
   },
-  "region_count_established_this_iteration": true,
+  "region_count_established_this_iteration": false,
   "arithmetic_obstruction_established_this_iteration": false,
   "fixed_equation_prime_obstruction": {
     "proof": "docs/fixed_equation_bad_primes.md",
@@ -6231,5 +6291,25 @@
     "goal_complete": false,
     "scope_limit": "A classical operation, an all-order affine fan formula and two proof-based feasibility gates. They do not produce an amplified realizable family, change the unrestricted bound, or establish publication significance.",
     "identical_branch_exact_witnesses": "results/research/liaison_fan_checks.json: complete_identical_fan_fixtures contains every branch standard set and exact cone polygon."
+  },
+  "two_interaction_rank_identity": {
+    "proof": "docs/two_interaction_ranks.md",
+    "checker": "scripts/run_two_interaction_checks.py",
+    "report": "results/research/two_interaction_checks.json",
+    "hypotheses": "Any field; nonzero homogeneous binary quadratics Q,H,L; odd r>=3; s=2*r+1; A=K[x,y,z]/(z^2+Q+H*z^r+L*z^(r+1), m^(s+1)).",
+    "length": "n=4*(r+1)^2, with z<2 reference monomials.",
+    "exact_columns": "At most one high substitution survives; (C3) gives all monomial columns integrally with no division by 2 or the power exponent.",
+    "selected_prefix": "All a+b+2*c<=r+3, a complete price prefix rather than an arbitrary selected staircase.",
+    "rank": "2*r^2+6*r+13-delta; the coupled outside-reference domain has dimension r^2-r and kernel dimension delta.",
+    "r_3_criterion": "delta=1 if and only if H divides Q*L.",
+    "odd_r_at_least_5_criterion": "delta=1 if and only if H^2 divides Q*L^2.",
+    "uniform_comparison": "Q=x^2+y^2,H=x*y,L=x^2 has delta=0; the same Q,H with L=x*y has delta=1. Changing only the second high form gives a rank gap of one over every field and every odd r>=3.",
+    "characteristic_control": "Q=H=x^2+y^2,L=x^2+x*y: delta=1 over all fields for r=3, but for odd r>=5 exactly in characteristic two.",
+    "support_lattice": "The independent-form equation has support-difference rank three and constant index four. This is not asserted to identify its intrinsic profile lattice.",
+    "fan_consequence": "The two quotients have different realized standard sets at some generic nearby weights. No inequality between their total numbers of initial ideals follows.",
+    "unrestricted_G3_improvement": false,
+    "fan_count_established": false,
+    "novelty_established": false,
+    "goal_complete": false
   }
 }
