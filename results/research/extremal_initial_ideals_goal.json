@@ -7,7 +7,7 @@
   "goal_complete": false,
   "asymptotic_improvement_established_this_iteration": false,
   "novelty_established_this_iteration": false,
-  "note": "The unrestricted impact goal remains active. The proposed first-order two-interaction family, and all fixed-degree full-pure-power tangent equations with a bounded interaction depth, now have a uniform O(n^2) fan bound by an ideal power witness and classical lattice geometry. The earlier rank distinction is retained but does not amplify this family beyond the generic power. The generic-coordinate corollary is not substituted for the fixed-coordinate extremal target.",
+  "note": "The unrestricted goal remains active. An exact capped-state vertex oracle and attributed polytope reconstruction now turn the internal counting theorem into an arithmetic bound for enumerating every initial ideal and marked reduced basis over every field in the original coordinates. This supplies a concrete algorithmic consequence; it does not settle sharp growth, certify novelty or justify a paper by itself.",
   "relationship_to_previous_work": "New active objective with a higher completion bar. Previous goal records, lattice-shadow candidate, manuscripts and paused ML results are preserved as historical research.",
   "definitions": {
     "G_d_n": "Maximum number of monomial initial ideals of a colength-n ideal in d variables, over all fields.",
@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Preserve unrestricted original-coordinate G_3 and all original acceptance criteria. Do not add more near-cutoff interactions to the first-order quadratic family: (P7)--(P8) exclude the entire bounded-depth class with full pure-power tangent support, regardless of term count or field. A hypersurface lower route now needs interaction depth growing at least as in (P9), missing pure tangent vertices, or another genuine realization mechanism; the already closed single-interaction family remains excluded even at unbounded depth. The two fixed interactions with s growing beyond 2*r+1 are not classified, but need a quantitative count of simultaneous positive cones before more samples. The generic-linear-coordinate O(n^(8/3)) corollary should receive a focused primary-source comparison, without being substituted for G_3 in the given coordinates. Alternatively improve the unrestricted aggregate-shadow bound while respecting the quartic-incidence counterexamples. Coordinate normal-form entry hyperplanes alone do not refine the actual fan, by (P11). Preserve all proofs, scripts/reports, manuscripts/PDFs, kernels/auditor and paused ML; no messages or submissions. No family exclusion, classical corollary or unverified priority claim completes this goal.",
+  "next_proof_task": "Keep the original sharp or separating-family G_3 target and all acceptance criteria. The rational-shadow theorem now has an explicit original-coordinate arithmetic consequence, so the previously missing algorithmic application has a concrete candidate. Before any paper claim, audit the exact priority and strongest applicable later bounds for both the hyperbolic matroid shadow theorem and finite-quotient enumeration. Attribute oracle reconstruction and greedy basis conversion to established work; classical counting already gives exponent six, while the internal shadow bound supplies only the further 1/8 saving. Do not claim a bit or benchmark advantage from operation counts. The central count remains unchanged and needs a sharper unrestricted aggregate argument or an actual family above the generic power. Bounded-depth full-pure-power tangent perturbations remain excluded, and generic coordinate changes cannot replace the originally specified fan. Preserve all prior proofs/reports, manuscripts/PDFs, kernels/auditor and paused ML. No messages or submissions; no classical composition, draft or unverified novelty claim completes the goal.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -133,7 +133,8 @@
     "Compare the integral coherent core cokernel theorem, the all-nonzero-binary-form seed consequence, the global defect pairing and the full all-field 25*n+14 family bound with current filtered-module, binomial-matrix and sparse-ideal literature. All elementary row changes and finite abelian-group cancellation are classical inputs. The new uniform proof excludes this entire family as a power-gain route; it does not settle G_3 or certify publication significance.",
     "The proposed affine fan composition is positively identified as classical liaison addition; do not claim its operation or additive length as new. Assess only the exact separate-univariate all-order initial formula and any future quantitative consequence against existing Groebner/liaison literature. The box-prefix and local moment bounds are screening tools, not a new unrestricted theorem or a priority certificate.",
     "Determine whether the two-interaction coupled-column mechanism supports an amplified count of simultaneous positive-weight cones; (C4) is an exact prefix-rank theorem only. Exact priority and the strongest current unrestricted comparison remain open.",
-    "Audit the exact priority and strongest applicable bound for the generic-linear-coordinate O(n^(8/3)) consequence; it is coordinate dependent and cannot settle the stated original-coordinate G_3 problem. A further lower route must escape the new bounded-depth power-carrier exclusion, not add more terms within it."
+    "Audit the exact priority and strongest applicable bound for the generic-linear-coordinate O(n^(8/3)) consequence; it is coordinate dependent and cannot settle the stated original-coordinate G_3 problem. A further lower route must escape the new bounded-depth power-carrier exclusion, not add more terms within it.",
+    "Compare the original-coordinate O(n^(47/8)*L^(19/8)) enumeration consequence against later primary algorithms and the priority of its rational-shadow input. Explicitly separate the classical O(n^6*L^2) composition from the additional shadow-derived 1/8 exponent saving; exact bit cost and practical speed remain unproved."
   ],
   "primary_sources": [
     {
@@ -647,6 +648,27 @@
       "url": "https://arxiv.org/pdf/2606.30856",
       "version": "arXiv:2606.30856v1",
       "scope": "Theorem 1 and Sections 1--2.2 rechecked as a primary proof retelling of the classical Andrews/Konyagin--Sevastyanov theorem. Full-dimensional volume and planar bounds are established inputs, not new exponents. The original 1963 AMS PDF returned 403 and was not read; its DOI is recorded in the proof note. No priority conclusion for the new application follows."
+    },
+    {
+      "authors": "Ioannis Z. Emiris, Vissarion Fisikopoulos, Christos Konaxis and Luis Penaranda",
+      "title": "An Oracle-based, Output-sensitive Algorithm for Projections of Resultant Polytopes",
+      "url": "https://vissarion.github.io/publications/EFKP_IJCGA_13.pdf",
+      "version": "2013 journal author copy; DOI 10.1142/S0218195913600108",
+      "scope": "Algorithm 1, Lemmas 4--6 with proofs, and the generalization after Theorem 1 inspected. Vertex/facet oracle reconstruction is established prior art. The full resultant-oracle construction, performance study and all other applications were not audited."
+    },
+    {
+      "authors": "Timothy M. Chan",
+      "title": "Optimal Output-Sensitive Convex Hull Algorithms in Two and Three Dimensions",
+      "url": "https://www.cs.jhu.edu/~misha/Spring20/Chan96.pdf",
+      "version": "1996 journal paper; DOI 10.1007/BF02712873",
+      "scope": "Sections 3--4, including the explicit degeneracy rules, inspected for O(k log(k+2)) exact 3D hull rebuilding. No new geometric hull algorithm or general-position assumption is claimed. Other applications were not audited."
+    },
+    {
+      "authors": "Komei Fukuda, Anders N. Jensen and Rekha R. Thomas",
+      "title": "Computing Groebner fans",
+      "url": "https://data.math.au.dk/publications/pp/2005/imf-pp-2005-15.pdf",
+      "version": "September 2005 preprint",
+      "scope": "Section 5, Theorem 5.1 and Corollary 5.2 with their displayed complexity argument inspected. That analysis assumes a positive homogeneous grading and retains a separate flip-cost parameter. It is prior output-sensitive fan traversal; no claim is made that later Gfan methods are inapplicable."
     }
   ],
   "verification": {
@@ -1548,19 +1570,41 @@
       "build": "./build.sh passed",
       "smoke": "python3 tests/test_smoke.py passed",
       "scope": "Exact polynomial multiplier replay, independent hypersurface kernels and moment caps, three complete positive fans with total area one, independent Macaulay initial sets, an active wall absent from all entry lists, and finite-field coordinate-open controls. These checks do not prove the classical asymptotic vertex theorem, sharpness or novelty."
+    },
+    "oracle_enumeration": {
+      "command": "python3 -B scripts/run_oracle_enumeration_checks.py",
+      "report": "results/research/oracle_enumeration_checks.json",
+      "status": "passed",
+      "source_hashes_verified": true,
+      "counts": {
+        "commuting_multiplication_columns": 87,
+        "independent_cyclic_monomial_columns": 187,
+        "independent_basis_determinants": 2298,
+        "independent_positive_state_polytopes": 10,
+        "explicit_all_basis_support_comparisons": 1412,
+        "reconstruction_support_queries": 132,
+        "complete_truncated_state_reconstructions": 10,
+        "recovered_initial_ideals": 39,
+        "independent_recovered_normal_cones": 39,
+        "independent_polynomial_matrix_annihilations": 425,
+        "recovered_reduced_basis_polynomials": 136
+      },
+      "build": "./build.sh passed",
+      "smoke": "python3 tests/test_smoke.py passed",
+      "scope": "Ten actual cyclic commuting quotient models over Q,F2,F3,F5; exhaustive independent determinant bases, explicit-support comparison including ties, full cut-state reconstruction, all 39 normal cones and initial sets, and 136 recovered reduced polynomials replayed on whole multiplication matrices. Uniform complexity and correctness rest on the proof; no finite speed fit or bit-cost inference."
     }
   },
-  "preservation": "Five explicitly reviewed research files against 7955855: README, a new power-carrier proof note, its independent checker/report and this active goal. All 67 earlier continuations and all earlier mathematical sources/reports are preserved; all 344 other previously tracked files remain byte-identical. Core CLI, kernels, auditor, manuscripts/PDFs and paused ML are unchanged. Baselines and logs remain ignored under results/local/.",
+  "preservation": "Five explicitly reviewed research files against 7a9a3e1: README, a new oracle-enumeration proof note, its independent checker/report and this active goal. All 68 earlier continuations and all earlier mathematical sources/reports are preserved; all 347 other previously tracked files remain byte-identical. Core CLI, kernels, auditor, manuscripts/PDFs and paused ML are unchanged. Baselines and logs remain ignored under results/local/.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
-    "docs/power_carrier_bounds.md",
-    "scripts/run_power_carrier_checks.py",
-    "results/research/power_carrier_checks.json",
+    "docs/oracle_fan_enumeration.md",
+    "scripts/run_oracle_enumeration_checks.py",
+    "results/research/oracle_enumeration_checks.json",
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "c94b6cc8ad87e7c774dde5e9f261709fdb440d471a7e2bb5bb330f78dcf5ece7",
+    "README.md": "52f226a93d3b81884f09670d1f5ff25051135a91d9333bfc0e096451e6bfdaeb",
     "docs/extremal_initial_ideals.md": "6e84b6ea470841a89760a2e16080a9314ba747499b1a5a733460120fe501a92b",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
@@ -1641,7 +1685,10 @@
     "results/research/two_interaction_checks.json": "586d3293cc8aa002775cfc85d6db511a94f8a36ce3b78267ce382d35f9ef598b",
     "docs/power_carrier_bounds.md": "147199d8453db28285ebe3448e5bc0916121bb62ea8b9450f035dc46a401320b",
     "scripts/run_power_carrier_checks.py": "0247edb76f5d866eab944098007b485ee8be1c8793311a589bb7573be1629731",
-    "results/research/power_carrier_checks.json": "9565bce325fcef7039a413aaae3716df5dbee36d8af05f6ec3b4a07835198599"
+    "results/research/power_carrier_checks.json": "9565bce325fcef7039a413aaae3716df5dbee36d8af05f6ec3b4a07835198599",
+    "docs/oracle_fan_enumeration.md": "1d7322de1b56dad0db1247a61ee19633d1f2fae3d56c0640187ab5fabe6cede8",
+    "scripts/run_oracle_enumeration_checks.py": "a67b7db61f3fe6e69bb0bc62d792916737c7b35a3e3171c2b976e07866a883df",
+    "results/research/oracle_enumeration_checks.json": "41d71c1d6ce6d65dc1408fe412a0d21d5c7d36387c217789e8dc03e361670ce2"
   },
   "continuations": [
     {
@@ -5857,10 +5904,66 @@
         "smoke": "python3 tests/test_smoke.py passed",
         "scope": "Exact polynomial multiplier replay, independent hypersurface kernels and moment caps, three complete positive fans with total area one, independent Macaulay initial sets, an active wall absent from all entry lists, and finite-field coordinate-open controls. These checks do not prove the classical asymptotic vertex theorem, sharpness or novelty."
       }
+    },
+    {
+      "title": "An original-coordinate arithmetic enumeration consequence of the rational-shadow theorem",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "progress: 7a9a3e1 applied power membership and classical profile geometry to exclude the entire bounded-depth full-pure-power tangent perturbation class by O(n^2), and proved a coordinate-dependent O(n^(8/3)) corollary. Revalidated clean main, all 349 tracked files, 82 source hashes and 68 continuations before this iteration. The original unrestricted objective and acceptance criteria remain unchanged.",
+      "progress_classification": "uniform exact state-polytope vertex oracle, all-initial-basis reconstruction with explicit field costs, and primary-source separation of classical versus shadow-derived savings",
+      "uniform_proofs": [
+        "Truncating the state polyhedron above every basis profile creates a full-dimensional integer polytope with at most 4*g vertices. Every initial profile remains a vertex below the cut.",
+        "The lexicographic cost keys and symbolic perturbation proof give a true vertex oracle in arbitrary directions, including zero directions and ties, while retaining an actual initial-basis label.",
+        "Attributed vertex/facet reconstruction uses at most 12*g+1 greedy calls; known column preprocessing and dense elimination give O((g+1)*n^3*L^2) field operations.",
+        "Standard exact 3D hull rebuilding with degeneracy handling has O((g+1)^2*log(g+2)) geometric cost. Combining the rational-shadow count gives field exponent 47/8 and logarithmic exponent 19/8 in the original coordinates over all fields."
+      ],
+      "scoped_primary_audit": [
+        "Babson--Onn--Thomas Section 4 assumption of one reduced basis, Proposition 4.1 proof, and Theorem 4.2 proof rechecked. Ground size, column preprocessing and per-basis elimination costs matched directly.",
+        "Emiris--Fisikopoulos--Konaxis--Penaranda Algorithm 1 and Lemmas 4--6 positively identify reconstruction as prior art, not a new algorithm.",
+        "Chan Sections 3--4 supply the geometric budget and explicit handling of degeneracies; the bounded checker deliberately uses another slower hull routine.",
+        "Fukuda--Jensen--Thomas Section 5 already analyzes output-sensitive traversal, with a positive grading assumption and a separate flip cost. No strongest-current implementation conclusion follows."
+      ],
+      "classical_comparison": "Classical g=O(n^3) plus the reconstruction and greedy methods already gives O(n^6*L^2); the full n^7 to n^(47/8) improvement is not attributed to the internal shadow theorem. Its contribution is the extra 1/8 exponent saving.",
+      "independent_controls": {
+        "commuting_multiplication_columns": 87,
+        "independent_cyclic_monomial_columns": 187,
+        "independent_basis_determinants": 2298,
+        "independent_positive_state_polytopes": 10,
+        "explicit_all_basis_support_comparisons": 1412,
+        "reconstruction_support_queries": 132,
+        "complete_truncated_state_reconstructions": 10,
+        "recovered_initial_ideals": 39,
+        "independent_recovered_normal_cones": 39,
+        "independent_polynomial_matrix_annihilations": 425,
+        "recovered_reduced_basis_polynomials": 136
+      },
+      "scope_limit": "An algorithmic consequence in the original coordinates, not a new unrestricted count, current-best certificate, coefficient bit bound, benchmark or completed publication goal.",
+      "verification": {
+        "command": "python3 -B scripts/run_oracle_enumeration_checks.py",
+        "report": "results/research/oracle_enumeration_checks.json",
+        "status": "passed",
+        "source_hashes_verified": true,
+        "counts": {
+          "commuting_multiplication_columns": 87,
+          "independent_cyclic_monomial_columns": 187,
+          "independent_basis_determinants": 2298,
+          "independent_positive_state_polytopes": 10,
+          "explicit_all_basis_support_comparisons": 1412,
+          "reconstruction_support_queries": 132,
+          "complete_truncated_state_reconstructions": 10,
+          "recovered_initial_ideals": 39,
+          "independent_recovered_normal_cones": 39,
+          "independent_polynomial_matrix_annihilations": 425,
+          "recovered_reduced_basis_polynomials": 136
+        },
+        "build": "./build.sh passed",
+        "smoke": "python3 tests/test_smoke.py passed",
+        "scope": "Ten actual cyclic commuting quotient models over Q,F2,F3,F5; exhaustive independent determinant bases, explicit-support comparison including ties, full cut-state reconstruction, all 39 normal cones and initial sets, and 136 recovered reduced polynomials replayed on whole multiplication matrices. Uniform complexity and correctness rest on the proof; no finite speed fit or bit-cost inference."
+      }
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "Uniform O(n^2) exclusion of fixed-degree full-pure-power tangent equations with perturbations starting at a fixed positive fraction of the truncation. An O(n^(8/3)) corollary holds after suitable generic linear coordinate changes, over an extension if necessary; it is not an original-coordinate unrestricted G_3 bound. Classical geometry and elementary power membership are explicit inputs; priority is unassessed.",
-  "previous_goal_turn_classification": "progress: 7955855 proved exact division-free columns and the uniform binary-divisibility criterion for two-interaction prefix ranks, including an infinite all-field rank distinction. Revalidated clean main, all 346 tracked files, 79 source hashes and 67 continuations before this iteration. The full objective and acceptance criteria remain unchanged.",
+  "asymptotic_improvement_scope_this_iteration": "No new unrestricted G_3 count. The existing rational-shadow theorem now has a uniform original-coordinate all-field enumeration consequence: O(n^(47/8)*L^(19/8)) field operations from one known-order reduced basis or commuting cyclic matrices, with L=1+log(n+1). Classical counting plus attributed oracle reconstruction already gives O(n^6*L^2); only the further 1/8 exponent saving comes from the shadow input. Current-best priority and coefficient bit complexity remain unestablished.",
+  "previous_goal_turn_classification": "progress: 7a9a3e1 applied power membership and classical profile geometry to exclude the entire bounded-depth full-pure-power tangent perturbation class by O(n^2), and proved a coordinate-dependent O(n^(8/3)) corollary. Revalidated clean main, all 349 tracked files, 82 source hashes and 68 continuations before this iteration. The original unrestricted objective and acceptance criteria remain unchanged.",
   "uniform_relative_margin_hypothesis_status": "refuted_by_actual_all_field_quotients",
   "secondary_extremal_parameter_resolved": {
     "relative_margin_dimension_2": "Theta(n^-2)",
@@ -5966,7 +6069,7 @@
       "novelty_established": false
     }
   },
-  "family_asymptotic_improvement_established_this_iteration": true,
+  "family_asymptotic_improvement_established_this_iteration": false,
   "higher_interaction_reduction": {
     "proof": "docs/higher_interaction_fans.md",
     "fields": "every field",
@@ -6428,6 +6531,29 @@
     "classical_inputs": "Andrews lattice-vertex exponents, the Babson--Onn--Thomas state dictionary, the existing relative-socle layer argument, and the already used elementary power identity.",
     "unrestricted_G3_improvement": false,
     "strongest_current_unrestricted_audit_complete": false,
+    "novelty_established": false,
+    "goal_complete": false
+  },
+  "algorithmic_consequence_established_this_iteration": true,
+  "exact_vertex_oracle_established_this_iteration": true,
+  "oracle_fan_enumeration": {
+    "proof": "docs/oracle_fan_enumeration.md",
+    "checker": "scripts/run_oracle_enumeration_checks.py",
+    "report": "results/research/oracle_enumeration_checks.json",
+    "input_scope": "One marked reduced Groebner basis under a known global monomial order, or commuting coordinate-multiplication matrices with a cyclic vector. Arbitrary generators require additional initial-basis computation.",
+    "truncated_state": "Q=(B(I)+R_+^3) intersect {sum<=n^2+1}; all state vertices lie below the cut; new vertices come only from coordinate-ray edges. Q is a full-dimensional integer polytope with at most 4*g vertices.",
+    "exact_vertex_oracle": "Formulas (O7)--(O9) use lexicographic greedy keys, including zero and boundary directions. Symbolic negative coordinate perturbations and one extra tie term return a genuine polytope vertex and an actual initial-basis label in every characteristic.",
+    "support_queries": "At most 12*g+1, including initialization, by attributed vertex/facet oracle reconstruction and three-dimensional Euler bounds.",
+    "field_operations": "O((g+1)*n^3*(1+log(n+1))^2), including column preprocessing and all reduced-basis recovery.",
+    "geometric_operations": "O((g+1)^2*log(g+2)+(g+1)*n*(1+log(n+1))^3), using the cited exact 3D hull routine with degeneracy handling.",
+    "unrestricted_shadow_consequence": "O(n^(47/8)*(1+log(n+1))^(19/8)) field operations, with a lower-order rational-geometric budget.",
+    "classical_boundary": "The reconstruction and greedy conversion are established. Classical g=O(n^3) plus these tools already gives O(n^6*L^2), distinct from the older direct-zonotope O(n^7*L^10). The shadow theorem supplies only the extra 1/8 exponent saving.",
+    "output_representation": "All marked reduced bases and the state fan; their union is a universal basis, possibly represented with repeated polynomials. No minimum-size or canonical duplicate-free output claim.",
+    "verification_implementation_limit": "The bounded checker enumerates hull triples and all tiny determinant bases; it is not the asymptotically efficient hull implementation or a production benchmark.",
+    "new_unrestricted_G3_count": false,
+    "bit_complexity_bound": false,
+    "practical_speedup": false,
+    "strongest_current_audit_complete": false,
     "novelty_established": false,
     "goal_complete": false
   }

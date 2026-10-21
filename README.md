@@ -69,6 +69,15 @@ It bounds rational matroid shadows by their normalized integer height,
 then uses short integer relations to cover vertices with bounded facet
 normals. This is a uniform upper-bound improvement; sharp growth,
 current novelty and the goal's publication assessment remain open.
+An [exact enumeration consequence](docs/oracle_fan_enumeration.md) now
+computes all initial sets, their state fan and reduced bases in
+`O(n^(47/8)*log(n+1)^(19/8))` field operations, given one reduced
+Gröbner basis or commuting coordinate matrices with a cyclic vector.
+It applies in the original coordinates over every field. The oracle
+reconstruction and greedy conversion are established methods; with
+the classical count alone their composition already gives exponent six.
+The shadow theorem supplies the further saving of `1/8`. Coefficient
+bit costs, current-best priority and practical speed remain unestablished.
 A product-threshold refinement now counts every initial cell incident
 to a wall with primitive direction product at most `T` by
 `O(n*T^(4/3)*log(n+1))`, with an explicit support-oracle reduction.
