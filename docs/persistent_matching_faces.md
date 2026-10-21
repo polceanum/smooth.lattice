@@ -210,7 +210,7 @@ downset antichain estimates, and socle identifications are established
 tools. The existing [compulsory-core proof](wall_coexistence.md) and
 [two-flag proof](quadratic_coordinate_fan_compilation.md) supply the
 precise inputs. The [primitive-wall note](primitive_wall_spectrum.md)
-already compares the socle move with Hering--Maclagan's edge-ideal
+already compares the socle move with Altmann--Sturmfels' edge-ideal
 framework. No new general socle construction or zonotope principle is
 claimed. Exact priority of the persistent-face combination, sharp
 constant and fixed-flag obstruction remains unassessed.
