@@ -7,7 +7,7 @@
   "goal_complete": false,
   "asymptotic_improvement_established_this_iteration": false,
   "novelty_established_this_iteration": false,
-  "note": "The unrestricted three-variable goal remains active. A uniform rational-plane transfer now extends the arithmetic shadow mechanism to arbitrary fixed dimension and hyperbolic matroid profiles. It improves the older four-variable repository power from 52/11 to 33/7, reproduces the current three-variable result, and retains stronger older powers for d>=5. The unchanged transfer/surface budget cannot reach the generic three-variable power merely by a hypothetical height-independent linear shadow bound. Main-count, novelty and publication gates remain open.",
+  "note": "The original three-variable goal remains active. An actual cyclic interleaving quotient has an exact rank rule in every characteristic after the stated generic extension. Collective facet charging excludes fixed periods, and a shared ground excludes periods comparable to the base rank; the count stabilizes exactly once m>=r. Explicit bounds leave only an intermediate polynomial period window for a possible generic amplification. A coarse n^(5/2) bound extends to arbitrary planar bases, but the sharper generic statements do not. The global half-moment budget, new unrestricted count, lower separation, novelty and paper gates remain open.",
   "relationship_to_previous_work": "New active objective with a higher completion bar. Previous goal records, lattice-shadow candidate, manuscripts and paused ML results are preserved as historical research.",
   "definitions": {
     "G_d_n": "Maximum number of monomial initial ideals of a colength-n ideal in d variables, over all fields.",
@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Retain the original three-variable sharp-growth or actual separating-family target and all acceptance criteria. The new all-d rational-plane transfer is supporting work, not a substitute goal in dimension four. Its unchanged complete-plane/surface budget has best substituted three-variable power 14/5 even under a hypothetical linear height-independent shadow bound, so a sharp result requires another quotient-dependent collective charge, overlap mechanism or an amplified realizable family. Do not revive the refuted O(n) individual product certificate or excluded socle and bounded-interaction families. Keep the stronger Dey-based powers in d>=5. Finish the current-primary priority audit of hyperbolic shadows and finite-quotient enumeration; a classical lattice lemma or higher-dimensional refinement cannot complete the original goal. Preserve prior sources, manuscripts/PDFs, core CLI/kernels/auditor and paused ML. No outbound messages or submissions.",
+  "next_proof_task": "Keep the original unrestricted three-variable sharp-growth or actual polynomial-separation objective and all acceptance criteria. The exact cyclic interleaving model supplies one testable lower-construction route: fixed periods and periods comparable to r are uniformly excluded, so investigate the remaining m growing with r/m growing, using the exact rank formula before enlarging computations. The necessary period window is explicit; r=m^2 is one defined intermediate case, not an asserted lower family. Determine whether collective vertical charges can close that regime or whether simultaneous stream changes produce a provable polynomial amplification. Do not transfer generic uniform ranks or stabilization to arbitrary planar B; the saved actual rank counterexample forbids that shortcut. The coarse periodic-class n^(5/2) bound is a classical volume consequence. The alternative global cubic square-root incidence/edge-length budget remains unproved, and no conditional n^(33/13) result may be advertised as established. Complete exact primary priority comparisons for any actual theorem, preserve previous work, and keep the original impact/paper bar. No outbound messages or submissions.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -136,7 +136,8 @@
     "Audit the exact priority and strongest applicable bound for the generic-linear-coordinate O(n^(8/3)) consequence; it is coordinate dependent and cannot settle the stated original-coordinate G_3 problem. A further lower route must escape the new bounded-depth power-carrier exclusion, not add more terms within it.",
     "Compare the original-coordinate O(n^(47/8)*L^(19/8)) enumeration consequence against later primary algorithms and the priority of its rational-shadow input. Explicitly separate the classical O(n^6*L^2) composition from the additional shadow-derived 1/8 exponent saving; exact bit cost and practical speed remain unproved.",
     "The cubic unimodular socle family refutes O(n) minimum primitive plane product for individual cones. Any product-threshold improvement must bound exceptional cones collectively; the family has only seven initials and is not a lower-count amplifier.",
-    "Audit the exact combination of the arithmetic rational-plane transfer with the hyperbolic shadow theorem. Primitive-plane counting, Minkowski and facet incidence are classical. The dimension-four refinement does not resolve G_3; retain stronger earlier powers in d>=5. Any sharp three-variable proof needs more than substituting a nonnegative height exponent into the unchanged surface/plane budget."
+    "Audit the exact combination of the arithmetic rational-plane transfer with the hyperbolic shadow theorem. Primitive-plane counting, Minkowski and facet incidence are classical. The dimension-four refinement does not resolve G_3; retain stronger earlier powers in d>=5. Any sharp three-variable proof needs more than substituting a nonnegative height exponent into the unchanged surface/plane budget.",
+    "Compare the specialized generic cyclic interleaving rank model, fixed-direction vertical facet charge and exact large-period stabilization with finite-group graded Hilbert-scheme and parametric rank-selection literature. Haiman--Sturmfels supplies established grading/orbit machinery; no unsuccessful search establishes novelty. The remaining generic scaling window and nonuniform bases are distinct problems; no unrestricted cubic half-moment bound is proved."
   ],
   "primary_sources": [
     {
@@ -699,6 +700,13 @@
       "url": "https://arxiv.org/html/2503.08178v2",
       "version": "arXiv:2503.08178v2, 12 March 2025",
       "scope": "Theorem 3.2 and its full comparison-arrangement proof, Corollary 3.4 and surrounding definitions inspected in v2. The O(m^(2*p)) region count does not use a hyperbolic arithmetic budget. This scoped comparison does not establish an exhaustive strongest-current boundary."
+    },
+    {
+      "authors": "Mark Haiman and Bernd Sturmfels",
+      "title": "Multigraded Hilbert Schemes: targeted finite-group comparison",
+      "url": "https://arxiv.org/pdf/math/0201271",
+      "version": "arXiv:math/0201271v1; this record concerns additional passages beyond the earlier supportive-degree comparison",
+      "scope": "Introduction grading/Hilbert-function definitions and Section 5, Remark 5.1 with surrounding group-algebra/orbit discussion inspected. Finite abelian grading and its Hilbert-scheme framework are established. The orbit/toric comparison there has one-dimensional pieces; the current generic cyclic cover has r-dimensional pieces. No full-paper proof or strongest-current novelty audit is claimed."
     }
   ],
   "verification": {
@@ -1672,19 +1680,52 @@
       "smoke": "python3 tests/test_smoke.py passed",
       "scope": "Nine complete bounded-height plane enumerations in dimensions 3--5; separate 3D normal enumeration; exact 4D Plucker and dual controls; 950 short containing planes; 900 integer controls of the infinite sharpness mechanism; 1140 independent determinants; 16 full projected matroid hulls and cube controls; 64 sweeps; 126 exact exponent comparisons. No fitted growth, novelty or main-goal completion inferred.",
       "repair": "An exact exponent comparison corrected an initially transcribed subtraction polynomial to 3*d^2-19*d+23 before publication. The bound and the dimension-specific comparison are verified exactly."
+    },
+    "cyclic_interleaving_research": {
+      "command": "python3 -B scripts/run_cyclic_interleaving_checks.py",
+      "report": "results/research/cyclic_interleaving_checks.json",
+      "status": "passed",
+      "source_hashes_verified": true,
+      "counts": {
+        "selected_core_ground_controls": 8255,
+        "independent_compressed_prefix_selections": 2097,
+        "normalized_profile_volume_controls": 7,
+        "small_threshold_direction_controls": 83,
+        "exact_facet_corner_edge_length_bridges": 381,
+        "fixed_direction_facet_charges": 83,
+        "aggregate_direction_jump_budgets": 45,
+        "complete_direct_cyclic_fans": 7,
+        "direct_initial_ideals": 167,
+        "whole_mapped_cone_equalities": 186,
+        "complete_period_stabilizations": 6,
+        "independent_cyclic_block_determinants": 21,
+        "periodic_generator_columns": 48,
+        "commuting_coordinate_columns": 144,
+        "independent_stream_basis_determinants": 960,
+        "independent_full_column_greedy_bases": 99,
+        "whole_coordinate_matrix_border_annihilations": 2136,
+        "recovered_reduced_border_polynomials": 384,
+        "verified_nonzero_field_elements": 1533,
+        "nonsemisimple_generator_controls": 10,
+        "independent_large_threshold_residue_counts": 4,
+        "nongeneric_planar_rank_scope_obstructions": 1
+      },
+      "build": "./build.sh passed",
+      "smoke": "python3 tests/test_smoke.py passed",
+      "scope": "Seven complete direct fans with 167 initials; 186 whole mapped-cone equalities across six complete period stabilizations; nine explicit actual quotient models over Q,GF256,F257, including nonsemisimple period generators; independent determinants, complete-column greedy and 384 reduced bases replayed on whole coordinate matrices. Four exact large-threshold fixtures allocate no large quotient. No fitted growth or unrestricted moment claim."
     }
   },
-  "preservation": "Five explicitly privacy-reviewed research files change. All 70 prior continuations, original objective and success criteria, all 87 earlier source hashes other than the updated README, and all 353 unlisted previously tracked files remain unchanged against 21eda43. Core CLI, kernels, auditor, manuscripts/PDFs, prior research and paused ML remain intact. Baselines and logs remain ignored.",
+  "preservation": "Five explicitly privacy-reviewed public research files change. All 71 earlier continuations, original objective and success criteria, all 90 earlier source hashes other than the updated README, and all 356 unlisted previously tracked files remain unchanged against a67be44. Core CLI, kernels, auditor, manuscripts/PDFs, prior research and paused ML remain intact. Exploratory traces, baselines and logs remain ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
-    "docs/rational_plane_transfer.md",
-    "scripts/run_rational_plane_transfer_checks.py",
-    "results/research/rational_plane_transfer_checks.json",
+    "docs/cyclic_interleaving_fans.md",
+    "scripts/run_cyclic_interleaving_checks.py",
+    "results/research/cyclic_interleaving_checks.json",
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "a9c524741bfb89f38e3481ef98a1a89c9a628aa7d94b48338367b2a1180f2bfe",
+    "README.md": "a5400433fff5969618896ef00bd2257dcfd7e313b5210ba0f4985ac55804f065",
     "docs/extremal_initial_ideals.md": "6e84b6ea470841a89760a2e16080a9314ba747499b1a5a733460120fe501a92b",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
@@ -1774,7 +1815,10 @@
     "results/research/multiplicative_shadow_checks.json": "934efd1d899425e25b283ca43315b8f7d348c33ff1d1cb989198a57c38062612",
     "docs/rational_plane_transfer.md": "bc55bb75ffb538b0c7de32951359564187cfdc6cddb0af2e2f7ae4de177147b8",
     "scripts/run_rational_plane_transfer_checks.py": "4ae621544e7a94789f827a5404587d11274db2ccc9f5f56f5437c4ad5b5970b6",
-    "results/research/rational_plane_transfer_checks.json": "36cd656cfc8ff93f6f58488bc1d2ef9a0005529c4e1ef42bdb6a66b42b217a60"
+    "results/research/rational_plane_transfer_checks.json": "36cd656cfc8ff93f6f58488bc1d2ef9a0005529c4e1ef42bdb6a66b42b217a60",
+    "docs/cyclic_interleaving_fans.md": "55b89bdbacdf5e0c761de6c548cb076cc9ad7e4edf372b2f84f70ab40ae5dd40",
+    "scripts/run_cyclic_interleaving_checks.py": "76751d969025da0ab566b40c74e3b9c0ab47ca97d4de7724671b4e1da734e282",
+    "results/research/cyclic_interleaving_checks.json": "07cef4f91eeef6acc3d3a359b18f1ea75aab36c23721fa1d6d5dd1d874eee2eb"
   },
   "continuations": [
     {
@@ -6195,10 +6239,100 @@
       },
       "preservation": "Five explicitly privacy-reviewed research files change. All 70 prior continuations, original objective and success criteria, all 87 earlier source hashes other than the updated README, and all 353 unlisted previously tracked files remain unchanged against 21eda43. Core CLI, kernels, auditor, manuscripts/PDFs, prior research and paused ML remain intact. Baselines and logs remain ignored.",
       "scope_limit": "This is supporting progress, not a redefinition of the goal around dimension four. G_3 sharp growth, a polynomially separating actual family, the strongest-current priority audit and an honest paper remain unfinished."
+    },
+    {
+      "title": "Realizable cyclic interleavings, collective facet charges and exact period stabilization",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "Progress: a67be44 proved a fixed-dimensional arithmetic rational-plane transfer, improved the four-variable repository bound, retained stronger higher-dimensional powers, and identified the unchanged three-variable transfer budget. Revalidated clean main, all 358 tracked files, 91 source hashes, 71 continuations and the unchanged objective/criteria before this iteration.",
+      "progress_classification": "uniform exact rank construction and generic-family parameter gates, whole-fan stabilization, a classical broader quotient bound, and explicit separation from an unproved global incidence hypothesis",
+      "uniform_result": {
+        "proof": "docs/cyclic_interleaving_fans.md",
+        "checker": "scripts/run_cyclic_interleaving_checks.py",
+        "report": "results/research/cyclic_interleaving_checks.json",
+        "quotient": "A=B tensor K[g]/(g^m-1), x=U*g,y=V*g,z=g, length n=m*r. For generic B=K^r take algebraically independent point coordinates over a function-field extension of any base field.",
+        "characteristic_scope": "Works in every characteristic, including characteristic dividing m. The all-monomial uniform rank claim is over the function-field model; finite specializations only assert the finitely many ranks controlling the entire positive fan.",
+        "exact_rank": "For any finite S, sum over colors j of min(r, number of distinct (a,b) with a+b+c=j modulo m). Reduce c modulo m and count duplicate columns once.",
+        "general_tensor_converse": "Every finite Z/m-graded quotient with all variables of degree one and z^m=1 has this form with arbitrary planar B=A_0. In the general case the stream rank is the actual planar column rank, not the generic minimum.",
+        "collective_facet_charge": "At fixed primitive planar direction (p,q), a profile facet with vertical width l has at most 4*l vertices. All positive facets at that direction have total vertical jump at most n*(m-1).",
+        "fixed_period_count": "O_m(n^2*log(n+1)), using pq<=32*m^2*n+256*m^4 and the existing boundary-cell bound.",
+        "shared_ground": "With K0=ceil((r-1)/m), all sector selections use one ground of size O(r*log(r+1)*(K0+1+log(r+1))). Ordering that ground fixes every stream without a factor for the number of colors.",
+        "comparable_period_count": "For every fixed c>0 and m>=c*r, O_c(n^2*log(n+1)^8).",
+        "exact_stabilization": "For r>=2 and m>=r, g(I_(r,m))=g(I_(r,r)). Within each cheapest-variable sector the linear cost map preserves all selection grounds; cheapest ties are actual walls. Standard monomial labels and quotient lengths are not unchanged.",
+        "coarse_general_bound": "O(n^(5/2)), uniformly for arbitrary planar B in the tensor converse. This is a classical normalized-volume consequence of the index-m grading and z^m relation.",
+        "intermediate_uniform_bound": "For 2<=m<=r, O(min(n^(5/2),m^3*n^2*L,n^8*m^(-12)*L^8)), L=1+log(n+1).",
+        "necessary_polynomial_window": "A generic family with g>=c*n^(2+epsilon) needs m>=Omega(n^(epsilon/3)*L^(-1/3)) and m<=O(n^(1/2-epsilon/12)*L^(2/3)). These are necessary conditions only.",
+        "nongeneric_scope_obstruction": "B=F7^3 with U=V=(1,2,4), m=2: x,y have actual rank one while the generic minimum rule predicts two. The sharper gates and stabilization are not asserted for arbitrary B.",
+        "edge_route": "The proved inequality T_(1/2)<=2*L_+ connects square-root normal incidence to positive-facet edge length. The unrestricted cubic budget remains unproved; its n^(33/13) consequence is conditional.",
+        "unrestricted_G3_improved": false,
+        "polynomial_lower_family_established": false,
+        "novelty_established": false,
+        "goal_complete": false,
+        "scope_limit": "An exact realizable interleaving model, generic-family counting gates and a concrete surviving parameter regime. These do not settle the unrestricted target or establish publication significance."
+      },
+      "independent_controls": {
+        "selected_core_ground_controls": 8255,
+        "independent_compressed_prefix_selections": 2097,
+        "normalized_profile_volume_controls": 7,
+        "small_threshold_direction_controls": 83,
+        "exact_facet_corner_edge_length_bridges": 381,
+        "fixed_direction_facet_charges": 83,
+        "aggregate_direction_jump_budgets": 45,
+        "complete_direct_cyclic_fans": 7,
+        "direct_initial_ideals": 167,
+        "whole_mapped_cone_equalities": 186,
+        "complete_period_stabilizations": 6,
+        "independent_cyclic_block_determinants": 21,
+        "periodic_generator_columns": 48,
+        "commuting_coordinate_columns": 144,
+        "independent_stream_basis_determinants": 960,
+        "independent_full_column_greedy_bases": 99,
+        "whole_coordinate_matrix_border_annihilations": 2136,
+        "recovered_reduced_border_polynomials": 384,
+        "verified_nonzero_field_elements": 1533,
+        "nonsemisimple_generator_controls": 10,
+        "independent_large_threshold_residue_counts": 4,
+        "nongeneric_planar_rank_scope_obstructions": 1
+      },
+      "verification": {
+        "command": "python3 -B scripts/run_cyclic_interleaving_checks.py",
+        "report": "results/research/cyclic_interleaving_checks.json",
+        "status": "passed",
+        "source_hashes_verified": true,
+        "counts": {
+          "selected_core_ground_controls": 8255,
+          "independent_compressed_prefix_selections": 2097,
+          "normalized_profile_volume_controls": 7,
+          "small_threshold_direction_controls": 83,
+          "exact_facet_corner_edge_length_bridges": 381,
+          "fixed_direction_facet_charges": 83,
+          "aggregate_direction_jump_budgets": 45,
+          "complete_direct_cyclic_fans": 7,
+          "direct_initial_ideals": 167,
+          "whole_mapped_cone_equalities": 186,
+          "complete_period_stabilizations": 6,
+          "independent_cyclic_block_determinants": 21,
+          "periodic_generator_columns": 48,
+          "commuting_coordinate_columns": 144,
+          "independent_stream_basis_determinants": 960,
+          "independent_full_column_greedy_bases": 99,
+          "whole_coordinate_matrix_border_annihilations": 2136,
+          "recovered_reduced_border_polynomials": 384,
+          "verified_nonzero_field_elements": 1533,
+          "nonsemisimple_generator_controls": 10,
+          "independent_large_threshold_residue_counts": 4,
+          "nongeneric_planar_rank_scope_obstructions": 1
+        },
+        "build": "./build.sh passed",
+        "smoke": "python3 tests/test_smoke.py passed",
+        "scope": "Seven complete direct fans with 167 initials; 186 whole mapped-cone equalities across six complete period stabilizations; nine explicit actual quotient models over Q,GF256,F257, including nonsemisimple period generators; independent determinants, complete-column greedy and 384 reduced bases replayed on whole coordinate matrices. Four exact large-threshold fixtures allocate no large quotient. No fitted growth or unrestricted moment claim."
+      },
+      "preservation": "Five explicitly privacy-reviewed public research files change. All 71 earlier continuations, original objective and success criteria, all 90 earlier source hashes other than the updated README, and all 356 unlisted previously tracked files remain unchanged against a67be44. Core CLI, kernels, auditor, manuscripts/PDFs, prior research and paused ML remain intact. Exploratory traces, baselines and logs remain ignored.",
+      "scope_limit": "The original G_3 sharp-growth or actual polynomial-separation target is unchanged. This family may or may not supply the required lower theorem; a fixed-period exclusion, finite count or conditional incidence consequence cannot complete the goal."
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "A new four-variable power, not a new power for the goal target G_3. The general transfer also improves the classical baseline but does not replace the stronger older repository powers for d>=5.",
-  "previous_goal_turn_classification": "Progress: 21eda43 proved an actual all-field seven-initial family with minimum detecting-plane product Theta(n^(4/3)), uniformly refuting the individual O(n) shortcut while preserving the aggregate-count question. Revalidated clean main, all 355 tracked files, 88 source hashes, 70 continuations and the unchanged objective/criteria before this iteration.",
+  "asymptotic_improvement_scope_this_iteration": "New bounds concern the defined cyclic quotient family and the broader periodic graded class. No new unrestricted G_3 exponent or polynomially separating actual family is established.",
+  "previous_goal_turn_classification": "Progress: a67be44 proved a fixed-dimensional arithmetic rational-plane transfer, improved the four-variable repository bound, retained stronger higher-dimensional powers, and identified the unchanged three-variable transfer budget. Revalidated clean main, all 358 tracked files, 91 source hashes, 71 continuations and the unchanged objective/criteria before this iteration.",
   "uniform_relative_margin_hypothesis_status": "refuted_by_actual_all_field_quotients",
   "secondary_extremal_parameter_resolved": {
     "relative_margin_dimension_2": "Theta(n^-2)",
@@ -6834,5 +6968,29 @@
     "novelty_established": false,
     "goal_complete": false,
     "scope_limit": "A general geometric/matroid theorem and a higher-dimensional refinement. The original three-variable sharp-growth or separating-family target remains unchanged and unresolved."
+  },
+  "cyclic_interleaving_fans": {
+    "proof": "docs/cyclic_interleaving_fans.md",
+    "checker": "scripts/run_cyclic_interleaving_checks.py",
+    "report": "results/research/cyclic_interleaving_checks.json",
+    "quotient": "A=B tensor K[g]/(g^m-1), x=U*g,y=V*g,z=g, length n=m*r. For generic B=K^r take algebraically independent point coordinates over a function-field extension of any base field.",
+    "characteristic_scope": "Works in every characteristic, including characteristic dividing m. The all-monomial uniform rank claim is over the function-field model; finite specializations only assert the finitely many ranks controlling the entire positive fan.",
+    "exact_rank": "For any finite S, sum over colors j of min(r, number of distinct (a,b) with a+b+c=j modulo m). Reduce c modulo m and count duplicate columns once.",
+    "general_tensor_converse": "Every finite Z/m-graded quotient with all variables of degree one and z^m=1 has this form with arbitrary planar B=A_0. In the general case the stream rank is the actual planar column rank, not the generic minimum.",
+    "collective_facet_charge": "At fixed primitive planar direction (p,q), a profile facet with vertical width l has at most 4*l vertices. All positive facets at that direction have total vertical jump at most n*(m-1).",
+    "fixed_period_count": "O_m(n^2*log(n+1)), using pq<=32*m^2*n+256*m^4 and the existing boundary-cell bound.",
+    "shared_ground": "With K0=ceil((r-1)/m), all sector selections use one ground of size O(r*log(r+1)*(K0+1+log(r+1))). Ordering that ground fixes every stream without a factor for the number of colors.",
+    "comparable_period_count": "For every fixed c>0 and m>=c*r, O_c(n^2*log(n+1)^8).",
+    "exact_stabilization": "For r>=2 and m>=r, g(I_(r,m))=g(I_(r,r)). Within each cheapest-variable sector the linear cost map preserves all selection grounds; cheapest ties are actual walls. Standard monomial labels and quotient lengths are not unchanged.",
+    "coarse_general_bound": "O(n^(5/2)), uniformly for arbitrary planar B in the tensor converse. This is a classical normalized-volume consequence of the index-m grading and z^m relation.",
+    "intermediate_uniform_bound": "For 2<=m<=r, O(min(n^(5/2),m^3*n^2*L,n^8*m^(-12)*L^8)), L=1+log(n+1).",
+    "necessary_polynomial_window": "A generic family with g>=c*n^(2+epsilon) needs m>=Omega(n^(epsilon/3)*L^(-1/3)) and m<=O(n^(1/2-epsilon/12)*L^(2/3)). These are necessary conditions only.",
+    "nongeneric_scope_obstruction": "B=F7^3 with U=V=(1,2,4), m=2: x,y have actual rank one while the generic minimum rule predicts two. The sharper gates and stabilization are not asserted for arbitrary B.",
+    "edge_route": "The proved inequality T_(1/2)<=2*L_+ connects square-root normal incidence to positive-facet edge length. The unrestricted cubic budget remains unproved; its n^(33/13) consequence is conditional.",
+    "unrestricted_G3_improved": false,
+    "polynomial_lower_family_established": false,
+    "novelty_established": false,
+    "goal_complete": false,
+    "scope_limit": "An exact realizable interleaving model, generic-family counting gates and a concrete surviving parameter regime. These do not settle the unrestricted target or establish publication significance."
   }
 }

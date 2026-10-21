@@ -99,6 +99,14 @@ minimum detecting product is `Theta(n^(4/3))`. The uniform proof and
 exact quotient checks distinguish interior detection from touching a wall.
 This closes a proposed shortcut; a collective count of difficult cones
 and the unrestricted extremal problem remain open.
+An [exact cyclic interleaving model](docs/cyclic_interleaving_fans.md)
+now realizes uniform rank selection in residue classes by actual quotients,
+including in characteristic dividing the period. Fixed periods and periods
+comparable to the base rank have quadratic bounds up to logarithms; the
+number of initials stabilizes once the period exceeds the base rank.
+A shared cost ground and explicit parameter bounds leave one intermediate
+scaling window. This is a family analysis; it does not improve unrestricted
+`G_3`, and its sharper conclusions require generic planar columns.
 Fixed internal list orders give exact rank-oracle formulas, but a
 polylogarithmic cover by two-list domains is impossible even for that
 quadratic family. Three-list ranks require a signed correction with
