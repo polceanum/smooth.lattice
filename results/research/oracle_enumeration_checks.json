@@ -6,13 +6,19 @@
     "independent_cyclic_monomial_columns": 187,
     "independent_basis_determinants": 2298,
     "independent_positive_state_polytopes": 10,
+    "compressed_rank_profile_stages": 2910,
+    "compressed_candidate_rows": 16406,
+    "compressed_basis_calls": 1544,
+    "compressed_direct_column_replays": 4122,
     "explicit_all_basis_support_comparisons": 1412,
+    "multivariate_and_fixed_module_equalities": 132,
     "reconstruction_support_queries": 132,
     "complete_truncated_state_reconstructions": 10,
     "recovered_initial_ideals": 39,
     "independent_recovered_normal_cones": 39,
     "independent_polynomial_matrix_annihilations": 425,
-    "recovered_reduced_basis_polynomials": 136
+    "recovered_reduced_basis_polynomials": 136,
+    "equal_rank_label_changes": 735
   },
   "fixtures": [
     {
@@ -8113,13 +8119,3738 @@
       ]
     }
   ],
+  "faithful_fixed_module_prefix_ranks": {
+    "counts": {
+      "compressed_rank_profile_stages": 686,
+      "compressed_candidate_rows": 4168,
+      "compressed_basis_calls": 352,
+      "independent_nongeneric_prefix_rank_queries": 352,
+      "equal_rank_label_changes": 290
+    },
+    "fixtures": [
+      {
+        "model": "one_point",
+        "length": 1,
+        "characteristic": 0,
+        "fixed_chain_generators": 1,
+        "prefix_queries": [
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 1,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 2,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 3,
+            "rank": 1
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 1,
+            "rank": 1
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 2,
+            "rank": 1
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 3,
+            "rank": 1
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 1,
+            "rank": 1
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 2,
+            "rank": 1
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 3,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 1,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 2,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 3,
+            "rank": 1
+          }
+        ]
+      },
+      {
+        "model": "double_point",
+        "length": 2,
+        "characteristic": 0,
+        "fixed_chain_generators": 3,
+        "prefix_queries": [
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 1,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 2,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 3,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 4,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 5,
+            "rank": 2
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 1,
+            "rank": 1
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 2,
+            "rank": 2
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 3,
+            "rank": 2
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 4,
+            "rank": 2
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 5,
+            "rank": 2
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 1,
+            "rank": 2
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 2,
+            "rank": 2
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 3,
+            "rank": 2
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 4,
+            "rank": 2
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 5,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 1,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 2,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 3,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 4,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 5,
+            "rank": 2
+          }
+        ]
+      },
+      {
+        "model": "double_point",
+        "length": 2,
+        "characteristic": 2,
+        "fixed_chain_generators": 3,
+        "prefix_queries": [
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 1,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 2,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 3,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 4,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 5,
+            "rank": 2
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 1,
+            "rank": 1
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 2,
+            "rank": 2
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 3,
+            "rank": 2
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 4,
+            "rank": 2
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 5,
+            "rank": 2
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 1,
+            "rank": 2
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 2,
+            "rank": 2
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 3,
+            "rank": 2
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 4,
+            "rank": 2
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 5,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 1,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 2,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 3,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 4,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 5,
+            "rank": 2
+          }
+        ]
+      },
+      {
+        "model": "curvilinear_three",
+        "length": 3,
+        "characteristic": 0,
+        "fixed_chain_generators": 5,
+        "prefix_queries": [
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 1,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 2,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 3,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 4,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 5,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 6,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 7,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 1,
+            "rank": 1
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 2,
+            "rank": 2
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 3,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 4,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 5,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 6,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 7,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 1,
+            "rank": 2
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 2,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 3,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 4,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 5,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 6,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 7,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 1,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 2,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 3,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 4,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 5,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 6,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 7,
+            "rank": 3
+          }
+        ]
+      },
+      {
+        "model": "curvilinear_three",
+        "length": 3,
+        "characteristic": 2,
+        "fixed_chain_generators": 5,
+        "prefix_queries": [
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 1,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 2,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 3,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 4,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 5,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 6,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 7,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 1,
+            "rank": 1
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 2,
+            "rank": 2
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 3,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 4,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 5,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 6,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 7,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 1,
+            "rank": 2
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 2,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 3,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 4,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 5,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 6,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 7,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 1,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 2,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 3,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 4,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 5,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 6,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 7,
+            "rank": 3
+          }
+        ]
+      },
+      {
+        "model": "curvilinear_three",
+        "length": 3,
+        "characteristic": 3,
+        "fixed_chain_generators": 5,
+        "prefix_queries": [
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 1,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 2,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 3,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 4,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 5,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 6,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 7,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 1,
+            "rank": 1
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 2,
+            "rank": 2
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 3,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 4,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 5,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 6,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 7,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 1,
+            "rank": 2
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 2,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 3,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 4,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 5,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 6,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 7,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 1,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 2,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 3,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 4,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 5,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 6,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 7,
+            "rank": 3
+          }
+        ]
+      },
+      {
+        "model": "nonlinear_rectangle",
+        "length": 4,
+        "characteristic": 0,
+        "fixed_chain_generators": 8,
+        "prefix_queries": [
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 1,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 2,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 3,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 4,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 5,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 6,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 7,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 8,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 9,
+            "rank": 4
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 1,
+            "rank": 1
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 2,
+            "rank": 2
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 3,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 4,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 5,
+            "rank": 4
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 6,
+            "rank": 4
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 7,
+            "rank": 4
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 8,
+            "rank": 4
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 9,
+            "rank": 4
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 1,
+            "rank": 2
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 2,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 3,
+            "rank": 4
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 4,
+            "rank": 4
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 5,
+            "rank": 4
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 6,
+            "rank": 4
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 7,
+            "rank": 4
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 8,
+            "rank": 4
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 9,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 1,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 2,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 3,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 4,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 5,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 6,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 7,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 8,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 9,
+            "rank": 4
+          }
+        ]
+      },
+      {
+        "model": "nonlinear_rectangle",
+        "length": 4,
+        "characteristic": 2,
+        "fixed_chain_generators": 8,
+        "prefix_queries": [
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 1,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 2,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 3,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 4,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 5,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 6,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 7,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 8,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 9,
+            "rank": 4
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 1,
+            "rank": 1
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 2,
+            "rank": 2
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 3,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 4,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 5,
+            "rank": 4
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 6,
+            "rank": 4
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 7,
+            "rank": 4
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 8,
+            "rank": 4
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 9,
+            "rank": 4
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 1,
+            "rank": 2
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 2,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 3,
+            "rank": 4
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 4,
+            "rank": 4
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 5,
+            "rank": 4
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 6,
+            "rank": 4
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 7,
+            "rank": 4
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 8,
+            "rank": 4
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 9,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 1,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 2,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 3,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 4,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 5,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 6,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 7,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 8,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 9,
+            "rank": 4
+          }
+        ]
+      },
+      {
+        "model": "monomial_box",
+        "length": 4,
+        "characteristic": 3,
+        "fixed_chain_generators": 8,
+        "prefix_queries": [
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 1,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 2,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 3,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 4,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 5,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 6,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 7,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 8,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 9,
+            "rank": 4
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 1,
+            "rank": 1
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 2,
+            "rank": 2
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 3,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 4,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 5,
+            "rank": 4
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 6,
+            "rank": 4
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 7,
+            "rank": 4
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 8,
+            "rank": 4
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 9,
+            "rank": 4
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 1,
+            "rank": 2
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 2,
+            "rank": 2
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 3,
+            "rank": 2
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 4,
+            "rank": 2
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 5,
+            "rank": 2
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 6,
+            "rank": 2
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 7,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 8,
+            "rank": 4
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 9,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 1,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 2,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 3,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 4,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 5,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 6,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 7,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 8,
+            "rank": 4
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 9,
+            "rank": 4
+          }
+        ]
+      },
+      {
+        "model": "three_distinct_points",
+        "length": 3,
+        "characteristic": 5,
+        "fixed_chain_generators": 5,
+        "prefix_queries": [
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 1,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 2,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 3,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 4,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 5,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 6,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              1,
+              1
+            ],
+            "threshold": 7,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 1,
+            "rank": 1
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 2,
+            "rank": 2
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 3,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 4,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 5,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 6,
+            "rank": 3
+          },
+          {
+            "weight": [
+              2,
+              3,
+              5
+            ],
+            "threshold": 7,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 1,
+            "rank": 2
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 2,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 3,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 4,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 5,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 6,
+            "rank": 3
+          },
+          {
+            "weight": [
+              7,
+              1,
+              2
+            ],
+            "threshold": 7,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": -1,
+            "rank": 0
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 0,
+            "rank": 1
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 1,
+            "rank": 2
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 2,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 3,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 4,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 5,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 6,
+            "rank": 3
+          },
+          {
+            "weight": [
+              1,
+              7,
+              2
+            ],
+            "threshold": 7,
+            "rank": 3
+          }
+        ]
+      }
+    ],
+    "scope": "One fixed univariate module per actual commuting quotient, with query shifts from exact chain lengths. This is faithful for special and nonreduced samples, and is not the generic min(n,carrier-rank) formula."
+  },
+  "prime_digit_rank_law": {
+    "counts": {
+      "exhaustive_selected_pascal_ranks": 7740,
+      "exhaustive_subset_rank_enumerator_equalities": 111,
+      "independent_minimum_cost_digit_bases": 90,
+      "larger_sparse_pascal_ranks": 270,
+      "independent_polynomial_codeword_annihilations": 489,
+      "independent_hamming_enumerator_equalities": 20,
+      "independent_unit_power_column_replays": 306,
+      "compressed_rank_profile_stages": 153,
+      "compressed_candidate_rows": 1598,
+      "compressed_basis_calls": 72,
+      "compressed_direct_column_replays": 360,
+      "unit_power_compressed_basis_equalities": 72,
+      "actual_unit_power_prefix_ranks": 936,
+      "equal_rank_label_changes": 81
+    },
+    "exhaustive_basis_counts": [
+      {
+        "prime": 2,
+        "modulus": 2,
+        "rank": 0,
+        "all_residue_bases": 1
+      },
+      {
+        "prime": 2,
+        "modulus": 2,
+        "rank": 1,
+        "all_residue_bases": 2
+      },
+      {
+        "prime": 2,
+        "modulus": 2,
+        "rank": 2,
+        "all_residue_bases": 1
+      },
+      {
+        "prime": 2,
+        "modulus": 4,
+        "rank": 0,
+        "all_residue_bases": 1
+      },
+      {
+        "prime": 2,
+        "modulus": 4,
+        "rank": 1,
+        "all_residue_bases": 4
+      },
+      {
+        "prime": 2,
+        "modulus": 4,
+        "rank": 2,
+        "all_residue_bases": 4
+      },
+      {
+        "prime": 2,
+        "modulus": 4,
+        "rank": 3,
+        "all_residue_bases": 4
+      },
+      {
+        "prime": 2,
+        "modulus": 4,
+        "rank": 4,
+        "all_residue_bases": 1
+      },
+      {
+        "prime": 2,
+        "modulus": 8,
+        "rank": 0,
+        "all_residue_bases": 1
+      },
+      {
+        "prime": 2,
+        "modulus": 8,
+        "rank": 1,
+        "all_residue_bases": 8
+      },
+      {
+        "prime": 2,
+        "modulus": 8,
+        "rank": 2,
+        "all_residue_bases": 16
+      },
+      {
+        "prime": 2,
+        "modulus": 8,
+        "rank": 3,
+        "all_residue_bases": 32
+      },
+      {
+        "prime": 2,
+        "modulus": 8,
+        "rank": 4,
+        "all_residue_bases": 16
+      },
+      {
+        "prime": 2,
+        "modulus": 8,
+        "rank": 5,
+        "all_residue_bases": 32
+      },
+      {
+        "prime": 2,
+        "modulus": 8,
+        "rank": 6,
+        "all_residue_bases": 16
+      },
+      {
+        "prime": 2,
+        "modulus": 8,
+        "rank": 7,
+        "all_residue_bases": 8
+      },
+      {
+        "prime": 2,
+        "modulus": 8,
+        "rank": 8,
+        "all_residue_bases": 1
+      },
+      {
+        "prime": 3,
+        "modulus": 3,
+        "rank": 0,
+        "all_residue_bases": 1
+      },
+      {
+        "prime": 3,
+        "modulus": 3,
+        "rank": 1,
+        "all_residue_bases": 3
+      },
+      {
+        "prime": 3,
+        "modulus": 3,
+        "rank": 2,
+        "all_residue_bases": 3
+      },
+      {
+        "prime": 3,
+        "modulus": 3,
+        "rank": 3,
+        "all_residue_bases": 1
+      },
+      {
+        "prime": 3,
+        "modulus": 9,
+        "rank": 0,
+        "all_residue_bases": 1
+      },
+      {
+        "prime": 3,
+        "modulus": 9,
+        "rank": 1,
+        "all_residue_bases": 9
+      },
+      {
+        "prime": 3,
+        "modulus": 9,
+        "rank": 2,
+        "all_residue_bases": 27
+      },
+      {
+        "prime": 3,
+        "modulus": 9,
+        "rank": 3,
+        "all_residue_bases": 27
+      },
+      {
+        "prime": 3,
+        "modulus": 9,
+        "rank": 4,
+        "all_residue_bases": 81
+      },
+      {
+        "prime": 3,
+        "modulus": 9,
+        "rank": 5,
+        "all_residue_bases": 81
+      },
+      {
+        "prime": 3,
+        "modulus": 9,
+        "rank": 6,
+        "all_residue_bases": 27
+      },
+      {
+        "prime": 3,
+        "modulus": 9,
+        "rank": 7,
+        "all_residue_bases": 27
+      },
+      {
+        "prime": 3,
+        "modulus": 9,
+        "rank": 8,
+        "all_residue_bases": 9
+      },
+      {
+        "prime": 3,
+        "modulus": 9,
+        "rank": 9,
+        "all_residue_bases": 1
+      },
+      {
+        "prime": 5,
+        "modulus": 5,
+        "rank": 0,
+        "all_residue_bases": 1
+      },
+      {
+        "prime": 5,
+        "modulus": 5,
+        "rank": 1,
+        "all_residue_bases": 5
+      },
+      {
+        "prime": 5,
+        "modulus": 5,
+        "rank": 2,
+        "all_residue_bases": 10
+      },
+      {
+        "prime": 5,
+        "modulus": 5,
+        "rank": 3,
+        "all_residue_bases": 10
+      },
+      {
+        "prime": 5,
+        "modulus": 5,
+        "rank": 4,
+        "all_residue_bases": 5
+      },
+      {
+        "prime": 5,
+        "modulus": 5,
+        "rank": 5,
+        "all_residue_bases": 1
+      }
+    ],
+    "exact_witnesses": [
+      {
+        "prime": 2,
+        "length": 3,
+        "modulus": 4,
+        "monomials": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0
+          ]
+        ],
+        "residues": [
+          0,
+          2
+        ],
+        "rank": 2
+      },
+      {
+        "prime": 3,
+        "length": 3,
+        "modulus": 3,
+        "monomials": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0
+          ]
+        ],
+        "residues": [
+          0,
+          2
+        ],
+        "rank": 2
+      },
+      {
+        "prime": 5,
+        "length": 3,
+        "modulus": 5,
+        "monomials": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0
+          ]
+        ],
+        "residues": [
+          0,
+          2
+        ],
+        "rank": 2
+      },
+      {
+        "prime": 2,
+        "length": 3,
+        "modulus": 4,
+        "monomials": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            4,
+            0,
+            0
+          ]
+        ],
+        "integer_powers": [
+          0,
+          4
+        ],
+        "distinct_residues": [
+          0
+        ],
+        "rank": 1
+      },
+      {
+        "prime": 2,
+        "length": 5,
+        "modulus": 8,
+        "monomials": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            4,
+            0,
+            0
+          ],
+          [
+            6,
+            0,
+            0
+          ]
+        ],
+        "distinct_residues": [
+          0,
+          2,
+          4,
+          6
+        ],
+        "rank": 3
+      }
+    ],
+    "independent_code_weight_enumerators": [
+      {
+        "prime": 2,
+        "modulus": 8,
+        "generator_multiplicity": 3,
+        "weight_enumerator": [
+          1,
+          0,
+          4,
+          0,
+          22,
+          0,
+          4,
+          0,
+          1
+        ]
+      },
+      {
+        "prime": 2,
+        "modulus": 8,
+        "generator_multiplicity": 5,
+        "weight_enumerator": [
+          1,
+          0,
+          0,
+          0,
+          6,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "prime": 3,
+        "modulus": 9,
+        "generator_multiplicity": 4,
+        "weight_enumerator": [
+          1,
+          0,
+          0,
+          6,
+          54,
+          0,
+          66,
+          108,
+          0,
+          8
+        ]
+      },
+      {
+        "prime": 3,
+        "modulus": 9,
+        "generator_multiplicity": 5,
+        "weight_enumerator": [
+          1,
+          0,
+          0,
+          6,
+          0,
+          0,
+          66,
+          0,
+          0,
+          8
+        ]
+      },
+      {
+        "prime": 5,
+        "modulus": 5,
+        "generator_multiplicity": 2,
+        "weight_enumerator": [
+          1,
+          0,
+          0,
+          40,
+          40,
+          44
+        ]
+      }
+    ],
+    "uniform_results": {
+      "actual_quotient": "K[X,Y,Z]/((X-1)^n,XY-1,Z-Y^k), k>=1, characteristic p prime",
+      "rank": "R(n,M,S)=sum_u min(q,l_u)+R(r,M/p,{u:l_u>q}), n=q*(M/p)+r, M a power of p >= n",
+      "basis_count": "B(n,M)=B(r,M/p)*binom(p,q)^(M/p-r)*binom(p,q+1)^r",
+      "homogeneous_subset_enumerator": "H(n,M,A,B,Y)=H(r,M/p,A_prime,B_prime,Y), with the two explicit binomial sums in (O16)",
+      "code_weight_enumerator": "W_C(z)=H(n,M,1-z,Q*z,1/Q) for C=<(V-1)^n> over a finite field of size Q and characteristic p",
+      "division_free_circuit": "O(p*s+log(M+1)) integer-constant arithmetic gates for the complete enumerator, M=p^s; coefficient expansion and integer bit costs are additional",
+      "coherent_order_count_established": false
+    },
+    "scope": "Exact rank, minimum-cost basis, subset-rank and code-weight recursions for the truncated Pascal matrix over prime characteristic. Independent controls use arbitrary column subsets, actual unit-power quotients and polynomial-generated codewords. This is repeated-root cyclic-code structure; strongest priority and the comparison with existing weight-distribution algorithms remain open. No novelty, coherent-fan lower bound or improvement of unrestricted G3 is asserted."
+  },
   "uniform_results": {
     "truncated_state_vertices": "at most 4*g",
     "vertex_queries": "at most 12*g+1, including initialization",
-    "field_operations": "O((g+1)*n^3*(1+log(n+1))^2)",
-    "geometric_operations": "O((g+1)^2*log(g+2)+(g+1)*n*(1+log(n+1))^3)",
-    "unrestricted_shadow_consequence": "O(n^(47/8)*(1+log(n+1))^(19/8)) field operations",
-    "classical_count_composition": "O(n^6*(1+log(n+1))^2)",
+    "field_operations": "O(n^3*L^2+(g+1)*n^omega*L), L=1+log(n+1)",
+    "dense_reference_field_operations": "O((g+1)*n^3*L^2)",
+    "geometric_operations": "O((g+1)^2*log(g+2)+(g+1)*n*L^2)",
+    "unrestricted_shadow_consequence": "O(n^(omega+23/8)*L^(11/8)) field operations",
+    "unrestricted_shadow_geometric_consequence": "O(n^(23/4)*L^(7/4)) rational geometric operations and comparisons; this may dominate the fast field-operation term",
+    "combined_unit_cost_consequence": "O(n^(omega+23/8)*L^(11/8)+n^(23/4)*L^(7/4)); not a bit-complexity bound",
+    "dense_reference_shadow_consequence": "O(n^(47/8)*L^(19/8)) field operations",
+    "classical_count_composition": "O(n^(omega+3)*L) field operations, plus one-time O(n^3*L^2) preprocessing",
+    "dense_reference_classical_composition": "O(n^6*L^2)",
     "given_input": "One marked reduced Groebner basis, or commuting coordinate matrices with a cyclic vector.",
     "union_output": "All reduced bases; their union may retain repeated polynomials."
   },
@@ -8128,10 +11859,10 @@
   "bit_complexity_bound_established": false,
   "practical_speedup_established": false,
   "goal_complete": false,
-  "scope": "An exact arithmetic consequence of the internal counting theorem using attributed reconstruction and linear algebra. The checker uses a deliberately slow small hull routine. It does not establish current-best priority, asymptotic sharpness, coefficient bit costs or production performance.",
+  "scope": "Corrected primary baseline using Neiger--Schost Theorem 1.7 and Proposition 3.7 for arbitrary commuting matrices and monomial orders. Fixed-module compression is checked against independent full-ground elimination, including nongeneric and nonreduced quotients. The checker uses elementary arithmetic and a slow exact small hull routine; the theorem uses published fast linear algebra. No new kernel algorithm, unrestricted count, current-best priority, bit cost or practical speedup is established.",
   "source_sha256": {
-    "docs/oracle_fan_enumeration.md": "1d7322de1b56dad0db1247a61ee19633d1f2fae3d56c0640187ab5fabe6cede8",
-    "scripts/run_oracle_enumeration_checks.py": "a67b7db61f3fe6e69bb0bc62d792916737c7b35a3e3171c2b976e07866a883df",
+    "docs/oracle_fan_enumeration.md": "ebc8de24c93bcece14e63c3eebf10c2470621bf2284e3585c9fd0e6c0391ed4f",
+    "scripts/run_oracle_enumeration_checks.py": "ad3cbf3c309e9f03303199c2aed935835f7284702aec6769f246f8f1c9b72384",
     "docs/rational_shadow_bound.md": "09b6e5e19cb03825e9d2151680e557cdf384256c5392cf70b6aca388e488c1ca",
     "docs/power_carrier_bounds.md": "147199d8453db28285ebe3448e5bc0916121bb62ea8b9450f035dc46a401320b",
     "scripts/run_higher_interaction_checks.py": "cdc31d1b582e71c4536056429bf7eabeb2fcb312f313713135a2eaee68578916",

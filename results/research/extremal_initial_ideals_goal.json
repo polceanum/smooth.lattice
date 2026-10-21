@@ -7,7 +7,7 @@
   "goal_complete": false,
   "asymptotic_improvement_established_this_iteration": false,
   "novelty_established_this_iteration": false,
-  "note": "The generic growing-pole route is now completely excluded as a source of polynomial amplification, including all coprime rational functions regular at zero and infinity. A sensitive-wall moment charge gives O(n^2*log(n+1)) uniformly in degree, and an exact integer-cost rank/unrank oracle avoids quotient matrices. Special samples retain actual rank dependencies; the unrestricted sharp-growth or separating-family objective, priority assessment and publication criteria remain unmet and active.",
+  "note": "A fixed univariate module now preserves every original-coordinate quotient basis and positive-cost prefix rank, including special and nonreduced samples. The corrected enumeration baseline uses the already published Neiger--Schost algorithm. An exact prime-digit rank recursion for unit-power jets also gives all residue-basis counts, minimum-cost bases and compact division-free repeated-root code-weight enumerators. These are proved structural and algorithmic tools, not an unrestricted G3 count or an established novelty claim. The main objective and all success criteria remain active.",
   "relationship_to_previous_work": "New active objective with a higher completion bar. Previous goal records, lattice-shadow candidate, manuscripts and paused ML results are preserved as historical research.",
   "definitions": {
     "G_d_n": "Maximum number of monomial initial ideals of a colength-n ideal in d variables, over all fields.",
@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Keep the full unrestricted G3 objective and every original criterion. Do not resume generic growing-pole parameter sweeps: the whole rational-function family regular at zero and infinity now has a uniform quadratic logarithmic bound. The unresolved algebraic information lies in non-generic quotient prefix ranks. Compare their faithful interpolation/approximant formulation with the inspected shifted-Popov primary framework before claiming a new algorithm or count. Seek either a genuine growing coherent-dependency lower family or an unrestricted collective-incidence theorem using budgets conditioned on where dependencies affect selection. The coprime-circuit and earlier shadow results remain preserved, and the strongest-current-priority audit remains necessary.",
+  "next_proof_task": "Retain the complete unrestricted G3 objective and original publication criteria. First compare the exact prime-digit subset-rank and division-free weight-enumerator recursions (O14)--(O18) with Sobhani 2016, earlier repeated-root/squaring constructions and the remaining general-case term in Zhao--Li--Yang--Fu--Shum Theorem 17. An unsuccessful search or inaccessible full text is not novelty evidence. If classical, retain the recursion only as a tool. For the original extremal problem, exploit the actual dependencies in the one fixed cyclic/commuting interpolation module to prove a coherent-profile bound or a growing realizable lower family. Do not replace this with arbitrary module data, generic carrier ranks, total residue-basis counts or parameter sweeps. No reduction of the old coupled three-point matrices to a single Pascal prefix has been established. Preserve all earlier evidence and continue the strongest-current-priority comparison before claiming significance.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -142,7 +142,8 @@
     "Compare the all-weight tower sensitivity application with existing matroid sensitivity and modular lucky-prime work. Count the coherent high-column extensions subject to (O2), using actual tensor-circuit ranks. The cheap-coordinate coprime regions are integral; the equal-period coherent index-two control and its constant-fan lifts do not establish a distinct-prime count or arithmetic theorem there.",
     "Audit the completed-layer regional count (O5)--(O7) separately from the classical carrier/volume corollary (O8)--(O9). Contracting the retained span is a column-matroid operation, generally not an algebra quotient. Comparable-period polynomial amplification can have exponent at most 7/3, and the stated (1,q,q)-scale region at most 13/6; no such gain is proved. Count the remaining coherent extensions rather than enlarging the previous exact examples.",
     "Assess the exact growing-pole carrier/stabilization combination against existing rational-curve Groebner and generic-evaluation literature. The Laurent reductions, rank truncation and previous threshold/shadow tools are classical. Characteristic independence concerns all coherent generic choices, not arbitrary column ranks or special samples. Do not claim a new unrestricted theorem or publication significance from this reduction.",
-    "The entire generic rational-function family regular at zero and infinity is now bounded by O(n^2*log(n+1)); its previous intermediate pole-order range is closed. Audit the exact sensitive-wall combination and random-access consequence separately from classical Laurent/evaluation/concavity/floor-sum inputs. For special samples, a shifted-approximant reduction must preserve actual rank dependencies, the exponent cost order and all relevant shifts; Theorem 1.3 of arXiv:1602.00651v1 is a single-shift coefficient-basis algorithm, not an imported all-fan count. No further small generic sweeps or unrestricted-success claim follows."
+    "The entire generic rational-function family regular at zero and infinity is now bounded by O(n^2*log(n+1)); its previous intermediate pole-order range is closed. Audit the exact sensitive-wall combination and random-access consequence separately from classical Laurent/evaluation/concavity/floor-sum inputs. For special samples, a shifted-approximant reduction must preserve actual rank dependencies, the exponent cost order and all relevant shifts; Theorem 1.3 of arXiv:1602.00651v1 is a single-shift coefficient-basis algorithm, not an imported all-fan count. No further small generic sweeps or unrestricted-success claim follows.",
+    "Neiger--Schost Theorem 1.7 and Propositions 3.7/3.14 apply to arbitrary commuting matrices and orders; their input-conversion Theorem 1.9 has an additional leading-module hypothesis and is not imported. The exact prime-digit rank, basis and rank-generating recursions for single-root length-p^s cyclic codes need comparison with Sobhani 2016, Nedeloaia 2003, Bhullar--Gupta--Sonia 2010 and Zhao et al. 2025 Theorem 17. The latter retains a distribution term for a smaller set; the compact recursion must be matched against full existing methods, not declared new from that statement alone. The main all-coherent-profile count and arbitrary special-sample incidence problem remain open."
   ],
   "primary_sources": [
     {
@@ -737,6 +738,25 @@
       "title": "Fast computation of minimal interpolation bases in Popov form for arbitrary shifts",
       "url": "https://arxiv.org/html/1602.00651v1#S1.SS1",
       "scope": "Section 1.1 module/Jordan data model, Problem 1, Definitions 1.1--1.2 and Theorem 1.3 statement inspected. The theorem assumes standard Jordan representation and computes an interpolation basis for a supplied shift. The full algorithm proof was not audited here, and no all-shift fan-count result or matching of special-sample exponent costs is imported."
+    },
+    {
+      "authors": "Neiger and Schost",
+      "title": "Computing syzygies in finite dimension using fast linear algebra",
+      "url": "https://cs.uwaterloo.ca/~eschost/publications/multi-krylov.pdf",
+      "preprint": "https://arxiv.org/abs/1912.01848",
+      "scope": "Theorem 1.7, Algorithm 1, Proposition 3.7 and Lemmas 3.8--3.10, and Proposition 3.14 with displayed recovery and complexity proofs inspected. Arbitrary commuting matrices and module orders are allowed; no Jordan assumption. The extra hypothesis of input-conversion Theorem 1.9 is not assumed here."
+    },
+    {
+      "authors": "Zhao, Li, Yang, Fu and Shum",
+      "title": "Weight Distribution of Repeated-Root Cyclic Codes with Prime Power Lengths",
+      "url": "https://arxiv.org/html/2304.00762v3",
+      "scope": "Code definitions, Theorems 4, 6 and 16 with their displayed block decompositions, and Theorem 17 with its remaining general-case distribution term inspected. This is a direct comparison for the single-root cyclic-code dependency kernel. No claim that the subset-rank recursion or compact enumerator improves all prior methods is inferred."
+    },
+    {
+      "authors": "Sobhani",
+      "title": "Matrix-product structure of repeated-root cyclic codes over finite fields",
+      "url": "https://doi.org/10.1016/j.ffa.2016.02.001",
+      "scope": "Publisher abstract and bibliographic metadata inspected only. Direct full-text access returned 403. No theorem or novelty exclusion is imported; the exact recursive-rank and enumerator comparison remains open."
     }
   ],
   "verification": {
@@ -1649,17 +1669,47 @@
         "independent_cyclic_monomial_columns": 187,
         "independent_basis_determinants": 2298,
         "independent_positive_state_polytopes": 10,
+        "compressed_rank_profile_stages": 2910,
+        "compressed_candidate_rows": 16406,
+        "compressed_basis_calls": 1544,
+        "compressed_direct_column_replays": 4122,
         "explicit_all_basis_support_comparisons": 1412,
+        "multivariate_and_fixed_module_equalities": 132,
         "reconstruction_support_queries": 132,
         "complete_truncated_state_reconstructions": 10,
         "recovered_initial_ideals": 39,
         "independent_recovered_normal_cones": 39,
         "independent_polynomial_matrix_annihilations": 425,
-        "recovered_reduced_basis_polynomials": 136
+        "recovered_reduced_basis_polynomials": 136,
+        "equal_rank_label_changes": 735
       },
       "build": "./build.sh passed",
       "smoke": "python3 tests/test_smoke.py passed",
-      "scope": "Ten actual cyclic commuting quotient models over Q,F2,F3,F5; exhaustive independent determinant bases, explicit-support comparison including ties, full cut-state reconstruction, all 39 normal cones and initial sets, and 136 recovered reduced polynomials replayed on whole multiplication matrices. Uniform complexity and correctness rest on the proof; no finite speed fit or bit-cost inference."
+      "scope": "All ten old exhaustive determinant/support/cone/reduced-basis fixtures are unchanged. Compressed single-variable modules are compared with independent full-ground elimination on nongeneric quotients; 352 chain-prefix ranks are independently checked. Prime-digit controls include 7740 exhaustive selected Pascal ranks, 270 larger sparse ranks, 90 independent minimum-cost bases, 936 actual unit-power monomial prefixes, 111 full subset-rank enumerator evaluations and 489 polynomial-generated codeword annihilations with 20 independent Hamming-enumerator comparisons. Uniform statements rest on the written proofs, not growth fitting or timing extrapolation.",
+      "fixed_module_prefix_counts": {
+        "compressed_rank_profile_stages": 686,
+        "compressed_candidate_rows": 4168,
+        "compressed_basis_calls": 352,
+        "independent_nongeneric_prefix_rank_queries": 352,
+        "equal_rank_label_changes": 290
+      },
+      "prime_digit_counts": {
+        "exhaustive_selected_pascal_ranks": 7740,
+        "exhaustive_subset_rank_enumerator_equalities": 111,
+        "independent_minimum_cost_digit_bases": 90,
+        "larger_sparse_pascal_ranks": 270,
+        "independent_polynomial_codeword_annihilations": 489,
+        "independent_hamming_enumerator_equalities": 20,
+        "independent_unit_power_column_replays": 306,
+        "compressed_rank_profile_stages": 153,
+        "compressed_candidate_rows": 1598,
+        "compressed_basis_calls": 72,
+        "compressed_direct_column_replays": 360,
+        "unit_power_compressed_basis_equalities": 72,
+        "actual_unit_power_prefix_ranks": 936,
+        "equal_rank_label_changes": 81
+      },
+      "previous_fixture_outputs_preserved_exactly": true
     },
     "multiplicative_shadow_research": {
       "command": "python3 -B scripts/run_multiplicative_shadow_checks.py",
@@ -1844,17 +1894,17 @@
       }
     }
   },
-  "preservation": "Five explicitly privacy-reviewed existing public files change. All 76 prior continuations, the complete original objective and success criteria, all 100 prior primary-source records, all 96 old source hashes outside README and the two updated pole-model proof/checker sources, all three older exact pole report blocks, and all 362 unlisted previously tracked files remain unchanged against 648fe96. Core CLI/kernels/auditor, manuscripts/PDFs, prior research and paused ML are preserved. Exploratory work, proof audit, baselines and logs stay ignored.",
+  "preservation": "Five explicitly privacy-reviewed existing public files change. All 77 previous continuations, all 102 old scoped primary-source records, the original objective and success criteria, 95 unchanged research source hashes and all 362 unlisted tracked files remain unchanged against 54e74c7. Every old exact oracle fixture output, including all 39 cones and 136 reduced polynomials, is preserved exactly. Core CLI/kernels/auditor, manuscripts/PDFs, prior mathematics and paused ML remain untouched. Baselines, exploratory notes, full audit and logs stay ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
-    "docs/pole_order_fans.md",
-    "scripts/run_pole_order_checks.py",
-    "results/research/pole_order_checks.json",
+    "docs/oracle_fan_enumeration.md",
+    "scripts/run_oracle_enumeration_checks.py",
+    "results/research/oracle_enumeration_checks.json",
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "7bacf0588244826c7ba2948ed8dbb6c33845e5f67612d6a9f1fd5921035de0e1",
+    "README.md": "ba6c3d8d6211c1c3fe0766a441bcae96175064019047a732bc77c5ea980a30e8",
     "docs/extremal_initial_ideals.md": "6e84b6ea470841a89760a2e16080a9314ba747499b1a5a733460120fe501a92b",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
@@ -1936,9 +1986,9 @@
     "docs/power_carrier_bounds.md": "147199d8453db28285ebe3448e5bc0916121bb62ea8b9450f035dc46a401320b",
     "scripts/run_power_carrier_checks.py": "0247edb76f5d866eab944098007b485ee8be1c8793311a589bb7573be1629731",
     "results/research/power_carrier_checks.json": "9565bce325fcef7039a413aaae3716df5dbee36d8af05f6ec3b4a07835198599",
-    "docs/oracle_fan_enumeration.md": "1d7322de1b56dad0db1247a61ee19633d1f2fae3d56c0640187ab5fabe6cede8",
-    "scripts/run_oracle_enumeration_checks.py": "a67b7db61f3fe6e69bb0bc62d792916737c7b35a3e3171c2b976e07866a883df",
-    "results/research/oracle_enumeration_checks.json": "41d71c1d6ce6d65dc1408fe412a0d21d5c7d36387c217789e8dc03e361670ce2",
+    "docs/oracle_fan_enumeration.md": "ebc8de24c93bcece14e63c3eebf10c2470621bf2284e3585c9fd0e6c0391ed4f",
+    "scripts/run_oracle_enumeration_checks.py": "ad3cbf3c309e9f03303199c2aed935835f7284702aec6769f246f8f1c9b72384",
+    "results/research/oracle_enumeration_checks.json": "be9ee1ac9e57a159c12caf9d8043158bf7192ce297f141e3c9ece3dc06b42338",
     "docs/multiplicative_shadow_obstruction.md": "d8e6899f18910ef235276914b92e4a8248257d738c306f38702da3e62e0ae0de",
     "scripts/run_multiplicative_shadow_checks.py": "979e1d62db275ffa3c541a2d9c110d0fc51fdb3eb660d0763898d75728866b63",
     "results/research/multiplicative_shadow_checks.json": "934efd1d899425e25b283ca43315b8f7d348c33ff1d1cb989198a57c38062612",
@@ -6789,10 +6839,98 @@
       },
       "preservation": "Five explicitly privacy-reviewed existing public files change. All 76 prior continuations, the complete original objective and success criteria, all 100 prior primary-source records, all 96 old source hashes outside README and the two updated pole-model proof/checker sources, all three older exact pole report blocks, and all 362 unlisted previously tracked files remain unchanged against 648fe96. Core CLI/kernels/auditor, manuscripts/PDFs, prior research and paused ML are preserved. Exploratory work, proof audit, baselines and logs stay ignored.",
       "scope_limit": "The generic family is excluded; no unrestricted G3 improvement, polynomial lower separation, exact current-priority certificate or completed publication assessment is established. The original full objective remains active."
+    },
+    {
+      "title": "Faithful special-sample modules, prime-digit ranks and compact code enumerators",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "Progress: 54e74c7 completed the degree-uniform generic rational-function exclusion and an exact integer-cost oracle, leaving actual special-sample dependencies unresolved. Clean main, 367 tracked files, 99 research hashes, 102 scoped primary-source records and 77 continuations were revalidated at the start of this continuation.",
+      "progress_classification": "uniform actual-dependency reduction, corrected published arithmetic backend, exact single-branch prime-digit rank and enumerator laws",
+      "fixed_module": "One K[T]-module on m=sum_j floor(n/j)=O(n*L) generators, indexed by (b+1)*(c+1)<=n, preserves every actual quotient basis. Its induced two-parameter shifts and exact chain-prefix shifts preserve original monomial selection and all positive-cost prefix ranks. No all-shift degree-profile count is imported.",
+      "published_backend_boundary": "The strongest applicable inspected conversion is Neiger--Schost: its composition with classical g=O(n^3) gives O(n^(omega+3)*L) field operations, plus one-time O(n^3*L^2) preprocessing. Geometry is separately O(n^6*L). The shadow input supplies only the further 1/8 field exponent saving; exact geometry can dominate the faster field term. The old dense comparison is retained as reference.",
+      "prime_digit_results": {
+        "proof": "docs/oracle_fan_enumeration.md",
+        "checker": "scripts/run_oracle_enumeration_checks.py",
+        "report": "results/research/oracle_enumeration_checks.json",
+        "actual_quotient": "K[X,Y,Z]/((X-1)^n,XY-1,Z-Y^k), k>=1, characteristic p prime",
+        "rank": "R(n,M,S)=sum_u min(q,l_u)+R(r,M/p,{u:l_u>q}), n=q*(M/p)+r, M a power of p >= n",
+        "basis_count": "B(n,M)=B(r,M/p)*binom(p,q)^(M/p-r)*binom(p,q+1)^r",
+        "homogeneous_subset_enumerator": "H(n,M,A,B,Y)=H(r,M/p,A_prime,B_prime,Y), with the two explicit binomial sums in (O16)",
+        "code_weight_enumerator": "W_C(z)=H(n,M,1-z,Q*z,1/Q) for C=<(V-1)^n> over a finite field of size Q and characteristic p",
+        "division_free_circuit": "O(p*s+log(M+1)) integer-constant arithmetic gates for the complete enumerator, M=p^s; coefficient expansion and integer bit costs are additional",
+        "coherent_order_count_established": false,
+        "basis_selection": "Take q cheapest entries in each high-digit fiber and recursively select extra fibers by their (q+1)-st costs. This assumes all residue classes available.",
+        "rank_scope": "Any subset of columns of the consecutive-row truncated Pascal matrix over prime characteristic, including every monomial cost prefix of the actual unit-power quotient.",
+        "rank_scope_counterexample": "For n=5, M=8, p=2, four distinct residues {0,2,4,6} have rank three. Distinctness is not generic independence.",
+        "new_unrestricted_G3_count": false,
+        "coupled_three_point_rank_identity_proved": false,
+        "novelty_established": false,
+        "goal_complete": false
+      },
+      "independent_counts": {
+        "oracle": {
+          "commuting_multiplication_columns": 87,
+          "independent_cyclic_monomial_columns": 187,
+          "independent_basis_determinants": 2298,
+          "independent_positive_state_polytopes": 10,
+          "compressed_rank_profile_stages": 2910,
+          "compressed_candidate_rows": 16406,
+          "compressed_basis_calls": 1544,
+          "compressed_direct_column_replays": 4122,
+          "explicit_all_basis_support_comparisons": 1412,
+          "multivariate_and_fixed_module_equalities": 132,
+          "reconstruction_support_queries": 132,
+          "complete_truncated_state_reconstructions": 10,
+          "recovered_initial_ideals": 39,
+          "independent_recovered_normal_cones": 39,
+          "independent_polynomial_matrix_annihilations": 425,
+          "recovered_reduced_basis_polynomials": 136,
+          "equal_rank_label_changes": 735
+        },
+        "fixed_module": {
+          "compressed_rank_profile_stages": 686,
+          "compressed_candidate_rows": 4168,
+          "compressed_basis_calls": 352,
+          "independent_nongeneric_prefix_rank_queries": 352,
+          "equal_rank_label_changes": 290
+        },
+        "prime_digits": {
+          "exhaustive_selected_pascal_ranks": 7740,
+          "exhaustive_subset_rank_enumerator_equalities": 111,
+          "independent_minimum_cost_digit_bases": 90,
+          "larger_sparse_pascal_ranks": 270,
+          "independent_polynomial_codeword_annihilations": 489,
+          "independent_hamming_enumerator_equalities": 20,
+          "independent_unit_power_column_replays": 306,
+          "compressed_rank_profile_stages": 153,
+          "compressed_candidate_rows": 1598,
+          "compressed_basis_calls": 72,
+          "compressed_direct_column_replays": 360,
+          "unit_power_compressed_basis_equalities": 72,
+          "actual_unit_power_prefix_ranks": 936,
+          "equal_rank_label_changes": 81
+        }
+      },
+      "research_command": "python3 -B scripts/run_oracle_enumeration_checks.py",
+      "build": "./build.sh passed",
+      "smoke": "python3 tests/test_smoke.py passed",
+      "unrestricted_G3_improved": false,
+      "polynomial_lower_separation_proved": false,
+      "novelty_established": false,
+      "goal_complete": false,
+      "next_proof_task": "Retain the complete unrestricted G3 objective and original publication criteria. First compare the exact prime-digit subset-rank and division-free weight-enumerator recursions (O14)--(O18) with Sobhani 2016, earlier repeated-root/squaring constructions and the remaining general-case term in Zhao--Li--Yang--Fu--Shum Theorem 17. An unsuccessful search or inaccessible full text is not novelty evidence. If classical, retain the recursion only as a tool. For the original extremal problem, exploit the actual dependencies in the one fixed cyclic/commuting interpolation module to prove a coherent-profile bound or a growing realizable lower family. Do not replace this with arbitrary module data, generic carrier ranks, total residue-basis counts or parameter sweeps. No reduction of the old coupled three-point matrices to a single Pascal prefix has been established. Preserve all earlier evidence and continue the strongest-current-priority comparison before claiming significance.",
+      "preservation": "Five explicitly privacy-reviewed existing public files change. All 77 previous continuations, all 102 old scoped primary-source records, the original objective and success criteria, 95 unchanged research source hashes and all 362 unlisted tracked files remain unchanged against 54e74c7. Every old exact oracle fixture output, including all 39 cones and 136 reduced polynomials, is preserved exactly. Core CLI/kernels/auditor, manuscripts/PDFs, prior mathematics and paused ML remain untouched. Baselines, exploratory notes, full audit and logs stay ignored.",
+      "public_files": [
+        "README.md",
+        "docs/oracle_fan_enumeration.md",
+        "scripts/run_oracle_enumeration_checks.py",
+        "results/research/oracle_enumeration_checks.json",
+        "results/research/extremal_initial_ideals_goal.json"
+      ]
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "A coefficient- and degree-uniform O(n^2*log(n+1)) generic rational-function family bound closes its whole previous intermediate range. The same exact rank rule yields an integer-cost O(log(r*W+1)^2) arithmetic-operation random-access oracle. These restricted results do not improve unrestricted G3 or prove a polynomial lower separation.",
-  "previous_goal_turn_classification": "Progress: 648fe96 established exact growing-pole carrier fans, generic characteristic independence, the n<=2*k+1 stabilization and a reduced special-sample counterfamily, leaving an intermediate range. Clean main, all 367 tracked files, 99 research hashes, 100 scoped primary-source records and 76 continuations were revalidated before this continuation.",
+  "asymptotic_improvement_scope_this_iteration": "The stronger existing linear-algebra backend corrects the unrestricted enumeration composition to O(n^(omega+23/8)*L^(11/8)) field operations plus O(n^(23/4)*L^(7/4)) exact geometry/comparisons. Geometry may dominate. The same published backend with the classical count already gives O(n^(omega+3)*L) field operations, so only the additional 1/8 field exponent saving belongs to the shadow input. No improved unrestricted or family coherent-count exponent is proved here.",
+  "previous_goal_turn_classification": "Progress: 54e74c7 completed the degree-uniform generic rational-function exclusion and an exact integer-cost oracle, leaving actual special-sample dependencies unresolved. Clean main, 367 tracked files, 99 research hashes, 102 scoped primary-source records and 77 continuations were revalidated at the start of this continuation.",
   "uniform_relative_margin_hypothesis_status": "refuted_by_actual_all_field_quotients",
   "secondary_extremal_parameter_resolved": {
     "relative_margin_dimension_2": "Theta(n^-2)",
@@ -6898,7 +7036,7 @@
       "novelty_established": false
     }
   },
-  "family_asymptotic_improvement_established_this_iteration": true,
+  "family_asymptotic_improvement_established_this_iteration": false,
   "higher_interaction_reduction": {
     "proof": "docs/higher_interaction_fans.md",
     "fields": "every field",
@@ -7373,18 +7511,23 @@
     "truncated_state": "Q=(B(I)+R_+^3) intersect {sum<=n^2+1}; all state vertices lie below the cut; new vertices come only from coordinate-ray edges. Q is a full-dimensional integer polytope with at most 4*g vertices.",
     "exact_vertex_oracle": "Formulas (O7)--(O9) use lexicographic greedy keys, including zero and boundary directions. Symbolic negative coordinate perturbations and one extra tie term return a genuine polytope vertex and an actual initial-basis label in every characteristic.",
     "support_queries": "At most 12*g+1, including initialization, by attributed vertex/facet oracle reconstruction and three-dimensional Euler bounds.",
-    "field_operations": "O((g+1)*n^3*(1+log(n+1))^2), including column preprocessing and all reduced-basis recovery.",
-    "geometric_operations": "O((g+1)^2*log(g+2)+(g+1)*n*(1+log(n+1))^3), using the cited exact 3D hull routine with degeneracy handling.",
-    "unrestricted_shadow_consequence": "O(n^(47/8)*(1+log(n+1))^(19/8)) field operations, with a lower-order rational-geometric budget.",
-    "classical_boundary": "The reconstruction and greedy conversion are established. Classical g=O(n^3) plus these tools already gives O(n^6*L^2), distinct from the older direct-zonotope O(n^7*L^10). The shadow theorem supplies only the extra 1/8 exponent saving.",
+    "field_operations": "O(n^3*L^2+(g+1)*n^omega*L), L=1+log(n+1)",
+    "geometric_operations": "O((g+1)^2*log(g+2)+(g+1)*n*L^2)",
+    "unrestricted_shadow_consequence": "O(n^(omega+23/8)*L^(11/8)) field operations",
+    "classical_boundary": "The strongest applicable inspected conversion is Neiger--Schost: its composition with classical g=O(n^3) gives O(n^(omega+3)*L) field operations, plus one-time O(n^3*L^2) preprocessing. Geometry is separately O(n^6*L). The shadow input supplies only the further 1/8 field exponent saving; exact geometry can dominate the faster field term. The old dense comparison is retained as reference.",
     "output_representation": "All marked reduced bases and the state fan; their union is a universal basis, possibly represented with repeated polynomials. No minimum-size or canonical duplicate-free output claim.",
-    "verification_implementation_limit": "The bounded checker enumerates hull triples and all tiny determinant bases; it is not the asymptotically efficient hull implementation or a production benchmark.",
+    "verification_implementation_limit": "The checker implements published Krylov compression with elementary field arithmetic and independently compares full-ground sparse elimination; it does not implement fast matrix multiplication or the asymptotically fast hull backend. All ten old fixture outputs, complete cones and recovered bases are preserved exactly.",
     "new_unrestricted_G3_count": false,
     "bit_complexity_bound": false,
     "practical_speedup": false,
     "strongest_current_audit_complete": false,
     "novelty_established": false,
-    "goal_complete": false
+    "goal_complete": false,
+    "unrestricted_shadow_geometric_consequence": "O(n^(23/4)*L^(7/4)) rational geometric operations and comparisons; this may dominate the fast field-operation term",
+    "combined_unit_cost_consequence": "O(n^(omega+23/8)*L^(11/8)+n^(23/4)*L^(7/4)); not a bit-complexity bound",
+    "dense_reference_field_operations": "O((g+1)*n^3*L^2)",
+    "dense_reference_shadow_consequence": "O(n^(47/8)*L^(19/8)) field operations",
+    "fixed_module": "One K[T]-module on m=sum_j floor(n/j)=O(n*L) generators, indexed by (b+1)*(c+1)<=n, preserves every actual quotient basis. Its induced two-parameter shifts and exact chain-prefix shifts preserve original monomial selection and all positive-cost prefix ranks. No all-shift degree-profile count is imported."
   },
   "multiplicative_shadow_obstruction": {
     "proof": "docs/multiplicative_shadow_obstruction.md",
@@ -7543,5 +7686,24 @@
     "novelty_established": false,
     "goal_complete": false
   },
-  "uniform_family_count_established_this_iteration": true
+  "uniform_family_count_established_this_iteration": false,
+  "prime_digit_rank_law": {
+    "proof": "docs/oracle_fan_enumeration.md",
+    "checker": "scripts/run_oracle_enumeration_checks.py",
+    "report": "results/research/oracle_enumeration_checks.json",
+    "actual_quotient": "K[X,Y,Z]/((X-1)^n,XY-1,Z-Y^k), k>=1, characteristic p prime",
+    "rank": "R(n,M,S)=sum_u min(q,l_u)+R(r,M/p,{u:l_u>q}), n=q*(M/p)+r, M a power of p >= n",
+    "basis_count": "B(n,M)=B(r,M/p)*binom(p,q)^(M/p-r)*binom(p,q+1)^r",
+    "homogeneous_subset_enumerator": "H(n,M,A,B,Y)=H(r,M/p,A_prime,B_prime,Y), with the two explicit binomial sums in (O16)",
+    "code_weight_enumerator": "W_C(z)=H(n,M,1-z,Q*z,1/Q) for C=<(V-1)^n> over a finite field of size Q and characteristic p",
+    "division_free_circuit": "O(p*s+log(M+1)) integer-constant arithmetic gates for the complete enumerator, M=p^s; coefficient expansion and integer bit costs are additional",
+    "coherent_order_count_established": false,
+    "basis_selection": "Take q cheapest entries in each high-digit fiber and recursively select extra fibers by their (q+1)-st costs. This assumes all residue classes available.",
+    "rank_scope": "Any subset of columns of the consecutive-row truncated Pascal matrix over prime characteristic, including every monomial cost prefix of the actual unit-power quotient.",
+    "rank_scope_counterexample": "For n=5, M=8, p=2, four distinct residues {0,2,4,6} have rank three. Distinctness is not generic independence.",
+    "new_unrestricted_G3_count": false,
+    "coupled_three_point_rank_identity_proved": false,
+    "novelty_established": false,
+    "goal_complete": false
+  }
 }

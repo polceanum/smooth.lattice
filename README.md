@@ -78,13 +78,20 @@ stronger in dimensions five and above. No current-best or sharp-growth
 claim follows from this extension.
 An [exact enumeration consequence](docs/oracle_fan_enumeration.md) now
 computes all initial sets, their state fan and reduced bases in
-`O(n^(47/8)*log(n+1)^(19/8))` field operations, given one reduced
+`O(n^(omega+23/8)*log(n+1)^(11/8))` field operations, given one reduced
 Gröbner basis or commuting coordinate matrices with a cyclic vector.
-It applies in the original coordinates over every field. The oracle
-reconstruction and greedy conversion are established methods; with
-the classical count alone their composition already gives exponent six.
-The shadow theorem supplies the further saving of `1/8`. Coefficient
-bit costs, current-best priority and practical speed remain unestablished.
+Here `omega` is a feasible matrix multiplication exponent; there is also
+a one-time `O(n^3*log(n+1)^2)` input conversion cost. It applies in the
+original coordinates over every field. Published oracle reconstruction
+and Neiger--Schost conversion already give `O(n^(omega+3)*log(n+1))`
+with the classical count. The shadow theorem supplies the further
+`1/8` power saving. The note also gives a fixed univariate-module
+formulation preserving every quotient's special dependencies and an
+exact base-prime rank recursion for nonreduced unit-power quotients.
+These do not settle the number of coherent orderings. Coefficient bit
+costs, current-best priority and practical speed remain unestablished.
+The separate exact geometry budget is `O(n^(23/4)*log(n+1)^(7/4))`
+and can dominate the field-operation term.
 A product-threshold refinement now counts every initial cell incident
 to a wall with primitive direction product at most `T` by
 `O(n*T^(4/3)*log(n+1))`, with an explicit support-oracle reduction.
