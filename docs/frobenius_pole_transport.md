@@ -40,6 +40,12 @@ significance follows from this combination without its priority audit.
 
 ## Carriers and a universal complete-pole basis
 
+The subsequent [weighted completion theorem](ordinary_pole_completion.md)
+removes the characteristic restriction with a slightly weaker explicit
+degree dependence, and covers all \(P/Q\) regular at zero and infinity,
+including quotients where \(P\) is a nonunit. It uses a costed basis
+completion; the exact-transport rank failure below remains valid.
+
 Use \(x=t,y=t^{-1},z=(t-1)^{-q}\), normalize \(w_z=1\), and write
 the other prices as \(\alpha,\beta\). In the strict chart
 \[
@@ -241,8 +247,11 @@ conditional profile injections. The non-Frobenius failure is retained.
 Exact characteristic-two controls check Hurwitz periodicity and both
 one-parameter envelopes. Finite checks support proofs, not novelty.
 
-The estimates do not cover both price regions at arbitrary non-Frobenius
-orders, general rational numerators, all fixed curves or unrestricted
-\(G_3\). The next broad step is a controlled joint-rank defect in place
-of the second exact transport, retaining the two tag moments and every
-actual crossing. The original goal and its publication criteria remain active.
+The estimates in this note do not cover both price regions at arbitrary
+non-Frobenius orders or general rational numerators. The
+[weighted completion theorem](ordinary_pole_completion.md) now supplies
+that extension without assuming a second exact transport. All fixed
+curves and unrestricted \(G_3\) remain outside these results. A next
+broad step must control joint-rank defects across a growing carrier or
+across unrestricted walls. The original goal and its publication criteria
+remain active.
