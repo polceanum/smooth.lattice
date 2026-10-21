@@ -101,12 +101,17 @@ This closes a proposed shortcut; a collective count of difficult cones
 and the unrestricted extremal problem remain open.
 An [exact cyclic interleaving model](docs/cyclic_interleaving_fans.md)
 now realizes uniform rank selection in residue classes by actual quotients,
-including in characteristic dividing the period. Fixed periods and periods
-comparable to the base rank have quadratic bounds up to logarithms; the
-number of initials stabilizes once the period exceeds the base rank.
-A shared cost ground and explicit parameter bounds leave one intermediate
-scaling window. This is a family analysis; it does not improve unrestricted
-`G_3`, and its sharper conclusions require generic planar columns.
+including in characteristic dividing the period. A threshold dichotomy
+now gives `O(n^2*log(n+1)^2)` initial ideals uniformly in the period and
+base rank, closing the former intermediate scaling window. Large thresholds
+give small-volume axis boxes; small thresholds give two core layers with
+small integer-profile volume. A single small axis box is not a uniform
+property: an explicit infinite family disproves that shortcut. The number
+of initials also stabilizes once the period exceeds the base rank, and a
+direct priority queue selects an entire basis in `O(n*log(r+1))` exact
+operations. This excludes polynomial amplification throughout the generic
+cyclic family; it does not improve unrestricted `G_3`. Its sharper
+conclusions require generic planar columns, and exact priority remains open.
 Fixed internal list orders give exact rank-oracle formulas, but a
 polylogarithmic cover by two-list domains is impossible even for that
 quadratic family. Three-list ranks require a signed correction with

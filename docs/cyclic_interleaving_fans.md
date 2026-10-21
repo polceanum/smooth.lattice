@@ -1,4 +1,4 @@
-# Generic cyclic interleavings: an exact model and two counting gates
+# Generic cyclic interleavings: exact ranks and a uniform counting bound
 
 The original occurrence/interleaving observations suggest separating monomials
 by a residue class and selecting within each stream. This note gives an actual
@@ -6,18 +6,24 @@ finite quotient with an exact version of that rule. It is a candidate family
 for the original three-variable problem, not a new prime-distribution claim.
 Finite-group gradings and their Hilbert schemes are established mathematics.
 
-The main structural conclusions are uniform proofs, not growth fits:
+The main counting conclusion is uniform in both parameters:
 
-* Every fixed period has \(O_m(n^2\log(n+1))\) initial ideals.
-* If the period is at least a fixed positive multiple of the base rank,
-  the bound is \(O_c(n^2\log^8(n+1))\).
-* For base rank \(r\ge2\), the number of initial ideals is exactly
-  independent of the period once \(m\ge r\).
+\[
+ \boxed{g(I_{r,m})=O(n^2\log^2(n+1)),\qquad n=mr.}       \tag{C0}
+\]
 
-Thus a polynomial separation in this family would require both
-\(m\to\infty\) and \(r/m\to\infty\). That intermediate regime remains
-open. The unrestricted \(G_3\) bound, novelty assessment and publication
-goal are unchanged.
+The implicit constant is absolute, over every base-field characteristic,
+with the generic planar columns specified below. A threshold dichotomy
+closes the intermediate regime left by the earlier fixed-period and
+comparable-period gates. For \(r\ge2\), the number also stabilizes
+exactly once \(m\ge r\). An accessible-lattice priority queue selects
+the full initial standard set in \(O(n\log(r+1))\) exact operations.
+
+Thus this entire generic cyclic family cannot give a polynomial separation
+above the ordinary corner-cut scale. The theorem does not assert a
+matching lower bound, apply to arbitrary planar quotients, or settle the
+unrestricted \(G_3\) problem. Its precise priority and publication
+significance remain unestablished.
 
 ## An actual quotient with uniform ranks in each stream
 
@@ -291,7 +297,7 @@ numbers of initial ideals, not equality of standard monomial labels
 or quotient lengths. For \(r=1,m\ge2\), there are exactly three
 initial sets; \(r=m=1\) has one.
 
-## A coarse uniform bound and the remaining regime
+## Earlier bounds and the formerly open regime
 
 All initial profiles satisfy \(\mu_x,\mu_y\le n(n-1)/2\),
 \(0\le\mu_z\le n(m-1)\), and
@@ -319,8 +325,8 @@ congruence and coordinate bounds hold. The stronger (C10), (C14) and
 stabilization (C16) remain statements about generic \(B\).
 Bounds (C10) and (C14) are stronger in their
 stated regimes. A possible polynomial amplification must lie between
-them: unbounded period with \(m/r\to0\). Exact ranks make that a
-defined counting problem; no amplification is currently proved.
+them: unbounded period with \(m/r\to0\). This was the remaining
+regime before the threshold argument below; (C0) now excludes it as well.
 
 The explicit costs sharpen this gate. Put \(L=1+\log(n+1)\). For
 \(2\le m\le r\), (C8)--(C12) give, with an absolute constant,
@@ -342,10 +348,204 @@ would need
  m=O_{c,\varepsilon}(n^{1/2-\varepsilon/12}L^{2/3}).       \tag{C17b}
 \]
 
-These are necessary conditions, not evidence that such a family exists.
-For example \(r=m^2\) lies between the two excluded regimes and
-retains only exact residue-count ranks. It is a defined next test case,
-not an established lower bound or a reason to expand the search framework.
+These earlier necessary conditions were not evidence that such a family
+exists. In particular, \(r=m^2\) lay between the two previous gates.
+The following proof replaces this surviving window by the uniform (C0).
+
+## A threshold dichotomy closes every parameter regime
+
+Fix a strict positive exposing weight with a unique cheapest variable
+\(h\). The three such sectors cover all open initial cones for an
+upper count; their boundaries need not be walls when \(m<r\).
+Use the core prices \(\alpha=mw_h>0\) and the two positive gaps
+\(\beta,\gamma\) from the earlier sector changes. Let \(\tau_j\)
+be the \(r\)-th core cost in color \(j\), after subtracting
+\(jw_h\), and put \(t=\tau_0\).
+
+For \(h=x,y\), the feasible cores are
+
+\[
+ G_j=\{(k,b,c)\in\mathbb Z_{\ge0}^3:
+              c<m,\ b+c\le j+mk\}.
+\]
+
+They satisfy \(G_0\subseteq\cdots\subseteq G_{m-1}\) and
+\(G_{m-1}+(1,0,0)\subseteq G_0\). For \(h=z\), the feasible
+pairs are all \((b,c)\ge0\), with lift
+\(k_j=\max(0,\lceil(b+c-j)/m\rceil)\). Their cost decreases
+with \(j\), by at most \(\alpha\) in total. In either case,
+
+\[
+ \tau_0\ge\tau_1\ge\cdots\ge\tau_{m-1},\qquad
+ \tau_0\le\tau_{m-1}+\alpha.                            \tag{C19}
+\]
+
+Write \(K,B,C\) for the coordinate maxima over all selected cores.
+Every selected core has cost at most \(t\), so
+\(\alpha K,\beta B,\gamma C\le t\), and feasibility gives
+\(B,C\le m(K+1)-1\).
+
+### Large core threshold: a small axis box
+
+Suppose \(t\ge2\alpha\). In a nonperiodic-cheapest sector,
+\(K\ge1\). If \(K\ge4\), all points in the integer box
+
+\[
+ \left\lceil K/4\right\rceil\le k\le\lfloor K/2\rfloor,
+ \quad 0\le b\le\lfloor B/16\rfloor,
+ \quad 0\le c\le\lfloor C/16\rfloor
+\]
+
+are feasible in \(G_0\): \(b+c\le m(K+1)/8\le mk\).
+Their cost is at most \(5t/8<t\). The number of integer \(k\)
+values is at least \((K+1)/8\). If \(1\le K\le3\), use only
+\(k=1\); feasibility still holds and its cost is at most
+\(\alpha+t/8\le5t/8\). There are fewer than \(r\) points
+strictly below the color-zero threshold. In both cases,
+
+\[
+ (K+1)(B+1)(C+1)\le2048(r-1).
+\]
+
+The original cheapest coordinate is at most \(m(K+1)-1\), while
+the other coordinates are bounded by \(B,C\). Hence the original
+axis box has volume at most \(2048n\).
+
+For \(h=z\), use the rectangle
+\(0\le b\le\lfloor B/16\rfloor\),
+\(0\le c\le\lfloor C/16\rfloor\) in color zero. Its lift
+obeys
+
+\[
+ \alpha k_0+\beta b+\gamma c
+ \le t/4+9\alpha/8\le13t/16<t,
+\]
+
+since \(k_0\le(B+C)/(16m)+1\le(K+1)/8+1\).
+Thus \((B+1)(C+1)\le256(r-1)\); the original periodic
+coordinate is below \(m\), so its axis-box volume is at most
+\(256n\). We have proved, uniformly in all sectors,
+
+\[
+ t\ge2\alpha\quad\Longrightarrow\quad
+ \prod_{i=1}^3(1+\max_{a\in D}a_i)\le2048n.             \tag{C20}
+\]
+
+### Small core threshold: a thin integer profile
+
+Suppose \(t<2\alpha\). Every selected core has \(k\le1\),
+and \(b+c\le j+mk<2m\). There are just two possible core
+layers, regardless of the rank. Put
+\(\lambda=(\sum k,\sum b,\sum c)\). These are integer
+coordinates, related invertibly to the original profile by
+
+\[
+ \mu_h=r\sum_{j=0}^{m-1}j+m\lambda_1-\lambda_2-\lambda_3,
+ \qquad (\mu_{o_1},\mu_{o_2})=(\lambda_2,\lambda_3).
+                                                               \tag{C21}
+\]
+
+All these profiles lie in
+\([0,n]\times[0,2nm]^2\). The convex hull of any subset of
+strictly exposed profiles keeps each of them as a vertex: its strict
+exposing functional is still unique on the smaller set. Distinct
+initial standard sets cannot share a profile, since that would tie
+their costs at every weight. Add a unit cube to handle flat hulls.
+Its regularized integer volume is \(O(n^3m^2)\). The classical
+three-dimensional lattice-vertex bound therefore gives
+\(O(n^{3/2}m)\) such profiles in a sector. If \(m\le r\),
+this is \(O(n^2)\).
+
+The cube step preserves the necessary upper bound: its normal fan
+refines the original fan, so it has at least as many vertices. No
+zero-volume three-dimensional estimate is applied to a flat hull.
+
+### Fixed-volume dyadic boxes count the large-threshold part
+
+For the standard sets in (C20), round each axis side up to a power
+of two, then enlarge one side until the product is exactly
+\(2^Q\), where \(Q=\lceil\log_2(16384n)\rceil\).
+There are only \(\binom{Q+2}{2}=O(\log^2(n+1))\) possible
+triples of nonnegative side exponents with that sum. The common
+volume satisfies \(2^Q<32768n\).
+
+For a box with sides \(L_1,L_2,L_3\), profiles of its length-\(n\)
+standard sets lie in a coordinate box of volume at most
+\(n^3L_1L_2L_3=O(n^4)\). Convex hulls of subsets again retain
+every strictly exposed profile; cube regularization costs only a
+constant factor. The lattice-vertex bound gives \(O(n^2)\)
+profiles per box. Together with (C21) and the three sectors this proves
+(C0) for \(m\le r\). If \(m>r\ge2\), use (C16) with period
+\(r\), whose length \(r^2\) is at most \(n\). The cases
+\(r=1\) and \(m=1\) are covered by the explicit three-state
+description and the planar bound. This completes the uniform proof.
+
+The geometric input is the established
+[Andrews lattice-vertex theorem](https://doi.org/10.1090/S0002-9947-1963-0143105-7),
+not a new vertex exponent. An accessible proof retelling is
+[Dillon, Theorem 1 and Sections 1--2.2](https://arxiv.org/pdf/2606.30856).
+The threshold split and the integer coordinates in (C21) are what
+permit its application here. The argument excludes polynomial
+amplification in this generic family; it does not improve unrestricted
+\(G_3\) or prove that the upper bound is attained.
+
+## Direct selection without a universal monomial ground
+
+The same cores give an exact full-basis selection algorithm. If \(h=x,y\),
+start a min-priority queue at \((0,0,0)\) in each color and insert
+unseen feasible neighbors obtained by incrementing one core coordinate.
+Every feasible point has a path from the root: increase \(k\) first,
+then \(b,c\). Every edge strictly increases cost because
+\(\alpha,\beta,\gamma>0\). Therefore the next queue minimum
+is the next cheapest feasible point. With \(h=z\), use the analogous
+two-dimensional queue on \((b,c)\), with its unique lift; its
+cost is strictly increasing in either coordinate.
+
+Pop exactly \(r\) times per color. Original-exponent lexicographic
+tie breaking agrees with the direct finite-ground oracle, even at
+within-sector cost ties. A color uses at most \(3r-2\) inserted
+points and at most \(2r-1\) queued points. The resulting cost is
+
+\[
+ O(n\log(r+1))\text{ exact arithmetic/comparison operations},
+ \quad O(r)\text{ working queue/seen storage},              \tag{C22}
+\]
+
+plus \(O(n)\) storage if the whole output is retained. This is
+best-first enumeration on an accessible integer ground, using a
+standard priority queue. A balanced dictionary for seen membership
+gives the deterministic comparison bound; the checker uses Python's
+hashed tuple sets. It is not a new general enumeration method,
+a bit-complexity bound, or random access to a smooth-number rank.
+It requires the generic uniform-rank rule (C4).
+
+## Why a single small axis box is not a uniform theorem
+
+The threshold split is necessary for this proof. For every integer
+\(s\ge3\), put \(m=s^3\), \(r=s^4\), \(q=s^2\),
+\(R=2m\), \(L=8m^3\), and take weights
+\((L,L+1,L+R)\). In each color the relevant monomials are
+strictly ordered first by total degree, then by \(c\), then by
+\(b\). At most the tiers \(j,j+m\) are needed: the degree-\(m\)
+tier already has more than \(r\) points. Within these tiers
+\(b<2m=R\), so all boundary comparisons are strict.
+
+The standard set contains \(x^m\) (second in color zero),
+\(y^{m-1}\) (rank \(m\) in color \(m-1\)), and \(z^q\)
+(its whole degree-\(q\) tier has
+\((q+1)(q+2)/2<r\) points). Higher tiers cannot precede these
+witnesses, since \(mL>qR\). Consequently
+
+\[
+ \frac{\text{axis-box volume}}{n}
+ \ge\frac{(m+1)m(q+1)}{mr}>s.                            \tag{C23}
+\]
+
+Here both \(m\) and \(r/m=s\) grow. Thus an unconditional
+\(O(n)\) box-volume assertion is false even in the former
+intermediate window. These are bases of the actual generic quotient,
+not abstract downsets. They are precisely in the small-threshold
+branch of (C21); they do not contradict (C0).
 
 ## Why edge length was investigated
 
@@ -382,8 +582,13 @@ Hilbert scheme. Only those passages were inspected in this comparison;
 no full-paper or strongest-current novelty certificate is asserted.
 The matroid/initial dictionary and lattice-vertex tools are those already
 used in [the general research note](extremal_initial_ideals.md).
-The specialized counting charge and stabilization still need exact
-priority assessment.
+The specialized counting charge, stabilization and threshold-dichotomy
+application still need exact priority assessment. The inspected grading
+passages do not establish that assessment. A keyword search finding no
+equivalent theorem would not establish novelty either. The Andrews
+statement was rechecked in Dillon's retelling; that source explicitly
+attributes the theorem and proof strategy to earlier work. No new
+lattice-vertex theorem or general priority-queue technique is asserted.
 
 ```bash
 python3 -B scripts/run_cyclic_interleaving_checks.py
@@ -393,7 +598,12 @@ python3 tests/test_smoke.py
 
 The report retains exact complete fans, rank and commuting-multiplication
 controls in characteristic two as well as other fields, sector compression,
-the fixed-direction facet charge and stabilization witnesses. Computation
-supports the uniform proofs; finite counts are not extrapolated into
-an extremal claim. Core algorithms, manuscripts and the paused ML work
-are preserved. The main goal remains active.
+the fixed-direction facet charge and stabilization witnesses. It also
+compares the new heap oracle with every saved complete-fan basis and
+independent finite-ground sorting; explicitly counts the strictly cheaper
+integer rectangles in (C20); checks both regularized profile-volume
+branches; and independently replays three thin-threshold bases by degree
+tiers. The latter includes the growing-period, growing-rank-ratio regime.
+Computation supports the uniform proofs; finite counts are not extrapolated
+into an extremal claim. Core algorithms, manuscripts and the paused ML
+work are preserved. The main goal remains active.

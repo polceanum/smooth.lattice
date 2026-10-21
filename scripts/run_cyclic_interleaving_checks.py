@@ -6,9 +6,11 @@ Bounded controls support the uniform proofs; no fitted growth or novelty claim.
 from collections import defaultdict
 from fractions import Fraction as Q
 from functools import lru_cache
+from heapq import heappop, heappush
 from itertools import combinations, permutations, product
-from math import gcd
+from math import gcd, prod
 from pathlib import Path
+from random import Random
 import hashlib
 import json
 
@@ -31,6 +33,205 @@ def model(r, m):
     def select(w):
         return frozenset(a for C in classes for a in sorted(C, key=lambda a: (dot(a, w), a))[:r])
     return E, classes, select
+
+
+def heap_selection(r, m, w):
+    """Exactly r pops per color, with O(r) working queue and exact costs.
+
+    The unique cheapest variable makes every accessible edge strictly
+    increasing. Original-exponent lexicographic tie breaking matches model().
+    This selects a whole basis, not a random-access smooth-number rank.
+    """
+    assert r >= 1 and m >= 1 and min(w) > 0
+    h = min(range(3), key=lambda i: w[i])
+    others = [i for i in range(3) if i != h]
+    prices = (m*w[h], *(w[i]-w[h] for i in others))
+    assert min(prices) > 0
+    classes, cores, thresholds = [], [], []
+    pushes, largest_queue, largest_seen = 0, 1, 1
+    for j in range(m):
+        def lift(v):
+            if h == 2:
+                b, c = v
+                k = max(0, (b+c-j+m-1)//m)
+            else:
+                k, b, c = v
+            a = [0]*3
+            a[h], a[others[0]], a[others[1]] = j+m*k-b-c, b, c
+            assert min(a) >= 0 and a[2] < m
+            return tuple(a), (k, b, c)
+
+        root = (0, 0) if h == 2 else (0, 0, 0)
+        a, v = lift(root)
+        queue, seen = [(0, a, root)], {root}
+        chosen, points = [], []
+        pushes += 1
+        for index in range(r):
+            cost, a, v = heappop(queue)
+            a0, u = lift(v)
+            assert a == a0 and dot(a, w) == j*w[h]+cost
+            chosen.append(a)
+            points.append(u)
+            if index == r-1:
+                thresholds.append(cost)
+                break
+            for i in range(len(v)):
+                v1 = tuple(x+int(i == k) for k, x in enumerate(v))
+                if v1 in seen:
+                    continue
+                if h != 2 and (v1[2] >= m or v1[1]+v1[2] > j+m*v1[0]):
+                    continue
+                seen.add(v1)
+                a1, u1 = lift(v1)
+                next_cost = dot(u1, prices)
+                assert next_cost > cost
+                heappush(queue, (next_cost, a1, v1))
+                pushes += 1
+            largest_queue = max(largest_queue, len(queue))
+            largest_seen = max(largest_seen, len(seen))
+        classes.append(tuple(chosen))
+        cores.append(tuple(points))
+    basis = frozenset(a for C in classes for a in C)
+    assert len(basis) == r*m and pushes <= m*(3*r-2)
+    assert largest_seen <= 3*r-2 and largest_queue <= 2*r-1
+    return {'standard_set': basis, 'classes': classes, 'cores': cores,
+            'core_thresholds': thresholds, 'cheapest_variable': h,
+            'prices': prices, 'pops': r*m, 'pushes': pushes,
+            'largest_working_queue': largest_queue, 'largest_seen': largest_seen}
+
+
+def threshold_dichotomy(r, m, w, result, counts):
+    """Check the explicit integer rectangles used in the uniform proof."""
+    n, h = r*m, result['cheapest_variable']
+    alpha, beta, gamma = result['prices']
+    thresholds = result['core_thresholds']
+    t = thresholds[0]
+    assert all(a >= b for a, b in zip(thresholds, thresholds[1:]))
+    assert t <= thresholds[-1]+alpha
+    actual = [x+j*w[h] for j, x in enumerate(thresholds)]
+    assert all(actual[(j+1) % m] <= actual[j]+w[h] for j in range(m))
+    assert max(actual)-min(actual) <= (m-1)*w[h]
+    points = [a for C in result['cores'] for a in C]
+    K, B, C = (max(a[i] for a in points) for i in range(3))
+    sides = tuple(max(a[i] for a in result['standard_set'])+1 for i in range(3))
+    assert alpha*K <= t and beta*B <= t and gamma*C <= t
+    assert B+C <= 2*m*(K+1)-2
+    record = {'r': r, 'm': m, 'length': n, 'weight': list(map(str, w)),
+              'cheapest_variable': h, 'alpha': str(alpha),
+              'color_zero_core_threshold': str(t), 'axis_box_sides': sides,
+              'core_axis_maxima': [K, B, C]}
+    counts['exact_heap_selected_columns'] += n
+    counts['threshold_synchronization_controls'] += 1
+    if t < 2*alpha:
+        assert K <= 1 and all(b+c <= 2*m-1 for k, b, c in points)
+        profile = tuple(sum(a[i] for a in points) for i in range(3))
+        assert profile[0] <= n and max(profile[1:]) <= 2*n*m
+        volume = (n+1)*(2*n*m+1)**2
+        assert volume <= 18*n**3*m*m
+        if m <= r:
+            assert volume <= 18*n**4
+        counts['two_layer_profile_controls'] += 1
+        record.update({'branch': 'two core layers', 'core_profile': profile,
+                       'regularized_profile_volume_upper': volume})
+        return record
+    assert K >= 1
+    if h != 2:
+        ks = range((K+3)//4, K//2+1) if K >= 4 else (1,)
+        cheaper = [(k, b, c) for k in ks for b in range(B//16+1) for c in range(C//16+1)]
+        assert all(b+c <= m*k and c < m and alpha*k+beta*b+gamma*c < t
+                   for k, b, c in cheaper)
+        assert len(cheaper) < r
+        assert 2048*len(cheaper) >= (K+1)*(B+1)*(C+1)
+        assert prod(sides) <= m*(K+1)*(B+1)*(C+1) <= 2048*n
+    else:
+        cheaper = [(b, c) for b in range(B//16+1) for c in range(C//16+1)]
+        assert all(alpha*((b+c+m-1)//m)+beta*b+gamma*c < t for b, c in cheaper)
+        assert len(cheaper) < r
+        assert 256*len(cheaper) >= (B+1)*(C+1)
+        assert prod(sides) <= m*(B+1)*(C+1) <= 256*n
+    # Pad to a fixed dyadic volume; there are only binomial(Q+2,2) boxes.
+    powers = [(a-1).bit_length() for a in sides]
+    Q0 = (16384*n-1).bit_length()
+    assert sum(powers) <= Q0
+    powers[0] += Q0-sum(powers)
+    box = tuple(2**i for i in powers)
+    assert all(a <= b for a, b in zip(sides, box))
+    assert prod(box) == 2**Q0 < 32768*n
+    profile_volume = prod(n*a+1 for a in box)
+    assert profile_volume <= 262144*n**4
+    counts['large_threshold_integer_rectangles'] += 1
+    counts['fixed_volume_dyadic_cover_controls'] += 1
+    record.update({'branch': 'small axis box', 'strictly_cheaper_rectangle_size': len(cheaper),
+                   'fixed_volume_dyadic_box': box, 'dyadic_cover_box_count': (Q0+1)*(Q0+2)//2,
+                   'regularized_profile_volume_upper': profile_volume})
+    return record
+
+
+def independent_heap_controls(cells_by_case, counts):
+    records = []
+    for (r, m), cells in cells_by_case.items():
+        for B, P, Z, w in cells:
+            result = heap_selection(r, m, w)
+            assert result['standard_set'] == B
+            # Independent finite-ground sorting, including original lex ties.
+            for j, candidates in enumerate(model(r, m)[1]):
+                expected = tuple(sorted(candidates, key=lambda a: (dot(a, w), a))[:r])
+                assert result['classes'][j] == expected
+            counts['heap_whole_fan_basis_equalities'] += 1
+            records.append(threshold_dichotomy(r, m, w, result, counts))
+    rng = Random(214365)
+    for r, m in ((1, 1), (2, 1), (3, 2), (5, 2), (8, 3), (9, 3),
+                 (16, 4), (25, 5), (50, 2), (2, 50), (30, 30), (100, 10), (256, 4)):
+        for h in range(3):
+            for _ in range(3):
+                w = [rng.randrange(2, 5000) for _ in range(3)]
+                w[h] = 1
+                result = heap_selection(r, m, w)
+                if r*m <= 100:
+                    assert result['standard_set'] == model(r, m)[2](w)
+                    counts['independent_heap_finite_ground_equalities'] += 1
+                records.append(threshold_dichotomy(r, m, w, result, counts))
+    return records
+
+
+def thin_threshold_obstructions(counts):
+    records = []
+    for s in (3, 4, 5):
+        m, r, q = s**3, s**4, s*s
+        L, R = 8*m**3, 2*m
+        w = (L, L+1, L+R)
+        result = heap_selection(r, m, w)
+        # Independent degree/c/b enumeration. At most two degree tiers suffice.
+        independent = []
+        for j in range(m):
+            chosen = []
+            for d in (j, j+m):
+                for c in range(min(m-1, d)+1):
+                    for b in range(d-c+1):
+                        if len(chosen) < r:
+                            chosen.append((d-b-c, b, c))
+            assert len(chosen) == r
+            assert result['classes'][j] == tuple(chosen)
+            assert all(dot(a, w) < dot(b, w) for a, b in zip(chosen, chosen[1:]))
+            independent.extend(chosen)
+        B = result['standard_set']
+        assert B == frozenset(independent)
+        witnesses = ((m, 0, 0), (0, m-1, 0), (0, 0, q))
+        assert all(a in B for a in witnesses)
+        assert (q+1)*(q+2)//2 < r and m*L > q*R
+        sides = tuple(max(a[i] for a in B)+1 for i in range(3))
+        n = r*m
+        assert prod(sides) >= (m+1)*m*(q+1) > s*n
+        control = threshold_dichotomy(r, m, w, result, counts)
+        assert control['branch'] == 'two core layers'
+        counts['independent_thin_threshold_basis_equalities'] += 1
+        records.append({'parameter': s, 'r': r, 'm': m, 'length': n, 'weight': w,
+                        'selected_axis_witnesses': witnesses, 'axis_box_sides': sides,
+                        'axis_box_volume_over_length': str(Q(prod(sides), n)),
+                        'lower_ratio_bound': s, 'dichotomy_control': control,
+                        'heap_pops': result['pops'], 'heap_pushes': result['pushes'],
+                        'largest_working_queue': result['largest_working_queue']})
+    return records
 
 
 def cone(B, m):
@@ -469,6 +670,8 @@ def main():
               for r, m in ((2, 2), (2, 3), (3, 2)) for label in ('Q', 'GF256', 'F257')]
     large = large_threshold_controls(counts)
     nongeneric = nonuniform_scope_control(counts)
+    dichotomy = independent_heap_controls(cells_by_case, counts)
+    thin = thin_threshold_obstructions(counts)
     sources = ('docs/cyclic_interleaving_fans.md', 'scripts/run_cyclic_interleaving_checks.py',
                'scripts/run_extremal_initial_ideals_checks.py', 'scripts/run_initial_cone_height_checks.py',
                'scripts/run_interleaving_research.py', 'scripts/run_structural_complexity_checks.py',
@@ -478,17 +681,23 @@ def main():
               'independent_actual_quotients': actual,
               'independent_large_threshold_controls': large,
               'nongeneric_scope_control': nongeneric,
+              'uniform_threshold_dichotomy_controls': dichotomy,
+              'independent_thin_threshold_obstructions': thin,
               'uniform_results': {'length': 'n=m*r', 'rank_rule': 'sum_j min(r, distinct (a,b) in class j)',
+                                  'all_parameter_generic_count': 'O(n^2*log(n+1)^2), with an absolute constant for all r,m and all base-field characteristics',
+                                  'count_proof': 'Nested core thresholds; t>=2*alpha gives an axis box of volume <=2048*n, covered by O(log(n+1)^2) fixed-volume dyadic boxes. Otherwise k<=1 gives an integer profile box of volume O(n^3*m^2), hence O(n^4) for m<=r. Use period stabilization when m>r.',
+                                  'exact_selection_cost': 'O(n*log(r+1)) exact comparisons and arithmetic operations, O(r) queue/seen working storage, plus O(n) output; not a bit-complexity or random-access claim',
+                                  'unconditional_axis_box_bound': 'False: m=s^3,r=s^4 has strict bases with axis-box volume/length>s, for every integer s>=3.',
                                   'fixed_period_count': 'O_m(n^2*log(n+1))',
                                   'comparable_period_count': 'O_c(n^2*log(n+1)^8) for m>=c*r',
                                   'exact_stabilization': 'g(r,m)=g(r,r) for r>=2,m>=r',
                                   'coarse_all_parameter_bound': 'O(n^(5/2))',
                                   'intermediate_parameter_bound': 'O(min(n^(5/2),m^3*n^2*L,n^8*m^(-12)*L^8)), 2<=m<=r, L=1+log(n+1)',
                                   'necessary_period_window': 'For n^(2+epsilon) growth: m>=Omega(n^(epsilon/3)*L^(-1/3)), m<=O(n^(1/2-epsilon/12)*L^(2/3)).',
-                                  'remaining_polynomial_amplification_window': 'm tends to infinity and r/m tends to infinity'},
+                                  'remaining_polynomial_amplification_window': 'None in the generic cyclic family: the uniform quadratic-logarithmic bound closes the former intermediate window. Arbitrary planar B remains outside the sharper theorem.'},
               'global_cubic_half_moment_proved': False, 'unrestricted_G3_improved': False,
               'novelty_established': False, 'goal_complete': False,
-              'scope': 'Uniform proofs plus bounded exact controls. Generic quotient ranks are checked on whole finite fans and through commuting matrices, including characteristic dividing a period. Mapped-cone equality verifies complete cones rather than a mesh. No empirical growth or unrestricted moment bound is inferred.',
+              'scope': 'Uniform proofs plus bounded exact controls. The new dichotomy is checked through a direct accessible-lattice heap against all saved complete fans and independent finite-ground sorting. Thin-threshold bases are independently enumerated by degree tiers. The all-parameter bound requires generic planar columns; no empirical growth, unrestricted moment bound or unrestricted G3 improvement is inferred.',
               'source_sha256': {f: hashlib.sha256((ROOT/f).read_bytes()).hexdigest() for f in sources}}
     (ROOT/'results/research/cyclic_interleaving_checks.json').write_text(json.dumps(report, indent=2)+'\n')
     print(json.dumps(dict(counts), indent=2))

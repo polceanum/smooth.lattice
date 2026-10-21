@@ -7,7 +7,7 @@
   "goal_complete": false,
   "asymptotic_improvement_established_this_iteration": false,
   "novelty_established_this_iteration": false,
-  "note": "The original three-variable goal remains active. An actual cyclic interleaving quotient has an exact rank rule in every characteristic after the stated generic extension. Collective facet charging excludes fixed periods, and a shared ground excludes periods comparable to the base rank; the count stabilizes exactly once m>=r. Explicit bounds leave only an intermediate polynomial period window for a possible generic amplification. A coarse n^(5/2) bound extends to arbitrary planar bases, but the sharper generic statements do not. The global half-moment budget, new unrestricted count, lower separation, novelty and paper gates remain open.",
+  "note": "The generic cyclic interleaving family now has a uniform quadratic-logarithmic count in every period/rank scaling. A threshold split repairs the false unconditional small-axis-box shortcut and closes the former intermediate window. This is a family theorem, not a new unrestricted G_3 exponent or evidence of publication significance. The original main goal and its success criteria remain active and unchanged.",
   "relationship_to_previous_work": "New active objective with a higher completion bar. Previous goal records, lattice-shadow candidate, manuscripts and paused ML results are preserved as historical research.",
   "definitions": {
     "G_d_n": "Maximum number of monomial initial ideals of a colength-n ideal in d variables, over all fields.",
@@ -70,7 +70,7 @@
     "uniform_proof": "An explicit three-column dependence in square truncated polynomial algebras, with CRT padding, disproves a support-matching rank characterization on the universal monomial ground set. This is a diagnostic obstruction, not an asymptotic extremal theorem.",
     "claim_limit": "No growth law is fitted to the finite counts. No initial-ideal separation, new unranking bound, algorithmic speedup or publication significance is inferred."
   },
-  "next_proof_task": "Keep the original unrestricted three-variable sharp-growth or actual polynomial-separation objective and all acceptance criteria. The exact cyclic interleaving model supplies one testable lower-construction route: fixed periods and periods comparable to r are uniformly excluded, so investigate the remaining m growing with r/m growing, using the exact rank formula before enlarging computations. The necessary period window is explicit; r=m^2 is one defined intermediate case, not an asserted lower family. Determine whether collective vertical charges can close that regime or whether simultaneous stream changes produce a provable polynomial amplification. Do not transfer generic uniform ranks or stabilization to arbitrary planar B; the saved actual rank counterexample forbids that shortcut. The coarse periodic-class n^(5/2) bound is a classical volume consequence. The alternative global cubic square-root incidence/edge-length budget remains unproved, and no conditional n^(33/13) result may be advertised as established. Complete exact primary priority comparisons for any actual theorem, preserve previous work, and keep the original impact/paper bar. No outbound messages or submissions.",
+  "next_proof_task": "Keep the unrestricted three-variable sharp-growth or actual polynomial-separation target and all acceptance criteria. Generic uniform-rank residue interleavings cannot amplify the count polynomially. A further linked construction must introduce actual algebraic rank defects or a different proved mechanism; investigate those through the arbitrary-planar-base strong-grading reduction and the collective incidence budget, before a larger search. Seek a uniform theorem explaining their joint effect, not isolated examples. Assess the exact priority of the new threshold argument independently.",
   "remaining_priority_work": [
     "Identify the strongest current result for the unrestricted counting target and any proposed nonlinear family theorem.",
     "The complete 1975 McMullen lattice application remains uninspected for priority of the older lattice-shadow candidate; it does not block the current family analysis.",
@@ -137,7 +137,8 @@
     "Compare the original-coordinate O(n^(47/8)*L^(19/8)) enumeration consequence against later primary algorithms and the priority of its rational-shadow input. Explicitly separate the classical O(n^6*L^2) composition from the additional shadow-derived 1/8 exponent saving; exact bit cost and practical speed remain unproved.",
     "The cubic unimodular socle family refutes O(n) minimum primitive plane product for individual cones. Any product-threshold improvement must bound exceptional cones collectively; the family has only seven initials and is not a lower-count amplifier.",
     "Audit the exact combination of the arithmetic rational-plane transfer with the hyperbolic shadow theorem. Primitive-plane counting, Minkowski and facet incidence are classical. The dimension-four refinement does not resolve G_3; retain stronger earlier powers in d>=5. Any sharp three-variable proof needs more than substituting a nonnegative height exponent into the unchanged surface/plane budget.",
-    "Compare the specialized generic cyclic interleaving rank model, fixed-direction vertical facet charge and exact large-period stabilization with finite-group graded Hilbert-scheme and parametric rank-selection literature. Haiman--Sturmfels supplies established grading/orbit machinery; no unsuccessful search establishes novelty. The remaining generic scaling window and nonuniform bases are distinct problems; no unrestricted cubic half-moment bound is proved."
+    "Compare the specialized generic cyclic interleaving rank model, fixed-direction vertical facet charge and exact large-period stabilization with finite-group graded Hilbert-scheme and parametric rank-selection literature. Haiman--Sturmfels supplies established grading/orbit machinery; no unsuccessful search establishes novelty. The former generic scaling window is closed by the threshold dichotomy; nonuniform planar bases remain a distinct problem. No unrestricted cubic half-moment bound is proved.",
+    "Assess the uniform generic cyclic count against prior finite-group graded and lattice-prefix results. Its threshold split uses the classical Andrews bound; no failed keyword search establishes novelty. The generic intermediate parameter window is now closed, including m and r/m both growing. Distinguish the nonuniform-planar-base problem and unrestricted collective-incidence problem from this excluded generic family."
   ],
   "primary_sources": [
     {
@@ -1708,14 +1709,22 @@
         "verified_nonzero_field_elements": 1533,
         "nonsemisimple_generator_controls": 10,
         "independent_large_threshold_residue_counts": 4,
-        "nongeneric_planar_rank_scope_obstructions": 1
+        "nongeneric_planar_rank_scope_obstructions": 1,
+        "heap_whole_fan_basis_equalities": 167,
+        "exact_heap_selected_columns": 129054,
+        "threshold_synchronization_controls": 287,
+        "two_layer_profile_controls": 128,
+        "large_threshold_integer_rectangles": 159,
+        "fixed_volume_dyadic_cover_controls": 159,
+        "independent_heap_finite_ground_equalities": 81,
+        "independent_thin_threshold_basis_equalities": 3
       },
       "build": "./build.sh passed",
       "smoke": "python3 tests/test_smoke.py passed",
-      "scope": "Seven complete direct fans with 167 initials; 186 whole mapped-cone equalities across six complete period stabilizations; nine explicit actual quotient models over Q,GF256,F257, including nonsemisimple period generators; independent determinants, complete-column greedy and 384 reduced bases replayed on whole coordinate matrices. Four exact large-threshold fixtures allocate no large quotient. No fitted growth or unrestricted moment claim."
+      "scope": "The direct heap agrees with all 167 complete-fan bases and 81 additional independent finite-ground sorts. There are 287 threshold controls: 159 explicit large-threshold integer rectangles and fixed-volume covers, 128 two-layer profile controls. Three independent degree-tier enumerations check the infinite box-obstruction formula at s=3,4,5. Earlier quotient/field, whole mapped-cone and rank controls remain intact. These support the written uniform proof; no growth extrapolation or unrestricted theorem follows."
     }
   },
-  "preservation": "Five explicitly privacy-reviewed public research files change. All 71 earlier continuations, original objective and success criteria, all 90 earlier source hashes other than the updated README, and all 356 unlisted previously tracked files remain unchanged against a67be44. Core CLI, kernels, auditor, manuscripts/PDFs, prior research and paused ML remain intact. Exploratory traces, baselines and logs remain ignored.",
+  "preservation": "Five explicitly privacy-reviewed existing public research files change. All 72 earlier continuations, the original objective and success criteria, all 90 source hashes outside the four updated research/readme files, and all 356 unlisted previously tracked files remain unchanged against 2e0c593. Core CLI, kernels, auditor, manuscripts/PDFs, prior research and paused ML remain intact. Exploratory traces, baselines and logs stay ignored.",
   "publication_constraints": "No emails, messages, author queries, submissions or private records. Review an explicit file list before committing or pushing to authorized main.",
   "intended_public_files": [
     "README.md",
@@ -1725,7 +1734,7 @@
     "results/research/extremal_initial_ideals_goal.json"
   ],
   "source_sha256": {
-    "README.md": "a5400433fff5969618896ef00bd2257dcfd7e313b5210ba0f4985ac55804f065",
+    "README.md": "5767b562bb5dc4e092940a820387e8b18221d1ce3cd606d97594b8a6e08ed4fd",
     "docs/extremal_initial_ideals.md": "6e84b6ea470841a89760a2e16080a9314ba747499b1a5a733460120fe501a92b",
     "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
     "scripts/run_profile_lattice_checks.py": "de84214bbe08dc53f231fc98cc33336bf1764220f093fb05cdeffae4c2480c04",
@@ -1816,9 +1825,9 @@
     "docs/rational_plane_transfer.md": "bc55bb75ffb538b0c7de32951359564187cfdc6cddb0af2e2f7ae4de177147b8",
     "scripts/run_rational_plane_transfer_checks.py": "4ae621544e7a94789f827a5404587d11274db2ccc9f5f56f5437c4ad5b5970b6",
     "results/research/rational_plane_transfer_checks.json": "36cd656cfc8ff93f6f58488bc1d2ef9a0005529c4e1ef42bdb6a66b42b217a60",
-    "docs/cyclic_interleaving_fans.md": "55b89bdbacdf5e0c761de6c548cb076cc9ad7e4edf372b2f84f70ab40ae5dd40",
-    "scripts/run_cyclic_interleaving_checks.py": "76751d969025da0ab566b40c74e3b9c0ab47ca97d4de7724671b4e1da734e282",
-    "results/research/cyclic_interleaving_checks.json": "07cef4f91eeef6acc3d3a359b18f1ea75aab36c23721fa1d6d5dd1d874eee2eb"
+    "docs/cyclic_interleaving_fans.md": "cb450ce85049be7d0ba94a0237a2e507b8c877e4c13431cd1fb557658c61da40",
+    "scripts/run_cyclic_interleaving_checks.py": "51784ed58e5675b3d187c36bf36f146e8988a92a4b0e0baf2b5c04e39c8e7d12",
+    "results/research/cyclic_interleaving_checks.json": "d81925ef42addae1be6fd2a069943c74015dd3b81152932d339dd281908a59b0"
   },
   "continuations": [
     {
@@ -6329,10 +6338,79 @@
       },
       "preservation": "Five explicitly privacy-reviewed public research files change. All 71 earlier continuations, original objective and success criteria, all 90 earlier source hashes other than the updated README, and all 356 unlisted previously tracked files remain unchanged against a67be44. Core CLI, kernels, auditor, manuscripts/PDFs, prior research and paused ML remain intact. Exploratory traces, baselines and logs remain ignored.",
       "scope_limit": "The original G_3 sharp-growth or actual polynomial-separation target is unchanged. This family may or may not supply the required lower theorem; a fixed-period exclusion, finite count or conditional incidence consequence cannot complete the goal."
+    },
+    {
+      "title": "Uniform quadratic-logarithmic count for every generic cyclic interleaving period",
+      "recorded_on": "2026-10-21",
+      "previous_turn_classification": "progress",
+      "previous_evidence": "Progress: 2e0c593 established actual cyclic quotient ranks, fixed-period collective facet charges, comparable-period bounds and whole-fan period stabilization, leaving the growing intermediate generic regime open. That regime is closed by the present threshold dichotomy; no earlier generic parameter gate is being presented as an unrestricted result.",
+      "progress_classification": "uniform full-family exclusion of polynomial amplification, an exact output-sensitive basis oracle, and an actual infinite obstruction to an invalid shortcut",
+      "uniform_result": {
+        "proof": "docs/cyclic_interleaving_fans.md",
+        "checker": "scripts/run_cyclic_interleaving_checks.py",
+        "report": "results/research/cyclic_interleaving_checks.json",
+        "uniform_count": "g(I_(r,m))=O(n^2*log(n+1)^2), n=m*r, with an absolute constant for every r,m.",
+        "scope": "Generic planar evaluation columns over the function-field extension of any base field, including characteristic dividing the period. The broader strong-grading converse with arbitrary planar B does not inherit the uniform-minimum rank rule or this count.",
+        "threshold_synchronization": "After subtracting j times the cheapest weight, the r-th core thresholds tau_j are nonincreasing, with tau_0<=tau_(m-1)+alpha, alpha=m*w_min.",
+        "large_threshold_lemma": "For tau_0>=2*alpha the union of all selected monomials has axis-box volume <=2048*n. Explicit strictly cheaper color-zero integer rectangles prove the bound, including when coordinate maxima occur in different colors.",
+        "dyadic_count": "Pad rounded axis sides to one fixed dyadic product O(n); there are O(log(n+1)^2) boxes. Each retained integer-profile hull, regularized by a unit cube, has volume O(n^4), so the established Andrews vertex theorem gives O(n^2) vertices per box.",
+        "small_threshold_lemma": "For tau_0<2*alpha all selected cores have k=0 or 1 and b+c<2*m. Core moments are integer affine coordinates for the original profile. Their regularized volume is O(n^3*m^2), hence O(n^4) when m<=r. For m>r use the earlier exact period stabilization at length r^2<=n.",
+        "full_family_decision": "The former intermediate generic regime is closed. No r,m scaling in this family gives polynomial amplification above the ordinary three-variable corner-cut scale.",
+        "unconditional_box_obstruction": "For every s>=3, m=s^3,r=s^4 and weights (L,L+1,L+2*m), L=8*m^3, give strict actual bases containing x^m,y^(m-1),z^(s^2). The axis-box volume/length is >s. Both m and r/m grow; these lie in the two-layer branch.",
+        "exact_full_basis_selection": "Accessible-lattice min-heaps pop exactly r times in each color, using O(n*log(r+1)) exact arithmetic/comparison operations and O(r) queue/seen working storage plus O(n) if retaining output. This uses standard best-first enumeration; no bit-complexity, new general heap technique or smooth-number random-access claim.",
+        "classical_inputs": "Andrews lattice-vertex theorem and the existing state-profile dictionary; source scopes and the established grading framework remain recorded. No new lattice-vertex exponent or completed priority assessment.",
+        "unrestricted_G3_improved": false,
+        "polynomial_lower_family_established": false,
+        "novelty_established": false,
+        "goal_complete": false
+      },
+      "verification": {
+        "command": "python3 -B scripts/run_cyclic_interleaving_checks.py",
+        "report": "results/research/cyclic_interleaving_checks.json",
+        "status": "passed",
+        "source_hashes_verified": true,
+        "counts": {
+          "selected_core_ground_controls": 8255,
+          "independent_compressed_prefix_selections": 2097,
+          "normalized_profile_volume_controls": 7,
+          "small_threshold_direction_controls": 83,
+          "exact_facet_corner_edge_length_bridges": 381,
+          "fixed_direction_facet_charges": 83,
+          "aggregate_direction_jump_budgets": 45,
+          "complete_direct_cyclic_fans": 7,
+          "direct_initial_ideals": 167,
+          "whole_mapped_cone_equalities": 186,
+          "complete_period_stabilizations": 6,
+          "independent_cyclic_block_determinants": 21,
+          "periodic_generator_columns": 48,
+          "commuting_coordinate_columns": 144,
+          "independent_stream_basis_determinants": 960,
+          "independent_full_column_greedy_bases": 99,
+          "whole_coordinate_matrix_border_annihilations": 2136,
+          "recovered_reduced_border_polynomials": 384,
+          "verified_nonzero_field_elements": 1533,
+          "nonsemisimple_generator_controls": 10,
+          "independent_large_threshold_residue_counts": 4,
+          "nongeneric_planar_rank_scope_obstructions": 1,
+          "heap_whole_fan_basis_equalities": 167,
+          "exact_heap_selected_columns": 129054,
+          "threshold_synchronization_controls": 287,
+          "two_layer_profile_controls": 128,
+          "large_threshold_integer_rectangles": 159,
+          "fixed_volume_dyadic_cover_controls": 159,
+          "independent_heap_finite_ground_equalities": 81,
+          "independent_thin_threshold_basis_equalities": 3
+        },
+        "build": "./build.sh passed",
+        "smoke": "python3 tests/test_smoke.py passed",
+        "scope": "The direct heap agrees with all 167 complete-fan bases and 81 additional independent finite-ground sorts. There are 287 threshold controls: 159 explicit large-threshold integer rectangles and fixed-volume covers, 128 two-layer profile controls. Three independent degree-tier enumerations check the infinite box-obstruction formula at s=3,4,5. Earlier quotient/field, whole mapped-cone and rank controls remain intact. These support the written uniform proof; no growth extrapolation or unrestricted theorem follows."
+      },
+      "preservation": "Five explicitly privacy-reviewed existing public research files change. All 72 earlier continuations, the original objective and success criteria, all 90 source hashes outside the four updated research/readme files, and all 356 unlisted previously tracked files remain unchanged against 2e0c593. Core CLI, kernels, auditor, manuscripts/PDFs, prior research and paused ML remain intact. Exploratory traces, baselines and logs stay ignored.",
+      "scope_limit": "The original unrestricted G_3 objective is not completed. No matching lower bound, recognized-problem resolution, current novelty certificate or publication significance is established by this generic-family result."
     }
   ],
-  "asymptotic_improvement_scope_this_iteration": "New bounds concern the defined cyclic quotient family and the broader periodic graded class. No new unrestricted G_3 exponent or polynomially separating actual family is established.",
-  "previous_goal_turn_classification": "Progress: a67be44 proved a fixed-dimensional arithmetic rational-plane transfer, improved the four-variable repository bound, retained stronger higher-dimensional powers, and identified the unchanged three-variable transfer budget. Revalidated clean main, all 358 tracked files, 91 source hashes, 71 continuations and the unchanged objective/criteria before this iteration.",
+  "asymptotic_improvement_scope_this_iteration": "O(n^2*log(n+1)^2) uniformly for the generic cyclic quotient family. The arbitrary-planar-base converse retains only the earlier O(n^(5/2)) estimate, and unrestricted G_3 is unchanged.",
+  "previous_goal_turn_classification": "Progress: 2e0c593 established actual cyclic quotient ranks, fixed-period collective facet charges, comparable-period bounds and whole-fan period stabilization, leaving the growing intermediate generic regime open. That regime is closed by the present threshold dichotomy; no earlier generic parameter gate is being presented as an unrestricted result.",
   "uniform_relative_margin_hypothesis_status": "refuted_by_actual_all_field_quotients",
   "secondary_extremal_parameter_resolved": {
     "relative_margin_dimension_2": "Theta(n^-2)",
@@ -6438,7 +6516,7 @@
       "novelty_established": false
     }
   },
-  "family_asymptotic_improvement_established_this_iteration": false,
+  "family_asymptotic_improvement_established_this_iteration": true,
   "higher_interaction_reduction": {
     "proof": "docs/higher_interaction_fans.md",
     "fields": "every field",
@@ -6991,6 +7069,29 @@
     "polynomial_lower_family_established": false,
     "novelty_established": false,
     "goal_complete": false,
-    "scope_limit": "An exact realizable interleaving model, generic-family counting gates and a concrete surviving parameter regime. These do not settle the unrestricted target or establish publication significance."
+    "scope_limit": "An exact realizable interleaving model, generic-family counting gates and a concrete surviving parameter regime. These do not settle the unrestricted target or establish publication significance.",
+    "all_parameter_generic_count": "g(I_(r,m))=O(n^2*log(n+1)^2), n=m*r, with an absolute constant for every r,m.",
+    "remaining_generic_window": "None: the threshold dichotomy now closes all generic period/rank regimes.",
+    "earlier_necessary_polynomial_window_superseded": true,
+    "current_proof": "docs/cyclic_interleaving_fans.md, (C19)--(C23)"
+  },
+  "cyclic_interleaving_uniform_count": {
+    "proof": "docs/cyclic_interleaving_fans.md",
+    "checker": "scripts/run_cyclic_interleaving_checks.py",
+    "report": "results/research/cyclic_interleaving_checks.json",
+    "uniform_count": "g(I_(r,m))=O(n^2*log(n+1)^2), n=m*r, with an absolute constant for every r,m.",
+    "scope": "Generic planar evaluation columns over the function-field extension of any base field, including characteristic dividing the period. The broader strong-grading converse with arbitrary planar B does not inherit the uniform-minimum rank rule or this count.",
+    "threshold_synchronization": "After subtracting j times the cheapest weight, the r-th core thresholds tau_j are nonincreasing, with tau_0<=tau_(m-1)+alpha, alpha=m*w_min.",
+    "large_threshold_lemma": "For tau_0>=2*alpha the union of all selected monomials has axis-box volume <=2048*n. Explicit strictly cheaper color-zero integer rectangles prove the bound, including when coordinate maxima occur in different colors.",
+    "dyadic_count": "Pad rounded axis sides to one fixed dyadic product O(n); there are O(log(n+1)^2) boxes. Each retained integer-profile hull, regularized by a unit cube, has volume O(n^4), so the established Andrews vertex theorem gives O(n^2) vertices per box.",
+    "small_threshold_lemma": "For tau_0<2*alpha all selected cores have k=0 or 1 and b+c<2*m. Core moments are integer affine coordinates for the original profile. Their regularized volume is O(n^3*m^2), hence O(n^4) when m<=r. For m>r use the earlier exact period stabilization at length r^2<=n.",
+    "full_family_decision": "The former intermediate generic regime is closed. No r,m scaling in this family gives polynomial amplification above the ordinary three-variable corner-cut scale.",
+    "unconditional_box_obstruction": "For every s>=3, m=s^3,r=s^4 and weights (L,L+1,L+2*m), L=8*m^3, give strict actual bases containing x^m,y^(m-1),z^(s^2). The axis-box volume/length is >s. Both m and r/m grow; these lie in the two-layer branch.",
+    "exact_full_basis_selection": "Accessible-lattice min-heaps pop exactly r times in each color, using O(n*log(r+1)) exact arithmetic/comparison operations and O(r) queue/seen working storage plus O(n) if retaining output. This uses standard best-first enumeration; no bit-complexity, new general heap technique or smooth-number random-access claim.",
+    "classical_inputs": "Andrews lattice-vertex theorem and the existing state-profile dictionary; source scopes and the established grading framework remain recorded. No new lattice-vertex exponent or completed priority assessment.",
+    "unrestricted_G3_improved": false,
+    "polynomial_lower_family_established": false,
+    "novelty_established": false,
+    "goal_complete": false
   }
 }
