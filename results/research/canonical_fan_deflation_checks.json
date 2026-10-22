@@ -1,0 +1,3751 @@
+{
+  "schema_version": 1,
+  "all_checks_passed": true,
+  "scope": "Canonical monomial factor independent of global order, matrix-only extraction, actual colon algebra and invariant multiplication block, complete fan preservation, and effective length in existing wall/count bounds. This does not remove all univariate padding or improve unrestricted G3. Exact novelty is unassessed.",
+  "counters": {
+    "independent_full_extrusion_projection_formulas": 10,
+    "independent_full_original_border_normal_forms": 343,
+    "complete_independent_quotient_fans": 15,
+    "independent_nonzero_column_kernel_relations": 221,
+    "complete_universal_finite_kernel_factor_extractions": 65,
+    "independent_actual_multiplication_image_ranks": 32,
+    "independent_principal_invariant_multiplication_blocks": 1356,
+    "independent_colon_coordinate_commutations": 1356,
+    "guard_halo_span_is_not_the_quotient_kernel": 28,
+    "direct_field_border_relations": 558,
+    "complete_direct_quotient_fans": 52,
+    "independent_entire_cone_equalities": 84,
+    "independent_original_reduced_basis_S_pairs": 1254,
+    "independent_divided_colon_basis_S_pairs": 1254,
+    "independent_every_order_factor_and_idempotence_checks": 84,
+    "independent_polygon_adjacency_replays": 136,
+    "independent_edge_vector_and_effective_cost_checks": 68,
+    "independent_trivial_monomial_cases": 1,
+    "guard_redundant_nonreduced_input_changes_factor": 1,
+    "guard_arbitrary_colon_changes_the_fan": 1
+  },
+  "complete_quotient_controls": [
+    {
+      "kind": "nonideal_halo_example",
+      "field": 0,
+      "length": 4,
+      "factor_exponents": [
+        0,
+        1,
+        0
+      ],
+      "core_length": 2,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ]
+      ],
+      "profile_translation": [
+        1,
+        2,
+        0
+      ],
+      "initial_ideals": 2,
+      "undirected_walls": 1,
+      "largest_primitive_cost": 2,
+      "total_primitive_cost": 2,
+      "finite_nonzero_ground": 5,
+      "finite_kernel_relations": 1,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        },
+        {
+          "original_basis_polynomials": 4,
+          "divided_basis_polynomials": 4
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "nonideal_halo_example",
+      "field": 2,
+      "length": 4,
+      "factor_exponents": [
+        0,
+        1,
+        0
+      ],
+      "core_length": 2,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ]
+      ],
+      "profile_translation": [
+        1,
+        2,
+        0
+      ],
+      "initial_ideals": 2,
+      "undirected_walls": 1,
+      "largest_primitive_cost": 2,
+      "total_primitive_cost": 2,
+      "finite_nonzero_ground": 5,
+      "finite_kernel_relations": 1,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        },
+        {
+          "original_basis_polynomials": 4,
+          "divided_basis_polynomials": 4
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "nonideal_halo_example",
+      "field": 3,
+      "length": 4,
+      "factor_exponents": [
+        0,
+        1,
+        0
+      ],
+      "core_length": 2,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ]
+      ],
+      "profile_translation": [
+        1,
+        2,
+        0
+      ],
+      "initial_ideals": 2,
+      "undirected_walls": 1,
+      "largest_primitive_cost": 2,
+      "total_primitive_cost": 2,
+      "finite_nonzero_ground": 5,
+      "finite_kernel_relations": 1,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        },
+        {
+          "original_basis_polynomials": 4,
+          "divided_basis_polynomials": 4
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "nonlocal_propagating_halo",
+      "field": 0,
+      "length": 6,
+      "factor_exponents": [
+        1,
+        0,
+        0
+      ],
+      "core_length": 4,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ],
+      "profile_translation": [
+        4,
+        1,
+        0
+      ],
+      "initial_ideals": 2,
+      "undirected_walls": 1,
+      "largest_primitive_cost": 3,
+      "total_primitive_cost": 3,
+      "finite_nonzero_ground": 10,
+      "finite_kernel_relations": 4,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 4,
+          "divided_basis_polynomials": 4
+        },
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "nonlocal_propagating_halo",
+      "field": 2,
+      "length": 6,
+      "factor_exponents": [
+        1,
+        0,
+        0
+      ],
+      "core_length": 4,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ],
+      "profile_translation": [
+        4,
+        1,
+        0
+      ],
+      "initial_ideals": 2,
+      "undirected_walls": 1,
+      "largest_primitive_cost": 3,
+      "total_primitive_cost": 3,
+      "finite_nonzero_ground": 10,
+      "finite_kernel_relations": 4,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 4,
+          "divided_basis_polynomials": 4
+        },
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "nonlocal_propagating_halo",
+      "field": 3,
+      "length": 6,
+      "factor_exponents": [
+        1,
+        0,
+        0
+      ],
+      "core_length": 4,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ],
+      "profile_translation": [
+        4,
+        1,
+        0
+      ],
+      "initial_ideals": 2,
+      "undirected_walls": 1,
+      "largest_primitive_cost": 3,
+      "total_primitive_cost": 3,
+      "finite_nonzero_ground": 10,
+      "finite_kernel_relations": 4,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 4,
+          "divided_basis_polynomials": 4
+        },
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "nonlocal_propagating_halo",
+      "field": 0,
+      "length": 10,
+      "factor_exponents": [
+        3,
+        0,
+        0
+      ],
+      "core_length": 4,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0
+        ]
+      ],
+      "profile_translation": [
+        18,
+        3,
+        0
+      ],
+      "initial_ideals": 2,
+      "undirected_walls": 1,
+      "largest_primitive_cost": 3,
+      "total_primitive_cost": 3,
+      "finite_nonzero_ground": 16,
+      "finite_kernel_relations": 6,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 4,
+          "divided_basis_polynomials": 4
+        },
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "nonlocal_propagating_halo",
+      "field": 2,
+      "length": 10,
+      "factor_exponents": [
+        3,
+        0,
+        0
+      ],
+      "core_length": 4,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0
+        ]
+      ],
+      "profile_translation": [
+        18,
+        3,
+        0
+      ],
+      "initial_ideals": 2,
+      "undirected_walls": 1,
+      "largest_primitive_cost": 3,
+      "total_primitive_cost": 3,
+      "finite_nonzero_ground": 16,
+      "finite_kernel_relations": 6,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 4,
+          "divided_basis_polynomials": 4
+        },
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "nonlocal_propagating_halo",
+      "field": 3,
+      "length": 10,
+      "factor_exponents": [
+        3,
+        0,
+        0
+      ],
+      "core_length": 4,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0
+        ]
+      ],
+      "profile_translation": [
+        18,
+        3,
+        0
+      ],
+      "initial_ideals": 2,
+      "undirected_walls": 1,
+      "largest_primitive_cost": 3,
+      "total_primitive_cost": 3,
+      "finite_nonzero_ground": 16,
+      "finite_kernel_relations": 6,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 4,
+          "divided_basis_polynomials": 4
+        },
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "nonlocal_propagating_halo",
+      "field": 0,
+      "length": 18,
+      "factor_exponents": [
+        7,
+        0,
+        0
+      ],
+      "core_length": 4,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          3,
+          0,
+          0
+        ],
+        [
+          3,
+          1,
+          0
+        ],
+        [
+          4,
+          0,
+          0
+        ],
+        [
+          4,
+          1,
+          0
+        ],
+        [
+          5,
+          0,
+          0
+        ],
+        [
+          5,
+          1,
+          0
+        ],
+        [
+          6,
+          0,
+          0
+        ],
+        [
+          6,
+          1,
+          0
+        ]
+      ],
+      "profile_translation": [
+        70,
+        7,
+        0
+      ],
+      "initial_ideals": 2,
+      "undirected_walls": 1,
+      "largest_primitive_cost": 3,
+      "total_primitive_cost": 3,
+      "finite_nonzero_ground": 28,
+      "finite_kernel_relations": 10,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 4,
+          "divided_basis_polynomials": 4
+        },
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "nonlocal_propagating_halo",
+      "field": 2,
+      "length": 18,
+      "factor_exponents": [
+        7,
+        0,
+        0
+      ],
+      "core_length": 4,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          3,
+          0,
+          0
+        ],
+        [
+          3,
+          1,
+          0
+        ],
+        [
+          4,
+          0,
+          0
+        ],
+        [
+          4,
+          1,
+          0
+        ],
+        [
+          5,
+          0,
+          0
+        ],
+        [
+          5,
+          1,
+          0
+        ],
+        [
+          6,
+          0,
+          0
+        ],
+        [
+          6,
+          1,
+          0
+        ]
+      ],
+      "profile_translation": [
+        70,
+        7,
+        0
+      ],
+      "initial_ideals": 2,
+      "undirected_walls": 1,
+      "largest_primitive_cost": 3,
+      "total_primitive_cost": 3,
+      "finite_nonzero_ground": 28,
+      "finite_kernel_relations": 10,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 4,
+          "divided_basis_polynomials": 4
+        },
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "nonlocal_propagating_halo",
+      "field": 3,
+      "length": 18,
+      "factor_exponents": [
+        7,
+        0,
+        0
+      ],
+      "core_length": 4,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          3,
+          0,
+          0
+        ],
+        [
+          3,
+          1,
+          0
+        ],
+        [
+          4,
+          0,
+          0
+        ],
+        [
+          4,
+          1,
+          0
+        ],
+        [
+          5,
+          0,
+          0
+        ],
+        [
+          5,
+          1,
+          0
+        ],
+        [
+          6,
+          0,
+          0
+        ],
+        [
+          6,
+          1,
+          0
+        ]
+      ],
+      "profile_translation": [
+        70,
+        7,
+        0
+      ],
+      "initial_ideals": 2,
+      "undirected_walls": 1,
+      "largest_primitive_cost": 3,
+      "total_primitive_cost": 3,
+      "finite_nonzero_ground": 28,
+      "finite_kernel_relations": 10,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 4,
+          "divided_basis_polynomials": 4
+        },
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "nonlocal_univariate_factor",
+      "field": 0,
+      "length": 3,
+      "factor_exponents": [
+        1,
+        0,
+        0
+      ],
+      "core_length": 2,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "profile_translation": [
+        2,
+        0,
+        0
+      ],
+      "initial_ideals": 1,
+      "undirected_walls": 0,
+      "largest_primitive_cost": 0,
+      "total_primitive_cost": 0,
+      "finite_nonzero_ground": 4,
+      "finite_kernel_relations": 1,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "nonlocal_univariate_factor",
+      "field": 2,
+      "length": 3,
+      "factor_exponents": [
+        2,
+        0,
+        0
+      ],
+      "core_length": 1,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ]
+      ],
+      "profile_translation": [
+        3,
+        0,
+        0
+      ],
+      "initial_ideals": 1,
+      "undirected_walls": 0,
+      "largest_primitive_cost": 0,
+      "total_primitive_cost": 0,
+      "finite_nonzero_ground": 4,
+      "finite_kernel_relations": 1,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "nonlocal_univariate_factor",
+      "field": 3,
+      "length": 3,
+      "factor_exponents": [
+        1,
+        0,
+        0
+      ],
+      "core_length": 2,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "profile_translation": [
+        2,
+        0,
+        0
+      ],
+      "initial_ideals": 1,
+      "undirected_walls": 0,
+      "largest_primitive_cost": 0,
+      "total_primitive_cost": 0,
+      "finite_nonzero_ground": 4,
+      "finite_kernel_relations": 1,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "nonlocal_univariate_factor",
+      "field": 0,
+      "length": 6,
+      "factor_exponents": [
+        4,
+        0,
+        0
+      ],
+      "core_length": 2,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0
+        ]
+      ],
+      "profile_translation": [
+        14,
+        0,
+        0
+      ],
+      "initial_ideals": 1,
+      "undirected_walls": 0,
+      "largest_primitive_cost": 0,
+      "total_primitive_cost": 0,
+      "finite_nonzero_ground": 7,
+      "finite_kernel_relations": 1,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "nonlocal_univariate_factor",
+      "field": 2,
+      "length": 6,
+      "factor_exponents": [
+        5,
+        0,
+        0
+      ],
+      "core_length": 1,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0
+        ],
+        [
+          4,
+          0,
+          0
+        ]
+      ],
+      "profile_translation": [
+        15,
+        0,
+        0
+      ],
+      "initial_ideals": 1,
+      "undirected_walls": 0,
+      "largest_primitive_cost": 0,
+      "total_primitive_cost": 0,
+      "finite_nonzero_ground": 7,
+      "finite_kernel_relations": 1,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "nonlocal_univariate_factor",
+      "field": 3,
+      "length": 6,
+      "factor_exponents": [
+        4,
+        0,
+        0
+      ],
+      "core_length": 2,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0
+        ]
+      ],
+      "profile_translation": [
+        14,
+        0,
+        0
+      ],
+      "initial_ideals": 1,
+      "undirected_walls": 0,
+      "largest_primitive_cost": 0,
+      "total_primitive_cost": 0,
+      "finite_nonzero_ground": 7,
+      "finite_kernel_relations": 1,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "padded_propagating_relation",
+      "field": 0,
+      "length": 40,
+      "factor_exponents": [
+        1,
+        2,
+        0
+      ],
+      "core_length": 8,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          2,
+          2
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          3,
+          1
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          0,
+          3,
+          3
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          2
+        ],
+        [
+          1,
+          0,
+          3
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          1,
+          3
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          1
+        ],
+        [
+          2,
+          0,
+          2
+        ],
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          2,
+          1,
+          1
+        ],
+        [
+          2,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          3
+        ]
+      ],
+      "profile_translation": [
+        32,
+        48,
+        48
+      ],
+      "initial_ideals": 3,
+      "undirected_walls": 2,
+      "largest_primitive_cost": 6,
+      "total_primitive_cost": 10,
+      "finite_nonzero_ground": 42,
+      "finite_kernel_relations": 2,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 4,
+          "divided_basis_polynomials": 4
+        },
+        {
+          "original_basis_polynomials": 7,
+          "divided_basis_polynomials": 7
+        },
+        {
+          "original_basis_polynomials": 6,
+          "divided_basis_polynomials": 6
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "padded_propagating_relation",
+      "field": 2,
+      "length": 40,
+      "factor_exponents": [
+        1,
+        2,
+        0
+      ],
+      "core_length": 8,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          2,
+          2
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          3,
+          1
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          0,
+          3,
+          3
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          2
+        ],
+        [
+          1,
+          0,
+          3
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          1,
+          3
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          1
+        ],
+        [
+          2,
+          0,
+          2
+        ],
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          2,
+          1,
+          1
+        ],
+        [
+          2,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          3
+        ]
+      ],
+      "profile_translation": [
+        32,
+        48,
+        48
+      ],
+      "initial_ideals": 3,
+      "undirected_walls": 2,
+      "largest_primitive_cost": 6,
+      "total_primitive_cost": 10,
+      "finite_nonzero_ground": 42,
+      "finite_kernel_relations": 2,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 4,
+          "divided_basis_polynomials": 4
+        },
+        {
+          "original_basis_polynomials": 7,
+          "divided_basis_polynomials": 7
+        },
+        {
+          "original_basis_polynomials": 6,
+          "divided_basis_polynomials": 6
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "padded_propagating_relation",
+      "field": 3,
+      "length": 40,
+      "factor_exponents": [
+        1,
+        2,
+        0
+      ],
+      "core_length": 8,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          2,
+          2
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          3,
+          1
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          0,
+          3,
+          3
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          2
+        ],
+        [
+          1,
+          0,
+          3
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          1,
+          3
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          1
+        ],
+        [
+          2,
+          0,
+          2
+        ],
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          2,
+          1,
+          1
+        ],
+        [
+          2,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          3
+        ]
+      ],
+      "profile_translation": [
+        32,
+        48,
+        48
+      ],
+      "initial_ideals": 3,
+      "undirected_walls": 2,
+      "largest_primitive_cost": 6,
+      "total_primitive_cost": 10,
+      "finite_nonzero_ground": 42,
+      "finite_kernel_relations": 2,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 4,
+          "divided_basis_polynomials": 4
+        },
+        {
+          "original_basis_polynomials": 7,
+          "divided_basis_polynomials": 7
+        },
+        {
+          "original_basis_polynomials": 6,
+          "divided_basis_polynomials": 6
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "padded_propagating_relation",
+      "field": 0,
+      "length": 60,
+      "factor_exponents": [
+        1,
+        2,
+        0
+      ],
+      "core_length": 12,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          5
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          1,
+          4
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          2,
+          2
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          2,
+          5
+        ],
+        [
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          3,
+          1
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          0,
+          3,
+          3
+        ],
+        [
+          0,
+          3,
+          4
+        ],
+        [
+          0,
+          3,
+          5
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          2
+        ],
+        [
+          1,
+          0,
+          3
+        ],
+        [
+          1,
+          0,
+          4
+        ],
+        [
+          1,
+          0,
+          5
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          1,
+          3
+        ],
+        [
+          1,
+          1,
+          4
+        ],
+        [
+          1,
+          1,
+          5
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          1
+        ],
+        [
+          2,
+          0,
+          2
+        ],
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          2,
+          0,
+          4
+        ],
+        [
+          2,
+          0,
+          5
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          2,
+          1,
+          1
+        ],
+        [
+          2,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          1,
+          5
+        ]
+      ],
+      "profile_translation": [
+        48,
+        72,
+        120
+      ],
+      "initial_ideals": 3,
+      "undirected_walls": 2,
+      "largest_primitive_cost": 8,
+      "total_primitive_cost": 13,
+      "finite_nonzero_ground": 63,
+      "finite_kernel_relations": 3,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 4,
+          "divided_basis_polynomials": 4
+        },
+        {
+          "original_basis_polynomials": 7,
+          "divided_basis_polynomials": 7
+        },
+        {
+          "original_basis_polynomials": 6,
+          "divided_basis_polynomials": 6
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "padded_propagating_relation",
+      "field": 2,
+      "length": 60,
+      "factor_exponents": [
+        1,
+        2,
+        0
+      ],
+      "core_length": 12,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          5
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          1,
+          4
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          2,
+          2
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          2,
+          5
+        ],
+        [
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          3,
+          1
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          0,
+          3,
+          3
+        ],
+        [
+          0,
+          3,
+          4
+        ],
+        [
+          0,
+          3,
+          5
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          2
+        ],
+        [
+          1,
+          0,
+          3
+        ],
+        [
+          1,
+          0,
+          4
+        ],
+        [
+          1,
+          0,
+          5
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          1,
+          3
+        ],
+        [
+          1,
+          1,
+          4
+        ],
+        [
+          1,
+          1,
+          5
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          1
+        ],
+        [
+          2,
+          0,
+          2
+        ],
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          2,
+          0,
+          4
+        ],
+        [
+          2,
+          0,
+          5
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          2,
+          1,
+          1
+        ],
+        [
+          2,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          1,
+          5
+        ]
+      ],
+      "profile_translation": [
+        48,
+        72,
+        120
+      ],
+      "initial_ideals": 3,
+      "undirected_walls": 2,
+      "largest_primitive_cost": 8,
+      "total_primitive_cost": 13,
+      "finite_nonzero_ground": 63,
+      "finite_kernel_relations": 3,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 4,
+          "divided_basis_polynomials": 4
+        },
+        {
+          "original_basis_polynomials": 7,
+          "divided_basis_polynomials": 7
+        },
+        {
+          "original_basis_polynomials": 6,
+          "divided_basis_polynomials": 6
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "padded_propagating_relation",
+      "field": 3,
+      "length": 60,
+      "factor_exponents": [
+        1,
+        2,
+        0
+      ],
+      "core_length": 12,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          5
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          1,
+          4
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          2,
+          2
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          2,
+          5
+        ],
+        [
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          3,
+          1
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          0,
+          3,
+          3
+        ],
+        [
+          0,
+          3,
+          4
+        ],
+        [
+          0,
+          3,
+          5
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          2
+        ],
+        [
+          1,
+          0,
+          3
+        ],
+        [
+          1,
+          0,
+          4
+        ],
+        [
+          1,
+          0,
+          5
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          1,
+          3
+        ],
+        [
+          1,
+          1,
+          4
+        ],
+        [
+          1,
+          1,
+          5
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          1
+        ],
+        [
+          2,
+          0,
+          2
+        ],
+        [
+          2,
+          0,
+          3
+        ],
+        [
+          2,
+          0,
+          4
+        ],
+        [
+          2,
+          0,
+          5
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          2,
+          1,
+          1
+        ],
+        [
+          2,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          1,
+          5
+        ]
+      ],
+      "profile_translation": [
+        48,
+        72,
+        120
+      ],
+      "initial_ideals": 3,
+      "undirected_walls": 2,
+      "largest_primitive_cost": 8,
+      "total_primitive_cost": 13,
+      "finite_nonzero_ground": 63,
+      "finite_kernel_relations": 3,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 4,
+          "divided_basis_polynomials": 4
+        },
+        {
+          "original_basis_polynomials": 7,
+          "divided_basis_polynomials": 7
+        },
+        {
+          "original_basis_polynomials": 6,
+          "divided_basis_polynomials": 6
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "padded_repeated_upper_pair",
+      "field": 0,
+      "length": 40,
+      "factor_exponents": [
+        0,
+        1,
+        0
+      ],
+      "core_length": 28,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          5
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          2
+        ],
+        [
+          1,
+          0,
+          3
+        ],
+        [
+          1,
+          0,
+          4
+        ],
+        [
+          1,
+          0,
+          5
+        ]
+      ],
+      "profile_translation": [
+        6,
+        28,
+        30
+      ],
+      "initial_ideals": 4,
+      "undirected_walls": 4,
+      "largest_primitive_cost": 13,
+      "total_primitive_cost": 36,
+      "finite_nonzero_ground": 42,
+      "finite_kernel_relations": 2,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 8,
+          "divided_basis_polynomials": 8
+        },
+        {
+          "original_basis_polynomials": 8,
+          "divided_basis_polynomials": 8
+        },
+        {
+          "original_basis_polynomials": 7,
+          "divided_basis_polynomials": 7
+        },
+        {
+          "original_basis_polynomials": 7,
+          "divided_basis_polynomials": 7
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "padded_repeated_upper_pair",
+      "field": 2,
+      "length": 40,
+      "factor_exponents": [
+        0,
+        1,
+        0
+      ],
+      "core_length": 28,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          5
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          2
+        ],
+        [
+          1,
+          0,
+          3
+        ],
+        [
+          1,
+          0,
+          4
+        ],
+        [
+          1,
+          0,
+          5
+        ]
+      ],
+      "profile_translation": [
+        6,
+        28,
+        30
+      ],
+      "initial_ideals": 4,
+      "undirected_walls": 4,
+      "largest_primitive_cost": 13,
+      "total_primitive_cost": 36,
+      "finite_nonzero_ground": 42,
+      "finite_kernel_relations": 2,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 8,
+          "divided_basis_polynomials": 8
+        },
+        {
+          "original_basis_polynomials": 8,
+          "divided_basis_polynomials": 8
+        },
+        {
+          "original_basis_polynomials": 7,
+          "divided_basis_polynomials": 7
+        },
+        {
+          "original_basis_polynomials": 7,
+          "divided_basis_polynomials": 7
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "padded_repeated_upper_pair",
+      "field": 0,
+      "length": 208,
+      "factor_exponents": [
+        0,
+        2,
+        0
+      ],
+      "core_length": 136,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          5
+        ],
+        [
+          0,
+          0,
+          6
+        ],
+        [
+          0,
+          0,
+          7
+        ],
+        [
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          0,
+          9
+        ],
+        [
+          0,
+          0,
+          10
+        ],
+        [
+          0,
+          0,
+          11
+        ],
+        [
+          0,
+          0,
+          12
+        ],
+        [
+          0,
+          0,
+          13
+        ],
+        [
+          0,
+          0,
+          14
+        ],
+        [
+          0,
+          0,
+          15
+        ],
+        [
+          0,
+          0,
+          16
+        ],
+        [
+          0,
+          0,
+          17
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          1,
+          4
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          1,
+          6
+        ],
+        [
+          0,
+          1,
+          7
+        ],
+        [
+          0,
+          1,
+          8
+        ],
+        [
+          0,
+          1,
+          9
+        ],
+        [
+          0,
+          1,
+          10
+        ],
+        [
+          0,
+          1,
+          11
+        ],
+        [
+          0,
+          1,
+          12
+        ],
+        [
+          0,
+          1,
+          13
+        ],
+        [
+          0,
+          1,
+          14
+        ],
+        [
+          0,
+          1,
+          15
+        ],
+        [
+          0,
+          1,
+          16
+        ],
+        [
+          0,
+          1,
+          17
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          2
+        ],
+        [
+          1,
+          0,
+          3
+        ],
+        [
+          1,
+          0,
+          4
+        ],
+        [
+          1,
+          0,
+          5
+        ],
+        [
+          1,
+          0,
+          6
+        ],
+        [
+          1,
+          0,
+          7
+        ],
+        [
+          1,
+          0,
+          8
+        ],
+        [
+          1,
+          0,
+          9
+        ],
+        [
+          1,
+          0,
+          10
+        ],
+        [
+          1,
+          0,
+          11
+        ],
+        [
+          1,
+          0,
+          12
+        ],
+        [
+          1,
+          0,
+          13
+        ],
+        [
+          1,
+          0,
+          14
+        ],
+        [
+          1,
+          0,
+          15
+        ],
+        [
+          1,
+          0,
+          16
+        ],
+        [
+          1,
+          0,
+          17
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          1,
+          3
+        ],
+        [
+          1,
+          1,
+          4
+        ],
+        [
+          1,
+          1,
+          5
+        ],
+        [
+          1,
+          1,
+          6
+        ],
+        [
+          1,
+          1,
+          7
+        ],
+        [
+          1,
+          1,
+          8
+        ],
+        [
+          1,
+          1,
+          9
+        ],
+        [
+          1,
+          1,
+          10
+        ],
+        [
+          1,
+          1,
+          11
+        ],
+        [
+          1,
+          1,
+          12
+        ],
+        [
+          1,
+          1,
+          13
+        ],
+        [
+          1,
+          1,
+          14
+        ],
+        [
+          1,
+          1,
+          15
+        ],
+        [
+          1,
+          1,
+          16
+        ],
+        [
+          1,
+          1,
+          17
+        ]
+      ],
+      "profile_translation": [
+        36,
+        308,
+        612
+      ],
+      "initial_ideals": 8,
+      "undirected_walls": 12,
+      "largest_primitive_cost": 41,
+      "total_primitive_cost": 213,
+      "finite_nonzero_ground": 210,
+      "finite_kernel_relations": 2,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 10,
+          "divided_basis_polynomials": 10
+        },
+        {
+          "original_basis_polynomials": 10,
+          "divided_basis_polynomials": 10
+        },
+        {
+          "original_basis_polynomials": 10,
+          "divided_basis_polynomials": 10
+        },
+        {
+          "original_basis_polynomials": 9,
+          "divided_basis_polynomials": 9
+        },
+        {
+          "original_basis_polynomials": 9,
+          "divided_basis_polynomials": 9
+        },
+        {
+          "original_basis_polynomials": 8,
+          "divided_basis_polynomials": 8
+        },
+        {
+          "original_basis_polynomials": 9,
+          "divided_basis_polynomials": 9
+        },
+        {
+          "original_basis_polynomials": 10,
+          "divided_basis_polynomials": 10
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "padded_repeated_upper_pair",
+      "field": 2,
+      "length": 208,
+      "factor_exponents": [
+        0,
+        2,
+        0
+      ],
+      "core_length": 136,
+      "removed_halo_labels": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          5
+        ],
+        [
+          0,
+          0,
+          6
+        ],
+        [
+          0,
+          0,
+          7
+        ],
+        [
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          0,
+          9
+        ],
+        [
+          0,
+          0,
+          10
+        ],
+        [
+          0,
+          0,
+          11
+        ],
+        [
+          0,
+          0,
+          12
+        ],
+        [
+          0,
+          0,
+          13
+        ],
+        [
+          0,
+          0,
+          14
+        ],
+        [
+          0,
+          0,
+          15
+        ],
+        [
+          0,
+          0,
+          16
+        ],
+        [
+          0,
+          0,
+          17
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          1,
+          4
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          1,
+          6
+        ],
+        [
+          0,
+          1,
+          7
+        ],
+        [
+          0,
+          1,
+          8
+        ],
+        [
+          0,
+          1,
+          9
+        ],
+        [
+          0,
+          1,
+          10
+        ],
+        [
+          0,
+          1,
+          11
+        ],
+        [
+          0,
+          1,
+          12
+        ],
+        [
+          0,
+          1,
+          13
+        ],
+        [
+          0,
+          1,
+          14
+        ],
+        [
+          0,
+          1,
+          15
+        ],
+        [
+          0,
+          1,
+          16
+        ],
+        [
+          0,
+          1,
+          17
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          2
+        ],
+        [
+          1,
+          0,
+          3
+        ],
+        [
+          1,
+          0,
+          4
+        ],
+        [
+          1,
+          0,
+          5
+        ],
+        [
+          1,
+          0,
+          6
+        ],
+        [
+          1,
+          0,
+          7
+        ],
+        [
+          1,
+          0,
+          8
+        ],
+        [
+          1,
+          0,
+          9
+        ],
+        [
+          1,
+          0,
+          10
+        ],
+        [
+          1,
+          0,
+          11
+        ],
+        [
+          1,
+          0,
+          12
+        ],
+        [
+          1,
+          0,
+          13
+        ],
+        [
+          1,
+          0,
+          14
+        ],
+        [
+          1,
+          0,
+          15
+        ],
+        [
+          1,
+          0,
+          16
+        ],
+        [
+          1,
+          0,
+          17
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          1,
+          3
+        ],
+        [
+          1,
+          1,
+          4
+        ],
+        [
+          1,
+          1,
+          5
+        ],
+        [
+          1,
+          1,
+          6
+        ],
+        [
+          1,
+          1,
+          7
+        ],
+        [
+          1,
+          1,
+          8
+        ],
+        [
+          1,
+          1,
+          9
+        ],
+        [
+          1,
+          1,
+          10
+        ],
+        [
+          1,
+          1,
+          11
+        ],
+        [
+          1,
+          1,
+          12
+        ],
+        [
+          1,
+          1,
+          13
+        ],
+        [
+          1,
+          1,
+          14
+        ],
+        [
+          1,
+          1,
+          15
+        ],
+        [
+          1,
+          1,
+          16
+        ],
+        [
+          1,
+          1,
+          17
+        ]
+      ],
+      "profile_translation": [
+        36,
+        308,
+        612
+      ],
+      "initial_ideals": 8,
+      "undirected_walls": 12,
+      "largest_primitive_cost": 41,
+      "total_primitive_cost": 213,
+      "finite_nonzero_ground": 210,
+      "finite_kernel_relations": 2,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 10,
+          "divided_basis_polynomials": 10
+        },
+        {
+          "original_basis_polynomials": 10,
+          "divided_basis_polynomials": 10
+        },
+        {
+          "original_basis_polynomials": 10,
+          "divided_basis_polynomials": 10
+        },
+        {
+          "original_basis_polynomials": 9,
+          "divided_basis_polynomials": 9
+        },
+        {
+          "original_basis_polynomials": 9,
+          "divided_basis_polynomials": 9
+        },
+        {
+          "original_basis_polynomials": 8,
+          "divided_basis_polynomials": 8
+        },
+        {
+          "original_basis_polynomials": 9,
+          "divided_basis_polynomials": 9
+        },
+        {
+          "original_basis_polynomials": 10,
+          "divided_basis_polynomials": 10
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "primitive_radical_points",
+      "field": 0,
+      "length": 3,
+      "factor_exponents": [
+        0,
+        0,
+        0
+      ],
+      "core_length": 3,
+      "removed_halo_labels": [],
+      "profile_translation": [
+        0,
+        0,
+        0
+      ],
+      "initial_ideals": 5,
+      "undirected_walls": 6,
+      "largest_primitive_cost": 3,
+      "total_primitive_cost": 16,
+      "finite_nonzero_ground": 13,
+      "finite_kernel_relations": 10,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        },
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        },
+        {
+          "original_basis_polynomials": 4,
+          "divided_basis_polynomials": 4
+        },
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        },
+        {
+          "original_basis_polynomials": 4,
+          "divided_basis_polynomials": 4
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "primitive_radical_points",
+      "field": 7,
+      "length": 3,
+      "factor_exponents": [
+        0,
+        0,
+        0
+      ],
+      "core_length": 3,
+      "removed_halo_labels": [],
+      "profile_translation": [
+        0,
+        0,
+        0
+      ],
+      "initial_ideals": 5,
+      "undirected_walls": 6,
+      "largest_primitive_cost": 3,
+      "total_primitive_cost": 16,
+      "finite_nonzero_ground": 13,
+      "finite_kernel_relations": 10,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        },
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        },
+        {
+          "original_basis_polynomials": 4,
+          "divided_basis_polynomials": 4
+        },
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        },
+        {
+          "original_basis_polynomials": 4,
+          "divided_basis_polynomials": 4
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "univariate_padding_not_removed",
+      "field": 0,
+      "length": 3,
+      "factor_exponents": [
+        0,
+        0,
+        0
+      ],
+      "core_length": 3,
+      "removed_halo_labels": [],
+      "profile_translation": [
+        0,
+        0,
+        0
+      ],
+      "initial_ideals": 1,
+      "undirected_walls": 0,
+      "largest_primitive_cost": 0,
+      "total_primitive_cost": 0,
+      "finite_nonzero_ground": 13,
+      "finite_kernel_relations": 10,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "univariate_padding_not_removed",
+      "field": 2,
+      "length": 3,
+      "factor_exponents": [
+        0,
+        0,
+        0
+      ],
+      "core_length": 3,
+      "removed_halo_labels": [],
+      "profile_translation": [
+        0,
+        0,
+        0
+      ],
+      "initial_ideals": 1,
+      "undirected_walls": 0,
+      "largest_primitive_cost": 0,
+      "total_primitive_cost": 0,
+      "finite_nonzero_ground": 8,
+      "finite_kernel_relations": 5,
+      "marked_basis_checks": [
+        {
+          "original_basis_polynomials": 3,
+          "divided_basis_polynomials": 3
+        }
+      ],
+      "scope": "The actual colon is evaluated through the invariant multiplication image. Its whole fan is traversed separately and compared cone by cone."
+    },
+    {
+      "kind": "trivial_monomial_case",
+      "field": 0,
+      "length": 4,
+      "monomial": true,
+      "initial_ideals": 1,
+      "finite_nonzero_ground": 4
+    }
+  ],
+  "failure_guards": {
+    "redundant_input_factor": [
+      0,
+      0,
+      0
+    ],
+    "correct_reduced_factor": [
+      0,
+      1,
+      0
+    ],
+    "arbitrary_colon_original_cones": 2,
+    "arbitrary_colon_core_length": 1,
+    "scope": "No arbitrary common-subspace or arbitrary colon replacement is inferred."
+  },
+  "source_sha256": {
+    "docs/canonical_fan_deflation.md": "0094e1f902e1b61016e59ab68f39407bd9ce3a5460b2521ea515760c4e244a5f",
+    "scripts/run_canonical_fan_deflation_checks.py": "bb5f57de15edf5f908d94a3b85f80a93d7e251d6833bc6607d519d41a01b9f1b",
+    "docs/initial_fan_padding.md": "51ee4221fb4d0dd469b60e5f7c818148ecca6e60fc47e6414b7f07b5f79b0260",
+    "scripts/run_initial_fan_padding_checks.py": "970c4c5a4f3ef80dff4789a7a661f5148be2944a871a014b2b70d2c7cbe3984a",
+    "docs/rational_shadow_bound.md": "09b6e5e19cb03825e9d2151680e557cdf384256c5392cf70b6aca388e488c1ca",
+    "docs/wall_coexistence.md": "502b73f8c70a06da84b5de9ec59adcc3ea5d8cc9d8356b76875f0f96c91c4682",
+    "scripts/run_algebraic_incidence_controls.py": "93e6f0e5d147da43cdfacc16e4419703c59993c10dc03199ef6385df4d420eeb",
+    "scripts/run_coordinate_slice_budget_checks.py": "50e973948ce2c1ac46035ef9606e951b4171a8f541895a5dbec73c7e00221df6",
+    "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
+    "scripts/run_primitive_wall_checks.py": "ce4bdb6316b3acbfc15625b8f67dfadd69c95d691c81da2c47cda6538c867cdb",
+    "scripts/run_projection_tag_checks.py": "c003724cab6740a5bafc51e03b0f17f779eff80a463bdf92dae134d53617ccff",
+    "scripts/run_quadric_cross_checks.py": "8d521aa6295bcbc81a7a8140a2cb5af56c69e9469765c2bc17c987da4f0e6226",
+    "scripts/run_signed_face_checks.py": "8367cf40b049331649f6f3ed799e43982b14a1d40cfb620791249d2c63375867",
+    "scripts/run_socle_circuit_checks.py": "488b0b5d7f3cc24d4da32983165c80463fdb6c6fda96b56f7899c6b6f4cc301e",
+    "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
+    "scripts/run_univariate_cross_checks.py": "9d0811efcf1c6861372890e8a409ef44a4b363c80ac010d95f8ebca88ae1d39e"
+  }
+}
