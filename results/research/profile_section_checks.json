@@ -1,0 +1,1321 @@
+{
+  "command": "python3 -B scripts/run_profile_section_checks.py",
+  "status": "passed",
+  "source_sha256": {
+    "docs/ideal_step_incidence.md": "8f79d88076a2e39eea9a3b4accdb8af1708a29d5474f0df0326b2be45bbf9b7c",
+    "docs/profile_section_budget.md": "42b7e9521bcb3c6720dede4ae5efdc5b6ce2891a29c5b9f57cefea0084e119b5",
+    "scripts/run_algebraic_incidence_controls.py": "93e6f0e5d147da43cdfacc16e4419703c59993c10dc03199ef6385df4d420eeb",
+    "scripts/run_coordinate_slice_budget_checks.py": "50e973948ce2c1ac46035ef9606e951b4171a8f541895a5dbec73c7e00221df6",
+    "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
+    "scripts/run_higher_interaction_checks.py": "cdc31d1b582e71c4536056429bf7eabeb2fcb312f313713135a2eaee68578916",
+    "scripts/run_higher_seed_checks.py": "92f0c67e86e3be54c71cbe6efac168c767c9768bb8058b6dc36d24b91acac926",
+    "scripts/run_hypersurface_truncation_checks.py": "700073c01784db06a953d351c500e0d66b0019c1152fe4b127cbf50f35cbcd7e",
+    "scripts/run_initial_cone_height_checks.py": "f804aff89da53a6139aed7cacc9fd802dee8fd8529ee48a0d240dd9740df3dab",
+    "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
+    "scripts/run_liaison_fan_checks.py": "59129e88d900f283ed245f7762f3f75f9b498442fe10f7f0b2e2757493359539",
+    "scripts/run_oracle_enumeration_checks.py": "139af7656f8dc4083fc463a0bb27354ee53b23e85bc3232b958236b15ee45ec2",
+    "scripts/run_planar_dyadic_bound_checks.py": "27642dbe7cf5c21e0eacb671b644bd00b97e758422d341cffa82c16df0b224bc",
+    "scripts/run_primitive_wall_checks.py": "ce4bdb6316b3acbfc15625b8f67dfadd69c95d691c81da2c47cda6538c867cdb",
+    "scripts/run_profile_section_checks.py": "25dba9837d184a582ef16bbfcf13a1770bd13b8686c83c545cbc79184e68c403",
+    "scripts/run_projection_tag_checks.py": "c003724cab6740a5bafc51e03b0f17f779eff80a463bdf92dae134d53617ccff",
+    "scripts/run_signed_face_checks.py": "8367cf40b049331649f6f3ed799e43982b14a1d40cfb620791249d2c63375867",
+    "scripts/run_socle_stability_checks.py": "81e4476100f0be5457fcf7019186415d230cceac4096202b2844dce645e83f52",
+    "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
+    "scripts/run_wall_coexistence_checks.py": "12efc209c9a0daacb8e50eebe65902ca019a78fb78098ecc3e79ecf585cae282"
+  },
+  "source": {
+    "url": "https://arxiv.org/pdf/0710.3116v3",
+    "scope": "Equation (2), d=3, and Theorem 4.4; uniform integer scaling."
+  },
+  "counts": {
+    "independent_full_zonotope_facets": 2540,
+    "independent_rational_central_section_hulls": 5,
+    "independent_positive_zone_segments": 5450,
+    "independent_positive_octants_and_integer_width_witnesses": 40,
+    "direct_field_border_relations": 264,
+    "complete_direct_quotient_fans": 4,
+    "independent_polygon_adjacency_replays": 70,
+    "actual_point_fans_vs_complete_pair_zone_profile_edges": 4
+  },
+  "cases": [
+    {
+      "parameter": 1,
+      "source_m": 5,
+      "abstract_pair_matroid_rank": 10,
+      "integer_generators": [
+        [
+          72,
+          72,
+          72
+        ],
+        [
+          0,
+          72,
+          72
+        ],
+        [
+          -72,
+          72,
+          72
+        ],
+        [
+          -36,
+          -72,
+          72
+        ],
+        [
+          36,
+          -72,
+          72
+        ],
+        [
+          2,
+          0,
+          12
+        ],
+        [
+          0,
+          0,
+          12
+        ],
+        [
+          -2,
+          0,
+          12
+        ],
+        [
+          -1,
+          0,
+          -12
+        ],
+        [
+          1,
+          0,
+          -12
+        ]
+      ],
+      "half_integer_section_height": "373/2",
+      "section_vertices": 60,
+      "positive_x_width_lower_bound": 108,
+      "rank_only_downset_moment_cap": 45,
+      "all_eight_positive_cost_orthants": [
+        {
+          "signs": [
+            -1,
+            -1,
+            -1
+          ],
+          "positive_section_crossings": 6,
+          "positive_edges": 17,
+          "L": 2241,
+          "axis_limit_x_width_witness": 111
+        },
+        {
+          "signs": [
+            -1,
+            -1,
+            1
+          ],
+          "positive_section_crossings": 9,
+          "positive_edges": 20,
+          "L": 2268,
+          "axis_limit_x_width_witness": 111
+        },
+        {
+          "signs": [
+            -1,
+            1,
+            -1
+          ],
+          "positive_section_crossings": 9,
+          "positive_edges": 20,
+          "L": 2268,
+          "axis_limit_x_width_witness": 111
+        },
+        {
+          "signs": [
+            -1,
+            1,
+            1
+          ],
+          "positive_section_crossings": 6,
+          "positive_edges": 17,
+          "L": 2241,
+          "axis_limit_x_width_witness": 111
+        },
+        {
+          "signs": [
+            1,
+            -1,
+            -1
+          ],
+          "positive_section_crossings": 6,
+          "positive_edges": 17,
+          "L": 2241,
+          "axis_limit_x_width_witness": 111
+        },
+        {
+          "signs": [
+            1,
+            -1,
+            1
+          ],
+          "positive_section_crossings": 9,
+          "positive_edges": 20,
+          "L": 2268,
+          "axis_limit_x_width_witness": 111
+        },
+        {
+          "signs": [
+            1,
+            1,
+            -1
+          ],
+          "positive_section_crossings": 9,
+          "positive_edges": 20,
+          "L": 2268,
+          "axis_limit_x_width_witness": 111
+        },
+        {
+          "signs": [
+            1,
+            1,
+            1
+          ],
+          "positive_section_crossings": 6,
+          "positive_edges": 17,
+          "L": 2241,
+          "axis_limit_x_width_witness": 111
+        }
+      ],
+      "scope": "Abstract paired-column matroid, not a polynomial quotient; the displayed integer profiles violate the colength-rank moment cap."
+    },
+    {
+      "parameter": 2,
+      "source_m": 9,
+      "abstract_pair_matroid_rank": 18,
+      "integer_generators": [
+        [
+          400,
+          200,
+          200
+        ],
+        [
+          200,
+          200,
+          200
+        ],
+        [
+          0,
+          200,
+          200
+        ],
+        [
+          -200,
+          200,
+          200
+        ],
+        [
+          -400,
+          200,
+          200
+        ],
+        [
+          -300,
+          -200,
+          200
+        ],
+        [
+          -100,
+          -200,
+          200
+        ],
+        [
+          100,
+          -200,
+          200
+        ],
+        [
+          300,
+          -200,
+          200
+        ],
+        [
+          4,
+          0,
+          20
+        ],
+        [
+          2,
+          0,
+          20
+        ],
+        [
+          0,
+          0,
+          20
+        ],
+        [
+          -2,
+          0,
+          20
+        ],
+        [
+          -4,
+          0,
+          20
+        ],
+        [
+          -3,
+          0,
+          -20
+        ],
+        [
+          -1,
+          0,
+          -20
+        ],
+        [
+          1,
+          0,
+          -20
+        ],
+        [
+          3,
+          0,
+          -20
+        ]
+      ],
+      "half_integer_section_height": "1821/2",
+      "section_vertices": 180,
+      "positive_x_width_lower_bound": 1000,
+      "rank_only_downset_moment_cap": 153,
+      "all_eight_positive_cost_orthants": [
+        {
+          "signs": [
+            -1,
+            -1,
+            -1
+          ],
+          "positive_section_crossings": 20,
+          "positive_edges": 54,
+          "L": 22450,
+          "axis_limit_x_width_witness": 1010
+        },
+        {
+          "signs": [
+            -1,
+            -1,
+            1
+          ],
+          "positive_section_crossings": 25,
+          "positive_edges": 59,
+          "L": 21540,
+          "axis_limit_x_width_witness": 1010
+        },
+        {
+          "signs": [
+            -1,
+            1,
+            -1
+          ],
+          "positive_section_crossings": 25,
+          "positive_edges": 59,
+          "L": 21540,
+          "axis_limit_x_width_witness": 1010
+        },
+        {
+          "signs": [
+            -1,
+            1,
+            1
+          ],
+          "positive_section_crossings": 20,
+          "positive_edges": 54,
+          "L": 22450,
+          "axis_limit_x_width_witness": 1010
+        },
+        {
+          "signs": [
+            1,
+            -1,
+            -1
+          ],
+          "positive_section_crossings": 20,
+          "positive_edges": 54,
+          "L": 22450,
+          "axis_limit_x_width_witness": 1010
+        },
+        {
+          "signs": [
+            1,
+            -1,
+            1
+          ],
+          "positive_section_crossings": 25,
+          "positive_edges": 59,
+          "L": 21540,
+          "axis_limit_x_width_witness": 1010
+        },
+        {
+          "signs": [
+            1,
+            1,
+            -1
+          ],
+          "positive_section_crossings": 25,
+          "positive_edges": 59,
+          "L": 21540,
+          "axis_limit_x_width_witness": 1010
+        },
+        {
+          "signs": [
+            1,
+            1,
+            1
+          ],
+          "positive_section_crossings": 20,
+          "positive_edges": 54,
+          "L": 22450,
+          "axis_limit_x_width_witness": 1010
+        }
+      ],
+      "scope": "Abstract paired-column matroid, not a polynomial quotient; the displayed integer profiles violate the colength-rank moment cap."
+    },
+    {
+      "parameter": 3,
+      "source_m": 13,
+      "abstract_pair_matroid_rank": 26,
+      "integer_generators": [
+        [
+          1176,
+          392,
+          392
+        ],
+        [
+          784,
+          392,
+          392
+        ],
+        [
+          392,
+          392,
+          392
+        ],
+        [
+          0,
+          392,
+          392
+        ],
+        [
+          -392,
+          392,
+          392
+        ],
+        [
+          -784,
+          392,
+          392
+        ],
+        [
+          -1176,
+          392,
+          392
+        ],
+        [
+          -980,
+          -392,
+          392
+        ],
+        [
+          -588,
+          -392,
+          392
+        ],
+        [
+          -196,
+          -392,
+          392
+        ],
+        [
+          196,
+          -392,
+          392
+        ],
+        [
+          588,
+          -392,
+          392
+        ],
+        [
+          980,
+          -392,
+          392
+        ],
+        [
+          6,
+          0,
+          28
+        ],
+        [
+          4,
+          0,
+          28
+        ],
+        [
+          2,
+          0,
+          28
+        ],
+        [
+          0,
+          0,
+          28
+        ],
+        [
+          -2,
+          0,
+          28
+        ],
+        [
+          -4,
+          0,
+          28
+        ],
+        [
+          -6,
+          0,
+          28
+        ],
+        [
+          -5,
+          0,
+          -28
+        ],
+        [
+          -3,
+          0,
+          -28
+        ],
+        [
+          -1,
+          0,
+          -28
+        ],
+        [
+          1,
+          0,
+          -28
+        ],
+        [
+          3,
+          0,
+          -28
+        ],
+        [
+          5,
+          0,
+          -28
+        ]
+      ],
+      "half_integer_section_height": "5125/2",
+      "section_vertices": 364,
+      "positive_x_width_lower_bound": 4116,
+      "rank_only_downset_moment_cap": 325,
+      "all_eight_positive_cost_orthants": [
+        {
+          "signs": [
+            -1,
+            -1,
+            -1
+          ],
+          "positive_section_crossings": 42,
+          "positive_edges": 111,
+          "L": 102459,
+          "axis_limit_x_width_witness": 4137
+        },
+        {
+          "signs": [
+            -1,
+            -1,
+            1
+          ],
+          "positive_section_crossings": 49,
+          "positive_edges": 118,
+          "L": 97552,
+          "axis_limit_x_width_witness": 4137
+        },
+        {
+          "signs": [
+            -1,
+            1,
+            -1
+          ],
+          "positive_section_crossings": 49,
+          "positive_edges": 118,
+          "L": 97552,
+          "axis_limit_x_width_witness": 4137
+        },
+        {
+          "signs": [
+            -1,
+            1,
+            1
+          ],
+          "positive_section_crossings": 42,
+          "positive_edges": 111,
+          "L": 102459,
+          "axis_limit_x_width_witness": 4137
+        },
+        {
+          "signs": [
+            1,
+            -1,
+            -1
+          ],
+          "positive_section_crossings": 42,
+          "positive_edges": 111,
+          "L": 102459,
+          "axis_limit_x_width_witness": 4137
+        },
+        {
+          "signs": [
+            1,
+            -1,
+            1
+          ],
+          "positive_section_crossings": 49,
+          "positive_edges": 118,
+          "L": 97552,
+          "axis_limit_x_width_witness": 4137
+        },
+        {
+          "signs": [
+            1,
+            1,
+            -1
+          ],
+          "positive_section_crossings": 49,
+          "positive_edges": 118,
+          "L": 97552,
+          "axis_limit_x_width_witness": 4137
+        },
+        {
+          "signs": [
+            1,
+            1,
+            1
+          ],
+          "positive_section_crossings": 42,
+          "positive_edges": 111,
+          "L": 102459,
+          "axis_limit_x_width_witness": 4137
+        }
+      ],
+      "scope": "Abstract paired-column matroid, not a polynomial quotient; the displayed integer profiles violate the colength-rank moment cap."
+    },
+    {
+      "parameter": 4,
+      "source_m": 17,
+      "abstract_pair_matroid_rank": 34,
+      "integer_generators": [
+        [
+          2592,
+          648,
+          648
+        ],
+        [
+          1944,
+          648,
+          648
+        ],
+        [
+          1296,
+          648,
+          648
+        ],
+        [
+          648,
+          648,
+          648
+        ],
+        [
+          0,
+          648,
+          648
+        ],
+        [
+          -648,
+          648,
+          648
+        ],
+        [
+          -1296,
+          648,
+          648
+        ],
+        [
+          -1944,
+          648,
+          648
+        ],
+        [
+          -2592,
+          648,
+          648
+        ],
+        [
+          -2268,
+          -648,
+          648
+        ],
+        [
+          -1620,
+          -648,
+          648
+        ],
+        [
+          -972,
+          -648,
+          648
+        ],
+        [
+          -324,
+          -648,
+          648
+        ],
+        [
+          324,
+          -648,
+          648
+        ],
+        [
+          972,
+          -648,
+          648
+        ],
+        [
+          1620,
+          -648,
+          648
+        ],
+        [
+          2268,
+          -648,
+          648
+        ],
+        [
+          8,
+          0,
+          36
+        ],
+        [
+          6,
+          0,
+          36
+        ],
+        [
+          4,
+          0,
+          36
+        ],
+        [
+          2,
+          0,
+          36
+        ],
+        [
+          0,
+          0,
+          36
+        ],
+        [
+          -2,
+          0,
+          36
+        ],
+        [
+          -4,
+          0,
+          36
+        ],
+        [
+          -6,
+          0,
+          36
+        ],
+        [
+          -8,
+          0,
+          36
+        ],
+        [
+          -7,
+          0,
+          -36
+        ],
+        [
+          -5,
+          0,
+          -36
+        ],
+        [
+          -3,
+          0,
+          -36
+        ],
+        [
+          -1,
+          0,
+          -36
+        ],
+        [
+          1,
+          0,
+          -36
+        ],
+        [
+          3,
+          0,
+          -36
+        ],
+        [
+          5,
+          0,
+          -36
+        ],
+        [
+          7,
+          0,
+          -36
+        ]
+      ],
+      "half_integer_section_height": "11053/2",
+      "section_vertices": 612,
+      "positive_x_width_lower_bound": 11664,
+      "rank_only_downset_moment_cap": 561,
+      "all_eight_positive_cost_orthants": [
+        {
+          "signs": [
+            -1,
+            -1,
+            -1
+          ],
+          "positive_section_crossings": 72,
+          "positive_edges": 188,
+          "L": 321732,
+          "axis_limit_x_width_witness": 11700
+        },
+        {
+          "signs": [
+            -1,
+            -1,
+            1
+          ],
+          "positive_section_crossings": 81,
+          "positive_edges": 197,
+          "L": 306504,
+          "axis_limit_x_width_witness": 11700
+        },
+        {
+          "signs": [
+            -1,
+            1,
+            -1
+          ],
+          "positive_section_crossings": 81,
+          "positive_edges": 197,
+          "L": 306504,
+          "axis_limit_x_width_witness": 11700
+        },
+        {
+          "signs": [
+            -1,
+            1,
+            1
+          ],
+          "positive_section_crossings": 72,
+          "positive_edges": 188,
+          "L": 321732,
+          "axis_limit_x_width_witness": 11700
+        },
+        {
+          "signs": [
+            1,
+            -1,
+            -1
+          ],
+          "positive_section_crossings": 72,
+          "positive_edges": 188,
+          "L": 321732,
+          "axis_limit_x_width_witness": 11700
+        },
+        {
+          "signs": [
+            1,
+            -1,
+            1
+          ],
+          "positive_section_crossings": 81,
+          "positive_edges": 197,
+          "L": 306504,
+          "axis_limit_x_width_witness": 11700
+        },
+        {
+          "signs": [
+            1,
+            1,
+            -1
+          ],
+          "positive_section_crossings": 81,
+          "positive_edges": 197,
+          "L": 306504,
+          "axis_limit_x_width_witness": 11700
+        },
+        {
+          "signs": [
+            1,
+            1,
+            1
+          ],
+          "positive_section_crossings": 72,
+          "positive_edges": 188,
+          "L": 321732,
+          "axis_limit_x_width_witness": 11700
+        }
+      ],
+      "scope": "Abstract paired-column matroid, not a polynomial quotient; the displayed integer profiles violate the colength-rank moment cap."
+    },
+    {
+      "parameter": 5,
+      "source_m": 21,
+      "abstract_pair_matroid_rank": 42,
+      "integer_generators": [
+        [
+          4840,
+          968,
+          968
+        ],
+        [
+          3872,
+          968,
+          968
+        ],
+        [
+          2904,
+          968,
+          968
+        ],
+        [
+          1936,
+          968,
+          968
+        ],
+        [
+          968,
+          968,
+          968
+        ],
+        [
+          0,
+          968,
+          968
+        ],
+        [
+          -968,
+          968,
+          968
+        ],
+        [
+          -1936,
+          968,
+          968
+        ],
+        [
+          -2904,
+          968,
+          968
+        ],
+        [
+          -3872,
+          968,
+          968
+        ],
+        [
+          -4840,
+          968,
+          968
+        ],
+        [
+          -4356,
+          -968,
+          968
+        ],
+        [
+          -3388,
+          -968,
+          968
+        ],
+        [
+          -2420,
+          -968,
+          968
+        ],
+        [
+          -1452,
+          -968,
+          968
+        ],
+        [
+          -484,
+          -968,
+          968
+        ],
+        [
+          484,
+          -968,
+          968
+        ],
+        [
+          1452,
+          -968,
+          968
+        ],
+        [
+          2420,
+          -968,
+          968
+        ],
+        [
+          3388,
+          -968,
+          968
+        ],
+        [
+          4356,
+          -968,
+          968
+        ],
+        [
+          10,
+          0,
+          44
+        ],
+        [
+          8,
+          0,
+          44
+        ],
+        [
+          6,
+          0,
+          44
+        ],
+        [
+          4,
+          0,
+          44
+        ],
+        [
+          2,
+          0,
+          44
+        ],
+        [
+          0,
+          0,
+          44
+        ],
+        [
+          -2,
+          0,
+          44
+        ],
+        [
+          -4,
+          0,
+          44
+        ],
+        [
+          -6,
+          0,
+          44
+        ],
+        [
+          -8,
+          0,
+          44
+        ],
+        [
+          -10,
+          0,
+          44
+        ],
+        [
+          -9,
+          0,
+          -44
+        ],
+        [
+          -7,
+          0,
+          -44
+        ],
+        [
+          -5,
+          0,
+          -44
+        ],
+        [
+          -3,
+          0,
+          -44
+        ],
+        [
+          -1,
+          0,
+          -44
+        ],
+        [
+          1,
+          0,
+          -44
+        ],
+        [
+          3,
+          0,
+          -44
+        ],
+        [
+          5,
+          0,
+          -44
+        ],
+        [
+          7,
+          0,
+          -44
+        ],
+        [
+          9,
+          0,
+          -44
+        ]
+      ],
+      "half_integer_section_height": "20373/2",
+      "section_vertices": 924,
+      "positive_x_width_lower_bound": 26620,
+      "rank_only_downset_moment_cap": 861,
+      "all_eight_positive_cost_orthants": [
+        {
+          "signs": [
+            -1,
+            -1,
+            -1
+          ],
+          "positive_section_crossings": 110,
+          "positive_edges": 285,
+          "L": 808885,
+          "axis_limit_x_width_witness": 26675
+        },
+        {
+          "signs": [
+            -1,
+            -1,
+            1
+          ],
+          "positive_section_crossings": 121,
+          "positive_edges": 296,
+          "L": 772596,
+          "axis_limit_x_width_witness": 26675
+        },
+        {
+          "signs": [
+            -1,
+            1,
+            -1
+          ],
+          "positive_section_crossings": 121,
+          "positive_edges": 296,
+          "L": 772596,
+          "axis_limit_x_width_witness": 26675
+        },
+        {
+          "signs": [
+            -1,
+            1,
+            1
+          ],
+          "positive_section_crossings": 110,
+          "positive_edges": 285,
+          "L": 808885,
+          "axis_limit_x_width_witness": 26675
+        },
+        {
+          "signs": [
+            1,
+            -1,
+            -1
+          ],
+          "positive_section_crossings": 110,
+          "positive_edges": 285,
+          "L": 808885,
+          "axis_limit_x_width_witness": 26675
+        },
+        {
+          "signs": [
+            1,
+            -1,
+            1
+          ],
+          "positive_section_crossings": 121,
+          "positive_edges": 296,
+          "L": 772596,
+          "axis_limit_x_width_witness": 26675
+        },
+        {
+          "signs": [
+            1,
+            1,
+            -1
+          ],
+          "positive_section_crossings": 121,
+          "positive_edges": 296,
+          "L": 772596,
+          "axis_limit_x_width_witness": 26675
+        },
+        {
+          "signs": [
+            1,
+            1,
+            1
+          ],
+          "positive_section_crossings": 110,
+          "positive_edges": 285,
+          "L": 808885,
+          "axis_limit_x_width_witness": 26675
+        }
+      ],
+      "scope": "Abstract paired-column matroid, not a polynomial quotient; the displayed integer profiles violate the colength-rank moment cap."
+    }
+  ],
+  "actual_quotient_controls": [
+    {
+      "parameter": 1,
+      "characteristic": 101,
+      "length": 4,
+      "initial_cones": 4,
+      "L": 9,
+      "sections": [
+        {
+          "axis": 0,
+          "maximum_crossings": 2,
+          "half_integer_witness": "3/2",
+          "integral": 3
+        },
+        {
+          "axis": 1,
+          "maximum_crossings": 2,
+          "half_integer_witness": "3/2",
+          "integral": 3
+        },
+        {
+          "axis": 2,
+          "maximum_crossings": 2,
+          "half_integer_witness": "3/2",
+          "integral": 3
+        }
+      ],
+      "scope": "Established actual four-line parity-point family; finite controls, not evidence for a uniform section bound."
+    },
+    {
+      "parameter": 2,
+      "characteristic": 101,
+      "length": 8,
+      "initial_cones": 9,
+      "L": 40,
+      "sections": [
+        {
+          "axis": 0,
+          "maximum_crossings": 4,
+          "half_integer_witness": "7/2",
+          "integral": 10
+        },
+        {
+          "axis": 1,
+          "maximum_crossings": 4,
+          "half_integer_witness": "7/2",
+          "integral": 10
+        },
+        {
+          "axis": 2,
+          "maximum_crossings": 4,
+          "half_integer_witness": "17/2",
+          "integral": 20
+        }
+      ],
+      "scope": "Established actual four-line parity-point family; finite controls, not evidence for a uniform section bound."
+    },
+    {
+      "parameter": 3,
+      "characteristic": 101,
+      "length": 12,
+      "initial_cones": 16,
+      "L": 105,
+      "sections": [
+        {
+          "axis": 0,
+          "maximum_crossings": 6,
+          "half_integer_witness": "11/2",
+          "integral": 21
+        },
+        {
+          "axis": 1,
+          "maximum_crossings": 6,
+          "half_integer_witness": "11/2",
+          "integral": 21
+        },
+        {
+          "axis": 2,
+          "maximum_crossings": 6,
+          "half_integer_witness": "43/2",
+          "integral": 63
+        }
+      ],
+      "scope": "Established actual four-line parity-point family; finite controls, not evidence for a uniform section bound."
+    },
+    {
+      "parameter": 4,
+      "characteristic": 101,
+      "length": 16,
+      "initial_cones": 25,
+      "L": 216,
+      "sections": [
+        {
+          "axis": 0,
+          "maximum_crossings": 8,
+          "half_integer_witness": "15/2",
+          "integral": 36
+        },
+        {
+          "axis": 1,
+          "maximum_crossings": 8,
+          "half_integer_witness": "15/2",
+          "integral": 36
+        },
+        {
+          "axis": 2,
+          "maximum_crossings": 8,
+          "half_integer_witness": "81/2",
+          "integral": 144
+        }
+      ],
+      "scope": "Established actual four-line parity-point family; finite controls, not evidence for a uniform section bound."
+    }
+  ],
+  "limits": [
+    "No algebra realization or unrestricted section bound is established.",
+    "The cubic fixed-pair budget in the note is a classical arrangement corollary.",
+    "Exact priority and the sharp unrestricted G3 endpoint remain open."
+  ]
+}
