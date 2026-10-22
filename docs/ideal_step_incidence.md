@@ -420,6 +420,274 @@ or the global cubic-polylogarithmic \(W\) budget. The product class already
 has that global bound and stays below the generic fan-count scale.
 The unrestricted \(G_3\) question and exact priority remain open.
 
+## Actual edge lengths: planar cancellation and a spatial obstruction
+
+Keeping integer edge multiples removes the arithmetic oscillation in
+(13), but does not restore a uniform quadratic-step induction. Define
+\[
+ \mathcal L(I)=\sum_{e=\{B,C\}}
+                         \|\mu(B)-\mu(C)\|_1,           \tag{23}
+\]
+over actual undirected positive walls. Thus \(W\le\mathcal L\).
+The [visible skeleton](weighted_facet_incidence.md#square-root-incidence-and-the-visible-edge-skeleton)
+\(\ell_+\) counts only edges incident to strictly positive two-faces;
+\(\ell_+\le\mathcal L\), and either cubic-polylogarithmic bound would
+suffice for the existing incidence reduction. Neither is assumed here.
+
+### A sharp planar one-step bound
+
+For a planar length-\(m\) quotient \(J\), let \(B^0,B^\infty\)
+be its two limiting positive standard sets as \(w_x/w_y\) tends to
+zero and infinity. Monotonicity of the two profile coordinates gives
+\[
+ \mathcal L(J)=\mu_x(B^0)-\mu_x(B^\infty)
+                         +\mu_y(B^\infty)-\mu_y(B^0).   \tag{24}
+\]
+This is exactly the classical perimeter telescoping already used in the
+[planar primitive-cost bound](wall_cost_products.md#a-sharp-planar-cost-bound).
+
+If \(J\subset J'\) have lengths \(m,m-1\), use the same two limiting
+global lexicographic orders on both ideals. The actual one-dimensional
+quotient rule deletes one monomial from each parent standard set; write
+the two deleted exponents as \(u,v\). They are staircase corners, with
+\(|u|,|v|\le m-1\). Subtracting (24) gives the exact identity
+\[
+ \mathcal L(J)-\mathcal L(J')=u_x-u_y-v_x+v_y,
+ \qquad |\mathcal L(J)-\mathcal L(J')|\le2(m-1).          \tag{25}
+\]
+The bound is sharp over every field: \(J_m=(x^m,y-x)\) has
+\(\mathcal L(J_m)=m(m-1)\), so its increment over \(J_{m-1}\)
+is \(2(m-1)\). It has two initial sets when \(m\ge2\).
+No radicality or genericity is used in (25).
+
+In the three-pole family (1), each profile edge exchanges one axis tip
+\(x_i^A\) for \(x_j^B\). Keeping its integer multiple gives
+\[
+ \mathcal L(I_n)=3\sum_{A,B\ge1,\ A+B\le n}(A+B)
+               =n^3-n,\qquad
+ \mathcal L(I_n)-\mathcal L(I_{n-1})=3n(n-1).            \tag{26}
+\]
+For (14), the product identity also holds with actual lengths:
+\[
+ \mathcal L(H_{m,r})=b_r\mathcal L(T_m)+m\mathcal L(J_r).
+                                                               \tag{27}
+\]
+Both branches used above have cyclic coordinates, so their limiting
+standard sets are the two pure-power chains and their actual lengths
+are respectively \(m(m-1)\) and \(r(r-1)\). Hence their product's
+increment is \(2b_r(m-1)+r(r-1)\), always positive. For example the
+length-36 and length-35 specialization with primitive increment \(-332\)
+has actual lengths \(3168,2772\), with increment \(396\).
+This cancellation is real, but specific to these changing hook branches.
+
+### Growing cone multiplicity defeats the spatial step estimate
+
+Here are all-field families, with no number-theoretic specialization,
+whose actual lengths have jumps of **both** signs of order \(n^{7/3}\).
+Only one dimension is removed, and their fans have only \(O(n^{1/3})\)
+cones. Thus even \(\mathcal L\) has no uniform positive or absolute
+\(O(n^2\log^C(n+1))\) increment for fixed \(C\).
+
+For an integer \(s\ge1\), first use the convex antichain
+\[
+ S_s^+=\{(s-i,i^2):0\le i\le s\},\qquad
+ D_s^+=\operatorname{Div}(S_s^+),\qquad
+ |D_s^+|=\frac{s(s+1)(2s+1)}6+s+1.
+\]
+In \(K[x,y]\), let \(A_s^+\) be the ideal complementary to this
+downset, together with relations identifying every tip with the first
+tip. Let \(B_s^+\) additionally kill that common tip. Then
+\[
+ m_s^+=\operatorname{length}(A_s^+)
+       =\frac{s(s+1)(2s+1)}6+1,
+ \qquad \operatorname{length}(B_s^+)=m_s^+-1.
+\]
+All tips are maximal, so their span is socle and these are actual ideals
+over every field. The parent tips form one parallel residue class.
+Every parent standard set is \((D_s^+\setminus S_s^+)\cup\{t_i\}\),
+where \(t_i=(s-i,i^2)\). It is coherent precisely when that tip is
+cheapest. All \(s+1\) choices occur: the consecutive thresholds are
+\(w_x/w_y=2i+1\), \(0\le i<s\). The child has one standard set.
+The consecutive profile differences are primitive, and
+\[
+ g(A_s^+)=s+1,\quad g(B_s^+)=1,\quad
+ \mathcal L(A_s^+)=W(A_s^+)=s(s+1),\quad
+                         \mathcal L(B_s^+)=0.            \tag{28}
+\]
+
+For the opposite sign use the concave antichain
+\[
+ S_s^-=\{(i,s^2-i^2):0\le i\le s\},\quad
+ D_s^-=\operatorname{Div}(S_s^-),\quad
+ m_s^-=(s+1)(s^2+1)-\frac{s(s+1)(2s+1)}6.
+\]
+Let \(A_s^-\) be the complementary monomial ideal, and \(B_s^-\)
+its quotient by the single relation \(\sum_{t\in S_s^-}x^{t_x}y^{t_y}\).
+Their lengths are \(m_s^-,m_s^--1\). The parent has one standard set;
+the child omits the most expensive tip. The same \(s+1\) thresholds
+give \(g(B_s^-)=s+1\) and \(\mathcal L(B_s^-)=s(s+1)\).
+The relation is nonzero in every characteristic, and its span is socle.
+
+For either sign put \(m=m_s^\pm\), \(f=x^m\), and take the second
+branch \(Q_m=(x^m,z-x)\). It has two planar initials and
+\(\mathcal L(Q_m)=m(m-1)\), while \(W(Q_m)=2\). Form
+\[
+ P_s^\pm=(f,yz,yA_s^\pm,zQ_m),\qquad
+ C_s^\pm=(f,yz,yB_s^\pm,zQ_m).                           \tag{29}
+\]
+The common annihilator belongs to both first branches, since their
+largest possible \(x\)-exponent is \(s<m\). The product proof gives
+actual lengths \(n=3m,n-1\) and an actual one-dimensional kernel.
+The two full fan counts are \(2(s+1),2\) for the positive sign and
+\(2,2(s+1)\) for the negative sign. From the same product identity,
+\[
+ \boxed{\quad
+ \mathcal L(P_s^\pm)-\mathcal L(C_s^\pm)
+              =\pm\{s\,m(m-1)+2s(s+1)\}
+              =\pm\Theta(n^{7/3}).\quad}                \tag{30}
+\]
+The upper and lower orders follow from \(m_s^\pm=\Theta(s^3)\).
+The large contribution is the second branch's long profile edge copied
+across the \(s+1\) first-branch cones. Primitive normalization of that
+edge is constant. In fact the variable fan has
+\(W=2(s+1)^2\) and the fixed fan has \(W=2\), both small here.
+This mechanism is therefore independent of the gcd oscillation in (17).
+
+Every wall in the two-factor variable fan touches an interior grid
+intersection, so its \(\ell_+\) equals \(\mathcal L\). The fixed
+two-cone fan has no positive two-face and \(\ell_+=0\). Consequently
+the same order and both signs occur for \(\ell_+\), though its exact
+increments differ from (30). Neither a cubic-polylogarithmic global
+\(\mathcal L\) or \(\ell_+\) bound, nor a cubic total-variation bound
+for these actual lengths, is disproved by (30).
+
+### Actual lengths can exceed primitive cost quadratically
+
+There is a separate cost to keeping the multiples. For every length-\(n\)
+quotient, the staircase moment cap \(\sum_i\mu_i\le\binom n2\)
+gives \(\|\mu(B)-\mu(C)\|_1\le n(n-1)\) at each edge. Since a
+primitive mixed direction has one-norm at least two,
+\[
+ W(I)\le\mathcal L(I)\le\frac{n(n-1)}2W(I).              \tag{31}
+\]
+The quadratic order of this loss is attained even with a fixed fan.
+For the existing characteristic-zero five-cone family
+\(I_k=(x^2,y^k,z-x-y)\), \(k\ge2\), \(n=2k\), the five
+actual edge lengths are
+\[
+ 2,\quad2(k-1),\quad2k,\quad2(k-1)^2,\quad2k(k-1).
+\]
+They follow by summing the five explicit standard sets in
+[the classified fan](adjacent_rank_fans.md#a-sharp-linear-loss-from-retaining-local-core-length).
+Thus \(\mathcal L(I_k)=n^2-n+2\), while \(W(I_k)=10\).
+An actual-length budget is a stronger sufficient target, with a sharp
+quadratic possible loss, rather than an automatically easier replacement
+for primitive length. The main global count remains unresolved.
+
+### A collective section problem, without an ideal-chain recurrence
+
+There is a precise way to ask for a global actual-length budget. Let
+\(P=\operatorname{conv}\{\mu(B):B\text{ a positive initial standard set}\}\).
+For coordinate \(i\) and integer \(k\), let \(c_i(k)\) count actual
+positive profile edges whose endpoints lie on opposite sides of
+\(x_i=k+1/2\). Integer endpoints give the elementary identity
+\[
+              \mathcal L(I)=\sum_{i=1}^3\sum_k c_i(k).   \tag{32}
+\]
+Each crossing point is a vertex of the genuine section
+\(P\cap\{x_i=k+1/2\}\): a plane transverse to a polytope edge exposes
+that intersection as a section vertex. Distinct edges give distinct
+crossings, since the plane contains no integer vertex. Thus \(c_i(k)\)
+is at most the number of section vertices.
+
+Every coordinate moment is between zero and \(\binom n2\), so a uniform
+\(O(n\log^C(n+1))\) bound on these section vertices would imply the
+desired cubic-polylogarithmic \(\mathcal L\) bound. Even an averaged
+bound on the \(c_i(k)\) would suffice. This is an **unproved** possible
+next task, not a theorem about arbitrary quotient sections.
+It retains the final fan and makes no charge along ideal deletions.
+These sections usually have rational vertices and are not planar quotient
+state polytopes. The planar \(G_2\) theorem cannot simply be applied to
+them. They also differ from the hull of profiles lying at one *integer*
+coordinate level in the [coordinate-slice theorem](coordinate_slice_wall_budget.md).
+
+### A sharp cubic global budget with two quadratic coordinates
+
+One substantial restriction does permit a uniform actual-length bound.
+If a length-\(n\) quotient contains monic scalar quadratics in \(x\)
+and \(y\), then, over every field,
+\[
+       g(I)\le(n+1)^2,\qquad
+                  \mathcal L(I)\le3(n+1)^3.              \tag{33}
+\]
+Both powers are sharp. This is a specialization of the existing
+[one-box rank estimate](weighted_facet_incidence.md#a-rank-sensitive-estimate-inside-one-box),
+with a direct positive-fan proof and explicit constants below; it is
+not claimed as a new general polytope estimate.
+
+Every standard label has first two exponents in \(\{0,1\}\) and last
+exponent at most \(n-1\). Thus the first two profile coordinates are
+integers in \([0,n]\). Every positively exposed vertex or edge point
+is the unique *lowest* point of \(P\) over its \((x,y)\)-projection:
+a lower point in the same fiber would have smaller cost because \(w_z>0\).
+Projection is therefore injective on the union of the positive vertices
+and edge interiors. There are at most \((n+1)^2\) positive vertices.
+
+Write a positive edge displacement as \(k_eq_e\), with primitive
+\(q_e\). The projected matroid-edge principle gives
+\((q_e)_x,(q_e)_y\in\{-1,0,1\}\), at least one nonzero, and
+\(|(q_e)_z|\le n-1\). Indeed a nonzero ground-label difference parallel
+to the edge has these bounds, and a pure \(z\) direction cannot be
+orthogonal to a positive cost. It follows that \(\|q_e\|_1\le n+1\).
+The \(k_e-1\) interior lattice points on each edge project to distinct
+integer pairs, distinct also from projected vertices. Hence, with \(V\)
+positive vertices and \(E\) actual positive edges,
+\[
+  V+\sum_e(k_e-1)\le(n+1)^2,\qquad E\le3V,
+  \qquad\sum_e k_e\le3(n+1)^2.
+\]
+The graph inequality is ordinary planarity, with segments and polygons
+handled separately. Multiplying by the primitive norm bound proves (33).
+
+The [four-line parity-point family](parity_point_fan_updates.md) makes
+the cubic power sharp and gives a stronger characteristic-zero update
+example than (30). In that note's notation, every profile edge of
+\(J_s=I(S_s)\) and \(I_s=I(P_s)\) has lattice multiple one. For
+\(J_s\) an edge flips one opposite pair, with displacement
+\((1,\pm1,k)\). For \(I_s\), the support function adds half the
+minimum absolute pair cost. At a new wall the profile displacement is
+half a signed sum of the two competing pair differences. Its first two
+coordinates are in \(\{-1,0,1\}\) with at least one unit; if both
+vanished the displacement would be a pure \(z\) direction and would
+not give a positive wall. Thus it too is primitive. Consequently
+\[
+ \mathcal L(J_s)=W(J_s),\quad \mathcal L(I_s)=W(I_s),\quad
+ \mathcal L(I_s)-\mathcal L(J_s)
+                  =\frac{2s^3+3s^2-8s-6}{3}.           \tag{34}
+\]
+Together with (33), cubic order is the sharp worst-case positive or
+absolute one-point actual-length update order in the two-quadratic class.
+
+Both signs occur on those same four fixed lines. Put
+\(G_s=\{0,1\}^2\times\{0,\ldots,2s-1\}\),
+\(E_s=G_s\setminus S_s\) and \(F_s=G_s\setminus P_s\).
+Their radical ideals have lengths \(4s,4s-1\), with one point deleted.
+The established grid-complement correspondence sends a standard set
+\(B\) to \(G_s\setminus(v-B)\), \(v=(1,1,2s-1)\). Its profile is
+\(\mu(G_s)-|B|v+\mu(B)\), a fixed translation, so it preserves actual
+edge lengths as well as the fan. Therefore the length-\(4s\) to
+length-\(4s-1\) increment is the negative of (34), and its cone-count
+increment is \(-(s^2-s-1)\). This is an application of existing duality,
+not a new complementary-ideal theorem; see
+[Dimitrova--He--Robbiano--Stigler, Theorem 4.8 and Corollary 4.11](https://arxiv.org/pdf/1704.03680v2)
+and the [existing box-colon proof](interleaving_research.md#an-exact-colon-identity-on-every-box-initial-cone).
+
+The all-field construction (30), the sharp restricted global estimate
+(33) and the characteristic-zero point updates (34) have different
+scopes. None controls unrestricted three-variable quotients or supplies
+a supergeneric count. In particular (33) cannot be used after an
+arbitrary rational section or vector-space contraction.
+
 ## Reproduction and prior-art boundary
 
 ~~~bash
@@ -443,6 +711,15 @@ It includes \(W(H_{11,12})=2156\), \(W(H_{12,12})=1824\) over
 example. Exact gcd, multiplicative, parity and Möbius identities are
 checked separately through larger parameter ranges. Formula (22) is an
 analytic theorem, not a fit to those data.
+The actual-length extension verifies (26)--(27) on those complete fans,
+then constructs both socle-product signs over characteristics zero, two
+and three. It independently checks commuting multiplication, every
+monomial successor on a finite spanning ground, the lifted ideal
+generators, the one-dimensional socle kernel, all product cones and
+ordinary S-pairs. For example the positive length-45 to length-44 step
+has actual lengths \(864,210\), while the negative length-78 to
+length-77 step has lengths \(650,2624\), in each tested field.
+The closed formulas, rather than these finite values, prove (30).
 
 The curve fan, eigenline interpretation and incidence definitions are
 preserved established inputs from the cited notes. Arithmetic factors
@@ -478,3 +755,18 @@ do not establish priority of the elementary product consequence (16)--(22),
 or justify a standalone paper. They do justify abandoning a uniform
 quadratic-increment or arbitrary-chain-positive-variation proof of the
 global budget. No runtime lower bound for fan-update algorithms is asserted.
+
+For (23)--(32), the perimeter telescoping, standard-set/profile dictionary,
+socle relation-space construction and all-order fan product are established
+inputs already cited in this repository. The planar deletion identity is
+their direct consequence, and the spatial families expose the separate
+fan-multiplicity term in (27). The section identity is elementary segment
+counting; it supplies an open sufficient condition, not a section bound.
+Exact priority of these combined observations has not been established.
+No claim of a new general polytope theorem, algorithmic lower bound,
+unrestricted exponent improvement or standalone paper follows.
+For (33)--(34), the box rank bound and the parity-family classification
+are established inputs explicitly linked above. The radical grid
+duality in Theorem 4.8 and Corollary 4.11 of the cited primary article
+was re-read at its statements and radical-grid proof. Their role is
+fan-preserving duality, not a new bound on unrestricted complexity.
