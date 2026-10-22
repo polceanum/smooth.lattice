@@ -1,20 +1,23 @@
 #!/usr/bin/env python3
-"""Exact reconstruction of actual yz=0 branch envelopes and module kernels."""
+"""Actual branch envelopes, one-ray contractions and complete quotient fans."""
 import ast
 from collections import Counter, defaultdict
 from fractions import Fraction as Q
 from functools import lru_cache
-from itertools import combinations
-from math import isqrt
+from itertools import combinations, permutations
+from math import comb, factorial, isqrt, prod
 from pathlib import Path
 import hashlib
 import json
 
 from run_forced_socle_fan_checks import model as forced_model
-from run_projection_tag_checks import fan
-from run_signed_face_checks import field_basis, field_reduce
+from run_ideal_step_incidence_checks import actual_edge_length, fan_budgets
+from run_projection_tag_checks import compare_fans, fan, polygon_key
+from run_signed_face_checks import field_basis, field_reduce, normals as border_normals
+from run_structural_complexity_checks import area2, clip, determinant, hyperbolic_cross
 
 ROOT = Path(__file__).resolve().parents[1]
+TRIANGLE = [tuple(Q(i == j) for i in range(3)) for j in range(3)]
 
 
 def clean(v, p):
@@ -323,10 +326,430 @@ def staircase_controls(counts):
             counts['independent_planar_tip_colength_controls'] += 1
 
 
+def contracted_planar_intervals(E, evaluate, rank, p, counts):
+    """All positive profiles of a vector matroid, certified by every circuit.
+
+    No algebra structure or border reduction is assumed for the contraction.
+    Coordinates on E are at most rank-1; distinct comparison fractions are
+    separated by more than 1/(rank+1)^3.
+    """
+    epsilon = Q(1, (rank+1)**3)
+    sample, previous_high, seen = epsilon, Q(0), set()
+    while True:
+        B, pivots = field_basis(sorted(E, key=lambda a: (a[0]*sample+a[1], a)),
+                               evaluate, p)
+        assert len(B) == rank and frozenset(B) not in seen
+        seen.add(frozenset(B))
+        low, high = Q(0), None
+        for e in E:
+            if e in B:
+                continue
+            rem, co = field_reduce(evaluate(e), pivots, p)
+            assert not rem
+            for b in co:
+                dx, dy = e[0]-b[0], e[1]-b[1]
+                assert dx*sample+dy > 0
+                if dx > 0:
+                    low = max(low, Q(-dy, dx))
+                elif dx < 0:
+                    value = Q(-dy, dx)
+                    high = value if high is None else min(high, value)
+                else:
+                    assert dy > 0
+                counts['contracted_matroid_fundamental_comparisons'] += 1
+        assert low == previous_high and sample > low
+        assert high is None or sample < high
+        yield frozenset(B), low, high
+        counts['complete_contracted_planar_intervals'] += 1
+        if high is None:
+            break
+        previous_high, sample = high, high+epsilon
+
+
+def one_ray_compile(n, ev, mode, p, counts, actual_zero_products=True):
+    assert mode in ('parallel', 'axis')
+    if actual_zero_products:
+        assert not ev((0, 1, 1))
+        assert not ev((0, 0, 2) if mode == 'parallel' else (1, 0, 1))
+    plane = tuple(hyperbolic_cross(n, 2))
+    ell = len(field_basis(plane, lambda a: ev((*a, 0)), p)[0])
+    ray = tuple((i, 0, 1) if mode == 'parallel' else (0, 0, i+1)
+                for i in range(n))
+    independent, _ = field_basis(ray, ev, p)
+    m = len(independent)
+    assert independent == ray[:m]
+    eta = ell+m-n
+    assert 0 <= eta <= m
+    if actual_zero_products and mode == 'axis':
+        assert eta <= 1
+    elif actual_zero_products:
+        assert 2*m <= n
+    predicted, ledger, total_bound = {}, [], 0
+    for k in range(n-ell, min(m, n-1)+1):
+        N = n-k
+        C = ray[:k]
+        FC = Frame([ev(c) for c in C], p)
+        assert len(FC.basis) == k
+        E = tuple(hyperbolic_cross(N, 2))
+        @lru_cache(None)
+        def contracted(e):
+            return field_reduce(ev((*e, 0)), FC.pivots, p)[0]
+        remaining = len(field_basis(E, contracted, p)[0])
+        ceiling = 1+4*N*(N-1).bit_length()
+        total_bound += ceiling
+        if remaining < N:
+            ledger.append({'ray_prefix': k, 'planar_rank': N,
+                           'actual_ground_rank': remaining, 'intervals': 0,
+                           'candidate_ceiling': ceiling})
+            continue
+        assert remaining == N
+        intervals = list(contracted_planar_intervals(E, contracted, N, p, counts))
+        assert len(intervals) <= ceiling
+        accepted, not_downsets = 0, 0
+        for P, low, high in intervals:
+            B = frozenset(C+tuple((*a, 0) for a in P))
+            assert len(B) == n
+            if any(tuple(a[j]-int(j == axis) for j in range(3)) not in B
+                   for a in B for axis in range(3) if a[axis]):
+                not_downsets += 1
+                continue
+            normals, _ = border_normals(tuple(sorted(B)), ev, p)
+            poly = list(TRIANGLE)
+            for q in normals:
+                poly = clip(poly, q, 1)
+            if not area2(poly):
+                continue
+            assert B not in predicted
+            predicted[B] = poly
+            accepted += 1
+            # The full cone must lie in the contracted planar interval.
+            assert all(v[0] >= low*v[1] for v in poly)
+            assert high is None or all(v[0] <= high*v[1] for v in poly)
+            counts['one_ray_original_border_cones'] += 1
+        ledger.append({'ray_prefix': k, 'planar_rank': N,
+                       'actual_ground_rank': remaining,
+                       'intervals': len(intervals), 'coherent_full_cones': accepted,
+                       'non_downset_candidates': not_downsets,
+                       'candidate_ceiling': ceiling})
+    covered = sum(area2(poly) for poly in predicted.values())
+    assert covered == 1 if actual_zero_products else covered <= 1
+    assert len(predicted) <= total_bound
+    return predicted, {'plane_length': ell, 'outside_ray_rank': m,
+                       'plane_ray_overlap': eta, 'candidate_ceiling': total_bound,
+                       'prefix_contractions': ledger,
+                       'actual_zero_product_hypotheses': actual_zero_products,
+                       'normalized_full_cone_area_covered': covered}
+
+
+def pascal_ray_model(m, p):
+    @lru_cache(None)
+    def ev(alpha):
+        i, j, k = alpha
+        if j+k >= 2:
+            return {}
+        if not j and not k:
+            return {i: 1} if i < 2*m else {}
+        return clean({m+i+s: comb(m if j else 2*m, s)
+                      for s in range(max(0, m-i))}, p)
+    return 2*m, ev
+
+
+def pascal_ray_predicted(m, collapse=False):
+    core = {(i, 0, 0) for i in range(m)}
+    starts = ((m, 0, 0), (0, 1, 0), (0, 0, 1))
+    compositions = ([(m, 0, 0), (0, m, 0), (0, 0, m)] if collapse else
+                    [(a, b, m-a-b) for a in range(m+1) for b in range(m-a+1)])
+    out = {}
+    for sizes in compositions:
+        groups = [tuple((v[0]+i, v[1], v[2]) for i in range(size))
+                  for v, size in zip(starts, sizes)]
+        B = frozenset(core | set().union(*map(set, groups)))
+        poly = list(TRIANGLE)
+        if collapse:
+            chosen = sizes.index(m)
+            normals = [tuple(v[i]-starts[chosen][i] for i in range(3))
+                       for j, v in enumerate(starts) if j != chosen]
+        else:
+            normals = []
+            for j, size in enumerate(sizes):
+                if not size:
+                    continue
+                last = groups[j][-1]
+                for v, other_size in zip(starts, sizes):
+                    if other_size == m:
+                        continue
+                    first = (v[0]+other_size, v[1], v[2])
+                    normals.append(tuple(a-b for a, b in zip(first, last)))
+        for q in normals:
+            poly = clip(poly, q, 1)
+        assert area2(poly) > 0
+        out[B] = poly
+    assert sum(area2(poly) for poly in out.values()) == 1
+    return out
+
+
+def point_evaluate(points, p):
+    @lru_cache(None)
+    def ev(alpha):
+        return clean({i: prod(v**e for v, e in zip(point, alpha))
+                      for i, point in enumerate(points)}, p)
+    return ev
+
+
+def axis_connected_model(size, ray_length, p, box=False):
+    if box:
+        a, b = size
+        plane = tuple((i, j, 0) for j in range(b) for i in range(a))
+        tip = a-1, b-1, 0
+    else:
+        plane = tuple((i, 0, 0) for i in range(size))
+        tip = size-1, 0, 0
+    reference = plane+tuple((0, 0, j) for j in range(1, ray_length))
+    index = {v: i for i, v in enumerate(reference)}
+    @lru_cache(None)
+    def ev(alpha):
+        i, j, k = alpha
+        if k:
+            if i or j or k > ray_length:
+                return {}
+            return {index[tip if k == ray_length else alpha]: 1}
+        if box or not j:
+            return {index[alpha]: 1} if alpha in index else {}
+        return clean({index[i+j+s, 0, 0]: (-1)**(j+s)*comb(j+s-1, s)
+                      for s in range(max(0, size-i-j))}, p)
+    return len(reference), ev
+
+
+def actual_evaluation_controls(n, ev, p, counts):
+    E = tuple(hyperbolic_cross(n, 3))
+    selected, _ = field_basis(E, ev, p)
+    assert len(selected) == n
+    F = Frame([ev(a) for a in selected], p)
+    M = tuple(tuple(F.coords(ev(tuple(a+int(i == j) for j, a in enumerate(v))))
+                    for v in selected) for i in range(3))
+    for X, Y in combinations(M, 2):
+        for j in range(n):
+            assert apply(X, Y[j], p) == apply(Y, X[j], p)
+            counts['one_ray_actual_commuting_columns'] += 1
+    for a in E:
+        for i in range(3):
+            successor = tuple(b+int(i == j) for j, b in enumerate(a))
+            assert apply(M[i], F.coords(ev(a)), p) == F.coords(ev(successor))
+            counts['one_ray_actual_successor_columns'] += 1
+
+
+def rotate_model(n, ev, p, shift=(0, 0, 0)):
+    """One fixed integral invertible linear change, retaining actual labels."""
+    E = tuple(hyperbolic_cross(n, 3))
+    selected, _ = field_basis(E, ev, p)
+    F = Frame([ev(v) for v in selected], p)
+    old = tuple(tuple(F.coords(ev(tuple(a+int(i == j) for j, a in enumerate(v))))
+                      for v in selected) for i in range(3))
+    T = ((0, -1, 1), (1, 1, -1), (-1, 0, 1))
+    M = tuple(tuple(linear(
+        [(T[i][a], old[a][j]) for a in range(3)]+[(shift[i], {j: 1})], p)
+        for j in range(n)) for i in range(3))
+    unit = F.coords(ev((0, 0, 0)))
+    @lru_cache(None)
+    def rotated(alpha):
+        if not any(alpha):
+            return unit
+        axis = next(i for i, a in enumerate(alpha) if a)
+        predecessor = tuple(a-int(i == axis) for i, a in enumerate(alpha))
+        return apply(M[axis], rotated(predecessor), p)
+    return rotated
+
+
+def common_factor_carriers(l0, l1, l2, p):
+    """Initial ideals of l0*(l1,l2), enumerating six variable orders."""
+    carriers = {}
+    for order in permutations(range(3)):
+        priority = tuple(reversed(order))
+        forms = [clean({priority.index(i): c for i, c in enumerate(v)}, p)
+                 for v in (l1, l2)]
+        selected, pivots = field_basis((0, 1), lambda j: forms[j], p)
+        assert len(selected) == 2
+        heads = {priority[j] for j in pivots}
+        z = next(i for i in priority if (l0[i] % p if p else l0[i]))
+        if z in heads:
+            y = next(iter(heads-{z}))
+            x = next(i for i in range(3) if i not in (y, z))
+            mode, perm = 'parallel', (x, y, z)
+        else:
+            mode, perm = 'axis', tuple(i for i in range(3) if i != z)+(z,)
+        carriers[mode, perm] = tuple(tuple(int(i == z)+int(i == j) for i in range(3))
+                                    for j in sorted(heads))
+    assert 1 <= len(carriers) <= 6
+    return carriers
+
+
+def common_factor_controls(counts):
+    rows = []
+    def check(name, n, original, l0, l1, l2, p, shift=(0, 0, 0)):
+        ev = rotate_model(n, original, p, shift)
+        actual_evaluation_controls(n, ev, p, counts)
+        def affine_terms(l):
+            constant = -sum(c*s for c, s in zip(l, shift))
+            return [((0, 0, 0), constant)]+[
+                (tuple(int(i == j) for i in range(3)), c) for j, c in enumerate(l)]
+        for l in (l1, l2):
+            terms = []
+            for u, c in affine_terms(l0):
+                for v, d in affine_terms(l):
+                    a = tuple(i+j for i, j in zip(u, v))
+                    terms.append((c*d, ev(a)))
+            assert not linear(terms, p)
+            counts['actual_common_factor_quadratic_relations'] += 1
+        carriers = common_factor_carriers(l0, l1, l2, p)
+        union, ledger = {}, []
+        for (mode, perm), generators in sorted(carriers.items()):
+            def embed(alpha):
+                out = [0]*3
+                for i, a in enumerate(alpha):
+                    out[perm[i]] = a
+                return tuple(out)
+            permuted = lru_cache(None)(lambda a: ev(embed(a)))
+            part, row = one_ray_compile(n, permuted, mode, p, counts,
+                                       actual_zero_products=False)
+            for B, poly in part.items():
+                basis = frozenset(embed(v) for v in B)
+                polygon = [embed(v) for v in poly]
+                if basis in union:
+                    assert polygon_key(union[basis]) == polygon_key(polygon)
+                    counts['common_factor_duplicate_whole_cone_checks'] += 1
+                else:
+                    union[basis] = polygon
+            row.update({'mode': mode, 'permutation': perm,
+                        'monomial_initial_carrier_generators': generators})
+            ledger.append(row)
+            counts['common_factor_initial_carrier_compilations'] += 1
+        actual = fan(n, ev, p, counts)
+        compare_fans(actual, union, counts)
+        if any(shift):
+            unshifted = fan(n, rotate_model(n, original, p), p, counts)
+            compare_fans(actual, unshifted, counts)
+            counts['entire_affine_translation_fan_equalities'] += 1
+        assert sum(area2(poly) for poly in union.values()) == 1
+        upper = 6*sum(1+4*j*(j-1).bit_length() for j in range(1, n+1))
+        assert len(actual) <= upper
+        counts['complete_common_factor_pencil_fans'] += 1
+        rows.append({'fixture': name, 'length': n, 'characteristic': p,
+                     'coordinate_change_new_in_old': ((0, -1, 1), (1, 1, -1), (-1, 0, 1)),
+                     'coordinate_translation': shift,
+                     'linear_common_factor': l0, 'linear_companions': (l1, l2),
+                     'affine_constants': tuple(-sum(c*s for c, s in zip(l, shift))
+                                               for l in (l0, l1, l2)),
+                     'initial_carriers': ledger, 'full_cones': len(actual),
+                     'uniform_six_carrier_bound': upper})
+
+    f, g, h = (1, 1, 1), (1, 1, 0), (0, 1, 1)
+    for p in (0, 2, 3, 101):
+        for size, s, box in ((4, 3, False), ((2, 3), 3, True)):
+            n, ev = axis_connected_model(size, s, p, box)
+            check('rotated_transverse_axis_'+str(size), n, ev, f, g, h, p)
+        n, ev = pascal_ray_model(3, p)
+        check('rotated_embedded_square_zero_ray', n, ev, f, f, h, p)
+        n, ev = axis_connected_model(4, 3, p)
+        check('affine_translated_transverse_axis', n, ev, f, g, h, p,
+              shift=(1, 2, 3))
+    for p in (0, 101):
+        points = ((1, 1, 0), (2, 1, 0), (1, 2, 0), (3, 2, 0),
+                  (0, 0, 1), (0, 0, 2), (0, 0, 3))
+        check('rotated_reduced_plane_and_axis', len(points),
+              point_evaluate(points, p), f, g, h, p)
+    return rows
+
+
+def one_ray_controls(counts):
+    rows, determinants = [], []
+    def check(name, n, ev, mode, p):
+        actual_evaluation_controls(n, ev, p, counts)
+        compiled, row = one_ray_compile(n, ev, mode, p, counts)
+        actual = fan(n, ev, p, counts)
+        compare_fans(actual, compiled, counts)
+        row.update({'fixture': name, 'length': n, 'characteristic': p,
+                    'outside_ray': mode, 'full_cones': len(actual)})
+        rows.append(row)
+        counts['complete_one_ray_contraction_compilations'] += 1
+        return actual, row
+
+    for p in (0, 2, 3, 101):
+        values = list(range(1, 7)) + ([8] if p == 2 else [9] if p == 3 else [])
+        for m in values:
+            n, ev = pascal_ray_model(m, p)
+            actual, row = check('Pascal_three_rays_m='+str(m), n, ev, 'parallel', p)
+            generic = not p or p > 3*m-1
+            power, residue = bool(p), m
+            if p:
+                while residue > 1 and residue % p == 0:
+                    residue //= p
+                power = residue == 1
+            if generic or power:
+                formula = pascal_ray_predicted(m, collapse=power and not generic)
+                compare_fans(actual, formula, counts)
+                counts['entire_Pascal_ray_fans_vs_formula'] += 1
+                assert len(actual) == (comb(m+2, 2) if generic else 3)
+            row['generic_formula_applies'] = generic
+            row['prime_power_collapse_applies'] = power
+            _, walls, _, W = fan_budgets(actual)
+            row['primitive_wall_cost'] = W
+            if generic:
+                assert len(walls) == 3*m*(m+1)//2
+                expected = m*(m+1)*(m+2)+sum(abs(i-j) for i in range(m)
+                                            for j in range(m-i))
+                assert W == expected == actual_edge_length(actual)
+                counts['exact_Pascal_triangular_graph_costs'] += 1
+            if not p:
+                for a in range(m+1):
+                    for b in range(m-a+1):
+                        c = m-a-b
+                        exponents = tuple(range(a))+tuple(range(m, m+b))+tuple(range(2*m, 2*m+c))
+                        numerator = prod(f-e for e, f in combinations(exponents, 2))
+                        denominator = prod(factorial(j) for j in range(m))
+                        assert numerator % denominator == 0
+                        target = numerator//denominator
+                        labels = (tuple((m+i, 0, 0) for i in range(a))+
+                                  tuple((i, 1, 0) for i in range(b))+
+                                  tuple((i, 0, 1) for i in range(c)))
+                        matrix = [[ev(v).get(m+i, 0) for v in labels] for i in range(m)]
+                        assert determinant(matrix) == target > 0
+                        counts['independent_binomial_Vandermonde_determinants'] += 1
+                        if m in (3, 6) and a == m//3 and b == m//3:
+                            determinants.append({'m': m, 'composition': (a, b, c),
+                                                 'exponents': exponents, 'matrix': matrix,
+                                                 'determinant': target})
+        for size, ray_length, box in ((4, 3, False), ((2, 3), 3, True)):
+            n, ev = axis_connected_model(size, ray_length, p, box)
+            _, row = check('socle_connected_axis_'+str(size), n, ev, 'axis', p)
+            assert row['plane_ray_overlap'] == 1
+        # A monomial plane plus square-zero parallel ray has no overlap.
+        D = tuple([(i, j, 0) for j in range(3) for i in range(3)] +
+                  [(i, 0, 1) for i in range(3)])
+        index = {v: i for i, v in enumerate(D)}
+        ev = lru_cache(None)(lambda a: {index[a]: 1} if a in index else {})
+        _, row = check('monomial_plane_and_parallel_ray', len(D), ev, 'parallel', p)
+        assert row['plane_ray_overlap'] == 0 and row['full_cones'] == 1
+        print(json.dumps({'one_ray_characteristic': p, 'complete_fans': len(rows)}), flush=True)
+    for p in (0, 101):
+        points = ((1, 1, 0), (2, 1, 0), (1, 2, 0), (3, 2, 0),
+                  (0, 0, 1), (0, 0, 2), (0, 0, 3))
+        _, row = check('reduced_plane_and_transverse_axis', len(points),
+                       point_evaluate(points, p), 'axis', p)
+        assert row['plane_ray_overlap'] == 1
+        check('planar_only_zero_ray', 4, point_evaluate(points[:4], p), 'parallel', p)
+    return {'whole_fan_compilations': rows,
+            'exact_integer_prefix_determinant_certificates': determinants,
+            'uniform_statement': 'For z^2=yz=0, g is at most the sum over k from n-ell to min(m,n-1) of 1+4*(n-k)*ceil(log2(n-k)), hence O(n^2 log(n+1)). For xz=yz=0 the overlap is at most one, giving the sharp worst order Theta(n log(n+1)), with characteristic-zero lower examples.',
+            'sharp_quadratic_fixture': 'K[t]/t^(2m), x=t, y=t^m(1+t)^m, z=t^m(1+t)^(2m). In characteristic zero or p>3m-1, the full fan has binomial(m+2,2) cones, a triangular lattice adjacency graph, and W=L=m(m+1)(m+2)+sum_(i+j<=m-1)|i-j|. At m=p^s in characteristic p it has exactly three cones.',
+            'scope': 'Ordinary contraction and the saved planar matroid bound are established inputs. The contraction is not an algebra quotient. Exact priority is unassessed; the logarithm for the square-zero-ray class and the general two-planar-branch problem remain unresolved.'}
+
+
 def source_hashes():
     paths = ['scripts/run_univariate_branch_gluing_checks.py',
              'docs/univariate_branch_gluing.md', 'docs/quadric_cross_fans.md',
-             'docs/forced_socle_fan_steps.md']
+             'docs/forced_socle_fan_steps.md', 'docs/planar_dyadic_bound.md',
+             'docs/profile_section_budget.md', 'docs/prime_digit_lifts.md',
+             'docs/univariate_cross_fans.md']
     pending = [p for p in paths if p.endswith('.py')]
     while pending:
         path = pending.pop()
@@ -422,10 +845,15 @@ def main():
     assert row['W_module_generators'] == 1 and row['T_module_generators'] == 2
     assert row['intersection_length'] == 2 and row['envelope_length'] == 8
     rows.append(row)
+    one_ray = one_ray_controls(counts)
+    common_factors = common_factor_controls(counts)
     assert before == source_hashes(), 'A source file changed during verification.'
     report = {'command': 'python3 -B scripts/run_univariate_branch_gluing_checks.py',
               'status': 'passed', 'source_sha256': before, 'counts': dict(counts),
               'actual_quotient_reconstructions': rows, 'sharp_family_complete_fans': fans,
+              'one_ray_full_fan_theorems': one_ray,
+              'common_linear_factor_pencil_fans': common_factors,
+              'uniform_common_factor_pencil_theorem': 'For every field and every length-n I containing l0*l1,l0*l2 for nonconstant affine linear l0 and affine linear l1,l2 with independent linear parts, g(I)<=6*sum_(j=1)^n (1+4*j*ceil(log2(j)))=O(n^2 log(n+1)). This uses actual original-coordinate matroids on at most six initial carriers; no fan invariance under a linear change is assumed.',
               'exact_fixtures': {
                   'sharp_family': 'H_r=(x^(r+1),yz,y(x,y)^r,z(x,z)^r), quotient by x^i(y^(r-i)-z^(r-i)) for 0<=i<r and x^r-y^r.',
                   'axis_padding': 'Direct product with K[x]/((x-1)^t), y=z=0; t=1 or 2r+1.',
@@ -435,13 +863,20 @@ def main():
                                      'x_matrix_columns': X, 'y_and_z_matrix_columns': Y}},
               'primary_sources': [
                   {'url': 'https://pi.math.cornell.edu/~frankmoore/Papers/connected.pdf',
-                   'scope': 'Sections 1--2, equations (1.0.2), (1.1.3), (2.0.1), (2.1.3) and Theorem 2.8: classical fiber products, diagonal module quotients and additional Gorenstein hypotheses. No new gluing operation or exact-priority conclusion.'}],
+                   'scope': 'Sections 1--2, equations (1.0.2), (1.1.3), (2.0.1), (2.1.3) and Theorem 2.8: classical fiber products, diagonal module quotients and additional Gorenstein hypotheses. No new gluing operation or exact-priority conclusion.'},
+                  {'url': 'https://arxiv.org/html/1904.06297v3',
+                   'scope': 'Introduction Theorem 1 and Theorem 4.6: graded connected sums require a common contraction of dual generators and an equality of annihilator ideals; no arbitrary nonhomogeneous fan-counting assertion follows.'},
+                  {'url': 'https://arxiv.org/pdf/1406.7600',
+                   'scope': 'Introduction and Theorem 4.3 concern connected sums over the residue field, rather than arbitrary shared-K[x] couplings. No exact quantitative-priority conclusion.'}],
               'uniform_proof': 'docs/univariate_branch_gluing.md',
               'limits': [
                   'Finite checks support implementations; all-field and all-length results rely on the self-contained proof.',
                   'The invariant-factor theorem, planar staircase estimate, fiber products, socle criterion and module quotients are established. Exact priority of the combined sharp resource inequalities is unassessed.',
                   'Module generator count is not vector-space dimension. The polynomial x-action and original monomial labels must be retained.',
                   'The sharp large-generator family has only three or four cones; it is not a large-fan witness.',
+                  'The one-ray counts require z^2=yz=0 or xz=yz=0. They do not bound every yz=0 coupling. Their classical matroid ingredients and exact priority are distinguished in the proof.',
+                  'The Pascal-ray example has a quadratic fan in characteristic zero and a constant fan at characteristic-p prime-power lengths. The square-zero-ray upper bound still has an unresolved logarithmic factor.',
+                  'The common-factor pencil theorem covers arbitrary linear forms, but not a general pair of quadrics without a common linear factor. The two-quadratic-monomial corollary requires actual relations, not merely heads in one initial ideal.',
                   'No full yz=0 fan bound, unrestricted G3 improvement, supergeneric lower separation or completed goal follows.']}
     (ROOT/'results/research/univariate_branch_gluing_checks.json').write_text(
         json.dumps(jsonable(report), indent=2)+'\n')
