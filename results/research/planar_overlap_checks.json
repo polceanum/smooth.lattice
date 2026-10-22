@@ -1,0 +1,891 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "command": "python3 -B scripts/run_planar_overlap_checks.py",
+  "scope": "Finite exact checks of a uniform planar-duality resource reduction and sharp actual overlap realizations. The proof, not fitting, gives the bounded-support/thickness count consequence. No unrestricted exponent, exact novelty or goal completion.",
+  "counts": {
+    "actual_overlap_endomorphism_bounds": 33,
+    "actual_overlap_ideal_stability_checks": 261,
+    "exact_off_diagonal_zero_compositions": 3266,
+    "fixed_endpoint_extension_parameter_bounds": 156,
+    "generic_hook_linear_budget_equalities": 4,
+    "independent_last_Koszul_cokernel_dualities": 198,
+    "independent_original_commuting_columns": 981,
+    "independent_rectangular_Hom_annihilator_counts": 16,
+    "independent_syzygy_and_dual_Hom_identities": 684,
+    "independent_top_socle_and_carrier_budget_checks": 9,
+    "independent_whole_hook_commutant_equalities": 3,
+    "nonrational_semisimple_residue_field_equalities": 3,
+    "nonsemisimple_linear_denominator_counterexamples": 6,
+    "nonsemisimple_module_lower_budget_checks": 9,
+    "planar_ideal_endomorphism_bounds": 309,
+    "sharp_arbitrary_gluing_realizations": 24,
+    "sharp_general_quadratic_realizations": 9
+  },
+  "planar_controls": [
+    {
+      "characteristic": 0,
+      "diagram_count": 19
+    },
+    {
+      "characteristic": 2,
+      "diagram_count": 19
+    },
+    {
+      "characteristic": 3,
+      "diagram_count": 19
+    }
+  ],
+  "sharp_square_zero": [
+    {
+      "length": 2,
+      "lower_dimension": 2,
+      "upper_dimension": 1,
+      "overlap_dimension": 1,
+      "endomorphism_dimension": 1,
+      "characteristic": 0,
+      "h": 1,
+      "shear": false,
+      "gluing_matrix": [
+        [
+          1
+        ]
+      ]
+    },
+    {
+      "length": 2,
+      "lower_dimension": 2,
+      "upper_dimension": 1,
+      "overlap_dimension": 1,
+      "endomorphism_dimension": 1,
+      "characteristic": 0,
+      "h": 1,
+      "shear": true,
+      "gluing_matrix": [
+        [
+          1
+        ]
+      ]
+    },
+    {
+      "length": 6,
+      "lower_dimension": 5,
+      "upper_dimension": 3,
+      "overlap_dimension": 2,
+      "endomorphism_dimension": 4,
+      "characteristic": 0,
+      "h": 2,
+      "shear": false,
+      "gluing_matrix": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "length": 6,
+      "lower_dimension": 5,
+      "upper_dimension": 3,
+      "overlap_dimension": 2,
+      "endomorphism_dimension": 4,
+      "characteristic": 0,
+      "h": 2,
+      "shear": true,
+      "gluing_matrix": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "length": 12,
+      "lower_dimension": 9,
+      "upper_dimension": 6,
+      "overlap_dimension": 3,
+      "endomorphism_dimension": 9,
+      "characteristic": 0,
+      "h": 3,
+      "shear": false,
+      "gluing_matrix": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "length": 12,
+      "lower_dimension": 9,
+      "upper_dimension": 6,
+      "overlap_dimension": 3,
+      "endomorphism_dimension": 9,
+      "characteristic": 0,
+      "h": 3,
+      "shear": true,
+      "gluing_matrix": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "length": 20,
+      "lower_dimension": 14,
+      "upper_dimension": 10,
+      "overlap_dimension": 4,
+      "endomorphism_dimension": 16,
+      "characteristic": 0,
+      "h": 4,
+      "shear": false,
+      "gluing_matrix": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "length": 20,
+      "lower_dimension": 14,
+      "upper_dimension": 10,
+      "overlap_dimension": 4,
+      "endomorphism_dimension": 16,
+      "characteristic": 0,
+      "h": 4,
+      "shear": true,
+      "gluing_matrix": [
+        [
+          1,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "length": 2,
+      "lower_dimension": 2,
+      "upper_dimension": 1,
+      "overlap_dimension": 1,
+      "endomorphism_dimension": 1,
+      "characteristic": 2,
+      "h": 1,
+      "shear": false,
+      "gluing_matrix": [
+        [
+          1
+        ]
+      ]
+    },
+    {
+      "length": 2,
+      "lower_dimension": 2,
+      "upper_dimension": 1,
+      "overlap_dimension": 1,
+      "endomorphism_dimension": 1,
+      "characteristic": 2,
+      "h": 1,
+      "shear": true,
+      "gluing_matrix": [
+        [
+          1
+        ]
+      ]
+    },
+    {
+      "length": 6,
+      "lower_dimension": 5,
+      "upper_dimension": 3,
+      "overlap_dimension": 2,
+      "endomorphism_dimension": 4,
+      "characteristic": 2,
+      "h": 2,
+      "shear": false,
+      "gluing_matrix": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "length": 6,
+      "lower_dimension": 5,
+      "upper_dimension": 3,
+      "overlap_dimension": 2,
+      "endomorphism_dimension": 4,
+      "characteristic": 2,
+      "h": 2,
+      "shear": true,
+      "gluing_matrix": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "length": 12,
+      "lower_dimension": 9,
+      "upper_dimension": 6,
+      "overlap_dimension": 3,
+      "endomorphism_dimension": 9,
+      "characteristic": 2,
+      "h": 3,
+      "shear": false,
+      "gluing_matrix": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "length": 12,
+      "lower_dimension": 9,
+      "upper_dimension": 6,
+      "overlap_dimension": 3,
+      "endomorphism_dimension": 9,
+      "characteristic": 2,
+      "h": 3,
+      "shear": true,
+      "gluing_matrix": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "length": 20,
+      "lower_dimension": 14,
+      "upper_dimension": 10,
+      "overlap_dimension": 4,
+      "endomorphism_dimension": 16,
+      "characteristic": 2,
+      "h": 4,
+      "shear": false,
+      "gluing_matrix": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "length": 20,
+      "lower_dimension": 14,
+      "upper_dimension": 10,
+      "overlap_dimension": 4,
+      "endomorphism_dimension": 16,
+      "characteristic": 2,
+      "h": 4,
+      "shear": true,
+      "gluing_matrix": [
+        [
+          1,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "length": 2,
+      "lower_dimension": 2,
+      "upper_dimension": 1,
+      "overlap_dimension": 1,
+      "endomorphism_dimension": 1,
+      "characteristic": 3,
+      "h": 1,
+      "shear": false,
+      "gluing_matrix": [
+        [
+          1
+        ]
+      ]
+    },
+    {
+      "length": 2,
+      "lower_dimension": 2,
+      "upper_dimension": 1,
+      "overlap_dimension": 1,
+      "endomorphism_dimension": 1,
+      "characteristic": 3,
+      "h": 1,
+      "shear": true,
+      "gluing_matrix": [
+        [
+          1
+        ]
+      ]
+    },
+    {
+      "length": 6,
+      "lower_dimension": 5,
+      "upper_dimension": 3,
+      "overlap_dimension": 2,
+      "endomorphism_dimension": 4,
+      "characteristic": 3,
+      "h": 2,
+      "shear": false,
+      "gluing_matrix": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "length": 6,
+      "lower_dimension": 5,
+      "upper_dimension": 3,
+      "overlap_dimension": 2,
+      "endomorphism_dimension": 4,
+      "characteristic": 3,
+      "h": 2,
+      "shear": true,
+      "gluing_matrix": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "length": 12,
+      "lower_dimension": 9,
+      "upper_dimension": 6,
+      "overlap_dimension": 3,
+      "endomorphism_dimension": 9,
+      "characteristic": 3,
+      "h": 3,
+      "shear": false,
+      "gluing_matrix": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "length": 12,
+      "lower_dimension": 9,
+      "upper_dimension": 6,
+      "overlap_dimension": 3,
+      "endomorphism_dimension": 9,
+      "characteristic": 3,
+      "h": 3,
+      "shear": true,
+      "gluing_matrix": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "length": 20,
+      "lower_dimension": 14,
+      "upper_dimension": 10,
+      "overlap_dimension": 4,
+      "endomorphism_dimension": 16,
+      "characteristic": 3,
+      "h": 4,
+      "shear": false,
+      "gluing_matrix": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "length": 20,
+      "lower_dimension": 14,
+      "upper_dimension": 10,
+      "overlap_dimension": 4,
+      "endomorphism_dimension": 16,
+      "characteristic": 3,
+      "h": 4,
+      "shear": true,
+      "gluing_matrix": [
+        [
+          1,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ]
+    }
+  ],
+  "sharp_split_quadratic": [
+    {
+      "length": 4,
+      "lower_dimension": 3,
+      "upper_dimension": 3,
+      "overlap_dimension": 2,
+      "endomorphism_dimension": 4,
+      "characteristic": 0,
+      "h": 2
+    },
+    {
+      "length": 9,
+      "lower_dimension": 6,
+      "upper_dimension": 6,
+      "overlap_dimension": 3,
+      "endomorphism_dimension": 9,
+      "characteristic": 0,
+      "h": 3
+    },
+    {
+      "length": 16,
+      "lower_dimension": 10,
+      "upper_dimension": 10,
+      "overlap_dimension": 4,
+      "endomorphism_dimension": 16,
+      "characteristic": 0,
+      "h": 4
+    },
+    {
+      "length": 4,
+      "lower_dimension": 3,
+      "upper_dimension": 3,
+      "overlap_dimension": 2,
+      "endomorphism_dimension": 4,
+      "characteristic": 3,
+      "h": 2
+    },
+    {
+      "length": 9,
+      "lower_dimension": 6,
+      "upper_dimension": 6,
+      "overlap_dimension": 3,
+      "endomorphism_dimension": 9,
+      "characteristic": 3,
+      "h": 3
+    },
+    {
+      "length": 16,
+      "lower_dimension": 10,
+      "upper_dimension": 10,
+      "overlap_dimension": 4,
+      "endomorphism_dimension": 16,
+      "characteristic": 3,
+      "h": 4
+    },
+    {
+      "length": 4,
+      "lower_dimension": 3,
+      "upper_dimension": 3,
+      "overlap_dimension": 2,
+      "endomorphism_dimension": 4,
+      "characteristic": 5,
+      "h": 2
+    },
+    {
+      "length": 9,
+      "lower_dimension": 6,
+      "upper_dimension": 6,
+      "overlap_dimension": 3,
+      "endomorphism_dimension": 9,
+      "characteristic": 5,
+      "h": 3
+    },
+    {
+      "length": 16,
+      "lower_dimension": 10,
+      "upper_dimension": 10,
+      "overlap_dimension": 4,
+      "endomorphism_dimension": 16,
+      "characteristic": 5,
+      "h": 4
+    }
+  ],
+  "nonsemisimple_module_controls": [
+    {
+      "characteristic": 0,
+      "length": 3,
+      "endomorphism_dimension": 3,
+      "carrier_length": 3,
+      "T": 9
+    },
+    {
+      "characteristic": 0,
+      "length": 5,
+      "endomorphism_dimension": 7,
+      "carrier_length": 3,
+      "T": 9
+    },
+    {
+      "characteristic": 0,
+      "length": 7,
+      "endomorphism_dimension": 13,
+      "carrier_length": 3,
+      "T": 9
+    },
+    {
+      "characteristic": 2,
+      "length": 3,
+      "endomorphism_dimension": 3,
+      "carrier_length": 3,
+      "T": 9
+    },
+    {
+      "characteristic": 2,
+      "length": 5,
+      "endomorphism_dimension": 7,
+      "carrier_length": 3,
+      "T": 9
+    },
+    {
+      "characteristic": 2,
+      "length": 7,
+      "endomorphism_dimension": 13,
+      "carrier_length": 3,
+      "T": 9
+    },
+    {
+      "characteristic": 3,
+      "length": 3,
+      "endomorphism_dimension": 3,
+      "carrier_length": 3,
+      "T": 9
+    },
+    {
+      "characteristic": 3,
+      "length": 5,
+      "endomorphism_dimension": 7,
+      "carrier_length": 3,
+      "T": 9
+    },
+    {
+      "characteristic": 3,
+      "length": 7,
+      "endomorphism_dimension": 13,
+      "carrier_length": 3,
+      "T": 9
+    }
+  ],
+  "generic_hook_budgets": [
+    {
+      "t": 2,
+      "a": 5,
+      "length": 32,
+      "overlap_dimension": 12,
+      "endomorphism_dimension": 20,
+      "block_Hom_dimensions": [
+        [
+          6,
+          4
+        ],
+        [
+          4,
+          6
+        ]
+      ],
+      "support_degree": 1,
+      "Loewy_order": 4,
+      "off_diagonal_ideal_square_zero": false
+    },
+    {
+      "t": 3,
+      "a": 10,
+      "length": 102,
+      "overlap_dimension": 42,
+      "endomorphism_dimension": 60,
+      "block_Hom_dimensions": [
+        [
+          21,
+          9
+        ],
+        [
+          9,
+          21
+        ]
+      ],
+      "support_degree": 1,
+      "Loewy_order": 9,
+      "off_diagonal_ideal_square_zero": true
+    },
+    {
+      "t": 4,
+      "a": 17,
+      "length": 240,
+      "overlap_dimension": 104,
+      "endomorphism_dimension": 136,
+      "block_Hom_dimensions": [
+        [
+          52,
+          16
+        ],
+        [
+          16,
+          52
+        ]
+      ],
+      "support_degree": 1,
+      "Loewy_order": 16,
+      "off_diagonal_ideal_square_zero": true
+    },
+    {
+      "t": 6,
+      "a": 37,
+      "length": 816,
+      "overlap_dimension": 372,
+      "endomorphism_dimension": 444,
+      "block_Hom_dimensions": [
+        [
+          186,
+          36
+        ],
+        [
+          36,
+          186
+        ]
+      ],
+      "support_degree": 1,
+      "Loewy_order": 36,
+      "off_diagonal_ideal_square_zero": true
+    }
+  ],
+  "proof_scope": {
+    "upper": "End_B(W)<=n, or <=n-h for square-zero x; actual ideal W only.",
+    "lower": "End_S(W)>=h^2/T(S), T=sum d_i*ell_i^2; no linear denominator for general nonsemisimple modules.",
+    "fan_consequence": "If R^r W=0 for radical planar R of colength s, g=O((1+binom(r+1,2)*sqrt(s*n))*(1+n^(4/3))).",
+    "guards": "A parameter-space dimension is not a direction count. Free matrix mixing costs h^2+h in the square-zero class; no analogous cost asserted for a single prescribed matrix."
+  },
+  "primary_sources": [
+    {
+      "url": "https://stacks.math.columbia.edu/tag/062F",
+      "inspected": "Regular sequence implies Koszul exactness, with proof"
+    },
+    {
+      "url": "https://stacks.math.columbia.edu/tag/0621",
+      "inspected": "Koszul differential and two-operator complex"
+    },
+    {
+      "url": "https://stacks.math.columbia.edu/tag/00NN",
+      "inspected": "Lemma 10.106.1 associated graded regular local ring"
+    }
+  ],
+  "source_sha256": {
+    "docs/planar_overlap_endomorphisms.md": "067f3008cb777ce99377b9fd90606931c30e381c2bb9970588ada941fa552c1b",
+    "scripts/run_planar_overlap_checks.py": "c216554c3e0ecb063b67b0a496a41aa6f71bee321828be379ace5bc6182328b3",
+    "scripts/run_complex_basis_checks.py": "0a102eba08e1f2c8a8909654197c70f200ca2c7ca3356dffff2164a0ebd9eb38",
+    "docs/quadratic_intersection_fans.md": "63a21b792b0ef7d442ad527b0d5c7602c7192384db417497473e9fa24078891b",
+    "docs/profile_section_budget.md": "7c973b69f90f999d3d084564825f4a30b6276b898682fc4dff45375617067b15",
+    "docs/square_zero_extension_fans.md": "4035c5a040237d8579319581020859c916585b0f21de5c2279587f91e8c7b1b3",
+    "docs/cross_layer_direction_budget.md": "62883371204bb525a3aa12d3dd0ed24496554f25855d18ef2a6084efb6dfc0af",
+    "docs/disjoint_socle_circuits.md": "c662e76c6fac57e070b4ba6fe7538f2f0bf7ba12d029e810b2ff2fa447b43eff",
+    "docs/generic_hook_fans.md": "294415fa8c34ceb509da28cc1a34e8f8d4aeeee915fd650ec87912dc832bf6f6",
+    "docs/hook_colour_width.md": "e7bc42347788c937e5c33a43e83d16e18de7efcfb72f7708902b15e2aeeb134b"
+  }
+}
