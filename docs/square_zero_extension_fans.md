@@ -94,6 +94,88 @@ exposure are the coupling information absent from a list of tangent
 weights. Formula (E6) makes that missing information explicit; it does
 not supply the required collective bound.
 
+## Exact arithmetic calibration of the compatible hook model
+
+The same integer compatible tails can give different fans in different
+characteristics. The following are complete fans, using the saved seed
+271828, for the flat extensions of
+\(M_t=(y^{t^2+1},y^tz^t,z^{t^2+1})\). Their lengths are
+\(4t^3-2t^2+4t\). The tail coefficients are zero or one, and the
+report lists every nonzero coefficient explicitly.
+
+| Thickness | Length | Characteristic | Initial ideals | Undirected walls |
+|---|---:|---:|---:|---:|
+| 2 | 32 | 2 | 47 | 82 |
+| 2 | 32 | 0, 3, 101 | 47 | 85 |
+| 3 | 102 | 2 | 546 | 1041 |
+| 3 | 102 | 0 | 709 | 1505 |
+| 3 | 102 | 101 | 707 | 1495 |
+
+Thus equal counts need not mean equal fans, and the characteristic-101
+calculation is not a characteristic-zero certificate. These finite
+counts neither establish a growth law nor rule out the hook family.
+The existing characteristic-two controls remain valid in their stated
+field.
+
+The existing [finite-free good-prime test](cyclotomic_overlap.md#where-characteristic-dependence-can-occur)
+gives an exact way to check all other characteristics once the rational
+fan is complete. This reuses the earlier criterion. Let an
+integral algebra be free of rank \(n\), with an integral monomial
+reference basis. For each rationally coherent standard set \(B\), let
+\(d_B\ne0\) be its residue-column determinant in that reference basis.
+Then its labelled positive fan changes precisely at the prime divisors
+of the collection \(\{d_B\}\). For (E5), these determinants reduce,
+up to sign, to the minors in (E6).
+
+Here is the elementary argument. Every modular independent set is
+rationally independent. If all rationally coherent bases remain
+independent modulo \(p\), the unique rational minimum at each generic
+positive weight is still available, and no competing modular basis can
+improve it. The minimizing standard sets and their full cones therefore
+agree. Conversely, if \(p\mid d_B\), that standard set is not even a
+modular basis, so the labelled fans differ. This concerns the whole
+labelled fan; the number of cones need not change at every such prime.
+The finite free integral model and complete rational fan are essential
+hypotheses.
+
+For the length-102 fixture there are exactly 80 such characteristics,
+with largest prime 77,719. There are 545 rationally coherent bases lost
+modulo 2, five lost modulo 101, and one lost modulo 77,719. One strict
+positive witness for the last assertion is
+\[
+ w=(8365439,939381,887780),\qquad
+                  \det\Phi[S,U]=77719.
+\]
+The report supplies the full standard set, rows, columns and zero-one
+matrix of this minor. Characteristic 79 lies outside the exceptional
+set; an independent computation checks all 709 whole cones there.
+In particular, choosing a numerically larger prime does not by itself
+certify this rational fan.
+
+Run the bounded calibration from the repository root:
+
+```bash
+python3 -B scripts/run_hook_specialization_checks.py
+```
+
+The [report](../results/research/hook_specialization_checks.json) retains
+the full rational fan and its integer determinants, all 80 exceptional
+primes, three strict rank-loss witnesses and source hashes. Sparse field
+traversal is compared with the earlier bitset implementation. Separate
+whole-column normal forms recover every rational cone, and rational
+Gaussian determinants check the fraction-free determinants independently.
+
+Rank specialization, greedy minima and good-prime verification are
+classical inputs. For the established modular-computation context see
+[Greuel--Pfister--Schönemann, Remark 5.5](https://doi.org/10.1007/s11786-022-00539-2),
+whose open publisher text was inspected. That passage concerns verified
+modular lifting for fixed orderings; it is not cited as stating the
+all-cone determinant formulation verbatim. No new specialization theorem
+or novelty claim is made here. This calibration prevents a field-dependent
+experiment from becoming an unsupported uniform conjecture. The next
+extremal step still requires a uniform bound on the exposed compatible
+minors, or an infinite realizable polynomial separation.
+
 ## Two tangent weights and an arbitrarily long coherent circuit
 
 For integers $a,t\ge2$, over every field, consider
