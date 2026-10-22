@@ -1,0 +1,527 @@
+{
+  "command": "python3 -B scripts/run_projection_border_checks.py",
+  "all_checks_passed": true,
+  "scope": "All-field uniform conditional count for yz=0, not an unrestricted G3 theorem. Border multiplication, forced-column contraction and lattice volume are classical inputs.",
+  "cases": [
+    {
+      "name": "nonrow_forced_H",
+      "characteristic": 0,
+      "length": 9,
+      "branch_intersection_dimension": 0,
+      "axis_quotient_length": 3,
+      "x_axis_minimal_polynomial_degree": 3,
+      "coordinate_quotient_lengths": [6, 6],
+      "coordinate_quotient_initial_ideals": [3, 3],
+      "parent_initial_ideals": 9,
+      "all_joint_cones": 9,
+      "complete_parent_joint_patches": 9,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,2],[0,2,0],[1,0,2],[1,2,0],[2,0,2],[2,2,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0]],"strict_weight":["1/5","7/5","7/5"],"normalized_double_area":"1/5"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,3],[0,2,0],[1,0,2],[1,2,0],[2,0,1],[2,2,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,1,0]],"strict_weight":["17/35","69/35","19/35"],"normalized_double_area":"3/35"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,4],[0,2,0],[1,0,1],[1,2,0],[2,0,1],[2,2,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0]],"strict_weight":["13/21","47/21","1/7"],"normalized_double_area":"1/21"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,2],[0,3,0],[1,0,2],[1,2,0],[2,0,2],[2,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1]],"strict_weight":["17/35","19/35","69/35"],"normalized_double_area":"3/35"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,3],[0,3,0],[1,0,2],[1,2,0],[2,0,1],[2,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0]],"strict_weight":["89/70","191/140","191/140"],"normalized_double_area":"9/70"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,4],[0,3,0],[1,0,1],[1,2,0],[2,0,1],[2,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0]],"strict_weight":["25/14","51/28","11/28"],"normalized_double_area":"5/42"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,2],[0,4,0],[1,0,2],[1,1,0],[2,0,2],[2,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[2,0,0],[2,0,1]],"strict_weight":["13/21","1/7","47/21"],"normalized_double_area":"1/21"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,3],[0,4,0],[1,0,2],[1,1,0],[2,0,1],[2,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[2,0,0]],"strict_weight":["25/14","11/28","51/28"],"normalized_double_area":"5/42"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,4],[0,4,0],[1,0,1],[1,1,0],[2,0,1],[2,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0]],"strict_weight":["17/6","7/12","7/12"],"normalized_double_area":"1/6"}]}
+      ]
+    },
+    {
+      "name": "nonrow_forced_A",
+      "characteristic": 0,
+      "length": 11,
+      "branch_intersection_dimension": 1,
+      "axis_quotient_length": 4,
+      "x_axis_minimal_polynomial_degree": 4,
+      "coordinate_quotient_lengths": [7, 7],
+      "coordinate_quotient_initial_ideals": [3, 3],
+      "parent_initial_ideals": 18,
+      "all_joint_cones": 9,
+      "complete_parent_joint_patches": 24,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,2],[0,2,0],[1,0,2],[1,2,0],[2,0,2],[2,2,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0],[3,0,0],[3,1,0]],"strict_weight":["1/7","13/14","27/14"],"normalized_double_area":"1/14"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0],[3,0,0],[3,0,1]],"strict_weight":["1/7","27/14","13/14"],"normalized_double_area":"1/14"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0],[3,0,0]],"strict_weight":["12/35","64/35","29/35"],"normalized_double_area":"1/35"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0],[3,0,0]],"strict_weight":["12/35","29/35","64/35"],"normalized_double_area":"1/35"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,3],[0,2,0],[1,0,2],[1,2,0],[2,0,1],[2,2,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0],[3,0,0]],"strict_weight":["9/20","19/10","13/20"],"normalized_double_area":"1/20"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"strict_weight":["15/28","29/14","11/28"],"normalized_double_area":"1/28"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,4],[0,2,0],[1,0,1],[1,2,0],[2,0,1],[2,2,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"strict_weight":["41/70","76/35","17/70"],"normalized_double_area":"1/70"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,0,4],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"strict_weight":["19/30","34/15","1/10"],"normalized_double_area":"1/30"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,2],[0,3,0],[1,0,2],[1,2,0],[2,0,2],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[3,0,0]],"strict_weight":["15/28","11/28","29/14"],"normalized_double_area":"1/28"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0],[3,0,0]],"strict_weight":["9/20","13/20","19/10"],"normalized_double_area":"1/20"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,3],[0,3,0],[1,0,2],[1,2,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"strict_weight":["47/60","59/60","37/30"],"normalized_double_area":"1/60"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[3,0,0]],"strict_weight":["47/60","37/30","59/60"],"normalized_double_area":"1/60"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["115/84","139/84","41/42"],"normalized_double_area":"1/21"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["115/84","41/42","139/84"],"normalized_double_area":"1/21"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,4],[0,3,0],[1,0,1],[1,2,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,0,4],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["203/110","103/55","31/110"],"normalized_double_area":"29/330"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["628/385","2609/1540","1039/1540"],"normalized_double_area":"12/385"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,2],[0,4,0],[1,0,2],[1,1,0],[2,0,2],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[0,3,0],[0,4,0],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"strict_weight":["19/30","1/10","34/15"],"normalized_double_area":"1/30"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[3,0,0]],"strict_weight":["41/70","17/70","76/35"],"normalized_double_area":"1/70"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,3],[0,4,0],[1,0,2],[1,1,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[0,3,0],[0,4,0],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"strict_weight":["203/110","31/110","103/55"],"normalized_double_area":"29/330"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["628/385","1039/1540","2609/1540"],"normalized_double_area":"12/385"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,4],[0,4,0],[1,0,1],[1,1,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,0,4],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"strict_weight":["464/165","133/165","21/55"],"normalized_double_area":"13/165"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[0,3,0],[0,4,0],[1,0,0],[2,0,0],[3,0,0]],"strict_weight":["464/165","21/55","133/165"],"normalized_double_area":"13/165"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"strict_weight":["181/110","159/220","139/220"],"normalized_double_area":"1/220"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["181/110","139/220","159/220"],"normalized_double_area":"1/220"}]}
+      ]
+    },
+    {
+      "name": "nonrow_forced_C",
+      "characteristic": 0,
+      "length": 10,
+      "branch_intersection_dimension": 0,
+      "axis_quotient_length": 4,
+      "x_axis_minimal_polynomial_degree": 4,
+      "coordinate_quotient_lengths": [7, 7],
+      "coordinate_quotient_initial_ideals": [3, 3],
+      "parent_initial_ideals": 9,
+      "all_joint_cones": 9,
+      "complete_parent_joint_patches": 9,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,2],[0,2,0],[1,0,2],[1,2,0],[2,0,2],[2,2,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0],[3,0,0]],"strict_weight":["1/5","7/5","7/5"],"normalized_double_area":"1/5"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,3],[0,2,0],[1,0,2],[1,2,0],[2,0,1],[2,2,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"strict_weight":["17/35","69/35","19/35"],"normalized_double_area":"3/35"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,4],[0,2,0],[1,0,1],[1,2,0],[2,0,1],[2,2,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"strict_weight":["13/21","47/21","1/7"],"normalized_double_area":"1/21"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,2],[0,3,0],[1,0,2],[1,2,0],[2,0,2],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[3,0,0]],"strict_weight":["17/35","19/35","69/35"],"normalized_double_area":"3/35"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,3],[0,3,0],[1,0,2],[1,2,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["89/70","191/140","191/140"],"normalized_double_area":"9/70"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,4],[0,3,0],[1,0,1],[1,2,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["25/14","51/28","11/28"],"normalized_double_area":"5/42"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,2],[0,4,0],[1,0,2],[1,1,0],[2,0,2],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"strict_weight":["13/21","1/7","47/21"],"normalized_double_area":"1/21"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,3],[0,4,0],[1,0,2],[1,1,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"strict_weight":["25/14","11/28","51/28"],"normalized_double_area":"5/42"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,4],[0,4,0],[1,0,1],[1,1,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"strict_weight":["17/6","7/12","7/12"],"normalized_double_area":"1/6"}]}
+      ]
+    },
+    {
+      "name": "pascal_high_overlap",
+      "characteristic": 0,
+      "length": 4,
+      "branch_intersection_dimension": 2,
+      "axis_quotient_length": 2,
+      "x_axis_minimal_polynomial_degree": 4,
+      "coordinate_quotient_lengths": [2, 2],
+      "coordinate_quotient_initial_ideals": [1, 1],
+      "parent_initial_ideals": 6,
+      "all_joint_cones": 1,
+      "complete_parent_joint_patches": 6,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0],[1,0,0]],"x_z_projection_basis":[[0,0,0],[1,0,0]],"residual_rank":2,"axis_intersection_length":2,"all_residual_candidates":[[0,0,1],[0,1,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0]],"strict_weight":["1/7","10/7","10/7"],"normalized_double_area":"1/7"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[2,0,0]],"strict_weight":["83/140","163/70","151/140"],"normalized_double_area":"11/140"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1]],"strict_weight":["3/4","2","1/4"],"normalized_double_area":"1/8"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0]],"strict_weight":["27/10","33/20","33/20"],"normalized_double_area":"9/20"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0]],"strict_weight":["3/4","1/4","2"],"normalized_double_area":"1/8"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[2,0,0]],"strict_weight":["83/140","151/140","163/70"],"normalized_double_area":"11/140"}]}
+      ]
+    },
+    {
+      "name": "pascal_high_overlap",
+      "characteristic": 0,
+      "length": 6,
+      "branch_intersection_dimension": 3,
+      "axis_quotient_length": 3,
+      "x_axis_minimal_polynomial_degree": 6,
+      "coordinate_quotient_lengths": [3, 3],
+      "coordinate_quotient_initial_ideals": [1, 1],
+      "parent_initial_ideals": 10,
+      "all_joint_cones": 1,
+      "complete_parent_joint_patches": 10,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0],[1,0,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[1,0,0],[2,0,0]],"residual_rank":3,"axis_intersection_length":3,"all_residual_candidates":[[0,0,1],[0,1,0],[1,0,1],[1,1,0],[2,0,1],[2,1,0],[3,0,0],[4,0,0],[5,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0]],"strict_weight":["1/11","16/11","16/11"],"normalized_double_area":"1/11"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[2,0,0],[3,0,0],[4,0,0]],"strict_weight":["259/792","475/198","1009/792"],"normalized_double_area":"19/792"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"strict_weight":["59/120","13/5","109/120"],"normalized_double_area":"13/240"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1]],"strict_weight":["8/15","34/15","1/5"],"normalized_double_area":"1/15"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[2,0,0]],"strict_weight":["19/10","13/6","14/15"],"normalized_double_area":"3/10"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,1,0],[2,0,0]],"strict_weight":["19/10","14/15","13/6"],"normalized_double_area":"3/10"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0]],"strict_weight":["8/15","1/5","34/15"],"normalized_double_area":"1/15"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["59/120","109/120","13/5"],"normalized_double_area":"13/240"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0]],"strict_weight":["259/792","1009/792","475/198"],"normalized_double_area":"19/792"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[2,0,0],[3,0,0]],"strict_weight":["161/180","919/360","919/360"],"normalized_double_area":"7/360"}]}
+      ]
+    },
+    {
+      "name": "pascal_high_overlap",
+      "characteristic": 0,
+      "length": 8,
+      "branch_intersection_dimension": 4,
+      "axis_quotient_length": 4,
+      "x_axis_minimal_polynomial_degree": 8,
+      "coordinate_quotient_lengths": [4, 4],
+      "coordinate_quotient_initial_ideals": [1, 1],
+      "parent_initial_ideals": 15,
+      "all_joint_cones": 1,
+      "complete_parent_joint_patches": 15,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":4,"axis_intersection_length":4,"all_residual_candidates":[[0,0,1],[0,1,0],[1,0,1],[1,1,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0],[4,0,0],[5,0,0],[6,0,0],[7,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0],[6,0,0],[7,0,0]],"strict_weight":["1/15","22/15","22/15"],"normalized_double_area":"1/15"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0],[6,0,0]],"strict_weight":["59/260","947/390","1049/780"],"normalized_double_area":"3/260"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[3,0,0],[4,0,0],[5,0,0]],"strict_weight":["53/180","23/9","23/20"],"normalized_double_area":"7/360"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0],[4,0,0]],"strict_weight":["53/126","176/63","11/14"],"normalized_double_area":"5/126"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0],[3,0,1]],"strict_weight":["5/12","29/12","1/6"],"normalized_double_area":"1/24"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"strict_weight":["103/84","251/84","11/14"],"normalized_double_area":"17/168"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["52/21","37/21","37/21"],"normalized_double_area":"10/21"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"strict_weight":["103/84","11/14","251/84"],"normalized_double_area":"17/168"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0],[3,1,0]],"strict_weight":["5/12","1/6","29/12"],"normalized_double_area":"1/24"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0],[4,0,0]],"strict_weight":["53/126","11/14","176/63"],"normalized_double_area":"5/126"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0]],"strict_weight":["53/180","23/20","23/9"],"normalized_double_area":"7/360"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0],[6,0,0]],"strict_weight":["59/260","1049/780","947/390"],"normalized_double_area":"3/260"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0]],"strict_weight":["649/1170","6371/2340","6371/2340"],"normalized_double_area":"11/2340"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[2,0,0],[3,0,0],[4,0,0]],"strict_weight":["244/315","3","701/315"],"normalized_double_area":"4/315"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0],[4,0,0]],"strict_weight":["244/315","701/315","3"],"normalized_double_area":"4/315"}]}
+      ]
+    },
+    {
+      "name": "nonrow_forced_H",
+      "characteristic": 2,
+      "length": 9,
+      "branch_intersection_dimension": 0,
+      "axis_quotient_length": 3,
+      "x_axis_minimal_polynomial_degree": 3,
+      "coordinate_quotient_lengths": [6, 6],
+      "coordinate_quotient_initial_ideals": [3, 3],
+      "parent_initial_ideals": 9,
+      "all_joint_cones": 9,
+      "complete_parent_joint_patches": 9,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,2],[0,2,0],[1,0,2],[1,2,0],[2,0,2],[2,2,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0]],"strict_weight":["1/5","7/5","7/5"],"normalized_double_area":"1/5"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,3],[0,2,0],[1,0,2],[1,2,0],[2,0,1],[2,2,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,1,0]],"strict_weight":["17/35","69/35","19/35"],"normalized_double_area":"3/35"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,4],[0,2,0],[1,0,1],[1,2,0],[2,0,1],[2,2,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0]],"strict_weight":["13/21","47/21","1/7"],"normalized_double_area":"1/21"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,2],[0,3,0],[1,0,2],[1,2,0],[2,0,2],[2,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1]],"strict_weight":["17/35","19/35","69/35"],"normalized_double_area":"3/35"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,3],[0,3,0],[1,0,2],[1,2,0],[2,0,1],[2,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0]],"strict_weight":["89/70","191/140","191/140"],"normalized_double_area":"9/70"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,4],[0,3,0],[1,0,1],[1,2,0],[2,0,1],[2,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0]],"strict_weight":["25/14","51/28","11/28"],"normalized_double_area":"5/42"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,2],[0,4,0],[1,0,2],[1,1,0],[2,0,2],[2,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[2,0,0],[2,0,1]],"strict_weight":["13/21","1/7","47/21"],"normalized_double_area":"1/21"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,3],[0,4,0],[1,0,2],[1,1,0],[2,0,1],[2,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[2,0,0]],"strict_weight":["25/14","11/28","51/28"],"normalized_double_area":"5/42"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,4],[0,4,0],[1,0,1],[1,1,0],[2,0,1],[2,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0]],"strict_weight":["17/6","7/12","7/12"],"normalized_double_area":"1/6"}]}
+      ]
+    },
+    {
+      "name": "nonrow_forced_A",
+      "characteristic": 2,
+      "length": 11,
+      "branch_intersection_dimension": 1,
+      "axis_quotient_length": 4,
+      "x_axis_minimal_polynomial_degree": 4,
+      "coordinate_quotient_lengths": [7, 7],
+      "coordinate_quotient_initial_ideals": [3, 3],
+      "parent_initial_ideals": 18,
+      "all_joint_cones": 9,
+      "complete_parent_joint_patches": 24,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,2],[0,2,0],[1,0,2],[1,2,0],[2,0,2],[2,2,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0],[3,0,0],[3,1,0]],"strict_weight":["1/7","13/14","27/14"],"normalized_double_area":"1/14"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0],[3,0,0],[3,0,1]],"strict_weight":["1/7","27/14","13/14"],"normalized_double_area":"1/14"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0],[3,0,0]],"strict_weight":["12/35","64/35","29/35"],"normalized_double_area":"1/35"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0],[3,0,0]],"strict_weight":["12/35","29/35","64/35"],"normalized_double_area":"1/35"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,3],[0,2,0],[1,0,2],[1,2,0],[2,0,1],[2,2,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0],[3,0,0]],"strict_weight":["9/20","19/10","13/20"],"normalized_double_area":"1/20"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"strict_weight":["15/28","29/14","11/28"],"normalized_double_area":"1/28"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,4],[0,2,0],[1,0,1],[1,2,0],[2,0,1],[2,2,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"strict_weight":["41/70","76/35","17/70"],"normalized_double_area":"1/70"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,0,4],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"strict_weight":["19/30","34/15","1/10"],"normalized_double_area":"1/30"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,2],[0,3,0],[1,0,2],[1,2,0],[2,0,2],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[3,0,0]],"strict_weight":["15/28","11/28","29/14"],"normalized_double_area":"1/28"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0],[3,0,0]],"strict_weight":["9/20","13/20","19/10"],"normalized_double_area":"1/20"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,3],[0,3,0],[1,0,2],[1,2,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"strict_weight":["47/60","59/60","37/30"],"normalized_double_area":"1/60"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[3,0,0]],"strict_weight":["47/60","37/30","59/60"],"normalized_double_area":"1/60"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["115/84","139/84","41/42"],"normalized_double_area":"1/21"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["115/84","41/42","139/84"],"normalized_double_area":"1/21"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,4],[0,3,0],[1,0,1],[1,2,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,0,4],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["203/110","103/55","31/110"],"normalized_double_area":"29/330"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["628/385","2609/1540","1039/1540"],"normalized_double_area":"12/385"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,2],[0,4,0],[1,0,2],[1,1,0],[2,0,2],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[0,3,0],[0,4,0],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"strict_weight":["19/30","1/10","34/15"],"normalized_double_area":"1/30"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[3,0,0]],"strict_weight":["41/70","17/70","76/35"],"normalized_double_area":"1/70"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,3],[0,4,0],[1,0,2],[1,1,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[0,3,0],[0,4,0],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"strict_weight":["203/110","31/110","103/55"],"normalized_double_area":"29/330"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["628/385","1039/1540","2609/1540"],"normalized_double_area":"12/385"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,4],[0,4,0],[1,0,1],[1,1,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,0,4],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"strict_weight":["464/165","133/165","21/55"],"normalized_double_area":"13/165"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[0,3,0],[0,4,0],[1,0,0],[2,0,0],[3,0,0]],"strict_weight":["464/165","21/55","133/165"],"normalized_double_area":"13/165"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"strict_weight":["181/110","159/220","139/220"],"normalized_double_area":"1/220"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["181/110","139/220","159/220"],"normalized_double_area":"1/220"}]}
+      ]
+    },
+    {
+      "name": "nonrow_forced_C",
+      "characteristic": 2,
+      "length": 10,
+      "branch_intersection_dimension": 0,
+      "axis_quotient_length": 4,
+      "x_axis_minimal_polynomial_degree": 4,
+      "coordinate_quotient_lengths": [7, 7],
+      "coordinate_quotient_initial_ideals": [3, 3],
+      "parent_initial_ideals": 9,
+      "all_joint_cones": 9,
+      "complete_parent_joint_patches": 9,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,2],[0,2,0],[1,0,2],[1,2,0],[2,0,2],[2,2,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0],[3,0,0]],"strict_weight":["1/5","7/5","7/5"],"normalized_double_area":"1/5"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,3],[0,2,0],[1,0,2],[1,2,0],[2,0,1],[2,2,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"strict_weight":["17/35","69/35","19/35"],"normalized_double_area":"3/35"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,4],[0,2,0],[1,0,1],[1,2,0],[2,0,1],[2,2,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"strict_weight":["13/21","47/21","1/7"],"normalized_double_area":"1/21"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,2],[0,3,0],[1,0,2],[1,2,0],[2,0,2],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[3,0,0]],"strict_weight":["17/35","19/35","69/35"],"normalized_double_area":"3/35"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,3],[0,3,0],[1,0,2],[1,2,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["89/70","191/140","191/140"],"normalized_double_area":"9/70"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,4],[0,3,0],[1,0,1],[1,2,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["25/14","51/28","11/28"],"normalized_double_area":"5/42"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,2],[0,4,0],[1,0,2],[1,1,0],[2,0,2],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"strict_weight":["13/21","1/7","47/21"],"normalized_double_area":"1/21"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,3],[0,4,0],[1,0,2],[1,1,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"strict_weight":["25/14","11/28","51/28"],"normalized_double_area":"5/42"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,4],[0,4,0],[1,0,1],[1,1,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"strict_weight":["17/6","7/12","7/12"],"normalized_double_area":"1/6"}]}
+      ]
+    },
+    {
+      "name": "pascal_high_overlap",
+      "characteristic": 2,
+      "length": 4,
+      "branch_intersection_dimension": 2,
+      "axis_quotient_length": 2,
+      "x_axis_minimal_polynomial_degree": 4,
+      "coordinate_quotient_lengths": [2, 2],
+      "coordinate_quotient_initial_ideals": [1, 1],
+      "parent_initial_ideals": 3,
+      "all_joint_cones": 1,
+      "complete_parent_joint_patches": 3,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0],[1,0,0]],"x_z_projection_basis":[[0,0,0],[1,0,0]],"residual_rank":2,"axis_intersection_length":2,"all_residual_candidates":[[0,0,1],[0,1,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0]],"strict_weight":["1/5","7/5","7/5"],"normalized_double_area":"1/5"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1]],"strict_weight":["6/5","7/5","2/5"],"normalized_double_area":"2/5"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0]],"strict_weight":["6/5","2/5","7/5"],"normalized_double_area":"2/5"}]}
+      ]
+    },
+    {
+      "name": "pascal_high_overlap",
+      "characteristic": 2,
+      "length": 6,
+      "branch_intersection_dimension": 3,
+      "axis_quotient_length": 3,
+      "x_axis_minimal_polynomial_degree": 6,
+      "coordinate_quotient_lengths": [3, 3],
+      "coordinate_quotient_initial_ideals": [1, 1],
+      "parent_initial_ideals": 8,
+      "all_joint_cones": 1,
+      "complete_parent_joint_patches": 8,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0],[1,0,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[1,0,0],[2,0,0]],"residual_rank":3,"axis_intersection_length":3,"all_residual_candidates":[[0,0,1],[0,1,0],[1,0,1],[1,1,0],[2,0,1],[2,1,0],[3,0,0],[4,0,0],[5,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0]],"strict_weight":["1/11","16/11","16/11"],"normalized_double_area":"1/11"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[2,0,0],[3,0,0],[4,0,0]],"strict_weight":["259/792","475/198","1009/792"],"normalized_double_area":"19/792"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"strict_weight":["3/8","2","5/8"],"normalized_double_area":"1/16"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1]],"strict_weight":["3/4","2","1/4"],"normalized_double_area":"1/8"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,1,0],[2,0,0]],"strict_weight":["187/84","9/7","125/84"],"normalized_double_area":"89/168"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0]],"strict_weight":["10/21","2/7","47/21"],"normalized_double_area":"2/21"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0]],"strict_weight":["239/693","821/693","1712/693"],"normalized_double_area":"29/693"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[2,0,0],[3,0,0]],"strict_weight":["317/504","109/63","827/504"],"normalized_double_area":"31/1008"}]}
+      ]
+    },
+    {
+      "name": "pascal_high_overlap",
+      "characteristic": 2,
+      "length": 8,
+      "branch_intersection_dimension": 4,
+      "axis_quotient_length": 4,
+      "x_axis_minimal_polynomial_degree": 8,
+      "coordinate_quotient_lengths": [4, 4],
+      "coordinate_quotient_initial_ideals": [1, 1],
+      "parent_initial_ideals": 3,
+      "all_joint_cones": 1,
+      "complete_parent_joint_patches": 3,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":4,"axis_intersection_length":4,"all_residual_candidates":[[0,0,1],[0,1,0],[1,0,1],[1,1,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0],[4,0,0],[5,0,0],[6,0,0],[7,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0],[6,0,0],[7,0,0]],"strict_weight":["1/9","13/9","13/9"],"normalized_double_area":"1/9"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0],[3,0,1]],"strict_weight":["10/9","13/9","4/9"],"normalized_double_area":"4/9"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0],[3,1,0]],"strict_weight":["10/9","4/9","13/9"],"normalized_double_area":"4/9"}]}
+      ]
+    },
+    {
+      "name": "nonrow_forced_H",
+      "characteristic": 5,
+      "length": 9,
+      "branch_intersection_dimension": 0,
+      "axis_quotient_length": 3,
+      "x_axis_minimal_polynomial_degree": 3,
+      "coordinate_quotient_lengths": [6, 6],
+      "coordinate_quotient_initial_ideals": [3, 3],
+      "parent_initial_ideals": 9,
+      "all_joint_cones": 9,
+      "complete_parent_joint_patches": 9,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,2],[0,2,0],[1,0,2],[1,2,0],[2,0,2],[2,2,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0]],"strict_weight":["1/5","7/5","7/5"],"normalized_double_area":"1/5"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,3],[0,2,0],[1,0,2],[1,2,0],[2,0,1],[2,2,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,1,0]],"strict_weight":["17/35","69/35","19/35"],"normalized_double_area":"3/35"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,4],[0,2,0],[1,0,1],[1,2,0],[2,0,1],[2,2,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0]],"strict_weight":["13/21","47/21","1/7"],"normalized_double_area":"1/21"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,2],[0,3,0],[1,0,2],[1,2,0],[2,0,2],[2,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1]],"strict_weight":["17/35","19/35","69/35"],"normalized_double_area":"3/35"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,3],[0,3,0],[1,0,2],[1,2,0],[2,0,1],[2,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0]],"strict_weight":["89/70","191/140","191/140"],"normalized_double_area":"9/70"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,4],[0,3,0],[1,0,1],[1,2,0],[2,0,1],[2,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0]],"strict_weight":["25/14","51/28","11/28"],"normalized_double_area":"5/42"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,2],[0,4,0],[1,0,2],[1,1,0],[2,0,2],[2,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[2,0,0],[2,0,1]],"strict_weight":["13/21","1/7","47/21"],"normalized_double_area":"1/21"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,3],[0,4,0],[1,0,2],[1,1,0],[2,0,1],[2,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[2,0,0]],"strict_weight":["25/14","11/28","51/28"],"normalized_double_area":"5/42"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0]],"residual_rank":0,"axis_intersection_length":3,"all_residual_candidates":[[0,0,4],[0,4,0],[1,0,1],[1,1,0],[2,0,1],[2,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0]],"strict_weight":["17/6","7/12","7/12"],"normalized_double_area":"1/6"}]}
+      ]
+    },
+    {
+      "name": "nonrow_forced_A",
+      "characteristic": 5,
+      "length": 11,
+      "branch_intersection_dimension": 1,
+      "axis_quotient_length": 4,
+      "x_axis_minimal_polynomial_degree": 4,
+      "coordinate_quotient_lengths": [7, 7],
+      "coordinate_quotient_initial_ideals": [3, 3],
+      "parent_initial_ideals": 18,
+      "all_joint_cones": 9,
+      "complete_parent_joint_patches": 24,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,2],[0,2,0],[1,0,2],[1,2,0],[2,0,2],[2,2,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0],[3,0,0],[3,1,0]],"strict_weight":["1/7","13/14","27/14"],"normalized_double_area":"1/14"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0],[3,0,0],[3,0,1]],"strict_weight":["1/7","27/14","13/14"],"normalized_double_area":"1/14"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0],[3,0,0]],"strict_weight":["12/35","64/35","29/35"],"normalized_double_area":"1/35"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0],[3,0,0]],"strict_weight":["12/35","29/35","64/35"],"normalized_double_area":"1/35"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,3],[0,2,0],[1,0,2],[1,2,0],[2,0,1],[2,2,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0],[3,0,0]],"strict_weight":["9/20","19/10","13/20"],"normalized_double_area":"1/20"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"strict_weight":["15/28","29/14","11/28"],"normalized_double_area":"1/28"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,4],[0,2,0],[1,0,1],[1,2,0],[2,0,1],[2,2,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"strict_weight":["41/70","76/35","17/70"],"normalized_double_area":"1/70"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,0,4],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"strict_weight":["19/30","34/15","1/10"],"normalized_double_area":"1/30"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,2],[0,3,0],[1,0,2],[1,2,0],[2,0,2],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[3,0,0]],"strict_weight":["15/28","11/28","29/14"],"normalized_double_area":"1/28"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0],[3,0,0]],"strict_weight":["9/20","13/20","19/10"],"normalized_double_area":"1/20"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,3],[0,3,0],[1,0,2],[1,2,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"strict_weight":["47/60","59/60","37/30"],"normalized_double_area":"1/60"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[3,0,0]],"strict_weight":["47/60","37/30","59/60"],"normalized_double_area":"1/60"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["115/84","139/84","41/42"],"normalized_double_area":"1/21"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["115/84","41/42","139/84"],"normalized_double_area":"1/21"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,4],[0,3,0],[1,0,1],[1,2,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,0,4],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["203/110","103/55","31/110"],"normalized_double_area":"29/330"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["628/385","2609/1540","1039/1540"],"normalized_double_area":"12/385"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,2],[0,4,0],[1,0,2],[1,1,0],[2,0,2],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[0,3,0],[0,4,0],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"strict_weight":["19/30","1/10","34/15"],"normalized_double_area":"1/30"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[3,0,0]],"strict_weight":["41/70","17/70","76/35"],"normalized_double_area":"1/70"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,3],[0,4,0],[1,0,2],[1,1,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[0,3,0],[0,4,0],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"strict_weight":["203/110","31/110","103/55"],"normalized_double_area":"29/330"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["628/385","1039/1540","2609/1540"],"normalized_double_area":"12/385"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":1,"axis_intersection_length":4,"all_residual_candidates":[[0,0,4],[0,4,0],[1,0,1],[1,1,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,0,4],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"strict_weight":["464/165","133/165","21/55"],"normalized_double_area":"13/165"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[0,3,0],[0,4,0],[1,0,0],[2,0,0],[3,0,0]],"strict_weight":["464/165","21/55","133/165"],"normalized_double_area":"13/165"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"strict_weight":["181/110","159/220","139/220"],"normalized_double_area":"1/220"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["181/110","139/220","159/220"],"normalized_double_area":"1/220"}]}
+      ]
+    },
+    {
+      "name": "nonrow_forced_C",
+      "characteristic": 5,
+      "length": 10,
+      "branch_intersection_dimension": 0,
+      "axis_quotient_length": 4,
+      "x_axis_minimal_polynomial_degree": 4,
+      "coordinate_quotient_lengths": [7, 7],
+      "coordinate_quotient_initial_ideals": [3, 3],
+      "parent_initial_ideals": 9,
+      "all_joint_cones": 9,
+      "complete_parent_joint_patches": 9,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,2],[0,2,0],[1,0,2],[1,2,0],[2,0,2],[2,2,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[2,1,0],[3,0,0]],"strict_weight":["1/5","7/5","7/5"],"normalized_double_area":"1/5"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,3],[0,2,0],[1,0,2],[1,2,0],[2,0,1],[2,2,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"strict_weight":["17/35","69/35","19/35"],"normalized_double_area":"3/35"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,4],[0,2,0],[1,0,1],[1,2,0],[2,0,1],[2,2,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"strict_weight":["13/21","47/21","1/7"],"normalized_double_area":"1/21"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,2],[0,3,0],[1,0,2],[1,2,0],[2,0,2],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[2,0,1],[3,0,0]],"strict_weight":["17/35","19/35","69/35"],"normalized_double_area":"3/35"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,3],[0,3,0],[1,0,2],[1,2,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["89/70","191/140","191/140"],"normalized_double_area":"9/70"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,4],[0,3,0],[1,0,1],[1,2,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["25/14","51/28","11/28"],"normalized_double_area":"5/42"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,2],[0,4,0],[1,0,2],[1,1,0],[2,0,2],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0]],"strict_weight":["13/21","1/7","47/21"],"normalized_double_area":"1/21"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,3],[0,4,0],[1,0,2],[1,1,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"strict_weight":["25/14","11/28","51/28"],"normalized_double_area":"5/42"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":0,"axis_intersection_length":4,"all_residual_candidates":[[0,0,4],[0,4,0],[1,0,1],[1,1,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,0,3],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[2,0,0],[3,0,0]],"strict_weight":["17/6","7/12","7/12"],"normalized_double_area":"1/6"}]}
+      ]
+    },
+    {
+      "name": "pascal_high_overlap",
+      "characteristic": 5,
+      "length": 4,
+      "branch_intersection_dimension": 2,
+      "axis_quotient_length": 2,
+      "x_axis_minimal_polynomial_degree": 4,
+      "coordinate_quotient_lengths": [2, 2],
+      "coordinate_quotient_initial_ideals": [1, 1],
+      "parent_initial_ideals": 6,
+      "all_joint_cones": 1,
+      "complete_parent_joint_patches": 6,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0],[1,0,0]],"x_z_projection_basis":[[0,0,0],[1,0,0]],"residual_rank":2,"axis_intersection_length":2,"all_residual_candidates":[[0,0,1],[0,1,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0]],"strict_weight":["1/7","10/7","10/7"],"normalized_double_area":"1/7"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[2,0,0]],"strict_weight":["83/140","163/70","151/140"],"normalized_double_area":"11/140"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1]],"strict_weight":["3/4","2","1/4"],"normalized_double_area":"1/8"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0]],"strict_weight":["27/10","33/20","33/20"],"normalized_double_area":"9/20"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0]],"strict_weight":["3/4","1/4","2"],"normalized_double_area":"1/8"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[2,0,0]],"strict_weight":["83/140","151/140","163/70"],"normalized_double_area":"11/140"}]}
+      ]
+    },
+    {
+      "name": "pascal_high_overlap",
+      "characteristic": 5,
+      "length": 6,
+      "branch_intersection_dimension": 3,
+      "axis_quotient_length": 3,
+      "x_axis_minimal_polynomial_degree": 6,
+      "coordinate_quotient_lengths": [3, 3],
+      "coordinate_quotient_initial_ideals": [1, 1],
+      "parent_initial_ideals": 9,
+      "all_joint_cones": 1,
+      "complete_parent_joint_patches": 9,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0],[1,0,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[1,0,0],[2,0,0]],"residual_rank":3,"axis_intersection_length":3,"all_residual_candidates":[[0,0,1],[0,1,0],[1,0,1],[1,1,0],[2,0,1],[2,1,0],[3,0,0],[4,0,0],[5,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0]],"strict_weight":["1/10","3/2","7/5"],"normalized_double_area":"1/10"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[3,0,0]],"strict_weight":["7/15","13/5","14/15"],"normalized_double_area":"1/15"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1]],"strict_weight":["8/15","34/15","1/5"],"normalized_double_area":"1/15"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[2,0,0]],"strict_weight":["19/10","13/6","14/15"],"normalized_double_area":"3/10"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,1,0],[2,0,0]],"strict_weight":["19/10","14/15","13/6"],"normalized_double_area":"3/10"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0]],"strict_weight":["8/15","1/5","34/15"],"normalized_double_area":"1/15"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["59/120","109/120","13/5"],"normalized_double_area":"13/240"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0]],"strict_weight":["9/40","7/8","19/10"],"normalized_double_area":"1/40"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[2,0,0],[3,0,0]],"strict_weight":["91/120","253/120","32/15"],"normalized_double_area":"1/48"}]}
+      ]
+    },
+    {
+      "name": "pascal_high_overlap",
+      "characteristic": 5,
+      "length": 8,
+      "branch_intersection_dimension": 4,
+      "axis_quotient_length": 4,
+      "x_axis_minimal_polynomial_degree": 8,
+      "coordinate_quotient_lengths": [4, 4],
+      "coordinate_quotient_initial_ideals": [1, 1],
+      "parent_initial_ideals": 8,
+      "all_joint_cones": 1,
+      "complete_parent_joint_patches": 8,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0]],"x_z_projection_basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":4,"axis_intersection_length":4,"all_residual_candidates":[[0,0,1],[0,1,0],[1,0,1],[1,1,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0],[4,0,0],[5,0,0],[6,0,0],[7,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0],[6,0,0],[7,0,0]],"strict_weight":["1/15","22/15","22/15"],"normalized_double_area":"1/15"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0],[6,0,0]],"strict_weight":["59/260","947/390","1049/780"],"normalized_double_area":"3/260"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[3,0,0],[4,0,0],[5,0,0]],"strict_weight":["1/4","2","3/4"],"normalized_double_area":"1/24"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0],[3,0,1]],"strict_weight":["2/3","2","1/3"],"normalized_double_area":"1/6"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0]],"strict_weight":["121/60","13/10","101/60"],"normalized_double_area":"71/120"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0],[3,1,0]],"strict_weight":["7/20","3/10","47/20"],"normalized_double_area":"3/40"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0],[6,0,0]],"strict_weight":["19/78","479/390","493/195"],"normalized_double_area":"11/390"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0]],"strict_weight":["111/260","229/130","471/260"],"normalized_double_area":"29/1560"}]}
+      ]
+    },
+    {
+      "name": "two_monomial_curve_jets",
+      "characteristic": 0,
+      "length": 9,
+      "branch_intersection_dimension": 0,
+      "axis_quotient_length": 0,
+      "x_axis_minimal_polynomial_degree": 9,
+      "coordinate_quotient_lengths": [5, 4],
+      "coordinate_quotient_initial_ideals": [2, 2],
+      "parent_initial_ideals": 23,
+      "all_joint_cones": 4,
+      "complete_parent_joint_patches": 26,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0]],"x_z_projection_basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":4,"axis_intersection_length":4,"all_residual_candidates":[[0,0,1],[0,1,0],[1,0,1],[1,1,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0],[4,1,0],[5,0,0],[6,0,0],[7,0,0],[8,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0],[6,0,0],[7,0,0],[8,0,0]],"strict_weight":["1/17","25/17","25/17"],"normalized_double_area":"1/17"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0],[6,0,0],[7,0,0]],"strict_weight":["703/3570","1243/510","2438/1785"],"normalized_double_area":"31/3570"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[3,0,0],[4,0,0],[5,0,0],[6,0,0]],"strict_weight":["227/924","28/11","1117/924"],"normalized_double_area":"25/1848"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0],[4,0,0],[5,0,0]],"strict_weight":["20/99","208/99","23/33"],"normalized_double_area":"1/99"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0],[4,0,0],[5,0,0]],"strict_weight":["259/792","125/132","2159/792"],"normalized_double_area":"19/792"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0],[6,0,0]],"strict_weight":["227/924","1117/924","28/11"],"normalized_double_area":"25/1848"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0],[6,0,0],[7,0,0]],"strict_weight":["703/3570","2438/1785","1243/510"],"normalized_double_area":"31/3570"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0],[6,0,0]],"strict_weight":["1079/2310","12781/4620","12781/4620"],"normalized_double_area":"13/4620"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[2,0,0],[3,0,0],[4,0,0],[5,0,0]],"strict_weight":["485/792","3","1891/792"],"normalized_double_area":"5/792"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0],[4,0,0]],"strict_weight":["19/36","119/72","131/72"],"normalized_double_area":"1/144"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0]],"strict_weight":["485/792","1891/792","3"],"normalized_double_area":"5/792"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0],[4,0,0]],"strict_weight":["19/36","31/24","157/72"],"normalized_double_area":"1/144"}]},
+        {"x_y_projection_basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[2,0,0]],"residual_rank":3,"axis_intersection_length":3,"all_residual_candidates":[[0,0,2],[0,1,0],[1,0,1],[1,1,0],[2,0,1],[2,1,0],[3,1,0],[4,1,0],[5,0,0],[6,0,0],[7,0,0],[8,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0],[4,0,0],[5,0,0]],"strict_weight":["35/153","328/153","32/51"],"normalized_double_area":"1/153"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0],[4,0,0]],"strict_weight":["212/357","1009/357","69/119"],"normalized_double_area":"37/357"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[1,0,0],[1,0,1],[2,0,0],[3,0,0],[4,0,0]],"strict_weight":["109/126","275/126","20/21"],"normalized_double_area":"13/378"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0],[4,0,0]],"strict_weight":["5683/8568","2908/1071","4631/2856"],"normalized_double_area":"101/17136"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0],[4,0,0]],"strict_weight":["49/72","16/9","37/24"],"normalized_double_area":"7/432"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0]],"x_z_projection_basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":2,"axis_intersection_length":2,"all_residual_candidates":[[0,0,1],[0,3,0],[1,0,1],[1,2,0],[2,0,1],[3,0,1],[4,0,0],[5,0,0],[6,0,0],[7,0,0],[8,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,1,0],[1,2,0],[2,0,0],[3,0,0]],"strict_weight":["231/380","39/95","1133/380"],"normalized_double_area":"23/380"},{"basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[1,2,0],[2,0,0],[3,0,0],[4,0,0]],"strict_weight":["863/1976","683/988","5675/1976"],"normalized_double_area":"27/1976"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0],[4,0,0]],"strict_weight":["2153/3432","1865/1716","2615/1144"],"normalized_double_area":"19/3432"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[1,2,0],[2,0,0],[3,0,0]],"strict_weight":["9422/13585","12417/13585","32501/13585"],"normalized_double_area":"49/13585"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[2,0,0]],"residual_rank":2,"axis_intersection_length":2,"all_residual_candidates":[[0,0,2],[0,3,0],[1,0,1],[1,2,0],[2,0,1],[3,0,0],[4,0,0],[5,0,0],[6,0,0],[7,0,0],[8,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0]],"strict_weight":["116/63","88/63","16/21"],"normalized_double_area":"20/63"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0]],"strict_weight":["43/28","15/28","13/14"],"normalized_double_area":"1/28"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,1,0],[1,2,0],[2,0,0]],"strict_weight":["17/10","9/20","37/20"],"normalized_double_area":"1/5"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["3067/2772","4397/2772","533/231"],"normalized_double_area":"71/2772"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[1,2,0],[2,0,0],[3,0,0]],"strict_weight":["139/220","159/220","181/110"],"normalized_double_area":"1/220"}]}
+      ]
+    },
+    {
+      "name": "two_monomial_curve_jets",
+      "characteristic": 3,
+      "length": 9,
+      "branch_intersection_dimension": 0,
+      "axis_quotient_length": 0,
+      "x_axis_minimal_polynomial_degree": 9,
+      "coordinate_quotient_lengths": [5, 4],
+      "coordinate_quotient_initial_ideals": [2, 2],
+      "parent_initial_ideals": 19,
+      "all_joint_cones": 4,
+      "complete_parent_joint_patches": 21,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0]],"x_z_projection_basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":4,"axis_intersection_length":4,"all_residual_candidates":[[0,0,1],[0,1,0],[1,0,1],[1,1,0],[2,0,1],[2,1,0],[3,0,1],[3,1,0],[4,1,0],[5,0,0],[6,0,0],[7,0,0],[8,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0],[6,0,0],[7,0,0],[8,0,0]],"strict_weight":["1/15","7/5","23/15"],"normalized_double_area":"1/15"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0],[6,0,0],[7,0,0]],"strict_weight":["28/195","121/65","194/195"],"normalized_double_area":"2/195"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0],[3,0,0],[4,0,0],[5,0,0],[6,0,0]],"strict_weight":["23/130","134/65","99/130"],"normalized_double_area":"3/130"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0],[4,0,0],[5,0,0]],"strict_weight":["109/360","59/60","977/360"],"normalized_double_area":"13/360"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0],[4,0,0],[5,0,0]],"strict_weight":["2297/4680","9427/4680","973/390"],"normalized_double_area":"41/4680"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[2,0,0],[3,0,0],[4,0,0],[5,0,0]],"strict_weight":["1933/4680","2347/1170","7399/4680"],"normalized_double_area":"37/4680"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0],[4,0,0]],"strict_weight":["19/36","119/72","131/72"],"normalized_double_area":"1/144"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,1,0],[2,0,0],[2,1,0],[3,0,0],[4,0,0]],"strict_weight":["19/36","31/24","157/72"],"normalized_double_area":"1/144"}]},
+        {"x_y_projection_basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[2,0,0]],"residual_rank":3,"axis_intersection_length":3,"all_residual_candidates":[[0,0,2],[0,1,0],[1,0,1],[1,1,0],[2,0,1],[2,1,0],[3,1,0],[4,1,0],[5,0,0],[6,0,0],[7,0,0],[8,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0],[4,0,0]],"strict_weight":["121/210","298/105","41/70"],"normalized_double_area":"23/210"},{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[1,0,0],[1,0,1],[2,0,0],[3,0,0],[4,0,0]],"strict_weight":["109/126","275/126","20/21"],"normalized_double_area":"13/378"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[2,0,0],[2,0,1],[3,0,0],[4,0,0]],"strict_weight":["449/840","76/35","1087/840"],"normalized_double_area":"11/1680"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0],[4,0,0]],"strict_weight":["49/72","16/9","37/24"],"normalized_double_area":"7/432"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0]],"x_z_projection_basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0]],"residual_rank":2,"axis_intersection_length":2,"all_residual_candidates":[[0,0,1],[0,3,0],[1,0,1],[1,2,0],[2,0,1],[3,0,1],[4,0,0],[5,0,0],[6,0,0],[7,0,0],[8,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,1,0],[1,2,0],[2,0,0],[3,0,0]],"strict_weight":["37/60","19/45","533/180"],"normalized_double_area":"11/180"},{"basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[1,2,0],[2,0,0],[3,0,0],[4,0,0]],"strict_weight":["7/24","17/36","161/72"],"normalized_double_area":"1/72"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0],[4,0,0]],"strict_weight":["31/48","19/18","331/144"],"normalized_double_area":"1/144"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["133/240","121/180","1277/720"],"normalized_double_area":"1/720"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[1,1,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[1,0,0],[2,0,0]],"residual_rank":2,"axis_intersection_length":2,"all_residual_candidates":[[0,0,2],[0,3,0],[1,0,1],[1,2,0],[2,0,1],[3,0,0],[4,0,0],[5,0,0],[6,0,0],[7,0,0],[8,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0]],"strict_weight":["116/63","88/63","16/21"],"normalized_double_area":"20/63"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0]],"strict_weight":["43/28","15/28","13/14"],"normalized_double_area":"1/28"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,1,0],[1,2,0],[2,0,0]],"strict_weight":["17/10","9/20","37/20"],"normalized_double_area":"1/5"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[1,0,0],[1,0,1],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["1121/1008","197/126","781/336"],"normalized_double_area":"109/4032"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[0,2,0],[0,3,0],[1,0,0],[1,1,0],[2,0,0],[3,0,0]],"strict_weight":["51/80","7/10","133/80"],"normalized_double_area":"1/320"}]}
+      ]
+    },
+    {
+      "name": "zero_coordinate_quotient",
+      "characteristic": 0,
+      "length": 1,
+      "branch_intersection_dimension": 0,
+      "axis_quotient_length": 0,
+      "x_axis_minimal_polynomial_degree": 1,
+      "coordinate_quotient_lengths": [0, 1],
+      "coordinate_quotient_initial_ideals": [1, 1],
+      "parent_initial_ideals": 1,
+      "all_joint_cones": 1,
+      "complete_parent_joint_patches": 1,
+      "joint_cones": [
+        {"x_y_projection_basis":[],"x_z_projection_basis":[[0,0,0]],"residual_rank":0,"axis_intersection_length":0,"all_residual_candidates":[[0,0,1]],"actual_parent_patches":[{"basis":[[0,0,0]],"strict_weight":["1","1","1"],"normalized_double_area":"1"}]}
+      ]
+    },
+    {
+      "name": "zero_coordinate_quotient",
+      "characteristic": 0,
+      "length": 1,
+      "branch_intersection_dimension": 0,
+      "axis_quotient_length": 0,
+      "x_axis_minimal_polynomial_degree": 1,
+      "coordinate_quotient_lengths": [1, 0],
+      "coordinate_quotient_initial_ideals": [1, 1],
+      "parent_initial_ideals": 1,
+      "all_joint_cones": 1,
+      "complete_parent_joint_patches": 1,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0]],"x_z_projection_basis":[],"residual_rank":0,"axis_intersection_length":0,"all_residual_candidates":[[0,1,0]],"actual_parent_patches":[{"basis":[[0,0,0]],"strict_weight":["1","1","1"],"normalized_double_area":"1"}]}
+      ]
+    },
+    {
+      "name": "radical_two_planes_with_axis_point",
+      "characteristic": 0,
+      "length": 5,
+      "branch_intersection_dimension": 0,
+      "axis_quotient_length": 1,
+      "x_axis_minimal_polynomial_degree": 5,
+      "coordinate_quotient_lengths": [3, 3],
+      "coordinate_quotient_initial_ideals": [3, 2],
+      "parent_initial_ideals": 10,
+      "all_joint_cones": 6,
+      "complete_parent_joint_patches": 12,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0],[1,0,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[1,0,0],[2,0,0]],"residual_rank":2,"axis_intersection_length":3,"all_residual_candidates":[[0,0,1],[0,1,0],[1,0,1],[1,1,0],[2,0,1],[2,1,0],[3,0,0],[4,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0]],"strict_weight":["1/9","13/9","13/9"],"normalized_double_area":"1/9"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[2,0,0],[3,0,0]],"strict_weight":["53/126","299/126","76/63"],"normalized_double_area":"5/126"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0]],"strict_weight":["5/12","2","7/12"],"normalized_double_area":"1/24"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[2,0,0],[3,0,0]],"strict_weight":["53/126","76/63","299/126"],"normalized_double_area":"5/126"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[2,0,0]],"strict_weight":["61/84","37/21","127/84"],"normalized_double_area":"1/56"}]},
+        {"x_y_projection_basis":[[0,0,0],[1,0,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2]],"residual_rank":0,"axis_intersection_length":1,"all_residual_candidates":[[0,0,3],[0,1,0],[1,1,0],[2,1,0],[3,0,0],[4,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[2,0,0]],"strict_weight":["7/12","13/6","1/4"],"normalized_double_area":"1/12"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0]],"x_z_projection_basis":[[0,0,0],[1,0,0],[2,0,0]],"residual_rank":1,"axis_intersection_length":2,"all_residual_candidates":[[0,0,1],[0,2,0],[1,0,1],[1,1,0],[2,0,1],[3,0,0],[4,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[2,0,0]],"strict_weight":["13/20","9/20","19/10"],"normalized_double_area":"1/20"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0]],"strict_weight":["5/12","7/12","2"],"normalized_double_area":"1/24"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[2,0,0]],"strict_weight":["16/15","77/60","33/20"],"normalized_double_area":"7/120"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2]],"residual_rank":0,"axis_intersection_length":1,"all_residual_candidates":[[0,0,3],[0,2,0],[1,1,0],[2,0,0],[3,0,0],[4,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[1,0,0]],"strict_weight":["33/20","17/10","13/20"],"normalized_double_area":"11/60"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0]],"x_z_projection_basis":[[0,0,0],[1,0,0],[2,0,0]],"residual_rank":0,"axis_intersection_length":1,"all_residual_candidates":[[0,0,1],[0,3,0],[1,0,1],[2,0,1],[3,0,0],[4,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[2,0,0]],"strict_weight":["9/10","1/5","19/10"],"normalized_double_area":"1/10"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2]],"residual_rank":0,"axis_intersection_length":1,"all_residual_candidates":[[0,0,3],[0,3,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0]],"strict_weight":["77/30","8/15","9/10"],"normalized_double_area":"7/30"}]}
+      ]
+    },
+    {
+      "name": "radical_two_planes_with_axis_point",
+      "characteristic": 7,
+      "length": 5,
+      "branch_intersection_dimension": 0,
+      "axis_quotient_length": 1,
+      "x_axis_minimal_polynomial_degree": 5,
+      "coordinate_quotient_lengths": [3, 3],
+      "coordinate_quotient_initial_ideals": [3, 2],
+      "parent_initial_ideals": 10,
+      "all_joint_cones": 6,
+      "complete_parent_joint_patches": 12,
+      "joint_cones": [
+        {"x_y_projection_basis":[[0,0,0],[1,0,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[1,0,0],[2,0,0]],"residual_rank":2,"axis_intersection_length":3,"all_residual_candidates":[[0,0,1],[0,1,0],[1,0,1],[1,1,0],[2,0,1],[2,1,0],[3,0,0],[4,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0]],"strict_weight":["1/9","13/9","13/9"],"normalized_double_area":"1/9"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[2,0,0],[3,0,0]],"strict_weight":["53/126","299/126","76/63"],"normalized_double_area":"5/126"},{"basis":[[0,0,0],[0,0,1],[1,0,0],[1,0,1],[2,0,0]],"strict_weight":["5/12","2","7/12"],"normalized_double_area":"1/24"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[2,0,0],[3,0,0]],"strict_weight":["53/126","76/63","299/126"],"normalized_double_area":"5/126"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[2,0,0]],"strict_weight":["61/84","37/21","127/84"],"normalized_double_area":"1/56"}]},
+        {"x_y_projection_basis":[[0,0,0],[1,0,0],[2,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2]],"residual_rank":0,"axis_intersection_length":1,"all_residual_candidates":[[0,0,3],[0,1,0],[1,1,0],[2,1,0],[3,0,0],[4,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[1,0,0],[2,0,0]],"strict_weight":["7/12","13/6","1/4"],"normalized_double_area":"1/12"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0]],"x_z_projection_basis":[[0,0,0],[1,0,0],[2,0,0]],"residual_rank":1,"axis_intersection_length":2,"all_residual_candidates":[[0,0,1],[0,2,0],[1,0,1],[1,1,0],[2,0,1],[3,0,0],[4,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[2,0,0]],"strict_weight":["13/20","9/20","19/10"],"normalized_double_area":"1/20"},{"basis":[[0,0,0],[0,1,0],[1,0,0],[1,1,0],[2,0,0]],"strict_weight":["5/12","7/12","2"],"normalized_double_area":"1/24"},{"basis":[[0,0,0],[0,0,1],[0,1,0],[1,0,0],[2,0,0]],"strict_weight":["16/15","77/60","33/20"],"normalized_double_area":"7/120"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[1,0,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2]],"residual_rank":0,"axis_intersection_length":1,"all_residual_candidates":[[0,0,3],[0,2,0],[1,1,0],[2,0,0],[3,0,0],[4,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[1,0,0]],"strict_weight":["33/20","17/10","13/20"],"normalized_double_area":"11/60"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0]],"x_z_projection_basis":[[0,0,0],[1,0,0],[2,0,0]],"residual_rank":0,"axis_intersection_length":1,"all_residual_candidates":[[0,0,1],[0,3,0],[1,0,1],[2,0,1],[3,0,0],[4,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,1,0],[0,2,0],[1,0,0],[2,0,0]],"strict_weight":["9/10","1/5","19/10"],"normalized_double_area":"1/10"}]},
+        {"x_y_projection_basis":[[0,0,0],[0,1,0],[0,2,0]],"x_z_projection_basis":[[0,0,0],[0,0,1],[0,0,2]],"residual_rank":0,"axis_intersection_length":1,"all_residual_candidates":[[0,0,3],[0,3,0],[1,0,0],[2,0,0],[3,0,0],[4,0,0]],"actual_parent_patches":[{"basis":[[0,0,0],[0,0,1],[0,0,2],[0,1,0],[0,2,0]],"strict_weight":["77/30","8/15","9/10"],"normalized_double_area":"7/30"}]}
+      ]
+    }
+  ],
+  "counters": {
+    "independent_parent_commuting_columns": 522,
+    "independent_actual_coordinate_quotients": 48,
+    "independent_quotient_column_maps": 174,
+    "direct_field_border_relations": 1664,
+    "complete_direct_quotient_fans": 70,
+    "independent_candidate_monomial_successors": 5295,
+    "independent_complete_patch_border_rank_and_moment_checks": 267,
+    "complete_joint_and_parent_overlay_coverages": 24
+  },
+  "source_sha256": {
+    "docs/projection_border_fans.md": "8ca4fb925dbb99a78521c11e8d36251ac659b811ed66087e042c14dd0125379b",
+    "scripts/run_algebraic_incidence_controls.py": "93e6f0e5d147da43cdfacc16e4419703c59993c10dc03199ef6385df4d420eeb",
+    "scripts/run_canonical_fan_deflation_checks.py": "ebcddf95bb04de7ae8dd45a65e0a18e4eabec2270607144a555ba8ab2b0a31b0",
+    "scripts/run_coordinate_slice_budget_checks.py": "50e973948ce2c1ac46035ef9606e951b4171a8f541895a5dbec73c7e00221df6",
+    "scripts/run_curve_carrier_shadow_checks.py": "30917dfd342c27d3a287104402c8955921c45d868c0813259818a196fca2b46f",
+    "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
+    "scripts/run_forced_socle_fan_checks.py": "3474c571ffcbc87a031a6063feedde59f2f648bd9e8fee8b7a32132e18409552",
+    "scripts/run_higher_interaction_checks.py": "cdc31d1b582e71c4536056429bf7eabeb2fcb312f313713135a2eaee68578916",
+    "scripts/run_higher_seed_checks.py": "92f0c67e86e3be54c71cbe6efac168c767c9768bb8058b6dc36d24b91acac926",
+    "scripts/run_hypersurface_truncation_checks.py": "700073c01784db06a953d351c500e0d66b0019c1152fe4b127cbf50f35cbcd7e",
+    "scripts/run_ideal_step_incidence_checks.py": "8e6c10fbed8ea1a1bc5ffe2c896f40ca9e8d7a20ba14c3e6537338c5ccb94980",
+    "scripts/run_initial_cone_height_checks.py": "f804aff89da53a6139aed7cacc9fd802dee8fd8529ee48a0d240dd9740df3dab",
+    "scripts/run_initial_fan_padding_checks.py": "970c4c5a4f3ef80dff4789a7a661f5148be2944a871a014b2b70d2c7cbe3984a",
+    "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
+    "scripts/run_liaison_fan_checks.py": "59129e88d900f283ed245f7762f3f75f9b498442fe10f7f0b2e2757493359539",
+    "scripts/run_minimal_branch_overlap_checks.py": "e9f8a87a65ebafde262ecc44c626cb5f15f1fca8226b11d9fab906b1b5af7395",
+    "scripts/run_oracle_enumeration_checks.py": "139af7656f8dc4083fc463a0bb27354ee53b23e85bc3232b958236b15ee45ec2",
+    "scripts/run_planar_dyadic_bound_checks.py": "27642dbe7cf5c21e0eacb671b644bd00b97e758422d341cffa82c16df0b224bc",
+    "scripts/run_primitive_wall_checks.py": "ce4bdb6316b3acbfc15625b8f67dfadd69c95d691c81da2c47cda6538c867cdb",
+    "scripts/run_projection_border_checks.py": "27197bc515b6453c77ff6dd95f3e12255c2981ee05825bc2a1a98ad884ec6cfd",
+    "scripts/run_projection_tag_checks.py": "c003724cab6740a5bafc51e03b0f17f779eff80a463bdf92dae134d53617ccff",
+    "scripts/run_quadratic_coordinate_fan_checks.py": "4b6e8c0cd224f25478b848303853a7aef2d0e35429f9600c199f0c4ca6dbe82e",
+    "scripts/run_quadric_cross_checks.py": "8d521aa6295bcbc81a7a8140a2cb5af56c69e9469765c2bc17c987da4f0e6226",
+    "scripts/run_rational_shadow_bound_checks.py": "0c27d91102f4c551099358296d147155165a4c451d1aca5d0a311e1e3d5128be",
+    "scripts/run_signed_face_checks.py": "8367cf40b049331649f6f3ed799e43982b14a1d40cfb620791249d2c63375867",
+    "scripts/run_socle_circuit_checks.py": "488b0b5d7f3cc24d4da32983165c80463fdb6c6fda96b56f7899c6b6f4cc301e",
+    "scripts/run_socle_stability_checks.py": "81e4476100f0be5457fcf7019186415d230cceac4096202b2844dce645e83f52",
+    "scripts/run_square_zero_extension_checks.py": "c6e493b604506bb2ffd0da87a8517a72b7c2691c95daf659b6850ca42ee199df",
+    "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
+    "scripts/run_univariate_branch_gluing_checks.py": "16dc52d32368ef986742695a8c167c5e2ad5406e10cd5fca1225babd8384e032",
+    "scripts/run_univariate_cross_checks.py": "9d0811efcf1c6861372890e8a409ef44a4b363c80ac010d95f8ebca88ae1d39e",
+    "scripts/run_wall_coexistence_checks.py": "12efc209c9a0daacb8e50eebe65902ca019a78fb78098ecc3e79ecf585cae282"
+  },
+  "unrestricted_G3_improved": false,
+  "polynomial_lower_separation_proved": false,
+  "novelty_established": false,
+  "goal_complete": false
+}
