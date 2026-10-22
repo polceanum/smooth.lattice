@@ -966,9 +966,13 @@ The [separate ideal-step analysis](ideal_step_incidence.md) now proves
 subsequences in that fixed curve family. This is consistent with
 \(\Theta(n^2)\) new rays at one step, each with only linear cost.
 A quadratic per-step recurrence for \(U\) is therefore unavailable.
-On the same family \(W\) has the exact quadratic divisor-sum increment
-proved in that note; a general quadratic increment for \(W\) is still
-an open possibility, not a consequence of (A18)--(A22).
+On that same three-pole family \(W\) has an exact quadratic divisor-sum
+increment. The extended ideal-step note now gives another actual radical
+family with cubic (and logarithmically larger) \(W\) jumps and quartic
+positive variation along deletion chains. Thus a uniform quadratic
+increment for \(W\) is false as well. The global cubic-polylogarithmic
+budget still needs cancellation, a specially chosen chain, or a different
+collective argument; it is neither proved nor refuted by (A18)--(A22).
 
 ~~~bash
 python3 -B scripts/run_adjacent_rank_checks.py
