@@ -49,6 +49,14 @@ ingredients. The exact priority of the minimum, rigidity and combined fan
 statements is **unassessed**. They do not settle unrestricted \(G_3(n)\),
 establish a supergeneric lower bound, or complete the research goal.
 
+The subsequent [Fitting-core deduction](fitting_branch_core.md) identifies
+the planar auxiliary minimum and rigidity below as a classical
+Hilbert--Burch/Smith-form corollary, using a stronger coefficientwise ideal
+containment. It also extends the fan bound to nonminimal branches in
+terms of their excess length. The planar auxiliary lemma is therefore
+not an independently new theorem; the assembled classification and
+quantitative statements still require their exact priority comparison.
+
 ## A planar minimum and its equality case
 
 We prove the stronger auxiliary statement: if \(C=K[x,y]/J\) is finite
