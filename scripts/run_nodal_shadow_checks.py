@@ -13,9 +13,9 @@ import sys
 
 from run_forced_socle_fan_checks import model as forced_model
 from run_projection_border_checks import operators, quotient
-from run_projection_tag_checks import fan, TRIANGLE
+from run_projection_tag_checks import fan, polygon_key, TRIANGLE
 from run_signed_face_checks import field_basis
-from run_structural_complexity_checks import dot, hyperbolic_cross
+from run_structural_complexity_checks import area2, clip, determinant, dot, hyperbolic_cross
 from run_univariate_branch_gluing_checks import (
     Frame, apply, clean, dense_kernel, dense_rank, pascal_ray_model,
 )
@@ -191,6 +191,219 @@ def moment(B):
     return tuple(sum(a[i] for a in B) for i in range(3))
 
 
+def exchange_intervals(labels, columns, p, counts):
+    """Two separable prices: independent prefix ranks and actual adjacent swaps."""
+    rank = lambda S: len(Frame([columns[j] for j in sorted(S)], p).basis)
+    intervals = []
+    for axis in (1, 2):
+        own = [j for j, a in enumerate(labels) if a[axis]]
+        other = [j for j, a in enumerate(labels) if a[3-axis]]
+        for e, f in combinations(own, 2):
+            a, b = labels[e], labels[f]
+            if a[axis] == b[axis]:
+                continue
+            u = Q(b[0]-a[0], a[axis]-b[axis])
+            if u <= 0:
+                continue
+            c = a[0]+u*a[axis]
+            C = {j for j in own if labels[j][0]+u*labels[j][axis] < c}
+            events = sorted({Q(c-labels[j][0], labels[j][3-axis]) for j in other
+                             if c > labels[j][0]})
+            bounds = [Q(0)]+events
+            samples = [(a+b)/2 for a, b in zip(bounds, bounds[1:])]+[bounds[-1]+1]
+            active = []
+            for k, t in enumerate(samples):
+                D = {j for j in other if labels[j][0]+t*labels[j][3-axis] < c}
+                S = C | D
+                r = rank(S)
+                yes = rank(S | {e}) == rank(S | {f}) == rank(S | {e, f}) == r+1
+                if yes:
+                    active.append(k)
+                # With no third element at this tie, replay the two greedy
+                # orders directly rather than inferring selection from ranks.
+                if all(labels[j][0]+u*labels[j][axis] != c for j in set(own)-{e, f}):
+                    w = [Q(1), Q(0), Q(0)]
+                    w[axis], w[3-axis] = u, t
+                    order = sorted(range(len(labels)), key=lambda j: (dot(labels[j], w), j))
+                    i, j = order.index(e), order.index(f)
+                    assert abs(i-j) == 1
+                    before = set(field_basis(order, lambda j: columns[j], p)[0])
+                    order[i], order[j] = order[j], order[i]
+                    after = set(field_basis(order, lambda j: columns[j], p)[0])
+                    assert (before != after) == yes
+                    if yes:
+                        assert before ^ after == {e, f}
+                    counts['independent_separable_exchange_swap_replays'] += 1
+                counts['independent_separable_contracted_pair_prefixes'] += 1
+            assert not active or active == list(range(active[0], active[-1]+1))
+            intervals.append({'axis': axis, 'pair': [e, f], 'fixed_price': str(u),
+                              'other_price_breakpoints': list(map(str, events)),
+                              'active_open_intervals': active})
+            counts['single_interval_separable_exchange_carriers'] += 1
+    return intervals
+
+
+def socle_model(labels, columns, p):
+    """An actual monomial downset quotient by an annihilated tip-space kernel."""
+    tips = set(labels)
+    assert len(tips) == len(labels)
+    assert all(not all(a[i] <= b[i] for i in range(3)) for a, b in permutations_pair(tips))
+    D = {b for a in tips for b in product(*(range(t+1) for t in a))}
+    core = tuple(sorted(D-tips))
+    index = {a: i for i, a in enumerate(core)}
+    tip_index = {a: j for j, a in enumerate(labels)}
+    r = len(columns)//2
+    assert columns[:r] == [{i: 1} for i in range(r)]
+    @lru_cache(None)
+    def ev(a):
+        if a in index:
+            return {index[a]: 1}
+        if a in tip_index:
+            return clean({len(core)+i: c for i, c in columns[tip_index[a]].items()}, p)
+        return {}
+    return core+tuple(labels[:r]), ev, core
+
+
+def permutations_pair(items):
+    return ((a, b) for a in items for b in items if a != b)
+
+
+def internal_axis_control(counts):
+    labels = ((4, 3, 0), (3, 4, 0), (0, 6, 0), (9, 1, 0),
+              (0, 0, 6), (9, 0, 1), (3, 0, 5), (4, 0, 4))
+    columns = [{i: 1} for i in range(4)]+[{0: 1, 1: 1}, {0: 1}, {3: 1}, {2: 1, 3: 1}]
+    minors = {b: determinant([[columns[j].get(i, 0) for j in b] for i in range(4)])
+              for b in combinations(range(8), 4)}
+    assert all(d in (-1, 0, 1) for d in minors.values())
+    integral_bases = {b for b, d in minors.items() if d}
+    assert len(integral_bases) == 25
+    counts['independent_integral_internal_tip_maximal_minors'] += len(minors)
+    cases = []
+    for p in (0, 2, 5):
+        reference, ev, core = socle_model(labels, columns, p)
+        n = len(reference)
+        assert n == 62
+        M = operators(reference, ev)
+        for U, V in combinations(M, 2):
+            for j in range(n):
+                assert apply(U, V[j], p) == apply(V, U[j], p)
+                counts['independent_internal_obstruction_commuting_columns'] += 1
+        assert all(not apply(M[1], v, p) for v in M[2])
+        ny, ey, _ = quotient(M, ev((0, 0, 0)), 2, p, counts)
+        nz, ez, _ = quotient(M, ev((0, 0, 0)), 1, p, counts)
+        Y, Z = fan(ny, ey, p, counts), fan(nz, ez, p, counts)
+        assert len(Y) == len(Z) == 1 and (ny, nz) == (32, 36)
+        assert next(iter(Y)) == frozenset(a for a in core if not a[2])
+        assert next(iter(Z)) == frozenset(a for a in core if not a[1])
+        parent = fan(n, ev, p, counts)
+        assert len(parent) == 15
+        tip_cells = {}
+        bases = [b for b in combinations(range(8), 4) if len(Frame([columns[j] for j in b], p).basis) == 4]
+        assert set(bases) == integral_bases
+        for b in bases:
+            mu = moment([labels[j] for j in b])
+            poly = list(TRIANGLE)
+            for other in bases:
+                delta = tuple(a-c for a, c in zip(moment([labels[j] for j in other]), mu))
+                if any(delta):
+                    poly = clip(poly, delta, 1)
+                if not poly:
+                    break
+            if poly and area2(poly) > 0:
+                B = frozenset(core) | {labels[j] for j in b}
+                assert B in parent and polygon_key(poly) == polygon_key(parent[B])
+                tip_cells[b] = poly
+        assert len(tip_cells) == len(parent) and sum(area2(v) for v in tip_cells.values()) == 1
+        vertex = (Q(1, 3),)*3
+        incident = [e for e in edges(parent) if vertex in e[:2]]
+        assert len(incident) == 4
+        assert all(not e[2][1] or not e[2][2] for e in incident)
+        local = []
+        for u, v in product((Q(99, 100), Q(101, 100)), repeat=2):
+            w = (1, u, v)
+            chosen = min(tip_cells, key=lambda b: dot(moment([labels[j] for j in b]), w))
+            assert all(dot(moment([labels[j] for j in b]), w) >
+                       dot(moment([labels[j] for j in chosen]), w) for b in bases if b != chosen)
+            local.append({'weight': list(map(str, w)), 'tip_basis': list(chosen)})
+        assert len({tuple(row['tip_basis']) for row in local}) == 4
+        counts['actual_internal_axis_junction_obstructions'] += 1
+        cases.append({'case_name': 'length62_pure_axis_internal_field_'+str(p),
+                      'length': n, 'characteristic': p, 'compulsory_core': core,
+                      'tip_labels': labels, 'tip_columns': columns, 'parent_initials': len(parent),
+                      'coordinate_quotient_lengths': [ny, nz], 'coordinate_quotient_initials': [1, 1],
+                      'complete_tip_basis_enumeration': len(bases), 'local_four_cone_witnesses': local,
+                      'integral_tip_maximal_minors': {str(v): sum(d == v for d in minors.values())
+                                                     for v in (-1, 0, 1)},
+                      'incident_wall_jumps': [e[2] for e in incident],
+                      'mixed_quotient_grid_incidence': 0,
+                      'separable_exchange_carriers': exchange_intervals(labels, columns, p, counts)})
+    return cases
+
+
+def growing_axis_controls(counts):
+    """Compressed exact certificates; enormous cores are specified, not enumerated."""
+    rows = []
+    for s in (1, 2, 4, 8):
+        m = 2*s
+        Q0, G = 1000*(m+1)**6, 100*(m+1)**4
+        K = 10*(Q0+G+m)
+        D = K*(m+2)
+        assert Q0 > 2*G and 2*D*(m+1) < G*Q0
+        Y, Z, extra = [], [], []
+        for i in range(1, m+1):
+            x, b = i*K, D-i*K
+            tie = [(x, b), (x+Q0+i, b-Q0)]
+            bracket = [(x, b-G), (x+Q0, b-Q0+G)]
+            yp, zp = (tie, bracket) if i <= s else (bracket, tie)
+            Y.extend((a, b, 0) for a, b in yp)
+            Z.extend((a, 0, c) for a, c in zp)
+            j = 2*(i-1)
+            extra.extend(([{j: 1, j+1: 1}, {j: 1}] if i <= s else
+                          [{j+1: 1}, {j: 1, j+1: 1}]))
+        labels = tuple(Y+Z)
+        assert all(not all(a[i] <= b[i] for i in range(3)) for a, b in permutations_pair(labels))
+        def plane_area(tips, axis):
+            previous, area = -1, 0
+            for a in sorted(tips):
+                area += (a[0]-previous)*(a[axis]+1)
+                previous = a[0]
+            return area
+        length = plane_area(Y, 1)+plane_area(Z, 2)-min(max(a[0] for a in Y), max(a[0] for a in Z))-1-2*m
+        columns = [{i: 1} for i in range(2*m)]+extra
+        cut = lambda indices: [Q(1)]+[1+Q(i, Q0) for i in indices]+[1+Q(m+1, Q0)]
+        uc, vc = cut(range(1, s+1)), cut(range(s+1, m+1))
+        us, vs = [(a+b)/2 for a, b in zip(uc, uc[1:])], [(a+b)/2 for a, b in zip(vc, vc[1:])]
+        certificates = []
+        for p in (0, 2, 5):
+            states = set()
+            for u, v in product(us, vs):
+                w, selected = (1, u, v), []
+                for i in range(m):
+                    ids = (2*i, 2*i+1, 2*m+2*i, 2*m+2*i+1)
+                    bases = [b for b in combinations(ids, 2) if len(Frame([columns[j] for j in b], p).basis) == 2]
+                    ordered = sorted(bases, key=lambda b: dot(moment([labels[j] for j in b]), w))
+                    assert dot(moment([labels[j] for j in ordered[0]]), w) < dot(moment([labels[j] for j in ordered[1]]), w)
+                    chosen = set(ordered[0])
+                    if i < s:
+                        assert 2*m+2*i in chosen and len(chosen & {2*i, 2*i+1}) == 1
+                    else:
+                        assert 2*i in chosen and len(chosen & {2*m+2*i, 2*m+2*i+1}) == 1
+                    selected.extend(ordered[0])
+                assert len(Frame([columns[j] for j in selected], p).basis) == 2*m
+                states.add(tuple(sorted(selected)))
+                counts['compressed_growing_axis_grid_cells'] += 1
+            assert len(states) == (s+1)**2
+            certificates.append({'characteristic': p, 'different_local_bases': len(states),
+                                 'pure_axis_internal_junctions': s*s})
+        rows.append({'case_name': 'compressed_axis_obstruction_s'+str(s), 'parameter_s': s,
+                     'coordinate_quotient_initials': [1, 1], 'mixed_grid_incidence': 0,
+                     'length_from_downset_telescope': length, 'Q': Q0, 'G': G, 'K': K, 'D': D,
+                     'tip_labels': labels, 'tip_columns': columns, 'field_certificates': certificates,
+                     'scope': 'Compressed socle-matroid and antichain certificate for the proved algebra family; '
+                              'the huge compulsory monomial core is not enumerated and no full large algebra fan is claimed.'})
+    return rows
+
+
 def energy(cells, w):
     return min(dot(moment(B), w) for B in cells)
 
@@ -360,6 +573,8 @@ def inspect(name, reference, ev, p, counts):
 def main():
     counts, cases, counter = Counter(), [], []
     abstract = abstract_controls(counts)
+    internal = internal_axis_control(counts)
+    growing_axis = growing_axis_controls(counts)
     for p in (0, 2, 5):
         for N in (3, 5, 8):
             reference, ev = counter_model(N, p)
@@ -400,6 +615,8 @@ def main():
            'scope': 'Global coordinate shadows, bounded residual potential and mixed-grid incidence for yz=0. '
                     'No unrestricted count improvement or novelty claim. Classical greedy exchange is an input.',
            'abstract_matroids': abstract, 'actual_quotients': cases,
+           'pure_axis_internal_junction_obstructions': internal,
+           'compressed_growing_axis_obstructions': growing_axis,
            'uniform_nonconcavity_counterfamily': counter, 'counters': dict(counts),
            'source_sha256': {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
                              for p in sorted(paths)},

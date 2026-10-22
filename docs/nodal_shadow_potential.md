@@ -295,3 +295,147 @@ scale by a polynomial factor. Neither a coordinate-shadow estimate,
 a small boundary-incidence estimate, nor the existence of the potential
 settles that requirement. No new unrestricted count, lower separation,
 novelty conclusion or completed paper is claimed here.
+
+## Internal junctions need a second count: a verified failed route
+
+The next test rules out bounding all internal junctions by (12). A
+junction can have only vertical and horizontal incident walls, while
+both coordinate quotients have one fixed monomial initial ideal.
+The issue is not just that the mixed-wall bound has a loose constant.
+
+First, the classical single-interval exchange test extends to two
+separable prices. Suppose one group has costs $a_e+b_eu$ and the
+other has costs $c_f+d_fv$, with $d_f>0$. Fix a first-group tie
+at $u=u_0$, with common cost $c$, and a fixed prefix $C$ of the
+other first-group elements. Set
+
+$$
+                 D(v)=\{f:c_f+d_fv<c\}.
+$$
+
+As $v$ increases these sets shrink in a fixed nested order. The tied
+pair exchanges under adjacent greedy reversal exactly when it is
+nonloop parallel in $M/(C\cup D(v))$. In the opposite direction,
+contraction only decreases ranks: once the pair is nonloop parallel,
+it stays parallel until both become loops. If just one element has
+become a loop, it cannot return. Thus eligibility is one interval,
+possibly empty. No equality of the $d_f$ is needed. This is the same
+elementary rank argument used in the
+[two-colour threshold proof](two_colour_threshold_braids.md), not a
+new exchange theorem. It applies to one specified pair and prefix;
+different pairs on one primitive wall direction are not identified.
+
+The interval property does not prevent a vertical exchange segment
+from crossing a horizontal exchange segment at different cost levels.
+Here is an actual algebra showing this, over **every** field.
+
+Take these eight maximal monomials and their prescribed residue columns:
+
+| Monomial | Column |
+| --- | --- |
+| $x^4y^3$ | $e_1$ |
+| $x^3y^4$ | $e_2$ |
+| $y^6$ | $e_3$ |
+| $x^9y$ | $e_4$ |
+| $z^6$ | $e_1+e_2$ |
+| $x^9z$ | $e_1$ |
+| $x^3z^5$ | $e_4$ |
+| $x^4z^4$ | $e_3+e_4$ |
+
+They are an antichain under divisibility. Let $D$ be the union of
+their divisor boxes and let $H$ be the monomial algebra with standard
+set $D$. Its length is $36+40-10=66$. All eight tip monomials are
+killed by $x,y,z$. Any linear subspace of their span is therefore an
+algebra ideal. Quotient by the kernel of the displayed rank-four
+column map. This gives a cyclic commutative algebra $A$ of length
+$62$, with $yz=0$. All $58$ proper-divisor columns are compulsory
+in every monomial basis; the remaining choice is exactly the
+rank-four tip matroid.
+
+Both sets of four tip columns, the $Y$ set and the $Z$ set, are
+bases of the same four-dimensional space. Killing either coordinate
+therefore kills that entire tip space and its own branch's
+positive-coordinate core. Both actual coordinate quotients are
+monomial algebras. Their lengths are $32,36$, and $p_Y=p_Z=1$.
+
+Set $w=(1,u,v)$. On $99/100<u,v<101/100$, the minimum tip cost is
+
+$$
+ 6v+\min(4+3u,3+4u)+6u+\min(3+5v,4+4v).                \tag{15}
+$$
+
+Indeed the first two columns and the first two $Z$ columns form a
+rank-two direct summand. Its cheap column is $z^6$, and either
+$Y$ column completes it; $x^9z$ is too expensive. The other summand
+has cheap column $y^6$, and either of its $Z$ columns completes it;
+$x^9y$ is too expensive. These assertions use determinants $\pm1$,
+so they hold in every characteristic.
+
+Equation (15) has four strict regions meeting at $(u,v)=(1,1)$.
+The four incident walls are all axis walls. There is no mixed wall
+in this neighbourhood. Since the quotient grid is empty, (12) is
+zero, yet the parent has an internal four-cone junction. The complete
+tip matroid has $25$ bases: each summand has the five pairs other
+than its one parallel pair. Exact all-basis halfplane intersection
+recovers $15$ positive parent cones and agrees with independent
+full-algebra border traversal. This is a proof obstruction, not a
+large-fan construction.
+
+### An unbounded version of the obstruction
+
+For every $s\ge1$, the same mechanism gives both $p_Y=p_Z=1$ and
+at least $s^2$ pure-axis internal junctions in one open price box.
+The following deliberately generous integer scales give an explicit
+construction. Put $m=2s$ and
+
+$$
+ Q=1000(m+1)^6,\quad G=100(m+1)^4,\quad
+ K=10(Q+G+m),\quad D=K(m+2).
+$$
+
+For block $1\le i\le m$, put $a_i=iK$, $b_i=D-iK$. Define two
+pairs of planar labels:
+
+$$
+ T_i=((a_i,b_i),(a_i+Q+i,b_i-Q)),\qquad
+ R_i=((a_i,b_i-G),(a_i+Q,b_i-Q+G)).                       \tag{16}
+$$
+
+For $i\le s$, use $T_i$ in the $Y$ plane and $R_i$ in the $Z$
+plane. Give the two $Y$ tips columns $e_{2i-1},e_{2i}$ and the
+two $Z$ tips columns $e_{2i-1}+e_{2i},e_{2i-1}$. For $i>s$,
+use $R_i$ in $Y$ and $T_i$ in $Z$, with $Y$ columns
+$e_{2i-1},e_{2i}$ and $Z$ columns
+$e_{2i},e_{2i-1}+e_{2i}$. Different blocks are direct summands.
+
+All these tips are positive in their branch coordinate. Within a
+plane, increasing $x$ strictly decreases the other exponent: the
+block spacing exceeds every local displacement. They are therefore
+one antichain. Form the divisor algebra and the annihilated tip-space
+quotient as above. Its common tip rank is $2m$, both actual coordinate
+quotients are monomial, and the construction works over every field.
+
+On the box $1<u,v<1+(m+1)/Q$, the two $T_i$ costs lie between
+$D$ and $D+G$. The first $R_i$ cost is below $D$ and the second
+is at least $D+G$. The inequalities follow from
+$Q>2G$ and $D(m+1)/Q<G/2$, with $m<G/2$.
+Thus every vertical block selects its cheap $Z$ tip and the cheaper
+of its two $Y$ tips. Its only wall in the box is
+$u=1+i/Q$. Every horizontal block selects its cheap $Y$ tip and
+the cheaper $Z$ tip, with only wall $v=1+i/Q$.
+The box consequently contains exactly $(s+1)^2$ parent regions and
+$s^2$ pure-axis junctions, with no incident mixed edges there.
+
+The report supplies compressed antichain, downset-length and direct
+summand certificates for this family. It does not enumerate the huge
+compulsory cores of the growing examples. The small length-$62$
+example is separately checked as a full commuting algebra. These
+inefficient exponents are only an obstruction to a proposed proof;
+they give no polynomial separation above the generic scale.
+
+The next obligation is therefore a joint count of axis-axis and
+mixed junctions. A bound solely on mixed curvature, mixed-wall
+boundary incidence, or single exchange eligibility intervals cannot
+replace that count. The original extremal target remains unchanged.
+In particular this does not refute a possible bound with an additional
+$O(n^2)$ term; it identifies a contribution that such a proof must cover.
