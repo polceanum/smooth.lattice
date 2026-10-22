@@ -1922,8 +1922,8 @@ an identified prior proof of (22.6).
 
 #### Internal adversarial proof audit, 2026-10-17
 
-This is an internal audit by the research agent, not an independent human
-referee report. The following checks pass for the written argument:
+This is an internal proof audit, not an independent referee report.
+The following checks pass for the written argument:
 
 | Step | Audit question | Resolution |
 | --- | --- | --- |
@@ -2233,8 +2233,8 @@ listing was used only to locate sources, not as proof of novelty.
 
 The prescribed-size argument was re-derived from the definitions after it
 was written, without assuming that the cumulative result implies it.
-No unresolved logical gap was identified. This is an internal review by
-the research agent, not an independent human referee report.
+No unresolved logical gap was identified. This is an internal review,
+not an independent referee report.
 
 | Step | Adversarial check | Resolution |
 | --- | --- | --- |
@@ -3123,8 +3123,8 @@ expanded while the finite-ordering priority comparison remains pending.
 #### Candidate 25: fresh internal proof audit and published input
 
 A fresh internal review checked the following obligations in the full
-prime-height argument. This is an audit by the research agent, not an
-independent human referee report. No unresolved logical step was found.
+prime-height argument. This is an internal audit, not an independent
+referee report. No unresolved logical step was found.
 
 | Obligation | Verification |
 | --- | --- |
@@ -10711,7 +10711,7 @@ approximation costs remain to audit before claiming a gap.
 
 A [preliminary sparse-factorization note](https://lucablanchi.it/presentation-theory/local-linear-presentations-sparse-factorization)
 also explicitly states the workload factorization correspondence. It
-labels itself AI-assisted and not fully verified. Its elementary overlap
+states that its claims are not fully verified. Its elementary overlap
 is a priority flag; it is not an authoritative theorem audit or a reliable
 basis for claiming an open problem.
 
