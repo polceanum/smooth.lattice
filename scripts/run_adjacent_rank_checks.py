@@ -5,7 +5,7 @@ from fractions import Fraction as Q
 from functools import lru_cache
 from heapq import heappop, heappush
 from itertools import combinations, product
-from math import comb, gcd
+from math import comb, gcd, isqrt
 from pathlib import Path
 import hashlib
 import json
@@ -651,6 +651,134 @@ def ideal_flag_controls():
             'scope': 'Actual polynomial quotient actions and border identities, not arbitrary matroid data. Finite controls support the uniform socle and ideal-flag proofs; no unrestricted count follows.'}
 
 
+def budget_comparison_controls():
+    """Primitive edge budgets and a uniform fixed-fan core-length guard."""
+    from run_canonical_fan_deflation_checks import (common_factor, evaluate_polynomial,
+                                                   marked_basis)
+    from run_coordinate_slice_budget_checks import edges_from_polygons, profile
+    from run_initial_cone_height_checks import integer_ray
+    from run_initial_fan_padding_checks import full_fan, generic_model
+    from run_primitive_wall_checks import divisors, threshold
+    from run_projection_tag_checks import fan, point_model, polygon_key
+    counts=defaultdict(int)
+    directions=[q for q in product(range(-3,4),repeat=3)
+                if min(q)<0<max(q) and gcd(*q)==1 and next(x for x in q if x)>0]
+    for q,r in combinations(directions,2):
+        a,b=sum(map(abs,q)),sum(map(abs,r))
+        c=cross(q,r)
+        assert max(map(abs,c))<=(a-1)*(b-1)
+        counts['independent_mixed_integer_cross_product_inequalities']+=1
+        if min(c)>0 or max(c)<0:
+            w=primitive(c)
+            H=max(map(abs,w))
+            assert 2*(isqrt(H-1)+1)<=a+b
+            counts['positive_primitive_ray_rounding_inequalities']+=1
+
+    def budgets(cells):
+        edges=edges_from_polygons(cells,counts)
+        directions={edge:primitive(tuple(x-y for x,y in zip(profile(B),profile(C))))
+                    for edge in edges for B,C in [tuple(edge)]}
+        W=sum(sum(map(abs,q)) for q in directions.values())
+        V=sum(threshold(q) for q in directions.values())
+        rays={integer_ray(v) for poly in cells.values() for v in poly if min(v)>0}
+        U=0
+        for w in rays:
+            point=tuple(Q(x,sum(w)) for x in w)
+            incident={B for B,poly in cells.items() if point in poly}
+            local_edges=[edge for edge in edges if set(edge)<=incident]
+            assert len(local_edges)==len(incident)>=3
+            local_U=(isqrt(max(w)-1)+1)*len(incident)
+            assert local_U<=sum(sum(map(abs,directions[e])) for e in local_edges)
+            counts['whole_local_polygon_incidence_length_inequalities']+=1
+            U+=local_U
+        assert U<=2*W<=2*V
+        counts['whole_fan_incidence_length_cost_inequalities']+=1
+        return {'U':U,'W':W,'V':V,'interior_rays':len(rays),'walls':len(edges)}
+
+    expected=[]
+    for order in ((2,None),(1,(2,0)),(1,(0,2)),(0,(2,1)),(0,(1,2))):
+        top,rest=order
+        pairs=[(top,i) for i in range(3) if i!=top] if rest is None else [(top,rest[0]),rest]
+        poly=list(TRIANGLE)
+        for i,j in pairs:
+            poly=clip(poly,tuple(int(k==i)-int(k==j) for k in range(3)),1)
+        expected.append(polygon_key(poly))
+    expected=set(expected)
+    family=[]
+    for k in range(2,13):
+        @lru_cache(None)
+        def ev(a):
+            e,b,c=a
+            if e>=2:return {}
+            return {(e+j)*k+b+c-j:comb(c,j) for j in range(min(c,1-e)+1)
+                    if b+c-j<k}
+        cells=fan(2*k,ev,0,counts)
+        assert len(cells)==5 and {polygon_key(P) for P in cells.values()}==expected
+        assert all(common_factor(marked_basis(B,ev,0)[0])==(0,0,0) for B in cells)
+        row=budgets(cells)
+        assert row=={'U':5,'W':10,'V':10,'interior_rays':1,'walls':5}
+        # Independent explicit standard sets and reduced head complements.
+        standards=[{(a,b,0) for a in range(2) for b in range(k)},
+                   {(a,0,b) for a in range(2) for b in range(k)},
+                   {(0,0,b) for b in range(k+1)}|{(1,0,b) for b in range(k-1)},
+                   {(0,a,b) for a in range(k) for b in range(2)},
+                   {(0,0,b) for b in range(k+1)}|{(0,1,b) for b in range(k-1)}]
+        assert set(cells)=={frozenset(B) for B in standards}
+        counts['uniform_five_cone_explicit_standard_set_equalities']+=5
+        @lru_cache(None)
+        def translated(a):
+            e,b,c=a
+            if e>=2:return {}
+            return {(e+i)*k+b+j:comb(c,i)*comb(c-i,j)
+                    for i in range(min(c,1-e)+1)
+                    for j in range(min(c-i,k-b-1)+1)}
+        shifted=fan(2*k,translated,0,counts)
+        assert set(shifted)==set(cells)
+        assert all(polygon_key(shifted[B])==polygon_key(cells[B]) for B in cells)
+        assert budgets(shifted)=={'U':5,'W':10,'V':10,'interior_rays':1,'walls':5}
+        for B in shifted:
+            G,_=marked_basis(B,translated,0)
+            top=[{a:c for a,c in g.items() if sum(a)==max(map(sum,g))} for g in G]
+            assert common_factor(top)==(0,0,0)
+            assert all(not evaluate_polynomial(g,ev,0) for g in top)
+            counts['translated_full_dimension_positive_initial_basis_checks']+=1
+        ordinary=standards[0]-{(0,0,0)}|{(0,0,1)}
+        assert len(field_basis(sorted(ordinary),translated,0)[0])==2*k
+        graded_profiles=[profile(B) for B in cells]
+        assert len({sum(a) for a in graded_profiles})==1
+        assert sum(profile(ordinary))==sum(graded_profiles[0])+1
+        assert rank([tuple(x-y for x,y in zip(a,graded_profiles[0]))
+                     for a in graded_profiles]+[tuple(x-y for x,y in
+                         zip(profile(ordinary),graded_profiles[0]))])==3
+        row.update(k=k,length=2*k,local_factor=(0,0,0),local_core_length=2*k,M=10*k,
+                   translated_full_profile_dimension=3,
+                   translated_full_fan_equal=True,
+                   standard_sets=[sorted(B) for B in standards],
+                   common_full_fan_polygons=[[[str(c) for c in v] for v in P]
+                                            for P in sorted(expected)])
+        family.append(row)
+
+    radicals=[]
+    for n in range(3,8):
+        points=tuple((j,j*j+j,j*j*j+2*j) for j in range(1,n+1))
+        _,ev=point_model(points,0)
+        cells=fan(n,ev,0,counts)
+        radicals.append(dict(budgets(cells),length=n,points=points,initial_ideals=len(cells)))
+    relaxation=[]
+    for k,p in product((2,3,5),(0,2)):
+        u,v=(k,k,0),(0,0,k+1)
+        D=set(divisors(u))|set(divisors(v))
+        model=generic_model(D,{u,v},[{u:1,v:-1}],p)
+        cells=full_fan(model,counts);row=budgets(cells)
+        assert len(cells)==2 and row['W']==3*k+1 and row['V']==k*k+3*k+1
+        assert model['n']==row['V']
+        row.update(k=k,characteristic=p,length=model['n'],primitive_direction=(k,k,-k-1))
+        relaxation.append(row)
+    return {'counts':dict(counts),'fixed_five_cone_core_inflation':family,
+            'radical_complete_fan_controls':radicals,'single_wall_length_cost_separation':relaxation,
+            'scope':'Uniform elementary comparison U<=2W<=2V, and a verified infinite proof-route guard against replacing U or W by exact local core length. No cubic aggregate or unrestricted exponent follows.'}
+
+
 def main():
     if not __debug__:
         raise RuntimeError('Exact assertions must be enabled.')
@@ -659,17 +787,23 @@ def main():
     groups = group_controls()
     tensor = tensor_controls()
     flags = ideal_flag_controls()
+    budgets = budget_comparison_controls()
     sources = ('docs/adjacent_rank_fans.md', 'scripts/run_adjacent_rank_checks.py',
                'docs/rational_shadow_bound.md', 'docs/profile_lattice_bound.md',
                'docs/interleaving_research.md',
                'docs/oracle_fan_enumeration.md', 'scripts/run_oracle_enumeration_checks.py',
                'scripts/run_interleaving_research.py', 'scripts/run_structural_complexity_checks.py',
-               'scripts/run_signed_face_checks.py')
+               'scripts/run_signed_face_checks.py',
+               'docs/canonical_fan_deflation.md','scripts/run_canonical_fan_deflation_checks.py',
+               'scripts/run_coordinate_slice_budget_checks.py','scripts/run_initial_cone_height_checks.py',
+               'scripts/run_initial_fan_padding_checks.py','scripts/run_primitive_wall_checks.py',
+               'scripts/run_projection_tag_checks.py')
     report = {'status': 'passed', 'command': 'python3 -B scripts/run_adjacent_rank_checks.py',
               'matroid_adjacent_faces': matroids, 'finite_group_gap_fans': groups,
               'elementary_linear_quotients': quotients,
               'prime_digit_tensor_counts': tensor,
               'actual_ideal_flags': flags,
+              'incidence_primitive_length_and_local_core_budgets': budgets,
               'uniform_results': {
                   'adjacent_exposed_direction_spaces': 'Nested for every cost and every linear projection; inclusion reverses according as the last greedy rank increment is one or at least two.',
                   'elementary_quotient_exposed_direction_spaces': 'Nested for every actual one-dimensional linear quotient. Only the cost layer where the removed line first enters the prefix span changes; single-component support refines that component, multiple-component support merges components.',
@@ -692,7 +826,8 @@ def main():
     (ROOT/'results/research/adjacent_rank_checks.json').write_text(json.dumps(report, indent=2)+'\n')
     print(json.dumps({'matroid': matroids['counts'], 'quotients': quotients['counts'],
                       'groups': groups['counts'], 'tensor': tensor,
-                      'actual_ideal_flags': flags['counts']}, indent=2))
+                      'actual_ideal_flags': flags['counts'],
+                      'incidence_budget_comparisons':budgets['counts']}, indent=2))
 
 
 if __name__ == '__main__':

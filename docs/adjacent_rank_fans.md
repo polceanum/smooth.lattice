@@ -557,6 +557,157 @@ refutation of the cubic question. No proof of the question is supplied.
 A useful composition-series argument must control this weighted sum,
 or give a comparably strong direct cell count, across all layers.
 
+## Comparing incidence, primitive length and local algebra cores
+
+The proposed square-root incidence should not be replaced by a larger
+quantity without checking the loss. For the actual undirected walls put
+\[
+ W(I)=\sum_e\|q_e\|_1,\qquad
+ V(I)=\sum_e\nu(q_e).
+\]
+The primitive mixed direction is counted once per wall piece. Then
+\[
+                         U(I)\le2W(I)\le2V(I).          \tag{A12}
+\]
+These are elementary comparisons, not a proof of a cubic budget or a new
+unrestricted exponent.
+
+Here is a proof retaining the primitive lattice information. If integer
+vectors \(q,r\) each have both signs, and \(a=\|q\|_1,b=\|r\|_1\),
+then every coordinate of their cross product has magnitude at most
+\[
+                         (a-1)(b-1).                   \tag{A13}
+\]
+For a two-by-two determinant whose two product terms have the same sign,
+its magnitude is at most the larger product. Every coordinate of a mixed
+integer vector has magnitude at most its one-norm minus one. If the two
+products have opposite signs, one of the selected coordinate pairs has
+the same sign. That vector has an opposite-sign coordinate outside the
+pair, so the sum of the pair's magnitudes is at most its one-norm minus
+one. Bound each coordinate of the other vector separately. This proves
+(A13), including zero coordinates.
+
+At a compact positive state face with primitive normal \(w\), list its
+primitive edge directions cyclically as \(q_1,\ldots,q_d\). Consecutive
+directions are independent, and their integer cross product is a nonzero
+integer multiple of \(w\). Set \(H=\|w\|_\infty\). By (A13),
+\[
+ \left\lceil\sqrt H\right\rceil
+ \le\left\lceil\sqrt{(\|q_i\|_1-1)(\|q_{i+1}\|_1-1)}\right\rceil
+ \le\frac{\|q_i\|_1+\|q_{i+1}\|_1}{2}.
+\]
+The last inequality uses arithmetic-geometric means and
+\(\lceil t\rceil\le t+1\). Summing cyclically bounds this face's
+contribution to \(U\) by its total primitive one-norm. A wall has at
+most two interior endpoints in the positive weight simplex, hence at
+most two such face incidences. This proves the first part of (A12).
+Finally \(\nu(q)\ge\|q\|_1\), by expanding the two divisor products,
+which proves the second part. The proof also applies when the compact
+two-face is the whole lower-dimensional profile polygon.
+
+For comparison, one can form an actual algebra core for each such face.
+Take \(J_w=\operatorname{in}_w I\), take the canonical monomial factor
+\(f_w\) of its reduced nonmonomial relations, and let
+\[
+ m_w=\dim_K R/(J_w:f_w),\qquad
+                         M(I)=\sum_w m_wd(w).            \tag{A14}
+\]
+The initial-ideal step is classical:
+[Fukuda--Jensen--Thomas, Lemma 2.13 and Corollary 2.14](https://arxiv.org/pdf/math/0509544)
+give its reduced basis from the top parts of any adjacent marked basis.
+The finite perturbation identity identifies its standard sets with the
+original face's incident sets. Applying the
+[canonical deflation](canonical_fan_deflation.md) then preserves the
+whole local polygon up to fixed profile translation. This is an actual
+colon algebra; no arbitrary common vector span is used as a quotient.
+
+The resulting comparisons are
+\[
+ M(I)\le nW(I),\qquad
+ V(I)\le M(I)+O(n^{8/3}\log(n+1)).                       \tag{A15}
+\]
+For the first, \(m_w\le n\), and summing interior vertex degrees counts
+each wall at most twice. Also \(W\ge2|\mathcal E(I)|\). For the
+second, every wall touching an interior vertex \(w\) is realized in
+that local colon, so its threshold \(\nu(q_e)\le m_w\). Assign each
+such wall to one endpoint and sum. Every other wall has both endpoints
+on the simplex boundary, so both adjacent cells are boundary-adjacent.
+Their simple planar adjacency graph has linearly many edges. The existing
+[boundary-cell bound](weighted_facet_incidence.md#three-planes-cover-every-boundary-cell)
+is \(O(n^{5/3}\log(n+1))\); multiplying by the maximum cost \(n\)
+gives the remainder in (A15).
+
+Consequently a cubic-polylog budget for \(M\) would imply the already
+conditional \(12/5\) exponent through \(V\), not only the weaker
+\(33/13\) consequence through \(U\). But it is a stronger requirement
+than a \(V\) budget, and can overcount badly even when the fan is fixed.
+
+### A sharp linear loss from retaining local core length
+
+Over characteristic zero, for every \(k\ge2\), let
+\[
+             I_k=(x^2,y^k,z-x-y),\qquad n=2k.             \tag{A16}
+\]
+The quotient is \(K[x,y]/(x^2,y^k)\). Its entire positive fan is
+independent of \(k\) and has five cones. The following table lists the
+other minimal heads after eliminating the largest variable.
+
+| Largest variable | Remaining comparison | Other heads |
+|---|---|---|
+| \(z\) | either | \(x^2,y^k\) |
+| \(y\) | \(z>x\) | \(x^2,z^k\) |
+| \(y\) | \(x>z\) | \(x^2,xz^{k-1},z^{k+1}\) |
+| \(x\) | \(z>y\) | \(y^k,z^2\) |
+| \(x\) | \(y>z\) | \(y^2,yz^{k-1},z^{k+1}\) |
+
+For \(y\) largest, use
+\((z-x)^k\equiv z^k-kxz^{k-1}\pmod{x^2}\).
+For \(x\) largest, use \((z-y)^2\) and
+\(kyz^{k-1}-(k-1)z^k\). In all cases \(z^{k+1}\in I_k\), since
+\((x+y)^{k+1}\in(x^2,y^k)\). The listed head ideals have colength
+\(2k\), so inclusion proves equality with the initial ideals. Once a
+variable is eliminated, all remaining relations are homogeneous in two
+variables, where comparing the variables determines every comparison
+in a fixed degree. This proves completeness for all global orders.
+
+All five cones meet at the unique interior ray \((1,1,1)\). All five
+walls have primitive one-norm and threshold two. The essential linear
+relation has gcd one; at that ray \(J_w=I_k\) and \(m_w=n\). Thus
+\[
+       U(I_k)=5,\quad W(I_k)=V(I_k)=10,\quad M(I_k)=5n.   \tag{A17}
+\]
+The factor \(n\) in (A15) is therefore sharp in order. No uniform
+polylogarithmic comparison \(M=O(W\operatorname{polylog}n)\), or
+\(M=O(U\operatorname{polylog}n)\), is possible. These examples do not
+refute a cubic \(M\) bound; their fan is constant. They show why retaining
+the exact local profile polygon can be unnecessarily expensive when the
+target counts cones and primitive directions.
+
+The loss also occurs with a full-dimensional original basis-profile
+polytope. Replace the last relation in (A16) by \(z-x-y-1\).
+Translation preserves all global initial ideals: each extra term of a
+translated monomial is a proper divisor. At \(w=(1,1,1)\) its initial
+ideal is the original \(I_k\), so (A17) is unchanged. In its ordinary
+vector basis, replacing \(1\) by \(z=1+x+y\) is invertible and moves
+the profile off the common plane of standard-set moments. The latter
+span a polygon, so the enlarged basis-profile polytope is three-dimensional.
+This guards against dismissing the example merely because the unshifted
+presentation is positively graded.
+
+The next direct target is the **unproved** budget
+\(W(I)=O(n^3\log^C(n+1))\). By (A12) it suffices for (A11)'s
+\(33/13\) consequence, while a \(V\) budget would give the stronger
+\(12/5\) consequence. Neither follows from these comparisons. The known
+three-pole \(U=\Omega(n^3)\) family forces the same cubic lower scale
+for \(W\). Also the minimum-length single-wall ideals of direction
+\((k,k,-k-1)\) have \(V=k^2+3k+1\) but \(W=3k+1\), so replacing
+\(V\) by primitive length is a genuine relaxation. The state-polyhedron
+dictionary remains the established
+[Babson--Onn--Thomas, Theorem 2.4](https://arxiv.org/pdf/math/0207135).
+The determinant comparison and five-cone computation are elementary;
+exact priority is unassessed and no paper or new extremal exponent is
+claimed from this route audit.
+
 ~~~bash
 python3 -B scripts/run_adjacent_rank_checks.py
 ./build.sh
