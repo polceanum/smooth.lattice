@@ -26,8 +26,9 @@ family at growing thickness, including \(a=t^2+1\).
 The proof adds a degree uncertainty estimate to the
 [central-only wall reduction](hook_central_skeleton.md). It confines
 every remaining large-product direction to a diagonal strip of width
-\(O(t)\). This improves the previous \(O(n^{3/2}a)\) ceiling on the
-stated open locus. It does not bound the prefix-degenerate strata or
+\(O(t)\). For \(a=t^2+1\), this improves the previous
+\(O(n^{3/2}a)\) ceiling on the stated open locus. Retain that box bound
+whenever it is smaller. The theorem does not bound the prefix-degenerate strata or
 unrestricted \(G_3\), and does not establish exact priority.
 
 ## Prefix minors forbid simultaneous low degrees
