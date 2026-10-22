@@ -708,6 +708,268 @@ The determinant comparison and five-cone computation are elementary;
 exact priority is unassessed and no paper or new extremal exponent is
 claimed from this route audit.
 
+## Opposite support faces retain the parent in one elementary quotient
+
+The direction-space nesting in Theorem 2 has a stronger geometric form,
+and extends beyond represented matroids. Let \(\mathcal N\) be an
+elementary matroid quotient of \(\mathcal M\) on the same ground.
+Equivalently \(\delta(A)=r_{\mathcal M}(A)-r_{\mathcal N}(A)\)
+is nondecreasing under inclusion, with \(\delta(E)=1\).
+This is the standard quotient criterion, for example
+[Chen--Fei--Gao--Sun--Zhang, Proposition 2.8](https://alco.centre-mersenne.org/item/10.5802/alco.475.pdf).
+Use the same profile notation and fix an arbitrary cost \(w\). Suppose
+\(D_{\mathcal M}(w)\) is properly contained in
+\(D_{\mathcal N}(w)\). Let \(\lambda\) be a linear functional that
+annihilates \(D_{\mathcal M}(w)\) and is nonconstant on
+\(F_{\mathcal N}(w)\). Write \(F^-\) and \(F^+\) for the
+minimum and maximum \(\lambda\)-faces of that child face.
+
+**Theorem 3.** There exists a translation \(t\) such that
+\[
+             F_{\mathcal M}(w)+t\ \subseteq\ F^-+F^+.    \tag{A18}
+\]
+This needs no field representation and allows arbitrary real labels and
+linear projections. The two support faces can have smaller dimensions than the
+parent face; neither is asserted to contain the parent by itself.
+
+Here is the exact component description behind the assertion. At the
+unique cost level where the prefix rank deficit \(\delta\) changes from
+zero to one, let \(K\) and \(L\) be the parent and child greedy
+minors. The rank criterion shows that \(L\) is an elementary quotient
+of \(K\); all other level minors coincide. Decompose \(K\) into
+connected components on grounds \(C_i\). Put
+\[
+ S=\{j:r_L(E'\setminus C_j)=r_K(E'\setminus C_j)\},
+ \qquad L_j=(L/(E'\setminus C_j))|C_j,
+\]
+where \(E'\) is the critical minor's ground. For \(j\in S\), the
+matroid \(L_j\) has rank \(r_K(C_j)-1\). Let \(P_i\) be the
+projected basis polytope of \(K|C_i\), \(Q_j\) that of \(L_j\), and
+\(P_0\) the sum of the unchanged cost-level factors. Then
+\[
+ \begin{split}
+ F_{\mathcal M}(w)&=P_0+\sum_iP_i,\\
+ F_{\mathcal N}(w)&=P_0+
+    \operatorname{conv}\!\bigcup_{j\in S}
+              \left(Q_j+\sum_{i\ne j}P_i\right).        \tag{A19}
+ \end{split}
+\]
+Indeed a child basis is independent in the parent and has one fewer
+element. Exactly one old component loses one rank, say \(j\).
+Its other elements form a full basis outside \(C_j\), forcing \(j\in S\).
+The parent and child restrictions outside \(C_j\) are equal: they are
+quotients with the same rank. Contracting that common basis leaves exactly
+\(L_j\). Thus all other components choose arbitrary full bases and
+component \(j\) chooses a basis of \(L_j\), and conversely these
+choices always give a child basis. This proves (A19). In the represented
+case, \(S\) is exactly the support of the removed vector in the old
+component spans. Neither genericity nor principal truncation is assumed.
+
+This also proves the abstract extension of Theorem 2. If \(S\) has one
+element, the child component partition refines the old one. If \(|S|\ge2\),
+the child restriction to each \(C_i\) has the same rank as the parent
+restriction: otherwise a deficit on \(C_i\) would force \(S\subseteq\{i\}\).
+Hence all these restrictions agree, all old circuits remain circuits, and
+the component partition coarsens. The direction-space proof therefore
+applies without representation as well.
+
+Put \(L=D_{\mathcal M}(w)\). Each connected component's label
+differences lie in \(L\), by the connected-component direction-space
+description used in Theorem 2. Consequently \(\lambda\) is constant
+on every \(P_i\), \(Q_j\) and \(P_0\). The summands indexed by
+\(j\) in (A19) occupy parallel affine copies of \(L\). Choose indices
+\(a,b\in S\) at the two different extreme \(\lambda\)-levels.
+Then \(a\ne b\), and
+\[
+ \begin{split}
+ F^-+F^+
+ &\supseteq 2P_0+Q_a+Q_b+
+                 \sum_{i\ne a}P_i+\sum_{i\ne b}P_i\\
+ &=F_{\mathcal M}(w)+
+          \left(P_0+Q_a+Q_b+\sum_{i\ne a,b}P_i\right).
+ \end{split}
+\]
+The last parenthesized polytope is nonempty. Choose any one of its
+points as \(t\), proving (A18).
+
+### A parallel edge and a sharp summed lattice-length bound
+
+In three dimensions suppose the parent minimizing face is an edge and
+the child minimizing face is two-dimensional. Choose \(\lambda\) on
+the child's plane perpendicular to the parent edge. Its opposite
+support faces are points or edges parallel to that edge. Hence the child
+has at least one parallel edge, and the sum of the lengths of those
+parallel edges is at least the parent edge length. For integral labels
+and primitive parent direction \(q\), this is the exact integer claim
+\[
+       \sum_{e\text{ child edge},\ e\parallel q}\ell_q(e)
+                     \ \ge\ \ell_q(F_{\mathcal M}(w)),   \tag{A20}
+\]
+where \(\ell_q\) is the positive multiple of \(q\) in the edge
+vector. There are at most two parallel edges in the child polygon.
+This strengthens direction-space nesting: the old direction occurs on
+the child polygon's boundary, with the stated total length. It gives
+no upper bound on the new nonparallel edges or their number of births.
+
+Both one and two inherited edges are necessary, and the bound is sharp
+in actual polynomial ideals over every field. Fix \(t\ge1\), use the
+monomial ideal complementary to the divisor downset of the displayed
+tips, and impose the listed relations in its socle.
+
+* For tips \(a=x^t,b=y^t,c=z^t\), the parent has the relation
+  \(a-b\) and the child also has \(a-c\). Their lengths are
+  \(3t,3t-1\). At \(w=(1,1,1)\), the parent edge has lattice
+  length \(t\) in direction \((1,-1,0)\). The child triangle has
+  just one parallel edge, also of length \(t\).
+* For tips \(a=x^{2t},b=x^ty^t,c=x^tz^t,d=y^tz^t\), the parent
+  relations are \(a-b,c-d\), and the child relations identify all four
+  tips. Their lengths are \(3t^2+4t-1,3t^2+4t-2\). The parent
+  edge has lattice length \(2t\), while the child parallelogram has
+  two parallel edges of length \(t\) each. Thus neither individual
+  edge need be as long as the parent edge.
+
+The hypothesis of one removed dimension cannot be dropped. Instead take
+\(a=x^tz^t,b=y^tz^t,c=z^{2t},d=x^ty^t\). Impose just \(a-b\)
+in the parent and identify all four tips in the child. The lengths are
+\(3t^2+4t,3t^2+4t-2\), so this removes two dimensions. At the same
+weight the parent edge has direction \((1,-1,0)\), while the child
+parallelogram has only directions \((1,0,-1)\) and \((0,1,-1)\).
+It has no parallel edge. The functional \((1,1,-2)\) exposes single
+points at both extremes, so even (A18) fails. All tips in these examples
+are distinct maximal monomials, and the relation coefficients are units;
+this proves the assertions in every characteristic. Their complete fans
+have respectively \((2,3),(2,4),(2,4)\) cells. None is a large-fan
+construction.
+
+There is also a higher-dimensional scope issue in (A18). Two parallel
+classes labelled by the segments
+\([(0,0,0),(t,0,0)]\) and \([(0,0,h),(0,s,h)]\), with
+\(t,s,h>0\), give a planar parent parallelogram. Quotienting their
+two column lines by the sum vector gives a child tetrahedron. At cost
+zero its two extreme \(z\)-faces are segments, and their Minkowski
+sum equals the parent parallelogram. There is no parallel planar facet.
+This is projected matroid data, not a three-variable positive-weight
+quotient example.
+
+The direct-sum face and flag-Minkowski framework is established; the
+inspected [Ardila--Benedetti--Doker, Theorem 5.1](https://fardila.com/Articles/minkowski.pdf)
+states the flag-polytope sum. (A18)--(A20) follow from the explicit
+one-rank component description above. Principal-truncation base deletion,
+for example [Eur, Proposition 3.1.5](https://people.math.harvard.edu/~ceur/pdf/Eur_PhD_Thesis.pdf),
+is a related established special case; a general quotient must not
+silently be assumed principal or generic. The checker additionally uses a
+rank-oracle Vámos matroid with two coloops and its truncation, outside
+the represented examples. Its exceptional four-subsets are five of the
+six unions of two of four disjoint pairs; the checker
+replays every basis exchange and obtains Ingleton values \(15<16\).
+The established nonrepresentability of this configuration is also recalled
+in [Bernstein--Walsh's discussion of Vámos-like matroids](https://www.combinatorics.org/ojs/index.php/eljc/article/download/v31i1p15/pdf/).
+It is not presented as a polynomial-quotient residue matroid. These primary statements were inspected. The
+exact projected containment's priority remains unassessed.
+The inheritance theorem does not prove an amortized upper bound on \(W\):
+new walls can still be born inside a parent cone, and nonparallel edges
+can be added at a surviving parent ray. A cubic aggregate needs a bound
+on those contributions, rather than another count of merged components.
+The unrestricted goal and all paper criteria remain unchanged.
+
+### Primitive perimeter at a ray birth or death
+
+There is also an upper bound on the primitive cost of one such event.
+Let the common integer labels have coordinate ranges \(D_i\), and put
+\(D=\sum_{i=1}^3D_i\). Consider any matroid quotient that drops rank
+by \(c\ge1\), not necessarily one.
+At a nonzero cost \(w\), suppose one minimizing profile face is a polygon
+and the other is a point or an edge. Their direction spaces then lie in
+the common plane \(w^\perp\). For a polygon \(F\) put
+\(\pi_1(F)=\sum_{e\text{ edge of }F}\|q_e\|_1\), using primitive
+directions and omitting their integer edge multiples. Then
+\[
+ \begin{array}{ll}
+ \pi_1(F)\le2cD,&\text{if the other face is a point},\\
+ \pi_1(F)\le(4c+2)D,&\text{if the other face is an edge}.
+ \end{array}                                             \tag{A21}
+\]
+The statement is symmetric in which face is the parent. For the edge
+case, the sum of the **actual** one-norm lengths of nonparallel polygon
+edges is at most \(4cD\); the two possible parallel edges are counted
+primitively in (A21). Their actual lengths need not be bounded by \(D\).
+
+To prove it, use the same strict cost order for parent and child greedy
+selection. The rank criterion makes every child greedy rank increment at
+most the corresponding parent increment. Thus the child basis is a subset
+of the parent basis, with exactly \(c\) elements deleted. This is the
+classical greedy-basis containment, also stated in
+[Chen--Fei--Gao--Sun--Zhang, Proposition 2.10](https://alco.centre-mersenne.org/item/10.5802/alco.475.pdf).
+At each generic secondary objective,
+the exposed profiles therefore differ by a sum of \(c\) ground labels.
+These label sums have coordinate ranges at most \(cD_i\).
+
+If the smaller face is a point \(p\), all polygon vertices lie in one
+translate of those sums or their negatives. A planar convex polygon's
+actual one-norm perimeter is twice the sum of its coordinate ranges,
+which proves the first bound. Primitive perimeter can only be smaller.
+
+If the smaller face is an edge with direction \(q\), divide the secondary
+objective circle in the polygon's plane by the two directions perpendicular
+to \(q\). On each open half-circle the smaller face exposes the same
+endpoint. The polygon's corresponding boundary chain consequently has
+all its vertices in one fixed translate of the label sums. Each coordinate
+has at most two monotone phases on this convex chain, so its variation
+is at most twice its range. The two chains contain every nonparallel edge
+and give the \(4cD\) actual-length bound. There are at most two remaining
+edges, both parallel to \(q\). A projected matroid-polytope edge is parallel
+to a difference of two ground labels, so its primitive direction satisfies
+\(\|q\|_1\le D\). Adding these two primitive contributions proves
+(A21). This last standard edge-direction fact follows from basis exchange;
+the preimage of a projected edge has an edge projecting nontrivially onto it.
+
+For an actual quotient of lengths \(n,n-1\), take the common universal
+monomial ground \(V_n^3\). Then \(D\le3(n-1)\). At every strictly
+positive ray which is present in just one of the two fans, the other
+minimizing face has dimension at most one. By the local proof of (A12),
+\[
+ d(w)\left\lceil\sqrt{\|w\|_\infty}\right\rceil
+                 \le\pi_1(F(w))\le18(n-1).              \tag{A22}
+\]
+If the other face is a point the stronger constant \(6(n-1)\) applies.
+No radicality, characteristic-zero or generic-rank assumption is used.
+The point-face perimeter bound is attained by deleting \((1,1,1)\)
+from the two-point scheme \(\{(0,0,0),(1,1,1)\}\): at the equal
+weight the parent profile triangle has primitive perimeter six, the child
+is a point, and the common ground has \(D=3\). Its total \(W\) falls
+from six to zero, so a monotonicity claim for \(W\) would be false.
+
+The linear order in (A22) is sharp in actual radical ideal steps. In the
+[three-pole point family](ideal_step_incidence.md), put
+\(A=k,B=k+1,C=2k+1\), so \(N=A+B+C=4k+2\).
+These three integers are pairwise coprime. Hence
+\[
+ w=(BC,AC,AB),\qquad H=(k+1)(2k+1)
+\]
+is primitive. At lengths \(N-1,N-2\), the longer face is a triangle
+and the shorter a point; at lengths \(N+1,N\), the longer face is
+a point and the shorter a triangle. The common strict prefix has
+\(N-2\) monomials, and the three tied candidates are
+\(x^A,y^B,z^C\). Selecting respectively one, zero, three or two
+of these proves the assertions from the known exact curve fan.
+Each triangle has primitive perimeter \(2N\), degree three and
+weighted incidence \(3\lceil\sqrt{(k+1)(2k+1)}\rceil\), both
+of linear order in the quotient length.
+
+These bounds quantify one creation or disappearance. They do not count
+how many events occur over the objective plane, or bound changes at a ray
+present on both sides. In particular they do not imply
+\(W(A)-W(A/Kv)=O(n^2)\) or the desired cubic total. Establishing an
+amortized upper bound still requires controlling those missing contributions.
+The [separate ideal-step analysis](ideal_step_incidence.md) now proves
+\(\Theta(n^3)\) jumps of both signs for \(U\) along infinite length
+subsequences in that fixed curve family. This is consistent with
+\(\Theta(n^2)\) new rays at one step, each with only linear cost.
+A quadratic per-step recurrence for \(U\) is therefore unavailable.
+On the same family \(W\) has the exact quadratic divisor-sum increment
+proved in that note; a general quadratic increment for \(W\) is still
+an open possibility, not a consequence of (A18)--(A22).
+
 ~~~bash
 python3 -B scripts/run_adjacent_rank_checks.py
 ./build.sh

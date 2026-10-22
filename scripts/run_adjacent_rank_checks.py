@@ -242,10 +242,76 @@ def quotient_pivot_components(columns, removed, labels, w, p):
     raise AssertionError('The removed vector must enter the full column span.')
 
 
+def planar_hull_vertices(points):
+    from run_planar_dyadic_bound_checks import convex_hull
+    points=tuple(sorted(set(points)))
+    assert rank(differences(points))==2
+    for i,j in combinations(range(3),2):
+        image={(a[i],a[j]):a for a in points}
+        hull=convex_hull(image)
+        if len(hull)>=3:
+            assert len(image)==len(points)
+            return [image[a] for a in hull]
+    raise AssertionError('A planar face needs an injective coordinate projection.')
+
+
+def parallel_edge_inheritance(parent_points, child_points, enforce=True):
+    """Independent hull check, using only projected minimizing profiles."""
+    P=tuple(sorted(set(parent_points)))
+    assert rank(differences(P))==1
+    q=primitive(next(v for v in differences(P) if any(v)))
+    if next(x for x in q if x)<0:q=tuple(-x for x in q)
+    axis=next(i for i,x in enumerate(q) if x)
+    length=Q(max(a[axis] for a in P)-min(a[axis] for a in P),abs(q[axis]))
+    assert length.denominator==1
+    vertices=planar_hull_vertices(child_points)
+    inherited=[]
+    for a,b in zip(vertices,vertices[1:]+vertices[:1]):
+        delta=tuple(x-y for x,y in zip(b,a))
+        if not any(cross(delta,q)):
+            multiple=Q(abs(delta[axis]),abs(q[axis]))
+            assert multiple.denominator==1 and multiple>0
+            inherited.append(int(multiple))
+    assert len(inherited)<=2
+    if enforce:assert sum(inherited)>=length
+    return {'primitive_direction':q,'parent_lattice_length':int(length),
+            'child_parallel_edge_lengths':sorted(inherited),
+            'child_parallel_length_sum':sum(inherited),
+            'child_polygon_vertices':vertices}
+
+
+def ray_event_perimeter(parent_points,child_points,labels,codimension=1):
+    points=[tuple(set(P)) for P in (parent_points,child_points)]
+    dims=[rank(differences(P)) for P in points]
+    assert sorted(dims) in ([0,2],[1,2])
+    assert rank([v for P in points for v in differences(P)])==2
+    big=next(i for i,d in enumerate(dims) if d==2);small=1-big
+    vertices=planar_hull_vertices(points[big])
+    q=primitive(next(v for v in differences(points[small]) if any(v))) if dims[small] else None
+    widths=[max(a[i] for a in labels)-min(a[i] for a in labels) for i in range(3)]
+    D=sum(widths);perimeter=nonparallel=0
+    for a,b in zip(vertices,vertices[1:]+vertices[:1]):
+        delta=tuple(x-y for x,y in zip(b,a));direction=primitive(delta)
+        perimeter+=sum(map(abs,direction))
+        if q is None or any(cross(q,delta)):nonparallel+=sum(map(abs,delta))
+    if q is None:
+        assert nonparallel<=2*codimension*D
+        assert perimeter<=2*codimension*D
+    else:
+        assert sum(map(abs,q))<=D
+        assert nonparallel<=4*codimension*D
+        assert perimeter<=(4*codimension+2)*D
+    return {'face_dimensions':dims,'quotient_codimension':codimension,
+            'coordinate_range_sum':D,'primitive_perimeter':perimeter,
+            'actual_nonparallel_perimeter':nonparallel}
+
+
 def elementary_quotient_controls():
     """Direct matrix projections, not generic truncations."""
     counts = defaultdict(int)
     fixtures = []
+    inheritance=[]
+    ray_events=[]
     labels = ((0, 0, 0), (4, 0, 0), (0, 4, 0),
               (0, 0, 4), (2, 1, 0), (0, 2, 1))
     graphic = tuple(tuple(int(i == a)-int(i == b) for i in range(3))
@@ -277,9 +343,11 @@ def elementary_quotient_controls():
             for w in sorted(directions):
                 spans = []
                 indicator_spans = []
+                face_points=[]
                 for data in profiles:
                     value = min(dot(w, a) for a in data.values())
-                    spans.append(differences([a for a in data.values() if dot(w, a) == value]))
+                    face_points.append([a for a in data.values() if dot(w,a)==value])
+                    spans.append(differences(face_points[-1]))
                     indicator_spans.append(differences(
                         [indicators(B, 6) for B, a in data.items() if dot(w, a) == value]))
                 single, components = quotient_pivot_components(columns, v, labels, w, p)
@@ -288,6 +356,14 @@ def elementary_quotient_controls():
                 counts['single_component_pivot_faces' if single else 'multiple_component_pivot_faces'] += 1
                 assert rank(spans[0]+spans[1]) == max(map(rank, spans))
                 counts['independent_elementary_quotient_face_equalities'] += 1
+                if [rank(s) for s in spans]==[1,2]:
+                    record=parallel_edge_inheritance(*face_points)
+                    record.update(model=name,characteristic=p,removed_line=v,weight=w)
+                    inheritance.append(record)
+                if sorted(map(rank,spans)) in ([0,2],[1,2]):
+                    record=ray_event_perimeter(*face_points,labels)
+                    record.update(model=name,characteristic=p,removed_line=v,weight=w)
+                    ray_events.append(record)
             fans = [point_fan(data.values()) for data in profiles]
             common = overlay(fans[0], fans[1], counts)
             parent_vertices = {a for cell in fans[0] for a in cell['polygon']}
@@ -303,7 +379,9 @@ def elementary_quotient_controls():
                              'parent_rank': 3, 'child_rank': 2,
                              'parent_cells': len(fans[0]), 'child_cells': len(fans[1]),
                              'common_cells': len(common), 'exact_positive_child_ray_births': child_births})
-    return {'counts': dict(counts), 'fixtures': fixtures}
+    return {'counts': dict(counts), 'fixtures': fixtures,
+            'projected_edge_to_face_inheritance':inheritance,
+            'projected_ray_birth_or_death_perimeters':ray_events}
 
 
 @lru_cache(None)
@@ -779,6 +857,211 @@ def budget_comparison_controls():
             'scope':'Uniform elementary comparison U<=2W<=2V, and a verified infinite proof-route guard against replacing U or W by exact local core length. No cubic aggregate or unrestricted exponent follows.'}
 
 
+def ideal_edge_inheritance_controls():
+    """Sharp all-field socle examples and an actual two-step failure."""
+    from run_initial_fan_padding_checks import full_fan,generic_model
+    from run_primitive_wall_checks import divisors
+    from run_projection_tag_checks import fan,point_model,polygon_key
+    from run_socle_circuit_checks import multiplication_controls
+    from run_canonical_fan_deflation_checks import evaluate_polynomial
+    from run_structural_complexity_checks import hyperbolic_cross
+    from run_coordinate_slice_budget_checks import edges_from_polygons,profile
+    counts=defaultdict(int);fixtures=[]
+    for t,p,kind in product((1,2,4,7),(0,2,3),('triangle','split','corank_two')):
+        if kind=='triangle':
+            a,b,c=(t,0,0),(0,t,0),(0,0,t)
+            S={a,b,c};parent_rows=[{a:1,b:-1}]
+            child_rows=parent_rows+[{a:1,c:-1}]
+            expected_lengths=(3*t,3*t-1);expected_parallel=[t]
+        else:
+            if kind=='split':
+                a,b,c,d=(2*t,0,0),(t,t,0),(t,0,t),(0,t,t)
+                parent_rows=[{a:1,b:-1},{c:1,d:-1}]
+                expected_lengths=(3*t*t+4*t-1,3*t*t+4*t-2)
+                expected_parallel=[t,t]
+            else:
+                a,b,c,d=(t,0,t),(0,t,t),(0,0,2*t),(t,t,0)
+                parent_rows=[{a:1,b:-1}]
+                expected_lengths=(3*t*t+4*t,3*t*t+4*t-2)
+                expected_parallel=[]
+            S={a,b,c,d};child_rows=[{a:1,b:-1},{a:1,c:-1},{a:1,d:-1}]
+        D=set().union(*(set(divisors(v)) for v in S))
+        parent=generic_model(D,S,parent_rows,p)
+        child=generic_model(D,S,child_rows,p)
+        assert (parent['n'],child['n'])==expected_lengths
+        for g in parent_rows:
+            assert not evaluate_polynomial(g,child['ev'],p)
+            counts['independent_parent_child_ideal_inclusions']+=1
+        for model in (parent,child):multiplication_controls(model,counts)
+        fans=[full_fan(model,counts) for model in (parent,child)]
+        assert len(fans[0])==2 and len(fans[1])==len(S)
+        # Independently the child's four/three tips form one parallel class.
+        predicted=point_fan(S)
+        fixed=D-S
+        assert set(fans[1])=={frozenset(fixed|{a}) for a in S}
+        for cell in predicted:
+            B=frozenset(fixed|{cell['profile']})
+            assert polygon_key(cell['polygon'])==polygon_key(fans[1][B])
+            counts['independent_child_corner_hull_cones']+=1
+        profiles=[[tuple(sum(a[i] for a in B) for i in range(3)) for B in cells]
+                  for cells in fans]
+        record=parallel_edge_inheritance(*profiles,enforce=kind!='corank_two')
+        event=ray_event_perimeter(*profiles,D,codimension=expected_lengths[0]-expected_lengths[1])
+        assert record['child_parallel_edge_lengths']==expected_parallel
+        if kind!='corank_two':
+            assert record['child_parallel_length_sum']==record['parent_lattice_length']
+        else:
+            assert record['child_parallel_length_sum']==0<record['parent_lattice_length']
+        record.update(kind=kind,parameter=t,characteristic=p,
+                      ray_event_perimeter=event,
+                      lengths=expected_lengths,quotient_codimension=expected_lengths[0]-expected_lengths[1],
+                      maximal_support=sorted(S),parent_relations=[sorted(g.items()) for g in parent_rows],
+                      child_relations=[sorted(g.items()) for g in child_rows],
+                      full_fan_cells=[len(F) for F in fans],weight=(1,1,1))
+        fixtures.append(record)
+        counts['actual_sharp_edge_inheritance' if kind!='corank_two' else
+               'actual_corank_two_no_parallel_edge_guards']+=1
+    deaths=[]
+    for p in (0,2,3):
+        _,ev=point_model(((0,0,0),(1,1,1)),p)
+        child_ev=lambda a:{0:1} if not any(a) else {}
+        cells=[fan(2,ev,p,counts),fan(1,child_ev,p,counts)]
+        profiles=[[tuple(sum(a[i] for a in B) for i in range(3)) for B in C] for C in cells]
+        event=ray_event_perimeter(*profiles,tuple(hyperbolic_cross(2,3)))
+        assert event['primitive_perimeter']==2*event['coordinate_range_sum']==6
+        wall_lengths=[]
+        for C in cells:
+            edges=edges_from_polygons(C,counts)
+            wall_lengths.append(sum(sum(map(abs,primitive(tuple(x-y for x,y in
+                zip(profile(B),profile(D)))))) for B,D in map(tuple,edges)))
+        assert wall_lengths==[6,0]
+        event.update(characteristic=p,lengths=[2,1],full_fan_cells=[3,1],
+                     points=((0,0,0),(1,1,1)),deleted_point=(1,1,1),
+                     primitive_wall_lengths=wall_lengths)
+        deaths.append(event)
+        counts['sharp_point_face_perimeter_and_nonmonotone_W_guards']+=1
+    higher=[]
+    for t,s,h,p in product((1,3),(1,2),(1,5),(0,2,3)):
+        A=((0,0,0),(t,0,0));B=((0,0,h),(0,s,h));labels=A+B
+        columns=((1,0),(1,0),(0,1),(0,1))
+        child_columns=((1,),(1,),(-1,),(-1,))
+        assert rank(columns,p)==2 and rank(child_columns,p)==1
+        parent={tuple(x+y for x,y in zip(a,b)) for a,b in product(A,B)}
+        low={a for a in labels if a[2]==0};high={a for a in labels if a[2]==h}
+        assert {tuple(x+y for x,y in zip(a,b)) for a,b in product(low,high)}==parent
+        assert rank(differences(parent))==2 and rank(differences(labels))==3
+        higher.append({'parameters':[t,s,h],'characteristic':p,'cost':(0,0,0),
+                       'ground_labels':labels,'parent_profiles':sorted(parent),
+                       'opposite_child_support_faces':[sorted(low),sorted(high)],
+                       'face_dimensions':[2,3],'Minkowski_sum_exactly_parent':True})
+        counts['higher_dimensional_opposite_support_face_sum_equalities']+=1
+    curve=[]
+    for k,kind in product((1,2,3),('death','birth')):
+        A,B,C=k,k+1,2*k+1;N=A+B+C
+        w=(B*C,A*C,A*B);assert gcd(*w)==1
+        n=N-1 if kind=='death' else N+1
+        strict={(0,0,0)}|{(j,0,0) for j in range(1,A)}|{
+            (0,j,0) for j in range(1,B)}|{(0,0,j) for j in range(1,C)}
+        tips={(A,0,0),(0,B,0),(0,0,C)}
+        assert len(strict)==N-2
+        profiles=[[],[]]
+        for length in (n,n-1):
+            @lru_cache(None)
+            def ev(a):
+                return {j-2:Q(j)**(a[0]-a[1])*Q(j-1)**(-a[2])
+                        for j in range(2,length+2)}
+            E=tuple(hyperbolic_cross(length,3))
+            for axis in range(3):
+                weight=tuple(100*n*b+((-1 if kind=='death' else 1) if i==axis else 0)
+                             for i,b in enumerate(w))
+                basis,_=field_basis(sorted(E,key=lambda a:(dot(weight,a),a)),ev,0)
+                tip=next(a for a in tips if a[axis])
+                if kind=='death':expected=strict|({tip} if length==n else set())
+                else:expected=strict|(tips if length==n else tips-{tip})
+                assert set(basis)==expected
+                profiles[int(length!=n)].append(profile(basis))
+                counts['independent_three_pole_local_point_greedy_sets']+=1
+        event=ray_event_perimeter(*profiles,tuple(hyperbolic_cross(n,3)))
+        assert event['primitive_perimeter']==2*N
+        event.update(parameter=k,kind=kind,lengths=[n,n-1],triple=[A,B,C],weight=w,
+                     weighted_ray_incidence=3*(isqrt(max(w)-1)+1))
+        curve.append(event)
+    return {'counts':dict(counts),'fixtures':fixtures,
+            'sharp_point_face_deaths':deaths,'higher_dimensional_support_faces':higher,
+            'three_pole_linear_order_sharp_ray_events':curve,
+            'scope':'One-dimensional actual ideal quotients have sharp summed parallel lattice length. A two-dimensional quotient can remove every parallel edge. These are local incidence facts, not an amortized primitive-length or unrestricted fan count.'}
+
+
+def nonrepresentable_quotient_control():
+    """A rank-oracle test outside linear representations."""
+    groups=[frozenset((2*i,2*i+1)) for i in range(4)]
+    nonbases={groups[i]|groups[j] for i,j in combinations(range(4),2) if (i,j)!=(2,3)}
+    def rv(S):
+        S=frozenset(S)
+        return 3 if S in nonbases else min(4,len(S))
+    bases={frozenset(S) for S in combinations(range(8),4) if rv(S)==4}
+    rank_replays=0
+    for mask in range(1<<8):
+        S={i for i in range(8) if mask>>i&1}
+        assert rv(S)==max(len(S&B) for B in bases)
+        rank_replays+=1
+    exchanges=0
+    for A,B in product(bases,repeat=2):
+        for e in A-B:
+            assert any((A-{e})|{f} in bases for f in B-A)
+            exchanges+=1
+    A,B,C,D=groups
+    left=sum(rv(X|Y) for X,Y in ((A,B),(A,C),(A,D),(B,C),(B,D)))
+    right=rv(A)+rv(B)+rv(C|D)+rv(A|B|C)+rv(A|B|D)
+    assert (left,right)==(15,16)
+    labels=tuple((i,0,0) for i in range(8))+((0,0,1),(0,1,1))
+    def parent_rank(S):
+        S=frozenset(S)
+        return rv(S&set(range(8)))+len(S&{8,9})
+    def child_rank(S):return min(5,parent_rank(S))
+    quotient_replays=0
+    for mask in range(1<<10):
+        S={i for i in range(10) if mask>>i&1}
+        deficit=parent_rank(S)-child_rank(S)
+        for e in set(range(10))-S:
+            T=S|{e}
+            assert deficit<=parent_rank(T)-child_rank(T)
+            quotient_replays+=1
+    parent_bases=[S for S in combinations(range(10),6) if parent_rank(S)==6]
+    child_bases=[S for S in combinations(range(10),5) if child_rank(S)==5]
+    w=(0,0,1)
+    profiles=[]
+    for sets in (parent_bases,child_bases):
+        values=[tuple(sum(labels[e][i] for e in S) for i in range(3)) for S in sets]
+        cost=min(dot(w,a) for a in values)
+        profiles.append([a for a in values if dot(w,a)==cost])
+    result=parallel_edge_inheritance(*profiles)
+    assert result['parent_lattice_length']==15 and result['child_parallel_edge_lengths']==[15,15]
+    event=ray_event_perimeter(*profiles,labels)
+    # Greedy inclusion for every ordering in a deterministic collection of
+    # integer objectives; this is checked by independent rank increments.
+    containments=0
+    for cost in product(range(-2,3),repeat=3):
+        selected=[]
+        for rnk,target in ((parent_rank,6),(child_rank,5)):
+            B=[]
+            for e in sorted(range(10),key=lambda e:(dot(cost,labels[e]),e)):
+                if rnk(B+[e])>len(B):B.append(e)
+            assert len(B)==target;selected.append(set(B))
+        assert selected[1]<=selected[0]
+        containments+=1
+    return {'matroid':'rank-four Vamos configuration plus two coloops; child is rank-five truncation',
+            'nonbases_on_first_eight':sorted(map(sorted,nonbases)),
+            'independent_basis_exchange_checks':exchanges,
+            'independent_rank_oracle_basis_replays':rank_replays,
+            'independent_quotient_rank_increment_checks':quotient_replays,
+            'Ingleton_left':left,'Ingleton_right':right,
+            'parent_rank':6,'child_rank':5,'ground_labels':labels,'weight':w,
+            'edge_inheritance':result,'ray_event_perimeter':event,
+            'independent_greedy_containments':containments,
+            'scope':'Abstract rank-oracle matroid. The Ingleton violation rules out every field representation; this is not claimed to be a polynomial-quotient residue matroid.'}
+
+
 def main():
     if not __debug__:
         raise RuntimeError('Exact assertions must be enabled.')
@@ -788,6 +1071,8 @@ def main():
     tensor = tensor_controls()
     flags = ideal_flag_controls()
     budgets = budget_comparison_controls()
+    inheritance = ideal_edge_inheritance_controls()
+    nonrepresentable = nonrepresentable_quotient_control()
     sources = ('docs/adjacent_rank_fans.md', 'scripts/run_adjacent_rank_checks.py',
                'docs/rational_shadow_bound.md', 'docs/profile_lattice_bound.md',
                'docs/interleaving_research.md',
@@ -797,17 +1082,23 @@ def main():
                'docs/canonical_fan_deflation.md','scripts/run_canonical_fan_deflation_checks.py',
                'scripts/run_coordinate_slice_budget_checks.py','scripts/run_initial_cone_height_checks.py',
                'scripts/run_initial_fan_padding_checks.py','scripts/run_primitive_wall_checks.py',
-               'scripts/run_projection_tag_checks.py')
+               'scripts/run_projection_tag_checks.py','scripts/run_planar_dyadic_bound_checks.py',
+               'scripts/run_socle_circuit_checks.py','docs/ideal_step_incidence.md')
     report = {'status': 'passed', 'command': 'python3 -B scripts/run_adjacent_rank_checks.py',
               'matroid_adjacent_faces': matroids, 'finite_group_gap_fans': groups,
               'elementary_linear_quotients': quotients,
               'prime_digit_tensor_counts': tensor,
               'actual_ideal_flags': flags,
               'incidence_primitive_length_and_local_core_budgets': budgets,
+              'one_step_parallel_edge_inheritance': inheritance,
+              'nonrepresentable_elementary_quotient': nonrepresentable,
               'uniform_results': {
                   'adjacent_exposed_direction_spaces': 'Nested for every cost and every linear projection; inclusion reverses according as the last greedy rank increment is one or at least two.',
                   'elementary_quotient_exposed_direction_spaces': 'Nested for every actual one-dimensional linear quotient. Only the cost layer where the removed line first enters the prefix span changes; single-component support refines that component, multiple-component support merges components.',
                   'elementary_quotient_child_ray_condition': 'A new child ray requires the removed line to have support in multiple connected components of the pivot cost minor; it is a necessary condition, not a count.',
+                  'abstract_elementary_opposite_support_containment': 'For every abstract elementary matroid quotient, arbitrary real labels and linear projection, if the parent exposed direction space is properly contained in the child one, opposite child support faces for every functional annihilating the parent directions and nonconstant on the child have a Minkowski sum containing a translate of the parent face. No representation or principal-truncation hypothesis is used.',
+                  'one_step_parallel_lattice_length': 'When a parent edge becomes a child polygon, one or two parallel child edges have total lattice length at least the old edge length. Actual all-field socle families attain equality with one edge and with two strictly shorter edges. A corank-two actual ideal quotient can lose every such edge.',
+                  'ray_event_primitive_perimeter': 'At a nonzero cost, for an abstract matroid quotient of rank drop c on integer labels with coordinate-range sum D, a polygon exposed face opposite a point has primitive perimeter at most 2*c*D; opposite an edge, at most (4*c+2)*D. For a length n to n-1 ideal quotient, each positive ray present on only one side has degree*ceil(sqrt(height))<=18*(n-1), with linear order sharp on actual radical three-pole examples. No count of events or aggregate budget is proved.',
                   'positive_three_coordinate_overlay': 'max(a,b)<=c<=4*(a+b)+2, including flat and tied profile configurations',
                   'new_ray_necessary_condition': 'A new rank-r interior ray absent at rank r-1 must have last-layer rank increment one.',
                   'threshold_scope': 'The exact last greedy cost is linear on this O(a+b) refinement. The inherited O(k^(23/8)*log(k+1)^(3/8)) coarse power also follows from the previous shadow theorem on a direct sum; it is not a new unrestricted exponent.',
@@ -827,7 +1118,10 @@ def main():
     print(json.dumps({'matroid': matroids['counts'], 'quotients': quotients['counts'],
                       'groups': groups['counts'], 'tensor': tensor,
                       'actual_ideal_flags': flags['counts'],
-                      'incidence_budget_comparisons':budgets['counts']}, indent=2))
+                      'incidence_budget_comparisons':budgets['counts'],
+                      'one_step_edge_inheritance':inheritance['counts'],
+                      'abstract_inherited_edges':len(quotients['projected_edge_to_face_inheritance']),
+                      'abstract_ray_events':len(quotients['projected_ray_birth_or_death_perimeters'])}, indent=2))
 
 
 if __name__ == '__main__':
