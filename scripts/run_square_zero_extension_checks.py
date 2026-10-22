@@ -4,7 +4,7 @@ from collections import defaultdict
 from fractions import Fraction as Q
 from functools import lru_cache
 from itertools import combinations, product
-from math import gcd
+from math import comb, gcd
 from pathlib import Path
 from random import Random
 import hashlib
@@ -292,11 +292,158 @@ def saved_hook_guards(counts):
     return rows
 
 
+def nilpotent_lift_box_controls(counts):
+    """Independent carrier elimination, two division orders and whole fans.
+
+    P=y^r-c and Q=z^s-d; both deformations may depend on x,y,z.
+    Some fixtures add relations in (x), preserving the closed fiber
+    while deliberately losing flatness. No asymptotic fit is performed.
+    """
+    fixtures = []
+    cases = [(2, 2, 2, 0, 0, None), (2, 2, 3, 1, 0, None),
+             (3, 2, 2, 0, 1, None), (3, 1, 3, 1, -1, None),
+             (4, 1, 2, 1, 1, None), (2, 2, 2, 0, 0, (1, 1, 0)),
+             (3, 2, 2, 0, 0, (1, 1, 0)), (3, 2, 2, 0, 0, (2, 0, 0))]
+    for case, (h, r, s, c, d, extra) in enumerate(cases):
+        f = {(0, 0, 0): case % 2, (0, 1, 0): 1, (0, 1, 1): -1,
+             (1, 0, 1): 1, (0, r+1, 0): 1}
+        g = {(0, 0, 0): 1-case % 2, (0, 0, 1): 2, (0, 2, 0): 1,
+             (0, 1, 1): 1, (1, 1, 0): -1}
+        relations = [{(0, r, 0): 1, (0, 0, 0): -c},
+                     {(0, 0, s): 1, (0, 0, 0): -d}]
+        for relation, tail in zip(relations, (f, g)):
+            for v, a in tail.items():
+                w = v[0]+1, v[1], v[2]
+                relation[w] = relation.get(w, 0)-a
+        box = tuple(product(range(h), range(h*r), range(h*s)))
+        index = {v: i for i, v in enumerate(box)}
+        rectangular = tuple(product(range(h), range(r), range(s)))
+        rectangular_index = {v: i for i, v in enumerate(rectangular)}
+        for p in (0, 2, 3, 101):
+            @lru_cache(None)
+            def axis_power(a, degree, constant):
+                if a < h*degree:
+                    return {a: 1}
+                out = defaultdict(int)
+                for j in range(h):
+                    coefficient = -comb(h, j)*(-constant)**(h-j)
+                    for k, value in axis_power(a-(h-j)*degree, degree, constant).items():
+                        out[k] += coefficient*value
+                return clean(out, p)
+
+            @lru_cache(None)
+            def ambient(v):
+                e, a, b = v
+                if e >= h:
+                    return {}
+                return clean({index[e, i, j]: u*w for i, u in axis_power(a, r, c).items()
+                              for j, w in axis_power(b, s, d).items()}, p)
+
+            def linear_combination(terms):
+                out = defaultdict(int)
+                for coefficient, vector in terms:
+                    for i, value in vector.items():
+                        out[i] += coefficient*value
+                return clean(out, p)
+
+            def reduce_row(vector, pivots):
+                v = clean(vector, p)
+                for j, row in sorted(pivots.items()):
+                    coefficient = v.get(j, 0)
+                    if coefficient:
+                        v = linear_combination(((1, v), (-coefficient, row)))
+                return v
+
+            def add_relation(relation, pivots):
+                for v in box:
+                    vector = linear_combination((a, ambient(add(v, w)))
+                                                for w, a in relation.items())
+                    row = reduce_row(vector, pivots)
+                    if row:
+                        j = min(row)
+                        inverse = pow(row[j], -1, p) if p else 1/Q(row[j])
+                        pivots[j] = clean({i: a*inverse for i, a in row.items()}, p)
+                    counts['nilpotent_lift_carrier_relation_multiples'] += 1
+
+            pivots = {}
+            for relation in relations:
+                add_relation(relation, pivots)
+            assert len(box)-len(pivots) == h*r*s
+            base_pivots = dict(pivots)
+            if extra:
+                add_relation({extra: 1}, pivots)
+            free = tuple(sorted(set(range(len(box)))-set(pivots)))
+            n = len(free)
+            assert r*s <= n <= h*r*s
+            assert (n == h*r*s) == (extra is None)
+
+            @lru_cache(None)
+            def ev(v):
+                return reduce_row(ambient(v), pivots)
+
+            def normal_form(order):
+                @lru_cache(None)
+                def nf(v):
+                    e, a, b = v
+                    if e >= h:
+                        return {}
+                    if a < r and b < s:
+                        return {rectangular_index[v]: 1}
+                    axis = next(i for i in order if (a >= r if i == 1 else b >= s))
+                    shift = (0, r, 0) if axis == 1 else (0, 0, s)
+                    lower = tuple(a-b for a, b in zip(v, shift))
+                    tail, constant = (f, c) if axis == 1 else (g, d)
+                    terms = [(constant, nf(lower))]
+                    terms.extend((value, nf(add(add(lower, (1, 0, 0)), w)))
+                                 for w, value in tail.items() if value)
+                    return linear_combination(terms)
+                return nf
+
+            y_first, z_first = normal_form((1, 2)), normal_form((2, 1))
+            for v in box:
+                normal = y_first(v)
+                assert normal == z_first(v)
+                replay = linear_combination((a, reduce_row(ambient(rectangular[i]), base_pivots))
+                                            for i, a in normal.items())
+                assert replay == reduce_row(ambient(v), base_pivots)
+                counts['independent_nilpotent_lift_normal_form_equalities'] += 1
+
+            basis = tuple(box[i] for i in free)
+            M = [tuple(ev(add(v, tuple(int(i == j) for j in range(3)))) for v in basis)
+                 for i in range(3)]
+
+            def apply_matrix(matrix, vector):
+                positions = {j: i for i, j in enumerate(free)}
+                return linear_combination((a, matrix[positions[i]]) for i, a in vector.items())
+
+            for i, j in combinations(range(3), 2):
+                for k in range(n):
+                    assert apply_matrix(M[i], M[j][k]) == apply_matrix(M[j], M[i][k])
+                    counts['nilpotent_lift_commuting_matrix_columns'] += 1
+            x_rank = len(field_basis(range(n), lambda i: M[0][i], p)[0])
+            assert n-x_rank == r*s
+            cells = fan(n, ev, p, counts)
+            for D in cells:
+                for i, cap in enumerate((h, h*r, h*s)):
+                    assert all(v[i] < cap for v in D)
+                    assert 2*sum(v[i] for v in D) <= n*(cap-1)
+                    counts['nilpotent_lift_actual_initial_moment_inequalities'] += 1
+            fixtures.append({'case': case, 'characteristic': p, 'nilpotence_cap': h,
+                             'planar_degrees': [r, s], 'planar_constants': [c, d],
+                             'extra_relation': extra, 'length': n, 'closed_fiber_length': r*s,
+                             'x_rank': x_rank, 'flat': extra is None,
+                             'carrier_dimension': len(box), 'initial_ideals': len(cells),
+                             'deformation_f': [[v, a] for v, a in sorted(f.items()) if a],
+                             'deformation_g': [[v, a] for v, a in sorted(g.items()) if a]})
+    return fixtures
+
+
 def main():
     counts = defaultdict(int)
     compatible = arbitrary_compatible_models(counts)
     family = three_cell_family(counts)
     guards = saved_hook_guards(counts)
+    lifts = nilpotent_lift_box_controls(counts)
     sources = ['docs/square_zero_extension_fans.md', 'scripts/run_square_zero_extension_checks.py',
                'scripts/run_interleaving_research.py', 'scripts/run_projection_tag_checks.py',
                'scripts/run_signed_face_checks.py', 'scripts/run_structural_complexity_checks.py',
@@ -304,6 +451,8 @@ def main():
     report = {'command': 'python3 -B scripts/run_square_zero_extension_checks.py',
               'counts': dict(sorted(counts.items())), 'compatible_nested_extensions': compatible,
               'all_field_three_cell_family': family, 'saved_hook_tangent_scope_guards': guards,
+              'nilpotent_lift_box_controls': lifts,
+              'nilpotent_lift_growth_bound': 'Classical moment-volume corollary; O_h(n^2) at fixed h and bounded special-fiber rectangle ratio, including nonflat extensions.',
               'source_sha256': {p: hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in sources},
               'unrestricted_G3_improved': False, 'collective_cubic_budget_proved': False,
               'polynomial_lower_separation_proved': False, 'novelty_established': False,

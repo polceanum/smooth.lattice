@@ -2,13 +2,17 @@
   "command": "python3 -B scripts/run_square_zero_extension_checks.py",
   "counts": {
     "all_field_circuit_formula_replays": 20,
-    "complete_direct_quotient_fans": 35,
-    "direct_field_border_relations": 663,
+    "complete_direct_quotient_fans": 67,
+    "direct_field_border_relations": 3850,
     "independent_commuting_matrix_columns": 1278,
     "independent_entire_cone_equalities": 60,
     "independent_full_basis_vs_minor_equalities": 1905,
     "independent_long_circuit_minimality_checks": 92,
     "independent_module_successor_columns": 2484,
+    "independent_nilpotent_lift_normal_form_equalities": 2580,
+    "nilpotent_lift_actual_initial_moment_inequalities": 1605,
+    "nilpotent_lift_carrier_relation_multiples": 6152,
+    "nilpotent_lift_commuting_matrix_columns": 852,
     "saved_exact_wall_profile_replays": 1123
   },
   "compatible_nested_extensions": [
@@ -6435,9 +6439,3132 @@
       "scope": "Replayed saved exact complete fan; no asymptotic inference."
     }
   ],
+  "nilpotent_lift_box_controls": [
+    {
+      "case": 0,
+      "characteristic": 0,
+      "nilpotence_cap": 2,
+      "planar_degrees": [
+        2,
+        2
+      ],
+      "planar_constants": [
+        0,
+        0
+      ],
+      "extra_relation": null,
+      "length": 8,
+      "closed_fiber_length": 4,
+      "x_rank": 4,
+      "flat": true,
+      "carrier_dimension": 32,
+      "initial_ideals": 10,
+      "deformation_f": [
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 0,
+      "characteristic": 2,
+      "nilpotence_cap": 2,
+      "planar_degrees": [
+        2,
+        2
+      ],
+      "planar_constants": [
+        0,
+        0
+      ],
+      "extra_relation": null,
+      "length": 8,
+      "closed_fiber_length": 4,
+      "x_rank": 4,
+      "flat": true,
+      "carrier_dimension": 32,
+      "initial_ideals": 9,
+      "deformation_f": [
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 0,
+      "characteristic": 3,
+      "nilpotence_cap": 2,
+      "planar_degrees": [
+        2,
+        2
+      ],
+      "planar_constants": [
+        0,
+        0
+      ],
+      "extra_relation": null,
+      "length": 8,
+      "closed_fiber_length": 4,
+      "x_rank": 4,
+      "flat": true,
+      "carrier_dimension": 32,
+      "initial_ideals": 9,
+      "deformation_f": [
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 0,
+      "characteristic": 101,
+      "nilpotence_cap": 2,
+      "planar_degrees": [
+        2,
+        2
+      ],
+      "planar_constants": [
+        0,
+        0
+      ],
+      "extra_relation": null,
+      "length": 8,
+      "closed_fiber_length": 4,
+      "x_rank": 4,
+      "flat": true,
+      "carrier_dimension": 32,
+      "initial_ideals": 10,
+      "deformation_f": [
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 1,
+      "characteristic": 0,
+      "nilpotence_cap": 2,
+      "planar_degrees": [
+        2,
+        3
+      ],
+      "planar_constants": [
+        1,
+        0
+      ],
+      "extra_relation": null,
+      "length": 12,
+      "closed_fiber_length": 6,
+      "x_rank": 6,
+      "flat": true,
+      "carrier_dimension": 48,
+      "initial_ideals": 21,
+      "deformation_f": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 1,
+      "characteristic": 2,
+      "nilpotence_cap": 2,
+      "planar_degrees": [
+        2,
+        3
+      ],
+      "planar_constants": [
+        1,
+        0
+      ],
+      "extra_relation": null,
+      "length": 12,
+      "closed_fiber_length": 6,
+      "x_rank": 6,
+      "flat": true,
+      "carrier_dimension": 48,
+      "initial_ideals": 8,
+      "deformation_f": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 1,
+      "characteristic": 3,
+      "nilpotence_cap": 2,
+      "planar_degrees": [
+        2,
+        3
+      ],
+      "planar_constants": [
+        1,
+        0
+      ],
+      "extra_relation": null,
+      "length": 12,
+      "closed_fiber_length": 6,
+      "x_rank": 6,
+      "flat": true,
+      "carrier_dimension": 48,
+      "initial_ideals": 20,
+      "deformation_f": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 1,
+      "characteristic": 101,
+      "nilpotence_cap": 2,
+      "planar_degrees": [
+        2,
+        3
+      ],
+      "planar_constants": [
+        1,
+        0
+      ],
+      "extra_relation": null,
+      "length": 12,
+      "closed_fiber_length": 6,
+      "x_rank": 6,
+      "flat": true,
+      "carrier_dimension": 48,
+      "initial_ideals": 21,
+      "deformation_f": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 2,
+      "characteristic": 0,
+      "nilpotence_cap": 3,
+      "planar_degrees": [
+        2,
+        2
+      ],
+      "planar_constants": [
+        0,
+        1
+      ],
+      "extra_relation": null,
+      "length": 12,
+      "closed_fiber_length": 4,
+      "x_rank": 8,
+      "flat": true,
+      "carrier_dimension": 108,
+      "initial_ideals": 37,
+      "deformation_f": [
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 2,
+      "characteristic": 2,
+      "nilpotence_cap": 3,
+      "planar_degrees": [
+        2,
+        2
+      ],
+      "planar_constants": [
+        0,
+        1
+      ],
+      "extra_relation": null,
+      "length": 12,
+      "closed_fiber_length": 4,
+      "x_rank": 8,
+      "flat": true,
+      "carrier_dimension": 108,
+      "initial_ideals": 32,
+      "deformation_f": [
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 2,
+      "characteristic": 3,
+      "nilpotence_cap": 3,
+      "planar_degrees": [
+        2,
+        2
+      ],
+      "planar_constants": [
+        0,
+        1
+      ],
+      "extra_relation": null,
+      "length": 12,
+      "closed_fiber_length": 4,
+      "x_rank": 8,
+      "flat": true,
+      "carrier_dimension": 108,
+      "initial_ideals": 27,
+      "deformation_f": [
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 2,
+      "characteristic": 101,
+      "nilpotence_cap": 3,
+      "planar_degrees": [
+        2,
+        2
+      ],
+      "planar_constants": [
+        0,
+        1
+      ],
+      "extra_relation": null,
+      "length": 12,
+      "closed_fiber_length": 4,
+      "x_rank": 8,
+      "flat": true,
+      "carrier_dimension": 108,
+      "initial_ideals": 37,
+      "deformation_f": [
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 3,
+      "characteristic": 0,
+      "nilpotence_cap": 3,
+      "planar_degrees": [
+        1,
+        3
+      ],
+      "planar_constants": [
+        1,
+        -1
+      ],
+      "extra_relation": null,
+      "length": 9,
+      "closed_fiber_length": 3,
+      "x_rank": 6,
+      "flat": true,
+      "carrier_dimension": 81,
+      "initial_ideals": 29,
+      "deformation_f": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 3,
+      "characteristic": 2,
+      "nilpotence_cap": 3,
+      "planar_degrees": [
+        1,
+        3
+      ],
+      "planar_constants": [
+        1,
+        -1
+      ],
+      "extra_relation": null,
+      "length": 9,
+      "closed_fiber_length": 3,
+      "x_rank": 6,
+      "flat": true,
+      "carrier_dimension": 81,
+      "initial_ideals": 12,
+      "deformation_f": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 3,
+      "characteristic": 3,
+      "nilpotence_cap": 3,
+      "planar_degrees": [
+        1,
+        3
+      ],
+      "planar_constants": [
+        1,
+        -1
+      ],
+      "extra_relation": null,
+      "length": 9,
+      "closed_fiber_length": 3,
+      "x_rank": 6,
+      "flat": true,
+      "carrier_dimension": 81,
+      "initial_ideals": 24,
+      "deformation_f": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 3,
+      "characteristic": 101,
+      "nilpotence_cap": 3,
+      "planar_degrees": [
+        1,
+        3
+      ],
+      "planar_constants": [
+        1,
+        -1
+      ],
+      "extra_relation": null,
+      "length": 9,
+      "closed_fiber_length": 3,
+      "x_rank": 6,
+      "flat": true,
+      "carrier_dimension": 81,
+      "initial_ideals": 29,
+      "deformation_f": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 4,
+      "characteristic": 0,
+      "nilpotence_cap": 4,
+      "planar_degrees": [
+        1,
+        2
+      ],
+      "planar_constants": [
+        1,
+        1
+      ],
+      "extra_relation": null,
+      "length": 8,
+      "closed_fiber_length": 2,
+      "x_rank": 6,
+      "flat": true,
+      "carrier_dimension": 128,
+      "initial_ideals": 35,
+      "deformation_f": [
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 4,
+      "characteristic": 2,
+      "nilpotence_cap": 4,
+      "planar_degrees": [
+        1,
+        2
+      ],
+      "planar_constants": [
+        1,
+        1
+      ],
+      "extra_relation": null,
+      "length": 8,
+      "closed_fiber_length": 2,
+      "x_rank": 6,
+      "flat": true,
+      "carrier_dimension": 128,
+      "initial_ideals": 24,
+      "deformation_f": [
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 4,
+      "characteristic": 3,
+      "nilpotence_cap": 4,
+      "planar_degrees": [
+        1,
+        2
+      ],
+      "planar_constants": [
+        1,
+        1
+      ],
+      "extra_relation": null,
+      "length": 8,
+      "closed_fiber_length": 2,
+      "x_rank": 6,
+      "flat": true,
+      "carrier_dimension": 128,
+      "initial_ideals": 27,
+      "deformation_f": [
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 4,
+      "characteristic": 101,
+      "nilpotence_cap": 4,
+      "planar_degrees": [
+        1,
+        2
+      ],
+      "planar_constants": [
+        1,
+        1
+      ],
+      "extra_relation": null,
+      "length": 8,
+      "closed_fiber_length": 2,
+      "x_rank": 6,
+      "flat": true,
+      "carrier_dimension": 128,
+      "initial_ideals": 35,
+      "deformation_f": [
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 5,
+      "characteristic": 0,
+      "nilpotence_cap": 2,
+      "planar_degrees": [
+        2,
+        2
+      ],
+      "planar_constants": [
+        0,
+        0
+      ],
+      "extra_relation": [
+        1,
+        1,
+        0
+      ],
+      "length": 6,
+      "closed_fiber_length": 4,
+      "x_rank": 2,
+      "flat": false,
+      "carrier_dimension": 32,
+      "initial_ideals": 4,
+      "deformation_f": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 5,
+      "characteristic": 2,
+      "nilpotence_cap": 2,
+      "planar_degrees": [
+        2,
+        2
+      ],
+      "planar_constants": [
+        0,
+        0
+      ],
+      "extra_relation": [
+        1,
+        1,
+        0
+      ],
+      "length": 6,
+      "closed_fiber_length": 4,
+      "x_rank": 2,
+      "flat": false,
+      "carrier_dimension": 32,
+      "initial_ideals": 2,
+      "deformation_f": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 5,
+      "characteristic": 3,
+      "nilpotence_cap": 2,
+      "planar_degrees": [
+        2,
+        2
+      ],
+      "planar_constants": [
+        0,
+        0
+      ],
+      "extra_relation": [
+        1,
+        1,
+        0
+      ],
+      "length": 6,
+      "closed_fiber_length": 4,
+      "x_rank": 2,
+      "flat": false,
+      "carrier_dimension": 32,
+      "initial_ideals": 4,
+      "deformation_f": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 5,
+      "characteristic": 101,
+      "nilpotence_cap": 2,
+      "planar_degrees": [
+        2,
+        2
+      ],
+      "planar_constants": [
+        0,
+        0
+      ],
+      "extra_relation": [
+        1,
+        1,
+        0
+      ],
+      "length": 6,
+      "closed_fiber_length": 4,
+      "x_rank": 2,
+      "flat": false,
+      "carrier_dimension": 32,
+      "initial_ideals": 4,
+      "deformation_f": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 6,
+      "characteristic": 0,
+      "nilpotence_cap": 3,
+      "planar_degrees": [
+        2,
+        2
+      ],
+      "planar_constants": [
+        0,
+        0
+      ],
+      "extra_relation": [
+        1,
+        1,
+        0
+      ],
+      "length": 8,
+      "closed_fiber_length": 4,
+      "x_rank": 4,
+      "flat": false,
+      "carrier_dimension": 108,
+      "initial_ideals": 8,
+      "deformation_f": [
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 6,
+      "characteristic": 2,
+      "nilpotence_cap": 3,
+      "planar_degrees": [
+        2,
+        2
+      ],
+      "planar_constants": [
+        0,
+        0
+      ],
+      "extra_relation": [
+        1,
+        1,
+        0
+      ],
+      "length": 8,
+      "closed_fiber_length": 4,
+      "x_rank": 4,
+      "flat": false,
+      "carrier_dimension": 108,
+      "initial_ideals": 4,
+      "deformation_f": [
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 6,
+      "characteristic": 3,
+      "nilpotence_cap": 3,
+      "planar_degrees": [
+        2,
+        2
+      ],
+      "planar_constants": [
+        0,
+        0
+      ],
+      "extra_relation": [
+        1,
+        1,
+        0
+      ],
+      "length": 8,
+      "closed_fiber_length": 4,
+      "x_rank": 4,
+      "flat": false,
+      "carrier_dimension": 108,
+      "initial_ideals": 8,
+      "deformation_f": [
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 6,
+      "characteristic": 101,
+      "nilpotence_cap": 3,
+      "planar_degrees": [
+        2,
+        2
+      ],
+      "planar_constants": [
+        0,
+        0
+      ],
+      "extra_relation": [
+        1,
+        1,
+        0
+      ],
+      "length": 8,
+      "closed_fiber_length": 4,
+      "x_rank": 4,
+      "flat": false,
+      "carrier_dimension": 108,
+      "initial_ideals": 8,
+      "deformation_f": [
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 7,
+      "characteristic": 0,
+      "nilpotence_cap": 3,
+      "planar_degrees": [
+        2,
+        2
+      ],
+      "planar_constants": [
+        0,
+        0
+      ],
+      "extra_relation": [
+        2,
+        0,
+        0
+      ],
+      "length": 8,
+      "closed_fiber_length": 4,
+      "x_rank": 4,
+      "flat": false,
+      "carrier_dimension": 108,
+      "initial_ideals": 10,
+      "deformation_f": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 7,
+      "characteristic": 2,
+      "nilpotence_cap": 3,
+      "planar_degrees": [
+        2,
+        2
+      ],
+      "planar_constants": [
+        0,
+        0
+      ],
+      "extra_relation": [
+        2,
+        0,
+        0
+      ],
+      "length": 8,
+      "closed_fiber_length": 4,
+      "x_rank": 4,
+      "flat": false,
+      "carrier_dimension": 108,
+      "initial_ideals": 7,
+      "deformation_f": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 7,
+      "characteristic": 3,
+      "nilpotence_cap": 3,
+      "planar_degrees": [
+        2,
+        2
+      ],
+      "planar_constants": [
+        0,
+        0
+      ],
+      "extra_relation": [
+        2,
+        0,
+        0
+      ],
+      "length": 8,
+      "closed_fiber_length": 4,
+      "x_rank": 4,
+      "flat": false,
+      "carrier_dimension": 108,
+      "initial_ideals": 10,
+      "deformation_f": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    },
+    {
+      "case": 7,
+      "characteristic": 101,
+      "nilpotence_cap": 3,
+      "planar_degrees": [
+        2,
+        2
+      ],
+      "planar_constants": [
+        0,
+        0
+      ],
+      "extra_relation": [
+        2,
+        0,
+        0
+      ],
+      "length": 8,
+      "closed_fiber_length": 4,
+      "x_rank": 4,
+      "flat": false,
+      "carrier_dimension": 108,
+      "initial_ideals": 10,
+      "deformation_f": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          -1
+        ],
+        [
+          [
+            0,
+            3,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            0,
+            1
+          ],
+          1
+        ]
+      ],
+      "deformation_g": [
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          2
+        ],
+        [
+          [
+            0,
+            1,
+            1
+          ],
+          1
+        ],
+        [
+          [
+            0,
+            2,
+            0
+          ],
+          1
+        ],
+        [
+          [
+            1,
+            1,
+            0
+          ],
+          -1
+        ]
+      ]
+    }
+  ],
+  "nilpotent_lift_growth_bound": "Classical moment-volume corollary; O_h(n^2) at fixed h and bounded special-fiber rectangle ratio, including nonflat extensions.",
   "source_sha256": {
-    "docs/square_zero_extension_fans.md": "34822c830428e04c37146c26ba9c0b1c7d38bcbb4ad591fd761328fdb557438b",
-    "scripts/run_square_zero_extension_checks.py": "2931a755ee33685da7dec4ad3609b5ae2723d0fbd1610d2a57b0b9dc924a4778",
+    "docs/square_zero_extension_fans.md": "445481ab854ef5f1c90426391a2a2402725d6bf5f3a0ec278946491a3e5bfa30",
+    "scripts/run_square_zero_extension_checks.py": "c6e493b604506bb2ffd0da87a8517a72b7c2691c95daf659b6850ca42ee199df",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
     "scripts/run_projection_tag_checks.py": "c003724cab6740a5bafc51e03b0f17f779eff80a463bdf92dae134d53617ccff",
     "scripts/run_signed_face_checks.py": "8367cf40b049331649f6f3ed799e43982b14a1d40cfb620791249d2c63375867",

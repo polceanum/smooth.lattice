@@ -168,6 +168,95 @@ It proves unbounded propagation length, with only two tangent weights
 at the starting planar ideal. It is not a large-fan construction:
 the entire fan has three cells.
 
+## A classical box gate for nilpotent lifts
+
+The long circuits above do not make rectangular extensions candidates for
+a polynomial separation. A classical moment-volume argument excludes a
+larger class, without any restriction on the deformation coefficients.
+
+Let \(A=K[x,y,z]/I\) have length \(n>0\), suppose \(x^h=0\) in
+\(A\), and write \(m=\dim_K A/xA\). Suppose monic univariate
+polynomials \(P(y),Q(z)\), of degrees \(r,s\ge1\), annihilate
+\(A/xA\). No flatness or monomial-kernel assumption is required. Then
+\[
+ x^h,\quad P(y)^h,\quad Q(z)^h\in I.                 \tag{E13}
+\]
+Indeed \(P(y),Q(z)\in xA\), so their \(h\)-th powers vanish.
+Consequently every global initial standard set lies in the common box
+with sides \(h,hr,hs\). Coordinate chains in a standard set \(D\)
+give \(\mu_i(D)\le n(d_i-1)/2\) for these three sides \(d_i\).
+The convex hull of the actual standard-set moments therefore has
+volume \(O(n^3h^3rs)\), after adding the integral unit cube if needed.
+Its vertices include all the distinct initial standard sets. The
+classical three-dimensional lattice-vertex estimate yields
+\[
+              g(I)=O(n^{3/2}h^{3/2}\sqrt{rs}).          \tag{E14}
+\]
+The constant is absolute, over every field. This is the anisotropic
+form of [Babson--Onn--Thomas, proof of Corollary 2.5](https://arxiv.org/pdf/math/0207135),
+already recorded as (MB1)--(MB2) in the research note; it is not a new
+lattice-polytope theorem. Actual undirected fan adjacency is planar,
+and each primitive wall cost is at most \(n\), so also
+\(V(I)=O(n^{5/2}h^{3/2}\sqrt{rs})\).
+
+For a convenient feasibility parameter put \(\eta=rs/m\ge1\).
+The multiplication filtration gives
+\[
+ m\le n\le hm,\qquad
+ g(I)=O(h^{3/2}n^2\sqrt\eta).                         \tag{E15}
+\]
+For the upper length bound, multiplication by \(x^j\) maps
+\(A/xA\) onto \(x^jA/x^{j+1}A\). If \(A\) is free over
+\(K[x]/(x^h)\), then \(n=hm\), and the sharper substitution in
+(E14) is
+\[
+                 g(I)=O(hn^2\sqrt\eta).                \tag{E16}
+\]
+Thus fixed \(h\) and \(rs=O(m)\) exclude a polynomial gain over
+the generic quadratic scale, including nonflat extensions. At fixed
+\(h\), a family with \(g(I)\ge c n^{2+\epsilon}\) requires
+\(\eta=\Omega_{c,h}(n^{2\epsilon})\). Large \(\eta\) is only
+a necessary condition, not a construction or a sufficient test.
+
+In particular, take arbitrary polynomials \(f,g\in K[x,y,z]\):
+\[
+ C=K[x,y,z]/(x^h,\ P(y)-xf,\ Q(z)-xg).               \tag{E17}
+\]
+This has \(n=hrs\) and is free over \(K[x]/(x^h)\), with basis
+\(y^az^b\), \(a<r,b<s\). Here is an elementary flatness proof.
+Use monic univariate division on \(P,Q\); every error term gains an
+\(x\) factor, so division terminates modulo \(x^h\), proving spanning.
+For independence, work modulo \(x^h\) and suppose a polynomial supported
+on this proposed basis is \(a(P-xf)+b(Q-xg)\). If both multipliers
+are divisible by \(x^k\), the \(x^k\)-coefficient has zero rectangular
+remainder and is itself rectangular, so it vanishes and
+\(a_kP+b_kQ=0\).
+Since the coprime polynomials \(P,Q\) have only their Koszul syzygy,
+\(a_k=cQ,b_k=-cP\). Subtract \(x^kc(Q-xg)\) from \(a\) and
+add \(x^kc(P-xf)\) to \(b\), preserving the represented polynomial
+while raising the coefficient order. Repeating through \(h\) orders
+proves independence. This is the elementary regular-sequence lifting
+argument; the general flatness input is classical, for example
+[Stacks Project, Lemma 10.128.6](https://stacks.math.columbia.edu/tag/00R3).
+
+For (E17), (E16) gives \(g(C)=O(hn^2)\) and
+\(V(C)=O(hn^3)\). Fixed nilpotence order therefore closes every such
+two-relation deformation, including arbitrary multipliers, composite
+orders, nonlocal planar fibers and exceptional characteristics. Adding
+further relations that preserve the rectangular special fiber can lose
+flatness, but (E15) still gives \(O_h(n^2)\). The earlier unit grid
+is the special case \(h=2,P=y^r,Q=z^s,g=0\); its multiplier need
+not be a unit for this exclusion.
+
+These are classical feasibility consequences, not a new unrestricted
+counting theorem or evidence of publication significance. They do not
+apply with small \(\eta\) to arbitrary planar endpoints, and do not
+identify a compulsory vector-space contraction with an algebra quotient.
+The checker compares two terminating division orders with independent
+ideal-span elimination in the larger carrier (E13), then traverses the
+complete small fans. Its examples support the algebra and moment
+inequalities; the uniform bounds rest on the proof above.
+
 ## Literature comparison and the next proof step
 
 [Chaput--Evain, Section 2.1 and Proposition 2.1](https://aif.centre-mersenne.org/item/10.5802/aif.2955.pdf),
@@ -194,7 +283,9 @@ The checker independently recomputes these counts and the Hom-space
 nullity, retaining this as finite evidence against a parameter-count
 cap, without inferring an asymptotic growth law.
 
-The useful next target is a collective bound on positively exposed
+Rectangular nilpotent lifts are excluded by (E13)--(E17), so larger
+fan searches there are unnecessary. The useful next target is a
+collective bound on positively exposed
 minors of the compatible matrices (E5), or a realizable family in
 which those minors yield a polynomial coherent separation. A bound
 on tangent weights alone cannot replace that step. Arbitrary
