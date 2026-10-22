@@ -45,6 +45,9 @@ it does not settle all \(yz=0\) quotients or unrestricted \(G_3\).
 The Fitting containment below is a classical Hilbert--Burch/Smith-form
 corollary. The lattice vertex estimate is also established. Exact priority
 and significance of the assembled quantitative theorem remain unassessed.
+The full-kernel extension below removes the nonzero-overlap assumption
+and uses a smaller branch excess. A separate generic reduced-point
+calculation treats an important zero-overlap control class.
 
 ## The classical coefficient containment
 
@@ -267,3 +270,210 @@ a consequential unrestricted complexity result and the publication goal
 remain open. The next counting obligation is the regime of large planar
 excess, with the shared \(x\)-action and actual dependence matrices
 retained. The original success criteria are unchanged.
+
+## Full branch kernels: a stronger quotient, including zero overlap
+
+The shared module need not be used in both applications of (F4). Put
+\[
+ K_Y=\ker(y:yA\to yA),\quad K_Z=\ker(z:zA\to zA),\quad
+ k_Y=\dim K_Y,\quad k_Z=\dim K_Z,\quad h=\dim W.
+\]
+Use descending factors \(d^Y_i,d^Z_i\), their weighted lengths
+\(\Phi_Y,\Phi_Z\), generator numbers \(r_Y,r_Z\), and row products
+\(g^Y_j=\prod_{i>j}d^Y_i\), \(g^Z_j=\prod_{i>j}d^Z_i\).
+For an empty kernel set \(r=k=\Phi=0\) and every row product to one.
+Define
+\[
+ \begin{split}
+ q_0&=\operatorname{lcm}(g^Y_0,g^Z_0),\quad c=\deg q_0,\\
+ e_Y'&=\dim Y-\Phi_Y,\quad e_Z'=\dim Z-\Phi_Z,\quad e'=e_Y'+e_Z',\\
+ d&=\dim A/(Y+Z),\quad S=e'+d-c.                         \tag{K1}
+ \end{split}
+\]
+These parameters apply to every positive-length \(yz=0\) quotient,
+whether or not \(W\) is zero. The corresponding canonical ideal is
+\[
+ J^\dagger=(q_0,yz,\ g^Y_jy^j\ (j\ge1),\
+                                g^Z_jz^j\ (j\ge1)).       \tag{K2}
+\]
+Only finitely many generators are necessary. In particular an empty
+kernel contributes the generator \(y\) or \(z\), respectively;
+it does **not** contribute the constant generator one. If both kernels
+are empty, \(q_0=1\) and the whole canonical quotient is zero.
+
+**Full-kernel theorem.** The actual ideal \(M=K_Y+K_Z\) is contained
+in \(J^\dagger/I\), and \(I\subseteq J^\dagger\). This canonical
+quotient has one global initial ideal and length
+\[
+ L=c+\Phi_Y-k_Y+\Phi_Z-k_Z.                               \tag{K3}
+\]
+Its fixed standard set is forced in every parent standard set. Let
+\(m=\dim M=k_Y+k_Z-h\). Then
+\[
+ S\ge0,\quad R:=n-L=m+S,\quad
+           \dim(J^\dagger/I)/M=S.                        \tag{K4}
+\]
+Let \(b=\operatorname{lcm}(d^Y_1,d^Z_1)\), treating a missing factor
+as one, and \(D=\deg b\). There is a monic \(x\)-annihilator of
+degree at most \(c+D+S\). The full fan satisfies
+\[
+ \begin{split}
+ X&=R\max(0,c+D+S-1),\\
+ Y_0&=\Phi_Y+r_Ye_Y'+e_Y'(e_Y'+1)/2,\\
+ Z_0&=\Phi_Z+r_Ze_Z'+e_Z'(e_Z'+1)/2,\\
+ g(I)&=O\left(\sqrt{(1+X)(1+Y_0)(1+Z_0)}\right)
+       =O\bigl(n^2+n(e')^2\bigr).                        \tag{K5}
+ \end{split}
+\]
+Every reduced basis has at most \(r_Y+r_Z+e'+4\) polynomials.
+Thus the quadratic class includes \(e'=O(\sqrt n)\), even with zero
+overlap and arbitrary axis length. Where the previous shared-overlap
+parameters exist, \(e'\le e\), and its old fixed standard set is
+contained in the stronger one. Exact priority remains unassessed.
+
+**Proof.** Both kernels are ideals of \(A\): they are \(x\)-stable,
+and \(y,z\) kill them. Their intersection is exactly \(W\).
+Apply (F4) to the full kernel of each branch. The core-plus-branch
+argument used for (F2) gives \(I\subseteq J^\dagger\).
+For \(w=yf\in K_Y\), one has \(y^2f=0\), hence the polynomial
+\(yf\) belongs to the branch annihilator \((I:y)\cap K[x,y]\).
+Its coefficient containment puts this positive-\(y\) polynomial in
+\(J^\dagger\). The same holds for \(K_Z\), proving the inclusion
+of \(M\). This also handles nonlocal branches and empty kernels.
+
+The characteristic polynomials of \(x\) on \(K_Y\) and on
+\(Y/yY\) agree, by the exact kernel-cokernel sequence for \(y:Y\to Y\).
+The latter is cyclic over \(B\), so its monic annihilator is exactly
+\(g^Y_0\). The axis surjection \(A/(Y+Z)\to Y/yY\), and its
+\(Z\)-analogue, show that \(q_0\) divides the axis annihilator.
+Consequently \(d\ge c\). Classical planar minimality gives
+\(e_Y',e_Z'\ge0\). Monic row division proves (K3), its universal
+initial ideal and its fixed standard set. Length bookkeeping gives (K4).
+
+Set \(V=J^\dagger/I\). The polynomial \(q_0\) sends \(A\) into
+\(V\); a degree-at-most-\(S\) annihilator \(p\) of \(V/M\) then
+sends it into \(M\), and \(bM=0\). Thus \(bpq_0\in I\).
+In fact \(D\le m\), since \(b\) is the minimal annihilator of the
+\(B\)-module \(M\). Therefore \(c+D+S\le c+R\le n\).
+
+In each branch replace \(D_W\) in (F7) by the downset from its own
+kernel. It has \(\Phi_Y\) or \(\Phi_Z\) labels and at most
+\(e_Y'\) or \(e_Z'\) additions. If that downset is empty, its
+minimal excluded generator is the origin and its shell is simply the
+ordinary length-\(e\) planar hyperbolic cross. These two fixed shells
+and the axis bound give one fixed residual matroid of rank \(R\)
+for the whole positive fan. The residual ground has at most
+\[
+ k_Y+k_Z+D+S+(r_Y+1)|E_{e_Y'}^{(2)}|
+                      +(r_Z+1)|E_{e_Z'}^{(2)}|             \tag{K6}
+\]
+labels before discarding overlaps and loops.
+
+The residual moments satisfy (K5) by the same column-addition budget
+as (F9)--(F10), now separately in the two branches. This remains true
+when the canonical quotient is zero and its compulsory set is empty.
+Apply the established three-dimensional lattice vertex theorem.
+Finally \(R\le n\), \(c+D+S\le n\), \(\Phi_Y,\Phi_Z\le n\),
+and \(r_Y,r_Z\le\sqrt{2n}\), so \(Y_0,Z_0=O(n+(e')^2)\).
+This proves the second estimate. Counting branch row frontiers gives
+the reduced-basis bound. The inequalities comparing old and new cores
+follow from \(W\subseteq K_Y,K_Z\) and the PID invariant-factor
+embedding criterion. \(\square\)
+
+For generic reduced points off the shared axis, multiplication by \(y\)
+is invertible on \(Y\), and similarly on \(Z\). Both kernels vanish;
+then \(e'=n\), so (K5) does not close that control family. Its rank
+structure admits a different bound, as follows.
+
+## Generic reduced points on the two planes
+
+Let \(m_Y,m_Z\ge1\), \(n=m_Y+m_Z\), and choose sufficiently general
+distinct points, with \(m_Y\) on \(z=0,y\ne0\) and \(m_Z\) on
+\(y=0,z\ne0\). Over every characteristic their point ideal satisfies
+\[
+                         g(I)=O(n^2\log^2(n+1)).           \tag{N1}
+\]
+Sufficiently general means a specified nonempty Zariski-open condition
+on this product of planes. A given finite field need not have rational
+points in that open set; extension fields are allowed. Nongeneric point
+configurations are not included.
+
+On the finite ground
+\(E=\{a:\prod_i(a_i+1)\le n,\ a_ya_z=0\}\), divide labels into
+the pure axis, the positive-\(y\) plane and the positive-\(z\) plane.
+For a generic configuration a set of at most \(n\) labels is independent
+exactly when
+\[
+            |B\cap Y|\le m_Y,\qquad |B\cap Z|\le m_Z.    \tag{N2}
+\]
+Mixed \(yz\)-labels are loops. This is a truncation of a partition
+matroid, not a uniform rank rule on the whole union of planes.
+
+To prove generic existence, every structurally allowed \(n\)-set has
+a permissible assignment of its columns to the \(m_Y\) and \(m_Z\)
+rows: assign the branch columns to their own rows and fill the remaining
+rows with axis columns. Its evaluation determinant is a nonzero
+polynomial in the independent point coordinates. Indeed every nonzero
+permutation term is a different monomial: at each labelled row, distinct
+surviving columns restrict to distinct monomials on that plane. Thus
+there is no cancellation, in any characteristic. The finite product of
+these determinants is nonzero. Impose the nonzero branch coordinates
+and distinctness as further open conditions. Any smaller structurally
+allowed set extends to a permitted \(n\)-set by adding unused axis
+labels, proving (N2) for all subsets. Support dimensions give necessity.
+This is the usual generic-minor and partition-matroid argument.
+
+At a generic positive objective the constant label is always selected.
+Therefore both branch capacities cannot simultaneously be full. There
+are only three possibilities:
+
+1. If both capacities are slack, the basis is the \(n\) cheapest
+   labels of \(E\). Every exchange is feasible, so any other choice
+   would fail optimality.
+2. If \(Y\)'s capacity is full, its part is the \(m_Y\) cheapest
+   positive-\(y\) labels and its complement is the \(m_Z\) cheapest
+   labels on the \((x,z)\)-plane, including the axis. Each part can
+   be optimized independently without violating the other capacity.
+3. The analogous description holds with \(Y,Z\) reversed.
+
+The ground has size
+\[
+             M=2\sum_{j=1}^n\lfloor n/j\rfloor-n
+                    =O(n\log(n+1)).                       \tag{N3}
+\]
+It lies on the boundary of the positive orthant. The already proved
+[boundary-set lemma](generic_multiaffine_bound.md#a-classical-bound-for-points-on-the-orthant-boundary)
+bounds the first case by \(2n(M-n)-M+2=O(n^2\log(n+1))\).
+Its input is the classical convex-position facet count in
+[Leroux--Rademacher, Section 2.5, Proposition 2.13](https://www.math.ucdavis.edu/~lrademac/algebraicksets.pdf),
+with perturbation as in Proposition 2.11. This is not a new spatial
+\(k\)-set theorem for matroids.
+
+For a full capacity, deleting the fixed \(y\)-tag leaves an ordinary
+planar corner cut of size \(m_Y\); its complement is one of size
+\(m_Z\). If \(C_2(m)\) denotes that set count, the two full-capacity
+cases together give at most \(2C_2(m_Y)C_2(m_Z)\) bases. The
+[established planar bound](planar_dyadic_bound.md)
+\(C_2(m)=O(m\log(m+1))\) proves (N1). Internal orders
+and extra subdivisions are not multiplied in: a pair of selected sets
+determines the parent basis. This upper bound is not asserted sharp.
+
+Thus neither small full-kernel excess nor generic reduced points on this
+reducible multiaffine carrier can provide a polynomial separation above
+the generic \(n^2\log^2 n\) scale. The remaining \(yz=0\) route must
+have large full-kernel branch excess and nongeneric dependent ranks.
+This narrows a realizable search mechanism while leaving the original
+unrestricted objective intact. The assembled quantitative statements
+still require an exact priority and significance assessment.
+
+The checker retains the old 78 witnesses and counters separately. Its
+full-kernel extension verifies actual quotient maps and shells, including
+empty kernels, unequal branches, partial kernel identifications, zero
+overlap and nonlocal base changes. The generic-point controls check
+every structurally permitted maximal minor on the recorded ground and
+compare complete rational cones with a separate capacity-matroid sweep.
+For a concrete scope guard, the four distinct rational points
+\((1,1,0),(2,2,0),(3,0,1),(4,0,2)\) have two points on each plane,
+but \(\{1,x,y^2,xy\}\) has rank three although (N2) would allow rank
+four. The relation \(xy-y^2\) vanishes at all four points. Thus
+reducedness and a component count alone do not justify (N2).

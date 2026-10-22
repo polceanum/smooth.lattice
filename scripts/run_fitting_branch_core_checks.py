@@ -9,6 +9,7 @@ from math import prod
 from pathlib import Path
 import hashlib
 import json
+import random
 
 from run_minimal_branch_overlap_checks import (
     envelope, intersection, module_data, mul, parameters, partitions, power,
@@ -21,8 +22,9 @@ from run_univariate_branch_gluing_checks import (
 from run_forced_socle_fan_checks import model as forced_model
 from run_interleaving_research import minimal_excluded_border
 from run_projection_tag_checks import compare_fans, fan
+from run_oracle_enumeration_checks import exact_adjacent_weight
 from run_signed_face_checks import field_basis, field_reduce
-from run_structural_complexity_checks import dot, hyperbolic_cross
+from run_structural_complexity_checks import area2, clip, dot, hyperbolic_cross
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -363,9 +365,286 @@ def inspect(name, data, factors, p, counts, full=False):
     return row
 
 
+def trim(f, p):
+    f = [c % p if p else Q(c) for c in f]
+    while f and not f[-1]:
+        f.pop()
+    return tuple(f)
+
+
+def monic(f, p):
+    f = trim(f, p)
+    inv = pow(f[-1], -1, p) if p else 1/f[-1]
+    return tuple(c*inv % p if p else c*inv for c in f)
+
+
+def lcm_polynomial(a, b, p):
+    u, v = monic(a,p), monic(b,p)
+    while v:
+        u, v = v, trim(rem(u,v,p),p)
+        if v:
+            v = monic(v,p)
+    divisor = monic(u,p)
+    value = list(mul(a,b,p)); answer = [0]*(len(value)-len(divisor)+1)
+    for i in range(len(value)-1,len(divisor)-2,-1):
+        lead = value[i]
+        answer[i-len(divisor)+1] = lead
+        for j,c in enumerate(divisor):
+            value[i-len(divisor)+1+j] -= lead*c
+        value = [c % p if p else c for c in value]
+    assert not any(value)
+    return monic(answer,p)
+
+
+def kernel_on_image(op, image, p):
+    F = Frame(image,p)
+    columns = tuple(F.coords(apply(op,v,p)) for v in image)
+    nullspace,_ = dense_kernel(columns,len(image),p)
+    return tuple(apply(image,v,p) for v in nullspace)
+
+
+def kernel_parameters(X, K, factors, p, counts):
+    if not K:
+        return dict(primary=(),ds=(),gs=((1,),),r=0,k=0,phi=0)
+    primary = recover_partitions(X,K,factors,p,counts)
+    r = max(len(shape) for _,shape in primary)
+    ds = [(1,)]*r
+    for f,shape in primary:
+        for j,size in enumerate(shape):
+            ds[j] = mul(ds[j],power(f,size,p),p)
+    gs,k,phi = module_data(tuple(ds),p)
+    return dict(primary=primary,ds=tuple(ds),gs=gs,r=r,k=k,phi=phi)
+
+
+def inspect_full_kernels(name, data, factors, p, counts, full=False):
+    n,M,unit = data
+    assert cyclic_span(M,unit,p)==n
+    assert all(not apply(M[1],v,p) for v in M[2])
+    for U,V in combinations(M,2):
+        assert all(apply(U,V[i],p)==apply(V,U[i],p) for i in range(n))
+    @lru_cache(None)
+    def ev(a):
+        value=unit
+        for op,e in zip(M,a):
+            for _ in range(e): value=apply(op,value,p)
+        return value
+    Y,Z,W = intersection(M,p)
+    KY,KZ = kernel_on_image(M[1],Y,p),kernel_on_image(M[2],Z,p)
+    A,B = (kernel_parameters(M[0],K,factors,p,counts) for K in (KY,KZ))
+    joint=Frame(KY+KZ,p).basis
+    h,d = len(W),n-len(Y)-len(Z)+len(W)
+    m=len(joint)
+    assert m==A['k']+B['k']-h
+    assert all(not apply(op,v,p) for op in M[1:] for v in joint)
+    q0=lcm_polynomial(A['gs'][0],B['gs'][0],p); c=len(q0)-1
+    eY,eZ=len(Y)-A['phi'],len(Z)-B['phi']
+    S=eY+eZ+d-c
+    assert eY>=0 and eZ>=0 and d>=c and S>=0
+    C={(i,0,0) for i in range(c)}
+    C.update((i,j,0) for j in range(1,A['r']) for i in range(len(A['gs'][j])-1))
+    C.update((i,0,j) for j in range(1,B['r']) for i in range(len(B['gs'][j])-1))
+    C=tuple(sorted(C));index={a:i for i,a in enumerate(C)}
+    L=c+A['phi']-A['k']+B['phi']-B['k'];R=n-L
+    assert len(C)==L and R==m+S
+    assert dense_rank(tuple(ev(a) for a in C),n,p)==L
+    @lru_cache(None)
+    def canonical(a):
+        x,y,z=a
+        if y and z:return {}
+        if y:
+            if y>=A['r']:return {}
+            divisor=A['gs'][y]
+        elif z:
+            if z>=B['r']:return {}
+            divisor=B['gs'][z]
+        else:divisor=q0
+        coefficients=rem((0,)*x+(1,),divisor,p)
+        return clean({index[i,y,z]:v for i,v in enumerate(coefficients) if v},p)
+    ground=tuple(hyperbolic_cross(n,3))
+    basis,_=field_basis(sorted(ground,key=lambda a:(dot(a,(1,n+1,(n+1)**2)),a)),ev,p)
+    F=Frame(tuple(ev(a) for a in basis),p)
+    targets=tuple(canonical(a) for a in basis)
+    projection=tuple(apply(targets,F.coords({i:1}),p) for i in range(n))
+    cops=tuple(tuple(canonical(tuple(v+int(i==j) for j,v in enumerate(a))) for a in C)
+               for i in range(3))
+    assert apply(projection,unit,p)==canonical((0,0,0))
+    for op,cop in zip(M,cops):
+        for i in range(n):
+            assert apply(projection,op[i],p)==apply(cop,projection[i],p)
+            counts['full_kernel_canonical_quotient_columns']+=1
+    assert dense_rank(projection,L,p)==L
+    assert all(not apply(projection,v,p) for v in joint)
+    V,_=dense_kernel(projection,L,p)
+    FV=Frame(tuple(joint)+V,p)
+    assert len(V)==R==len(FV.basis)
+    def project_defect(v):
+        return clean({i-m:coefficient for i,coefficient in FV.coords(v).items() if i>=m},p)
+    defect_X=tuple(project_defect(apply(M[0],v,p)) for v in FV.basis[m:])
+    ann=matrix_annihilator(defect_X,p)
+    Dpoly=lcm_polynomial(A['ds'][0] if A['ds'] else (1,),
+                         B['ds'][0] if B['ds'] else (1,),p)
+    D=len(Dpoly)-1;axis_bound=c+D+S
+    assert D<=m and axis_bound<=c+R<=n
+    assert len(ann)-1<=S
+    ann_A=mul(mul(q0,Dpoly,p),ann,p)
+    assert len(ann_A)-1<=axis_bound
+    assert not polynomial(M[0],unit,ann_A,p)
+    downsets=[{(i,j) for j in range(K['r']) for i in range(len(K['gs'][j])-1)}
+              for K in (A,B)]
+    def extra_ground(DW,e):
+        if not e:return set()
+        border=minimal_excluded_border(tuple(DW)) if DW else ((0,0),)
+        return {tuple(a[i]+b[i] for i in range(2)) for a in border
+                for b in hyperbolic_cross(e,2)}
+    allowed={(i,0,0) for i in range(axis_bound)}
+    for axis,DW,e in ((1,downsets[0],eY),(2,downsets[1],eZ)):
+        allowed.update((i,j+1 if axis==1 else 0,j+1 if axis==2 else 0)
+                       for i,j in DW|extra_ground(DW,e))
+    allowed={a for a in allowed if prod(i+1 for i in a)<=n}
+    E=tuple(sorted(allowed-set(C)))
+    _,cpivots=field_basis(C,ev,p)
+    assert dense_rank(tuple(field_reduce(ev(a),cpivots,p)[0] for a in E),n,p)==R
+    Xbound=R*max(0,axis_bound-1)
+    Ybound=A['phi']+A['r']*eY+eY*(eY+1)//2
+    Zbound=B['phi']+B['r']*eZ+eZ*(eZ+1)//2
+    row=dict(name=name,characteristic=p,length=n,overlap_dimension=h,
+             Y_kernel=A,Z_kernel=B,axis_polynomial=q0,axis_core_length=c,
+             axis_quotient_length=d,e_Y=eY,e_Z=eZ,branch_excess=eY+eZ,
+             joint_kernel_dimension=m,defect_dimension=S,canonical_length=L,
+             residual_rank=R,common_standard_set=C,residual_ground=E,
+             defect_x_annihilator=ann,full_x_annihilator=ann_A,
+             residual_moment_bounds=(Xbound,Ybound,Zbound))
+    if full:
+        actual=fan(n,ev,p,counts)
+        for basis in actual:
+            assert set(C)<=basis<=allowed
+            variable=basis-set(C)
+            moment=tuple(sum(a[i] for a in variable) for i in range(3))
+            assert all(u<=v for u,v in zip(moment,(Xbound,Ybound,Zbound)))
+            assert len(minimal_excluded_border(tuple(basis)))<=A['r']+B['r']+eY+eZ+4
+        if R<=5 and len(E)<=16:
+            compare_fans(actual,residual_fan(C,E,R,ev,p,counts),counts)
+            counts['full_kernel_independent_shell_fans']+=1
+        row['cones']=len(actual)
+        row['complete_standard_sets']=[sorted(b) for b in sorted(actual,key=lambda b:sorted(b))]
+    counts['full_kernel_actual_quotient_maps']+=1
+    return row
+
+
+def separate_branches(a,b,p,share=0):
+    CY=planar(a,(0,)*sum(a[k] for j in range(len(a)) for k in range(j+1,len(a))),p)
+    CZ=planar(b,(0,)*sum(b[k] for j in range(len(b)) for k in range(j+1,len(b))),p)
+    q=max(a[0],b[0]);my,mz=sum(a),sum(b)
+    def lift(v,k):return {i+k:c for i,c in v.items()}
+    X=tuple({i+1:1} if i+1<q else {} for i in range(q))
+    X+=tuple(lift(v,q) for v in CY['X'])+tuple(lift(v,q+my) for v in CZ['X'])
+    ycore=tuple(lift(CY['ev'](i,0),q) for i in range(q))
+    zcore=tuple(lift(CZ['ev'](i,0),q+my) for i in range(q))
+    Y=ycore+tuple(lift(v,q) for v in CY['Y'])+({},)*mz
+    Z=zcore+({},)*my+tuple(lift(v,q+my) for v in CZ['Y'])
+    data=q+my+mz,(X,Y,Z),{0:1}
+    if share:
+        assert a==b
+        K,_=dense_kernel(CY['Y'],my,p)
+        FK=Frame(K,p)
+        action=tuple(FK.coords(apply(CY['X'],v,p)) for v in K)
+        killed,_=dense_kernel(action,len(K),p)
+        assert share<=len(killed)
+        T=tuple(linear(((1,lift(apply(K,v,p),q)),(-1,lift(apply(K,v,p),q+my))),p)
+                for v in killed[:share])
+        data=quotient_by_relations(data[1],data[2],T,p)
+    return data
+
+
+def point_data(points,p):
+    n=len(points)
+    M=tuple(tuple(clean({i:point[axis]},p) for i,point in enumerate(points))
+            for axis in range(3))
+    return n,M,{i:1 for i in range(n)}
+
+
+def node_ground(n):
+    return tuple(a for a in hyperbolic_cross(n,3) if not a[1]*a[2])
+
+
+def node_independent(B,my,mz):
+    return sum(bool(a[1]) for a in B)<=my and sum(bool(a[2]) for a in B)<=mz
+
+
+def node_matroid_fan(my,mz,counts):
+    n=my+mz;E=node_ground(n)
+    triangle=[tuple(Q(i==j) for i in range(3)) for j in range(3)]
+    queue=[(1,n+1,(n+1)**2)];cells={}
+    while queue:
+        w=queue.pop();basis=[]
+        for a in sorted(E,key=lambda a:(dot(a,w),a)):
+            if node_independent(basis+[a],my,mz):basis.append(a)
+            if len(basis)==n:break
+        B=frozenset(basis)
+        if B in cells:continue
+        normals={tuple(a[i]-b[i] for i in range(3)) for a in E if a not in B
+                 for b in B if node_independent((B-{b})|{a},my,mz)}
+        assert all(dot(q,w)>0 for q in normals)
+        poly=list(triangle)
+        for q in sorted(normals):poly=clip(poly,q,1)
+        assert area2(poly)>0
+        cells[B]=poly
+        for a,b in zip(poly,poly[1:]+poly[:1]):
+            if any(a[i]==b[i]==0 for i in range(3)):continue
+            q=next(q for q in normals if dot(q,a)==dot(q,b)==0)
+            neighbor,_=exact_adjacent_weight(n,a,b,q);queue.append(neighbor)
+    assert sum(area2(poly) for poly in cells.values())==1
+    counts['generic_node_complete_abstract_fans']+=1
+    return cells
+
+
+def generic_node_control(my,mz,p,counts):
+    n=my+mz;E=node_ground(n);rng=random.Random(91453+101*my+mz+p)
+    for attempt in range(1,101):
+        points=tuple((rng.randrange(1,1000),rng.randrange(1,1000),0) for _ in range(my))
+        points+=tuple((rng.randrange(1,1000),0,rng.randrange(1,1000)) for _ in range(mz))
+        if len(set(points))<n:continue
+        @lru_cache(None)
+        def ev(a):
+            return clean({i:prod(pow(t,e,p) if p else t**e for t,e in zip(point,a))
+                          for i,point in enumerate(points)},p)
+        checked=0
+        for chosen in combinations(E,n):
+            if not node_independent(chosen,my,mz):continue
+            checked+=1
+            if dense_rank(tuple(ev(a) for a in chosen),n,p)<n:break
+        else:break
+    else:raise AssertionError('No verified finite generic configuration.')
+    counts['generic_node_all_structural_basis_minors']+=checked
+    actual=fan(n,ev,p,counts);abstract=node_matroid_fan(my,mz,counts)
+    compare_fans(actual,abstract,counts)
+    cases=Counter()
+    for B,poly in abstract.items():
+        assert (0,0,0) in B
+        y=sum(bool(a[1]) for a in B);z=sum(bool(a[2]) for a in B)
+        w=tuple(sum(v[i] for v in poly) for i in range(3))
+        if y==my:
+            first=sorted((a for a in E if a[1]),key=lambda a:(dot(a,w),a))[:my]
+            rest=sorted((a for a in E if not a[1]),key=lambda a:(dot(a,w),a))[:mz]
+            kind='Y_capacity'
+        elif z==mz:
+            first=sorted((a for a in E if a[2]),key=lambda a:(dot(a,w),a))[:mz]
+            rest=sorted((a for a in E if not a[2]),key=lambda a:(dot(a,w),a))[:my]
+            kind='Z_capacity'
+        else:
+            first=sorted(E,key=lambda a:(dot(a,w),a))[:n];rest=[];kind='uniform'
+        assert B==frozenset(first+rest)
+        cases[kind]+=1
+    counts['generic_node_three_case_states']+=len(abstract)
+    return dict(m_Y=my,m_Z=mz,characteristic=p,points=points,search_attempts=attempt,
+                ordinary_ground=E,all_structural_basis_minors=checked,cones=len(actual),
+                selection_cases=dict(cases)),point_data(points,p)
+
+
 def hashes():
     paths = ['docs/fitting_branch_core.md','scripts/run_fitting_branch_core_checks.py',
-             'docs/minimal_branch_overlap.md']
+             'docs/minimal_branch_overlap.md','docs/generic_multiaffine_bound.md',
+             'docs/planar_dyadic_bound.md']
     pending = [paths[1]]
     while pending:
         path = pending.pop()
@@ -383,6 +662,14 @@ def main():
     if not __debug__:
         raise RuntimeError('Assertions must be enabled.')
     before, counts = hashes(), Counter()
+    full_counts,full_rows = Counter(),[]
+    def check(name,data,factors,p,counts,full=False):
+        old=inspect(name,data,factors,p,counts,full)
+        new=inspect_full_kernels(name,data,factors,p,full_counts,full)
+        assert new['branch_excess']<=old['branch_excess']
+        assert set(old['common_standard_set'])<=set(new['common_standard_set'])
+        full_rows.append(new)
+        return old
     probes,pool = planar_controls(counts)
     print(json.dumps(dict(planar_models=counts['commuting_planar_coefficient_models'],
                           available_nonminimal_branches=len(pool))),flush=True)
@@ -393,7 +680,7 @@ def main():
                               coefficients=C['values'],kernel_partition=C['lam']))
         for coupled in (False,True):
             data=glue(C,2,coupled)
-            rows.append(inspect('planar_gluing_'+str(j)+'_coupled='+str(coupled),data,
+            rows.append(check('planar_gluing_'+str(j)+'_coupled='+str(coupled),data,
                                 ((0,1),),2,counts,full=j<8))
     for p in (0,2,3,101):
         for lam in ((2,),(1,1),(2,1),(2,1,1)):
@@ -401,25 +688,25 @@ def main():
             name,theta,u=parameters(H,p)[-1]
             n,M,unit,_=quotient(H,theta,u,p,counts)
             data=n,M,unit
-            rows.append(inspect('minimum_'+str(lam),data,((0,1),),p,counts,full=sum(lam)<=3))
+            rows.append(check('minimum_'+str(lam),data,((0,1),),p,counts,full=sum(lam)<=3))
             if lam==(1,1):
                 for t in (1,3):
-                    rows.append(inspect('unit_y_padding_'+str(t),pad(data,t,p),
+                    rows.append(check('unit_y_padding_'+str(t),pad(data,t,p),
                                         ((0,1),),p,counts,full=t==1))
-                row=inspect('nonlocal_axis_padding_5',axis_padding(data,5,p),
+                row=check('nonlocal_axis_padding_5',axis_padding(data,5,p),
                             ((0,1),),p,counts,full=True)
                 assert row['branch_excess']==0 and row['excess']==5
                 rows.append(row)
         a=(3,2);C=planar(a,(0,)*2,p)
         W,_=dense_kernel(C['Y'],sum(a),p)
         C['lam']=recover_partitions(C['X'],W,((0,1),),p,counts)[0][1]
-        rows.append(inspect('monomial_planar_nonminimal_core_coupling',glue(C,p,True),
+        rows.append(check('monomial_planar_nonminimal_core_coupling',glue(C,p,True),
                             ((0,1),),p,counts,full=True))
         for N in (3,4):
             reference,ev=forced_model(N,'A',p)
             M=tuple(tuple(ev(tuple(a+int(i==j) for j,a in enumerate(v)))
                           for v in reference) for i in range(3))
-            rows.append(inspect('forced_socle_N='+str(N),(len(reference),M,ev((0,0,0))),
+            rows.append(check('forced_socle_N='+str(N),(len(reference),M,ev((0,0,0))),
                                 ((0,1),),p,counts,full=True))
         print(json.dumps(dict(characteristic=p,completed_actual_models=len(rows))),flush=True)
     for f,p,factors in (((1,1,1),2,((1,1,1),)),((0,0,1),2,((0,1),)),
@@ -427,32 +714,91 @@ def main():
         C=planar((3,2),(0,0),p)
         C['lam']=(2,1)
         data=base_change(glue(C,p,True),f,p)
-        rows.append(inspect('free_monic_base_change_'+str(f),data,factors,p,counts,full=True))
+        rows.append(check('free_monic_base_change_'+str(f),data,factors,p,counts,full=True))
     for m in (2,3,4):
         n,ev=pascal_ray_model(m,0)
         M=tuple(tuple(ev((i+1,0,0)) if axis==0 else
                       ev((i,int(axis==1),int(axis==2))) for i in range(n)) for axis in range(3))
-        row=inspect('Pascal_sharp_m='+str(m),(n,M,ev((0,0,0))),((0,1),),0,counts,full=True)
+        row=check('Pascal_sharp_m='+str(m),(n,M,ev((0,0,0))),((0,1),),0,counts,full=True)
         assert row['excess']==0 and row['cones']==(m+1)*(m+2)//2
         rows.append(row)
+    for p in (0,2,3,101):
+        for a,b in (((2,1),(3,1)),((3,2,1),(3,1))):
+            row=inspect_full_kernels('separate_planar_branches_'+str((a,b)),
+                                     separate_branches(a,b,p),((0,1),),p,full_counts,True)
+            assert row['overlap_dimension']==0 and row['branch_excess']==0
+            full_rows.append(row)
+        for share in (1,2):
+            row=inspect_full_kernels('partial_kernel_identification_'+str(share),
+                                     separate_branches((3,2,1),(3,2,1),p,share),
+                                     ((0,1),),p,full_counts,True)
+            assert row['overlap_dimension']==share and row['branch_excess']==0
+            full_rows.append(row)
+        C=planar((2,2,2),(0,)*6,p)
+        data=6,(C['X'],C['Y'],({},)*6),C['unit']
+        full_rows.append(inspect_full_kernels('empty_Z_kernel',data,((0,1),),p,full_counts,True))
+        for points in (((0,1,0),),((0,0,1),),((0,0,0),),
+                       ((0,1,0),(1,1,0),(0,0,1),(1,0,1))):
+            row=inspect_full_kernels('empty_both_branch_kernels_'+str(points),
+                                     point_data(points,p),(),p,full_counts,True)
+            assert not row['Y_kernel']['k'] and not row['Z_kernel']['k']
+            assert row['canonical_length']==0
+            full_rows.append(row)
+    for f,p,factors in (((1,1,1),2,((1,1,1),)),((0,0,1),2,((0,1),)),
+                         ((0,-1,1),101,((0,1),(-1,1)))):
+        data=base_change(separate_branches((2,1),(3,1),p),f,p)
+        row=inspect_full_kernels('separate_branches_base_change_'+str(f),data,
+                                 factors,p,full_counts,True)
+        assert row['overlap_dimension']==0 and row['branch_excess']==0
+        full_rows.append(row)
+    generic_nodes=[]
+    for p in (0,1000003):
+        for my,mz in ((1,1),(1,2),(2,2),(2,3)):
+            row,data=generic_node_control(my,mz,p,full_counts)
+            generic_nodes.append(row)
+            full_rows.append(inspect_full_kernels('generic_reduced_node_'+str((my,mz)),
+                                                   data,(),p,full_counts,True))
+        print(json.dumps(dict(generic_node_characteristic=p,models=len(generic_nodes))),flush=True)
+    negative_controls=[]
+    for p in (0,101):
+        points=((1,1,0),(2,2,0),(3,0,1),(4,0,2))
+        chosen=((0,0,0),(1,0,0),(0,2,0),(1,1,0))
+        columns=tuple(clean({i:prod(pow(t,e,p) if p else t**e for t,e in zip(point,a))
+                             for i,point in enumerate(points)},p) for a in chosen)
+        assert node_independent(chosen,2,2) and dense_rank(columns,4,p)==3
+        negative_controls.append(dict(characteristic=p,points=points,
+                                      structurally_allowed_basis=chosen,actual_columns=columns,
+                                      actual_rank=3,required_rank=4,
+                                      relation='xy-y^2 vanishes on both branches'))
+        full_rows.append(inspect_full_kernels('nongeneric_reduced_node_control',
+                                               point_data(points,p),(),p,full_counts,True))
+        full_counts['nongeneric_reduced_rank_controls']+=1
     assert before==hashes(),'A source changed during verification.'
     report=dict(command='python3 -B scripts/run_fitting_branch_core_checks.py',status='passed',
                 source_sha256=before,counts=dict(counts),uniform_proof='docs/fitting_branch_core.md',
                 exhaustive_planar_coefficient_controls=probes,nonminimal_branch_witnesses=witnesses,
                 actual_quotient_witnesses=rows,
+                full_kernel_counts=dict(full_counts),full_kernel_quotients=full_rows,
+                generic_reduced_node_controls=generic_nodes,
+                nongeneric_reduced_node_controls=negative_controls,
                 primary_sources=[
                     dict(url='https://arxiv.org/html/0708.3576v1',scope='Conca--Valla Section 3, Theorem 3.3, Lemma 3.6 and the proof of Step 2: polynomial Hilbert--Burch representations of arbitrary finite planar ideals.'),
                     dict(url='https://arxiv.org/html/2407.07993v4',scope='Oszer Theorem 2.1 gives the classical resolution theorem. Introduction and Section 6 warn against assuming arbitrary matrix perturbations preserve colength.'),
                     dict(url='https://doi.org/10.1090/S0002-9947-1963-0143105-7',scope='The established lattice vertex-volume estimate; no new geometric theorem.'),
-                    dict(url='https://travisadillon.com/documents/volume_vs_vertex_in_lattice_polytopes.pdf',scope='Theorem 1 states and proves the vertex-volume exponent used in dimension three.')],
+                    dict(url='https://travisadillon.com/documents/volume_vs_vertex_in_lattice_polytopes.pdf',scope='Theorem 1 states and proves the vertex-volume exponent used in dimension three.'),
+                    dict(url='https://www.math.ucdavis.edu/~lrademac/algebraicksets.pdf',scope='Section 2.5 and Proposition 2.13, with Proposition 2.11 for perturbations: classical three-dimensional convex-position facet counts. The orthant-boundary reduction is already proved in docs/generic_multiaffine_bound.md.')],
                 limits=['Coefficient containment is a classical Hilbert--Burch/Smith-form corollary, strengthening and reclassifying the previous planar minimum lemma.',
                         'The finite upper-row controls exhaust only their stated coefficient slots, not all planar ideals.',
                         'Every claimed quotient map is checked against all multiplication columns; sampled weights are not used to infer a global quotient.',
                         'Complete fan comparisons use exact rational cones. The independent all-subset compiler is used only where the recorded residual size permits it.',
                         'The theorem gives quadratic order for total planar branch excess O(sqrt(n)), irrespective of the extra axis length; it does not bound all yz=0 ideals quadratically.',
+                        'The full-kernel theorem includes zero overlap and empty branch kernels; its excess is at most the former shared-overlap excess.',
+                        'Generic reduced points on yz=0 require the verified component-capacity rank condition. Nongeneric reduced configurations are outside that class theorem.',
+                        'All previous 78 shared-overlap witnesses and verification counters are preserved separately from the full-kernel extension.',
                         'No unrestricted G3 improvement, supergeneric polynomial separation, completed priority audit, significance judgment or completed goal follows.'])
     (ROOT/'results/research/fitting_branch_core_checks.json').write_text(json.dumps(jsonable(report),indent=2)+'\n')
-    print(json.dumps(dict(status='passed',actual_models=len(rows),counts=dict(counts))),flush=True)
+    print(json.dumps(dict(status='passed',actual_models=len(rows),counts=dict(counts),
+                          full_kernel_models=len(full_rows),full_kernel_counts=dict(full_counts))),flush=True)
 
 
 if __name__=='__main__':
