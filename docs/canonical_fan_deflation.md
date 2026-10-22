@@ -227,13 +227,125 @@ the smallest resulting core length over centers in \(K^d\), assigning
 length one to a translated presentation that is monomial.
 The minimum exists because it is
 a nonempty set of positive integers. No efficient global search for
-the best center is claimed. Bounds (D14)--(D15) hold with \(m=\kappa\).
+the best center over an arbitrary field is claimed; the finite candidate
+set is described below. Bounds (D14)--(D15) hold with \(m=\kappa\).
 Thus \(g(I_n)\ge c n^{2+\epsilon}\) requires
 \[
  \kappa(I_n)=\Omega_{c,\epsilon}
  \left(n^{(16+8\epsilon)/23}/\log^{3/23}(n+1)\right).
                                                                \tag{D16}
 \]
+
+## Unit coordinates and the possible centers
+
+If any coordinate is a unit in \(R/I\), the intrinsic factor is one.
+Indeed its minimal polynomial has nonzero constant coefficient:
+otherwise cancel that unit to obtain an annihilator of smaller degree.
+Every power of the coordinate is nonzero, so the entire minimal
+polynomial is an essential relation. Its constant term forces gcd one
+in (D5).
+A proper finite monomial quotient has nilpotent coordinates, so a
+presentation with a unit coordinate cannot enter the monomial exception.
+
+Let \(m_i(T)\) be the minimal polynomial of coordinate multiplication,
+and let \(\Lambda_i\subset K\) be its roots in \(K\). In a presentation
+centered at \(c\), a coordinate is a unit whenever
+\(m_i(c_i)\ne0\). Thus a center giving effective length below \(n\)
+must lie in
+\[
+                         \Lambda_1\times\cdots\times\Lambda_d.
+                                                               \tag{D17}
+\]
+There are at most \(\prod_i\deg m_i\le n^d\) candidates. Given these
+roots, the marked-basis extraction at the candidates computes
+\(\kappa\); finding roots over an arbitrary field is an additional
+computational problem, not included in the field-operation envelope.
+Translations preserve each leading monomial, so one can translate and
+interreduce the same marked basis at each center.
+
+In particular, for a quotient supported at one \(K\)-rational point,
+every other center has a unit coordinate. Its best core is therefore
+obtained at the support point. If the factor there is one, then
+\(\kappa(I)=n\). Full core length consequently does not imply a large
+fan, and need not even remove padding from an interacting part of a
+larger relation system.
+
+## A full-length core does not repair the reuse charge
+
+Here is an all-field infinite guard against normalizing the failed
+absolute-divisor-volume charge only by the global canonical core.
+It retains every old recrossing while increasing length by just one.
+
+Take the [parity-circuit construction](disjoint_socle_circuits.md#one-upper-pair-recrosses-at-a-polynomial-rate)
+with parameter \(s\ge1\), \(B=4s^2\), and divisor downset \(D_s\).
+Its two relations have disjoint socle supports and its length is
+\(n_s=(32s^3+30s^2+10s+12)/3\). Pad by \(v=(0,A,0)\), where
+\(A\ge1\). Write \(D_{s,A}=D_s+[0,v]\), and let \(W_{s,A}\) be
+the span of the two translated relations. Adjoin the two new maximal
+monomials
+\[
+                  a=x^2,\qquad b=z^{B+2},
+\]
+and set
+\[
+ \widehat D=D_{s,A}\cup\{a,b\},\qquad
+ \widehat I=J_{\widehat D}+W_{s,A}+(x^2-z^{B+2}).         \tag{D18}
+\]
+This is a downset: \(D_{s,A}\) already contains every proper divisor
+of \(a,b\). Its old maximal supports all have positive \(y\)-exponent,
+so neither new tip dominates one. The added relation is a disjoint
+socle circuit. Hence
+\[
+ \widehat n=n_s+(8s^2+4)A+1,\qquad
+                 4s\le g(\widehat I)\le8s.              \tag{D19}
+\]
+The new fan is the old fan refined by the one line
+\(t=2s^2+1\), with \(w=(t,u,1)\). The upper bound in (D19)
+just splits each convex old cone into at most two pieces.
+
+The old persistent junctions are
+\[
+                 (t_i,u_i)=(i(i+1),i+\tfrac12),
+                        \qquad1\le i<2s.                \tag{D20}
+\]
+Their \(t_i\)'s are even and the new line has odd \(t\), so none is
+lost or becomes a multiple crossing. Every junction still has exactly
+four incident bases, actual common core of size \(\widehat n-2\),
+and primitive wall directions
+\((1,-2i,i^2)\), \((1,-2(i+1),(i+1)^2)\). The same upper pair is
+\[
+             e=(1,A+1,B),\qquad f=(1,A,B+1),
+\]
+with divisor volumes \(2(A+2)(B+1)\), \(2(A+1)(B+2)\).
+
+Both new tips are individually nonzero, so \(x^2-z^{B+2}\) is an
+essential relation with gcd one. The quotient is local at the origin.
+The preceding unit argument therefore proves
+\[
+                         \kappa(\widehat I)=\widehat n
+                                                               \tag{D21}
+\]
+over every field, even after allowing every translation.
+
+For \(A=s\), the two divisor-volume ratios tend to \(3/7\), while
+the same pair has \(2s-1=\Theta(\widehat n^{1/3})\) recrossings.
+For \(s=k^4,A=k^5\), both ratios tend to one and recrossing is
+\(\Theta(\widehat n^{4/13})\). Bulk costs
+\(2i^2+2i+1\), with \(s\le i<2s\), remain strictly between
+\(\widehat n^{3/5}\) and \(\widehat n-\widehat n^{3/7}\) for all
+sufficiently large parameters in both families. These assertions
+follow directly from (D19): respectively
+\(\widehat n=\Theta(s^3)\) and \(\Theta(k^{13})\), whereas the
+costs are \(\Theta(s^2)\) and \(\Theta(k^8)\).
+
+Thus the proposed length/divisor-volume reuse bound, with any fixed
+polylogarithmic allowance, remains false among ideals already having
+full canonical core at every center. A disjoint relation can hide the
+common factor of the interacting part. This does not refute the
+collective wall budget: these examples still have only \(\Theta(s)\)
+initial ideals and lie in the already bounded socle class. A repair
+must retain the interacting relation data, not just the global gcd or
+the minimized length \(\kappa\).
 
 ## Limits and verification
 
@@ -261,12 +373,19 @@ The report is results/research/canonical_fan_deflation_checks.json.
 It compares all marked reduced bases, the separate finite-kernel
 extraction, ordinary S-pair reductions of the divided bases, actual
 multiplication images, full colon fans and lifted original cones.
-It includes 33 quotient examples over \(\mathbb Q\) and prime fields,
-84 marked-cone comparisons, 65 finite-kernel extractions and 1,254
+The original controls include 33 quotient examples over \(\mathbb Q\)
+and prime fields, 84 marked-cone comparisons and 1,254
 ordinary S-pair reductions for each of the original and divided bases.
 The examples cover nonlocal quotients, field cancellations, propagating
 relations, padded recrossings and the stated failure guards. These are
 finite controls of the proof, without a computational priority claim.
+The additional five primitive-core guards compare 47 whole cones,
+check 2,478 ordinary S-pairs and 11 persistent four-cell junctions,
+and verify 48 essential constant-term certificates at nonzero centers.
+They enumerate every center over the tested prime fields, plus selected
+rational centers. The all-center conclusion uses the unit proof above.
+Separate exact integer controls test the middle-cost inequalities at
+large parameters without enumerating those huge quotient fans.
 
 Colon ideals, reduced-basis uniqueness, monomial division, module
 images and the leading-ideal criterion are established tools.
@@ -274,6 +393,8 @@ The standard reduced-basis properties are recorded in the
 [Magma Gröbner-basis documentation](https://docs.magma-maths.org/CommutativeAlgebra/GrobnerBases/groebner.html).
 The [state dictionary](https://arxiv.org/pdf/math/0207135) and
 the repository's earlier bounds supply the geometric consequences.
+Nilpotence of the maximal ideal in a local finite algebra is classical;
+see [Stacks Project, Lemmas 10.53.2 and 10.53.4](https://stacks.math.columbia.edu/tag/00J4).
 The order-independent extraction and exact quantitative packaging
 are proved above; exact priority remains unassessed.
 The sharp unrestricted endpoint, actual polynomial lower separation

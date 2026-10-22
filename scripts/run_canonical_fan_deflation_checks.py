@@ -4,6 +4,7 @@ from collections import Counter, defaultdict
 from fractions import Fraction as Q
 from functools import lru_cache
 from itertools import combinations, product
+from math import comb
 from pathlib import Path
 import hashlib
 import json
@@ -17,8 +18,8 @@ from run_primitive_wall_checks import threshold
 from run_projection_tag_checks import compare_fans, fan, point_model
 from run_quadric_cross_checks import apply, normalized, rank
 from run_signed_face_checks import field_basis, field_reduce
-from run_socle_circuit_checks import recross_model
-from run_structural_complexity_checks import (dot, hyperbolic_cross,
+from run_socle_circuit_checks import factor_fan, multiplication_controls, recross_model
+from run_structural_complexity_checks import (cross, dot, hyperbolic_cross,
                                               univariate_power_mod, univariate_product_mod)
 from run_univariate_cross_checks import center
 
@@ -289,6 +290,106 @@ def failure_guards(counts):
             'scope':'No arbitrary common-subspace or arbitrary colon replacement is inferred.'}
 
 
+def primitive_reuse_guard(s,A,p,counts):
+    """One extra disjoint circuit defeats the global core-size repair."""
+    old,_,_=recross_model(s,p)
+    original=generic_model(old['D'],old['S'],old['polynomials'],p)
+    base=padded(original,(0,A,0),counts)
+    B=4*s*s
+    a,b=(2,0,0),(0,0,B+2)
+    assert a not in base['D'] and b not in base['D']
+    D=base['D']|{a,b}
+    rows=base['polynomials']+[{a:1,b:-1}]
+    model=generic_model(D,base['S']|{a,b},rows,p)
+    n=model['n']
+    expected=(32*s**3+30*s*s+10*s+12)//3+(8*s*s+4)*A+1
+    assert n==expected==base['n']+1
+    multiplication_controls(model,counts)
+    cells=full_fan(model,counts)
+    compare_fans(cells,factor_fan(model),counts)
+    assert 4*s<=len(cells)<=8*s
+    assert kernel_factor(n,model['ev'],p,counts)[0]==ZERO
+    for basis,poly in cells.items():
+        G,_=marked_basis(basis,model['ev'],p)
+        assert common_factor(G)==ZERO
+        counts['primitive_guard_full_reduced_basis_S_pairs']+=pair_checks(G,center(poly),p)
+        counts['primitive_guard_every_marked_factor_zero']+=1
+    edges=edges_from_polygons(cells,counts)
+    junctions=[]
+    for i in range(1,2*s):
+        t=i*(i+1);u=Q(2*i+1,2);w=(t,u,1)
+        assert t!=2*s*s+1
+        incident=[basis for basis,poly in cells.items()
+                  if all(dot(cross(a,b),w)>=0 for a,b in zip(poly,poly[1:]+poly[:1]))]
+        assert len(incident)==4
+        common=set.intersection(*map(set,incident))
+        assert len(common)==n-2
+        upper={(1,A+1,B),(1,A,B+1)}
+        lower={(0,A+2*j+int(j%2==0),B-j*j+int(j%2==1)) for j in (i,i+1)}
+        assert set.union(*map(set,incident))-common==upper|lower
+        local_edges=[edge for edge in edges if set(edge)<=set(incident)]
+        assert len(local_edges)==4
+        directions=set()
+        for C,E in map(tuple,local_edges):
+            q=primitive(tuple(x-y for x,y in zip(profile(C),profile(E))))
+            if q[0]<0:q=tuple(-x for x in q)
+            directions.add(q)
+        expected_directions={(1,-2*j,j*j) for j in (i,i+1)}
+        assert directions==expected_directions
+        costs=sorted(threshold(q) for q in directions)
+        assert costs==[2*i*i+2*i+1,2*(i+1)**2+2*(i+1)+1]
+        junctions.append({'i':i,'weight':[t,str(u),1],'incident_cells':4,
+                          'actual_common_core_size':len(common),
+                          'primitive_directions':sorted(directions),'primitive_costs':costs})
+        counts['primitive_guard_preserved_persistent_four_cell_junctions']+=1
+    # At any nonzero center one translated coordinate is a unit. An
+    # essential annihilator containing 1 certifies monomial gcd one.
+    nilpotence=[max(a[j] for a in D)+1 for j in range(3)]
+    centers=(list(product(range(p),repeat=3)) if p else
+             [ZERO,(1,0,0),(0,1,0),(0,0,1),(1,-1,2)])
+    for c in centers:
+        if c==ZERO:continue
+        j=next(j for j in range(3) if c[j])
+        N=nilpotence[j];value=c[j]
+        polynomial=normalized({k:comb(N,k)*value**(N-k) for k in range(N+1)},p)
+        assert polynomial[0]
+        def ev_power(k):
+            out=defaultdict(int)
+            for l in range(k+1):
+                e=tuple(l*int(j==h) for h in range(3))
+                for z,v in model['ev'](e).items():
+                    out[z]+=comb(k,l)*(-value)**(k-l)*v
+            return normalized(out,p)
+        assert all(ev_power(k) for k in polynomial)
+        total=defaultdict(int)
+        for k,v in polynomial.items():
+            for z,vv in ev_power(k).items():total[z]+=v*vv
+        assert not normalized(total,p)
+        counts['primitive_guard_nonzero_center_essential_constant_certificates']+=1
+    return {'s':s,'padding':A,'field':p,'length':n,
+            'core_length_at_every_center':n,'initial_ideals':len(cells),
+            'persistent_crossings':len(junctions),
+            'upper_divisor_volumes':[2*(A+2)*(B+1),2*(A+1)*(B+2)],
+            'junctions':junctions,'all_marked_factors_one':True,
+            'translated_centers_checked':len(centers)-1,
+            'scope':'Every-center core length follows uniformly from the local unit argument. The finite translated annihilators and independent full-fan comparisons support that proof; they do not enumerate centers over infinite fields.'}
+
+
+def primitive_reuse_arithmetic(counts):
+    rows=[]
+    for s,A in [(s,s) for s in (1024,4096,16384)]+[(k**4,k**5) for k in (64,128,256)]:
+        n=(32*s**3+30*s*s+10*s+12)//3+(8*s*s+4)*A+1
+        volumes=[2*(A+2)*(4*s*s+1),2*(A+1)*(4*s*s+2)]
+        assert max(volumes)<=n
+        costs=[2*i*i+2*i+1 for i in (s,(3*s)//2,2*s-1)]
+        assert all(cost**5>n**3 and (n-cost)**7>=n**3 for cost in costs)
+        counts['primitive_guard_exact_middle_cost_scale_controls']+=len(costs)
+        rows.append({'s':s,'padding':A,'length':n,'persistent_crossings':2*s-1,
+                     'upper_divisor_volumes':volumes,'sampled_bulk_costs':costs,
+                     'scope':'Exact integer formula checks; no huge quotient fan is enumerated.'})
+    return rows
+
+
 def main():
     counts=Counter();rows=[]
     for A in fixtures(counts):
@@ -297,6 +398,9 @@ def main():
               row.get('factor_exponents'),'core',row.get('core_length'),
               'g',row['initial_ideals'],flush=True)
     guards=failure_guards(counts)
+    primitive_guards=[primitive_reuse_guard(s,A,p,counts)
+                      for s,A,p in ((1,1,0),(1,1,2),(2,2,0),(2,2,2),(2,5,3))]
+    primitive_arithmetic=primitive_reuse_arithmetic(counts)
     sources=['docs/canonical_fan_deflation.md','scripts/run_canonical_fan_deflation_checks.py',
              'docs/initial_fan_padding.md','scripts/run_initial_fan_padding_checks.py',
              'docs/rational_shadow_bound.md','docs/wall_coexistence.md',
@@ -309,8 +413,12 @@ def main():
          'scope':'Canonical monomial factor independent of global order, matrix-only extraction, '
                  'actual colon algebra and invariant multiplication block, complete fan preservation, '
                  'and effective length in existing wall/count bounds. This does not remove all '
-                 'univariate padding or improve unrestricted G3. Exact novelty is unassessed.',
+                 'univariate padding or improve unrestricted G3. A one-relation extension retains '
+                 'padded same-pair recrossing while making the core full length at every translation. '
+                 'Exact novelty is unassessed.',
          'counters':dict(counts),'complete_quotient_controls':rows,'failure_guards':guards,
+         'primitive_core_reuse_guards':primitive_guards,
+         'primitive_core_middle_cost_arithmetic':primitive_arithmetic,
          'source_sha256':{f:hashlib.sha256((ROOT/f).read_bytes()).hexdigest() for f in sources}}
     target=ROOT/'results/research/canonical_fan_deflation_checks.json'
     target.write_text(json.dumps(out,indent=2)+'\n')

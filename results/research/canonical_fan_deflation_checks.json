@@ -1,28 +1,35 @@
 {
   "schema_version": 1,
   "all_checks_passed": true,
-  "scope": "Canonical monomial factor independent of global order, matrix-only extraction, actual colon algebra and invariant multiplication block, complete fan preservation, and effective length in existing wall/count bounds. This does not remove all univariate padding or improve unrestricted G3. Exact novelty is unassessed.",
+  "scope": "Canonical monomial factor independent of global order, matrix-only extraction, actual colon algebra and invariant multiplication block, complete fan preservation, and effective length in existing wall/count bounds. This does not remove all univariate padding or improve unrestricted G3. A one-relation extension retains padded same-pair recrossing while making the core full length at every translation. Exact novelty is unassessed.",
   "counters": {
-    "independent_full_extrusion_projection_formulas": 10,
-    "independent_full_original_border_normal_forms": 343,
-    "complete_independent_quotient_fans": 15,
-    "independent_nonzero_column_kernel_relations": 221,
-    "complete_universal_finite_kernel_factor_extractions": 65,
+    "independent_full_extrusion_projection_formulas": 15,
+    "independent_full_original_border_normal_forms": 847,
+    "complete_independent_quotient_fans": 20,
+    "independent_nonzero_column_kernel_relations": 236,
+    "complete_universal_finite_kernel_factor_extractions": 70,
     "independent_actual_multiplication_image_ranks": 32,
     "independent_principal_invariant_multiplication_blocks": 1356,
     "independent_colon_coordinate_commutations": 1356,
     "guard_halo_span_is_not_the_quotient_kernel": 28,
     "direct_field_border_relations": 558,
     "complete_direct_quotient_fans": 52,
-    "independent_entire_cone_equalities": 84,
+    "independent_entire_cone_equalities": 131,
     "independent_original_reduced_basis_S_pairs": 1254,
     "independent_divided_colon_basis_S_pairs": 1254,
     "independent_every_order_factor_and_idempotence_checks": 84,
-    "independent_polygon_adjacency_replays": 136,
+    "independent_polygon_adjacency_replays": 205,
     "independent_edge_vector_and_effective_cost_checks": 68,
     "independent_trivial_monomial_cases": 1,
     "guard_redundant_nonreduced_input_changes_factor": 1,
-    "guard_arbitrary_colon_changes_the_fan": 1
+    "guard_arbitrary_colon_changes_the_fan": 1,
+    "independent_commuting_matrix_columns": 2451,
+    "independent_monomial_successor_replays": 2496,
+    "primitive_guard_full_reduced_basis_S_pairs": 2478,
+    "primitive_guard_every_marked_factor_zero": 47,
+    "primitive_guard_preserved_persistent_four_cell_junctions": 11,
+    "primitive_guard_nonzero_center_essential_constant_certificates": 48,
+    "primitive_guard_exact_middle_cost_scale_controls": 18
   },
   "complete_quotient_controls": [
     {
@@ -3730,9 +3737,485 @@
     "arbitrary_colon_core_length": 1,
     "scope": "No arbitrary common-subspace or arbitrary colon replacement is inferred."
   },
+  "primitive_core_reuse_guards": [
+    {
+      "s": 1,
+      "padding": 1,
+      "field": 0,
+      "length": 41,
+      "core_length_at_every_center": 41,
+      "initial_ideals": 7,
+      "persistent_crossings": 1,
+      "upper_divisor_volumes": [
+        30,
+        24
+      ],
+      "junctions": [
+        {
+          "i": 1,
+          "weight": [
+            2,
+            "3/2",
+            1
+          ],
+          "incident_cells": 4,
+          "actual_common_core_size": 39,
+          "primitive_directions": [
+            [
+              1,
+              -4,
+              4
+            ],
+            [
+              1,
+              -2,
+              1
+            ]
+          ],
+          "primitive_costs": [
+            5,
+            13
+          ]
+        }
+      ],
+      "all_marked_factors_one": true,
+      "translated_centers_checked": 4,
+      "scope": "Every-center core length follows uniformly from the local unit argument. The finite translated annihilators and independent full-fan comparisons support that proof; they do not enumerate centers over infinite fields."
+    },
+    {
+      "s": 1,
+      "padding": 1,
+      "field": 2,
+      "length": 41,
+      "core_length_at_every_center": 41,
+      "initial_ideals": 7,
+      "persistent_crossings": 1,
+      "upper_divisor_volumes": [
+        30,
+        24
+      ],
+      "junctions": [
+        {
+          "i": 1,
+          "weight": [
+            2,
+            "3/2",
+            1
+          ],
+          "incident_cells": 4,
+          "actual_common_core_size": 39,
+          "primitive_directions": [
+            [
+              1,
+              -4,
+              4
+            ],
+            [
+              1,
+              -2,
+              1
+            ]
+          ],
+          "primitive_costs": [
+            5,
+            13
+          ]
+        }
+      ],
+      "all_marked_factors_one": true,
+      "translated_centers_checked": 7,
+      "scope": "Every-center core length follows uniformly from the local unit argument. The finite translated annihilators and independent full-fan comparisons support that proof; they do not enumerate centers over infinite fields."
+    },
+    {
+      "s": 2,
+      "padding": 2,
+      "field": 0,
+      "length": 209,
+      "core_length_at_every_center": 209,
+      "initial_ideals": 11,
+      "persistent_crossings": 3,
+      "upper_divisor_volumes": [
+        136,
+        108
+      ],
+      "junctions": [
+        {
+          "i": 1,
+          "weight": [
+            2,
+            "3/2",
+            1
+          ],
+          "incident_cells": 4,
+          "actual_common_core_size": 207,
+          "primitive_directions": [
+            [
+              1,
+              -4,
+              4
+            ],
+            [
+              1,
+              -2,
+              1
+            ]
+          ],
+          "primitive_costs": [
+            5,
+            13
+          ]
+        },
+        {
+          "i": 2,
+          "weight": [
+            6,
+            "5/2",
+            1
+          ],
+          "incident_cells": 4,
+          "actual_common_core_size": 207,
+          "primitive_directions": [
+            [
+              1,
+              -6,
+              9
+            ],
+            [
+              1,
+              -4,
+              4
+            ]
+          ],
+          "primitive_costs": [
+            13,
+            25
+          ]
+        },
+        {
+          "i": 3,
+          "weight": [
+            12,
+            "7/2",
+            1
+          ],
+          "incident_cells": 4,
+          "actual_common_core_size": 207,
+          "primitive_directions": [
+            [
+              1,
+              -8,
+              16
+            ],
+            [
+              1,
+              -6,
+              9
+            ]
+          ],
+          "primitive_costs": [
+            25,
+            41
+          ]
+        }
+      ],
+      "all_marked_factors_one": true,
+      "translated_centers_checked": 4,
+      "scope": "Every-center core length follows uniformly from the local unit argument. The finite translated annihilators and independent full-fan comparisons support that proof; they do not enumerate centers over infinite fields."
+    },
+    {
+      "s": 2,
+      "padding": 2,
+      "field": 2,
+      "length": 209,
+      "core_length_at_every_center": 209,
+      "initial_ideals": 11,
+      "persistent_crossings": 3,
+      "upper_divisor_volumes": [
+        136,
+        108
+      ],
+      "junctions": [
+        {
+          "i": 1,
+          "weight": [
+            2,
+            "3/2",
+            1
+          ],
+          "incident_cells": 4,
+          "actual_common_core_size": 207,
+          "primitive_directions": [
+            [
+              1,
+              -4,
+              4
+            ],
+            [
+              1,
+              -2,
+              1
+            ]
+          ],
+          "primitive_costs": [
+            5,
+            13
+          ]
+        },
+        {
+          "i": 2,
+          "weight": [
+            6,
+            "5/2",
+            1
+          ],
+          "incident_cells": 4,
+          "actual_common_core_size": 207,
+          "primitive_directions": [
+            [
+              1,
+              -6,
+              9
+            ],
+            [
+              1,
+              -4,
+              4
+            ]
+          ],
+          "primitive_costs": [
+            13,
+            25
+          ]
+        },
+        {
+          "i": 3,
+          "weight": [
+            12,
+            "7/2",
+            1
+          ],
+          "incident_cells": 4,
+          "actual_common_core_size": 207,
+          "primitive_directions": [
+            [
+              1,
+              -8,
+              16
+            ],
+            [
+              1,
+              -6,
+              9
+            ]
+          ],
+          "primitive_costs": [
+            25,
+            41
+          ]
+        }
+      ],
+      "all_marked_factors_one": true,
+      "translated_centers_checked": 7,
+      "scope": "Every-center core length follows uniformly from the local unit argument. The finite translated annihilators and independent full-fan comparisons support that proof; they do not enumerate centers over infinite fields."
+    },
+    {
+      "s": 2,
+      "padding": 5,
+      "field": 3,
+      "length": 317,
+      "core_length_at_every_center": 317,
+      "initial_ideals": 11,
+      "persistent_crossings": 3,
+      "upper_divisor_volumes": [
+        238,
+        216
+      ],
+      "junctions": [
+        {
+          "i": 1,
+          "weight": [
+            2,
+            "3/2",
+            1
+          ],
+          "incident_cells": 4,
+          "actual_common_core_size": 315,
+          "primitive_directions": [
+            [
+              1,
+              -4,
+              4
+            ],
+            [
+              1,
+              -2,
+              1
+            ]
+          ],
+          "primitive_costs": [
+            5,
+            13
+          ]
+        },
+        {
+          "i": 2,
+          "weight": [
+            6,
+            "5/2",
+            1
+          ],
+          "incident_cells": 4,
+          "actual_common_core_size": 315,
+          "primitive_directions": [
+            [
+              1,
+              -6,
+              9
+            ],
+            [
+              1,
+              -4,
+              4
+            ]
+          ],
+          "primitive_costs": [
+            13,
+            25
+          ]
+        },
+        {
+          "i": 3,
+          "weight": [
+            12,
+            "7/2",
+            1
+          ],
+          "incident_cells": 4,
+          "actual_common_core_size": 315,
+          "primitive_directions": [
+            [
+              1,
+              -8,
+              16
+            ],
+            [
+              1,
+              -6,
+              9
+            ]
+          ],
+          "primitive_costs": [
+            25,
+            41
+          ]
+        }
+      ],
+      "all_marked_factors_one": true,
+      "translated_centers_checked": 26,
+      "scope": "Every-center core length follows uniformly from the local unit argument. The finite translated annihilators and independent full-fan comparisons support that proof; they do not enumerate centers over infinite fields."
+    }
+  ],
+  "primitive_core_middle_cost_arithmetic": [
+    {
+      "s": 1024,
+      "padding": 1024,
+      "length": 20053673989,
+      "persistent_crossings": 2047,
+      "upper_divisor_volumes": [
+        8606713860,
+        8598327300
+      ],
+      "sampled_bulk_costs": [
+        2099201,
+        4721665,
+        8384513
+      ],
+      "scope": "Exact integer formula checks; no huge quotient fan is enumerated."
+    },
+    {
+      "s": 4096,
+      "padding": 4096,
+      "length": 1282931367941,
+      "persistent_crossings": 8191,
+      "upper_divisor_volumes": [
+        550024257540,
+        549890048004
+      ],
+      "sampled_bulk_costs": [
+        33562625,
+        75509761,
+        134201345
+      ],
+      "scope": "Exact integer formula checks; no huge quotient fan is enumerated."
+    },
+    {
+      "s": 16384,
+      "padding": 16384,
+      "length": 82099552681989,
+      "persistent_crossings": 32767,
+      "upper_divisor_volumes": [
+        35188667088900,
+        35186519638020
+      ],
+      "sampled_bulk_costs": [
+        536903681,
+        1208008705,
+        2147418113
+      ],
+      "scope": "Exact integer formula checks; no huge quotient fan is enumerated."
+    },
+    {
+      "s": 16777216,
+      "padding": 1073741824,
+      "length": 2468223551194622016356357,
+      "persistent_crossings": 33554431,
+      "upper_divisor_volumes": [
+        2417851643732860124266500,
+        2417851641481062458064900
+      ],
+      "sampled_bulk_costs": [
+        562949986975745,
+        1266637445529601,
+        2251799746576385
+      ],
+      "scope": "Exact integer formula checks; no huge quotient fan is enumerated."
+    },
+    {
+      "s": 268435456,
+      "padding": 34359738368,
+      "length": 20013363969167557189582192645,
+      "persistent_crossings": 536870911,
+      "upper_divisor_volumes": [
+        19807040629719005971712311300,
+        19807040629142545288128364548
+      ],
+      "sampled_bulk_costs": [
+        144115188612726785,
+        324259173975982081,
+        576460751229681665
+      ],
+      "scope": "Exact integer formula checks; no huge quotient fan is enumerated."
+    },
+    {
+      "s": 4294967296,
+      "padding": 1099511627776,
+      "length": 163104377229549983771058604343301,
+      "persistent_crossings": 8589934591,
+      "upper_divisor_volumes": [
+        162259276829508511298956386369540,
+        162259276829360937348565733212164
+      ],
+      "sampled_bulk_costs": [
+        36893488156009037825,
+        83010348344577884161,
+        147573952572496543745
+      ],
+      "scope": "Exact integer formula checks; no huge quotient fan is enumerated."
+    }
+  ],
   "source_sha256": {
-    "docs/canonical_fan_deflation.md": "0094e1f902e1b61016e59ab68f39407bd9ce3a5460b2521ea515760c4e244a5f",
-    "scripts/run_canonical_fan_deflation_checks.py": "bb5f57de15edf5f908d94a3b85f80a93d7e251d6833bc6607d519d41a01b9f1b",
+    "docs/canonical_fan_deflation.md": "46c13d453af467e95178d1b449dc886318e324d92486e59736dd43ac02d939b6",
+    "scripts/run_canonical_fan_deflation_checks.py": "ebcddf95bb04de7ae8dd45a65e0a18e4eabec2270607144a555ba8ab2b0a31b0",
     "docs/initial_fan_padding.md": "51ee4221fb4d0dd469b60e5f7c818148ecca6e60fc47e6414b7f07b5f79b0260",
     "scripts/run_initial_fan_padding_checks.py": "970c4c5a4f3ef80dff4789a7a661f5148be2944a871a014b2b70d2c7cbe3984a",
     "docs/rational_shadow_bound.md": "09b6e5e19cb03825e9d2151680e557cdf384256c5392cf70b6aca388e488c1ca",
