@@ -3,24 +3,33 @@
   "status": "passed",
   "source_sha256": {
     "docs/ideal_step_incidence.md": "8f79d88076a2e39eea9a3b4accdb8af1708a29d5474f0df0326b2be45bbf9b7c",
-    "docs/profile_section_budget.md": "42b7e9521bcb3c6720dede4ae5efdc5b6ce2891a29c5b9f57cefea0084e119b5",
+    "docs/profile_section_budget.md": "7c973b69f90f999d3d084564825f4a30b6276b898682fc4dff45375617067b15",
     "scripts/run_algebraic_incidence_controls.py": "93e6f0e5d147da43cdfacc16e4419703c59993c10dc03199ef6385df4d420eeb",
+    "scripts/run_canonical_fan_deflation_checks.py": "ebcddf95bb04de7ae8dd45a65e0a18e4eabec2270607144a555ba8ab2b0a31b0",
     "scripts/run_coordinate_slice_budget_checks.py": "50e973948ce2c1ac46035ef9606e951b4171a8f541895a5dbec73c7e00221df6",
+    "scripts/run_curve_carrier_shadow_checks.py": "30917dfd342c27d3a287104402c8955921c45d868c0813259818a196fca2b46f",
     "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
     "scripts/run_higher_interaction_checks.py": "cdc31d1b582e71c4536056429bf7eabeb2fcb312f313713135a2eaee68578916",
     "scripts/run_higher_seed_checks.py": "92f0c67e86e3be54c71cbe6efac168c767c9768bb8058b6dc36d24b91acac926",
     "scripts/run_hypersurface_truncation_checks.py": "700073c01784db06a953d351c500e0d66b0019c1152fe4b127cbf50f35cbcd7e",
     "scripts/run_initial_cone_height_checks.py": "f804aff89da53a6139aed7cacc9fd802dee8fd8529ee48a0d240dd9740df3dab",
+    "scripts/run_initial_fan_padding_checks.py": "970c4c5a4f3ef80dff4789a7a661f5148be2944a871a014b2b70d2c7cbe3984a",
     "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
     "scripts/run_liaison_fan_checks.py": "59129e88d900f283ed245f7762f3f75f9b498442fe10f7f0b2e2757493359539",
     "scripts/run_oracle_enumeration_checks.py": "139af7656f8dc4083fc463a0bb27354ee53b23e85bc3232b958236b15ee45ec2",
     "scripts/run_planar_dyadic_bound_checks.py": "27642dbe7cf5c21e0eacb671b644bd00b97e758422d341cffa82c16df0b224bc",
     "scripts/run_primitive_wall_checks.py": "ce4bdb6316b3acbfc15625b8f67dfadd69c95d691c81da2c47cda6538c867cdb",
-    "scripts/run_profile_section_checks.py": "25dba9837d184a582ef16bbfcf13a1770bd13b8686c83c545cbc79184e68c403",
+    "scripts/run_profile_section_checks.py": "c276b47ddd4da0846b58d70a83a6e7972ede165296012820dd492f28f8a1777c",
     "scripts/run_projection_tag_checks.py": "c003724cab6740a5bafc51e03b0f17f779eff80a463bdf92dae134d53617ccff",
+    "scripts/run_quadratic_coordinate_fan_checks.py": "4b6e8c0cd224f25478b848303853a7aef2d0e35429f9600c199f0c4ca6dbe82e",
+    "scripts/run_quadric_cross_checks.py": "8d521aa6295bcbc81a7a8140a2cb5af56c69e9469765c2bc17c987da4f0e6226",
+    "scripts/run_rational_shadow_bound_checks.py": "0c27d91102f4c551099358296d147155165a4c451d1aca5d0a311e1e3d5128be",
     "scripts/run_signed_face_checks.py": "8367cf40b049331649f6f3ed799e43982b14a1d40cfb620791249d2c63375867",
+    "scripts/run_socle_circuit_checks.py": "488b0b5d7f3cc24d4da32983165c80463fdb6c6fda96b56f7899c6b6f4cc301e",
     "scripts/run_socle_stability_checks.py": "81e4476100f0be5457fcf7019186415d230cceac4096202b2844dce645e83f52",
+    "scripts/run_square_zero_extension_checks.py": "c6e493b604506bb2ffd0da87a8517a72b7c2691c95daf659b6850ca42ee199df",
     "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
+    "scripts/run_univariate_cross_checks.py": "9d0811efcf1c6861372890e8a409ef44a4b363c80ac010d95f8ebca88ae1d39e",
     "scripts/run_wall_coexistence_checks.py": "12efc209c9a0daacb8e50eebe65902ca019a78fb78098ecc3e79ecf585cae282"
   },
   "source": {
@@ -32,10 +41,20 @@
     "independent_rational_central_section_hulls": 5,
     "independent_positive_zone_segments": 5450,
     "independent_positive_octants_and_integer_width_witnesses": 40,
-    "direct_field_border_relations": 264,
-    "complete_direct_quotient_fans": 4,
+    "direct_field_border_relations": 644,
+    "complete_direct_quotient_fans": 20,
     "independent_polygon_adjacency_replays": 70,
-    "actual_point_fans_vs_complete_pair_zone_profile_edges": 4
+    "actual_point_fans_vs_complete_pair_zone_profile_edges": 4,
+    "integer_colour_sections_vs_all_profile_segments": 4838,
+    "integer_colour_value_function_convexity": 6606,
+    "independent_colour_rank_interval_and_overlap_identities": 2186,
+    "projected_slice_edge_directions_with_at_most_two_exchanges": 12818,
+    "adjacent_integer_minkowski_sections_vs_all_profile_segments": 7908,
+    "independent_entire_cone_equalities": 64,
+    "section_family_actual_monomial_successors": 672,
+    "section_family_commuting_coordinate_actions": 576,
+    "section_family_original_reduced_basis_S_pairs": 940,
+    "actual_integer_sections_with_failed_matroid_exchange": 16
   },
   "cases": [
     {
@@ -1313,9 +1332,2792 @@
       "scope": "Established actual four-line parity-point family; finite controls, not evidence for a uniform section bound."
     }
   ],
+  "binary_integer_sections": {
+    "represented_matroids": 127,
+    "binary_colourings": 2186,
+    "field": 2,
+    "ground": "All nonempty restrictions of the seven distinct nonzero GF(2)^3 columns.",
+    "profile_labels": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "scope": "Exhaustive bounded projected-identity controls; no uniform counting bound."
+  },
+  "actual_nonmatroid_section_families": [
+    {
+      "parameter": 2,
+      "A": 2,
+      "B": 3,
+      "characteristic": 0,
+      "length": 7,
+      "layer_ranks": [
+        6,
+        3
+      ],
+      "overlap_rank": 2,
+      "initial_cones": 4,
+      "integer_x_level": 2,
+      "two_actual_initial_bases": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      ],
+      "section_primitive_direction": [
+        0,
+        4,
+        -3
+      ],
+      "exchange_removed": [
+        1,
+        1,
+        0
+      ],
+      "failed_single_exchanges": [
+        {
+          "replacement": [
+            0,
+            0,
+            2
+          ],
+          "upper_count": 1,
+          "rank": 7
+        },
+        {
+          "replacement": [
+            1,
+            0,
+            1
+          ],
+          "upper_count": 2,
+          "rank": 6
+        }
+      ],
+      "scope": "Actual all-field socle-pair quotient; no new large-fan lower bound."
+    },
+    {
+      "parameter": 2,
+      "A": 2,
+      "B": 3,
+      "characteristic": 2,
+      "length": 7,
+      "layer_ranks": [
+        6,
+        3
+      ],
+      "overlap_rank": 2,
+      "initial_cones": 4,
+      "integer_x_level": 2,
+      "two_actual_initial_bases": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      ],
+      "section_primitive_direction": [
+        0,
+        4,
+        -3
+      ],
+      "exchange_removed": [
+        1,
+        1,
+        0
+      ],
+      "failed_single_exchanges": [
+        {
+          "replacement": [
+            0,
+            0,
+            2
+          ],
+          "upper_count": 1,
+          "rank": 7
+        },
+        {
+          "replacement": [
+            1,
+            0,
+            1
+          ],
+          "upper_count": 2,
+          "rank": 6
+        }
+      ],
+      "scope": "Actual all-field socle-pair quotient; no new large-fan lower bound."
+    },
+    {
+      "parameter": 2,
+      "A": 2,
+      "B": 3,
+      "characteristic": 3,
+      "length": 7,
+      "layer_ranks": [
+        6,
+        3
+      ],
+      "overlap_rank": 2,
+      "initial_cones": 4,
+      "integer_x_level": 2,
+      "two_actual_initial_bases": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      ],
+      "section_primitive_direction": [
+        0,
+        4,
+        -3
+      ],
+      "exchange_removed": [
+        1,
+        1,
+        0
+      ],
+      "failed_single_exchanges": [
+        {
+          "replacement": [
+            0,
+            0,
+            2
+          ],
+          "upper_count": 1,
+          "rank": 7
+        },
+        {
+          "replacement": [
+            1,
+            0,
+            1
+          ],
+          "upper_count": 2,
+          "rank": 6
+        }
+      ],
+      "scope": "Actual all-field socle-pair quotient; no new large-fan lower bound."
+    },
+    {
+      "parameter": 2,
+      "A": 2,
+      "B": 3,
+      "characteristic": 101,
+      "length": 7,
+      "layer_ranks": [
+        6,
+        3
+      ],
+      "overlap_rank": 2,
+      "initial_cones": 4,
+      "integer_x_level": 2,
+      "two_actual_initial_bases": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      ],
+      "section_primitive_direction": [
+        0,
+        4,
+        -3
+      ],
+      "exchange_removed": [
+        1,
+        1,
+        0
+      ],
+      "failed_single_exchanges": [
+        {
+          "replacement": [
+            0,
+            0,
+            2
+          ],
+          "upper_count": 1,
+          "rank": 7
+        },
+        {
+          "replacement": [
+            1,
+            0,
+            1
+          ],
+          "upper_count": 2,
+          "rank": 6
+        }
+      ],
+      "scope": "Actual all-field socle-pair quotient; no new large-fan lower bound."
+    },
+    {
+      "parameter": 3,
+      "A": 3,
+      "B": 4,
+      "characteristic": 0,
+      "length": 9,
+      "layer_ranks": [
+        8,
+        3
+      ],
+      "overlap_rank": 2,
+      "initial_cones": 4,
+      "integer_x_level": 2,
+      "two_actual_initial_bases": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      ],
+      "section_primitive_direction": [
+        0,
+        5,
+        -4
+      ],
+      "exchange_removed": [
+        1,
+        1,
+        0
+      ],
+      "failed_single_exchanges": [
+        {
+          "replacement": [
+            0,
+            0,
+            3
+          ],
+          "upper_count": 1,
+          "rank": 9
+        },
+        {
+          "replacement": [
+            1,
+            0,
+            1
+          ],
+          "upper_count": 2,
+          "rank": 8
+        }
+      ],
+      "scope": "Actual all-field socle-pair quotient; no new large-fan lower bound."
+    },
+    {
+      "parameter": 3,
+      "A": 3,
+      "B": 4,
+      "characteristic": 2,
+      "length": 9,
+      "layer_ranks": [
+        8,
+        3
+      ],
+      "overlap_rank": 2,
+      "initial_cones": 4,
+      "integer_x_level": 2,
+      "two_actual_initial_bases": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      ],
+      "section_primitive_direction": [
+        0,
+        5,
+        -4
+      ],
+      "exchange_removed": [
+        1,
+        1,
+        0
+      ],
+      "failed_single_exchanges": [
+        {
+          "replacement": [
+            0,
+            0,
+            3
+          ],
+          "upper_count": 1,
+          "rank": 9
+        },
+        {
+          "replacement": [
+            1,
+            0,
+            1
+          ],
+          "upper_count": 2,
+          "rank": 8
+        }
+      ],
+      "scope": "Actual all-field socle-pair quotient; no new large-fan lower bound."
+    },
+    {
+      "parameter": 3,
+      "A": 3,
+      "B": 4,
+      "characteristic": 3,
+      "length": 9,
+      "layer_ranks": [
+        8,
+        3
+      ],
+      "overlap_rank": 2,
+      "initial_cones": 4,
+      "integer_x_level": 2,
+      "two_actual_initial_bases": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      ],
+      "section_primitive_direction": [
+        0,
+        5,
+        -4
+      ],
+      "exchange_removed": [
+        1,
+        1,
+        0
+      ],
+      "failed_single_exchanges": [
+        {
+          "replacement": [
+            0,
+            0,
+            3
+          ],
+          "upper_count": 1,
+          "rank": 9
+        },
+        {
+          "replacement": [
+            1,
+            0,
+            1
+          ],
+          "upper_count": 2,
+          "rank": 8
+        }
+      ],
+      "scope": "Actual all-field socle-pair quotient; no new large-fan lower bound."
+    },
+    {
+      "parameter": 3,
+      "A": 3,
+      "B": 4,
+      "characteristic": 101,
+      "length": 9,
+      "layer_ranks": [
+        8,
+        3
+      ],
+      "overlap_rank": 2,
+      "initial_cones": 4,
+      "integer_x_level": 2,
+      "two_actual_initial_bases": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      ],
+      "section_primitive_direction": [
+        0,
+        5,
+        -4
+      ],
+      "exchange_removed": [
+        1,
+        1,
+        0
+      ],
+      "failed_single_exchanges": [
+        {
+          "replacement": [
+            0,
+            0,
+            3
+          ],
+          "upper_count": 1,
+          "rank": 9
+        },
+        {
+          "replacement": [
+            1,
+            0,
+            1
+          ],
+          "upper_count": 2,
+          "rank": 8
+        }
+      ],
+      "scope": "Actual all-field socle-pair quotient; no new large-fan lower bound."
+    },
+    {
+      "parameter": 5,
+      "A": 5,
+      "B": 6,
+      "characteristic": 0,
+      "length": 13,
+      "layer_ranks": [
+        12,
+        3
+      ],
+      "overlap_rank": 2,
+      "initial_cones": 4,
+      "integer_x_level": 2,
+      "two_actual_initial_bases": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            5,
+            0
+          ],
+          [
+            0,
+            6,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            5,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      ],
+      "section_primitive_direction": [
+        0,
+        7,
+        -6
+      ],
+      "exchange_removed": [
+        1,
+        1,
+        0
+      ],
+      "failed_single_exchanges": [
+        {
+          "replacement": [
+            0,
+            0,
+            5
+          ],
+          "upper_count": 1,
+          "rank": 13
+        },
+        {
+          "replacement": [
+            1,
+            0,
+            1
+          ],
+          "upper_count": 2,
+          "rank": 12
+        }
+      ],
+      "scope": "Actual all-field socle-pair quotient; no new large-fan lower bound."
+    },
+    {
+      "parameter": 5,
+      "A": 5,
+      "B": 6,
+      "characteristic": 2,
+      "length": 13,
+      "layer_ranks": [
+        12,
+        3
+      ],
+      "overlap_rank": 2,
+      "initial_cones": 4,
+      "integer_x_level": 2,
+      "two_actual_initial_bases": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            5,
+            0
+          ],
+          [
+            0,
+            6,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            5,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      ],
+      "section_primitive_direction": [
+        0,
+        7,
+        -6
+      ],
+      "exchange_removed": [
+        1,
+        1,
+        0
+      ],
+      "failed_single_exchanges": [
+        {
+          "replacement": [
+            0,
+            0,
+            5
+          ],
+          "upper_count": 1,
+          "rank": 13
+        },
+        {
+          "replacement": [
+            1,
+            0,
+            1
+          ],
+          "upper_count": 2,
+          "rank": 12
+        }
+      ],
+      "scope": "Actual all-field socle-pair quotient; no new large-fan lower bound."
+    },
+    {
+      "parameter": 5,
+      "A": 5,
+      "B": 6,
+      "characteristic": 3,
+      "length": 13,
+      "layer_ranks": [
+        12,
+        3
+      ],
+      "overlap_rank": 2,
+      "initial_cones": 4,
+      "integer_x_level": 2,
+      "two_actual_initial_bases": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            5,
+            0
+          ],
+          [
+            0,
+            6,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            5,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      ],
+      "section_primitive_direction": [
+        0,
+        7,
+        -6
+      ],
+      "exchange_removed": [
+        1,
+        1,
+        0
+      ],
+      "failed_single_exchanges": [
+        {
+          "replacement": [
+            0,
+            0,
+            5
+          ],
+          "upper_count": 1,
+          "rank": 13
+        },
+        {
+          "replacement": [
+            1,
+            0,
+            1
+          ],
+          "upper_count": 2,
+          "rank": 12
+        }
+      ],
+      "scope": "Actual all-field socle-pair quotient; no new large-fan lower bound."
+    },
+    {
+      "parameter": 5,
+      "A": 5,
+      "B": 6,
+      "characteristic": 101,
+      "length": 13,
+      "layer_ranks": [
+        12,
+        3
+      ],
+      "overlap_rank": 2,
+      "initial_cones": 4,
+      "integer_x_level": 2,
+      "two_actual_initial_bases": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            5,
+            0
+          ],
+          [
+            0,
+            6,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            5,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      ],
+      "section_primitive_direction": [
+        0,
+        7,
+        -6
+      ],
+      "exchange_removed": [
+        1,
+        1,
+        0
+      ],
+      "failed_single_exchanges": [
+        {
+          "replacement": [
+            0,
+            0,
+            5
+          ],
+          "upper_count": 1,
+          "rank": 13
+        },
+        {
+          "replacement": [
+            1,
+            0,
+            1
+          ],
+          "upper_count": 2,
+          "rank": 12
+        }
+      ],
+      "scope": "Actual all-field socle-pair quotient; no new large-fan lower bound."
+    },
+    {
+      "parameter": 8,
+      "A": 8,
+      "B": 9,
+      "characteristic": 0,
+      "length": 19,
+      "layer_ranks": [
+        18,
+        3
+      ],
+      "overlap_rank": 2,
+      "initial_cones": 4,
+      "integer_x_level": 2,
+      "two_actual_initial_bases": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            7
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            5,
+            0
+          ],
+          [
+            0,
+            6,
+            0
+          ],
+          [
+            0,
+            7,
+            0
+          ],
+          [
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            9,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            7
+          ],
+          [
+            0,
+            0,
+            8
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            5,
+            0
+          ],
+          [
+            0,
+            6,
+            0
+          ],
+          [
+            0,
+            7,
+            0
+          ],
+          [
+            0,
+            8,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      ],
+      "section_primitive_direction": [
+        0,
+        10,
+        -9
+      ],
+      "exchange_removed": [
+        1,
+        1,
+        0
+      ],
+      "failed_single_exchanges": [
+        {
+          "replacement": [
+            0,
+            0,
+            8
+          ],
+          "upper_count": 1,
+          "rank": 19
+        },
+        {
+          "replacement": [
+            1,
+            0,
+            1
+          ],
+          "upper_count": 2,
+          "rank": 18
+        }
+      ],
+      "scope": "Actual all-field socle-pair quotient; no new large-fan lower bound."
+    },
+    {
+      "parameter": 8,
+      "A": 8,
+      "B": 9,
+      "characteristic": 2,
+      "length": 19,
+      "layer_ranks": [
+        18,
+        3
+      ],
+      "overlap_rank": 2,
+      "initial_cones": 4,
+      "integer_x_level": 2,
+      "two_actual_initial_bases": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            7
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            5,
+            0
+          ],
+          [
+            0,
+            6,
+            0
+          ],
+          [
+            0,
+            7,
+            0
+          ],
+          [
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            9,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            7
+          ],
+          [
+            0,
+            0,
+            8
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            5,
+            0
+          ],
+          [
+            0,
+            6,
+            0
+          ],
+          [
+            0,
+            7,
+            0
+          ],
+          [
+            0,
+            8,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      ],
+      "section_primitive_direction": [
+        0,
+        10,
+        -9
+      ],
+      "exchange_removed": [
+        1,
+        1,
+        0
+      ],
+      "failed_single_exchanges": [
+        {
+          "replacement": [
+            0,
+            0,
+            8
+          ],
+          "upper_count": 1,
+          "rank": 19
+        },
+        {
+          "replacement": [
+            1,
+            0,
+            1
+          ],
+          "upper_count": 2,
+          "rank": 18
+        }
+      ],
+      "scope": "Actual all-field socle-pair quotient; no new large-fan lower bound."
+    },
+    {
+      "parameter": 8,
+      "A": 8,
+      "B": 9,
+      "characteristic": 3,
+      "length": 19,
+      "layer_ranks": [
+        18,
+        3
+      ],
+      "overlap_rank": 2,
+      "initial_cones": 4,
+      "integer_x_level": 2,
+      "two_actual_initial_bases": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            7
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            5,
+            0
+          ],
+          [
+            0,
+            6,
+            0
+          ],
+          [
+            0,
+            7,
+            0
+          ],
+          [
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            9,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            7
+          ],
+          [
+            0,
+            0,
+            8
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            5,
+            0
+          ],
+          [
+            0,
+            6,
+            0
+          ],
+          [
+            0,
+            7,
+            0
+          ],
+          [
+            0,
+            8,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      ],
+      "section_primitive_direction": [
+        0,
+        10,
+        -9
+      ],
+      "exchange_removed": [
+        1,
+        1,
+        0
+      ],
+      "failed_single_exchanges": [
+        {
+          "replacement": [
+            0,
+            0,
+            8
+          ],
+          "upper_count": 1,
+          "rank": 19
+        },
+        {
+          "replacement": [
+            1,
+            0,
+            1
+          ],
+          "upper_count": 2,
+          "rank": 18
+        }
+      ],
+      "scope": "Actual all-field socle-pair quotient; no new large-fan lower bound."
+    },
+    {
+      "parameter": 8,
+      "A": 8,
+      "B": 9,
+      "characteristic": 101,
+      "length": 19,
+      "layer_ranks": [
+        18,
+        3
+      ],
+      "overlap_rank": 2,
+      "initial_cones": 4,
+      "integer_x_level": 2,
+      "two_actual_initial_bases": [
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            7
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            5,
+            0
+          ],
+          [
+            0,
+            6,
+            0
+          ],
+          [
+            0,
+            7,
+            0
+          ],
+          [
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            9,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            7
+          ],
+          [
+            0,
+            0,
+            8
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            5,
+            0
+          ],
+          [
+            0,
+            6,
+            0
+          ],
+          [
+            0,
+            7,
+            0
+          ],
+          [
+            0,
+            8,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ]
+      ],
+      "section_primitive_direction": [
+        0,
+        10,
+        -9
+      ],
+      "exchange_removed": [
+        1,
+        1,
+        0
+      ],
+      "failed_single_exchanges": [
+        {
+          "replacement": [
+            0,
+            0,
+            8
+          ],
+          "upper_count": 1,
+          "rank": 19
+        },
+        {
+          "replacement": [
+            1,
+            0,
+            1
+          ],
+          "upper_count": 2,
+          "rank": 18
+        }
+      ],
+      "scope": "Actual all-field socle-pair quotient; no new large-fan lower bound."
+    }
+  ],
+  "additional_sources": [
+    {
+      "url": "https://arxiv.org/pdf/math/0411260v1",
+      "scope": "Section 2, Definition 2.1, Proposition 2.4 and the following face-matroid discussion; classical edge and face inputs."
+    }
+  ],
   "limits": [
-    "No algebra realization or unrestricted section bound is established.",
+    "The source zonotopes are abstract matroids; no realization of those integer profiles or unrestricted section bound is established.",
     "The cubic fixed-pair budget in the note is a classical arrangement corollary.",
+    "Integer colour sections are integral but need not be matroid profile polygons; the actual socle-family examples certify that obstruction.",
+    "The overlap-sensitive slice count is a classical restatement of the existing slice bound and rank identity, not a new unrestricted exponent.",
     "Exact priority and the sharp unrestricted G3 endpoint remain open."
   ]
 }

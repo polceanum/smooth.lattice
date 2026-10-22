@@ -146,6 +146,164 @@ apply to the added-point construction, where the doubled pair changes,
 or to a representation whose matching changes between planar strips.
 The latter changing interactions remain relevant to the unrestricted goal.
 
+## Binary-coordinate sections: integral, but usually not matroids
+
+For a quotient with a monic scalar quadratic in \(x\), retain the finite
+ground \(E=\{0,1\}\times V_n^2\), where
+\(V_n^2=\{(a,b)\ge0:(a+1)(b+1)\le n\}\). It contains every
+positive standard set. Let \(M\) be its actual rank-\(n\) residue
+matroid, and define the **full** basis-profile polytope
+\[
+ Q=\operatorname{conv}\{\mu(S):S\text{ any basis of }M\},\qquad
+ Q_k=\operatorname{conv}\{(\mu_y(S),\mu_z(S)):
+                                    |S\cap E_1|=k\}.     \tag{PS7}
+\]
+Here \(E_1\) is the upper layer. These bases need not be downsets.
+The distinction between \(Q\) and the positive-profile hull \(P_I\)
+in (PS1) is essential. Their positive exposed faces agree; their
+unexposed sections need not agree.
+
+The standard matroid-polytope edge theorem gives the exact identities
+\[
+ \begin{split}
+ Q\cap\{x=k\}&=\{k\}\times Q_k,\\
+ Q\cap\{x=k+\theta\}
+   &=\{k+\theta\}\times\bigl((1-\theta)Q_k+\theta Q_{k+1}\bigr),
+                 \qquad 0<\theta<1,                      \tag{PS8}
+ \end{split}
+\]
+whenever the two levels are feasible. These are classical corollaries,
+not a new integrality theorem. Apply the colour functional
+\(\chi(S)=|S\cap E_1|\) to the unprojected base polytope. Its edges
+are single basis exchanges, so their endpoint colour counts differ
+by at most one. An integer slice therefore has only original vertices.
+A slice at \(k+\theta\) has vertices dividing original edges with
+counts \(k,k+1\) in the proportions \(1-\theta,\theta\). This proves
+one inclusion in (PS8); convexity proves the reverse inclusion.
+Projecting the remaining coordinates proves the displayed identities.
+In particular its half-integer sections lie in the half-integer planar
+lattice, and
+\[
+ c_x(k)\le f_0(Q_k)+f_0(Q_{k+1}).                         \tag{PS9}
+\]
+Every actual positive crossing edge remains an edge of \(Q\). Planar
+Minkowski addition has at most the sum of the input vertex counts,
+including segments and points. These facts justify (PS9); inclusion
+of arbitrary hulls alone would not justify a vertex-count comparison.
+
+Let \(p=\dim K[y,z]1\), \(q=\dim K[y,z]x\), and
+\(h=p+q-n\), as in the [four-quotient reduction](quadratic_intersection_fans.md).
+The feasible integer levels are precisely
+\[
+                           n-p\le k\le q.                \tag{PS10}
+\]
+The two endpoints are attained by extending a basis of one layer with
+the other; connectedness of the basis graph fills every intervening
+integer. Thus there are \(h+1\) levels. Each \(Q_k\) is an integer
+polygon in \([0,n(n-1)]^2\). Applying the classical planar lattice
+vertex estimate, and counting every positive vertex in its own level,
+rewrites the existing slice ceiling as
+\[
+             g(I)=O\bigl((h+1)(1+n^{4/3})\bigr).         \tag{PS11}
+\]
+For completeness, an integer polygon in \([0,R]^2\) has total
+\(\ell_1\) perimeter at most \(4R\). Its oriented primitive edge
+directions are distinct, and only \(O(T^2)\) integer directions have
+one-norm at most \(T\). The smallest possible sum of \(v\) such
+norms is therefore \(\Omega(v^{3/2})\). Since every actual edge is
+a positive integer multiple of its primitive vector, the perimeter
+gives \(v=O(1+R^{2/3})\); points and segments satisfy this separately.
+Set \(R=n(n-1)\). Every actual initial profile is a vertex of \(Q\),
+and hence also of its own integer section, proving (PS11).
+This simply combines the existing integer-slice estimate with the
+overlap-rank identity. It is no new unrestricted exponent or novelty
+claim. Combined with the earlier fixed-\(h\) estimate, it gives
+\[
+ g(I)=O\!\left(\min\left\{
+ n\log(n+1)(1+h)^{10/3},\ (1+h)(1+n^{4/3})\right\}\right).
+\]
+Consequently any \(g(I)\ge c n^{2+\epsilon}\) family in this class
+requires \(h=\Omega_{c,\epsilon}(n^{2/3+\epsilon})\), for large
+\(n\). This strengthens the necessary overlap condition recorded
+with the earlier estimate, without supplying such a family.
+
+It is **invalid** to apply the planar matroid theorem directly to each
+\(Q_k\) on the original labels. Fixing a colour count need not leave
+a matroid. More precisely, the two-dimensional faces of a base polytope
+are triangles and squares. An integer colour slice can introduce a new
+edge only by taking the diagonal of a square whose two independent
+exchanges change the colour counts in opposite directions. The new
+direction is a sum of two exchanges. A fixed-count basis family is a
+matroid exactly when no such square cuts it diagonally: all remaining
+edges are single exchanges, and the usual edge characterization applies.
+
+These structural inputs are in
+[Feichtner--Sturmfels, Section 2, Definition 2.1 and Proposition 2.4](https://arxiv.org/pdf/math/0411260v1).
+Their edge characterization, statement that faces are matroid polytopes,
+and dimension formula give the triangle/square fact: a dimension-two
+face has either one three-element connected component or two
+two-element components; loops and coloops contribute points.
+This is a comparison with established matroid geometry, not an assertion
+that the paper proves the desired algebraic section bound.
+
+## An actual all-field section needs two simultaneous exchanges
+
+The failure occurs within the elementary socle construction already
+used in this repository. For \(A,B\ge2\), let
+\[
+ I_{A,B}=(x^2,yz,xy^2,xz^2,y^{B+1},z^{A+1},
+                             xy-z^A,xz-y^B).             \tag{PS12}
+\]
+Its monomial carrier has basis
+\(D=\{1,x,y,\ldots,y^B,z,\ldots,z^A,xy,xz\}\).
+The four tips \(xy,xz,y^B,z^A\) are maximal and annihilated by every
+variable. The two independent socle identifications give an actual
+length-\(n=A+B+2\) algebra over every field. Put
+\(C=D\setminus\{xy,xz,y^B,z^A\}\). Its residue matroid has exactly
+four bases: \(C\), one choice from \(\{xy,z^A\}\), and one from
+\(\{xz,y^B\}\). All are standard sets. Their switching planes have
+normals \((1,1,-A)\), \((1,-B,1)\) and meet at the positive ray
+\((AB-1,A+1,B+1)\); hence all four occur as actual initial sets.
+
+Exactly two bases have upper-layer count two:
+\[
+ S=C\sqcup\{xy,y^B\},\qquad T=C\sqcup\{z^A,xz\}.       \tag{PS13}
+\]
+Removing \(xy\) from \(S\), replacing it by \(z^A\) changes the
+colour count. Replacing it by \(xz\) leaves the dependent pair
+\(xz,y^B\). Thus this fixed-count family fails the basis exchange
+axiom on the **actual monomial residues**, not just on a hypothetical
+matrix. Its integer section is the segment with profile difference
+\[
+                     \mu(S)-\mu(T)=(0,B+1,-A-1).         \tag{PS14}
+\]
+For \(A=r,B=r+1\), \(r\ge2\), this is primitive and is not parallel
+to any single difference of two nonzero monomial labels of this algebra:
+its \(y\)-component \(B+1\) exceeds their entire \(y\)-range \(B\).
+This is an infinite exchange obstruction inside genuine quotients.
+The full fan has only four cones; it supplies no extremal lower gain.
+The socle construction and the section consequence are not assigned a
+novelty or publication claim.
+
+There is now an exact counting formulation that retains the coupling.
+For \(u>0\), define
+\[
+ F_k(u)=\min_{v\in Q_k}(u v_y+v_z),\qquad
+                F(u,t)=\min_k\{F_k(u)+kt\}.             \tag{PS15}
+\]
+The integer sequence \(F_k(u)\) is convex, by (PS8) and convexity of
+linear-programming section values. Its adjacent thresholds
+\(t_k(u)=F_k(u)-F_{k+1}(u)\) are nonincreasing in \(k\).
+An intermediate level \(k\) is strictly active exactly on
+\(t_k(u)<t<t_{k-1}(u)\), intersected with \(t>0\).
+At the extreme levels omit the absent endpoint inequality.
+Counting the positive exposed profiles of (PS15), with each profile's
+level retained, recovers the actual whole fan. The unresolved task is
+to bound these **active constrained polygons collectively** in an
+actual algebra. Integrality or single-exchange planar estimates alone
+do not solve it; (PS12)--(PS14) give a reproducible guard against that
+shortcut.
+
 ## Exact controls and the remaining proof obligation
 
 Run from the repository root:
@@ -171,6 +329,17 @@ An independent full border-fan traversal agrees with the pair-zone sweep
 on every profile edge. Coordinate section sweeps integrate to the known
 actual length and check (PS6). Their small maximum section counts support
 neither an asymptotic fit nor the unproved unrestricted bound.
+
+The binary-section extension exhausts all 127 nonempty restrictions of
+the seven nonzero columns of \(\mathbb F_2^3\), with all 2,186 colourings.
+Independent intersections of every profile pair agree with the integer
+basis hulls and with Minkowski interpolation at fractions
+\(1/3,1/2,2/3\). Signed objective checks verify the value-function
+convexity. These are bounded controls for the uniform proof, not a
+uniform count experiment. For (PS12), parameters \(r=2,3,5,8\) over
+characteristics zero, two, three and 101 independently check the whole
+four-cone border fans, commuting multiplication, carrier successors,
+ordinary S-pairs, all basis ranks and the failed single exchanges.
 
 The state-profile dictionary is the established
 [Babson--Onn--Thomas, Theorem 2.4](https://arxiv.org/pdf/math/0207135).
