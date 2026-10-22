@@ -100,8 +100,8 @@ at orders \(r,r+d\) give
  (WH)_r=\gamma H_r,\qquad
              F H_r=(WH)_{r+d}-\gamma H_{r+d}.
 \]
-Thus \(deg H_r\le\min(\deg_qH,\deg_qWH)\) and
-\(deg(FH_r)\le\max(\deg_qH,\deg_qWH)\). Equation (TP7) implies
+Thus \(\deg H_r\le\min(\deg_qH,\deg_qWH)\) and
+\(\deg(FH_r)\le\max(\deg_qH,\deg_qWH)\). Equation (TP7) implies
 \[
              \deg_qH+\deg_q(WH)\ge m-1-h_m(F).            \tag{TP8}
 \]
@@ -124,7 +124,7 @@ up to transposition, has labels
 with \(b=Y-R, c=S-Z>0, bc>64aT\). Write
 \[
  w=(\lambda,u,1),\quad\lambda=bu-c>0,\quad
- \tau=Yu+Z=\lambda+Ru+S,quad d=(Y-t)u+Z-t,\quad Q=Ru+S.
+ \tau=Yu+Z=\lambda+Ru+S,\quad d=(Y-t)u+Z-t,\quad Q=Ru+S.
                                                                \tag{TP9}
 \]
 Both \(b,c>64T\). The pure central \(Z\)-columns span the entire
@@ -139,7 +139,7 @@ strictly larger than both
 \[
                  (2t-1)u+t-1,\qquad(t-1)u+2t-1.         \tag{TP11}
 \]
-All upper rows in the two common \(t\\)-by-\(t\) boxes are therefore
+All upper rows in the two common \(t\)-by-\(t\) boxes are therefore
 strictly cheaper than the exchanged pair. No outer-head cost condition
 or invertible axis-prefix basis has been used.
 
