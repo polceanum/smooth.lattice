@@ -1,0 +1,1130 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "command": "python3 -B scripts/run_hook_coherent_unit_window_checks.py",
+  "scope": "Uniform all-field full fan and common weight list from one chosen unit arm, with its outer components zero and every opposite component arbitrary. No unrestricted endpoint or exact novelty claimed.",
+  "uniform_result": {
+    "D": "max(deg_q W,deg_q W^(-1)) in the truncated arm ring",
+    "full_fan_bound": "O(a^2*(t+D)^2)=O(n^2*(1+D/t)^2)",
+    "coherent_strips": "M<=3t+D or K<=6t+2D",
+    "support_cone_class": "q-degree<=C*short-degree implies D<=C*(t-1), hence O(n^2*(1+C)^2)",
+    "integer_compilation": "O(a^2*(t+D0)^2) common weights, height O(a^2)"
+  },
+  "counts": {
+    "coefficient_independent_coherent_strip_plane_inventories": 4,
+    "complete_original_wall_plane_coverage_checks": 3102,
+    "elongated_complete_fans_with_nonempty_excluded_plane_inventory": 1,
+    "independent_actual_central_column_inverse_identities": 414,
+    "independent_actual_coherent_cross_arm_exchanges": 529,
+    "independent_actual_long_input_window_checks": 261,
+    "independent_common_integer_list_complete_fan_equalities": 2,
+    "independent_forward_inverse_support_cone_controls": 10,
+    "independent_original_exchange_basis_rank_checks": 48,
+    "independent_original_label_strict_price_loop_identities": 192,
+    "independent_strictly_cheaper_global_direct_sum_contractions": 106,
+    "independent_truncated_unit_inverse_products": 14,
+    "independent_whole_normal_cone_row_chart_equalities": 36,
+    "nonidentity_original_source_columns_in_inverse_contractions": 721
+  },
+  "fan_counts": {
+    "independent_complete_original_fans": 5
+  },
+  "original_quotient_replay_counts": {
+    "exact_potential_bridge_partitions": 15,
+    "independent_original_quotient_column_equalities": 2556,
+    "independent_commuting_matrix_columns": 5928,
+    "independent_module_successor_columns": 12264,
+    "independent_original_carrier_model_equalities": 4
+  },
+  "cases": [
+    {
+      "t": 3,
+      "a": 24,
+      "arm": 0,
+      "characteristic": 101,
+      "operator": [
+        [
+          0,
+          0,
+          "1"
+        ],
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "1"
+        ]
+      ],
+      "forward_long_degree": 2,
+      "inverse_long_degree": 4,
+      "cone_slope_bound": 2,
+      "opposite_mode": "arbitrary compatible coefficients",
+      "strict_contractions": [
+        {
+          "upper": true,
+          "u": "1/11",
+          "input_short": 2,
+          "contracted_rank": 62
+        },
+        {
+          "upper": true,
+          "u": "1/2",
+          "input_short": 0,
+          "contracted_rank": 54
+        },
+        {
+          "upper": true,
+          "u": "1/2",
+          "input_short": 2,
+          "contracted_rank": 62
+        },
+        {
+          "upper": true,
+          "u": "1",
+          "input_short": 0,
+          "contracted_rank": 57
+        },
+        {
+          "upper": true,
+          "u": "1",
+          "input_short": 2,
+          "contracted_rank": 62
+        },
+        {
+          "upper": true,
+          "u": "7",
+          "input_short": 0,
+          "contracted_rank": 60
+        },
+        {
+          "upper": true,
+          "u": "7",
+          "input_short": 2,
+          "contracted_rank": 62
+        },
+        {
+          "upper": false,
+          "u": "1/11",
+          "input_short": 2,
+          "contracted_rank": 53
+        },
+        {
+          "upper": false,
+          "u": "1/2",
+          "input_short": 0,
+          "contracted_rank": 45
+        },
+        {
+          "upper": false,
+          "u": "1/2",
+          "input_short": 2,
+          "contracted_rank": 53
+        },
+        {
+          "upper": false,
+          "u": "1",
+          "input_short": 0,
+          "contracted_rank": 48
+        },
+        {
+          "upper": false,
+          "u": "1",
+          "input_short": 2,
+          "contracted_rank": 53
+        },
+        {
+          "upper": false,
+          "u": "7",
+          "input_short": 0,
+          "contracted_rank": 51
+        },
+        {
+          "upper": false,
+          "u": "7",
+          "input_short": 2,
+          "contracted_rank": 53
+        }
+      ],
+      "strict_price_identities": 18,
+      "full_fan": null
+    },
+    {
+      "t": 4,
+      "a": 20,
+      "arm": 0,
+      "characteristic": 101,
+      "operator": [
+        [
+          0,
+          0,
+          "1"
+        ],
+        [
+          1,
+          1,
+          "3"
+        ],
+        [
+          2,
+          1,
+          "2"
+        ],
+        [
+          2,
+          2,
+          "3"
+        ],
+        [
+          3,
+          3,
+          "1"
+        ]
+      ],
+      "forward_long_degree": 3,
+      "inverse_long_degree": 6,
+      "cone_slope_bound": 2,
+      "opposite_mode": "arbitrary compatible coefficients",
+      "strict_contractions": [
+        {
+          "upper": true,
+          "u": "1/11",
+          "input_short": 3,
+          "contracted_rank": 63
+        },
+        {
+          "upper": true,
+          "u": "1/2",
+          "input_short": 0,
+          "contracted_rank": 48
+        },
+        {
+          "upper": true,
+          "u": "1/2",
+          "input_short": 3,
+          "contracted_rank": 63
+        },
+        {
+          "upper": true,
+          "u": "1",
+          "input_short": 0,
+          "contracted_rank": 54
+        },
+        {
+          "upper": true,
+          "u": "1",
+          "input_short": 3,
+          "contracted_rank": 63
+        },
+        {
+          "upper": true,
+          "u": "7",
+          "input_short": 0,
+          "contracted_rank": 60
+        },
+        {
+          "upper": true,
+          "u": "7",
+          "input_short": 3,
+          "contracted_rank": 63
+        },
+        {
+          "upper": false,
+          "u": "1/11",
+          "input_short": 3,
+          "contracted_rank": 47
+        },
+        {
+          "upper": false,
+          "u": "1/2",
+          "input_short": 3,
+          "contracted_rank": 47
+        },
+        {
+          "upper": false,
+          "u": "1",
+          "input_short": 0,
+          "contracted_rank": 38
+        },
+        {
+          "upper": false,
+          "u": "1",
+          "input_short": 3,
+          "contracted_rank": 47
+        },
+        {
+          "upper": false,
+          "u": "7",
+          "input_short": 0,
+          "contracted_rank": 44
+        },
+        {
+          "upper": false,
+          "u": "7",
+          "input_short": 3,
+          "contracted_rank": 47
+        }
+      ],
+      "strict_price_identities": 18,
+      "full_fan": null
+    },
+    {
+      "t": 5,
+      "a": 18,
+      "arm": 1,
+      "characteristic": 3,
+      "operator": [
+        [
+          0,
+          0,
+          "1"
+        ],
+        [
+          1,
+          2,
+          "2"
+        ],
+        [
+          2,
+          1,
+          "1"
+        ],
+        [
+          3,
+          2,
+          "1"
+        ]
+      ],
+      "forward_long_degree": 3,
+      "inverse_long_degree": 8,
+      "cone_slope_bound": 2,
+      "opposite_mode": "arbitrary compatible coefficients",
+      "strict_contractions": [
+        {
+          "upper": true,
+          "u": "1/11",
+          "input_short": 4,
+          "contracted_rank": 64
+        },
+        {
+          "upper": true,
+          "u": "1/2",
+          "input_short": 4,
+          "contracted_rank": 64
+        },
+        {
+          "upper": true,
+          "u": "1",
+          "input_short": 0,
+          "contracted_rank": 50
+        },
+        {
+          "upper": true,
+          "u": "1",
+          "input_short": 4,
+          "contracted_rank": 64
+        },
+        {
+          "upper": true,
+          "u": "7",
+          "input_short": 0,
+          "contracted_rank": 60
+        },
+        {
+          "upper": true,
+          "u": "7",
+          "input_short": 4,
+          "contracted_rank": 64
+        }
+      ],
+      "strict_price_identities": 18,
+      "full_fan": null
+    },
+    {
+      "t": 4,
+      "a": 16,
+      "arm": 0,
+      "characteristic": 0,
+      "operator": [
+        [
+          0,
+          0,
+          "2"
+        ],
+        [
+          0,
+          1,
+          "2"
+        ],
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          3,
+          2,
+          "1"
+        ]
+      ],
+      "forward_long_degree": 3,
+      "inverse_long_degree": 4,
+      "cone_slope_bound": 2,
+      "opposite_mode": "arbitrary compatible coefficients",
+      "strict_contractions": [
+        {
+          "upper": true,
+          "u": "1/11",
+          "input_short": 3,
+          "contracted_rank": 47
+        },
+        {
+          "upper": true,
+          "u": "1/2",
+          "input_short": 3,
+          "contracted_rank": 47
+        },
+        {
+          "upper": true,
+          "u": "1",
+          "input_short": 0,
+          "contracted_rank": 38
+        },
+        {
+          "upper": true,
+          "u": "1",
+          "input_short": 3,
+          "contracted_rank": 47
+        },
+        {
+          "upper": true,
+          "u": "7",
+          "input_short": 0,
+          "contracted_rank": 44
+        },
+        {
+          "upper": true,
+          "u": "7",
+          "input_short": 3,
+          "contracted_rank": 47
+        },
+        {
+          "upper": false,
+          "u": "1/11",
+          "input_short": 3,
+          "contracted_rank": 31
+        },
+        {
+          "upper": false,
+          "u": "1/2",
+          "input_short": 3,
+          "contracted_rank": 31
+        },
+        {
+          "upper": false,
+          "u": "1",
+          "input_short": 0,
+          "contracted_rank": 22
+        },
+        {
+          "upper": false,
+          "u": "1",
+          "input_short": 3,
+          "contracted_rank": 31
+        },
+        {
+          "upper": false,
+          "u": "7",
+          "input_short": 0,
+          "contracted_rank": 28
+        },
+        {
+          "upper": false,
+          "u": "7",
+          "input_short": 3,
+          "contracted_rank": 31
+        }
+      ],
+      "strict_price_identities": 18,
+      "full_fan": null
+    },
+    {
+      "t": 3,
+      "a": 11,
+      "arm": 1,
+      "characteristic": 5,
+      "operator": [
+        [
+          0,
+          0,
+          "1"
+        ],
+        [
+          1,
+          0,
+          "1"
+        ]
+      ],
+      "forward_long_degree": 1,
+      "inverse_long_degree": 7,
+      "cone_slope_bound": null,
+      "opposite_mode": "arbitrary compatible coefficients",
+      "strict_contractions": [
+        {
+          "upper": true,
+          "u": "1/11",
+          "input_short": 2,
+          "contracted_rank": 23
+        },
+        {
+          "upper": true,
+          "u": "1/2",
+          "input_short": 2,
+          "contracted_rank": 23
+        },
+        {
+          "upper": true,
+          "u": "1",
+          "input_short": 0,
+          "contracted_rank": 18
+        },
+        {
+          "upper": true,
+          "u": "1",
+          "input_short": 2,
+          "contracted_rank": 23
+        },
+        {
+          "upper": true,
+          "u": "7",
+          "input_short": 0,
+          "contracted_rank": 21
+        },
+        {
+          "upper": true,
+          "u": "7",
+          "input_short": 2,
+          "contracted_rank": 23
+        }
+      ],
+      "strict_price_identities": 18,
+      "full_fan": null
+    },
+    {
+      "t": 3,
+      "a": 16,
+      "arm": 0,
+      "characteristic": 2,
+      "operator": [
+        [
+          0,
+          0,
+          "1"
+        ],
+        [
+          5,
+          1,
+          "1"
+        ]
+      ],
+      "forward_long_degree": 5,
+      "inverse_long_degree": 10,
+      "cone_slope_bound": 5,
+      "opposite_mode": "arbitrary compatible coefficients",
+      "strict_contractions": [
+        {
+          "upper": true,
+          "u": "1/11",
+          "input_short": 2,
+          "contracted_rank": 38
+        },
+        {
+          "upper": true,
+          "u": "1/2",
+          "input_short": 0,
+          "contracted_rank": 30
+        },
+        {
+          "upper": true,
+          "u": "1/2",
+          "input_short": 2,
+          "contracted_rank": 38
+        },
+        {
+          "upper": true,
+          "u": "1",
+          "input_short": 0,
+          "contracted_rank": 33
+        },
+        {
+          "upper": true,
+          "u": "1",
+          "input_short": 2,
+          "contracted_rank": 38
+        },
+        {
+          "upper": true,
+          "u": "7",
+          "input_short": 0,
+          "contracted_rank": 36
+        },
+        {
+          "upper": true,
+          "u": "7",
+          "input_short": 2,
+          "contracted_rank": 38
+        }
+      ],
+      "strict_price_identities": 18,
+      "full_fan": null
+    },
+    {
+      "t": 3,
+      "a": 9,
+      "arm": 0,
+      "characteristic": 3,
+      "operator": [
+        [
+          0,
+          0,
+          "1"
+        ],
+        [
+          2,
+          0,
+          "1"
+        ]
+      ],
+      "forward_long_degree": 2,
+      "inverse_long_degree": 4,
+      "cone_slope_bound": null,
+      "opposite_mode": "arbitrary compatible coefficients",
+      "strict_contractions": [
+        {
+          "upper": true,
+          "u": "1/11",
+          "input_short": 2,
+          "contracted_rank": 17
+        },
+        {
+          "upper": true,
+          "u": "1/2",
+          "input_short": 2,
+          "contracted_rank": 17
+        },
+        {
+          "upper": true,
+          "u": "1",
+          "input_short": 2,
+          "contracted_rank": 17
+        },
+        {
+          "upper": true,
+          "u": "7",
+          "input_short": 0,
+          "contracted_rank": 15
+        },
+        {
+          "upper": true,
+          "u": "7",
+          "input_short": 2,
+          "contracted_rank": 17
+        }
+      ],
+      "strict_price_identities": 18,
+      "full_fan": null
+    },
+    {
+      "t": 3,
+      "a": 8,
+      "arm": 1,
+      "characteristic": 2,
+      "operator": [
+        [
+          0,
+          0,
+          "1"
+        ],
+        [
+          0,
+          1,
+          "1"
+        ],
+        [
+          0,
+          2,
+          "1"
+        ]
+      ],
+      "forward_long_degree": 0,
+      "inverse_long_degree": 0,
+      "cone_slope_bound": 0,
+      "opposite_mode": "arbitrary compatible coefficients",
+      "strict_contractions": [
+        {
+          "upper": true,
+          "u": "1/11",
+          "input_short": 2,
+          "contracted_rank": 14
+        },
+        {
+          "upper": true,
+          "u": "1/2",
+          "input_short": 2,
+          "contracted_rank": 14
+        },
+        {
+          "upper": true,
+          "u": "1",
+          "input_short": 2,
+          "contracted_rank": 14
+        },
+        {
+          "upper": true,
+          "u": "7",
+          "input_short": 0,
+          "contracted_rank": 12
+        },
+        {
+          "upper": true,
+          "u": "7",
+          "input_short": 2,
+          "contracted_rank": 14
+        },
+        {
+          "upper": false,
+          "u": "1/11",
+          "input_short": 2,
+          "contracted_rank": 5
+        },
+        {
+          "upper": false,
+          "u": "1/2",
+          "input_short": 2,
+          "contracted_rank": 5
+        },
+        {
+          "upper": false,
+          "u": "1",
+          "input_short": 2,
+          "contracted_rank": 5
+        },
+        {
+          "upper": false,
+          "u": "7",
+          "input_short": 0,
+          "contracted_rank": 3
+        },
+        {
+          "upper": false,
+          "u": "7",
+          "input_short": 2,
+          "contracted_rank": 5
+        }
+      ],
+      "strict_price_identities": 12,
+      "full_fan": null
+    },
+    {
+      "t": 3,
+      "a": 6,
+      "arm": 0,
+      "characteristic": 3,
+      "operator": [
+        [
+          0,
+          0,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "1"
+        ]
+      ],
+      "forward_long_degree": 2,
+      "inverse_long_degree": 2,
+      "cone_slope_bound": 2,
+      "opposite_mode": "arbitrary compatible coefficients",
+      "strict_contractions": [],
+      "strict_price_identities": 0,
+      "full_fan": null
+    },
+    {
+      "t": 2,
+      "a": 8,
+      "arm": 0,
+      "characteristic": 101,
+      "operator": [
+        [
+          0,
+          0,
+          "1"
+        ],
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "1"
+        ]
+      ],
+      "forward_long_degree": 2,
+      "inverse_long_degree": 2,
+      "cone_slope_bound": 2,
+      "opposite_mode": "arbitrary compatible coefficients",
+      "strict_contractions": [
+        {
+          "upper": true,
+          "u": "1/11",
+          "input_short": 1,
+          "contracted_rank": 11
+        },
+        {
+          "upper": true,
+          "u": "1/2",
+          "input_short": 1,
+          "contracted_rank": 11
+        },
+        {
+          "upper": true,
+          "u": "1",
+          "input_short": 0,
+          "contracted_rank": 9
+        },
+        {
+          "upper": true,
+          "u": "1",
+          "input_short": 1,
+          "contracted_rank": 11
+        },
+        {
+          "upper": true,
+          "u": "7",
+          "input_short": 0,
+          "contracted_rank": 10
+        },
+        {
+          "upper": true,
+          "u": "7",
+          "input_short": 1,
+          "contracted_rank": 11
+        },
+        {
+          "upper": false,
+          "u": "1/11",
+          "input_short": 1,
+          "contracted_rank": 7
+        },
+        {
+          "upper": false,
+          "u": "1/2",
+          "input_short": 1,
+          "contracted_rank": 7
+        },
+        {
+          "upper": false,
+          "u": "1",
+          "input_short": 0,
+          "contracted_rank": 5
+        },
+        {
+          "upper": false,
+          "u": "1",
+          "input_short": 1,
+          "contracted_rank": 7
+        },
+        {
+          "upper": false,
+          "u": "7",
+          "input_short": 0,
+          "contracted_rank": 6
+        },
+        {
+          "upper": false,
+          "u": "7",
+          "input_short": 1,
+          "contracted_rank": 7
+        }
+      ],
+      "strict_price_identities": 18,
+      "full_fan": {
+        "complete_original_cones": 171,
+        "coherent_cross_arm_exchanges": 105,
+        "long_input_window_checks": 49,
+        "uniform_planes": 323,
+        "potential_comparison_planes_excluded": 0
+      }
+    },
+    {
+      "t": 3,
+      "a": 10,
+      "arm": 0,
+      "characteristic": 1000003,
+      "operator": [
+        [
+          0,
+          0,
+          "1"
+        ],
+        [
+          1,
+          1,
+          "2"
+        ],
+        [
+          2,
+          1,
+          "1"
+        ],
+        [
+          2,
+          2,
+          "1"
+        ]
+      ],
+      "forward_long_degree": 2,
+      "inverse_long_degree": 4,
+      "cone_slope_bound": 2,
+      "opposite_mode": "arbitrary compatible coefficients",
+      "strict_contractions": [
+        {
+          "upper": true,
+          "u": "1/11",
+          "input_short": 2,
+          "contracted_rank": 20
+        },
+        {
+          "upper": true,
+          "u": "1/2",
+          "input_short": 2,
+          "contracted_rank": 20
+        },
+        {
+          "upper": true,
+          "u": "1",
+          "input_short": 2,
+          "contracted_rank": 20
+        },
+        {
+          "upper": true,
+          "u": "7",
+          "input_short": 0,
+          "contracted_rank": 18
+        },
+        {
+          "upper": true,
+          "u": "7",
+          "input_short": 2,
+          "contracted_rank": 20
+        }
+      ],
+      "strict_price_identities": 18,
+      "full_fan": {
+        "complete_original_cones": 539,
+        "coherent_cross_arm_exchanges": 402,
+        "long_input_window_checks": 204,
+        "uniform_planes": 489,
+        "potential_comparison_planes_excluded": 0
+      }
+    },
+    {
+      "t": 2,
+      "a": 20,
+      "arm": 0,
+      "characteristic": 101,
+      "operator": [
+        [
+          0,
+          0,
+          "1"
+        ],
+        [
+          1,
+          1,
+          "1"
+        ],
+        [
+          2,
+          1,
+          "1"
+        ]
+      ],
+      "forward_long_degree": 2,
+      "inverse_long_degree": 2,
+      "cone_slope_bound": 2,
+      "opposite_mode": "same operator, zero outer maps",
+      "strict_contractions": [
+        {
+          "upper": true,
+          "u": "1/11",
+          "input_short": 0,
+          "contracted_rank": 23
+        },
+        {
+          "upper": true,
+          "u": "1/11",
+          "input_short": 1,
+          "contracted_rank": 35
+        },
+        {
+          "upper": true,
+          "u": "1/2",
+          "input_short": 0,
+          "contracted_rank": 32
+        },
+        {
+          "upper": true,
+          "u": "1/2",
+          "input_short": 1,
+          "contracted_rank": 35
+        },
+        {
+          "upper": true,
+          "u": "1",
+          "input_short": 0,
+          "contracted_rank": 33
+        },
+        {
+          "upper": true,
+          "u": "1",
+          "input_short": 1,
+          "contracted_rank": 35
+        },
+        {
+          "upper": true,
+          "u": "7",
+          "input_short": 0,
+          "contracted_rank": 34
+        },
+        {
+          "upper": true,
+          "u": "7",
+          "input_short": 1,
+          "contracted_rank": 35
+        },
+        {
+          "upper": false,
+          "u": "1/11",
+          "input_short": 0,
+          "contracted_rank": 19
+        },
+        {
+          "upper": false,
+          "u": "1/11",
+          "input_short": 1,
+          "contracted_rank": 31
+        },
+        {
+          "upper": false,
+          "u": "1/2",
+          "input_short": 0,
+          "contracted_rank": 28
+        },
+        {
+          "upper": false,
+          "u": "1/2",
+          "input_short": 1,
+          "contracted_rank": 31
+        },
+        {
+          "upper": false,
+          "u": "1",
+          "input_short": 0,
+          "contracted_rank": 29
+        },
+        {
+          "upper": false,
+          "u": "1",
+          "input_short": 1,
+          "contracted_rank": 31
+        },
+        {
+          "upper": false,
+          "u": "7",
+          "input_short": 0,
+          "contracted_rank": 30
+        },
+        {
+          "upper": false,
+          "u": "7",
+          "input_short": 1,
+          "contracted_rank": 31
+        }
+      ],
+      "strict_price_identities": 18,
+      "full_fan": {
+        "complete_original_cones": 24,
+        "coherent_cross_arm_exchanges": 22,
+        "long_input_window_checks": 8,
+        "uniform_planes": 1834,
+        "potential_comparison_planes_excluded": 549
+      }
+    }
+  ],
+  "common_sampler": [
+    {
+      "characteristic": 2,
+      "complete_original_cones": 25,
+      "weights_reused": 1824
+    },
+    {
+      "characteristic": 0,
+      "complete_original_cones": 54,
+      "weights_reused": 1824
+    }
+  ],
+  "common_arrangement": {
+    "planes": 98,
+    "integer_weights": 1824,
+    "degree_cap": 2
+  },
+  "limits": [
+    "The chosen arm must be a unit and its two outer components must vanish.",
+    "Opposite-arm coefficients and both opposite outer components are arbitrary compatible values.",
+    "Vector contractions and invertible row charts keep original labels; they are not asserted to be algebra quotients or coordinate changes.",
+    "The mixed-direction large-rank family is quadratically bounded; its connected support was not an actual fan-count lower bound.",
+    "Strongest-current novelty, unrestricted sharp growth, polynomial lower separation and the original final paper remain unestablished."
+  ],
+  "source_sha256": {
+    "docs/hook_bridge_reduction.md": "a7c7c4643847c8b2ce668a6341fb9b49fa55b17a67ba8bd618f140212acef259",
+    "docs/hook_coherent_unit_windows.md": "7543c9494871a408bdd47d20f37a42dae02bc2afe68c5fc33a100784d7beb940",
+    "docs/hook_monomial_orbits.md": "9cad33417938b69d1c2399b359cdefd9b85cd25faa44a101379bfb6fcdfea0ac",
+    "results/research/hook_monomial_orbit_checks.json": "922130fa2b2dde087c29b879a7900a4dd21d82d006cfc00638e24d084bc87f42",
+    "scripts/run_algebraic_incidence_controls.py": "93e6f0e5d147da43cdfacc16e4419703c59993c10dc03199ef6385df4d420eeb",
+    "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
+    "scripts/run_generic_hook_checks.py": "3ee4bbb72f481b5543bba276fca3e4ee229b9d0aa9b6c9d79e3bcad369d9c2f8",
+    "scripts/run_higher_interaction_checks.py": "cdc31d1b582e71c4536056429bf7eabeb2fcb312f313713135a2eaee68578916",
+    "scripts/run_higher_seed_checks.py": "92f0c67e86e3be54c71cbe6efac168c767c9768bb8058b6dc36d24b91acac926",
+    "scripts/run_hook_bridge_checks.py": "b4b8a52257e8e21cce035f75e356d583b4baacba585d3f47ecc51a57dd0805ec",
+    "scripts/run_hook_central_prefix_checks.py": "26377696a5b4443f15045e16a91125239dd934baf1d1d5f1400dbe9cb0f09cc8",
+    "scripts/run_hook_coherent_unit_window_checks.py": "4c038a10363b3d472f8a6cd67e906ae62ca2ebe4fd90506725616c72e63f6505",
+    "scripts/run_hook_filtered_annihilator_checks.py": "9ebfcc35b27f75c586a7165282f076f763f20e5eaeeb8c9943a5f251d0347b76",
+    "scripts/run_hook_high_price_partner_checks.py": "e08140cf5c6caf12eda55c2f3d7116851f826e8d78352cde8fb2a261fa0abd31",
+    "scripts/run_hook_monomial_orbit_checks.py": "73d2df85c7b57f274924dafe7e10cad3ac93c91379797f551f5b545d48741b60",
+    "scripts/run_hook_monomial_perturbation_checks.py": "17577d12548240faac5d6de08f743e5624d08930ab0f0ae64f9a25bb9c968632",
+    "scripts/run_hook_prefix_uncertainty_checks.py": "9f40ebf63619254f66e8cd2000b35fc75473cf9debcb16b1ae19780d643f46e9",
+    "scripts/run_hook_rank_departure_checks.py": "43c5da1ef0737781e428d256e840f526bc175e7d66bb1cefb51a97b2674a7ab1",
+    "scripts/run_hook_transverse_prefix_checks.py": "cb63787ea1e5e6da1823c262901de02ae55ce1abc17b867118a5ea285363c3c0",
+    "scripts/run_hook_transverse_valuation_checks.py": "1db9d884e7dee58efbccafb711257192ee8575a71d5cfd9a8ada10aad8bcaad4",
+    "scripts/run_hypersurface_truncation_checks.py": "700073c01784db06a953d351c500e0d66b0019c1152fe4b127cbf50f35cbcd7e",
+    "scripts/run_initial_cone_height_checks.py": "f804aff89da53a6139aed7cacc9fd802dee8fd8529ee48a0d240dd9740df3dab",
+    "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
+    "scripts/run_liaison_fan_checks.py": "59129e88d900f283ed245f7762f3f75f9b498442fe10f7f0b2e2757493359539",
+    "scripts/run_oracle_enumeration_checks.py": "139af7656f8dc4083fc463a0bb27354ee53b23e85bc3232b958236b15ee45ec2",
+    "scripts/run_planar_dyadic_bound_checks.py": "27642dbe7cf5c21e0eacb671b644bd00b97e758422d341cffa82c16df0b224bc",
+    "scripts/run_primitive_wall_checks.py": "ce4bdb6316b3acbfc15625b8f67dfadd69c95d691c81da2c47cda6538c867cdb",
+    "scripts/run_projection_tag_checks.py": "c003724cab6740a5bafc51e03b0f17f779eff80a463bdf92dae134d53617ccff",
+    "scripts/run_signed_face_checks.py": "8367cf40b049331649f6f3ed799e43982b14a1d40cfb620791249d2c63375867",
+    "scripts/run_socle_stability_checks.py": "81e4476100f0be5457fcf7019186415d230cceac4096202b2844dce645e83f52",
+    "scripts/run_square_zero_extension_checks.py": "c6e493b604506bb2ffd0da87a8517a72b7c2691c95daf659b6850ca42ee199df",
+    "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
+    "scripts/run_wall_coexistence_checks.py": "12efc209c9a0daacb8e50eebe65902ca019a78fb78098ecc3e79ecf585cae282"
+  }
+}
