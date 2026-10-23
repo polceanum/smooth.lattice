@@ -1,0 +1,550 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "command": "python3 -B scripts/run_hook_superregular_axis_checks.py",
+  "uniform_result": "Zero-outer polynomial axis hooks with banded-superregular Toeplitz factors have g=O(n^2), uniformly in all degrees, initial orders, coefficients and fields satisfying the hypotheses. Zero arms are allowed.",
+  "coefficient_open_scope": "The banded-superregular locus is geometrically nonempty in every characteristic, with points over every infinite field or sufficiently large finite extensions. Full support or a fixed small prime field is not asserted sufficient.",
+  "consequences": {
+    "common_integer_list": "O(n^2) weights of height O(a^2), for fixed a,t and both initial orders/degrees",
+    "degree_and_order_only_profiles": "Pure prefix bases and entire head births depend only on integer degrees and initial orders; no field elimination is required after the hypotheses are known.",
+    "scope_guard": "No efficient certification of all minors, optimal basis-output or bit-complexity claim."
+  },
+  "counts": {
+    "entire_degree_tables_equal_field_elimination": 9,
+    "independent_entire_pure_plus_head_prefix_ranks": 608,
+    "independent_entire_prefix_births": 88,
+    "independent_nontrivial_Toeplitz_minors": 1316,
+    "independent_structurally_zero_Toeplitz_minors": 3769,
+    "whole_positive_interaction_arcs_in_linear_inventory": 1522,
+    "positive_interaction_arcs_outside_endpoint_strips": 644,
+    "independent_complete_original_degree_fans": 6,
+    "complete_refinement_facets_in_linear_inventory": 2522,
+    "independent_large_original_degree_profiles": 12,
+    "entire_same_degree_profile_fan_equalities_across_fields": 1,
+    "entire_degree_and_order_tables_equal_field_elimination": 6,
+    "independent_nonunit_entire_prefix_births": 60,
+    "independent_full_support_singular_scope_guards": 1
+  },
+  "factor_controls": [
+    {
+      "A": 4,
+      "t": 2,
+      "D": 0,
+      "characteristic": 0,
+      "operators": {
+        "0": "1"
+      },
+      "all_minors": {
+        "nontrivial_nonzero": 15,
+        "structurally_zero": 54
+      }
+    },
+    {
+      "A": 4,
+      "t": 2,
+      "D": 2,
+      "characteristic": 0,
+      "operators": {
+        "0": "1",
+        "1": "2",
+        "2": "16"
+      },
+      "all_minors": {
+        "nontrivial_nonzero": 40,
+        "structurally_zero": 29
+      }
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "D": 4,
+      "characteristic": 0,
+      "operators": {
+        "0": "1",
+        "1": "2",
+        "2": "16",
+        "3": "512",
+        "4": "65536"
+      },
+      "all_minors": {
+        "nontrivial_nonzero": 131,
+        "structurally_zero": 120
+      }
+    },
+    {
+      "A": 6,
+      "t": 3,
+      "D": 3,
+      "characteristic": 0,
+      "operators": {
+        "0": "1",
+        "1": "2",
+        "2": "16",
+        "3": "512"
+      },
+      "all_minors": {
+        "nontrivial_nonzero": 416,
+        "structurally_zero": 507
+      }
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "D": 4,
+      "characteristic": 0,
+      "operators": {
+        "0": "1",
+        "1": "2",
+        "2": "16",
+        "3": "512",
+        "4": "65536"
+      }
+    },
+    {
+      "A": 10,
+      "t": 4,
+      "D": 9,
+      "characteristic": 0,
+      "operators": {
+        "0": "1",
+        "1": "2",
+        "2": "16",
+        "3": "512",
+        "4": "65536",
+        "5": "33554432",
+        "6": "68719476736",
+        "7": "562949953421312",
+        "8": "18446744073709551616",
+        "9": "2417851639229258349412352"
+      }
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "D": 1,
+      "characteristic": 2,
+      "operators": {
+        "0": "1",
+        "1": "1"
+      },
+      "all_minors": {
+        "nontrivial_nonzero": 88,
+        "structurally_zero": 163
+      }
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "D": 2,
+      "characteristic": 65537,
+      "operators": {
+        "0": "32169",
+        "1": "58671",
+        "2": "14119"
+      },
+      "all_minors": {
+        "nontrivial_nonzero": 121,
+        "structurally_zero": 130
+      }
+    },
+    {
+      "A": 6,
+      "t": 2,
+      "D": 4,
+      "characteristic": 65537,
+      "operators": {
+        "0": "44445",
+        "1": "34139",
+        "2": "40529",
+        "3": "3202",
+        "4": "48588"
+      },
+      "all_minors": {
+        "nontrivial_nonzero": 427,
+        "structurally_zero": 496
+      }
+    }
+  ],
+  "nonunit_and_zero_controls": [
+    {
+      "A": 5,
+      "t": 2,
+      "degree_and_order": [
+        1,
+        3
+      ],
+      "characteristic": 0,
+      "operators": {
+        "1": "1",
+        "2": "2",
+        "3": "16"
+      },
+      "all_minors": {
+        "nontrivial_nonzero": 40,
+        "structurally_zero": 211
+      }
+    },
+    {
+      "A": 6,
+      "t": 3,
+      "degree_and_order": [
+        4,
+        5
+      ],
+      "characteristic": 0,
+      "operators": {
+        "4": "1",
+        "5": "2"
+      },
+      "all_minors": {
+        "nontrivial_nonzero": 4,
+        "structurally_zero": 919
+      }
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "degree_and_order": [
+        2,
+        5
+      ],
+      "characteristic": 0,
+      "operators": {
+        "2": "1",
+        "3": "2",
+        "4": "16",
+        "5": "512"
+      }
+    },
+    {
+      "A": 5,
+      "t": 3,
+      "degree_and_order": [
+        4,
+        4
+      ],
+      "characteristic": 2,
+      "operators": {
+        "4": "1"
+      },
+      "all_minors": {
+        "nontrivial_nonzero": 1,
+        "structurally_zero": 250
+      }
+    },
+    {
+      "A": 6,
+      "t": 2,
+      "degree_and_order": [
+        2,
+        3
+      ],
+      "characteristic": 2,
+      "operators": {
+        "2": "1",
+        "3": "1"
+      },
+      "all_minors": {
+        "nontrivial_nonzero": 33,
+        "structurally_zero": 890
+      }
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "degree_and_order": null,
+      "characteristic": 2,
+      "operators": {}
+    }
+  ],
+  "positive_interaction_arc_controls": [
+    {
+      "A": 6,
+      "t": 2,
+      "degrees": [
+        0,
+        5
+      ],
+      "entire_positive_straight_arcs": 36
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "degrees": [
+        2,
+        4
+      ],
+      "entire_positive_straight_arcs": 74
+    },
+    {
+      "A": 12,
+      "t": 4,
+      "degrees": [
+        6,
+        6
+      ],
+      "entire_positive_straight_arcs": 244
+    },
+    {
+      "A": 14,
+      "t": 3,
+      "degrees": [
+        3,
+        12
+      ],
+      "entire_positive_straight_arcs": 194
+    },
+    {
+      "A": 20,
+      "t": 2,
+      "degrees": [
+        10,
+        10
+      ],
+      "entire_positive_straight_arcs": 116
+    },
+    {
+      "A": 144,
+      "t": 2,
+      "degrees": [
+        72,
+        72
+      ],
+      "entire_positive_straight_arcs": 858
+    }
+  ],
+  "complete_degree_fans": [
+    {
+      "A": 4,
+      "t": 2,
+      "axis_order_and_degree_specs": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "characteristic": 0,
+      "actual_initial_ideal_cones": 28,
+      "refinement_patches": 46,
+      "exact_total_area": "1",
+      "entire_original_fan_equal": true,
+      "canonical_profile_fan_sha256": "ab24cfb2bc767ec71e27dd2ce1fb982f79be3d0a700c2bc3deb0ff0151b524d8"
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "axis_order_and_degree_specs": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "characteristic": 65537,
+      "actual_initial_ideal_cones": 20,
+      "refinement_patches": 34,
+      "exact_total_area": "1",
+      "entire_original_fan_equal": true,
+      "canonical_profile_fan_sha256": "c5b94285bc4c3d4f30afe3403387b5b122eba1a1910db2bbfd1e11223a8bebf1"
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "axis_order_and_degree_specs": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "characteristic": 0,
+      "actual_initial_ideal_cones": 20,
+      "refinement_patches": 34,
+      "exact_total_area": "1",
+      "entire_original_fan_equal": true,
+      "canonical_profile_fan_sha256": "c5b94285bc4c3d4f30afe3403387b5b122eba1a1910db2bbfd1e11223a8bebf1"
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "axis_order_and_degree_specs": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "characteristic": 0,
+      "actual_initial_ideal_cones": 100,
+      "refinement_patches": 164,
+      "exact_total_area": "1",
+      "entire_original_fan_equal": false,
+      "canonical_profile_fan_sha256": "4ae9eff4fa9f5a78b4f201ed594a910a5b9db7db19f1e503f12b02fa7cea7e71"
+    },
+    {
+      "A": 12,
+      "t": 4,
+      "axis_order_and_degree_specs": [
+        [
+          0,
+          6
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "characteristic": 0,
+      "actual_initial_ideal_cones": 292,
+      "refinement_patches": 402,
+      "exact_total_area": "1",
+      "entire_original_fan_equal": false,
+      "canonical_profile_fan_sha256": "aecab4fbe1c4d315787d415e49250162c1417635bd229fea6052e70c2fe16a20"
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "axis_order_and_degree_specs": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "characteristic": 0,
+      "actual_initial_ideal_cones": 24,
+      "refinement_patches": 38,
+      "exact_total_area": "1",
+      "entire_original_fan_equal": true,
+      "canonical_profile_fan_sha256": "1ba311ceec606aa553cdab02c8e18c8aca4d695e303b0f9d30f4901cbf053548"
+    },
+    {
+      "A": 5,
+      "t": 3,
+      "axis_order_and_degree_specs": [
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ]
+      ],
+      "characteristic": 2,
+      "actual_initial_ideal_cones": 4,
+      "refinement_patches": 4,
+      "exact_total_area": "1",
+      "entire_original_fan_equal": true,
+      "canonical_profile_fan_sha256": "54bac0b3f3a846c9adee9f31870e57a6ea8f8bc7839df6a09a793a5cc485a49e"
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "axis_order_and_degree_specs": [
+        null,
+        [
+          0,
+          2
+        ]
+      ],
+      "characteristic": 0,
+      "actual_initial_ideal_cones": 4,
+      "refinement_patches": 6,
+      "exact_total_area": "1",
+      "entire_original_fan_equal": true,
+      "canonical_profile_fan_sha256": "12fc64c418262908957e4ee43edeb052e59b6f6c48e9c7dd584c1070f2c57600"
+    }
+  ],
+  "full_support_singular_counterexample": {
+    "A": 6,
+    "t": 2,
+    "D": 3,
+    "characteristic": 2,
+    "coefficients": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "admissible_minor_rows": [
+      1,
+      2
+    ],
+    "admissible_minor_columns": [
+      0,
+      1
+    ],
+    "minor": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "theta": "-1/2",
+    "head_index": 1,
+    "generic_predicted_birth": "3",
+    "actual_birth": "7/2",
+    "entire_original_prefix_rank_before_and_after_head": [
+      5,
+      6
+    ],
+    "scope": "Every polynomial coefficient is nonzero, but an admissible minor vanishes. The superregular theorem and degree-only oracle do not apply."
+  },
+  "limits": [
+    "Toeplitz-degenerate coefficients and nonzero outer images are outside this theorem.",
+    "Larger original quotient checks are profile spot checks, not independent entire original fans.",
+    "Generic polynomial strata at every degree are covered; no new unrestricted G3 exponent, infinite actual polynomial lower excess or strongest-current novelty is established.",
+    "The original extremal goal and final-paper gates remain incomplete."
+  ],
+  "source_sha256": {
+    "docs/hook_axis_birth_curves.md": "d3166f48b98a23987b2e55a12617ff5aa24576501a568e7d813f1b772893da33",
+    "docs/hook_axis_linear_oracle.md": "7be44259c19c2e79b753e5df88aee60ef9563e6792e27eea0abfd422ab8ff35a",
+    "docs/hook_superregular_axis_fans.md": "e6ff668bf67d175af37d51d5e83980cadabb134b6e78fda779c9d47b58fbb4c0",
+    "results/research/hook_axis_linear_checks.json": "d1bb7092e803637aa1fc8cbd92747018c5ec19537edfe3ae2f3b7c623501a7d3",
+    "scripts/run_algebraic_incidence_controls.py": "93e6f0e5d147da43cdfacc16e4419703c59993c10dc03199ef6385df4d420eeb",
+    "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
+    "scripts/run_generic_hook_checks.py": "3ee4bbb72f481b5543bba276fca3e4ee229b9d0aa9b6c9d79e3bcad369d9c2f8",
+    "scripts/run_higher_interaction_checks.py": "cdc31d1b582e71c4536056429bf7eabeb2fcb312f313713135a2eaee68578916",
+    "scripts/run_higher_seed_checks.py": "92f0c67e86e3be54c71cbe6efac168c767c9768bb8058b6dc36d24b91acac926",
+    "scripts/run_hook_axis_birth_checks.py": "706638a5c886f4b3f4f1371128ac9ceb6f07784943cafb8e76ad755e6396f508",
+    "scripts/run_hook_axis_compilation_checks.py": "608bea2c12913268cc987b64f1a5f4bceb6a3e05c70340b0f847f0e7fe6f56a6",
+    "scripts/run_hook_axis_linear_checks.py": "83ef687abb19e8ba4b7b188d7d9242994b5bed5cda80582c8249a27e5959ca7f",
+    "scripts/run_hook_bridge_checks.py": "b4b8a52257e8e21cce035f75e356d583b4baacba585d3f47ecc51a57dd0805ec",
+    "scripts/run_hook_rank_departure_checks.py": "43c5da1ef0737781e428d256e840f526bc175e7d66bb1cefb51a97b2674a7ab1",
+    "scripts/run_hook_superregular_axis_checks.py": "d0dca987c5557c00ccbca0d2e62ededec444f096ba3fcec0b407866503d005f4",
+    "scripts/run_hypersurface_truncation_checks.py": "700073c01784db06a953d351c500e0d66b0019c1152fe4b127cbf50f35cbcd7e",
+    "scripts/run_initial_cone_height_checks.py": "f804aff89da53a6139aed7cacc9fd802dee8fd8529ee48a0d240dd9740df3dab",
+    "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
+    "scripts/run_liaison_fan_checks.py": "59129e88d900f283ed245f7762f3f75f9b498442fe10f7f0b2e2757493359539",
+    "scripts/run_oracle_enumeration_checks.py": "139af7656f8dc4083fc463a0bb27354ee53b23e85bc3232b958236b15ee45ec2",
+    "scripts/run_planar_dyadic_bound_checks.py": "27642dbe7cf5c21e0eacb671b644bd00b97e758422d341cffa82c16df0b224bc",
+    "scripts/run_primitive_wall_checks.py": "ce4bdb6316b3acbfc15625b8f67dfadd69c95d691c81da2c47cda6538c867cdb",
+    "scripts/run_projection_tag_checks.py": "c003724cab6740a5bafc51e03b0f17f779eff80a463bdf92dae134d53617ccff",
+    "scripts/run_signed_face_checks.py": "8367cf40b049331649f6f3ed799e43982b14a1d40cfb620791249d2c63375867",
+    "scripts/run_socle_stability_checks.py": "81e4476100f0be5457fcf7019186415d230cceac4096202b2844dce645e83f52",
+    "scripts/run_square_zero_extension_checks.py": "c6e493b604506bb2ffd0da87a8517a72b7c2691c95daf659b6850ca42ee199df",
+    "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
+    "scripts/run_wall_coexistence_checks.py": "12efc209c9a0daacb8e50eebe65902ca019a78fb78098ecc3e79ecf585cae282"
+  }
+}
