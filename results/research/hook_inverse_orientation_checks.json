@@ -1,0 +1,986 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "command": "python3 -B scripts/run_hook_inverse_orientation_checks.py",
+  "scope": "All-field inverse-only oriented lower-source windows with arbitrary compatible outer maps. Both central arms unit give O(n^2*(1+Dinv/t+log(a/t))*log(n+1)) full fans, and O(n^2*(1+Dinv/t)*log(n+1)) with zero outers. No forward-degree hypothesis, unrestricted endpoint or exact novelty claimed.",
+  "uniform_result": {
+    "one_arm": "Only the chosen central arm must be unit; its inverse long degree controls lower-on-that-arm versus opposite-upper faces. Opposite central and all outer images are arbitrary.",
+    "arbitrary_outer_lower_window": "u*M<=(4t+2d)*u+4t or u*(a-M)<=(4t+2d)*u+4t, d=deg_q W^-1; outer sources satisfy (i+1)*u+j<=2t-1",
+    "zero_outer_lower_window": "(M-t)*u+(s-t)<=(t-1+d)*u+t-1; hence M<=3t+d or opposite upper K<=4t+d",
+    "one_oriented_direction_inventory": "O(a*(d+t*(1+log(a/t)))), height O(a); O(a*(t+d)) if the chosen outer components are zero",
+    "two_unit_full_fan": "O(n^2*(1+Dinv/t+log(a/t))*log(n+1)), all compatible outers; Dinv=max inverse degrees",
+    "two_unit_zero_outer_full_fan": "O(n^2*(1+Dinv/t)*log(n+1))",
+    "geometric_family": "Both W=(1-M)^-1, M=v*q^nu*(1+q), have inverse long degree nu+1; nu=O(t) is quadratic polylogarithmic even with arbitrary compatible outer maps.",
+    "necessary_condition": "A unit-arm family with g>=c*n^(2+epsilon) needs Dinv/t=Omega(n^epsilon/log(n+1)); long forward propagation alone cannot produce a polynomial excess.",
+    "counting_input": "The established translated-layer shadow theorem bounds all parallel pieces in each primitive first-coordinate-one direction by O(n*log(n+1)); the finite polytope sweep counts the full fan."
+  },
+  "counts": {
+    "coefficient_independent_oriented_plane_inventories": 11,
+    "higher_price_mixed_columns_not_claimed_to_split": 2178,
+    "independent_actual_oriented_coherent_exchange_checks": 1196,
+    "independent_actual_remainder_crossing_segment_prefix_ranks": 4,
+    "independent_complete_nonzero_wall_inventory_checks": 1979,
+    "independent_crossing_entire_adjacent_normal_polygons": 8,
+    "independent_entire_inverse_only_lower_splits": 25,
+    "independent_long_forward_small_inverse_examples": 8,
+    "independent_original_lower_identity_chart_checks": 1356,
+    "independent_original_prefix_contraction_rank_equalities": 9
+  },
+  "fan_counts": {
+    "independent_complete_original_fans": 6
+  },
+  "original_quotient_replay_counts": {
+    "exact_potential_bridge_partitions": 10,
+    "independent_original_quotient_column_equalities": 4824,
+    "independent_commuting_matrix_columns": 10140,
+    "independent_module_successor_columns": 20526
+  },
+  "cases": [
+    {
+      "t": 2,
+      "a": 8,
+      "characteristic": 101,
+      "zero_outer_images": false,
+      "specified_inverse_arms": [
+        {
+          "inverse_long_degree": 3,
+          "expanded_forward_long_degree": 3,
+          "prefix_split_certificates": []
+        },
+        {
+          "inverse_long_degree": 3,
+          "expanded_forward_long_degree": 3,
+          "prefix_split_certificates": []
+        }
+      ],
+      "full_fan": {
+        "complete_original_cones": 259,
+        "oriented_exchange_checks": [
+          98,
+          96
+        ],
+        "opposite_nonunit_orientation_not_claimed": 0,
+        "directed_planes": [
+          70,
+          70
+        ],
+        "known_planes": 137,
+        "remainder_wall_occurrences_with_both_incident_cones": 34
+      }
+    },
+    {
+      "t": 3,
+      "a": 11,
+      "characteristic": 2,
+      "zero_outer_images": false,
+      "specified_inverse_arms": [
+        {
+          "inverse_long_degree": 4,
+          "expanded_forward_long_degree": 6,
+          "prefix_split_certificates": []
+        },
+        {
+          "inverse_long_degree": 3,
+          "expanded_forward_long_degree": 7,
+          "prefix_split_certificates": []
+        }
+      ],
+      "full_fan": {
+        "complete_original_cones": 741,
+        "oriented_exchange_checks": [
+          254,
+          256
+        ],
+        "opposite_nonunit_orientation_not_claimed": 0,
+        "directed_planes": [
+          140,
+          140
+        ],
+        "known_planes": 297,
+        "remainder_wall_occurrences_with_both_incident_cones": 56
+      }
+    },
+    {
+      "t": 2,
+      "a": 8,
+      "characteristic": 0,
+      "zero_outer_images": false,
+      "specified_inverse_arms": [
+        {
+          "inverse_long_degree": 2,
+          "expanded_forward_long_degree": 5,
+          "prefix_split_certificates": []
+        },
+        {
+          "inverse_long_degree": 3,
+          "expanded_forward_long_degree": 3,
+          "prefix_split_certificates": []
+        }
+      ],
+      "full_fan": {
+        "complete_original_cones": 260,
+        "oriented_exchange_checks": [
+          88,
+          60
+        ],
+        "opposite_nonunit_orientation_not_claimed": 0,
+        "directed_planes": [
+          70,
+          70
+        ],
+        "known_planes": 137,
+        "remainder_wall_occurrences_with_both_incident_cones": 28
+      }
+    },
+    {
+      "t": 3,
+      "a": 9,
+      "characteristic": 3,
+      "zero_outer_images": false,
+      "specified_inverse_arms": [
+        {
+          "inverse_long_degree": 4,
+          "expanded_forward_long_degree": 4,
+          "prefix_split_certificates": []
+        },
+        null
+      ],
+      "full_fan": {
+        "complete_original_cones": 489,
+        "oriented_exchange_checks": [
+          176,
+          0
+        ],
+        "opposite_nonunit_orientation_not_claimed": 148,
+        "directed_planes": [
+          80,
+          null
+        ],
+        "known_planes": 205,
+        "remainder_wall_occurrences_with_both_incident_cones": 52
+      }
+    },
+    {
+      "t": 3,
+      "a": 12,
+      "characteristic": 101,
+      "zero_outer_images": true,
+      "specified_inverse_arms": [
+        {
+          "inverse_long_degree": 3,
+          "expanded_forward_long_degree": 8,
+          "prefix_split_certificates": [
+            {
+              "arm": 0,
+              "zero_outer": true,
+              "weight": [
+                "7/3",
+                "1",
+                "1"
+              ],
+              "target": [
+                0,
+                11,
+                3
+              ],
+              "contracted_rows": 12,
+              "checked_entire_matrix": true,
+              "higher_price_mixed_columns": 0
+            },
+            {
+              "arm": 0,
+              "zero_outer": true,
+              "weight": [
+                "7/3",
+                "3",
+                "1"
+              ],
+              "target": [
+                0,
+                11,
+                3
+              ],
+              "contracted_rows": 15,
+              "checked_entire_matrix": true,
+              "higher_price_mixed_columns": 0
+            }
+          ]
+        },
+        {
+          "inverse_long_degree": 3,
+          "expanded_forward_long_degree": 8,
+          "prefix_split_certificates": [
+            {
+              "arm": 1,
+              "zero_outer": true,
+              "weight": [
+                "7/3",
+                "1",
+                "1"
+              ],
+              "target": [
+                0,
+                3,
+                11
+              ],
+              "contracted_rows": 12,
+              "checked_entire_matrix": true,
+              "higher_price_mixed_columns": 0
+            },
+            {
+              "arm": 1,
+              "zero_outer": true,
+              "weight": [
+                "7/3",
+                "1",
+                "3"
+              ],
+              "target": [
+                0,
+                3,
+                11
+              ],
+              "contracted_rows": 15,
+              "checked_entire_matrix": true,
+              "higher_price_mixed_columns": 0
+            }
+          ]
+        }
+      ],
+      "full_fan": {
+        "complete_original_cones": 120,
+        "oriented_exchange_checks": [
+          44,
+          44
+        ],
+        "opposite_nonunit_orientation_not_claimed": 0,
+        "directed_planes": [
+          88,
+          88
+        ],
+        "known_planes": 343,
+        "remainder_wall_occurrences_with_both_incident_cones": 0
+      }
+    },
+    {
+      "t": 4,
+      "a": 25,
+      "characteristic": 1009,
+      "zero_outer_images": true,
+      "specified_inverse_arms": [
+        {
+          "inverse_long_degree": 5,
+          "expanded_forward_long_degree": 15,
+          "prefix_split_certificates": [
+            {
+              "arm": 0,
+              "zero_outer": true,
+              "weight": [
+                "7/3",
+                "1/2",
+                "1"
+              ],
+              "target": [
+                0,
+                24,
+                4
+              ],
+              "contracted_rows": 52,
+              "checked_entire_matrix": true,
+              "higher_price_mixed_columns": 0
+            },
+            {
+              "arm": 0,
+              "zero_outer": true,
+              "weight": [
+                "7/3",
+                "1",
+                "1"
+              ],
+              "target": [
+                0,
+                24,
+                4
+              ],
+              "contracted_rows": 58,
+              "checked_entire_matrix": true,
+              "higher_price_mixed_columns": 0
+            },
+            {
+              "arm": 0,
+              "zero_outer": true,
+              "weight": [
+                "7/3",
+                "3",
+                "1"
+              ],
+              "target": [
+                0,
+                24,
+                4
+              ],
+              "contracted_rows": 63,
+              "checked_entire_matrix": true,
+              "higher_price_mixed_columns": 0
+            }
+          ]
+        },
+        {
+          "inverse_long_degree": 5,
+          "expanded_forward_long_degree": 15,
+          "prefix_split_certificates": [
+            {
+              "arm": 1,
+              "zero_outer": true,
+              "weight": [
+                "7/3",
+                "1",
+                "1/2"
+              ],
+              "target": [
+                0,
+                4,
+                24
+              ],
+              "contracted_rows": 52,
+              "checked_entire_matrix": true,
+              "higher_price_mixed_columns": 0
+            },
+            {
+              "arm": 1,
+              "zero_outer": true,
+              "weight": [
+                "7/3",
+                "1",
+                "1"
+              ],
+              "target": [
+                0,
+                4,
+                24
+              ],
+              "contracted_rows": 58,
+              "checked_entire_matrix": true,
+              "higher_price_mixed_columns": 0
+            },
+            {
+              "arm": 1,
+              "zero_outer": true,
+              "weight": [
+                "7/3",
+                "1",
+                "3"
+              ],
+              "target": [
+                0,
+                4,
+                24
+              ],
+              "contracted_rows": 63,
+              "checked_entire_matrix": true,
+              "higher_price_mixed_columns": 0
+            }
+          ]
+        }
+      ],
+      "full_fan": {
+        "complete_original_cones": 110,
+        "oriented_exchange_checks": [
+          40,
+          40
+        ],
+        "opposite_nonunit_orientation_not_claimed": 0,
+        "directed_planes": [
+          480,
+          480
+        ],
+        "known_planes": 1217,
+        "remainder_wall_occurrences_with_both_incident_cones": 8
+      }
+    },
+    {
+      "t": 2,
+      "a": 80,
+      "characteristic": 101,
+      "zero_outer_images": false,
+      "specified_inverse_arms": [
+        {
+          "inverse_long_degree": 2,
+          "expanded_forward_long_degree": 77,
+          "prefix_split_certificates": [
+            {
+              "arm": 0,
+              "zero_outer": false,
+              "weight": [
+                "7/3",
+                "1/2",
+                "1"
+              ],
+              "target": [
+                0,
+                40,
+                2
+              ],
+              "contracted_rows": 70,
+              "checked_entire_matrix": false,
+              "higher_price_mixed_columns": 155
+            },
+            {
+              "arm": 0,
+              "zero_outer": false,
+              "weight": [
+                "7/3",
+                "1",
+                "1"
+              ],
+              "target": [
+                0,
+                40,
+                2
+              ],
+              "contracted_rows": 71,
+              "checked_entire_matrix": false,
+              "higher_price_mixed_columns": 155
+            },
+            {
+              "arm": 0,
+              "zero_outer": false,
+              "weight": [
+                "7/3",
+                "3",
+                "1"
+              ],
+              "target": [
+                0,
+                40,
+                2
+              ],
+              "contracted_rows": 72,
+              "checked_entire_matrix": false,
+              "higher_price_mixed_columns": 155
+            }
+          ]
+        },
+        null
+      ],
+      "full_fan": null
+    },
+    {
+      "t": 3,
+      "a": 100,
+      "characteristic": 3,
+      "zero_outer_images": false,
+      "specified_inverse_arms": [
+        {
+          "inverse_long_degree": 3,
+          "expanded_forward_long_degree": 96,
+          "prefix_split_certificates": [
+            {
+              "arm": 0,
+              "zero_outer": false,
+              "weight": [
+                "7/3",
+                "1/2",
+                "1"
+              ],
+              "target": [
+                0,
+                50,
+                3
+              ],
+              "contracted_rows": 126,
+              "checked_entire_matrix": false,
+              "higher_price_mixed_columns": 284
+            },
+            {
+              "arm": 0,
+              "zero_outer": false,
+              "weight": [
+                "7/3",
+                "1",
+                "1"
+              ],
+              "target": [
+                0,
+                50,
+                3
+              ],
+              "contracted_rows": 129,
+              "checked_entire_matrix": false,
+              "higher_price_mixed_columns": 284
+            },
+            {
+              "arm": 0,
+              "zero_outer": false,
+              "weight": [
+                "7/3",
+                "3",
+                "1"
+              ],
+              "target": [
+                0,
+                50,
+                3
+              ],
+              "contracted_rows": 132,
+              "checked_entire_matrix": false,
+              "higher_price_mixed_columns": 284
+            }
+          ]
+        },
+        {
+          "inverse_long_degree": 4,
+          "expanded_forward_long_degree": 8,
+          "prefix_split_certificates": [
+            {
+              "arm": 1,
+              "zero_outer": false,
+              "weight": [
+                "7/3",
+                "1",
+                "1/2"
+              ],
+              "target": [
+                0,
+                3,
+                50
+              ],
+              "contracted_rows": 126,
+              "checked_entire_matrix": false,
+              "higher_price_mixed_columns": 287
+            },
+            {
+              "arm": 1,
+              "zero_outer": false,
+              "weight": [
+                "7/3",
+                "1",
+                "1"
+              ],
+              "target": [
+                0,
+                3,
+                50
+              ],
+              "contracted_rows": 129,
+              "checked_entire_matrix": false,
+              "higher_price_mixed_columns": 287
+            },
+            {
+              "arm": 1,
+              "zero_outer": false,
+              "weight": [
+                "7/3",
+                "1",
+                "3"
+              ],
+              "target": [
+                0,
+                3,
+                50
+              ],
+              "contracted_rows": 132,
+              "checked_entire_matrix": false,
+              "higher_price_mixed_columns": 287
+            }
+          ]
+        }
+      ],
+      "full_fan": null
+    },
+    {
+      "t": 3,
+      "a": 50,
+      "characteristic": 2,
+      "zero_outer_images": true,
+      "specified_inverse_arms": [
+        {
+          "inverse_long_degree": 3,
+          "expanded_forward_long_degree": 46,
+          "prefix_split_certificates": [
+            {
+              "arm": 0,
+              "zero_outer": true,
+              "weight": [
+                "7/3",
+                "1/2",
+                "1"
+              ],
+              "target": [
+                0,
+                49,
+                3
+              ],
+              "contracted_rows": 123,
+              "checked_entire_matrix": true,
+              "higher_price_mixed_columns": 0
+            },
+            {
+              "arm": 0,
+              "zero_outer": true,
+              "weight": [
+                "7/3",
+                "1",
+                "1"
+              ],
+              "target": [
+                0,
+                49,
+                3
+              ],
+              "contracted_rows": 126,
+              "checked_entire_matrix": true,
+              "higher_price_mixed_columns": 0
+            },
+            {
+              "arm": 0,
+              "zero_outer": true,
+              "weight": [
+                "7/3",
+                "3",
+                "1"
+              ],
+              "target": [
+                0,
+                49,
+                3
+              ],
+              "contracted_rows": 129,
+              "checked_entire_matrix": true,
+              "higher_price_mixed_columns": 0
+            }
+          ]
+        },
+        {
+          "inverse_long_degree": 3,
+          "expanded_forward_long_degree": 46,
+          "prefix_split_certificates": [
+            {
+              "arm": 1,
+              "zero_outer": true,
+              "weight": [
+                "7/3",
+                "1",
+                "1/2"
+              ],
+              "target": [
+                0,
+                3,
+                49
+              ],
+              "contracted_rows": 123,
+              "checked_entire_matrix": true,
+              "higher_price_mixed_columns": 0
+            },
+            {
+              "arm": 1,
+              "zero_outer": true,
+              "weight": [
+                "7/3",
+                "1",
+                "1"
+              ],
+              "target": [
+                0,
+                3,
+                49
+              ],
+              "contracted_rows": 126,
+              "checked_entire_matrix": true,
+              "higher_price_mixed_columns": 0
+            },
+            {
+              "arm": 1,
+              "zero_outer": true,
+              "weight": [
+                "7/3",
+                "1",
+                "3"
+              ],
+              "target": [
+                0,
+                3,
+                49
+              ],
+              "contracted_rows": 129,
+              "checked_entire_matrix": true,
+              "higher_price_mixed_columns": 0
+            }
+          ]
+        }
+      ],
+      "full_fan": null
+    }
+  ],
+  "actual_remainder_crossing": {
+    "t": 3,
+    "a": 16,
+    "characteristic": 1009,
+    "zero_outer_images": true,
+    "operators": [
+      [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          3,
+          1,
+          771
+        ],
+        [
+          4,
+          1,
+          191
+        ],
+        [
+          6,
+          2,
+          985
+        ],
+        [
+          7,
+          2,
+          544
+        ],
+        [
+          8,
+          2,
+          815
+        ]
+      ],
+      [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          3,
+          1,
+          730
+        ],
+        [
+          4,
+          1,
+          221
+        ],
+        [
+          6,
+          2,
+          430
+        ],
+        [
+          7,
+          2,
+          986
+        ],
+        [
+          8,
+          2,
+          570
+        ]
+      ]
+    ],
+    "common_interior_vertex": [
+      "3/5",
+      "1/5",
+      "1/5"
+    ],
+    "segments": [
+      {
+        "primitive_plane": [
+          1,
+          -6,
+          3
+        ],
+        "other_endpoint": [
+          "12/23",
+          "5/23",
+          "6/23"
+        ],
+        "midpoint": [
+          "129/230",
+          "24/115",
+          "53/230"
+        ],
+        "exchange": [
+          [
+            0,
+            8,
+            4
+          ],
+          [
+            1,
+            2,
+            7
+          ]
+        ],
+        "strictly_cheaper_rank": 52,
+        "single_and_joint_increments": [
+          1,
+          1,
+          1
+        ],
+        "adjacent_bases_differ_by_one_pair": true
+      },
+      {
+        "primitive_plane": [
+          1,
+          -6,
+          3
+        ],
+        "other_endpoint": [
+          "24/37",
+          "7/37",
+          "6/37"
+        ],
+        "midpoint": [
+          "231/370",
+          "36/185",
+          "67/370"
+        ],
+        "exchange": [
+          [
+            0,
+            7,
+            5
+          ],
+          [
+            1,
+            1,
+            8
+          ]
+        ],
+        "strictly_cheaper_rank": 52,
+        "single_and_joint_increments": [
+          1,
+          1,
+          1
+        ],
+        "adjacent_bases_differ_by_one_pair": true
+      },
+      {
+        "primitive_plane": [
+          1,
+          3,
+          -6
+        ],
+        "other_endpoint": [
+          "12/23",
+          "6/23",
+          "5/23"
+        ],
+        "midpoint": [
+          "129/230",
+          "53/230",
+          "24/115"
+        ],
+        "exchange": [
+          [
+            0,
+            4,
+            8
+          ],
+          [
+            1,
+            7,
+            2
+          ]
+        ],
+        "strictly_cheaper_rank": 52,
+        "single_and_joint_increments": [
+          1,
+          1,
+          1
+        ],
+        "adjacent_bases_differ_by_one_pair": true
+      },
+      {
+        "primitive_plane": [
+          1,
+          3,
+          -6
+        ],
+        "other_endpoint": [
+          "24/37",
+          "6/37",
+          "7/37"
+        ],
+        "midpoint": [
+          "231/370",
+          "67/370",
+          "36/185"
+        ],
+        "exchange": [
+          [
+            0,
+            5,
+            7
+          ],
+          [
+            1,
+            8,
+            1
+          ]
+        ],
+        "strictly_cheaper_rank": 52,
+        "single_and_joint_increments": [
+          1,
+          1,
+          1
+        ],
+        "adjacent_bases_differ_by_one_pair": true
+      }
+    ],
+    "scope": "Both remainder directions continue through a common interior vertex. Other walls meet there; neither an isolated four-cone crossing nor an asymptotic lower count is asserted."
+  },
+  "limits": [
+    "Both central units are required for the whole-fan theorem; one unit controls only its specified lower-column orientation.",
+    "The common plane inventory covers nonzero-first-coordinate directions; no complete coefficient-independent weight list of the displayed size is claimed.",
+    "The all-field geometric/geometric family is closed, but plus/plus and power/geometric models can have large inverse degree and are not closed by this corollary.",
+    "Existing stronger bounds remain available when smaller; logarithmic sharpness is not asserted.",
+    "Exact strongest-current novelty, sharp unrestricted G_3, actual polynomial excess and the original final-paper requirements remain unresolved."
+  ],
+  "source_sha256": {
+    "docs/cross_layer_direction_budget.md": "62883371204bb525a3aa12d3dd0ed24496554f25855d18ef2a6084efb6dfc0af",
+    "docs/hook_bridge_reduction.md": "a7c7c4643847c8b2ce668a6341fb9b49fa55b17a67ba8bd618f140212acef259",
+    "docs/hook_coherent_unit_windows.md": "7543c9494871a408bdd47d20f37a42dae02bc2afe68c5fc33a100784d7beb940",
+    "docs/hook_inverse_orientation.md": "5fa38da2d0598c9057647da4cbda6318fa09267d8f509d804128211e445b2482",
+    "docs/hook_outer_unit_windows.md": "50c1023c372801df7437f8da3efae22b004380fef45f8c2db3943ca5c146660c",
+    "docs/layer_shadow_budget.md": "aa94755f14be256ff7f493a4b4076018196edef9f4e993b6a1950d072dacc748",
+    "results/research/hook_two_orbit_checks.json": "1119657b67f5e3ffeaaa7361c07eff2f01c4bdca1621cd56ea395236649f97f0",
+    "scripts/run_algebraic_incidence_controls.py": "93e6f0e5d147da43cdfacc16e4419703c59993c10dc03199ef6385df4d420eeb",
+    "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
+    "scripts/run_generic_hook_checks.py": "3ee4bbb72f481b5543bba276fca3e4ee229b9d0aa9b6c9d79e3bcad369d9c2f8",
+    "scripts/run_higher_interaction_checks.py": "cdc31d1b582e71c4536056429bf7eabeb2fcb312f313713135a2eaee68578916",
+    "scripts/run_higher_seed_checks.py": "92f0c67e86e3be54c71cbe6efac168c767c9768bb8058b6dc36d24b91acac926",
+    "scripts/run_hook_bridge_checks.py": "b4b8a52257e8e21cce035f75e356d583b4baacba585d3f47ecc51a57dd0805ec",
+    "scripts/run_hook_central_prefix_checks.py": "26377696a5b4443f15045e16a91125239dd934baf1d1d5f1400dbe9cb0f09cc8",
+    "scripts/run_hook_coherent_unit_window_checks.py": "4c038a10363b3d472f8a6cd67e906ae62ca2ebe4fd90506725616c72e63f6505",
+    "scripts/run_hook_filtered_annihilator_checks.py": "9ebfcc35b27f75c586a7165282f076f763f20e5eaeeb8c9943a5f251d0347b76",
+    "scripts/run_hook_high_price_partner_checks.py": "e08140cf5c6caf12eda55c2f3d7116851f826e8d78352cde8fb2a261fa0abd31",
+    "scripts/run_hook_inverse_orientation_checks.py": "9c20e83bec21c9270e359f7e10fb1d40204efc7208dafdb34acca23ace38aeef",
+    "scripts/run_hook_monomial_orbit_checks.py": "73d2df85c7b57f274924dafe7e10cad3ac93c91379797f551f5b545d48741b60",
+    "scripts/run_hook_monomial_perturbation_checks.py": "17577d12548240faac5d6de08f743e5624d08930ab0f0ae64f9a25bb9c968632",
+    "scripts/run_hook_outer_unit_window_checks.py": "84f8d35b6ac38bfb07ce23c5c5c02126c41d4144e781a1cec075abdf18818c4a",
+    "scripts/run_hook_prefix_uncertainty_checks.py": "9f40ebf63619254f66e8cd2000b35fc75473cf9debcb16b1ae19780d643f46e9",
+    "scripts/run_hook_rank_departure_checks.py": "43c5da1ef0737781e428d256e840f526bc175e7d66bb1cefb51a97b2674a7ab1",
+    "scripts/run_hook_transverse_prefix_checks.py": "cb63787ea1e5e6da1823c262901de02ae55ce1abc17b867118a5ea285363c3c0",
+    "scripts/run_hook_transverse_valuation_checks.py": "1db9d884e7dee58efbccafb711257192ee8575a71d5cfd9a8ada10aad8bcaad4",
+    "scripts/run_hypersurface_truncation_checks.py": "700073c01784db06a953d351c500e0d66b0019c1152fe4b127cbf50f35cbcd7e",
+    "scripts/run_initial_cone_height_checks.py": "f804aff89da53a6139aed7cacc9fd802dee8fd8529ee48a0d240dd9740df3dab",
+    "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
+    "scripts/run_liaison_fan_checks.py": "59129e88d900f283ed245f7762f3f75f9b498442fe10f7f0b2e2757493359539",
+    "scripts/run_oracle_enumeration_checks.py": "139af7656f8dc4083fc463a0bb27354ee53b23e85bc3232b958236b15ee45ec2",
+    "scripts/run_planar_dyadic_bound_checks.py": "27642dbe7cf5c21e0eacb671b644bd00b97e758422d341cffa82c16df0b224bc",
+    "scripts/run_primitive_wall_checks.py": "ce4bdb6316b3acbfc15625b8f67dfadd69c95d691c81da2c47cda6538c867cdb",
+    "scripts/run_projection_tag_checks.py": "c003724cab6740a5bafc51e03b0f17f779eff80a463bdf92dae134d53617ccff",
+    "scripts/run_signed_face_checks.py": "8367cf40b049331649f6f3ed799e43982b14a1d40cfb620791249d2c63375867",
+    "scripts/run_socle_stability_checks.py": "81e4476100f0be5457fcf7019186415d230cceac4096202b2844dce645e83f52",
+    "scripts/run_square_zero_extension_checks.py": "c6e493b604506bb2ffd0da87a8517a72b7c2691c95daf659b6850ca42ee199df",
+    "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
+    "scripts/run_wall_coexistence_checks.py": "12efc209c9a0daacb8e50eebe65902ca019a78fb78098ecc3e79ecf585cae282"
+  }
+}
